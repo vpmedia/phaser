@@ -1,0 +1,24 @@
+#
+# Copyright (c) Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
+# author: Andras Csizmadia <andras@vpmedia.hu>
+# version: 1.0.0
+# see: https://docs.npmjs.com/cli/v8/using-npm/developers#keeping-files-out-of-your-package
+#
+
+test/
+.husky/
+.idea/
+.babelrc.json
+.browserslistrc
+.DS_Store
+.editorconfig
+.eslintignore
+.eslintrc.json
+.gitattributes
+.gitignore
+.lintstagedrc.json
+.npmignore
+.npmrc
+.prettierignore
+.prettierrc.json
+webpack.config.babel.js
