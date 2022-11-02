@@ -7,6 +7,10 @@
 
     npm install --save @vpmedia/phaser
 
+### Example
+
+Check out [https://github.com/vpmedia/phaser-example](https://github.com/vpmedia/phaser-example)
+
 ### Credits
 
 @vpmedia/phaser is developed by Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
