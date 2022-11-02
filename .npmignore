@@ -6,6 +6,7 @@
 #
 
 test/
+src/
 .husky/
 .idea/
 .babelrc.json
@@ -21,4 +22,5 @@ test/
 .npmrc
 .prettierignore
 .prettierrc.json
+bitbucket-pipelines.yml
 webpack.config.babel.js
