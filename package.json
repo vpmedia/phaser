@@ -1,10 +1,17 @@
 {
   "name": "@vpmedia/phaser",
   "version": "1.0.2",
+  "description": "@vpmedia/phaser is the modern ECMAScript port of the popular Phaser game engine v2.6.2",
   "author": "Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)",
   "license": "MIT",
-  "homepage": "https://github.com/vpmedia/phaser",
-  "private": false,
+  "homepage": "https://github.com/vpmedia/phaser#readme",
+  "bugs": {
+    "url": "https://github.com/vpmedia/phaser/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vpmedia/phaser.git"
+  },
   "main": "./src/index.js",
   "devDependencies": {
     "@babel/cli": "^7.19.3",
@@ -17,7 +24,7 @@
     "eslint": "^8.26.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-jsdoc": "^39.5.0",
+    "eslint-plugin-jsdoc": "^39.6.2",
     "eslint-plugin-prettier": "^4.2.1",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
