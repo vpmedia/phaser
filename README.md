@@ -3,15 +3,15 @@
 
 @vpmedia/phaser is the modern ECMAScript port of the popular Phaser game engine v2.6.2.
 
-### Installation
+## Getting started
 
-    npm install --save @vpmedia/phaser
+    $ npm install --save @vpmedia/phaser
 
-### Example
+## Example
 
-Check out [https://github.com/vpmedia/phaser-example](https://github.com/vpmedia/phaser-example)
+https://github.com/vpmedia/phaser-example
 
-### Credits
+## Credits
 
 @vpmedia/phaser is developed by Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
 
