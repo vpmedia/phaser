@@ -6,6 +6,7 @@
 #
 
 test/
+.github/
 .husky/
 .idea/
 .babelrc.json
