@@ -1,6 +1,8 @@
 @vpmedia/phaser
 ===============
 
+[![npm version](https://badge.fury.io/js/@vpmedia%2Fphaser.svg)](https://badge.fury.io/js/@vpmedia%2Fphaser)
+
 @vpmedia/phaser is the modern ECMAScript port of the popular Phaser game engine v2.6.2.
 
 ## Getting started
