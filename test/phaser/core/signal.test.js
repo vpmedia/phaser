@@ -7,7 +7,6 @@ import { assert } from 'chai';
 import Signal from '../../../src/phaser/core/signal';
 
 describe('Signal', () => {
-
   it('Signal()', () => {
     const signal = new Signal();
     assert.equal(signal.getNumListeners(), 0);
@@ -36,7 +35,9 @@ describe('Signal', () => {
 
   it('has()', () => {
     const signal = new Signal();
-    assert.equal(signal.has(() => {}), false);
+    assert.equal(
+      signal.has(() => {}),
+      false
+    );
   });
-
 });

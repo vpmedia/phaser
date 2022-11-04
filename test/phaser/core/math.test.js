@@ -9,7 +9,7 @@ import * as Utils from '../../../src/phaser/util/math';
 describe('Utils', () => {
   it('valueToColor()', () => {
     const result = {};
-    expect(Utils.valueToColor(0xFFFFFF, result)).to.be.a('object');
+    expect(Utils.valueToColor(0xffffff, result)).to.be.a('object');
     expect(result).to.be.a('object');
   });
 });

@@ -2,7 +2,7 @@
 // author: Andras Csizmadia
 // see: https://webpack.js.org/configuration/
 /* eslint-disable import/no-extraneous-dependencies */
-import {resolve} from 'path';
+import { resolve } from 'path';
 import webpack from 'webpack';
 
 const config = {
@@ -18,15 +18,19 @@ const config = {
       {
         test: /(\.jsx|\.js)$/,
         loader: 'babel-loader',
-        exclude: /(node_modules)/
-      }
-    ]
+        exclude: /(node_modules)/,
+      },
+    ],
   },
   entry: {
     main: resolve(__dirname, 'src/index.js'),
   },
   plugins: [
-    new webpack.BannerPlugin({banner: '@vpmedia/phaser Copyright (c) 2022-present Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu) ' + new Date()}),
+    new webpack.BannerPlugin({
+      banner:
+        '@vpmedia/phaser Copyright (c) 2022-present Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu) ' +
+        new Date(),
+    }),
   ],
 };
 
@@ -53,4 +57,4 @@ const configCommonjs = Object.assign({}, config, {
   },
 });
 
-export default [ configUmd, configCommonjs ];
+export default [configUmd, configCommonjs];

@@ -22,11 +22,7 @@
     "sinon": true
   },
   "parser": "@babel/eslint-parser",
-  "plugins": [
-    "import",
-    "jsdoc",
-    "prettier"
-  ],
+  "plugins": ["import", "jsdoc", "prettier"],
   "rules": {
     "no-unused-vars": "warn"
   }
