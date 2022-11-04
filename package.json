@@ -43,8 +43,8 @@
     "prebuild": "rm -rf ./dist && mkdir -p ./dist",
     "build": "webpack --config webpack.config.babel.js --mode production",
     "test": "mocha \"test/**/*test.js\" --require test/setup.js --require @babel/register --colors",
-    "lint": "eslint src/**/*.js && eslint test/**/*.js",
-    "lint-fix": "eslint src/**/*.js --fix && eslint test/**/*.js --fix",
+    "lint": "eslint \"**/*.js\"",
+    "lint-fix": "eslint \"**/*.js\" --fix",
     "format": "prettier --write \"**/*.{js,json}\"",
     "lint-staged": "lint-staged",
     "prepack": "npm run build"

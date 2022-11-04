@@ -8,11 +8,12 @@ import { create as createCanvas } from './pool';
 
 /**
  *
- * @param parent
- * @param width
- * @param height
- * @param id
- * @param skipPool
+ * @param {object} parent TBD
+ * @param {number} width TBD
+ * @param {number} height TBD
+ * @param {string} id TBD
+ * @param {boolean} skipPool TBD
+ * @returns {object} TBD
  */
 export function create(parent, width, height, id, skipPool) {
   width = width || 256;
@@ -29,8 +30,9 @@ export function create(parent, width, height, id, skipPool) {
 
 /**
  *
- * @param canvas
- * @param color
+ * @param {object} canvas TBD
+ * @param {string} color TBD
+ * @returns {object} TBD
  */
 export function setBackgroundColor(canvas, color) {
   color = color || 'rgb(0,0,0)';
@@ -40,8 +42,9 @@ export function setBackgroundColor(canvas, color) {
 
 /**
  *
- * @param canvas
- * @param value
+ * @param {object} canvas TBD
+ * @param {string} value TBD
+ * @returns {object} TBD
  */
 export function setTouchAction(canvas, value) {
   value = value || 'none';
@@ -53,8 +56,9 @@ export function setTouchAction(canvas, value) {
 
 /**
  *
- * @param canvas
- * @param value
+ * @param {object} canvas TBD
+ * @param {string} value TBD
+ * @returns {object} TBD
  */
 export function setUserSelect(canvas, value) {
   value = value || 'none';
@@ -70,9 +74,10 @@ export function setUserSelect(canvas, value) {
 
 /**
  *
- * @param canvas
- * @param parent
- * @param overflowHidden
+ * @param {object} canvas TBD
+ * @param {object} parent TBD
+ * @param {boolean} overflowHidden TBD
+ * @returns {object} TBD
  */
 export function addToDOM(canvas, parent, overflowHidden = true) {
   let target;
@@ -98,7 +103,7 @@ export function addToDOM(canvas, parent, overflowHidden = true) {
 
 /**
  *
- * @param canvas
+ * @param canvas TBD
  */
 export function removeFromDOM(canvas) {
   if (canvas.parentNode) {
@@ -108,13 +113,14 @@ export function removeFromDOM(canvas) {
 
 /**
  *
- * @param context
- * @param translateX
- * @param translateY
- * @param scaleX
- * @param scaleY
- * @param skewX
- * @param skewY
+ * @param {object} context TBD
+ * @param {number} translateX TBD
+ * @param {number} translateY TBD
+ * @param {number} scaleX TBD
+ * @param {number} scaleY TBD
+ * @param {number} skewX TBD
+ * @param {number} skewY TBD
+ * @returns {object} TBD
  */
 export function setTransform(context, translateX, translateY, scaleX, scaleY, skewX, skewY) {
   context.setTransform(scaleX, skewX, skewY, scaleY, translateX, translateY);
@@ -123,7 +129,8 @@ export function setTransform(context, translateX, translateY, scaleX, scaleY, sk
 
 /**
  *
- * @param context
+ * @param {object} context TBD
+ * @returns {object} TBD
  */
 export function getSmoothingPrefix(context) {
   const VENDORS = ['i', 'webkitI', 'msI', 'mozI', 'oI'];
@@ -139,8 +146,9 @@ export function getSmoothingPrefix(context) {
 
 /**
  *
- * @param context
- * @param value
+ * @param {object} context TBD
+ * @param {number} value TBD
+ * @returns {object} TBD
  */
 export function setSmoothingEnabled(context, value) {
   const s = getSmoothingPrefix(context);

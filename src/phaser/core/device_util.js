@@ -6,8 +6,9 @@
 
 /**
  *
- * @param device
- * @param type
+ * @param {object} device TBD
+ * @param {string} type TBD
+ * @returns {boolean} TBD
  */
 export function canPlayAudio(device, type) {
   if (type === 'mp3' && device.mp3) {
@@ -30,8 +31,9 @@ export function canPlayAudio(device, type) {
 
 /**
  *
- * @param device
- * @param type
+ * @param {object} device TBD
+ * @param {string} type TBD
+ * @returns {boolean} TBD
  */
 export function canPlayVideo(device, type) {
   if (type === 'webm' && (device.webmVideo || device.vp9Video)) {
@@ -48,7 +50,7 @@ export function canPlayVideo(device, type) {
 
 /**
  *
- * @param device
+ * @param {object} device TBD
  */
 export function checkOS(device) {
   const ua = navigator.userAgent;
@@ -90,7 +92,7 @@ export function checkOS(device) {
 
 /**
  *
- * @param device
+ * @param {object} device TBD
  */
 export function checkFeatures(device) {
   device.pointerLock = 'pointerLockElement' in document || 'mozPointerLockElement' in document || 'webkitPointerLockElement' in document;
@@ -98,7 +100,7 @@ export function checkFeatures(device) {
 
 /**
  *
- * @param device
+ * @param {object} device TBD
  */
 export function checkInput(device) {
   if ('ontouchstart' in document.documentElement || (window.navigator.maxTouchPoints && window.navigator.maxTouchPoints >= 1)) {
@@ -124,7 +126,7 @@ export function checkInput(device) {
 
 /**
  *
- * @param device
+ * @param {object} device TBD
  */
 export function checkFullScreenSupport(device) {
   const fs = [
@@ -170,7 +172,7 @@ export function checkFullScreenSupport(device) {
 
 /**
  *
- * @param device
+ * @param {object} device TBD
  */
 export function checkBrowser(device) {
   const ua = navigator.userAgent;
@@ -226,7 +228,7 @@ export function checkBrowser(device) {
 
 /**
  *
- * @param device
+ * @param {object} device TBD
  */
 export function checkVideo(device) {
   const videoElement = document.createElement('video');
@@ -257,7 +259,7 @@ export function checkVideo(device) {
 
 /**
  *
- * @param device
+ * @param {object} device TBD
  */
 export function checkAudio(device) {
   device.audioData = !!(window.Audio);
@@ -307,7 +309,7 @@ export function checkAudio(device) {
 
 /**
  *
- * @param device
+ * @param {object} device TBD
  */
 export function checkDevice(device) {
   device.pixelRatio = window.devicePixelRatio || 1;
@@ -317,7 +319,7 @@ export function checkDevice(device) {
 
 /**
  *
- * @param device
+ * @param {object} device TBD
  */
 export function initialize(device) {
   checkOS(device);
@@ -331,7 +333,7 @@ export function initialize(device) {
 }
 
 /**
- *
+ * TBD
  */
 export function readyCheck() {
   if (!document.body) {
@@ -354,10 +356,10 @@ export function readyCheck() {
 
 /**
  *
- * @param device
- * @param callback
- * @param context
- * @param nonPrimer
+ * @param {object} device TBD
+ * @param {function} callback TBD
+ * @param {object} context TBD
+ * @param {boolean} nonPrimer TBD
  */
 export function whenReady(device, callback, context, nonPrimer) {
   if (device.deviceReadyAt) {

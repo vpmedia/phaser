@@ -9,8 +9,9 @@ import Texture from './texture';
 
 /**
  *
- * @param canvas
- * @param scaleMode
+ * @param {object} canvas TBD
+ * @param {number} scaleMode TBD
+ * @returns {object} TBD
  */
 export function baseTextureFromCanvas(canvas, scaleMode) {
   if (canvas.width === 0) {
@@ -24,8 +25,9 @@ export function baseTextureFromCanvas(canvas, scaleMode) {
 
 /**
  *
- * @param canvas
- * @param scaleMode
+ * @param {object} canvas TBD
+ * @param {number} scaleMode TBD
+ * @returns {object} TBD
  */
 export function textureFromCanvas(canvas, scaleMode) {
   return new Texture(baseTextureFromCanvas(canvas, scaleMode));

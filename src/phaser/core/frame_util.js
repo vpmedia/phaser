@@ -8,8 +8,9 @@ import FrameData from './frame_data';
 
 /**
  *
- * @param frame
- * @param output
+ * @param {object} frame TBD
+ * @param {object} output TBD
+ * @returns {object} TBD
  */
 export function cloneFrame(frame, output = null) {
   const result = output || new Frame();
@@ -19,8 +20,9 @@ export function cloneFrame(frame, output = null) {
 
 /**
  *
- * @param frameData
- * @param output
+ * @param {object} frameData TBD
+ * @param {object} output TBD
+ * @returns {object} TBD
  */
 export function cloneFrameData(frameData, output = null) {
   const result = output || new FrameData();

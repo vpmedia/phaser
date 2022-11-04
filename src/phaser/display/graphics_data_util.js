@@ -7,7 +7,8 @@ import GraphicsData from './graphics_data';
 
 /**
  *
- * @param source
+ * @param {object} source TBD
+ * @returns {object} TBD
  */
 export function clone(source) {
   return new GraphicsData(source.lineWidth, source.lineColor, source.lineAlpha, source.fillColor, source.fillAlpha, source.fill, source.shape);
