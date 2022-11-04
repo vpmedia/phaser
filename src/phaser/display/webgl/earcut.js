@@ -10,6 +10,7 @@ import Node from './earcut_node';
 /**
  *
  * @param {object} list TBD
+ * @returns {object} TBD
  */
 export function sortLinked(list) {
   let i;
@@ -76,6 +77,7 @@ export function sortLinked(list) {
  *
  * @param {object} a TBD
  * @param {object} b TBD
+ * @returns {number} TBD
  */
 export function compareX(a, b) {
   return a.x - b.x;
@@ -88,6 +90,7 @@ export function compareX(a, b) {
  * @param {number} minX TBD
  * @param {number} minY TBD
  * @param {number} size TBD
+ * @returns {number} TBD
  */
 export function zOrder(x, y, minX, minY, size) {
   // coords are transformed into non-negative 15-bit integer range
@@ -127,6 +130,7 @@ export function indexCurve(start, minX, minY, size) {
 /**
  *
  * @param {object} start TBD
+ * @returns {object} TBD
  */
 export function getLeftmost(start) {
   let p = start;
@@ -148,6 +152,7 @@ export function getLeftmost(start) {
  * @param {number} cy TBD
  * @param {number} px TBD
  * @param {number} py TBD
+ * @returns {object} TBD
  */
 export function pointInTriangle(ax, ay, bx, by, cx, cy, px, py) {
   return (cx - px) * (ay - py) - (ax - px) * (cy - py) >= 0 && (ax - px) * (by - py) - (bx - px) * (ay - py) >= 0 && (bx - px) * (cy - py) - (cx - px) * (by - py) >= 0;
@@ -158,6 +163,7 @@ export function pointInTriangle(ax, ay, bx, by, cx, cy, px, py) {
  * @param {object} p TBD
  * @param {object} q TBD
  * @param {object} r TBD
+ * @returns {number} TBD
  */
 export function area(p, q, r) {
   return (q.y - p.y) * (r.x - q.x) - (q.x - p.x) * (r.y - q.y);
@@ -167,6 +173,7 @@ export function area(p, q, r) {
  *
  * @param {object} p1 TBD
  * @param {object} p2 TBD
+ * @returns {boolean} TBD
  */
 export function equals(p1, p2) {
   return p1.x === p2.x && p1.y === p2.y;
@@ -178,6 +185,7 @@ export function equals(p1, p2) {
  * @param {object} q1 TBD
  * @param {object} p2 TBD
  * @param {object} q2 TBD
+ * @returns {boolean} TBD
  */
 export function intersects(p1, q1, p2, q2) {
   return area(p1, q1, p2) > 0 !== area(p1, q1, q2) > 0 && area(p2, q2, p1) > 0 !== area(p2, q2, q1) > 0;
@@ -187,6 +195,7 @@ export function intersects(p1, q1, p2, q2) {
  *
  * @param {object} a TBD
  * @param {object} b TBD
+ * @returns {boolean} TBD
  */
 export function intersectsPolygon(a, b) {
   let p = a;
@@ -201,6 +210,7 @@ export function intersectsPolygon(a, b) {
  *
  * @param {object} a TBD
  * @param {object} b TBD
+ * @returns {object} TBD
  */
 export function locallyInside(a, b) {
   return area(a.prev, a, a.next) < 0 ? area(a, b, a.next) >= 0 && area(a, a.prev, b) >= 0 : area(a, b, a.prev) < 0 || area(a, a.next, b) < 0;
@@ -210,6 +220,7 @@ export function locallyInside(a, b) {
  *
  * @param {object} a TBD
  * @param {object} b TBD
+ * @returns {boolean} TBD
  */
 export function middleInside(a, b) {
   let p = a;
@@ -229,6 +240,7 @@ export function middleInside(a, b) {
  *
  * @param {object} a TBD
  * @param {object} b TBD
+ * @returns {boolean} TBD
  */
 export function isValidDiagonal(a, b) {
   return equals(a, b) || a.next.i !== b.i && a.prev.i !== b.i && !intersectsPolygon(a, b) && locallyInside(a, b) && locallyInside(b, a) && middleInside(a, b);
@@ -238,6 +250,7 @@ export function isValidDiagonal(a, b) {
  *
  * @param {object} a TBD
  * @param {object} b TBD
+ * @returns {object} TBD
  */
 export function splitPolygon(a, b) {
   const a2 = new Node(a.i, a.x, a.y);
@@ -261,6 +274,7 @@ export function splitPolygon(a, b) {
  * @param {number} x TBD
  * @param {number} y TBD
  * @param {object} last TBD
+ * @returns {object} TBD
  */
 export function insertNode(i, x, y, last) {
   const p = new Node(i, x, y);
@@ -294,6 +308,7 @@ export function removeNode(p) {
 /**
  *
  * @param {object} ear TBD
+ * @returns {boolean} TBD
  */
 export function isEar(ear) {
   const a = ear.prev;
@@ -315,6 +330,7 @@ export function isEar(ear) {
  * @param {number} minX TBD
  * @param {number} minY TBD
  * @param {number} size TBD
+ * @returns {boolean} TBD
  */
 export function isEarHashed(ear, minX, minY, size) {
   const a = ear.prev;
@@ -359,6 +375,7 @@ export function isEarHashed(ear, minX, minY, size) {
  * @param {number} end TBD
  * @param {number} dim TBD
  * @param {boolean} clockwise TBD
+ * @returns {object} TBD
  */
 export function linkedList(data, start, end, dim, clockwise) {
   let sum = 0;
@@ -383,6 +400,7 @@ export function linkedList(data, start, end, dim, clockwise) {
  *
  * @param {object} start TBD
  * @param {object} end TBD
+ * @returns {object} TBD
  */
 export function filterPoints(start, end) {
   if (!start) return start;
@@ -408,6 +426,7 @@ export function filterPoints(start, end) {
  *
  * @param {object} hole TBD
  * @param {object} outerNode TBD
+ * @returns {object} TBD
  */
 export function findHoleBridge(hole, outerNode) {
   let p = outerNode;
@@ -468,6 +487,7 @@ export function eliminateHole(hole, outerNode) {
  * @param {object} holeIndices TBD
  * @param {object} outerNode TBD
  * @param {object} dim TBD
+ * @returns {object} TBD
  */
 export function eliminateHoles(data, holeIndices, outerNode, dim) {
   const queue = [];
@@ -497,6 +517,7 @@ export function eliminateHoles(data, holeIndices, outerNode, dim) {
  * @param {object} start TBD
  * @param {object} triangles TBD
  * @param {number} dim TBD
+ * @returns {object} TBD
  */
 export function cureLocalIntersections(start, triangles, dim) {
   let p = start;
@@ -609,6 +630,7 @@ export function earcutLinked(ear, triangles, dim, minX, minY, size, pass) {
  * @param {object} data TBD
  * @param {object} holeIndices TBD
  * @param {number} dim TBD
+ * @returns {object} TBD
  */
 export function triangulate(data, holeIndices, dim) {
   dim = dim || 2;

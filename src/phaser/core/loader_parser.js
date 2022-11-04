@@ -8,8 +8,9 @@ import Rectangle from '../geom/rectangle';
 
 /**
  *
- * @param baseTexture
- * @param bitmapFontData
+ * @param {object} baseTexture TBD
+ * @param {object} bitmapFontData TBD
+ * @returns {object} TBD
  */
 export function finalizeBitmapFont(baseTexture, bitmapFontData) {
   Object.keys(bitmapFontData.chars).forEach((charCode) => {
@@ -21,10 +22,11 @@ export function finalizeBitmapFont(baseTexture, bitmapFontData) {
 
 /**
  *
- * @param xml
- * @param baseTexture
- * @param xSpacing
- * @param ySpacing
+ * @param {object} xml TBD
+ * @param {object} baseTexture TBD
+ * @param {number} xSpacing TBD
+ * @param {number} ySpacing TBD
+ * @returns {object} TBD
  */
 export function xmlBitmapFont(xml, baseTexture, xSpacing, ySpacing) {
   const data = {};
@@ -60,10 +62,11 @@ export function xmlBitmapFont(xml, baseTexture, xSpacing, ySpacing) {
 
 /**
  *
- * @param xml
- * @param baseTexture
- * @param xSpacing
- * @param ySpacing
+ * @param {object} xml TBD
+ * @param {object} baseTexture TBD
+ * @param {number} xSpacing TBD
+ * @param {number} ySpacing TBD
+ * @returns {object} TBD
  */
 export function bitmapFont(xml, baseTexture, xSpacing, ySpacing) {
   return xmlBitmapFont(xml, baseTexture, xSpacing, ySpacing);
@@ -71,10 +74,11 @@ export function bitmapFont(xml, baseTexture, xSpacing, ySpacing) {
 
 /**
  *
- * @param json
- * @param baseTexture
- * @param xSpacing
- * @param ySpacing
+ * @param {object} json TBD
+ * @param {object} baseTexture TBD
+ * @param {number} xSpacing TBD
+ * @param {number} ySpacing TBD
+ * @returns {object} TBD
  */
 export function jsonBitmapFont(json, baseTexture, xSpacing, ySpacing) {
   const data = {

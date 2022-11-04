@@ -11,7 +11,9 @@ import { hex2rgb } from '../../util/math';
 import { triangulate } from './earcut';
 
 /**
+ * TBD
  *
+ * @returns {number} TBD
  */
 export function getStencilBufferLimit() {
   if (!window.PhaserRegistry.stencilBufferLimit) {
@@ -21,7 +23,9 @@ export function getStencilBufferLimit() {
 }
 
 /**
+ * TBD
  *
+ * @returns {object[]} TBD
  */
 export function getGraphicsDataPool() {
   if (!window.PhaserRegistry.graphicsDataPool) {
@@ -34,6 +38,7 @@ export function getGraphicsDataPool() {
  *
  * @param {object} webGL TBD
  * @param {number} type TBD
+ * @returns {object} TBD
  */
 export function switchMode(webGL, type) {
   let webGLData;
@@ -271,6 +276,7 @@ export function buildRectangle(graphicsData, webGLData) {
  * @param {number} cpY TBD
  * @param {number} toX TBD
  * @param {number} toY TBD
+ * @returns {number[]} TBD
  */
 export function quadraticBezierCurve(fromX, fromY, cpX, cpY, toX, toY) {
   let xa;
@@ -448,6 +454,7 @@ export function buildComplexPoly(graphicsData, webGLData) {
  *
  * @param {object} graphicsData TBD
  * @param {object} webGLData TBD
+ * @returns {boolean} TBD
  */
 export function buildPoly(graphicsData, webGLData) {
   const points = graphicsData.points;

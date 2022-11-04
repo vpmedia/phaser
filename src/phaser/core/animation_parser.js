@@ -8,13 +8,14 @@ import FrameData from './frame_data';
 
 /**
  *
- * @param game
- * @param key
- * @param frameWidth
- * @param frameHeight
- * @param frameMax
- * @param margin
- * @param spacing
+ * @param {object} game TBD
+ * @param {object} key TBD
+ * @param {number} frameWidth TBD
+ * @param {number} frameHeight TBD
+ * @param {number} frameMax TBD
+ * @param {number} margin TBD
+ * @param {number} spacing TBD
+ * @returns {object} TBD
  */
 export function spriteSheet(game, key, frameWidth, frameHeight, frameMax, margin, spacing) {
   let img = key;
@@ -60,8 +61,9 @@ export function spriteSheet(game, key, frameWidth, frameHeight, frameMax, margin
 
 /**
  *
- * @param game
- * @param json
+ * @param {object} game TBD
+ * @param {object} json TBD
+ * @returns {object} TBD
  */
 export function JSONData(game, json) {
   //  Malformed?
@@ -95,8 +97,9 @@ export function JSONDataPyxel() {
 
 /**
  *
- * @param game
- * @param json
+ * @param {object} game TBD
+ * @param {object} json TBD
+ * @returns {object} TBD
  */
 export function JSONDataHash(game, json) {
   if (!json.frames) {
