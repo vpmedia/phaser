@@ -23,4 +23,5 @@ test/
 .prettierignore
 .prettierrc.json
 bitbucket-pipelines.yml
+jest.config.js
 webpack.config.babel.js
