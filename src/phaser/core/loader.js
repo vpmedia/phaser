@@ -179,18 +179,52 @@ export default class {
     return this.addToFileList(type, key, url, properties, true);
   }
 
-  pack() {
-    // TODO
-    console.warn('loader.pack() is not implemented');
+  pack(key, url, data, callbackContext) {
+    const pack = {
+      type: 'packfile',
+      key: key,
+      url: url,
+      path: this.path,
+      syncPoint: true,
+      data: null,
+      loading: false,
+      loaded: false,
+      error: false,
+      callbackContext: callbackContext
+    };
+    if (data) {
+      if (typeof data === 'string') {
+        data = JSON.parse(data);
+      }
+      pack.data = data || {};
+      pack.loaded = true;
+    }
+    for (let i = 0; i < this._fileList.length + 1; i += 1) {
+      const file = this._fileList[i];
+      if (!file || (!file.loaded && !file.loading && file.type !== 'packfile')) {
+        this._fileList.splice(i, 0, pack);
+        this._totalPackCount += 1;
+        break;
+      }
+    }
+    return this;
   }
 
   image(key, url, overwrite) {
     return this.addToFileList('image', key, url, undefined, overwrite, '.png');
   }
 
-  images() {
-    // TODO
-    console.warn('loader.images() is not implemented');
+  images(keys, urls) {
+    if (Array.isArray(urls)) {
+      for (let i = 0; i < keys.length; i += 1) {
+        this.image(keys[i], urls[i]);
+      }
+    } else {
+      for (let i = 0; i < keys.length; i += 1) {
+        this.image(keys[i]);
+      }
+    }
+    return this;
   }
 
   text(key, url, overwrite) {
@@ -231,19 +265,32 @@ export default class {
     return this.addToFileList('audio', key, urls, { buffer: null, autoDecode });
   }
 
-  audioSprite() {
-    // TODO
-    console.warn('loader.audioSprite() is not implemented');
+  audioSprite(key, urls, jsonURL, jsonData, autoDecode = true) {
+    if (this.game.sound.noAudio) {
+      return this;
+    }
+    this.audio(key, urls, autoDecode);
+    if (jsonURL) {
+      this.json(key + '-audioatlas', jsonURL);
+    } else if (jsonData) {
+      if (typeof jsonData === 'string') {
+        jsonData = JSON.parse(jsonData);
+      }
+      this.cache.addJSON(key + '-audioatlas', '', jsonData);
+    }
+    return this;
   }
 
   video() {
     // TODO
     console.warn('loader.video() is not implemented');
+    return this;
   }
 
   tilemap() {
     // TODO
     console.warn('loader.tilemap() is not implemented');
+    return this;
   }
 
   bitmapFont(key, textureURL = null, atlasURL = null, atlasData = null, xSpacing = 0, ySpacing = 0) {
@@ -487,9 +534,73 @@ export default class {
     this.processLoadQueue();
   }
 
-  processPack() {
-    // TODO
-    console.warn('loader.processPack() is not implemented');
+  processPack(pack) {
+    const packData = pack.data[pack.key];
+    if (!packData) {
+      console.warn('Missing loader pack key', pack.key);
+      return;
+    }
+    for (let i = 0; i < packData.length; i += 1) {
+      const file = packData[i];
+      switch (file.type) {
+        case "image":
+          this.image(file.key, file.url, file.overwrite);
+          break;
+        case "text":
+          this.text(file.key, file.url, file.overwrite);
+          break;
+        case "json":
+          this.json(file.key, file.url, file.overwrite);
+          break;
+        case "xml":
+          this.xml(file.key, file.url, file.overwrite);
+          break;
+        case "script":
+          this.script(file.key, file.url, file.callback, pack.callbackContext || this);
+          break;
+        case "binary":
+          this.binary(file.key, file.url, file.callback, pack.callbackContext || this);
+          break;
+        case "spritesheet":
+          this.spritesheet(file.key, file.url, file.frameWidth, file.frameHeight, file.frameMax, file.margin, file.spacing);
+          break;
+        case "video":
+          this.video(file.key, file.urls);
+          break;
+        case "audio":
+          this.audio(file.key, file.urls, file.autoDecode);
+          break;
+        case "audiosprite":
+          this.audioSprite(file.key, file.urls, file.jsonURL, file.jsonData, file.autoDecode);
+          break;
+        case "tilemap":
+          // TODO
+          // this.tilemap(file.key, file.url, file.data, Phaser.Tilemap[file.format]);
+          break;
+        case "physics":
+          // TODO
+          // this.physics(file.key, file.url, file.data, Phaser.Loader[file.format]);
+          break;
+        case "bitmapFont":
+          this.bitmapFont(file.key, file.textureURL, file.atlasURL, file.atlasData, file.xSpacing, file.ySpacing);
+          break;
+        case "atlasJSONArray":
+          this.atlasJSONArray(file.key, file.textureURL, file.atlasURL, file.atlasData);
+          break;
+        case "atlasJSONHash":
+          this.atlasJSONHash(file.key, file.textureURL, file.atlasURL, file.atlasData);
+          break;
+        case "atlasXML":
+          this.atlasXML(file.key, file.textureURL, file.atlasURL, file.atlasData);
+          break;
+        case "atlas":
+          this.atlas(file.key, file.textureURL, file.atlasURL, file.atlasData, file.format === 'TEXTURE_ATLAS_JSON_HASH' ? TEXTURE_ATLAS_JSON_HASH : TEXTURE_ATLAS_JSON_ARRAY);
+          break;
+        case "shader":
+          this.shader(file.key, file.url, file.overwrite);
+          break;
+      }
+    }
   }
 
   transformUrl(url, file) {
