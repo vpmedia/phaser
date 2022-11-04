@@ -10,8 +10,9 @@ import { hex2rgb } from '../../util/math';
 
 /**
  *
- * @param sprite
- * @param color
+ * @param {object} sprite TBD
+ * @param {object} color TBD
+ * @returns {object} TBD
  */
 export function getTintedTexture(sprite, color) {
   const canvas = sprite.tintedTexture || create('CanvasTinter');
@@ -21,9 +22,9 @@ export function getTintedTexture(sprite, color) {
 
 /**
  *
- * @param texture
- * @param color
- * @param canvas
+ * @param {object} texture TBD
+ * @param {object} color TBD
+ * @param {object} canvas TBD
  */
 export function tintWithMultiply(texture, color, canvas) {
   const context = canvas.getContext('2d');
@@ -43,9 +44,9 @@ export function tintWithMultiply(texture, color, canvas) {
 
 /**
  *
- * @param texture
- * @param color
- * @param canvas
+ * @param {object} texture TBD
+ * @param {object} color TBD
+ * @param {object} canvas TBD
  */
 export function tintWithPerPixel(texture, color, canvas) {
   const context = canvas.getContext('2d');
@@ -77,6 +78,7 @@ export function tintWithPerPixel(texture, color, canvas) {
 
 /**
  *
+ * @returns {boolean} TBD
  */
 export function checkInverseAlpha() {
   const canvas = new CanvasBuffer(2, 1);
@@ -98,6 +100,7 @@ export function checkInverseAlpha() {
 
 /**
  *
+ * @returns {boolean} TBD
  */
 export function canUseNewCanvasBlendModes() {
   if (document === undefined) {
@@ -123,7 +126,7 @@ export function canUseNewCanvasBlendModes() {
 }
 
 /**
- *
+ * TBD
  */
 export function detectCapabilities() {
   if (!window.PhaserRegistry) {

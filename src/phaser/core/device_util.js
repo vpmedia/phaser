@@ -357,7 +357,7 @@ export function readyCheck() {
 /**
  *
  * @param {object} device TBD
- * @param {function} callback TBD
+ * @param {Function} callback TBD
  * @param {object} context TBD
  * @param {boolean} nonPrimer TBD
  */

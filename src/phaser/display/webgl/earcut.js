@@ -9,7 +9,7 @@ import Node from './earcut_node';
 
 /**
  *
- * @param list
+ * @param {object} list TBD
  */
 export function sortLinked(list) {
   let i;
@@ -74,8 +74,8 @@ export function sortLinked(list) {
 
 /**
  *
- * @param a
- * @param b
+ * @param {object} a TBD
+ * @param {object} b TBD
  */
 export function compareX(a, b) {
   return a.x - b.x;
@@ -83,11 +83,11 @@ export function compareX(a, b) {
 
 /**
  *
- * @param x
- * @param y
- * @param minX
- * @param minY
- * @param size
+ * @param {number} x TBD
+ * @param {number} y TBD
+ * @param {number} minX TBD
+ * @param {number} minY TBD
+ * @param {number} size TBD
  */
 export function zOrder(x, y, minX, minY, size) {
   // coords are transformed into non-negative 15-bit integer range
@@ -106,10 +106,10 @@ export function zOrder(x, y, minX, minY, size) {
 
 /**
  *
- * @param start
- * @param minX
- * @param minY
- * @param size
+ * @param {object} start TBD
+ * @param {number} minX TBD
+ * @param {number} minY TBD
+ * @param {number} size TBD
  */
 export function indexCurve(start, minX, minY, size) {
   let p = start;
@@ -126,7 +126,7 @@ export function indexCurve(start, minX, minY, size) {
 
 /**
  *
- * @param start
+ * @param {object} start TBD
  */
 export function getLeftmost(start) {
   let p = start;
@@ -140,14 +140,14 @@ export function getLeftmost(start) {
 
 /**
  *
- * @param ax
- * @param ay
- * @param bx
- * @param by
- * @param cx
- * @param cy
- * @param px
- * @param py
+ * @param {number} ax TBD
+ * @param {number} ay TBD
+ * @param {number} bx TBD
+ * @param {number} by TBD
+ * @param {number} cx TBD
+ * @param {number} cy TBD
+ * @param {number} px TBD
+ * @param {number} py TBD
  */
 export function pointInTriangle(ax, ay, bx, by, cx, cy, px, py) {
   return (cx - px) * (ay - py) - (ax - px) * (cy - py) >= 0 && (ax - px) * (by - py) - (bx - px) * (ay - py) >= 0 && (bx - px) * (cy - py) - (cx - px) * (by - py) >= 0;
@@ -155,9 +155,9 @@ export function pointInTriangle(ax, ay, bx, by, cx, cy, px, py) {
 
 /**
  *
- * @param p
- * @param q
- * @param r
+ * @param {object} p TBD
+ * @param {object} q TBD
+ * @param {object} r TBD
  */
 export function area(p, q, r) {
   return (q.y - p.y) * (r.x - q.x) - (q.x - p.x) * (r.y - q.y);
@@ -165,8 +165,8 @@ export function area(p, q, r) {
 
 /**
  *
- * @param p1
- * @param p2
+ * @param {object} p1 TBD
+ * @param {object} p2 TBD
  */
 export function equals(p1, p2) {
   return p1.x === p2.x && p1.y === p2.y;
@@ -174,10 +174,10 @@ export function equals(p1, p2) {
 
 /**
  *
- * @param p1
- * @param q1
- * @param p2
- * @param q2
+ * @param {object} p1 TBD
+ * @param {object} q1 TBD
+ * @param {object} p2 TBD
+ * @param {object} q2 TBD
  */
 export function intersects(p1, q1, p2, q2) {
   return area(p1, q1, p2) > 0 !== area(p1, q1, q2) > 0 && area(p2, q2, p1) > 0 !== area(p2, q2, q1) > 0;
@@ -185,8 +185,8 @@ export function intersects(p1, q1, p2, q2) {
 
 /**
  *
- * @param a
- * @param b
+ * @param {object} a TBD
+ * @param {object} b TBD
  */
 export function intersectsPolygon(a, b) {
   let p = a;
@@ -199,8 +199,8 @@ export function intersectsPolygon(a, b) {
 
 /**
  *
- * @param a
- * @param b
+ * @param {object} a TBD
+ * @param {object} b TBD
  */
 export function locallyInside(a, b) {
   return area(a.prev, a, a.next) < 0 ? area(a, b, a.next) >= 0 && area(a, a.prev, b) >= 0 : area(a, b, a.prev) < 0 || area(a, a.next, b) < 0;
@@ -208,8 +208,8 @@ export function locallyInside(a, b) {
 
 /**
  *
- * @param a
- * @param b
+ * @param {object} a TBD
+ * @param {object} b TBD
  */
 export function middleInside(a, b) {
   let p = a;
@@ -227,8 +227,8 @@ export function middleInside(a, b) {
 
 /**
  *
- * @param a
- * @param b
+ * @param {object} a TBD
+ * @param {object} b TBD
  */
 export function isValidDiagonal(a, b) {
   return equals(a, b) || a.next.i !== b.i && a.prev.i !== b.i && !intersectsPolygon(a, b) && locallyInside(a, b) && locallyInside(b, a) && middleInside(a, b);
@@ -236,8 +236,8 @@ export function isValidDiagonal(a, b) {
 
 /**
  *
- * @param a
- * @param b
+ * @param {object} a TBD
+ * @param {object} b TBD
  */
 export function splitPolygon(a, b) {
   const a2 = new Node(a.i, a.x, a.y);
@@ -257,10 +257,10 @@ export function splitPolygon(a, b) {
 
 /**
  *
- * @param i
- * @param x
- * @param y
- * @param last
+ * @param {number} i TBD
+ * @param {number} x TBD
+ * @param {number} y TBD
+ * @param {object} last TBD
  */
 export function insertNode(i, x, y, last) {
   const p = new Node(i, x, y);
@@ -278,7 +278,7 @@ export function insertNode(i, x, y, last) {
 
 /**
  *
- * @param p
+ * @param {object} p TBD
  */
 export function removeNode(p) {
   p.next.prev = p.prev;
@@ -293,7 +293,7 @@ export function removeNode(p) {
 
 /**
  *
- * @param ear
+ * @param {object} ear TBD
  */
 export function isEar(ear) {
   const a = ear.prev;
@@ -311,10 +311,10 @@ export function isEar(ear) {
 
 /**
  *
- * @param ear
- * @param minX
- * @param minY
- * @param size
+ * @param {object} ear TBD
+ * @param {number} minX TBD
+ * @param {number} minY TBD
+ * @param {number} size TBD
  */
 export function isEarHashed(ear, minX, minY, size) {
   const a = ear.prev;
@@ -354,11 +354,11 @@ export function isEarHashed(ear, minX, minY, size) {
 
 /**
  *
- * @param data
- * @param start
- * @param end
- * @param dim
- * @param clockwise
+ * @param {object} data TBD
+ * @param {number} start TBD
+ * @param {number} end TBD
+ * @param {number} dim TBD
+ * @param {boolean} clockwise TBD
  */
 export function linkedList(data, start, end, dim, clockwise) {
   let sum = 0;
@@ -381,8 +381,8 @@ export function linkedList(data, start, end, dim, clockwise) {
 
 /**
  *
- * @param start
- * @param end
+ * @param {object} start TBD
+ * @param {object} end TBD
  */
 export function filterPoints(start, end) {
   if (!start) return start;
@@ -406,8 +406,8 @@ export function filterPoints(start, end) {
 
 /**
  *
- * @param hole
- * @param outerNode
+ * @param {object} hole TBD
+ * @param {object} outerNode TBD
  */
 export function findHoleBridge(hole, outerNode) {
   let p = outerNode;
@@ -451,8 +451,8 @@ export function findHoleBridge(hole, outerNode) {
 
 /**
  *
- * @param hole
- * @param outerNode
+ * @param {object} hole TBD
+ * @param {object} outerNode TBD
  */
 export function eliminateHole(hole, outerNode) {
   outerNode = findHoleBridge(hole, outerNode);
@@ -464,10 +464,10 @@ export function eliminateHole(hole, outerNode) {
 
 /**
  *
- * @param data
- * @param holeIndices
- * @param outerNode
- * @param dim
+ * @param {object} data TBD
+ * @param {object} holeIndices TBD
+ * @param {object} outerNode TBD
+ * @param {object} dim TBD
  */
 export function eliminateHoles(data, holeIndices, outerNode, dim) {
   const queue = [];
@@ -494,9 +494,9 @@ export function eliminateHoles(data, holeIndices, outerNode, dim) {
 
 /**
  *
- * @param start
- * @param triangles
- * @param dim
+ * @param {object} start TBD
+ * @param {object} triangles TBD
+ * @param {number} dim TBD
  */
 export function cureLocalIntersections(start, triangles, dim) {
   let p = start;
@@ -521,12 +521,12 @@ export function cureLocalIntersections(start, triangles, dim) {
 
 /**
  *
- * @param start
- * @param triangles
- * @param dim
- * @param minX
- * @param minY
- * @param size
+ * @param {object} start TBD
+ * @param {object} triangles TBD
+ * @param {number} dim TBD
+ * @param {number} minX TBD
+ * @param {number} minY TBD
+ * @param {number} size TBD
  */
 export function splitEarcut(start, triangles, dim, minX, minY, size) {
   // look for a valid diagonal that divides the polygon into two
@@ -555,13 +555,13 @@ export function splitEarcut(start, triangles, dim, minX, minY, size) {
 
 /**
  *
- * @param ear
- * @param triangles
- * @param dim
- * @param minX
- * @param minY
- * @param size
- * @param pass
+ * @param {object} ear TBD
+ * @param {object} triangles TBD
+ * @param {number} dim TBD
+ * @param {number} minX TBD
+ * @param {number} minY TBD
+ * @param {number} size TBD
+ * @param {object} pass TBD
  */
 export function earcutLinked(ear, triangles, dim, minX, minY, size, pass) {
   if (!ear) return;
@@ -606,9 +606,9 @@ export function earcutLinked(ear, triangles, dim, minX, minY, size, pass) {
 
 /**
  *
- * @param data
- * @param holeIndices
- * @param dim
+ * @param {object} data TBD
+ * @param {object} holeIndices TBD
+ * @param {number} dim TBD
  */
 export function triangulate(data, holeIndices, dim) {
   dim = dim || 2;

@@ -8,8 +8,8 @@ import { renderGraphicsMask } from './graphics';
 
 /**
  *
- * @param maskData
- * @param renderSession
+ * @param {object} maskData TBD
+ * @param {object} renderSession TBD
  */
 export function pushMask(maskData, renderSession) {
   const context = renderSession.context;
@@ -32,7 +32,7 @@ export function pushMask(maskData, renderSession) {
 
 /**
  *
- * @param renderSession
+ * @param {object} renderSession TBD
  */
 export function popMask(renderSession) {
   renderSession.context.restore();

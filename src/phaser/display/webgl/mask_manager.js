@@ -8,8 +8,8 @@ import { updateGraphics } from './graphics';
 
 /**
  *
- * @param maskData
- * @param renderSession
+ * @param {object} maskData TBD
+ * @param {object} renderSession TBD
  */
 export function pushMask(maskData, renderSession) {
   const gl = renderSession.gl;
@@ -24,8 +24,8 @@ export function pushMask(maskData, renderSession) {
 
 /**
  *
- * @param maskData
- * @param renderSession
+ * @param {object} maskData TBD
+ * @param {object} renderSession TBD
  */
 export function popMask(maskData, renderSession) {
   const gl = renderSession.gl;

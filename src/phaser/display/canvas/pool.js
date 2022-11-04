@@ -7,6 +7,7 @@
 
 /**
  *
+ * @returns {object} TBD
  */
 export function getPool() {
   if (!window.PhaserRegistry) {
@@ -20,6 +21,7 @@ export function getPool() {
 
 /**
  *
+ * @returns {object} TBD
  */
 export function getFirst() {
   const pool = getPool();
@@ -33,7 +35,7 @@ export function getFirst() {
 
 /**
  *
- * @param parent
+ * @param {object} parent TBD
  */
 export function remove(parent) {
   const pool = getPool();
@@ -48,7 +50,7 @@ export function remove(parent) {
 
 /**
  *
- * @param canvas
+ * @param {object} canvas TBD
  */
 export function removeByCanvas(canvas) {
   const pool = getPool();
@@ -63,6 +65,7 @@ export function removeByCanvas(canvas) {
 
 /**
  *
+ * @returns {number} TBD
  */
 export function getTotal() {
   const pool = getPool();
@@ -77,6 +80,7 @@ export function getTotal() {
 
 /**
  *
+ * @returns {number} TBD
  */
 export function getFree() {
   const pool = getPool();
@@ -91,9 +95,10 @@ export function getFree() {
 
 /**
  *
- * @param parent
- * @param width
- * @param height
+ * @param {object} parent TBD
+ * @param {number} width TBD
+ * @param {number} height TBD
+ * @returns {object} TBD
  */
 export function create(parent, width, height) {
   if (parent === undefined) {

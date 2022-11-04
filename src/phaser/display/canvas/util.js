@@ -103,7 +103,7 @@ export function addToDOM(canvas, parent, overflowHidden = true) {
 
 /**
  *
- * @param canvas TBD
+ * @param {object} canvas TBD
  */
 export function removeFromDOM(canvas) {
   if (canvas.parentNode) {

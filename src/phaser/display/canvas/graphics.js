@@ -8,7 +8,7 @@ import { GEOM_POLYGON, GEOM_RECTANGLE, GEOM_CIRCLE, GEOM_ELLIPSE, GEOM_ROUNDED_R
 
 /**
  *
- * @param graphics
+ * @param {object} graphics TBD
  */
 export function updateGraphicsTint(graphics) {
   if (graphics.tint === 0xFFFFFF) {
@@ -28,8 +28,8 @@ export function updateGraphicsTint(graphics) {
 
 /**
  *
- * @param graphics
- * @param context
+ * @param {object} graphics TBD
+ * @param {object} context TBD
  */
 export function renderGraphics(graphics, context) {
   const worldAlpha = graphics.worldAlpha;
@@ -157,8 +157,8 @@ export function renderGraphics(graphics, context) {
 
 /**
  *
- * @param graphics
- * @param context
+ * @param {object} graphics TBD
+ * @param {object} context TBD
  */
 export function renderGraphicsMask(graphics, context) {
   const len = graphics.graphicsData.length;
