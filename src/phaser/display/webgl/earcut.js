@@ -4,7 +4,6 @@
  * @author       Mat Groves http://matgroves.com/ @Doormat23
  * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
  */
-/* eslint-disable no-continue */
 import Node from './earcut_node';
 
 /**
@@ -338,13 +337,9 @@ export function isEarHashed(ear, minX, minY, size) {
   const c = ear.next;
   if (area(a, b, c) >= 0) return false; // reflex, can't be an ear
   // triangle bbox; min & max are calculated like this for speed
-  /* eslint-disable no-nested-ternary */
   const minTX = a.x < b.x ? (a.x < c.x ? a.x : c.x) : (b.x < c.x ? b.x : c.x);
-  /* eslint-disable no-nested-ternary */
   const minTY = a.y < b.y ? (a.y < c.y ? a.y : c.y) : (b.y < c.y ? b.y : c.y);
-  /* eslint-disable no-nested-ternary */
   const maxTX = a.x > b.x ? (a.x > c.x ? a.x : c.x) : (b.x > c.x ? b.x : c.x);
-  /* eslint-disable no-nested-ternary */
   const maxTY = a.y > b.y ? (a.y > c.y ? a.y : c.y) : (b.y > c.y ? b.y : c.y);
   // z-order range for the current triangle bbox;
   const minZ = zOrder(minTX, minTY, minX, minY, size);
@@ -562,9 +557,7 @@ export function splitEarcut(start, triangles, dim, minX, minY, size) {
         a = filterPoints(a, a.next);
         c = filterPoints(c, c.next);
         // run earcut on each half
-        /* eslint-disable no-use-before-define */
         earcutLinked(a, triangles, dim, minX, minY, size);
-        /* eslint-disable no-use-before-define */
         earcutLinked(c, triangles, dim, minX, minY, size);
         return;
       }

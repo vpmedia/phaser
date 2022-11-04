@@ -3,7 +3,6 @@
  * @author       Richard Davey <rich@photonstorm.com>
  * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
  */
-/* eslint-disable no-cond-assign, no-plusplus */
 import Point from './point';
 import { clone } from './util/polygon';
 import { GEOM_POLYGON } from '../core/const';

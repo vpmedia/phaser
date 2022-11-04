@@ -3,7 +3,6 @@
  * @author       Richard Davey <rich@photonstorm.com>
  * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
  */
-/* eslint-disable new-cap */
 import Scene from './scene';
 import { RENDER_CANVAS } from './const';
 

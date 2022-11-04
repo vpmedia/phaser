@@ -3,7 +3,6 @@
  * @author       Richard Davey <rich@photonstorm.com>
  * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
  */
-/* eslint-disable prefer-spread */
 export default class {
 
   constructor(list = []) {

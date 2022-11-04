@@ -173,7 +173,6 @@ export function buildLine(graphicsData, webGLData) {
       denom += 10.1;
       verts.push(p2x - perpx, p2y - perpy, r, g, b, alpha);
       verts.push(p2x + perpx, p2y + perpy, r, g, b, alpha);
-      /* eslint-disable no-continue */
       continue;
     }
     px = (b1 * c2 - b2 * c1) / denom;

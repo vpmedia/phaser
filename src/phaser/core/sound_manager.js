@@ -47,7 +47,6 @@ export default class {
       }
     } else if (window.webkitAudioContext) {
       try {
-        /* eslint-disable new-cap */
         this.context = new window.webkitAudioContext();
       } catch (error) {
         this.context = null;
