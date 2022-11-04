@@ -12,6 +12,9 @@
     "type": "git",
     "url": "git+https://github.com/vpmedia/phaser.git"
   },
+  "keywords": [
+    "phaser"
+  ],
   "main": "./src/index.js",
   "devDependencies": {
     "@babel/cli": "^7.19.3",
