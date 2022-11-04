@@ -14,6 +14,16 @@
 
 https://github.com/vpmedia/phaser-example
 
+### Comments
+
+Some features has not been ported compared to the original version:
+- Creature, RetroFont, Rope, SpriteBatch and Video display objects
+- Some parts of the Loader feature
+- Particle System
+- Physics System
+- Plugin System
+- TileMap Package
+
 ## Credits
 
 @vpmedia/phaser is developed by Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
