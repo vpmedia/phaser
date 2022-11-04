@@ -7,8 +7,9 @@ import Matrix from '../matrix';
 
 /**
  *
- * @param input
- * @param output
+ * @param {object} input TBD
+ * @param {object} output TBD
+ * @returns {object} TBD
  */
 export function clone(input, output = null) {
   const result = output || new Matrix();
@@ -22,7 +23,9 @@ export function clone(input, output = null) {
 }
 
 /**
+ * TBD
  *
+ * @returns {object} TBD
  */
 export function getIdentityMatrix() {
   if (!window.PhaserRegistry) {
@@ -35,7 +38,9 @@ export function getIdentityMatrix() {
 }
 
 /**
+ * TBD
  *
+ * @returns {object} TBD
  */
 export function getTempMatrix() {
   if (!window.PhaserRegistry) {

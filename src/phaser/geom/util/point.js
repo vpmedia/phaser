@@ -7,9 +7,10 @@ import Point from '../point';
 
 /**
  *
- * @param a
- * @param b
- * @param output
+ * @param {object} a TBD
+ * @param {object} b TBD
+ * @param {object} output TBD
+ * @returns {object} TBD
  */
 export function add(a, b, output = null) {
   const result = output || new Point();
@@ -20,9 +21,10 @@ export function add(a, b, output = null) {
 
 /**
  *
- * @param a
- * @param b
- * @param output
+ * @param {object} a TBD
+ * @param {object} b TBD
+ * @param {object} output TBD
+ * @returns {object} TBD
  */
 export function subtract(a, b, output = null) {
   const result = output || new Point();
@@ -33,9 +35,10 @@ export function subtract(a, b, output = null) {
 
 /**
  *
- * @param a
- * @param b
- * @param output
+ * @param {object} a TBD
+ * @param {object} b TBD
+ * @param {object} output TBD
+ * @returns {object} TBD
  */
 export function multiply(a, b, output = null) {
   const result = output || new Point();
@@ -46,9 +49,10 @@ export function multiply(a, b, output = null) {
 
 /**
  *
- * @param a
- * @param b
- * @param output
+ * @param {object} a TBD
+ * @param {object} b TBD
+ * @param {object} output TBD
+ * @returns {object} TBD
  */
 export function divide(a, b, output = null) {
   const result = output || new Point();
@@ -59,8 +63,9 @@ export function divide(a, b, output = null) {
 
 /**
  *
- * @param a
- * @param b
+ * @param {object} a TBD
+ * @param {object} b TBD
+ * @returns {boolean} TBD
  */
 export function equals(a, b) {
   return (a.x === b.x && a.y === b.y);
@@ -68,8 +73,9 @@ export function equals(a, b) {
 
 /**
  *
- * @param a
- * @param b
+ * @param {object} a TBD
+ * @param {object} b TBD
+ * @returns {number} TBD
  */
 export function angle(a, b) {
   return Math.atan2(a.y - b.y, a.x - b.x);
@@ -77,8 +83,9 @@ export function angle(a, b) {
 
 /**
  *
- * @param a
- * @param output
+ * @param {object} a TBD
+ * @param {object} output TBD
+ * @returns {object} TBD
  */
 export function negative(a, output = null) {
   const result = output || new Point();
@@ -87,10 +94,11 @@ export function negative(a, output = null) {
 
 /**
  *
- * @param a
- * @param b
- * @param s
- * @param output
+ * @param {object} a TBD
+ * @param {object} b TBD
+ * @param {number} s TBD
+ * @param {object} output TBD
+ * @returns {object} TBD
  */
 export function multiplyAdd(a, b, s, output = null) {
   const result = output || new Point();
@@ -99,10 +107,11 @@ export function multiplyAdd(a, b, s, output = null) {
 
 /**
  *
- * @param a
- * @param b
- * @param f
- * @param output
+ * @param {object} a TBD
+ * @param {object} b TBD
+ * @param {number} f TBD
+ * @param {object} output TBD
+ * @returns {object} TBD
  */
 export function interpolate(a, b, f, output = null) {
   const result = output || new Point();
@@ -111,8 +120,9 @@ export function interpolate(a, b, f, output = null) {
 
 /**
  *
- * @param a
- * @param output
+ * @param {object} a TBD
+ * @param {object} output TBD
+ * @returns {object} TBD
  */
 export function perp(a, output = null) {
   const result = output || new Point();
@@ -121,8 +131,9 @@ export function perp(a, output = null) {
 
 /**
  *
- * @param a
- * @param output
+ * @param {object} a TBD
+ * @param {object} output TBD
+ * @returns {object} TBD
  */
 export function rperp(a, output = null) {
   const result = output || new Point();
@@ -131,9 +142,10 @@ export function rperp(a, output = null) {
 
 /**
  *
- * @param a
- * @param b
- * @param round
+ * @param {object} a TBD
+ * @param {object} b TBD
+ * @param {boolean} round TBD
+ * @returns {number} TBD
  */
 export function distance(a, b, round = false) {
   const dx = a.x - b.x;
@@ -144,9 +156,10 @@ export function distance(a, b, round = false) {
 
 /**
  *
- * @param a
- * @param b
- * @param output
+ * @param {object} a TBD
+ * @param {object} b TBD
+ * @param {object} output TBD
+ * @returns {object} TBD
  */
 export function project(a, b, output = null) {
   const result = output || new Point();
@@ -159,9 +172,10 @@ export function project(a, b, output = null) {
 
 /**
  *
- * @param a
- * @param b
- * @param output
+ * @param {object} a TBD
+ * @param {object} b TBD
+ * @param {object} output TBD
+ * @returns {object} TBD
  */
 export function projectUnit(a, b, output = null) {
   const result = output || new Point();
@@ -174,8 +188,9 @@ export function projectUnit(a, b, output = null) {
 
 /**
  *
- * @param a
- * @param output
+ * @param {object} a TBD
+ * @param {object} output TBD
+ * @returns {object} TBD
  */
 export function normalRightHand(a, output = null) {
   const result = output || new Point();
@@ -184,8 +199,9 @@ export function normalRightHand(a, output = null) {
 
 /**
  *
- * @param a
- * @param output
+ * @param {object} a TBD
+ * @param {object} output TBD
+ * @returns {object} TBD
  */
 export function normalize(a, output = null) {
   const result = output || new Point();
@@ -198,12 +214,13 @@ export function normalize(a, output = null) {
 
 /**
  *
- * @param a
- * @param x
- * @param y
- * @param ang
- * @param asDegrees
- * @param dist
+ * @param {object} a TBD
+ * @param {number} x TBD
+ * @param {number} y TBD
+ * @param {number} ang TBD
+ * @param {boolean} asDegrees TBD
+ * @param {number} dist TBD
+ * @returns {object} TBD
  */
 export function rotate(a, x, y, ang, asDegrees, dist) {
   if (asDegrees) {
@@ -227,8 +244,9 @@ export function rotate(a, x, y, ang, asDegrees, dist) {
 
 /**
  *
- * @param points
- * @param output
+ * @param {object[]} points TBD
+ * @param {object} output TBD
+ * @returns {object} TBD
  */
 export function centroid(points, output = null) {
   const result = output || new Point();
@@ -249,9 +267,10 @@ export function centroid(points, output = null) {
 
 /**
  *
- * @param obj
- * @param xProp
- * @param yProp
+ * @param {object} obj TBD
+ * @param {string} xProp TBD
+ * @param {string} yProp TBD
+ * @returns {object} TBD
  */
 export function parse(obj, xProp = 'x', yProp = 'y') {
   const point = new Point();
@@ -266,8 +285,9 @@ export function parse(obj, xProp = 'x', yProp = 'y') {
 
 /**
  *
- * @param input
- * @param output
+ * @param {object} input TBD
+ * @param {object} output TBD
+ * @returns {object} TBD
  */
 export function clone(input, output = null) {
   const result = output || new Point();

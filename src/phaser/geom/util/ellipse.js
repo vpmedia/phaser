@@ -5,7 +5,10 @@
  */
 
 /**
+ * TBD
  *
+ * @deprecated
+ * @returns {boolean} TBD
  */
 export default function () {
   return true;
@@ -13,9 +16,10 @@ export default function () {
 
 /**
  *
- * @param a
- * @param x
- * @param y
+ * @param {object} a TBD
+ * @param {number} x TBD
+ * @param {number} y TBD
+ * @returns {boolean} TBD
  */
 export function contains(a, x, y) {
   if (a.width <= 0 || a.height <= 0) {

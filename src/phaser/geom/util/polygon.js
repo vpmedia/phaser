@@ -6,7 +6,10 @@
 import Polygon from '../polygon';
 
 /**
+ * TBD
  *
+ * @deprecated
+ * @returns {boolean} TBD
  */
 export default function () {
   return true;
@@ -14,8 +17,9 @@ export default function () {
 
 /**
  *
- * @param input
- * @param output
+ * @param {object} input TBD
+ * @param {object} output TBD
+ * @returns {object} TBD
  */
 export function clone(input, output = null) {
   const result = output || new Polygon();

@@ -9,8 +9,9 @@ import { degToRad, distance } from '../../util/math';
 
 /**
  *
- * @param input
- * @param output
+ * @param {object} input TBD
+ * @param {object} output TBD
+ * @returns {object} TBD
  */
 export function clone(input, output = null) {
   const result = output || new Circle();
@@ -22,9 +23,10 @@ export function clone(input, output = null) {
 
 /**
  *
- * @param a
- * @param x
- * @param y
+ * @param {object} a TBD
+ * @param {number} x TBD
+ * @param {number} y TBD
+ * @returns {boolean} TBD
  */
 export function contains(a, x, y) {
   if (a.radius > 0 && x >= a.left && x <= a.right && y >= a.top && y <= a.bottom) {
@@ -37,8 +39,9 @@ export function contains(a, x, y) {
 
 /**
  *
- * @param a
- * @param b
+ * @param {object} a TBD
+ * @param {object} b TBD
+ * @returns {boolean} TBD
  */
 export function equals(a, b) {
   return (a.x === b.x && a.y === b.y && a.diameter === b.diameter);
@@ -46,8 +49,9 @@ export function equals(a, b) {
 
 /**
  *
- * @param a
- * @param b
+ * @param {object} a TBD
+ * @param {object} b TBD
+ * @returns {boolean} TBD
  */
 export function intersects(a, b) {
   return distance(a.x, a.y, b.x, b.y) <= (a.radius + b.radius);
@@ -55,10 +59,11 @@ export function intersects(a, b) {
 
 /**
  *
- * @param a
- * @param angle
- * @param asDegrees
- * @param output
+ * @param {object} a TBD
+ * @param {number} angle TBD
+ * @param {boolean} asDegrees TBD
+ * @param {object} output TBD
+ * @returns {object} TBD
  */
 export function circumferencePoint(a, angle, asDegrees = false, output = null) {
   const result = output || new Point();
@@ -72,10 +77,11 @@ export function circumferencePoint(a, angle, asDegrees = false, output = null) {
 
 /**
  *
- * @param a
- * @param angle
- * @param asDegrees
- * @param output
+ * @param {object} a TBD
+ * @param {number} angle TBD
+ * @param {boolean} asDegrees TBD
+ * @param {object} output TBD
+ * @returns {object} TBD
  */
 export function intersectsPoint(a, angle, asDegrees = false, output = null) {
   const result = output || new Point();
@@ -89,8 +95,9 @@ export function intersectsPoint(a, angle, asDegrees = false, output = null) {
 
 /**
  *
- * @param c
- * @param r
+ * @param {object} c TBD
+ * @param {object} r TBD
+ * @returns {boolean} TBD
  */
 export function intersectsRectangle(c, r) {
   const cx = Math.abs(c.x - r.x - r.halfWidth);

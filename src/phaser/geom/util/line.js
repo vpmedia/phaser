@@ -9,8 +9,9 @@ import { intersects as intersectsRect } from './rectangle';
 
 /**
  *
- * @param input
- * @param output
+ * @param {object} input TBD
+ * @param {object} output TBD
+ * @returns {object} TBD
  */
 export function clone(input, output = null) {
   const result = output || new Line();
@@ -23,12 +24,13 @@ export function clone(input, output = null) {
 
 /**
  *
- * @param a
- * @param b
- * @param e
- * @param f
- * @param asSegment
- * @param output
+ * @param {object} a TBD
+ * @param {object} b TBD
+ * @param {object} e TBD
+ * @param {object} f TBD
+ * @param {boolean} asSegment TBD
+ * @param {object} output TBD
+ * @returns {boolean} TBD
  */
 export function intersectsPoints(a, b, e, f, asSegment = true, output = null) {
   const result = output || new Point();
@@ -58,10 +60,11 @@ export function intersectsPoints(a, b, e, f, asSegment = true, output = null) {
 
 /**
  *
- * @param a
- * @param b
- * @param asSegment
- * @param result
+ * @param {object} a TBD
+ * @param {object} b TBD
+ * @param {boolean} asSegment TBD
+ * @param {object} result TBD
+ * @returns {boolean} TBD
  */
 export function intersects(a, b, asSegment, result) {
   return intersectsPoints(a.start, a.end, b.start, b.end, asSegment, result);
@@ -69,8 +72,9 @@ export function intersects(a, b, asSegment, result) {
 
 /**
  *
- * @param line
- * @param rect
+ * @param {object} line TBD
+ * @param {object} rect TBD
+ * @returns {boolean} TBD
  */
 export function intersectsRectangle(line, rect) {
   //  Quick bail out of the Line and Rect bounds don't intersect
@@ -122,8 +126,9 @@ export function intersectsRectangle(line, rect) {
 
 /**
  *
- * @param a
- * @param b
+ * @param {object} a TBD
+ * @param {object} b TBD
+ * @returns {number} TBD
  */
 export function reflect(a, b) {
   return 2 * b.normalAngle - 3.141592653589793 - a.angle;
