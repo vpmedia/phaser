@@ -8,7 +8,6 @@
 test/
 .github/
 .husky/
-.idea/
 .babelrc.json
 .browserslistrc
 .DS_Store
