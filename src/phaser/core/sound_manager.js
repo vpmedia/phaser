@@ -71,14 +71,19 @@ export default class {
       }
       this.masterGain.gain.value = 1;
       this.masterGain.connect(this.context.destination);
-      if (this.context.state === 'suspended') {
-        this.game.input.onUp.addOnce(this.resumeWebAudio, this);
-      }
     }
-    if (!this.noAudio && (this.game.device.iOS || this.game.device.android)) {
+    if (this.usingWebAudio && (this.game.device.iOS || this.game.device.android)) {
       this.game.input.addTouchLockCallback(this.unlock, this, true);
       this.touchLocked = true;
     }
+  }
+
+  checkContextState() {
+    if (this.usingWebAudio && this.context.state === 'suspended') {
+      this.game.input.onUp.addOnce(this.resumeWebAudio, this);
+      return true;
+    }
+    return false;
   }
 
   resumeWebAudio() {
@@ -88,28 +93,21 @@ export default class {
   }
 
   unlock() {
-    if (this.noAudio || !this.touchLocked || this._unlockSource !== null) {
+    if (!this.touchLocked || this._unlockSource !== null) {
       return true;
     }
-    //  Global override (mostly for Audio Tag testing)
-    if (this.usingAudioTag) {
-      this.touchLocked = false;
-      this._unlockSource = null;
-    } else if (this.usingWebAudio) {
-      // Create empty buffer and play it
-      // The SoundManager.update loop captures the state of it and then resets touchLocked to false
-      const buffer = this.context.createBuffer(1, 1, 22050);
-      this._unlockSource = this.context.createBufferSource();
-      this._unlockSource.buffer = buffer;
-      this._unlockSource.connect(this.context.destination);
-      if (this._unlockSource.start === undefined) {
-        this._unlockSource.noteOn(0);
-      } else {
-        this._unlockSource.start(0);
-      }
-      this.resumeWebAudio();
+    // Create empty buffer and play it
+    // The SoundManager.update loop captures the state of it and then resets touchLocked to false
+    const buffer = this.context.createBuffer(1, 1, 22050);
+    this._unlockSource = this.context.createBufferSource();
+    this._unlockSource.buffer = buffer;
+    this._unlockSource.connect(this.context.destination);
+    if (this._unlockSource.start === undefined) {
+      this._unlockSource.noteOn(0);
+    } else {
+      this._unlockSource.start(0);
     }
-    //  We can remove the event because we've done what we needed (started the unlock sound playing)
+    this.resumeWebAudio();
     return true;
   }
 
