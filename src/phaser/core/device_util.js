@@ -220,7 +220,7 @@ export function checkBrowser(device) {
   if (device.cocoonJS) {
     try {
       device.cocoonJSApp = (typeof CocoonJS !== 'undefined');
-    } catch (error) {
+    } catch (e) {
       device.cocoonJSApp = false;
     }
   }

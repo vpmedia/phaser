@@ -40,7 +40,7 @@ export default class {
     } else if (window.AudioContext) {
       try {
         this.context = new window.AudioContext();
-      } catch (error) {
+      } catch (e) {
         this.context = null;
         this.usingWebAudio = false;
         this.touchLocked = false;
@@ -48,7 +48,7 @@ export default class {
     } else if (window.webkitAudioContext) {
       try {
         this.context = new window.webkitAudioContext();
-      } catch (error) {
+      } catch (e) {
         this.context = null;
         this.usingWebAudio = false;
         this.touchLocked = false;

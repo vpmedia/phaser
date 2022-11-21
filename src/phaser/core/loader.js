@@ -769,7 +769,7 @@ export default class {
         if (!scope.hasLoaded) {
           scope.asyncComplete(file, e.message || 'Exception');
         } else {
-          console.error(e);
+          scope.game.exceptionHandler(e);
         }
       }
       return null;
@@ -781,7 +781,7 @@ export default class {
         if (!scope.hasLoaded) {
           scope.asyncComplete(file, e.message || 'Exception');
         } else {
-          console.error(e);
+          scope.game.exceptionHandler(e);
         }
       }
       return null;

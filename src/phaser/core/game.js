@@ -143,6 +143,7 @@ export default class {
         isWebGlReady = true;
       } catch (e) {
         isWebGlReady = false;
+        this.exceptionHandler(e);
       }
       /*
       this.renderer = new WebGLRenderer(this);
@@ -215,6 +216,13 @@ export default class {
     this.parseConfigElement(config, 'renderType', RENDER_AUTO);
     if (config.renderer) {
       this.config.renderType = config.renderer;
+    }
+    if (config.exceptionHandler) {
+      this.exceptionHandler = config.exceptionHandler;
+    } else {
+      this.exceptionHandler = (e) => {
+        console.error(e);
+      };
     }
     if (config.parent) {
       this.parent = config.parent;
