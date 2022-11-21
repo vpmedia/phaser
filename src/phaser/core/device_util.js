@@ -232,7 +232,6 @@ export function checkVideo(device) {
  * @param {object} device TBD
  */
 export function checkAudio(device) {
-  device.audioData = !!(window.Audio);
   device.webAudio = !!(window.AudioContext || window.webkitAudioContext);
   const audioElement = document.createElement('audio');
   try {

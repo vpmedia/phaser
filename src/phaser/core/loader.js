@@ -627,12 +627,7 @@ export default class {
       case 'audio':
         file.url = this.getAudioURL(file.url);
         if (file.url) {
-          //  WebAudio or Audio Tag?
-          if (this.game.sound.usingWebAudio) {
-            this.xhrLoad(file, this.transformUrl(file.url, file), 'arraybuffer', this.fileComplete);
-          } else if (this.game.sound.usingAudioTag) {
-            this.loadAudioTag(file);
-          }
+          this.xhrLoad(file, this.transformUrl(file.url, file), 'arraybuffer', this.fileComplete);
         } else {
           this.fileError(file, null, 'No supported audio URL specified or device does not have audio playback support');
         }
@@ -714,35 +709,6 @@ export default class {
   loadVideoTag() {
     // TODO
     console.warn('loader.loadVideoTag() is not implemented');
-  }
-
-  loadAudioTag(file) {
-    const scope = this;
-    if (this.game.sound.touchLocked) {
-      // If audio is locked we can't do this yet, so need to queue this load request. Bum.
-      file.data = new Audio();
-      file.data.name = file.key;
-      file.data.preload = 'auto';
-      file.data.src = this.transformUrl(file.url, file);
-      this.fileComplete(file);
-    } else {
-      file.data = new Audio();
-      file.data.name = file.key;
-      const playThroughEvent = () => {
-        file.data.removeEventListener('canplaythrough', playThroughEvent, false);
-        file.data.onerror = null;
-        scope.fileComplete(file);
-      };
-      file.data.onerror = () => {
-        file.data.removeEventListener('canplaythrough', playThroughEvent, false);
-        file.data.onerror = null;
-        scope.fileError(file);
-      };
-      file.data.preload = 'auto';
-      file.data.src = this.transformUrl(file.url, file);
-      file.data.addEventListener('canplaythrough', playThroughEvent, false);
-      file.data.load();
-    }
   }
 
   xhrLoad(file, url, type, onload, onerror) {
@@ -904,14 +870,10 @@ export default class {
         this.cache.addVideo(file.key, file.url, file.data, file.asBlob);
         break;
       case 'audio':
-        if (this.game.sound.usingWebAudio) {
-          file.data = xhr.response;
-          this.cache.addSound(file.key, file.url, file.data, true, false);
-          if (file.autoDecode) {
-            this.game.sound.decode(file.key);
-          }
-        } else {
-          this.cache.addSound(file.key, file.url, file.data, false, true);
+        file.data = xhr.response;
+        this.cache.addSound(file.key, file.url, file.data);
+        if (file.autoDecode) {
+          this.game.sound.decode(file.key);
         }
         break;
       case 'text':

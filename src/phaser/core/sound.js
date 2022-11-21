@@ -35,7 +35,6 @@ export default class {
     this.override = false;
     this.allowMultiple = false;
     this.usingWebAudio = this.game.sound.usingWebAudio;
-    this.usingAudioTag = this.game.sound.usingAudioTag;
     this.externalNode = null;
     this.masterGainNode = null;
     this.gainNode = null;
@@ -53,16 +52,6 @@ export default class {
       this.gainNode.gain.value = volume * this.game.sound.volume;
       if (connect) {
         this.gainNode.connect(this.masterGainNode);
-      }
-    } else if (this.usingAudioTag) {
-      if (this.game.cache.getSound(key) && this.game.cache.isSoundReady(key)) {
-        this._sound = this.game.cache.getSoundData(key);
-        this.totalDuration = 0;
-        if (this._sound.duration) {
-          this.totalDuration = this._sound.duration;
-        }
-      } else {
-        this.game.cache.onSoundUnlock.add(this.soundHasUnlocked, this);
       }
     }
     this.onDecoded = new Signal();
@@ -219,9 +208,6 @@ export default class {
         } else if (this.gainNode) {
           this._sound.disconnect(this.gainNode);
         }
-      } else if (this.usingAudioTag) {
-        this._sound.pause();
-        this._sound.currentTime = 0;
       }
       this.isPlaying = false;
     }
@@ -411,9 +397,6 @@ export default class {
         } else if (this.gainNode) {
           this._sound.disconnect(this.gainNode);
         }
-      } else if (this.usingAudioTag) {
-        this._sound.pause();
-        this._sound.currentTime = 0;
       }
     }
     this.pendingPlayback = false;
@@ -458,14 +441,6 @@ export default class {
     }
   }
 
-  updateGlobalVolume(globalVolume) {
-    //  this._volume is the % of the global volume this sound should be played at
-    if (this.usingAudioTag && this._sound) {
-      this._sound.volume = globalVolume * this._volume;
-    }
-
-  }
-
   destroy(remove = true) {
     this._markedToDelete = true;
     this._removeFromSoundManager = remove;
@@ -502,15 +477,11 @@ export default class {
       this._muteVolume = this._tempVolume;
       if (this.usingWebAudio) {
         this.gainNode.gain.value = 0;
-      } else if (this.usingAudioTag && this._sound) {
-        this._sound.volume = 0;
       }
     } else {
       this._muted = false;
       if (this.usingWebAudio) {
         this.gainNode.gain.value = this._muteVolume;
-      } else if (this.usingAudioTag && this._sound) {
-        this._sound.volume = this._muteVolume;
       }
     }
     this.onMute.dispatch(this);
@@ -521,17 +492,14 @@ export default class {
   }
 
   set volume(value) {
-    const normalizedValue = this.usingAudioTag ? Math.max(0, Math.min(1, value)) : value;
     if (this._muted) {
-      this._muteVolume = normalizedValue;
+      this._muteVolume = value;
       return;
     }
-    this._tempVolume = normalizedValue;
-    this._volume = normalizedValue;
+    this._tempVolume = value;
+    this._volume = value;
     if (this.usingWebAudio) {
-      this.gainNode.gain.value = normalizedValue;
-    } else if (this.usingAudioTag && this._sound) {
-      this._sound.volume = normalizedValue;
+      this.gainNode.gain.value = value;
     }
   }
 

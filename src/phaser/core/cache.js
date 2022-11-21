@@ -131,15 +131,13 @@ export default class {
     this._resolveURL(url, obj);
   }
 
-  addSound(key, url, data, webAudio = true, audioTag = false) {
-    const decoded = audioTag;
+  addSound(key, url, data) {
     this._cache.sound[key] = {
       url,
       data,
       isDecoding: false,
-      decoded,
-      webAudio,
-      audioTag,
+      decoded: false,
+      webAudio: true,
       locked: this.game.sound.touchLocked,
     };
     this._resolveURL(url, this._cache.sound[key]);

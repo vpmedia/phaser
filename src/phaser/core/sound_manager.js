@@ -18,7 +18,6 @@ export default class {
     this.context = null;
     this.baseLatency = 0; // https://developer.mozilla.org/en-US/docs/Web/API/AudioContext/baseLatency
     this.usingWebAudio = false;
-    this.usingAudioTag = false;
     this.noAudio = false;
     this.connectToMaster = true;
     this.touchLocked = false;
@@ -55,12 +54,7 @@ export default class {
       }
     }
     if (this.context === null || (this.context && this.context.createGain === undefined && this.context.createGainNode === undefined)) {
-      //  No Web Audio support - how about legacy Audio?
-      if (window.Audio === undefined) {
-        this.noAudio = true;
-        return;
-      }
-      this.usingAudioTag = true;
+      this.noAudio = true;
     } else {
       this.usingWebAudio = true;
       this.baseLatency = this.context.baseLatency || (256 / (this.context.sampleRate || 44100));
@@ -269,12 +263,6 @@ export default class {
       this._muteVolume = this.masterGain.gain.value;
       this.masterGain.gain.value = 0;
     }
-    // Loop through sounds
-    for (let i = 0; i < this._sounds.length; i += 1) {
-      if (this._sounds[i].usingAudioTag) {
-        this._sounds[i].mute = true;
-      }
-    }
     this.onMute.dispatch();
   }
 
@@ -285,12 +273,6 @@ export default class {
     this._muted = false;
     if (this.usingWebAudio) {
       this.masterGain.gain.value = this._muteVolume;
-    }
-    // Loop through sounds
-    for (let i = 0; i < this._sounds.length; i += 1) {
-      if (this._sounds[i].usingAudioTag) {
-        this._sounds[i].mute = false;
-      }
     }
     this.onUnMute.dispatch();
   }
@@ -347,13 +329,6 @@ export default class {
       this._volume = value;
       if (this.usingWebAudio) {
         this.masterGain.gain.value = value;
-      } else {
-        //  Loop through the sound cache and change the volume of all html audio tags
-        for (let i = 0; i < this._sounds.length; i += 1) {
-          if (this._sounds[i].usingAudioTag) {
-            this._sounds[i].updateGlobalVolume(value);
-          }
-        }
       }
       this.onVolumeChange.dispatch(value);
     }
