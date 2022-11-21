@@ -113,11 +113,6 @@ export default class {
     const wheelEvent = this.game.device.wheelEvent;
     if (wheelEvent) {
       canvas.addEventListener(wheelEvent, this._onMouseWheel, true);
-      if (wheelEvent === 'mousewheel') {
-        this._wheelEvent = new WheelEventProxy(-1 / 40, 1);
-      } else if (wheelEvent === 'DOMMouseScroll') {
-        this._wheelEvent = new WheelEventProxy(1, 1);
-      }
     }
   }
 

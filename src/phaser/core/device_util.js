@@ -110,15 +110,8 @@ export function checkInput(device) {
     device.mspointer = true;
   }
   // See https://developer.mozilla.org/en-US/docs/Web/Events/wheel
-  if ('onwheel' in window || (device.ie && 'WheelEvent' in window)) {
-    // DOM3 Wheel Event: FF 17+, IE 9+, Chrome 31+, Safari 7+
+  if ('onwheel' in window || 'WheelEvent' in window) {
     device.wheelEvent = 'wheel';
-  } else if ('onmousewheel' in window) {
-    // Non-FF legacy: IE 6-9, Chrome 1-31, Safari 5-7.
-    device.wheelEvent = 'mousewheel';
-  } else if (device.firefox && 'MouseScrollEvent' in window) {
-    // FF prior to 17. This should probably be scrubbed.
-    device.wheelEvent = 'DOMMouseScroll';
   }
 }
 
@@ -184,19 +177,11 @@ export function checkBrowser(device) {
     device.firefoxVersion = parseInt(RegExp.$1, 10);
   } else if (/AppleWebKit/.test(ua) && device.iOS) {
     device.mobileSafari = true;
-  } else if (/MSIE (\d+\.\d+);/.test(ua)) {
-    device.ie = true;
-    device.ieVersion = parseInt(RegExp.$1, 10);
   } else if (/Safari\/(\d+)/.test(ua) && !device.windowsPhone) {
     device.safari = true;
     if (/Version\/(\d+)\./.test(ua)) {
       device.safariVersion = parseInt(RegExp.$1, 10);
     }
-  } else if (/Trident\/(\d+\.\d+)(.*)rv:(\d+\.\d+)/.test(ua)) {
-    device.ie = true;
-    device.trident = true;
-    device.tridentVersion = parseInt(RegExp.$1, 10);
-    device.ieVersion = parseInt(RegExp.$3, 10);
   }
   //  Silk gets its own if clause because its ua also contains 'Safari'
   if (/Silk/.test(ua)) {

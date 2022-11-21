@@ -27,10 +27,6 @@ export default class {
     this.chromeVersion = 0;
     this.firefox = false;
     this.firefoxVersion = 0;
-    this.ie = false;
-    this.ieVersion = 0;
-    this.trident = false;
-    this.tridentVersion = 0;
     this.edge = false;
     this.mobileSafari = false;
     this.safari = false;
