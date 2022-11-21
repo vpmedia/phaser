@@ -109,18 +109,16 @@ export function checkInput(device) {
   if (window.navigator.msPointerEnabled || window.navigator.pointerEnabled) {
     device.mspointer = true;
   }
-  if (!device.cocoonJS) {
-    // See https://developer.mozilla.org/en-US/docs/Web/Events/wheel
-    if ('onwheel' in window || (device.ie && 'WheelEvent' in window)) {
-      // DOM3 Wheel Event: FF 17+, IE 9+, Chrome 31+, Safari 7+
-      device.wheelEvent = 'wheel';
-    } else if ('onmousewheel' in window) {
-      // Non-FF legacy: IE 6-9, Chrome 1-31, Safari 5-7.
-      device.wheelEvent = 'mousewheel';
-    } else if (device.firefox && 'MouseScrollEvent' in window) {
-      // FF prior to 17. This should probably be scrubbed.
-      device.wheelEvent = 'DOMMouseScroll';
-    }
+  // See https://developer.mozilla.org/en-US/docs/Web/Events/wheel
+  if ('onwheel' in window || (device.ie && 'WheelEvent' in window)) {
+    // DOM3 Wheel Event: FF 17+, IE 9+, Chrome 31+, Safari 7+
+    device.wheelEvent = 'wheel';
+  } else if ('onmousewheel' in window) {
+    // Non-FF legacy: IE 6-9, Chrome 1-31, Safari 5-7.
+    device.wheelEvent = 'mousewheel';
+  } else if (device.firefox && 'MouseScrollEvent' in window) {
+    // FF prior to 17. This should probably be scrubbed.
+    device.wheelEvent = 'DOMMouseScroll';
   }
 }
 
@@ -208,21 +206,8 @@ export function checkBrowser(device) {
   if (navigator.standalone) {
     device.webApp = true;
   }
-  if (typeof window.cordova !== 'undefined') {
-    device.cordova = true;
-  }
   if (typeof process !== 'undefined' && typeof require !== 'undefined') {
     device.node = true;
-  }
-  if (navigator.isCocoonJS) {
-    device.cocoonJS = true;
-  }
-  if (device.cocoonJS) {
-    try {
-      device.cocoonJSApp = (typeof CocoonJS !== 'undefined');
-    } catch (e) {
-      device.cocoonJSApp = false;
-    }
   }
 }
 
@@ -371,15 +356,9 @@ export function whenReady(device, callback, context, nonPrimer) {
     readyCheck._monitor = readyCheck.bind(device);
     readyCheck._queue = readyCheck._queue || [];
     readyCheck._queue.push([callback, context]);
-    const cordova = typeof window.cordova !== 'undefined';
-    const cocoonJS = navigator.isCocoonJS;
     if (document.readyState === 'complete' || document.readyState === 'interactive') {
       // Why is there an additional timeout here?
       window.setTimeout(readyCheck._monitor, 0);
-    } else if (cordova && !cocoonJS) {
-      // Ref. http://docs.phonegap.com/en/3.5.0/cordova_events_events.md.html#deviceready
-      //  Cordova, but NOT Cocoon?
-      document.addEventListener('deviceready', readyCheck._monitor, false);
     } else {
       document.addEventListener('DOMContentLoaded', readyCheck._monitor, false);
       window.addEventListener('load', readyCheck._monitor, false);

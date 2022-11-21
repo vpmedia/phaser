@@ -311,7 +311,7 @@ export default class {
     } else if (this.game.cache.getSound(this.key) && this.game.cache.getSound(this.key).locked) {
       this.game.cache.reloadSound(this.key);
       this.pendingPlayback = true;
-    } else if (this._sound && (this.game.device.cocoonJS || this._sound.readyState === 4)) {
+    } else if (this._sound && this._sound.readyState === 4) {
       this._sound.play();
       //  This doesn't become available until you call play(), wonderful ...
       this.totalDuration = this._sound.duration;

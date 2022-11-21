@@ -168,9 +168,6 @@ export default class {
       this.renderer = new CanvasRenderer(this);
       this.context = this.renderer.context;
     }
-    if (this.device && this.device.cocoonJS && this.renderer) {
-      this.canvas.screencanvas = this.renderer.type === RENDER_CANVAS;
-    }
     if (this.config.renderType !== RENDER_HEADLESS) {
       this.stage.smoothed = this.config.antialias;
       addToDOM(this.canvas, this.parent, false);

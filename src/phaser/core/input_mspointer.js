@@ -46,15 +46,13 @@ export default class {
     canvas.addEventListener('pointerup', this._onMSPointerUp, false);
     canvas.style['-ms-content-zooming'] = 'none';
     canvas.style['-ms-touch-action'] = 'none';
-    if (!this.game.device.cocoonJS) {
-      window.addEventListener('MSPointerUp', this._onMSPointerUpGlobal, true);
-      canvas.addEventListener('MSPointerOver', this._onMSPointerOver, true);
-      canvas.addEventListener('MSPointerOut', this._onMSPointerOut, true);
-      //  IE11+ uses non-prefix events
-      window.addEventListener('pointerup', this._onMSPointerUpGlobal, true);
-      canvas.addEventListener('pointerover', this._onMSPointerOver, true);
-      canvas.addEventListener('pointerout', this._onMSPointerOut, true);
-    }
+    window.addEventListener('MSPointerUp', this._onMSPointerUpGlobal, true);
+    canvas.addEventListener('MSPointerOver', this._onMSPointerOver, true);
+    canvas.addEventListener('MSPointerOut', this._onMSPointerOut, true);
+    //  IE11+ uses non-prefix events
+    window.addEventListener('pointerup', this._onMSPointerUpGlobal, true);
+    canvas.addEventListener('pointerover', this._onMSPointerOver, true);
+    canvas.addEventListener('pointerout', this._onMSPointerOut, true);
   }
 
   stop() {

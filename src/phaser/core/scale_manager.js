@@ -94,7 +94,7 @@ export default class {
   boot() {
     // Configure device-dependent compatibility
     const compat = this.compatibility;
-    compat.supportsFullScreen = this.game.device.fullscreen && !this.game.device.cocoonJS;
+    compat.supportsFullScreen = this.game.device.fullscreen;
     //  We can't do anything about the status bars in iPads, web apps or desktops
     /*
     if (!this.game.device.iPad && !this.game.device.webApp && !this.game.device.desktop) {

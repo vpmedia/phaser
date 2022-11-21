@@ -106,12 +106,10 @@ export default class {
     canvas.addEventListener('mousedown', this._onMouseDown, true);
     canvas.addEventListener('mousemove', this._onMouseMove, true);
     canvas.addEventListener('mouseup', this._onMouseUp, true);
-    if (!this.game.device.cocoonJS) {
-      window.addEventListener('mouseup', this._onMouseUpGlobal, true);
-      window.addEventListener('mouseout', this._onMouseOutGlobal, true);
-      canvas.addEventListener('mouseover', this._onMouseOver, true);
-      canvas.addEventListener('mouseout', this._onMouseOut, true);
-    }
+    window.addEventListener('mouseup', this._onMouseUpGlobal, true);
+    window.addEventListener('mouseout', this._onMouseOutGlobal, true);
+    canvas.addEventListener('mouseover', this._onMouseOver, true);
+    canvas.addEventListener('mouseout', this._onMouseOut, true);
     const wheelEvent = this.game.device.wheelEvent;
     if (wheelEvent) {
       canvas.addEventListener(wheelEvent, this._onMouseWheel, true);

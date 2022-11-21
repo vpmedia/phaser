@@ -75,7 +75,7 @@ export default class {
         this.game.input.onUp.addOnce(this.resumeWebAudio, this);
       }
     }
-    if (!this.noAudio && !this.game.device.cocoonJS && (this.game.device.iOS || this.game.device.android)) {
+    if (!this.noAudio && (this.game.device.iOS || this.game.device.android)) {
       this.game.input.addTouchLockCallback(this.unlock, this, true);
       this.touchLocked = true;
     }

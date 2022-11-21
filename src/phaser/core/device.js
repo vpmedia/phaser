@@ -11,9 +11,6 @@ export default class {
     this.desktop = false;
     this.iOS = false;
     this.iOSVersion = 0;
-    this.cocoonJS = false;
-    this.cocoonJSApp = false;
-    this.cordova = false;
     this.node = false;
     this.android = false;
     this.chromeOS = false;

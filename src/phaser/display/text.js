@@ -196,9 +196,6 @@ export default class extends Image {
     }
     this.canvas.height = height * this._res;
     this.context.scale(this._res, this._res);
-    if (navigator.isCocoonJS) {
-      this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    }
     if (this.style.backgroundColor) {
       this.context.fillStyle = this.style.backgroundColor;
       this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);

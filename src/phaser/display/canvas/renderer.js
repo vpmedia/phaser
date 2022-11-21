@@ -49,10 +49,6 @@ export default class {
     this.renderSession.shakeX = 0;
     this.renderSession.shakeY = 0;
     this.context.globalCompositeOperation = 'source-over';
-    if (navigator.isCocoonJS && this.view.screencanvas) {
-      this.context.fillStyle = 'black';
-      this.context.clear();
-    }
     if (this.clearBeforeRender) {
       if (this.transparent) {
         this.context.clearRect(0, 0, this.width, this.height);
