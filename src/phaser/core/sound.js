@@ -200,6 +200,7 @@ export default class {
             this._sound.stop(0);
           } catch (e) {
             // pass
+            this.game.exceptionHandler(e);
           }
         }
         if (this.externalNode) {
@@ -385,7 +386,8 @@ export default class {
           try {
             this._sound.stop(0);
           } catch (e) {
-            //  Thanks Android 4.4
+            // pass
+            this.game.exceptionHandler(e);
           }
         }
         if (this.externalNode) {

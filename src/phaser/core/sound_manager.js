@@ -165,7 +165,7 @@ export default class {
             }
           });
         } catch (e) {
-          // pass
+          scope.game.exceptionHandler(e);
         }
       }
     }
