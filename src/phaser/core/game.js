@@ -211,6 +211,8 @@ export default class {
     this.parseConfigElement(config, 'clearBeforeRender', true);
     // The Renderer this game will use. Either PowerGamer.Const.RENDER_AUTO, PowerGamer.Const.RENDER_CANVAS, PowerGamer.Const.RENDER_WEBGL, or PowerGamer.Const.RENDER_HEADLESS.
     this.parseConfigElement(config, 'renderType', RENDER_AUTO);
+    // Force audio disabled
+    this.parseConfigElement(config, 'isForceDisabledAudio', false);
     if (config.renderer) {
       this.config.renderType = config.renderer;
     }

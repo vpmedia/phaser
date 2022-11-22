@@ -33,6 +33,10 @@ export default class {
   }
 
   boot() {
+    if (this.game.config.isForceDisabledAudio) {
+      this.noAudio = true;
+      return;
+    }
     if (window.PhaserRegistry && window.PhaserRegistry.audioContext) {
       this.context = window.PhaserRegistry.audioContext;
     } else if (window.AudioContext) {
@@ -42,6 +46,7 @@ export default class {
         this.context = null;
         this.noAudio = true;
         this.touchLocked = false;
+        this.game.exceptionHandler(e);
       }
     } else if (window.webkitAudioContext) {
       try {
@@ -50,6 +55,7 @@ export default class {
         this.context = null;
         this.noAudio = true;
         this.touchLocked = false;
+        this.game.exceptionHandler(e);
       }
     }
     if (this.context === null || (this.context && this.context.createGain === undefined && this.context.createGainNode === undefined)) {
