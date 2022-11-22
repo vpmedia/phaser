@@ -33,7 +33,6 @@ export default class {
     this.safariVersion = 0;
     this.webApp = false;
     this.silk = false;
-    this.webAudio = false;
     this.ogg = false;
     this.opus = false;
     this.mp3 = false;

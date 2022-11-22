@@ -17,7 +17,6 @@ export default class {
     this.onUnMute = new Signal();
     this.context = null;
     this.baseLatency = 0; // https://developer.mozilla.org/en-US/docs/Web/API/AudioContext/baseLatency
-    this.usingWebAudio = false;
     this.noAudio = false;
     this.connectToMaster = true;
     this.touchLocked = false;
@@ -41,7 +40,7 @@ export default class {
         this.context = new window.AudioContext();
       } catch (e) {
         this.context = null;
-        this.usingWebAudio = false;
+        this.noAudio = true;
         this.touchLocked = false;
       }
     } else if (window.webkitAudioContext) {
@@ -49,14 +48,13 @@ export default class {
         this.context = new window.webkitAudioContext();
       } catch (e) {
         this.context = null;
-        this.usingWebAudio = false;
+        this.noAudio = true;
         this.touchLocked = false;
       }
     }
     if (this.context === null || (this.context && this.context.createGain === undefined && this.context.createGainNode === undefined)) {
       this.noAudio = true;
     } else {
-      this.usingWebAudio = true;
       this.baseLatency = this.context.baseLatency || (256 / (this.context.sampleRate || 44100));
       if (this.context.createGain === undefined) {
         this.masterGain = this.context.createGainNode();
@@ -66,22 +64,31 @@ export default class {
       this.masterGain.gain.value = 1;
       this.masterGain.connect(this.context.destination);
     }
-    if (this.usingWebAudio && (this.game.device.iOS || this.game.device.android)) {
+    if (this.noAudio) {
+      return;
+    }
+    if (this.game.device.iOS || this.game.device.android) {
       this.game.input.addTouchLockCallback(this.unlock, this, true);
       this.touchLocked = true;
     }
   }
 
   checkContextState() {
-    if (this.usingWebAudio && this.context.state === 'suspended') {
-      this.game.input.onUp.addOnce(this.resumeWebAudio, this);
+    if (this.noAudio) {
+      return false;
+    }
+    if (this.context.state === 'suspended') {
+      this.game.input.onUp.addOnce(this.resumeAudioContext, this);
       return true;
     }
     return false;
   }
 
-  resumeWebAudio() {
-    if (this.usingWebAudio && this.context.state === 'suspended') {
+  resumeAudioContext() {
+    if (this.noAudio) {
+      return;
+    }
+    if (this.context.state === 'suspended') {
       this.context.resume();
     }
   }
@@ -101,7 +108,7 @@ export default class {
     } else {
       this._unlockSource.start(0);
     }
-    this.resumeWebAudio();
+    this.resumeAudioContext();
     return true;
   }
 
@@ -190,8 +197,8 @@ export default class {
     if (this.touchLocked && this._unlockSource !== null && (this._unlockSource.playbackState === this._unlockSource.PLAYING_STATE || this._unlockSource.playbackState === this._unlockSource.FINISHED_STATE)) {
       this.touchLocked = false;
       this._unlockSource = null;
-      this.resumeWebAudio();
-    } else if (this.usingWebAudio && this.context.state === 'interrupted') {
+      this.resumeAudioContext();
+    } else if (this.context.state === 'interrupted') {
       this.context.resume();
     }
     for (let i = 0; i < this._sounds.length; i += 1) {
@@ -259,7 +266,7 @@ export default class {
       return;
     }
     this._muted = true;
-    if (this.usingWebAudio) {
+    if (!this.noAudio) {
       this._muteVolume = this.masterGain.gain.value;
       this.masterGain.gain.value = 0;
     }
@@ -271,7 +278,7 @@ export default class {
       return;
     }
     this._muted = false;
-    if (this.usingWebAudio) {
+    if (!this.noAudio) {
       this.masterGain.gain.value = this._muteVolume;
     }
     this.onUnMute.dispatch();
@@ -327,7 +334,7 @@ export default class {
     }
     if (this._volume !== value) {
       this._volume = value;
-      if (this.usingWebAudio) {
+      if (!this.noAudio) {
         this.masterGain.gain.value = value;
       }
       this.onVolumeChange.dispatch(value);

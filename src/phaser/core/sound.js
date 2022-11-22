@@ -34,14 +34,13 @@ export default class {
     this.pendingPlayback = false;
     this.override = false;
     this.allowMultiple = false;
-    this.usingWebAudio = this.game.sound.usingWebAudio;
     this.externalNode = null;
     this.masterGainNode = null;
     this.gainNode = null;
     this._sound = null;
     this._markedToDelete = false;
     this._removeFromSoundManager = false;
-    if (this.usingWebAudio) {
+    if (!this.game.sound.noAudio) {
       this.context = this.game.sound.context;
       this.masterGainNode = this.game.sound.masterGain;
       if (this.context.createGain === undefined) {
@@ -147,7 +146,7 @@ export default class {
     }
     this.currentTime = this.game.time.time - this.startTime;
     if (this.currentTime >= this.durationMS) {
-      if (this.usingWebAudio) {
+      if (!this.game.sound.noAudio) {
         if (this.loop) {
           //  won't work with markers, needs to reset the position
           this.onLoop.dispatch(this);
@@ -193,7 +192,7 @@ export default class {
       return this;
     }
     if (this._sound && this.isPlaying && !this.allowMultiple && (this.override || forceRestart)) {
-      if (this.usingWebAudio) {
+      if (!this.game.sound.noAudio) {
         if (this._sound.stop === undefined) {
           this._sound.noteOff(0);
         } else {
@@ -253,7 +252,7 @@ export default class {
       this._tempVolume = volume;
       this._tempLoop = loop;
     }
-    if (this.usingWebAudio) {
+    if (!this.game.sound.noAudio) {
       //  Does the sound need decoding?
       if (this.game.cache.isSoundDecoded(this.key)) {
         this._sound = this.context.createBufferSource();
@@ -340,7 +339,7 @@ export default class {
 
   resume() {
     if (this.paused && this._sound) {
-      if (this.usingWebAudio) {
+      if (!this.game.sound.noAudio) {
         const p = Math.max(0, this.position + (this.pausedPosition / 1000));
         this._sound = this.context.createBufferSource();
         this._sound.buffer = this._buffer;
@@ -369,9 +368,6 @@ export default class {
         } else {
           this._sound.start(0, p, duration);
         }
-      } else {
-        this._sound.currentTime = this._tempPause;
-        this._sound.play();
       }
       this.isPlaying = true;
       this.paused = false;
@@ -382,7 +378,7 @@ export default class {
 
   stop() {
     if (this.isPlaying && this._sound) {
-      if (this.usingWebAudio) {
+      if (!this.game.sound.noAudio) {
         if (this._sound.stop === undefined) {
           this._sound.noteOff(0);
         } else {
@@ -475,12 +471,12 @@ export default class {
     if (value) {
       this._muted = true;
       this._muteVolume = this._tempVolume;
-      if (this.usingWebAudio) {
+      if (!this.game.sound.noAudio) {
         this.gainNode.gain.value = 0;
       }
     } else {
       this._muted = false;
-      if (this.usingWebAudio) {
+      if (!this.game.sound.noAudio) {
         this.gainNode.gain.value = this._muteVolume;
       }
     }
@@ -498,7 +494,7 @@ export default class {
     }
     this._tempVolume = value;
     this._volume = value;
-    if (this.usingWebAudio) {
+    if (!this.game.sound.noAudio) {
       this.gainNode.gain.value = value;
     }
   }

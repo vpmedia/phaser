@@ -137,7 +137,6 @@ export default class {
       data,
       isDecoding: false,
       decoded: false,
-      webAudio: true,
       locked: this.game.sound.touchLocked,
     };
     this._resolveURL(url, this._cache.sound[key]);
