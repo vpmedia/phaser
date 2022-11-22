@@ -37,7 +37,7 @@ export default class {
     this.useXDomainRequest = false;
     this._warnedAboutXDomainRequest = false;
     this.enableParallel = true;
-    this.maxParallelDownloads = 6;
+    this.maxParallelDownloads = 5;
     this._withSyncPointDepth = 0;
     this._fileList = [];
     this._flightQueue = [];
@@ -796,8 +796,8 @@ export default class {
   }
 
   fileError(file, xhr, reason) {
-    const url = file.requestUrl || this.transformUrl(file.url, file);
-    let message = 'error loading asset from URL ' + url;
+    // const url = file.requestUrl || this.transformUrl(file.url, file);
+    let message = 'Error loading asset';
     if (!reason && xhr) {
       reason = xhr.status;
     }
