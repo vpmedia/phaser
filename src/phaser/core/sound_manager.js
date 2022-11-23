@@ -162,7 +162,7 @@ export default class {
             this.onSoundDecode.dispatch(key, sound);
           })
           .catch((e) => {
-            this.game.exceptionHandler(e);
+            this.game.exceptionHandler(e, { key });
           });
       }
     }
