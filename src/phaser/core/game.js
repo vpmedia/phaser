@@ -143,14 +143,14 @@ export default class {
         isWebGlReady = true;
       } catch (e) {
         isWebGlReady = false;
-        const keys = {};
+        const tags = {};
         if (window.PhaserRegistry?.GL_PROGRAM_INFO_LOG) {
-          keys.gl_program_log = window.PhaserRegistry.GL_PROGRAM_INFO_LOG;
+          tags.gl_program_log = window.PhaserRegistry.GL_PROGRAM_INFO_LOG;
         }
         if (window.PhaserRegistry?.GL_SHADER_INFO_LOG) {
-          keys.gl_shader_log = window.PhaserRegistry.GL_SHADER_INFO_LOG;
+          tags.gl_shader_log = window.PhaserRegistry.GL_SHADER_INFO_LOG;
         }
-        this.exceptionHandler(e, keys);
+        this.exceptionHandler(e, tags);
       }
       /*
       this.renderer = new WebGLRenderer(this);
@@ -226,8 +226,8 @@ export default class {
     if (config.exceptionHandler) {
       this.exceptionHandler = config.exceptionHandler;
     } else {
-      this.exceptionHandler = (e, keys) => {
-        console.error(e, keys);
+      this.exceptionHandler = (e, tags) => {
+        console.error(e, tags);
       };
     }
     if (config.parent) {
