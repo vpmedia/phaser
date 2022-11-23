@@ -94,8 +94,11 @@ export default class {
     if (this.noAudio) {
       return;
     }
-    if (this.context.state === 'suspended') {
-      this.context.resume();
+    const state = this.context.state;
+    if (state === 'suspended') {
+      this.context.resume().catch((e) => {
+        this.game.exceptionHandler(e, { state });
+      });
     }
   }
 
@@ -202,7 +205,9 @@ export default class {
       this._unlockSource = null;
       this.resumeAudioContext();
     } else if (this.context.state === 'interrupted') {
-      this.context.resume();
+      this.context.resume().catch((e) => {
+        this.game.exceptionHandler(e, { state: this.context.state });
+      });
     }
     for (let i = 0; i < this._sounds.length; i += 1) {
       this._sounds[i].update();
