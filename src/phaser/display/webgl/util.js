@@ -27,7 +27,9 @@ export function compileShader(gl, shaderSrc, shaderType) {
   gl.shaderSource(shader, src);
   gl.compileShader(shader);
   if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-    console.log(gl.getShaderInfoLog(shader));
+    if (window.PhaserRegistry) {
+      window.PhaserRegistry.GL_SHADER_INFO_LOG = gl.getShaderInfoLog(shader);
+    }
     return null;
   }
   return shader;
@@ -71,8 +73,9 @@ export function compileProgram(gl, vertexSrc, fragmentSrc) {
   gl.linkProgram(shaderProgram);
 
   if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
-    console.log(gl.getProgramInfoLog(shaderProgram));
-    console.log('Could not initialise shaders');
+    if (window.PhaserRegistry) {
+      window.PhaserRegistry.GL_PROGRAM_INFO_LOG = gl.getProgramInfoLog(shaderProgram);
+    }
   }
   return shaderProgram;
 }

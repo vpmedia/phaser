@@ -539,9 +539,7 @@ export function updateGraphics(graphics, gl) {
           if (data.points.length < stencilBufferLimit * 2) {
             webGLData = switchMode(webGL, 0);
             const canDrawUsingSimple = buildPoly(data, webGLData);
-            // console.log(canDrawUsingSimple);
             if (!canDrawUsingSimple) {
-              // console.log("<>>>")
               webGLData = switchMode(webGL, 1);
               buildComplexPoly(data, webGLData);
             }

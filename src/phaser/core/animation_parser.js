@@ -68,8 +68,6 @@ export function spriteSheet(game, key, frameWidth, frameHeight, frameMax, margin
 export function JSONData(game, json) {
   //  Malformed?
   if (!json.frames) {
-    console.warn('AnimationParser.JSONData: Invalid Texture Atlas JSON given, missing frames array');
-    console.log(json);
     return null;
   }
   //  Let's create some frames then

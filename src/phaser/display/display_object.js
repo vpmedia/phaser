@@ -274,11 +274,6 @@ export default class {
       if (child.visible) {
         childVisible = true;
         childBounds = this.children[i].getBounds();
-        /*
-        if (isNaN(childBounds.x) && this.children[i].type !== 7) {
-          console.log(this.children[i]);
-        }
-        */
         minX = (minX < childBounds.x) ? minX : childBounds.x;
         minY = (minY < childBounds.y) ? minY : childBounds.y;
         childMaxX = childBounds.width + childBounds.x;
