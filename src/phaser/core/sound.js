@@ -196,12 +196,7 @@ export default class {
         if (this._sound.stop === undefined) {
           this._sound.noteOff(0);
         } else {
-          try {
-            this._sound.stop(0);
-          } catch (e) {
-            // pass
-            this.game.exceptionHandler(e);
-          }
+          this._sound.stop(0);
         }
         if (this.externalNode) {
           this._sound.disconnect(this.externalNode);
@@ -383,12 +378,7 @@ export default class {
         if (this._sound.stop === undefined) {
           this._sound.noteOff(0);
         } else {
-          try {
-            this._sound.stop(0);
-          } catch (e) {
-            // pass
-            this.game.exceptionHandler(e);
-          }
+          this._sound.stop(0);
         }
         if (this.externalNode) {
           this._sound.disconnect(this.externalNode);
