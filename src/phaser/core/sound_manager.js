@@ -156,17 +156,14 @@ export default class {
     if (soundData) {
       if (this.game.cache.isSoundDecoded(key) === false) {
         this.game.cache.updateSound(key, 'isDecoding', true);
-        const scope = this;
-        try {
-          this.context.decodeAudioData(soundData, (buffer) => {
-            if (buffer) {
-              scope.game.cache.decodedSound(key, buffer);
-              scope.onSoundDecode.dispatch(key, sound);
-            }
+        this.context.decodeAudioData(soundData)
+          .then((buffer) => {
+            this.game.cache.decodedSound(key, buffer);
+            this.onSoundDecode.dispatch(key, sound);
+          })
+          .catch((e) => {
+            this.game.exceptionHandler(e);
           });
-        } catch (e) {
-          scope.game.exceptionHandler(e);
-        }
       }
     }
   }
