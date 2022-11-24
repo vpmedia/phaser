@@ -95,16 +95,6 @@ export default class {
     // Configure device-dependent compatibility
     const compat = this.compatibility;
     compat.supportsFullScreen = this.game.device.fullscreen;
-    //  We can't do anything about the status bars in iPads, web apps or desktops
-    /*
-    if (!this.game.device.iPad && !this.game.device.webApp && !this.game.device.desktop) {
-      if (this.game.device.android && !this.game.device.chrome) {
-        compat.scrollTo = new Point(0, 1);
-      } else {
-        compat.scrollTo = new Point(0, 0);
-      }
-    }
-    */
     if (this.game.device.desktop) {
       compat.orientationFallback = 'screen';
       compat.clickTrampoline = 'when-not-mouse';

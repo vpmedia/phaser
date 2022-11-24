@@ -60,12 +60,12 @@ export function checkOS(device) {
     device.chromeOS = true;
   } else if (/iP[ao]d|iPhone/i.test(ua)) {
     device.iOS = true;
-    (navigator.appVersion).match(/OS (\d+)/);
-    device.iOSVersion = parseInt(RegExp.$1, 10);
-  } else if (/Linux/.test(ua)) {
-    device.linux = true;
+  } else if (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1) {
+    device.iOS = true;
   } else if (/Mac OS/.test(ua)) {
     device.macOS = true;
+  } else if (/Linux/.test(ua)) {
+    device.linux = true;
   } else if (/Windows/.test(ua)) {
     device.windows = true;
   }
@@ -80,7 +80,7 @@ export function checkOS(device) {
   if (device.windows || device.macOS || (device.linux && !silk) || device.chromeOS) {
     device.desktop = true;
   }
-  // iOS / Windows Phone / Table reset
+  // iOS / Windows Phone / Tablet reset
   if (device.android || device.iOS || device.windowsPhone || ((/Windows NT/i.test(ua)) && (/Touch/i.test(ua)))) {
     device.desktop = false;
   }
@@ -167,17 +167,10 @@ export function checkBrowser(device) {
     device.edge = true;
   } else if (/Chrome\/(\d+)/.test(ua) && !device.windowsPhone) {
     device.chrome = true;
-    device.chromeVersion = parseInt(RegExp.$1, 10);
   } else if (/Firefox\D+(\d+)/.test(ua)) {
     device.firefox = true;
-    device.firefoxVersion = parseInt(RegExp.$1, 10);
-  } else if (/AppleWebKit/.test(ua) && device.iOS) {
-    device.mobileSafari = true;
   } else if (/Safari\/(\d+)/.test(ua) && !device.windowsPhone) {
     device.safari = true;
-    if (/Version\/(\d+)\./.test(ua)) {
-      device.safariVersion = parseInt(RegExp.$1, 10);
-    }
   }
   //  Silk gets its own if clause because its ua also contains 'Safari'
   if (/Silk/.test(ua)) {
@@ -186,9 +179,6 @@ export function checkBrowser(device) {
   //  WebApp mode in iOS
   if (navigator.standalone) {
     device.webApp = true;
-  }
-  if (typeof process !== 'undefined' && typeof require !== 'undefined') {
-    device.node = true;
   }
 }
 
@@ -253,16 +243,8 @@ export function checkAudio(device) {
         device.webm = true;
       }
       if (audioElement.canPlayType('audio/mp4;codecs="ec-3"') !== '') {
-        if (device.edge) {
+        if (device.edge || device.safari) {
           device.dolby = true;
-        } else if (device.safari && device.safariVersion >= 9) {
-          if (/Mac OS X (\d+)_(\d+)/.test(navigator.userAgent)) {
-            const major = parseInt(RegExp.$1, 10);
-            const minor = parseInt(RegExp.$2, 10);
-            if ((major === 10 && minor >= 11) || major > 10) {
-              device.dolby = true;
-            }
-          }
         }
       }
     }

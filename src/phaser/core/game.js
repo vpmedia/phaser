@@ -20,7 +20,7 @@ import Time from './time';
 import TweenManager from './tween_manager';
 import World from './world';
 import Stage from './stage';
-import { RENDER_AUTO, RENDER_WEBGL, RENDER_CANVAS, RENDER_HEADLESS } from './const';
+import { RENDER_AUTO, RENDER_WEBGL } from './const';
 import { create, removeFromDOM, addToDOM, setTouchAction } from '../display/canvas/util';
 import { initialize, checkOS } from './device_util';
 
@@ -175,11 +175,9 @@ export default class {
       this.renderer = new CanvasRenderer(this);
       this.context = this.renderer.context;
     }
-    if (this.config.renderType !== RENDER_HEADLESS) {
-      this.stage.smoothed = this.config.antialias;
-      addToDOM(this.canvas, this.parent, false);
-      setTouchAction(this.canvas);
-    }
+    this.stage.smoothed = this.config.antialias;
+    addToDOM(this.canvas, this.parent, false);
+    setTouchAction(this.canvas);
   }
 
   parseConfigElement(config, key, defaultValue) {
@@ -216,7 +214,7 @@ export default class {
     // Clear the Canvas each frame before rendering the display list.
     // You can set this to `false` to gain some performance if your game always contains a background that completely fills the display.
     this.parseConfigElement(config, 'clearBeforeRender', true);
-    // The Renderer this game will use. Either PowerGamer.Const.RENDER_AUTO, PowerGamer.Const.RENDER_CANVAS, PowerGamer.Const.RENDER_WEBGL, or PowerGamer.Const.RENDER_HEADLESS.
+    // The Renderer this game will use. Either PowerGamer.Const.RENDER_AUTO, PowerGamer.Const.RENDER_CANVAS, PowerGamer.Const.RENDER_WEBGL
     this.parseConfigElement(config, 'renderType', RENDER_AUTO);
     // Force audio disabled
     this.parseConfigElement(config, 'isForceDisabledAudio', false);
@@ -346,9 +344,6 @@ export default class {
       return;
     }
     this.state.preRender(elapsedTime);
-    if (this.config.renderType === RENDER_HEADLESS) {
-      return;
-    }
     this.renderer.render(this.stage);
     this.state.render(elapsedTime);
   }

@@ -10,8 +10,6 @@ export default class {
     this.deviceReadyAt = 0;
     this.desktop = false;
     this.iOS = false;
-    this.iOSVersion = 0;
-    this.node = false;
     this.android = false;
     this.chromeOS = false;
     this.linux = false;
@@ -24,13 +22,9 @@ export default class {
     this.mspointer = false;
     this.wheelEvent = null;
     this.chrome = false;
-    this.chromeVersion = 0;
     this.firefox = false;
-    this.firefoxVersion = 0;
     this.edge = false;
-    this.mobileSafari = false;
     this.safari = false;
-    this.safariVersion = 0;
     this.webApp = false;
     this.silk = false;
     this.ogg = false;

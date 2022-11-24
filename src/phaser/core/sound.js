@@ -355,12 +355,7 @@ export default class {
           this._sound.noteGrainOn(0, p, duration);
           // this._sound.noteOn(0); // the zero is vitally important, crashes iOS6 without it
         } else if (this.loop && this.game.device.chrome) {
-          // Handle chrome bug: https://code.google.com/p/chromium/issues/detail?id=457099
-          if (this.game.device.chromeVersion === 42) {
-            this._sound.start(0);
-          } else {
-            this._sound.start(0, p);
-          }
+          this._sound.start(0, p);
         } else {
           this._sound.start(0, p, duration);
         }

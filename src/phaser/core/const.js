@@ -58,7 +58,6 @@ export const BLEND_LUMINOSITY = 16;
 export const RENDER_AUTO = 0;
 export const RENDER_CANVAS = 1;
 export const RENDER_WEBGL = 2;
-export const RENDER_HEADLESS = 3;
 // pointer modes
 export const POINTER_CURSOR = 1;
 export const POINTER_CONTACT = 2;
