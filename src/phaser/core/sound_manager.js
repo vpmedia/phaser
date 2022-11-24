@@ -80,7 +80,12 @@ export default class {
   }
 
   checkContextState() {
+    // this must be called from the final game state since input.onUp handlers are reset by state manager
     if (this.noAudio) {
+      return;
+    }
+    if (this.game.device.iOS || this.game.device.android) {
+      // touch lock callback already handles context resume
       return;
     }
     if (this.context.state === 'suspended') {
