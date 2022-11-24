@@ -176,10 +176,6 @@ export function checkBrowser(device) {
   if (/Silk/.test(ua)) {
     device.silk = true;
   }
-  //  WebApp mode in iOS
-  if (navigator.standalone) {
-    device.webApp = true;
-  }
 }
 
 /**

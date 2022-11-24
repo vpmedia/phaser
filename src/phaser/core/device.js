@@ -25,7 +25,6 @@ export default class {
     this.firefox = false;
     this.edge = false;
     this.safari = false;
-    this.webApp = false;
     this.silk = false;
     this.ogg = false;
     this.opus = false;
