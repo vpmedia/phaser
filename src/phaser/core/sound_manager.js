@@ -81,24 +81,16 @@ export default class {
 
   checkContextState() {
     if (this.noAudio) {
-      return false;
-    }
-    if (this.context.state === 'suspended') {
-      this.game.input.onUp.addOnce(this.resumeAudioContext, this);
-      return true;
-    }
-    return false;
-  }
-
-  resumeAudioContext() {
-    if (this.noAudio) {
       return;
     }
-    const state = this.context.state;
-    if (state === 'suspended') {
-      this.context.resume().catch((e) => {
-        this.game.exceptionHandler(e, { state });
-      });
+    if (this.context.state === 'suspended') {
+      this.game.input.onUp.addOnce(() => {
+        if (this.context.state === 'suspended') {
+          this.context.resume().catch((e) => {
+            this.game.exceptionHandler(e, { state: this.context.state, trigger: 'check' });
+          });
+        }
+      }, this);
     }
   }
 
@@ -117,7 +109,11 @@ export default class {
     } else {
       this._unlockSource.start(0);
     }
-    this.resumeAudioContext();
+    if (this.context.state === 'suspended') {
+      this.context.resume().catch((e) => {
+        this.game.exceptionHandler(e, { state: this.context.state, trigger: 'unlock' });
+      });
+    }
     return true;
   }
 
@@ -203,7 +199,11 @@ export default class {
     if (this.touchLocked && this._unlockSource !== null && (this._unlockSource.playbackState === this._unlockSource.PLAYING_STATE || this._unlockSource.playbackState === this._unlockSource.FINISHED_STATE)) {
       this.touchLocked = false;
       this._unlockSource = null;
-      this.resumeAudioContext();
+      if (this.context.state === 'suspended') {
+        this.context.resume().catch((e) => {
+          this.game.exceptionHandler(e, { state: this.context.state, trigger: 'update' });
+        });
+      }
     } else if (this.context.state === 'interrupted') {
       this.context.resume().catch((e) => {
         this.game.exceptionHandler(e, { state: this.context.state });
