@@ -80,12 +80,8 @@ export function checkOS(device) {
   if (device.windows || device.macOS || (device.linux && !silk) || device.chromeOS) {
     device.desktop = true;
   }
-  //  Windows Phone / Table reset
-  if (device.windowsPhone || ((/Windows NT/i.test(ua)) && (/Touch/i.test(ua)))) {
-    device.desktop = false;
-  }
-  // VPMedia Special override
-  if (window.location.pathname.indexOf('/mobile/') > -1) {
+  // iOS / Windows Phone / Table reset
+  if (device.android || device.iOS || device.windowsPhone || ((/Windows NT/i.test(ua)) && (/Touch/i.test(ua)))) {
     device.desktop = false;
   }
 }
