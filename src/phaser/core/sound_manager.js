@@ -92,7 +92,7 @@ export default class {
       this.game.input.onUp.addOnce(() => {
         if (this.context.state === 'suspended') {
           this.context.resume().catch((e) => {
-            this.game.exceptionHandler(e, { state: this.context.state, trigger: 'check' });
+            this.game.exceptionHandler(e, { state: this.context.state, reason: 'check' });
           });
         }
       }, this);
@@ -116,7 +116,7 @@ export default class {
     }
     if (this.context.state === 'suspended') {
       this.context.resume().catch((e) => {
-        this.game.exceptionHandler(e, { state: this.context.state, trigger: 'unlock' });
+        this.game.exceptionHandler(e, { state: this.context.state, reason: 'unlock' });
       });
     }
     return true;
@@ -206,12 +206,12 @@ export default class {
       this._unlockSource = null;
       if (this.context.state === 'suspended') {
         this.context.resume().catch((e) => {
-          this.game.exceptionHandler(e, { state: this.context.state, trigger: 'update' });
+          this.game.exceptionHandler(e, { state: this.context.state, reason: 'update_suspended' });
         });
       }
     } else if (this.context.state === 'interrupted') {
       this.context.resume().catch((e) => {
-        this.game.exceptionHandler(e, { state: this.context.state });
+        this.game.exceptionHandler(e, { state: this.context.state, reason: 'update_interrupted' });
       });
     }
     for (let i = 0; i < this._sounds.length; i += 1) {
