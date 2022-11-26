@@ -106,17 +106,17 @@ export default class {
 
   onUnlockEvent(event) {
     const initialState = this.context.state;
-    if (this.context.state !== 'suspended' && this.context.state !== 'interrupted') {
-      this.onLockChange.dispatch('onUnlockResumeDenied', { state: this.context.state, isLocked: this.isLocked, event });
+    if (initialState !== 'suspended' && initialState !== 'interrupted') {
+      this.onLockChange.dispatch('onUnlockResumeDenied', { state: initialState, isLocked: this.isLocked, event });
       this.removeUnlockHandlers();
       return;
     }
-    this.onLockChange.dispatch('onContextResumeStart', { state: this.context.state, isLocked: this.isLocked, event });
+    this.onLockChange.dispatch('onContextResumeStart', { state: initialState, isLocked: this.isLocked, event });
     this.context.resume().then(() => {
-      this.onLockChange.dispatch('onContextResumeResult', { state: this.context.state, isLocked: this.isLocked });
+      this.onLockChange.dispatch('onContextResumeResult', { initialState, state: this.context.state, isLocked: this.isLocked });
       this.removeUnlockHandlers();
     }).catch((e) => {
-      this.onLockChange.dispatch('onContextResumeReject', { state: this.context.state, isLocked: this.isLocked, error: e });
+      this.onLockChange.dispatch('onContextResumeReject', { initialState, state: this.context.state, isLocked: this.isLocked, error: e });
       this.removeUnlockHandlers();
       this.game.exceptionHandler(e, { initialState, state: this.context.state });
     });
