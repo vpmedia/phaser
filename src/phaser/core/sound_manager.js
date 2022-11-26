@@ -72,6 +72,7 @@ export default class {
     this.masterGain.gain.value = 1;
     this.masterGain.connect(this.context.destination);
     // handle audio state unlock
+    // possible states: interrupted, suspended, running, closed
     this.onUnlockEventBinded = this.onUnlockEvent.bind(this);
     if (this.context.state === 'suspended' || this.context.state === 'interrupted') {
       this.addUnlockHandlers();
@@ -80,7 +81,7 @@ export default class {
       this.onLockChange.dispatch('onContextStateChange', { state: this.context.state, isLocked: this.isLocked });
       if (!this.isLocked && (this.context.state === 'suspended' || this.context.state === 'interrupted')) {
         this.addUnlockHandlers();
-      } else if (this.isLocked) {
+      } else if (this.isLocked && this.context.state === 'running') {
         this.removeUnlockHandlers();
       }  
     });
