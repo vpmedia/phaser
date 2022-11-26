@@ -73,21 +73,17 @@ export default class {
     this.masterGain.connect(this.context.destination);
     // handle audio state unlock
     this.onUnlockEventBinded = this.onUnlockEvent.bind(this);
-    if (this.isUnlockNeeded()) {
+    if (this.context.state === 'suspended' || this.context.state === 'interrupted') {
       this.addUnlockHandlers();
     }
     this.context.addEventListener('statechange', () => {
       this.onLockChange.dispatch('onContextStateChange', { state: this.context.state, isLocked: this.isLocked });
-      if (this.isUnlockNeeded()) {
+      if (!this.isLocked && (this.context.state === 'suspended' || this.context.state === 'interrupted')) {
         this.addUnlockHandlers();
       } else if (this.isLocked) {
         this.removeUnlockHandlers();
       }  
     });
-  }
-
-  isUnlockNeeded() {
-    return !this.isLocked && !this.noAudio && (this.context.state === 'suspended' || this.context.state === 'interrupted');
   }
 
   addUnlockHandlers() {
@@ -110,7 +106,7 @@ export default class {
 
   onUnlockEvent(event) {
     const initialState = this.context.state;
-    if (!this.isUnlockNeeded()) {
+    if (this.context.state !== 'suspended' && this.context.state !== 'interrupted') {
       this.onLockChange.dispatch('onUnlockResumeDenied', { state: this.context.state, isLocked: this.isLocked, event });
       this.removeUnlockHandlers();
       return;
