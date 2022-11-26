@@ -5,16 +5,7 @@
  */
 import Point from '../geom/point';
 import Circle from '../geom/circle';
-import DeviceButton from './input_button';
 import { POINTER, POINTER_CURSOR, POINTER_CONTACT, MOUSE_OVERRIDES_TOUCH, TOUCH_OVERRIDES_MOUSE, MOUSE_TOUCH_COMBINE } from './const';
-
-const NO_BUTTON = 0;
-const LEFT_BUTTON = 1;
-const RIGHT_BUTTON = 2;
-const MIDDLE_BUTTON = 4;
-const BACK_BUTTON = 8;
-const FORWARD_BUTTON = 16;
-const ERASER_BUTTON = 32;
 
 export default class {
 
@@ -28,12 +19,6 @@ export default class {
     this.pointerMode = pointerMode || (POINTER_CURSOR | POINTER_CONTACT);
     this.target = null;
     this.button = null;
-    this.leftButton = new DeviceButton(this, LEFT_BUTTON);
-    this.rightButton = new DeviceButton(this, RIGHT_BUTTON);
-    this.middleButton = new DeviceButton(this, MIDDLE_BUTTON);
-    this.backButton = new DeviceButton(this, BACK_BUTTON);
-    this.forwardButton = new DeviceButton(this, FORWARD_BUTTON);
-    this.eraserButton = new DeviceButton(this, ERASER_BUTTON);
     this._holdSent = false;
     this._history = [];
     this._nextDrop = 0;
@@ -74,9 +59,6 @@ export default class {
   resetButtons() {
     this.isDown = false;
     this.isUp = true;
-    if (this.isMouse) {
-      this.leftButton.reset();
-    }
   }
 
   updateButtons(event) {
