@@ -71,8 +71,9 @@ export default class {
     this.masterGain.gain.value = 1;
     this.masterGain.connect(this.context.destination);
     // handle audio context state
+    console.log("AudioContext initial state", this.context.state);
     this.context.onstatechange = () => {
-      console.log("AudioContext", this.context.state);
+      console.log("AudioContext change state", this.context.state);
     };
     if (this.context.state === 'suspended') {
       this.isLocked = true;
