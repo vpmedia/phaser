@@ -13,6 +13,7 @@ export default class {
     this.game = game;
     this.onSoundDecode = new Signal();
     this.onVolumeChange = new Signal();
+    this.onLockChange = new Signal();
     this.onMute = new Signal();
     this.onUnMute = new Signal();
     this.context = null;
@@ -76,6 +77,7 @@ export default class {
       this.addUnlockHandlers();
     }
     this.context.addEventListener('statechange', () => {
+      this.onLockChange.dispatch('onContextStateChange', { state: this.context.state, isLocked: this.isLocked });
       if (this.isUnlockNeeded()) {
         this.addUnlockHandlers();
       }  
@@ -87,6 +89,7 @@ export default class {
   }
 
   addUnlockHandlers() {
+    this.onLockChange.dispatch('addUnlockHandlers', { state: this.context.state, isLocked: this.isLocked });
     document.body.addEventListener('touchstart', this.onUnlockEventBinded, false);
     document.body.addEventListener('touchend', this.onUnlockEventBinded, false);
     document.body.addEventListener('click', this.onUnlockEventBinded, false);
@@ -95,6 +98,7 @@ export default class {
   }
 
   removeUnlockHandlers() {
+    this.onLockChange.dispatch('removeUnlockHandlers', { state: this.context.state, isLocked: this.isLocked });
     document.body.removeEventListener('touchstart', this.onUnlockEventBinded);
     document.body.removeEventListener('touchend', this.onUnlockEventBinded);
     document.body.removeEventListener('click', this.onUnlockEventBinded);
@@ -102,15 +106,18 @@ export default class {
     this.isLocked = false;
   }
 
-  onUnlockEvent() {
+  onUnlockEvent(event) {
+    this.onLockChange.dispatch('onUnlockEvent', { state: this.context.state, isLocked: this.isLocked, event });
     if (!this.isUnlockNeeded()) {
       this.removeUnlockHandlers();
       return;
     }
     const initialState = this.context.state;
     this.context.resume().then(() => {
+      this.onLockChange.dispatch('onContextResumeResult', { state: this.context.state, isLocked: this.isLocked });
       this.removeUnlockHandlers();
     }).catch((e) => {
+      this.onLockChange.dispatch('onContextResumeReject', { state: this.context.state, isLocked: this.isLocked, error: e });
       this.removeUnlockHandlers();
       this.game.exceptionHandler(e, { initialState, state: this.context.state });
     });
