@@ -11,11 +11,7 @@ export default class {
 
   constructor(game) {
     this.game = game;
-    this.onSoundDecode = new Signal();
-    this.onVolumeChange = new Signal();
-    this.onLockChange = new Signal();
-    this.onMute = new Signal();
-    this.onUnMute = new Signal();
+    this.onChange = new Signal();
     this.context = null;
     this.baseLatency = 0; // https://developer.mozilla.org/en-US/docs/Web/API/AudioContext/baseLatency
     this.noAudio = false;
@@ -78,7 +74,7 @@ export default class {
       this.addUnlockHandlers();
     }
     this.context.addEventListener('statechange', () => {
-      this.onLockChange.dispatch('onContextStateChange', { state: this.context.state, isLocked: this.isLocked });
+      this.onChange.dispatch('onContextStateChange', { state: this.context.state, isLocked: this.isLocked });
       if (!this.isLocked && (this.context.state === 'suspended' || this.context.state === 'interrupted')) {
         this.addUnlockHandlers();
       } else if (this.isLocked && this.context.state === 'running') {
@@ -89,7 +85,7 @@ export default class {
 
   addUnlockHandlers() {
     this.isLocked = true;
-    this.onLockChange.dispatch('addUnlockHandlers', { state: this.context.state, isLocked: this.isLocked });
+    this.onChange.dispatch('addUnlockHandlers', { state: this.context.state, isLocked: this.isLocked });
     document.body.addEventListener('touchstart', this.onUnlockEventBinded, false);
     document.body.addEventListener('touchend', this.onUnlockEventBinded, false);
     document.body.addEventListener('click', this.onUnlockEventBinded, false);
@@ -98,7 +94,7 @@ export default class {
 
   removeUnlockHandlers() {
     this.isLocked = false;
-    this.onLockChange.dispatch('removeUnlockHandlers', { state: this.context.state, isLocked: this.isLocked });
+    this.onChange.dispatch('removeUnlockHandlers', { state: this.context.state, isLocked: this.isLocked });
     document.body.removeEventListener('touchstart', this.onUnlockEventBinded);
     document.body.removeEventListener('touchend', this.onUnlockEventBinded);
     document.body.removeEventListener('click', this.onUnlockEventBinded);
@@ -108,16 +104,16 @@ export default class {
   onUnlockEvent(event) {
     const initialState = this.context.state;
     if (initialState !== 'suspended' && initialState !== 'interrupted') {
-      this.onLockChange.dispatch('onUnlockResumeDenied', { state: initialState, isLocked: this.isLocked, event });
+      this.onChange.dispatch('onUnlockResumeDenied', { state: initialState, isLocked: this.isLocked, event });
       this.removeUnlockHandlers();
       return;
     }
-    this.onLockChange.dispatch('onContextResumeStart', { state: initialState, isLocked: this.isLocked, event });
+    this.onChange.dispatch('onContextResumeStart', { state: initialState, isLocked: this.isLocked, event });
     this.context.resume().then(() => {
-      this.onLockChange.dispatch('onContextResumeResult', { initialState, state: this.context.state, isLocked: this.isLocked });
+      this.onChange.dispatch('onContextResumeResult', { initialState, state: this.context.state, isLocked: this.isLocked });
       this.removeUnlockHandlers();
     }).catch((e) => {
-      this.onLockChange.dispatch('onContextResumeReject', { initialState, state: this.context.state, isLocked: this.isLocked, error: e });
+      this.onChange.dispatch('onContextResumeReject', { initialState, state: this.context.state, isLocked: this.isLocked, error: e });
       this.removeUnlockHandlers();
       this.game.exceptionHandler(e, { initialState, state: this.context.state });
     });
@@ -156,7 +152,7 @@ export default class {
     }
   }
 
-  decode(key, sound = null) {
+  decode(key) {
     const soundData = this.game.cache.getSoundData(key);
     if (soundData) {
       if (this.game.cache.isSoundDecoded(key) === false) {
@@ -164,7 +160,6 @@ export default class {
         this.context.decodeAudioData(soundData)
           .then((buffer) => {
             this.game.cache.decodedSound(key, buffer);
-            this.onSoundDecode.dispatch(key, sound);
           })
           .catch((e) => {
             this.game.exceptionHandler(e, { key });
@@ -271,7 +266,7 @@ export default class {
       this._muteVolume = this.masterGain.gain.value;
       this.masterGain.gain.value = 0;
     }
-    this.onMute.dispatch();
+    this.onChange.dispatch('muted');
   }
 
   unsetMute() {
@@ -282,7 +277,7 @@ export default class {
     if (!this.noAudio) {
       this.masterGain.gain.value = this._muteVolume;
     }
-    this.onUnMute.dispatch();
+    this.onChange.dispatch('unmuted');
   }
 
   destroy() {
@@ -293,7 +288,7 @@ export default class {
       }
     }
     this._sounds = [];
-    this.onSoundDecode.dispose();
+    this.onChange.dispose();
     if (this.context) {
       if (window.PhaserRegistry) {
         window.PhaserRegistry.audioContext = this.context;
@@ -338,7 +333,6 @@ export default class {
       if (!this.noAudio) {
         this.masterGain.gain.value = value;
       }
-      this.onVolumeChange.dispatch(value);
     }
   }
 

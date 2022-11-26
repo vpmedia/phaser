@@ -53,7 +53,6 @@ export default class {
         this.gainNode.connect(this.masterGainNode);
       }
     }
-    this.onDecoded = new Signal();
     this.onPlay = new Signal();
     this.onPause = new Signal();
     this.onResume = new Signal();
@@ -72,7 +71,6 @@ export default class {
     this._muteVolume = 0;
     this._tempLoop = 0;
     this._paused = false;
-    this._onDecodedEventDispatched = false;
   }
 
   soundHasUnlocked(key) {
@@ -116,7 +114,6 @@ export default class {
         this.context = null;
         this._buffer = null;
         this.externalNode = null;
-        this.onDecoded.dispose();
         this.onPlay.dispose();
         this.onPause.dispose();
         this.onResume.dispose();
@@ -132,10 +129,6 @@ export default class {
     if (!this.game.cache.checkSoundKey(this.key)) {
       this.destroy();
       return;
-    }
-    if (this.isDecoded && !this._onDecodedEventDispatched) {
-      this.onDecoded.dispatch(this);
-      this._onDecodedEventDispatched = true;
     }
     if (this.pendingPlayback && this.game.cache.isSoundReady(this.key)) {
       this.pendingPlayback = false;
@@ -435,7 +428,6 @@ export default class {
       this.context = null;
       this._buffer = null;
       this.externalNode = null;
-      this.onDecoded.dispose();
       this.onPlay.dispose();
       this.onPause.dispose();
       this.onResume.dispose();
