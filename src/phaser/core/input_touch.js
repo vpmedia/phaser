@@ -66,7 +66,6 @@ export default class {
   }
 
   onTouchStart(event) {
-    this.game.input.executeTouchLockCallbacks(false, event);
     this.event = event;
     if (!this.game.input.enabled || !this.enabled) {
       return;
@@ -130,7 +129,6 @@ export default class {
   }
 
   onTouchEnd(event) {
-    this.game.input.executeTouchLockCallbacks(true, event);
     this.event = event;
     if (this.touchEndCallback) {
       this.touchEndCallback.call(this.callbackContext, event);

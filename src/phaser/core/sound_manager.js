@@ -70,16 +70,20 @@ export default class {
     }
     this.masterGain.gain.value = 1;
     this.masterGain.connect(this.context.destination);
-    // handle audio context state
-    console.log("AudioContext initial state", this.context.state);
-    this.context.onstatechange = () => {
-      console.log("AudioContext change state", this.context.state);
-    };
-    if (this.context.state === 'suspended') {
-      this.isLocked = true;
-      this.onUnlockEventBinded = this.onUnlockEvent.bind(this);
+    // handle audio state unlock
+    this.onUnlockEventBinded = this.onUnlockEvent.bind(this);
+    if (this.isUnlockNeeded()) {
       this.addUnlockHandlers();
     }
+    this.context.addEventListener('statechange', () => {
+      if (this.isUnlockNeeded()) {
+        this.addUnlockHandlers();
+      }  
+    });
+  }
+
+  isUnlockNeeded() {
+    return !this.isLocked && !this.noAudio && (this.context.state === 'suspended' || this.context.state === 'interrupted');
   }
 
   addUnlockHandlers() {
@@ -87,6 +91,7 @@ export default class {
     document.body.addEventListener('touchend', this.onUnlockEventBinded, false);
     document.body.addEventListener('click', this.onUnlockEventBinded, false);
     document.body.addEventListener('keydown', this.onUnlockEventBinded, false);
+    this.isLocked = true;
   }
 
   removeUnlockHandlers() {
@@ -94,22 +99,21 @@ export default class {
     document.body.removeEventListener('touchend', this.onUnlockEventBinded);
     document.body.removeEventListener('click', this.onUnlockEventBinded);
     document.body.removeEventListener('keydown', this.onUnlockEventBinded);
+    this.isLocked = false;
   }
 
-  onUnlockEvent(event) {
-    if (this.context.state !== 'suspended') {
+  onUnlockEvent() {
+    if (!this.isUnlockNeeded()) {
+      this.removeUnlockHandlers();
       return;
     }
-    console.log('onUnlockEvent', event);
+    const initialState = this.context.state;
     this.context.resume().then(() => {
       this.removeUnlockHandlers();
     }).catch((e) => {
       this.removeUnlockHandlers();
-      this.game.exceptionHandler(e, { state: this.context.state });
+      this.game.exceptionHandler(e, { initialState, state: this.context.state });
     });
-  }
-
-  checkContextState() {
   }
 
   stopAll() {

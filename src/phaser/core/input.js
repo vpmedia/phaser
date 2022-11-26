@@ -137,33 +137,6 @@ export default class {
     }
   }
 
-  addTouchLockCallback(callback, context, onEnd = false) {
-    this.lockCallbacks.push({ callback, context, onEnd });
-  }
-
-  removeTouchLockCallback(callback, context) {
-    let i = this.lockCallbacks.length;
-    while (i) {
-      i -= 1;
-      if (this.lockCallbacks[i].callback === callback && this.lockCallbacks[i].context === context) {
-        this.lockCallbacks.splice(i, 1);
-        return true;
-      }
-    }
-    return false;
-  }
-
-  executeTouchLockCallbacks(onEnd, event) {
-    let i = this.lockCallbacks.length;
-    while (i) {
-      i -= 1;
-      const cb = this.lockCallbacks[i];
-      if (cb.onEnd === onEnd && cb.callback.call(cb.context, this, event)) {
-        this.lockCallbacks.splice(i, 1);
-      }
-    }
-  }
-
   addPointer() {
     if (this.pointers.length >= MAX_POINTERS) {
       console.warn('Input.addPointer: Maximum limit of ' + MAX_POINTERS + ' pointers reached.');

@@ -77,7 +77,6 @@ export default class {
   }
 
   onPointerDown(event) {
-    this.game.input.executeTouchLockCallbacks(false, event);
     this.event = event;
     this.eventPreventDefault(event);
     if (this.pointerDownCallback) {
@@ -112,7 +111,6 @@ export default class {
   }
 
   onPointerUp(event) {
-    this.game.input.executeTouchLockCallbacks(true, event);
     this.event = event;
     this.eventPreventDefault(event);
     if (this.pointerUpCallback) {
