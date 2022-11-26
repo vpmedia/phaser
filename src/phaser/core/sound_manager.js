@@ -80,6 +80,8 @@ export default class {
       this.onLockChange.dispatch('onContextStateChange', { state: this.context.state, isLocked: this.isLocked });
       if (this.isUnlockNeeded()) {
         this.addUnlockHandlers();
+      } else if (this.isLocked) {
+        this.removeUnlockHandlers();
       }  
     });
   }
@@ -89,30 +91,31 @@ export default class {
   }
 
   addUnlockHandlers() {
+    this.isLocked = true;
     this.onLockChange.dispatch('addUnlockHandlers', { state: this.context.state, isLocked: this.isLocked });
     document.body.addEventListener('touchstart', this.onUnlockEventBinded, false);
     document.body.addEventListener('touchend', this.onUnlockEventBinded, false);
     document.body.addEventListener('click', this.onUnlockEventBinded, false);
     document.body.addEventListener('keydown', this.onUnlockEventBinded, false);
-    this.isLocked = true;
   }
 
   removeUnlockHandlers() {
+    this.isLocked = false;
     this.onLockChange.dispatch('removeUnlockHandlers', { state: this.context.state, isLocked: this.isLocked });
     document.body.removeEventListener('touchstart', this.onUnlockEventBinded);
     document.body.removeEventListener('touchend', this.onUnlockEventBinded);
     document.body.removeEventListener('click', this.onUnlockEventBinded);
     document.body.removeEventListener('keydown', this.onUnlockEventBinded);
-    this.isLocked = false;
   }
 
   onUnlockEvent(event) {
-    this.onLockChange.dispatch('onUnlockEvent', { state: this.context.state, isLocked: this.isLocked, event });
+    const initialState = this.context.state;
     if (!this.isUnlockNeeded()) {
+      this.onLockChange.dispatch('onUnlockResumeDenied', { state: this.context.state, isLocked: this.isLocked, event });
       this.removeUnlockHandlers();
       return;
     }
-    const initialState = this.context.state;
+    this.onLockChange.dispatch('onContextResumeStart', { state: this.context.state, isLocked: this.isLocked, event });
     this.context.resume().then(() => {
       this.onLockChange.dispatch('onContextResumeResult', { state: this.context.state, isLocked: this.isLocked });
       this.removeUnlockHandlers();
