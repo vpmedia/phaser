@@ -19,7 +19,7 @@ export default class {
     this.baseLatency = 0; // https://developer.mozilla.org/en-US/docs/Web/API/AudioContext/baseLatency
     this.noAudio = false;
     this.connectToMaster = true;
-    this.touchLocked = false;
+    this.isLocked = false;
     this.muteOnPause = true;
     this._codeMuted = false;
     this._muted = false;
@@ -45,7 +45,7 @@ export default class {
       } catch (e) {
         this.context = null;
         this.noAudio = true;
-        this.touchLocked = false;
+        this.isLocked = false;
         this.game.exceptionHandler(e);
       }
     } else if (window.webkitAudioContext) {
@@ -54,72 +54,61 @@ export default class {
       } catch (e) {
         this.context = null;
         this.noAudio = true;
-        this.touchLocked = false;
+        this.isLocked = false;
         this.game.exceptionHandler(e);
       }
     }
     if (this.context === null || (this.context && this.context.createGain === undefined && this.context.createGainNode === undefined)) {
       this.noAudio = true;
+      return;
+    } 
+    this.baseLatency = this.context.baseLatency || (256 / (this.context.sampleRate || 44100));
+    if (this.context.createGain === undefined) {
+      this.masterGain = this.context.createGainNode();
     } else {
-      this.baseLatency = this.context.baseLatency || (256 / (this.context.sampleRate || 44100));
-      if (this.context.createGain === undefined) {
-        this.masterGain = this.context.createGainNode();
-      } else {
-        this.masterGain = this.context.createGain();
-      }
-      this.masterGain.gain.value = 1;
-      this.masterGain.connect(this.context.destination);
+      this.masterGain = this.context.createGain();
     }
-    if (this.noAudio) {
+    this.masterGain.gain.value = 1;
+    this.masterGain.connect(this.context.destination);
+    // handle audio context state
+    this.context.onstatechange = () => {
+      console.log("AudioContext", this.context.state);
+    };
+    if (this.context.state === 'suspended') {
+      this.isLocked = true;
+      this.onUnlockEventBinded = this.onUnlockEvent.bind(this);
+      this.addUnlockHandlers();
+    }
+  }
+
+  addUnlockHandlers() {
+    document.body.addEventListener('touchstart', this.onUnlockEventBinded, false);
+    document.body.addEventListener('touchend', this.onUnlockEventBinded, false);
+    document.body.addEventListener('click', this.onUnlockEventBinded, false);
+    document.body.addEventListener('keydown', this.onUnlockEventBinded, false);
+  }
+
+  removeUnlockHandlers() {
+    document.body.removeEventListener('touchstart', this.onUnlockEventBinded);
+    document.body.removeEventListener('touchend', this.onUnlockEventBinded);
+    document.body.removeEventListener('click', this.onUnlockEventBinded);
+    document.body.removeEventListener('keydown', this.onUnlockEventBinded);
+  }
+
+  onUnlockEvent(event) {
+    if (this.context.state !== 'suspended') {
       return;
     }
-    if (this.game.device.iOS || this.game.device.android) {
-      this.game.input.addTouchLockCallback(this.unlock, this, true);
-      this.touchLocked = true;
-    }
+    console.log('onUnlockEvent', event);
+    this.context.resume().then(() => {
+      this.removeUnlockHandlers();
+    }).catch((e) => {
+      this.removeUnlockHandlers();
+      this.game.exceptionHandler(e, { state: this.context.state });
+    });
   }
 
   checkContextState() {
-    // this must be called from the final game state since input.onUp handlers are reset by state manager
-    if (this.noAudio) {
-      return;
-    }
-    if (this.game.device.iOS || this.game.device.android) {
-      // touch lock callback already handles context resume
-      return;
-    }
-    if (this.context.state === 'suspended') {
-      this.game.input.onUp.addOnce(() => {
-        if (this.context.state === 'suspended') {
-          this.context.resume().catch((e) => {
-            this.game.exceptionHandler(e, { state: this.context.state, reason: 'check' });
-          });
-        }
-      }, this);
-    }
-  }
-
-  unlock() {
-    if (!this.touchLocked || this._unlockSource !== null) {
-      return true;
-    }
-    // Create empty buffer and play it
-    // The SoundManager.update loop captures the state of it and then resets touchLocked to false
-    const buffer = this.context.createBuffer(1, 1, 22050);
-    this._unlockSource = this.context.createBufferSource();
-    this._unlockSource.buffer = buffer;
-    this._unlockSource.connect(this.context.destination);
-    if (this._unlockSource.start === undefined) {
-      this._unlockSource.noteOn(0);
-    } else {
-      this._unlockSource.start(0);
-    }
-    if (this.context.state === 'suspended') {
-      this.context.resume().catch((e) => {
-        this.game.exceptionHandler(e, { state: this.context.state, reason: 'unlock' });
-      });
-    }
-    return true;
   }
 
   stopAll() {
@@ -200,19 +189,6 @@ export default class {
   update() {
     if (this.noAudio) {
       return;
-    }
-    if (this.touchLocked && this._unlockSource !== null && (this._unlockSource.playbackState === this._unlockSource.PLAYING_STATE || this._unlockSource.playbackState === this._unlockSource.FINISHED_STATE)) {
-      this.touchLocked = false;
-      this._unlockSource = null;
-      if (this.context.state === 'suspended') {
-        this.context.resume().catch((e) => {
-          this.game.exceptionHandler(e, { state: this.context.state, reason: 'update_suspended' });
-        });
-      }
-    } else if (this.context.state === 'interrupted') {
-      this.context.resume().catch((e) => {
-        this.game.exceptionHandler(e, { state: this.context.state, reason: 'update_interrupted' });
-      });
     }
     for (let i = 0; i < this._sounds.length; i += 1) {
       this._sounds[i].update();

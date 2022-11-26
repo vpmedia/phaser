@@ -137,7 +137,7 @@ export default class {
       data,
       isDecoding: false,
       decoded: false,
-      locked: this.game.sound.touchLocked,
+      locked: this.game.sound.isLocked,
     };
     this._resolveURL(url, this._cache.sound[key]);
   }
@@ -222,7 +222,7 @@ export default class {
   isSoundReady(key) {
     const sound = this.getItem(key, SOUND, 'isSoundDecoded');
     if (sound) {
-      return (sound.decoded && !this.game.sound.touchLocked);
+      return (sound.decoded && !this.game.sound.isLocked);
     }
     return false;
   }
