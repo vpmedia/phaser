@@ -696,14 +696,6 @@ export default class {
       }
     };
     file.data.src = this.transformUrl(file.url, file);
-    // Image is immediately-available/cached
-    // Special Firefox magic, exclude from cached reload
-    // More info here: https://github.com/photonstorm/phaser/issues/2534
-    if (!this.game.device.firefox && file.data.complete && file.data.width && file.data.height) {
-      file.data.onload = null;
-      file.data.onerror = null;
-      this.fileComplete(file);
-    }
   }
 
   loadVideoTag() {
