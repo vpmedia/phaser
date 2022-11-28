@@ -793,7 +793,7 @@ export default class {
     if (!reason && xhr) {
       reason = xhr.status;
     }
-    if (reason) {
+    if (reason || reason === 0) {
       message = message + ' (' + reason + ')';
     }
     this.asyncComplete(file, message);
