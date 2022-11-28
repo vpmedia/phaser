@@ -58,7 +58,6 @@ export default class {
       supportsFullScreen: false,
       orientationFallback: null,
       noMargins: false,
-      scrollTo: null,
       canExpandParent: true,
       clickTrampoline: '',
     };
@@ -362,15 +361,7 @@ export default class {
     this.queueUpdate(true);
   }
 
-  scrollTop() {
-    const scrollTo = this.compatibility.scrollTo;
-    if (scrollTo) {
-      window.scrollTo(scrollTo.x, scrollTo.y);
-    }
-  }
-
   refresh() {
-    this.scrollTop();
     this.queueUpdate(true);
   }
 
@@ -380,7 +371,6 @@ export default class {
       this.reflowGame();
       return;
     }
-    this.scrollTop();
     if (this.incorrectOrientation) {
       this.setMaximum();
     } else if (scaleMode === SCALE_EXACT_FIT) {
