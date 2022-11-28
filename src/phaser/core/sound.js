@@ -8,6 +8,8 @@ import Signal from './signal';
 export default class {
 
   constructor(game, key, volume = 1, loop = false, connect = null) {
+    // TODO
+    // https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Migrating_from_webkitAudioContext
     if (!connect) {
       connect = game.sound.connectToMaster;
     }
@@ -346,7 +348,7 @@ export default class {
         const duration = this.duration - (this.pausedPosition / 1000);
         if (this._sound.start === undefined) {
           this._sound.noteGrainOn(0, p, duration);
-          // this._sound.noteOn(0); // the zero is vitally important, crashes iOS6 without it
+          // https://bugs.chromium.org/p/chromium/issues/detail?id=457099
         } else if (this.loop && this.game.device.chrome) {
           this._sound.start(0, p);
         } else {
