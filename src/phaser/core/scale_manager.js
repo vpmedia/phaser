@@ -696,12 +696,6 @@ export default class {
     this.onFullScreenError.dispatch(this);
   }
 
-  scaleSprite(sprite, width, height, letterBox) {
-    // TODO
-    console.warn('scale_manager.scaleSprite() is not implemented');
-    return sprite;
-  }
-
   destroy() {
     this.game.onResume.remove(this._gameResumed, this);
     window.removeEventListener('orientationchange', this._orientationChange, false);
