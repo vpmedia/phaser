@@ -59,7 +59,6 @@ export default class {
       orientationFallback: null,
       noMargins: false,
       scrollTo: null,
-      forceMinimumDocumentHeight: false,
       canExpandParent: true,
       clickTrampoline: '',
     };
@@ -382,11 +381,6 @@ export default class {
       return;
     }
     this.scrollTop();
-    if (this.compatibility.forceMinimumDocumentHeight) {
-      // (This came from older code, by why is it here?)
-      // Set minimum height of content to new window height
-      document.documentElement.style.minHeight = window.innerHeight + 'px';
-    }
     if (this.incorrectOrientation) {
       this.setMaximum();
     } else if (scaleMode === SCALE_EXACT_FIT) {
