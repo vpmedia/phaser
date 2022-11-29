@@ -17,7 +17,6 @@ export default class {
     this.windows = false;
     this.windowsPhone = false;
     this.canvas = false;
-    this.pointerLock = false;
     this.touch = false;
     this.mspointer = false;
     this.wheelEvent = null;

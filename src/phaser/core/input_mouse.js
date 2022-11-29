@@ -73,7 +73,6 @@ export default class {
     this.enabled = true;
     this.locked = false;
     this.stopOnGameOut = false;
-    this.pointerLock = new Signal();
     this.event = null;
     this._onMouseDown = null;
     this._onMouseMove = null;
@@ -129,9 +128,6 @@ export default class {
     }
     window.removeEventListener('mouseup', this._onMouseUpGlobal, true);
     window.removeEventListener('mouseout', this._onMouseOutGlobal, true);
-    document.removeEventListener('pointerlockchange', this._pointerLockChange, true);
-    document.removeEventListener('mozpointerlockchange', this._pointerLockChange, true);
-    document.removeEventListener('webkitpointerlockchange', this._pointerLockChange, true);
   }
 
   onMouseDown(event) {
@@ -234,41 +230,6 @@ export default class {
     if (this.mouseWheelCallback) {
       this.mouseWheelCallback.call(this.callbackContext, event);
     }
-  }
-
-  requestPointerLock() {
-    if (this.game.device.pointerLock) {
-      const element = this.game.canvas;
-      element.requestPointerLock = element.requestPointerLock || element.mozRequestPointerLock || element.webkitRequestPointerLock;
-      element.requestPointerLock();
-      const scope = this;
-      this._pointerLockChange = event => scope.pointerLockChange(event);
-      document.addEventListener('pointerlockchange', this._pointerLockChange, true);
-      document.addEventListener('mozpointerlockchange', this._pointerLockChange, true);
-      document.addEventListener('webkitpointerlockchange', this._pointerLockChange, true);
-    }
-
-  }
-
-  pointerLockChange(event) {
-    const element = this.game.canvas;
-    if (document.pointerLockElement === element || document.mozPointerLockElement === element || document.webkitPointerLockElement === element) {
-      //  Pointer was successfully locked
-      this.locked = true;
-      this.pointerLock.dispatch(true, event);
-    } else {
-      //  Pointer was unlocked
-      this.locked = false;
-      this.pointerLock.dispatch(false, event);
-    }
-  }
-
-  releasePointerLock() {
-    document.exitPointerLock = document.exitPointerLock || document.mozExitPointerLock || document.webkitExitPointerLock;
-    document.exitPointerLock();
-    document.removeEventListener('pointerlockchange', this._pointerLockChange, true);
-    document.removeEventListener('mozpointerlockchange', this._pointerLockChange, true);
-    document.removeEventListener('webkitpointerlockchange', this._pointerLockChange, true);
   }
 
   eventPreventDefault(event) {

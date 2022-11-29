@@ -90,21 +90,13 @@ export function checkOS(device) {
  *
  * @param {object} device TBD
  */
-export function checkFeatures(device) {
-  device.pointerLock = 'pointerLockElement' in document || 'mozPointerLockElement' in document || 'webkitPointerLockElement' in document;
-}
-
-/**
- *
- * @param {object} device TBD
- */
 export function checkInput(device) {
   if ('ontouchstart' in document.documentElement || (window.navigator.maxTouchPoints && window.navigator.maxTouchPoints >= 1)) {
     device.touch = true;
   }
-  if (window.navigator.msPointerEnabled || window.navigator.pointerEnabled) {
-    device.mspointer = true;
-  }
+  // if (window.navigator.msPointerEnabled || window.navigator.pointerEnabled) {
+  //   device.mspointer = true;
+  // }
   // See https://developer.mozilla.org/en-US/docs/Web/Events/wheel
   if ('onwheel' in window || 'WheelEvent' in window) {
     device.wheelEvent = 'wheel';
@@ -269,7 +261,6 @@ export function initialize(device) {
   checkAudio(device);
   checkVideo(device);
   checkDevice(device);
-  checkFeatures(device);
   checkFullScreenSupport(device);
   checkInput(device);
 }
