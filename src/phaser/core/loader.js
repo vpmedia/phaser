@@ -566,13 +566,13 @@ export default class {
           this.spritesheet(file.key, file.url, file.frameWidth, file.frameHeight, file.frameMax, file.margin, file.spacing);
           break;
         case "video":
-          this.video(file.key, file.urls);
+          this.video(file.key, file.urls ? file.urls : file.url);
           break;
         case "audio":
-          this.audio(file.key, file.urls, file.autoDecode);
+          this.audio(file.key, file.urls ? file.urls : file.url, file.autoDecode);
           break;
         case "audiosprite":
-          this.audioSprite(file.key, file.urls, file.jsonURL, file.jsonData, file.autoDecode);
+          this.audioSprite(file.key, file.urls ? file.urls : file.url, file.jsonURL, file.jsonData, file.autoDecode);
           break;
         case "tilemap":
           // TODO
@@ -584,15 +584,6 @@ export default class {
           break;
         case "bitmapFont":
           this.bitmapFont(file.key, file.textureURL, file.atlasURL, file.atlasData, file.xSpacing, file.ySpacing);
-          break;
-        case "atlasJSONArray":
-          this.atlasJSONArray(file.key, file.textureURL, file.atlasURL, file.atlasData);
-          break;
-        case "atlasJSONHash":
-          this.atlasJSONHash(file.key, file.textureURL, file.atlasURL, file.atlasData);
-          break;
-        case "atlasXML":
-          this.atlasXML(file.key, file.textureURL, file.atlasURL, file.atlasData);
           break;
         case "atlas":
           this.atlas(file.key, file.textureURL, file.atlasURL, file.atlasData, file.format === 'TEXTURE_ATLAS_JSON_HASH' ? TEXTURE_ATLAS_JSON_HASH : TEXTURE_ATLAS_JSON_ARRAY);
