@@ -540,8 +540,9 @@ export default class {
       console.warn('Missing loader pack key', pack.key);
       return;
     }
-    for (let i = 0; i < packData.length; i += 1) {
-      const file = packData[i];
+    const packDataCompat = Array.isArray(packData) ? packData : packData.files;
+    for (let i = 0; i < packDataCompat.length; i += 1) {
+      const file = packDataCompat[i];
       switch (file.type) {
         case "image":
           this.image(file.key, file.url, file.overwrite);
