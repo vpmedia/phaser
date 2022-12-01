@@ -6,6 +6,7 @@
 import ArraySet from './array_set';
 import Signal from './signal';
 import Sound from './sound';
+import SoundSprite from './sound_sprite';
 
 export default class {
 
@@ -219,6 +220,10 @@ export default class {
     const sound = new Sound(this.game, key, volume, loop, connect);
     this._sounds.push(sound);
     return sound;
+  }
+
+  addSprite(key) {
+    return new SoundSprite(this.game, key);
   }
 
   remove(sound) {

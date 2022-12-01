@@ -27,6 +27,7 @@ import SceneManager from './phaser/core/scene_manager';
 import Signal from './phaser/core/signal';
 import SignalBinding from './phaser/core/signal_binding';
 import Sound from './phaser/core/sound';
+import SoundSprite from './phaser/core/sound_sprite';
 import SoundManager from './phaser/core/sound_manager';
 import Time from './phaser/core/time';
 import Timer from './phaser/core/timer';
@@ -97,6 +98,7 @@ export {
   Signal,
   SignalBinding,
   Sound,
+  SoundSprite,
   SoundManager,
   Time,
   Timer,
