@@ -13,7 +13,7 @@ export default class {
         this.sounds = {};
         for (let k in this.config.spritemap) {
             const marker = this.config.spritemap[k];
-            const sound = this.game.add.sound(this.key);
+            const sound = this.game.sound.add(this.key);
             sound.addMarker(k, marker.start, (marker.end - marker.start), null, marker.loop);
             this.sounds[k] = sound;
         }
