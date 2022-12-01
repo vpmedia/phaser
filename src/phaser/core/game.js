@@ -69,7 +69,6 @@ export default class {
     this._nextFpsNotification = 0;
     this.parseConfig(gameConfig);
     checkOS(this.device);
-    // whenReady(this.device, this.boot, this);
     if (document.readyState === 'complete') {
       initialize(this.device);
       this.boot();

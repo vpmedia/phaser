@@ -7,7 +7,6 @@
 export default class {
 
   constructor() {
-    this.deviceReadyAt = 0;
     this.desktop = false;
     this.iOS = false;
     this.android = false;
