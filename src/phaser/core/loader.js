@@ -34,10 +34,7 @@ export default class {
     this.onFileStart = new Signal();
     this.onFileComplete = new Signal();
     this.onFileError = new Signal();
-    this.useXDomainRequest = false;
-    this._warnedAboutXDomainRequest = false;
-    this.enableParallel = true;
-    this.maxParallelDownloads = 5;
+    this.maxParallelDownloads = this.game.config.maxParallelDownloads || 16;
     this._withSyncPointDepth = 0;
     this._fileList = [];
     this._flightQueue = [];
@@ -446,7 +443,7 @@ export default class {
     }
     // When true further non-pack file downloads are suppressed
     let syncblock = false;
-    const inflightLimit = this.enableParallel ? Math.max(1, this.maxParallelDownloads) : 1;
+    const inflightLimit = this.maxParallelDownloads;
     for (let i = this._processingHead; i < this._fileList.length; i += 1) {
       const file = this._fileList[i];
       // Pack is fetched (ie. has data) and is currently at the start of the process queue.
@@ -569,10 +566,13 @@ export default class {
           this.video(file.key, file.urls ? file.urls : file.url);
           break;
         case "audio":
-          this.audio(file.key, file.urls ? file.urls : file.url, file.autoDecode);
+          this.audio(file.key, file.urls ? file.urls : file.url);
           break;
         case "audiosprite":
-          this.audioSprite(file.key, file.urls ? file.urls : file.url, file.jsonURL, file.jsonData, file.autoDecode);
+          this.audioSprite(file.key, file.urls ? file.urls : file.url, file.jsonURL, file.jsonData);
+          break;
+        case "audioSprite":
+          this.audioSprite(file.key, file.audioURL, file.jsonURL, file.jsonData);
           break;
         case "tilemap":
           // TODO

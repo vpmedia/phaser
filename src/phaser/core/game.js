@@ -217,6 +217,8 @@ export default class {
     this.parseConfigElement(config, 'renderType', RENDER_AUTO);
     // Force audio disabled
     this.parseConfigElement(config, 'isForceDisabledAudio', false);
+    // Sets the number of maximum parallel requests for the loaded (in case of HTTP/2 you can raise this)
+    this.parseConfigElement(config, 'maxParallelDownloads', 16);
     if (config.renderer) {
       this.config.renderType = config.renderer;
     }
