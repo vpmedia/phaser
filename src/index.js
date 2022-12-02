@@ -20,7 +20,6 @@ import InputPointer from './phaser/core/input_pointer';
 import InputTouch from './phaser/core/input_touch';
 import Loader from './phaser/core/loader';
 import GameLoopRAF from './phaser/core/raf';
-import GameLoopTO from './phaser/core/raf_to';
 import ScaleManager from './phaser/core/scale_manager';
 import Scene from './phaser/core/scene';
 import SceneManager from './phaser/core/scene_manager';
@@ -89,7 +88,6 @@ export {
   InputTouch,
   Loader,
   GameLoopRAF,
-  GameLoopTO,
   MathUtils,
   StringUtils,
   ScaleManager,

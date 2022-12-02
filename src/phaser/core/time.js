@@ -87,14 +87,6 @@ export default class {
     this.now = time;
     // elapsed time between previous call and now - this could be a high resolution value
     this.elapsed = this.now - this.prevTime;
-    if (this.game.raf._isSetTimeOut) {
-      // console.log('Time isSet', this._desiredFps, 'te', this.timeExpected, 'time', time);
-      // time to call this function again in ms in case we're using timers instead of RequestAnimationFrame to update the game
-      this.timeToCall = Math.floor(Math.max(0, (1000.0 / this._desiredFps) - (this.timeExpected - time)));
-      // time when the next call is expected if using timers
-      this.timeExpected = time + this.timeToCall;
-      // console.log('Time expect', this.timeExpected);
-    }
     if (this.advancedTiming) {
       this.updateAdvancedTiming();
     }

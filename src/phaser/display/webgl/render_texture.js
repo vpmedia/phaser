@@ -31,7 +31,7 @@ export default class extends Texture {
     this.resolution = res;
     this.frame = new Rectangle(0, 0, this.width * this.resolution, this.height * this.resolution);
     this.crop = new Rectangle(0, 0, this.width * this.resolution, this.height * this.resolution);
-    this.renderer = renderer || window.PhaserRegistry.DEFAULT_RENDERER;
+    this.renderer = renderer;
     if (this.renderer.type === RENDER_WEBGL) {
       const gl = this.renderer.gl;
       this.baseTexture._dirty[gl.id] = false;

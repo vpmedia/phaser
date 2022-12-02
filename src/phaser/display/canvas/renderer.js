@@ -36,7 +36,6 @@ export default class {
     };
     this.mapBlendModes();
     this.resize(this.width, this.height);
-    window.PhaserRegistry.DEFAULT_RENDERER = this;
   }
 
   render(root) {
@@ -67,7 +66,6 @@ export default class {
     this.view = null;
     this.context = null;
     this.renderSession = null;
-    window.PhaserRegistry.DEFAULT_RENDERER = null;
   }
 
   resize(width, height) {

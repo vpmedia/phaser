@@ -20,7 +20,6 @@ export default class {
       window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'];
     }
     this.updateBinded = this.update.bind(this);
-    // this.updateBinded = time => this.update(time);
   }
 
   start() {
@@ -37,8 +36,6 @@ export default class {
     if (!this.isRunning) {
       return;
     }
-    // floor the rafTime to make it equivalent to the Date.now() provided by updateSetTimeout (just below)
-    // this.game.update(Math.floor(rafTime));
     this.game.update(rafTime);
     this.timeoutId = window.requestAnimationFrame(this.updateBinded);
   }

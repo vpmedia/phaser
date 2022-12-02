@@ -54,7 +54,6 @@ export default class {
     this.renderSession.resolution = this.resolution;
     this.initContext();
     this.mapBlendModes();
-    window.PhaserRegistry.DEFAULT_RENDERER = this;
   }
 
   destroy() {
@@ -79,7 +78,6 @@ export default class {
     this.renderSession = null;
     remove(this);
     window.PhaserRegistry.INSTANCES[this.glContextId] = null;
-    window.PhaserRegistry.DEFAULT_RENDERER = null;
     window.PhaserRegistry.GL_CONTEXT_ID -= 1;
   }
 

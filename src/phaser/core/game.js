@@ -12,7 +12,6 @@ import Input from './input';
 import Device from './device';
 import GameObjectFactory from './factory';
 import RequestAnimationFrame from './raf';
-import TimeOutAnimationFrame from './raf_to';
 import ScaleManager from './scale_manager';
 import SoundManager from './sound_manager';
 import SceneManager from './scene_manager';
@@ -107,11 +106,7 @@ export default class {
     this.sound.boot();
     this.state.boot();
     this.isRunning = true;
-    if (this.config.forceSetTimeOut) {
-      this.raf = new TimeOutAnimationFrame(this);
-    } else {
-      this.raf = new RequestAnimationFrame(this);
-    }
+    this.raf = new RequestAnimationFrame(this);
     this.isKickStart = true;
     if (window.focus && !this.config.isSkipWindowFocus) {
       window.focus();
@@ -190,7 +185,6 @@ export default class {
   parseConfig(config) {
     /* game */
     this.parseConfigElement(config, 'isSkipWindowFocus', false);
-    this.parseConfigElement(config, 'forceSetTimeOut', false);
     this.parseConfigElement(config, 'lockRender', false);
     this.parseConfigElement(config, 'width', 800);
     this.parseConfigElement(config, 'height', 600);
