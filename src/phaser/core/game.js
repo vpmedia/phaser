@@ -108,7 +108,7 @@ export default class {
     this.isRunning = true;
     this.raf = new RequestAnimationFrame(this);
     this.isKickStart = true;
-    if (window.focus && !this.config.isSkipWindowFocus) {
+    if (window.focus) {
       window.focus();
     }
     this.raf.start();
@@ -184,8 +184,6 @@ export default class {
 
   parseConfig(config) {
     /* game */
-    this.parseConfigElement(config, 'isSkipWindowFocus', false);
-    this.parseConfigElement(config, 'lockRender', false);
     this.parseConfigElement(config, 'width', 800);
     this.parseConfigElement(config, 'height', 600);
     this.parseConfigElement(config, 'backgroundColor', 0x000000);
@@ -205,7 +203,7 @@ export default class {
     this.parseConfigElement(config, 'preserveDrawingBuffer', false);
     // Clear the Canvas each frame before rendering the display list.
     // You can set this to `false` to gain some performance if your game always contains a background that completely fills the display.
-    this.parseConfigElement(config, 'clearBeforeRender', true);
+    this.parseConfigElement(config, 'clearBeforeRender', false);
     // The Renderer this game will use. Either Const.RENDER_AUTO, Const.RENDER_CANVAS, Const.RENDER_WEBGL
     this.parseConfigElement(config, 'renderType', RENDER_AUTO);
     // Force audio disabled
@@ -334,9 +332,6 @@ export default class {
   }
 
   updateRender(elapsedTime) {
-    if (this.config.lockRender) {
-      return;
-    }
     this.state.preRender(elapsedTime);
     this.renderer.render(this.stage);
     this.state.render(elapsedTime);
