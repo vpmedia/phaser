@@ -65,32 +65,6 @@ export function spriteSheet(game, key, frameWidth, frameHeight, frameMax, margin
  * @param {object} json TBD
  * @returns {object} TBD
  */
-export function JSONData(game, json) {
-  //  Malformed?
-  if (!json.frames) {
-    return null;
-  }
-  //  Let's create some frames then
-  const data = new FrameData();
-  //  By this stage frames is a fully parsed array
-  const frames = json.frames;
-  let newFrame;
-  for (let i = 0; i < frames.length; i += 1) {
-    newFrame = data.addFrame(new Frame(i, frames[i].frame.x, frames[i].frame.y, frames[i].frame.w, frames[i].frame.h, frames[i].filename));
-    if (frames[i].trimmed) {
-      newFrame.setTrim(frames[i].trimmed, frames[i].sourceSize.w, frames[i].sourceSize.h, frames[i].spriteSourceSize.x, frames[i].spriteSourceSize.y, frames[i].spriteSourceSize.w, frames[i].spriteSourceSize.h);
-    }
-  }
-  return data;
-
-}
-
-/**
- *
- * @param {object} game TBD
- * @param {object} json TBD
- * @returns {object} TBD
- */
 export function JSONDataHash(game, json) {
   if (!json.frames) {
     console.warn('JSONDataHash: Invalid Texture Atlas JSON given, missing frames object', json);

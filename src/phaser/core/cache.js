@@ -8,7 +8,7 @@ import BaseTexture from '../display/webgl/base_texture';
 import Signal from './signal';
 import Frame from './frame';
 import FrameData from './frame_data';
-import { JSONData, JSONDataHash } from './animation_parser';
+import { JSONDataHash } from './animation_parser';
 import { jsonBitmapFont, xmlBitmapFont } from './loader_parser';
 
 export const CANVAS = 1;
@@ -113,12 +113,7 @@ export default class {
       data,
       base: new BaseTexture(data),
     };
-    if (Array.isArray(atlasData.frames)) {
-      //  Let's just work it out from the frames array
-      obj.frameData = JSONData(this.game, atlasData, key);
-    } else {
-      obj.frameData = JSONDataHash(this.game, atlasData, key);
-    }
+    obj.frameData = JSONDataHash(this.game, atlasData, key);
     this._cache.image[key] = obj;
     this._resolveURL(url, obj);
   }

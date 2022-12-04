@@ -6,7 +6,7 @@
 import Signal from './signal';
 import Rectangle from '../geom/rectangle';
 import { canPlayAudio } from './device_util';
-import { TEXTURE_ATLAS_JSON_ARRAY, TEXTURE_ATLAS_JSON_HASH } from './const';
+import { TEXTURE_ATLAS_JSON_HASH } from './const';
 
 export const TILED_JSON = 6;
 export const TILEMAP_CSV = 7;
@@ -311,20 +311,7 @@ export default class {
     return this;
   }
 
-  atlasJSONArray(key, textureURL, atlasURL, atlasData) {
-    return this.atlas(key, textureURL, atlasURL, atlasData, TEXTURE_ATLAS_JSON_ARRAY);
-  }
-
-  atlasJSONHash(key, textureURL, atlasURL, atlasData) {
-    return this.atlas(key, textureURL, atlasURL, atlasData, TEXTURE_ATLAS_JSON_HASH);
-  }
-
-  atlasXML() {
-    // TODO
-    console.warn('loader.atlasXML() is not implemented');
-  }
-
-  atlas(key, textureURL, atlasURL = null, atlasData = null, format = TEXTURE_ATLAS_JSON_ARRAY) {
+  atlas(key, textureURL, atlasURL = null, atlasData = null, format = TEXTURE_ATLAS_JSON_HASH) {
     if (textureURL === undefined || textureURL === null) {
       textureURL = key + '.png';
     }
@@ -335,9 +322,6 @@ export default class {
     if (atlasURL) {
       this.addToFileList('textureatlas', key, textureURL, { atlasURL, format });
     } else {
-      if (format === TEXTURE_ATLAS_JSON_ARRAY && typeof atlasData === 'string') {
-        atlasData = JSON.parse(atlasData);
-      }
       this.addToFileList('textureatlas', key, textureURL, { atlasURL: null, atlasData, format });
     }
     return this;
@@ -555,7 +539,7 @@ export default class {
           this.bitmapFont(file.key, file.textureURL, file.atlasURL, file.atlasData, file.xSpacing, file.ySpacing);
           break;
         case "atlas":
-          this.atlas(file.key, file.textureURL, file.atlasURL, file.atlasData, file.format === 'TEXTURE_ATLAS_JSON_HASH' ? TEXTURE_ATLAS_JSON_HASH : TEXTURE_ATLAS_JSON_ARRAY);
+          this.atlas(file.key, file.textureURL, file.atlasURL, file.atlasData, TEXTURE_ATLAS_JSON_HASH);
           break;
         case "shader":
           this.shader(file.key, file.url, file.overwrite);
@@ -762,7 +746,7 @@ export default class {
         } else {
           //  Load the JSON or XML before carrying on with the next file
           loadNext = false;
-          if (file.format === TEXTURE_ATLAS_JSON_ARRAY || file.format === TEXTURE_ATLAS_JSON_HASH) {
+          if (file.format === TEXTURE_ATLAS_JSON_HASH) {
             this.xhrLoad(file, this.transformUrl(file.atlasURL, file), 'text', this.jsonLoadComplete);
           } else {
             throw new Error('Invalid Texture Atlas format: ' + file.format);

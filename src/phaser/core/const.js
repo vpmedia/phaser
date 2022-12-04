@@ -96,5 +96,4 @@ export const ROPE = 20; // deprecated
 export const CREATURE = 27; // deprecated
 export const PENDING_ATLAS = -1;
 // sprite sheet atlas
-export const TEXTURE_ATLAS_JSON_ARRAY = 0;
 export const TEXTURE_ATLAS_JSON_HASH = 1;
