@@ -8,15 +8,11 @@ import Rectangle from '../geom/rectangle';
 import { canPlayAudio } from './device_util';
 import { TEXTURE_ATLAS_JSON_HASH } from './const';
 
-export const TILED_JSON = 6;
-export const TILEMAP_CSV = 7;
-
 export default class {
 
   constructor(game) {
     this.game = game;
     this.cache = game.cache;
-    this.resetLocked = false;
     this.isLoading = false;
     this.hasLoaded = false;
     this.preloadSprite = null;
@@ -100,9 +96,6 @@ export default class {
   }
 
   reset(hard, clearEvents = false) {
-    if (this.resetLocked) {
-      return;
-    }
     if (hard) {
       this.preloadSprite = null;
     }
@@ -232,20 +225,8 @@ export default class {
     return this.addToFileList('json', key, url, undefined, overwrite, '.json');
   }
 
-  shader(key, url, overwrite) {
-    return this.addToFileList('shader', key, url, undefined, overwrite, '.frag');
-  }
-
   xml(key, url, overwrite) {
     return this.addToFileList('xml', key, url, undefined, overwrite, '.xml');
-  }
-
-  script(key, url, callback = false, callbackContext = this) {
-    return this.addToFileList('script', key, url, { syncPoint: true, callback, callbackContext }, false, '.js');
-  }
-
-  binary(key, url, callback = false, callbackContext = this) {
-    return this.addToFileList('binary', key, url, { callback, callbackContext }, false, '.bin');
   }
 
   spritesheet(key, url, frameWidth, frameHeight, frameMax = -1, margin = 0, spacing = 0) {
@@ -275,12 +256,6 @@ export default class {
       }
       this.cache.addJSON(key + '-audioatlas', '', jsonData);
     }
-    return this;
-  }
-
-  tilemap() {
-    // TODO
-    console.warn('loader.tilemap() is not implemented');
     return this;
   }
 
@@ -509,12 +484,6 @@ export default class {
         case "xml":
           this.xml(file.key, file.url, file.overwrite);
           break;
-        case "script":
-          this.script(file.key, file.url, file.callback, pack.callbackContext || this);
-          break;
-        case "binary":
-          this.binary(file.key, file.url, file.callback, pack.callbackContext || this);
-          break;
         case "spritesheet":
           this.spritesheet(file.key, file.url, file.frameWidth, file.frameHeight, file.frameMax, file.margin, file.spacing);
           break;
@@ -527,22 +496,11 @@ export default class {
         case "audioSprite":
           this.audioSprite(file.key, file.audioURL, file.jsonURL, file.jsonData);
           break;
-        case "tilemap":
-          // TODO
-          // this.tilemap(file.key, file.url, file.data, Phaser.Tilemap[file.format]);
-          break;
-        case "physics":
-          // TODO
-          // this.physics(file.key, file.url, file.data, Phaser.Loader[file.format]);
-          break;
         case "bitmapFont":
           this.bitmapFont(file.key, file.textureURL, file.atlasURL, file.atlasData, file.xSpacing, file.ySpacing);
           break;
         case "atlas":
           this.atlas(file.key, file.textureURL, file.atlasURL, file.atlasData, TEXTURE_ATLAS_JSON_HASH);
-          break;
-        case "shader":
-          this.shader(file.key, file.url, file.overwrite);
           break;
       }
     }
@@ -583,23 +541,8 @@ export default class {
       case 'xml':
         this.xhrLoad(file, this.transformUrl(file.url, file), 'text', this.xmlLoadComplete);
         break;
-      case 'tilemap':
-        if (file.format === TILED_JSON) {
-          this.xhrLoad(file, this.transformUrl(file.url, file), 'text', this.jsonLoadComplete);
-        } else if (file.format === TILEMAP_CSV) {
-          this.xhrLoad(file, this.transformUrl(file.url, file), 'text', this.csvLoadComplete);
-        } else {
-          this.asyncComplete(file, 'invalid Tilemap format: ' + file.format);
-        }
-        break;
       case 'text':
-      case 'script':
-      case 'shader':
-      case 'physics':
         this.xhrLoad(file, this.transformUrl(file.url, file), 'text', this.fileComplete);
-        break;
-      case 'binary':
-        this.xhrLoad(file, this.transformUrl(file.url, file), 'arraybuffer', this.fileComplete);
         break;
       default:
         // pass
@@ -788,32 +731,6 @@ export default class {
         file.data = xhr.responseText;
         this.cache.addText(file.key, file.url, file.data);
         break;
-      case 'shader':
-        file.data = xhr.responseText;
-        this.cache.addShader(file.key, file.url, file.data);
-        break;
-      case 'physics':
-        this.cache.addPhysicsData(file.key, file.url, JSON.parse(xhr.responseText), file.format);
-        break;
-      case 'script':
-        file.data = document.createElement('script');
-        file.data.language = 'javascript';
-        file.data.type = 'text/javascript';
-        file.data.defer = false;
-        file.data.text = xhr.responseText;
-        document.head.appendChild(file.data);
-        if (file.callback) {
-          file.data = file.callback.call(file.callbackContext, file.key, xhr.responseText);
-        }
-        break;
-      case 'binary':
-        if (file.callback) {
-          file.data = file.callback.call(file.callbackContext, file.key, xhr.response);
-        } else {
-          file.data = xhr.response;
-        }
-        this.cache.addBinary(file.key, file.data);
-        break;
       default:
         // pass
         break;
@@ -825,9 +742,7 @@ export default class {
 
   jsonLoadComplete(file, xhr) {
     const data = JSON.parse(xhr.responseText);
-    if (file.type === 'tilemap') {
-      this.cache.addTilemap(file.key, file.url, data, file.format);
-    } else if (file.type === 'bitmapfont') {
+    if (file.type === 'bitmapfont') {
       this.cache.addBitmapFont(file.key, file.url, file.data, data, file.atlasType, file.xSpacing, file.ySpacing);
     } else if (file.type === 'json') {
       this.cache.addJSON(file.key, file.url, data);
