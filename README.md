@@ -18,7 +18,6 @@ https://github.com/vpmedia/phaser-example
 
 Some features has not been ported compared to the original version:
 - Creature, RetroFont, Rope, SpriteBatch and Video display objects
-- Some parts of the Loader feature
 - Particle System
 - Physics System
 - Plugin System

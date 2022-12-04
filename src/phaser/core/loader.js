@@ -6,7 +6,7 @@
 import Signal from './signal';
 import Rectangle from '../geom/rectangle';
 import { canPlayAudio } from './device_util';
-import { TEXTURE_ATLAS_JSON_ARRAY, TEXTURE_ATLAS_JSON_HASH, TEXTURE_ATLAS_XML_STARLING, TEXTURE_ATLAS_JSON_PYXEL } from './const';
+import { TEXTURE_ATLAS_JSON_ARRAY, TEXTURE_ATLAS_JSON_HASH } from './const';
 
 export const TILED_JSON = 6;
 export const TILEMAP_CSV = 7;
@@ -278,12 +278,6 @@ export default class {
     return this;
   }
 
-  video() {
-    // TODO
-    console.warn('loader.video() is not implemented');
-    return this;
-  }
-
   tilemap() {
     // TODO
     console.warn('loader.tilemap() is not implemented');
@@ -335,36 +329,14 @@ export default class {
       textureURL = key + '.png';
     }
     if (!atlasURL && !atlasData) {
-      if (format === TEXTURE_ATLAS_XML_STARLING) {
-        atlasURL = key + '.xml';
-      } else {
-        atlasURL = key + '.json';
-      }
+      atlasURL = key + '.json';
     }
     //  A URL to a json/xml file has been given
     if (atlasURL) {
       this.addToFileList('textureatlas', key, textureURL, { atlasURL, format });
     } else {
-      switch (format) {
-        //  A json string or object has been given
-        case TEXTURE_ATLAS_JSON_ARRAY:
-          if (typeof atlasData === 'string') {
-            atlasData = JSON.parse(atlasData);
-          }
-          break;
-        //  An xml string or object has been given
-        case TEXTURE_ATLAS_XML_STARLING:
-          if (typeof atlasData === 'string') {
-            const xml = this.parseXml(atlasData);
-            if (!xml) {
-              throw new Error('Invalid Texture Atlas XML given');
-            }
-            atlasData = xml;
-          }
-          break;
-        default:
-          // pass
-          break;
+      if (format === TEXTURE_ATLAS_JSON_ARRAY && typeof atlasData === 'string') {
+        atlasData = JSON.parse(atlasData);
       }
       this.addToFileList('textureatlas', key, textureURL, { atlasURL: null, atlasData, format });
     }
@@ -562,9 +534,6 @@ export default class {
         case "spritesheet":
           this.spritesheet(file.key, file.url, file.frameWidth, file.frameHeight, file.frameMax, file.margin, file.spacing);
           break;
-        case "video":
-          this.video(file.key, file.urls ? file.urls : file.url);
-          break;
         case "audio":
           this.audio(file.key, file.urls ? file.urls : file.url);
           break;
@@ -624,18 +593,6 @@ export default class {
           this.fileError(file, null, 'No supported audio URL specified or device does not have audio playback support');
         }
         break;
-      case 'video':
-        file.url = this.getVideoURL(file.url);
-        if (file.url) {
-          if (file.asBlob) {
-            this.xhrLoad(file, this.transformUrl(file.url, file), 'blob', this.fileComplete);
-          } else {
-            this.loadVideoTag(file);
-          }
-        } else {
-          this.fileError(file, null, 'No supported video URL specified or device does not have video playback support');
-        }
-        break;
       case 'json':
         this.xhrLoad(file, this.transformUrl(file.url, file), 'text', this.jsonLoadComplete);
         break;
@@ -688,11 +645,6 @@ export default class {
       }
     };
     file.data.src = this.transformUrl(file.url, file);
-  }
-
-  loadVideoTag() {
-    // TODO
-    console.warn('loader.loadVideoTag() is not implemented');
   }
 
   xhrLoad(file, url, type, onload, onerror) {
@@ -810,10 +762,8 @@ export default class {
         } else {
           //  Load the JSON or XML before carrying on with the next file
           loadNext = false;
-          if (file.format === TEXTURE_ATLAS_JSON_ARRAY || file.format === TEXTURE_ATLAS_JSON_HASH || file.format === TEXTURE_ATLAS_JSON_PYXEL) {
+          if (file.format === TEXTURE_ATLAS_JSON_ARRAY || file.format === TEXTURE_ATLAS_JSON_HASH) {
             this.xhrLoad(file, this.transformUrl(file.atlasURL, file), 'text', this.jsonLoadComplete);
-          } else if (file.format === TEXTURE_ATLAS_XML_STARLING) {
-            this.xhrLoad(file, this.transformUrl(file.atlasURL, file), 'text', this.xmlLoadComplete);
           } else {
             throw new Error('Invalid Texture Atlas format: ' + file.format);
           }
@@ -842,16 +792,6 @@ export default class {
             }
           });
         }
-        break;
-      case 'video':
-        if (file.asBlob) {
-          try {
-            file.data = xhr.response;
-          } catch (e) {
-            throw new Error('Unable to parse video file as Blob: ' + file.key);
-          }
-        }
-        this.cache.addVideo(file.key, file.url, file.data, file.asBlob);
         break;
       case 'audio':
         file.data = xhr.response;

@@ -87,14 +87,6 @@ export function JSONData(game, json) {
 
 /**
  *
- */
-export function JSONDataPyxel() {
-  // TODO
-  console.warn('animation_parser.JSONDataPyxel() is not implemented');
-}
-
-/**
- *
  * @param {object} game TBD
  * @param {object} json TBD
  * @returns {object} TBD
@@ -120,12 +112,4 @@ export function JSONDataHash(game, json) {
     i += 1;
   }
   return data;
-}
-
-/**
- *
- */
-export function XMLData() {
-  // TODO
-  console.warn('animation_parser.XMLData() is not implemented');
 }

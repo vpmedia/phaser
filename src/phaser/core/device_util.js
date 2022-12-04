@@ -32,25 +32,6 @@ export function canPlayAudio(device, type) {
 /**
  *
  * @param {object} device TBD
- * @param {string} type TBD
- * @returns {boolean} TBD
- */
-export function canPlayVideo(device, type) {
-  if (type === 'webm' && (device.webmVideo || device.vp9Video)) {
-    return true;
-  } else if (type === 'mp4' && (device.mp4Video || device.h264Video)) {
-    return true;
-  } else if ((type === 'ogg' || type === 'ogv') && device.oggVideo) {
-    return true;
-  } else if (type === 'mpeg' && device.hlsVideo) {
-    return true;
-  }
-  return false;
-}
-
-/**
- *
- * @param {object} device TBD
  */
 export function checkOS(device) {
   const ua = navigator.userAgent;
@@ -174,37 +155,6 @@ export function checkBrowser(device) {
  *
  * @param {object} device TBD
  */
-export function checkVideo(device) {
-  const videoElement = document.createElement('video');
-  try {
-    if (videoElement.canPlayType) {
-      if (videoElement.canPlayType('video/ogg; codecs="theora"').replace(/^no$/, '')) {
-        device.oggVideo = true;
-      }
-      if (videoElement.canPlayType('video/mp4; codecs="avc1.42E01E"').replace(/^no$/, '')) {
-        // Without QuickTime, this value will be `undefined`. github.com/Modernizr/Modernizr/issues/546
-        device.h264Video = true;
-        device.mp4Video = true;
-      }
-      if (videoElement.canPlayType('video/webm; codecs="vp8, vorbis"').replace(/^no$/, '')) {
-        device.webmVideo = true;
-      }
-      if (videoElement.canPlayType('video/webm; codecs="vp9"').replace(/^no$/, '')) {
-        device.vp9Video = true;
-      }
-      if (videoElement.canPlayType('application/x-mpegURL; codecs="avc1.42E01E"').replace(/^no$/, '')) {
-        device.hlsVideo = true;
-      }
-    }
-  } catch (e) {
-    // pass
-  }
-}
-
-/**
- *
- * @param {object} device TBD
- */
 export function checkAudio(device) {
   const audioElement = document.createElement('audio');
   try {
@@ -259,7 +209,6 @@ export function initialize(device) {
   checkOS(device);
   checkBrowser(device);
   checkAudio(device);
-  checkVideo(device);
   checkDevice(device);
   checkFullScreenSupport(device);
   checkInput(device);

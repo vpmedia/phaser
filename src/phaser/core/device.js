@@ -31,12 +31,6 @@ export default class {
     this.m4a = false;
     this.webm = false;
     this.dolby = false;
-    this.oggVideo = false;
-    this.h264Video = false;
-    this.mp4Video = false;
-    this.webmVideo = false;
-    this.vp9Video = false;
-    this.hlsVideo = false;
     this.iPhone = false;
     this.iPad = false;
     this.pixelRatio = 1;

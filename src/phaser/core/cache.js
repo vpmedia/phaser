@@ -8,8 +8,7 @@ import BaseTexture from '../display/webgl/base_texture';
 import Signal from './signal';
 import Frame from './frame';
 import FrameData from './frame_data';
-import { XMLData, JSONData, JSONDataHash, JSONDataPyxel } from './animation_parser';
-import { TEXTURE_ATLAS_XML_STARLING, TEXTURE_ATLAS_JSON_PYXEL } from './const';
+import { JSONData, JSONDataHash } from './animation_parser';
 import { jsonBitmapFont, xmlBitmapFont } from './loader_parser';
 
 export const CANVAS = 1;
@@ -24,7 +23,6 @@ export const BITMAPDATA = 9;
 export const BITMAPFONT = 10;
 export const JSON = 11;
 export const XML = 12;
-export const VIDEO = 13;
 export const SHADER = 14;
 export const RENDER_TEXTURE = 15;
 
@@ -38,7 +36,6 @@ export default class {
       image: {},
       texture: {},
       sound: {},
-      video: {},
       text: {},
       json: {},
       xml: {},
@@ -67,7 +64,6 @@ export default class {
     this._cacheMap[BITMAPFONT] = this._cache.bitmapFont;
     this._cacheMap[JSON] = this._cache.json;
     this._cacheMap[XML] = this._cache.xml;
-    this._cacheMap[VIDEO] = this._cache.video;
     this._cacheMap[SHADER] = this._cache.shader;
     this._cacheMap[RENDER_TEXTURE] = this._cache.renderTexture;
     this.addDefaultImage();
@@ -110,18 +106,14 @@ export default class {
     return img;
   }
 
-  addTextureAtlas(key, url, data, atlasData, format) {
+  addTextureAtlas(key, url, data, atlasData) {
     const obj = {
       key,
       url,
       data,
       base: new BaseTexture(data),
     };
-    if (format === TEXTURE_ATLAS_XML_STARLING) {
-      obj.frameData = XMLData(this.game, atlasData, key);
-    } else if (format === TEXTURE_ATLAS_JSON_PYXEL) {
-      obj.frameData = JSONDataPyxel(this.game, atlasData, key);
-    } else if (Array.isArray(atlasData.frames)) {
+    if (Array.isArray(atlasData.frames)) {
       //  Let's just work it out from the frames array
       obj.frameData = JSONData(this.game, atlasData, key);
     } else {
@@ -287,8 +279,6 @@ export default class {
     return this.checkKey(XML, key);
   }
 
-  // TODO video shader rendertexture physics
-
   // GET
 
   getItem(key, cache, method, property = null) {
@@ -355,10 +345,6 @@ export default class {
 
   getXML(key) {
     return this.getItem(key, XML, 'getXML', 'data');
-  }
-
-  getVideo(key) {
-    return this.getItem(key, VIDEO, 'getVideo');
   }
 
   getShader(key) {
@@ -488,10 +474,6 @@ export default class {
 
   removeXML(key) {
     delete this._cache.xml[key];
-  }
-
-  removeVideo(key) {
-    delete this._cache.video[key];
   }
 
   removeShader(key) {

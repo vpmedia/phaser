@@ -94,12 +94,7 @@ export const EMITTER = 11; // deprecated
 export const RETROFONT = 18; // deprecated
 export const ROPE = 20; // deprecated
 export const CREATURE = 27; // deprecated
-export const VIDEO = 28; // deprecated
 export const PENDING_ATLAS = -1;
 // sprite sheet atlas
 export const TEXTURE_ATLAS_JSON_ARRAY = 0;
 export const TEXTURE_ATLAS_JSON_HASH = 1;
-export const TEXTURE_ATLAS_XML_STARLING = 2;
-export const PHYSICS_LIME_CORONA_JSON = 3; // deprecated
-export const PHYSICS_PHASER_JSON = 4; // deprecated
-export const TEXTURE_ATLAS_JSON_PYXEL = 5;
