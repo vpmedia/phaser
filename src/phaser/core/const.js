@@ -87,13 +87,4 @@ export const GEOM_ROUNDED_RECTANGLE = 26;
 export const GEOM_LINE = 23;
 export const GEOM_MATRIX = 24;
 export const GEOM_POINT = 25;
-export const BITMAP_DATA = 13; // deprecated
-export const TILEMAP = 9; // deprecated
-export const TILEMAP_LAYER = 10; // deprecated
-export const EMITTER = 11; // deprecated
-export const RETROFONT = 18; // deprecated
-export const ROPE = 20; // deprecated
-export const CREATURE = 27; // deprecated
 export const PENDING_ATLAS = -1;
-// sprite sheet atlas
-export const TEXTURE_ATLAS_JSON_HASH = 1;

@@ -129,7 +129,7 @@ export default class {
       //  Is Running, but is waiting to repeat
       return TWEEN_RUNNING;
     }
-    const ms = (this.parent.frameBased) ? this.game.time.physicsElapsedMS : this.game.time.elapsedMS;
+    const ms = this.game.time.elapsedMS;
     if (this.parent.reverse) {
       this.dt -= ms * this.parent.timeScale;
       this.dt = Math.max(this.dt, 0);

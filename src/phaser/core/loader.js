@@ -6,7 +6,8 @@
 import Signal from './signal';
 import Rectangle from '../geom/rectangle';
 import { canPlayAudio } from './device_util';
-import { TEXTURE_ATLAS_JSON_HASH } from './const';
+
+const TEXTURE_ATLAS_JSON_HASH = 1;
 
 export default class {
 
@@ -687,7 +688,6 @@ export default class {
         if (file.atlasURL == null) {
           this.cache.addTextureAtlas(file.key, file.url, file.data, file.atlasData, file.format);
         } else {
-          //  Load the JSON or XML before carrying on with the next file
           loadNext = false;
           if (file.format === TEXTURE_ATLAS_JSON_HASH) {
             this.xhrLoad(file, this.transformUrl(file.atlasURL, file), 'text', this.jsonLoadComplete);

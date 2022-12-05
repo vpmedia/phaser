@@ -11,20 +11,16 @@ import FrameData from './frame_data';
 import { JSONDataHash } from './animation_parser';
 import { jsonBitmapFont, xmlBitmapFont } from './loader_parser';
 
-export const CANVAS = 1;
-export const IMAGE = 2;
-export const TEXTURE = 3;
-export const SOUND = 4;
-export const TEXT = 5;
-export const PHYSICS = 6;
-export const TILEMAP = 7;
-export const BINARY = 8;
-export const BITMAPDATA = 9;
-export const BITMAPFONT = 10;
-export const JSON = 11;
-export const XML = 12;
-export const SHADER = 14;
-export const RENDER_TEXTURE = 15;
+export const CANVAS = 0;
+export const IMAGE = 1;
+export const TEXTURE = 2;
+export const SOUND = 3;
+export const TEXT = 4;
+export const BITMAPDATA = 5;
+export const BITMAPFONT = 6;
+export const JSON = 7;
+export const XML = 8;
+export const RENDER_TEXTURE = 9;
 
 export default class {
 
@@ -39,12 +35,8 @@ export default class {
       text: {},
       json: {},
       xml: {},
-      physics: {},
-      tilemap: {},
-      binary: {},
       bitmapData: {},
       bitmapFont: {},
-      shader: {},
       renderTexture: {},
     };
     this._urlMap = {};
@@ -57,14 +49,10 @@ export default class {
     this._cacheMap[TEXTURE] = this._cache.texture;
     this._cacheMap[SOUND] = this._cache.sound;
     this._cacheMap[TEXT] = this._cache.text;
-    this._cacheMap[PHYSICS] = this._cache.physics;
-    this._cacheMap[TILEMAP] = this._cache.tilemap;
-    this._cacheMap[BINARY] = this._cache.binary;
     this._cacheMap[BITMAPDATA] = this._cache.bitmapData;
     this._cacheMap[BITMAPFONT] = this._cache.bitmapFont;
     this._cacheMap[JSON] = this._cache.json;
     this._cacheMap[XML] = this._cache.xml;
-    this._cacheMap[SHADER] = this._cache.shader;
     this._cacheMap[RENDER_TEXTURE] = this._cache.renderTexture;
     this.addDefaultImage();
     this.addMissingImage();
@@ -132,10 +120,6 @@ export default class {
   addText(key, url, data) {
     this._cache.text[key] = { url, data };
     this._resolveURL(url, this._cache.text[key]);
-  }
-
-  addBinary(key, binaryData) {
-    this._cache.binary[key] = binaryData;
   }
 
   addBitmapFont(key, url, data, atlasData, atlasType, xSpacing = 0, ySpacing = 0) {
@@ -250,14 +234,6 @@ export default class {
     return this.checkKey(TEXT, key);
   }
 
-  checkTilemapKey(key) {
-    return this.checkKey(TILEMAP, key);
-  }
-
-  checkBinaryKey(key) {
-    return this.checkKey(BINARY, key);
-  }
-
   checkBitmapDataKey(key) {
     return this.checkKey(BITMAPDATA, key);
   }
@@ -317,14 +293,6 @@ export default class {
     return this.getItem(key, TEXT, 'getText', 'data');
   }
 
-  getTilemapData(key) {
-    return this.getItem(key, TILEMAP, 'getTilemapData');
-  }
-
-  getBinary(key) {
-    return this.getItem(key, BINARY, 'getBinary');
-  }
-
   getBitmapData(key) {
     return this.getItem(key, BITMAPDATA, 'getBitmapData', 'data');
   }
@@ -340,10 +308,6 @@ export default class {
 
   getXML(key) {
     return this.getItem(key, XML, 'getXML', 'data');
-  }
-
-  getShader(key) {
-    return this.getItem(key, SHADER, 'getShader', 'data');
   }
 
   getRenderTexture(key) {
@@ -443,18 +407,6 @@ export default class {
     delete this._cache.text[key];
   }
 
-  removePhysics(key) {
-    delete this._cache.physics[key];
-  }
-
-  removeTilemap(key) {
-    delete this._cache.tilemap[key];
-  }
-
-  removeBinary(key) {
-    delete this._cache.binary[key];
-  }
-
   removeBitmapData(key) {
     delete this._cache.bitmapData[key];
   }
@@ -469,10 +421,6 @@ export default class {
 
   removeXML(key) {
     delete this._cache.xml[key];
-  }
-
-  removeShader(key) {
-    delete this._cache.shader[key];
   }
 
   removeRenderTexture(key) {

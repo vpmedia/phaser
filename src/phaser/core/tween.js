@@ -29,7 +29,6 @@ export default class {
     this.properties = {};
     this.chainedTween = null;
     this.isPaused = false;
-    this.frameBased = manager.frameBased;
     this._onUpdateCallback = null;
     this._onUpdateCallbackContext = null;
     this._pausedTime = 0;

@@ -23,7 +23,6 @@ export default class {
 
   constructor(game) {
     this.game = game;
-    this.frameBased = false;
     this._tweens = [];
     this._add = [];
     this.easeMap = {

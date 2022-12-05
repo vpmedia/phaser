@@ -14,8 +14,6 @@ export default class {
     this.now = 0;
     this.elapsed = 0;
     this.elapsedMS = 0;
-    this.physicsElapsed = 1 / 60;
-    this.physicsElapsedMS = (1 / 60) * 1000;
     this.desiredFpsMult = 1.0 / 60;
     this._desiredFps = 60;
     this.suggestedFps = this.desiredFps;
@@ -185,10 +183,6 @@ export default class {
 
   set desiredFps(value) {
     this._desiredFps = value;
-    //  Set the physics elapsed time... this will always be 1 / this.desiredFps
-    //  because we're using fixed time steps in game.update
-    this.physicsElapsed = 1 / value;
-    this.physicsElapsedMS = this.physicsElapsed * 1000;
     this.desiredFpsMult = 1.0 / value;
   }
 
