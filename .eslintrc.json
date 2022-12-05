@@ -7,9 +7,9 @@
     "es2022": true
   },
   "parserOptions": {
-    "ecmaVersion": "latest"
+    "ecmaVersion": "latest",
+    "sourceType": "module"
   },
-  "parser": "@babel/eslint-parser",
   "plugins": ["import", "jsdoc", "jest", "prettier"],
   "rules": {
     "no-unused-vars": "warn"
