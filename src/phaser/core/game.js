@@ -55,14 +55,6 @@ export default class {
     this.onResume = new Signal();
     this.onBoot = new Signal();
     this.isPaused = false;
-    this.currentUpdateID = 0;
-    this.updatesThisFrame = 1;
-    this._deltaTime = 0;
-    this._lastCount = 0;
-    this._spiraling = 0;
-    this.isKickStart = true;
-    this.fpsProblemNotifier = new Signal();
-    this._nextFpsNotification = 0;
     this.parseConfig(gameConfig);
     checkOS(this.device);
     if (document.readyState === 'complete') {
@@ -99,7 +91,6 @@ export default class {
     this.input.boot();
     this.sound.boot();
     this.state.boot();
-    this.isKickStart = true;
     if (window.focus) {
       window.focus();
     }
@@ -243,53 +234,9 @@ export default class {
 
   update(time) {
     this.time.update(time);
-    if (this.isKickStart) {
-      this.updateLogic(this.time.desiredFpsMult);
-      this.renderer.render(this.stage);
-      this.isKickStart = false;
-      return;
-    }
-    if (!this.config.forceSingleUpdate && this._spiraling > 1) {
-      if (this.time.time > this._nextFpsNotification) {
-        this._nextFpsNotification = this.time.time + 10000;
-        this.fpsProblemNotifier.dispatch();
-      }
-      this._deltaTime = 0;
-      this._spiraling = 0;
-      this.renderer.render(this.stage);
-    } else {
-      const slowStep = this.time.slowMotion * 1000.0 / this.time.desiredFps;
-      this._deltaTime += Math.max(Math.min(slowStep * 3, this.time.elapsed), 0);
-      let count = 0;
-      this.updatesThisFrame = Math.floor(this._deltaTime / slowStep);
-      if (this.config.forceSingleUpdate) {
-        this.updatesThisFrame = Math.min(1, this.updatesThisFrame);
-      }
-      while (this._deltaTime >= slowStep) {
-        this._deltaTime -= slowStep;
-        this.currentUpdateID = count;
-        this.updateLogic(this.time.desiredFpsMult);
-        count += 1;
-        if (this.config.forceSingleUpdate && count === 1) {
-          break;
-        } else {
-          this.time.refresh();
-        }
-      }
-      if (count > this._lastCount) {
-        this._spiraling += 1;
-      } else if (count < this._lastCount) {
-        this._spiraling = 0;
-      }
-      this._lastCount = count;
-      this.renderer.render(this.stage);
-    }
-  }
-
-  updateLogic(timeStep) {
     if (!this.isPaused) {
       this.scale.preUpdate();
-      this.state.preUpdate(timeStep);
+      this.state.preUpdate();
       this.stage.preUpdate();
       this.state.update();
       this.stage.update();
@@ -298,11 +245,11 @@ export default class {
       this.input.update();
       this.stage.postUpdate();
     } else {
-      // Scaling and device orientation changes are still reflected when paused.
       this.scale.pauseUpdate();
       this.state.pauseUpdate();
     }
     this.stage.updateTransform();
+    this.renderer.render(this.stage);
   }
 
   destroy() {

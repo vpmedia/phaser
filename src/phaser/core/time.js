@@ -17,7 +17,6 @@ export default class {
     this.desiredFpsMult = 1.0 / 60;
     this._desiredFps = 60;
     this.suggestedFps = this.desiredFps;
-    this.slowMotion = 1.0;
     this.advancedTiming = false;
     this.frames = 0;
     this.fps = 0;
