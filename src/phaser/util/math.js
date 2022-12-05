@@ -293,5 +293,22 @@ export function valueToColor(value, out) {
   out.color = getColor(out.r, out.g, out.b);
   out.color32 = getColor32(out.a * 255, out.r, out.g, out.b);
   return out;
+}
 
+/**
+ * TBD
+ *
+ * @returns {string} TBD
+ */
+ export function generateID() {
+  return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+}
+
+/**
+ * TBD
+ *
+ * @returns {string} TBD
+ */
+export function generateShaderID() {
+  return (`${generateID()}${generateID()}-${generateID()}`).toLowerCase();
 }

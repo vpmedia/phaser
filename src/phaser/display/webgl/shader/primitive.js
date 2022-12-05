@@ -4,7 +4,7 @@
  * @author       Mat Groves http://matgroves.com/ @Doormat23
  * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
  */
-import { generateShaderID } from '../../../util/string';
+import { generateShaderID } from '../../../util/math';
 import { compileProgram } from '../util';
 
 // the next one is used for rendering primitives
