@@ -51,9 +51,6 @@ export default class {
     this.device = new Device();
     this.canvas = null;
     this.context = null;
-    this.isStepping = false;
-    this.isPendingStep = false;
-    this.stepCount = 0;
     this.onPause = new Signal();
     this.onResume = new Signal();
     this.onBoot = new Signal();
@@ -303,10 +300,7 @@ export default class {
   }
 
   updateLogic(timeStep) {
-    if (!this.isPaused && !this.isPendingStep) {
-      if (this.isStepping) {
-        this.isPendingStep = true;
-      }
+    if (!this.isPaused) {
       this.scale.preUpdate();
       this.state.preUpdate(timeStep);
       this.stage.preUpdate();
@@ -328,22 +322,6 @@ export default class {
     this.state.preRender(elapsedTime);
     this.renderer.render(this.stage);
     this.state.render(elapsedTime);
-  }
-
-  enableStep() {
-    this.isStepping = true;
-    this.isPendingStep = false;
-    this.stepCount = 0;
-  }
-
-  disableStep() {
-    this.isStepping = false;
-    this.isPendingStep = false;
-  }
-
-  step() {
-    this.isPendingStep = false;
-    this.stepCount += 1;
   }
 
   destroy() {
