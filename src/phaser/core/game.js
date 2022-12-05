@@ -37,7 +37,6 @@ export default class {
     this.renderer = null;
     this.state = null;
     this.isBooted = false;
-    this.isRunning = false;
     this.raf = null;
     this.add = null;
     this.cache = null;
@@ -55,8 +54,9 @@ export default class {
     this.isStepping = false;
     this.isPendingStep = false;
     this.stepCount = 0;
-    this.onPause = null;
-    this.onResume = null;
+    this.onPause = new Signal();
+    this.onResume = new Signal();
+    this.onBoot = new Signal();
     this.isPaused = false;
     this.currentUpdateID = 0;
     this.updatesThisFrame = 1;
@@ -81,12 +81,9 @@ export default class {
 
   boot() {
     if (this.isBooted) {
-      console.warn('Game already booted.');
       return;
     }
     this.isBooted = true;
-    this.onPause = new Signal();
-    this.onResume = new Signal();
     this.scale = new ScaleManager(this, this.config.width, this.config.height);
     this.stage = new Stage(this);
     this.initRenderer();
@@ -105,13 +102,15 @@ export default class {
     this.input.boot();
     this.sound.boot();
     this.state.boot();
-    this.isRunning = true;
-    this.raf = new RequestAnimationFrame(this);
     this.isKickStart = true;
     if (window.focus) {
       window.focus();
     }
-    this.raf.start();
+    if (!this.config.isSkipTicker) {
+      this.raf = new RequestAnimationFrame(this);
+      this.raf.start();
+    }
+    this.onBoot.dispatch(this);
   }
 
   initRenderer() {
@@ -246,12 +245,6 @@ export default class {
   }
 
   update(time) {
-    if (this.isPendingDestroy) {
-      this.destroyDelayed();
-      return;
-    } else if (!this.isBooted) {
-      return;
-    }
     this.time.update(time);
     if (this.isKickStart) {
       this.updateLogic(this.time.desiredFpsMult);
@@ -260,7 +253,7 @@ export default class {
       this.isKickStart = false;
       return;
     }
-    if (this._spiraling > 1 && !this.config.forceSingleUpdate) {
+    if (!this.config.forceSingleUpdate && this._spiraling > 1) {
       // cause an event to warn the program that this CPU can't keep up with the current desiredFps rate
       if (this.time.time > this._nextFpsNotification) {
         // only permit one fps notification per 10 seconds
@@ -354,27 +347,14 @@ export default class {
   }
 
   destroy() {
-    if (this.isPendingDestroy) {
-      return;
-    }
-    this.isPendingDestroy = true;
-  }
-
-  destroyDelayed() {
-    if (!this.isPendingDestroy) {
-      return;
-    }
-    this.isPendingDestroy = false;
-
     this.isPaused = true;
-    this.isBooted = false;
-    this.isRunning = false;
 
-    if (!this.raf) {
+    if (!this.cache) {
       return;
     }
-
-    this.raf.stop();
+    if (this.raf) {
+      this.raf.stop();
+    }
 
     this.time.destroy();
     this.state.destroy();
