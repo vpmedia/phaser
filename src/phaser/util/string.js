@@ -18,15 +18,6 @@ export function generateID() {
  *
  * @returns {string} TBD
  */
-export function generateUUID() {
-  return (`${generateID()}${generateID()}-${generateID()}-4${generateID().substr(0, 3)}-${generateID()}-${generateID()}${generateID()}${generateID()}`).toLowerCase();
-}
-
-/**
- * TBD
- *
- * @returns {string} TBD
- */
 export function generateShaderID() {
   return (`${generateID()}${generateID()}-${generateID()}`).toLowerCase();
 }
