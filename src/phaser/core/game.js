@@ -245,31 +245,21 @@ export default class {
     this.time.update(time);
     if (this.isKickStart) {
       this.updateLogic(this.time.desiredFpsMult);
-      // call the game render update exactly once every frame
-      this.updateRender(this.time.slowMotion * this.time.desiredFps);
+      this.renderer.render(this.stage);
       this.isKickStart = false;
       return;
     }
     if (!this.config.forceSingleUpdate && this._spiraling > 1) {
-      // cause an event to warn the program that this CPU can't keep up with the current desiredFps rate
       if (this.time.time > this._nextFpsNotification) {
-        // only permit one fps notification per 10 seconds
         this._nextFpsNotification = this.time.time + 10000;
-        // dispatch the notification signal
         this.fpsProblemNotifier.dispatch();
       }
-      // reset the _deltaTime accumulator which will cause all pending dropped frames to be permanently skipped
       this._deltaTime = 0;
       this._spiraling = 0;
-      // call the game render update exactly once every frame
-      this.updateRender(this.time.slowMotion * this.time.desiredFps);
+      this.renderer.render(this.stage);
     } else {
-      // step size taking into account the slow motion speed
       const slowStep = this.time.slowMotion * 1000.0 / this.time.desiredFps;
-      // accumulate time until the slowStep threshold is met or exceeded... up to a limit of 3 catch-up frames at slowStep intervals
       this._deltaTime += Math.max(Math.min(slowStep * 3, this.time.elapsed), 0);
-      // call the game update logic multiple times if necessary to "catch up" with dropped frames
-      // unless forceSingleUpdate is true
       let count = 0;
       this.updatesThisFrame = Math.floor(this._deltaTime / slowStep);
       if (this.config.forceSingleUpdate) {
@@ -286,16 +276,13 @@ export default class {
           this.time.refresh();
         }
       }
-      // detect spiraling (if the catch-up loop isn't fast enough, the number of iterations will increase constantly)
       if (count > this._lastCount) {
         this._spiraling += 1;
       } else if (count < this._lastCount) {
-        // looks like it caught up successfully, reset the spiral alert counter
         this._spiraling = 0;
       }
       this._lastCount = count;
-      // call the game render update exactly once every frame unless we're playing catch-up from a spiral condition
-      this.updateRender(this._deltaTime / slowStep);
+      this.renderer.render(this.stage);
     }
   }
 
@@ -316,12 +303,6 @@ export default class {
       this.state.pauseUpdate();
     }
     this.stage.updateTransform();
-  }
-
-  updateRender(elapsedTime) {
-    this.state.preRender(elapsedTime);
-    this.renderer.render(this.stage);
-    this.state.render(elapsedTime);
   }
 
   destroy() {

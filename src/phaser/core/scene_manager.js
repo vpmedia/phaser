@@ -24,13 +24,7 @@ export default class {
     this.onPreloadCallback = null;
     this.onCreateCallback = null;
     this.onUpdateCallback = null;
-    this.onRenderCallback = null;
     this.onResizeCallback = null;
-    this.onPreRenderCallback = null;
-    this.onLoadUpdateCallback = null;
-    this.onLoadRenderCallback = null;
-    this.onPausedCallback = null;
-    this.onResumedCallback = null;
     this.onPauseUpdateCallback = null;
     this.onShutDownCallback = null;
   }
@@ -68,15 +62,9 @@ export default class {
       this.onInitCallback = null;
       this.onShutDownCallback = null;
       this.onPreloadCallback = null;
-      this.onLoadRenderCallback = null;
-      this.onLoadUpdateCallback = null;
       this.onCreateCallback = null;
       this.onUpdateCallback = null;
-      this.onPreRenderCallback = null;
-      this.onRenderCallback = null;
       this.onResizeCallback = null;
-      this.onPausedCallback = null;
-      this.onResumedCallback = null;
       this.onPauseUpdateCallback = null;
     }
     delete this.states[key];
@@ -179,15 +167,9 @@ export default class {
     //  Used when the state is set as being the current active state
     this.onInitCallback = this.callbackContext.init || this.dummy;
     this.onPreloadCallback = this.callbackContext.preload || null;
-    this.onLoadRenderCallback = this.callbackContext.loadRender || null;
-    this.onLoadUpdateCallback = this.callbackContext.loadUpdate || null;
     this.onCreateCallback = this.callbackContext.create || null;
     this.onUpdateCallback = this.callbackContext.update || null;
-    this.onPreRenderCallback = this.callbackContext.preRender || null;
-    this.onRenderCallback = this.callbackContext.render || null;
     this.onResizeCallback = this.callbackContext.resize || null;
-    this.onPausedCallback = this.callbackContext.paused || null;
-    this.onResumedCallback = this.callbackContext.resumed || null;
     this.onPauseUpdateCallback = this.callbackContext.pauseUpdate || null;
     this.onShutDownCallback = this.callbackContext.shutdown || this.dummy;
     this.current = key;
@@ -204,9 +186,6 @@ export default class {
   }
 
   loadComplete() {
-    if (this._created === false && this.onLoadUpdateCallback) {
-      this.onLoadUpdateCallback.call(this.callbackContext, this.game);
-    }
     if (this._created === false && this.onCreateCallback) {
       this._created = true;
       this.onCreateCallback.call(this.callbackContext, this.game);
@@ -215,64 +194,21 @@ export default class {
     }
   }
 
-  pause() {
-    if (this._created && this.onPausedCallback) {
-      this.onPausedCallback.call(this.callbackContext, this.game);
-    }
-  }
-
-  resume() {
-    if (this._created && this.onResumedCallback) {
-      this.onResumedCallback.call(this.callbackContext, this.game);
-    }
-  }
-
   update() {
-    if (this._created) {
-      if (this.onUpdateCallback) {
-        this.onUpdateCallback.call(this.callbackContext, this.game);
-      }
-    } else if (this.onLoadUpdateCallback) {
-      this.onLoadUpdateCallback.call(this.callbackContext, this.game);
+    if (this._created && this.onUpdateCallback) {
+      this.onUpdateCallback.call(this.callbackContext, this.game);
     }
   }
 
   pauseUpdate() {
-    if (this._created) {
-      if (this.onPauseUpdateCallback) {
-        this.onPauseUpdateCallback.call(this.callbackContext, this.game);
-      }
-    } else if (this.onLoadUpdateCallback) {
-      this.onLoadUpdateCallback.call(this.callbackContext, this.game);
-    }
-  }
-
-  preRender(elapsedTime) {
-    if (this._created && this.onPreRenderCallback) {
-      this.onPreRenderCallback.call(this.callbackContext, this.game, elapsedTime);
+    if (this._created && this.onPauseUpdateCallback) {
+      this.onPauseUpdateCallback.call(this.callbackContext, this.game);
     }
   }
 
   resize(width, height) {
     if (this.onResizeCallback) {
       this.onResizeCallback.call(this.callbackContext, width, height);
-    }
-  }
-
-  render() {
-    if (this._created) {
-      if (this.onRenderCallback) {
-        if (this.game.renderer.type === RENDER_CANVAS) {
-          this.game.context.save();
-          this.game.context.setTransform(1, 0, 0, 1, 0, 0);
-          this.onRenderCallback.call(this.callbackContext, this.game);
-          this.game.context.restore();
-        } else {
-          this.onRenderCallback.call(this.callbackContext, this.game);
-        }
-      }
-    } else if (this.onLoadRenderCallback) {
-      this.onLoadRenderCallback.call(this.callbackContext, this.game);
     }
   }
 
@@ -284,13 +220,8 @@ export default class {
     this.onInitCallback = null;
     this.onShutDownCallback = null;
     this.onPreloadCallback = null;
-    this.onLoadRenderCallback = null;
-    this.onLoadUpdateCallback = null;
     this.onCreateCallback = null;
     this.onUpdateCallback = null;
-    this.onRenderCallback = null;
-    this.onPausedCallback = null;
-    this.onResumedCallback = null;
     this.onPauseUpdateCallback = null;
     this.game = null;
     this.states = {};

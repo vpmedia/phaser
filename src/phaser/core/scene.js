@@ -18,14 +18,6 @@ export default class {
     // inherit
   }
 
-  loadUpdate() {
-    // inherit
-  }
-
-  loadRender() {
-    // inherit
-  }
-
   create() {
     // inherit
   }
@@ -34,23 +26,7 @@ export default class {
     // inherit
   }
 
-  preRender() {
-    // inherit
-  }
-
-  render() {
-    // inherit
-  }
-
   resize() {
-    // inherit
-  }
-
-  paused() {
-    // inherit
-  }
-
-  resumed() {
     // inherit
   }
 
