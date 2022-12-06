@@ -195,21 +195,10 @@ export function checkAudio(device) {
  *
  * @param {object} device TBD
  */
-export function checkDevice(device) {
-  device.pixelRatio = window.devicePixelRatio || 1;
-  device.iPhone = navigator.userAgent.toLowerCase().indexOf('iphone') !== -1;
-  device.iPad = navigator.userAgent.toLowerCase().indexOf('ipad') !== -1;
-}
-
-/**
- *
- * @param {object} device TBD
- */
 export function initialize(device) {
   checkOS(device);
   checkBrowser(device);
   checkAudio(device);
-  checkDevice(device);
   checkFullScreenSupport(device);
   checkInput(device);
 }

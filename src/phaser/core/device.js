@@ -31,9 +31,6 @@ export default class {
     this.m4a = false;
     this.webm = false;
     this.dolby = false;
-    this.iPhone = false;
-    this.iPad = false;
-    this.pixelRatio = 1;
     this.fullscreen = false;
     this.requestFullscreen = '';
     this.cancelFullscreen = '';
