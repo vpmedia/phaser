@@ -170,36 +170,20 @@ export default class {
   }
 
   parseConfig(config) {
-    /* game */
     this.parseConfigElement(config, 'width', 800);
     this.parseConfigElement(config, 'height', 600);
     this.parseConfigElement(config, 'backgroundColor', 0x000000);
-    // Should the game loop force a logic update, regardless of the delta timer? Set to true if you know you need this. You can toggle it on the fly.
-    this.parseConfigElement(config, 'forceSingleUpdate', true);
-    /* canvas */
     this.parseConfigElement(config, 'canvasID', '');
     this.parseConfigElement(config, 'canvasStyle', undefined);
-    /* renderer */
-    // The resolution of your game.
     this.parseConfigElement(config, 'resolution', 1);
-    // Use a transparent canvas background or not.
-    this.parseConfigElement(config, 'transparent', false);
-    // Anti-alias graphics. By default scaled images are smoothed in Canvas and WebGL, set anti-alias to false to disable this globally.
+    this.parseConfigElement(config, 'transparent', true);
     this.parseConfigElement(config, 'antialias', false);
-    // The value of the preserveDrawingBuffer flag affects whether or not the contents of the stencil buffer is retained after rendering.
     this.parseConfigElement(config, 'preserveDrawingBuffer', false);
-    // Clear the Canvas each frame before rendering the display list.
-    // You can set this to `false` to gain some performance if your game always contains a background that completely fills the display.
     this.parseConfigElement(config, 'clearBeforeRender', false);
-    // The Renderer this game will use. Either Const.RENDER_AUTO, Const.RENDER_CANVAS, Const.RENDER_WEBGL
+    this.parseConfigElement(config, 'roundPixels', true);
     this.parseConfigElement(config, 'renderType', RENDER_AUTO);
-    // Force audio disabled
     this.parseConfigElement(config, 'isForceDisabledAudio', false);
-    // Sets the number of maximum parallel requests for the loaded (in case of HTTP/2 you can raise this)
     this.parseConfigElement(config, 'maxParallelDownloads', 16);
-    if (config.renderer) {
-      this.config.renderType = config.renderer;
-    }
     if (config.exceptionHandler) {
       this.exceptionHandler = config.exceptionHandler;
     } else {

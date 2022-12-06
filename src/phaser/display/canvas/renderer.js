@@ -32,7 +32,7 @@ export default class {
       maskManager: CanvasMaskManager,
       scaleMode: null,
       smoothProperty: getSmoothingPrefix(this.context),
-      roundPixels: false,
+      roundPixels: game.config.roundPixels,
     };
     this.mapBlendModes();
     this.resize(this.width, this.height);
