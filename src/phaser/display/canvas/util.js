@@ -135,8 +135,7 @@ export function setTransform(context, translateX, translateY, scaleX, scaleY, sk
 export function getSmoothingPrefix(context) {
   const VENDORS = ['i', 'webkitI', 'msI', 'mozI', 'oI'];
   for (let i = 0; i < VENDORS.length; i += 1) {
-    const prefix = VENDORS[i];
-    const s = VENDORS[prefix] + 'mageSmoothingEnabled';
+    const s = VENDORS[i] + 'mageSmoothingEnabled';
     if (context && context[s]) {
       return s;
     }
