@@ -9,7 +9,7 @@ import EventManager from '../core/event_manager';
 import Rectangle from '../geom/rectangle';
 import DisplayObject from './display_object';
 import { clone } from '../geom/util/rectangle';
-import { IMAGE, PENDING_ATLAS, BLEND_NORMAL } from '../core/const';
+import { IMAGE, PENDING_ATLAS, BLEND_NORMAL, SCALE_NEAREST } from '../core/const';
 import { setTexture, getBounds, getLocalBounds, renderCanvas, renderWebGL } from './sprite_util';
 
 export default class extends DisplayObject {
@@ -117,7 +117,7 @@ export default class extends DisplayObject {
       this._frame = clone(this.texture.frame);
     }
     if (!smoothed) {
-      this.texture.baseTexture.scaleMode = 1;
+      this.texture.baseTexture.scaleMode = SCALE_NEAREST;
     }
   }
 

@@ -6,7 +6,7 @@
 import DisplayObject from './display_object';
 import Image from './image';
 import Point from '../geom/point';
-import { BITMAP_TEXT } from '../core/const';
+import { BITMAP_TEXT, SCALE_LINEAR, SCALE_NEAREST } from '../core/const';
 
 export default class extends DisplayObject {
 
@@ -313,9 +313,9 @@ export default class extends DisplayObject {
 
   set smoothed(value) {
     if (value) {
-      this._data.base.scaleMode = 0;
+      this._data.base.scaleMode = SCALE_LINEAR;
     } else {
-      this._data.base.scaleMode = 1;
+      this._data.base.scaleMode = SCALE_NEAREST;
     }
   }
 

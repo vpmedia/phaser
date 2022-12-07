@@ -4,7 +4,7 @@
  * @author       Mat Groves http://matgroves.com/ @Doormat23
  * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
  */
-import { RENDER_CANVAS, SCALE_LINEAR, BLEND_NORMAL, BLEND_ADD, BLEND_MULTIPLY, BLEND_SCREEN, BLEND_OVERLAY, BLEND_DARKEN, BLEND_LIGHTEN, BLEND_COLOR_DODGE, BLEND_COLOR_BURN, BLEND_HARD_LIGHT, BLEND_SOFT_LIGHT, BLEND_DIFFERENCE, BLEND_EXCLUSION, BLEND_HUE, BLEND_SATURATION, BLEND_COLOR, BLEND_LUMINOSITY } from '../../core/const';
+import { RENDER_CANVAS, SCALE_LINEAR, BLEND_NORMAL, BLEND_ADD, BLEND_MULTIPLY, BLEND_SCREEN, BLEND_OVERLAY, BLEND_DARKEN, BLEND_LIGHTEN, BLEND_COLOR_DODGE, BLEND_COLOR_BURN, BLEND_HARD_LIGHT, BLEND_SOFT_LIGHT, BLEND_DIFFERENCE, BLEND_EXCLUSION, BLEND_HUE, BLEND_SATURATION, BLEND_COLOR, BLEND_LUMINOSITY, SCALE_NEAREST } from '../../core/const';
 import { getSmoothingPrefix } from './util';
 import { detectCapabilities } from './tinter';
 import * as CanvasMaskManager from './masker';
@@ -30,7 +30,7 @@ export default class {
     this.renderSession = {
       context: this.context,
       maskManager: CanvasMaskManager,
-      scaleMode: null,
+      scaleMode: game.config.antialias ? SCALE_LINEAR : SCALE_NEAREST,
       smoothProperty: getSmoothingPrefix(this.context),
       roundPixels: game.config.roundPixels,
     };
