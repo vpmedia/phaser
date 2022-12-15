@@ -179,7 +179,7 @@ export default class {
     this.parseConfigElement(config, 'transparent', true);
     this.parseConfigElement(config, 'antialias', false);
     this.parseConfigElement(config, 'preserveDrawingBuffer', false);
-    this.parseConfigElement(config, 'clearBeforeRender', false);
+    this.parseConfigElement(config, 'clearBeforeRender', true);
     this.parseConfigElement(config, 'roundPixels', true);
     this.parseConfigElement(config, 'renderType', RENDER_AUTO);
     this.parseConfigElement(config, 'isForceDisabledAudio', false);
