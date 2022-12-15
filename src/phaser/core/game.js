@@ -176,7 +176,7 @@ export default class {
     this.parseConfigElement(config, 'canvasID', '');
     this.parseConfigElement(config, 'canvasStyle', undefined);
     this.parseConfigElement(config, 'resolution', 1);
-    this.parseConfigElement(config, 'transparent', true);
+    this.parseConfigElement(config, 'transparent', false);
     this.parseConfigElement(config, 'antialias', false);
     this.parseConfigElement(config, 'preserveDrawingBuffer', false);
     this.parseConfigElement(config, 'clearBeforeRender', true);
