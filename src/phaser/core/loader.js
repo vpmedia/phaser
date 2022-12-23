@@ -498,7 +498,7 @@ export default class {
           this.audioSprite(file.key, file.audioURL, file.jsonURL, file.jsonData);
           break;
         case "bitmapFont":
-          this.bitmapFont(file.key, file.textureURL, file.atlasURL, file.atlasData, file.xSpacing, file.ySpacing);
+          this.bitmapFont(file.key, file.textureURL, file.fontDataURL ? file.fontDataURL : file.atlasURL, file.atlasData, file.xSpacing, file.ySpacing);
           break;
         case "atlas":
           this.atlas(file.key, file.textureURL, file.atlasURL, file.atlasData, TEXTURE_ATLAS_JSON_HASH);
