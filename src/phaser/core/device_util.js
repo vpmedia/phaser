@@ -195,10 +195,34 @@ export function checkAudio(device) {
  *
  * @param {object} device TBD
  */
+export function checkImage(device) {
+  device.avif = false;
+  device.webp = false;
+  try {
+    const avif = new Image();
+    avif.src = "data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAAB0AAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAAIAAAACAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQ0MAAAAABNjb2xybmNseAACAAIAAYAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAACVtZGF0EgAKCBgANogQEAwgMg8f8D///8WfhwB8+ErK42A=";
+    avif.onload = function () {
+      device.avif = true;
+    };
+    const webp = new Image();
+    webp.src = "data:image/webp;base64,UklGRh4AAABXRUJQVlA4TBEAAAAvAAAAAAfQ//73v/+BiOh/AAA=";
+    webp.onload = function () {
+      device.webp = true;
+    };
+  } catch (e) {
+    // pass
+  }
+}
+
+/**
+ *
+ * @param {object} device TBD
+ */
 export function initialize(device) {
   checkOS(device);
   checkBrowser(device);
   checkAudio(device);
+  checkImage(device);
   checkFullScreenSupport(device);
   checkInput(device);
 }
