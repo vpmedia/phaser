@@ -222,7 +222,7 @@ export function initialize(device) {
   checkOS(device);
   checkBrowser(device);
   checkAudio(device);
-  checkImage(device);
+  // checkImage(device);
   checkFullScreenSupport(device);
   checkInput(device);
 }
