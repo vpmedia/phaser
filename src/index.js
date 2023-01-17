@@ -12,6 +12,10 @@ import * as MathUtils from './phaser/util/math';
 import * as CanvasBuffer from './phaser/display/canvas/buffer';
 import * as CanvasPool from './phaser/display/canvas/pool';
 import * as CanvasUtils from './phaser/display/canvas/util';
+// texture
+import BaseTexture from './phaser/display/webgl/base_texture';
+import Texture from './phaser/display/webgl/texture';
+import * as TextureUtils from './phaser/display/webgl/texture_util';
 // geom
 import Circle from './phaser/geom/circle';
 import Ellipse from './phaser/geom/ellipse';
@@ -37,6 +41,9 @@ export {
   CanvasBuffer,
   CanvasPool,
   CanvasUtils,
+  BaseTexture,
+  Texture,
+  TextureUtils,
   Circle,
   Ellipse,
   Line,
