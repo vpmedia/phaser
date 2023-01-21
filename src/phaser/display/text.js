@@ -697,7 +697,7 @@ export default class extends Image {
 
   getFontPropertiesContext() {
     if (!window.PhaserRegistry.fontPropertiesContext) {
-      window.PhaserRegistry.fontPropertiesContext = this.getFontPropertiesCanvas().getContext('2d');
+      window.PhaserRegistry.fontPropertiesContext = this.getFontPropertiesCanvas().getContext('2d', { willReadFrequently: true });
     }
     return window.PhaserRegistry.fontPropertiesContext;
   }
