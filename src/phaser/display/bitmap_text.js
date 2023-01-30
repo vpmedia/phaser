@@ -259,6 +259,14 @@ export default class extends DisplayObject {
     }
   }
 
+  get fill() {
+    return this.tint;
+  }
+
+  set fill(value) {
+    this.tint = value;
+  }
+
   get font() {
     return this._font;
   }
