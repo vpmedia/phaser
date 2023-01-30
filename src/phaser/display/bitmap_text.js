@@ -260,11 +260,11 @@ export default class extends DisplayObject {
   }
 
   get fill() {
-    return this.tint;
+    return typeof this.tint === 'number' ? `#${this.tint.toString(16)}` : this.tint;
   }
 
   set fill(value) {
-    this.tint = value;
+    this.tint = typeof value === 'string' ? parseInt(value.replace('#', ''), 16) : value;
   }
 
   get font() {
