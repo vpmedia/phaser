@@ -15,6 +15,9 @@ export default class {
     this.game = game;
     this.cache = game.cache;
     this.isLoading = false;
+    this.isLogging = false;
+    this.isUseRetry = false;
+    this.maxRetry = 1;
     this.hasLoaded = false;
     this.preloadSprite = null;
     this.crossOrigin = false;
@@ -456,10 +459,11 @@ export default class {
   asyncComplete(file, errorMessage = '') {
     file.loaded = true;
     file.error = !!errorMessage;
-    if (errorMessage) {
+    if (file.error) {
       file.errorMessage = errorMessage;
       console.warn(file, errorMessage);
     }
+    this.log('asyncComplete', file);
     this.processLoadQueue();
   }
 
@@ -552,6 +556,7 @@ export default class {
   }
 
   loadImageTag(file) {
+    this.log('loadImageTag', file);
     const _this = this;
     file.data = new Image();
     file.data.name = file.key;
@@ -566,7 +571,10 @@ export default class {
       }
     };
     file.data.onerror = () => {
-      if (file.data.onload) {
+      if (_this.isUseRetry && (!file.numRetry || file.numRetry < _this.maxRetry)) {
+        file.numRetry = !file.numRetry ? 1 : file.numRetry += 1;
+        _this.loadImageTag(file);
+      } else if (file.data.onload) {
         file.data.onload = null;
         file.data.onerror = null;
         _this.fileError(file);
@@ -576,6 +584,7 @@ export default class {
   }
 
   xhrLoad(file, url, type, onload, onerror) {
+    this.log('xhrLoad', file);
     const xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
     xhr.responseType = type;
@@ -812,6 +821,13 @@ export default class {
         this.preloadSprite = null;
       }
     }
+  }
+
+  log(message, data = '') {
+    if (!this.isLogging) {
+      return;
+    }
+    console.log(`[Loader] ${message}`, data);
   }
 
   totalLoadedFiles() {
