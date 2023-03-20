@@ -15,8 +15,8 @@ export default class {
     this.game = game;
     this.cache = game.cache;
     this.isLoading = false;
-    this.isLogging = false;
-    this.isUseRetry = false;
+    this.isUseLog = false;
+    this.isUseRetry = true;
     this.maxRetry = 1;
     this.hasLoaded = false;
     this.preloadSprite = null;
@@ -430,9 +430,9 @@ export default class {
       // Flight queue is empty but file list is not done being processed.
       // This indicates a critical internal error with no known recovery.
       console.warn('Loader - aborting: processing queue empty, loading may have stalled');
-      const _this = this;
+      const scope = this;
       setTimeout(() => {
-        _this.finishedLoading(true);
+        scope.finishedLoading(true);
       }, 2000);
     }
   }
@@ -557,7 +557,7 @@ export default class {
 
   loadImageTag(file) {
     this.log('loadImageTag', file);
-    const _this = this;
+    const scope = this;
     file.data = new Image();
     file.data.name = file.key;
     if (this.crossOrigin) {
@@ -567,17 +567,17 @@ export default class {
       if (file.data.onload) {
         file.data.onload = null;
         file.data.onerror = null;
-        _this.fileComplete(file);
+        scope.fileComplete(file);
       }
     };
     file.data.onerror = () => {
-      if (_this.isUseRetry && (!file.numRetry || file.numRetry < _this.maxRetry)) {
+      if (scope.isUseRetry && (!file.numRetry || file.numRetry < scope.maxRetry)) {
         file.numRetry = !file.numRetry ? 1 : file.numRetry += 1;
-        _this.loadImageTag(file);
+        scope.loadImageTag(file);
       } else if (file.data.onload) {
         file.data.onload = null;
         file.data.onerror = null;
-        _this.fileError(file);
+        scope.fileError(file);
       }
     };
     file.data.src = this.transformUrl(file.url, file);
@@ -614,13 +614,18 @@ export default class {
       return null;
     };
     xhr.onerror = () => {
-      try {
-        return onerror.call(scope, file, xhr);
-      } catch (e) {
-        if (!scope.hasLoaded) {
-          scope.asyncComplete(file, e.message || 'Exception');
-        } else {
-          scope.game.exceptionHandler(e);
+      if (scope.isUseRetry && (!file.numRetry || file.numRetry < scope.maxRetry)) {
+        file.numRetry = !file.numRetry ? 1 : file.numRetry += 1;
+        scope.xhrLoad(file, url, type, onload, onerror);
+      } else {
+        try {
+          return onerror.call(scope, file, xhr);
+        } catch (e) {
+          if (!scope.hasLoaded) {
+            scope.asyncComplete(file, e.message || 'Exception');
+          } else {
+            scope.game.exceptionHandler(e);
+          }
         }
       }
       return null;
@@ -824,7 +829,7 @@ export default class {
   }
 
   log(message, data = '') {
-    if (!this.isLogging) {
+    if (!this.isUseLog) {
       return;
     }
     console.log(`[Loader] ${message}`, data);
