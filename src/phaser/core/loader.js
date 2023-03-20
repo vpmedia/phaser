@@ -585,6 +585,7 @@ export default class {
 
   xhrLoad(file, url, type, onload, onerror) {
     this.log('xhrLoad', file);
+    const scope = this;
     const xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
     xhr.responseType = type;
@@ -595,11 +596,16 @@ export default class {
       xhr.setRequestHeader('Accept', this.headers[file.type]);
     }
     onerror = onerror || this.fileError;
-    const scope = this;
     xhr.onload = () => {
       try {
         if (xhr.readyState === 4 && xhr.status >= 400 && xhr.status <= 599) { // Handle HTTP status codes of 4xx and 5xx as errors, even if xhr.onerror was not called.
-          return onerror.call(scope, file, xhr);
+          if (scope.isUseRetry && (!file.numRetry || file.numRetry < scope.maxRetry)) {
+            file.numRetry = !file.numRetry ? 1 : file.numRetry += 1;
+            scope.xhrLoad(file, url, type, onload, onerror);
+            return null;
+          } else {
+            return onerror.call(scope, file, xhr);
+          }
         }
         return onload.call(scope, file, xhr);
       } catch (e) {
