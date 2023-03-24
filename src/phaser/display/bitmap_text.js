@@ -260,7 +260,14 @@ export default class extends DisplayObject {
   }
 
   get fill() {
-    return typeof this.tint === 'number' ? `#${this.tint.toString(16).toUpperCase()}` : this.tint;
+    if (typeof this.tint === 'number') {
+      let colorStr = this.tint.toString(16);
+      while (colorStr.length < 6) {
+        colorStr = '0' + colorStr;
+      }
+      return `#${colorStr.toUpperCase()}`;
+    }
+    return this.tint;
   }
 
   set fill(value) {
