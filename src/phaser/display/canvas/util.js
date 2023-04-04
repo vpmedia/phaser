@@ -18,7 +18,7 @@ import { create as createCanvas } from './pool';
 export function create(parent, width, height, id, skipPool) {
   width = width || 256;
   height = height || 256;
-  const canvas = (skipPool) ? document.createElement('canvas') : createCanvas(parent, width, height);
+  const canvas = skipPool ? document.createElement('canvas') : createCanvas(parent, width, height);
   if (typeof id === 'string' && id !== '') {
     canvas.id = id;
   }

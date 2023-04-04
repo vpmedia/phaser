@@ -6,7 +6,6 @@
 import { clone } from './graphics_data_util';
 
 export default class {
-
   constructor(lineWidth, lineColor, lineAlpha, fillColor, fillAlpha, fill, shape) {
     this.lineWidth = lineWidth;
     this.lineColor = lineColor;
@@ -23,5 +22,4 @@ export default class {
   clone() {
     return clone(this);
   }
-
 }

@@ -5,7 +5,6 @@
  */
 
 export default class {
-
   constructor() {
     this.desktop = false;
     this.iOS = false;
@@ -36,5 +35,4 @@ export default class {
     this.cancelFullscreen = '';
     this.fullscreenKeyboard = false;
   }
-
 }

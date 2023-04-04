@@ -5,7 +5,6 @@
  */
 
 export default class {
-
   constructor(timer, delay, tick, repeatCount, loop, callback, callbackContext, args) {
     this.timer = timer;
     this.delay = delay;
@@ -17,5 +16,4 @@ export default class {
     this.args = args;
     this.pendingDelete = false;
   }
-
 }

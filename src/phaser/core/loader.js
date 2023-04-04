@@ -10,7 +10,6 @@ import { canPlayAudio } from './device_util';
 const TEXTURE_ATLAS_JSON_HASH = 1;
 
 export default class {
-
   constructor(game) {
     this.game = game;
     this.cache = game.cache;
@@ -122,7 +121,14 @@ export default class {
     }
   }
 
-  addToFileList(type, key = '', url = null, properties = null, overwrite = false, extension = null) {
+  addToFileList(
+    type,
+    key = '',
+    url = null,
+    properties = null,
+    overwrite = false,
+    extension = null
+  ) {
     if (key === undefined || key === '') {
       console.warn('Loader: Invalid or no key given of type ' + type);
       return this;
@@ -184,7 +190,7 @@ export default class {
       loading: false,
       loaded: false,
       error: false,
-      callbackContext: callbackContext
+      callbackContext: callbackContext,
     };
     if (data) {
       if (typeof data === 'string') {
@@ -234,7 +240,14 @@ export default class {
   }
 
   spritesheet(key, url, frameWidth, frameHeight, frameMax = -1, margin = 0, spacing = 0) {
-    return this.addToFileList('spritesheet', key, url, { frameWidth, frameHeight, frameMax, margin, spacing }, false, '.png');
+    return this.addToFileList(
+      'spritesheet',
+      key,
+      url,
+      { frameWidth, frameHeight, frameMax, margin, spacing },
+      false,
+      '.png'
+    );
   }
 
   audio(key, urls, autoDecode = true) {
@@ -263,7 +276,14 @@ export default class {
     return this;
   }
 
-  bitmapFont(key, textureURL = null, atlasURL = null, atlasData = null, xSpacing = 0, ySpacing = 0) {
+  bitmapFont(
+    key,
+    textureURL = null,
+    atlasURL = null,
+    atlasData = null,
+    xSpacing = 0,
+    ySpacing = 0
+  ) {
     if (textureURL === undefined || textureURL === null) {
       textureURL = key + '.png';
     }
@@ -285,7 +305,13 @@ export default class {
       if (!xml && !json) {
         throw new Error('Loader. Invalid Bitmap Font atlas given');
       }
-      this.addToFileList('bitmapfont', key, textureURL, { atlasURL: null, atlasData: json || xml, atlasType: (json ? 'json' : 'xml'), xSpacing, ySpacing });
+      this.addToFileList('bitmapfont', key, textureURL, {
+        atlasURL: null,
+        atlasData: json || xml,
+        atlasType: json ? 'json' : 'xml',
+        xSpacing,
+        ySpacing,
+      });
     }
     return this;
   }
@@ -368,11 +394,22 @@ export default class {
         }
         if (file.type !== 'packfile') {
           this._loadedFileCount += 1;
-          this.onFileComplete.dispatch(this.progress, file.key, !file.error, this._loadedFileCount, this._totalFileCount);
+          this.onFileComplete.dispatch(
+            this.progress,
+            file.key,
+            !file.error,
+            this._loadedFileCount,
+            this._totalFileCount
+          );
         } else if (file.type === 'packfile' && file.error) {
           // Non-error pack files are handled when processing the file queue
           this._loadedPackCount += 1;
-          this.onPackComplete.dispatch(file.key, !file.error, this._loadedPackCount, this._totalPackCount);
+          this.onPackComplete.dispatch(
+            file.key,
+            !file.error,
+            this._loadedPackCount,
+            this._totalPackCount
+          );
         }
       }
     }
@@ -386,7 +423,12 @@ export default class {
         // Processing the pack / adds more files
         this.processPack(file);
         this._loadedPackCount += 1;
-        this.onPackComplete.dispatch(file.key, !file.error, this._loadedPackCount, this._totalPackCount);
+        this.onPackComplete.dispatch(
+          file.key,
+          !file.error,
+          this._loadedPackCount,
+          this._totalPackCount
+        );
       }
       if (file.loaded || file.error) {
         // Item at the start of file list finished, can skip it in future
@@ -417,7 +459,10 @@ export default class {
       }
       // Stop looking if queue full - or if syncblocked and there are no more packs.
       // (As only packs can be loaded around a syncblock)
-      if (this._flightQueue.length >= inflightLimit || (syncblock && this._loadedPackCount === this._totalPackCount)) {
+      if (
+        this._flightQueue.length >= inflightLimit ||
+        (syncblock && this._loadedPackCount === this._totalPackCount)
+      ) {
         break;
       }
     }
@@ -477,35 +522,56 @@ export default class {
     for (let i = 0; i < packDataCompat.length; i += 1) {
       const file = packDataCompat[i];
       switch (file.type) {
-        case "image":
+        case 'image':
           this.image(file.key, file.url, file.overwrite);
           break;
-        case "text":
+        case 'text':
           this.text(file.key, file.url, file.overwrite);
           break;
-        case "json":
+        case 'json':
           this.json(file.key, file.url, file.overwrite);
           break;
-        case "xml":
+        case 'xml':
           this.xml(file.key, file.url, file.overwrite);
           break;
-        case "spritesheet":
-          this.spritesheet(file.key, file.url, file.frameWidth, file.frameHeight, file.frameMax, file.margin, file.spacing);
+        case 'spritesheet':
+          this.spritesheet(
+            file.key,
+            file.url,
+            file.frameWidth,
+            file.frameHeight,
+            file.frameMax,
+            file.margin,
+            file.spacing
+          );
           break;
-        case "audio":
+        case 'audio':
           this.audio(file.key, file.urls ? file.urls : file.url);
           break;
-        case "audiosprite":
+        case 'audiosprite':
           this.audioSprite(file.key, file.urls ? file.urls : file.url, file.jsonURL, file.jsonData);
           break;
-        case "audioSprite":
+        case 'audioSprite':
           this.audioSprite(file.key, file.audioURL, file.jsonURL, file.jsonData);
           break;
-        case "bitmapFont":
-          this.bitmapFont(file.key, file.textureURL, file.fontDataURL ? file.fontDataURL : file.atlasURL, file.atlasData, file.xSpacing, file.ySpacing);
+        case 'bitmapFont':
+          this.bitmapFont(
+            file.key,
+            file.textureURL,
+            file.fontDataURL ? file.fontDataURL : file.atlasURL,
+            file.atlasData,
+            file.xSpacing,
+            file.ySpacing
+          );
           break;
-        case "atlas":
-          this.atlas(file.key, file.textureURL, file.atlasURL, file.atlasData, TEXTURE_ATLAS_JSON_HASH);
+        case 'atlas':
+          this.atlas(
+            file.key,
+            file.textureURL,
+            file.atlasURL,
+            file.atlasData,
+            TEXTURE_ATLAS_JSON_HASH
+          );
           break;
       }
     }
@@ -537,7 +603,11 @@ export default class {
         if (file.url) {
           this.xhrLoad(file, this.transformUrl(file.url, file), 'arraybuffer', this.fileComplete);
         } else {
-          this.fileError(file, null, 'No supported audio URL specified or device does not have audio playback support');
+          this.fileError(
+            file,
+            null,
+            'No supported audio URL specified or device does not have audio playback support'
+          );
         }
         break;
       case 'json':
@@ -572,7 +642,7 @@ export default class {
     };
     file.data.onerror = () => {
       if (scope.isUseRetry && (!file.numRetry || file.numRetry < scope.maxRetry)) {
-        file.numRetry = !file.numRetry ? 1 : file.numRetry += 1;
+        file.numRetry = !file.numRetry ? 1 : (file.numRetry += 1);
         scope.loadImageTag(file);
       } else if (file.data.onload) {
         file.data.onload = null;
@@ -598,9 +668,10 @@ export default class {
     onerror = onerror || this.fileError;
     xhr.onload = () => {
       try {
-        if (xhr.readyState === 4 && xhr.status >= 400 && xhr.status <= 599) { // Handle HTTP status codes of 4xx and 5xx as errors, even if xhr.onerror was not called.
+        if (xhr.readyState === 4 && xhr.status >= 400 && xhr.status <= 599) {
+          // Handle HTTP status codes of 4xx and 5xx as errors, even if xhr.onerror was not called.
           if (scope.isUseRetry && (!file.numRetry || file.numRetry < scope.maxRetry)) {
-            file.numRetry = !file.numRetry ? 1 : file.numRetry += 1;
+            file.numRetry = !file.numRetry ? 1 : (file.numRetry += 1);
             scope.xhrLoad(file, url, type, onload, onerror);
             return null;
           } else {
@@ -621,7 +692,7 @@ export default class {
     };
     xhr.onerror = () => {
       if (scope.isUseRetry && (!file.numRetry || file.numRetry < scope.maxRetry)) {
-        file.numRetry = !file.numRetry ? 1 : file.numRetry += 1;
+        file.numRetry = !file.numRetry ? 1 : (file.numRetry += 1);
         scope.xhrLoad(file, url, type, onload, onerror);
       } else {
         try {
@@ -702,7 +773,16 @@ export default class {
         this.cache.addImage(file.key, file.url, file.data);
         break;
       case 'spritesheet':
-        this.cache.addSpriteSheet(file.key, file.url, file.data, file.frameWidth, file.frameHeight, file.frameMax, file.margin, file.spacing);
+        this.cache.addSpriteSheet(
+          file.key,
+          file.url,
+          file.data,
+          file.frameWidth,
+          file.frameHeight,
+          file.frameMax,
+          file.margin,
+          file.spacing
+        );
         break;
       case 'textureatlas':
         if (file.atlasURL == null) {
@@ -710,7 +790,12 @@ export default class {
         } else {
           loadNext = false;
           if (file.format === TEXTURE_ATLAS_JSON_HASH) {
-            this.xhrLoad(file, this.transformUrl(file.atlasURL, file), 'text', this.jsonLoadComplete);
+            this.xhrLoad(
+              file,
+              this.transformUrl(file.atlasURL, file),
+              'text',
+              this.jsonLoadComplete
+            );
           } else {
             throw new Error('Invalid Texture Atlas format: ' + file.format);
           }
@@ -718,26 +803,39 @@ export default class {
         break;
       case 'bitmapfont':
         if (!file.atlasURL) {
-          this.cache.addBitmapFont(file.key, file.url, file.data, file.atlasData, file.atlasType, file.xSpacing, file.ySpacing);
+          this.cache.addBitmapFont(
+            file.key,
+            file.url,
+            file.data,
+            file.atlasData,
+            file.atlasType,
+            file.xSpacing,
+            file.ySpacing
+          );
         } else {
           //  Load the XML before carrying on with the next file
           loadNext = false;
-          this.xhrLoad(file, this.transformUrl(file.atlasURL, file), 'text', (bitmapFontFile, bitmapFontXhr) => {
-            let json;
-            try {
-              // Try to parse as JSON, if it fails, then it's hopefully XML
-              json = JSON.parse(bitmapFontXhr.responseText);
-            } catch (e) {
-              // pass
+          this.xhrLoad(
+            file,
+            this.transformUrl(file.atlasURL, file),
+            'text',
+            (bitmapFontFile, bitmapFontXhr) => {
+              let json;
+              try {
+                // Try to parse as JSON, if it fails, then it's hopefully XML
+                json = JSON.parse(bitmapFontXhr.responseText);
+              } catch (e) {
+                // pass
+              }
+              if (json) {
+                bitmapFontFile.atlasType = 'json';
+                this.jsonLoadComplete(bitmapFontFile, bitmapFontXhr);
+              } else {
+                bitmapFontFile.atlasType = 'xml';
+                this.xmlLoadComplete(bitmapFontFile, bitmapFontXhr);
+              }
             }
-            if (json) {
-              bitmapFontFile.atlasType = 'json';
-              this.jsonLoadComplete(bitmapFontFile, bitmapFontXhr);
-            } else {
-              bitmapFontFile.atlasType = 'xml';
-              this.xmlLoadComplete(bitmapFontFile, bitmapFontXhr);
-            }
-          });
+          );
         }
         break;
       case 'audio':
@@ -763,7 +861,15 @@ export default class {
   jsonLoadComplete(file, xhr) {
     const data = JSON.parse(xhr.responseText);
     if (file.type === 'bitmapfont') {
-      this.cache.addBitmapFont(file.key, file.url, file.data, data, file.atlasType, file.xSpacing, file.ySpacing);
+      this.cache.addBitmapFont(
+        file.key,
+        file.url,
+        file.data,
+        data,
+        file.atlasType,
+        file.xSpacing,
+        file.ySpacing
+      );
     } else if (file.type === 'json') {
       this.cache.addJSON(file.key, file.url, data);
     } else {
@@ -788,7 +894,15 @@ export default class {
       return;
     }
     if (file.type === 'bitmapfont') {
-      this.cache.addBitmapFont(file.key, file.url, file.data, xml, file.atlasType, file.xSpacing, file.ySpacing);
+      this.cache.addBitmapFont(
+        file.key,
+        file.url,
+        file.data,
+        xml,
+        file.atlasType,
+        file.xSpacing,
+        file.ySpacing
+      );
     } else if (file.type === 'textureatlas') {
       this.cache.addTextureAtlas(file.key, file.url, file.data, xml, file.format);
     } else if (file.type === 'xml') {
@@ -821,9 +935,13 @@ export default class {
   updateProgress() {
     if (this.preloadSprite) {
       if (this.preloadSprite.direction === 0) {
-        this.preloadSprite.rect.width = Math.floor((this.preloadSprite.width / 100) * this.progress);
+        this.preloadSprite.rect.width = Math.floor(
+          (this.preloadSprite.width / 100) * this.progress
+        );
       } else {
-        this.preloadSprite.rect.height = Math.floor((this.preloadSprite.height / 100) * this.progress);
+        this.preloadSprite.rect.height = Math.floor(
+          (this.preloadSprite.height / 100) * this.progress
+        );
       }
       if (this.preloadSprite.sprite) {
         this.preloadSprite.sprite.updateCrop();
@@ -865,5 +983,4 @@ export default class {
   get progress() {
     return Math.round(this.progressFloat);
   }
-
 }

@@ -9,7 +9,6 @@ import * as MathUtils from '../util/math';
 import { TWEEN_PENDING, TWEEN_RUNNING, TWEEN_COMPLETE, TWEEN_LOOPED } from './const';
 
 export default class {
-
   constructor(target, game, manager) {
     this.game = game;
     this.target = target;
@@ -36,7 +35,15 @@ export default class {
     this._hasStarted = false;
   }
 
-  to(properties, duration = 1000, ease = 'Linear', autoStart = false, delay = 0, repeat = 0, yoyo = false) {
+  to(
+    properties,
+    duration = 1000,
+    ease = 'Linear',
+    autoStart = false,
+    delay = 0,
+    repeat = 0,
+    yoyo = false
+  ) {
     if (typeof ease === 'string' && this.manager.easeMap[ease]) {
       ease = this.manager.easeMap[ease];
     }
@@ -50,7 +57,15 @@ export default class {
     return this;
   }
 
-  from(properties, duration = 1000, ease = 'Linear', autoStart = false, delay = 0, repeat = 0, yoyo = false) {
+  from(
+    properties,
+    duration = 1000,
+    ease = 'Linear',
+    autoStart = false,
+    delay = 0,
+    repeat = 0,
+    yoyo = false
+  ) {
     if (typeof ease === 'string' && this.manager.easeMap[ease]) {
       ease = this.manager.easeMap[ease];
     }
@@ -66,7 +81,12 @@ export default class {
   }
 
   start(index = 0) {
-    if (this.game === null || this.target === null || this.timeline.length === 0 || this.isRunning) {
+    if (
+      this.game === null ||
+      this.target === null ||
+      this.timeline.length === 0 ||
+      this.isRunning
+    ) {
       return this;
     }
     //  Populate the tween data
@@ -177,7 +197,7 @@ export default class {
   }
 
   loop(value = true) {
-    this.repeatCounter = (value) ? -1 : 0;
+    this.repeatCounter = value ? -1 : 0;
     return this;
   }
 
@@ -206,7 +226,7 @@ export default class {
       this._codePaused = false;
       for (let i = 0; i < this.timeline.length; i += 1) {
         if (!this.timeline[i].isRunning) {
-          this.timeline[i].startTime += (this.game.time.time - this._pausedTime);
+          this.timeline[i].startTime += this.game.time.time - this._pausedTime;
         }
       }
     }
@@ -234,7 +254,12 @@ export default class {
         this._hasStarted = true;
       }
       if (this._onUpdateCallback !== null) {
-        this._onUpdateCallback.call(this._onUpdateCallbackContext, this, this.timeline[this.current].value, this.timeline[this.current]);
+        this._onUpdateCallback.call(
+          this._onUpdateCallbackContext,
+          this,
+          this.timeline[this.current].value,
+          this.timeline[this.current]
+        );
       }
       //  In case the update callback modifies this tween
       return this.isRunning;
@@ -324,5 +349,4 @@ export default class {
     }
     return total;
   }
-
 }

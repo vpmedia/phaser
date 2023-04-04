@@ -6,7 +6,6 @@
  */
 
 export default class {
-
   constructor(fragmentSrc, uniforms) {
     this.passes = [this];
     this.shaders = [];
@@ -21,5 +20,4 @@ export default class {
       this.shaders[i].dirty = true;
     }
   }
-
 }

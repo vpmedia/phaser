@@ -7,7 +7,6 @@ import { distance, rotate, clone } from './util/point';
 import { GEOM_POINT } from '../core/const';
 
 export default class {
-
   constructor(x = 0, y = 0) {
     this.x = x;
     this.y = y;
@@ -24,14 +23,14 @@ export default class {
 
   setTo(x, y) {
     this.x = x || 0;
-    this.y = y || ((y !== 0) ? this.x : 0);
+    this.y = y || (y !== 0 ? this.x : 0);
     return this;
   }
 
   set(x, y) {
     // deprecated, use setTo(x, y)
     this.x = x || 0;
-    this.y = y || ((y !== 0) ? this.x : 0);
+    this.y = y || (y !== 0 ? this.x : 0);
     return this;
   }
 
@@ -90,12 +89,12 @@ export default class {
   }
 
   equals(a) {
-    return (a.x === this.x && a.y === this.y);
+    return a.x === this.x && a.y === this.y;
   }
 
   angle(a, asDegrees = false) {
     if (asDegrees) {
-      return (180 / Math.PI) * (Math.atan2(a.y - this.y, a.x - this.x));
+      return (180 / Math.PI) * Math.atan2(a.y - this.y, a.x - this.x);
     }
     return Math.atan2(a.y - this.y, a.x - this.x);
   }
@@ -105,11 +104,11 @@ export default class {
   }
 
   getMagnitude() {
-    return Math.sqrt((this.x * this.x) + (this.y * this.y));
+    return Math.sqrt(this.x * this.x + this.y * this.y);
   }
 
   getMagnitudeSq() {
-    return (this.x * this.x) + (this.y * this.y);
+    return this.x * this.x + this.y * this.y;
   }
 
   setMagnitude(magnitude) {
@@ -126,15 +125,15 @@ export default class {
   }
 
   isZero() {
-    return (this.x === 0 && this.y === 0);
+    return this.x === 0 && this.y === 0;
   }
 
   dot(a) {
-    return ((this.x * a.x) + (this.y * a.y));
+    return this.x * a.x + this.y * a.y;
   }
 
   cross(a) {
-    return ((this.x * a.y) - (this.y * a.x));
+    return this.x * a.y - this.y * a.x;
   }
 
   perp() {
@@ -160,5 +159,4 @@ export default class {
   toString() {
     return '[{Point (x=' + this.x + ' y=' + this.y + ')}]';
   }
-
 }

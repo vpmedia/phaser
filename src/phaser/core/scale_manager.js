@@ -7,10 +7,16 @@ import Signal from './signal';
 import DOM from './dom';
 import Point from '../geom/point';
 import Rectangle from '../geom/rectangle';
-import { SCALE_OFF, SCALE_RESIZE, SCALE_EXACT_FIT, SCALE_USER, SCALE_SHOW_ALL, RENDER_CANVAS } from './const';
+import {
+  SCALE_OFF,
+  SCALE_RESIZE,
+  SCALE_EXACT_FIT,
+  SCALE_USER,
+  SCALE_SHOW_ALL,
+  RENDER_CANVAS,
+} from './const';
 
 export default class {
-
   constructor(game, width, height) {
     this.game = game;
     this.dom = new DOM(game.device);
@@ -102,14 +108,14 @@ export default class {
     }
     // Configure event listeners
     const scope = this;
-    this._orientationChange = event => scope.orientationChange(event);
-    this._windowResize = event => scope.windowResize(event);
+    this._orientationChange = (event) => scope.orientationChange(event);
+    this._windowResize = (event) => scope.windowResize(event);
     // This does not appear to be on the standards track
     window.addEventListener('orientationchange', this._orientationChange, false);
     window.addEventListener('resize', this._windowResize, false);
     if (this.compatibility.supportsFullScreen) {
-      this._fullScreenChange = event => scope.fullScreenChange(event);
-      this._fullScreenError = event => scope.fullScreenError(event);
+      this._fullScreenChange = (event) => scope.fullScreenChange(event);
+      this._fullScreenError = (event) => scope.fullScreenError(event);
       document.addEventListener('webkitfullscreenchange', this._fullScreenChange, false);
       document.addEventListener('mozfullscreenchange', this._fullScreenChange, false);
       document.addEventListener('MSFullscreenChange', this._fullScreenChange, false);
@@ -225,7 +231,12 @@ export default class {
   }
 
   signalSizeChange() {
-    if (this.width !== this._lastReportedCanvasSize.width || this.height !== this._lastReportedCanvasSize.height || this.game.width !== this._lastReportedGameSize.width || this.game.height !== this._lastReportedGameSize.height) {
+    if (
+      this.width !== this._lastReportedCanvasSize.width ||
+      this.height !== this._lastReportedCanvasSize.height ||
+      this.game.width !== this._lastReportedGameSize.width ||
+      this.game.height !== this._lastReportedGameSize.height
+    ) {
       const width = this.width;
       const height = this.height;
       this._lastReportedCanvasSize.setTo(0, 0, width, height);
@@ -251,7 +262,7 @@ export default class {
   }
 
   preUpdate() {
-    if (this.game.time.time < (this._lastUpdate + this._updateThrottle)) {
+    if (this.game.time.time < this._lastUpdate + this._updateThrottle) {
       return;
     }
     const prevThrottle = this._updateThrottle;
@@ -335,7 +346,8 @@ export default class {
     const previousOrientation = this.screenOrientation;
     const previouslyIncorrect = this.incorrectOrientation;
     this.screenOrientation = this.dom.getScreenOrientation(this.compatibility.orientationFallback);
-    this.incorrectOrientation = (this.forceLandscape && !this.isLandscape) || (this.forcePortrait && !this.isPortrait);
+    this.incorrectOrientation =
+      (this.forceLandscape && !this.isLandscape) || (this.forcePortrait && !this.isPortrait);
     const changed = previousOrientation !== this.screenOrientation;
     const correctnessChanged = previouslyIncorrect !== this.incorrectOrientation;
     if (correctnessChanged) {
@@ -390,10 +402,13 @@ export default class {
       this.width = this.game.width;
       this.height = this.game.height;
     } else if (scaleMode === SCALE_USER) {
-      this.width = (this.game.width * this._userScaleFactor.x) - this._userScaleTrim.x;
-      this.height = (this.game.height * this._userScaleFactor.y) - this._userScaleTrim.y;
+      this.width = this.game.width * this._userScaleFactor.x - this._userScaleTrim.x;
+      this.height = this.game.height * this._userScaleFactor.y - this._userScaleTrim.y;
     }
-    if (!this.compatibility.canExpandParent && (scaleMode === SCALE_SHOW_ALL || scaleMode === SCALE_USER)) {
+    if (
+      !this.compatibility.canExpandParent &&
+      (scaleMode === SCALE_SHOW_ALL || scaleMode === SCALE_USER)
+    ) {
       const bounds = this.getParentBounds(this._tempBounds);
       this.width = Math.min(this.width, bounds.width);
       this.height = Math.min(this.height, bounds.height);
@@ -414,8 +429,15 @@ export default class {
     } else {
       // Ref. http://msdn.microsoft.com/en-us/library/hh781509(v=vs.85).aspx for getBoundingClientRect
       const clientRect = parentNode.getBoundingClientRect();
-      const parentRect = (parentNode.offsetParent) ? parentNode.offsetParent.getBoundingClientRect() : parentNode.getBoundingClientRect();
-      bounds.setTo(clientRect.left - parentRect.left, clientRect.top - parentRect.top, clientRect.width, clientRect.height);
+      const parentRect = parentNode.offsetParent
+        ? parentNode.offsetParent.getBoundingClientRect()
+        : parentNode.getBoundingClientRect();
+      bounds.setTo(
+        clientRect.left - parentRect.left,
+        clientRect.top - parentRect.top,
+        clientRect.width,
+        clientRect.height
+      );
       const wc = this.windowConstraints;
       if (wc.right) {
         const windowBounds = wc.right === 'layout' ? layoutBounds : visualBounds;
@@ -426,7 +448,12 @@ export default class {
         bounds.bottom = Math.min(bounds.bottom, windowBounds.height);
       }
     }
-    bounds.setTo(Math.round(bounds.x), Math.round(bounds.y), Math.round(bounds.width), Math.round(bounds.height));
+    bounds.setTo(
+      Math.round(bounds.x),
+      Math.round(bounds.y),
+      Math.round(bounds.width),
+      Math.round(bounds.height)
+    );
     return bounds;
   }
 
@@ -440,7 +467,7 @@ export default class {
       const canvasBounds = canvas.getBoundingClientRect();
       if (this.width < parentBounds.width && !this.incorrectOrientation) {
         const currentEdge = canvasBounds.left - parentBounds.x;
-        let targetEdge = (parentBounds.width / 2) - (this.width / 2);
+        let targetEdge = parentBounds.width / 2 - this.width / 2;
         targetEdge = Math.max(targetEdge, 0);
         const offset = targetEdge - currentEdge;
         margin.left = Math.round(offset);
@@ -457,7 +484,7 @@ export default class {
       const canvasBounds = canvas.getBoundingClientRect();
       if (this.height < parentBounds.height && !this.incorrectOrientation) {
         const currentEdge = canvasBounds.top - parentBounds.y;
-        let targetEdge = (parentBounds.height / 2) - (this.height / 2);
+        let targetEdge = parentBounds.height / 2 - this.height / 2;
         targetEdge = Math.max(targetEdge, 0);
         const offset = targetEdge - currentEdge;
         margin.top = Math.round(offset);
@@ -482,7 +509,10 @@ export default class {
   reflowCanvas() {
     if (!this.incorrectOrientation) {
       this.width = Math.max(this.minWidth || 0, Math.min(this.maxWidth || this.width, this.width));
-      this.height = Math.max(this.minHeight || 0, Math.min(this.maxHeight || this.height, this.height));
+      this.height = Math.max(
+        this.minHeight || 0,
+        Math.min(this.maxHeight || this.height, this.height)
+      );
     }
     this.resetCanvas();
     if (!this.compatibility.noMargins) {
@@ -530,9 +560,9 @@ export default class {
     const height = bounds.height;
     let multiplier;
     if (expanding) {
-      multiplier = Math.max((height / this.game.height), (width / this.game.width));
+      multiplier = Math.max(height / this.game.height, width / this.game.width);
     } else {
-      multiplier = Math.min((height / this.game.height), (width / this.game.width));
+      multiplier = Math.min(height / this.game.height, width / this.game.width);
     }
     this.width = Math.round(this.game.width * multiplier);
     this.height = Math.round(this.game.height * multiplier);
@@ -576,8 +606,15 @@ export default class {
     }
     if (this.compatibility.clickTrampoline === 'when-not-mouse') {
       const input = this.game.input;
-      if (input.activePointer && input.activePointer !== input.mousePointer && (allowTrampoline || allowTrampoline !== false)) {
-        input.activePointer.addClickTrampoline('startFullScreen', this.startFullScreen, this, [antialias, false]);
+      if (
+        input.activePointer &&
+        input.activePointer !== input.mousePointer &&
+        (allowTrampoline || allowTrampoline !== false)
+      ) {
+        input.activePointer.addClickTrampoline('startFullScreen', this.startFullScreen, this, [
+          antialias,
+          false,
+        ]);
         return false;
       }
     }
@@ -698,7 +735,10 @@ export default class {
   }
 
   get boundingParent() {
-    if (this.parentIsWindow || (this.isFullScreen && this.hasPhaserSetFullScreen && !this._createdFullScreenTarget)) {
+    if (
+      this.parentIsWindow ||
+      (this.isFullScreen && this.hasPhaserSetFullScreen && !this._createdFullScreenTarget)
+    ) {
       return null;
     }
     const parentNode = this.game.canvas && this.game.canvas.parentNode;
@@ -752,7 +792,12 @@ export default class {
   }
 
   get isFullScreen() {
-    return !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement);
+    return !!(
+      document.fullscreenElement ||
+      document.webkitFullscreenElement ||
+      document.mozFullScreenElement ||
+      document.msFullscreenElement
+    );
   }
 
   get isPortrait() {
@@ -770,5 +815,4 @@ export default class {
   get isGameLandscape() {
     return this.width > this.height;
   }
-
 }

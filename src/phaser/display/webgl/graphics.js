@@ -6,7 +6,13 @@
  */
 import GraphicsData from './graphics_data';
 import Point from '../../geom/point';
-import { GEOM_CIRCLE, GEOM_ELLIPSE, GEOM_POLYGON, GEOM_RECTANGLE, GEOM_ROUNDED_RECTANGLE } from '../../core/const';
+import {
+  GEOM_CIRCLE,
+  GEOM_ELLIPSE,
+  GEOM_POLYGON,
+  GEOM_RECTANGLE,
+  GEOM_ROUNDED_RECTANGLE,
+} from '../../core/const';
 import { hex2rgb } from '../../util/math';
 import { triangulate } from './earcut';
 
@@ -133,7 +139,7 @@ export function buildLine(graphicsData, webGLData) {
   p2y = points[3];
   perpx = -(p1y - p2y);
   perpy = p1x - p2x;
-  dist = Math.sqrt((perpx * perpx) + (perpy * perpy));
+  dist = Math.sqrt(perpx * perpx + perpy * perpy);
   perpx /= dist;
   perpy /= dist;
   perpx *= width;
@@ -144,13 +150,13 @@ export function buildLine(graphicsData, webGLData) {
   for (i = 1; i < length - 1; i += 1) {
     p1x = points[(i - 1) * 2];
     p1y = points[(i - 1) * 2 + 1];
-    p2x = points[(i) * 2];
-    p2y = points[(i) * 2 + 1];
+    p2x = points[i * 2];
+    p2y = points[i * 2 + 1];
     p3x = points[(i + 1) * 2];
     p3y = points[(i + 1) * 2 + 1];
     perpx = -(p1y - p2y);
     perpy = p1x - p2x;
-    dist = Math.sqrt((perpx * perpx) + (perpy * perpy));
+    dist = Math.sqrt(perpx * perpx + perpy * perpy);
     perpx /= dist;
     perpy /= dist;
     perpx *= width;
@@ -162,13 +168,13 @@ export function buildLine(graphicsData, webGLData) {
     perp2y /= dist;
     perp2x *= width;
     perp2y *= width;
-    a1 = (-perpy + p1y) - (-perpy + p2y);
-    b1 = (-perpx + p2x) - (-perpx + p1x);
+    a1 = -perpy + p1y - (-perpy + p2y);
+    b1 = -perpx + p2x - (-perpx + p1x);
     c1 = (-perpx + p1x) * (-perpy + p2y) - (-perpx + p2x) * (-perpy + p1y);
-    a2 = (-perp2y + p3y) - (-perp2y + p2y);
-    b2 = (-perp2x + p2x) - (-perp2x + p3x);
+    a2 = -perp2y + p3y - (-perp2y + p2y);
+    b2 = -perp2x + p2x - (-perp2x + p3x);
     c2 = (-perp2x + p3x) * (-perp2y + p2y) - (-perp2x + p2x) * (-perp2y + p3y);
-    denom = (a1 * b2) - (a2 * b1);
+    denom = a1 * b2 - a2 * b1;
     if (Math.abs(denom) < 0.1) {
       denom += 10.1;
       verts.push(p2x - perpx, p2y - perpy, r, g, b, alpha);
@@ -206,7 +212,7 @@ export function buildLine(graphicsData, webGLData) {
   p2y = points[(length - 1) * 2 + 1];
   perpx = -(p1y - p2y);
   perpy = p1x - p2x;
-  dist = Math.sqrt((perpx * perpx) + (perpy * perpy));
+  dist = Math.sqrt(perpx * perpx + perpy * perpy);
   perpx /= dist;
   perpy /= dist;
   perpx *= width;
@@ -288,7 +294,7 @@ export function quadraticBezierCurve(fromX, fromY, cpX, cpY, toX, toY) {
   const points = [];
   const getPt = (n1, n2, perc) => {
     const diff = n2 - n1;
-    return n1 + (diff * perc);
+    return n1 + diff * perc;
   };
   let j = 0;
   for (let i = 0; i <= n; i += 1) {
@@ -320,9 +326,22 @@ export function buildRoundedRectangle(graphicsData, webGLData) {
   const radius = rrectData.radius;
   let recPoints = [];
   recPoints.push(x, y + radius);
-  recPoints = recPoints.concat(quadraticBezierCurve(x, y + height - radius, x, y + height, x + radius, y + height));
-  recPoints = recPoints.concat(quadraticBezierCurve(x + width - radius, y + height, x + width, y + height, x + width, y + height - radius));
-  recPoints = recPoints.concat(quadraticBezierCurve(x + width, y + radius, x + width, y, x + width - radius, y));
+  recPoints = recPoints.concat(
+    quadraticBezierCurve(x, y + height - radius, x, y + height, x + radius, y + height)
+  );
+  recPoints = recPoints.concat(
+    quadraticBezierCurve(
+      x + width - radius,
+      y + height,
+      x + width,
+      y + height,
+      x + width,
+      y + height - radius
+    )
+  );
+  recPoints = recPoints.concat(
+    quadraticBezierCurve(x + width, y + radius, x + width, y, x + width - radius, y)
+  );
   recPoints = recPoints.concat(quadraticBezierCurve(x + radius, y, x, y, x, y + radius));
   if (graphicsData.fill) {
     const color = hex2rgb(graphicsData.fillColor);
@@ -529,7 +548,10 @@ export function updateGraphics(graphics, gl) {
       data.points = data.shape.points.slice();
       if (data.shape.closed) {
         // close the poly if the value is true!
-        if (data.points[0] !== data.points[data.points.length - 2] || data.points[1] !== data.points[data.points.length - 1]) {
+        if (
+          data.points[0] !== data.points[data.points.length - 2] ||
+          data.points[1] !== data.points[data.points.length - 1]
+        ) {
           data.points.push(data.points[0], data.points[1]);
         }
       }

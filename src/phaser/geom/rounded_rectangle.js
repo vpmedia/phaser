@@ -7,7 +7,6 @@ import { clone } from './util/rounded_rectangle';
 import { GEOM_ROUNDED_RECTANGLE } from '../core/const';
 
 export default class {
-
   constructor(x = 0, y = 0, width = 0, height = 0, radius = 20) {
     this.x = x;
     this.y = y;
@@ -32,5 +31,4 @@ export default class {
   clone() {
     return clone(this);
   }
-
 }

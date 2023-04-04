@@ -8,8 +8,7 @@
 /**
  *
  */
-export function initDefaultShaders() {
-}
+export function initDefaultShaders() {}
 
 /**
  *

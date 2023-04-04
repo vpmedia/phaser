@@ -4,25 +4,37 @@
  * @author       Mat Groves http://matgroves.com/ @Doormat23
  * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
  */
-import { GEOM_POLYGON, GEOM_RECTANGLE, GEOM_CIRCLE, GEOM_ELLIPSE, GEOM_ROUNDED_RECTANGLE } from '../../core/const';
+import {
+  GEOM_POLYGON,
+  GEOM_RECTANGLE,
+  GEOM_CIRCLE,
+  GEOM_ELLIPSE,
+  GEOM_ROUNDED_RECTANGLE,
+} from '../../core/const';
 
 /**
  *
  * @param {object} graphics TBD
  */
 export function updateGraphicsTint(graphics) {
-  if (graphics.tint === 0xFFFFFF) {
+  if (graphics.tint === 0xffffff) {
     return;
   }
-  const tintR = (graphics.tint >> 16 & 0xFF) / 255;
-  const tintG = (graphics.tint >> 8 & 0xFF) / 255;
-  const tintB = (graphics.tint & 0xFF) / 255;
+  const tintR = ((graphics.tint >> 16) & 0xff) / 255;
+  const tintG = ((graphics.tint >> 8) & 0xff) / 255;
+  const tintB = (graphics.tint & 0xff) / 255;
   for (let i = 0; i < graphics.graphicsData.length; i += 1) {
     const data = graphics.graphicsData[i];
     const fillColor = data.fillColor | 0;
     const lineColor = data.lineColor | 0;
-    data._fillTint = (((fillColor >> 16 & 0xFF) / 255 * tintR * 255 << 16) + ((fillColor >> 8 & 0xFF) / 255 * tintG * 255 << 8) + (fillColor & 0xFF) / 255 * tintB * 255);
-    data._lineTint = (((lineColor >> 16 & 0xFF) / 255 * tintR * 255 << 16) + ((lineColor >> 8 & 0xFF) / 255 * tintG * 255 << 8) + (lineColor & 0xFF) / 255 * tintB * 255);
+    data._fillTint =
+      (((((fillColor >> 16) & 0xff) / 255) * tintR * 255) << 16) +
+      (((((fillColor >> 8) & 0xff) / 255) * tintG * 255) << 8) +
+      ((fillColor & 0xff) / 255) * tintB * 255;
+    data._lineTint =
+      (((((lineColor >> 16) & 0xff) / 255) * tintR * 255) << 16) +
+      (((((lineColor >> 8) & 0xff) / 255) * tintG * 255) << 8) +
+      ((lineColor & 0xff) / 255) * tintB * 255;
   }
 }
 
@@ -128,7 +140,7 @@ export function renderGraphics(graphics, context) {
       const width = shape.width;
       const height = shape.height;
       let radius = shape.radius;
-      const maxRadius = Math.min(width, height) / 2 | 0;
+      const maxRadius = (Math.min(width, height) / 2) | 0;
       radius = radius > maxRadius ? maxRadius : radius;
       context.beginPath();
       context.moveTo(rx, ry + radius);
@@ -210,7 +222,7 @@ export function renderGraphicsMask(graphics, context) {
       const width = shape.width;
       const height = shape.height;
       let radius = shape.radius;
-      const maxRadius = Math.min(width, height) / 2 | 0;
+      const maxRadius = (Math.min(width, height) / 2) | 0;
       radius = radius > maxRadius ? maxRadius : radius;
       context.moveTo(rx, ry + radius);
       context.lineTo(rx, ry + height - radius);

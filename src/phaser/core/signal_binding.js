@@ -5,7 +5,6 @@
  */
 
 export default class {
-
   constructor(signal, listener, isOnce = false, listenerContext = null, priority = 0, args = null) {
     this._signal = signal;
     this._listener = listener;
@@ -33,7 +32,6 @@ export default class {
       }
     }
     return handlerReturn;
-
   }
 
   detach() {
@@ -41,7 +39,7 @@ export default class {
   }
 
   isBound() {
-    return (!!this._signal && !!this._listener);
+    return !!this._signal && !!this._listener;
   }
 
   isOnce() {
@@ -63,7 +61,14 @@ export default class {
   }
 
   toString() {
-    return '[SignalBinding isOnce:' + this._isOnce + ', isBound:' + this.isBound() + ', active:' + this.active + ']';
+    return (
+      '[SignalBinding isOnce:' +
+      this._isOnce +
+      ', isBound:' +
+      this.isBound() +
+      ', active:' +
+      this.active +
+      ']'
+    );
   }
-
 }

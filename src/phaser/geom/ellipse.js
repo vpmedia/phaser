@@ -9,7 +9,6 @@ import { contains } from './util/ellipse';
 import { GEOM_ELLIPSE } from '../core/const';
 
 export default class {
-
   constructor(x = 0, y = 0, width = 0, height = 0) {
     this.x = x;
     this.y = y;
@@ -52,14 +51,22 @@ export default class {
     const r = Math.random();
     result.x = Math.sqrt(r) * Math.cos(p);
     result.y = Math.sqrt(r) * Math.sin(p);
-    result.x = this.x + (result.x * this.width / 2.0);
-    result.y = this.y + (result.y * this.height / 2.0);
+    result.x = this.x + (result.x * this.width) / 2.0;
+    result.y = this.y + (result.y * this.height) / 2.0;
     return result;
   }
 
   toString() {
-    return '[{Ellipse (x=' + this.x + ' y=' + this.y + ' width=' + this.width + ' height=' + this.height + ')}]';
+    return (
+      '[{Ellipse (x=' +
+      this.x +
+      ' y=' +
+      this.y +
+      ' width=' +
+      this.width +
+      ' height=' +
+      this.height +
+      ')}]'
+    );
   }
-
-
 }

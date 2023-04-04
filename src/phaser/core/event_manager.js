@@ -6,7 +6,6 @@
 import Signal from './signal';
 
 export default class {
-
   constructor(sprite) {
     this.parent = sprite;
     this._onAddedToGroup = null;
@@ -28,21 +27,51 @@ export default class {
 
   destroy() {
     this._parent = null;
-    if (this._onDestroy) { this._onDestroy.dispose(); }
-    if (this._onAddedToGroup) { this._onAddedToGroup.dispose(); }
-    if (this._onRemovedFromGroup) { this._onRemovedFromGroup.dispose(); }
-    if (this._onEnterBounds) { this._onEnterBounds.dispose(); }
-    if (this._onOutOfBounds) { this._onOutOfBounds.dispose(); }
-    if (this._onInputOver) { this._onInputOver.dispose(); }
-    if (this._onInputOut) { this._onInputOut.dispose(); }
-    if (this._onInputDown) { this._onInputDown.dispose(); }
-    if (this._onInputUp) { this._onInputUp.dispose(); }
-    if (this._onDragStart) { this._onDragStart.dispose(); }
-    if (this._onDragUpdate) { this._onDragUpdate.dispose(); }
-    if (this._onDragStop) { this._onDragStop.dispose(); }
-    if (this._onAnimationStart) { this._onAnimationStart.dispose(); }
-    if (this._onAnimationComplete) { this._onAnimationComplete.dispose(); }
-    if (this._onAnimationLoop) { this._onAnimationLoop.dispose(); }
+    if (this._onDestroy) {
+      this._onDestroy.dispose();
+    }
+    if (this._onAddedToGroup) {
+      this._onAddedToGroup.dispose();
+    }
+    if (this._onRemovedFromGroup) {
+      this._onRemovedFromGroup.dispose();
+    }
+    if (this._onEnterBounds) {
+      this._onEnterBounds.dispose();
+    }
+    if (this._onOutOfBounds) {
+      this._onOutOfBounds.dispose();
+    }
+    if (this._onInputOver) {
+      this._onInputOver.dispose();
+    }
+    if (this._onInputOut) {
+      this._onInputOut.dispose();
+    }
+    if (this._onInputDown) {
+      this._onInputDown.dispose();
+    }
+    if (this._onInputUp) {
+      this._onInputUp.dispose();
+    }
+    if (this._onDragStart) {
+      this._onDragStart.dispose();
+    }
+    if (this._onDragUpdate) {
+      this._onDragUpdate.dispose();
+    }
+    if (this._onDragStop) {
+      this._onDragStop.dispose();
+    }
+    if (this._onAnimationStart) {
+      this._onAnimationStart.dispose();
+    }
+    if (this._onAnimationComplete) {
+      this._onAnimationComplete.dispose();
+    }
+    if (this._onAnimationLoop) {
+      this._onAnimationLoop.dispose();
+    }
   }
 
   get onAddedToGroup() {
@@ -239,5 +268,4 @@ export default class {
       this._onAnimationLoop.dispatch(...args);
     }
   }
-
 }

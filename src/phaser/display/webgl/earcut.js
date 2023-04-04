@@ -93,14 +93,14 @@ export function compareX(a, b) {
  */
 export function zOrder(x, y, minX, minY, size) {
   // coords are transformed into non-negative 15-bit integer range
-  x = 32767 * (x - minX) / size;
-  y = 32767 * (y - minY) / size;
-  x = (x | (x << 8)) & 0x00FF00FF;
-  x = (x | (x << 4)) & 0x0F0F0F0F;
+  x = (32767 * (x - minX)) / size;
+  y = (32767 * (y - minY)) / size;
+  x = (x | (x << 8)) & 0x00ff00ff;
+  x = (x | (x << 4)) & 0x0f0f0f0f;
   x = (x | (x << 2)) & 0x33333333;
   x = (x | (x << 1)) & 0x55555555;
-  y = (y | (y << 8)) & 0x00FF00FF;
-  y = (y | (y << 4)) & 0x0F0F0F0F;
+  y = (y | (y << 8)) & 0x00ff00ff;
+  y = (y | (y << 4)) & 0x0f0f0f0f;
   y = (y | (y << 2)) & 0x33333333;
   y = (y | (y << 1)) & 0x55555555;
   return x | (y << 1);
@@ -154,7 +154,11 @@ export function getLeftmost(start) {
  * @returns {object} TBD
  */
 export function pointInTriangle(ax, ay, bx, by, cx, cy, px, py) {
-  return (cx - px) * (ay - py) - (ax - px) * (cy - py) >= 0 && (ax - px) * (by - py) - (bx - px) * (ay - py) >= 0 && (bx - px) * (cy - py) - (cx - px) * (by - py) >= 0;
+  return (
+    (cx - px) * (ay - py) - (ax - px) * (cy - py) >= 0 &&
+    (ax - px) * (by - py) - (bx - px) * (ay - py) >= 0 &&
+    (bx - px) * (cy - py) - (cx - px) * (by - py) >= 0
+  );
 }
 
 /**
@@ -187,7 +191,9 @@ export function equals(p1, p2) {
  * @returns {boolean} TBD
  */
 export function intersects(p1, q1, p2, q2) {
-  return area(p1, q1, p2) > 0 !== area(p1, q1, q2) > 0 && area(p2, q2, p1) > 0 !== area(p2, q2, q1) > 0;
+  return (
+    area(p1, q1, p2) > 0 !== area(p1, q1, q2) > 0 && area(p2, q2, p1) > 0 !== area(p2, q2, q1) > 0
+  );
 }
 
 /**
@@ -199,7 +205,14 @@ export function intersects(p1, q1, p2, q2) {
 export function intersectsPolygon(a, b) {
   let p = a;
   do {
-    if (p.i !== a.i && p.next.i !== a.i && p.i !== b.i && p.next.i !== b.i && intersects(p, p.next, a, b)) return true;
+    if (
+      p.i !== a.i &&
+      p.next.i !== a.i &&
+      p.i !== b.i &&
+      p.next.i !== b.i &&
+      intersects(p, p.next, a, b)
+    )
+      return true;
     p = p.next;
   } while (p !== a);
   return false;
@@ -212,7 +225,9 @@ export function intersectsPolygon(a, b) {
  * @returns {object} TBD
  */
 export function locallyInside(a, b) {
-  return area(a.prev, a, a.next) < 0 ? area(a, b, a.next) >= 0 && area(a, a.prev, b) >= 0 : area(a, b, a.prev) < 0 || area(a, a.next, b) < 0;
+  return area(a.prev, a, a.next) < 0
+    ? area(a, b, a.next) >= 0 && area(a, a.prev, b) >= 0
+    : area(a, b, a.prev) < 0 || area(a, a.next, b) < 0;
 }
 
 /**
@@ -227,7 +242,10 @@ export function middleInside(a, b) {
   const px = (a.x + b.x) / 2;
   const py = (a.y + b.y) / 2;
   do {
-    if (((p.y > py) !== (p.next.y > py)) && (px < (p.next.x - p.x) * (py - p.y) / (p.next.y - p.y) + p.x)) {
+    if (
+      p.y > py !== p.next.y > py &&
+      px < ((p.next.x - p.x) * (py - p.y)) / (p.next.y - p.y) + p.x
+    ) {
       inside = !inside;
     }
     p = p.next;
@@ -242,7 +260,15 @@ export function middleInside(a, b) {
  * @returns {boolean} TBD
  */
 export function isValidDiagonal(a, b) {
-  return equals(a, b) || a.next.i !== b.i && a.prev.i !== b.i && !intersectsPolygon(a, b) && locallyInside(a, b) && locallyInside(b, a) && middleInside(a, b);
+  return (
+    equals(a, b) ||
+    (a.next.i !== b.i &&
+      a.prev.i !== b.i &&
+      !intersectsPolygon(a, b) &&
+      locallyInside(a, b) &&
+      locallyInside(b, a) &&
+      middleInside(a, b))
+  );
 }
 
 /**
@@ -317,7 +343,8 @@ export function isEar(ear) {
   // now make sure we don't have other points inside the potential ear
   let p = ear.next.next;
   while (p !== ear.prev) {
-    if (pointInTriangle(a.x, a.y, b.x, b.y, c.x, c.y, p.x, p.y) && area(p.prev, p, p.next) >= 0) return false;
+    if (pointInTriangle(a.x, a.y, b.x, b.y, c.x, c.y, p.x, p.y) && area(p.prev, p, p.next) >= 0)
+      return false;
     p = p.next;
   }
   return true;
@@ -337,17 +364,22 @@ export function isEarHashed(ear, minX, minY, size) {
   const c = ear.next;
   if (area(a, b, c) >= 0) return false; // reflex, can't be an ear
   // triangle bbox; min & max are calculated like this for speed
-  const minTX = a.x < b.x ? (a.x < c.x ? a.x : c.x) : (b.x < c.x ? b.x : c.x);
-  const minTY = a.y < b.y ? (a.y < c.y ? a.y : c.y) : (b.y < c.y ? b.y : c.y);
-  const maxTX = a.x > b.x ? (a.x > c.x ? a.x : c.x) : (b.x > c.x ? b.x : c.x);
-  const maxTY = a.y > b.y ? (a.y > c.y ? a.y : c.y) : (b.y > c.y ? b.y : c.y);
+  const minTX = a.x < b.x ? (a.x < c.x ? a.x : c.x) : b.x < c.x ? b.x : c.x;
+  const minTY = a.y < b.y ? (a.y < c.y ? a.y : c.y) : b.y < c.y ? b.y : c.y;
+  const maxTX = a.x > b.x ? (a.x > c.x ? a.x : c.x) : b.x > c.x ? b.x : c.x;
+  const maxTY = a.y > b.y ? (a.y > c.y ? a.y : c.y) : b.y > c.y ? b.y : c.y;
   // z-order range for the current triangle bbox;
   const minZ = zOrder(minTX, minTY, minX, minY, size);
   const maxZ = zOrder(maxTX, maxTY, minX, minY, size);
   // first look for points inside the triangle in increasing z-order
   let p = ear.nextZ;
   while (p && p.z <= maxZ) {
-    if (p !== ear.prev && p !== ear.next && pointInTriangle(a.x, a.y, b.x, b.y, c.x, c.y, p.x, p.y) && area(p.prev, p, p.next) >= 0) {
+    if (
+      p !== ear.prev &&
+      p !== ear.next &&
+      pointInTriangle(a.x, a.y, b.x, b.y, c.x, c.y, p.x, p.y) &&
+      area(p.prev, p, p.next) >= 0
+    ) {
       return false;
     }
     p = p.nextZ;
@@ -355,7 +387,12 @@ export function isEarHashed(ear, minX, minY, size) {
   // then look for points in decreasing z-order
   p = ear.prevZ;
   while (p && p.z >= minZ) {
-    if (p !== ear.prev && p !== ear.next && pointInTriangle(a.x, a.y, b.x, b.y, c.x, c.y, p.x, p.y) && area(p.prev, p, p.next) >= 0) {
+    if (
+      p !== ear.prev &&
+      p !== ear.next &&
+      pointInTriangle(a.x, a.y, b.x, b.y, c.x, c.y, p.x, p.y) &&
+      area(p.prev, p, p.next) >= 0
+    ) {
       return false;
     }
     p = p.prevZ;
@@ -383,7 +420,7 @@ export function linkedList(data, start, end, dim, clockwise) {
     j = i;
   }
   // link points into circular doubly-linked list in the specified winding order
-  if (clockwise === (sum > 0)) {
+  if (clockwise === sum > 0) {
     for (i = start; i < end; i += dim) last = insertNode(i, data[i], data[i + 1], last);
   } else {
     for (i = end - dim; i >= start; i -= dim) last = insertNode(i, data[i], data[i + 1], last);
@@ -433,7 +470,7 @@ export function findHoleBridge(hole, outerNode) {
   // segment's endpoint with lesser x will be potential connection point
   do {
     if (hy <= p.y && hy >= p.next.y) {
-      const x = p.x + (hy - p.y) * (p.next.x - p.x) / (p.next.y - p.y);
+      const x = p.x + ((hy - p.y) * (p.next.x - p.x)) / (p.next.y - p.y);
       if (x <= hx && x > qx) {
         qx = x;
         m = p.x < p.next.x ? p : p.next;
@@ -451,7 +488,11 @@ export function findHoleBridge(hole, outerNode) {
   let tan;
   p = m.next;
   while (p !== stop) {
-    if (hx >= p.x && p.x >= m.x && pointInTriangle(hy < m.y ? hx : qx, hy, m.x, m.y, hy < m.y ? qx : hx, hy, p.x, p.y)) {
+    if (
+      hx >= p.x &&
+      p.x >= m.x &&
+      pointInTriangle(hy < m.y ? hx : qx, hy, m.x, m.y, hy < m.y ? qx : hx, hy, p.x, p.y)
+    ) {
       tan = Math.abs(hy - p.y) / (hx - p.x); // tangential
       if ((tan < tanMin || (tan === tanMin && p.x > m.x)) && locallyInside(p, hole)) {
         m = p;

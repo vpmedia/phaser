@@ -183,7 +183,13 @@ export function renderWebGL(target, renderSession, matrix) {
  */
 export function renderCanvas(target, renderSession, matrix) {
   // If the sprite is not visible or the alpha is 0 then no need to render this element
-  if (!target.visible || target.alpha === 0 || !target.renderable || target.texture.crop.width <= 0 || target.texture.crop.height <= 0) {
+  if (
+    !target.visible ||
+    target.alpha === 0 ||
+    !target.renderable ||
+    target.texture.crop.width <= 0 ||
+    target.texture.crop.height <= 0
+  ) {
     return;
   }
   let wt = target.worldTransform;
@@ -193,7 +199,8 @@ export function renderCanvas(target, renderSession, matrix) {
   }
   if (target.blendMode !== renderSession.currentBlendMode) {
     renderSession.currentBlendMode = target.blendMode;
-    renderSession.context.globalCompositeOperation = window.PhaserRegistry.blendModesCanvas[renderSession.currentBlendMode];
+    renderSession.context.globalCompositeOperation =
+      window.PhaserRegistry.blendModesCanvas[renderSession.currentBlendMode];
   }
   if (target._mask) {
     renderSession.maskManager.pushMask(target._mask, renderSession);
@@ -204,15 +211,23 @@ export function renderCanvas(target, renderSession, matrix) {
     renderSession.context.globalAlpha = target.worldAlpha;
 
     //  If smoothingEnabled is supported and we need to change the smoothing property for this texture
-    if (renderSession.smoothProperty && renderSession.scaleMode !== target.texture.baseTexture.scaleMode) {
+    if (
+      renderSession.smoothProperty &&
+      renderSession.scaleMode !== target.texture.baseTexture.scaleMode
+    ) {
       renderSession.scaleMode = target.texture.baseTexture.scaleMode;
-      renderSession.context[renderSession.smoothProperty] = (renderSession.scaleMode === SCALE_LINEAR);
+      renderSession.context[renderSession.smoothProperty] =
+        renderSession.scaleMode === SCALE_LINEAR;
     }
     //  If the texture is trimmed we offset by the trim x/y, otherwise we use the frame dimensions
-    let dx = (target.texture.trim) ? target.texture.trim.x - target.anchor.x * target.texture.trim.width : target.anchor.x * -target.texture.frame.width;
-    let dy = (target.texture.trim) ? target.texture.trim.y - target.anchor.y * target.texture.trim.height : target.anchor.y * -target.texture.frame.height;
-    const tx = (wt.tx * renderSession.resolution) + renderSession.shakeX;
-    const ty = (wt.ty * renderSession.resolution) + renderSession.shakeY;
+    let dx = target.texture.trim
+      ? target.texture.trim.x - target.anchor.x * target.texture.trim.width
+      : target.anchor.x * -target.texture.frame.width;
+    let dy = target.texture.trim
+      ? target.texture.trim.y - target.anchor.y * target.texture.trim.height
+      : target.anchor.y * -target.texture.frame.height;
+    const tx = wt.tx * renderSession.resolution + renderSession.shakeX;
+    const ty = wt.ty * renderSession.resolution + renderSession.shakeY;
     //  Allow for pixel rounding
     if (renderSession.roundPixels) {
       renderSession.context.setTransform(wt.a, wt.b, wt.c, wt.d, tx | 0, ty | 0);
@@ -225,20 +240,40 @@ export function renderCanvas(target, renderSession, matrix) {
     let ch = target.texture.crop.height;
     dx /= resolution;
     dy /= resolution;
-    if (target.tint !== 0xFFFFFF) {
+    if (target.tint !== 0xffffff) {
       if (target.texture.requiresReTint || target.cachedTint !== target.tint) {
         target.tintedTexture = getTintedTexture(target, target.tint);
         target.cachedTint = target.tint;
         target.texture.requiresReTint = false;
       }
-      renderSession.context.drawImage(target.tintedTexture, 0, 0, cw, ch, dx, dy, cw / resolution, ch / resolution);
+      renderSession.context.drawImage(
+        target.tintedTexture,
+        0,
+        0,
+        cw,
+        ch,
+        dx,
+        dy,
+        cw / resolution,
+        ch / resolution
+      );
     } else {
       const cx = target.texture.crop.x;
       const cy = target.texture.crop.y;
       // https://github.com/photonstorm/phaser-ce/pull/61
       cw = Math.floor(cw);
       ch = Math.floor(ch);
-      renderSession.context.drawImage(target.texture.baseTexture.source, cx, cy, cw, ch, dx, dy, cw / resolution, ch / resolution);
+      renderSession.context.drawImage(
+        target.texture.baseTexture.source,
+        cx,
+        cy,
+        cw,
+        ch,
+        dx,
+        dy,
+        cw / resolution,
+        ch / resolution
+      );
     }
   }
   for (let i = 0; i < target.children.length; i += 1) {

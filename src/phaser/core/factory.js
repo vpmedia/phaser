@@ -11,7 +11,6 @@ import Image from '../display/image';
 import Text from '../display/text';
 
 export default class {
-
   constructor(game) {
     this.game = game;
   }
@@ -32,9 +31,33 @@ export default class {
     return parent.add(new Text(this.game, x, y, text, style));
   }
 
-  button(x, y, key, callback, callbackContext, overFrame, outFrame, downFrame, upFrame, group = null) {
+  button(
+    x,
+    y,
+    key,
+    callback,
+    callbackContext,
+    overFrame,
+    outFrame,
+    downFrame,
+    upFrame,
+    group = null
+  ) {
     const parent = group || this.game.world;
-    return parent.add(new Button(this.game, x, y, key, callback, callbackContext, overFrame, outFrame, downFrame, upFrame));
+    return parent.add(
+      new Button(
+        this.game,
+        x,
+        y,
+        key,
+        callback,
+        callbackContext,
+        overFrame,
+        outFrame,
+        downFrame,
+        upFrame
+      )
+    );
   }
 
   graphics(x, y, group = null) {
@@ -46,5 +69,4 @@ export default class {
     const parent = group || this.game.world;
     return parent.add(new BitmapText(this.game, x, y, font, text, size, align));
   }
-
 }

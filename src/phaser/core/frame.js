@@ -8,7 +8,6 @@ import { distance } from '../util/math';
 import { cloneFrame } from './frame_util';
 
 export default class {
-
   constructor(index, x, y, width, height, name) {
     this.initialize(index, x, y, width, height, name);
   }
@@ -71,5 +70,4 @@ export default class {
     result.setTo(this.x, this.y, this.width, this.height);
     return result;
   }
-
 }

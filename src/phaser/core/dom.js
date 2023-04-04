@@ -6,13 +6,16 @@
 import Point from '../geom/point';
 
 class VisualBoundsDesktopRectangle {
-
   get x() {
-    return window && ('pageXOffset' in window) ? window.pageXOffset : document.documentElement.scrollLeft;
+    return window && 'pageXOffset' in window
+      ? window.pageXOffset
+      : document.documentElement.scrollLeft;
   }
 
   get y() {
-    return window && ('pageYOffset' in window) ? window.pageYOffset : document.documentElement.scrollTop;
+    return window && 'pageYOffset' in window
+      ? window.pageYOffset
+      : document.documentElement.scrollTop;
   }
 
   get width() {
@@ -22,11 +25,9 @@ class VisualBoundsDesktopRectangle {
   get height() {
     return Math.max(window.innerHeight, document.documentElement.clientHeight);
   }
-
 }
 
 class LayoutBoundsDesktopRectangle {
-
   get x() {
     return 0;
   }
@@ -42,17 +43,19 @@ class LayoutBoundsDesktopRectangle {
   get height() {
     return Math.max(window.innerHeight, document.documentElement.clientHeight);
   }
-
 }
 
 class VisualBoundsRectangle {
-
   get x() {
-    return window && ('pageXOffset' in window) ? window.pageXOffset : document.documentElement.scrollLeft;
+    return window && 'pageXOffset' in window
+      ? window.pageXOffset
+      : document.documentElement.scrollLeft;
   }
 
   get y() {
-    return window && ('pageYOffset' in window) ? window.pageYOffset : document.documentElement.scrollTop;
+    return window && 'pageYOffset' in window
+      ? window.pageYOffset
+      : document.documentElement.scrollTop;
   }
 
   get width() {
@@ -62,11 +65,9 @@ class VisualBoundsRectangle {
   get height() {
     return window.innerHeight;
   }
-
 }
 
 class LayoutBoundsRectangle {
-
   get x() {
     return 0;
   }
@@ -86,14 +87,12 @@ class LayoutBoundsRectangle {
     const b = window.innerHeight;
     return a < b ? b : a; // max
   }
-
 }
 
 // For documentBounds
 // Ref. http://www.quirksmode.org/mobile/tableViewport_desktop.html
 
 class DocumentBoundsRectangle {
-
   get x() {
     return 0;
   }
@@ -111,18 +110,29 @@ class DocumentBoundsRectangle {
     const d = document.documentElement;
     return Math.max(d.clientHeight, d.offsetHeight, d.scrollHeight);
   }
-
 }
 
 export default class {
-
   constructor(device) {
-    this.treatAsDesktop = device.desktop && (document.documentElement.clientWidth <= window.innerWidth) && (document.documentElement.clientHeight <= window.innerHeight);
-    this.visualBounds = this.treatAsDesktop ? new VisualBoundsDesktopRectangle() : new VisualBoundsRectangle();
-    this.layoutBounds = this.treatAsDesktop ? new LayoutBoundsDesktopRectangle() : new LayoutBoundsRectangle();
+    this.treatAsDesktop =
+      device.desktop &&
+      document.documentElement.clientWidth <= window.innerWidth &&
+      document.documentElement.clientHeight <= window.innerHeight;
+    this.visualBounds = this.treatAsDesktop
+      ? new VisualBoundsDesktopRectangle()
+      : new VisualBoundsRectangle();
+    this.layoutBounds = this.treatAsDesktop
+      ? new LayoutBoundsDesktopRectangle()
+      : new LayoutBoundsRectangle();
     this.documentBounds = new DocumentBoundsRectangle();
-    this.scrollXProvider = window && ('pageXOffset' in window) ? () => window.pageXOffset : () => document.documentElement.scrollLeft;
-    this.scrollYProvider = window && ('pageYOffset' in window) ? () => window.pageYOffset : () => document.documentElement.scrollTop;
+    this.scrollXProvider =
+      window && 'pageXOffset' in window
+        ? () => window.pageXOffset
+        : () => document.documentElement.scrollLeft;
+    this.scrollYProvider =
+      window && 'pageYOffset' in window
+        ? () => window.pageYOffset
+        : () => document.documentElement.scrollTop;
   }
 
   getOffset(element, point = null) {
@@ -172,12 +182,12 @@ export default class {
     const PORTRAIT = 'portrait-primary';
     const LANDSCAPE = 'landscape-primary';
     if (primaryFallback === 'screen') {
-      return (screen.height > screen.width) ? PORTRAIT : LANDSCAPE;
+      return screen.height > screen.width ? PORTRAIT : LANDSCAPE;
     } else if (primaryFallback === 'viewport') {
-      return (this.visualBounds.height > this.visualBounds.width) ? PORTRAIT : LANDSCAPE;
+      return this.visualBounds.height > this.visualBounds.width ? PORTRAIT : LANDSCAPE;
     } else if (primaryFallback === 'window.orientation' && typeof window.orientation === 'number') {
       // This may change by device based on "natural" orientation.
-      return (window.orientation === 0 || window.orientation === 180) ? PORTRAIT : LANDSCAPE;
+      return window.orientation === 0 || window.orientation === 180 ? PORTRAIT : LANDSCAPE;
     } else if (window.matchMedia) {
       if (window.matchMedia('(orientation: portrait)').matches) {
         return PORTRAIT;
@@ -185,7 +195,7 @@ export default class {
         return LANDSCAPE;
       }
     }
-    return (this.visualBounds.height > this.visualBounds.width) ? PORTRAIT : LANDSCAPE;
+    return this.visualBounds.height > this.visualBounds.width ? PORTRAIT : LANDSCAPE;
   }
 
   get scrollX() {
@@ -203,5 +213,4 @@ export default class {
   get clientHeight() {
     return Math.max(window.innerHeight, document.documentElement.clientHeight);
   }
-
 }

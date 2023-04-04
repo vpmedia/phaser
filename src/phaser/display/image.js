@@ -13,7 +13,6 @@ import { IMAGE, PENDING_ATLAS, BLEND_NORMAL, SCALE_NEAREST } from '../core/const
 import { setTexture, getBounds, getLocalBounds, renderCanvas, renderWebGL } from './sprite_util';
 
 export default class extends DisplayObject {
-
   constructor(game, x, y, key, frame) {
     super();
     this.game = game;
@@ -24,7 +23,7 @@ export default class extends DisplayObject {
     this.data = {};
     this._width = 0;
     this._height = 0;
-    this.tint = 0xFFFFFF;
+    this.tint = 0xffffff;
     this.cachedTint = -1;
     this.tintedTexture = null;
     this.blendMode = BLEND_NORMAL;
@@ -44,7 +43,7 @@ export default class extends DisplayObject {
     this.key = null;
     this.data = null;
     this.texture = null;
-    this.tint = 0xFFFFFF;
+    this.tint = 0xffffff;
     this.cachedTint = -1;
     this.tintedTexture = null;
     this.shader = null;
@@ -284,5 +283,4 @@ export default class extends DisplayObject {
   renderCanvas(renderSession, matrix = null) {
     renderCanvas(this, renderSession, matrix);
   }
-
 }

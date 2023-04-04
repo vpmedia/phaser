@@ -5,7 +5,6 @@
  */
 
 export default class {
-
   constructor(game) {
     this.game = game;
     this.enabled = true;
@@ -32,12 +31,12 @@ export default class {
       return;
     }
     const scope = this;
-    this._onTouchStart = event => scope.onTouchStart(event);
-    this._onTouchMove = event => scope.onTouchMove(event);
-    this._onTouchEnd = event => scope.onTouchEnd(event);
-    this._onTouchEnter = event => scope.onTouchEnter(event);
-    this._onTouchLeave = event => scope.onTouchLeave(event);
-    this._onTouchCancel = event => scope.onTouchCancel(event);
+    this._onTouchStart = (event) => scope.onTouchStart(event);
+    this._onTouchMove = (event) => scope.onTouchMove(event);
+    this._onTouchEnd = (event) => scope.onTouchEnd(event);
+    this._onTouchEnter = (event) => scope.onTouchEnter(event);
+    this._onTouchLeave = (event) => scope.onTouchLeave(event);
+    this._onTouchCancel = (event) => scope.onTouchCancel(event);
     this.game.canvas.addEventListener('touchstart', this._onTouchStart, false);
     this.game.canvas.addEventListener('touchmove', this._onTouchMove, false);
     this.game.canvas.addEventListener('touchend', this._onTouchEnd, false);
@@ -149,5 +148,4 @@ export default class {
       }
     }
   }
-
 }

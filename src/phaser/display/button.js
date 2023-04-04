@@ -15,8 +15,18 @@ const STATE_UP = 'Up';
 const STATE_DISABLED = 'Disabled';
 
 export default class extends Image {
-
-  constructor(game, x = 0, y = 0, key = null, callback = null, callbackContext = null, overFrame = null, outFrame = null, downFrame = null, upFrame = null) {
+  constructor(
+    game,
+    x = 0,
+    y = 0,
+    key = null,
+    callback = null,
+    callbackContext = null,
+    overFrame = null,
+    outFrame = null,
+    downFrame = null,
+    upFrame = null
+  ) {
     super(game, x, y, key, outFrame);
     this.type = BUTTON;
     this._onOverFrame = null;
@@ -125,7 +135,10 @@ export default class extends Image {
   }
 
   onInputOverHandler(sprite, pointer) {
-    if (pointer.justReleased() && (this.justReleasedPreventsOver & pointer.pointerMode) === pointer.pointerMode) {
+    if (
+      pointer.justReleased() &&
+      (this.justReleasedPreventsOver & pointer.pointerMode) === pointer.pointerMode
+    ) {
       //  If the Pointer was only just released then we don't fire an over event
       return;
     }
@@ -190,5 +203,4 @@ export default class extends Image {
       this.input.stop();
     }
   }
-
 }

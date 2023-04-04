@@ -6,7 +6,6 @@
 import Group from '../display/group';
 
 export default class extends Group {
-
   constructor(game) {
     super(game, null, '__world', false);
   }
@@ -14,5 +13,4 @@ export default class extends Group {
   boot() {
     this.game.stage.addChild(this);
   }
-
 }

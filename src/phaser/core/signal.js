@@ -6,7 +6,6 @@
 import SignalBinding from './signal_binding';
 
 export default class {
-
   constructor() {
     this._bindings = null;
     this._prevParams = null;
@@ -18,7 +17,12 @@ export default class {
 
   validateListener(listener, fnName) {
     if (typeof listener !== 'function') {
-      throw new Error('Signal: listener is a required param of {fn}() and should be a Function.'.replace('{fn}', fnName));
+      throw new Error(
+        'Signal: listener is a required param of {fn}() and should be a Function.'.replace(
+          '{fn}',
+          fnName
+        )
+      );
     }
   }
 
@@ -28,7 +32,13 @@ export default class {
     if (prevIndex !== -1) {
       binding = this._bindings[prevIndex];
       if (binding.isOnce() !== isOnce) {
-        throw new Error('You cannot add' + (isOnce ? '' : 'Once') + '() then add' + (!isOnce ? '' : 'Once') + '() the same listener without removing the relationship first.');
+        throw new Error(
+          'You cannot add' +
+            (isOnce ? '' : 'Once') +
+            '() then add' +
+            (!isOnce ? '' : 'Once') +
+            '() the same listener without removing the relationship first.'
+        );
       }
     } else {
       binding = new SignalBinding(this, listener, isOnce, listenerContext, priority, args);
@@ -48,8 +58,7 @@ export default class {
     let n = this._bindings.length;
     do {
       n -= 1;
-    }
-    while (this._bindings[n] && binding._priority <= this._bindings[n]._priority);
+    } while (this._bindings[n] && binding._priority <= this._bindings[n]._priority);
     this._bindings.splice(n + 1, 0, binding);
   }
 
@@ -144,8 +153,7 @@ export default class {
     // reverse loop since listeners with higher priority will be added at the end of the list
     do {
       n -= 1;
-    }
-    while (bindings[n] && this._shouldPropagate && bindings[n].execute(paramsArr) !== false);
+    } while (bindings[n] && this._shouldPropagate && bindings[n].execute(paramsArr) !== false);
   }
 
   forget() {
@@ -171,5 +179,4 @@ export default class {
     }
     return this._boundDispatch;
   }
-
 }

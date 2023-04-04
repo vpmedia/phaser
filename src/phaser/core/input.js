@@ -19,7 +19,6 @@ import { create, remove } from '../display/canvas/pool';
 const MAX_POINTERS = 10;
 
 export default class {
-
   constructor(game) {
     this.game = game;
     this.hitCanvas = null;
@@ -101,7 +100,7 @@ export default class {
     }
     this.mousePointer.active = true;
     const scope = this;
-    this._onClickTrampoline = event => scope.onClickTrampoline(event);
+    this._onClickTrampoline = (event) => scope.onClickTrampoline(event);
     this.game.canvas.addEventListener('click', this._onClickTrampoline, false);
   }
 
@@ -130,7 +129,10 @@ export default class {
     let i = this.moveCallbacks.length;
     while (i) {
       i -= 1;
-      if (this.moveCallbacks[i].callback === callback && this.moveCallbacks[i].context === context) {
+      if (
+        this.moveCallbacks[i].callback === callback &&
+        this.moveCallbacks[i].context === context
+      ) {
         this.moveCallbacks.splice(i, 1);
         return;
       }
@@ -253,7 +255,7 @@ export default class {
         count -= 1;
       }
     }
-    return (limit - count);
+    return limit - count;
   }
 
   getPointer(isActive = false) {
@@ -292,7 +294,10 @@ export default class {
     const result = output || new Point();
     const wt = displayObject.worldTransform;
     const id = 1 / (wt.a * wt.d + wt.c * -wt.b);
-    return result.setTo(wt.d * id * pointer.x + -wt.c * id * pointer.y + (wt.ty * wt.c - wt.tx * wt.d) * id, wt.a * id * pointer.y + -wt.b * id * pointer.x + (-wt.ty * wt.a + wt.tx * wt.b) * id);
+    return result.setTo(
+      wt.d * id * pointer.x + -wt.c * id * pointer.y + (wt.ty * wt.c - wt.tx * wt.d) * id,
+      wt.a * id * pointer.y + -wt.b * id * pointer.x + (-wt.ty * wt.a + wt.tx * wt.b) * id
+    );
   }
 
   hitTest(displayObject, pointer, localPoint) {
@@ -302,7 +307,7 @@ export default class {
     this.getLocalPosition(displayObject, pointer, this._localPoint);
     localPoint.copyFrom(this._localPoint);
     if (displayObject.hitArea && displayObject.hitArea.contains) {
-      return (displayObject.hitArea.contains(this._localPoint.x, this._localPoint.y));
+      return displayObject.hitArea.contains(this._localPoint.x, this._localPoint.y);
     } else if (displayObject instanceof Image) {
       const width = displayObject.texture.frame.width;
       const height = displayObject.texture.frame.height;
@@ -316,7 +321,11 @@ export default class {
     } else if (displayObject instanceof Graphics) {
       for (let i = 0; i < displayObject.graphicsData.length; i += 1) {
         const data = displayObject.graphicsData[i];
-        if (data.fill && data.shape && data.shape.contains(this._localPoint.x, this._localPoint.y)) {
+        if (
+          data.fill &&
+          data.shape &&
+          data.shape.contains(this._localPoint.x, this._localPoint.y)
+        ) {
           // Only deal with fills..
           return true;
         }
@@ -352,7 +361,7 @@ export default class {
   }
 
   get pollLocked() {
-    return (this.pollRate > 0 && this._pollCounter < this.pollRate);
+    return this.pollRate > 0 && this._pollCounter < this.pollRate;
   }
 
   get totalInactivePointers() {
@@ -370,5 +379,4 @@ export default class {
   get worldY() {
     return this.y;
   }
-
 }

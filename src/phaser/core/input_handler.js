@@ -8,7 +8,6 @@ import { GROUP } from './const';
 import { distance } from '../util/math';
 
 export default class {
-
   constructor(sprite) {
     this.sprite = sprite;
     this.game = sprite.game;
@@ -165,25 +164,33 @@ export default class {
       this.boundsSprite = null;
       this.sprite = null;
     }
-
   }
 
   validForInput(highestID, highestRenderID, includePixelPerfect = true) {
-    if (!this.enabled || this.sprite.scale.x === 0 || this.sprite.scale.y === 0 || this.priorityID < this.game.input.minPriorityID || (this.sprite.parent && this.sprite.parent.ignoreChildInput)) {
+    if (
+      !this.enabled ||
+      this.sprite.scale.x === 0 ||
+      this.sprite.scale.y === 0 ||
+      this.priorityID < this.game.input.minPriorityID ||
+      (this.sprite.parent && this.sprite.parent.ignoreChildInput)
+    ) {
       return false;
     }
     // If we're trying to specifically IGNORE pixel perfect objects, then set includePixelPerfect to false and skip it
     if (!includePixelPerfect && (this.pixelPerfectClick || this.pixelPerfectOver)) {
       return false;
     }
-    if (this.priorityID > highestID || (this.priorityID === highestID && this.sprite.renderOrderID > highestRenderID)) {
+    if (
+      this.priorityID > highestID ||
+      (this.priorityID === highestID && this.sprite.renderOrderID > highestRenderID)
+    ) {
       return true;
     }
     return false;
   }
 
   isPixelPerfect() {
-    return (this.pixelPerfectClick || this.pixelPerfectOver);
+    return this.pixelPerfectClick || this.pixelPerfectOver;
   }
 
   pointerX(pointerId = 0) {
@@ -252,7 +259,16 @@ export default class {
   }
 
   checkPointerDown(pointer = 0, fastTest = false) {
-    if (!pointer.isDown || !this.enabled || !this.sprite || !this.sprite.parent || !this.sprite.visible || !this.sprite.parent.visible || this.sprite.worldScale.x === 0 || this.sprite.worldScale.y === 0) {
+    if (
+      !pointer.isDown ||
+      !this.enabled ||
+      !this.sprite ||
+      !this.sprite.parent ||
+      !this.sprite.visible ||
+      !this.sprite.parent.visible ||
+      this.sprite.worldScale.x === 0 ||
+      this.sprite.worldScale.y === 0
+    ) {
       return false;
     }
     //  Need to pass it a temp point, in case we need it again for the pixel check
@@ -266,7 +282,15 @@ export default class {
   }
 
   checkPointerOver(pointer = 0, fastTest = false) {
-    if (!this.enabled || !this.sprite || !this.sprite.parent || !this.sprite.visible || !this.sprite.parent.visible || this.sprite.worldScale.x === 0 || this.sprite.worldScale.y === 0) {
+    if (
+      !this.enabled ||
+      !this.sprite ||
+      !this.sprite.parent ||
+      !this.sprite.visible ||
+      !this.sprite.parent.visible ||
+      this.sprite.worldScale.x === 0 ||
+      this.sprite.worldScale.y === 0
+    ) {
       return false;
     }
     //  Need to pass it a temp point, in case we need it again for the pixel check
@@ -300,7 +324,12 @@ export default class {
         x -= this.sprite.texture.trim.x;
         y -= this.sprite.texture.trim.y;
         //  If the coordinates are outside the trim area we return false immediately, to save doing a draw call
-        if (x < this.sprite.texture.crop.x || x > this.sprite.texture.crop.right || y < this.sprite.texture.crop.y || y > this.sprite.texture.crop.bottom) {
+        if (
+          x < this.sprite.texture.crop.x ||
+          x > this.sprite.texture.crop.right ||
+          y < this.sprite.texture.crop.y ||
+          y > this.sprite.texture.crop.bottom
+        ) {
           this._dx = x;
           this._dy = y;
           return false;
@@ -309,7 +338,17 @@ export default class {
       this._dx = x;
       this._dy = y;
       this.game.input.hitContext.clearRect(0, 0, 1, 1);
-      this.game.input.hitContext.drawImage(this.sprite.texture.baseTexture.source, x, y, 1, 1, 0, 0, 1, 1);
+      this.game.input.hitContext.drawImage(
+        this.sprite.texture.baseTexture.source,
+        x,
+        y,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1
+      );
       const rgb = this.game.input.hitContext.getImageData(0, 0, 1, 1);
       if (rgb.data[3] >= this.pixelPerfectAlpha) {
         return true;
@@ -329,7 +368,9 @@ export default class {
     }
     if (this._pendingDrag) {
       if (!this._dragDistancePass) {
-        this._dragDistancePass = (distance(pointer.x, pointer.y, this.downPoint.x, this.downPoint.y) >= this.dragDistanceThreshold);
+        this._dragDistancePass =
+          distance(pointer.x, pointer.y, this.downPoint.x, this.downPoint.y) >=
+          this.dragDistanceThreshold;
       }
       if (this._dragDistancePass && this._dragTimePass) {
         this.startDrag(pointer);
@@ -356,7 +397,7 @@ export default class {
     }
     const data = this._pointerData[pointer.id];
     if (data.isOver === false || pointer.dirty) {
-      const sendEvent = (data.isOver === false);
+      const sendEvent = data.isOver === false;
       data.isOver = true;
       data.isOut = false;
       data.timeOver = this.game.time.time;
@@ -429,7 +470,7 @@ export default class {
           this.startDrag(pointer);
         } else {
           this._pendingDrag = true;
-          this._dragDistancePass = (this.dragDistanceThreshold === 0);
+          this._dragDistancePass = this.dragDistanceThreshold === 0;
           if (this.dragTimeThreshold > 0) {
             this._dragTimePass = false;
             this.game.time.events.add(this.dragTimeThreshold, this.dragTimeElapsed, this, pointer);
@@ -468,7 +509,11 @@ export default class {
       // Only release the InputUp signal if the pointer is still over this sprite
       let isOver = this.checkPointerOver(pointer);
       if (this.sprite && this.sprite.events) {
-        if (!this.dragStopBlocksInputUp || this.dragStopBlocksInputUp && !(this.draggable && this.isDragged && this._draggedPointerID === pointer.id)) {
+        if (
+          !this.dragStopBlocksInputUp ||
+          (this.dragStopBlocksInputUp &&
+            !(this.draggable && this.isDragged && this._draggedPointerID === pointer.id))
+        ) {
           this.sprite.events.onInputUp$dispatch(this.sprite, pointer, isOver);
         }
         if (this.sprite && this.sprite.parent && this.sprite.parent.type === GROUP) {
@@ -516,28 +561,45 @@ export default class {
       this.checkBoundsSprite();
     }
     if (this.snapOnDrag) {
-      this.sprite.x = Math.round((this.sprite.x - (this.snapOffsetX % this.snapX)) / this.snapX) * this.snapX + (this.snapOffsetX % this.snapX);
-      this.sprite.y = Math.round((this.sprite.y - (this.snapOffsetY % this.snapY)) / this.snapY) * this.snapY + (this.snapOffsetY % this.snapY);
+      this.sprite.x =
+        Math.round((this.sprite.x - (this.snapOffsetX % this.snapX)) / this.snapX) * this.snapX +
+        (this.snapOffsetX % this.snapX);
+      this.sprite.y =
+        Math.round((this.sprite.y - (this.snapOffsetY % this.snapY)) / this.snapY) * this.snapY +
+        (this.snapOffsetY % this.snapY);
       this.snapPoint.set(this.sprite.x, this.sprite.y);
     }
-    this.sprite.events.onDragUpdate.dispatch(this.sprite, pointer, px, py, this.snapPoint, fromStart);
+    this.sprite.events.onDragUpdate.dispatch(
+      this.sprite,
+      pointer,
+      px,
+      py,
+      this.snapPoint,
+      fromStart
+    );
     return true;
   }
 
   justOver(pointerId = 0, delay = 500) {
-    return (this._pointerData[pointerId].isOver && this.overDuration(pointerId) < delay);
+    return this._pointerData[pointerId].isOver && this.overDuration(pointerId) < delay;
   }
 
   justOut(pointerId = 0, delay = 500) {
-    return (this._pointerData[pointerId].isOut && (this.game.time.time - this._pointerData[pointerId].timeOut < delay));
+    return (
+      this._pointerData[pointerId].isOut &&
+      this.game.time.time - this._pointerData[pointerId].timeOut < delay
+    );
   }
 
   justPressed(pointerId = 0, delay = 500) {
-    return (this._pointerData[pointerId].isDown && this.downDuration(pointerId) < delay);
+    return this._pointerData[pointerId].isDown && this.downDuration(pointerId) < delay;
   }
 
   justReleased(pointerId = 0, delay = 500) {
-    return (this._pointerData[pointerId].isUp && (this.game.time.time - this._pointerData[pointerId].timeUp < delay));
+    return (
+      this._pointerData[pointerId].isUp &&
+      this.game.time.time - this._pointerData[pointerId].timeUp < delay
+    );
   }
 
   overDuration(pointerId = 0) {
@@ -554,7 +616,14 @@ export default class {
     return -1;
   }
 
-  enableDrag(lockCenter = false, bringToTop = false, pixelPerfect = false, alphaThreshold = 255, boundsRect = null, boundsSprite = null) {
+  enableDrag(
+    lockCenter = false,
+    bringToTop = false,
+    pixelPerfect = false,
+    alphaThreshold = 255,
+    boundsRect = null,
+    boundsSprite = null
+  ) {
     this._dragPoint = new Point();
     this.draggable = true;
     this.bringToTop = bringToTop;
@@ -595,7 +664,10 @@ export default class {
       this.sprite.x = this.globalToLocalX(pointer.x) + (this.sprite.x - bounds.centerX);
       this.sprite.y = this.globalToLocalY(pointer.y) + (this.sprite.y - bounds.centerY);
     }
-    this._dragPoint.setTo(this.sprite.x - this.globalToLocalX(pointer.x), this.sprite.y - this.globalToLocalY(pointer.y));
+    this._dragPoint.setTo(
+      this.sprite.x - this.globalToLocalX(pointer.x),
+      this.sprite.y - this.globalToLocalY(pointer.y)
+    );
     this.updateDrag(pointer, true);
     if (this.bringToTop) {
       this._dragPhase = true;
@@ -629,8 +701,12 @@ export default class {
     this._dragPhase = false;
     this._pendingDrag = false;
     if (this.snapOnRelease) {
-      this.sprite.x = Math.round((this.sprite.x - (this.snapOffsetX % this.snapX)) / this.snapX) * this.snapX + (this.snapOffsetX % this.snapX);
-      this.sprite.y = Math.round((this.sprite.y - (this.snapOffsetY % this.snapY)) / this.snapY) * this.snapY + (this.snapOffsetY % this.snapY);
+      this.sprite.x =
+        Math.round((this.sprite.x - (this.snapOffsetX % this.snapX)) / this.snapX) * this.snapX +
+        (this.snapOffsetX % this.snapX);
+      this.sprite.y =
+        Math.round((this.sprite.y - (this.snapOffsetY % this.snapY)) / this.snapY) * this.snapY +
+        (this.snapOffsetY % this.snapY);
     }
     this.sprite.events.onDragStop$dispatch(this.sprite, pointer);
     if (this.checkPointerOver(pointer) === false) {
@@ -681,7 +757,5 @@ export default class {
     } else if (this.sprite.bottom > this.boundsSprite.bottom) {
       this.sprite.y = this.boundsSprite.bottom - (this.sprite.height - this.sprite.offsetY);
     }
-
   }
-
 }

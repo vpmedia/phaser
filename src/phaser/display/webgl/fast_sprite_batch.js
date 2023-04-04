@@ -8,7 +8,6 @@
 // TODO: fix ++ +=1 conversion issues (when a is 0 than a++ is 0 but a+=1 is 1)
 
 export default class {
-
   constructor(gl) {
     this.vertSize = 10;
     this.maxSize = 6000; // Math.pow(2, 16) / this.vertSize;
@@ -89,7 +88,10 @@ export default class {
       return;
     }
     // TODO trim??
-    if (sprite.texture.baseTexture !== this.currentBaseTexture && !sprite.texture.baseTexture.skipRender) {
+    if (
+      sprite.texture.baseTexture !== this.currentBaseTexture &&
+      !sprite.texture.baseTexture.skipRender
+    ) {
       this.flush();
       this.currentBaseTexture = sprite.texture.baseTexture;
       if (!sprite.texture._uvs) {
@@ -113,73 +115,73 @@ export default class {
       h1 = trim.y - sprite.anchor.y * trim.height;
       h0 = h1 + sprite.texture.crop.height;
     } else {
-      w0 = (sprite.texture.frame.width) * (1 - sprite.anchor.x);
-      w1 = (sprite.texture.frame.width) * -sprite.anchor.x;
+      w0 = sprite.texture.frame.width * (1 - sprite.anchor.x);
+      w1 = sprite.texture.frame.width * -sprite.anchor.x;
       h0 = sprite.texture.frame.height * (1 - sprite.anchor.y);
       h1 = sprite.texture.frame.height * -sprite.anchor.y;
     }
     index = this.currentBatchSize * 4 * this.vertSize;
     index -= 1;
     // xy
-    vertices[index += 1] = w1;
-    vertices[index += 1] = h1;
-    vertices[index += 1] = sprite.position.x;
-    vertices[index += 1] = sprite.position.y;
+    vertices[(index += 1)] = w1;
+    vertices[(index += 1)] = h1;
+    vertices[(index += 1)] = sprite.position.x;
+    vertices[(index += 1)] = sprite.position.y;
     // scale
-    vertices[index += 1] = sprite.scale.x;
-    vertices[index += 1] = sprite.scale.y;
+    vertices[(index += 1)] = sprite.scale.x;
+    vertices[(index += 1)] = sprite.scale.y;
     // rotation
-    vertices[index += 1] = sprite.rotation;
+    vertices[(index += 1)] = sprite.rotation;
     // uv
-    vertices[index += 1] = uvs.x0;
-    vertices[index += 1] = uvs.y1;
+    vertices[(index += 1)] = uvs.x0;
+    vertices[(index += 1)] = uvs.y1;
     // color
-    vertices[index += 1] = sprite.alpha;
+    vertices[(index += 1)] = sprite.alpha;
     // xy
-    vertices[index += 1] = w0;
-    vertices[index += 1] = h1;
-    vertices[index += 1] = sprite.position.x;
-    vertices[index += 1] = sprite.position.y;
+    vertices[(index += 1)] = w0;
+    vertices[(index += 1)] = h1;
+    vertices[(index += 1)] = sprite.position.x;
+    vertices[(index += 1)] = sprite.position.y;
     // scale
-    vertices[index += 1] = sprite.scale.x;
-    vertices[index += 1] = sprite.scale.y;
+    vertices[(index += 1)] = sprite.scale.x;
+    vertices[(index += 1)] = sprite.scale.y;
     // rotation
-    vertices[index += 1] = sprite.rotation;
+    vertices[(index += 1)] = sprite.rotation;
     // uv
-    vertices[index += 1] = uvs.x1;
-    vertices[index += 1] = uvs.y1;
+    vertices[(index += 1)] = uvs.x1;
+    vertices[(index += 1)] = uvs.y1;
     // color
-    vertices[index += 1] = sprite.alpha;
+    vertices[(index += 1)] = sprite.alpha;
     // xy
-    vertices[index += 1] = w0;
-    vertices[index += 1] = h0;
-    vertices[index += 1] = sprite.position.x;
-    vertices[index += 1] = sprite.position.y;
+    vertices[(index += 1)] = w0;
+    vertices[(index += 1)] = h0;
+    vertices[(index += 1)] = sprite.position.x;
+    vertices[(index += 1)] = sprite.position.y;
     // scale
-    vertices[index += 1] = sprite.scale.x;
-    vertices[index += 1] = sprite.scale.y;
+    vertices[(index += 1)] = sprite.scale.x;
+    vertices[(index += 1)] = sprite.scale.y;
     // rotation
-    vertices[index += 1] = sprite.rotation;
+    vertices[(index += 1)] = sprite.rotation;
     // uv
-    vertices[index += 1] = uvs.x2;
-    vertices[index += 1] = uvs.y2;
+    vertices[(index += 1)] = uvs.x2;
+    vertices[(index += 1)] = uvs.y2;
     // color
-    vertices[index += 1] = sprite.alpha;
+    vertices[(index += 1)] = sprite.alpha;
     // xy
-    vertices[index += 1] = w1;
-    vertices[index += 1] = h0;
-    vertices[index += 1] = sprite.position.x;
-    vertices[index += 1] = sprite.position.y;
+    vertices[(index += 1)] = w1;
+    vertices[(index += 1)] = h0;
+    vertices[(index += 1)] = sprite.position.x;
+    vertices[(index += 1)] = sprite.position.y;
     // scale
-    vertices[index += 1] = sprite.scale.x;
-    vertices[index += 1] = sprite.scale.y;
+    vertices[(index += 1)] = sprite.scale.x;
+    vertices[(index += 1)] = sprite.scale.y;
     // rotation
-    vertices[index += 1] = sprite.rotation;
+    vertices[(index += 1)] = sprite.rotation;
     // uv
-    vertices[index += 1] = uvs.x3;
-    vertices[index += 1] = uvs.y3;
+    vertices[(index += 1)] = uvs.x3;
+    vertices[(index += 1)] = uvs.y3;
     // color
-    vertices[index += 1] = sprite.alpha;
+    vertices[(index += 1)] = sprite.alpha;
     // increment the batch
     this.currentBatchSize += 1;
     if (this.currentBatchSize >= this.size) {
@@ -199,7 +201,7 @@ export default class {
     }
     gl.bindTexture(gl.TEXTURE_2D, this.currentBaseTexture._glTextures[gl.id]);
     // upload the verts to the buffer
-    if (this.currentBatchSize > (this.size * 0.5)) {
+    if (this.currentBatchSize > this.size * 0.5) {
       gl.bufferSubData(gl.ARRAY_BUFFER, 0, this.vertices);
     } else {
       const view = this.vertices.subarray(0, this.currentBatchSize * 4 * this.vertSize);
@@ -238,5 +240,4 @@ export default class {
     gl.vertexAttribPointer(this.shader.aTextureCoord, 2, gl.FLOAT, false, stride, 7 * 4);
     gl.vertexAttribPointer(this.shader.colorAttribute, 1, gl.FLOAT, false, stride, 9 * 4);
   }
-
 }

@@ -7,7 +7,6 @@
 import { create, removeByCanvas } from './pool';
 
 export default class {
-
   constructor(width, height) {
     this.width = width;
     this.height = height;
@@ -32,5 +31,4 @@ export default class {
   destroy() {
     removeByCanvas(this.canvas);
   }
-
 }

@@ -4,7 +4,6 @@
  * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
  */
 export default class {
-
   constructor() {
     this.game = null;
     this.key = '';
@@ -37,5 +36,4 @@ export default class {
   shutdown() {
     // inherit
   }
-
 }

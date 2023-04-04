@@ -6,7 +6,6 @@
 import Signal from './signal';
 
 export default class {
-
   constructor(game, key, volume = 1, loop = false, connect = null) {
     // TODO
     // https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Migrating_from_webkitAudioContext
@@ -179,8 +178,12 @@ export default class {
   }
 
   play(marker, position, volume, loop, forceRestart) {
-    if (marker === undefined || marker === false || marker === null) { marker = ''; }
-    if (forceRestart === undefined) { forceRestart = true; }
+    if (marker === undefined || marker === false || marker === null) {
+      marker = '';
+    }
+    if (forceRestart === undefined) {
+      forceRestart = true;
+    }
 
     if (this.isPlaying && !this.allowMultiple && !forceRestart && !this.override) {
       //  Use Restart instead
@@ -231,8 +234,12 @@ export default class {
       }
     } else {
       position = position || 0;
-      if (volume === undefined) { volume = this._volume; }
-      if (loop === undefined) { loop = this.loop; }
+      if (volume === undefined) {
+        volume = this._volume;
+      }
+      if (loop === undefined) {
+        loop = this.loop;
+      }
       this.position = Math.max(0, position);
       this.volume = volume;
       this.loop = loop;
@@ -280,7 +287,10 @@ export default class {
         this.onPlay.dispatch(this);
       } else {
         this.pendingPlayback = true;
-        if (this.game.cache.getSound(this.key) && this.game.cache.getSound(this.key).isDecoding === false) {
+        if (
+          this.game.cache.getSound(this.key) &&
+          this.game.cache.getSound(this.key).isDecoding === false
+        ) {
           this.game.sound.decode(this.key, this);
         }
       }
@@ -331,7 +341,7 @@ export default class {
   resume() {
     if (this.paused && this._sound) {
       if (!this.game.sound.noAudio) {
-        const p = Math.max(0, this.position + (this.pausedPosition / 1000));
+        const p = Math.max(0, this.position + this.pausedPosition / 1000);
         this._sound = this.context.createBufferSource();
         this._sound.buffer = this._buffer;
         if (this.externalNode) {
@@ -345,7 +355,7 @@ export default class {
         if (!this.loop && this.currentMarker === '') {
           this._sound.onended = this.onEndedHandler.bind(this);
         }
-        const duration = this.duration - (this.pausedPosition / 1000);
+        const duration = this.duration - this.pausedPosition / 1000;
         if (this._sound.start === undefined) {
           this._sound.noteGrainOn(0, p, duration);
           // https://bugs.chromium.org/p/chromium/issues/detail?id=457099
@@ -357,7 +367,7 @@ export default class {
       }
       this.isPlaying = true;
       this.paused = false;
-      this.startTime += (this.game.time.time - this.pausedTime);
+      this.startTime += this.game.time.time - this.pausedTime;
       this.onResume.dispatch(this);
     }
   }
@@ -441,7 +451,7 @@ export default class {
   }
 
   get mute() {
-    return (this._muted || this.game.sound.mute);
+    return this._muted || this.game.sound.mute;
   }
 
   set mute(value) {
@@ -479,5 +489,4 @@ export default class {
       this.gainNode.gain.value = value;
     }
   }
-
 }

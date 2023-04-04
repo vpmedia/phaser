@@ -6,21 +6,40 @@
 import Tween from './tween';
 import {
   LinearNone,
-  QuadraticIn, QuadraticOut, QuadraticInOut,
-  CubicIn, CubicOut, CubicInOut,
-  QuarticIn, QuarticOut, QuarticInOut,
-  QuinticIn, QuinticOut, QuinticInOut,
-  SinusoidalIn, SinusoidalOut, SinusoidalInOut,
-  ExponentialIn, ExponentialOut, ExponentialInOut,
-  CircularIn, CircularOut, CircularInOut,
-  ElasticIn, ElasticOut, ElasticInOut,
-  BackIn, BackOut, BackInOut,
-  BounceIn, BounceOut, BounceInOut,
+  QuadraticIn,
+  QuadraticOut,
+  QuadraticInOut,
+  CubicIn,
+  CubicOut,
+  CubicInOut,
+  QuarticIn,
+  QuarticOut,
+  QuarticInOut,
+  QuinticIn,
+  QuinticOut,
+  QuinticInOut,
+  SinusoidalIn,
+  SinusoidalOut,
+  SinusoidalInOut,
+  ExponentialIn,
+  ExponentialOut,
+  ExponentialInOut,
+  CircularIn,
+  CircularOut,
+  CircularInOut,
+  ElasticIn,
+  ElasticOut,
+  ElasticInOut,
+  BackIn,
+  BackOut,
+  BackInOut,
+  BounceIn,
+  BounceOut,
+  BounceInOut,
 } from './tween_easing';
 import { GROUP } from './const';
 
 export default class {
-
   constructor(game) {
     this.game = game;
     this._tweens = [];
@@ -154,7 +173,7 @@ export default class {
   }
 
   isTweening(object) {
-    return this._tweens.some(tween => tween.target === object);
+    return this._tweens.some((tween) => tween.target === object);
   }
 
   _pauseAll() {
@@ -180,5 +199,4 @@ export default class {
       this._tweens[i].resume(true);
     }
   }
-
 }

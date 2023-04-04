@@ -16,13 +16,23 @@ import CanvasBuffer from './canvas/buffer';
 import { textureFromCanvas } from './webgl/texture_util';
 import { renderGraphics as renderCanvasGraphics } from './canvas/graphics';
 import { renderGraphics as renderWebGLGraphics } from './webgl/graphics';
-import { renderCanvas as renderSpriteCanvas, renderWebGL as renderSpriteWebGL } from './sprite_util';
+import {
+  renderCanvas as renderSpriteCanvas,
+  renderWebGL as renderSpriteWebGL,
+} from './sprite_util';
 import { getEmptyRectangle } from '../geom/util/rectangle';
 import { getIdentityMatrix } from '../geom/util/matrix';
-import { BLEND_NORMAL, GRAPHICS, GEOM_POLYGON, GEOM_CIRCLE, GEOM_ELLIPSE, GEOM_RECTANGLE, GEOM_ROUNDED_RECTANGLE } from '../core/const';
+import {
+  BLEND_NORMAL,
+  GRAPHICS,
+  GEOM_POLYGON,
+  GEOM_CIRCLE,
+  GEOM_ELLIPSE,
+  GEOM_RECTANGLE,
+  GEOM_ROUNDED_RECTANGLE,
+} from '../core/const';
 
 export default class extends DisplayObject {
-
   constructor(game, x = 0, y = 0) {
     super();
     this.game = game;
@@ -33,7 +43,7 @@ export default class extends DisplayObject {
     this.lineWidth = 0;
     this.lineColor = 0;
     this.graphicsData = [];
-    this.tint = 0xFFFFFF;
+    this.tint = 0xffffff;
     this.blendMode = BLEND_NORMAL;
     this.currentPath = null;
     this._webGL = [];
@@ -55,7 +65,7 @@ export default class extends DisplayObject {
   lineStyle(lineWidth = 0, color = 0, alpha = 1) {
     this.lineWidth = lineWidth || 0;
     this.lineColor = color || 0;
-    this.lineAlpha = (alpha === undefined) ? 1 : alpha;
+    this.lineAlpha = alpha === undefined ? 1 : alpha;
     if (this.currentPath) {
       if (this.currentPath.shape.points.length) {
         // halfway through a line? start a new one!
@@ -105,9 +115,9 @@ export default class extends DisplayObject {
     let j = 0;
     for (let i = 1; i <= n; i += 1) {
       j = i / n;
-      xa = fromX + ((cpX - fromX) * j);
-      ya = fromY + ((cpY - fromY) * j);
-      points.push(xa + (((cpX + ((toX - cpX) * j)) - xa) * j), ya + (((cpY + ((toY - cpY) * j)) - ya) * j));
+      xa = fromX + (cpX - fromX) * j;
+      ya = fromY + (cpY - fromY) * j;
+      points.push(xa + (cpX + (toX - cpX) * j - xa) * j, ya + (cpY + (toY - cpY) * j - ya) * j);
     }
     this.dirty = true;
     this._boundsDirty = true;
@@ -134,12 +144,15 @@ export default class extends DisplayObject {
     let j = 0;
     for (let i = 1; i <= n; i += 1) {
       j = i / n;
-      dt = (1 - j);
+      dt = 1 - j;
       dt2 = dt * dt;
       dt3 = dt2 * dt;
       t2 = j * j;
       t3 = t2 * j;
-      points.push(dt3 * fromX + 3 * dt2 * j * cpX + 3 * dt * t2 * cpX2 + t3 * toX, dt3 * fromY + 3 * dt2 * j * cpY + 3 * dt * t2 * cpY2 + t3 * toY);
+      points.push(
+        dt3 * fromX + 3 * dt2 * j * cpX + 3 * dt * t2 * cpX2 + t3 * toX,
+        dt3 * fromY + 3 * dt2 * j * cpY + 3 * dt * t2 * cpY2 + t3 * toY
+      );
     }
     this.dirty = true;
     this._boundsDirty = true;
@@ -170,10 +183,10 @@ export default class extends DisplayObject {
       const dd = a1 * a1 + b1 * b1;
       const cc = a2 * a2 + b2 * b2;
       const tt = a1 * a2 + b1 * b2;
-      const k1 = radius * Math.sqrt(dd) / mm;
-      const k2 = radius * Math.sqrt(cc) / mm;
-      const j1 = k1 * tt / dd;
-      const j2 = k2 * tt / cc;
+      const k1 = (radius * Math.sqrt(dd)) / mm;
+      const k2 = (radius * Math.sqrt(cc)) / mm;
+      const j1 = (k1 * tt) / dd;
+      const j2 = (k2 * tt) / cc;
       const cx = k1 * b2 + k2 * b1;
       const cy = k1 * a2 + k2 * a1;
       const px = b1 * (k2 + j1);
@@ -199,7 +212,7 @@ export default class extends DisplayObject {
     } else if (anticlockwise && startAngle <= endAngle) {
       startAngle += Math.PI * 2;
     }
-    const sweep = anticlockwise ? (startAngle - endAngle) * -1 : (endAngle - startAngle);
+    const sweep = anticlockwise ? (startAngle - endAngle) * -1 : endAngle - startAngle;
     const segs = Math.ceil(Math.abs(sweep) / (Math.PI * 2)) * segments;
     //  Sweep check - moved here because we don't want to do the moveTo below if the arc fails
     if (sweep === 0) {
@@ -222,10 +235,13 @@ export default class extends DisplayObject {
     const remainder = (segMinus % 1) / segMinus;
     for (let i = 0; i <= segMinus; i += 1) {
       const real = i + remainder * i;
-      const angle = ((theta) + startAngle + (theta2 * real));
+      const angle = theta + startAngle + theta2 * real;
       const c = Math.cos(angle);
       const s = -Math.sin(angle);
-      points.push(((cTheta * c) + (sTheta * s)) * radius + cx, ((cTheta * -s) + (sTheta * c)) * radius + cy);
+      points.push(
+        (cTheta * c + sTheta * s) * radius + cx,
+        (cTheta * -s + sTheta * c) * radius + cy
+      );
     }
     this.dirty = true;
     this._boundsDirty = true;
@@ -235,7 +251,7 @@ export default class extends DisplayObject {
   beginFill(color = 0, alpha = 1) {
     this.filling = true;
     this.fillColor = color || 0;
-    this.fillAlpha = (alpha === undefined) ? 1 : alpha;
+    this.fillAlpha = alpha === undefined ? 1 : alpha;
     if (this.currentPath) {
       if (this.currentPath.shape.points.length <= 2) {
         this.currentPath.fill = this.filling;
@@ -336,7 +352,8 @@ export default class extends DisplayObject {
       // check blend mode
       if (this.blendMode !== renderSession.spriteBatch.currentBlendMode) {
         renderSession.spriteBatch.currentBlendMode = this.blendMode;
-        const blendModeWebGL = window.PhaserRegistry.blendModesWebGL[renderSession.spriteBatch.currentBlendMode];
+        const blendModeWebGL =
+          window.PhaserRegistry.blendModesWebGL[renderSession.spriteBatch.currentBlendMode];
         renderSession.spriteBatch.gl.blendFunc(blendModeWebGL[0], blendModeWebGL[1]);
       }
       // check if the webgl graphic needs to be updated
@@ -390,21 +407,22 @@ export default class extends DisplayObject {
       const transform = this.worldTransform;
       if (this.blendMode !== renderSession.currentBlendMode) {
         renderSession.currentBlendMode = this.blendMode;
-        context.globalCompositeOperation = window.PhaserRegistry.blendModesCanvas[renderSession.currentBlendMode];
+        context.globalCompositeOperation =
+          window.PhaserRegistry.blendModesCanvas[renderSession.currentBlendMode];
       }
       if (this._mask) {
         renderSession.maskManager.pushMask(this._mask, renderSession);
       }
       const resolution = renderSession.resolution;
-      const tx = (transform.tx * renderSession.resolution) + renderSession.shakeX;
-      const ty = (transform.ty * renderSession.resolution) + renderSession.shakeY;
+      const tx = transform.tx * renderSession.resolution + renderSession.shakeX;
+      const ty = transform.ty * renderSession.resolution + renderSession.shakeY;
       context.setTransform(
         transform.a * resolution,
         transform.b * resolution,
         transform.c * resolution,
         transform.d * resolution,
         tx,
-        ty,
+        ty
       );
       renderCanvasGraphics(this, context);
       // simple render children!
@@ -574,9 +592,9 @@ export default class extends DisplayObject {
     }
     const padding = this.boundsPadding;
     this._localBounds.x = minX - padding;
-    this._localBounds.width = (maxX - minX) + padding * 2;
+    this._localBounds.width = maxX - minX + padding * 2;
     this._localBounds.y = minY - padding;
-    this._localBounds.height = (maxY - minY) + padding * 2;
+    this._localBounds.height = maxY - minY + padding * 2;
   }
 
   generateCachedSprite() {
@@ -639,7 +657,15 @@ export default class extends DisplayObject {
       shape = shape.clone();
       shape.flatten();
     }
-    const data = new GraphicsData(this.lineWidth, this.lineColor, this.lineAlpha, this.fillColor, this.fillAlpha, this.filling, shape);
+    const data = new GraphicsData(
+      this.lineWidth,
+      this.lineColor,
+      this.lineAlpha,
+      this.fillColor,
+      this.fillAlpha,
+      this.filling,
+      shape
+    );
     this.graphicsData.push(data);
     if (data.type === GEOM_POLYGON) {
       data.shape.closed = this.filling;
@@ -719,5 +745,4 @@ export default class extends DisplayObject {
       }
     }
   }
-
 }

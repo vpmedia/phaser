@@ -6,7 +6,6 @@
 import Scene from './scene';
 
 export default class {
-
   constructor(game, pendingState) {
     this.game = game;
     this.states = {};
@@ -141,7 +140,12 @@ export default class {
 
   checkState(key) {
     if (this.states[key]) {
-      if (this.states[key].preload || this.states[key].create || this.states[key].update || this.states[key].render) {
+      if (
+        this.states[key].preload ||
+        this.states[key].create ||
+        this.states[key].update ||
+        this.states[key].render
+      ) {
         return true;
       }
       return false;
@@ -235,5 +239,4 @@ export default class {
   get created() {
     return this._created;
   }
-
 }

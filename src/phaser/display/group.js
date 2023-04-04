@@ -12,7 +12,6 @@ export const SORT_ASCENDING = -1;
 export const SORT_DESCENDING = 1;
 
 export default class extends DisplayObject {
-
   constructor(game, parent = null, name = 'group', addToStage = false) {
     super();
     this.game = game;
@@ -219,9 +218,7 @@ export default class extends DisplayObject {
       if (destroy && removed) {
         removed.destroy(true, destroyTexture);
       }
-    }
-    while (this.children.length > 0);
+    } while (this.children.length > 0);
     this.cursor = null;
   }
-
 }

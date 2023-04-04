@@ -10,7 +10,6 @@ import { valueToColor } from '../util/math';
 import { SCALE_LINEAR, SCALE_NEAREST } from './const';
 
 export default class extends DisplayObject {
-
   constructor(game) {
     super();
     this.game = game;
@@ -103,6 +102,4 @@ export default class extends DisplayObject {
   set smoothed(value) {
     window.PhaserRegistry.TEXTURE_SCALE_MODE = value ? SCALE_LINEAR : SCALE_NEAREST;
   }
-
-
 }

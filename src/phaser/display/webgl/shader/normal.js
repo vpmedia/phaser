@@ -30,7 +30,6 @@ const defaultVertexSrc = [
 // this shader is used for the default sprite rendering
 
 export default class {
-
   constructor(gl) {
     this.gl = gl;
     this._UID = generateShaderID();
@@ -144,26 +143,43 @@ export default class {
       // KeyTexture = whatever + luminance + width 256, height 2, border 0
       //  magFilter can be: gl.LINEAR, gl.LINEAR_MIPMAP_LINEAR or gl.NEAREST
       //  wrapS/T can be: gl.CLAMP_TO_EDGE or gl.REPEAT
-      const magFilter = (data.magFilter) ? data.magFilter : gl.LINEAR;
-      const minFilter = (data.minFilter) ? data.minFilter : gl.LINEAR;
-      let wrapS = (data.wrapS) ? data.wrapS : gl.CLAMP_TO_EDGE;
-      let wrapT = (data.wrapT) ? data.wrapT : gl.CLAMP_TO_EDGE;
-      const format = (data.luminance) ? gl.LUMINANCE : gl.RGBA;
+      const magFilter = data.magFilter ? data.magFilter : gl.LINEAR;
+      const minFilter = data.minFilter ? data.minFilter : gl.LINEAR;
+      let wrapS = data.wrapS ? data.wrapS : gl.CLAMP_TO_EDGE;
+      let wrapT = data.wrapT ? data.wrapT : gl.CLAMP_TO_EDGE;
+      const format = data.luminance ? gl.LUMINANCE : gl.RGBA;
       if (data.repeat) {
         wrapS = gl.REPEAT;
         wrapT = gl.REPEAT;
       }
       gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, !!data.flipY);
       if (data.width) {
-        const width = (data.width) ? data.width : 512;
-        const height = (data.height) ? data.height : 2;
-        const border = (data.border) ? data.border : 0;
+        const width = data.width ? data.width : 512;
+        const height = data.height ? data.height : 2;
+        const border = data.border ? data.border : 0;
 
         // void texImage2D(GLenum target, GLint level, GLenum internalformat, GLsizei width, GLsizei height, GLint border, GLenum format, GLenum type, ArrayBufferView? pixels);
-        gl.texImage2D(gl.TEXTURE_2D, 0, format, width, height, border, format, gl.UNSIGNED_BYTE, null);
+        gl.texImage2D(
+          gl.TEXTURE_2D,
+          0,
+          format,
+          width,
+          height,
+          border,
+          format,
+          gl.UNSIGNED_BYTE,
+          null
+        );
       } else {
         //  void texImage2D(GLenum target, GLint level, GLenum internalformat, GLenum format, GLenum type, ImageData? pixels);
-        gl.texImage2D(gl.TEXTURE_2D, 0, format, gl.RGBA, gl.UNSIGNED_BYTE, uniform.value.baseTexture.source);
+        gl.texImage2D(
+          gl.TEXTURE_2D,
+          0,
+          format,
+          gl.RGBA,
+          gl.UNSIGNED_BYTE,
+          uniform.value.baseTexture.source
+        );
       }
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, magFilter);
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, minFilter);
@@ -193,9 +209,22 @@ export default class {
       } else if (uniform.glValueLength === 2) {
         uniform.glFunc.call(gl, uniform.uniformLocation, uniform.value.x, uniform.value.y);
       } else if (uniform.glValueLength === 3) {
-        uniform.glFunc.call(gl, uniform.uniformLocation, uniform.value.x, uniform.value.y, uniform.value.z);
+        uniform.glFunc.call(
+          gl,
+          uniform.uniformLocation,
+          uniform.value.x,
+          uniform.value.y,
+          uniform.value.z
+        );
       } else if (uniform.glValueLength === 4) {
-        uniform.glFunc.call(gl, uniform.uniformLocation, uniform.value.x, uniform.value.y, uniform.value.z, uniform.value.w);
+        uniform.glFunc.call(
+          gl,
+          uniform.uniformLocation,
+          uniform.value.x,
+          uniform.value.y,
+          uniform.value.z,
+          uniform.value.w
+        );
       } else if (uniform.type === 'sampler2D') {
         if (uniform._init) {
           gl.activeTexture(gl['TEXTURE' + this.textureCount]);
@@ -221,5 +250,4 @@ export default class {
     this.gl = null;
     this.attributes = null;
   }
-
 }

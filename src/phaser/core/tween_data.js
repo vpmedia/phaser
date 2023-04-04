@@ -7,7 +7,6 @@ import * as MathUtils from '../util/math';
 import { TWEEN_PENDING, TWEEN_RUNNING, TWEEN_COMPLETE, TWEEN_LOOPED } from './const';
 
 export default class {
-
   constructor(parent) {
     this.parent = parent;
     this.game = parent.game;
@@ -145,12 +144,19 @@ export default class {
       const start = this.vStart[property];
       const end = this.vEnd[property];
       if (Array.isArray(end)) {
-        this.parent.target[property] = this.interpolationFunction.call(this.interpolationContext, end, this.value);
+        this.parent.target[property] = this.interpolationFunction.call(
+          this.interpolationContext,
+          end,
+          this.value
+        );
       } else {
-        this.parent.target[property] = start + ((end - start) * this.value);
+        this.parent.target[property] = start + (end - start) * this.value;
       }
     }
-    if ((!this.parent.reverse && this.percent === 1) || (this.parent.reverse && this.percent === 0)) {
+    if (
+      (!this.parent.reverse && this.percent === 1) ||
+      (this.parent.reverse && this.percent === 0)
+    ) {
       return this.repeat();
     }
     return TWEEN_RUNNING;
@@ -184,11 +190,14 @@ export default class {
         if (Array.isArray(end)) {
           blob[property] = this.interpolationFunction(end, this.value);
         } else {
-          blob[property] = start + ((end - start) * this.value);
+          blob[property] = start + (end - start) * this.value;
         }
       }
       data.push(blob);
-      if ((!this.parent.reverse && this.percent === 1) || (this.parent.reverse && this.percent === 0)) {
+      if (
+        (!this.parent.reverse && this.percent === 1) ||
+        (this.parent.reverse && this.percent === 0)
+      ) {
         complete = true;
       }
     } while (!complete);
@@ -254,5 +263,4 @@ export default class {
     }
     return TWEEN_LOOPED;
   }
-
 }

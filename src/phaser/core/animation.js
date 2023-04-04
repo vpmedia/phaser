@@ -6,7 +6,6 @@
 import Signal from './signal';
 
 export default class {
-
   constructor(game, parent, name, frameData, frames, frameRate, loop = false) {
     this.game = game;
     this._parent = parent;
@@ -158,7 +157,7 @@ export default class {
       if (this._frameDiff > this.delay) {
         //  We need to skip a frame, work out how many
         this._frameSkip = Math.floor(this._frameDiff / this.delay);
-        this._frameDiff -= (this._frameSkip * this.delay);
+        this._frameDiff -= this._frameSkip * this.delay;
       }
       //  And what's left now?
       this._timeNextFrame = this.game.time.time + (this.delay - this._frameDiff);
@@ -167,7 +166,10 @@ export default class {
       } else {
         this._frameIndex += this._frameSkip;
       }
-      if (!this.isReversed && this._frameIndex >= this._frames.length || this.isReversed && this._frameIndex <= -1) {
+      if (
+        (!this.isReversed && this._frameIndex >= this._frames.length) ||
+        (this.isReversed && this._frameIndex <= -1)
+      ) {
         if (this.loop) {
           // Update current state before event callback
           this._frameIndex = Math.abs(this._frameIndex) % this._frames.length;
@@ -249,7 +251,9 @@ export default class {
 
   updateFrameData(frameData) {
     this._frameData = frameData;
-    this.currentFrame = this._frameData ? this._frameData.getFrame(this._frames[this._frameIndex % this._frames.length]) : null;
+    this.currentFrame = this._frameData
+      ? this._frameData.getFrame(this._frames[this._frameIndex % this._frames.length])
+      : null;
   }
 
   destroy() {
@@ -340,7 +344,7 @@ export default class {
   }
 
   get enableUpdate() {
-    return (this.onUpdate !== null);
+    return this.onUpdate !== null;
   }
 
   set enableUpdate(value) {
@@ -351,5 +355,4 @@ export default class {
       this.onUpdate = null;
     }
   }
-
 }

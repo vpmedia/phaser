@@ -9,7 +9,6 @@ import Point from '../geom/point';
 import { BITMAP_TEXT, SCALE_LINEAR, SCALE_NEAREST } from '../core/const';
 
 export default class extends DisplayObject {
-
   constructor(game, x = 0, y = 0, font = '', text = '', size = 32, align = 'left') {
     super();
     this.game = game;
@@ -25,7 +24,7 @@ export default class extends DisplayObject {
     this._font = font;
     this._fontSize = size;
     this._align = align;
-    this._tint = 0xFFFFFF;
+    this._tint = 0xffffff;
     this.updateText();
     this.dirty = false;
   }
@@ -67,7 +66,7 @@ export default class extends DisplayObject {
     let lastSpace = -1;
     let wrappedWidth = 0;
     let prevCharCode = null;
-    const maxWidth = (this._maxWidth > 0) ? this._maxWidth : null;
+    const maxWidth = this._maxWidth > 0 ? this._maxWidth : null;
     const chars = [];
     //  Let's scan the text and work out if any of the lines are > maxWidth
     let end = true;
@@ -91,7 +90,8 @@ export default class extends DisplayObject {
         charData = data.chars[charCode];
       }
       //  Adjust for kerning from previous character to this one
-      const kerning = (prevCharCode && charData.kerning[prevCharCode]) ? charData.kerning[prevCharCode] : 0;
+      const kerning =
+        prevCharCode && charData.kerning[prevCharCode] ? charData.kerning[prevCharCode] : 0;
       //  Record the last space in the string and the current width
       if (/(\s)/.test(text.charAt(i))) {
         lastSpace = i;
@@ -100,7 +100,7 @@ export default class extends DisplayObject {
       //  What will the line width be if we add this character to it?
       c = (kerning + charData.texture.width + charData.xOffset) * scale;
       //  Do we need to line-wrap?
-      if (maxWidth && ((w + c) >= maxWidth) && lastSpace > -1) {
+      if (maxWidth && w + c >= maxWidth && lastSpace > -1) {
         //  The last space was at "lastSpace" which was "i - lastSpace" characters ago
         return {
           width: wrappedWidth || w,
@@ -162,7 +162,7 @@ export default class extends DisplayObject {
       if (line.width > this.textWidth) {
         this.textWidth = line.width;
       }
-      y += (data.lineHeight * scale);
+      y += data.lineHeight * scale;
       text = text.substr(line.text.length + 1);
     } while (line.end === false);
     this.textHeight = y;
@@ -194,8 +194,8 @@ export default class extends DisplayObject {
           g.name = currentLine.text[c];
           this._glyphs.push(g);
         }
-        g.position.x = (currentLine.chars[c] + align) - ax;
-        g.position.y = (currentLine.y + (charData.yOffset * scale)) - ay;
+        g.position.x = currentLine.chars[c] + align - ax;
+        g.position.y = currentLine.y + charData.yOffset * scale - ay;
         g.scale.set(scale);
         g.tint = this.tint;
         g.texture.requiresReTint = true;
@@ -333,5 +333,4 @@ export default class extends DisplayObject {
       this._data.base.scaleMode = SCALE_NEAREST;
     }
   }
-
 }

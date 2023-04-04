@@ -38,18 +38,18 @@ export function intersectsPoints(a, b, e, f, asSegment = true, output = null) {
   const a2 = f.y - e.y;
   const b1 = a.x - b.x;
   const b2 = e.x - f.x;
-  const c1 = (b.x * a.y) - (a.x * b.y);
-  const c2 = (f.x * e.y) - (e.x * f.y);
-  const denom = (a1 * b2) - (a2 * b1);
+  const c1 = b.x * a.y - a.x * b.y;
+  const c2 = f.x * e.y - e.x * f.y;
+  const denom = a1 * b2 - a2 * b1;
   if (denom === 0) {
     return null;
   }
-  result.x = ((b1 * c2) - (b2 * c1)) / denom;
-  result.y = ((a2 * c1) - (a1 * c2)) / denom;
+  result.x = (b1 * c2 - b2 * c1) / denom;
+  result.y = (a2 * c1 - a1 * c2) / denom;
   if (asSegment) {
-    const uc = ((f.y - e.y) * (b.x - a.x) - (f.x - e.x) * (b.y - a.y));
-    const ua = (((f.x - e.x) * (a.y - e.y)) - (f.y - e.y) * (a.x - e.x)) / uc;
-    const ub = (((b.x - a.x) * (a.y - e.y)) - ((b.y - a.y) * (a.x - e.x))) / uc;
+    const uc = (f.y - e.y) * (b.x - a.x) - (f.x - e.x) * (b.y - a.y);
+    const ua = ((f.x - e.x) * (a.y - e.y) - (f.y - e.y) * (a.x - e.x)) / uc;
+    const ub = ((b.x - a.x) * (a.y - e.y) - (b.y - a.y) * (a.x - e.x)) / uc;
     if (ua >= 0 && ua <= 1 && ub >= 0 && ub <= 1) {
       return result;
     }
@@ -92,31 +92,34 @@ export function intersectsRectangle(line, rect) {
   let t = 0;
   //  If the start or end of the line is inside the rect then we assume
   //  collision, as rects are solid for our use-case.
-  if ((x1 >= bx1 && x1 <= bx2 && y1 >= by1 && y1 <= by2) || (x2 >= bx1 && x2 <= bx2 && y2 >= by1 && y2 <= by2)) {
+  if (
+    (x1 >= bx1 && x1 <= bx2 && y1 >= by1 && y1 <= by2) ||
+    (x2 >= bx1 && x2 <= bx2 && y2 >= by1 && y2 <= by2)
+  ) {
     return true;
   }
   if (x1 < bx1 && x2 >= bx1) {
     //  Left edge
-    t = y1 + (y2 - y1) * (bx1 - x1) / (x2 - x1);
+    t = y1 + ((y2 - y1) * (bx1 - x1)) / (x2 - x1);
     if (t > by1 && t <= by2) {
       return true;
     }
   } else if (x1 > bx2 && x2 <= bx2) {
     //  Right edge
-    t = y1 + (y2 - y1) * (bx2 - x1) / (x2 - x1);
+    t = y1 + ((y2 - y1) * (bx2 - x1)) / (x2 - x1);
     if (t >= by1 && t <= by2) {
       return true;
     }
   }
   if (y1 < by1 && y2 >= by1) {
     //  Top edge
-    t = x1 + (x2 - x1) * (by1 - y1) / (y2 - y1);
+    t = x1 + ((x2 - x1) * (by1 - y1)) / (y2 - y1);
     if (t >= bx1 && t <= bx2) {
       return true;
     }
   } else if (y1 > by2 && y2 <= by2) {
     //  Bottom edge
-    t = x1 + (x2 - x1) * (by2 - y1) / (y2 - y1);
+    t = x1 + ((x2 - x1) * (by2 - y1)) / (y2 - y1);
     if (t >= bx1 && t <= bx2) {
       return true;
     }

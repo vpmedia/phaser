@@ -41,7 +41,11 @@ export function spriteSheet(game, key, frameWidth, frameHeight, frameMax, margin
   }
   //  Zero or smaller than frame sizes?
   if (width === 0 || height === 0 || width < frameWidth || height < frameHeight || total === 0) {
-    console.warn("AnimationParser.spriteSheet: '" + key + "'s width/height zero or width/height < given frameWidth/frameHeight");
+    console.warn(
+      "AnimationParser.spriteSheet: '" +
+        key +
+        "'s width/height zero or width/height < given frameWidth/frameHeight"
+    );
     return null;
   }
   //  Let's create some frames then
@@ -79,9 +83,26 @@ export function JSONDataHash(game, json) {
   const keys = Object.keys(frames);
   for (let k = 0; k < keys.length; k += 1) {
     const key = keys[k];
-    newFrame = data.addFrame(new Frame(i, frames[key].frame.x, frames[key].frame.y, frames[key].frame.w, frames[key].frame.h, key));
+    newFrame = data.addFrame(
+      new Frame(
+        i,
+        frames[key].frame.x,
+        frames[key].frame.y,
+        frames[key].frame.w,
+        frames[key].frame.h,
+        key
+      )
+    );
     if (frames[key].trimmed) {
-      newFrame.setTrim(frames[key].trimmed, frames[key].sourceSize.w, frames[key].sourceSize.h, frames[key].spriteSourceSize.x, frames[key].spriteSourceSize.y, frames[key].spriteSourceSize.w, frames[key].spriteSourceSize.h);
+      newFrame.setTrim(
+        frames[key].trimmed,
+        frames[key].sourceSize.w,
+        frames[key].sourceSize.h,
+        frames[key].spriteSourceSize.x,
+        frames[key].spriteSourceSize.y,
+        frames[key].spriteSourceSize.w,
+        frames[key].spriteSourceSize.h
+      );
     }
     i += 1;
   }

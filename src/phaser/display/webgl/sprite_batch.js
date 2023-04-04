@@ -10,7 +10,6 @@ import NormalShader from './shader/normal';
 // TODO: fix ++ +=1 conversion issues (when a is 0 than a++ is 0 but a+=1 is 1)
 
 export default class {
-
   constructor() {
     this.vertSize = 5;
     this.size = 2000; // Math.pow(2, 16) /  this.vertSize;
@@ -111,8 +110,8 @@ export default class {
       h1 = trim.y - aY * trim.height;
       h0 = h1 + texture.crop.height;
     } else {
-      w0 = (texture.frame.width) * (1 - aX);
-      w1 = (texture.frame.width) * -aX;
+      w0 = texture.frame.width * (1 - aX);
+      w1 = texture.frame.width * -aX;
       h0 = texture.frame.height * (1 - aY);
       h1 = texture.frame.height * -aY;
     }
@@ -128,17 +127,17 @@ export default class {
     const positions = this.positions;
     if (this.renderSession.roundPixels) {
       // xy
-      positions[i] = a * w1 + c * h1 + tx | 0;
-      positions[i + 1] = d * h1 + b * w1 + ty | 0;
+      positions[i] = (a * w1 + c * h1 + tx) | 0;
+      positions[i + 1] = (d * h1 + b * w1 + ty) | 0;
       // xy
-      positions[i + 5] = a * w0 + c * h1 + tx | 0;
-      positions[i + 6] = d * h1 + b * w0 + ty | 0;
+      positions[i + 5] = (a * w0 + c * h1 + tx) | 0;
+      positions[i + 6] = (d * h1 + b * w0 + ty) | 0;
       // xy
-      positions[i + 10] = a * w0 + c * h0 + tx | 0;
-      positions[i + 11] = d * h0 + b * w0 + ty | 0;
+      positions[i + 10] = (a * w0 + c * h0 + tx) | 0;
+      positions[i + 11] = (d * h0 + b * w0 + ty) | 0;
       // xy
-      positions[i + 15] = a * w1 + c * h0 + tx | 0;
-      positions[i + 16] = d * h0 + b * w1 + ty | 0;
+      positions[i + 15] = (a * w1 + c * h0 + tx) | 0;
+      positions[i + 16] = (d * h0 + b * w1 + ty) | 0;
     } else {
       // xy
       positions[i] = a * w1 + c * h1 + tx;
@@ -167,7 +166,8 @@ export default class {
     positions[i + 18] = uvs.y3;
     // color and alpha
     const tint = sprite.tint;
-    colors[i + 4] = (tint >> 16) + (tint & 0xff00) + ((tint & 0xff) << 16) + (sprite.worldAlpha * 255 << 24);
+    colors[i + 4] =
+      (tint >> 16) + (tint & 0xff00) + ((tint & 0xff) << 16) + ((sprite.worldAlpha * 255) << 24);
     colors[i + 9] = colors[i + 4];
     colors[i + 14] = colors[i + 4];
     colors[i + 19] = colors[i + 4];
@@ -203,7 +203,7 @@ export default class {
       gl.vertexAttribPointer(shader.colorAttribute, 4, gl.UNSIGNED_BYTE, true, stride, 4 * 4);
     }
     // upload the verts to the buffer
-    if (this.currentBatchSize > (this.size * 0.5)) {
+    if (this.currentBatchSize > this.size * 0.5) {
       gl.bufferSubData(gl.ARRAY_BUFFER, 0, this.vertices);
     } else {
       const view = this.positions.subarray(0, this.currentBatchSize * 4 * this.vertSize);
@@ -316,5 +316,4 @@ export default class {
     this.currentBaseTexture = null;
     this.gl = null;
   }
-
 }

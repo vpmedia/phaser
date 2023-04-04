@@ -7,7 +7,6 @@ import Signal from './signal';
 import TimerEvent from './timer_event';
 
 export default class {
-
   constructor(game, autoDestroy = false) {
     this.game = game;
     this.running = false;
@@ -39,7 +38,16 @@ export default class {
     } else {
       tick += this._now;
     }
-    const event = new TimerEvent(this, roundedDelay, tick, repeatCount, loop, callback, callbackContext, args);
+    const event = new TimerEvent(
+      this,
+      roundedDelay,
+      tick,
+      repeatCount,
+      loop,
+      callback,
+      callbackContext,
+      args
+    );
     this.events.push(event);
     this.order();
     this.expired = false;
@@ -135,21 +143,31 @@ export default class {
       while (this._i < this._len && this.running) {
         if (this._now >= this.events[this._i].tick && !this.events[this._i].pendingDelete) {
           //  (now + delay) - (time difference from last tick to now)
-          this._newTick = (this._now + this.events[this._i].delay) - (this._now - this.events[this._i].tick);
+          this._newTick =
+            this._now + this.events[this._i].delay - (this._now - this.events[this._i].tick);
           if (this._newTick < 0) {
             this._newTick = this._now + this.events[this._i].delay;
           }
           if (this.events[this._i].loop === true) {
             this.events[this._i].tick = this._newTick;
-            this.events[this._i].callback.apply(this.events[this._i].callbackContext, this.events[this._i].args);
+            this.events[this._i].callback.apply(
+              this.events[this._i].callbackContext,
+              this.events[this._i].args
+            );
           } else if (this.events[this._i].repeatCount > 0) {
             this.events[this._i].repeatCount -= 1;
             this.events[this._i].tick = this._newTick;
-            this.events[this._i].callback.apply(this.events[this._i].callbackContext, this.events[this._i].args);
+            this.events[this._i].callback.apply(
+              this.events[this._i].callbackContext,
+              this.events[this._i].args
+            );
           } else {
             this._marked += 1;
             this.events[this._i].pendingDelete = true;
-            this.events[this._i].callback.apply(this.events[this._i].callbackContext, this.events[this._i].args);
+            this.events[this._i].callback.apply(
+              this.events[this._i].callbackContext,
+              this.events[this._i].args
+            );
           }
           this._i += 1;
         } else {
@@ -272,5 +290,4 @@ export default class {
     }
     return 0;
   }
-
 }

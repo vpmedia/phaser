@@ -6,7 +6,6 @@
  */
 
 export default class {
-
   constructor() {
     this.gl = null;
     this.currentBlendMode = 99999;
@@ -31,5 +30,4 @@ export default class {
   destroy() {
     this.gl = null;
   }
-
 }

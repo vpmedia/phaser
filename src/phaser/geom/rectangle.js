@@ -4,11 +4,32 @@
  * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
  */
 import Point from './point';
-import { inflate, size, clone, contains, containsRect, equals, intersects, intersection, intersectsRaw, union } from './util/rectangle';
-import { GEOM_RECTANGLE, TOP_LEFT, TOP_CENTER, TOP_RIGHT, LEFT_CENTER, CENTER, RIGHT_CENTER, BOTTOM_LEFT, BOTTOM_CENTER, BOTTOM_RIGHT } from '../core/const';
+import {
+  inflate,
+  size,
+  clone,
+  contains,
+  containsRect,
+  equals,
+  intersects,
+  intersection,
+  intersectsRaw,
+  union,
+} from './util/rectangle';
+import {
+  GEOM_RECTANGLE,
+  TOP_LEFT,
+  TOP_CENTER,
+  TOP_RIGHT,
+  LEFT_CENTER,
+  CENTER,
+  RIGHT_CENTER,
+  BOTTOM_LEFT,
+  BOTTOM_CENTER,
+  BOTTOM_RIGHT,
+} from '../core/const';
 
 export default class {
-
   constructor(x = 0, y = 0, width = 0, height = 0) {
     this.x = x;
     this.y = y;
@@ -36,7 +57,9 @@ export default class {
   }
 
   scale(x, y) {
-    if (y === undefined) { y = x; }
+    if (y === undefined) {
+      y = x;
+    }
     this.width *= x;
     this.height *= y;
     return this;
@@ -164,7 +187,19 @@ export default class {
   }
 
   toString() {
-    return '[{Rectangle (x=' + this.x + ' y=' + this.y + ' width=' + this.width + ' height=' + this.height + ' empty=' + this.empty + ')}]';
+    return (
+      '[{Rectangle (x=' +
+      this.x +
+      ' y=' +
+      this.y +
+      ' width=' +
+      this.width +
+      ' height=' +
+      this.height +
+      ' empty=' +
+      this.empty +
+      ')}]'
+    );
   }
 
   get halfWidth() {
@@ -184,7 +219,7 @@ export default class {
       this.height = 0;
       this.y = value;
     } else {
-      this.height = (this.bottom - value);
+      this.height = this.bottom - value;
     }
   }
 
@@ -266,7 +301,7 @@ export default class {
   }
 
   get perimeter() {
-    return (this.width * 2) + (this.height * 2);
+    return this.width * 2 + this.height * 2;
   }
 
   get centerX() {
@@ -286,11 +321,11 @@ export default class {
   }
 
   get randomX() {
-    return this.x + (Math.random() * this.width);
+    return this.x + Math.random() * this.width;
   }
 
   get randomY() {
-    return this.y + (Math.random() * this.height);
+    return this.y + Math.random() * this.height;
   }
 
   get empty() {
@@ -302,5 +337,4 @@ export default class {
       this.setTo(0, 0, 0, 0);
     }
   }
-
 }

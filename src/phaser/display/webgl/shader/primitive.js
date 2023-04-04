@@ -10,7 +10,6 @@ import { compileProgram } from '../util';
 // the next one is used for rendering primitives
 
 export default class {
-
   constructor(gl) {
     this.gl = gl;
     this._UID = generateShaderID();
@@ -68,5 +67,4 @@ export default class {
     this.gl = null;
     this.attributes = null;
   }
-
 }

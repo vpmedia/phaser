@@ -4,7 +4,27 @@
  * @author       Mat Groves http://matgroves.com/ @Doormat23
  * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
  */
-import { RENDER_WEBGL, SCALE_LINEAR, BLEND_NORMAL, BLEND_ADD, BLEND_MULTIPLY, BLEND_SCREEN, BLEND_OVERLAY, BLEND_DARKEN, BLEND_LIGHTEN, BLEND_COLOR_DODGE, BLEND_COLOR_BURN, BLEND_HARD_LIGHT, BLEND_SOFT_LIGHT, BLEND_DIFFERENCE, BLEND_EXCLUSION, BLEND_HUE, BLEND_SATURATION, BLEND_COLOR, BLEND_LUMINOSITY } from '../../core/const';
+import {
+  RENDER_WEBGL,
+  SCALE_LINEAR,
+  BLEND_NORMAL,
+  BLEND_ADD,
+  BLEND_MULTIPLY,
+  BLEND_SCREEN,
+  BLEND_OVERLAY,
+  BLEND_DARKEN,
+  BLEND_LIGHTEN,
+  BLEND_COLOR_DODGE,
+  BLEND_COLOR_BURN,
+  BLEND_HARD_LIGHT,
+  BLEND_SOFT_LIGHT,
+  BLEND_DIFFERENCE,
+  BLEND_EXCLUSION,
+  BLEND_HUE,
+  BLEND_SATURATION,
+  BLEND_COLOR,
+  BLEND_LUMINOSITY,
+} from '../../core/const';
 import { remove } from '../canvas/pool';
 import { isPowerOfTwo } from '../../util/math';
 import Point from '../../geom/point';
@@ -16,7 +36,6 @@ import WebGLStencilManager from './stencil_manager';
 import WebGLBlendModeManager from './blend_manager';
 
 export default class {
-
   constructor(game) {
     this.type = RENDER_WEBGL;
     this.resolution = game.config.resolution;
@@ -94,7 +113,9 @@ export default class {
   }
 
   initContext() {
-    const gl = this.view.getContext('webgl', this._contextOptions) || this.view.getContext('experimental-webgl', this._contextOptions);
+    const gl =
+      this.view.getContext('webgl', this._contextOptions) ||
+      this.view.getContext('experimental-webgl', this._contextOptions);
     this.gl = gl;
     if (!gl) {
       // fail, not able to get a context
@@ -184,12 +205,24 @@ export default class {
     gl.bindTexture(gl.TEXTURE_2D, texture._glTextures[gl.id]);
     gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, texture.premultipliedAlpha);
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, texture.source);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, texture.scaleMode === SCALE_LINEAR ? gl.LINEAR : gl.NEAREST);
+    gl.texParameteri(
+      gl.TEXTURE_2D,
+      gl.TEXTURE_MAG_FILTER,
+      texture.scaleMode === SCALE_LINEAR ? gl.LINEAR : gl.NEAREST
+    );
     if (texture.mipmap && isPowerOfTwo(texture.width, texture.height)) {
-      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, texture.scaleMode === SCALE_LINEAR ? gl.LINEAR_MIPMAP_LINEAR : gl.NEAREST_MIPMAP_NEAREST);
+      gl.texParameteri(
+        gl.TEXTURE_2D,
+        gl.TEXTURE_MIN_FILTER,
+        texture.scaleMode === SCALE_LINEAR ? gl.LINEAR_MIPMAP_LINEAR : gl.NEAREST_MIPMAP_NEAREST
+      );
       gl.generateMipmap(gl.TEXTURE_2D);
     } else {
-      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, texture.scaleMode === SCALE_LINEAR ? gl.LINEAR : gl.NEAREST);
+      gl.texParameteri(
+        gl.TEXTURE_2D,
+        gl.TEXTURE_MIN_FILTER,
+        texture.scaleMode === SCALE_LINEAR ? gl.LINEAR : gl.NEAREST
+      );
     }
     if (!texture._powerOf2) {
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
@@ -228,5 +261,4 @@ export default class {
     b[BLEND_LUMINOSITY] = [gl.ONE, gl.ONE_MINUS_SRC_ALPHA];
     window.PhaserRegistry.blendModesWebGL = b;
   }
-
 }

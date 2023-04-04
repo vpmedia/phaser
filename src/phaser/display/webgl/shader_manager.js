@@ -11,7 +11,6 @@ import FastShader from './shader/fast';
 import StripShader from './shader/strip';
 
 export default class {
-
   constructor() {
     this.gl = null;
     this.primitiveShader = null;
@@ -85,5 +84,4 @@ export default class {
     this.stripShader.destroy();
     this.gl = null;
   }
-
 }

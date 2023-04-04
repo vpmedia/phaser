@@ -9,7 +9,6 @@ import { wrap } from '../util/math';
 import { GEOM_LINE } from '../core/const';
 
 export default class {
-
   constructor(x1 = 0, y1 = 0, x2 = 0, y2 = 0) {
     this.start = new Point(x1, y1);
     this.end = new Point(x2, y2);
@@ -24,14 +23,19 @@ export default class {
 
   fromSprite(startSprite, endSprite, useCenter = false) {
     if (useCenter) {
-      return this.setTo(startSprite.center.x, startSprite.center.y, endSprite.center.x, endSprite.center.y);
+      return this.setTo(
+        startSprite.center.x,
+        startSprite.center.y,
+        endSprite.center.x,
+        endSprite.center.y
+      );
     }
     return this.setTo(startSprite.x, startSprite.y, endSprite.x, endSprite.y);
   }
 
   fromAngle(x, y, angle, length) {
     this.start.setTo(x, y);
-    this.end.setTo(x + (Math.cos(angle) * length), y + (Math.sin(angle) * length));
+    this.end.setTo(x + Math.cos(angle) * length, y + Math.sin(angle) * length);
     return this;
   }
 
@@ -74,7 +78,10 @@ export default class {
   }
 
   pointOnLine(x, y) {
-    return ((x - this.start.x) * (this.end.y - this.start.y) === (this.end.x - this.start.x) * (y - this.start.y));
+    return (
+      (x - this.start.x) * (this.end.y - this.start.y) ===
+      (this.end.x - this.start.x) * (y - this.start.y)
+    );
   }
 
   pointOnSegment(x, y) {
@@ -82,7 +89,7 @@ export default class {
     const xMax = Math.max(this.start.x, this.end.x);
     const yMin = Math.min(this.start.y, this.end.y);
     const yMax = Math.max(this.start.y, this.end.y);
-    return (this.pointOnLine(x, y) && (x >= xMin && x <= xMax) && (y >= yMin && y <= yMax));
+    return this.pointOnLine(x, y) && x >= xMin && x <= xMax && y >= yMin && y <= yMax;
   }
 
   random(output = null) {
@@ -100,12 +107,12 @@ export default class {
     const y2 = Math.round(this.end.y);
     const dx = Math.abs(x2 - x1);
     const dy = Math.abs(y2 - y1);
-    const sx = (x1 < x2) ? 1 : -1;
-    const sy = (y1 < y2) ? 1 : -1;
+    const sx = x1 < x2 ? 1 : -1;
+    const sy = y1 < y2 ? 1 : -1;
     let err = dx - dy;
     results.push([x1, y1]);
     let i = 1;
-    while (!((x1 === x2) && (y1 === y2))) {
+    while (!(x1 === x2 && y1 === y2)) {
       const e2 = err << 1;
       if (e2 > -dy) {
         err -= dy;
@@ -128,7 +135,10 @@ export default class {
   }
 
   get length() {
-    return Math.sqrt((this.end.x - this.start.x) * (this.end.x - this.start.x) + (this.end.y - this.start.y) * (this.end.y - this.start.y));
+    return Math.sqrt(
+      (this.end.x - this.start.x) * (this.end.x - this.start.x) +
+        (this.end.y - this.start.y) * (this.end.y - this.start.y)
+    );
   }
 
   get angle() {
@@ -186,5 +196,4 @@ export default class {
   get normalAngle() {
     return wrap(this.angle - 1.5707963267948966, -Math.PI, Math.PI);
   }
-
 }

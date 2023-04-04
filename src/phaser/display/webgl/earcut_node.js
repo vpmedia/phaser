@@ -6,7 +6,6 @@
  */
 
 export default class {
-
   constructor(i, x, y) {
     // vertice index in coordinates array
     this.i = i;
@@ -24,5 +23,4 @@ export default class {
     // indicates whether this is a steiner point
     this.steiner = false;
   }
-
 }

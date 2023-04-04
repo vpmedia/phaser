@@ -11,7 +11,6 @@ import { PI_2 } from '../util/math';
 import { renderCanvas, renderWebGL } from './sprite_util';
 
 export default class {
-
   constructor() {
     this.exists = true;
     this.renderable = false;
@@ -83,7 +82,13 @@ export default class {
       this.children.splice(index, 0, child);
       return child;
     }
-    throw new Error(child + 'addChildAt: The index ' + index + ' supplied is out of bounds ' + this.children.length);
+    throw new Error(
+      child +
+        'addChildAt: The index ' +
+        index +
+        ' supplied is out of bounds ' +
+        this.children.length
+    );
   }
 
   swapChildren(child, child2) {
@@ -93,7 +98,9 @@ export default class {
     const index1 = this.getChildIndex(child);
     const index2 = this.getChildIndex(child2);
     if (index1 < 0 || index2 < 0) {
-      throw new Error('swapChildren: Both the supplied DisplayObjects must be a child of the caller.');
+      throw new Error(
+        'swapChildren: Both the supplied DisplayObjects must be a child of the caller.'
+      );
     }
     this.children[index1] = child2;
     this.children[index2] = child;
@@ -118,7 +125,11 @@ export default class {
 
   getChildAt(index) {
     if (index < 0 || index >= this.children.length) {
-      throw new Error('getChildAt: Supplied index ' + index + ' does not exist in the child list, or the supplied DisplayObject must be a child of the caller');
+      throw new Error(
+        'getChildAt: Supplied index ' +
+          index +
+          ' does not exist in the child list, or the supplied DisplayObject must be a child of the caller'
+      );
     }
     return this.children[index];
   }
@@ -228,7 +239,10 @@ export default class {
     //  Set the World values
     this.worldAlpha = this.alpha * p.worldAlpha;
     // this.worldPosition.set(wt.tx, wt.ty);
-    this.worldScale.set(this.scale.x * Math.sqrt(wt.a * wt.a + wt.c * wt.c), this.scale.y * Math.sqrt(wt.b * wt.b + wt.d * wt.d));
+    this.worldScale.set(
+      this.scale.x * Math.sqrt(wt.a * wt.a + wt.c * wt.c),
+      this.scale.y * Math.sqrt(wt.b * wt.b + wt.d * wt.d)
+    );
     this.worldRotation = Math.atan2(-wt.c, wt.d);
     // reset the bounds each time this is called!
     this.currentBounds = null;
@@ -243,7 +257,8 @@ export default class {
   }
 
   getBounds(targetCoordinateSpace) {
-    const isTargetCoordinateSpaceDisplayObject = (targetCoordinateSpace && targetCoordinateSpace.contains !== undefined);
+    const isTargetCoordinateSpaceDisplayObject =
+      targetCoordinateSpace && targetCoordinateSpace.contains !== undefined;
     let isTargetCoordinateSpaceThisOrParent = true;
     if (!isTargetCoordinateSpaceDisplayObject) {
       targetCoordinateSpace = this;
@@ -274,12 +289,12 @@ export default class {
       if (child.visible) {
         childVisible = true;
         childBounds = this.children[i].getBounds();
-        minX = (minX < childBounds.x) ? minX : childBounds.x;
-        minY = (minY < childBounds.y) ? minY : childBounds.y;
+        minX = minX < childBounds.x ? minX : childBounds.x;
+        minY = minY < childBounds.y ? minY : childBounds.y;
         childMaxX = childBounds.width + childBounds.x;
         childMaxY = childBounds.height + childBounds.y;
-        maxX = (maxX > childMaxX) ? maxX : childMaxX;
-        maxY = (maxY > childMaxY) ? maxY : childMaxY;
+        maxX = maxX > childMaxX ? maxX : childMaxX;
+        maxY = maxY > childMaxY ? maxY : childMaxY;
       }
     }
     let bounds = this.cachedBounds;
@@ -542,19 +557,19 @@ export default class {
   }
 
   get centerX() {
-    return (this.x - this.offsetX) + (this.width * 0.5);
+    return this.x - this.offsetX + this.width * 0.5;
   }
 
   set centerX(value) {
-    this.x = (value + this.offsetX) - (this.width * 0.5);
+    this.x = value + this.offsetX - this.width * 0.5;
   }
 
   get centerY() {
-    return (this.y - this.offsetY) + (this.height * 0.5);
+    return this.y - this.offsetY + this.height * 0.5;
   }
 
   set centerY(value) {
-    this.y = (value + this.offsetY) - (this.height * 0.5);
+    this.y = value + this.offsetY - this.height * 0.5;
   }
 
   get left() {
@@ -566,11 +581,11 @@ export default class {
   }
 
   get right() {
-    return (this.x + this.width) - this.offsetX;
+    return this.x + this.width - this.offsetX;
   }
 
   set right(value) {
-    this.x = value - (this.width) + this.offsetX;
+    this.x = value - this.width + this.offsetX;
   }
 
   get top() {
@@ -582,11 +597,10 @@ export default class {
   }
 
   get bottom() {
-    return (this.y + this.height) - this.offsetY;
+    return this.y + this.height - this.offsetY;
   }
 
   set bottom(value) {
-    this.y = value - (this.height) + this.offsetY;
+    this.y = value - this.height + this.offsetY;
   }
-
 }

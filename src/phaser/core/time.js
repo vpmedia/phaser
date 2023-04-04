@@ -6,7 +6,6 @@
 import Timer from './timer';
 
 export default class {
-
   constructor(game) {
     this.game = game;
     this.time = 0;
@@ -184,5 +183,4 @@ export default class {
     this._desiredFps = value;
     this.desiredFpsMult = 1.0 / value;
   }
-
 }

@@ -23,7 +23,6 @@ export const XML = 8;
 export const RENDER_TEXTURE = 9;
 
 export default class {
-
   constructor(game) {
     this.game = game;
     this.autoResolveURL = false;
@@ -60,7 +59,8 @@ export default class {
 
   addDefaultImage() {
     const img = new Image();
-    img.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgAQMAAABJtOi3AAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAABVJREFUeF7NwIEAAAAAgKD9qdeocAMAoAABm3DkcAAAAABJRU5ErkJggg==';
+    img.src =
+      'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgAQMAAABJtOi3AAAAA1BMVEX///+nxBvIAAAAAXRSTlMAQObYZgAAABVJREFUeF7NwIEAAAAAgKD9qdeocAMAoAABm3DkcAAAAABJRU5ErkJggg==';
     const obj = this.addImage('__default', null, img);
     obj.base.skipRender = true; // invisible texture
     window.PhaserRegistry.CACHE_DEFAULT_IMAGE = new Texture(obj.base);
@@ -68,7 +68,8 @@ export default class {
 
   addMissingImage() {
     const img = new Image();
-    img.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJ9JREFUeNq01ssOwyAMRFG46v//Mt1ESmgh+DFmE2GPOBARKb2NVjo+17PXLD8a1+pl5+A+wSgFygymWYHBb0FtsKhJDdZlncG2IzJ4ayoMDv20wTmSMzClEgbWYNTAkQ0Z+OJ+A/eWnAaR9+oxCF4Os0H8htsMUp+pwcgBBiMNnAwF8GqIgL2hAzaGFFgZauDPKABmowZ4GL369/0rwACp2yA/ttmvsQAAAABJRU5ErkJggg==';
+    img.src =
+      'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJ9JREFUeNq01ssOwyAMRFG46v//Mt1ESmgh+DFmE2GPOBARKb2NVjo+17PXLD8a1+pl5+A+wSgFygymWYHBb0FtsKhJDdZlncG2IzJ4ayoMDv20wTmSMzClEgbWYNTAkQ0Z+OJ+A/eWnAaR9+oxCF4Os0H8htsMUp+pwcgBBiMNnAwF8GqIgL2hAzaGFFgZauDPKABmowZ4GL369/0rwACp2yA/ttmvsQAAAABJRU5ErkJggg==';
     const obj = this.addImage('__missing', null, img);
     window.PhaserRegistry.CACHE_MISSING_IMAGE = new Texture(obj.base);
   }
@@ -193,7 +194,7 @@ export default class {
   isSoundReady(key) {
     const sound = this.getItem(key, SOUND, 'isSoundDecoded');
     if (sound) {
-      return (sound.decoded && !this.game.sound.isLocked);
+      return sound.decoded && !this.game.sound.isLocked;
     }
     return false;
   }
@@ -337,7 +338,7 @@ export default class {
   }
 
   hasFrameData(key, cache = IMAGE) {
-    return (this.getItem(key, cache, '', 'frameData') !== null);
+    return this.getItem(key, cache, '', 'frameData') !== null;
   }
 
   updateFrameData(key, frameData, cache = IMAGE) {
@@ -476,5 +477,4 @@ export default class {
     this._urlResolver = null;
     this._urlTemp = null;
   }
-
 }

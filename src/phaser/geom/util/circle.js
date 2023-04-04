@@ -32,7 +32,7 @@ export function contains(a, x, y) {
   if (a.radius > 0 && x >= a.left && x <= a.right && y >= a.top && y <= a.bottom) {
     const dx = (a.x - x) * (a.x - x);
     const dy = (a.y - y) * (a.y - y);
-    return (dx + dy) <= (a.radius * a.radius);
+    return dx + dy <= a.radius * a.radius;
   }
   return false;
 }
@@ -44,7 +44,7 @@ export function contains(a, x, y) {
  * @returns {boolean} TBD
  */
 export function equals(a, b) {
-  return (a.x === b.x && a.y === b.y && a.diameter === b.diameter);
+  return a.x === b.x && a.y === b.y && a.diameter === b.diameter;
 }
 
 /**
@@ -54,7 +54,7 @@ export function equals(a, b) {
  * @returns {boolean} TBD
  */
 export function intersects(a, b) {
-  return distance(a.x, a.y, b.x, b.y) <= (a.radius + b.radius);
+  return distance(a.x, a.y, b.x, b.y) <= a.radius + b.radius;
 }
 
 /**

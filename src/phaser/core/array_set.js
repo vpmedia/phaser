@@ -4,7 +4,6 @@
  * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
  */
 export default class {
-
   constructor(list = []) {
     this.position = 0;
     this.list = list;
@@ -33,7 +32,7 @@ export default class {
   }
 
   exists(item) {
-    return (this.list.indexOf(item) > -1);
+    return this.list.indexOf(item) > -1;
   }
 
   reset() {
@@ -103,5 +102,4 @@ export default class {
     }
     return null;
   }
-
 }

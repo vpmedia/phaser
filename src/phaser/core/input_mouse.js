@@ -15,7 +15,6 @@ const WHEEL_UP = 1;
 const WHEEL_DOWN = -1;
 
 class WheelEventProxy {
-
   constructor(scaleFactor, deltaMode) {
     this._scaleFactor = scaleFactor;
     this._deltaMode = deltaMode;
@@ -47,17 +46,15 @@ class WheelEventProxy {
   }
 
   get deltaY() {
-    return (this._scaleFactor * (this.originalEvent.wheelDelta || this.originalEvent.detail)) || 0;
+    return this._scaleFactor * (this.originalEvent.wheelDelta || this.originalEvent.detail) || 0;
   }
 
   get deltaX() {
-    return (this._scaleFactor * this.originalEvent.wheelDeltaX) || 0;
+    return this._scaleFactor * this.originalEvent.wheelDeltaX || 0;
   }
-
 }
 
 export default class {
-
   constructor(game) {
     this.game = game;
     this.input = game.input;
@@ -93,14 +90,14 @@ export default class {
       return;
     }
     const scope = this;
-    this._onMouseDown = event => scope.onMouseDown(event);
-    this._onMouseMove = event => scope.onMouseMove(event);
-    this._onMouseUp = event => scope.onMouseUp(event);
-    this._onMouseUpGlobal = event => scope.onMouseUpGlobal(event);
-    this._onMouseOutGlobal = event => scope.onMouseOutGlobal(event);
-    this._onMouseOut = event => scope.onMouseOut(event);
-    this._onMouseOver = event => scope.onMouseOver(event);
-    this._onMouseWheel = event => scope.onMouseWheel(event);
+    this._onMouseDown = (event) => scope.onMouseDown(event);
+    this._onMouseMove = (event) => scope.onMouseMove(event);
+    this._onMouseUp = (event) => scope.onMouseUp(event);
+    this._onMouseUpGlobal = (event) => scope.onMouseUpGlobal(event);
+    this._onMouseOutGlobal = (event) => scope.onMouseOutGlobal(event);
+    this._onMouseOut = (event) => scope.onMouseOut(event);
+    this._onMouseOver = (event) => scope.onMouseOver(event);
+    this._onMouseWheel = (event) => scope.onMouseWheel(event);
     const canvas = this.game.canvas;
     canvas.addEventListener('mousedown', this._onMouseDown, true);
     canvas.addEventListener('mousemove', this._onMouseMove, true);
@@ -239,5 +236,4 @@ export default class {
       }
     }
   }
-
 }

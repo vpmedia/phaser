@@ -6,7 +6,6 @@
  */
 
 export default class {
-
   constructor() {
     this.filterStack = [];
     this.offsetX = 0;
@@ -42,5 +41,4 @@ export default class {
   destroy() {
     // TODO
   }
-
 }

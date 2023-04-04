@@ -4,7 +4,6 @@
  * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
  */
 export default class {
-
   constructor(game) {
     this.game = game;
     this.rafId = 0;
@@ -23,5 +22,4 @@ export default class {
     this.game.update(rafTime);
     this.rafId = requestAnimationFrame(this.updateBinded);
   }
-
 }

@@ -5,7 +5,6 @@
  */
 
 export default class {
-
   constructor(game) {
     this.game = game;
     this.input = game.input;
@@ -30,12 +29,12 @@ export default class {
       return;
     }
     const scope = this;
-    this._onMSPointerDown = event => scope.onPointerDown(event);
-    this._onMSPointerMove = event => scope.onPointerMove(event);
-    this._onMSPointerUp = event => scope.onPointerUp(event);
-    this._onMSPointerUpGlobal = event => scope.onPointerUpGlobal(event);
-    this._onMSPointerOut = event => scope.onPointerOut(event);
-    this._onMSPointerOver = event => scope.onPointerOver(event);
+    this._onMSPointerDown = (event) => scope.onPointerDown(event);
+    this._onMSPointerMove = (event) => scope.onPointerMove(event);
+    this._onMSPointerUp = (event) => scope.onPointerUp(event);
+    this._onMSPointerUpGlobal = (event) => scope.onPointerUpGlobal(event);
+    this._onMSPointerOut = (event) => scope.onPointerOut(event);
+    this._onMSPointerOver = (event) => scope.onPointerOver(event);
     const canvas = this.game.canvas;
     canvas.addEventListener('MSPointerDown', this._onMSPointerDown, false);
     canvas.addEventListener('MSPointerMove', this._onMSPointerMove, false);
@@ -128,7 +127,10 @@ export default class {
   }
 
   onPointerUpGlobal(event) {
-    if ((event.pointerType === 'mouse' || event.pointerType === 0x00000004) && !this.input.mousePointer.withinGame) {
+    if (
+      (event.pointerType === 'mouse' || event.pointerType === 0x00000004) &&
+      !this.input.mousePointer.withinGame
+    ) {
       this.onPointerUp(event);
     } else {
       const pointer = this.input.getPointerFromIdentifier(event.identifier);
@@ -189,5 +191,4 @@ export default class {
       }
     }
   }
-
 }

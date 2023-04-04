@@ -6,7 +6,6 @@
 import { cloneFrameData } from './frame_util';
 
 export default class {
-
   constructor() {
     this._frames = [];
     this._frameNames = [];
@@ -80,5 +79,4 @@ export default class {
   get total() {
     return this._frames.length;
   }
-
 }

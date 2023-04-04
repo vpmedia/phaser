@@ -7,7 +7,6 @@
 import { removeByCanvas } from '../canvas/pool';
 
 export default class {
-
   constructor(source, scaleMode) {
     this.resolution = 1;
     this.width = 100;
@@ -22,7 +21,11 @@ export default class {
     this._powerOf2 = false;
     this._dirty = [true, true, true, true];
     if (source) {
-      if ((this.source.complete || this.source.getContext) && this.source.width && this.source.height) {
+      if (
+        (this.source.complete || this.source.getContext) &&
+        this.source.width &&
+        this.source.height
+      ) {
         this.hasLoaded = true;
         this.width = this.source.naturalWidth || this.source.width;
         this.height = this.source.naturalHeight || this.source.height;
@@ -64,5 +67,4 @@ export default class {
     this._glTextures.length = 0;
     this.dirty();
   }
-
 }

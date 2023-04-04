@@ -68,7 +68,7 @@ export function divide(a, b, output = null) {
  * @returns {boolean} TBD
  */
 export function equals(a, b) {
-  return (a.x === b.x && a.y === b.y);
+  return a.x === b.x && a.y === b.y;
 }
 
 /**

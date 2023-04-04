@@ -10,7 +10,6 @@ import { compileProgram } from '../util';
 // this shader is used for the fast sprite rendering
 
 export default class {
-
   constructor(gl) {
     this.gl = gl;
     this._UID = generateShaderID();
@@ -82,7 +81,14 @@ export default class {
     if (this.colorAttribute === -1) {
       this.colorAttribute = 2;
     }
-    this.attributes = [this.aVertexPosition, this.aPositionCoord, this.aScale, this.aRotation, this.aTextureCoord, this.colorAttribute];
+    this.attributes = [
+      this.aVertexPosition,
+      this.aPositionCoord,
+      this.aScale,
+      this.aRotation,
+      this.aTextureCoord,
+      this.colorAttribute,
+    ];
     // End worst hack eva //
     this.program = program;
   }
@@ -93,5 +99,4 @@ export default class {
     this.gl = null;
     this.attributes = null;
   }
-
 }

@@ -10,7 +10,6 @@ import { clone, contains, circumferencePoint } from './util/circle';
 import { GEOM_CIRCLE } from '../core/const';
 
 export default class {
-
   constructor(x = 0, y = 0, diameter = 0) {
     this.x = x;
     this.y = y;
@@ -30,11 +29,11 @@ export default class {
     const result = output || new Point();
     const t = 2 * Math.PI * Math.random();
     const u = Math.random() + Math.random();
-    const r = (u > 1) ? 2 - u : u;
+    const r = u > 1 ? 2 - u : u;
     const x = r * Math.cos(t);
     const y = r * Math.sin(t);
-    result.x = this.x + (x * this.radius);
-    result.y = this.y + (y * this.radius);
+    result.x = this.x + x * this.radius;
+    result.y = this.y + y * this.radius;
     return result;
   }
 
@@ -89,7 +88,17 @@ export default class {
   }
 
   toString() {
-    return '[{Circle (x=' + this.x + ' y=' + this.y + ' diameter=' + this.diameter + ' radius=' + this.radius + ')}]';
+    return (
+      '[{Circle (x=' +
+      this.x +
+      ' y=' +
+      this.y +
+      ' diameter=' +
+      this.diameter +
+      ' radius=' +
+      this.radius +
+      ')}]'
+    );
   }
 
   get diameter() {
@@ -174,7 +183,7 @@ export default class {
   }
 
   get empty() {
-    return (this._diameter === 0);
+    return this._diameter === 0;
   }
 
   set empty(value) {
@@ -182,5 +191,4 @@ export default class {
       this.setTo(0, 0, 0);
     }
   }
-
 }

@@ -6,10 +6,8 @@
 import DisplayObject from './display_object';
 
 export default class extends DisplayObject {
-
   constructor(game) {
     super();
     this.game = game;
   }
-
 }

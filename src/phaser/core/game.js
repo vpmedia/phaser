@@ -24,7 +24,6 @@ import { create, removeFromDOM, addToDOM, setTouchAction } from '../display/canv
 import { initialize, checkOS } from './device_util';
 
 export default class {
-
   constructor(gameConfig = {}) {
     if (!window.PhaserRegistry) {
       window.PhaserRegistry = {};
@@ -61,10 +60,14 @@ export default class {
       initialize(this.device);
       this.boot();
     } else {
-      window.addEventListener('load', () => {
-        initialize(this.device);
-        this.boot();
-      }, false);
+      window.addEventListener(
+        'load',
+        () => {
+          initialize(this.device);
+          this.boot();
+        },
+        false
+      );
     }
   }
 
@@ -276,5 +279,4 @@ export default class {
     this.canvas = null;
     this.renderer = null;
   }
-
 }

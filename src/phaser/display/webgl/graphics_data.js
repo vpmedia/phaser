@@ -6,7 +6,6 @@
  */
 
 export default class {
-
   constructor(gl) {
     this.gl = gl;
     // TODO does this need to be split before uploading??
@@ -38,5 +37,4 @@ export default class {
     gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, this.glIndicies, gl.STATIC_DRAW);
     this.dirty = false;
   }
-
 }

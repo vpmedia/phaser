@@ -7,7 +7,6 @@
 import Rectangle from '../../geom/rectangle';
 
 export class TextureUvs {
-
   constructor() {
     this.x0 = 0;
     this.y0 = 0;
@@ -18,11 +17,9 @@ export class TextureUvs {
     this.x3 = 0;
     this.y3 = 0;
   }
-
 }
 
 export default class {
-
   constructor(baseTexture, frame, crop, trim) {
     this.noFrame = false;
     if (!frame) {
@@ -74,18 +71,25 @@ export default class {
     this.crop.y = frame.y;
     this.crop.width = frame.width;
     this.crop.height = frame.height;
-    if (!this.trim && (frame.x + frame.width > this.baseTexture.width || frame.y + frame.height > this.baseTexture.height)) {
+    if (
+      !this.trim &&
+      (frame.x + frame.width > this.baseTexture.width ||
+        frame.y + frame.height > this.baseTexture.height)
+    ) {
       // If `true` then `PIXI.Texture.setFrame` will no longer throw an error if the texture dimensions are incorrect.
       // Instead `Texture.valid` will be set to `false` (#1556)
       // TODO: make this configurable
       const isTextureSilentFail = true;
       if (!isTextureSilentFail) {
-        throw new Error('Texture Error: frame does not fit inside the base Texture dimensions ' + this);
+        throw new Error(
+          'Texture Error: frame does not fit inside the base Texture dimensions ' + this
+        );
       }
       this.valid = false;
       return;
     }
-    this.valid = frame && frame.width && frame.height && this.baseTexture.source && this.baseTexture.hasLoaded;
+    this.valid =
+      frame && frame.width && frame.height && this.baseTexture.source && this.baseTexture.hasLoaded;
     if (this.trim) {
       this.width = this.trim.width;
       this.height = this.trim.height;
@@ -113,5 +117,4 @@ export default class {
     this._uvs.x3 = frame.x / tw;
     this._uvs.y3 = (frame.y + frame.height) / th;
   }
-
 }

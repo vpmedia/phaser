@@ -7,7 +7,6 @@
 import { hex2rgb } from '../../util/math';
 
 export default class {
-
   constructor() {
     this.stencilStack = [];
     this.reverse = true;
@@ -35,39 +34,39 @@ export default class {
     this.stencilStack.push(webGLData);
     const level = this.count;
     gl.colorMask(false, false, false, false);
-    gl.stencilFunc(gl.ALWAYS, 0, 0xFF);
+    gl.stencilFunc(gl.ALWAYS, 0, 0xff);
     gl.stencilOp(gl.KEEP, gl.KEEP, gl.INVERT);
     // draw the triangle strip!
     if (webGLData.mode === 1) {
       gl.drawElements(gl.TRIANGLE_FAN, webGLData.indices.length - 4, gl.UNSIGNED_SHORT, 0);
       if (this.reverse) {
-        gl.stencilFunc(gl.EQUAL, 0xFF - level, 0xFF);
+        gl.stencilFunc(gl.EQUAL, 0xff - level, 0xff);
         gl.stencilOp(gl.KEEP, gl.KEEP, gl.DECR);
       } else {
-        gl.stencilFunc(gl.EQUAL, level, 0xFF);
+        gl.stencilFunc(gl.EQUAL, level, 0xff);
         gl.stencilOp(gl.KEEP, gl.KEEP, gl.INCR);
       }
       // draw a quad to increment..
       gl.drawElements(gl.TRIANGLE_FAN, 4, gl.UNSIGNED_SHORT, (webGLData.indices.length - 4) * 2);
       if (this.reverse) {
-        gl.stencilFunc(gl.EQUAL, 0xFF - (level + 1), 0xFF);
+        gl.stencilFunc(gl.EQUAL, 0xff - (level + 1), 0xff);
       } else {
-        gl.stencilFunc(gl.EQUAL, level + 1, 0xFF);
+        gl.stencilFunc(gl.EQUAL, level + 1, 0xff);
       }
       this.reverse = !this.reverse;
     } else {
       if (!this.reverse) {
-        gl.stencilFunc(gl.EQUAL, 0xFF - level, 0xFF);
+        gl.stencilFunc(gl.EQUAL, 0xff - level, 0xff);
         gl.stencilOp(gl.KEEP, gl.KEEP, gl.DECR);
       } else {
-        gl.stencilFunc(gl.EQUAL, level, 0xFF);
+        gl.stencilFunc(gl.EQUAL, level, 0xff);
         gl.stencilOp(gl.KEEP, gl.KEEP, gl.INCR);
       }
       gl.drawElements(gl.TRIANGLE_STRIP, webGLData.indices.length, gl.UNSIGNED_SHORT, 0);
       if (!this.reverse) {
-        gl.stencilFunc(gl.EQUAL, 0xFF - (level + 1), 0xFF);
+        gl.stencilFunc(gl.EQUAL, 0xff - (level + 1), 0xff);
       } else {
-        gl.stencilFunc(gl.EQUAL, level + 1, 0xFF);
+        gl.stencilFunc(gl.EQUAL, level + 1, 0xff);
       }
     }
     gl.colorMask(true, true, true, true);
@@ -130,41 +129,40 @@ export default class {
       if (webGLData.mode === 1) {
         this.reverse = !this.reverse;
         if (this.reverse) {
-          gl.stencilFunc(gl.EQUAL, 0xFF - (level + 1), 0xFF);
+          gl.stencilFunc(gl.EQUAL, 0xff - (level + 1), 0xff);
           gl.stencilOp(gl.KEEP, gl.KEEP, gl.INCR);
         } else {
-          gl.stencilFunc(gl.EQUAL, level + 1, 0xFF);
+          gl.stencilFunc(gl.EQUAL, level + 1, 0xff);
           gl.stencilOp(gl.KEEP, gl.KEEP, gl.DECR);
         }
         // draw a quad to increment..
         gl.drawElements(gl.TRIANGLE_FAN, 4, gl.UNSIGNED_SHORT, (webGLData.indices.length - 4) * 2);
-        gl.stencilFunc(gl.ALWAYS, 0, 0xFF);
+        gl.stencilFunc(gl.ALWAYS, 0, 0xff);
         gl.stencilOp(gl.KEEP, gl.KEEP, gl.INVERT);
         // draw the triangle strip!
         gl.drawElements(gl.TRIANGLE_FAN, webGLData.indices.length - 4, gl.UNSIGNED_SHORT, 0);
         if (!this.reverse) {
-          gl.stencilFunc(gl.EQUAL, 0xFF - (level), 0xFF);
+          gl.stencilFunc(gl.EQUAL, 0xff - level, 0xff);
         } else {
-          gl.stencilFunc(gl.EQUAL, level, 0xFF);
+          gl.stencilFunc(gl.EQUAL, level, 0xff);
         }
       } else {
         if (!this.reverse) {
-          gl.stencilFunc(gl.EQUAL, 0xFF - (level + 1), 0xFF);
+          gl.stencilFunc(gl.EQUAL, 0xff - (level + 1), 0xff);
           gl.stencilOp(gl.KEEP, gl.KEEP, gl.INCR);
         } else {
-          gl.stencilFunc(gl.EQUAL, level + 1, 0xFF);
+          gl.stencilFunc(gl.EQUAL, level + 1, 0xff);
           gl.stencilOp(gl.KEEP, gl.KEEP, gl.DECR);
         }
         gl.drawElements(gl.TRIANGLE_STRIP, webGLData.indices.length, gl.UNSIGNED_SHORT, 0);
         if (!this.reverse) {
-          gl.stencilFunc(gl.EQUAL, 0xFF - (level), 0xFF);
+          gl.stencilFunc(gl.EQUAL, 0xff - level, 0xff);
         } else {
-          gl.stencilFunc(gl.EQUAL, level, 0xFF);
+          gl.stencilFunc(gl.EQUAL, level, 0xff);
         }
       }
       gl.colorMask(true, true, true, true);
       gl.stencilOp(gl.KEEP, gl.KEEP, gl.KEEP);
     }
   }
-
 }

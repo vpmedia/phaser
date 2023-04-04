@@ -62,7 +62,12 @@ export function checkOS(device) {
     device.desktop = true;
   }
   // iOS / Windows Phone / Tablet reset
-  if (device.android || device.iOS || device.windowsPhone || ((/Windows NT/i.test(ua)) && (/Touch/i.test(ua)))) {
+  if (
+    device.android ||
+    device.iOS ||
+    device.windowsPhone ||
+    (/Windows NT/i.test(ua) && /Touch/i.test(ua))
+  ) {
     device.desktop = false;
   }
 }
@@ -72,7 +77,10 @@ export function checkOS(device) {
  * @param {object} device TBD
  */
 export function checkInput(device) {
-  if ('ontouchstart' in document.documentElement || (window.navigator.maxTouchPoints && window.navigator.maxTouchPoints >= 1)) {
+  if (
+    'ontouchstart' in document.documentElement ||
+    (window.navigator.maxTouchPoints && window.navigator.maxTouchPoints >= 1)
+  ) {
     device.touch = true;
   }
   // if (window.navigator.msPointerEnabled || window.navigator.pointerEnabled) {
@@ -162,7 +170,10 @@ export function checkAudio(device) {
       if (audioElement.canPlayType('audio/ogg; codecs="vorbis"').replace(/^no$/, '')) {
         device.ogg = true;
       }
-      if (audioElement.canPlayType('audio/ogg; codecs="opus"').replace(/^no$/, '') || audioElement.canPlayType('audio/opus;').replace(/^no$/, '')) {
+      if (
+        audioElement.canPlayType('audio/ogg; codecs="opus"').replace(/^no$/, '') ||
+        audioElement.canPlayType('audio/opus;').replace(/^no$/, '')
+      ) {
         device.opus = true;
       }
       if (audioElement.canPlayType('audio/mpeg;').replace(/^no$/, '')) {
@@ -174,7 +185,10 @@ export function checkAudio(device) {
       if (audioElement.canPlayType('audio/wav; codecs="1"').replace(/^no$/, '')) {
         device.wav = true;
       }
-      if (audioElement.canPlayType('audio/x-m4a;') || audioElement.canPlayType('audio/aac;').replace(/^no$/, '')) {
+      if (
+        audioElement.canPlayType('audio/x-m4a;') ||
+        audioElement.canPlayType('audio/aac;').replace(/^no$/, '')
+      ) {
         device.m4a = true;
       }
       if (audioElement.canPlayType('audio/webm; codecs="vorbis"').replace(/^no$/, '')) {
@@ -200,12 +214,13 @@ export function checkImage(device) {
   device.webp = false;
   try {
     const avif = new Image();
-    avif.src = "data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAAB0AAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAAIAAAACAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQ0MAAAAABNjb2xybmNseAACAAIAAYAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAACVtZGF0EgAKCBgANogQEAwgMg8f8D///8WfhwB8+ErK42A=";
+    avif.src =
+      'data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAAB0AAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAAIAAAACAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQ0MAAAAABNjb2xybmNseAACAAIAAYAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAACVtZGF0EgAKCBgANogQEAwgMg8f8D///8WfhwB8+ErK42A=';
     avif.onload = function () {
       device.avif = true;
     };
     const webp = new Image();
-    webp.src = "data:image/webp;base64,UklGRh4AAABXRUJQVlA4TBEAAAAvAAAAAAfQ//73v/+BiOh/AAA=";
+    webp.src = 'data:image/webp;base64,UklGRh4AAABXRUJQVlA4TBEAAAAvAAAAAAfQ//73v/+BiOh/AAA=';
     webp.onload = function () {
       device.webp = true;
     };

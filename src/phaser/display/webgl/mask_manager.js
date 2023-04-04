@@ -16,7 +16,11 @@ export function pushMask(maskData, renderSession) {
   if (maskData.dirty) {
     updateGraphics(maskData, gl);
   }
-  if (maskData._webGL[gl.id] === undefined || maskData._webGL[gl.id].data === undefined || maskData._webGL[gl.id].data.length === 0) {
+  if (
+    maskData._webGL[gl.id] === undefined ||
+    maskData._webGL[gl.id].data === undefined ||
+    maskData._webGL[gl.id].data.length === 0
+  ) {
     return;
   }
   renderSession.stencilManager.pushStencil(maskData, maskData._webGL[gl.id].data[0], renderSession);
@@ -29,7 +33,11 @@ export function pushMask(maskData, renderSession) {
  */
 export function popMask(maskData, renderSession) {
   const gl = renderSession.gl;
-  if (maskData._webGL[gl.id] === undefined || maskData._webGL[gl.id].data === undefined || maskData._webGL[gl.id].data.length === 0) {
+  if (
+    maskData._webGL[gl.id] === undefined ||
+    maskData._webGL[gl.id].data === undefined ||
+    maskData._webGL[gl.id].data.length === 0
+  ) {
     return;
   }
   renderSession.stencilManager.popStencil(maskData, maskData._webGL[gl.id].data[0], renderSession);

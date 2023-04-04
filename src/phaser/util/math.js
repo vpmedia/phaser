@@ -13,7 +13,7 @@ export const PI_2 = Math.PI * 2;
  * @returns {number[]} TBD
  */
 export function hex2rgb(hex) {
-  return [(hex >> 16 & 0xFF) / 255, (hex >> 8 & 0xFF) / 255, (hex & 0xFF) / 255];
+  return [((hex >> 16) & 0xff) / 255, ((hex >> 8) & 0xff) / 255, (hex & 0xff) / 255];
 }
 
 /**
@@ -22,7 +22,7 @@ export function hex2rgb(hex) {
  * @returns {number} TBD
  */
 export function rgb2hex(rgb) {
-  return ((rgb[0] * 255 << 16) + (rgb[1] * 255 << 8) + rgb[2] * 255);
+  return ((rgb[0] * 255) << 16) + ((rgb[1] * 255) << 8) + rgb[2] * 255;
 }
 
 /**
@@ -49,7 +49,7 @@ export function getNextPowerOfTwo(value) {
  * @returns {boolean} TBD
  */
 export function isPowerOfTwo(width, height) {
-  return (width > 0 && (width & (width - 1)) === 0 && height > 0 && (height & (height - 1)) === 0);
+  return width > 0 && (width & (width - 1)) === 0 && height > 0 && (height & (height - 1)) === 0;
 }
 
 /**
@@ -177,7 +177,7 @@ export function distance(x1, y1, x2, y2) {
  * @returns {boolean} TBD
  */
 export function within(a, b, tolerance) {
-  return (Math.abs(a - b) <= tolerance);
+  return Math.abs(a - b) <= tolerance;
 }
 
 /**
@@ -189,7 +189,7 @@ export function within(a, b, tolerance) {
  * @returns {number} TBD
  */
 export function getColor32(a, r, g, b) {
-  return a << 24 | r << 16 | g << 8 | b;
+  return (a << 24) | (r << 16) | (g << 8) | b;
 }
 
 /**
@@ -200,7 +200,7 @@ export function getColor32(a, r, g, b) {
  * @returns {number} TBD
  */
 export function getColor(r, g, b) {
-  return r << 16 | g << 8 | b;
+  return (r << 16) | (g << 8) | b;
 }
 
 /**
@@ -210,7 +210,10 @@ export function getColor(r, g, b) {
  */
 export function hexToColor(value, out) {
   // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
-  value = value.replace(/^(?:#|0x)?([a-f\d])([a-f\d])([a-f\d])$/i, (m, r, g, b) => r + r + g + g + b + b);
+  value = value.replace(
+    /^(?:#|0x)?([a-f\d])([a-f\d])([a-f\d])$/i,
+    (m, r, g, b) => r + r + g + g + b + b
+  );
   const result = /^(?:#|0x)?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(value);
   if (result) {
     out.r = parseInt(result[1], 16);
@@ -225,7 +228,9 @@ export function hexToColor(value, out) {
  * @param {object} out TBD
  */
 export function webToColor(value, out) {
-  const result = /^rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(?:,\s*(\d+(?:\.\d+)?))?\s*\)$/.exec(value);
+  const result = /^rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(?:,\s*(\d+(?:\.\d+)?))?\s*\)$/.exec(
+    value
+  );
   if (result) {
     out.r = parseInt(result[1], 10);
     out.g = parseInt(result[2], 10);
@@ -244,24 +249,24 @@ export function getRGB(color) {
     //  The color value has an alpha component
     return {
       alpha: color >>> 24,
-      red: color >> 16 & 0xFF,
-      green: color >> 8 & 0xFF,
-      blue: color & 0xFF,
+      red: (color >> 16) & 0xff,
+      green: (color >> 8) & 0xff,
+      blue: color & 0xff,
       a: color >>> 24,
-      r: color >> 16 & 0xFF,
-      g: color >> 8 & 0xFF,
-      b: color & 0xFF,
+      r: (color >> 16) & 0xff,
+      g: (color >> 8) & 0xff,
+      b: color & 0xff,
     };
   }
   return {
     alpha: 255,
-    red: color >> 16 & 0xFF,
-    green: color >> 8 & 0xFF,
-    blue: color & 0xFF,
+    red: (color >> 16) & 0xff,
+    green: (color >> 8) & 0xff,
+    blue: color & 0xff,
     a: 255,
-    r: color >> 16 & 0xFF,
-    g: color >> 8 & 0xFF,
-    b: color & 0xFF,
+    r: (color >> 16) & 0xff,
+    g: (color >> 8) & 0xff,
+    b: color & 0xff,
   };
 }
 
@@ -289,7 +294,16 @@ export function valueToColor(value, out) {
     out.b = tempColor.b;
     out.a = tempColor.a / 255;
   }
-  out.rgba = 'rgba(' + out.r.toString() + ',' + out.g.toString() + ',' + out.b.toString() + ',' + out.a.toString() + ')';
+  out.rgba =
+    'rgba(' +
+    out.r.toString() +
+    ',' +
+    out.g.toString() +
+    ',' +
+    out.b.toString() +
+    ',' +
+    out.a.toString() +
+    ')';
   out.color = getColor(out.r, out.g, out.b);
   out.color32 = getColor32(out.a * 255, out.r, out.g, out.b);
   return out;
@@ -300,7 +314,7 @@ export function valueToColor(value, out) {
  *
  * @returns {string} TBD
  */
- export function generateID() {
+export function generateID() {
   return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
 }
 
@@ -310,5 +324,5 @@ export function valueToColor(value, out) {
  * @returns {string} TBD
  */
 export function generateShaderID() {
-  return (`${generateID()}${generateID()}-${generateID()}`).toLowerCase();
+  return `${generateID()}${generateID()}-${generateID()}`.toLowerCase();
 }

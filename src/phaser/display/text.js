@@ -13,7 +13,6 @@ import { snapToCeil } from '../util/math';
 import { renderCanvas, renderWebGL, getBounds } from './sprite_util';
 
 export default class extends Image {
-
   constructor(game, x, y, text = '', style = {}) {
     super(game, x, y, null);
     this.game = game;
@@ -60,7 +59,14 @@ export default class extends Image {
     super.destroy();
   }
 
-  setShadow(x = 0, y = 0, color = 'rgba(0, 0, 0, 1)', blur = 0, shadowStroke = true, shadowFill = true) {
+  setShadow(
+    x = 0,
+    y = 0,
+    color = 'rgba(0, 0, 0, 1)',
+    blur = 0,
+    shadowStroke = true,
+    shadowFill = true
+  ) {
     this.style.shadowOffsetX = x;
     this.style.shadowOffsetY = y;
     this.style.shadowColor = color;
@@ -139,7 +145,12 @@ export default class extends Image {
       if (tabs === 0) {
         //  Simple layout (no tabs)
         lineWidth = this.style.strokeThickness + this.padding.x;
-        if (this.colors.length > 0 || this.strokeColors.length > 0 || this.fontWeights.length > 0 || this.fontStyles.length > 0) {
+        if (
+          this.colors.length > 0 ||
+          this.strokeColors.length > 0 ||
+          this.fontWeights.length > 0 ||
+          this.fontStyles.length > 0
+        ) {
           lineWidth += this.measureLine(lines[i]);
         } else {
           lineWidth += this.context.measureText(lines[i]).width;
@@ -156,7 +167,12 @@ export default class extends Image {
           let tab = 0;
           for (let c = 0; c < line.length; c += 1) {
             let section = 0;
-            if (this.colors.length > 0 || this.strokeColors.length > 0 || this.fontWeights.length > 0 || this.fontStyles.length > 0) {
+            if (
+              this.colors.length > 0 ||
+              this.strokeColors.length > 0 ||
+              this.fontWeights.length > 0 ||
+              this.fontStyles.length > 0
+            ) {
               section = this.measureLine(line[c]);
             } else {
               section = Math.ceil(this.context.measureText(line[c]).width);
@@ -169,7 +185,12 @@ export default class extends Image {
         } else {
           for (let c = 0; c < line.length; c += 1) {
             //  How far to the next tab?
-            if (this.colors.length > 0 || this.strokeColors.length > 0 || this.fontWeights.length > 0 || this.fontStyles.length > 0) {
+            if (
+              this.colors.length > 0 ||
+              this.strokeColors.length > 0 ||
+              this.fontWeights.length > 0 ||
+              this.fontStyles.length > 0
+            ) {
               lineWidth += this.measureLine(line[c]);
             } else {
               lineWidth += Math.ceil(this.context.measureText(line[c]).width);
@@ -192,7 +213,7 @@ export default class extends Image {
     }
     // Adjust for line spacing
     if (lineSpacing !== 0) {
-      height += (lineSpacing > 0) ? lineSpacing * lines.length : lineSpacing * (lines.length - 1);
+      height += lineSpacing > 0 ? lineSpacing * lines.length : lineSpacing * (lines.length - 1);
     }
     this.canvas.height = height * this._res;
     this.context.scale(this._res, this._res);
@@ -214,9 +235,9 @@ export default class extends Image {
     for (let i = 0; i < drawnLines; i += 1) {
       // Split the line by
       linePositionX = this.style.strokeThickness / 2;
-      linePositionY = (this.style.strokeThickness / 2 + i * lineHeight) + fontProperties.ascent;
+      linePositionY = this.style.strokeThickness / 2 + i * lineHeight + fontProperties.ascent;
       if (i > 0) {
-        linePositionY += (lineSpacing * i);
+        linePositionY += lineSpacing * i;
       }
       if (this.style.align === 'right') {
         linePositionX += maxLineWidth - lineWidths[i];
@@ -227,7 +248,12 @@ export default class extends Image {
         linePositionX = Math.round(linePositionX);
         linePositionY = Math.round(linePositionY);
       }
-      if (this.colors.length > 0 || this.strokeColors.length > 0 || this.fontWeights.length > 0 || this.fontStyles.length > 0) {
+      if (
+        this.colors.length > 0 ||
+        this.strokeColors.length > 0 ||
+        this.fontWeights.length > 0 ||
+        this.fontStyles.length > 0
+      ) {
         this.updateLine(lines[i], linePositionX, linePositionY);
       } else {
         if (this.style.stroke && this.style.strokeThickness) {
@@ -456,7 +482,9 @@ export default class extends Image {
               // if wordWrapWidth is too small for even a single
               // letter, shame user failure with a fatal error
               if (!newWord.length) {
-                throw new Error('This text\'s wordWrapWidth setting is less than a single character!');
+                throw new Error(
+                  "This text's wordWrapWidth setting is less than a single character!"
+                );
               }
               // replace current word in array with remainder
               const secondPart = word.substr(newWord.length);
@@ -465,10 +493,13 @@ export default class extends Image {
               out += newWord;
             }
             // if existing word length is 0, don't include it
-            const offset = (words[j].length) ? j : j + 1;
+            const offset = words[j].length ? j : j + 1;
             // collapse rest of sentence
             // remove any trailing white space
-            const remainder = words.slice(offset).join(' ').replace(/[ \n]*$/gi, '');
+            const remainder = words
+              .slice(offset)
+              .join(' ')
+              .replace(/[ \n]*$/gi, '');
             // prepend remainder to next line
             lines[i + 1] = remainder + ' ' + (lines[i + 1] || '');
             linesCount = lines.length;
@@ -536,11 +567,16 @@ export default class extends Image {
     //        larger | smaller
     //        {number} (em | ex | ch | rem | vh | vw | vmin | vmax | px | mm | cm | in | pt | pc | %)
     // font-family - rest (but identifiers or quoted with comma separation)
-    const m = font.match(/^\s*(?:\b(normal|italic|oblique|inherit)?\b)\s*(?:\b(normal|small-caps|inherit)?\b)\s*(?:\b(normal|bold|bolder|lighter|100|200|300|400|500|600|700|800|900|inherit)?\b)\s*(?:\b(xx-small|x-small|small|medium|large|x-large|xx-large|larger|smaller|0|\d*(?:[.]\d*)?(?:%|[a-z]{2,5}))?\b)\s*(.*)\s*$/);
+    const m = font.match(
+      /^\s*(?:\b(normal|italic|oblique|inherit)?\b)\s*(?:\b(normal|small-caps|inherit)?\b)\s*(?:\b(normal|bold|bolder|lighter|100|200|300|400|500|600|700|800|900|inherit)?\b)\s*(?:\b(xx-small|x-small|small|medium|large|x-large|xx-large|larger|smaller|0|\d*(?:[.]\d*)?(?:%|[a-z]{2,5}))?\b)\s*(.*)\s*$/
+    );
     if (m) {
       let family = m[5].trim();
       // If it looks like the value should be quoted, but isn't, then quote it.
-      if (!/^(?:inherit|serif|sans-serif|cursive|fantasy|monospace)$/.exec(family) && !/['",]/.exec(family)) {
+      if (
+        !/^(?:inherit|serif|sans-serif|cursive|fantasy|monospace)$/.exec(family) &&
+        !/['",]/.exec(family)
+      ) {
         family = "'" + family + "'";
       }
       return {
@@ -560,15 +596,25 @@ export default class extends Image {
     const parts = [];
     let v;
     v = components.fontStyle;
-    if (v && v !== 'normal') { parts.push(v); }
+    if (v && v !== 'normal') {
+      parts.push(v);
+    }
     v = components.fontVariant;
-    if (v && v !== 'normal') { parts.push(v); }
+    if (v && v !== 'normal') {
+      parts.push(v);
+    }
     v = components.fontWeight;
-    if (v && v !== 'normal') { parts.push(v); }
+    if (v && v !== 'normal') {
+      parts.push(v);
+    }
     v = components.fontSize;
-    if (v && v !== 'medium') { parts.push(v); }
+    if (v && v !== 'medium') {
+      parts.push(v);
+    }
     v = components.fontFamily;
-    if (v) { parts.push(v); }
+    if (v) {
+      parts.push(v);
+    }
     if (!parts.length) {
       // Fallback to whatever value the 'font' was
       parts.push(components.font);
@@ -649,18 +695,18 @@ export default class extends Image {
       if (this.style.boundsAlignH === 'right') {
         x += this.textBounds.width - this.canvas.width / this.resolution;
       } else if (this.style.boundsAlignH === 'center') {
-        x += this.textBounds.halfWidth - (this.canvas.width / this.resolution / 2);
+        x += this.textBounds.halfWidth - this.canvas.width / this.resolution / 2;
       }
       if (this.style.boundsAlignV === 'bottom') {
         y += this.textBounds.height - this.canvas.height / this.resolution;
       } else if (this.style.boundsAlignV === 'middle') {
-        y += this.textBounds.halfHeight - (this.canvas.height / this.resolution / 2);
+        y += this.textBounds.halfHeight - this.canvas.height / this.resolution / 2;
       }
       this.pivot.x = -x;
       this.pivot.y = -y;
     }
     // Can't render something with a zero sized dimension
-    this.renderable = (w !== 0 && h !== 0);
+    this.renderable = w !== 0 && h !== 0;
     this.texture.requiresReTint = true;
     this.texture.baseTexture.dirty();
   }
@@ -697,7 +743,10 @@ export default class extends Image {
 
   getFontPropertiesContext() {
     if (!window.PhaserRegistry.fontPropertiesContext) {
-      window.PhaserRegistry.fontPropertiesContext = this.getFontPropertiesCanvas().getContext('2d', { willReadFrequently: true });
+      window.PhaserRegistry.fontPropertiesContext = this.getFontPropertiesCanvas().getContext(
+        '2d',
+        { willReadFrequently: true }
+      );
     }
     return window.PhaserRegistry.fontPropertiesContext;
   }
@@ -713,7 +762,7 @@ export default class extends Image {
       const width = Math.ceil(context.measureText('|MÉq').width);
       let baseline = Math.ceil(context.measureText('|MÉq').width);
       const height = 2 * baseline;
-      baseline = baseline * 1.4 | 0;
+      baseline = (baseline * 1.4) | 0;
       canvas.width = width;
       canvas.height = height;
       context.fillStyle = '#f00';
@@ -815,7 +864,10 @@ export default class extends Image {
     let mutatedValue = value || 'Arial';
     mutatedValue = mutatedValue.trim();
     // If it looks like the value should be quoted, but isn't, then quote it.
-    if (!/^(?:inherit|serif|sans-serif|cursive|fantasy|monospace)$/.exec(mutatedValue) && !/['",]/.exec(mutatedValue)) {
+    if (
+      !/^(?:inherit|serif|sans-serif|cursive|fantasy|monospace)$/.exec(mutatedValue) &&
+      !/['",]/.exec(mutatedValue)
+    ) {
       mutatedValue = "'" + mutatedValue + "'";
     }
 
@@ -1082,5 +1134,4 @@ export default class extends Image {
     this.scale.y = value / this.texture.frame.height;
     this._height = value;
   }
-
 }

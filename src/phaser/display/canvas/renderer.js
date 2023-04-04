@@ -4,13 +4,33 @@
  * @author       Mat Groves http://matgroves.com/ @Doormat23
  * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
  */
-import { RENDER_CANVAS, SCALE_LINEAR, BLEND_NORMAL, BLEND_ADD, BLEND_MULTIPLY, BLEND_SCREEN, BLEND_OVERLAY, BLEND_DARKEN, BLEND_LIGHTEN, BLEND_COLOR_DODGE, BLEND_COLOR_BURN, BLEND_HARD_LIGHT, BLEND_SOFT_LIGHT, BLEND_DIFFERENCE, BLEND_EXCLUSION, BLEND_HUE, BLEND_SATURATION, BLEND_COLOR, BLEND_LUMINOSITY, SCALE_NEAREST } from '../../core/const';
+import {
+  RENDER_CANVAS,
+  SCALE_LINEAR,
+  BLEND_NORMAL,
+  BLEND_ADD,
+  BLEND_MULTIPLY,
+  BLEND_SCREEN,
+  BLEND_OVERLAY,
+  BLEND_DARKEN,
+  BLEND_LIGHTEN,
+  BLEND_COLOR_DODGE,
+  BLEND_COLOR_BURN,
+  BLEND_HARD_LIGHT,
+  BLEND_SOFT_LIGHT,
+  BLEND_DIFFERENCE,
+  BLEND_EXCLUSION,
+  BLEND_HUE,
+  BLEND_SATURATION,
+  BLEND_COLOR,
+  BLEND_LUMINOSITY,
+  SCALE_NEAREST,
+} from '../../core/const';
 import { getSmoothingPrefix } from './util';
 import { detectCapabilities } from './tinter';
 import * as CanvasMaskManager from './masker';
 
 export default class {
-
   constructor(game) {
     detectCapabilities();
     this.type = RENDER_CANVAS;
@@ -78,7 +98,8 @@ export default class {
       this.view.style.height = this.height / this.resolution + 'px';
     }
     if (this.renderSession.smoothProperty) {
-      this.context[this.renderSession.smoothProperty] = (this.renderSession.scaleMode === SCALE_LINEAR);
+      this.context[this.renderSession.smoothProperty] =
+        this.renderSession.scaleMode === SCALE_LINEAR;
     }
   }
 
@@ -96,22 +117,21 @@ export default class {
     const useNew = window.PhaserRegistry.CAN_CANVAS_USE_MULTIPLY;
     b[BLEND_NORMAL] = 'source-over';
     b[BLEND_ADD] = 'lighter';
-    b[BLEND_MULTIPLY] = (useNew) ? 'multiply' : 'source-over';
-    b[BLEND_SCREEN] = (useNew) ? 'screen' : 'source-over';
-    b[BLEND_OVERLAY] = (useNew) ? 'overlay' : 'source-over';
-    b[BLEND_DARKEN] = (useNew) ? 'darken' : 'source-over';
-    b[BLEND_LIGHTEN] = (useNew) ? 'lighten' : 'source-over';
-    b[BLEND_COLOR_DODGE] = (useNew) ? 'color-dodge' : 'source-over';
-    b[BLEND_COLOR_BURN] = (useNew) ? 'color-burn' : 'source-over';
-    b[BLEND_HARD_LIGHT] = (useNew) ? 'hard-light' : 'source-over';
-    b[BLEND_SOFT_LIGHT] = (useNew) ? 'soft-light' : 'source-over';
-    b[BLEND_DIFFERENCE] = (useNew) ? 'difference' : 'source-over';
-    b[BLEND_EXCLUSION] = (useNew) ? 'exclusion' : 'source-over';
-    b[BLEND_HUE] = (useNew) ? 'hue' : 'source-over';
-    b[BLEND_SATURATION] = (useNew) ? 'saturation' : 'source-over';
-    b[BLEND_COLOR] = (useNew) ? 'color' : 'source-over';
-    b[BLEND_LUMINOSITY] = (useNew) ? 'luminosity' : 'source-over';
+    b[BLEND_MULTIPLY] = useNew ? 'multiply' : 'source-over';
+    b[BLEND_SCREEN] = useNew ? 'screen' : 'source-over';
+    b[BLEND_OVERLAY] = useNew ? 'overlay' : 'source-over';
+    b[BLEND_DARKEN] = useNew ? 'darken' : 'source-over';
+    b[BLEND_LIGHTEN] = useNew ? 'lighten' : 'source-over';
+    b[BLEND_COLOR_DODGE] = useNew ? 'color-dodge' : 'source-over';
+    b[BLEND_COLOR_BURN] = useNew ? 'color-burn' : 'source-over';
+    b[BLEND_HARD_LIGHT] = useNew ? 'hard-light' : 'source-over';
+    b[BLEND_SOFT_LIGHT] = useNew ? 'soft-light' : 'source-over';
+    b[BLEND_DIFFERENCE] = useNew ? 'difference' : 'source-over';
+    b[BLEND_EXCLUSION] = useNew ? 'exclusion' : 'source-over';
+    b[BLEND_HUE] = useNew ? 'hue' : 'source-over';
+    b[BLEND_SATURATION] = useNew ? 'saturation' : 'source-over';
+    b[BLEND_COLOR] = useNew ? 'color' : 'source-over';
+    b[BLEND_LUMINOSITY] = useNew ? 'luminosity' : 'source-over';
     window.PhaserRegistry.blendModesCanvas = b;
   }
-
 }

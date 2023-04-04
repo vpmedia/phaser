@@ -66,7 +66,7 @@ export function contains(a, x, y) {
   if (a.width <= 0 || a.height <= 0) {
     return false;
   }
-  return (x >= a.x && x < a.right && y >= a.y && y < a.bottom);
+  return x >= a.x && x < a.right && y >= a.y && y < a.bottom;
 }
 
 /**
@@ -80,7 +80,7 @@ export function contains(a, x, y) {
  * @returns {boolean} TBD
  */
 export function containsRaw(rx, ry, rw, rh, x, y) {
-  return (x >= rx && x < (rx + rw) && y >= ry && y < (ry + rh));
+  return x >= rx && x < rx + rw && y >= ry && y < ry + rh;
 }
 
 /**
@@ -103,7 +103,7 @@ export function containsRect(a, b) {
   if (a.volume > b.volume) {
     return false;
   }
-  return (a.x >= b.x && a.y >= b.y && a.right < b.right && a.bottom < b.bottom);
+  return a.x >= b.x && a.y >= b.y && a.right < b.right && a.bottom < b.bottom;
 }
 
 /**
@@ -113,7 +113,7 @@ export function containsRect(a, b) {
  * @returns {boolean} TBD
  */
 export function equals(a, b) {
-  return (a.x === b.x && a.y === b.y && a.width === b.width && a.height === b.height);
+  return a.x === b.x && a.y === b.y && a.width === b.width && a.height === b.height;
 }
 
 /**
@@ -123,7 +123,7 @@ export function equals(a, b) {
  * @returns {boolean} TBD
  */
 export function sameDimensions(a, b) {
-  return (a.width === b.width && a.height === b.height);
+  return a.width === b.width && a.height === b.height;
 }
 
 /**
@@ -168,7 +168,12 @@ export function intersection(a, b, output = null) {
  * @returns {boolean} TBD
  */
 export function intersectsRaw(a, left, right, top, bottom, tolerance = 0) {
-  return !(left > a.right + tolerance || right < a.left - tolerance || top > a.bottom + tolerance || bottom < a.top - tolerance);
+  return !(
+    left > a.right + tolerance ||
+    right < a.left - tolerance ||
+    top > a.bottom + tolerance ||
+    bottom < a.top - tolerance
+  );
 }
 
 /**
@@ -180,7 +185,12 @@ export function intersectsRaw(a, left, right, top, bottom, tolerance = 0) {
  */
 export function union(a, b, output = null) {
   const result = output || new Rectangle();
-  return result.setTo(Math.min(a.x, b.x), Math.min(a.y, b.y), Math.max(a.right, b.right) - Math.min(a.left, b.left), Math.max(a.bottom, b.bottom) - Math.min(a.top, b.top));
+  return result.setTo(
+    Math.min(a.x, b.x),
+    Math.min(a.y, b.y),
+    Math.max(a.right, b.right) - Math.min(a.left, b.left),
+    Math.max(a.bottom, b.bottom) - Math.min(a.top, b.top)
+  );
 }
 
 /**

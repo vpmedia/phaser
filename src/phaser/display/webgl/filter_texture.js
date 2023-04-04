@@ -7,15 +7,22 @@
 import { SCALE_LINEAR } from '../../core/const';
 
 export default class {
-
   constructor(gl, width, height, scaleMode) {
     this.gl = gl;
     this.frameBuffer = gl.createFramebuffer();
     this.texture = gl.createTexture();
     scaleMode = scaleMode || window.PhaserRegistry.TEXTURE_SCALE_MODE;
     gl.bindTexture(gl.TEXTURE_2D, this.texture);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, scaleMode === SCALE_LINEAR ? gl.LINEAR : gl.NEAREST);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, scaleMode === SCALE_LINEAR ? gl.LINEAR : gl.NEAREST);
+    gl.texParameteri(
+      gl.TEXTURE_2D,
+      gl.TEXTURE_MAG_FILTER,
+      scaleMode === SCALE_LINEAR ? gl.LINEAR : gl.NEAREST
+    );
+    gl.texParameteri(
+      gl.TEXTURE_2D,
+      gl.TEXTURE_MIN_FILTER,
+      scaleMode === SCALE_LINEAR ? gl.LINEAR : gl.NEAREST
+    );
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
     gl.bindFramebuffer(gl.FRAMEBUFFER, this.frameBuffer);
@@ -24,7 +31,12 @@ export default class {
     // required for masking a mask??
     this.renderBuffer = gl.createRenderbuffer();
     gl.bindRenderbuffer(gl.RENDERBUFFER, this.renderBuffer);
-    gl.framebufferRenderbuffer(gl.FRAMEBUFFER, gl.DEPTH_STENCIL_ATTACHMENT, gl.RENDERBUFFER, this.renderBuffer);
+    gl.framebufferRenderbuffer(
+      gl.FRAMEBUFFER,
+      gl.DEPTH_STENCIL_ATTACHMENT,
+      gl.RENDERBUFFER,
+      this.renderBuffer
+    );
     this.resize(width, height);
   }
 
@@ -57,5 +69,4 @@ export default class {
     this.renderBuffer = null;
     this.gl = null;
   }
-
 }

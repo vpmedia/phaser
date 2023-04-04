@@ -6,7 +6,6 @@
 import Animation from './animation';
 
 export default class {
-
   constructor(sprite) {
     this.sprite = sprite;
     this.game = sprite.game;
@@ -90,7 +89,15 @@ export default class {
     }
     this._outputFrames = [];
     this._frameData.getFrameIndexes(frames, useNumericIndex, this._outputFrames);
-    this._anims[name] = new Animation(this.game, this.sprite, name, this._frameData, this._outputFrames, frameRate, loop);
+    this._anims[name] = new Animation(
+      this.game,
+      this.sprite,
+      name,
+      this._frameData,
+      this._outputFrames,
+      frameRate,
+      loop
+    );
     this.currentAnim = this._anims[name];
     if (this.sprite.tilingTexture) {
       this.sprite.refreshTexture = true;
@@ -224,7 +231,11 @@ export default class {
   }
 
   set frameName(value) {
-    if (typeof value === 'string' && this._frameData && this._frameData.getFrameByName(value) !== null) {
+    if (
+      typeof value === 'string' &&
+      this._frameData &&
+      this._frameData.getFrameByName(value) !== null
+    ) {
       this.currentFrame = this._frameData.getFrameByName(value);
       if (this.currentFrame) {
         this._frameIndex = this.currentFrame.index;
@@ -234,5 +245,4 @@ export default class {
       console.warn('Cannot set frameName: ' + value);
     }
   }
-
 }

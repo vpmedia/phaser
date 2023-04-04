@@ -5,10 +5,16 @@
  */
 import Point from '../geom/point';
 import Circle from '../geom/circle';
-import { POINTER, POINTER_CURSOR, POINTER_CONTACT, MOUSE_OVERRIDES_TOUCH, TOUCH_OVERRIDES_MOUSE, MOUSE_TOUCH_COMBINE } from './const';
+import {
+  POINTER,
+  POINTER_CURSOR,
+  POINTER_CONTACT,
+  MOUSE_OVERRIDES_TOUCH,
+  TOUCH_OVERRIDES_MOUSE,
+  MOUSE_TOUCH_COMBINE,
+} from './const';
 
 export default class {
-
   constructor(game, id, pointerMode) {
     this.game = game;
     this.id = id;
@@ -16,7 +22,7 @@ export default class {
     this.exists = true;
     this.identifier = 0;
     this.pointerId = null;
-    this.pointerMode = pointerMode || (POINTER_CURSOR | POINTER_CONTACT);
+    this.pointerMode = pointerMode || POINTER_CURSOR | POINTER_CONTACT;
     this.target = null;
     this.button = null;
     this._holdSent = false;
@@ -36,7 +42,7 @@ export default class {
     this.movementY = 0;
     this.x = -1;
     this.y = -1;
-    this.isMouse = (id === 0);
+    this.isMouse = id === 0;
     this.isDown = false;
     this.isUp = true;
     this.timeDown = 0;
@@ -98,7 +104,11 @@ export default class {
     this.move(event, true);
     // x and y are the old values here?
     this.positionDown.setTo(this.x, this.y);
-    if (input.multiInputOverride === MOUSE_OVERRIDES_TOUCH || input.multiInputOverride === MOUSE_TOUCH_COMBINE || (input.multiInputOverride === TOUCH_OVERRIDES_MOUSE && input.totalActivePointers === 0)) {
+    if (
+      input.multiInputOverride === MOUSE_OVERRIDES_TOUCH ||
+      input.multiInputOverride === MOUSE_TOUCH_COMBINE ||
+      (input.multiInputOverride === TOUCH_OVERRIDES_MOUSE && input.totalActivePointers === 0)
+    ) {
       input.x = this.x;
       input.y = this.y;
       input.position.setTo(this.x, this.y);
@@ -124,7 +134,11 @@ export default class {
         this.dirty = false;
       }
       if (this._holdSent === false && this.duration >= input.holdRate) {
-        if (input.multiInputOverride === MOUSE_OVERRIDES_TOUCH || input.multiInputOverride === MOUSE_TOUCH_COMBINE || (input.multiInputOverride === TOUCH_OVERRIDES_MOUSE && input.totalActivePointers === 0)) {
+        if (
+          input.multiInputOverride === MOUSE_OVERRIDES_TOUCH ||
+          input.multiInputOverride === MOUSE_TOUCH_COMBINE ||
+          (input.multiInputOverride === TOUCH_OVERRIDES_MOUSE && input.totalActivePointers === 0)
+        ) {
           input.onHold.dispatch(this);
         }
         this._holdSent = true;
@@ -168,7 +182,11 @@ export default class {
     this.position.setTo(this.x, this.y);
     this.circle.x = this.x;
     this.circle.y = this.y;
-    if (input.multiInputOverride === MOUSE_OVERRIDES_TOUCH || input.multiInputOverride === MOUSE_TOUCH_COMBINE || (input.multiInputOverride === TOUCH_OVERRIDES_MOUSE && input.totalActivePointers === 0)) {
+    if (
+      input.multiInputOverride === MOUSE_OVERRIDES_TOUCH ||
+      input.multiInputOverride === MOUSE_TOUCH_COMBINE ||
+      (input.multiInputOverride === TOUCH_OVERRIDES_MOUSE && input.totalActivePointers === 0)
+    ) {
       input.activePointer = this;
       input.x = this.x;
       input.y = this.y;
@@ -184,7 +202,13 @@ export default class {
     let i = input.moveCallbacks.length;
     while (i) {
       i -= 1;
-      input.moveCallbacks[i].callback.call(input.moveCallbacks[i].context, this, this.x, this.y, fromClick);
+      input.moveCallbacks[i].callback.call(
+        input.moveCallbacks[i].context,
+        this,
+        this.x,
+        this.y,
+        fromClick
+      );
     }
     //  Easy out if we're dragging something and it still exists
     if (this.targetObject !== null && this.targetObject.isDragged === true) {
@@ -212,7 +236,10 @@ export default class {
       if (currentNode.validForInput(highestInputPriorityID, highestRenderOrderID, false)) {
         //  Flag it as checked so we don't re-scan it on the next phase
         currentNode.checked = true;
-        if ((fromClick && currentNode.checkPointerDown(this, true)) || (!fromClick && currentNode.checkPointerOver(this, true))) {
+        if (
+          (fromClick && currentNode.checkPointerDown(this, true)) ||
+          (!fromClick && currentNode.checkPointerOver(this, true))
+        ) {
           highestRenderOrderID = currentNode.sprite.renderOrderID;
           highestInputPriorityID = currentNode.priorityID;
           candidateTarget = currentNode;
@@ -226,8 +253,14 @@ export default class {
     // (A node that was previously checked did not request a pixel-perfect check.)
     currentNode = this.game.input.interactiveItems.first;
     while (currentNode) {
-      if (!currentNode.checked && currentNode.validForInput(highestInputPriorityID, highestRenderOrderID, true)) {
-        if ((fromClick && currentNode.checkPointerDown(this, false)) || (!fromClick && currentNode.checkPointerOver(this, false))) {
+      if (
+        !currentNode.checked &&
+        currentNode.validForInput(highestInputPriorityID, highestRenderOrderID, true)
+      ) {
+        if (
+          (fromClick && currentNode.checkPointerDown(this, false)) ||
+          (!fromClick && currentNode.checkPointerOver(this, false))
+        ) {
           highestRenderOrderID = currentNode.sprite.renderOrderID;
           highestInputPriorityID = currentNode.priorityID;
           candidateTarget = currentNode;
@@ -237,10 +270,15 @@ export default class {
       currentNode = this.game.input.interactiveItems.next;
     }
     if (this.game.input.customCandidateHandler) {
-      candidateTarget = this.game.input.customCandidateHandler.call(this.game.input.customCandidateHandlerContext, this, this.interactiveCandidates, candidateTarget);
+      candidateTarget = this.game.input.customCandidateHandler.call(
+        this.game.input.customCandidateHandlerContext,
+        this,
+        this.interactiveCandidates,
+        candidateTarget
+      );
     }
     this.swapTarget(candidateTarget, false);
-    return (this.targetObject !== null);
+    return this.targetObject !== null;
   }
 
   swapTarget(newTarget, silent = false) {
@@ -282,7 +320,11 @@ export default class {
       return null;
     }
     this.timeUp = this.game.time.time;
-    if (input.multiInputOverride === MOUSE_OVERRIDES_TOUCH || input.multiInputOverride === MOUSE_TOUCH_COMBINE || (input.multiInputOverride === TOUCH_OVERRIDES_MOUSE && input.totalActivePointers === 0)) {
+    if (
+      input.multiInputOverride === MOUSE_OVERRIDES_TOUCH ||
+      input.multiInputOverride === MOUSE_TOUCH_COMBINE ||
+      (input.multiInputOverride === TOUCH_OVERRIDES_MOUSE && input.totalActivePointers === 0)
+    ) {
       input.onUp.dispatch(this, event);
       //  Was it a tap?
       if (this.duration >= 0 && this.duration <= input.tapRate) {
@@ -324,12 +366,12 @@ export default class {
 
   justPressed(duration) {
     duration = duration || this.game.input.justPressedRate;
-    return (this.isDown === true && (this.timeDown + duration) > this.game.time.time);
+    return this.isDown === true && this.timeDown + duration > this.game.time.time;
   }
 
   justReleased(duration) {
     duration = duration || this.game.input.justReleasedRate;
-    return (this.isUp && (this.timeUp + duration) > this.game.time.time);
+    return this.isUp && this.timeUp + duration > this.game.time.time;
   }
 
   addClickTrampoline(name, callback, callbackContext, callbackArgs) {
@@ -405,5 +447,4 @@ export default class {
   get worldY() {
     return this.y;
   }
-
 }
