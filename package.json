@@ -37,6 +37,7 @@
     "test": "NODE_OPTIONS=--experimental-vm-modules jest --passWithNoTests",
     "lint": "eslint \"**/*.js\"",
     "lint-fix": "eslint \"**/*.js\" --fix",
+    "typecheck": "tsc",
     "format": "prettier --write \"**/*.{js,json}\"",
     "lint-staged": "lint-staged"
   },
