@@ -20,6 +20,7 @@
     "canvas"
   ],
   "main": "./src/index.js",
+  "types": "./types/index.d.ts",
   "devDependencies": {
     "eslint": "^8.38.0",
     "eslint-config-prettier": "^8.8.0",
