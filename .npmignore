@@ -22,5 +22,5 @@ test/
 .prettierrc.json
 bitbucket-pipelines.yml
 jest.config.js
-tsconfig.js
+tsconfig.json
 webpack.config.babel.js
