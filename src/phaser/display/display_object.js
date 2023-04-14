@@ -11,6 +11,9 @@ import { PI_2 } from '../util/math';
 import { renderCanvas, renderWebGL } from './sprite_util';
 
 export default class {
+  /**
+   * TBD.
+   */
   constructor() {
     this.exists = true;
     this.renderable = false;

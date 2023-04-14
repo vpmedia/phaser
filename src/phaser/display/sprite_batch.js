@@ -6,6 +6,11 @@
 import DisplayObject from './display_object';
 
 export default class extends DisplayObject {
+  /**
+   * TBD.
+   *
+   * @param {object} game - TBD.
+   */
   constructor(game) {
     super();
     this.game = game;

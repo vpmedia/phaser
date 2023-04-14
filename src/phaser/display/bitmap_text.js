@@ -9,6 +9,17 @@ import Point from '../geom/point';
 import { BITMAP_TEXT, SCALE_LINEAR, SCALE_NEAREST } from '../core/const';
 
 export default class extends DisplayObject {
+  /**
+   * TBD.
+   *
+   * @param {object} game - TBD.
+   * @param {number} x - TBD.
+   * @param {number} y - TBD.
+   * @param {string} font - TBD.
+   * @param {string} text - TBD.
+   * @param {number} size - TBD.
+   * @param {string} align - TBD.
+   */
   constructor(game, x = 0, y = 0, font = '', text = '', size = 32, align = 'left') {
     super();
     this.game = game;

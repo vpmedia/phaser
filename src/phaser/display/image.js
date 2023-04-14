@@ -13,6 +13,15 @@ import { IMAGE, PENDING_ATLAS, BLEND_NORMAL, SCALE_NEAREST } from '../core/const
 import { setTexture, getBounds, getLocalBounds, renderCanvas, renderWebGL } from './sprite_util';
 
 export default class extends DisplayObject {
+  /**
+   * TBD.
+   *
+   * @param {object} game - TBD.
+   * @param {number} x - TBD.
+   * @param {number} y - TBD.
+   * @param {string} key - TBD.
+   * @param {string} frame - TBD.
+   */
   constructor(game, x, y, key, frame) {
     super();
     this.game = game;

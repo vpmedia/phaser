@@ -33,6 +33,13 @@ import {
 } from '../core/const';
 
 export default class extends DisplayObject {
+  /**
+   * TBD.
+   *
+   * @param {object} game - TBD.
+   * @param {number} x - TBD.
+   * @param {number} y - TBD.
+   */
   constructor(game, x = 0, y = 0) {
     super();
     this.game = game;

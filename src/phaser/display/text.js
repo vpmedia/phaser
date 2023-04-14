@@ -13,6 +13,15 @@ import { snapToCeil } from '../util/math';
 import { renderCanvas, renderWebGL, getBounds } from './sprite_util';
 
 export default class extends Image {
+  /**
+   * TBD.
+   *
+   * @param {object} game - TBD.
+   * @param {number} x - TBD.
+   * @param {number} y - TBD.
+   * @param {string} text - TBD.
+   * @param {object} style - TBD.
+   */
   constructor(game, x, y, text = '', style = {}) {
     super(game, x, y, null);
     this.game = game;

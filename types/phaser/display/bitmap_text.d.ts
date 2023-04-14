@@ -1,6 +1,17 @@
 export default class _default extends DisplayObject {
-    constructor(game: any, x?: number, y?: number, font?: string, text?: string, size?: number, align?: string);
-    game: any;
+    /**
+     * TBD.
+     *
+     * @param {object} game - TBD.
+     * @param {number} x - TBD.
+     * @param {number} y - TBD.
+     * @param {string} font - TBD.
+     * @param {string} text - TBD.
+     * @param {number} size - TBD.
+     * @param {string} align - TBD.
+     */
+    constructor(game: object, x?: number, y?: number, font?: string, text?: string, size?: number, align?: string);
+    game: object;
     type: number;
     textWidth: number;
     textHeight: number;

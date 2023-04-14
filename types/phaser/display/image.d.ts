@@ -1,8 +1,17 @@
 export default class _default extends DisplayObject {
-    constructor(game: any, x: any, y: any, key: any, frame: any);
-    game: any;
+    /**
+     * TBD.
+     *
+     * @param {object} game - TBD.
+     * @param {number} x - TBD.
+     * @param {number} y - TBD.
+     * @param {string} key - TBD.
+     * @param {string} frame - TBD.
+     */
+    constructor(game: object, x: number, y: number, key: string, frame: string);
+    game: object;
     type: number;
-    key: any;
+    key: string;
     texture: any;
     data: {};
     _width: number;

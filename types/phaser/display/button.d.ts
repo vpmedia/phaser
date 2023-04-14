@@ -1,5 +1,19 @@
 export default class _default extends Image {
-    constructor(game: any, x?: number, y?: number, key?: null, callback?: null, callbackContext?: null, overFrame?: null, outFrame?: null, downFrame?: null, upFrame?: null);
+    /**
+     * TBD.
+     *
+     * @param {object} game - TBD.
+     * @param {number} x - TBD.
+     * @param {number} y - TBD.
+     * @param {string} key - TBD.
+     * @param {Function} callback - TBD.
+     * @param {object} callbackContext - TBD.
+     * @param {string} overFrame - TBD.
+     * @param {string} outFrame - TBD.
+     * @param {string} downFrame - TBD.
+     * @param {string} upFrame - TBD.
+     */
+    constructor(game: object, x?: number, y?: number, key?: string, callback?: Function, callbackContext?: object, overFrame?: string, outFrame?: string, downFrame?: string, upFrame?: string);
     _onOverFrame: any;
     _onOutFrame: any;
     _onDownFrame: any;

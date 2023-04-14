@@ -12,6 +12,14 @@ export const SORT_ASCENDING = -1;
 export const SORT_DESCENDING = 1;
 
 export default class extends DisplayObject {
+  /**
+   * TBD.
+   *
+   * @param {object} game - TBD.
+   * @param {DisplayObject} parent - TBD.
+   * @param {string} name - TBD.
+   * @param {boolean} addToStage - TBD.
+   */
   constructor(game, parent = null, name = 'group', addToStage = false) {
     super();
     this.game = game;

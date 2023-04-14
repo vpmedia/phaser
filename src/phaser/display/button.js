@@ -15,6 +15,20 @@ const STATE_UP = 'Up';
 const STATE_DISABLED = 'Disabled';
 
 export default class extends Image {
+  /**
+   * TBD.
+   *
+   * @param {object} game - TBD.
+   * @param {number} x - TBD.
+   * @param {number} y - TBD.
+   * @param {string} key - TBD.
+   * @param {Function} callback - TBD.
+   * @param {object} callbackContext - TBD.
+   * @param {string} overFrame - TBD.
+   * @param {string} outFrame - TBD.
+   * @param {string} downFrame - TBD.
+   * @param {string} upFrame - TBD.
+   */
   constructor(
     game,
     x = 0,

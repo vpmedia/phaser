@@ -1,5 +1,14 @@
 export default class _default extends Image {
-    constructor(game: any, x: any, y: any, text?: string, style?: {});
+    /**
+     * TBD.
+     *
+     * @param {object} game - TBD.
+     * @param {number} x - TBD.
+     * @param {number} y - TBD.
+     * @param {string} text - TBD.
+     * @param {object} style - TBD.
+     */
+    constructor(game: object, x: number, y: number, text?: string, style?: object);
     canvas: object;
     context: any;
     padding: Point;
