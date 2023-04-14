@@ -1,16 +1,17 @@
 /**
+ * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
- * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
  */
 import Frame from './frame';
 import FrameData from './frame_data';
 
 /**
+ * TBD.
  *
- * @param {object} frame TBD
- * @param {object} output TBD
- * @returns {object} TBD
+ * @param {object} frame - TBD.
+ * @param {object} output - TBD.
+ * @returns {object} TBD.
  */
 export function cloneFrame(frame, output = null) {
   const result = output || new Frame();
@@ -19,10 +20,11 @@ export function cloneFrame(frame, output = null) {
 }
 
 /**
+ * TBD.
  *
- * @param {object} frameData TBD
- * @param {object} output TBD
- * @returns {object} TBD
+ * @param {object} frameData - TBD.
+ * @param {object} output - TBD.
+ * @returns {object} TBD.
  */
 export function cloneFrameData(frameData, output = null) {
   const result = output || new FrameData();

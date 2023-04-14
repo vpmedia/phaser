@@ -1,17 +1,18 @@
 /**
+ * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
- * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
  */
 import Point from '../point';
 import Line from '../line';
 import { intersects as intersectsRect } from './rectangle';
 
 /**
+ * TBD.
  *
- * @param {object} input TBD
- * @param {object} output TBD
- * @returns {object} TBD
+ * @param {object} input - TBD.
+ * @param {object} output - TBD.
+ * @returns {object} TBD.
  */
 export function clone(input, output = null) {
   const result = output || new Line();
@@ -23,14 +24,15 @@ export function clone(input, output = null) {
 }
 
 /**
+ * TBD.
  *
- * @param {object} a TBD
- * @param {object} b TBD
- * @param {object} e TBD
- * @param {object} f TBD
- * @param {boolean} asSegment TBD
- * @param {object} output TBD
- * @returns {boolean} TBD
+ * @param {object} a - TBD.
+ * @param {object} b - TBD.
+ * @param {object} e - TBD.
+ * @param {object} f - TBD.
+ * @param {boolean} asSegment - TBD.
+ * @param {object} output - TBD.
+ * @returns {boolean} TBD.
  */
 export function intersectsPoints(a, b, e, f, asSegment = true, output = null) {
   const result = output || new Point();
@@ -59,22 +61,24 @@ export function intersectsPoints(a, b, e, f, asSegment = true, output = null) {
 }
 
 /**
+ * TBD.
  *
- * @param {object} a TBD
- * @param {object} b TBD
- * @param {boolean} asSegment TBD
- * @param {object} result TBD
- * @returns {boolean} TBD
+ * @param {object} a - TBD.
+ * @param {object} b - TBD.
+ * @param {boolean} asSegment - TBD.
+ * @param {object} result - TBD.
+ * @returns {boolean} TBD.
  */
 export function intersects(a, b, asSegment, result) {
   return intersectsPoints(a.start, a.end, b.start, b.end, asSegment, result);
 }
 
 /**
+ * TBD.
  *
- * @param {object} line TBD
- * @param {object} rect TBD
- * @returns {boolean} TBD
+ * @param {object} line - TBD.
+ * @param {object} rect - TBD.
+ * @returns {boolean} TBD.
  */
 export function intersectsRectangle(line, rect) {
   //  Quick bail out of the Line and Rect bounds don't intersect
@@ -128,10 +132,11 @@ export function intersectsRectangle(line, rect) {
 }
 
 /**
+ * TBD.
  *
- * @param {object} a TBD
- * @param {object} b TBD
- * @returns {number} TBD
+ * @param {object} a - TBD.
+ * @param {object} b - TBD.
+ * @returns {number} TBD.
  */
 export function reflect(a, b) {
   return 2 * b.normalAngle - 3.141592653589793 - a.angle;

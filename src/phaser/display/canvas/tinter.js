@@ -1,18 +1,19 @@
 /**
+ * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  * @author       Mat Groves http://matgroves.com/ @Doormat23
- * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
  */
 import CanvasBuffer from './buffer';
 import { create, removeByCanvas } from './pool';
 import { hex2rgb } from '../../util/math';
 
 /**
+ * TBD.
  *
- * @param {object} sprite TBD
- * @param {object} color TBD
- * @returns {object} TBD
+ * @param {object} sprite - TBD.
+ * @param {object} color - TBD.
+ * @returns {object} TBD.
  */
 export function getTintedTexture(sprite, color) {
   const canvas = sprite.tintedTexture || create('CanvasTinter');
@@ -21,10 +22,11 @@ export function getTintedTexture(sprite, color) {
 }
 
 /**
+ * TBD.
  *
- * @param {object} texture TBD
- * @param {object} color TBD
- * @param {object} canvas TBD
+ * @param {object} texture - TBD.
+ * @param {object} color - TBD.
+ * @param {HTMLCanvasElement} canvas - TBD.
  */
 export function tintWithMultiply(texture, color, canvas) {
   const context = canvas.getContext('2d');
@@ -63,10 +65,11 @@ export function tintWithMultiply(texture, color, canvas) {
 }
 
 /**
+ * TBD.
  *
- * @param {object} texture TBD
- * @param {object} color TBD
- * @param {object} canvas TBD
+ * @param {object} texture - TBD.
+ * @param {object} color - TBD.
+ * @param {HTMLCanvasElement} canvas - TBD.
  */
 export function tintWithPerPixel(texture, color, canvas) {
   const context = canvas.getContext('2d');
@@ -107,8 +110,9 @@ export function tintWithPerPixel(texture, color, canvas) {
 }
 
 /**
+ * TBD.
  *
- * @returns {boolean} TBD
+ * @returns {boolean} TBD.
  */
 export function checkInverseAlpha() {
   const canvas = new CanvasBuffer(2, 1);
@@ -134,8 +138,9 @@ export function checkInverseAlpha() {
 }
 
 /**
+ * TBD.
  *
- * @returns {boolean} TBD
+ * @returns {boolean} TBD.
  */
 export function canUseNewCanvasBlendModes() {
   if (document === undefined) {
@@ -161,7 +166,7 @@ export function canUseNewCanvasBlendModes() {
 }
 
 /**
- * TBD
+ * TBD.
  */
 export function detectCapabilities() {
   if (!window.PhaserRegistry) {

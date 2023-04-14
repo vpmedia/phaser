@@ -1,8 +1,8 @@
 /**
+ * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  * @author       Mat Groves http://matgroves.com/ @Doormat23
- * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
  */
 import {
   GEOM_POLYGON,
@@ -13,8 +13,9 @@ import {
 } from '../../core/const';
 
 /**
+ * TBD.
  *
- * @param {object} graphics TBD
+ * @param {object} graphics - TBD.
  */
 export function updateGraphicsTint(graphics) {
   if (graphics.tint === 0xffffff) {
@@ -39,9 +40,10 @@ export function updateGraphicsTint(graphics) {
 }
 
 /**
+ * TBD.
  *
- * @param {object} graphics TBD
- * @param {object} context TBD
+ * @param {object} graphics - TBD.
+ * @param {object} context - TBD.
  */
 export function renderGraphics(graphics, context) {
   const worldAlpha = graphics.worldAlpha;
@@ -168,9 +170,10 @@ export function renderGraphics(graphics, context) {
 }
 
 /**
+ * TBD.
  *
- * @param {object} graphics TBD
- * @param {object} context TBD
+ * @param {object} graphics - TBD.
+ * @param {object} context - TBD.
  */
 export function renderGraphicsMask(graphics, context) {
   const len = graphics.graphicsData.length;

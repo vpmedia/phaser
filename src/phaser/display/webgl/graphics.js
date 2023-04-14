@@ -1,8 +1,8 @@
 /**
+ * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  * @author       Mat Groves http://matgroves.com/ @Doormat23
- * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
  */
 import GraphicsData from './graphics_data';
 import Point from '../../geom/point';
@@ -17,9 +17,9 @@ import { hex2rgb } from '../../util/math';
 import { triangulate } from './earcut';
 
 /**
- * TBD
+ * TBD.
  *
- * @returns {number} TBD
+ * @returns {number} TBD.
  */
 export function getStencilBufferLimit() {
   if (!window.PhaserRegistry.stencilBufferLimit) {
@@ -29,9 +29,9 @@ export function getStencilBufferLimit() {
 }
 
 /**
- * TBD
+ * TBD.
  *
- * @returns {object[]} TBD
+ * @returns {object[]} TBD.
  */
 export function getGraphicsDataPool() {
   if (!window.PhaserRegistry.graphicsDataPool) {
@@ -42,9 +42,9 @@ export function getGraphicsDataPool() {
 
 /**
  *
- * @param {object} webGL TBD
- * @param {number} type TBD
- * @returns {object} TBD
+ * @param {object} webGL - TBD.
+ * @param {number} type - TBD.
+ * @returns {object} TBD.
  */
 export function switchMode(webGL, type) {
   let webGLData;
@@ -66,8 +66,8 @@ export function switchMode(webGL, type) {
 
 /**
  *
- * @param {object} graphicsData TBD
- * @param {object} webGLData TBD
+ * @param {object} graphicsData - TBD.
+ * @param {object} webGLData - TBD.
  */
 export function buildLine(graphicsData, webGLData) {
   // TODO OPTIMISE!
@@ -231,8 +231,8 @@ export function buildLine(graphicsData, webGLData) {
 
 /**
  *
- * @param {object} graphicsData TBD
- * @param {object} webGLData TBD
+ * @param {object} graphicsData - TBD.
+ * @param {object} webGLData - TBD.
  */
 export function buildRectangle(graphicsData, webGLData) {
   //
@@ -275,13 +275,13 @@ export function buildRectangle(graphicsData, webGLData) {
 
 /**
  *
- * @param {number} fromX TBD
- * @param {number} fromY TBD
- * @param {number} cpX TBD
- * @param {number} cpY TBD
- * @param {number} toX TBD
- * @param {number} toY TBD
- * @returns {number[]} TBD
+ * @param {number} fromX - TBD.
+ * @param {number} fromY - TBD.
+ * @param {number} cpX - TBD.
+ * @param {number} cpY - TBD.
+ * @param {number} toX - TBD.
+ * @param {number} toY - TBD.
+ * @returns {number[]} TBD.
  */
 export function quadraticBezierCurve(fromX, fromY, cpX, cpY, toX, toY) {
   let xa;
@@ -314,8 +314,8 @@ export function quadraticBezierCurve(fromX, fromY, cpX, cpY, toX, toY) {
 
 /**
  *
- * @param {object} graphicsData TBD
- * @param {object} webGLData TBD
+ * @param {object} graphicsData - TBD.
+ * @param {object} webGLData - TBD.
  */
 export function buildRoundedRectangle(graphicsData, webGLData) {
   const rrectData = graphicsData.shape;
@@ -375,8 +375,8 @@ export function buildRoundedRectangle(graphicsData, webGLData) {
 
 /**
  *
- * @param {object} graphicsData TBD
- * @param {object} webGLData TBD
+ * @param {object} graphicsData - TBD.
+ * @param {object} webGLData - TBD.
  */
 export function buildCircle(graphicsData, webGLData) {
   // need to convert points to a nice regular data
@@ -426,8 +426,8 @@ export function buildCircle(graphicsData, webGLData) {
 
 /**
  *
- * @param {object} graphicsData TBD
- * @param {object} webGLData TBD
+ * @param {object} graphicsData - TBD.
+ * @param {object} webGLData - TBD.
  */
 export function buildComplexPoly(graphicsData, webGLData) {
   // TODO - no need to copy this as it gets turned into a Float32Array anyways..
@@ -470,9 +470,9 @@ export function buildComplexPoly(graphicsData, webGLData) {
 
 /**
  *
- * @param {object} graphicsData TBD
- * @param {object} webGLData TBD
- * @returns {boolean} TBD
+ * @param {object} graphicsData - TBD.
+ * @param {object} webGLData - TBD.
+ * @returns {boolean} TBD.
  */
 export function buildPoly(graphicsData, webGLData) {
   const points = graphicsData.points;
@@ -509,8 +509,8 @@ export function buildPoly(graphicsData, webGLData) {
 
 /**
  *
- * @param {object} graphics TBD
- * @param {object} gl TBD
+ * @param {object} graphics - TBD.
+ * @param {object} gl - TBD.
  */
 export function updateGraphics(graphics, gl) {
   const stencilBufferLimit = getStencilBufferLimit();
@@ -598,8 +598,8 @@ export function updateGraphics(graphics, gl) {
 
 /**
  *
- * @param {object} graphics TBD
- * @param {object} renderSession TBD
+ * @param {object} graphics - TBD.
+ * @param {object} renderSession - TBD.
  */
 export function renderGraphics(graphics, renderSession) {
   const gl = renderSession.gl;

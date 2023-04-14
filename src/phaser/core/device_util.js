@@ -1,14 +1,14 @@
 /**
+ * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
- * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
  */
 
 /**
  *
- * @param {object} device TBD
- * @param {string} type TBD
- * @returns {boolean} TBD
+ * @param {object} device - TBD.
+ * @param {string} type - TBD.
+ * @returns {boolean} TBD.
  */
 export function canPlayAudio(device, type) {
   if (type === 'mp3' && device.mp3) {
@@ -31,7 +31,7 @@ export function canPlayAudio(device, type) {
 
 /**
  *
- * @param {object} device TBD
+ * @param {object} device - TBD.
  */
 export function checkOS(device) {
   const ua = navigator.userAgent;
@@ -74,7 +74,7 @@ export function checkOS(device) {
 
 /**
  *
- * @param {object} device TBD
+ * @param {object} device - TBD.
  */
 export function checkInput(device) {
   if (
@@ -94,7 +94,7 @@ export function checkInput(device) {
 
 /**
  *
- * @param {object} device TBD
+ * @param {object} device - TBD.
  */
 export function checkFullScreenSupport(device) {
   const fs = [
@@ -140,7 +140,7 @@ export function checkFullScreenSupport(device) {
 
 /**
  *
- * @param {object} device TBD
+ * @param {object} device - TBD.
  */
 export function checkBrowser(device) {
   const ua = navigator.userAgent;
@@ -161,7 +161,7 @@ export function checkBrowser(device) {
 
 /**
  *
- * @param {object} device TBD
+ * @param {object} device - TBD.
  */
 export function checkAudio(device) {
   const audioElement = document.createElement('audio');
@@ -207,7 +207,7 @@ export function checkAudio(device) {
 
 /**
  *
- * @param {object} device TBD
+ * @param {object} device - TBD.
  */
 export function checkImage(device) {
   device.avif = false;
@@ -231,7 +231,7 @@ export function checkImage(device) {
 
 /**
  *
- * @param {object} device TBD
+ * @param {object} device - TBD.
  */
 export function initialize(device) {
   checkOS(device);

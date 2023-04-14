@@ -1,7 +1,7 @@
 /**
+ * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
- * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
  */
 export const DEG_TO_RAD = Math.PI / 180;
 export const RAD_TO_DEG = 180 / Math.PI;
@@ -9,8 +9,8 @@ export const PI_2 = Math.PI * 2;
 
 /**
  *
- * @param {number} hex TBD
- * @returns {number[]} TBD
+ * @param {number} hex - TBD.
+ * @returns {number[]} TBD.
  */
 export function hex2rgb(hex) {
   return [((hex >> 16) & 0xff) / 255, ((hex >> 8) & 0xff) / 255, (hex & 0xff) / 255];
@@ -18,8 +18,8 @@ export function hex2rgb(hex) {
 
 /**
  *
- * @param {number} rgb TBD
- * @returns {number} TBD
+ * @param {number} rgb - TBD.
+ * @returns {number} TBD.
  */
 export function rgb2hex(rgb) {
   return ((rgb[0] * 255) << 16) + ((rgb[1] * 255) << 8) + rgb[2] * 255;
@@ -27,8 +27,8 @@ export function rgb2hex(rgb) {
 
 /**
  *
- * @param {number} value TBD
- * @returns {number} TBD
+ * @param {number} value - TBD.
+ * @returns {number} TBD.
  */
 export function getNextPowerOfTwo(value) {
   // see: https://en.wikipedia.org/wiki/Power_of_two#Fast_algorithm_to_check_if_a_positive_number_is_a_power_of_two
@@ -44,9 +44,9 @@ export function getNextPowerOfTwo(value) {
 
 /**
  *
- * @param {number} width TBD
- * @param {number} height TBD
- * @returns {boolean} TBD
+ * @param {number} width - TBD.
+ * @param {number} height - TBD.
+ * @returns {boolean} TBD.
  */
 export function isPowerOfTwo(width, height) {
   return width > 0 && (width & (width - 1)) === 0 && height > 0 && (height & (height - 1)) === 0;
@@ -54,8 +54,8 @@ export function isPowerOfTwo(width, height) {
 
 /**
  *
- * @param {number} degrees TBD
- * @returns {number} TBD
+ * @param {number} degrees - TBD.
+ * @returns {number} TBD.
  */
 export function degToRad(degrees) {
   return degrees * DEG_TO_RAD;
@@ -63,8 +63,8 @@ export function degToRad(degrees) {
 
 /**
  *
- * @param {number} radians TBD
- * @returns {number} TBD
+ * @param {number} radians - TBD.
+ * @returns {number} TBD.
  */
 export function radToDeg(radians) {
   return radians * RAD_TO_DEG;
@@ -72,9 +72,9 @@ export function radToDeg(radians) {
 
 /**
  *
- * @param {number} min TBD
- * @param {number} max TBD
- * @returns {number} TBD
+ * @param {number} min - TBD.
+ * @param {number} max - TBD.
+ * @returns {number} TBD.
  */
 export function between(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
@@ -82,10 +82,10 @@ export function between(min, max) {
 
 /**
  *
- * @param {number} input TBD
- * @param {number} gap TBD
- * @param {number} start TBD
- * @returns {number} TBD
+ * @param {number} input - TBD.
+ * @param {number} gap - TBD.
+ * @param {number} start - TBD.
+ * @returns {number} TBD.
  */
 export function snapToCeil(input, gap = 0, start = 0) {
   if (gap === 0) {
@@ -98,10 +98,10 @@ export function snapToCeil(input, gap = 0, start = 0) {
 
 /**
  *
- * @param {number} value TBD
- * @param {number} min TBD
- * @param {number} max TBD
- * @returns {number} TBD
+ * @param {number} value - TBD.
+ * @param {number} min - TBD.
+ * @param {number} max - TBD.
+ * @returns {number} TBD.
  */
 export function wrap(value, min, max) {
   const range = max - min;
@@ -117,10 +117,10 @@ export function wrap(value, min, max) {
 
 /**
  *
- * @param {number} p0 TBD
- * @param {number} p1 TBD
- * @param {number} t TBD
- * @returns {number} TBD
+ * @param {number} p0 - TBD.
+ * @param {number} p1 - TBD.
+ * @param {number} t - TBD.
+ * @returns {number} TBD.
  */
 export function linear(p0, p1, t) {
   return (p1 - p0) * t + p0;
@@ -128,9 +128,9 @@ export function linear(p0, p1, t) {
 
 /**
  *
- * @param {number} a TBD
- * @param {number} b TBD
- * @returns {number} TBD
+ * @param {number} a - TBD.
+ * @param {number} b - TBD.
+ * @returns {number} TBD.
  */
 export function difference(a, b) {
   return Math.abs(a - b);
@@ -138,9 +138,9 @@ export function difference(a, b) {
 
 /**
  *
- * @param {number[]} v TBD
- * @param {number} k TBD
- * @returns {number} TBD
+ * @param {number[]} v - TBD.
+ * @param {number} k - TBD.
+ * @returns {number} TBD.
  */
 export function linearInterpolation(v, k) {
   const m = v.length - 1;
@@ -157,11 +157,11 @@ export function linearInterpolation(v, k) {
 
 /**
  *
- * @param {number} x1 TBD
- * @param {number} y1 TBD
- * @param {number} x2 TBD
- * @param {number} y2 TBD
- * @returns {number} TBD
+ * @param {number} x1 - TBD.
+ * @param {number} y1 - TBD.
+ * @param {number} x2 - TBD.
+ * @param {number} y2 - TBD.
+ * @returns {number} TBD.
  */
 export function distance(x1, y1, x2, y2) {
   const dx = x1 - x2;
@@ -171,10 +171,10 @@ export function distance(x1, y1, x2, y2) {
 
 /**
  *
- * @param {number} a TBD
- * @param {number} b TBD
- * @param {number} tolerance TBD
- * @returns {boolean} TBD
+ * @param {number} a - TBD.
+ * @param {number} b - TBD.
+ * @param {number} tolerance - TBD.
+ * @returns {boolean} TBD.
  */
 export function within(a, b, tolerance) {
   return Math.abs(a - b) <= tolerance;
@@ -182,11 +182,11 @@ export function within(a, b, tolerance) {
 
 /**
  *
- * @param {number} a TBD
- * @param {number} r TBD
- * @param {number} g TBD
- * @param {number} b TBD
- * @returns {number} TBD
+ * @param {number} a - TBD.
+ * @param {number} r - TBD.
+ * @param {number} g - TBD.
+ * @param {number} b - TBD.
+ * @returns {number} TBD.
  */
 export function getColor32(a, r, g, b) {
   return (a << 24) | (r << 16) | (g << 8) | b;
@@ -194,10 +194,10 @@ export function getColor32(a, r, g, b) {
 
 /**
  *
- * @param {number} r TBD
- * @param {number} g TBD
- * @param {number} b TBD
- * @returns {number} TBD
+ * @param {number} r - TBD.
+ * @param {number} g - TBD.
+ * @param {number} b - TBD.
+ * @returns {number} TBD.
  */
 export function getColor(r, g, b) {
   return (r << 16) | (g << 8) | b;
@@ -205,8 +205,8 @@ export function getColor(r, g, b) {
 
 /**
  *
- * @param {number} value TBD
- * @param {object} out TBD
+ * @param {number} value - TBD.
+ * @param {object} out - TBD.
  */
 export function hexToColor(value, out) {
   // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
@@ -224,8 +224,8 @@ export function hexToColor(value, out) {
 
 /**
  *
- * @param {number} value TBD
- * @param {object} out TBD
+ * @param {number} value - TBD.
+ * @param {object} out - TBD.
  */
 export function webToColor(value, out) {
   const result = /^rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(?:,\s*(\d+(?:\.\d+)?))?\s*\)$/.exec(
@@ -241,8 +241,8 @@ export function webToColor(value, out) {
 
 /**
  *
- * @param {number} color TBD
- * @returns {object} TBD
+ * @param {number} color - TBD.
+ * @returns {object} TBD.
  */
 export function getRGB(color) {
   if (color > 16777215) {
@@ -272,9 +272,9 @@ export function getRGB(color) {
 
 /**
  *
- * @param {number} value TBD
- * @param {object} out TBD
- * @returns {object} TBD
+ * @param {number} value - TBD.
+ * @param {object} out - TBD.
+ * @returns {object} TBD.
  */
 export function valueToColor(value, out) {
   if (typeof value === 'string') {
@@ -310,18 +310,18 @@ export function valueToColor(value, out) {
 }
 
 /**
- * TBD
+ * TBD.
  *
- * @returns {string} TBD
+ * @returns {string} TBD.
  */
 export function generateID() {
   return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
 }
 
 /**
- * TBD
+ * TBD.
  *
- * @returns {string} TBD
+ * @returns {string} TBD.
  */
 export function generateShaderID() {
   return `${generateID()}${generateID()}-${generateID()}`.toLowerCase();

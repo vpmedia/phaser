@@ -1,21 +1,22 @@
 /**
+ * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
- * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
  */
 import Frame from './frame';
 import FrameData from './frame_data';
 
 /**
+ * TBD.
  *
- * @param {object} game TBD
- * @param {object} key TBD
- * @param {number} frameWidth TBD
- * @param {number} frameHeight TBD
- * @param {number} frameMax TBD
- * @param {number} margin TBD
- * @param {number} spacing TBD
- * @returns {object} TBD
+ * @param {object} game - TBD.
+ * @param {object} key - TBD.
+ * @param {number} frameWidth - TBD.
+ * @param {number} frameHeight - TBD.
+ * @param {number} frameMax - TBD.
+ * @param {number} margin - TBD.
+ * @param {number} spacing - TBD.
+ * @returns {object} TBD.
  */
 export function spriteSheet(game, key, frameWidth, frameHeight, frameMax, margin, spacing) {
   let img = key;
@@ -64,10 +65,11 @@ export function spriteSheet(game, key, frameWidth, frameHeight, frameMax, margin
 }
 
 /**
+ * TBD.
  *
- * @param {object} game TBD
- * @param {object} json TBD
- * @returns {object} TBD
+ * @param {object} game - TBD.
+ * @param {object} json - TBD.
+ * @returns {object} TBD.
  */
 export function JSONDataHash(game, json) {
   if (!json.frames) {

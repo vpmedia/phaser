@@ -1,16 +1,17 @@
 /**
+ * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
- * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
  */
 import Texture from '../display/webgl/texture';
 import Rectangle from '../geom/rectangle';
 
 /**
+ * TBD.
  *
- * @param {object} baseTexture TBD
- * @param {object} bitmapFontData TBD
- * @returns {object} TBD
+ * @param {object} baseTexture - TBD.
+ * @param {object} bitmapFontData - TBD.
+ * @returns {object} TBD.
  */
 export function finalizeBitmapFont(baseTexture, bitmapFontData) {
   Object.keys(bitmapFontData.chars).forEach((charCode) => {
@@ -24,12 +25,13 @@ export function finalizeBitmapFont(baseTexture, bitmapFontData) {
 }
 
 /**
+ * TBD.
  *
- * @param {object} xml TBD
- * @param {object} baseTexture TBD
- * @param {number} xSpacing TBD
- * @param {number} ySpacing TBD
- * @returns {object} TBD
+ * @param {object} xml - TBD.
+ * @param {object} baseTexture - TBD.
+ * @param {number} xSpacing - TBD.
+ * @param {number} ySpacing - TBD.
+ * @returns {object} TBD.
  */
 export function xmlBitmapFont(xml, baseTexture, xSpacing, ySpacing) {
   const data = {};
@@ -64,24 +66,26 @@ export function xmlBitmapFont(xml, baseTexture, xSpacing, ySpacing) {
 }
 
 /**
+ * TBD.
  *
- * @param {object} xml TBD
- * @param {object} baseTexture TBD
- * @param {number} xSpacing TBD
- * @param {number} ySpacing TBD
- * @returns {object} TBD
+ * @param {object} xml - TBD.
+ * @param {object} baseTexture - TBD.
+ * @param {number} xSpacing - TBD.
+ * @param {number} ySpacing - TBD.
+ * @returns {object} TBD.
  */
 export function bitmapFont(xml, baseTexture, xSpacing, ySpacing) {
   return xmlBitmapFont(xml, baseTexture, xSpacing, ySpacing);
 }
 
 /**
+ * TBD.
  *
- * @param {object} json TBD
- * @param {object} baseTexture TBD
- * @param {number} xSpacing TBD
- * @param {number} ySpacing TBD
- * @returns {object} TBD
+ * @param {object} json - TBD.
+ * @param {object} baseTexture - TBD.
+ * @param {number} xSpacing - TBD.
+ * @param {number} ySpacing - TBD.
+ * @returns {object} TBD.
  */
 export function jsonBitmapFont(json, baseTexture, xSpacing, ySpacing) {
   const data = {

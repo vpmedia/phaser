@@ -1,21 +1,22 @@
 /**
+ * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  * @author       Mat Groves http://matgroves.com/ @Doormat23
- * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
  */
 
 /**
- *
+ * TBD.
  */
 export function initDefaultShaders() {}
 
 /**
+ * TBD.
  *
- * @param {object} gl TBD
- * @param {string[]|string} shaderSrc TBD
- * @param {object} shaderType TBD
- * @returns {object} TBD
+ * @param {object} gl - TBD.
+ * @param {string[]|string} shaderSrc - TBD.
+ * @param {object} shaderType - TBD.
+ * @returns {object} TBD.
  */
 export function compileShader(gl, shaderSrc, shaderType) {
   let src = shaderSrc;
@@ -35,31 +36,34 @@ export function compileShader(gl, shaderSrc, shaderType) {
 }
 
 /**
+ * TBD.
  *
- * @param {object} gl TBD
- * @param {string[]|string} shaderSrc TBD
- * @returns {object} TBD
+ * @param {object} gl - TBD.
+ * @param {string[]|string} shaderSrc - TBD.
+ * @returns {object} TBD.
  */
 export function compileVertexShader(gl, shaderSrc) {
   return compileShader(gl, shaderSrc, gl.VERTEX_SHADER);
 }
 
 /**
+ * TBD.
  *
- * @param {object} gl TBD
- * @param {string[]|string} shaderSrc TBD
- * @returns {object} TBD
+ * @param {object} gl - TBD.
+ * @param {string[]|string} shaderSrc - TBD.
+ * @returns {object} TBD.
  */
 export function compileFragmentShader(gl, shaderSrc) {
   return compileShader(gl, shaderSrc, gl.FRAGMENT_SHADER);
 }
 
 /**
+ * TBD.
  *
- * @param {object} gl TBD
- * @param {string[]|string} vertexSrc TBD
- * @param {string[]|string} fragmentSrc TBD
- * @returns {object} TBD
+ * @param {object} gl - TBD.
+ * @param {string[]|string} vertexSrc - TBD.
+ * @param {string[]|string} fragmentSrc - TBD.
+ * @returns {object} TBD.
  */
 export function compileProgram(gl, vertexSrc, fragmentSrc) {
   const fragmentShader = compileFragmentShader(gl, fragmentSrc);

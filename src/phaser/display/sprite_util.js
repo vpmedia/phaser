@@ -1,17 +1,18 @@
 /**
+ * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
- * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
  */
 import { getTintedTexture } from './canvas/tinter';
 import { getIdentityMatrix } from '../geom/util/matrix';
 import { SCALE_LINEAR } from '../core/const';
 
 /**
+ * TBD.
  *
- * @param {object} target TBD
- * @param {object} texture TBD
- * @param {boolean} destroyBase TBD
+ * @param {object} target - TBD.
+ * @param {object} texture - TBD.
+ * @param {boolean} destroyBase - TBD.
  */
 export function setTexture(target, texture, destroyBase = false) {
   if (destroyBase) {
@@ -24,10 +25,11 @@ export function setTexture(target, texture, destroyBase = false) {
 }
 
 /**
+ * TBD.
  *
- * @param {object} target TBD
- * @param {object} matrix TBD
- * @returns {object} TBD
+ * @param {object} target - TBD.
+ * @param {object} matrix - TBD.
+ * @returns {object} TBD.
  */
 export function getBounds(target, matrix = null) {
   // TODO verify
@@ -107,9 +109,10 @@ export function getBounds(target, matrix = null) {
 }
 
 /**
+ * TBD.
  *
- * @param {object} target TBD
- * @returns {object} TBD
+ * @param {object} target - TBD.
+ * @returns {object} TBD.
  */
 export function getLocalBounds(target) {
   const matrixCache = target.worldTransform;
@@ -127,10 +130,11 @@ export function getLocalBounds(target) {
 }
 
 /**
+ * TBD.
  *
- * @param {object} target TBD
- * @param {object} renderSession TBD
- * @param {object} matrix TBD
+ * @param {object} target - TBD.
+ * @param {object} renderSession - TBD.
+ * @param {object} matrix - TBD.
  */
 export function renderWebGL(target, renderSession, matrix) {
   // if the sprite is not visible or the alpha is 0 then no need to render this element
@@ -176,10 +180,11 @@ export function renderWebGL(target, renderSession, matrix) {
 }
 
 /**
+ * TBD.
  *
- * @param {object} target TBD
- * @param {object} renderSession TBD
- * @param {object} matrix TBD
+ * @param {object} target - TBD.
+ * @param {object} renderSession - TBD.
+ * @param {object} matrix - TBD.
  */
 export function renderCanvas(target, renderSession, matrix) {
   // If the sprite is not visible or the alpha is 0 then no need to render this element

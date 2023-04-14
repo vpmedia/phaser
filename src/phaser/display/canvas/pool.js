@@ -1,13 +1,13 @@
 /**
+ * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  * @author       Mat Groves http://matgroves.com/ @Doormat23
- * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
  */
 
 /**
  *
- * @returns {object} TBD
+ * @returns {object} TBD.
  */
 export function getPool() {
   if (!window.PhaserRegistry) {
@@ -21,7 +21,7 @@ export function getPool() {
 
 /**
  *
- * @returns {object} TBD
+ * @returns {object} TBD.
  */
 export function getFirst() {
   const pool = getPool();
@@ -35,7 +35,7 @@ export function getFirst() {
 
 /**
  *
- * @param {object} parent TBD
+ * @param {object} parent - TBD.
  */
 export function remove(parent) {
   const pool = getPool();
@@ -50,7 +50,7 @@ export function remove(parent) {
 
 /**
  *
- * @param {object} canvas TBD
+ * @param {HTMLCanvasElement} canvas - TBD.
  */
 export function removeByCanvas(canvas) {
   const pool = getPool();
@@ -65,7 +65,7 @@ export function removeByCanvas(canvas) {
 
 /**
  *
- * @returns {number} TBD
+ * @returns {number} TBD.
  */
 export function getTotal() {
   const pool = getPool();
@@ -80,7 +80,7 @@ export function getTotal() {
 
 /**
  *
- * @returns {number} TBD
+ * @returns {number} TBD.
  */
 export function getFree() {
   const pool = getPool();
@@ -95,10 +95,10 @@ export function getFree() {
 
 /**
  *
- * @param {object} parent TBD
- * @param {number} width TBD
- * @param {number} height TBD
- * @returns {object} TBD
+ * @param {object} parent - TBD.
+ * @param {number} width - TBD.
+ * @param {number} height - TBD.
+ * @returns {object} TBD.
  */
 export function create(parent, width, height) {
   if (parent === undefined) {

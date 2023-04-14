@@ -1,15 +1,16 @@
 /**
+ * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
- * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
  */
 import Matrix from '../matrix';
 
 /**
+ * TBD.
  *
- * @param {object} input TBD
- * @param {object} output TBD
- * @returns {object} TBD
+ * @param {object} input - TBD.
+ * @param {object} output - TBD.
+ * @returns {object} TBD.
  */
 export function clone(input, output = null) {
   const result = output || new Matrix();
@@ -23,9 +24,9 @@ export function clone(input, output = null) {
 }
 
 /**
- * TBD
+ * TBD.
  *
- * @returns {object} TBD
+ * @returns {object} TBD.
  */
 export function getIdentityMatrix() {
   if (!window.PhaserRegistry) {
@@ -38,9 +39,9 @@ export function getIdentityMatrix() {
 }
 
 /**
- * TBD
+ * TBD.
  *
- * @returns {object} TBD
+ * @returns {object} TBD.
  */
 export function getTempMatrix() {
   if (!window.PhaserRegistry) {
