@@ -14,7 +14,7 @@ export default class _default {
     clampX(min: any, max: any): default;
     clampY(min: any, max: any): default;
     clamp(min: any, max: any): default;
-    clone(): object;
+    clone(): default;
     copyTo(dest: any): any;
     distance(b: any): number;
     equals(a: any): boolean;

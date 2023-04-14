@@ -12,9 +12,9 @@ export default class _default {
     copyFrom(source: any): default;
     copyTo(dest: any): any;
     distance(dest: any, round?: boolean): number;
-    clone(): object;
+    clone(): default;
     contains(x: any, y: any): boolean;
-    circumferencePoint(angle: any, asDegrees: any, out: any): object;
+    circumferencePoint(angle: any, asDegrees: any, out: any): default;
     offset(dx: any, dy: any): default;
     offsetPoint(point: any): default;
     toString(): string;

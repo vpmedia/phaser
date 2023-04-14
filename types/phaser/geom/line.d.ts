@@ -16,7 +16,7 @@ export default class _default {
     pointOnSegment(x: any, y: any): boolean;
     random(output?: null): Point;
     coordinatesOnLine(stepRate?: number, results?: any[]): any[];
-    clone(): object;
+    clone(): default;
     get length(): number;
     get angle(): number;
     get slope(): number;

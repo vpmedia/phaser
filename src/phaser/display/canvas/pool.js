@@ -6,8 +6,9 @@
  */
 
 /**
+ * TBD.
  *
- * @returns {object} TBD.
+ * @returns {object[]} TBD.
  */
 export function getPool() {
   if (!window.PhaserRegistry) {
@@ -20,6 +21,7 @@ export function getPool() {
 }
 
 /**
+ * TBD.
  *
  * @returns {object} TBD.
  */
@@ -34,6 +36,7 @@ export function getFirst() {
 }
 
 /**
+ * TBD.
  *
  * @param {object} parent - TBD.
  */
@@ -49,6 +52,7 @@ export function remove(parent) {
 }
 
 /**
+ * TBD.
  *
  * @param {HTMLCanvasElement} canvas - TBD.
  */
@@ -64,6 +68,7 @@ export function removeByCanvas(canvas) {
 }
 
 /**
+ * TBD.
  *
  * @returns {number} TBD.
  */
@@ -79,6 +84,7 @@ export function getTotal() {
 }
 
 /**
+ * TBD.
  *
  * @returns {number} TBD.
  */
@@ -94,6 +100,7 @@ export function getFree() {
 }
 
 /**
+ * TBD.
  *
  * @param {object} parent - TBD.
  * @param {number} width - TBD.

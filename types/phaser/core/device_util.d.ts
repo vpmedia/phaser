@@ -1,48 +1,58 @@
 /**
- * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
- * @author       Andras Csizmadia <andras@vpmedia.hu>
- * @author       Richard Davey <rich@photonstorm.com>
- */
-/**
+ * TBD.
  *
- * @param {object} device - TBD.
+ * @param {Device} device - TBD.
  * @param {string} type - TBD.
  * @returns {boolean} TBD.
  */
-export function canPlayAudio(device: object, type: string): boolean;
+export function canPlayAudio(device: Device, type: string): boolean;
 /**
+ * TBD.
  *
- * @param {object} device - TBD.
+ * @param {Device} device - TBD.
  */
-export function checkOS(device: object): void;
+export function checkOS(device: Device): void;
 /**
+ * TBD.
  *
- * @param {object} device - TBD.
+ * @param {Device} device - TBD.
  */
-export function checkInput(device: object): void;
+export function checkInput(device: Device): void;
 /**
+ * TBD.
  *
- * @param {object} device - TBD.
+ * @param {Device} device - TBD.
  */
-export function checkFullScreenSupport(device: object): void;
+export function checkFullScreenSupport(device: Device): void;
 /**
+ * TBD.
  *
- * @param {object} device - TBD.
+ * @param {Device} device - TBD.
  */
-export function checkBrowser(device: object): void;
+export function checkBrowser(device: Device): void;
 /**
+ * TBD.
  *
- * @param {object} device - TBD.
+ * @param {Device} device - TBD.
  */
-export function checkAudio(device: object): void;
+export function checkAudio(device: Device): void;
 /**
+ * TBD.
  *
- * @param {object} device - TBD.
+ * @param {Device} device - TBD.
  */
-export function checkImage(device: object): void;
+export function checkImage(device: Device): void;
 /**
+ * TBD.
  *
- * @param {object} device - TBD.
+ * @param {Device} device - TBD.
  */
-export function initialize(device: object): void;
+export function initialize(device: Device): void;
+/**
+ * TBD.
+ *
+ * @returns {Device} TBD.
+ */
+export function createDevice(): Device;
+import Device from "./device";
 //# sourceMappingURL=device_util.d.ts.map

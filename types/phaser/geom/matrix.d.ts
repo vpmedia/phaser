@@ -9,7 +9,7 @@ export default class _default {
     type: number;
     fromArray(array: any): default;
     setTo(a: any, b: any, c: any, d: any, tx: any, ty: any): default;
-    clone(): object;
+    clone(): default;
     copyTo(matrix: any): any;
     copyFrom(matrix: any): default;
     toArray(transpose?: boolean, output?: null): Float32Array;

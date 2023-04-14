@@ -19,9 +19,9 @@ export default function () {
 /**
  * TBD.
  *
- * @param {object} input - TBD.
- * @param {object} output - TBD.
- * @returns {object} TBD.
+ * @param {Polygon} input - TBD.
+ * @param {Polygon} output - TBD.
+ * @returns {Polygon} TBD.
  */
 export function clone(input, output = null) {
   const result = output || new Polygon();

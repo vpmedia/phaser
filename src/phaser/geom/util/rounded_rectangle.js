@@ -19,9 +19,9 @@ export default function () {
 /**
  * TBD.
  *
- * @param {object} input - TBD.
- * @param {object} output - TBD.
- * @returns {object} TBD.
+ * @param {RoundedRectangle} input - TBD.
+ * @param {RoundedRectangle} output - TBD.
+ * @returns {RoundedRectangle} TBD.
  */
 export function clone(input, output = null) {
   const result = output || new RoundedRectangle();

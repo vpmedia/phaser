@@ -8,11 +8,12 @@ import Rectangle from '../rectangle';
 import Point from '../point';
 
 /**
+ * TBD.
  *
- * @param {object} a - TBD.
+ * @param {Rectangle} a - TBD.
  * @param {number} dx - TBD.
  * @param {number} dy - TBD.
- * @returns {object} TBD.
+ * @returns {Rectangle} TBD.
  */
 export function inflate(a, dx, dy) {
   a.x -= dx;
@@ -23,20 +24,22 @@ export function inflate(a, dx, dy) {
 }
 
 /**
+ * TBD.
  *
- * @param {object} a - TBD.
+ * @param {Rectangle} a - TBD.
  * @param {object} point - TBD.
- * @returns {object} TBD.
+ * @returns {Rectangle} TBD.
  */
 export function inflatePoint(a, point) {
   return inflate(a, point.x, point.y);
 }
 
 /**
+ * TBD.
  *
- * @param {object} a - TBD.
- * @param {object} output - TBD.
- * @returns {object} TBD.
+ * @param {Rectangle} a - TBD.
+ * @param {Point} output - TBD.
+ * @returns {Point} TBD.
  */
 export function size(a, output = null) {
   const result = output || new Point();
@@ -45,10 +48,11 @@ export function size(a, output = null) {
 }
 
 /**
+ * TBD.
  *
- * @param {object} input - TBD.
- * @param {object} output - TBD.
- * @returns {object} TBD.
+ * @param {Rectangle} input - TBD.
+ * @param {Rectangle} output - TBD.
+ * @returns {Rectangle} TBD.
  */
 export function clone(input, output = null) {
   const result = output || new Rectangle();
@@ -57,8 +61,9 @@ export function clone(input, output = null) {
 }
 
 /**
+ * TBD.
  *
- * @param {object} a - TBD.
+ * @param {Rectangle} a - TBD.
  * @param {number} x - TBD.
  * @param {number} y - TBD.
  * @returns {boolean} TBD.
@@ -71,6 +76,7 @@ export function contains(a, x, y) {
 }
 
 /**
+ * TBD.
  *
  * @param {number} rx - TBD.
  * @param {number} ry - TBD.
@@ -85,9 +91,10 @@ export function containsRaw(rx, ry, rw, rh, x, y) {
 }
 
 /**
+ * TBD.
  *
- * @param {object} a - TBD.
- * @param {object} point - TBD.
+ * @param {Rectangle} a - TBD.
+ * @param {Point} point - TBD.
  * @returns {boolean} TBD.
  */
 export function containsPoint(a, point) {
@@ -95,9 +102,10 @@ export function containsPoint(a, point) {
 }
 
 /**
+ * TBD.
  *
- * @param {object} a - TBD.
- * @param {object} b - TBD.
+ * @param {Rectangle} a - TBD.
+ * @param {Rectangle} b - TBD.
  * @returns {boolean} TBD.
  */
 export function containsRect(a, b) {
@@ -108,9 +116,10 @@ export function containsRect(a, b) {
 }
 
 /**
+ * TBD.
  *
- * @param {object} a - TBD.
- * @param {object} b - TBD.
+ * @param {Rectangle} a - TBD.
+ * @param {Rectangle} b - TBD.
  * @returns {boolean} TBD.
  */
 export function equals(a, b) {
@@ -118,9 +127,10 @@ export function equals(a, b) {
 }
 
 /**
+ * TBD.
  *
- * @param {object} a - TBD.
- * @param {object} b - TBD.
+ * @param {Rectangle} a - TBD.
+ * @param {Rectangle} b - TBD.
  * @returns {boolean} TBD.
  */
 export function sameDimensions(a, b) {
@@ -128,9 +138,10 @@ export function sameDimensions(a, b) {
 }
 
 /**
+ * TBD.
  *
- * @param {object} a - TBD.
- * @param {object} b - TBD.
+ * @param {Rectangle} a - TBD.
+ * @param {Rectangle} b - TBD.
  * @returns {boolean} TBD.
  */
 export function intersects(a, b) {
@@ -141,11 +152,12 @@ export function intersects(a, b) {
 }
 
 /**
+ * TBD.
  *
- * @param {object} a - TBD.
- * @param {object} b - TBD.
- * @param {object} output - TBD.
- * @returns {object} TBD.
+ * @param {Rectangle} a - TBD.
+ * @param {Rectangle} b - TBD.
+ * @param {Rectangle} output - TBD.
+ * @returns {Rectangle} TBD.
  */
 export function intersection(a, b, output = null) {
   const result = output || new Rectangle();
@@ -159,8 +171,9 @@ export function intersection(a, b, output = null) {
 }
 
 /**
+ * TBD.
  *
- * @param {object} a - TBD.
+ * @param {Rectangle} a - TBD.
  * @param {number} left - TBD.
  * @param {number} right - TBD.
  * @param {number} top - TBD.
@@ -178,11 +191,12 @@ export function intersectsRaw(a, left, right, top, bottom, tolerance = 0) {
 }
 
 /**
+ * TBD.
  *
- * @param {object} a - TBD.
- * @param {object} b - TBD.
- * @param {object} output - TBD.
- * @returns {object} TBD.
+ * @param {Rectangle} a - TBD.
+ * @param {Rectangle} b - TBD.
+ * @param {Rectangle} output - TBD.
+ * @returns {Rectangle} TBD.
  */
 export function union(a, b, output = null) {
   const result = output || new Rectangle();
@@ -195,10 +209,11 @@ export function union(a, b, output = null) {
 }
 
 /**
+ * TBD.
  *
- * @param {object[]} points - TBD.
- * @param {object} output - TBD.
- * @returns {object} TBD.
+ * @param {Point[]} points - TBD.
+ * @param {Rectangle} output - TBD.
+ * @returns {Rectangle} TBD.
  */
 export function aabb(points, output = null) {
   const result = output || new Rectangle();
@@ -227,7 +242,7 @@ export function aabb(points, output = null) {
 /**
  * TBD.
  *
- * @returns {object} TBD.
+ * @returns {Rectangle} TBD.
  */
 export function getEmptyRectangle() {
   if (!window.PhaserRegistry) {

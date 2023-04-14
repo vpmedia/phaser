@@ -1,21 +1,22 @@
 /**
  * TBD.
  *
- * @param {object} input - TBD.
- * @param {object} output - TBD.
- * @returns {object} TBD.
+ * @param {Matrix} input - TBD.
+ * @param {Matrix} output - TBD.
+ * @returns {Matrix} TBD.
  */
-export function clone(input: object, output?: object): object;
+export function clone(input: Matrix, output?: Matrix): Matrix;
 /**
  * TBD.
  *
- * @returns {object} TBD.
+ * @returns {Matrix} TBD.
  */
-export function getIdentityMatrix(): object;
+export function getIdentityMatrix(): Matrix;
 /**
  * TBD.
  *
- * @returns {object} TBD.
+ * @returns {Matrix} TBD.
  */
-export function getTempMatrix(): object;
+export function getTempMatrix(): Matrix;
+import Matrix from '../matrix';
 //# sourceMappingURL=matrix.d.ts.map

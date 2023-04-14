@@ -3,10 +3,12 @@
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  */
+import Device from "./device";
 
 /**
+ * TBD.
  *
- * @param {object} device - TBD.
+ * @param {Device} device - TBD.
  * @param {string} type - TBD.
  * @returns {boolean} TBD.
  */
@@ -30,8 +32,9 @@ export function canPlayAudio(device, type) {
 }
 
 /**
+ * TBD.
  *
- * @param {object} device - TBD.
+ * @param {Device} device - TBD.
  */
 export function checkOS(device) {
   const ua = navigator.userAgent;
@@ -73,8 +76,9 @@ export function checkOS(device) {
 }
 
 /**
+ * TBD.
  *
- * @param {object} device - TBD.
+ * @param {Device} device - TBD.
  */
 export function checkInput(device) {
   if (
@@ -93,8 +97,9 @@ export function checkInput(device) {
 }
 
 /**
+ * TBD.
  *
- * @param {object} device - TBD.
+ * @param {Device} device - TBD.
  */
 export function checkFullScreenSupport(device) {
   const fs = [
@@ -139,8 +144,9 @@ export function checkFullScreenSupport(device) {
 }
 
 /**
+ * TBD.
  *
- * @param {object} device - TBD.
+ * @param {Device} device - TBD.
  */
 export function checkBrowser(device) {
   const ua = navigator.userAgent;
@@ -160,8 +166,9 @@ export function checkBrowser(device) {
 }
 
 /**
+ * TBD.
  *
- * @param {object} device - TBD.
+ * @param {Device} device - TBD.
  */
 export function checkAudio(device) {
   const audioElement = document.createElement('audio');
@@ -206,8 +213,9 @@ export function checkAudio(device) {
 }
 
 /**
+ * TBD.
  *
- * @param {object} device - TBD.
+ * @param {Device} device - TBD.
  */
 export function checkImage(device) {
   device.avif = false;
@@ -230,8 +238,9 @@ export function checkImage(device) {
 }
 
 /**
+ * TBD.
  *
- * @param {object} device - TBD.
+ * @param {Device} device - TBD.
  */
 export function initialize(device) {
   checkOS(device);
@@ -240,4 +249,13 @@ export function initialize(device) {
   // checkImage(device);
   checkFullScreenSupport(device);
   checkInput(device);
+}
+
+/**
+ * TBD.
+ *
+ * @returns {Device} TBD.
+ */
+export function createDevice() {
+  return new Device();
 }

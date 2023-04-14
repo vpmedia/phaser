@@ -1,11 +1,11 @@
 /**
  * TBD.
  *
- * @param {object} input - TBD.
- * @param {object} output - TBD.
- * @returns {object} TBD.
+ * @param {Line} input - TBD.
+ * @param {Line} output - TBD.
+ * @returns {Line} TBD.
  */
-export function clone(input: object, output?: object): object;
+export function clone(input: Line, output?: Line): Line;
 /**
  * TBD.
  *
@@ -14,10 +14,10 @@ export function clone(input: object, output?: object): object;
  * @param {object} e - TBD.
  * @param {object} f - TBD.
  * @param {boolean} asSegment - TBD.
- * @param {object} output - TBD.
+ * @param {Point} output - TBD.
  * @returns {boolean} TBD.
  */
-export function intersectsPoints(a: object, b: object, e: object, f: object, asSegment?: boolean, output?: object): boolean;
+export function intersectsPoints(a: object, b: object, e: object, f: object, asSegment?: boolean, output?: Point): boolean;
 /**
  * TBD.
  *
@@ -44,4 +44,6 @@ export function intersectsRectangle(line: object, rect: object): boolean;
  * @returns {number} TBD.
  */
 export function reflect(a: object, b: object): number;
+import Line from '../line';
+import Point from '../point';
 //# sourceMappingURL=line.d.ts.map

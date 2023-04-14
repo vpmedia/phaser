@@ -11,9 +11,9 @@ import { degToRad, distance } from '../../util/math';
 /**
  * TBD.
  *
- * @param {object} input - TBD.
- * @param {object} output - TBD.
- * @returns {object} TBD.
+ * @param {Circle} input - TBD.
+ * @param {Circle} output - TBD.
+ * @returns {Circle} TBD.
  */
 export function clone(input, output = null) {
   const result = output || new Circle();
@@ -26,7 +26,7 @@ export function clone(input, output = null) {
 /**
  * TBD.
  *
- * @param {object} a - TBD.
+ * @param {Circle} a - TBD.
  * @param {number} x - TBD.
  * @param {number} y - TBD.
  * @returns {boolean} TBD.
@@ -43,8 +43,8 @@ export function contains(a, x, y) {
 /**
  * TBD.
  *
- * @param {object} a - TBD.
- * @param {object} b - TBD.
+ * @param {Circle} a - TBD.
+ * @param {Circle} b - TBD.
  * @returns {boolean} TBD.
  */
 export function equals(a, b) {
@@ -54,8 +54,8 @@ export function equals(a, b) {
 /**
  * TBD.
  *
- * @param {object} a - TBD.
- * @param {object} b - TBD.
+ * @param {Circle} a - TBD.
+ * @param {Circle} b - TBD.
  * @returns {boolean} TBD.
  */
 export function intersects(a, b) {
@@ -65,11 +65,11 @@ export function intersects(a, b) {
 /**
  * TBD.
  *
- * @param {object} a - TBD.
+ * @param {Circle} a - TBD.
  * @param {number} angle - TBD.
  * @param {boolean} asDegrees - TBD.
- * @param {object} output - TBD.
- * @returns {object} TBD.
+ * @param {Circle} output - TBD.
+ * @returns {Circle} TBD.
  */
 export function circumferencePoint(a, angle, asDegrees = false, output = null) {
   const result = output || new Point();
@@ -84,11 +84,11 @@ export function circumferencePoint(a, angle, asDegrees = false, output = null) {
 /**
  * TBD.
  *
- * @param {object} a - TBD.
+ * @param {Circle} a - TBD.
  * @param {number} angle - TBD.
  * @param {boolean} asDegrees - TBD.
- * @param {object} output - TBD.
- * @returns {object} TBD.
+ * @param {Point} output - TBD.
+ * @returns {Point} TBD.
  */
 export function intersectsPoint(a, angle, asDegrees = false, output = null) {
   const result = output || new Point();
@@ -103,7 +103,7 @@ export function intersectsPoint(a, angle, asDegrees = false, output = null) {
 /**
  * TBD.
  *
- * @param {object} c - TBD.
+ * @param {Circle} c - TBD.
  * @param {object} r - TBD.
  * @returns {boolean} TBD.
  */

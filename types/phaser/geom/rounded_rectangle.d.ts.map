@@ -1,1 +1,1 @@
-{"version":3,"file":"rounded_rectangle.d.ts","sourceRoot":"","sources":["../../../src/phaser/geom/rounded_rectangle.js"],"names":[],"mappings":"AASA;IACE,sFAOC;IANC,UAAU;IACV,UAAU;IACV,cAAkB;IAClB,eAAoB;IACpB,eAAoB;IACpB,aAAkC;IAGpC,kCAUC;IAED,gBAEC;CACF"}
+{"version":3,"file":"rounded_rectangle.d.ts","sourceRoot":"","sources":["../../../src/phaser/geom/rounded_rectangle.js"],"names":[],"mappings":"AASA;IACE,sFAOC;IANC,UAAU;IACV,UAAU;IACV,cAAkB;IAClB,eAAoB;IACpB,eAAoB;IACpB,aAAkC;IAGpC,kCAUC;IAED,iBAEC;CACF"}

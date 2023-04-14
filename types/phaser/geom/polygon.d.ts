@@ -7,7 +7,7 @@ export default class _default {
     type: number;
     toNumberArray(output?: any[]): any[];
     flatten(): default;
-    clone(): object;
+    clone(): default;
     contains(x: any, y: any): boolean;
     setTo(points: any): default;
     calculateArea(y0: any): number;

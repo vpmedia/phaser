@@ -8,9 +8,10 @@ export default function _default(): boolean;
 /**
  * TBD.
  *
- * @param {object} input - TBD.
- * @param {object} output - TBD.
- * @returns {object} TBD.
+ * @param {Polygon} input - TBD.
+ * @param {Polygon} output - TBD.
+ * @returns {Polygon} TBD.
  */
-export function clone(input: object, output?: object): object;
+export function clone(input: Polygon, output?: Polygon): Polygon;
+import Polygon from '../polygon';
 //# sourceMappingURL=polygon.d.ts.map

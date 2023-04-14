@@ -1,129 +1,146 @@
 /**
+ * TBD.
  *
- * @param {object} a - TBD.
- * @param {object} b - TBD.
- * @param {object} output - TBD.
- * @returns {object} TBD.
+ * @param {Point} a - TBD.
+ * @param {Point} b - TBD.
+ * @param {Point} output - TBD.
+ * @returns {Point} TBD.
  */
-export function add(a: object, b: object, output?: object): object;
+export function add(a: Point, b: Point, output?: Point): Point;
 /**
+ * TBD.
  *
- * @param {object} a - TBD.
- * @param {object} b - TBD.
- * @param {object} output - TBD.
- * @returns {object} TBD.
+ * @param {Point} a - TBD.
+ * @param {Point} b - TBD.
+ * @param {Point} output - TBD.
+ * @returns {Point} TBD.
  */
-export function subtract(a: object, b: object, output?: object): object;
+export function subtract(a: Point, b: Point, output?: Point): Point;
 /**
+ * TBD.
  *
- * @param {object} a - TBD.
- * @param {object} b - TBD.
- * @param {object} output - TBD.
- * @returns {object} TBD.
+ * @param {Point} a - TBD.
+ * @param {Point} b - TBD.
+ * @param {Point} output - TBD.
+ * @returns {Point} TBD.
  */
-export function multiply(a: object, b: object, output?: object): object;
+export function multiply(a: Point, b: Point, output?: Point): Point;
 /**
+ * TBD.
  *
- * @param {object} a - TBD.
- * @param {object} b - TBD.
- * @param {object} output - TBD.
- * @returns {object} TBD.
+ * @param {Point} a - TBD.
+ * @param {Point} b - TBD.
+ * @param {Point} output - TBD.
+ * @returns {Point} TBD.
  */
-export function divide(a: object, b: object, output?: object): object;
+export function divide(a: Point, b: Point, output?: Point): Point;
 /**
+ * TBD.
  *
- * @param {object} a - TBD.
- * @param {object} b - TBD.
+ * @param {Point} a - TBD.
+ * @param {Point} b - TBD.
  * @returns {boolean} TBD.
  */
-export function equals(a: object, b: object): boolean;
+export function equals(a: Point, b: Point): boolean;
 /**
+ * TBD.
  *
- * @param {object} a - TBD.
- * @param {object} b - TBD.
+ * @param {Point} a - TBD.
+ * @param {Point} b - TBD.
  * @returns {number} TBD.
  */
-export function angle(a: object, b: object): number;
+export function angle(a: Point, b: Point): number;
 /**
+ * TBD.
  *
- * @param {object} a - TBD.
- * @param {object} output - TBD.
- * @returns {object} TBD.
+ * @param {Point} a - TBD.
+ * @param {Point} output - TBD.
+ * @returns {Point} TBD.
  */
-export function negative(a: object, output?: object): object;
+export function negative(a: Point, output?: Point): Point;
 /**
+ * TBD.
  *
- * @param {object} a - TBD.
- * @param {object} b - TBD.
+ * @param {Point} a - TBD.
+ * @param {Point} b - TBD.
  * @param {number} s - TBD.
- * @param {object} output - TBD.
- * @returns {object} TBD.
+ * @param {Point} output - TBD.
+ * @returns {Point} TBD.
  */
-export function multiplyAdd(a: object, b: object, s: number, output?: object): object;
+export function multiplyAdd(a: Point, b: Point, s: number, output?: Point): Point;
 /**
+ * TBD.
  *
- * @param {object} a - TBD.
- * @param {object} b - TBD.
+ * @param {Point} a - TBD.
+ * @param {Point} b - TBD.
  * @param {number} f - TBD.
- * @param {object} output - TBD.
- * @returns {object} TBD.
+ * @param {Point} output - TBD.
+ * @returns {Point} TBD.
  */
-export function interpolate(a: object, b: object, f: number, output?: object): object;
+export function interpolate(a: Point, b: Point, f: number, output?: Point): Point;
 /**
+ * TBD.
  *
- * @param {object} a - TBD.
- * @param {object} output - TBD.
- * @returns {object} TBD.
+ * @param {Point} a - TBD.
+ * @param {Point} output - TBD.
+ * @returns {Point} TBD.
  */
-export function perp(a: object, output?: object): object;
+export function perp(a: Point, output?: Point): Point;
 /**
+ * TBD.
  *
- * @param {object} a - TBD.
- * @param {object} output - TBD.
- * @returns {object} TBD.
+ * @param {Point} a - TBD.
+ * @param {Point} output - TBD.
+ * @returns {Point} TBD.
  */
-export function rperp(a: object, output?: object): object;
+export function rperp(a: Point, output?: Point): Point;
 /**
+ * TBD.
  *
- * @param {object} a - TBD.
- * @param {object} b - TBD.
+ * @param {Point} a - TBD.
+ * @param {Point} b - TBD.
  * @param {boolean} round - TBD.
  * @returns {number} TBD.
  */
-export function distance(a: object, b: object, round?: boolean): number;
+export function distance(a: Point, b: Point, round?: boolean): number;
 /**
+ * TBD.
  *
- * @param {object} a - TBD.
- * @param {object} b - TBD.
- * @param {object} output - TBD.
- * @returns {object} TBD.
+ * @param {Point} a - TBD.
+ * @param {Point} b - TBD.
+ * @param {Point} output - TBD.
+ * @returns {Point} TBD.
  */
-export function project(a: object, b: object, output?: object): object;
+export function project(a: Point, b: Point, output?: Point): Point;
 /**
+ * TBD.
  *
- * @param {object} a - TBD.
- * @param {object} b - TBD.
- * @param {object} output - TBD.
- * @returns {object} TBD.
+ * @param {Point} a - TBD.
+ * @param {Point} b - TBD.
+ * @param {Point} output - TBD.
+ * @returns {Point} TBD.
  */
-export function projectUnit(a: object, b: object, output?: object): object;
+export function projectUnit(a: Point, b: Point, output?: Point): Point;
 /**
+ * TBD.
  *
- * @param {object} a - TBD.
- * @param {object} output - TBD.
- * @returns {object} TBD.
+ * @param {Point} a - TBD.
+ * @param {Point} output - TBD.
+ * @returns {Point} TBD.
  */
-export function normalRightHand(a: object, output?: object): object;
+export function normalRightHand(a: Point, output?: Point): Point;
 /**
+ * TBD.
  *
- * @param {object} a - TBD.
- * @param {object} output - TBD.
- * @returns {object} TBD.
+ * @param {Point} a - TBD.
+ * @param {Point} output - TBD.
+ * @returns {Point} TBD.
  */
-export function normalize(a: object, output?: object): object;
+export function normalize(a: Point, output?: Point): Point;
 /**
+ * TBD.
  *
- * @param {object} a - TBD.
+ * @param {Point} a - TBD.
  * @param {number} x - TBD.
  * @param {number} y - TBD.
  * @param {number} ang - TBD.
@@ -131,27 +148,32 @@ export function normalize(a: object, output?: object): object;
  * @param {number} dist - TBD.
  * @returns {object} TBD.
  */
-export function rotate(a: object, x: number, y: number, ang: number, asDegrees: boolean, dist: number): object;
+export function rotate(a: Point, x: number, y: number, ang: number, asDegrees: boolean, dist: number): object;
 /**
+ * TBD.
  *
- * @param {object[]} points - TBD.
- * @param {object} output - TBD.
- * @returns {object} TBD.
+ * @param {Point[]} points - TBD.
+ * @param {Point} output - TBD.
+ * @returns {Point} TBD.
+ * @throws Error TBD.
  */
-export function centroid(points: object[], output?: object): object;
+export function centroid(points: Point[], output?: Point): Point;
 /**
+ * TBD.
  *
  * @param {object} obj - TBD.
  * @param {string} xProp - TBD.
  * @param {string} yProp - TBD.
- * @returns {object} TBD.
+ * @returns {Point} TBD.
  */
-export function parse(obj: object, xProp?: string, yProp?: string): object;
+export function parse(obj: object, xProp?: string, yProp?: string): Point;
 /**
+ * TBD.
  *
- * @param {object} input - TBD.
- * @param {object} output - TBD.
- * @returns {object} TBD.
+ * @param {Point} input - TBD.
+ * @param {Point} output - TBD.
+ * @returns {Point} TBD.
  */
-export function clone(input: object, output?: object): object;
+export function clone(input: Point, output?: Point): Point;
+import Point from '../point';
 //# sourceMappingURL=point.d.ts.map
