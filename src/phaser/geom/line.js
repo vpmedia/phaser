@@ -10,6 +10,14 @@ import { wrap } from '../util/math';
 import { GEOM_LINE } from '../core/const';
 
 export default class {
+  /**
+   * TBD.
+   *
+   * @param {number} x1 - TBD.
+   * @param {number} y1 - TBD.
+   * @param {number} x2 - TBD.
+   * @param {number} y2 - TBD.
+   */
   constructor(x1 = 0, y1 = 0, x2 = 0, y2 = 0) {
     this.start = new Point(x1, y1);
     this.end = new Point(x2, y2);

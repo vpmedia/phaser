@@ -8,6 +8,15 @@ import { clone } from './util/rounded_rectangle';
 import { GEOM_ROUNDED_RECTANGLE } from '../core/const';
 
 export default class {
+  /**
+   * TBD.
+   *
+   * @param {number} x - TBD.
+   * @param {number} y - TBD.
+   * @param {number} width - TBD.
+   * @param {number} height - TBD.
+   * @param {number} radius - TBD.
+   */
   constructor(x = 0, y = 0, width = 0, height = 0, radius = 20) {
     this.x = x;
     this.y = y;

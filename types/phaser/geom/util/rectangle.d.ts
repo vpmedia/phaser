@@ -104,7 +104,7 @@ export function intersection(a: Rectangle, b: Rectangle, output?: Rectangle): Re
 /**
  * TBD.
  *
- * @param {object} a - TBD.
+ * @param {Rectangle} a - TBD.
  * @param {number} left - TBD.
  * @param {number} right - TBD.
  * @param {number} top - TBD.
@@ -112,7 +112,7 @@ export function intersection(a: Rectangle, b: Rectangle, output?: Rectangle): Re
  * @param {number} tolerance - TBD.
  * @returns {boolean} TBD.
  */
-export function intersectsRaw(a: object, left: number, right: number, top: number, bottom: number, tolerance?: number): boolean;
+export function intersectsRaw(a: Rectangle, left: number, right: number, top: number, bottom: number, tolerance?: number): boolean;
 /**
  * TBD.
  *

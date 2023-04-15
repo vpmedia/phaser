@@ -1,4 +1,12 @@
 export default class _default {
+    /**
+     * TBD.
+     *
+     * @param {number} x1 - TBD.
+     * @param {number} y1 - TBD.
+     * @param {number} x2 - TBD.
+     * @param {number} y2 - TBD.
+     */
     constructor(x1?: number, y1?: number, x2?: number, y2?: number);
     start: Point;
     end: Point;

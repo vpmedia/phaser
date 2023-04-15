@@ -9,6 +9,16 @@ import { clone } from './util/matrix';
 import { GEOM_MATRIX } from '../core/const';
 
 export default class {
+  /**
+   * TBD.
+   *
+   * @param {number} a - TBD.
+   * @param {number} b - TBD.
+   * @param {number} c - TBD.
+   * @param {number} d - TBD.
+   * @param {number} tx - TBD.
+   * @param {number} ty - TBD.
+   */
   constructor(a = 1, b = 0, c = 0, d = 1, tx = 0, ty = 0) {
     this.a = a;
     this.b = b;

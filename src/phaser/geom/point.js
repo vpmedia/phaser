@@ -8,6 +8,12 @@ import { distance, rotate, clone } from './util/point';
 import { GEOM_POINT } from '../core/const';
 
 export default class {
+  /**
+   * TBD.
+   *
+   * @param {number} x - TBD.
+   * @param {number} y - TBD.
+   */
   constructor(x = 0, y = 0) {
     this.x = x;
     this.y = y;

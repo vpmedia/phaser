@@ -11,6 +11,13 @@ import { clone, contains, circumferencePoint } from './util/circle';
 import { GEOM_CIRCLE } from '../core/const';
 
 export default class {
+  /**
+   * TBD.
+   *
+   * @param {number} x - TBD.
+   * @param {number} y - TBD.
+   * @param {number} diameter - TBD.
+   */
   constructor(x = 0, y = 0, diameter = 0) {
     this.x = x;
     this.y = y;
