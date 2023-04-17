@@ -1,4 +1,4 @@
-export default class _default {
+export class FrameData {
     _frames: any[];
     _frameNames: any[];
     addFrame(frame: any): any;

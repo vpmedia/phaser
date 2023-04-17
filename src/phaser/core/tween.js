@@ -4,11 +4,11 @@
  * @author       Richard Davey <rich@photonstorm.com>
  */
 import { Signal } from  './signal';
-import TweenData from './tween_data';
+import { TweenData } from './tween_data';
 import * as MathUtils from '../util/math';
 import { TWEEN_PENDING, TWEEN_RUNNING, TWEEN_COMPLETE, TWEEN_LOOPED } from './const';
 
-export default class {
+export class Tween {
   constructor(target, game, manager) {
     this.game = game;
     this.target = target;

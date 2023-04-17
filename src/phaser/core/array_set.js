@@ -3,7 +3,7 @@
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  */
-export default class {
+export class ArraySet {
   constructor(list = []) {
     this.position = 0;
     this.list = list;

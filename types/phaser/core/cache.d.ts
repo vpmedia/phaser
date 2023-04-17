@@ -101,6 +101,6 @@ export default class _default {
 }
 import { Signal } from './signal';
 import { BaseTexture } from '../display/webgl/base_texture';
-import Frame from './frame';
-import FrameData from './frame_data';
+import { Frame } from './frame';
+import { FrameData } from './frame_data';
 //# sourceMappingURL=cache.d.ts.map

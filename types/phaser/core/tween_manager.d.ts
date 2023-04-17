@@ -90,5 +90,5 @@ import { CircularInOut } from './tween_easing';
 import { ElasticInOut } from './tween_easing';
 import { BackInOut } from './tween_easing';
 import { BounceInOut } from './tween_easing';
-import Tween from './tween';
+import { Tween } from './tween';
 //# sourceMappingURL=tween_manager.d.ts.map

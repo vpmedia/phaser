@@ -3,7 +3,7 @@
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  */
-import ArraySet from './array_set';
+import { ArraySet } from './array_set';
 import { Graphics } from  '../display/graphics';
 import { Image } from '../display/image';
 import { Signal } from  './signal';

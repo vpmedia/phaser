@@ -1,4 +1,4 @@
-export default class _default {
+export class TweenData {
     constructor(parent: any);
     parent: any;
     game: any;
@@ -24,11 +24,11 @@ export default class _default {
     interpolationContext: typeof MathUtils;
     isRunning: boolean;
     isFrom: boolean;
-    to(properties: any, duration: any, ease: any, delay: any, repeat: any, yoyo: any): default;
-    from(properties: any, duration: any, ease: any, delay: any, repeat: any, yoyo: any): default;
-    start(): default;
+    to(properties: any, duration: any, ease: any, delay: any, repeat: any, yoyo: any): TweenData;
+    from(properties: any, duration: any, ease: any, delay: any, repeat: any, yoyo: any): TweenData;
+    start(): TweenData;
     yoyoCounter: number | undefined;
-    loadValues(): default;
+    loadValues(): TweenData;
     update(time: any): 0 | 1 | 2 | 3;
     generateData(frameRate: any): {}[];
     repeat(): 2 | 3;

@@ -44,7 +44,7 @@ export default class _default {
     get volume(): number;
 }
 import { Signal } from './signal';
-import ArraySet from './array_set';
-import Sound from './sound';
-import SoundSprite from './sound_sprite';
+import { ArraySet } from './array_set';
+import { Sound } from './sound';
+import { SoundSprite } from './sound_sprite';
 //# sourceMappingURL=sound_manager.d.ts.map

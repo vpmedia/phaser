@@ -10,7 +10,7 @@ import { Signal } from  './signal';
 import Loader from './loader';
 import Cache from './cache';
 import Input from './input';
-import Device from './device';
+import { Device } from './device';
 import GameObjectFactory from './factory';
 import RequestAnimationFrame from './raf';
 import ScaleManager from './scale_manager';

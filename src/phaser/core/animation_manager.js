@@ -3,7 +3,7 @@
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  */
-import Animation from './animation';
+import { Animation } from './animation';
 
 export default class {
   constructor(sprite) {

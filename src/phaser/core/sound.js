@@ -5,7 +5,7 @@
  */
 import { Signal } from  './signal';
 
-export default class {
+export class Sound {
   constructor(game, key, volume = 1, loop = false, connect = null) {
     // TODO
     // https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Migrating_from_webkitAudioContext

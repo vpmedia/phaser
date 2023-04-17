@@ -3,10 +3,10 @@
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  */
-import ArraySet from './array_set';
+import { ArraySet } from './array_set';
 import { Signal } from  './signal';
-import Sound from './sound';
-import SoundSprite from './sound_sprite';
+import { Sound } from './sound';
+import { SoundSprite } from './sound_sprite';
 
 export default class {
   constructor(game) {

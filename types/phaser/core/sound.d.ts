@@ -1,4 +1,4 @@
-export default class _default {
+export class Sound {
     constructor(game: any, key: any, volume?: number, loop?: boolean, connect?: null);
     game: any;
     name: any;
@@ -52,8 +52,8 @@ export default class _default {
     removeMarker(name: any): void;
     onEndedHandler(): void;
     update(): void;
-    loopFull(volume: any): default;
-    play(marker: any, position: any, volume: any, loop: any, forceRestart: any): default;
+    loopFull(volume: any): Sound;
+    play(marker: any, position: any, volume: any, loop: any, forceRestart: any): Sound;
     set volume(arg: number);
     get volume(): number;
     restart(marker?: string, position?: number, volume?: number, loop?: boolean): void;

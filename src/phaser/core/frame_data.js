@@ -5,7 +5,7 @@
  */
 import { cloneFrameData } from './frame_util';
 
-export default class {
+export class FrameData {
   constructor() {
     this._frames = [];
     this._frameNames = [];

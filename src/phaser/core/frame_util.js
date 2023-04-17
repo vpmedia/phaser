@@ -3,8 +3,8 @@
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  */
-import Frame from './frame';
-import FrameData from './frame_data';
+import { Frame } from './frame';
+import { FrameData } from './frame_data';
 
 /**
  * TBD.

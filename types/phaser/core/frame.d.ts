@@ -1,4 +1,4 @@
-export default class _default {
+export class Frame {
     constructor(index: any, x: any, y: any, width: any, height: any, name: any);
     initialize(index: any, x: any, y: any, width: any, height: any, name: any): void;
     index: any;

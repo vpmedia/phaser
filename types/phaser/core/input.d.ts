@@ -88,5 +88,5 @@ import Mouse from './input_mouse';
 import Touch from './input_touch';
 import MSPointer from './input_mspointer';
 import { Signal } from './signal';
-import ArraySet from './array_set';
+import { ArraySet } from './array_set';
 //# sourceMappingURL=input.d.ts.map

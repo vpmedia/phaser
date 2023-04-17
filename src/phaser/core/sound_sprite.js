@@ -3,7 +3,7 @@
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  */
-export default class {
+export class SoundSprite {
   constructor(game, key) {
     this.game = game;
     this.key = key;

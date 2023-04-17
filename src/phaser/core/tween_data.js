@@ -6,7 +6,7 @@
 import * as MathUtils from '../util/math';
 import { TWEEN_PENDING, TWEEN_RUNNING, TWEEN_COMPLETE, TWEEN_LOOPED } from './const';
 
-export default class {
+export class TweenData {
   constructor(parent) {
     this.parent = parent;
     this.game = parent.game;

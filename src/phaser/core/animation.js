@@ -5,7 +5,7 @@
  */
 import { Signal } from  './signal';
 
-export default class {
+export class Animation {
   constructor(game, parent, name, frameData, frames, frameRate, loop = false) {
     this.game = game;
     this._parent = parent;

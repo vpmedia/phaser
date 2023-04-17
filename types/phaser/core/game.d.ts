@@ -52,6 +52,6 @@ import Stage from './stage';
 import Time from './time';
 import TweenManager from './tween_manager';
 import World from './world';
-import Device from './device';
+import { Device } from './device';
 import { Signal } from './signal';
 //# sourceMappingURL=game.d.ts.map

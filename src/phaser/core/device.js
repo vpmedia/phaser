@@ -4,7 +4,7 @@
  * @author       Richard Davey <rich@photonstorm.com>
  */
 
-export default class {
+export class Device {
   constructor() {
     this.desktop = false;
     this.iOS = false;

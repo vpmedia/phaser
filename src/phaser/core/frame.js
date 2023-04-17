@@ -7,7 +7,7 @@ import { Rectangle } from  '../geom/rectangle';
 import { distance } from '../util/math';
 import { cloneFrame } from './frame_util';
 
-export default class {
+export class Frame {
   constructor(index, x, y, width, height, name) {
     this.initialize(index, x, y, width, height, name);
   }

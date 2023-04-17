@@ -1,4 +1,4 @@
-export default class _default {
+export class Animation {
     constructor(game: any, parent: any, name: any, frameData: any, frames: any, frameRate: any, loop?: boolean);
     game: any;
     _parent: any;
@@ -22,16 +22,16 @@ export default class _default {
     onComplete: Signal;
     onLoop: Signal;
     isReversed: boolean;
-    play(frameRate: any, loop: any, killOnComplete: any): default;
+    play(frameRate: any, loop: any, killOnComplete: any): Animation;
     set paused(arg: boolean);
     get paused(): boolean;
     _timeLastFrame: any;
     _timeNextFrame: any;
     restart(): void;
-    reverse(): default;
+    reverse(): Animation;
     set reversed(arg: boolean);
     get reversed(): boolean;
-    reverseOnce(): default;
+    reverseOnce(): Animation;
     setFrame(frameId: any, useLocalFrameIndex?: boolean): void;
     stop(resetFrame?: boolean, dispatchComplete?: boolean): void;
     onPause(): void;

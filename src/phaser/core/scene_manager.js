@@ -3,7 +3,7 @@
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  */
-import Scene from './scene';
+import { Scene } from './scene';
 
 export default class {
   constructor(game, pendingState) {
