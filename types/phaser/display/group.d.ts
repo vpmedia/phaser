@@ -4,16 +4,16 @@ export class Group extends DisplayObject {
     /**
      * TBD.
      *
-     * @param {object} game - TBD.
+     * @param {Game} game - TBD.
      * @param {DisplayObject} parent - TBD.
      * @param {string} name - TBD.
      * @param {boolean} addToStage - TBD.
      */
-    constructor(game: object, parent?: DisplayObject, name?: string, addToStage?: boolean);
-    game: object;
+    constructor(game: Game, parent?: DisplayObject, name?: string, addToStage?: boolean);
+    game: Game;
     type: number;
     name: string;
-    z: any;
+    z: number;
     ignoreDestroy: boolean;
     pendingDestroy: boolean;
     classType: typeof Image;
@@ -39,11 +39,12 @@ export class Group extends DisplayObject {
     sendToBack(child: any): any;
     reverse(): void;
     getIndex(child: any): number;
-    renderOrderID: number | undefined;
+    renderOrderID: number;
     remove(child: any, destroy?: boolean, silent?: boolean): boolean;
     removeAll(destroy?: boolean, silent?: boolean, destroyTexture?: boolean): void;
 }
 import { DisplayObject } from './display_object';
+import { Game } from '../core/game';
 import { Image } from './image';
 import { Signal } from '../core/signal';
 //# sourceMappingURL=group.d.ts.map

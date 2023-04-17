@@ -15,12 +15,12 @@ export class MSPointer {
     button: number;
     event: any;
     enabled: boolean;
-    _onMSPointerDown: ((event: any) => void) | null;
-    _onMSPointerMove: ((event: any) => void) | null;
-    _onMSPointerUp: ((event: any) => void) | null;
-    _onMSPointerUpGlobal: ((event: any) => void) | null;
-    _onMSPointerOut: ((event: any) => void) | null;
-    _onMSPointerOver: ((event: any) => void) | null;
+    _onMSPointerDown: (event: any) => void;
+    _onMSPointerMove: (event: any) => void;
+    _onMSPointerUp: (event: any) => void;
+    _onMSPointerUpGlobal: (event: any) => void;
+    _onMSPointerOut: (event: any) => void;
+    _onMSPointerOver: (event: any) => void;
     start(): void;
     stop(): void;
     onPointerDown(event: any): void;

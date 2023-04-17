@@ -1,5 +1,5 @@
 export class Sound {
-    constructor(game: any, key: any, volume?: number, loop?: boolean, connect?: null);
+    constructor(game: any, key: any, volume?: number, loop?: boolean, connect?: any);
     game: any;
     name: any;
     key: any;

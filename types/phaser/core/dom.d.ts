@@ -1,12 +1,12 @@
 export class DOM {
     constructor(device: any);
-    treatAsDesktop: any;
+    treatAsDesktop: boolean;
     visualBounds: VisualBoundsDesktopRectangle | VisualBoundsRectangle;
     layoutBounds: LayoutBoundsDesktopRectangle | LayoutBoundsRectangle;
     documentBounds: DocumentBoundsRectangle;
     scrollXProvider: () => number;
     scrollYProvider: () => number;
-    getOffset(element: any, point?: null): null;
+    getOffset(element: any, point?: any): any;
     getBounds(element: any, cushion?: number): false | {
         width: number;
         height: number;
@@ -23,7 +23,7 @@ export class DOM {
         top: number;
         bottom: number;
     };
-    getScreenOrientation(primaryFallback: any): OrientationType;
+    getScreenOrientation(primaryFallback: any): any;
     get scrollX(): number;
     get scrollY(): number;
     get clientWidth(): number;

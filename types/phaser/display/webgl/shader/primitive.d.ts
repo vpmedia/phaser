@@ -2,7 +2,7 @@ export class PrimitiveShader {
     constructor(gl: any);
     gl: any;
     _UID: string;
-    program: object | null;
+    program: any;
     fragmentSrc: string[];
     vertexSrc: string[];
     init(): void;
@@ -12,7 +12,7 @@ export class PrimitiveShader {
     flipY: any;
     aVertexPosition: any;
     colorAttribute: any;
-    attributes: any[] | null | undefined;
+    attributes: any[];
     translationMatrix: any;
     alpha: any;
     destroy(): void;

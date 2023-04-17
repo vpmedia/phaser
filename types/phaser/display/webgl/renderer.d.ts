@@ -11,7 +11,7 @@ export class WebGLRenderer {
         alpha: any;
         depth: boolean;
         antialias: any;
-        premultipliedAlpha: any;
+        premultipliedAlpha: boolean;
         stencil: boolean;
         failIfMajorPerformanceCaveat: boolean;
         preserveDrawingBuffer: any;

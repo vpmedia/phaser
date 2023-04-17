@@ -5,9 +5,9 @@ export class FrameData {
     getFrame(index?: number): any;
     getFrameByName(name: any): any;
     checkFrameName(name: any): boolean;
-    clone(): object;
-    getFrameRange(start: any, end: any, output?: null): any[];
-    getFrameIndexes(frames: any, useNumericIndex?: boolean, output?: null): any[];
+    clone(): any;
+    getFrameRange(start: any, end: any, output?: any): any;
+    getFrameIndexes(frames: any, useNumericIndex?: boolean, output?: any): any;
     destroy(): void;
     get total(): number;
 }

@@ -2,20 +2,18 @@ export class Image extends DisplayObject {
     /**
      * TBD.
      *
-     * @param {object} game - TBD.
+     * @param {Game} game - TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
      * @param {string} key - TBD.
      * @param {string} frame - TBD.
      */
-    constructor(game: object, x: number, y: number, key: string, frame: string);
-    game: object;
+    constructor(game: Game, x: number, y: number, key: string, frame: string);
+    game: Game;
     type: number;
     key: string;
     texture: any;
     data: {};
-    _width: number;
-    _height: number;
     tint: number;
     cachedTint: number;
     tintedTexture: any;
@@ -24,11 +22,11 @@ export class Image extends DisplayObject {
     _frame: any;
     events: EventManager;
     animations: AnimationManager;
-    renderOrderID: any;
+    renderOrderID: number;
     loadTexture(key: any, frame?: number, stopAnimation?: boolean): void;
-    customRender: boolean | undefined;
+    customRender: boolean;
     setFrame(frame: any): void;
-    refreshTexture: boolean | undefined;
+    refreshTexture: boolean;
     resizeFrame(parent: any, width: any, height: any): void;
     resetFrame(): void;
     set frame(arg: any);
@@ -41,12 +39,13 @@ export class Image extends DisplayObject {
     updateCrop(): void;
     onTextureUpdate(): void;
     setTexture(texture: any, destroyBase?: boolean): void;
-    getBounds(matrix?: null): object;
-    getLocalBounds(): object;
-    renderWebGL(renderSession: any, matrix?: null): void;
-    renderCanvas(renderSession: any, matrix?: null): void;
+    getBounds(matrix?: any): any;
+    getLocalBounds(): any;
+    renderWebGL(renderSession: any, matrix?: any): void;
+    renderCanvas(renderSession: any, matrix?: any): void;
 }
 import { DisplayObject } from './display_object';
+import { Game } from '../core/game';
 import { EventManager } from '../core/event_manager';
 import { AnimationManager } from '../core/animation_manager';
 //# sourceMappingURL=image.d.ts.map

@@ -18,7 +18,7 @@ export class Animation {
     _frameSkip: number;
     currentFrame: any;
     onStart: Signal;
-    onUpdate: Signal | null;
+    onUpdate: Signal;
     onComplete: Signal;
     onLoop: Signal;
     isReversed: boolean;

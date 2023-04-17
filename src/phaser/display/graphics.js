@@ -6,6 +6,7 @@
  */
 import { DisplayObject } from  './display_object';
 import { Image } from './image';
+import { Game } from  '../core/game';
 import { Rectangle } from  '../geom/rectangle';
 import { RoundedRectangle } from  '../geom/rounded_rectangle';
 import { Polygon } from  '../geom/polygon';
@@ -37,7 +38,7 @@ export class Graphics extends DisplayObject {
   /**
    * TBD.
    *
-   * @param {object} game - TBD.
+   * @param {Game} game - TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
    */

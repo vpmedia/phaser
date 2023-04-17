@@ -22,14 +22,13 @@ export class Matrix {
     clone(): Matrix;
     copyTo(matrix: any): any;
     copyFrom(matrix: any): Matrix;
-    toArray(transpose?: boolean, output?: null): Float32Array;
-    apply(pos: any, output?: null): Point;
-    applyInverse(pos: any, output?: null): Point;
+    toArray(transpose?: boolean, output?: any): any;
+    apply(pos: any, output?: any): any;
+    applyInverse(pos: any, output?: any): any;
     translate(x: any, y: any): Matrix;
     scale(x: any, y: any): Matrix;
     rotate(angle: any): Matrix;
     append(matrix: any): Matrix;
     identity(): Matrix;
 }
-import { Point } from './point';
 //# sourceMappingURL=matrix.d.ts.map

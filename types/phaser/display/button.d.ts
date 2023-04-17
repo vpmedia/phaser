@@ -2,7 +2,7 @@ export class Button extends Image {
     /**
      * TBD.
      *
-     * @param {object} game - TBD.
+     * @param {Game} game - TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
      * @param {string} key - TBD.
@@ -13,7 +13,7 @@ export class Button extends Image {
      * @param {string} downFrame - TBD.
      * @param {string} upFrame - TBD.
      */
-    constructor(game: object, x?: number, y?: number, key?: string, callback?: Function, callbackContext?: object, overFrame?: string, outFrame?: string, downFrame?: string, upFrame?: string);
+    constructor(game: Game, x?: number, y?: number, key?: string, callback?: Function, callbackContext?: object, overFrame?: string, outFrame?: string, downFrame?: string, upFrame?: string);
     _onOverFrame: any;
     _onOutFrame: any;
     _onDownFrame: any;
@@ -44,4 +44,5 @@ export class Button extends Image {
 import { Image } from './image';
 import { Signal } from '../core/signal';
 import { InputHandler } from '../core/input_handler';
+import { Game } from '../core/game';
 //# sourceMappingURL=button.d.ts.map

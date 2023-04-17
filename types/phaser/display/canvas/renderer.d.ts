@@ -15,7 +15,7 @@ export class CanvasRenderer {
         context: any;
         maskManager: typeof CanvasMaskManager;
         scaleMode: number;
-        smoothProperty: object;
+        smoothProperty: any;
         roundPixels: any;
     };
     render(root: any): void;

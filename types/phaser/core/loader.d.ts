@@ -12,8 +12,8 @@ export class Loader {
         direction: number;
         width: any;
         height: any;
-        rect: null;
-    } | null;
+        rect: any;
+    };
     crossOrigin: boolean;
     baseURL: string;
     path: string;
@@ -45,9 +45,9 @@ export class Loader {
     getAsset(type: any, key: any): {
         index: number;
         file: any;
-    } | null;
+    };
     reset(hard: any, clearEvents?: boolean): void;
-    addToFileList(type: any, key?: string, url?: null, properties?: null, overwrite?: boolean, extension?: null): Loader;
+    addToFileList(type: any, key?: string, url?: any, properties?: any, overwrite?: boolean, extension?: any): Loader;
     replaceInFileList(type: any, key: any, url: any, properties: any): Loader;
     pack(key: any, url: any, data: any, callbackContext: any): Loader;
     image(key: any, url: any, overwrite: any): Loader;
@@ -58,8 +58,8 @@ export class Loader {
     spritesheet(key: any, url: any, frameWidth: any, frameHeight: any, frameMax?: number, margin?: number, spacing?: number): Loader;
     audio(key: any, urls: any, autoDecode?: boolean): Loader;
     audioSprite(key: any, urls: any, jsonURL: any, jsonData: any, autoDecode?: boolean): Loader;
-    bitmapFont(key: any, textureURL?: null, atlasURL?: null, atlasData?: null, xSpacing?: number, ySpacing?: number): Loader;
-    atlas(key: any, textureURL: any, atlasURL?: null, atlasData?: null, format?: number): Loader;
+    bitmapFont(key: any, textureURL?: any, atlasURL?: any, atlasData?: any, xSpacing?: number, ySpacing?: number): Loader;
+    atlas(key: any, textureURL: any, atlasURL?: any, atlasData?: any, format?: number): Loader;
     withSyncPoint(callback: any, callbackContext: any): Loader;
     addSyncPoint(type: any, key: any): Loader;
     removeFile(type: any, key: any): void;

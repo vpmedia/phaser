@@ -5,7 +5,7 @@ export class SpriteBatch extends DisplayObject {
      * @param {object} game - TBD.
      */
     constructor(game: object);
-    game: object;
+    game: any;
 }
 import { DisplayObject } from './display_object';
 //# sourceMappingURL=sprite_batch.d.ts.map

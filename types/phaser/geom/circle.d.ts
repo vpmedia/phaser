@@ -13,7 +13,7 @@ export class Circle {
     _radius: number;
     type: number;
     circumference(): number;
-    random(output?: null): Point;
+    random(output?: any): any;
     getBounds(): Rectangle;
     setTo(x: any, y: any, diameter: any): Circle;
     copyFrom(source: any): Circle;
@@ -41,6 +41,5 @@ export class Circle {
     set empty(arg: boolean);
     get empty(): boolean;
 }
-import { Point } from './point';
 import { Rectangle } from './rectangle';
 //# sourceMappingURL=circle.d.ts.map

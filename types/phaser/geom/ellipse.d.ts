@@ -18,9 +18,8 @@ export class Ellipse {
     copyFrom(source: any): Ellipse;
     copyTo(dest: any): any;
     contains(x: any, y: any): boolean;
-    random(output?: null): Point;
+    random(output?: any): any;
     toString(): string;
 }
 import { Rectangle } from './rectangle';
-import { Point } from './point';
 //# sourceMappingURL=ellipse.d.ts.map

@@ -10,7 +10,7 @@ export class WebGLFilterManager {
     offsetY: number;
     setContext(gl: any): void;
     gl: any;
-    texturePool: any[] | undefined;
+    texturePool: any[];
     begin(): void;
     pushFilter(): void;
     popFilter(): void;

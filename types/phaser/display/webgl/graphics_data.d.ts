@@ -16,8 +16,8 @@ export class GraphicsData {
     alpha: number;
     dirty: boolean;
     reset(): void;
-    glPoints: Float32Array | null | undefined;
-    glIndicies: Uint16Array | null | undefined;
+    glPoints: Float32Array;
+    glIndicies: Uint16Array;
     upload(): void;
 }
 //# sourceMappingURL=graphics_data.d.ts.map

@@ -6,6 +6,7 @@
  */
 import { DisplayObject } from  './display_object';
 import { Image } from './image';
+import { Game } from  '../core/game';
 import { Point } from '../geom/point';
 import { BITMAP_TEXT, SCALE_LINEAR, SCALE_NEAREST } from '../core/const';
 
@@ -13,7 +14,7 @@ export class BitmapText extends DisplayObject {
   /**
    * TBD.
    *
-   * @param {object} game - TBD.
+   * @param {Game} game - TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
    * @param {string} font - TBD.

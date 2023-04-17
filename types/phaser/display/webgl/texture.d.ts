@@ -18,7 +18,7 @@ export class Texture {
     isTiling: boolean;
     requiresUpdate: boolean;
     requiresReTint: boolean;
-    _uvs: TextureUvs | null;
+    _uvs: TextureUvs;
     width: number;
     height: number;
     crop: any;

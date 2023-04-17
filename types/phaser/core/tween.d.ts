@@ -44,7 +44,7 @@ export class Tween {
     resume(): void;
     _resume(): void;
     update(time: any): boolean;
-    generateData(frameRate?: number, data?: any[]): any[] | null;
+    generateData(frameRate?: number, data?: any[]): any[];
     get totalDuration(): number;
 }
 import { Signal } from './signal';

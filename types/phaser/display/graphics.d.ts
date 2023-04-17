@@ -2,12 +2,12 @@ export class Graphics extends DisplayObject {
     /**
      * TBD.
      *
-     * @param {object} game - TBD.
+     * @param {Game} game - TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
      */
-    constructor(game: object, x?: number, y?: number);
-    game: object;
+    constructor(game: Game, x?: number, y?: number);
+    game: Game;
     type: number;
     fillAlpha: number;
     lineWidth: number;
@@ -15,7 +15,7 @@ export class Graphics extends DisplayObject {
     graphicsData: any[];
     tint: number;
     blendMode: number;
-    currentPath: GraphicsData | null;
+    currentPath: GraphicsData;
     _webGL: any[];
     isMask: boolean;
     boundsPadding: number;
@@ -25,7 +25,7 @@ export class Graphics extends DisplayObject {
     webGLDirty: boolean;
     cachedSpriteDirty: boolean;
     lineStyle(lineWidth?: number, color?: number, alpha?: number): Graphics;
-    lineAlpha: number | undefined;
+    lineAlpha: number;
     moveTo(x: any, y: any): Graphics;
     lineTo(x: any, y: any): Graphics;
     quadraticCurveTo(cpX: any, cpY: any, toX: any, toY: any): Graphics;
@@ -33,8 +33,8 @@ export class Graphics extends DisplayObject {
     arcTo(x1: any, y1: any, x2: any, y2: any, radius: any): Graphics;
     arc(cx: any, cy: any, radius: any, startAngle: any, endAngle: any, anticlockwise?: boolean, segments?: number): Graphics;
     beginFill(color?: number, alpha?: number): Graphics;
-    filling: boolean | undefined;
-    fillColor: number | null | undefined;
+    filling: boolean;
+    fillColor: number;
     endFill(): Graphics;
     drawRect(x: any, y: any, width: any, height: any): Graphics;
     drawRoundedRect(x: any, y: any, width: any, height: any, radius: any): Graphics;
@@ -42,9 +42,9 @@ export class Graphics extends DisplayObject {
     drawEllipse(x: any, y: any, width: any, height: any): Graphics;
     drawPolygon(path: any): Graphics;
     clear(): Graphics;
-    clearDirty: boolean | undefined;
+    clearDirty: boolean;
     _prevTint: any;
-    getBounds(matrix?: null): any;
+    getBounds(matrix?: any): any;
     getLocalBounds(): any;
     worldTransform: any;
     containsPoint(point: any, tempPoint: any): boolean;
@@ -55,6 +55,7 @@ export class Graphics extends DisplayObject {
     drawTriangles(vertices: any, indices: any, cull?: boolean): void;
 }
 import { DisplayObject } from './display_object';
+import { Game } from '../core/game';
 import { GraphicsData } from './graphics_data';
 import { Rectangle } from '../geom/rectangle';
 //# sourceMappingURL=graphics.d.ts.map

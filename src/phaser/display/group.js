@@ -7,6 +7,7 @@
 import { DisplayObject } from  './display_object';
 import { Image } from './image';
 import { Signal } from  '../core/signal';
+import { Game } from  '../core/game';
 import { GROUP } from '../core/const';
 
 export const SORT_ASCENDING = -1;
@@ -16,7 +17,7 @@ export class Group extends DisplayObject {
   /**
    * TBD.
    *
-   * @param {object} game - TBD.
+   * @param {Game} game - TBD.
    * @param {DisplayObject} parent - TBD.
    * @param {string} name - TBD.
    * @param {boolean} addToStage - TBD.

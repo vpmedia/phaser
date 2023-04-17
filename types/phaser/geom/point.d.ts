@@ -25,7 +25,7 @@ export class Point {
     distance(b: any): number;
     equals(a: any): boolean;
     angle(a: any, asDegrees?: boolean): number;
-    rotate(x: any, y: any, angle: any, asDegrees: any, dist: any): object;
+    rotate(x: any, y: any, angle: any, asDegrees: any, dist: any): any;
     getMagnitude(): number;
     getMagnitudeSq(): number;
     setMagnitude(magnitude: any): Point;

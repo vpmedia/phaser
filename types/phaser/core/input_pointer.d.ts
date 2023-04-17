@@ -48,11 +48,11 @@ export class Pointer {
     updateButtons(event: any): void;
     start(event: any): Pointer;
     update(): void;
-    move(event: any, fromClick?: boolean): Pointer | null;
+    move(event: any, fromClick?: boolean): Pointer;
     processInteractiveObjects(fromClick?: boolean): boolean;
     swapTarget(newTarget: any, silent?: boolean): void;
     leave(event: any): void;
-    stop(event: any): Pointer | null;
+    stop(event: any): Pointer;
     justPressed(duration: any): boolean;
     justReleased(duration: any): boolean;
     addClickTrampoline(name: any, callback: any, callbackContext: any, callbackArgs: any): void;

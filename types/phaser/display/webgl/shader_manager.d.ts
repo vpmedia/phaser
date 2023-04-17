@@ -1,10 +1,10 @@
 export class WebGLShaderManager {
     gl: any;
-    primitiveShader: PrimitiveShader | null;
-    complexPrimitiveShader: ComplexPrimitiveShader | null;
-    defaultShader: NormalShader | null;
-    fastShader: FastShader | null;
-    stripShader: StripShader | null;
+    primitiveShader: PrimitiveShader;
+    complexPrimitiveShader: ComplexPrimitiveShader;
+    defaultShader: NormalShader;
+    fastShader: FastShader;
+    stripShader: StripShader;
     maxAttibs: number;
     attribState: boolean[];
     tempAttribState: any[];

@@ -39,8 +39,8 @@ export class Rectangle {
     intersects(b: any): boolean;
     intersectsRaw(left: any, right: any, top: any, bottom: any, tolerance: any): boolean;
     union(b: any, out: any): Rectangle;
-    random(output?: null): Point;
-    getPoint(position: any, output?: null): Point;
+    random(output?: any): any;
+    getPoint(position: any, output?: any): any;
     toString(): string;
     get halfWidth(): number;
     get halfHeight(): number;

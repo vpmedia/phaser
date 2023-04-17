@@ -1,5 +1,5 @@
 export class Polygon {
-    constructor(points?: null);
+    constructor(points?: any);
     area: number;
     _points: any[];
     closed: boolean;

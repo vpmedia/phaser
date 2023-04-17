@@ -9,6 +9,7 @@ import { AnimationManager } from '../core/animation_manager';
 import { EventManager } from '../core/event_manager';
 import { Rectangle } from  '../geom/rectangle';
 import { DisplayObject } from  './display_object';
+import { Game } from  '../core/game';
 import { clone } from '../geom/util/rectangle';
 import { IMAGE, PENDING_ATLAS, BLEND_NORMAL, SCALE_NEAREST } from '../core/const';
 import { setTexture, getBounds, getLocalBounds, renderCanvas, renderWebGL } from './sprite_util';
@@ -17,7 +18,7 @@ export class Image extends DisplayObject {
   /**
    * TBD.
    *
-   * @param {object} game - TBD.
+   * @param {Game} game - TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
    * @param {string} key - TBD.

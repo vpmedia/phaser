@@ -11,7 +11,7 @@ export class InputHandler {
     allowHorizontalDrag: boolean;
     allowVerticalDrag: boolean;
     bringToTop: boolean;
-    snapOffset: Point | null;
+    snapOffset: Point;
     snapOnDrag: boolean;
     snapOnRelease: boolean;
     snapX: number;
@@ -94,7 +94,7 @@ export class InputHandler {
     justReleased(pointerId?: number, delay?: number): boolean;
     overDuration(pointerId?: number): number;
     downDuration(pointerId?: number): number;
-    enableDrag(lockCenter?: boolean, bringToTop?: boolean, pixelPerfect?: boolean, alphaThreshold?: number, boundsRect?: null, boundsSprite?: null): void;
+    enableDrag(lockCenter?: boolean, bringToTop?: boolean, pixelPerfect?: boolean, alphaThreshold?: number, boundsRect?: any, boundsSprite?: any): void;
     disableDrag(): void;
     _draggedPointerID: any;
     startDrag(pointer: any): void;

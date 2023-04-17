@@ -18,11 +18,11 @@ export class Line {
     rotateAround(x: any, y: any, angle: any, asDegrees?: boolean): Line;
     intersects(line: any, asSegment: any, result: any): boolean;
     reflect(line: any): number;
-    midPoint(output?: null): Point;
+    midPoint(output?: any): any;
     centerOn(x: any, y: any): void;
     pointOnLine(x: any, y: any): boolean;
     pointOnSegment(x: any, y: any): boolean;
-    random(output?: null): Point;
+    random(output?: any): any;
     coordinatesOnLine(stepRate?: number, results?: any[]): any[];
     clone(): Line;
     get length(): number;

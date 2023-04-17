@@ -19,7 +19,7 @@ export class WebGLSpriteBatch {
     gl: any;
     vertexBuffer: any;
     indexBuffer: any;
-    currentBlendMode: number | undefined;
+    currentBlendMode: number;
     begin(renderSession: any): void;
     renderSession: any;
     shader: any;

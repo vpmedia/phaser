@@ -9,6 +9,7 @@ import { Rectangle } from  '../geom/rectangle';
 import { Image } from './image';
 import { create, remove } from './canvas/pool';
 import { textureFromCanvas } from './webgl/texture_util';
+import { Game } from  '../core/game';
 import { TEXT } from '../core/const';
 import { snapToCeil } from '../util/math';
 import { renderCanvas, renderWebGL, getBounds } from './sprite_util';
@@ -17,7 +18,7 @@ export class Text extends Image {
   /**
    * TBD.
    *
-   * @param {object} game - TBD.
+   * @param {Game} game - TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
    * @param {string} text - TBD.

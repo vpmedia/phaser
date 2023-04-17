@@ -7,11 +7,11 @@ export class Frame {
     width: any;
     height: any;
     name: any;
-    centerX: number | undefined;
-    centerY: number | undefined;
-    distance: number | undefined;
-    rotated: boolean | undefined;
-    rotationDirection: string | undefined;
+    centerX: number;
+    centerY: number;
+    distance: number;
+    rotated: boolean;
+    rotationDirection: string;
     trimmed: any;
     sourceSizeW: any;
     sourceSizeH: any;
@@ -23,8 +23,7 @@ export class Frame {
     bottom: any;
     resize(width: any, height: any): void;
     setTrim(trimmed: any, actualWidth: any, actualHeight: any, destX: any, destY: any, destWidth: any, destHeight: any): void;
-    clone(): object;
-    getRect(output?: null): Rectangle;
+    clone(): any;
+    getRect(output?: any): any;
 }
-import { Rectangle } from '../geom/rectangle';
 //# sourceMappingURL=frame.d.ts.map

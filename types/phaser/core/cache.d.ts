@@ -26,7 +26,7 @@ export class Cache {
     };
     _urlMap: {};
     _urlResolver: HTMLImageElement;
-    _urlTemp: string | null;
+    _urlTemp: string;
     onSoundUnlock: Signal;
     _cacheMap: {}[];
     addDefaultImage(): void;
@@ -50,7 +50,7 @@ export class Cache {
     updateSound(key: any, property: any, value: any): void;
     decodedSound(key: any, data: any): void;
     isSoundDecoded(key: any): any;
-    isSoundReady(key: any): any;
+    isSoundReady(key: any): boolean;
     checkKey(cache: any, key: any): boolean;
     checkURL(url: any): boolean;
     checkCanvasKey(key: any): boolean;
@@ -62,7 +62,7 @@ export class Cache {
     checkBitmapFontKey(key: any): boolean;
     checkJSONKey(key: any): boolean;
     checkXMLKey(key: any): boolean;
-    getItem(key: any, cache: any, method: any, property?: null): any;
+    getItem(key: any, cache: any, method: any, property?: any): any;
     getCanvas(key: any): any;
     getImage(key?: string, full?: boolean): any;
     getTextureFrame(key: any): any;
@@ -96,7 +96,7 @@ export class Cache {
     removeSpriteSheet(key: any): void;
     removeTextureAtlas(key: any): void;
     clearGLTextures(): void;
-    _resolveURL(url: any, data: any): string | null;
+    _resolveURL(url: any, data: any): string;
     destroy(): void;
 }
 import { Signal } from './signal';

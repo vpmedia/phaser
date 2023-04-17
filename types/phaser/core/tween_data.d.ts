@@ -27,7 +27,7 @@ export class TweenData {
     to(properties: any, duration: any, ease: any, delay: any, repeat: any, yoyo: any): TweenData;
     from(properties: any, duration: any, ease: any, delay: any, repeat: any, yoyo: any): TweenData;
     start(): TweenData;
-    yoyoCounter: number | undefined;
+    yoyoCounter: number;
     loadValues(): TweenData;
     update(time: any): 0 | 1 | 2 | 3;
     generateData(frameRate: any): {}[];

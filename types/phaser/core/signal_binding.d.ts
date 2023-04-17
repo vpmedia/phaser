@@ -4,7 +4,7 @@
  * @author       Richard Davey <rich@photonstorm.com>
  */
 export class SignalBinding {
-    constructor(signal: any, listener: any, isOnce?: boolean, listenerContext?: null, priority?: number, args?: null);
+    constructor(signal: any, listener: any, isOnce?: boolean, listenerContext?: any, priority?: number, args?: any);
     _signal: any;
     _listener: any;
     _args: any;

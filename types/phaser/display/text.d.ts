@@ -2,17 +2,17 @@ export class Text extends Image {
     /**
      * TBD.
      *
-     * @param {object} game - TBD.
+     * @param {Game} game - TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
      * @param {string} text - TBD.
      * @param {object} style - TBD.
      */
-    constructor(game: object, x: number, y: number, text?: string, style?: object);
-    canvas: object;
+    constructor(game: Game, x: number, y: number, text?: string, style?: object);
+    canvas: any;
     context: any;
     padding: Point;
-    textBounds: Rectangle | null;
+    textBounds: Rectangle;
     style: any;
     colors: any[];
     strokeColors: any[];
@@ -26,8 +26,8 @@ export class Text extends Image {
     _lineSpacing: number;
     _charCount: number;
     setShadow(x?: number, y?: number, color?: string, blur?: number, shadowStroke?: boolean, shadowFill?: boolean): Text;
-    dirty: boolean | undefined;
-    setStyle(style?: null, update?: boolean): Text;
+    dirty: boolean;
+    setStyle(style?: any, update?: boolean): Text;
     updateText(): void;
     renderTabLine(line: any, x: any, y: any, fill: any): void;
     updateShadow(state: any): void;
@@ -122,4 +122,5 @@ export class Text extends Image {
 import { Image } from './image';
 import { Point } from '../geom/point';
 import { Rectangle } from '../geom/rectangle';
+import { Game } from '../core/game';
 //# sourceMappingURL=text.d.ts.map

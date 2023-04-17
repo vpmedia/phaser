@@ -2,7 +2,7 @@ export class FastShader {
     constructor(gl: any);
     gl: any;
     _UID: string;
-    program: object | null;
+    program: any;
     textureCount: number;
     fragmentSrc: string[];
     vertexSrc: string[];
@@ -18,7 +18,7 @@ export class FastShader {
     aRotation: any;
     aTextureCoord: any;
     colorAttribute: any;
-    attributes: any[] | null | undefined;
+    attributes: any[];
     destroy(): void;
     uniforms: any;
 }

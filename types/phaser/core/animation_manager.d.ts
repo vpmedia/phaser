@@ -16,7 +16,7 @@ export class AnimationManager {
     set frameName(arg: any);
     get frameName(): any;
     copyFrameData(frameData: any, frame: any): boolean;
-    add(name: any, frameList: any, frameRate?: number, loop?: boolean, useNumericIndex?: undefined): any;
+    add(name: any, frameList: any, frameRate?: number, loop?: boolean, useNumericIndex?: any): any;
     validateFrames(frames: any, useNumericIndex?: boolean): boolean;
     play(name: any, frameRate: any, loop: any, killOnComplete: any): any;
     stop(name: any, resetFrame?: boolean): void;

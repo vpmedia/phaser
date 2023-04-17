@@ -2,7 +2,7 @@ export class NormalShader {
     constructor(gl: any);
     gl: any;
     _UID: string;
-    program: object | null;
+    program: any;
     fragmentSrc: string[];
     textureCount: number;
     firstRun: boolean;

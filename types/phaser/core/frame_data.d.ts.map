@@ -1,1 +1,1 @@
-{"version":3,"file":"frame_data.d.ts","sourceRoot":"","sources":["../../../src/phaser/core/frame_data.js"],"names":[],"mappings":"AAOA;IAEI,eAAiB;IACjB,mBAAqB;IAGvB,0BAOC;IAED,8BAKC;IAED,+BAKC;IAED,mCAKC;IAED,gBAEC;IAED,0DAMC;IAED,8EAgBC;IAED,gBAGC;IAED,oBAEC;CACF"}
+{"version":3,"file":"frame_data.d.ts","sourceRoot":"","sources":["../../../src/phaser/core/frame_data.js"],"names":[],"mappings":"AAOA;IAEI,eAAiB;IACjB,mBAAqB;IAGvB,0BAOC;IAED,8BAKC;IAED,+BAKC;IAED,mCAKC;IAED,aAEC;IAED,uDAMC;IAED,2EAgBC;IAED,gBAGC;IAED,oBAEC;CACF"}

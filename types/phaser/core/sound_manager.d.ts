@@ -19,7 +19,7 @@ export class SoundManager {
     _watchContext: any;
     boot(): void;
     masterGain: any;
-    onUnlockEventBinded: ((event: any) => void) | undefined;
+    onUnlockEventBinded: (event: any) => void;
     addUnlockHandlers(): void;
     removeUnlockHandlers(): void;
     onUnlockEvent(event: any): void;
@@ -33,7 +33,7 @@ export class SoundManager {
     addSprite(key: any): SoundSprite;
     remove(sound: any): boolean;
     removeByKey(key: any): number;
-    play(key: any, volume?: number, loop?: boolean): Sound | null;
+    play(key: any, volume?: number, loop?: boolean): Sound;
     setMute(): void;
     _muteVolume: any;
     unsetMute(): void;

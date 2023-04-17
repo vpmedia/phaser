@@ -2,7 +2,7 @@ export class ComplexPrimitiveShader {
     constructor(gl: any);
     gl: any;
     _UID: string;
-    program: object | null;
+    program: any;
     fragmentSrc: string[];
     vertexSrc: string[];
     init(): void;
@@ -12,7 +12,7 @@ export class ComplexPrimitiveShader {
     color: any;
     flipY: any;
     aVertexPosition: any;
-    attributes: any[] | undefined;
+    attributes: any[];
     translationMatrix: any;
     alpha: any;
     destroy(): void;

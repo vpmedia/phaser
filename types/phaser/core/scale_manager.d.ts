@@ -19,11 +19,11 @@ export class ScaleManager {
     leaveIncorrectOrientation: Signal;
     hasPhaserSetFullScreen: boolean;
     fullScreenTarget: any;
-    _createdFullScreenTarget: HTMLDivElement | null;
+    _createdFullScreenTarget: HTMLDivElement;
     onFullScreenInit: Signal;
     onFullScreenChange: Signal;
     onFullScreenError: Signal;
-    screenOrientation: OrientationType;
+    screenOrientation: any;
     scaleFactor: Point;
     scaleFactorInversed: Point;
     margin: {
@@ -44,7 +44,7 @@ export class ScaleManager {
     };
     compatibility: {
         supportsFullScreen: boolean;
-        orientationFallback: null;
+        orientationFallback: any;
         noMargins: boolean;
         canExpandParent: boolean;
         clickTrampoline: string;
@@ -62,7 +62,7 @@ export class ScaleManager {
     _fullScreenRestore: {
         targetWidth: any;
         targetHeight: any;
-    } | null;
+    };
     _gameSize: Rectangle;
     _userScaleFactor: Point;
     _userScaleTrim: Point;
@@ -75,10 +75,10 @@ export class ScaleManager {
     _lastReportedGameSize: Rectangle;
     _booted: boolean;
     boot(): void;
-    _orientationChange: ((event: any) => void) | undefined;
-    _windowResize: ((event: any) => void) | undefined;
-    _fullScreenChange: ((event: any) => void) | undefined;
-    _fullScreenError: ((event: any) => void) | undefined;
+    _orientationChange: (event: any) => void;
+    _windowResize: (event: any) => void;
+    _fullScreenChange: (event: any) => void;
+    _fullScreenError: (event: any) => void;
     set scaleMode(arg: number);
     get scaleMode(): number;
     parseConfig(config: any): void;
@@ -96,7 +96,7 @@ export class ScaleManager {
     updateDimensions(width: any, height: any, resize: any): void;
     updateScalingAndBounds(): void;
     forceOrientation(forceLandscape?: boolean, forcePortrait?: boolean): void;
-    classifyOrientation(orientation: any): "portrait" | "landscape" | null;
+    classifyOrientation(orientation: any): "portrait" | "landscape";
     updateOrientationState(): boolean;
     orientationChange(event: any): void;
     windowResize(event: any): void;

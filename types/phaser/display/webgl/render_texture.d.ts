@@ -8,7 +8,7 @@ export class RenderTexture extends Texture {
     renderer: any;
     textureBuffer: CanvasBuffer | FilterTexture;
     render: () => void;
-    projection: Point | undefined;
+    projection: Point;
     resize(): void;
     clear(): void;
     renderWebGL(): void;

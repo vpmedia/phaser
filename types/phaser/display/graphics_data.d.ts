@@ -10,6 +10,6 @@ export class GraphicsData {
     fill: any;
     shape: any;
     type: any;
-    clone(): object;
+    clone(): any;
 }
 //# sourceMappingURL=graphics_data.d.ts.map

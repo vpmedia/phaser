@@ -2,7 +2,7 @@ export class BitmapText extends DisplayObject {
     /**
      * TBD.
      *
-     * @param {object} game - TBD.
+     * @param {Game} game - TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
      * @param {string} font - TBD.
@@ -10,8 +10,8 @@ export class BitmapText extends DisplayObject {
      * @param {number} size - TBD.
      * @param {string} align - TBD.
      */
-    constructor(game: object, x?: number, y?: number, font?: string, text?: string, size?: number, align?: string);
-    game: object;
+    constructor(game: Game, x?: number, y?: number, font?: string, text?: string, size?: number, align?: string);
+    game: Game;
     type: number;
     textWidth: number;
     textHeight: number;
@@ -25,7 +25,7 @@ export class BitmapText extends DisplayObject {
     _align: string;
     _tint: number;
     dirty: boolean;
-    renderOrderID: any;
+    renderOrderID: number;
     setText(text: any): void;
     set text(arg: string);
     get text(): string;
@@ -55,5 +55,6 @@ export class BitmapText extends DisplayObject {
     get smoothed(): boolean;
 }
 import { DisplayObject } from './display_object';
+import { Game } from '../core/game';
 import { Point } from '../geom/point';
 //# sourceMappingURL=bitmap_text.d.ts.map
