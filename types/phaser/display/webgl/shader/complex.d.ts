@@ -1,4 +1,4 @@
-export default class _default {
+export class ComplexPrimitiveShader {
     constructor(gl: any);
     gl: any;
     _UID: string;

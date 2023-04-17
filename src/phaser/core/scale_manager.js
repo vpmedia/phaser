@@ -4,7 +4,7 @@
  * @author       Richard Davey <rich@photonstorm.com>
  */
 import { Signal } from  './signal';
-import DOM from './dom';
+import { DOM } from './dom';
 import { Point } from '../geom/point';
 import { Rectangle } from  '../geom/rectangle';
 import {

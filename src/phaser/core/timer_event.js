@@ -4,7 +4,7 @@
  * @author       Richard Davey <rich@photonstorm.com>
  */
 
-export default class {
+export class TimerEvent {
   constructor(timer, delay, tick, repeatCount, loop, callback, callbackContext, args) {
     this.timer = timer;
     this.delay = delay;

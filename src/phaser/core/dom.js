@@ -112,7 +112,7 @@ class DocumentBoundsRectangle {
   }
 }
 
-export default class {
+export class DOM {
   constructor(device) {
     this.treatAsDesktop =
       device.desktop &&

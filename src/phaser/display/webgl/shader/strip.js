@@ -9,7 +9,7 @@ import { compileProgram } from '../util';
 
 // the next one is used for rendering triangle strips
 
-export default class {
+export class StripShader {
   constructor(gl) {
     this.gl = gl;
     this._UID = generateShaderID();

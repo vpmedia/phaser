@@ -11,6 +11,7 @@ export function getStencilBufferLimit(): number;
  */
 export function getGraphicsDataPool(): object[];
 /**
+ * TBD.
  *
  * @param {object} webGL - TBD.
  * @param {number} type - TBD.
@@ -18,18 +19,21 @@ export function getGraphicsDataPool(): object[];
  */
 export function switchMode(webGL: object, type: number): object;
 /**
+ * TBD.
  *
  * @param {object} graphicsData - TBD.
  * @param {object} webGLData - TBD.
  */
 export function buildLine(graphicsData: object, webGLData: object): void;
 /**
+ * TBD.
  *
  * @param {object} graphicsData - TBD.
  * @param {object} webGLData - TBD.
  */
 export function buildRectangle(graphicsData: object, webGLData: object): void;
 /**
+ * TBD.
  *
  * @param {number} fromX - TBD.
  * @param {number} fromY - TBD.
@@ -41,24 +45,28 @@ export function buildRectangle(graphicsData: object, webGLData: object): void;
  */
 export function quadraticBezierCurve(fromX: number, fromY: number, cpX: number, cpY: number, toX: number, toY: number): number[];
 /**
+ * TBD.
  *
  * @param {object} graphicsData - TBD.
  * @param {object} webGLData - TBD.
  */
 export function buildRoundedRectangle(graphicsData: object, webGLData: object): void;
 /**
+ * TBD.
  *
  * @param {object} graphicsData - TBD.
  * @param {object} webGLData - TBD.
  */
 export function buildCircle(graphicsData: object, webGLData: object): void;
 /**
+ * TBD.
  *
  * @param {object} graphicsData - TBD.
  * @param {object} webGLData - TBD.
  */
 export function buildComplexPoly(graphicsData: object, webGLData: object): void;
 /**
+ * TBD.
  *
  * @param {object} graphicsData - TBD.
  * @param {object} webGLData - TBD.
@@ -66,12 +74,14 @@ export function buildComplexPoly(graphicsData: object, webGLData: object): void;
  */
 export function buildPoly(graphicsData: object, webGLData: object): boolean;
 /**
+ * TBD.
  *
  * @param {object} graphics - TBD.
  * @param {object} gl - TBD.
  */
 export function updateGraphics(graphics: object, gl: object): void;
 /**
+ * TBD.
  *
  * @param {object} graphics - TBD.
  * @param {object} renderSession - TBD.

@@ -1,4 +1,4 @@
-export default class _default {
+export class DOM {
     constructor(device: any);
     treatAsDesktop: any;
     visualBounds: VisualBoundsDesktopRectangle | VisualBoundsRectangle;

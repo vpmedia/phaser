@@ -1,4 +1,4 @@
-export default class _default extends DisplayObject {
+export class SpriteBatch extends DisplayObject {
     /**
      * TBD.
      *

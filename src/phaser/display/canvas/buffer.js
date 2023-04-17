@@ -6,7 +6,7 @@
  */
 import { create, removeByCanvas } from './pool';
 
-export default class {
+export class CanvasBuffer {
   constructor(width, height) {
     this.width = width;
     this.height = height;

@@ -9,7 +9,7 @@ import { compileProgram } from '../util';
 
 // the next one is used for rendering primitives
 
-export default class {
+export class PrimitiveShader {
   constructor(gl) {
     this.gl = gl;
     this._UID = generateShaderID();

@@ -5,7 +5,7 @@
  * @author       Mat Groves http://matgroves.com/ @Doormat23
  */
 
-export default class {
+export class AbstractFilter {
   constructor(fragmentSrc, uniforms) {
     this.passes = [this];
     this.shaders = [];

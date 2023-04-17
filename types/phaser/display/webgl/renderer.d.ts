@@ -1,4 +1,4 @@
-export default class _default {
+export class WebGLRenderer {
     constructor(game: any);
     type: number;
     resolution: any;
@@ -36,9 +36,9 @@ export default class _default {
     mapBlendModes(): void;
 }
 import { Point } from '../../geom/point';
-import WebGLShaderManager from './shader_manager';
-import WebGLSpriteBatch from './sprite_batch';
-import WebGLFilterManager from './filter_manager';
-import WebGLStencilManager from './stencil_manager';
-import WebGLBlendModeManager from './blend_manager';
+import { WebGLShaderManager } from './shader_manager';
+import { WebGLSpriteBatch } from './sprite_batch';
+import { WebGLFilterManager } from './filter_manager';
+import { WebGLStencilManager } from './stencil_manager';
+import { WebGLBlendModeManager } from './blend_manager';
 //# sourceMappingURL=renderer.d.ts.map

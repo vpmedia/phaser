@@ -4,9 +4,10 @@
  * @author       Richard Davey <rich@photonstorm.com>
  * @author       Mat Groves http://matgroves.com/ @Doormat23
  */
-import Node from './earcut_node';
+import { Node } from './earcut_node';
 
 /**
+ * TBD.
  *
  * @param {object} list - TBD.
  * @returns {object} TBD.
@@ -73,6 +74,7 @@ export function sortLinked(list) {
 }
 
 /**
+ * TBD.
  *
  * @param {object} a - TBD.
  * @param {object} b - TBD.
@@ -83,6 +85,7 @@ export function compareX(a, b) {
 }
 
 /**
+ * TBD.
  *
  * @param {number} x - TBD.
  * @param {number} y - TBD.
@@ -107,6 +110,7 @@ export function zOrder(x, y, minX, minY, size) {
 }
 
 /**
+ * TBD.
  *
  * @param {object} start - TBD.
  * @param {number} minX - TBD.
@@ -127,6 +131,7 @@ export function indexCurve(start, minX, minY, size) {
 }
 
 /**
+ * TBD.
  *
  * @param {object} start - TBD.
  * @returns {object} TBD.
@@ -142,6 +147,7 @@ export function getLeftmost(start) {
 }
 
 /**
+ * TBD.
  *
  * @param {number} ax - TBD.
  * @param {number} ay - TBD.
@@ -162,6 +168,7 @@ export function pointInTriangle(ax, ay, bx, by, cx, cy, px, py) {
 }
 
 /**
+ * TBD.
  *
  * @param {object} p - TBD.
  * @param {object} q - TBD.
@@ -173,6 +180,7 @@ export function area(p, q, r) {
 }
 
 /**
+ * TBD.
  *
  * @param {object} p1 - TBD.
  * @param {object} p2 - TBD.
@@ -183,6 +191,7 @@ export function equals(p1, p2) {
 }
 
 /**
+ * TBD.
  *
  * @param {object} p1 - TBD.
  * @param {object} q1 - TBD.
@@ -197,6 +206,7 @@ export function intersects(p1, q1, p2, q2) {
 }
 
 /**
+ * TBD.
  *
  * @param {object} a - TBD.
  * @param {object} b - TBD.
@@ -219,6 +229,7 @@ export function intersectsPolygon(a, b) {
 }
 
 /**
+ * TBD.
  *
  * @param {object} a - TBD.
  * @param {object} b - TBD.
@@ -231,6 +242,7 @@ export function locallyInside(a, b) {
 }
 
 /**
+ * TBD.
  *
  * @param {object} a - TBD.
  * @param {object} b - TBD.
@@ -254,6 +266,7 @@ export function middleInside(a, b) {
 }
 
 /**
+ * TBD.
  *
  * @param {object} a - TBD.
  * @param {object} b - TBD.
@@ -272,6 +285,7 @@ export function isValidDiagonal(a, b) {
 }
 
 /**
+ * TBD.
  *
  * @param {object} a - TBD.
  * @param {object} b - TBD.
@@ -294,6 +308,7 @@ export function splitPolygon(a, b) {
 }
 
 /**
+ * TBD.
  *
  * @param {number} i - TBD.
  * @param {number} x - TBD.
@@ -316,6 +331,7 @@ export function insertNode(i, x, y, last) {
 }
 
 /**
+ * TBD.
  *
  * @param {object} p - TBD.
  */
@@ -331,6 +347,7 @@ export function removeNode(p) {
 }
 
 /**
+ * TBD.
  *
  * @param {object} ear - TBD.
  * @returns {boolean} TBD.
@@ -351,6 +368,7 @@ export function isEar(ear) {
 }
 
 /**
+ * TBD.
  *
  * @param {object} ear - TBD.
  * @param {number} minX - TBD.
@@ -401,6 +419,7 @@ export function isEarHashed(ear, minX, minY, size) {
 }
 
 /**
+ * TBD.
  *
  * @param {object} data - TBD.
  * @param {number} start - TBD.
@@ -429,6 +448,7 @@ export function linkedList(data, start, end, dim, clockwise) {
 }
 
 /**
+ * TBD.
  *
  * @param {object} start - TBD.
  * @param {object} end - TBD.
@@ -455,6 +475,7 @@ export function filterPoints(start, end) {
 }
 
 /**
+ * TBD.
  *
  * @param {object} hole - TBD.
  * @param {object} outerNode - TBD.
@@ -505,6 +526,7 @@ export function findHoleBridge(hole, outerNode) {
 }
 
 /**
+ * TBD.
  *
  * @param {object} hole - TBD.
  * @param {object} outerNode - TBD.
@@ -518,6 +540,7 @@ export function eliminateHole(hole, outerNode) {
 }
 
 /**
+ * TBD.
  *
  * @param {object} data - TBD.
  * @param {object} holeIndices - TBD.
@@ -549,6 +572,7 @@ export function eliminateHoles(data, holeIndices, outerNode, dim) {
 }
 
 /**
+ * TBD.
  *
  * @param {object} start - TBD.
  * @param {object} triangles - TBD.
@@ -577,6 +601,7 @@ export function cureLocalIntersections(start, triangles, dim) {
 }
 
 /**
+ * TBD.
  *
  * @param {object} start - TBD.
  * @param {object} triangles - TBD.
@@ -609,6 +634,7 @@ export function splitEarcut(start, triangles, dim, minX, minY, size) {
 }
 
 /**
+ * TBD.
  *
  * @param {object} ear - TBD.
  * @param {object} triangles - TBD.
@@ -660,6 +686,7 @@ export function earcutLinked(ear, triangles, dim, minX, minY, size, pass) {
 }
 
 /**
+ * TBD.
  *
  * @param {object} data - TBD.
  * @param {object} holeIndices - TBD.

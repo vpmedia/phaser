@@ -47,6 +47,6 @@ export class Image extends DisplayObject {
     renderCanvas(renderSession: any, matrix?: null): void;
 }
 import { DisplayObject } from './display_object';
-import EventManager from '../core/event_manager';
-import AnimationManager from '../core/animation_manager';
+import { EventManager } from '../core/event_manager';
+import { AnimationManager } from '../core/animation_manager';
 //# sourceMappingURL=image.d.ts.map

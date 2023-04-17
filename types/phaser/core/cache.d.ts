@@ -8,7 +8,7 @@ export const BITMAPFONT: 6;
 export const JSON: 7;
 export const XML: 8;
 export const RENDER_TEXTURE: 9;
-export default class _default {
+export class Cache {
     constructor(game: any);
     game: any;
     autoResolveURL: boolean;

@@ -3,7 +3,7 @@
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  */
-export default class _default {
+export class MSPointer {
     constructor(game: any);
     game: any;
     input: any;

@@ -1,4 +1,4 @@
-export default class _default {
+export class CanvasRenderer {
     constructor(game: any);
     type: number;
     resolution: any;

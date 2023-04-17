@@ -7,7 +7,7 @@ import { Point } from '../geom/point';
 import { GROUP } from './const';
 import { distance } from '../util/math';
 
-export default class {
+export class InputHandler {
   constructor(sprite) {
     this.sprite = sprite;
     this.game = sprite.game;

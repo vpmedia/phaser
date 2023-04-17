@@ -1,4 +1,4 @@
-export default class _default {
+export class AnimationManager {
     constructor(sprite: any);
     sprite: any;
     game: any;

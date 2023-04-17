@@ -1,4 +1,4 @@
-export default class _default {
+export class WebGLShaderManager {
     gl: any;
     primitiveShader: PrimitiveShader | null;
     complexPrimitiveShader: ComplexPrimitiveShader | null;
@@ -16,9 +16,9 @@ export default class _default {
     currentShader: any;
     destroy(): void;
 }
-import PrimitiveShader from './shader/primitive';
-import ComplexPrimitiveShader from './shader/complex';
-import NormalShader from './shader/normal';
-import FastShader from './shader/fast';
-import StripShader from './shader/strip';
+import { PrimitiveShader } from './shader/primitive';
+import { ComplexPrimitiveShader } from './shader/complex';
+import { NormalShader } from './shader/normal';
+import { FastShader } from './shader/fast';
+import { StripShader } from './shader/strip';
 //# sourceMappingURL=shader_manager.d.ts.map

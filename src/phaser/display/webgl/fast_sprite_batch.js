@@ -5,9 +5,7 @@
  * @author       Mat Groves http://matgroves.com/ @Doormat23
  */
 
-// TODO: fix ++ +=1 conversion issues (when a is 0 than a++ is 0 but a+=1 is 1)
-
-export default class {
+export class FastSpriteBatch {
   constructor(gl) {
     this.vertSize = 10;
     this.maxSize = 6000; // Math.pow(2, 16) / this.vertSize;

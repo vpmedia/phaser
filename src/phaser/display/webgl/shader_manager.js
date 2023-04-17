@@ -4,13 +4,13 @@
  * @author       Richard Davey <rich@photonstorm.com>
  * @author       Mat Groves http://matgroves.com/ @Doormat23
  */
-import PrimitiveShader from './shader/primitive';
-import ComplexPrimitiveShader from './shader/complex';
-import NormalShader from './shader/normal';
-import FastShader from './shader/fast';
-import StripShader from './shader/strip';
+import { PrimitiveShader } from './shader/primitive';
+import { ComplexPrimitiveShader } from './shader/complex';
+import { NormalShader } from './shader/normal';
+import { FastShader } from './shader/fast';
+import { StripShader } from './shader/strip';
 
-export default class {
+export class WebGLShaderManager {
   constructor() {
     this.gl = null;
     this.primitiveShader = null;

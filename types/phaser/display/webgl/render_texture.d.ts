@@ -1,4 +1,4 @@
-export default class _default extends Texture {
+export class RenderTexture extends Texture {
     constructor(width: any, height: any, renderer: any, scaleMode: any, resolution?: number);
     width: any;
     height: any;
@@ -19,7 +19,7 @@ export default class _default extends Texture {
 }
 import { Texture } from './texture';
 import { Rectangle } from '../../geom/rectangle';
-import CanvasBuffer from '../canvas/buffer';
-import FilterTexture from './filter_texture';
+import { CanvasBuffer } from '../canvas/buffer';
+import { FilterTexture } from './filter_texture';
 import { Point } from '../../geom/point';
 //# sourceMappingURL=render_texture.d.ts.map

@@ -6,7 +6,7 @@
  */
 import { hex2rgb } from '../../util/math';
 
-export default class {
+export class WebGLStencilManager {
   constructor() {
     this.stencilStack = [];
     this.reverse = true;

@@ -1,4 +1,4 @@
-export default class _default {
+export class CanvasBuffer {
     constructor(width: any, height: any);
     width: any;
     height: any;

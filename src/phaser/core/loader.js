@@ -9,7 +9,7 @@ import { canPlayAudio } from './device_util';
 
 const TEXTURE_ATLAS_JSON_HASH = 1;
 
-export default class {
+export class Loader {
   constructor(game) {
     this.game = game;
     this.cache = game.cache;

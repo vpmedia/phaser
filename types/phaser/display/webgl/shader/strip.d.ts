@@ -1,4 +1,4 @@
-export default class _default {
+export class StripShader {
     constructor(gl: any);
     gl: any;
     _UID: string;

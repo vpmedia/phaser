@@ -1,4 +1,4 @@
-export default class _default {
+export class WebGLSpriteBatch {
     vertSize: number;
     size: number;
     vertices: ArrayBuffer;
@@ -32,5 +32,5 @@ export default class _default {
     start(): void;
     destroy(): void;
 }
-import AbstractFilter from './abstract_filter';
+import { AbstractFilter } from './abstract_filter';
 //# sourceMappingURL=sprite_batch.d.ts.map

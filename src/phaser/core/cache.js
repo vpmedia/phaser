@@ -22,7 +22,7 @@ export const JSON = 7;
 export const XML = 8;
 export const RENDER_TEXTURE = 9;
 
-export default class {
+export class Cache {
   constructor(game) {
     this.game = game;
     this.autoResolveURL = false;

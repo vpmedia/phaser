@@ -1,4 +1,4 @@
-export default class _default {
+export class Input {
     constructor(game: any);
     game: any;
     hitCanvas: object | null;
@@ -83,10 +83,10 @@ export default class _default {
 }
 import { Point } from '../geom/point';
 import { Circle } from '../geom/circle';
-import Pointer from './input_pointer';
-import Mouse from './input_mouse';
-import Touch from './input_touch';
-import MSPointer from './input_mspointer';
+import { Pointer } from './input_pointer';
+import { Mouse } from './input_mouse';
+import { Touch } from './input_touch';
+import { MSPointer } from './input_mspointer';
 import { Signal } from './signal';
 import { ArraySet } from './array_set';
 //# sourceMappingURL=input.d.ts.map

@@ -29,7 +29,7 @@ const defaultVertexSrc = [
 
 // this shader is used for the default sprite rendering
 
-export default class {
+export class NormalShader {
   constructor(gl) {
     this.gl = gl;
     this._UID = generateShaderID();

@@ -4,9 +4,9 @@
  * @author       Richard Davey <rich@photonstorm.com>
  * @author       Mat Groves http://matgroves.com/ @Doormat23
  */
-export default class _default {
+export class AbstractFilter {
     constructor(fragmentSrc: any, uniforms: any);
-    passes: default[];
+    passes: AbstractFilter[];
     shaders: any[];
     dirty: boolean;
     padding: number;

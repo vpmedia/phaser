@@ -4,7 +4,7 @@
  * @author       Richard Davey <rich@photonstorm.com>
  */
 
-export default class {
+export class Touch {
   constructor(game) {
     this.game = game;
     this.enabled = true;

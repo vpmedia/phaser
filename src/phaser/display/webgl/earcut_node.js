@@ -5,7 +5,7 @@
  * @author       Mat Groves http://matgroves.com/ @Doormat23
  */
 
-export default class {
+export class Node {
   constructor(i, x, y) {
     // vertice index in coordinates array
     this.i = i;

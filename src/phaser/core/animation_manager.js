@@ -5,7 +5,7 @@
  */
 import { Animation } from './animation';
 
-export default class {
+export class AnimationManager {
   constructor(sprite) {
     this.sprite = sprite;
     this.game = sprite.game;

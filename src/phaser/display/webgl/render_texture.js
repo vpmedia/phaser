@@ -8,11 +8,11 @@ import { Rectangle } from  '../../geom/rectangle';
 import { Point } from '../../geom/point';
 import { Texture } from './texture';
 import { BaseTexture } from './base_texture';
-import FilterTexture from './filter_texture';
-import CanvasBuffer from '../canvas/buffer';
+import { FilterTexture } from './filter_texture';
+import { CanvasBuffer } from '../canvas/buffer';
 import { RENDER_WEBGL } from '../../core/const';
 
-export default class extends Texture {
+export class RenderTexture extends Texture {
   constructor(width, height, renderer, scaleMode, resolution = 1) {
     const w = width || 100;
     const h = height || 100;

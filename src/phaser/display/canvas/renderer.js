@@ -30,7 +30,7 @@ import { getSmoothingPrefix } from './util';
 import { detectCapabilities } from './tinter';
 import * as CanvasMaskManager from './masker';
 
-export default class {
+export class CanvasRenderer {
   constructor(game) {
     detectCapabilities();
     this.type = RENDER_CANVAS;

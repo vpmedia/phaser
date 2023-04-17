@@ -1,4 +1,4 @@
-export default class _default {
+export class WebGLStencilManager {
     stencilStack: any[];
     reverse: boolean;
     count: number;

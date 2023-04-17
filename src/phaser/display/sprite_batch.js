@@ -6,7 +6,7 @@
  */
 import { DisplayObject } from  './display_object';
 
-export default class extends DisplayObject {
+export class SpriteBatch extends DisplayObject {
   /**
    * TBD.
    *

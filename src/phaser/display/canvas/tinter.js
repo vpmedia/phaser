@@ -4,7 +4,7 @@
  * @author       Richard Davey <rich@photonstorm.com>
  * @author       Mat Groves http://matgroves.com/ @Doormat23
  */
-import CanvasBuffer from './buffer';
+import { CanvasBuffer } from './buffer';
 import { create, removeByCanvas } from './pool';
 import { hex2rgb } from '../../util/math';
 

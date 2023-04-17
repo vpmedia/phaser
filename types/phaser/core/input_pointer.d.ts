@@ -1,4 +1,4 @@
-export default class _default {
+export class Pointer {
     constructor(game: any, id: any, pointerMode: any);
     game: any;
     id: any;
@@ -46,13 +46,13 @@ export default class _default {
     _trampolineTargetObject: any;
     resetButtons(): void;
     updateButtons(event: any): void;
-    start(event: any): default;
+    start(event: any): Pointer;
     update(): void;
-    move(event: any, fromClick?: boolean): default | null;
+    move(event: any, fromClick?: boolean): Pointer | null;
     processInteractiveObjects(fromClick?: boolean): boolean;
     swapTarget(newTarget: any, silent?: boolean): void;
     leave(event: any): void;
-    stop(event: any): default | null;
+    stop(event: any): Pointer | null;
     justPressed(duration: any): boolean;
     justReleased(duration: any): boolean;
     addClickTrampoline(name: any, callback: any, callbackContext: any, callbackArgs: any): void;

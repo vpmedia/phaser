@@ -6,7 +6,7 @@
  */
 import { SCALE_LINEAR } from '../../core/const';
 
-export default class {
+export class FilterTexture {
   constructor(gl, width, height, scaleMode) {
     this.gl = gl;
     this.frameBuffer = gl.createFramebuffer();

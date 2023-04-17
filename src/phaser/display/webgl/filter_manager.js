@@ -5,7 +5,7 @@
  * @author       Mat Groves http://matgroves.com/ @Doormat23
  */
 
-export default class {
+export class WebGLFilterManager {
   constructor() {
     this.filterStack = [];
     this.offsetX = 0;

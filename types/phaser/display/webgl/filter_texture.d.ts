@@ -1,4 +1,4 @@
-export default class _default {
+export class FilterTexture {
     constructor(gl: any, width: any, height: any, scaleMode: any);
     gl: any;
     frameBuffer: any;

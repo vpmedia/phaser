@@ -5,8 +5,8 @@
  * @author       Richard Davey <rich@photonstorm.com>
  */
 import { Texture } from './webgl/texture';
-import AnimationManager from '../core/animation_manager';
-import EventManager from '../core/event_manager';
+import { AnimationManager } from '../core/animation_manager';
+import { EventManager } from '../core/event_manager';
 import { Rectangle } from  '../geom/rectangle';
 import { DisplayObject } from  './display_object';
 import { clone } from '../geom/util/rectangle';

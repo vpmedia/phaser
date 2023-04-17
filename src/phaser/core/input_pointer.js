@@ -14,7 +14,7 @@ import {
   MOUSE_TOUCH_COMBINE,
 } from './const';
 
-export default class {
+export class Pointer {
   constructor(game, id, pointerMode) {
     this.game = game;
     this.id = id;

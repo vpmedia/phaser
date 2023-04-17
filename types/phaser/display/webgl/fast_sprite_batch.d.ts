@@ -4,7 +4,7 @@
  * @author       Richard Davey <rich@photonstorm.com>
  * @author       Mat Groves http://matgroves.com/ @Doormat23
  */
-export default class _default {
+export class FastSpriteBatch {
     constructor(gl: any);
     vertSize: number;
     maxSize: number;

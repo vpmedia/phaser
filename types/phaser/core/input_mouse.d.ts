@@ -1,4 +1,4 @@
-export default class _default {
+export class Mouse {
     constructor(game: any);
     game: any;
     input: any;

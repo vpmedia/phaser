@@ -4,7 +4,7 @@
  * @author       Richard Davey <rich@photonstorm.com>
  */
 import { Signal } from  './signal';
-import TimerEvent from './timer_event';
+import { TimerEvent } from './timer_event';
 
 export class Timer {
   constructor(game, autoDestroy = false) {

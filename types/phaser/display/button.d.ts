@@ -43,5 +43,5 @@ export class Button extends Image {
 }
 import { Image } from './image';
 import { Signal } from '../core/signal';
-import InputHandler from '../core/input_handler';
+import { InputHandler } from '../core/input_handler';
 //# sourceMappingURL=button.d.ts.map

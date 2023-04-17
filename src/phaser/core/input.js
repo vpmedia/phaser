@@ -9,16 +9,16 @@ import { Image } from '../display/image';
 import { Signal } from  './signal';
 import { Point } from '../geom/point';
 import { Circle } from  '../geom/circle';
-import Mouse from './input_mouse';
-import MSPointer from './input_mspointer';
-import Pointer from './input_pointer';
-import Touch from './input_touch';
+import { Mouse } from './input_mouse';
+import { MSPointer } from './input_mspointer';
+import { Pointer } from './input_pointer';
+import { Touch } from './input_touch';
 import { POINTER_CURSOR, POINTER_CONTACT, MOUSE_TOUCH_COMBINE } from './const';
 import { create, remove } from '../display/canvas/pool';
 
 const MAX_POINTERS = 10;
 
-export default class {
+export class Input {
   constructor(game) {
     this.game = game;
     this.hitCanvas = null;

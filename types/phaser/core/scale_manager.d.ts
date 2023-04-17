@@ -130,7 +130,7 @@ export class ScaleManager {
     get isGamePortrait(): boolean;
     get isGameLandscape(): boolean;
 }
-import DOM from './dom';
+import { DOM } from './dom';
 import { Point } from '../geom/point';
 import { Signal } from './signal';
 import { Rectangle } from '../geom/rectangle';

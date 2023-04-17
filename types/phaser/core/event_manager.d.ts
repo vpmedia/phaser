@@ -1,4 +1,4 @@
-export default class _default {
+export class EventManager {
     constructor(sprite: any);
     parent: any;
     _onAddedToGroup: Signal | null;

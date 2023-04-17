@@ -5,7 +5,7 @@
  */
 import { Signal } from  './signal';
 
-export default class {
+export class EventManager {
   constructor(sprite) {
     this.parent = sprite;
     this._onAddedToGroup = null;

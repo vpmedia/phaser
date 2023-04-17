@@ -9,7 +9,7 @@ import { compileProgram } from '../util';
 
 // this shader is used for the fast sprite rendering
 
-export default class {
+export class FastShader {
   constructor(gl) {
     this.gl = gl;
     this._UID = generateShaderID();

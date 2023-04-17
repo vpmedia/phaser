@@ -4,12 +4,10 @@
  * @author       Richard Davey <rich@photonstorm.com>
  * @author       Mat Groves http://matgroves.com/ @Doormat23
  */
-import AbstractFilter from './abstract_filter';
-import NormalShader from './shader/normal';
+import { AbstractFilter } from './abstract_filter';
+import { NormalShader } from './shader/normal';
 
-// TODO: fix ++ +=1 conversion issues (when a is 0 than a++ is 0 but a+=1 is 1)
-
-export default class {
+export class WebGLSpriteBatch {
   constructor() {
     this.vertSize = 5;
     this.size = 2000; // Math.pow(2, 16) /  this.vertSize;

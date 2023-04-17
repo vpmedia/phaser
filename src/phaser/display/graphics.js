@@ -13,7 +13,7 @@ import { Circle } from  '../geom/circle';
 import { Ellipse } from  '../geom/ellipse';
 import { Point } from '../geom/point';
 import { GraphicsData } from  './graphics_data';
-import CanvasBuffer from './canvas/buffer';
+import { CanvasBuffer } from './canvas/buffer';
 import { textureFromCanvas } from './webgl/texture_util';
 import { renderGraphics as renderCanvasGraphics } from './canvas/graphics';
 import { renderGraphics as renderWebGLGraphics } from './webgl/graphics';

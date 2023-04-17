@@ -1,4 +1,4 @@
-export default class _default {
+export class NormalShader {
     constructor(gl: any);
     gl: any;
     _UID: string;

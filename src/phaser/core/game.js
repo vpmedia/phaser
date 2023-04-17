@@ -4,12 +4,12 @@
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  */
-import CanvasRenderer from '../display/canvas/renderer';
-import WebGLRenderer from '../display/webgl/renderer';
+import { CanvasRenderer } from '../display/canvas/renderer';
+import { WebGLRenderer } from '../display/webgl/renderer';
 import { Signal } from  './signal';
-import Loader from './loader';
-import Cache from './cache';
-import Input from './input';
+import { Loader } from './loader';
+import { Cache } from './cache';
+import { Input } from './input';
 import { Device } from './device';
 import { GameObjectFactory } from './factory';
 import { RequestAnimationFrame } from './raf';

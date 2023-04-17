@@ -3,8 +3,6 @@
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  */
-import { Signal } from  './signal';
-
 const NO_BUTTON = -1;
 const LEFT_BUTTON = 0;
 const MIDDLE_BUTTON = 1;
@@ -54,7 +52,7 @@ class WheelEventProxy {
   }
 }
 
-export default class {
+export class Mouse {
   constructor(game) {
     this.game = game;
     this.input = game.input;

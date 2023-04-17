@@ -1,4 +1,4 @@
-export default class _default {
+export class Loader {
     constructor(game: any);
     game: any;
     cache: any;
@@ -47,21 +47,21 @@ export default class _default {
         file: any;
     } | null;
     reset(hard: any, clearEvents?: boolean): void;
-    addToFileList(type: any, key?: string, url?: null, properties?: null, overwrite?: boolean, extension?: null): default;
-    replaceInFileList(type: any, key: any, url: any, properties: any): default;
-    pack(key: any, url: any, data: any, callbackContext: any): default;
-    image(key: any, url: any, overwrite: any): default;
-    images(keys: any, urls: any): default;
-    text(key: any, url: any, overwrite: any): default;
-    json(key: any, url: any, overwrite: any): default;
-    xml(key: any, url: any, overwrite: any): default;
-    spritesheet(key: any, url: any, frameWidth: any, frameHeight: any, frameMax?: number, margin?: number, spacing?: number): default;
-    audio(key: any, urls: any, autoDecode?: boolean): default;
-    audioSprite(key: any, urls: any, jsonURL: any, jsonData: any, autoDecode?: boolean): default;
-    bitmapFont(key: any, textureURL?: null, atlasURL?: null, atlasData?: null, xSpacing?: number, ySpacing?: number): default;
-    atlas(key: any, textureURL: any, atlasURL?: null, atlasData?: null, format?: number): default;
-    withSyncPoint(callback: any, callbackContext: any): default;
-    addSyncPoint(type: any, key: any): default;
+    addToFileList(type: any, key?: string, url?: null, properties?: null, overwrite?: boolean, extension?: null): Loader;
+    replaceInFileList(type: any, key: any, url: any, properties: any): Loader;
+    pack(key: any, url: any, data: any, callbackContext: any): Loader;
+    image(key: any, url: any, overwrite: any): Loader;
+    images(keys: any, urls: any): Loader;
+    text(key: any, url: any, overwrite: any): Loader;
+    json(key: any, url: any, overwrite: any): Loader;
+    xml(key: any, url: any, overwrite: any): Loader;
+    spritesheet(key: any, url: any, frameWidth: any, frameHeight: any, frameMax?: number, margin?: number, spacing?: number): Loader;
+    audio(key: any, urls: any, autoDecode?: boolean): Loader;
+    audioSprite(key: any, urls: any, jsonURL: any, jsonData: any, autoDecode?: boolean): Loader;
+    bitmapFont(key: any, textureURL?: null, atlasURL?: null, atlasData?: null, xSpacing?: number, ySpacing?: number): Loader;
+    atlas(key: any, textureURL: any, atlasURL?: null, atlasData?: null, format?: number): Loader;
+    withSyncPoint(callback: any, callbackContext: any): Loader;
+    addSyncPoint(type: any, key: any): Loader;
     removeFile(type: any, key: any): void;
     removeAll(): void;
     start(): void;

@@ -4,7 +4,7 @@
  * @author       Richard Davey <rich@photonstorm.com>
  * @author       Mat Groves http://matgroves.com/ @Doormat23
  */
-export default class _default {
+export class WebGLBlendModeManager {
     gl: any;
     currentBlendMode: number;
     setContext(gl: any): void;

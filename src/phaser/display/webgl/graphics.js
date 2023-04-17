@@ -41,6 +41,7 @@ export function getGraphicsDataPool() {
 }
 
 /**
+ * TBD.
  *
  * @param {object} webGL - TBD.
  * @param {number} type - TBD.
@@ -65,6 +66,7 @@ export function switchMode(webGL, type) {
 }
 
 /**
+ * TBD.
  *
  * @param {object} graphicsData - TBD.
  * @param {object} webGLData - TBD.
@@ -230,6 +232,7 @@ export function buildLine(graphicsData, webGLData) {
 }
 
 /**
+ * TBD.
  *
  * @param {object} graphicsData - TBD.
  * @param {object} webGLData - TBD.
@@ -274,6 +277,7 @@ export function buildRectangle(graphicsData, webGLData) {
 }
 
 /**
+ * TBD.
  *
  * @param {number} fromX - TBD.
  * @param {number} fromY - TBD.
@@ -313,6 +317,7 @@ export function quadraticBezierCurve(fromX, fromY, cpX, cpY, toX, toY) {
 }
 
 /**
+ * TBD.
  *
  * @param {object} graphicsData - TBD.
  * @param {object} webGLData - TBD.
@@ -374,6 +379,7 @@ export function buildRoundedRectangle(graphicsData, webGLData) {
 }
 
 /**
+ * TBD.
  *
  * @param {object} graphicsData - TBD.
  * @param {object} webGLData - TBD.
@@ -425,6 +431,7 @@ export function buildCircle(graphicsData, webGLData) {
 }
 
 /**
+ * TBD.
  *
  * @param {object} graphicsData - TBD.
  * @param {object} webGLData - TBD.
@@ -469,6 +476,7 @@ export function buildComplexPoly(graphicsData, webGLData) {
 }
 
 /**
+ * TBD.
  *
  * @param {object} graphicsData - TBD.
  * @param {object} webGLData - TBD.
@@ -508,6 +516,7 @@ export function buildPoly(graphicsData, webGLData) {
 }
 
 /**
+ * TBD.
  *
  * @param {object} graphics - TBD.
  * @param {object} gl - TBD.
@@ -597,6 +606,7 @@ export function updateGraphics(graphics, gl) {
 }
 
 /**
+ * TBD.
  *
  * @param {object} graphics - TBD.
  * @param {object} renderSession - TBD.
