@@ -1,4 +1,4 @@
-export default class _default {
+export class ScaleManager {
     constructor(game: any, width: any, height: any);
     game: any;
     dom: DOM;

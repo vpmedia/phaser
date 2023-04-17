@@ -1,4 +1,4 @@
-export default class _default {
+export class GameObjectFactory {
     constructor(game: any);
     game: any;
     image(x: any, y: any, key: any, frame: any, group?: null): any;

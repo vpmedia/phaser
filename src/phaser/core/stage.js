@@ -9,7 +9,7 @@ import { setUserSelect, setTouchAction } from '../display/canvas/util';
 import { valueToColor } from '../util/math';
 import { SCALE_LINEAR, SCALE_NEAREST } from './const';
 
-export default class extends DisplayObject {
+export class Stage extends DisplayObject {
   constructor(game) {
     super();
     this.game = game;

@@ -8,7 +8,7 @@ import { Signal } from  './signal';
 import { Sound } from './sound';
 import { SoundSprite } from './sound_sprite';
 
-export default class {
+export class SoundManager {
   constructor(game) {
     this.game = game;
     this.onChange = new Signal();

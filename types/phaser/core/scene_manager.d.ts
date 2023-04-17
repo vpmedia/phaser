@@ -1,4 +1,4 @@
-export default class _default {
+export class SceneManager {
     constructor(game: any, pendingState: any);
     game: any;
     states: {};

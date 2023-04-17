@@ -16,7 +16,7 @@ import {
   RENDER_CANVAS,
 } from './const';
 
-export default class {
+export class ScaleManager {
   constructor(game, width, height) {
     this.game = game;
     this.dom = new DOM(game.device);

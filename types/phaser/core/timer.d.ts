@@ -1,4 +1,4 @@
-export default class _default {
+export class Timer {
     constructor(game: any, autoDestroy?: boolean);
     game: any;
     running: boolean;

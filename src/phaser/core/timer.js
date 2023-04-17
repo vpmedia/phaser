@@ -6,7 +6,7 @@
 import { Signal } from  './signal';
 import TimerEvent from './timer_event';
 
-export default class {
+export class Timer {
   constructor(game, autoDestroy = false) {
     this.game = game;
     this.running = false;

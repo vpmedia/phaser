@@ -3,9 +3,9 @@
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  */
-import Timer from './timer';
+import { Timer } from './timer';
 
-export default class {
+export class Time {
   constructor(game) {
     this.game = game;
     this.time = 0;

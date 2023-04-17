@@ -1,4 +1,4 @@
-export default class _default {
+export class TweenManager {
     constructor(game: any);
     game: any;
     _tweens: any[];

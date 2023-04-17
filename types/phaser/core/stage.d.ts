@@ -1,4 +1,4 @@
-export default class _default extends DisplayObject {
+export class Stage extends DisplayObject {
     constructor(game: any);
     game: any;
     name: string;

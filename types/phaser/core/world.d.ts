@@ -1,4 +1,4 @@
-export default class _default extends Group {
+export class World extends Group {
     constructor(game: any);
     boot(): void;
 }

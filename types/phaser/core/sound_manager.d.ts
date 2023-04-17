@@ -1,4 +1,4 @@
-export default class _default {
+export class SoundManager {
     constructor(game: any);
     game: any;
     onChange: Signal;

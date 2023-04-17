@@ -3,7 +3,7 @@
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  */
-export default class {
+export class RequestAnimationFrame {
   constructor(game) {
     this.game = game;
     this.rafId = 0;

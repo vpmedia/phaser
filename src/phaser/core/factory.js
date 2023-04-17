@@ -10,7 +10,7 @@ import { Graphics } from  '../display/graphics';
 import { Image } from '../display/image';
 import { Text } from  '../display/text';
 
-export default class {
+export class GameObjectFactory {
   constructor(game) {
     this.game = game;
   }

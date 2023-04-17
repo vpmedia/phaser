@@ -5,7 +5,7 @@
  */
 import { Scene } from './scene';
 
-export default class {
+export class SceneManager {
   constructor(game, pendingState) {
     this.game = game;
     this.states = {};

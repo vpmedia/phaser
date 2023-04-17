@@ -39,7 +39,7 @@ import {
 } from './tween_easing';
 import { GROUP } from './const';
 
-export default class {
+export class TweenManager {
   constructor(game) {
     this.game = game;
     this._tweens = [];

@@ -1,4 +1,4 @@
-export default class _default {
+export class Time {
     constructor(game: any);
     game: any;
     time: number;
@@ -45,5 +45,5 @@ export default class _default {
     set desiredFps(arg: number);
     get desiredFps(): number;
 }
-import Timer from './timer';
+import { Timer } from './timer';
 //# sourceMappingURL=time.d.ts.map
