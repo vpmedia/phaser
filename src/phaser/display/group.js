@@ -4,15 +4,15 @@
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  */
-import DisplayObject from './display_object';
-import Image from './image';
-import Signal from '../core/signal';
+import { DisplayObject } from  './display_object';
+import { Image } from './image';
+import { Signal } from  '../core/signal';
 import { GROUP } from '../core/const';
 
 export const SORT_ASCENDING = -1;
 export const SORT_DESCENDING = 1;
 
-export default class extends DisplayObject {
+export class Group extends DisplayObject {
   /**
    * TBD.
    *

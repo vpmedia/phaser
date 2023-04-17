@@ -4,10 +4,10 @@
  * @author       Richard Davey <rich@photonstorm.com>
  * @author       Mat Groves http://matgroves.com/ @Doormat23
  */
-import Rectangle from '../../geom/rectangle';
-import Point from '../../geom/point';
-import Texture from './texture';
-import BaseTexture from './base_texture';
+import { Rectangle } from  '../../geom/rectangle';
+import { Point } from '../../geom/point';
+import { Texture } from './texture';
+import { BaseTexture } from './base_texture';
 import FilterTexture from './filter_texture';
 import CanvasBuffer from '../canvas/buffer';
 import { RENDER_WEBGL } from '../../core/const';

@@ -5,7 +5,7 @@
  * @author       Richard Davey <rich@photonstorm.com>
  * @author       Mat Groves http://matgroves.com/ @Doormat23
  */
-import Rectangle from '../../geom/rectangle';
+import { Rectangle } from  '../../geom/rectangle';
 
 export class TextureUvs {
   constructor() {
@@ -20,7 +20,7 @@ export class TextureUvs {
   }
 }
 
-export default class {
+export class Texture {
   constructor(baseTexture, frame, crop, trim) {
     this.noFrame = false;
     if (!frame) {

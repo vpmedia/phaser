@@ -51,5 +51,5 @@ export default class _default {
     set enableUpdate(arg: boolean);
     get enableUpdate(): boolean;
 }
-import Signal from './signal';
+import { Signal } from './signal';
 //# sourceMappingURL=animation.d.ts.map

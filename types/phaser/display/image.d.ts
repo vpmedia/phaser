@@ -1,4 +1,4 @@
-export default class _default extends DisplayObject {
+export class Image extends DisplayObject {
     /**
      * TBD.
      *
@@ -46,7 +46,7 @@ export default class _default extends DisplayObject {
     renderWebGL(renderSession: any, matrix?: null): void;
     renderCanvas(renderSession: any, matrix?: null): void;
 }
-import DisplayObject from './display_object';
+import { DisplayObject } from './display_object';
 import EventManager from '../core/event_manager';
 import AnimationManager from '../core/animation_manager';
 //# sourceMappingURL=image.d.ts.map

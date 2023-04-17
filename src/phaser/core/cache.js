@@ -3,9 +3,9 @@
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  */
-import Texture from '../display/webgl/texture';
-import BaseTexture from '../display/webgl/base_texture';
-import Signal from './signal';
+import { Texture } from '../display/webgl/texture';
+import { BaseTexture } from '../display/webgl/base_texture';
+import { Signal } from  './signal';
 import Frame from './frame';
 import FrameData from './frame_data';
 import { JSONDataHash } from './animation_parser';

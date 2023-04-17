@@ -4,9 +4,9 @@
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  */
-import SignalBinding from './signal_binding';
+import { SignalBinding } from  './signal_binding';
 
-export default class {
+export class Signal {
   constructor() {
     this._bindings = null;
     this._prevParams = null;

@@ -49,5 +49,5 @@ export default class _default {
     get onAnimationLoop(): Signal;
     onAnimationLoop$dispatch(...args: any[]): void;
 }
-import Signal from './signal';
+import { Signal } from './signal';
 //# sourceMappingURL=event_manager.d.ts.map

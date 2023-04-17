@@ -3,7 +3,7 @@
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  */
-import Rectangle from '../geom/rectangle';
+import { Rectangle } from  '../geom/rectangle';
 import { distance } from '../util/math';
 import { cloneFrame } from './frame_util';
 

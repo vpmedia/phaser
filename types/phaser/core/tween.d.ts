@@ -47,6 +47,6 @@ export default class _default {
     generateData(frameRate?: number, data?: any[]): any[] | null;
     get totalDuration(): number;
 }
-import Signal from './signal';
+import { Signal } from './signal';
 import * as MathUtils from '../util/math';
 //# sourceMappingURL=tween.d.ts.map

@@ -3,7 +3,7 @@
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  */
-import Signal from './signal';
+import { Signal } from  './signal';
 
 export default class {
   constructor(game, parent, name, frameData, frames, frameRate, loop = false) {

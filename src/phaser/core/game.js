@@ -6,7 +6,7 @@
  */
 import CanvasRenderer from '../display/canvas/renderer';
 import WebGLRenderer from '../display/webgl/renderer';
-import Signal from './signal';
+import { Signal } from  './signal';
 import Loader from './loader';
 import Cache from './cache';
 import Input from './input';
@@ -24,7 +24,7 @@ import { RENDER_AUTO, RENDER_WEBGL } from './const';
 import { create, removeFromDOM, addToDOM, setTouchAction } from '../display/canvas/util';
 import { initialize, checkOS } from './device_util';
 
-export default class {
+export class Game {
   constructor(gameConfig = {}) {
     if (!window.PhaserRegistry) {
       window.PhaserRegistry = {};

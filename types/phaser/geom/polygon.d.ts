@@ -1,4 +1,4 @@
-export default class _default {
+export class Polygon {
     constructor(points?: null);
     area: number;
     _points: any[];
@@ -6,10 +6,10 @@ export default class _default {
     flattened: boolean;
     type: number;
     toNumberArray(output?: any[]): any[];
-    flatten(): default;
-    clone(): default;
+    flatten(): Polygon;
+    clone(): Polygon;
     contains(x: any, y: any): boolean;
-    setTo(points: any): default;
+    setTo(points: any): Polygon;
     calculateArea(y0: any): number;
     set points(arg: any[]);
     get points(): any[];

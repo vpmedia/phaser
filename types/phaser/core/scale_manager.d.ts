@@ -131,7 +131,7 @@ export default class _default {
     get isGameLandscape(): boolean;
 }
 import DOM from './dom';
-import Point from '../geom/point';
-import Signal from './signal';
-import Rectangle from '../geom/rectangle';
+import { Point } from '../geom/point';
+import { Signal } from './signal';
+import { Rectangle } from '../geom/rectangle';
 //# sourceMappingURL=scale_manager.d.ts.map

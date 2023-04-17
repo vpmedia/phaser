@@ -4,11 +4,11 @@
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  */
-import Point from './point';
+import { Point } from './point';
 import { clone } from './util/polygon';
 import { GEOM_POLYGON } from '../core/const';
 
-export default class {
+export class Polygon {
   constructor(points = null) {
     this.area = 0;
     this._points = [];

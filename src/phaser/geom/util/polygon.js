@@ -4,17 +4,7 @@
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  */
-import Polygon from '../polygon';
-
-/**
- * TBD.
- *
- * @returns {boolean} TBD.
- * @deprecated
- */
-export default function () {
-  return true;
-}
+import { Polygon } from  '../polygon';
 
 /**
  * TBD.

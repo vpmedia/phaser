@@ -107,5 +107,5 @@ export default class _default {
     checkBoundsRect(): void;
     checkBoundsSprite(): void;
 }
-import Point from '../geom/point';
+import { Point } from '../geom/point';
 //# sourceMappingURL=input_handler.d.ts.map

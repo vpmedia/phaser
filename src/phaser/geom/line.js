@@ -4,12 +4,12 @@
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  */
-import Point from './point';
+import { Point } from './point';
 import { clone, intersectsPoints, reflect } from './util/line';
 import { wrap } from '../util/math';
 import { GEOM_LINE } from '../core/const';
 
-export default class {
+export class Line {
   /**
    * TBD.
    *

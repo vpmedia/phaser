@@ -4,7 +4,7 @@
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  */
-import Matrix from '../matrix';
+import { Matrix } from  '../matrix';
 
 /**
  * TBD.

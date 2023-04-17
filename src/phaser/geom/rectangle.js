@@ -4,7 +4,7 @@
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  */
-import Point from './point';
+import { Point } from './point';
 import {
   inflate,
   size,
@@ -30,7 +30,7 @@ import {
   BOTTOM_RIGHT,
 } from '../core/const';
 
-export default class {
+export class Rectangle {
   /**
    * TBD.
    *

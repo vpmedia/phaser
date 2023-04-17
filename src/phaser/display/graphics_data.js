@@ -6,7 +6,7 @@
  */
 import { clone } from './graphics_data_util';
 
-export default class {
+export class GraphicsData {
   constructor(lineWidth, lineColor, lineAlpha, fillColor, fillAlpha, fill, shape) {
     this.lineWidth = lineWidth;
     this.lineColor = lineColor;

@@ -1,4 +1,4 @@
-export default class _default {
+export class Point {
     /**
      * TBD.
      *
@@ -9,18 +9,18 @@ export default class _default {
     x: number;
     y: number;
     type: number;
-    copyFrom(source: any): default;
-    invert(): default;
-    setTo(x: any, y: any): default;
-    set(x: any, y: any): default;
-    add(x: any, y: any): default;
-    subtract(x: any, y: any): default;
-    multiply(x: any, y: any): default;
-    divide(x: any, y: any): default;
-    clampX(min: any, max: any): default;
-    clampY(min: any, max: any): default;
-    clamp(min: any, max: any): default;
-    clone(): default;
+    copyFrom(source: any): Point;
+    invert(): Point;
+    setTo(x: any, y: any): Point;
+    set(x: any, y: any): Point;
+    add(x: any, y: any): Point;
+    subtract(x: any, y: any): Point;
+    multiply(x: any, y: any): Point;
+    divide(x: any, y: any): Point;
+    clampX(min: any, max: any): Point;
+    clampY(min: any, max: any): Point;
+    clamp(min: any, max: any): Point;
+    clone(): Point;
     copyTo(dest: any): any;
     distance(b: any): number;
     equals(a: any): boolean;
@@ -28,16 +28,16 @@ export default class _default {
     rotate(x: any, y: any, angle: any, asDegrees: any, dist: any): object;
     getMagnitude(): number;
     getMagnitudeSq(): number;
-    setMagnitude(magnitude: any): default;
-    normalize(): default;
+    setMagnitude(magnitude: any): Point;
+    normalize(): Point;
     isZero(): boolean;
     dot(a: any): number;
     cross(a: any): number;
-    perp(): default;
-    rperp(): default;
-    normalRightHand(): default;
-    floor(): default;
-    ceil(): default;
+    perp(): Point;
+    rperp(): Point;
+    normalRightHand(): Point;
+    floor(): Point;
+    ceil(): Point;
     toString(): string;
 }
 //# sourceMappingURL=point.d.ts.map

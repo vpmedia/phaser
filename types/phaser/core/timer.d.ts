@@ -44,6 +44,6 @@ export default class _default {
     get ms(): number;
     get seconds(): number;
 }
-import Signal from './signal';
+import { Signal } from './signal';
 import TimerEvent from './timer_event';
 //# sourceMappingURL=timer.d.ts.map

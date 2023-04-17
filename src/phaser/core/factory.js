@@ -3,12 +3,12 @@
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  */
-import BitmapText from '../display/bitmap_text';
-import Button from '../display/button';
-import Group from '../display/group';
-import Graphics from '../display/graphics';
-import Image from '../display/image';
-import Text from '../display/text';
+import { BitmapText } from  '../display/bitmap_text';
+import { Button } from  '../display/button';
+import { Group } from  '../display/group';
+import { Graphics } from  '../display/graphics';
+import { Image } from '../display/image';
+import { Text } from  '../display/text';
 
 export default class {
   constructor(game) {

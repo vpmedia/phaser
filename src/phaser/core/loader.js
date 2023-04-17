@@ -3,8 +3,8 @@
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  */
-import Signal from './signal';
-import Rectangle from '../geom/rectangle';
+import { Signal } from  './signal';
+import { Rectangle } from  '../geom/rectangle';
 import { canPlayAudio } from './device_util';
 
 const TEXTURE_ATLAS_JSON_HASH = 1;

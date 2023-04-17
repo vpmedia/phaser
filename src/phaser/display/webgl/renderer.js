@@ -27,7 +27,7 @@ import {
 } from '../../core/const';
 import { remove } from '../canvas/pool';
 import { isPowerOfTwo } from '../../util/math';
-import Point from '../../geom/point';
+import { Point } from '../../geom/point';
 import WebGLShaderManager from './shader_manager';
 import WebGLSpriteBatch from './sprite_batch';
 import * as WebGLMaskManager from './mask_manager';

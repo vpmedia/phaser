@@ -4,12 +4,12 @@
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  */
-import Point from './point';
-import Rectangle from './rectangle';
+import { Point } from './point';
+import { Rectangle } from  './rectangle';
 import { contains } from './util/ellipse';
 import { GEOM_ELLIPSE } from '../core/const';
 
-export default class {
+export class Ellipse {
   /**
    * TBD.
    *

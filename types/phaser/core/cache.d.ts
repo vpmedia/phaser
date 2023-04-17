@@ -99,8 +99,8 @@ export default class _default {
     _resolveURL(url: any, data: any): string | null;
     destroy(): void;
 }
-import Signal from './signal';
-import BaseTexture from '../display/webgl/base_texture';
+import { Signal } from './signal';
+import { BaseTexture } from '../display/webgl/base_texture';
 import Frame from './frame';
 import FrameData from './frame_data';
 //# sourceMappingURL=cache.d.ts.map

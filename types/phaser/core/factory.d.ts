@@ -8,5 +8,5 @@ export default class _default {
     graphics(x: any, y: any, group?: null): any;
     bitmapText(x: any, y: any, font: any, text: any, size: any, group?: null, align?: string): any;
 }
-import Group from '../display/group';
+import { Group } from '../display/group';
 //# sourceMappingURL=factory.d.ts.map

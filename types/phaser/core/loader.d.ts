@@ -90,5 +90,5 @@ export default class _default {
     get progressFloat(): number;
     get progress(): number;
 }
-import Signal from './signal';
+import { Signal } from './signal';
 //# sourceMappingURL=loader.d.ts.map

@@ -1,4 +1,4 @@
-export default class _default {
+export class BaseTexture {
     constructor(source: any, scaleMode: any);
     resolution: number;
     width: any;

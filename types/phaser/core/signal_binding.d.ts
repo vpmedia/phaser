@@ -3,7 +3,7 @@
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  */
-export default class _default {
+export class SignalBinding {
     constructor(signal: any, listener: any, isOnce?: boolean, listenerContext?: null, priority?: number, args?: null);
     _signal: any;
     _listener: any;

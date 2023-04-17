@@ -4,8 +4,8 @@
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  */
-import Point from '../point';
-import Line from '../line';
+import { Point } from '../point';
+import { Line } from  '../line';
 import { intersects as intersectsRect } from './rectangle';
 
 /**

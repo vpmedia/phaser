@@ -4,16 +4,16 @@
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  */
-import Point from '../geom/point';
-import Rectangle from '../geom/rectangle';
-import Image from './image';
+import { Point } from '../geom/point';
+import { Rectangle } from  '../geom/rectangle';
+import { Image } from './image';
 import { create, remove } from './canvas/pool';
 import { textureFromCanvas } from './webgl/texture_util';
 import { TEXT } from '../core/const';
 import { snapToCeil } from '../util/math';
 import { renderCanvas, renderWebGL, getBounds } from './sprite_util';
 
-export default class extends Image {
+export class Text extends Image {
   /**
    * TBD.
    *

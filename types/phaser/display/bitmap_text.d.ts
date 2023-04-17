@@ -1,4 +1,4 @@
-export default class _default extends DisplayObject {
+export class BitmapText extends DisplayObject {
     /**
      * TBD.
      *
@@ -54,6 +54,6 @@ export default class _default extends DisplayObject {
     set smoothed(arg: boolean);
     get smoothed(): boolean;
 }
-import DisplayObject from './display_object';
-import Point from '../geom/point';
+import { DisplayObject } from './display_object';
+import { Point } from '../geom/point';
 //# sourceMappingURL=bitmap_text.d.ts.map

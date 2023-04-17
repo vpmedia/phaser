@@ -4,7 +4,7 @@
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  */
-import GraphicsData from './graphics_data';
+import { GraphicsData } from  './graphics_data';
 
 /**
  * TBD.

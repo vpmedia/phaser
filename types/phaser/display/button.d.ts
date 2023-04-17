@@ -1,4 +1,4 @@
-export default class _default extends Image {
+export class Button extends Image {
     /**
      * TBD.
      *
@@ -41,7 +41,7 @@ export default class _default extends Image {
     onInputDownHandler(sprite: any, pointer: any): void;
     onInputUpHandler(sprite: any, pointer: any, isOver: any): void;
 }
-import Image from './image';
-import Signal from '../core/signal';
+import { Image } from './image';
+import { Signal } from '../core/signal';
 import InputHandler from '../core/input_handler';
 //# sourceMappingURL=button.d.ts.map

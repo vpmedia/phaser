@@ -4,7 +4,7 @@
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  */
-import DisplayObject from './display_object';
+import { DisplayObject } from  './display_object';
 
 export default class extends DisplayObject {
   /**

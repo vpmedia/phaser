@@ -17,9 +17,9 @@ export default class _default extends Texture {
     getBase64(): any;
     getCanvas(): void;
 }
-import Texture from './texture';
-import Rectangle from '../../geom/rectangle';
+import { Texture } from './texture';
+import { Rectangle } from '../../geom/rectangle';
 import CanvasBuffer from '../canvas/buffer';
 import FilterTexture from './filter_texture';
-import Point from '../../geom/point';
+import { Point } from '../../geom/point';
 //# sourceMappingURL=render_texture.d.ts.map

@@ -1,4 +1,4 @@
-export default class _default {
+export class DisplayObject {
     exists: boolean;
     renderable: boolean;
     visible: boolean;
@@ -31,7 +31,7 @@ export default class _default {
     removeChild(child: any): any;
     removeChildAt(index: any): any;
     removeChildren(beginIndex: any, endIndex: any): any[];
-    updateTransform(parent: any): default;
+    updateTransform(parent: any): DisplayObject;
     rotationCache: any;
     worldRotation: number | undefined;
     getBounds(targetCoordinateSpace: any): Rectangle;
@@ -77,7 +77,7 @@ export default class _default {
     set bottom(arg: number);
     get bottom(): number;
 }
-import Point from '../geom/point';
-import Matrix from '../geom/matrix';
-import Rectangle from '../geom/rectangle';
+import { Point } from '../geom/point';
+import { Matrix } from '../geom/matrix';
+import { Rectangle } from '../geom/rectangle';
 //# sourceMappingURL=display_object.d.ts.map

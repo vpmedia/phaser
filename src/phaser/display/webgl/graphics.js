@@ -4,8 +4,8 @@
  * @author       Richard Davey <rich@photonstorm.com>
  * @author       Mat Groves http://matgroves.com/ @Doormat23
  */
-import GraphicsData from './graphics_data';
-import Point from '../../geom/point';
+import { GraphicsData } from  './graphics_data';
+import { Point } from '../../geom/point';
 import {
   GEOM_CIRCLE,
   GEOM_ELLIPSE,

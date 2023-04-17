@@ -7,7 +7,7 @@
 import { distance, rotate, clone } from './util/point';
 import { GEOM_POINT } from '../core/const';
 
-export default class {
+export class Point {
   /**
    * TBD.
    *

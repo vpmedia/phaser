@@ -4,14 +4,14 @@
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  */
-import Point from '../geom/point';
-import Rectangle from '../geom/rectangle';
-import Matrix from '../geom/matrix';
+import { Point } from '../geom/point';
+import { Rectangle } from  '../geom/rectangle';
+import { Matrix } from  '../geom/matrix';
 import { getIdentityMatrix } from '../geom/util/matrix';
 import { PI_2 } from '../util/math';
 import { renderCanvas, renderWebGL } from './sprite_util';
 
-export default class {
+export class DisplayObject {
   /**
    * TBD.
    */

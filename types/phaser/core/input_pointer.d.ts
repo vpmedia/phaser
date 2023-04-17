@@ -63,6 +63,6 @@ export default class _default {
     get worldX(): number;
     get worldY(): number;
 }
-import Point from '../geom/point';
-import Circle from '../geom/circle';
+import { Point } from '../geom/point';
+import { Circle } from '../geom/circle';
 //# sourceMappingURL=input_pointer.d.ts.map

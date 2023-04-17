@@ -1,4 +1,4 @@
-export default class _default {
+export class Matrix {
     /**
      * TBD.
      *
@@ -17,19 +17,19 @@ export default class _default {
     tx: number;
     ty: number;
     type: number;
-    fromArray(array: any): default;
-    setTo(a: any, b: any, c: any, d: any, tx: any, ty: any): default;
-    clone(): default;
+    fromArray(array: any): Matrix;
+    setTo(a: any, b: any, c: any, d: any, tx: any, ty: any): Matrix;
+    clone(): Matrix;
     copyTo(matrix: any): any;
-    copyFrom(matrix: any): default;
+    copyFrom(matrix: any): Matrix;
     toArray(transpose?: boolean, output?: null): Float32Array;
     apply(pos: any, output?: null): Point;
     applyInverse(pos: any, output?: null): Point;
-    translate(x: any, y: any): default;
-    scale(x: any, y: any): default;
-    rotate(angle: any): default;
-    append(matrix: any): default;
-    identity(): default;
+    translate(x: any, y: any): Matrix;
+    scale(x: any, y: any): Matrix;
+    rotate(angle: any): Matrix;
+    append(matrix: any): Matrix;
+    identity(): Matrix;
 }
-import Point from './point';
+import { Point } from './point';
 //# sourceMappingURL=matrix.d.ts.map

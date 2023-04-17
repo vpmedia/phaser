@@ -1,4 +1,4 @@
-export default class _default {
+export class GraphicsData {
     constructor(lineWidth: any, lineColor: any, lineAlpha: any, fillColor: any, fillAlpha: any, fill: any, shape: any);
     lineWidth: any;
     lineColor: any;

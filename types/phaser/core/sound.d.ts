@@ -68,5 +68,5 @@ export default class _default {
     set mute(arg: any);
     get mute(): any;
 }
-import Signal from './signal';
+import { Signal } from './signal';
 //# sourceMappingURL=sound.d.ts.map

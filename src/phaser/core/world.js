@@ -3,7 +3,7 @@
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  */
-import Group from '../display/group';
+import { Group } from  '../display/group';
 
 export default class extends Group {
   constructor(game) {

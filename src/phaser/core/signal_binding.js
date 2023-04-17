@@ -4,7 +4,7 @@
  * @author       Richard Davey <rich@photonstorm.com>
  */
 
-export default class {
+export class SignalBinding {
   constructor(signal, listener, isOnce = false, listenerContext = null, priority = 0, args = null) {
     this._signal = signal;
     this._listener = listener;

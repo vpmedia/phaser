@@ -4,8 +4,8 @@
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  */
-import Circle from '../circle';
-import Point from '../point';
+import { Circle } from  '../circle';
+import { Point } from '../point';
 import { degToRad, distance } from '../../util/math';
 
 /**

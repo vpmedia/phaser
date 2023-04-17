@@ -4,12 +4,12 @@
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  */
-import DisplayObject from './display_object';
-import Image from './image';
-import Point from '../geom/point';
+import { DisplayObject } from  './display_object';
+import { Image } from './image';
+import { Point } from '../geom/point';
 import { BITMAP_TEXT, SCALE_LINEAR, SCALE_NEAREST } from '../core/const';
 
-export default class extends DisplayObject {
+export class BitmapText extends DisplayObject {
   /**
    * TBD.
    *

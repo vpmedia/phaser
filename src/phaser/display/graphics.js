@@ -4,15 +4,15 @@
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  */
-import DisplayObject from './display_object';
-import Image from './image';
-import Rectangle from '../geom/rectangle';
-import RoundedRectangle from '../geom/rounded_rectangle';
-import Polygon from '../geom/polygon';
-import Circle from '../geom/circle';
-import Ellipse from '../geom/ellipse';
-import Point from '../geom/point';
-import GraphicsData from './graphics_data';
+import { DisplayObject } from  './display_object';
+import { Image } from './image';
+import { Rectangle } from  '../geom/rectangle';
+import { RoundedRectangle } from  '../geom/rounded_rectangle';
+import { Polygon } from  '../geom/polygon';
+import { Circle } from  '../geom/circle';
+import { Ellipse } from  '../geom/ellipse';
+import { Point } from '../geom/point';
+import { GraphicsData } from  './graphics_data';
 import CanvasBuffer from './canvas/buffer';
 import { textureFromCanvas } from './webgl/texture_util';
 import { renderGraphics as renderCanvasGraphics } from './canvas/graphics';
@@ -33,7 +33,7 @@ import {
   GEOM_ROUNDED_RECTANGLE,
 } from '../core/const';
 
-export default class extends DisplayObject {
+export class Graphics extends DisplayObject {
   /**
    * TBD.
    *

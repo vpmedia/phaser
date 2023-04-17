@@ -4,7 +4,7 @@
  * @author       Richard Davey <rich@photonstorm.com>
  * @author       Mat Groves http://matgroves.com/ @Doormat23
  */
-export default class _default {
+export class GraphicsData {
     constructor(gl: any);
     gl: any;
     color: number[];

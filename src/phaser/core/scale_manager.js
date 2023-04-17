@@ -3,10 +3,10 @@
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  */
-import Signal from './signal';
+import { Signal } from  './signal';
 import DOM from './dom';
-import Point from '../geom/point';
-import Rectangle from '../geom/rectangle';
+import { Point } from '../geom/point';
+import { Rectangle } from  '../geom/rectangle';
 import {
   SCALE_OFF,
   SCALE_RESIZE,

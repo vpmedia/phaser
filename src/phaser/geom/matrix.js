@@ -4,11 +4,11 @@
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  */
-import Point from './point';
+import { Point } from './point';
 import { clone } from './util/matrix';
 import { GEOM_MATRIX } from '../core/const';
 
-export default class {
+export class Matrix {
   /**
    * TBD.
    *

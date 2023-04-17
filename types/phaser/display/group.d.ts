@@ -1,6 +1,6 @@
 export const SORT_ASCENDING: -1;
 export const SORT_DESCENDING: 1;
-export default class _default extends DisplayObject {
+export class Group extends DisplayObject {
     /**
      * TBD.
      *
@@ -43,7 +43,7 @@ export default class _default extends DisplayObject {
     remove(child: any, destroy?: boolean, silent?: boolean): boolean;
     removeAll(destroy?: boolean, silent?: boolean, destroyTexture?: boolean): void;
 }
-import DisplayObject from './display_object';
-import Image from './image';
-import Signal from '../core/signal';
+import { DisplayObject } from './display_object';
+import { Image } from './image';
+import { Signal } from '../core/signal';
 //# sourceMappingURL=group.d.ts.map

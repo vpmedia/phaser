@@ -3,7 +3,7 @@
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  */
-import Signal from './signal';
+import { Signal } from  './signal';
 
 const NO_BUTTON = -1;
 const LEFT_BUTTON = 0;

@@ -1,4 +1,4 @@
-export default class _default extends Image {
+export class Text extends Image {
     /**
      * TBD.
      *
@@ -25,20 +25,20 @@ export default class _default extends Image {
     _fontComponents: any;
     _lineSpacing: number;
     _charCount: number;
-    setShadow(x?: number, y?: number, color?: string, blur?: number, shadowStroke?: boolean, shadowFill?: boolean): default;
+    setShadow(x?: number, y?: number, color?: string, blur?: number, shadowStroke?: boolean, shadowFill?: boolean): Text;
     dirty: boolean | undefined;
-    setStyle(style?: null, update?: boolean): default;
+    setStyle(style?: null, update?: boolean): Text;
     updateText(): void;
     renderTabLine(line: any, x: any, y: any, fill: any): void;
     updateShadow(state: any): void;
     measureLine(line: any): number;
     updateLine(line: any, x: any, y: any): void;
-    clearColors(): default;
-    clearFontValues(): default;
-    addColor(color: any, position: any): default;
-    addStrokeColor(color: any, position: any): default;
-    addFontStyle(style: any, position: any): default;
-    addFontWeight(weight: any, position: any): default;
+    clearColors(): Text;
+    clearFontValues(): Text;
+    addColor(color: any, position: any): Text;
+    addStrokeColor(color: any, position: any): Text;
+    addFontStyle(style: any, position: any): Text;
+    addFontWeight(weight: any, position: any): Text;
     precalculateWordWrap(text: any): string[];
     runWordWrap(text: any): string;
     advancedWordWrap(text: any): string;
@@ -60,11 +60,11 @@ export default class _default extends Image {
         fontFamily?: undefined;
     };
     componentsToFont(components: any): string;
-    setText(text: any, immediate?: boolean): default;
+    setText(text: any, immediate?: boolean): Text;
     set text(arg: string);
     get text(): string;
-    parseList(list: any): default;
-    setTextBounds(x: any, y: any, width: any, height: any): default;
+    parseList(list: any): Text;
+    setTextBounds(x: any, y: any, width: any, height: any): Text;
     updateTexture(): void;
     renderWebGL(renderSession: any): void;
     renderCanvas(renderSession: any): void;
@@ -119,7 +119,7 @@ export default class _default extends Image {
     set shadowFill(arg: any);
     get shadowFill(): any;
 }
-import Image from './image';
-import Point from '../geom/point';
-import Rectangle from '../geom/rectangle';
+import { Image } from './image';
+import { Point } from '../geom/point';
+import { Rectangle } from '../geom/rectangle';
 //# sourceMappingURL=text.d.ts.map

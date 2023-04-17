@@ -1,1 +1,1 @@
-{"version":3,"file":"stage.d.ts","sourceRoot":"","sources":["../../../src/phaser/core/stage.js"],"names":[],"mappings":"AAWA;IACE,uBAqBC;IAnBC,UAAgB;IAChB,aAAyB;IAEzB,6BAA6B;IAC7B;;;;;;;MAOC;IAUH,qCAUC;IAED,aAGC;IAyBD,wBAKC;IAaD,iCAEC;IAND,8BAEC;IAUD,2BAEC;IAND,wBAEC;CAKF;0BAlGyB,2BAA2B"}
+{"version":3,"file":"stage.d.ts","sourceRoot":"","sources":["../../../src/phaser/core/stage.js"],"names":[],"mappings":"AAWA;IACE,uBAqBC;IAnBC,UAAgB;IAChB,aAAyB;IAEzB,6BAA6B;IAC7B;;;;;;;MAOC;IAUH,qCAUC;IAED,aAGC;IAyBD,wBAKC;IAaD,iCAEC;IAND,8BAEC;IAUD,2BAEC;IAND,wBAEC;CAKF;8BAlG8B,2BAA2B"}

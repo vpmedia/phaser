@@ -3,8 +3,8 @@
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  */
-import Texture from '../display/webgl/texture';
-import Rectangle from '../geom/rectangle';
+import { Texture } from '../display/webgl/texture';
+import { Rectangle } from  '../geom/rectangle';
 
 /**
  * TBD.

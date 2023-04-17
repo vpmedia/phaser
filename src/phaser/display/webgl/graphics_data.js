@@ -5,7 +5,7 @@
  * @author       Mat Groves http://matgroves.com/ @Doormat23
  */
 
-export default class {
+export class GraphicsData {
   constructor(gl) {
     this.gl = gl;
     // TODO does this need to be split before uploading??

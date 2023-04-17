@@ -44,6 +44,6 @@ export function intersectsRectangle(line: object, rect: object): boolean;
  * @returns {number} TBD.
  */
 export function reflect(a: object, b: object): number;
-import Line from '../line';
-import Point from '../point';
+import { Line } from '../line';
+import { Point } from '../point';
 //# sourceMappingURL=line.d.ts.map

@@ -7,7 +7,7 @@
  */
 import { removeByCanvas } from '../canvas/pool';
 
-export default class {
+export class BaseTexture {
   constructor(source, scaleMode) {
     this.resolution = 1;
     this.width = 100;

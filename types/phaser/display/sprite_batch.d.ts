@@ -7,5 +7,5 @@ export default class _default extends DisplayObject {
     constructor(game: object);
     game: object;
 }
-import DisplayObject from './display_object';
+import { DisplayObject } from './display_object';
 //# sourceMappingURL=sprite_batch.d.ts.map

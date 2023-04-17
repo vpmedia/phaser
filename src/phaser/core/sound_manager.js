@@ -4,7 +4,7 @@
  * @author       Richard Davey <rich@photonstorm.com>
  */
 import ArraySet from './array_set';
-import Signal from './signal';
+import { Signal } from  './signal';
 import Sound from './sound';
 import SoundSprite from './sound_sprite';
 

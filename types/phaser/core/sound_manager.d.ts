@@ -43,7 +43,7 @@ export default class _default {
     set volume(arg: number);
     get volume(): number;
 }
-import Signal from './signal';
+import { Signal } from './signal';
 import ArraySet from './array_set';
 import Sound from './sound';
 import SoundSprite from './sound_sprite';

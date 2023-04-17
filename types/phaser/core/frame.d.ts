@@ -26,5 +26,5 @@ export default class _default {
     clone(): object;
     getRect(output?: null): Rectangle;
 }
-import Rectangle from '../geom/rectangle';
+import { Rectangle } from '../geom/rectangle';
 //# sourceMappingURL=frame.d.ts.map

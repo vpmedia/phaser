@@ -4,7 +4,7 @@
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  */
-import Point from '../point';
+import { Point } from '../point';
 
 /**
  * TBD.

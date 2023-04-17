@@ -1,4 +1,4 @@
-export default class _default {
+export class Signal {
     _bindings: any[] | null;
     _prevParams: any[] | null;
     memorize: boolean;

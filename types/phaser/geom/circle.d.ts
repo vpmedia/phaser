@@ -1,4 +1,4 @@
-export default class _default {
+export class Circle {
     /**
      * TBD.
      *
@@ -15,15 +15,15 @@ export default class _default {
     circumference(): number;
     random(output?: null): Point;
     getBounds(): Rectangle;
-    setTo(x: any, y: any, diameter: any): default;
-    copyFrom(source: any): default;
+    setTo(x: any, y: any, diameter: any): Circle;
+    copyFrom(source: any): Circle;
     copyTo(dest: any): any;
     distance(dest: any, round?: boolean): number;
-    clone(): default;
+    clone(): Circle;
     contains(x: any, y: any): boolean;
-    circumferencePoint(angle: any, asDegrees: any, out: any): default;
-    offset(dx: any, dy: any): default;
-    offsetPoint(point: any): default;
+    circumferencePoint(angle: any, asDegrees: any, out: any): Circle;
+    offset(dx: any, dy: any): Circle;
+    offsetPoint(point: any): Circle;
     toString(): string;
     set diameter(arg: number);
     get diameter(): number;
@@ -41,6 +41,6 @@ export default class _default {
     set empty(arg: boolean);
     get empty(): boolean;
 }
-import Point from './point';
-import Rectangle from './rectangle';
+import { Point } from './point';
+import { Rectangle } from './rectangle';
 //# sourceMappingURL=circle.d.ts.map

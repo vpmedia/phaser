@@ -4,8 +4,8 @@
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  */
-import Image from './image';
-import Signal from '../core/signal';
+import { Image } from './image';
+import { Signal } from  '../core/signal';
 import InputHandler from '../core/input_handler';
 import { BUTTON, POINTER_CONTACT } from '../core/const';
 
@@ -15,7 +15,7 @@ const STATE_DOWN = 'Down';
 const STATE_UP = 'Up';
 const STATE_DISABLED = 'Disabled';
 
-export default class extends Image {
+export class Button extends Image {
   /**
    * TBD.
    *

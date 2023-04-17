@@ -1,4 +1,4 @@
-export default class _default {
+export class Line {
     /**
      * TBD.
      *
@@ -11,11 +11,11 @@ export default class _default {
     start: Point;
     end: Point;
     type: number;
-    setTo(x1: any, y1: any, x2: any, y2: any): default;
-    fromSprite(startSprite: any, endSprite: any, useCenter?: boolean): default;
-    fromAngle(x: any, y: any, angle: any, length: any): default;
-    rotate(angle: any, asDegrees?: boolean): default;
-    rotateAround(x: any, y: any, angle: any, asDegrees?: boolean): default;
+    setTo(x1: any, y1: any, x2: any, y2: any): Line;
+    fromSprite(startSprite: any, endSprite: any, useCenter?: boolean): Line;
+    fromAngle(x: any, y: any, angle: any, length: any): Line;
+    rotate(angle: any, asDegrees?: boolean): Line;
+    rotateAround(x: any, y: any, angle: any, asDegrees?: boolean): Line;
     intersects(line: any, asSegment: any, result: any): boolean;
     reflect(line: any): number;
     midPoint(output?: null): Point;
@@ -24,7 +24,7 @@ export default class _default {
     pointOnSegment(x: any, y: any): boolean;
     random(output?: null): Point;
     coordinatesOnLine(stepRate?: number, results?: any[]): any[];
-    clone(): default;
+    clone(): Line;
     get length(): number;
     get angle(): number;
     get slope(): number;
@@ -41,5 +41,5 @@ export default class _default {
     get normalY(): number;
     get normalAngle(): number;
 }
-import Point from './point';
+import { Point } from './point';
 //# sourceMappingURL=line.d.ts.map

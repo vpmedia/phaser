@@ -8,16 +8,6 @@
 /**
  * TBD.
  *
- * @returns {boolean} TBD.
- * @deprecated
- */
-export default function () {
-  return true;
-}
-
-/**
- * TBD.
- *
  * @param {object} a - TBD.
  * @param {number} x - TBD.
  * @param {number} y - TBD.

@@ -3,7 +3,7 @@
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  */
-import Point from '../geom/point';
+import { Point } from '../geom/point';
 
 class VisualBoundsDesktopRectangle {
   get x() {

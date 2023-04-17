@@ -7,7 +7,7 @@
 import { clone } from './util/rounded_rectangle';
 import { GEOM_ROUNDED_RECTANGLE } from '../core/const';
 
-export default class {
+export class RoundedRectangle {
   /**
    * TBD.
    *

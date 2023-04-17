@@ -35,7 +35,7 @@ export default class _default {
     updateTexture(texture: any): boolean;
     mapBlendModes(): void;
 }
-import Point from '../../geom/point';
+import { Point } from '../../geom/point';
 import WebGLShaderManager from './shader_manager';
 import WebGLSpriteBatch from './sprite_batch';
 import WebGLFilterManager from './filter_manager';

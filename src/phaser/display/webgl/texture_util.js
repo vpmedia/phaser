@@ -4,8 +4,8 @@
  * @author       Richard Davey <rich@photonstorm.com>
  * @author       Mat Groves http://matgroves.com/ @Doormat23
  */
-import BaseTexture from './base_texture';
-import Texture from './texture';
+import { BaseTexture } from './base_texture';
+import { Texture } from './texture';
 
 /**
  * TBD.

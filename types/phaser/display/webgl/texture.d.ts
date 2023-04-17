@@ -8,7 +8,7 @@ export class TextureUvs {
     x3: number;
     y3: number;
 }
-export default class _default {
+export class Texture {
     constructor(baseTexture: any, frame: any, crop: any, trim: any);
     noFrame: boolean;
     baseTexture: any;

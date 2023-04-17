@@ -19,5 +19,5 @@ export default class _default extends DisplayObject {
     set smoothed(arg: boolean);
     get smoothed(): boolean;
 }
-import DisplayObject from '../display/display_object';
+import { DisplayObject } from '../display/display_object';
 //# sourceMappingURL=stage.d.ts.map

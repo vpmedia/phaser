@@ -4,11 +4,11 @@
  * @author       Richard Davey <rich@photonstorm.com>
  */
 import ArraySet from './array_set';
-import Graphics from '../display/graphics';
-import Image from '../display/image';
-import Signal from './signal';
-import Point from '../geom/point';
-import Circle from '../geom/circle';
+import { Graphics } from  '../display/graphics';
+import { Image } from '../display/image';
+import { Signal } from  './signal';
+import { Point } from '../geom/point';
+import { Circle } from  '../geom/circle';
 import Mouse from './input_mouse';
 import MSPointer from './input_mspointer';
 import Pointer from './input_pointer';

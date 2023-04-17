@@ -3,8 +3,8 @@
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  */
-import Point from '../geom/point';
-import Circle from '../geom/circle';
+import { Point } from '../geom/point';
+import { Circle } from  '../geom/circle';
 import {
   POINTER,
   POINTER_CURSOR,

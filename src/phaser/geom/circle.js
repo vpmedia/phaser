@@ -4,13 +4,13 @@
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  */
-import Point from './point';
-import Rectangle from './rectangle';
+import { Point } from './point';
+import { Rectangle } from  './rectangle';
 import { distance } from '../util/math';
 import { clone, contains, circumferencePoint } from './util/circle';
 import { GEOM_CIRCLE } from '../core/const';
 
-export default class {
+export class Circle {
   /**
    * TBD.
    *

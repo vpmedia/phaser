@@ -136,6 +136,6 @@ export function aabb(points: Point[], output?: Rectangle): Rectangle;
  * @returns {Rectangle} TBD.
  */
 export function getEmptyRectangle(): Rectangle;
-import Rectangle from '../rectangle';
-import Point from '../point';
+import { Rectangle } from '../rectangle';
+import { Point } from '../point';
 //# sourceMappingURL=rectangle.d.ts.map

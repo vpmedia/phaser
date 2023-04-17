@@ -1,4 +1,4 @@
-export default class _default {
+export class Rectangle {
     /**
      * TBD.
      *
@@ -13,11 +13,11 @@ export default class _default {
     width: number;
     height: number;
     type: number;
-    offset(dx: any, dy: any): default;
-    offsetPoint(point: any): default;
-    setTo(x: any, y: any, width: any, height: any): default;
-    scale(x: any, y: any): default;
-    centerOn(x: any, y: any): default;
+    offset(dx: any, dy: any): Rectangle;
+    offsetPoint(point: any): Rectangle;
+    setTo(x: any, y: any, width: any, height: any): Rectangle;
+    scale(x: any, y: any): Rectangle;
+    centerOn(x: any, y: any): Rectangle;
     set centerX(arg: number);
     get centerX(): number;
     set centerY(arg: number);
@@ -26,19 +26,19 @@ export default class _default {
     floorAll(): void;
     ceil(): void;
     ceilAll(): void;
-    copyFrom(source: any): default;
+    copyFrom(source: any): Rectangle;
     copyTo(dest: any): any;
-    inflate(dx: any, dy: any): default;
+    inflate(dx: any, dy: any): Rectangle;
     size(output: any): Point;
-    resize(width: any, height: any): default;
-    clone(output: any): default;
+    resize(width: any, height: any): Rectangle;
+    clone(output: any): Rectangle;
     contains(x: any, y: any): boolean;
     containsRect(b: any): boolean;
     equals(b: any): boolean;
-    intersection(b: any, out: any): default;
+    intersection(b: any, out: any): Rectangle;
     intersects(b: any): boolean;
     intersectsRaw(left: any, right: any, top: any, bottom: any, tolerance: any): boolean;
-    union(b: any, out: any): default;
+    union(b: any, out: any): Rectangle;
     random(output?: null): Point;
     getPoint(position: any, output?: null): Point;
     toString(): string;
@@ -67,5 +67,5 @@ export default class _default {
     set empty(arg: boolean);
     get empty(): boolean;
 }
-import Point from './point';
+import { Point } from './point';
 //# sourceMappingURL=rectangle.d.ts.map

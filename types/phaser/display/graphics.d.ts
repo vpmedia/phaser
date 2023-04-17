@@ -1,4 +1,4 @@
-export default class _default extends DisplayObject {
+export class Graphics extends DisplayObject {
     /**
      * TBD.
      *
@@ -24,24 +24,24 @@ export default class _default extends DisplayObject {
     _boundsDirty: boolean;
     webGLDirty: boolean;
     cachedSpriteDirty: boolean;
-    lineStyle(lineWidth?: number, color?: number, alpha?: number): default;
+    lineStyle(lineWidth?: number, color?: number, alpha?: number): Graphics;
     lineAlpha: number | undefined;
-    moveTo(x: any, y: any): default;
-    lineTo(x: any, y: any): default;
-    quadraticCurveTo(cpX: any, cpY: any, toX: any, toY: any): default;
-    bezierCurveTo(cpX: any, cpY: any, cpX2: any, cpY2: any, toX: any, toY: any): default;
-    arcTo(x1: any, y1: any, x2: any, y2: any, radius: any): default;
-    arc(cx: any, cy: any, radius: any, startAngle: any, endAngle: any, anticlockwise?: boolean, segments?: number): default;
-    beginFill(color?: number, alpha?: number): default;
+    moveTo(x: any, y: any): Graphics;
+    lineTo(x: any, y: any): Graphics;
+    quadraticCurveTo(cpX: any, cpY: any, toX: any, toY: any): Graphics;
+    bezierCurveTo(cpX: any, cpY: any, cpX2: any, cpY2: any, toX: any, toY: any): Graphics;
+    arcTo(x1: any, y1: any, x2: any, y2: any, radius: any): Graphics;
+    arc(cx: any, cy: any, radius: any, startAngle: any, endAngle: any, anticlockwise?: boolean, segments?: number): Graphics;
+    beginFill(color?: number, alpha?: number): Graphics;
     filling: boolean | undefined;
     fillColor: number | null | undefined;
-    endFill(): default;
-    drawRect(x: any, y: any, width: any, height: any): default;
-    drawRoundedRect(x: any, y: any, width: any, height: any, radius: any): default;
-    drawCircle(x: any, y: any, diameter: any): default;
-    drawEllipse(x: any, y: any, width: any, height: any): default;
-    drawPolygon(path: any): default;
-    clear(): default;
+    endFill(): Graphics;
+    drawRect(x: any, y: any, width: any, height: any): Graphics;
+    drawRoundedRect(x: any, y: any, width: any, height: any, radius: any): Graphics;
+    drawCircle(x: any, y: any, diameter: any): Graphics;
+    drawEllipse(x: any, y: any, width: any, height: any): Graphics;
+    drawPolygon(path: any): Graphics;
+    clear(): Graphics;
     clearDirty: boolean | undefined;
     _prevTint: any;
     getBounds(matrix?: null): any;
@@ -54,7 +54,7 @@ export default class _default extends DisplayObject {
     drawTriangle(points: any, cull?: boolean): void;
     drawTriangles(vertices: any, indices: any, cull?: boolean): void;
 }
-import DisplayObject from './display_object';
-import GraphicsData from './graphics_data';
-import Rectangle from '../geom/rectangle';
+import { DisplayObject } from './display_object';
+import { GraphicsData } from './graphics_data';
+import { Rectangle } from '../geom/rectangle';
 //# sourceMappingURL=graphics.d.ts.map

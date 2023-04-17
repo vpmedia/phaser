@@ -1,4 +1,4 @@
-export default class _default {
+export class Ellipse {
     /**
      * TBD.
      *
@@ -13,14 +13,14 @@ export default class _default {
     width: number;
     height: number;
     type: number;
-    setTo(x: any, y: any, width: any, height: any): default;
+    setTo(x: any, y: any, width: any, height: any): Ellipse;
     getBounds(): Rectangle;
-    copyFrom(source: any): default;
+    copyFrom(source: any): Ellipse;
     copyTo(dest: any): any;
     contains(x: any, y: any): boolean;
     random(output?: null): Point;
     toString(): string;
 }
-import Rectangle from './rectangle';
-import Point from './point';
+import { Rectangle } from './rectangle';
+import { Point } from './point';
 //# sourceMappingURL=ellipse.d.ts.map
