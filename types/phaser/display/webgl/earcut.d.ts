@@ -1,13 +1,11 @@
 /**
  * TBD.
- *
  * @param {object} list - TBD.
  * @returns {object} TBD.
  */
 export function sortLinked(list: object): object;
 /**
  * TBD.
- *
  * @param {object} a - TBD.
  * @param {object} b - TBD.
  * @returns {number} TBD.
@@ -15,7 +13,6 @@ export function sortLinked(list: object): object;
 export function compareX(a: object, b: object): number;
 /**
  * TBD.
- *
  * @param {number} x - TBD.
  * @param {number} y - TBD.
  * @param {number} minX - TBD.
@@ -26,7 +23,6 @@ export function compareX(a: object, b: object): number;
 export function zOrder(x: number, y: number, minX: number, minY: number, size: number): number;
 /**
  * TBD.
- *
  * @param {object} start - TBD.
  * @param {number} minX - TBD.
  * @param {number} minY - TBD.
@@ -35,14 +31,12 @@ export function zOrder(x: number, y: number, minX: number, minY: number, size: n
 export function indexCurve(start: object, minX: number, minY: number, size: number): void;
 /**
  * TBD.
- *
  * @param {object} start - TBD.
  * @returns {object} TBD.
  */
 export function getLeftmost(start: object): object;
 /**
  * TBD.
- *
  * @param {number} ax - TBD.
  * @param {number} ay - TBD.
  * @param {number} bx - TBD.
@@ -56,7 +50,6 @@ export function getLeftmost(start: object): object;
 export function pointInTriangle(ax: number, ay: number, bx: number, by: number, cx: number, cy: number, px: number, py: number): object;
 /**
  * TBD.
- *
  * @param {object} p - TBD.
  * @param {object} q - TBD.
  * @param {object} r - TBD.
@@ -65,7 +58,6 @@ export function pointInTriangle(ax: number, ay: number, bx: number, by: number, 
 export function area(p: object, q: object, r: object): number;
 /**
  * TBD.
- *
  * @param {object} p1 - TBD.
  * @param {object} p2 - TBD.
  * @returns {boolean} TBD.
@@ -73,7 +65,6 @@ export function area(p: object, q: object, r: object): number;
 export function equals(p1: object, p2: object): boolean;
 /**
  * TBD.
- *
  * @param {object} p1 - TBD.
  * @param {object} q1 - TBD.
  * @param {object} p2 - TBD.
@@ -83,7 +74,6 @@ export function equals(p1: object, p2: object): boolean;
 export function intersects(p1: object, q1: object, p2: object, q2: object): boolean;
 /**
  * TBD.
- *
  * @param {object} a - TBD.
  * @param {object} b - TBD.
  * @returns {boolean} TBD.
@@ -91,7 +81,6 @@ export function intersects(p1: object, q1: object, p2: object, q2: object): bool
 export function intersectsPolygon(a: object, b: object): boolean;
 /**
  * TBD.
- *
  * @param {object} a - TBD.
  * @param {object} b - TBD.
  * @returns {object} TBD.
@@ -99,7 +88,6 @@ export function intersectsPolygon(a: object, b: object): boolean;
 export function locallyInside(a: object, b: object): object;
 /**
  * TBD.
- *
  * @param {object} a - TBD.
  * @param {object} b - TBD.
  * @returns {boolean} TBD.
@@ -107,7 +95,6 @@ export function locallyInside(a: object, b: object): object;
 export function middleInside(a: object, b: object): boolean;
 /**
  * TBD.
- *
  * @param {object} a - TBD.
  * @param {object} b - TBD.
  * @returns {boolean} TBD.
@@ -115,7 +102,6 @@ export function middleInside(a: object, b: object): boolean;
 export function isValidDiagonal(a: object, b: object): boolean;
 /**
  * TBD.
- *
  * @param {object} a - TBD.
  * @param {object} b - TBD.
  * @returns {object} TBD.
@@ -123,7 +109,6 @@ export function isValidDiagonal(a: object, b: object): boolean;
 export function splitPolygon(a: object, b: object): object;
 /**
  * TBD.
- *
  * @param {number} i - TBD.
  * @param {number} x - TBD.
  * @param {number} y - TBD.
@@ -133,20 +118,17 @@ export function splitPolygon(a: object, b: object): object;
 export function insertNode(i: number, x: number, y: number, last: object): object;
 /**
  * TBD.
- *
  * @param {object} p - TBD.
  */
 export function removeNode(p: object): void;
 /**
  * TBD.
- *
  * @param {object} ear - TBD.
  * @returns {boolean} TBD.
  */
 export function isEar(ear: object): boolean;
 /**
  * TBD.
- *
  * @param {object} ear - TBD.
  * @param {number} minX - TBD.
  * @param {number} minY - TBD.
@@ -156,7 +138,6 @@ export function isEar(ear: object): boolean;
 export function isEarHashed(ear: object, minX: number, minY: number, size: number): boolean;
 /**
  * TBD.
- *
  * @param {object} data - TBD.
  * @param {number} start - TBD.
  * @param {number} end - TBD.
@@ -167,7 +148,6 @@ export function isEarHashed(ear: object, minX: number, minY: number, size: numbe
 export function linkedList(data: object, start: number, end: number, dim: number, clockwise: boolean): object;
 /**
  * TBD.
- *
  * @param {object} start - TBD.
  * @param {object} end - TBD.
  * @returns {object} TBD.
@@ -175,7 +155,6 @@ export function linkedList(data: object, start: number, end: number, dim: number
 export function filterPoints(start: object, end: object): object;
 /**
  * TBD.
- *
  * @param {object} hole - TBD.
  * @param {object} outerNode - TBD.
  * @returns {object} TBD.
@@ -183,14 +162,12 @@ export function filterPoints(start: object, end: object): object;
 export function findHoleBridge(hole: object, outerNode: object): object;
 /**
  * TBD.
- *
  * @param {object} hole - TBD.
  * @param {object} outerNode - TBD.
  */
 export function eliminateHole(hole: object, outerNode: object): void;
 /**
  * TBD.
- *
  * @param {object} data - TBD.
  * @param {object} holeIndices - TBD.
  * @param {object} outerNode - TBD.
@@ -200,7 +177,6 @@ export function eliminateHole(hole: object, outerNode: object): void;
 export function eliminateHoles(data: object, holeIndices: object, outerNode: object, dim: object): object;
 /**
  * TBD.
- *
  * @param {object} start - TBD.
  * @param {object} triangles - TBD.
  * @param {number} dim - TBD.
@@ -209,7 +185,6 @@ export function eliminateHoles(data: object, holeIndices: object, outerNode: obj
 export function cureLocalIntersections(start: object, triangles: object, dim: number): object;
 /**
  * TBD.
- *
  * @param {object} start - TBD.
  * @param {object} triangles - TBD.
  * @param {number} dim - TBD.
@@ -220,7 +195,6 @@ export function cureLocalIntersections(start: object, triangles: object, dim: nu
 export function splitEarcut(start: object, triangles: object, dim: number, minX: number, minY: number, size: number): void;
 /**
  * TBD.
- *
  * @param {object} ear - TBD.
  * @param {object} triangles - TBD.
  * @param {number} dim - TBD.
@@ -232,7 +206,6 @@ export function splitEarcut(start: object, triangles: object, dim: number, minX:
 export function earcutLinked(ear: object, triangles: object, dim: number, minX: number, minY: number, size: number, pass: object): void;
 /**
  * TBD.
- *
  * @param {object} data - TBD.
  * @param {object} holeIndices - TBD.
  * @param {number} dim - TBD.

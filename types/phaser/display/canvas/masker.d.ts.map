@@ -1,1 +1,1 @@
-{"version":3,"file":"masker.d.ts","sourceRoot":"","sources":["../../../../src/phaser/display/canvas/masker.js"],"names":[],"mappings":"AAQA;;;;;GAKG;AACH,mCAHW,MAAM,iBACN,MAAM,QAmBhB;AAED;;;;GAIG;AACH,uCAFW,MAAM,QAIhB"}
+{"version":3,"file":"masker.d.ts","sourceRoot":"","sources":["../../../../src/phaser/display/canvas/masker.js"],"names":[],"mappings":"AAQA;;;;GAIG;AACH,mCAHW,MAAM,iBACN,MAAM,QAmBhB;AAED;;;GAGG;AACH,uCAFW,MAAM,QAIhB"}

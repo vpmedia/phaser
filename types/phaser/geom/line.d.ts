@@ -1,7 +1,6 @@
 export class Line {
     /**
      * TBD.
-     *
      * @param {number} x1 - TBD.
      * @param {number} y1 - TBD.
      * @param {number} x2 - TBD.

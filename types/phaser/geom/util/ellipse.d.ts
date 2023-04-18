@@ -6,7 +6,6 @@
  */
 /**
  * TBD.
- *
  * @param {object} a - TBD.
  * @param {number} x - TBD.
  * @param {number} y - TBD.

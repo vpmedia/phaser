@@ -1,7 +1,6 @@
 export class Graphics extends DisplayObject {
     /**
      * TBD.
-     *
      * @param {Game} game - TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.

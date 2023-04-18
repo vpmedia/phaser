@@ -3,7 +3,6 @@ export const SORT_DESCENDING: 1;
 export class Group extends DisplayObject {
     /**
      * TBD.
-     *
      * @param {Game} game - TBD.
      * @param {DisplayObject} parent - TBD.
      * @param {string} name - TBD.

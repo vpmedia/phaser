@@ -1,6 +1,5 @@
 /**
  * TBD.
- *
  * @param {RoundedRectangle} input - TBD.
  * @param {RoundedRectangle} output - TBD.
  * @returns {RoundedRectangle} TBD.

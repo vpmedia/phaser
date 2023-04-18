@@ -1,7 +1,6 @@
 export class Matrix {
     /**
      * TBD.
-     *
      * @param {number} a - TBD.
      * @param {number} b - TBD.
      * @param {number} c - TBD.

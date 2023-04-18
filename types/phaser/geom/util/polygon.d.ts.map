@@ -1,1 +1,1 @@
-{"version":3,"file":"polygon.d.ts","sourceRoot":"","sources":["../../../../src/phaser/geom/util/polygon.js"],"names":[],"mappings":"AAQA;;;;;;GAMG;AACH,6BAJW,OAAO,WACP,OAAO,GACL,OAAO,CAMnB;wBAbwB,YAAY"}
+{"version":3,"file":"polygon.d.ts","sourceRoot":"","sources":["../../../../src/phaser/geom/util/polygon.js"],"names":[],"mappings":"AAQA;;;;;GAKG;AACH,6BAJW,OAAO,WACP,OAAO,GACL,OAAO,CAMnB;wBAZwB,YAAY"}

@@ -1,6 +1,5 @@
 /**
  * TBD.
- *
  * @param {object} game - TBD.
  * @param {object} key - TBD.
  * @param {number} frameWidth - TBD.
@@ -13,7 +12,6 @@
 export function spriteSheet(game: object, key: object, frameWidth: number, frameHeight: number, frameMax: number, margin: number, spacing: number): object;
 /**
  * TBD.
- *
  * @param {object} game - TBD.
  * @param {object} json - TBD.
  * @returns {object} TBD.

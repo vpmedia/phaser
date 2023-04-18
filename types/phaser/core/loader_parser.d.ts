@@ -1,6 +1,5 @@
 /**
  * TBD.
- *
  * @param {object} baseTexture - TBD.
  * @param {object} bitmapFontData - TBD.
  * @returns {object} TBD.
@@ -8,7 +7,6 @@
 export function finalizeBitmapFont(baseTexture: object, bitmapFontData: object): object;
 /**
  * TBD.
- *
  * @param {object} xml - TBD.
  * @param {object} baseTexture - TBD.
  * @param {number} xSpacing - TBD.
@@ -18,7 +16,6 @@ export function finalizeBitmapFont(baseTexture: object, bitmapFontData: object):
 export function xmlBitmapFont(xml: object, baseTexture: object, xSpacing: number, ySpacing: number): object;
 /**
  * TBD.
- *
  * @param {object} xml - TBD.
  * @param {object} baseTexture - TBD.
  * @param {number} xSpacing - TBD.
@@ -28,7 +25,6 @@ export function xmlBitmapFont(xml: object, baseTexture: object, xSpacing: number
 export function bitmapFont(xml: object, baseTexture: object, xSpacing: number, ySpacing: number): object;
 /**
  * TBD.
- *
  * @param {object} json - TBD.
  * @param {object} baseTexture - TBD.
  * @param {number} xSpacing - TBD.

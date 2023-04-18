@@ -1,7 +1,6 @@
 export class SpriteBatch extends DisplayObject {
     /**
      * TBD.
-     *
      * @param {object} game - TBD.
      */
     constructor(game: object);

@@ -1,6 +1,5 @@
 /**
  * TBD.
- *
  * @param {object} source - TBD.
  * @returns {object} TBD.
  */
