@@ -8,7 +8,6 @@ import { create as createCanvas } from './pool';
 
 /**
  * TBD.
- *
  * @param {object} parent - TBD.
  * @param {number} width - TBD.
  * @param {number} height - TBD.
@@ -31,7 +30,6 @@ export function create(parent, width, height, id, skipPool) {
 
 /**
  * TBD.
- *
  * @param {HTMLCanvasElement} canvas - TBD.
  * @param {string} color - TBD.
  * @returns {object} TBD.
@@ -44,7 +42,6 @@ export function setBackgroundColor(canvas, color) {
 
 /**
  * TBD.
- *
  * @param {HTMLCanvasElement} canvas - TBD.
  * @param {string} value - TBD.
  * @returns {object} TBD.
@@ -59,7 +56,6 @@ export function setTouchAction(canvas, value) {
 
 /**
  * TBD.
- *
  * @param {HTMLCanvasElement} canvas - TBD.
  * @param {string} value - TBD.
  * @returns {object} TBD.
@@ -78,7 +74,6 @@ export function setUserSelect(canvas, value) {
 
 /**
  * TBD.
- *
  * @param {HTMLCanvasElement} canvas - TBD.
  * @param {object} parent - TBD.
  * @param {boolean} overflowHidden - TBD.
@@ -108,7 +103,6 @@ export function addToDOM(canvas, parent, overflowHidden = true) {
 
 /**
  * TBD.
- *
  * @param {HTMLCanvasElement} canvas - TBD.
  */
 export function removeFromDOM(canvas) {
@@ -119,7 +113,6 @@ export function removeFromDOM(canvas) {
 
 /**
  * TBD.
- *
  * @param {object} context - TBD.
  * @param {number} translateX - TBD.
  * @param {number} translateY - TBD.
@@ -136,7 +129,6 @@ export function setTransform(context, translateX, translateY, scaleX, scaleY, sk
 
 /**
  * TBD.
- *
  * @param {object} context - TBD.
  * @returns {object} TBD.
  */
@@ -153,7 +145,6 @@ export function getSmoothingPrefix(context) {
 
 /**
  * TBD.
- *
  * @param {object} context - TBD.
  * @param {number} value - TBD.
  * @returns {object} TBD.

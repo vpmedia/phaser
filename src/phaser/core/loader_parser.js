@@ -8,7 +8,6 @@ import { Rectangle } from  '../geom/rectangle';
 
 /**
  * TBD.
- *
  * @param {object} baseTexture - TBD.
  * @param {object} bitmapFontData - TBD.
  * @returns {object} TBD.
@@ -26,7 +25,6 @@ export function finalizeBitmapFont(baseTexture, bitmapFontData) {
 
 /**
  * TBD.
- *
  * @param {object} xml - TBD.
  * @param {object} baseTexture - TBD.
  * @param {number} xSpacing - TBD.
@@ -67,7 +65,6 @@ export function xmlBitmapFont(xml, baseTexture, xSpacing, ySpacing) {
 
 /**
  * TBD.
- *
  * @param {object} xml - TBD.
  * @param {object} baseTexture - TBD.
  * @param {number} xSpacing - TBD.
@@ -80,7 +77,6 @@ export function bitmapFont(xml, baseTexture, xSpacing, ySpacing) {
 
 /**
  * TBD.
- *
  * @param {object} json - TBD.
  * @param {object} baseTexture - TBD.
  * @param {number} xSpacing - TBD.

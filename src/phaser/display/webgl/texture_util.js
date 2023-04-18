@@ -9,7 +9,6 @@ import { Texture } from './texture';
 
 /**
  * TBD.
- *
  * @param {HTMLCanvasElement} canvas - TBD.
  * @param {number} scaleMode - TBD.
  * @returns {object} TBD.
@@ -26,7 +25,6 @@ export function baseTextureFromCanvas(canvas, scaleMode) {
 
 /**
  * TBD.
- *
  * @param {HTMLCanvasElement} canvas - TBD.
  * @param {number} scaleMode - TBD.
  * @returns {object} TBD.

@@ -9,7 +9,6 @@ export const PI_2 = Math.PI * 2;
 
 /**
  * TBD.
- *
  * @param {number} hex - TBD.
  * @returns {number[]} TBD.
  */
@@ -19,7 +18,6 @@ export function hex2rgb(hex) {
 
 /**
  * TBD.
- *
  * @param {number} rgb - TBD.
  * @returns {number} TBD.
  */
@@ -29,7 +27,6 @@ export function rgb2hex(rgb) {
 
 /**
  * TBD.
- *
  * @param {number} value - TBD.
  * @returns {number} TBD.
  */
@@ -47,7 +44,6 @@ export function getNextPowerOfTwo(value) {
 
 /**
  * TBD.
- *
  * @param {number} width - TBD.
  * @param {number} height - TBD.
  * @returns {boolean} TBD.
@@ -58,7 +54,6 @@ export function isPowerOfTwo(width, height) {
 
 /**
  * TBD.
- *
  * @param {number} degrees - TBD.
  * @returns {number} TBD.
  */
@@ -68,7 +63,6 @@ export function degToRad(degrees) {
 
 /**
  * TBD.
- *
  * @param {number} radians - TBD.
  * @returns {number} TBD.
  */
@@ -78,7 +72,6 @@ export function radToDeg(radians) {
 
 /**
  * TBD.
- *
  * @param {number} min - TBD.
  * @param {number} max - TBD.
  * @returns {number} TBD.
@@ -89,7 +82,6 @@ export function between(min, max) {
 
 /**
  * TBD.
- *
  * @param {number} input - TBD.
  * @param {number} gap - TBD.
  * @param {number} start - TBD.
@@ -106,7 +98,6 @@ export function snapToCeil(input, gap = 0, start = 0) {
 
 /**
  * TBD.
- *
  * @param {number} value - TBD.
  * @param {number} min - TBD.
  * @param {number} max - TBD.
@@ -126,7 +117,6 @@ export function wrap(value, min, max) {
 
 /**
  * TBD.
- *
  * @param {number} p0 - TBD.
  * @param {number} p1 - TBD.
  * @param {number} t - TBD.
@@ -138,7 +128,6 @@ export function linear(p0, p1, t) {
 
 /**
  * TBD.
- *
  * @param {number} a - TBD.
  * @param {number} b - TBD.
  * @returns {number} TBD.
@@ -149,7 +138,6 @@ export function difference(a, b) {
 
 /**
  * TBD.
- *
  * @param {number[]} v - TBD.
  * @param {number} k - TBD.
  * @returns {number} TBD.
@@ -169,7 +157,6 @@ export function linearInterpolation(v, k) {
 
 /**
  * TBD.
- *
  * @param {number} x1 - TBD.
  * @param {number} y1 - TBD.
  * @param {number} x2 - TBD.
@@ -184,7 +171,6 @@ export function distance(x1, y1, x2, y2) {
 
 /**
  * TBD.
- *
  * @param {number} a - TBD.
  * @param {number} b - TBD.
  * @param {number} tolerance - TBD.
@@ -196,7 +182,6 @@ export function within(a, b, tolerance) {
 
 /**
  * TBD.
- *
  * @param {number} a - TBD.
  * @param {number} r - TBD.
  * @param {number} g - TBD.
@@ -209,7 +194,6 @@ export function getColor32(a, r, g, b) {
 
 /**
  * TBD.
- *
  * @param {number} r - TBD.
  * @param {number} g - TBD.
  * @param {number} b - TBD.
@@ -221,7 +205,6 @@ export function getColor(r, g, b) {
 
 /**
  * TBD.
- *
  * @param {string} value - TBD.
  * @param {object} out - TBD.
  */
@@ -241,7 +224,6 @@ export function hexToColor(value, out) {
 
 /**
  * TBD.
- *
  * @param {string} value - TBD.
  * @param {object} out - TBD.
  */
@@ -259,7 +241,6 @@ export function webToColor(value, out) {
 
 /**
  * TBD.
- *
  * @param {number} color - TBD.
  * @returns {object} TBD.
  */
@@ -291,7 +272,6 @@ export function getRGB(color) {
 
 /**
  * TBD.
- *
  * @param {string|number} value - TBD.
  * @param {object} out - TBD.
  * @returns {object} TBD.
@@ -331,7 +311,6 @@ export function valueToColor(value, out) {
 
 /**
  * TBD.
- *
  * @returns {string} TBD.
  */
 export function generateID() {
@@ -340,7 +319,6 @@ export function generateID() {
 
 /**
  * TBD.
- *
  * @returns {string} TBD.
  */
 export function generateShaderID() {

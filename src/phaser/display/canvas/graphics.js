@@ -14,7 +14,6 @@ import {
 
 /**
  * TBD.
- *
  * @param {object} graphics - TBD.
  */
 export function updateGraphicsTint(graphics) {
@@ -41,7 +40,6 @@ export function updateGraphicsTint(graphics) {
 
 /**
  * TBD.
- *
  * @param {object} graphics - TBD.
  * @param {object} context - TBD.
  */
@@ -171,7 +169,6 @@ export function renderGraphics(graphics, context) {
 
 /**
  * TBD.
- *
  * @param {object} graphics - TBD.
  * @param {object} context - TBD.
  */

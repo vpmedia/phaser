@@ -6,7 +6,6 @@
 
 /**
  * TBD.
- *
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
@@ -16,7 +15,6 @@ export function LinearNone(k) {
 
 /**
  * TBD.
- *
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
@@ -26,7 +24,6 @@ export function QuadraticIn(k) {
 
 /**
  * TBD.
- *
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
@@ -36,7 +33,6 @@ export function QuadraticOut(k) {
 
 /**
  * TBD.
- *
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
@@ -47,7 +43,6 @@ export function QuadraticInOut(k) {
 
 /**
  * TBD.
- *
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
@@ -57,7 +52,6 @@ export function CubicIn(k) {
 
 /**
  * TBD.
- *
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
@@ -67,7 +61,6 @@ export function CubicOut(k) {
 
 /**
  * TBD.
- *
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
@@ -78,7 +71,6 @@ export function CubicInOut(k) {
 
 /**
  * TBD.
- *
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
@@ -88,7 +80,6 @@ export function QuarticIn(k) {
 
 /**
  * TBD.
- *
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
@@ -98,7 +89,6 @@ export function QuarticOut(k) {
 
 /**
  * TBD.
- *
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
@@ -109,7 +99,6 @@ export function QuarticInOut(k) {
 
 /**
  * TBD.
- *
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
@@ -119,7 +108,6 @@ export function QuinticIn(k) {
 
 /**
  * TBD.
- *
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
@@ -129,7 +117,6 @@ export function QuinticOut(k) {
 
 /**
  * TBD.
- *
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
@@ -140,7 +127,6 @@ export function QuinticInOut(k) {
 
 /**
  * TBD.
- *
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
@@ -152,7 +138,6 @@ export function SinusoidalIn(k) {
 
 /**
  * TBD.
- *
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
@@ -164,7 +149,6 @@ export function SinusoidalOut(k) {
 
 /**
  * TBD.
- *
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
@@ -176,7 +160,6 @@ export function SinusoidalInOut(k) {
 
 /**
  * TBD.
- *
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
@@ -186,7 +169,6 @@ export function ExponentialIn(k) {
 
 /**
  * TBD.
- *
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
@@ -196,7 +178,6 @@ export function ExponentialOut(k) {
 
 /**
  * TBD.
- *
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
@@ -209,7 +190,6 @@ export function ExponentialInOut(k) {
 
 /**
  * TBD.
- *
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
@@ -219,7 +199,6 @@ export function CircularIn(k) {
 
 /**
  * TBD.
- *
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
@@ -229,7 +208,6 @@ export function CircularOut(k) {
 
 /**
  * TBD.
- *
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
@@ -240,7 +218,6 @@ export function CircularInOut(k) {
 
 /**
  * TBD.
- *
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
@@ -261,7 +238,6 @@ export function ElasticIn(k) {
 
 /**
  * TBD.
- *
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
@@ -282,7 +258,6 @@ export function ElasticOut(k) {
 
 /**
  * TBD.
- *
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
@@ -305,7 +280,6 @@ export function ElasticInOut(k) {
 
 /**
  * TBD.
- *
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
@@ -316,7 +290,6 @@ export function BackIn(k) {
 
 /**
  * TBD.
- *
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
@@ -327,7 +300,6 @@ export function BackOut(k) {
 
 /**
  * TBD.
- *
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
@@ -339,7 +311,6 @@ export function BackInOut(k) {
 
 /**
  * TBD.
- *
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
@@ -356,7 +327,6 @@ export function BounceOut(k) {
 
 /**
  * TBD.
- *
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
@@ -366,7 +336,6 @@ export function BounceIn(k) {
 
 /**
  * TBD.
- *
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */

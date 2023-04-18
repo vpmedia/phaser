@@ -9,7 +9,6 @@ import { Point } from '../point';
 
 /**
  * TBD.
- *
  * @param {Rectangle} a - TBD.
  * @param {number} dx - TBD.
  * @param {number} dy - TBD.
@@ -25,7 +24,6 @@ export function inflate(a, dx, dy) {
 
 /**
  * TBD.
- *
  * @param {Rectangle} a - TBD.
  * @param {object} point - TBD.
  * @returns {Rectangle} TBD.
@@ -36,7 +34,6 @@ export function inflatePoint(a, point) {
 
 /**
  * TBD.
- *
  * @param {Rectangle} a - TBD.
  * @param {Point} output - TBD.
  * @returns {Point} TBD.
@@ -49,7 +46,6 @@ export function size(a, output = null) {
 
 /**
  * TBD.
- *
  * @param {Rectangle} input - TBD.
  * @param {Rectangle} output - TBD.
  * @returns {Rectangle} TBD.
@@ -62,7 +58,6 @@ export function clone(input, output = null) {
 
 /**
  * TBD.
- *
  * @param {Rectangle} a - TBD.
  * @param {number} x - TBD.
  * @param {number} y - TBD.
@@ -77,7 +72,6 @@ export function contains(a, x, y) {
 
 /**
  * TBD.
- *
  * @param {number} rx - TBD.
  * @param {number} ry - TBD.
  * @param {number} rw - TBD.
@@ -92,7 +86,6 @@ export function containsRaw(rx, ry, rw, rh, x, y) {
 
 /**
  * TBD.
- *
  * @param {Rectangle} a - TBD.
  * @param {Point} point - TBD.
  * @returns {boolean} TBD.
@@ -103,7 +96,6 @@ export function containsPoint(a, point) {
 
 /**
  * TBD.
- *
  * @param {Rectangle} a - TBD.
  * @param {Rectangle} b - TBD.
  * @returns {boolean} TBD.
@@ -117,7 +109,6 @@ export function containsRect(a, b) {
 
 /**
  * TBD.
- *
  * @param {Rectangle} a - TBD.
  * @param {Rectangle} b - TBD.
  * @returns {boolean} TBD.
@@ -128,7 +119,6 @@ export function equals(a, b) {
 
 /**
  * TBD.
- *
  * @param {Rectangle} a - TBD.
  * @param {Rectangle} b - TBD.
  * @returns {boolean} TBD.
@@ -139,7 +129,6 @@ export function sameDimensions(a, b) {
 
 /**
  * TBD.
- *
  * @param {Rectangle} a - TBD.
  * @param {Rectangle} b - TBD.
  * @returns {boolean} TBD.
@@ -153,7 +142,6 @@ export function intersects(a, b) {
 
 /**
  * TBD.
- *
  * @param {Rectangle} a - TBD.
  * @param {Rectangle} b - TBD.
  * @param {Rectangle} output - TBD.
@@ -172,7 +160,6 @@ export function intersection(a, b, output = null) {
 
 /**
  * TBD.
- *
  * @param {Rectangle} a - TBD.
  * @param {number} left - TBD.
  * @param {number} right - TBD.
@@ -192,7 +179,6 @@ export function intersectsRaw(a, left, right, top, bottom, tolerance = 0) {
 
 /**
  * TBD.
- *
  * @param {Rectangle} a - TBD.
  * @param {Rectangle} b - TBD.
  * @param {Rectangle} output - TBD.
@@ -210,7 +196,6 @@ export function union(a, b, output = null) {
 
 /**
  * TBD.
- *
  * @param {Point[]} points - TBD.
  * @param {Rectangle} output - TBD.
  * @returns {Rectangle} TBD.
@@ -241,7 +226,6 @@ export function aabb(points, output = null) {
 
 /**
  * TBD.
- *
  * @returns {Rectangle} TBD.
  */
 export function getEmptyRectangle() {

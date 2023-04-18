@@ -12,7 +12,6 @@ import { GEOM_ELLIPSE } from '../core/const';
 export class Ellipse {
   /**
    * TBD.
-   *
    * @param {number} x - TBD.
    * @param {number} y - TBD.
    * @param {number} width - TBD.

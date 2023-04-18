@@ -8,7 +8,6 @@ import { renderGraphicsMask } from './graphics';
 
 /**
  * TBD.
- *
  * @param {object} maskData - TBD.
  * @param {object} renderSession - TBD.
  */
@@ -33,7 +32,6 @@ export function pushMask(maskData, renderSession) {
 
 /**
  * TBD.
- *
  * @param {object} renderSession - TBD.
  */
 export function popMask(renderSession) {

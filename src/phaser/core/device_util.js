@@ -7,7 +7,6 @@ import { Device } from "./device";
 
 /**
  * TBD.
- *
  * @param {Device} device - TBD.
  * @param {string} type - TBD.
  * @returns {boolean} TBD.
@@ -33,7 +32,6 @@ export function canPlayAudio(device, type) {
 
 /**
  * TBD.
- *
  * @param {Device} device - TBD.
  */
 export function checkOS(device) {
@@ -77,7 +75,6 @@ export function checkOS(device) {
 
 /**
  * TBD.
- *
  * @param {Device} device - TBD.
  */
 export function checkInput(device) {
@@ -98,7 +95,6 @@ export function checkInput(device) {
 
 /**
  * TBD.
- *
  * @param {Device} device - TBD.
  */
 export function checkFullScreenSupport(device) {
@@ -145,7 +141,6 @@ export function checkFullScreenSupport(device) {
 
 /**
  * TBD.
- *
  * @param {Device} device - TBD.
  */
 export function checkBrowser(device) {
@@ -167,7 +162,6 @@ export function checkBrowser(device) {
 
 /**
  * TBD.
- *
  * @param {Device} device - TBD.
  */
 export function checkAudio(device) {
@@ -214,7 +208,6 @@ export function checkAudio(device) {
 
 /**
  * TBD.
- *
  * @param {Device} device - TBD.
  */
 export function checkImage(device) {
@@ -239,7 +232,6 @@ export function checkImage(device) {
 
 /**
  * TBD.
- *
  * @param {Device} device - TBD.
  */
 export function initialize(device) {
@@ -253,7 +245,6 @@ export function initialize(device) {
 
 /**
  * TBD.
- *
  * @returns {Device} TBD.
  */
 export function createDevice() {

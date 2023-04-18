@@ -10,7 +10,6 @@ import { SCALE_LINEAR } from '../core/const';
 
 /**
  * TBD.
- *
  * @param {object} target - TBD.
  * @param {object} texture - TBD.
  * @param {boolean} destroyBase - TBD.
@@ -27,7 +26,6 @@ export function setTexture(target, texture, destroyBase = false) {
 
 /**
  * TBD.
- *
  * @param {object} target - TBD.
  * @param {object} matrix - TBD.
  * @returns {object} TBD.
@@ -111,7 +109,6 @@ export function getBounds(target, matrix = null) {
 
 /**
  * TBD.
- *
  * @param {object} target - TBD.
  * @returns {object} TBD.
  */
@@ -132,7 +129,6 @@ export function getLocalBounds(target) {
 
 /**
  * TBD.
- *
  * @param {object} target - TBD.
  * @param {object} renderSession - TBD.
  * @param {object} matrix - TBD.
@@ -182,7 +178,6 @@ export function renderWebGL(target, renderSession, matrix) {
 
 /**
  * TBD.
- *
  * @param {object} target - TBD.
  * @param {object} renderSession - TBD.
  * @param {object} matrix - TBD.

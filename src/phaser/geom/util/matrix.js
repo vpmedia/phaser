@@ -8,7 +8,6 @@ import { Matrix } from  '../matrix';
 
 /**
  * TBD.
- *
  * @param {Matrix} input - TBD.
  * @param {Matrix} output - TBD.
  * @returns {Matrix} TBD.
@@ -26,7 +25,6 @@ export function clone(input, output = null) {
 
 /**
  * TBD.
- *
  * @returns {Matrix} TBD.
  */
 export function getIdentityMatrix() {
@@ -41,7 +39,6 @@ export function getIdentityMatrix() {
 
 /**
  * TBD.
- *
  * @returns {Matrix} TBD.
  */
 export function getTempMatrix() {

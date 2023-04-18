@@ -10,7 +10,6 @@ import { GEOM_POINT } from '../core/const';
 export class Point {
   /**
    * TBD.
-   *
    * @param {number} x - TBD.
    * @param {number} y - TBD.
    */

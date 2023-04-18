@@ -13,7 +13,6 @@ import { GEOM_CIRCLE } from '../core/const';
 export class Circle {
   /**
    * TBD.
-   *
    * @param {number} x - TBD.
    * @param {number} y - TBD.
    * @param {number} diameter - TBD.

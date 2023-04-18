@@ -10,7 +10,6 @@ import { GEOM_ROUNDED_RECTANGLE } from '../core/const';
 export class RoundedRectangle {
   /**
    * TBD.
-   *
    * @param {number} x - TBD.
    * @param {number} y - TBD.
    * @param {number} width - TBD.

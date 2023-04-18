@@ -8,7 +8,6 @@ import { FrameData } from './frame_data';
 
 /**
  * TBD.
- *
  * @param {object} frame - TBD.
  * @param {object} output - TBD.
  * @returns {object} TBD.
@@ -21,7 +20,6 @@ export function cloneFrame(frame, output = null) {
 
 /**
  * TBD.
- *
  * @param {object} frameData - TBD.
  * @param {object} output - TBD.
  * @returns {object} TBD.

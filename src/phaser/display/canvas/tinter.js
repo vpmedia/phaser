@@ -10,7 +10,6 @@ import { hex2rgb } from '../../util/math';
 
 /**
  * TBD.
- *
  * @param {object} sprite - TBD.
  * @param {object} color - TBD.
  * @returns {object} TBD.
@@ -23,7 +22,6 @@ export function getTintedTexture(sprite, color) {
 
 /**
  * TBD.
- *
  * @param {object} texture - TBD.
  * @param {object} color - TBD.
  * @param {HTMLCanvasElement} canvas - TBD.
@@ -66,7 +64,6 @@ export function tintWithMultiply(texture, color, canvas) {
 
 /**
  * TBD.
- *
  * @param {object} texture - TBD.
  * @param {object} color - TBD.
  * @param {HTMLCanvasElement} canvas - TBD.
@@ -111,7 +108,6 @@ export function tintWithPerPixel(texture, color, canvas) {
 
 /**
  * TBD.
- *
  * @returns {boolean} TBD.
  */
 export function checkInverseAlpha() {
@@ -139,7 +135,6 @@ export function checkInverseAlpha() {
 
 /**
  * TBD.
- *
  * @returns {boolean} TBD.
  */
 export function canUseNewCanvasBlendModes() {

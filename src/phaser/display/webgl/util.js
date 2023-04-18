@@ -12,7 +12,6 @@ export function initDefaultShaders() {}
 
 /**
  * TBD.
- *
  * @param {object} gl - TBD.
  * @param {string[]|string} shaderSrc - TBD.
  * @param {object} shaderType - TBD.
@@ -37,7 +36,6 @@ export function compileShader(gl, shaderSrc, shaderType) {
 
 /**
  * TBD.
- *
  * @param {object} gl - TBD.
  * @param {string[]|string} shaderSrc - TBD.
  * @returns {object} TBD.
@@ -48,7 +46,6 @@ export function compileVertexShader(gl, shaderSrc) {
 
 /**
  * TBD.
- *
  * @param {object} gl - TBD.
  * @param {string[]|string} shaderSrc - TBD.
  * @returns {object} TBD.
@@ -59,7 +56,6 @@ export function compileFragmentShader(gl, shaderSrc) {
 
 /**
  * TBD.
- *
  * @param {object} gl - TBD.
  * @param {string[]|string} vertexSrc - TBD.
  * @param {string[]|string} fragmentSrc - TBD.

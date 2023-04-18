@@ -10,7 +10,6 @@ import { degToRad, distance } from '../../util/math';
 
 /**
  * TBD.
- *
  * @param {Circle} input - TBD.
  * @param {Circle} output - TBD.
  * @returns {Circle} TBD.
@@ -25,7 +24,6 @@ export function clone(input, output = null) {
 
 /**
  * TBD.
- *
  * @param {Circle} a - TBD.
  * @param {number} x - TBD.
  * @param {number} y - TBD.
@@ -42,7 +40,6 @@ export function contains(a, x, y) {
 
 /**
  * TBD.
- *
  * @param {Circle} a - TBD.
  * @param {Circle} b - TBD.
  * @returns {boolean} TBD.
@@ -53,7 +50,6 @@ export function equals(a, b) {
 
 /**
  * TBD.
- *
  * @param {Circle} a - TBD.
  * @param {Circle} b - TBD.
  * @returns {boolean} TBD.
@@ -64,7 +60,6 @@ export function intersects(a, b) {
 
 /**
  * TBD.
- *
  * @param {Circle} a - TBD.
  * @param {number} angle - TBD.
  * @param {boolean} asDegrees - TBD.
@@ -83,7 +78,6 @@ export function circumferencePoint(a, angle, asDegrees = false, output = null) {
 
 /**
  * TBD.
- *
  * @param {Circle} a - TBD.
  * @param {number} angle - TBD.
  * @param {boolean} asDegrees - TBD.
@@ -102,7 +96,6 @@ export function intersectsPoint(a, angle, asDegrees = false, output = null) {
 
 /**
  * TBD.
- *
  * @param {Circle} c - TBD.
  * @param {object} r - TBD.
  * @returns {boolean} TBD.

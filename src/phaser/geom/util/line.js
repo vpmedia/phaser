@@ -10,7 +10,6 @@ import { intersects as intersectsRect } from './rectangle';
 
 /**
  * TBD.
- *
  * @param {Line} input - TBD.
  * @param {Line} output - TBD.
  * @returns {Line} TBD.
@@ -26,7 +25,6 @@ export function clone(input, output = null) {
 
 /**
  * TBD.
- *
  * @param {object} a - TBD.
  * @param {object} b - TBD.
  * @param {object} e - TBD.
@@ -63,7 +61,6 @@ export function intersectsPoints(a, b, e, f, asSegment = true, output = null) {
 
 /**
  * TBD.
- *
  * @param {object} a - TBD.
  * @param {object} b - TBD.
  * @param {boolean} asSegment - TBD.
@@ -76,7 +73,6 @@ export function intersects(a, b, asSegment, result) {
 
 /**
  * TBD.
- *
  * @param {object} line - TBD.
  * @param {object} rect - TBD.
  * @returns {boolean} TBD.
@@ -134,7 +130,6 @@ export function intersectsRectangle(line, rect) {
 
 /**
  * TBD.
- *
  * @param {object} a - TBD.
  * @param {object} b - TBD.
  * @returns {number} TBD.

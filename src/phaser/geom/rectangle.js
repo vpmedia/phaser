@@ -33,7 +33,6 @@ import {
 export class Rectangle {
   /**
    * TBD.
-   *
    * @param {number} x - TBD.
    * @param {number} y - TBD.
    * @param {number} width - TBD.

@@ -17,7 +17,6 @@ import { renderCanvas, renderWebGL, getBounds } from './sprite_util';
 export class Text extends Image {
   /**
    * TBD.
-   *
    * @param {Game} game - TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.

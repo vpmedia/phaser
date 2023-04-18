@@ -8,7 +8,6 @@ import { Point } from '../point';
 
 /**
  * TBD.
- *
  * @param {Point} a - TBD.
  * @param {Point} b - TBD.
  * @param {Point} output - TBD.
@@ -23,7 +22,6 @@ export function add(a, b, output = null) {
 
 /**
  * TBD.
- *
  * @param {Point} a - TBD.
  * @param {Point} b - TBD.
  * @param {Point} output - TBD.
@@ -38,7 +36,6 @@ export function subtract(a, b, output = null) {
 
 /**
  * TBD.
- *
  * @param {Point} a - TBD.
  * @param {Point} b - TBD.
  * @param {Point} output - TBD.
@@ -53,7 +50,6 @@ export function multiply(a, b, output = null) {
 
 /**
  * TBD.
- *
  * @param {Point} a - TBD.
  * @param {Point} b - TBD.
  * @param {Point} output - TBD.
@@ -68,7 +64,6 @@ export function divide(a, b, output = null) {
 
 /**
  * TBD.
- *
  * @param {Point} a - TBD.
  * @param {Point} b - TBD.
  * @returns {boolean} TBD.
@@ -79,7 +74,6 @@ export function equals(a, b) {
 
 /**
  * TBD.
- *
  * @param {Point} a - TBD.
  * @param {Point} b - TBD.
  * @returns {number} TBD.
@@ -90,7 +84,6 @@ export function angle(a, b) {
 
 /**
  * TBD.
- *
  * @param {Point} a - TBD.
  * @param {Point} output - TBD.
  * @returns {Point} TBD.
@@ -102,7 +95,6 @@ export function negative(a, output = null) {
 
 /**
  * TBD.
- *
  * @param {Point} a - TBD.
  * @param {Point} b - TBD.
  * @param {number} s - TBD.
@@ -116,7 +108,6 @@ export function multiplyAdd(a, b, s, output = null) {
 
 /**
  * TBD.
- *
  * @param {Point} a - TBD.
  * @param {Point} b - TBD.
  * @param {number} f - TBD.
@@ -130,7 +121,6 @@ export function interpolate(a, b, f, output = null) {
 
 /**
  * TBD.
- *
  * @param {Point} a - TBD.
  * @param {Point} output - TBD.
  * @returns {Point} TBD.
@@ -142,7 +132,6 @@ export function perp(a, output = null) {
 
 /**
  * TBD.
- *
  * @param {Point} a - TBD.
  * @param {Point} output - TBD.
  * @returns {Point} TBD.
@@ -154,7 +143,6 @@ export function rperp(a, output = null) {
 
 /**
  * TBD.
- *
  * @param {Point} a - TBD.
  * @param {Point} b - TBD.
  * @param {boolean} round - TBD.
@@ -169,7 +157,6 @@ export function distance(a, b, round = false) {
 
 /**
  * TBD.
- *
  * @param {Point} a - TBD.
  * @param {Point} b - TBD.
  * @param {Point} output - TBD.
@@ -186,7 +173,6 @@ export function project(a, b, output = null) {
 
 /**
  * TBD.
- *
  * @param {Point} a - TBD.
  * @param {Point} b - TBD.
  * @param {Point} output - TBD.
@@ -203,7 +189,6 @@ export function projectUnit(a, b, output = null) {
 
 /**
  * TBD.
- *
  * @param {Point} a - TBD.
  * @param {Point} output - TBD.
  * @returns {Point} TBD.
@@ -215,7 +200,6 @@ export function normalRightHand(a, output = null) {
 
 /**
  * TBD.
- *
  * @param {Point} a - TBD.
  * @param {Point} output - TBD.
  * @returns {Point} TBD.
@@ -231,7 +215,6 @@ export function normalize(a, output = null) {
 
 /**
  * TBD.
- *
  * @param {Point} a - TBD.
  * @param {number} x - TBD.
  * @param {number} y - TBD.
@@ -262,7 +245,6 @@ export function rotate(a, x, y, ang, asDegrees, dist) {
 
 /**
  * TBD.
- *
  * @param {Point[]} points - TBD.
  * @param {Point} output - TBD.
  * @returns {Point} TBD.
@@ -287,7 +269,6 @@ export function centroid(points, output = null) {
 
 /**
  * TBD.
- *
  * @param {object} obj - TBD.
  * @param {string} xProp - TBD.
  * @param {string} yProp - TBD.
@@ -306,7 +287,6 @@ export function parse(obj, xProp = 'x', yProp = 'y') {
 
 /**
  * TBD.
- *
  * @param {Point} input - TBD.
  * @param {Point} output - TBD.
  * @returns {Point} TBD.

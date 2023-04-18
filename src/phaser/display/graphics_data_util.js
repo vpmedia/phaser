@@ -8,7 +8,6 @@ import { GraphicsData } from  './graphics_data';
 
 /**
  * TBD.
- *
  * @param {object} source - TBD.
  * @returns {object} TBD.
  */

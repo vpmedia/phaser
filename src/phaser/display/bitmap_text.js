@@ -13,7 +13,6 @@ import { BITMAP_TEXT, SCALE_LINEAR, SCALE_NEAREST } from '../core/const';
 export class BitmapText extends DisplayObject {
   /**
    * TBD.
-   *
    * @param {Game} game - TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.

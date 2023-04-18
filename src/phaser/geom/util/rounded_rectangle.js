@@ -8,7 +8,6 @@ import { RoundedRectangle } from  '../rounded_rectangle';
 
 /**
  * TBD.
- *
  * @param {RoundedRectangle} input - TBD.
  * @param {RoundedRectangle} output - TBD.
  * @returns {RoundedRectangle} TBD.

@@ -7,7 +7,6 @@
 
 /**
  * TBD.
- *
  * @returns {object[]} TBD.
  */
 export function getPool() {
@@ -22,7 +21,6 @@ export function getPool() {
 
 /**
  * TBD.
- *
  * @returns {object} TBD.
  */
 export function getFirst() {
@@ -37,7 +35,6 @@ export function getFirst() {
 
 /**
  * TBD.
- *
  * @param {object} parent - TBD.
  */
 export function remove(parent) {
@@ -53,7 +50,6 @@ export function remove(parent) {
 
 /**
  * TBD.
- *
  * @param {HTMLCanvasElement} canvas - TBD.
  */
 export function removeByCanvas(canvas) {
@@ -69,7 +65,6 @@ export function removeByCanvas(canvas) {
 
 /**
  * TBD.
- *
  * @returns {number} TBD.
  */
 export function getTotal() {
@@ -85,7 +80,6 @@ export function getTotal() {
 
 /**
  * TBD.
- *
  * @returns {number} TBD.
  */
 export function getFree() {
@@ -101,7 +95,6 @@ export function getFree() {
 
 /**
  * TBD.
- *
  * @param {object} parent - TBD.
  * @param {number} width - TBD.
  * @param {number} height - TBD.

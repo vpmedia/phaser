@@ -8,7 +8,6 @@ import { Polygon } from  '../polygon';
 
 /**
  * TBD.
- *
  * @param {Polygon} input - TBD.
  * @param {Polygon} output - TBD.
  * @returns {Polygon} TBD.
