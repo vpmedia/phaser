@@ -3,14 +3,14 @@
  * @author       Andras Csizmadia <andras@vpmedia.hu>
  * @author       Richard Davey <rich@photonstorm.com>
  */
-const NO_BUTTON = -1;
+/* const NO_BUTTON = -1;
 const LEFT_BUTTON = 0;
 const MIDDLE_BUTTON = 1;
 const RIGHT_BUTTON = 2;
 const BACK_BUTTON = 3;
 const FORWARD_BUTTON = 4;
 const WHEEL_UP = 1;
-const WHEEL_DOWN = -1;
+const WHEEL_DOWN = -1; */
 
 class WheelEventProxy {
   constructor(scaleFactor, deltaMode) {
