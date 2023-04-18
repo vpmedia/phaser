@@ -28,6 +28,8 @@ export class Device {
     m4a: boolean;
     webm: boolean;
     dolby: boolean;
+    avif: boolean;
+    webp: boolean;
     fullscreen: boolean;
     requestFullscreen: string;
     cancelFullscreen: string;

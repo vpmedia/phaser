@@ -30,6 +30,8 @@ export class Device {
     this.m4a = false;
     this.webm = false;
     this.dolby = false;
+    this.avif = false;
+    this.webp = false;
     this.fullscreen = false;
     this.requestFullscreen = '';
     this.cancelFullscreen = '';
