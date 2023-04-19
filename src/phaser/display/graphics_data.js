@@ -1,9 +1,3 @@
-/**
- * @module display/graphics_data
- * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
- * @author       Andras Csizmadia <andras@vpmedia.hu>
- * @author       Richard Davey <rich@photonstorm.com>
- */
 import { clone } from './graphics_data_util';
 
 export class GraphicsData {

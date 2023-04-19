@@ -1,9 +1,3 @@
-/**
- * @module geom/rounded_rectangle
- * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
- * @author       Andras Csizmadia <andras@vpmedia.hu>
- * @author       Richard Davey <rich@photonstorm.com>
- */
 import { clone } from './util/rounded_rectangle';
 import { GEOM_ROUNDED_RECTANGLE } from '../core/const';
 

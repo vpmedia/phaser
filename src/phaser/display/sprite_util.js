@@ -1,9 +1,3 @@
-/**
- * @module display/sprite_util
- * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
- * @author       Andras Csizmadia <andras@vpmedia.hu>
- * @author       Richard Davey <rich@photonstorm.com>
- */
 import { getTintedTexture } from './canvas/tinter';
 import { getIdentityMatrix } from '../geom/util/matrix';
 import { SCALE_LINEAR } from '../core/const';

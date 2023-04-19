@@ -1,9 +1,3 @@
-/**
- * @module display/image
- * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
- * @author       Andras Csizmadia <andras@vpmedia.hu>
- * @author       Richard Davey <rich@photonstorm.com>
- */
 import { Texture } from './webgl/texture';
 import { AnimationManager } from '../core/animation_manager';
 import { EventManager } from '../core/event_manager';

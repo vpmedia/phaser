@@ -1,9 +1,3 @@
-/**
- * @module geom/util/matrix
- * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
- * @author       Andras Csizmadia <andras@vpmedia.hu>
- * @author       Richard Davey <rich@photonstorm.com>
- */
 import { Matrix } from  '../matrix';
 
 /**

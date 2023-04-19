@@ -1,8 +1,3 @@
-/**
- * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
- * @author       Andras Csizmadia <andras@vpmedia.hu>
- * @author       Richard Davey <rich@photonstorm.com>
- */
 export const DEG_TO_RAD = Math.PI / 180;
 export const RAD_TO_DEG = 180 / Math.PI;
 export const PI_2 = Math.PI * 2;
