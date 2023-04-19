@@ -16,9 +16,6 @@
       "node": {
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
-    },
-    "jsdoc": {
-      "contexts": ["any"]
     }
   },
   "rules": {
@@ -27,9 +24,9 @@
       "require": {
           "FunctionDeclaration": true,
           "MethodDefinition": true,
-          "ClassDeclaration": true,
-          "ArrowFunctionExpression": true,
-          "FunctionExpression": true
+          "ClassDeclaration": false,
+          "ArrowFunctionExpression": false,
+          "FunctionExpression": false
       }
     }],
     "jsdoc/check-indentation": 1,
