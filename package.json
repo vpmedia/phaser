@@ -39,7 +39,7 @@
     "lint": "eslint \"**/*.{js,jsx}\"",
     "lint-fix": "eslint --fix \"**/*.{js,jsx}\"",
     "typecheck": "tsc",
-    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "format": "prettier --write \"**/*.{css,js,jsx,json,md}\"",
     "prepare": "husky install",
     "lint-staged": "lint-staged"
   },
