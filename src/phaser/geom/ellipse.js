@@ -45,7 +45,7 @@ export class Ellipse {
 
   /**
    * TBD.
-   * @param source - TBD.
+   * @param {Ellipse} source - TBD.
    * @returns {Ellipse} TBD.
    */
   copyFrom(source) {
@@ -54,7 +54,7 @@ export class Ellipse {
 
   /**
    * TBD.
-   * @param dest - TBD.
+   * @param {Ellipse} dest - TBD.
    * @returns {Ellipse} TBD.
    */
   copyTo(dest) {
@@ -77,7 +77,7 @@ export class Ellipse {
 
   /**
    * TBD.
-   * @param output - TBD.
+   * @param {Point} output - TBD.
    * @returns {Point} TBD.
    */
   random(output = null) {

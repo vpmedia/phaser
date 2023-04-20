@@ -27,45 +27,45 @@ export class DisplayObject {
     destroy(): void;
     /**
      * TBD.
-     * @param child
+     * @param child - TBD.
      */
     addChild(child: any): any;
     /**
      * TBD.
-     * @param child
-     * @param index
+     * @param child - TBD.
+     * @param index - TBD.
      */
     addChildAt(child: any, index: any): any;
     /**
      * TBD.
-     * @param child
+     * @param child - TBD.
      * @param child2
      */
     swapChildren(child: any, child2: any): void;
     /**
      * TBD.
-     * @param child
+     * @param child - TBD.
      */
     getChildIndex(child: any): number;
     /**
      * TBD.
-     * @param child
-     * @param index
+     * @param child - TBD.
+     * @param index - TBD.
      */
     setChildIndex(child: any, index: any): void;
     /**
      * TBD.
-     * @param index
+     * @param index - TBD.
      */
     getChildAt(index: any): any;
     /**
      * TBD.
-     * @param child
+     * @param child - TBD.
      */
     removeChild(child: any): any;
     /**
      * TBD.
-     * @param index
+     * @param index - TBD.
      */
     removeChildAt(index: any): any;
     /**
@@ -92,17 +92,17 @@ export class DisplayObject {
     getLocalBounds(): Rectangle;
     /**
      * TBD.
-     * @param child
+     * @param child - TBD.
      */
     contains(child: any): any;
     /**
      * TBD.
-     * @param renderSession
+     * @param renderSession - TBD.
      */
     renderWebGL(renderSession: any): void;
     /**
      * TBD.
-     * @param renderSession
+     * @param renderSession - TBD.
      */
     renderCanvas(renderSession: any): void;
     /**
@@ -123,18 +123,18 @@ export class DisplayObject {
     generateTexture(): void;
     /**
      * TBD.
-     * @param position
+     * @param position - TBD.
      */
-    toGlobal(position: any): any;
+    toGlobal(position: any): Point;
     /**
      * TBD.
-     * @param position
+     * @param position - TBD.
      * @param from
      */
-    toLocal(position: any, from: any): any;
+    toLocal(position: any, from: any): Point;
     /**
      * TBD.
-     * @param renderSession
+     * @param renderSession - TBD.
      */
     renderCachedSprite(renderSession: any): void;
     /**

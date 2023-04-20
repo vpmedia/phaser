@@ -11,10 +11,10 @@ export class TextureUvs {
 export class Texture {
     /**
      * TBD.
-     * @param baseTexture
-     * @param frame
-     * @param crop
-     * @param trim
+     * @param baseTexture - TBD.
+     * @param frame - TBD.
+     * @param crop - TBD.
+     * @param trim - TBD.
      */
     constructor(baseTexture: any, frame: any, crop: any, trim: any);
     noFrame: boolean;
@@ -35,12 +35,12 @@ export class Texture {
     onBaseTextureLoaded(): void;
     /**
      * TBD.
-     * @param destroyBase
+     * @param destroyBase - TBD.
      */
     destroy(destroyBase?: boolean): void;
     /**
      * TBD.
-     * @param frame
+     * @param frame - TBD.
      */
     setFrame(frame: any): void;
     /**

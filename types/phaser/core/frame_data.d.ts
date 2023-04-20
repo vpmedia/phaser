@@ -3,12 +3,12 @@ export class FrameData {
     _frameNames: any[];
     /**
      * TBD.
-     * @param frame
+     * @param frame - TBD.
      */
     addFrame(frame: any): any;
     /**
      * TBD.
-     * @param index
+     * @param index - TBD.
      */
     getFrame(index?: number): any;
     /**

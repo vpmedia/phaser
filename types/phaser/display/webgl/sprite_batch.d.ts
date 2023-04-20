@@ -17,7 +17,7 @@ export class WebGLSpriteBatch {
     defaultShader: AbstractFilter;
     /**
      * TBD.
-     * @param gl
+     * @param gl - TBD.
      */
     setContext(gl: any): void;
     gl: any;
@@ -26,7 +26,7 @@ export class WebGLSpriteBatch {
     currentBlendMode: number;
     /**
      * TBD.
-     * @param renderSession
+     * @param renderSession - TBD.
      */
     begin(renderSession: any): void;
     renderSession: any;
@@ -38,7 +38,7 @@ export class WebGLSpriteBatch {
     /**
      * TBD.
      * @param sprite
-     * @param matrix
+     * @param matrix - TBD.
      */
     render(sprite: any, matrix: any): void;
     /**

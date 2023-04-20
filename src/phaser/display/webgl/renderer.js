@@ -176,7 +176,7 @@ export class WebGLRenderer {
    * @param displayObject
    * @param projection
    * @param buffer
-   * @param matrix
+   * @param matrix - TBD.
    */
   renderDisplayObject(displayObject, projection, buffer, matrix) {
     this.renderSession.blendModeManager.setBlendMode(BLEND_NORMAL);

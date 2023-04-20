@@ -394,7 +394,7 @@ export class Pointer {
 
   /**
    * TBD.
-   * @param duration
+   * @param duration - TBD.
    */
   justPressed(duration) {
     duration = duration || this.game.input.justPressedRate;
@@ -403,7 +403,7 @@ export class Pointer {
 
   /**
    * TBD.
-   * @param duration
+   * @param duration - TBD.
    */
   justReleased(duration) {
     duration = duration || this.game.input.justReleasedRate;
@@ -413,7 +413,7 @@ export class Pointer {
   /**
    * TBD.
    * @param name
-   * @param callback
+   * @param callback - TBD.
    * @param callbackContext
    * @param callbackArgs
    */

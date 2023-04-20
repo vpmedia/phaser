@@ -6,7 +6,7 @@ export class SignalBinding {
      * @param isOnce
      * @param listenerContext
      * @param priority
-     * @param args
+     * @param args - TBD.
      */
     constructor(signal: any, listener: any, isOnce?: boolean, listenerContext?: any, priority?: number, args?: any);
     _signal: any;

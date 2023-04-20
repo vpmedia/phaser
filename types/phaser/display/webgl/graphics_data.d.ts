@@ -1,7 +1,7 @@
 export class GraphicsData {
     /**
      * TBD.
-     * @param gl
+     * @param gl - TBD.
      */
     constructor(gl: any);
     gl: any;

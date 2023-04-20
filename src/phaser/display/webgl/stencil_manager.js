@@ -12,7 +12,7 @@ export class WebGLStencilManager {
 
   /**
    * TBD.
-   * @param gl
+   * @param gl - TBD.
    */
   setContext(gl) {
     this.gl = gl;
@@ -28,9 +28,9 @@ export class WebGLStencilManager {
 
   /**
    * TBD.
-   * @param graphics
+   * @param graphics - TBD.
    * @param webGLData
-   * @param renderSession
+   * @param renderSession - TBD.
    */
   pushStencil(graphics, webGLData, renderSession) {
     const gl = renderSession.gl;
@@ -86,9 +86,9 @@ export class WebGLStencilManager {
 
   /**
    * TBD.
-   * @param graphics
+   * @param graphics - TBD.
    * @param webGLData
-   * @param renderSession
+   * @param renderSession - TBD.
    */
   bindGraphics(graphics, webGLData, renderSession) {
     // if(this._currentGraphics === graphics)return;
@@ -133,9 +133,9 @@ export class WebGLStencilManager {
 
   /**
    * TBD.
-   * @param graphics
+   * @param graphics - TBD.
    * @param webGLData
-   * @param renderSession
+   * @param renderSession - TBD.
    */
   popStencil(graphics, webGLData, renderSession) {
     const gl = renderSession.gl;

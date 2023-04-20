@@ -24,7 +24,8 @@ export class Matrix {
 
   /**
    * TBD.
-   * @param array - TBD.
+   * @param {number[]} array - TBD.
+   * @returns {Matrix} TBD.
    */
   fromArray(array) {
     return this.setTo(array[0], array[1], array[3], array[4], array[2], array[5]);
@@ -32,12 +33,13 @@ export class Matrix {
 
   /**
    * TBD.
-   * @param a - TBD.
-   * @param b - TBD.
-   * @param c - TBD.
-   * @param d - TBD.
-   * @param tx - TBD.
-   * @param ty - TBD.
+   * @param {number} a - TBD.
+   * @param {number} b - TBD.
+   * @param {number} c - TBD.
+   * @param {number} d - TBD.
+   * @param {number} tx - TBD.
+   * @param {number} ty - TBD.
+   * @returns {Matrix} TBD.
    */
   setTo(a, b, c, d, tx, ty) {
     this.a = a;
@@ -51,6 +53,7 @@ export class Matrix {
 
   /**
    * TBD.
+   * @returns {Matrix} TBD.
    */
   clone() {
     return clone(this);
@@ -58,7 +61,8 @@ export class Matrix {
 
   /**
    * TBD.
-   * @param matrix - TBD.
+   * @param {Matrix} matrix - TBD.
+   * @returns {Matrix} TBD.
    */
   copyTo(matrix) {
     matrix.copyFrom(this);
@@ -67,7 +71,8 @@ export class Matrix {
 
   /**
    * TBD.
-   * @param matrix - TBD.
+   * @param {Matrix} matrix - TBD.
+   * @returns {Matrix} TBD.
    */
   copyFrom(matrix) {
     this.a = matrix.a;
@@ -81,8 +86,9 @@ export class Matrix {
 
   /**
    * TBD.
-   * @param transpose - TBD.
-   * @param output - TBD.
+   * @param {boolean} transpose - TBD.
+   * @param {Float32Array} output - TBD.
+   * @returns {Float32Array} TBD.
    */
   toArray(transpose = false, output = null) {
     const result = output || new Float32Array(9);
@@ -112,8 +118,9 @@ export class Matrix {
 
   /**
    * TBD.
-   * @param pos - TBD.
-   * @param output - TBD.
+   * @param {object} pos - TBD.
+   * @param {Point} output - TBD.
+   * @returns {Point} TBD.
    */
   apply(pos, output = null) {
     const result = output || new Point();
@@ -124,8 +131,9 @@ export class Matrix {
 
   /**
    * TBD.
-   * @param pos - TBD.
-   * @param output - TBD.
+   * @param {object} pos - TBD.
+   * @param {Point} output - TBD.
+   * @returns {Point} TBD.
    */
   applyInverse(pos, output = null) {
     const result = output || new Point();
@@ -141,6 +149,7 @@ export class Matrix {
    * TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
+   * @returns {Matrix} TBD.
    */
   translate(x, y) {
     this.tx += x;
@@ -152,6 +161,7 @@ export class Matrix {
    * TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
+   * @returns {Matrix} TBD.
    */
   scale(x, y) {
     this.a *= x;
@@ -165,7 +175,8 @@ export class Matrix {
 
   /**
    * TBD.
-   * @param angle - TBD.
+   * @param {number} angle - TBD.
+   * @returns {Matrix} TBD.
    */
   rotate(angle) {
     const cos = Math.cos(angle);
@@ -184,7 +195,8 @@ export class Matrix {
 
   /**
    * TBD.
-   * @param matrix - TBD.
+   * @param {Matrix} matrix - TBD.
+   * @returns {Matrix} TBD.
    */
   append(matrix) {
     const a1 = this.a;
@@ -202,6 +214,7 @@ export class Matrix {
 
   /**
    * TBD.
+   * @returns {Matrix} TBD.
    */
   identity() {
     return this.setTo(1, 0, 0, 1, 0, 0);

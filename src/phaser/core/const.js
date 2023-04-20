@@ -1,35 +1,119 @@
 // rectangle
+/**
+ * @type {number}
+ */
 export const TOP_LEFT = 0;
+/**
+ * @type {number}
+ */
 export const TOP_CENTER = 1;
+/**
+ * @type {number}
+ */
 export const TOP_RIGHT = 2;
+/**
+ * @type {number}
+ */
 export const LEFT_TOP = 3;
+/**
+ * @type {number}
+ */
 export const LEFT_CENTER = 4;
+/**
+ * @type {number}
+ */
 export const LEFT_BOTTOM = 5;
+/**
+ * @type {number}
+ */
 export const CENTER = 6;
+/**
+ * @type {number}
+ */
 export const RIGHT_TOP = 7;
+/**
+ * @type {number}
+ */
 export const RIGHT_CENTER = 8;
+/**
+ * @type {number}
+ */
 export const RIGHT_BOTTOM = 9;
+/**
+ * @type {number}
+ */
 export const BOTTOM_LEFT = 10;
+/**
+ * @type {number}
+ */
 export const BOTTOM_CENTER = 11;
+/**
+ * @type {number}
+ */
 export const BOTTOM_RIGHT = 12;
 // scale modes
+/**
+ * @type {number}
+ */
 export const SCALE_LINEAR = 0;
+/**
+ * @type {number}
+ */
 export const SCALE_NEAREST = 1;
 // scale manager modes
+/**
+ * @type {number}
+ */
 export const SCALE_EXACT_FIT = 0;
+/**
+ * @type {number}
+ */
 export const SCALE_OFF = 1;
+/**
+ * @type {number}
+ */
 export const SCALE_SHOW_ALL = 2;
+/**
+ * @type {number}
+ */
 export const SCALE_RESIZE = 3;
+/**
+ * @type {number}
+ */
 export const SCALE_USER = 4;
 // times
+/**
+ * @type {number}
+ */
 export const TIME_MINUTE = 60000;
+/**
+ * @type {number}
+ */
 export const TIME_SECOND = 1000;
+/**
+ * @type {number}
+ */
 export const TIME_HALF = 500;
+/**
+ * @type {number}
+ */
 export const TIME_QUARTER = 250;
 // tween statuses
+/**
+ * @type {number}
+ */
 export const TWEEN_PENDING = 0;
+/**
+ * @type {number}
+ */
 export const TWEEN_RUNNING = 1;
+/**
+ * @type {number}
+ */
 export const TWEEN_LOOPED = 2;
+/**
+ * @type {number}
+ */
 export const TWEEN_COMPLETE = 3;
 // blend modes
 export const BLEND_NORMAL = 0;
@@ -50,15 +134,39 @@ export const BLEND_SATURATION = 14;
 export const BLEND_COLOR = 15;
 export const BLEND_LUMINOSITY = 16;
 // render modes
+/**
+ * @type {number}
+ */
 export const RENDER_AUTO = 0;
+/**
+ * @type {number}
+ */
 export const RENDER_CANVAS = 1;
+/**
+ * @type {number}
+ */
 export const RENDER_WEBGL = 2;
 // pointer modes
+/**
+ * @type {number}
+ */
 export const POINTER_CURSOR = 1;
+/**
+ * @type {number}
+ */
 export const POINTER_CONTACT = 2;
 // input modes
+/**
+ * @type {number}
+ */
 export const MOUSE_OVERRIDES_TOUCH = 0;
+/**
+ * @type {number}
+ */
 export const TOUCH_OVERRIDES_MOUSE = 1;
+/**
+ * @type {number}
+ */
 export const MOUSE_TOUCH_COMBINE = 2;
 // game objects
 export const GROUP = 7;

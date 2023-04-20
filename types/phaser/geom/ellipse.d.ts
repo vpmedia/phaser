@@ -28,16 +28,16 @@ export class Ellipse {
     getBounds(): Rectangle;
     /**
      * TBD.
-     * @param source - TBD.
+     * @param {Ellipse} source - TBD.
      * @returns {Ellipse} TBD.
      */
-    copyFrom(source: any): Ellipse;
+    copyFrom(source: Ellipse): Ellipse;
     /**
      * TBD.
-     * @param dest - TBD.
+     * @param {Ellipse} dest - TBD.
      * @returns {Ellipse} TBD.
      */
-    copyTo(dest: any): Ellipse;
+    copyTo(dest: Ellipse): Ellipse;
     /**
      * TBD.
      * @param {number} x - TBD.
@@ -47,10 +47,10 @@ export class Ellipse {
     contains(x: number, y: number): boolean;
     /**
      * TBD.
-     * @param output - TBD.
+     * @param {Point} output - TBD.
      * @returns {Point} TBD.
      */
-    random(output?: any): Point;
+    random(output?: Point): Point;
     /**
      * TBD.
      * @returns {string} TBD.

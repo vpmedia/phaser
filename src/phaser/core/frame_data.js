@@ -11,7 +11,7 @@ export class FrameData {
 
   /**
    * TBD.
-   * @param frame
+   * @param frame - TBD.
    */
   addFrame(frame) {
     frame.index = this._frames.length;
@@ -24,7 +24,7 @@ export class FrameData {
 
   /**
    * TBD.
-   * @param index
+   * @param index - TBD.
    */
   getFrame(index = 0) {
     if (index >= this._frames.length) {

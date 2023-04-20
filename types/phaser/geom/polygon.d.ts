@@ -1,9 +1,9 @@
 export class Polygon {
     /**
      * TBD.
-     * @param points
+     * @param {object[]} points - TBD.
      */
-    constructor(points?: any);
+    constructor(points?: object[]);
     area: number;
     _points: any[];
     closed: boolean;
@@ -11,15 +11,18 @@ export class Polygon {
     type: number;
     /**
      * TBD.
-     * @param output
+     * @param {number[]} output - TBD.
+     * @returns {number[]} TBD.
      */
-    toNumberArray(output?: any[]): any[];
+    toNumberArray(output?: number[]): number[];
     /**
      * TBD.
+     * @returns {Polygon} TBD.
      */
     flatten(): Polygon;
     /**
      * TBD.
+     * @returns {Polygon} TBD.
      */
     clone(): Polygon;
     /**
@@ -31,22 +34,23 @@ export class Polygon {
     contains(x: number, y: number): boolean;
     /**
      * TBD.
-     * @param points
+     * @param {object[]} points - TBD.
      * @returns {Polygon} TBD.
      */
-    setTo(points: any): Polygon;
+    setTo(points: object[]): Polygon;
     /**
      * TBD.
-     * @param y0
+     * @param {number} y0 - TBD.
      * @returns {number} TBD.
      */
-    calculateArea(y0: any): number;
+    calculateArea(y0: number): number;
     /**
      * TBD.
      */
     set points(arg: any[]);
     /**
      * TBD.
+     * @returns {object[]} TBD.
      */
     get points(): any[];
 }

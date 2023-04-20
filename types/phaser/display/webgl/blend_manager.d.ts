@@ -3,7 +3,7 @@ export class WebGLBlendModeManager {
     currentBlendMode: number;
     /**
      * TBD.
-     * @param gl
+     * @param gl - TBD.
      */
     setContext(gl: any): void;
     /**

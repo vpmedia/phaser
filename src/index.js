@@ -22,6 +22,7 @@ import { Button } from './phaser/display/button';
 import { Image } from './phaser/display/image';
 import { Group } from './phaser/display/group';
 import { Text } from './phaser/display/text';
+import { Graphics } from './phaser/display/graphics';
 // exports
 export {
   Const,
@@ -44,4 +45,5 @@ export {
   Image,
   Group,
   Text,
+  Graphics,
 };

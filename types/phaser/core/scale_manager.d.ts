@@ -135,7 +135,7 @@ export class ScaleManager {
     setUserScale(hScale: any, vScale: any, hTrim: any, vTrim: any): void;
     /**
      * TBD.
-     * @param callback
+     * @param callback - TBD.
      * @param context
      */
     setResizeCallback(callback: any, context: any): void;
@@ -205,7 +205,7 @@ export class ScaleManager {
     updateLayout(): void;
     /**
      * TBD.
-     * @param target
+     * @param target - TBD.
      */
     getParentBounds(target: any): any;
     /**

@@ -32,12 +32,12 @@ export class Timer {
 
   /**
    * TBD.
-   * @param delay
+   * @param delay - TBD.
    * @param loop
    * @param repeatCount
-   * @param callback
+   * @param callback - TBD.
    * @param callbackContext
-   * @param args
+   * @param args - TBD.
    */
   create(delay, loop, repeatCount, callback, callbackContext, args) {
     const roundedDelay = Math.round(delay);
@@ -56,8 +56,8 @@ export class Timer {
 
   /**
    * TBD.
-   * @param delay
-   * @param callback
+   * @param delay - TBD.
+   * @param callback - TBD.
    * @param callbackContext
    * @param {...any} args
    */
@@ -67,9 +67,9 @@ export class Timer {
 
   /**
    * TBD.
-   * @param delay
+   * @param delay - TBD.
    * @param repeatCount
-   * @param callback
+   * @param callback - TBD.
    * @param callbackContext
    * @param {...any} args
    */
@@ -79,8 +79,8 @@ export class Timer {
 
   /**
    * TBD.
-   * @param delay
-   * @param callback
+   * @param delay - TBD.
+   * @param callback - TBD.
    * @param callbackContext
    * @param {...any} args
    */
@@ -90,7 +90,7 @@ export class Timer {
 
   /**
    * TBD.
-   * @param delay
+   * @param delay - TBD.
    */
   start(delay) {
     if (this.running) {

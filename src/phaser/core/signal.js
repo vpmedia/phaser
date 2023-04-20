@@ -32,7 +32,7 @@ export class Signal {
    * @param isOnce
    * @param listenerContext
    * @param priority
-   * @param args
+   * @param args - TBD.
    */
   _registerListener(listener, isOnce, listenerContext, priority, args) {
     const prevIndex = this._indexOfListener(listener, listenerContext);

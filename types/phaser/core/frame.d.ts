@@ -1,7 +1,7 @@
 export class Frame {
     /**
      * TBD.
-     * @param index
+     * @param index - TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
      * @param {number} width - TBD.
@@ -11,7 +11,7 @@ export class Frame {
     constructor(index: any, x: number, y: number, width: number, height: number, name: any);
     /**
      * TBD.
-     * @param index
+     * @param index - TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
      * @param {number} width - TBD.

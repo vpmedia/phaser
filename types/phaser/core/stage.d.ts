@@ -17,7 +17,7 @@ export class Stage extends DisplayObject {
     };
     /**
      * TBD.
-     * @param color
+     * @param color - TBD.
      */
     setBackgroundColor(color: any): void;
     /**

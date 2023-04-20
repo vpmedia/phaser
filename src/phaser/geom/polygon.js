@@ -5,7 +5,7 @@ import { GEOM_POLYGON } from '../core/const';
 export class Polygon {
   /**
    * TBD.
-   * @param points
+   * @param {object[]} points - TBD.
    */
   constructor(points = null) {
     this.area = 0;
@@ -20,7 +20,8 @@ export class Polygon {
 
   /**
    * TBD.
-   * @param output
+   * @param {number[]} output - TBD.
+   * @returns {number[]} TBD.
    */
   toNumberArray(output = []) {
     for (let i = 0; i < this._points.length; i += 1) {
@@ -38,6 +39,7 @@ export class Polygon {
 
   /**
    * TBD.
+   * @returns {Polygon} TBD.
    */
   flatten() {
     this._points = this.toNumberArray();
@@ -47,6 +49,7 @@ export class Polygon {
 
   /**
    * TBD.
+   * @returns {Polygon} TBD.
    */
   clone() {
     return clone(this);
@@ -87,7 +90,7 @@ export class Polygon {
 
   /**
    * TBD.
-   * @param points
+   * @param {object[]} points - TBD.
    * @returns {Polygon} TBD.
    */
   setTo(points) {
@@ -126,7 +129,7 @@ export class Polygon {
 
   /**
    * TBD.
-   * @param y0
+   * @param {number} y0 - TBD.
    * @returns {number} TBD.
    */
   calculateArea(y0) {
@@ -150,6 +153,7 @@ export class Polygon {
 
   /**
    * TBD.
+   * @returns {object[]} TBD.
    */
   get points() {
     return this._points;

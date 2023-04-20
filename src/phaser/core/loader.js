@@ -440,7 +440,7 @@ export class Loader {
 
   /**
    * TBD.
-   * @param callback
+   * @param callback - TBD.
    * @param callbackContext
    */
   withSyncPoint(callback, callbackContext) {

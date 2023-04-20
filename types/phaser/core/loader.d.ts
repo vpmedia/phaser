@@ -187,7 +187,7 @@ export class Loader {
     atlas(key: string, textureURL: any, atlasURL?: any, atlasData?: any, format?: number): Loader;
     /**
      * TBD.
-     * @param callback
+     * @param callback - TBD.
      * @param callbackContext
      */
     withSyncPoint(callback: any, callbackContext: any): Loader;

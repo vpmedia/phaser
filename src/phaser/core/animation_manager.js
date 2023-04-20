@@ -3,7 +3,7 @@ import { Animation } from './animation';
 export class AnimationManager {
   /**
    * TBD.
-   * @param sprite
+   * @param sprite - TBD.
    */
   constructor(sprite) {
     this.sprite = sprite;
@@ -36,8 +36,8 @@ export class AnimationManager {
 
   /**
    * TBD.
-   * @param frameData
-   * @param frame
+   * @param frameData - TBD.
+   * @param frame - TBD.
    */
   loadFrameData(frameData, frame) {
     if (!frameData) {
@@ -65,8 +65,8 @@ export class AnimationManager {
 
   /**
    * TBD.
-   * @param frameData
-   * @param frame
+   * @param frameData - TBD.
+   * @param frame - TBD.
    */
   copyFrameData(frameData, frame) {
     this._frameData = frameData.clone();
@@ -91,11 +91,11 @@ export class AnimationManager {
 
   /**
    * TBD.
-   * @param name
-   * @param frameList
-   * @param frameRate
-   * @param loop
-   * @param useNumericIndex
+   * @param name - TBD.
+   * @param frameList - TBD.
+   * @param frameRate - TBD.
+   * @param loop - TBD.
+   * @param useNumericIndex - TBD.
    */
   add(name, frameList, frameRate = 60, loop = false, useNumericIndex = undefined) {
     const frames = frameList || [];
@@ -127,8 +127,8 @@ export class AnimationManager {
 
   /**
    * TBD.
-   * @param frames
-   * @param useNumericIndex
+   * @param frames - TBD.
+   * @param useNumericIndex - TBD.
    */
   validateFrames(frames, useNumericIndex = false) {
     for (let i = 0; i < frames.length; i += 1) {
@@ -145,10 +145,10 @@ export class AnimationManager {
 
   /**
    * TBD.
-   * @param name
-   * @param frameRate
-   * @param loop
-   * @param killOnComplete
+   * @param name - TBD.
+   * @param frameRate - TBD.
+   * @param loop - TBD.
+   * @param killOnComplete - TBD.
    */
   play(name, frameRate, loop, killOnComplete) {
     if (this._anims[name]) {
@@ -172,8 +172,8 @@ export class AnimationManager {
 
   /**
    * TBD.
-   * @param name
-   * @param resetFrame
+   * @param name - TBD.
+   * @param resetFrame - TBD.
    */
   stop(name, resetFrame = false) {
     if (this.currentAnim && (typeof name !== 'string' || name === this.currentAnim.name)) {
@@ -197,7 +197,7 @@ export class AnimationManager {
 
   /**
    * TBD.
-   * @param quantity
+   * @param quantity - TBD.
    */
   next(quantity) {
     if (this.currentAnim) {
@@ -208,7 +208,7 @@ export class AnimationManager {
 
   /**
    * TBD.
-   * @param quantity
+   * @param quantity - TBD.
    */
   previous(quantity) {
     if (this.currentAnim) {
@@ -219,7 +219,7 @@ export class AnimationManager {
 
   /**
    * TBD.
-   * @param name
+   * @param name - TBD.
    */
   getAnimation(name) {
     if (name && this._anims[name]) {

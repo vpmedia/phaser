@@ -4,12 +4,12 @@ export class Animation {
   /**
    * TBD.
    * @param {object} game - TBD.
-   * @param parent
-   * @param name
-   * @param frameData
-   * @param frames
-   * @param frameRate
-   * @param loop
+   * @param parent - TBD.
+   * @param name - TBD.
+   * @param frameData - TBD.
+   * @param frames - TBD.
+   * @param frameRate - TBD.
+   * @param loop - TBD.
    */
   constructor(game, parent, name, frameData, frames, frameRate, loop = false) {
     this.game = game;
@@ -42,9 +42,9 @@ export class Animation {
 
   /**
    * TBD.
-   * @param frameRate
-   * @param loop
-   * @param killOnComplete
+   * @param frameRate - TBD.
+   * @param loop - TBD.
+   * @param killOnComplete - TBD.
    */
   play(frameRate, loop, killOnComplete) {
     if (typeof frameRate === 'number') {
@@ -110,8 +110,8 @@ export class Animation {
 
   /**
    * TBD.
-   * @param frameId
-   * @param useLocalFrameIndex
+   * @param frameId - TBD.
+   * @param useLocalFrameIndex - TBD.
    */
   setFrame(frameId, useLocalFrameIndex = false) {
     let frameIndex;
@@ -144,8 +144,8 @@ export class Animation {
 
   /**
    * TBD.
-   * @param resetFrame
-   * @param dispatchComplete
+   * @param resetFrame - TBD.
+   * @param dispatchComplete - TBD.
    */
   stop(resetFrame = false, dispatchComplete = false) {
     this.isPlaying = false;
@@ -241,8 +241,8 @@ export class Animation {
 
   /**
    * TBD.
-   * @param signalUpdate
-   * @param fromPlay
+   * @param signalUpdate - TBD.
+   * @param fromPlay - TBD.
    */
   updateCurrentFrame(signalUpdate, fromPlay = false) {
     if (!this._frameData || !this.currentFrame) {
@@ -265,7 +265,7 @@ export class Animation {
 
   /**
    * TBD.
-   * @param quantity
+   * @param quantity - TBD.
    */
   next(quantity = 1) {
     let frame = this._frameIndex + quantity;
@@ -284,7 +284,7 @@ export class Animation {
 
   /**
    * TBD.
-   * @param quantity
+   * @param quantity - TBD.
    */
   previous(quantity = 1) {
     let frame = this._frameIndex - quantity;
@@ -303,7 +303,7 @@ export class Animation {
 
   /**
    * TBD.
-   * @param frameData
+   * @param frameData - TBD.
    */
   updateFrameData(frameData) {
     this._frameData = frameData;

@@ -4,7 +4,7 @@ export class WebGLFilterManager {
     offsetY: number;
     /**
      * TBD.
-     * @param gl
+     * @param gl - TBD.
      */
     setContext(gl: any): void;
     gl: any;

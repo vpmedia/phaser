@@ -52,7 +52,7 @@ export class Button extends Image {
     /**
      * TBD.
      * @param state
-     * @param frame
+     * @param frame - TBD.
      * @param switchImmediately
      */
     setStateFrame(state: any, frame: any, switchImmediately?: boolean): void;

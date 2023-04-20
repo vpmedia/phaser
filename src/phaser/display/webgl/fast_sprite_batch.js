@@ -1,7 +1,7 @@
 export class FastSpriteBatch {
   /**
    * TBD.
-   * @param gl
+   * @param gl - TBD.
    */
   constructor(gl) {
     this.vertSize = 10;
@@ -36,7 +36,7 @@ export class FastSpriteBatch {
 
   /**
    * TBD.
-   * @param gl
+   * @param gl - TBD.
    */
   setContext(gl) {
     this.gl = gl;
@@ -54,7 +54,7 @@ export class FastSpriteBatch {
   /**
    * TBD.
    * @param spriteBatch
-   * @param renderSession
+   * @param renderSession - TBD.
    */
   begin(spriteBatch, renderSession) {
     this.renderSession = renderSession;

@@ -229,7 +229,7 @@ export class SoundManager {
   /**
    * TBD.
    * @param files
-   * @param callback
+   * @param callback - TBD.
    * @param callbackContext
    */
   setDecodedCallback(files, callback, callbackContext) {
@@ -285,7 +285,7 @@ export class SoundManager {
   /**
    * TBD.
    * @param {string} key - TBD.
-   * @param volume
+   * @param volume - TBD.
    * @param loop
    * @param connect
    */
@@ -341,7 +341,7 @@ export class SoundManager {
   /**
    * TBD.
    * @param {string} key - TBD.
-   * @param volume
+   * @param volume - TBD.
    * @param loop
    */
   play(key, volume = 1, loop = false) {

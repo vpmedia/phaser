@@ -14,33 +14,38 @@ export class Rectangle {
     type: number;
     /**
      * TBD.
-     * @param dx - TBD.
-     * @param dy - TBD.
+     * @param {number} dx - TBD.
+     * @param {number} dy - TBD.
+     * @returns {Rectangle} TBD.
      */
-    offset(dx: any, dy: any): Rectangle;
+    offset(dx: number, dy: number): Rectangle;
     /**
      * TBD.
-     * @param point - TBD.
+     * @param {Point} point - TBD.
+     * @returns {Rectangle} TBD.
      */
-    offsetPoint(point: any): Rectangle;
+    offsetPoint(point: Point): Rectangle;
     /**
      * TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
      * @param {number} width - TBD.
      * @param {number} height - TBD.
+     * @returns {Rectangle} TBD.
      */
     setTo(x: number, y: number, width: number, height: number): Rectangle;
     /**
      * TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
+     * @returns {Rectangle} TBD.
      */
     scale(x: number, y: number): Rectangle;
     /**
      * TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
+     * @returns {Rectangle} TBD.
      */
     centerOn(x: number, y: number): Rectangle;
     /**
@@ -49,6 +54,7 @@ export class Rectangle {
     set centerX(arg: number);
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get centerX(): number;
     /**
@@ -57,6 +63,7 @@ export class Rectangle {
     set centerY(arg: number);
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get centerY(): number;
     /**
@@ -77,99 +84,117 @@ export class Rectangle {
     ceilAll(): void;
     /**
      * TBD.
-     * @param source - TBD.
+     * @param {Rectangle} source - TBD.
+     * @returns {Rectangle} TBD.
      */
-    copyFrom(source: any): Rectangle;
+    copyFrom(source: Rectangle): Rectangle;
     /**
      * TBD.
-     * @param dest - TBD.
+     * @param {Rectangle} dest - TBD.
+     * @returns {Rectangle} TBD.
      */
-    copyTo(dest: any): any;
+    copyTo(dest: Rectangle): Rectangle;
     /**
      * TBD.
-     * @param dx - TBD.
-     * @param dy - TBD.
+     * @param {number} dx - TBD.
+     * @param {number} dy - TBD.
+     * @returns {Rectangle} TBD.
      */
-    inflate(dx: any, dy: any): Rectangle;
+    inflate(dx: number, dy: number): Rectangle;
     /**
      * TBD.
-     * @param output - TBD.
+     * @param {Point} output - TBD.
+     * @returns {Point} TBD.
      */
-    size(output: any): Point;
+    size(output: Point): Point;
     /**
      * TBD.
      * @param {number} width - TBD.
      * @param {number} height - TBD.
+     * @returns {Rectangle} TBD.
      */
     resize(width: number, height: number): Rectangle;
     /**
      * TBD.
-     * @param output - TBD.
+     * @param {Rectangle} output - TBD.
+     * @returns {Rectangle} TBD.
      */
-    clone(output: any): Rectangle;
+    clone(output: Rectangle): Rectangle;
     /**
      * TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
+     * @returns {boolean} TBD.
      */
     contains(x: number, y: number): boolean;
     /**
      * TBD.
-     * @param b - TBD.
+     * @param {Rectangle} b - TBD.
+     * @returns {boolean} TBD.
      */
-    containsRect(b: any): boolean;
+    containsRect(b: Rectangle): boolean;
     /**
      * TBD.
-     * @param b - TBD.
+     * @param {Rectangle} b - TBD.
+     * @returns {boolean} TBD.
      */
-    equals(b: any): boolean;
+    equals(b: Rectangle): boolean;
     /**
      * TBD.
-     * @param b - TBD.
-     * @param out - TBD.
+     * @param {Rectangle} b - TBD.
+     * @param {Rectangle} out - TBD.
+     * @returns {Rectangle} TBD.
      */
-    intersection(b: any, out: any): Rectangle;
+    intersection(b: Rectangle, out: Rectangle): Rectangle;
     /**
      * TBD.
-     * @param b - TBD.
+     * @param {Rectangle} b - TBD.
+     * @returns {boolean} TBD.
      */
-    intersects(b: any): boolean;
+    intersects(b: Rectangle): boolean;
     /**
      * TBD.
-     * @param left - TBD.
-     * @param right - TBD.
-     * @param top - TBD.
-     * @param bottom - TBD.
-     * @param tolerance - TBD.
+     * @param {number} left - TBD.
+     * @param {number} right - TBD.
+     * @param {number} top - TBD.
+     * @param {number} bottom - TBD.
+     * @param {number} tolerance - TBD.
+     * @returns {boolean} TBD.
      */
-    intersectsRaw(left: any, right: any, top: any, bottom: any, tolerance: any): boolean;
+    intersectsRaw(left: number, right: number, top: number, bottom: number, tolerance: number): boolean;
     /**
      * TBD.
-     * @param b - TBD.
-     * @param out - TBD.
+     * @param {Rectangle} b - TBD.
+     * @param {Rectangle} out - TBD.
+     * @returns {Rectangle} TBD.
      */
-    union(b: any, out: any): Rectangle;
+    union(b: Rectangle, out: Rectangle): Rectangle;
     /**
      * TBD.
-     * @param output - TBD.
+     * @param {Point} output - TBD.
+     * @returns {Point} TBD.
      */
-    random(output?: any): any;
+    random(output?: Point): Point;
     /**
      * TBD.
-     * @param position - TBD.
-     * @param output - TBD.
+     * @param {number} position - TBD.
+     * @param {Point} output - TBD.
+     * @returns {Point} TBD.
      */
-    getPoint(position: any, output?: any): any;
+    getPoint(position: number, output?: Point): Point;
     /**
      * TBD.
+     * @returns {string} TBD.
      */
     toString(): string;
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get halfWidth(): number;
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get halfHeight(): number;
     /**
@@ -178,6 +203,7 @@ export class Rectangle {
     set top(arg: number);
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get top(): number;
     /**
@@ -186,6 +212,7 @@ export class Rectangle {
     set topLeft(arg: Point);
     /**
      * TBD.
+     * @returns {Point} TBD.
      */
     get topLeft(): Point;
     /**
@@ -194,6 +221,7 @@ export class Rectangle {
     set topRight(arg: Point);
     /**
      * TBD.
+     * @returns {Point} TBD.
      */
     get topRight(): Point;
     /**
@@ -202,6 +230,7 @@ export class Rectangle {
     set right(arg: number);
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get right(): number;
     /**
@@ -210,6 +239,7 @@ export class Rectangle {
     set bottom(arg: number);
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get bottom(): number;
     /**
@@ -218,6 +248,7 @@ export class Rectangle {
     set bottomLeft(arg: Point);
     /**
      * TBD.
+     * @returns {Point} TBD.
      */
     get bottomLeft(): Point;
     /**
@@ -226,6 +257,7 @@ export class Rectangle {
     set bottomRight(arg: Point);
     /**
      * TBD.
+     * @returns {Point} TBD.
      */
     get bottomRight(): Point;
     /**
@@ -234,22 +266,27 @@ export class Rectangle {
     set left(arg: number);
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get left(): number;
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get volume(): number;
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get perimeter(): number;
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get randomX(): number;
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get randomY(): number;
     /**
@@ -258,6 +295,7 @@ export class Rectangle {
     set empty(arg: boolean);
     /**
      * TBD.
+     * @returns {boolean} TBD.
      */
     get empty(): boolean;
 }

@@ -26,7 +26,7 @@ export class WebGLShaderManager {
 
   /**
    * TBD.
-   * @param gl
+   * @param gl - TBD.
    */
   setContext(gl) {
     this.gl = gl;

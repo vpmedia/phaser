@@ -52,7 +52,7 @@ export class WebGLRenderer {
      * @param displayObject
      * @param projection
      * @param buffer
-     * @param matrix
+     * @param matrix - TBD.
      */
     renderDisplayObject(displayObject: any, projection: any, buffer: any, matrix: any): void;
     /**

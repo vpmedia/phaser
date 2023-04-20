@@ -26,8 +26,8 @@ export class Graphics extends DisplayObject {
     /**
      * TBD.
      * @param lineWidth
-     * @param color
-     * @param alpha
+     * @param color - TBD.
+     * @param alpha - TBD.
      */
     lineStyle(lineWidth?: number, color?: number, alpha?: number): Graphics;
     lineAlpha: number;
@@ -67,14 +67,14 @@ export class Graphics extends DisplayObject {
      * @param y1
      * @param x2
      * @param y2
-     * @param radius
+     * @param radius - TBD.
      */
     arcTo(x1: any, y1: any, x2: any, y2: any, radius: any): Graphics;
     /**
      * TBD.
      * @param cx
      * @param cy
-     * @param radius
+     * @param radius - TBD.
      * @param startAngle
      * @param endAngle
      * @param anticlockwise
@@ -83,8 +83,8 @@ export class Graphics extends DisplayObject {
     arc(cx: any, cy: any, radius: any, startAngle: any, endAngle: any, anticlockwise?: boolean, segments?: number): Graphics;
     /**
      * TBD.
-     * @param color
-     * @param alpha
+     * @param color - TBD.
+     * @param alpha - TBD.
      */
     beginFill(color?: number, alpha?: number): Graphics;
     filling: boolean;
@@ -107,14 +107,14 @@ export class Graphics extends DisplayObject {
      * @param {number} y - TBD.
      * @param {number} width - TBD.
      * @param {number} height - TBD.
-     * @param radius
+     * @param radius - TBD.
      */
     drawRoundedRect(x: number, y: number, width: number, height: number, radius: any): Graphics;
     /**
      * TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
-     * @param diameter
+     * @param diameter - TBD.
      */
     drawCircle(x: number, y: number, diameter: any): Graphics;
     /**
@@ -138,7 +138,7 @@ export class Graphics extends DisplayObject {
     _prevTint: any;
     /**
      * TBD.
-     * @param matrix
+     * @param matrix - TBD.
      */
     getBounds(matrix?: any): any;
     /**

@@ -5,7 +5,7 @@ import { cloneFrame } from './frame_util';
 export class Frame {
   /**
    * TBD.
-   * @param index
+   * @param index - TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
    * @param {number} width - TBD.
@@ -18,7 +18,7 @@ export class Frame {
 
   /**
    * TBD.
-   * @param index
+   * @param index - TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
    * @param {number} width - TBD.

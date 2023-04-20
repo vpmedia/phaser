@@ -24,6 +24,7 @@ export class Circle {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   circumference() {
     return 2 * (Math.PI * this._radius);
@@ -31,7 +32,8 @@ export class Circle {
 
   /**
    * TBD.
-   * @param output - TBD.
+   * @param {Point} output - TBD.
+   * @returns {Point} TBD.
    */
   random(output = null) {
     const result = output || new Point();
@@ -47,6 +49,7 @@ export class Circle {
 
   /**
    * TBD.
+   * @returns {Rectangle} TBD.
    */
   getBounds() {
     return new Rectangle(this.x - this.radius, this.y - this.radius, this.diameter, this.diameter);
@@ -56,7 +59,8 @@ export class Circle {
    * TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
-   * @param diameter - TBD.
+   * @param {number} diameter - TBD.
+   * @returns {Circle} TBD.
    */
   setTo(x, y, diameter) {
     this.x = x;
@@ -68,7 +72,8 @@ export class Circle {
 
   /**
    * TBD.
-   * @param source - TBD.
+   * @param {Circle} source - TBD.
+   * @returns {Circle} TBD.
    */
   copyFrom(source) {
     return this.setTo(source.x, source.y, source.diameter);
@@ -76,7 +81,8 @@ export class Circle {
 
   /**
    * TBD.
-   * @param dest - TBD.
+   * @param {Circle} dest - TBD.
+   * @returns {Circle} TBD.
    */
   copyTo(dest) {
     dest.x = this.x;
@@ -87,8 +93,9 @@ export class Circle {
 
   /**
    * TBD.
-   * @param dest - TBD.
-   * @param round - TBD.
+   * @param {Circle} dest - TBD.
+   * @param {boolean} round - TBD.
+   * @returns {number} TBD.
    */
   distance(dest, round = false) {
     const d = distance(this.x, this.y, dest.x, dest.y);
@@ -97,6 +104,7 @@ export class Circle {
 
   /**
    * TBD.
+   * @returns {Circle} TBD.
    */
   clone() {
     return clone(this);
@@ -106,6 +114,7 @@ export class Circle {
    * TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
+   * @returns {boolean} TBD.
    */
   contains(x, y) {
     return contains(this, x, y);
@@ -113,9 +122,10 @@ export class Circle {
 
   /**
    * TBD.
-   * @param angle - TBD.
-   * @param asDegrees - TBD.
-   * @param out - TBD.
+   * @param {number} angle - TBD.
+   * @param {boolean} asDegrees - TBD.
+   * @param {Point} out - TBD.
+   * @returns {Point} TBD.
    */
   circumferencePoint(angle, asDegrees, out) {
     return circumferencePoint(this, angle, asDegrees, out);
@@ -123,8 +133,9 @@ export class Circle {
 
   /**
    * TBD.
-   * @param dx - TBD.
-   * @param dy - TBD.
+   * @param {number} dx - TBD.
+   * @param {number} dy - TBD.
+   * @returns {Circle} TBD.
    */
   offset(dx, dy) {
     this.x += dx;
@@ -134,7 +145,8 @@ export class Circle {
 
   /**
    * TBD.
-   * @param point - TBD.
+   * @param {Point} point - TBD.
+   * @returns {Circle} TBD.
    */
   offsetPoint(point) {
     return this.offset(point.x, point.y);
@@ -142,6 +154,7 @@ export class Circle {
 
   /**
    * TBD.
+   * @returns {string} TBD.
    */
   toString() {
     return '[{Circle (x=' + this.x + ' y=' + this.y + ' diameter=' + this.diameter + ' radius=' + this.radius + ')}]';
@@ -149,6 +162,7 @@ export class Circle {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get diameter() {
     return this._diameter;
@@ -166,6 +180,7 @@ export class Circle {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get radius() {
     return this._radius;
@@ -183,6 +198,7 @@ export class Circle {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get left() {
     return this.x - this._radius;
@@ -202,6 +218,7 @@ export class Circle {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get right() {
     return this.x + this._radius;
@@ -221,6 +238,7 @@ export class Circle {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get top() {
     return this.y - this._radius;
@@ -240,6 +258,7 @@ export class Circle {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get bottom() {
     return this.y + this._radius;
@@ -259,6 +278,7 @@ export class Circle {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get area() {
     if (this._radius > 0) {
@@ -269,6 +289,7 @@ export class Circle {
 
   /**
    * TBD.
+   * @returns {boolean} TBD.
    */
   get empty() {
     return this._diameter === 0;

@@ -123,7 +123,7 @@ export class Input {
 
   /**
    * TBD.
-   * @param callback
+   * @param callback - TBD.
    * @param context
    */
   setInteractiveCandidateHandler(callback, context) {
@@ -133,7 +133,7 @@ export class Input {
 
   /**
    * TBD.
-   * @param callback
+   * @param callback - TBD.
    * @param context
    */
   addMoveCallback(callback, context) {
@@ -142,7 +142,7 @@ export class Input {
 
   /**
    * TBD.
-   * @param callback
+   * @param callback - TBD.
    * @param context
    */
   deleteMoveCallback(callback, context) {

@@ -215,25 +215,25 @@ export class InputHandler {
     /**
      * TBD.
      * @param pointerId
-     * @param delay
+     * @param delay - TBD.
      */
     justOver(pointerId?: number, delay?: number): boolean;
     /**
      * TBD.
      * @param pointerId
-     * @param delay
+     * @param delay - TBD.
      */
     justOut(pointerId?: number, delay?: number): boolean;
     /**
      * TBD.
      * @param pointerId
-     * @param delay
+     * @param delay - TBD.
      */
     justPressed(pointerId?: number, delay?: number): boolean;
     /**
      * TBD.
      * @param pointerId
-     * @param delay
+     * @param delay - TBD.
      */
     justReleased(pointerId?: number, delay?: number): boolean;
     /**

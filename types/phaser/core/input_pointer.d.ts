@@ -97,18 +97,18 @@ export class Pointer {
     stop(event: any): Pointer;
     /**
      * TBD.
-     * @param duration
+     * @param duration - TBD.
      */
     justPressed(duration: any): boolean;
     /**
      * TBD.
-     * @param duration
+     * @param duration - TBD.
      */
     justReleased(duration: any): boolean;
     /**
      * TBD.
      * @param name
-     * @param callback
+     * @param callback - TBD.
      * @param callbackContext
      * @param callbackArgs
      */

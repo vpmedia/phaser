@@ -10,7 +10,7 @@ export class WebGLFilterManager {
 
   /**
    * TBD.
-   * @param gl
+   * @param gl - TBD.
    */
   setContext(gl) {
     this.gl = gl;

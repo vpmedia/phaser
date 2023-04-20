@@ -1,7 +1,7 @@
 export class ArraySet {
   /**
    * TBD.
-   * @param list
+   * @param list - TBD.
    */
   constructor(list = []) {
     this.position = 0;
@@ -10,7 +10,7 @@ export class ArraySet {
 
   /**
    * TBD.
-   * @param item
+   * @param item - TBD.
    */
   add(item) {
     if (!this.exists(item)) {
@@ -21,7 +21,7 @@ export class ArraySet {
 
   /**
    * TBD.
-   * @param item
+   * @param item - TBD.
    */
   getIndex(item) {
     return this.list.indexOf(item);
@@ -29,8 +29,8 @@ export class ArraySet {
 
   /**
    * TBD.
-   * @param property
-   * @param value
+   * @param property - TBD.
+   * @param value - TBD.
    */
   getByKey(property, value) {
     let i = this.list.length;
@@ -45,7 +45,7 @@ export class ArraySet {
 
   /**
    * TBD.
-   * @param item
+   * @param item - TBD.
    */
   exists(item) {
     return this.list.indexOf(item) > -1;
@@ -60,7 +60,7 @@ export class ArraySet {
 
   /**
    * TBD.
-   * @param item
+   * @param item - TBD.
    */
   remove(item) {
     const idx = this.list.indexOf(item);
@@ -74,7 +74,7 @@ export class ArraySet {
   /**
    * TBD.
    * @param {string} key - TBD.
-   * @param value
+   * @param value - TBD.
    */
   setAll(key, value) {
     let i = this.list.length;
@@ -89,7 +89,7 @@ export class ArraySet {
   /**
    * TBD.
    * @param {string} key - TBD.
-   * @param {...any} args
+   * @param {...any} args - TBD.
    */
   callAll(key, ...args) {
     let i = this.list.length;
@@ -103,7 +103,7 @@ export class ArraySet {
 
   /**
    * TBD.
-   * @param destroy
+   * @param destroy - TBD.
    */
   removeAll(destroy = false) {
     let i = this.list.length;

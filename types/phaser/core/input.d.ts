@@ -66,19 +66,19 @@ export class Input {
     destroy(): void;
     /**
      * TBD.
-     * @param callback
+     * @param callback - TBD.
      * @param context
      */
     setInteractiveCandidateHandler(callback: any, context: any): void;
     /**
      * TBD.
-     * @param callback
+     * @param callback - TBD.
      * @param context
      */
     addMoveCallback(callback: any, context: any): void;
     /**
      * TBD.
-     * @param callback
+     * @param callback - TBD.
      * @param context
      */
     deleteMoveCallback(callback: any, context: any): void;

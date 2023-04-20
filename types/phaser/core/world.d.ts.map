@@ -1,1 +1,1 @@
-{"version":3,"file":"world.d.ts","sourceRoot":"","sources":["../../../src/phaser/core/world.js"],"names":[],"mappings":"AAEA;IACE;;;OAGG;IACH,kBAFW,MAAM,EAIhB;IAED;;OAEG;IACH,aAEC;CACF;sBAjBsB,kBAAkB"}
+{"version":3,"file":"world.d.ts","sourceRoot":"","sources":["../../../src/phaser/core/world.js"],"names":[],"mappings":"AAEA;IACE;;;OAGG;IACH,kBAFW,MAAM,EAIhB;IAED;;OAEG;IACH,aAEC;CACF;sBAjBqB,kBAAkB"}

@@ -1,30 +1,30 @@
 export class ArraySet {
     /**
      * TBD.
-     * @param list
+     * @param list - TBD.
      */
     constructor(list?: any[]);
     position: number;
     list: any[];
     /**
      * TBD.
-     * @param item
+     * @param item - TBD.
      */
     add(item: any): any;
     /**
      * TBD.
-     * @param item
+     * @param item - TBD.
      */
     getIndex(item: any): number;
     /**
      * TBD.
-     * @param property
-     * @param value
+     * @param property - TBD.
+     * @param value - TBD.
      */
     getByKey(property: any, value: any): any;
     /**
      * TBD.
-     * @param item
+     * @param item - TBD.
      */
     exists(item: any): boolean;
     /**
@@ -33,24 +33,24 @@ export class ArraySet {
     reset(): void;
     /**
      * TBD.
-     * @param item
+     * @param item - TBD.
      */
     remove(item: any): any;
     /**
      * TBD.
      * @param {string} key - TBD.
-     * @param value
+     * @param value - TBD.
      */
     setAll(key: string, value: any): void;
     /**
      * TBD.
      * @param {string} key - TBD.
-     * @param {...any} args
+     * @param {...any} args - TBD.
      */
     callAll(key: string, ...args: any[]): void;
     /**
      * TBD.
-     * @param destroy
+     * @param destroy - TBD.
      */
     removeAll(destroy?: boolean): void;
     /**

@@ -70,7 +70,7 @@ export class BitmapText extends DisplayObject {
 
   /**
    * TBD.
-   * @param text
+   * @param text - TBD.
    */
   setText(text) {
     this.text = text;
@@ -80,7 +80,7 @@ export class BitmapText extends DisplayObject {
    * TBD.
    * @param data
    * @param scale
-   * @param text
+   * @param text - TBD.
    */
   scanLine(data, scale, text) {
     let x = 0;
@@ -145,7 +145,7 @@ export class BitmapText extends DisplayObject {
 
   /**
    * TBD.
-   * @param text
+   * @param text - TBD.
    * @param replace
    */
   cleanText(text, replace = '') {

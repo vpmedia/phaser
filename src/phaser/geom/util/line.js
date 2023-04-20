@@ -58,8 +58,8 @@ export function intersectsPoints(a, b, e, f, asSegment = true, output = null) {
  * @param {object} a - TBD.
  * @param {object} b - TBD.
  * @param {boolean} asSegment - TBD.
- * @param {object} result - TBD.
- * @returns {boolean} TBD.
+ * @param {Point} result - TBD.
+ * @returns {Point} TBD.
  */
 export function intersects(a, b, asSegment, result) {
   return intersectsPoints(a.start, a.end, b.start, b.end, asSegment, result);

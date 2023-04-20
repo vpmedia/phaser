@@ -1,31 +1,115 @@
-export const TOP_LEFT: 0;
-export const TOP_CENTER: 1;
-export const TOP_RIGHT: 2;
-export const LEFT_TOP: 3;
-export const LEFT_CENTER: 4;
-export const LEFT_BOTTOM: 5;
-export const CENTER: 6;
-export const RIGHT_TOP: 7;
-export const RIGHT_CENTER: 8;
-export const RIGHT_BOTTOM: 9;
-export const BOTTOM_LEFT: 10;
-export const BOTTOM_CENTER: 11;
-export const BOTTOM_RIGHT: 12;
-export const SCALE_LINEAR: 0;
-export const SCALE_NEAREST: 1;
-export const SCALE_EXACT_FIT: 0;
-export const SCALE_OFF: 1;
-export const SCALE_SHOW_ALL: 2;
-export const SCALE_RESIZE: 3;
-export const SCALE_USER: 4;
-export const TIME_MINUTE: 60000;
-export const TIME_SECOND: 1000;
-export const TIME_HALF: 500;
-export const TIME_QUARTER: 250;
-export const TWEEN_PENDING: 0;
-export const TWEEN_RUNNING: 1;
-export const TWEEN_LOOPED: 2;
-export const TWEEN_COMPLETE: 3;
+/**
+ * @type {number}
+ */
+export const TOP_LEFT: number;
+/**
+ * @type {number}
+ */
+export const TOP_CENTER: number;
+/**
+ * @type {number}
+ */
+export const TOP_RIGHT: number;
+/**
+ * @type {number}
+ */
+export const LEFT_TOP: number;
+/**
+ * @type {number}
+ */
+export const LEFT_CENTER: number;
+/**
+ * @type {number}
+ */
+export const LEFT_BOTTOM: number;
+/**
+ * @type {number}
+ */
+export const CENTER: number;
+/**
+ * @type {number}
+ */
+export const RIGHT_TOP: number;
+/**
+ * @type {number}
+ */
+export const RIGHT_CENTER: number;
+/**
+ * @type {number}
+ */
+export const RIGHT_BOTTOM: number;
+/**
+ * @type {number}
+ */
+export const BOTTOM_LEFT: number;
+/**
+ * @type {number}
+ */
+export const BOTTOM_CENTER: number;
+/**
+ * @type {number}
+ */
+export const BOTTOM_RIGHT: number;
+/**
+ * @type {number}
+ */
+export const SCALE_LINEAR: number;
+/**
+ * @type {number}
+ */
+export const SCALE_NEAREST: number;
+/**
+ * @type {number}
+ */
+export const SCALE_EXACT_FIT: number;
+/**
+ * @type {number}
+ */
+export const SCALE_OFF: number;
+/**
+ * @type {number}
+ */
+export const SCALE_SHOW_ALL: number;
+/**
+ * @type {number}
+ */
+export const SCALE_RESIZE: number;
+/**
+ * @type {number}
+ */
+export const SCALE_USER: number;
+/**
+ * @type {number}
+ */
+export const TIME_MINUTE: number;
+/**
+ * @type {number}
+ */
+export const TIME_SECOND: number;
+/**
+ * @type {number}
+ */
+export const TIME_HALF: number;
+/**
+ * @type {number}
+ */
+export const TIME_QUARTER: number;
+/**
+ * @type {number}
+ */
+export const TWEEN_PENDING: number;
+/**
+ * @type {number}
+ */
+export const TWEEN_RUNNING: number;
+/**
+ * @type {number}
+ */
+export const TWEEN_LOOPED: number;
+/**
+ * @type {number}
+ */
+export const TWEEN_COMPLETE: number;
 export const BLEND_NORMAL: 0;
 export const BLEND_ADD: 1;
 export const BLEND_MULTIPLY: 2;
@@ -43,14 +127,38 @@ export const BLEND_HUE: 13;
 export const BLEND_SATURATION: 14;
 export const BLEND_COLOR: 15;
 export const BLEND_LUMINOSITY: 16;
-export const RENDER_AUTO: 0;
-export const RENDER_CANVAS: 1;
-export const RENDER_WEBGL: 2;
-export const POINTER_CURSOR: 1;
-export const POINTER_CONTACT: 2;
-export const MOUSE_OVERRIDES_TOUCH: 0;
-export const TOUCH_OVERRIDES_MOUSE: 1;
-export const MOUSE_TOUCH_COMBINE: 2;
+/**
+ * @type {number}
+ */
+export const RENDER_AUTO: number;
+/**
+ * @type {number}
+ */
+export const RENDER_CANVAS: number;
+/**
+ * @type {number}
+ */
+export const RENDER_WEBGL: number;
+/**
+ * @type {number}
+ */
+export const POINTER_CURSOR: number;
+/**
+ * @type {number}
+ */
+export const POINTER_CONTACT: number;
+/**
+ * @type {number}
+ */
+export const MOUSE_OVERRIDES_TOUCH: number;
+/**
+ * @type {number}
+ */
+export const TOUCH_OVERRIDES_MOUSE: number;
+/**
+ * @type {number}
+ */
+export const MOUSE_TOUCH_COMBINE: number;
 export const GROUP: 7;
 export const SPRITE: 0;
 export const SPRITE_BATCH: 17;

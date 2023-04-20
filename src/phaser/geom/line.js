@@ -19,10 +19,11 @@ export class Line {
 
   /**
    * TBD.
-   * @param x1 - TBD.
-   * @param y1 - TBD.
-   * @param x2 - TBD.
-   * @param y2 - TBD.
+   * @param {number} x1 - TBD.
+   * @param {number} y1 - TBD.
+   * @param {number} x2 - TBD.
+   * @param {number} y2 - TBD.
+   * @returns {Line} TBD.
    */
   setTo(x1, y1, x2, y2) {
     this.start.setTo(x1, y1);
@@ -32,9 +33,10 @@ export class Line {
 
   /**
    * TBD.
-   * @param startSprite - TBD.
-   * @param endSprite - TBD.
-   * @param useCenter - TBD.
+   * @param {object} startSprite - TBD.
+   * @param {object} endSprite - TBD.
+   * @param {boolean} useCenter - TBD.
+   * @returns {Line} TBD.
    */
   fromSprite(startSprite, endSprite, useCenter = false) {
     if (useCenter) {
@@ -47,8 +49,9 @@ export class Line {
    * TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
-   * @param angle - TBD.
-   * @param length - TBD.
+   * @param {number} angle - TBD.
+   * @param {number} length - TBD.
+   * @returns {Line} TBD.
    */
   fromAngle(x, y, angle, length) {
     this.start.setTo(x, y);
@@ -58,8 +61,9 @@ export class Line {
 
   /**
    * TBD.
-   * @param angle - TBD.
-   * @param asDegrees - TBD.
+   * @param {number} angle - TBD.
+   * @param {boolean} asDegrees - TBD.
+   * @returns {Line} TBD.
    */
   rotate(angle, asDegrees = false) {
     const cx = (this.start.x + this.end.x) / 2;
@@ -73,8 +77,9 @@ export class Line {
    * TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
-   * @param angle - TBD.
-   * @param asDegrees - TBD.
+   * @param {number} angle - TBD.
+   * @param {boolean} asDegrees - TBD.
+   * @returns {Line} TBD.
    */
   rotateAround(x, y, angle, asDegrees = false) {
     this.start.rotate(x, y, angle, asDegrees);
@@ -84,9 +89,10 @@ export class Line {
 
   /**
    * TBD.
-   * @param line - TBD.
-   * @param asSegment - TBD.
-   * @param result - TBD.
+   * @param {Line} line - TBD.
+   * @param {boolean} asSegment - TBD.
+   * @param {Point} result - TBD.
+   * @returns {Point} TBD.
    */
   intersects(line, asSegment, result) {
     return intersectsPoints(this.start, this.end, line.start, line.end, asSegment, result);
@@ -94,7 +100,8 @@ export class Line {
 
   /**
    * TBD.
-   * @param line - TBD.
+   * @param {Line} line - TBD.
+   * @returns {number} TBD.
    */
   reflect(line) {
     return reflect(this, line);
@@ -102,7 +109,8 @@ export class Line {
 
   /**
    * TBD.
-   * @param output - TBD.
+   * @param {Point} output - TBD.
+   * @returns {Point} TBD.
    */
   midPoint(output = null) {
     const result = output || new Point();
@@ -129,6 +137,7 @@ export class Line {
    * TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
+   * @returns {boolean} TBD.
    */
   pointOnLine(x, y) {
     return (x - this.start.x) * (this.end.y - this.start.y) === (this.end.x - this.start.x) * (y - this.start.y);
@@ -138,6 +147,7 @@ export class Line {
    * TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
+   * @returns {boolean} TBD.
    */
   pointOnSegment(x, y) {
     const xMin = Math.min(this.start.x, this.end.x);
@@ -149,7 +159,8 @@ export class Line {
 
   /**
    * TBD.
-   * @param output - TBD.
+   * @param {Point} output - TBD.
+   * @returns {Point} TBD.
    */
   random(output = null) {
     const result = output || new Point();
@@ -161,8 +172,9 @@ export class Line {
 
   /**
    * TBD.
-   * @param stepRate - TBD.
-   * @param results - TBD.
+   * @param {number} stepRate - TBD.
+   * @param {number[][]} results - TBD.
+   * @returns {number[][]} TBD.
    */
   coordinatesOnLine(stepRate = 1, results = []) {
     let x1 = Math.round(this.start.x);
@@ -196,6 +208,7 @@ export class Line {
 
   /**
    * TBD.
+   * @returns {Line} TBD.
    */
   clone() {
     return clone(this);
@@ -203,6 +216,7 @@ export class Line {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get length() {
     return Math.sqrt(
@@ -213,6 +227,7 @@ export class Line {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get angle() {
     return Math.atan2(this.end.y - this.start.y, this.end.x - this.start.x);
@@ -220,6 +235,7 @@ export class Line {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get slope() {
     return (this.end.y - this.start.y) / (this.end.x - this.start.x);
@@ -227,6 +243,7 @@ export class Line {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get perpSlope() {
     return -((this.end.x - this.start.x) / (this.end.y - this.start.y));
@@ -234,6 +251,7 @@ export class Line {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get x() {
     return Math.min(this.start.x, this.end.x);
@@ -241,6 +259,7 @@ export class Line {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get y() {
     return Math.min(this.start.y, this.end.y);
@@ -248,6 +267,7 @@ export class Line {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get left() {
     return Math.min(this.start.x, this.end.x);
@@ -255,6 +275,7 @@ export class Line {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get right() {
     return Math.max(this.start.x, this.end.x);
@@ -262,6 +283,7 @@ export class Line {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get top() {
     return Math.min(this.start.y, this.end.y);
@@ -269,6 +291,7 @@ export class Line {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get bottom() {
     return Math.max(this.start.y, this.end.y);
@@ -276,6 +299,7 @@ export class Line {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get width() {
     return Math.abs(this.start.x - this.end.x);
@@ -283,6 +307,7 @@ export class Line {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get height() {
     return Math.abs(this.start.y - this.end.y);
@@ -290,6 +315,7 @@ export class Line {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get normalX() {
     return Math.cos(this.angle - 1.5707963267948966);
@@ -297,6 +323,7 @@ export class Line {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get normalY() {
     return Math.sin(this.angle - 1.5707963267948966);
@@ -304,6 +331,7 @@ export class Line {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get normalAngle() {
     return wrap(this.angle - 1.5707963267948966, -Math.PI, Math.PI);

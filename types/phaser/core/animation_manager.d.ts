@@ -1,7 +1,7 @@
 export class AnimationManager {
     /**
      * TBD.
-     * @param sprite
+     * @param sprite - TBD.
      */
     constructor(sprite: any);
     sprite: any;
@@ -19,8 +19,8 @@ export class AnimationManager {
     destroy(): void;
     /**
      * TBD.
-     * @param frameData
-     * @param frame
+     * @param frameData - TBD.
+     * @param frame - TBD.
      */
     loadFrameData(frameData: any, frame: any): boolean;
     /**
@@ -41,37 +41,37 @@ export class AnimationManager {
     get frameName(): any;
     /**
      * TBD.
-     * @param frameData
-     * @param frame
+     * @param frameData - TBD.
+     * @param frame - TBD.
      */
     copyFrameData(frameData: any, frame: any): boolean;
     /**
      * TBD.
-     * @param name
-     * @param frameList
-     * @param frameRate
-     * @param loop
-     * @param useNumericIndex
+     * @param name - TBD.
+     * @param frameList - TBD.
+     * @param frameRate - TBD.
+     * @param loop - TBD.
+     * @param useNumericIndex - TBD.
      */
     add(name: any, frameList: any, frameRate?: number, loop?: boolean, useNumericIndex?: any): any;
     /**
      * TBD.
-     * @param frames
-     * @param useNumericIndex
+     * @param frames - TBD.
+     * @param useNumericIndex - TBD.
      */
     validateFrames(frames: any, useNumericIndex?: boolean): boolean;
     /**
      * TBD.
-     * @param name
-     * @param frameRate
-     * @param loop
-     * @param killOnComplete
+     * @param name - TBD.
+     * @param frameRate - TBD.
+     * @param loop - TBD.
+     * @param killOnComplete - TBD.
      */
     play(name: any, frameRate: any, loop: any, killOnComplete: any): any;
     /**
      * TBD.
-     * @param name
-     * @param resetFrame
+     * @param name - TBD.
+     * @param resetFrame - TBD.
      */
     stop(name: any, resetFrame?: boolean): void;
     /**
@@ -80,17 +80,17 @@ export class AnimationManager {
     update(): boolean;
     /**
      * TBD.
-     * @param quantity
+     * @param quantity - TBD.
      */
     next(quantity: any): void;
     /**
      * TBD.
-     * @param quantity
+     * @param quantity - TBD.
      */
     previous(quantity: any): void;
     /**
      * TBD.
-     * @param name
+     * @param name - TBD.
      */
     getAnimation(name: any): any;
     /**

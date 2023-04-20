@@ -31,9 +31,9 @@ export class TweenData {
     /**
      * TBD.
      * @param properties
-     * @param duration
-     * @param ease
-     * @param delay
+     * @param duration - TBD.
+     * @param ease - TBD.
+     * @param delay - TBD.
      * @param repeat
      * @param yoyo
      */
@@ -41,9 +41,9 @@ export class TweenData {
     /**
      * TBD.
      * @param properties
-     * @param duration
-     * @param ease
-     * @param delay
+     * @param duration - TBD.
+     * @param ease - TBD.
+     * @param delay - TBD.
      * @param repeat
      * @param yoyo
      */
@@ -61,7 +61,7 @@ export class TweenData {
      * TBD.
      * @param time
      */
-    update(time: any): 0 | 1 | 2 | 3;
+    update(time: any): number;
     /**
      * TBD.
      * @param frameRate
@@ -70,7 +70,7 @@ export class TweenData {
     /**
      * TBD.
      */
-    repeat(): 2 | 3;
+    repeat(): number;
 }
 import * as MathUtils from '../util/math';
 //# sourceMappingURL=tween_data.d.ts.map

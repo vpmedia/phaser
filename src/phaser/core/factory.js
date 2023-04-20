@@ -19,8 +19,9 @@ export class GameObjectFactory {
    * @param {number} x - TBD.
    * @param {number} y - TBD.
    * @param {string} key - TBD.
-   * @param frame
-   * @param group
+   * @param frame - TBD.
+   * @param group - TBD.
+   * @returns {Image} TBD.
    */
   image(x, y, key, frame, group = null) {
     if (!group) {
@@ -31,9 +32,10 @@ export class GameObjectFactory {
 
   /**
    * TBD.
-   * @param parent
-   * @param name
-   * @param addToStage
+   * @param parent - TBD.
+   * @param name - TBD.
+   * @param addToStage - TBD.
+   * @returns {Group} TBD.
    */
   group(parent, name, addToStage) {
     return new Group(this.game, parent, name, addToStage);
@@ -43,9 +45,10 @@ export class GameObjectFactory {
    * TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
-   * @param text
-   * @param style
-   * @param group
+   * @param text - TBD.
+   * @param style - TBD.
+   * @param group - TBD.
+   * @returns {Text} TBD.
    */
   text(x, y, text, style, group = null) {
     const parent = group || this.game.world;
@@ -57,13 +60,14 @@ export class GameObjectFactory {
    * @param {number} x - TBD.
    * @param {number} y - TBD.
    * @param {string} key - TBD.
-   * @param callback
-   * @param callbackContext
-   * @param overFrame
-   * @param outFrame
-   * @param downFrame
-   * @param upFrame
-   * @param group
+   * @param callback - TBD.
+   * @param callbackContext - TBD.
+   * @param overFrame - TBD.
+   * @param outFrame - TBD.
+   * @param downFrame - TBD.
+   * @param upFrame - TBD.
+   * @param group - TBD.
+   * @returns {Button} TBD.
    */
   button(x, y, key, callback, callbackContext, overFrame, outFrame, downFrame, upFrame, group = null) {
     const parent = group || this.game.world;
@@ -76,7 +80,8 @@ export class GameObjectFactory {
    * TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
-   * @param group
+   * @param group - TBD.
+   * @returns {Graphics} TBD.
    */
   graphics(x, y, group = null) {
     const parent = group || this.game.world;
@@ -87,11 +92,12 @@ export class GameObjectFactory {
    * TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
-   * @param font
-   * @param text
-   * @param size
-   * @param group
-   * @param align
+   * @param font - TBD.
+   * @param text - TBD.
+   * @param size - TBD.
+   * @param group - TBD.
+   * @param align - TBD.
+   * @returns {BitmapText} TBD.
    */
   bitmapText(x, y, font, text, size, group = null, align = 'left') {
     const parent = group || this.game.world;

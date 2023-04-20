@@ -4,7 +4,7 @@ export class WebGLStencilManager {
     count: number;
     /**
      * TBD.
-     * @param gl
+     * @param gl - TBD.
      */
     setContext(gl: any): void;
     gl: any;
@@ -14,23 +14,23 @@ export class WebGLStencilManager {
     destroy(): void;
     /**
      * TBD.
-     * @param graphics
+     * @param graphics - TBD.
      * @param webGLData
-     * @param renderSession
+     * @param renderSession - TBD.
      */
     pushStencil(graphics: any, webGLData: any, renderSession: any): void;
     /**
      * TBD.
-     * @param graphics
+     * @param graphics - TBD.
      * @param webGLData
-     * @param renderSession
+     * @param renderSession - TBD.
      */
     bindGraphics(graphics: any, webGLData: any, renderSession: any): void;
     /**
      * TBD.
-     * @param graphics
+     * @param graphics - TBD.
      * @param webGLData
-     * @param renderSession
+     * @param renderSession - TBD.
      */
     popStencil(graphics: any, webGLData: any, renderSession: any): void;
 }

@@ -2,12 +2,12 @@ export class Animation {
     /**
      * TBD.
      * @param {object} game - TBD.
-     * @param parent
-     * @param name
-     * @param frameData
-     * @param frames
-     * @param frameRate
-     * @param loop
+     * @param parent - TBD.
+     * @param name - TBD.
+     * @param frameData - TBD.
+     * @param frames - TBD.
+     * @param frameRate - TBD.
+     * @param loop - TBD.
      */
     constructor(game: object, parent: any, name: any, frameData: any, frames: any, frameRate: any, loop?: boolean);
     game: any;
@@ -34,9 +34,9 @@ export class Animation {
     isReversed: boolean;
     /**
      * TBD.
-     * @param frameRate
-     * @param loop
-     * @param killOnComplete
+     * @param frameRate - TBD.
+     * @param loop - TBD.
+     * @param killOnComplete - TBD.
      */
     play(frameRate: any, loop: any, killOnComplete: any): Animation;
     /**
@@ -71,14 +71,14 @@ export class Animation {
     reverseOnce(): Animation;
     /**
      * TBD.
-     * @param frameId
-     * @param useLocalFrameIndex
+     * @param frameId - TBD.
+     * @param useLocalFrameIndex - TBD.
      */
     setFrame(frameId: any, useLocalFrameIndex?: boolean): void;
     /**
      * TBD.
-     * @param resetFrame
-     * @param dispatchComplete
+     * @param resetFrame - TBD.
+     * @param dispatchComplete - TBD.
      */
     stop(resetFrame?: boolean, dispatchComplete?: boolean): void;
     /**
@@ -95,23 +95,23 @@ export class Animation {
     update(): boolean;
     /**
      * TBD.
-     * @param signalUpdate
-     * @param fromPlay
+     * @param signalUpdate - TBD.
+     * @param fromPlay - TBD.
      */
     updateCurrentFrame(signalUpdate: any, fromPlay?: boolean): boolean;
     /**
      * TBD.
-     * @param quantity
+     * @param quantity - TBD.
      */
     next(quantity?: number): void;
     /**
      * TBD.
-     * @param quantity
+     * @param quantity - TBD.
      */
     previous(quantity?: number): void;
     /**
      * TBD.
-     * @param frameData
+     * @param frameData - TBD.
      */
     updateFrameData(frameData: any): void;
     /**

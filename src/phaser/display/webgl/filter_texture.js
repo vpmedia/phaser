@@ -3,7 +3,7 @@ import { SCALE_LINEAR } from '../../core/const';
 export class FilterTexture {
   /**
    * TBD.
-   * @param gl
+   * @param gl - TBD.
    * @param {number} width - TBD.
    * @param {number} height - TBD.
    * @param scaleMode

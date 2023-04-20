@@ -42,7 +42,7 @@ export class CanvasRenderer {
      * TBD.
      * @param displayObject
      * @param context
-     * @param matrix
+     * @param matrix - TBD.
      */
     renderDisplayObject(displayObject: any, context: any, matrix: any): void;
     /**

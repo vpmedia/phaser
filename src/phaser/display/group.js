@@ -70,9 +70,9 @@ export class Group extends DisplayObject {
 
   /**
    * TBD.
-   * @param child
+   * @param child - TBD.
    * @param silent
-   * @param index
+   * @param index - TBD.
    */
   add(child, silent = false, index = -1) {
     if (child.parent === this) {
@@ -99,8 +99,8 @@ export class Group extends DisplayObject {
 
   /**
    * TBD.
-   * @param child
-   * @param index
+   * @param child - TBD.
+   * @param index - TBD.
    * @param silent
    */
   addAt(child, index, silent) {
@@ -109,7 +109,7 @@ export class Group extends DisplayObject {
 
   /**
    * TBD.
-   * @param index
+   * @param index - TBD.
    */
   getAt(index) {
     if (index < 0 || index >= this.children.length) {
@@ -175,7 +175,7 @@ export class Group extends DisplayObject {
 
   /**
    * TBD.
-   * @param child
+   * @param child - TBD.
    */
   bringToTop(child) {
     if (child.parent === this && this.getIndex(child) < this.children.length) {
@@ -187,7 +187,7 @@ export class Group extends DisplayObject {
 
   /**
    * TBD.
-   * @param child
+   * @param child - TBD.
    */
   sendToBack(child) {
     if (child.parent === this && this.getIndex(child) > 0) {
@@ -207,7 +207,7 @@ export class Group extends DisplayObject {
 
   /**
    * TBD.
-   * @param child
+   * @param child - TBD.
    */
   getIndex(child) {
     return this.children.indexOf(child);
@@ -252,7 +252,7 @@ export class Group extends DisplayObject {
 
   /**
    * TBD.
-   * @param child
+   * @param child - TBD.
    * @param destroy
    * @param silent
    */

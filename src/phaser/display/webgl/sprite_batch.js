@@ -46,7 +46,7 @@ export class WebGLSpriteBatch {
 
   /**
    * TBD.
-   * @param gl
+   * @param gl - TBD.
    */
   setContext(gl) {
     this.gl = gl;
@@ -69,7 +69,7 @@ export class WebGLSpriteBatch {
 
   /**
    * TBD.
-   * @param renderSession
+   * @param renderSession - TBD.
    */
   begin(renderSession) {
     this.renderSession = renderSession;
@@ -87,7 +87,7 @@ export class WebGLSpriteBatch {
   /**
    * TBD.
    * @param sprite
-   * @param matrix
+   * @param matrix - TBD.
    */
   render(sprite, matrix) {
     const texture = sprite.texture;

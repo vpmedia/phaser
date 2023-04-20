@@ -6,7 +6,7 @@ import { compileProgram } from '../util';
 export class PrimitiveShader {
   /**
    * TBD.
-   * @param gl
+   * @param gl - TBD.
    */
   constructor(gl) {
     this.gl = gl;

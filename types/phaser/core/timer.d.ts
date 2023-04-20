@@ -27,42 +27,42 @@ export class Timer {
     _newTick: number;
     /**
      * TBD.
-     * @param delay
+     * @param delay - TBD.
      * @param loop
      * @param repeatCount
-     * @param callback
+     * @param callback - TBD.
      * @param callbackContext
-     * @param args
+     * @param args - TBD.
      */
     create(delay: any, loop: any, repeatCount: any, callback: any, callbackContext: any, args: any): TimerEvent;
     /**
      * TBD.
-     * @param delay
-     * @param callback
+     * @param delay - TBD.
+     * @param callback - TBD.
      * @param callbackContext
      * @param {...any} args
      */
     add(delay: any, callback: any, callbackContext: any, ...args: any[]): TimerEvent;
     /**
      * TBD.
-     * @param delay
+     * @param delay - TBD.
      * @param repeatCount
-     * @param callback
+     * @param callback - TBD.
      * @param callbackContext
      * @param {...any} args
      */
     repeat(delay: any, repeatCount: any, callback: any, callbackContext: any, ...args: any[]): TimerEvent;
     /**
      * TBD.
-     * @param delay
-     * @param callback
+     * @param delay - TBD.
+     * @param callback - TBD.
      * @param callbackContext
      * @param {...any} args
      */
     loop(delay: any, callback: any, callbackContext: any, ...args: any[]): TimerEvent;
     /**
      * TBD.
-     * @param delay
+     * @param delay - TBD.
      */
     start(delay: any): void;
     /**

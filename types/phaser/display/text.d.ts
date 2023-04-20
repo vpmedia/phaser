@@ -28,7 +28,7 @@ export class Text extends Image {
      * TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
-     * @param color
+     * @param color - TBD.
      * @param blur
      * @param shadowStroke
      * @param shadowFill
@@ -80,46 +80,46 @@ export class Text extends Image {
     clearFontValues(): Text;
     /**
      * TBD.
-     * @param color
-     * @param position
+     * @param color - TBD.
+     * @param position - TBD.
      */
     addColor(color: any, position: any): Text;
     /**
      * TBD.
-     * @param color
-     * @param position
+     * @param color - TBD.
+     * @param position - TBD.
      */
     addStrokeColor(color: any, position: any): Text;
     /**
      * TBD.
      * @param style
-     * @param position
+     * @param position - TBD.
      */
     addFontStyle(style: any, position: any): Text;
     /**
      * TBD.
      * @param weight
-     * @param position
+     * @param position - TBD.
      */
     addFontWeight(weight: any, position: any): Text;
     /**
      * TBD.
-     * @param text
+     * @param text - TBD.
      */
     precalculateWordWrap(text: any): string[];
     /**
      * TBD.
-     * @param text
+     * @param text - TBD.
      */
     runWordWrap(text: any): string;
     /**
      * TBD.
-     * @param text
+     * @param text - TBD.
      */
     advancedWordWrap(text: any): string;
     /**
      * TBD.
-     * @param text
+     * @param text - TBD.
      */
     basicWordWrap(text: any): string;
     /**
@@ -129,7 +129,7 @@ export class Text extends Image {
     updateFont(components: any): void;
     /**
      * TBD.
-     * @param font
+     * @param font - TBD.
      */
     fontToComponents(font: any): {
         font: any;
@@ -153,7 +153,7 @@ export class Text extends Image {
     componentsToFont(components: any): string;
     /**
      * TBD.
-     * @param text
+     * @param text - TBD.
      * @param immediate
      */
     setText(text: any, immediate?: boolean): Text;
@@ -184,12 +184,12 @@ export class Text extends Image {
     updateTexture(): void;
     /**
      * TBD.
-     * @param renderSession
+     * @param renderSession - TBD.
      */
     renderWebGL(renderSession: any): void;
     /**
      * TBD.
-     * @param renderSession
+     * @param renderSession - TBD.
      */
     renderCanvas(renderSession: any): void;
     /**

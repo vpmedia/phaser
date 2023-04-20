@@ -10,154 +10,184 @@ export class Point {
     type: number;
     /**
      * TBD.
-     * @param source - TBD.
+     * @param {Point} source - TBD.
+     * @returns {Point} TBD.
      */
-    copyFrom(source: any): Point;
+    copyFrom(source: Point): Point;
     /**
      * TBD.
+     * @returns {Point} TBD.
      */
     invert(): Point;
     /**
      * TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
+     * @returns {Point} TBD.
      */
     setTo(x: number, y: number): Point;
     /**
      * TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
+     * @returns {Point} TBD.
      */
     set(x: number, y: number): Point;
     /**
      * TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
+     * @returns {Point} TBD.
      */
     add(x: number, y: number): Point;
     /**
      * TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
+     * @returns {Point} TBD.
      */
     subtract(x: number, y: number): Point;
     /**
      * TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
+     * @returns {Point} TBD.
      */
     multiply(x: number, y: number): Point;
     /**
      * TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
+     * @returns {Point} TBD.
      */
     divide(x: number, y: number): Point;
     /**
      * TBD.
-     * @param min - TBD.
-     * @param max - TBD.
+     * @param {number} min - TBD.
+     * @param {number} max - TBD.
+     * @returns {Point} TBD.
      */
-    clampX(min: any, max: any): Point;
+    clampX(min: number, max: number): Point;
     /**
      * TBD.
-     * @param min - TBD.
-     * @param max - TBD.
+     * @param {number} min - TBD.
+     * @param {number} max - TBD.
+     * @returns {Point} TBD.
      */
-    clampY(min: any, max: any): Point;
+    clampY(min: number, max: number): Point;
     /**
      * TBD.
-     * @param min - TBD.
-     * @param max - TBD.
+     * @param {number} min - TBD.
+     * @param {number} max - TBD.
+     * @returns {Point} TBD.
      */
-    clamp(min: any, max: any): Point;
+    clamp(min: number, max: number): Point;
     /**
      * TBD.
+     * @returns {Point} TBD.
      */
     clone(): Point;
     /**
      * TBD.
-     * @param dest - TBD.
+     * @param {Point} dest - TBD.
+     * @returns {Point} TBD.
      */
-    copyTo(dest: any): any;
+    copyTo(dest: Point): Point;
     /**
      * TBD.
-     * @param b - TBD.
+     * @param {Point} b - TBD.
+     * @returns {number} TBD.
      */
-    distance(b: any): number;
+    distance(b: Point): number;
     /**
      * TBD.
-     * @param a - TBD.
+     * @param {Point} a - TBD.
+     * @returns {boolean} TBD.
      */
-    equals(a: any): boolean;
+    equals(a: Point): boolean;
     /**
      * TBD.
-     * @param a - TBD.
-     * @param asDegrees - TBD.
+     * @param {Point} a - TBD.
+     * @param {boolean} asDegrees - TBD.
+     * @returns {number} TBD.
      */
-    angle(a: any, asDegrees?: boolean): number;
+    angle(a: Point, asDegrees?: boolean): number;
     /**
      * TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
-     * @param angle - TBD.
-     * @param asDegrees - TBD.
-     * @param dist - TBD.
+     * @param {number} angle - TBD.
+     * @param {boolean} asDegrees - TBD.
+     * @param {number} dist - TBD.
+     * @returns {Point} TBD.
      */
-    rotate(x: number, y: number, angle: any, asDegrees: any, dist: any): any;
+    rotate(x: number, y: number, angle: number, asDegrees: boolean, dist: number): Point;
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     getMagnitude(): number;
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     getMagnitudeSq(): number;
     /**
      * TBD.
-     * @param magnitude - TBD.
+     * @param {number} magnitude - TBD.
+     * @returns {Point} TBD.
      */
-    setMagnitude(magnitude: any): Point;
+    setMagnitude(magnitude: number): Point;
     /**
      * TBD.
+     * @returns {Point} TBD.
      */
     normalize(): Point;
     /**
      * TBD.
+     * @returns {boolean} TBD.
      */
     isZero(): boolean;
     /**
      * TBD.
-     * @param a - TBD.
+     * @param {Point} a - TBD.
+     * @returns {number} TBD.
      */
-    dot(a: any): number;
+    dot(a: Point): number;
     /**
      * TBD.
-     * @param a - TBD.
+     * @param {Point} a - TBD.
+     * @returns {number} TBD.
      */
-    cross(a: any): number;
+    cross(a: Point): number;
     /**
      * TBD.
+     * @returns {Point} TBD.
      */
     perp(): Point;
     /**
      * TBD.
+     * @returns {Point} TBD.
      */
     rperp(): Point;
     /**
      * TBD.
+     * @returns {Point} TBD.
      */
     normalRightHand(): Point;
     /**
      * TBD.
+     * @returns {Point} TBD.
      */
     floor(): Point;
     /**
      * TBD.
+     * @returns {Point} TBD.
      */
     ceil(): Point;
     /**
      * TBD.
+     * @returns {string} TBD.
      */
     toString(): string;
 }

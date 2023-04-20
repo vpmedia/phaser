@@ -6,7 +6,7 @@ import { TWEEN_PENDING, TWEEN_RUNNING, TWEEN_COMPLETE, TWEEN_LOOPED } from './co
 export class Tween {
   /**
    * TBD.
-   * @param target
+   * @param target - TBD.
    * @param {object} game - TBD.
    * @param manager
    */
@@ -39,10 +39,10 @@ export class Tween {
   /**
    * TBD.
    * @param properties
-   * @param duration
-   * @param ease
+   * @param duration - TBD.
+   * @param ease - TBD.
    * @param autoStart
-   * @param delay
+   * @param delay - TBD.
    * @param repeat
    * @param yoyo
    */
@@ -63,10 +63,10 @@ export class Tween {
   /**
    * TBD.
    * @param properties
-   * @param duration
-   * @param ease
+   * @param duration - TBD.
+   * @param ease - TBD.
    * @param autoStart
-   * @param delay
+   * @param delay - TBD.
    * @param repeat
    * @param yoyo
    */
@@ -87,7 +87,7 @@ export class Tween {
 
   /**
    * TBD.
-   * @param index
+   * @param index - TBD.
    */
   start(index = 0) {
     if (this.game === null || this.target === null || this.timeline.length === 0 || this.isRunning) {
@@ -142,7 +142,7 @@ export class Tween {
    * TBD.
    * @param property
    * @param value
-   * @param index
+   * @param index - TBD.
    */
   updateTweenData(property, value, index = 0) {
     if (this.timeline.length === 0) {
@@ -160,8 +160,8 @@ export class Tween {
 
   /**
    * TBD.
-   * @param duration
-   * @param index
+   * @param duration - TBD.
+   * @param index - TBD.
    */
   delay(duration, index) {
     return this.updateTweenData('delay', duration, index);
@@ -171,7 +171,7 @@ export class Tween {
    * TBD.
    * @param total
    * @param repeatDelay
-   * @param index
+   * @param index - TBD.
    */
   repeat(total, repeatDelay = 0, index = 0) {
     this.updateTweenData('repeatCounter', total, index);
@@ -180,8 +180,8 @@ export class Tween {
 
   /**
    * TBD.
-   * @param duration
-   * @param index
+   * @param duration - TBD.
+   * @param index - TBD.
    */
   repeatDelay(duration, index) {
     return this.updateTweenData('repeatDelay', duration, index);
@@ -191,7 +191,7 @@ export class Tween {
    * TBD.
    * @param enable
    * @param yoyoDelay
-   * @param index
+   * @param index - TBD.
    */
   yoyo(enable, yoyoDelay = 0, index = 0) {
     this.updateTweenData('yoyo', enable, index);
@@ -200,8 +200,8 @@ export class Tween {
 
   /**
    * TBD.
-   * @param duration
-   * @param index
+   * @param duration - TBD.
+   * @param index - TBD.
    */
   yoyoDelay(duration, index) {
     return this.updateTweenData('yoyoDelay', duration, index);
@@ -209,8 +209,8 @@ export class Tween {
 
   /**
    * TBD.
-   * @param ease
-   * @param index
+   * @param ease - TBD.
+   * @param index - TBD.
    */
   easing(ease, index) {
     if (typeof ease === 'string' && this.manager.easeMap[ease]) {
@@ -223,7 +223,7 @@ export class Tween {
    * TBD.
    * @param interpolation
    * @param context
-   * @param index
+   * @param index - TBD.
    */
   interpolation(interpolation, context = MathUtils, index = 0) {
     this.updateTweenData('interpolationFunction', interpolation, index);
@@ -267,7 +267,7 @@ export class Tween {
 
   /**
    * TBD.
-   * @param callback
+   * @param callback - TBD.
    * @param callbackContext
    */
   onUpdateCallback(callback, callbackContext) {

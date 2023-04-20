@@ -27,7 +27,7 @@ export class BitmapText extends DisplayObject {
     renderOrderID: number;
     /**
      * TBD.
-     * @param text
+     * @param text - TBD.
      */
     setText(text: any): void;
     /**
@@ -42,7 +42,7 @@ export class BitmapText extends DisplayObject {
      * TBD.
      * @param data
      * @param scale
-     * @param text
+     * @param text - TBD.
      */
     scanLine(data: any, scale: any, text: any): {
         width: number;
@@ -52,7 +52,7 @@ export class BitmapText extends DisplayObject {
     };
     /**
      * TBD.
-     * @param text
+     * @param text - TBD.
      * @param replace
      */
     cleanText(text: any, replace?: string): any;

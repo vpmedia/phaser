@@ -67,8 +67,8 @@ export class Graphics extends DisplayObject {
   /**
    * TBD.
    * @param lineWidth
-   * @param color
-   * @param alpha
+   * @param color - TBD.
+   * @param alpha - TBD.
    */
   lineStyle(lineWidth = 0, color = 0, alpha = 1) {
     this.lineWidth = lineWidth || 0;
@@ -199,7 +199,7 @@ export class Graphics extends DisplayObject {
    * @param y1
    * @param x2
    * @param y2
-   * @param radius
+   * @param radius - TBD.
    */
   arcTo(x1, y1, x2, y2, radius) {
     if (this.currentPath) {
@@ -248,7 +248,7 @@ export class Graphics extends DisplayObject {
    * TBD.
    * @param cx
    * @param cy
-   * @param radius
+   * @param radius - TBD.
    * @param startAngle
    * @param endAngle
    * @param anticlockwise
@@ -299,8 +299,8 @@ export class Graphics extends DisplayObject {
 
   /**
    * TBD.
-   * @param color
-   * @param alpha
+   * @param color - TBD.
+   * @param alpha - TBD.
    */
   beginFill(color = 0, alpha = 1) {
     this.filling = true;
@@ -344,7 +344,7 @@ export class Graphics extends DisplayObject {
    * @param {number} y - TBD.
    * @param {number} width - TBD.
    * @param {number} height - TBD.
-   * @param radius
+   * @param radius - TBD.
    */
   drawRoundedRect(x, y, width, height, radius) {
     this.drawShape(new RoundedRectangle(x, y, width, height, radius));
@@ -355,7 +355,7 @@ export class Graphics extends DisplayObject {
    * TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
-   * @param diameter
+   * @param diameter - TBD.
    */
   drawCircle(x, y, diameter) {
     this.drawShape(new Circle(x, y, diameter));
@@ -422,7 +422,7 @@ export class Graphics extends DisplayObject {
 
   /**
    * TBD.
-   * @param renderSession
+   * @param renderSession - TBD.
    */
   renderWebGL(renderSession) {
     // if the sprite is not visible or the alpha is 0 then no need to render this element
@@ -482,7 +482,7 @@ export class Graphics extends DisplayObject {
 
   /**
    * TBD.
-   * @param renderSession
+   * @param renderSession - TBD.
    */
   renderCanvas(renderSession) {
     // if the sprite is not visible or the alpha is 0 then no need to render this element
@@ -538,7 +538,7 @@ export class Graphics extends DisplayObject {
 
   /**
    * TBD.
-   * @param matrix
+   * @param matrix - TBD.
    */
   getBounds(matrix = null) {
     if (!this.renderable) {

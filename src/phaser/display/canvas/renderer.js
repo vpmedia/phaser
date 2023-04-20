@@ -117,7 +117,7 @@ export class CanvasRenderer {
    * TBD.
    * @param displayObject
    * @param context
-   * @param matrix
+   * @param matrix - TBD.
    */
   renderDisplayObject(displayObject, context, matrix) {
     this.renderSession.context = context || this.context;

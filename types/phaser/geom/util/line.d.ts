@@ -21,10 +21,10 @@ export function intersectsPoints(a: object, b: object, e: object, f: object, asS
  * @param {object} a - TBD.
  * @param {object} b - TBD.
  * @param {boolean} asSegment - TBD.
- * @param {object} result - TBD.
- * @returns {boolean} TBD.
+ * @param {Point} result - TBD.
+ * @returns {Point} TBD.
  */
-export function intersects(a: object, b: object, asSegment: boolean, result: object): boolean;
+export function intersects(a: object, b: object, asSegment: boolean, result: Point): Point;
 /**
  * TBD.
  * @param {object} line - TBD.

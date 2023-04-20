@@ -248,7 +248,7 @@ export class ScaleManager {
 
   /**
    * TBD.
-   * @param callback
+   * @param callback - TBD.
    * @param context
    */
   setResizeCallback(callback, context) {
@@ -494,7 +494,7 @@ export class ScaleManager {
 
   /**
    * TBD.
-   * @param target
+   * @param target - TBD.
    */
   getParentBounds(target) {
     const bounds = target || new Rectangle();

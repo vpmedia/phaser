@@ -18,76 +18,90 @@ export class Matrix {
     type: number;
     /**
      * TBD.
-     * @param array - TBD.
+     * @param {number[]} array - TBD.
+     * @returns {Matrix} TBD.
      */
-    fromArray(array: any): Matrix;
+    fromArray(array: number[]): Matrix;
     /**
      * TBD.
-     * @param a - TBD.
-     * @param b - TBD.
-     * @param c - TBD.
-     * @param d - TBD.
-     * @param tx - TBD.
-     * @param ty - TBD.
+     * @param {number} a - TBD.
+     * @param {number} b - TBD.
+     * @param {number} c - TBD.
+     * @param {number} d - TBD.
+     * @param {number} tx - TBD.
+     * @param {number} ty - TBD.
+     * @returns {Matrix} TBD.
      */
-    setTo(a: any, b: any, c: any, d: any, tx: any, ty: any): Matrix;
+    setTo(a: number, b: number, c: number, d: number, tx: number, ty: number): Matrix;
     /**
      * TBD.
+     * @returns {Matrix} TBD.
      */
     clone(): Matrix;
     /**
      * TBD.
-     * @param matrix - TBD.
+     * @param {Matrix} matrix - TBD.
+     * @returns {Matrix} TBD.
      */
-    copyTo(matrix: any): any;
+    copyTo(matrix: Matrix): Matrix;
     /**
      * TBD.
-     * @param matrix - TBD.
+     * @param {Matrix} matrix - TBD.
+     * @returns {Matrix} TBD.
      */
-    copyFrom(matrix: any): Matrix;
+    copyFrom(matrix: Matrix): Matrix;
     /**
      * TBD.
-     * @param transpose - TBD.
-     * @param output - TBD.
+     * @param {boolean} transpose - TBD.
+     * @param {Float32Array} output - TBD.
+     * @returns {Float32Array} TBD.
      */
-    toArray(transpose?: boolean, output?: any): any;
+    toArray(transpose?: boolean, output?: Float32Array): Float32Array;
     /**
      * TBD.
-     * @param pos - TBD.
-     * @param output - TBD.
+     * @param {object} pos - TBD.
+     * @param {Point} output - TBD.
+     * @returns {Point} TBD.
      */
-    apply(pos: any, output?: any): any;
+    apply(pos: object, output?: Point): Point;
     /**
      * TBD.
-     * @param pos - TBD.
-     * @param output - TBD.
+     * @param {object} pos - TBD.
+     * @param {Point} output - TBD.
+     * @returns {Point} TBD.
      */
-    applyInverse(pos: any, output?: any): any;
+    applyInverse(pos: object, output?: Point): Point;
     /**
      * TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
+     * @returns {Matrix} TBD.
      */
     translate(x: number, y: number): Matrix;
     /**
      * TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
+     * @returns {Matrix} TBD.
      */
     scale(x: number, y: number): Matrix;
     /**
      * TBD.
-     * @param angle - TBD.
+     * @param {number} angle - TBD.
+     * @returns {Matrix} TBD.
      */
-    rotate(angle: any): Matrix;
+    rotate(angle: number): Matrix;
     /**
      * TBD.
-     * @param matrix - TBD.
+     * @param {Matrix} matrix - TBD.
+     * @returns {Matrix} TBD.
      */
-    append(matrix: any): Matrix;
+    append(matrix: Matrix): Matrix;
     /**
      * TBD.
+     * @returns {Matrix} TBD.
      */
     identity(): Matrix;
 }
+import { Point } from './point';
 //# sourceMappingURL=matrix.d.ts.map

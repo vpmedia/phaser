@@ -26,7 +26,7 @@ const defaultVertexSrc = [
 export class NormalShader {
   /**
    * TBD.
-   * @param gl
+   * @param gl - TBD.
    */
   constructor(gl) {
     this.gl = gl;

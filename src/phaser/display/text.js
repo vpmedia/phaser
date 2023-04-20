@@ -70,7 +70,7 @@ export class Text extends Image {
    * TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
-   * @param color
+   * @param color - TBD.
    * @param blur
    * @param shadowStroke
    * @param shadowFill
@@ -448,8 +448,8 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @param color
-   * @param position
+   * @param color - TBD.
+   * @param position - TBD.
    */
   addColor(color, position) {
     this.colors[position] = color;
@@ -459,8 +459,8 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @param color
-   * @param position
+   * @param color - TBD.
+   * @param position - TBD.
    */
   addStrokeColor(color, position) {
     this.strokeColors[position] = color;
@@ -471,7 +471,7 @@ export class Text extends Image {
   /**
    * TBD.
    * @param style
-   * @param position
+   * @param position - TBD.
    */
   addFontStyle(style, position) {
     this.fontStyles[position] = style;
@@ -482,7 +482,7 @@ export class Text extends Image {
   /**
    * TBD.
    * @param weight
-   * @param position
+   * @param position - TBD.
    */
   addFontWeight(weight, position) {
     this.fontWeights[position] = weight;
@@ -492,7 +492,7 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @param text
+   * @param text - TBD.
    */
   precalculateWordWrap(text) {
     this.texture.baseTexture.resolution = this._res;
@@ -503,7 +503,7 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @param text
+   * @param text - TBD.
    */
   runWordWrap(text) {
     if (this.useAdvancedWrap) {
@@ -514,7 +514,7 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @param text
+   * @param text - TBD.
    */
   advancedWordWrap(text) {
     const context = this.context;
@@ -595,7 +595,7 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @param text
+   * @param text - TBD.
    */
   basicWordWrap(text) {
     let result = '';
@@ -642,7 +642,7 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @param font
+   * @param font - TBD.
    */
   fontToComponents(font) {
     // The format is specified in http://www.w3.org/TR/CSS2/fonts.html#font-shorthand:
@@ -711,7 +711,7 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @param text
+   * @param text - TBD.
    * @param immediate
    */
   setText(text, immediate = false) {
@@ -819,7 +819,7 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @param renderSession
+   * @param renderSession - TBD.
    */
   renderWebGL(renderSession) {
     if (this.dirty) {
@@ -831,7 +831,7 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @param renderSession
+   * @param renderSession - TBD.
    */
   renderCanvas(renderSession) {
     if (this.dirty) {
@@ -953,7 +953,7 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @param matrix
+   * @param matrix - TBD.
    */
   getBounds(matrix = null) {
     if (this.dirty) {

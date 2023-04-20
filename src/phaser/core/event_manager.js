@@ -3,7 +3,7 @@ import { Signal } from './signal';
 export class EventManager {
   /**
    * TBD.
-   * @param sprite
+   * @param sprite - TBD.
    */
   constructor(sprite) {
     this.parent = sprite;
@@ -88,7 +88,7 @@ export class EventManager {
 
   /**
    * TBD.
-   * @param {...any} args
+   * @param {...any} args - TBD.
    */
   onAddedToGroup$dispatch(...args) {
     if (this._onAddedToGroup) {
@@ -108,7 +108,7 @@ export class EventManager {
 
   /**
    * TBD.
-   * @param {...any} args
+   * @param {...any} args - TBD.
    */
   onRemovedFromGroup$dispatch(...args) {
     if (this._onRemovedFromGroup) {
@@ -128,7 +128,7 @@ export class EventManager {
 
   /**
    * TBD.
-   * @param {...any} args
+   * @param {...any} args - TBD.
    */
   onDestroy$dispatch(...args) {
     if (this._onDestroy) {
@@ -148,7 +148,7 @@ export class EventManager {
 
   /**
    * TBD.
-   * @param {...any} args
+   * @param {...any} args - TBD.
    */
   onOutOfBounds$dispatch(...args) {
     if (this._onOutOfBounds) {
@@ -168,7 +168,7 @@ export class EventManager {
 
   /**
    * TBD.
-   * @param {...any} args
+   * @param {...any} args - TBD.
    */
   onEnterBounds$dispatch(...args) {
     if (this._onEnterBounds) {
@@ -188,7 +188,7 @@ export class EventManager {
 
   /**
    * TBD.
-   * @param {...any} args
+   * @param {...any} args - TBD.
    */
   onInputOver$dispatch(...args) {
     if (this._onInputOver) {
@@ -208,7 +208,7 @@ export class EventManager {
 
   /**
    * TBD.
-   * @param {...any} args
+   * @param {...any} args - TBD.
    */
   onInputOut$dispatch(...args) {
     if (this._onInputOut) {
@@ -228,7 +228,7 @@ export class EventManager {
 
   /**
    * TBD.
-   * @param {...any} args
+   * @param {...any} args - TBD.
    */
   onInputDown$dispatch(...args) {
     if (this._onInputDown) {
@@ -248,7 +248,7 @@ export class EventManager {
 
   /**
    * TBD.
-   * @param {...any} args
+   * @param {...any} args - TBD.
    */
   onInputUp$dispatch(...args) {
     if (this._onInputUp) {
@@ -268,7 +268,7 @@ export class EventManager {
 
   /**
    * TBD.
-   * @param {...any} args
+   * @param {...any} args - TBD.
    */
   onDragStart$dispatch(...args) {
     if (this._onDragStart) {
@@ -288,7 +288,7 @@ export class EventManager {
 
   /**
    * TBD.
-   * @param {...any} args
+   * @param {...any} args - TBD.
    */
   onDragUpdate$dispatch(...args) {
     if (this._onDragUpdate) {
@@ -308,7 +308,7 @@ export class EventManager {
 
   /**
    * TBD.
-   * @param {...any} args
+   * @param {...any} args - TBD.
    */
   onDragStop$dispatch(...args) {
     if (this._onDragStop) {
@@ -328,7 +328,7 @@ export class EventManager {
 
   /**
    * TBD.
-   * @param {...any} args
+   * @param {...any} args - TBD.
    */
   onAnimationStart$dispatch(...args) {
     if (this._onAnimationStart) {
@@ -348,7 +348,7 @@ export class EventManager {
 
   /**
    * TBD.
-   * @param {...any} args
+   * @param {...any} args - TBD.
    */
   onAnimationComplete$dispatch(...args) {
     if (this._onAnimationComplete) {
@@ -368,7 +368,7 @@ export class EventManager {
 
   /**
    * TBD.
-   * @param {...any} args
+   * @param {...any} args - TBD.
    */
   onAnimationLoop$dispatch(...args) {
     if (this._onAnimationLoop) {

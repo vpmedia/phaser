@@ -11,7 +11,7 @@ export class WebGLShaderManager {
     stack: any[];
     /**
      * TBD.
-     * @param gl
+     * @param gl - TBD.
      */
     setContext(gl: any): void;
     /**

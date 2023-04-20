@@ -17,7 +17,7 @@ export class Signal {
      * @param isOnce
      * @param listenerContext
      * @param priority
-     * @param args
+     * @param args - TBD.
      */
     _registerListener(listener: any, isOnce: any, listenerContext: any, priority: any, args: any): any;
     /**

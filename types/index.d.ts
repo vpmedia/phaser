@@ -18,5 +18,6 @@ import { DisplayObject } from './phaser/display/display_object';
 import { Image } from './phaser/display/image';
 import { Group } from './phaser/display/group';
 import { Text } from './phaser/display/text';
-export { Const, Game, Signal, MathUtils, BaseTexture, Texture, Circle, Ellipse, Line, Matrix, Point, Polygon, Rectangle, RoundedRectangle, BitmapText, Button, DisplayObject, Image, Group, Text };
+import { Graphics } from './phaser/display/graphics';
+export { Const, Game, Signal, MathUtils, BaseTexture, Texture, Circle, Ellipse, Line, Matrix, Point, Polygon, Rectangle, RoundedRectangle, BitmapText, Button, DisplayObject, Image, Group, Text, Graphics };
 //# sourceMappingURL=index.d.ts.map

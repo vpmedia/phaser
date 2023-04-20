@@ -5,7 +5,7 @@ export class Sound {
    * TBD.
    * @param {object} game - TBD.
    * @param {string} key - TBD.
-   * @param volume
+   * @param volume - TBD.
    * @param loop
    * @param connect
    */
@@ -92,8 +92,8 @@ export class Sound {
    * TBD.
    * @param name
    * @param start
-   * @param duration
-   * @param volume
+   * @param duration - TBD.
+   * @param volume - TBD.
    * @param loop
    */
   addMarker(name, start, duration = 1, volume = 1, loop = false) {
@@ -200,7 +200,7 @@ export class Sound {
 
   /**
    * TBD.
-   * @param volume
+   * @param volume - TBD.
    */
   loopFull(volume) {
     return this.play(null, 0, volume, true);
@@ -209,8 +209,8 @@ export class Sound {
   /**
    * TBD.
    * @param marker
-   * @param position
-   * @param volume
+   * @param position - TBD.
+   * @param volume - TBD.
    * @param loop
    * @param forceRestart
    */
@@ -360,8 +360,8 @@ export class Sound {
   /**
    * TBD.
    * @param marker
-   * @param position
-   * @param volume
+   * @param position - TBD.
+   * @param volume - TBD.
    * @param loop
    */
   restart(marker = '', position = 0, volume = 1, loop = false) {
@@ -454,7 +454,7 @@ export class Sound {
 
   /**
    * TBD.
-   * @param duration
+   * @param duration - TBD.
    * @param loop
    * @param marker
    */
@@ -468,7 +468,7 @@ export class Sound {
 
   /**
    * TBD.
-   * @param duration
+   * @param duration - TBD.
    */
   fadeOut(duration) {
     this.fadeTo(duration, 0);
@@ -476,8 +476,8 @@ export class Sound {
 
   /**
    * TBD.
-   * @param duration
-   * @param volume
+   * @param duration - TBD.
+   * @param volume - TBD.
    */
   fadeTo(duration = 100, volume = 0) {
     if (!this.isPlaying || this.paused || volume === this.volume) {

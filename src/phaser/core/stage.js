@@ -34,7 +34,7 @@ export class Stage extends DisplayObject {
 
   /**
    * TBD.
-   * @param color
+   * @param color - TBD.
    */
   setBackgroundColor(color) {
     if (this.game.config.transparent) {

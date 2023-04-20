@@ -72,7 +72,7 @@ export class DisplayObject {
 
   /**
    * TBD.
-   * @param child
+   * @param child - TBD.
    */
   addChild(child) {
     return this.addChildAt(child, this.children.length);
@@ -80,8 +80,8 @@ export class DisplayObject {
 
   /**
    * TBD.
-   * @param child
-   * @param index
+   * @param child - TBD.
+   * @param index - TBD.
    */
   addChildAt(child, index) {
     if (index >= 0 && index <= this.children.length) {
@@ -97,7 +97,7 @@ export class DisplayObject {
 
   /**
    * TBD.
-   * @param child
+   * @param child - TBD.
    * @param child2
    */
   swapChildren(child, child2) {
@@ -115,7 +115,7 @@ export class DisplayObject {
 
   /**
    * TBD.
-   * @param child
+   * @param child - TBD.
    */
   getChildIndex(child) {
     const index = this.children.indexOf(child);
@@ -127,8 +127,8 @@ export class DisplayObject {
 
   /**
    * TBD.
-   * @param child
-   * @param index
+   * @param child - TBD.
+   * @param index - TBD.
    */
   setChildIndex(child, index) {
     if (index < 0 || index >= this.children.length) {
@@ -141,7 +141,7 @@ export class DisplayObject {
 
   /**
    * TBD.
-   * @param index
+   * @param index - TBD.
    */
   getChildAt(index) {
     if (index < 0 || index >= this.children.length) {
@@ -156,7 +156,7 @@ export class DisplayObject {
 
   /**
    * TBD.
-   * @param child
+   * @param child - TBD.
    */
   removeChild(child) {
     const index = this.children.indexOf(child);
@@ -168,7 +168,7 @@ export class DisplayObject {
 
   /**
    * TBD.
-   * @param index
+   * @param index - TBD.
    */
   removeChildAt(index) {
     const child = this.getChildAt(index);
@@ -403,7 +403,7 @@ export class DisplayObject {
 
   /**
    * TBD.
-   * @param child
+   * @param child - TBD.
    */
   contains(child) {
     if (!child) {
@@ -417,7 +417,7 @@ export class DisplayObject {
 
   /**
    * TBD.
-   * @param renderSession
+   * @param renderSession - TBD.
    */
   renderWebGL(renderSession) {
     if (!this.visible || this.alpha <= 0) {
@@ -451,7 +451,7 @@ export class DisplayObject {
 
   /**
    * TBD.
-   * @param renderSession
+   * @param renderSession - TBD.
    */
   renderCanvas(renderSession) {
     if (!this.visible || this.alpha <= 0) {
@@ -499,7 +499,7 @@ export class DisplayObject {
 
   /**
    * TBD.
-   * @param position
+   * @param position - TBD.
    */
   toGlobal(position) {
     this.updateTransform();
@@ -508,7 +508,7 @@ export class DisplayObject {
 
   /**
    * TBD.
-   * @param position
+   * @param position - TBD.
    * @param from
    */
   toLocal(position, from) {
@@ -521,7 +521,7 @@ export class DisplayObject {
 
   /**
    * TBD.
-   * @param renderSession
+   * @param renderSession - TBD.
    */
   renderCachedSprite(renderSession) {
     if (!this._cachedSprite) {

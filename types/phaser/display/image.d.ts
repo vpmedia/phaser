@@ -25,14 +25,14 @@ export class Image extends DisplayObject {
     /**
      * TBD.
      * @param {string} key - TBD.
-     * @param frame
+     * @param frame - TBD.
      * @param stopAnimation
      */
     loadTexture(key: string, frame?: number, stopAnimation?: boolean): void;
     customRender: boolean;
     /**
      * TBD.
-     * @param frame
+     * @param frame - TBD.
      */
     setFrame(frame: any): void;
     refreshTexture: boolean;
@@ -87,7 +87,7 @@ export class Image extends DisplayObject {
     setTexture(texture: any, destroyBase?: boolean): void;
     /**
      * TBD.
-     * @param matrix
+     * @param matrix - TBD.
      */
     getBounds(matrix?: any): any;
     /**
@@ -96,14 +96,14 @@ export class Image extends DisplayObject {
     getLocalBounds(): any;
     /**
      * TBD.
-     * @param renderSession
-     * @param matrix
+     * @param renderSession - TBD.
+     * @param matrix - TBD.
      */
     renderWebGL(renderSession: any, matrix?: any): void;
     /**
      * TBD.
-     * @param renderSession
-     * @param matrix
+     * @param renderSession - TBD.
+     * @param matrix - TBD.
      */
     renderCanvas(renderSession: any, matrix?: any): void;
 }

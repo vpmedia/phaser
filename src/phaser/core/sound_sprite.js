@@ -27,7 +27,7 @@ export class SoundSprite {
   /**
    * TBD.
    * @param marker
-   * @param volume
+   * @param volume - TBD.
    */
   play(marker, volume = 1) {
     return this.sounds[marker].play(marker, null, volume);

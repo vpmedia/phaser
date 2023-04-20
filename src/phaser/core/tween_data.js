@@ -36,9 +36,9 @@ export class TweenData {
   /**
    * TBD.
    * @param properties
-   * @param duration
-   * @param ease
-   * @param delay
+   * @param duration - TBD.
+   * @param ease - TBD.
+   * @param delay - TBD.
    * @param repeat
    * @param yoyo
    */
@@ -56,9 +56,9 @@ export class TweenData {
   /**
    * TBD.
    * @param properties
-   * @param duration
-   * @param ease
-   * @param delay
+   * @param duration - TBD.
+   * @param ease - TBD.
+   * @param delay - TBD.
    * @param repeat
    * @param yoyo
    */

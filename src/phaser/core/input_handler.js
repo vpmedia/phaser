@@ -680,7 +680,7 @@ export class InputHandler {
   /**
    * TBD.
    * @param pointerId
-   * @param delay
+   * @param delay - TBD.
    */
   justOver(pointerId = 0, delay = 500) {
     return this._pointerData[pointerId].isOver && this.overDuration(pointerId) < delay;
@@ -689,7 +689,7 @@ export class InputHandler {
   /**
    * TBD.
    * @param pointerId
-   * @param delay
+   * @param delay - TBD.
    */
   justOut(pointerId = 0, delay = 500) {
     return this._pointerData[pointerId].isOut && this.game.time.time - this._pointerData[pointerId].timeOut < delay;
@@ -698,7 +698,7 @@ export class InputHandler {
   /**
    * TBD.
    * @param pointerId
-   * @param delay
+   * @param delay - TBD.
    */
   justPressed(pointerId = 0, delay = 500) {
     return this._pointerData[pointerId].isDown && this.downDuration(pointerId) < delay;
@@ -707,7 +707,7 @@ export class InputHandler {
   /**
    * TBD.
    * @param pointerId
-   * @param delay
+   * @param delay - TBD.
    */
   justReleased(pointerId = 0, delay = 500) {
     return this._pointerData[pointerId].isUp && this.game.time.time - this._pointerData[pointerId].timeUp < delay;

@@ -34,21 +34,21 @@ export class Group extends DisplayObject {
     filters: any;
     /**
      * TBD.
-     * @param child
+     * @param child - TBD.
      * @param silent
-     * @param index
+     * @param index - TBD.
      */
     add(child: any, silent?: boolean, index?: number): any;
     /**
      * TBD.
-     * @param child
-     * @param index
+     * @param child - TBD.
+     * @param index - TBD.
      * @param silent
      */
     addAt(child: any, index: any, silent: any): void;
     /**
      * TBD.
-     * @param index
+     * @param index - TBD.
      */
     getAt(index: any): any;
     /**
@@ -71,12 +71,12 @@ export class Group extends DisplayObject {
     swap(child1: any, child2: any): void;
     /**
      * TBD.
-     * @param child
+     * @param child - TBD.
      */
     bringToTop(child: any): any;
     /**
      * TBD.
-     * @param child
+     * @param child - TBD.
      */
     sendToBack(child: any): any;
     /**
@@ -85,13 +85,13 @@ export class Group extends DisplayObject {
     reverse(): void;
     /**
      * TBD.
-     * @param child
+     * @param child - TBD.
      */
     getIndex(child: any): number;
     renderOrderID: number;
     /**
      * TBD.
-     * @param child
+     * @param child - TBD.
      * @param destroy
      * @param silent
      */

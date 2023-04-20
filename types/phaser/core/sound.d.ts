@@ -3,7 +3,7 @@ export class Sound {
      * TBD.
      * @param {object} game - TBD.
      * @param {string} key - TBD.
-     * @param volume
+     * @param volume - TBD.
      * @param loop
      * @param connect
      */
@@ -64,8 +64,8 @@ export class Sound {
      * TBD.
      * @param name
      * @param start
-     * @param duration
-     * @param volume
+     * @param duration - TBD.
+     * @param volume - TBD.
      * @param loop
      */
     addMarker(name: any, start: any, duration?: number, volume?: number, loop?: boolean): void;
@@ -84,14 +84,14 @@ export class Sound {
     update(): void;
     /**
      * TBD.
-     * @param volume
+     * @param volume - TBD.
      */
     loopFull(volume: any): Sound;
     /**
      * TBD.
      * @param marker
-     * @param position
-     * @param volume
+     * @param position - TBD.
+     * @param volume - TBD.
      * @param loop
      * @param forceRestart
      */
@@ -107,8 +107,8 @@ export class Sound {
     /**
      * TBD.
      * @param marker
-     * @param position
-     * @param volume
+     * @param position - TBD.
+     * @param volume - TBD.
      * @param loop
      */
     restart(marker?: string, position?: number, volume?: number, loop?: boolean): void;
@@ -126,20 +126,20 @@ export class Sound {
     stop(): void;
     /**
      * TBD.
-     * @param duration
+     * @param duration - TBD.
      * @param loop
      * @param marker
      */
     fadeIn(duration: any, loop?: boolean, marker?: string): void;
     /**
      * TBD.
-     * @param duration
+     * @param duration - TBD.
      */
     fadeOut(duration: any): void;
     /**
      * TBD.
-     * @param duration
-     * @param volume
+     * @param duration - TBD.
+     * @param volume - TBD.
      */
     fadeTo(duration?: number, volume?: number): void;
     /**

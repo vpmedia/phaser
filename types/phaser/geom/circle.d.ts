@@ -13,70 +13,83 @@ export class Circle {
     type: number;
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     circumference(): number;
     /**
      * TBD.
-     * @param output - TBD.
+     * @param {Point} output - TBD.
+     * @returns {Point} TBD.
      */
-    random(output?: any): any;
+    random(output?: Point): Point;
     /**
      * TBD.
+     * @returns {Rectangle} TBD.
      */
     getBounds(): Rectangle;
     /**
      * TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
-     * @param diameter - TBD.
+     * @param {number} diameter - TBD.
+     * @returns {Circle} TBD.
      */
-    setTo(x: number, y: number, diameter: any): Circle;
+    setTo(x: number, y: number, diameter: number): Circle;
     /**
      * TBD.
-     * @param source - TBD.
+     * @param {Circle} source - TBD.
+     * @returns {Circle} TBD.
      */
-    copyFrom(source: any): Circle;
+    copyFrom(source: Circle): Circle;
     /**
      * TBD.
-     * @param dest - TBD.
+     * @param {Circle} dest - TBD.
+     * @returns {Circle} TBD.
      */
-    copyTo(dest: any): any;
+    copyTo(dest: Circle): Circle;
     /**
      * TBD.
-     * @param dest - TBD.
-     * @param round - TBD.
+     * @param {Circle} dest - TBD.
+     * @param {boolean} round - TBD.
+     * @returns {number} TBD.
      */
-    distance(dest: any, round?: boolean): number;
+    distance(dest: Circle, round?: boolean): number;
     /**
      * TBD.
+     * @returns {Circle} TBD.
      */
     clone(): Circle;
     /**
      * TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
+     * @returns {boolean} TBD.
      */
     contains(x: number, y: number): boolean;
     /**
      * TBD.
-     * @param angle - TBD.
-     * @param asDegrees - TBD.
-     * @param out - TBD.
+     * @param {number} angle - TBD.
+     * @param {boolean} asDegrees - TBD.
+     * @param {Point} out - TBD.
+     * @returns {Point} TBD.
      */
-    circumferencePoint(angle: any, asDegrees: any, out: any): Point;
+    circumferencePoint(angle: number, asDegrees: boolean, out: Point): Point;
     /**
      * TBD.
-     * @param dx - TBD.
-     * @param dy - TBD.
+     * @param {number} dx - TBD.
+     * @param {number} dy - TBD.
+     * @returns {Circle} TBD.
      */
-    offset(dx: any, dy: any): Circle;
+    offset(dx: number, dy: number): Circle;
     /**
      * TBD.
-     * @param point - TBD.
+     * @param {Point} point - TBD.
+     * @returns {Circle} TBD.
      */
-    offsetPoint(point: any): Circle;
+    offsetPoint(point: Point): Circle;
     /**
      * TBD.
+     * @returns {string} TBD.
      */
     toString(): string;
     /**
@@ -85,6 +98,7 @@ export class Circle {
     set diameter(arg: number);
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get diameter(): number;
     /**
@@ -93,6 +107,7 @@ export class Circle {
     set radius(arg: number);
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get radius(): number;
     /**
@@ -101,6 +116,7 @@ export class Circle {
     set left(arg: number);
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get left(): number;
     /**
@@ -109,6 +125,7 @@ export class Circle {
     set right(arg: number);
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get right(): number;
     /**
@@ -117,6 +134,7 @@ export class Circle {
     set top(arg: number);
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get top(): number;
     /**
@@ -125,10 +143,12 @@ export class Circle {
     set bottom(arg: number);
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get bottom(): number;
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get area(): number;
     /**
@@ -137,9 +157,10 @@ export class Circle {
     set empty(arg: boolean);
     /**
      * TBD.
+     * @returns {boolean} TBD.
      */
     get empty(): boolean;
 }
-import { Rectangle } from './rectangle';
 import { Point } from './point';
+import { Rectangle } from './rectangle';
 //# sourceMappingURL=circle.d.ts.map

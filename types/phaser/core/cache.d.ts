@@ -296,7 +296,7 @@ export class Cache {
     /**
      * TBD.
      * @param {string} key - TBD.
-     * @param index
+     * @param index - TBD.
      * @param cache
      */
     getFrameByIndex(key: string, index: any, cache?: number): any;
