@@ -234,7 +234,7 @@ export class Cache {
   /**
    * TBD.
    * @param {string} key - TBD.
-   * @param property - TBD.
+   * @param {string} property - TBD.
    * @param value - TBD.
    */
   updateSound(key, property, value) {
@@ -395,9 +395,10 @@ export class Cache {
   /**
    * TBD.
    * @param {string} key - TBD.
-   * @param cache - TBD.
-   * @param method - TBD.
-   * @param property - TBD.
+   * @param {number} cache - TBD.
+   * @param {string} method - TBD.
+   * @param {string} property - TBD.
+   * @returns {*} TBD.
    */
   getItem(key, cache, method, property = null) {
     if (this.checkKey(cache, key)) {
@@ -484,7 +485,7 @@ export class Cache {
   /**
    * TBD.
    * @param {string} key - TBD.
-   * @param isClone
+   * @param {boolean} isClone - TBD.
    */
   getJSON(key, isClone = false) {
     const data = this.getItem(key, JSON, 'getJSON', 'data');
@@ -512,7 +513,7 @@ export class Cache {
   /**
    * TBD.
    * @param {string} key - TBD.
-   * @param cache - TBD.
+   * @param {number} cache - TBD.
    */
   getBaseTexture(key, cache = IMAGE) {
     return this.getItem(key, cache, 'getBaseTexture', 'base');
@@ -521,7 +522,7 @@ export class Cache {
   /**
    * TBD.
    * @param {string} key - TBD.
-   * @param cache - TBD.
+   * @param {number} cache - TBD.
    */
   getFrame(key, cache = IMAGE) {
     return this.getItem(key, cache, 'getFrame', 'frame');
@@ -530,7 +531,7 @@ export class Cache {
   /**
    * TBD.
    * @param {string} key - TBD.
-   * @param cache - TBD.
+   * @param {number} cache - TBD.
    */
   getFrameCount(key, cache = IMAGE) {
     const data = this.getFrameData(key, cache);
@@ -543,7 +544,7 @@ export class Cache {
   /**
    * TBD.
    * @param {string} key - TBD.
-   * @param cache - TBD.
+   * @param {number} cache - TBD.
    */
   getFrameData(key, cache = IMAGE) {
     return this.getItem(key, cache, 'getFrameData', 'frameData');
@@ -552,7 +553,7 @@ export class Cache {
   /**
    * TBD.
    * @param {string} key - TBD.
-   * @param cache - TBD.
+   * @param {number} cache - TBD.
    */
   hasFrameData(key, cache = IMAGE) {
     return this.getItem(key, cache, '', 'frameData') !== null;
@@ -562,7 +563,7 @@ export class Cache {
    * TBD.
    * @param {string} key - TBD.
    * @param frameData - TBD.
-   * @param cache - TBD.
+   * @param {number} cache - TBD.
    */
   updateFrameData(key, frameData, cache = IMAGE) {
     if (this._cacheMap[cache][key]) {
@@ -573,8 +574,8 @@ export class Cache {
   /**
    * TBD.
    * @param {string} key - TBD.
-   * @param index - TBD.
-   * @param cache - TBD.
+   * @param {number} index - TBD.
+   * @param {number} cache - TBD.
    */
   getFrameByIndex(key, index, cache = IMAGE) {
     const data = this.getFrameData(key, cache);
@@ -587,8 +588,8 @@ export class Cache {
   /**
    * TBD.
    * @param {string} key - TBD.
-   * @param name - TBD.
-   * @param cache - TBD.
+   * @param {string} name - TBD.
+   * @param {number} cache - TBD.
    */
   getFrameByName(key, name, cache = IMAGE) {
     const data = this.getFrameData(key, cache);
@@ -613,7 +614,7 @@ export class Cache {
 
   /**
    * TBD.
-   * @param cache - TBD.
+   * @param {object} cache - TBD.
    */
   getKeys(cache = IMAGE) {
     const result = [];
@@ -642,7 +643,7 @@ export class Cache {
   /**
    * TBD.
    * @param {string} key - TBD.
-   * @param destroyBaseTexture - TBD.
+   * @param {boolean} destroyBaseTexture - TBD.
    */
   removeImage(key, destroyBaseTexture = true) {
     const img = this.getImage(key, true);

@@ -109,10 +109,10 @@ export class Cache {
     /**
      * TBD.
      * @param {string} key - TBD.
-     * @param property - TBD.
+     * @param {string} property - TBD.
      * @param value - TBD.
      */
-    updateSound(key: string, property: any, value: any): void;
+    updateSound(key: string, property: string, value: any): void;
     /**
      * TBD.
      * @param {string} key - TBD.
@@ -201,11 +201,12 @@ export class Cache {
     /**
      * TBD.
      * @param {string} key - TBD.
-     * @param cache - TBD.
-     * @param method - TBD.
-     * @param property - TBD.
+     * @param {number} cache - TBD.
+     * @param {string} method - TBD.
+     * @param {string} property - TBD.
+     * @returns {*} TBD.
      */
-    getItem(key: string, cache: any, method: any, property?: any): any;
+    getItem(key: string, cache: number, method: string, property?: string): any;
     /**
      * TBD.
      * @param {string} key - TBD.
@@ -250,7 +251,7 @@ export class Cache {
     /**
      * TBD.
      * @param {string} key - TBD.
-     * @param isClone
+     * @param {boolean} isClone - TBD.
      */
     getJSON(key: string, isClone?: boolean): any;
     /**
@@ -266,54 +267,54 @@ export class Cache {
     /**
      * TBD.
      * @param {string} key - TBD.
-     * @param cache - TBD.
+     * @param {number} cache - TBD.
      */
     getBaseTexture(key: string, cache?: number): any;
     /**
      * TBD.
      * @param {string} key - TBD.
-     * @param cache - TBD.
+     * @param {number} cache - TBD.
      */
     getFrame(key: string, cache?: number): any;
     /**
      * TBD.
      * @param {string} key - TBD.
-     * @param cache - TBD.
+     * @param {number} cache - TBD.
      */
     getFrameCount(key: string, cache?: number): any;
     /**
      * TBD.
      * @param {string} key - TBD.
-     * @param cache - TBD.
+     * @param {number} cache - TBD.
      */
     getFrameData(key: string, cache?: number): any;
     /**
      * TBD.
      * @param {string} key - TBD.
-     * @param cache - TBD.
+     * @param {number} cache - TBD.
      */
     hasFrameData(key: string, cache?: number): boolean;
     /**
      * TBD.
      * @param {string} key - TBD.
      * @param frameData - TBD.
-     * @param cache - TBD.
+     * @param {number} cache - TBD.
      */
     updateFrameData(key: string, frameData: any, cache?: number): void;
     /**
      * TBD.
      * @param {string} key - TBD.
-     * @param index - TBD.
-     * @param cache - TBD.
+     * @param {number} index - TBD.
+     * @param {number} cache - TBD.
      */
-    getFrameByIndex(key: string, index: any, cache?: number): any;
+    getFrameByIndex(key: string, index: number, cache?: number): any;
     /**
      * TBD.
      * @param {string} key - TBD.
-     * @param name - TBD.
-     * @param cache - TBD.
+     * @param {string} name - TBD.
+     * @param {number} cache - TBD.
      */
-    getFrameByName(key: string, name: any, cache?: number): any;
+    getFrameByName(key: string, name: string, cache?: number): any;
     /**
      * TBD.
      * @param {string} url - TBD.
@@ -321,9 +322,9 @@ export class Cache {
     getURL(url: string): any;
     /**
      * TBD.
-     * @param cache - TBD.
+     * @param {object} cache - TBD.
      */
-    getKeys(cache?: number): string[];
+    getKeys(cache?: object): string[];
     /**
      * TBD.
      * @param {string} key - TBD.
@@ -332,7 +333,7 @@ export class Cache {
     /**
      * TBD.
      * @param {string} key - TBD.
-     * @param destroyBaseTexture - TBD.
+     * @param {boolean} destroyBaseTexture - TBD.
      */
     removeImage(key: string, destroyBaseTexture?: boolean): void;
     /**

@@ -1,47 +1,52 @@
 export class ArraySet {
     /**
      * TBD.
-     * @param list - TBD.
+     * @param {object[]} list - TBD.
      */
-    constructor(list?: any[]);
+    constructor(list?: object[]);
     position: number;
     list: any[];
     /**
      * TBD.
-     * @param item - TBD.
+     * @param {object} item - TBD.
+     * @returns {object} TBD.
      */
-    add(item: any): any;
+    add(item: object): object;
     /**
      * TBD.
-     * @param item - TBD.
+     * @param {object} item - TBD.
+     * @returns {number} TBD.
      */
-    getIndex(item: any): number;
+    getIndex(item: object): number;
     /**
      * TBD.
-     * @param property - TBD.
-     * @param value - TBD.
+     * @param {string} property - TBD.
+     * @param {object} value - TBD.
+     * @returns {object} TBD.
      */
-    getByKey(property: any, value: any): any;
+    getByKey(property: string, value: object): object;
     /**
      * TBD.
-     * @param item - TBD.
+     * @param {object} item - TBD.
+     * @returns {boolean} TBD.
      */
-    exists(item: any): boolean;
+    exists(item: object): boolean;
     /**
      * TBD.
      */
     reset(): void;
     /**
      * TBD.
-     * @param item - TBD.
+     * @param {object} item - TBD.
+     * @returns {object} TBD.
      */
-    remove(item: any): any;
+    remove(item: object): object;
     /**
      * TBD.
      * @param {string} key - TBD.
-     * @param value - TBD.
+     * @param {object} value - TBD.
      */
-    setAll(key: string, value: any): void;
+    setAll(key: string, value: object): void;
     /**
      * TBD.
      * @param {string} key - TBD.
@@ -50,19 +55,22 @@ export class ArraySet {
     callAll(key: string, ...args: any[]): void;
     /**
      * TBD.
-     * @param destroy - TBD.
+     * @param {boolean} destroy - TBD.
      */
     removeAll(destroy?: boolean): void;
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get total(): number;
     /**
      * TBD.
+     * @returns {object} TBD.
      */
     get first(): any;
     /**
      * TBD.
+     * @returns {object} TBD.
      */
     get next(): any;
 }

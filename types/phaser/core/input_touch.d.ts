@@ -14,7 +14,7 @@ export class Touch {
     touchLeaveCallback: any;
     touchCancelCallback: any;
     preventDefault: boolean;
-    event: any;
+    event: TouchEvent;
     _onTouchStart: (event: any) => void;
     _onTouchMove: (event: any) => void;
     _onTouchEnd: (event: any) => void;
@@ -36,39 +36,39 @@ export class Touch {
     _documentTouchMove: (event: any) => void;
     /**
      * TBD.
-     * @param event
+     * @param {TouchEvent} event - TBD.
      */
-    onTouchStart(event: any): void;
+    onTouchStart(event: TouchEvent): void;
     /**
      * TBD.
-     * @param event
+     * @param {TouchEvent} event - TBD.
      */
-    onTouchCancel(event: any): void;
+    onTouchCancel(event: TouchEvent): void;
     /**
      * TBD.
-     * @param event
+     * @param {TouchEvent} event - TBD.
      */
-    onTouchEnter(event: any): void;
+    onTouchEnter(event: TouchEvent): void;
     /**
      * TBD.
-     * @param event
+     * @param {TouchEvent} event - TBD.
      */
-    onTouchLeave(event: any): void;
+    onTouchLeave(event: TouchEvent): void;
     /**
      * TBD.
-     * @param event
+     * @param {TouchEvent} event - TBD.
      */
-    onTouchMove(event: any): void;
+    onTouchMove(event: TouchEvent): void;
     /**
      * TBD.
-     * @param event
+     * @param {TouchEvent} event - TBD.
      */
-    onTouchEnd(event: any): void;
+    onTouchEnd(event: TouchEvent): void;
     /**
      * TBD.
-     * @param event
+     * @param {TouchEvent} event - TBD.
      */
-    eventPreventDefault(event: any): void;
+    eventPreventDefault(event: TouchEvent): void;
 }
 import { Game } from './game';
 //# sourceMappingURL=input_touch.d.ts.map

@@ -10,7 +10,7 @@ export class AnimationManager {
     currentAnim: any;
     updateIfVisible: boolean;
     isLoaded: boolean;
-    _frameData: any;
+    _frameData: FrameData;
     _anims: {};
     _outputFrames: any[];
     /**
@@ -19,104 +19,119 @@ export class AnimationManager {
     destroy(): void;
     /**
      * TBD.
-     * @param frameData - TBD.
-     * @param frame - TBD.
+     * @param {FrameData} frameData - TBD.
+     * @param {number|string} frame - TBD.
+     * @returns {boolean} TBD.
      */
-    loadFrameData(frameData: any, frame: any): boolean;
+    loadFrameData(frameData: FrameData, frame: number | string): boolean;
     /**
      * TBD.
      */
-    set frame(arg: any);
+    set frame(arg: number);
+    /**
+     * TBD.
+     * @returns {number} TBD.
+     */
+    get frame(): number;
     /**
      * TBD.
      */
-    get frame(): any;
+    set frameName(arg: string);
     /**
      * TBD.
+     * @returns {string} TBD.
      */
-    set frameName(arg: any);
+    get frameName(): string;
     /**
      * TBD.
+     * @param {FrameData} frameData - TBD.
+     * @param {number|string} frame - TBD.
+     * @returns {boolean} TBD.
      */
-    get frameName(): any;
+    copyFrameData(frameData: FrameData, frame: number | string): boolean;
     /**
      * TBD.
-     * @param frameData - TBD.
-     * @param frame - TBD.
+     * @param {string} name - TBD.
+     * @param {number[]|string[]} frameList - TBD.
+     * @param {number} frameRate - TBD.
+     * @param {boolean} loop - TBD.
+     * @param {boolean} useNumericIndex - TBD.
+     * @returns {Animation} TBD.
      */
-    copyFrameData(frameData: any, frame: any): boolean;
+    add(name: string, frameList: number[] | string[], frameRate?: number, loop?: boolean, useNumericIndex?: boolean): Animation;
     /**
      * TBD.
-     * @param name - TBD.
-     * @param frameList - TBD.
-     * @param frameRate - TBD.
-     * @param loop - TBD.
-     * @param useNumericIndex - TBD.
+     * @param {number[]} frames - TBD.
+     * @param {boolean} useNumericIndex - TBD.
+     * @returns {boolean} TBD.
      */
-    add(name: any, frameList: any, frameRate?: number, loop?: boolean, useNumericIndex?: any): any;
+    validateFrames(frames: number[], useNumericIndex?: boolean): boolean;
     /**
      * TBD.
-     * @param frames - TBD.
-     * @param useNumericIndex - TBD.
+     * @param {string} name - TBD.
+     * @param {number} frameRate - TBD.
+     * @param {boolean} loop - TBD.
+     * @param {boolean} killOnComplete - TBD.
+     * @returns {Animation} TBD.
      */
-    validateFrames(frames: any, useNumericIndex?: boolean): boolean;
+    play(name: string, frameRate: number, loop: boolean, killOnComplete: boolean): Animation;
     /**
      * TBD.
-     * @param name - TBD.
-     * @param frameRate - TBD.
-     * @param loop - TBD.
-     * @param killOnComplete - TBD.
+     * @param {string} name - TBD.
+     * @param {boolean} resetFrame - TBD.
      */
-    play(name: any, frameRate: any, loop: any, killOnComplete: any): any;
+    stop(name: string, resetFrame?: boolean): void;
     /**
      * TBD.
-     * @param name - TBD.
-     * @param resetFrame - TBD.
-     */
-    stop(name: any, resetFrame?: boolean): void;
-    /**
-     * TBD.
+     * @returns {boolean} TBD.
      */
     update(): boolean;
     /**
      * TBD.
-     * @param quantity - TBD.
+     * @param {number} quantity - TBD.
      */
-    next(quantity: any): void;
+    next(quantity: number): void;
     /**
      * TBD.
-     * @param quantity - TBD.
+     * @param {number} quantity - TBD.
      */
-    previous(quantity: any): void;
+    previous(quantity: number): void;
     /**
      * TBD.
-     * @param name - TBD.
+     * @param {string} name - TBD.
+     * @returns {Animation} TBD.
      */
-    getAnimation(name: any): any;
+    getAnimation(name: string): Animation;
     /**
      * TBD.
      */
     refreshFrame(): void;
     /**
      * TBD.
+     * @returns {FrameData} TBD.
      */
-    get frameData(): any;
+    get frameData(): FrameData;
+    /**
+     * TBD.
+     * @returns {number} TBD.
+     */
+    get frameTotal(): number;
     /**
      * TBD.
      */
-    get frameTotal(): any;
+    set paused(arg: boolean);
     /**
      * TBD.
+     * @returns {boolean} TBD.
      */
-    set paused(arg: any);
+    get paused(): boolean;
     /**
      * TBD.
+     * @returns {string} TBD.
      */
-    get paused(): any;
-    /**
-     * TBD.
-     */
-    get name(): any;
+    get name(): string;
     _frameIndex: any;
 }
+import { FrameData } from './frame_data';
+import { Animation } from './animation';
 //# sourceMappingURL=animation_manager.d.ts.map

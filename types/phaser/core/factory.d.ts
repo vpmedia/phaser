@@ -11,51 +11,51 @@ export class GameObjectFactory {
      * @param {number} y - TBD.
      * @param {string} key - TBD.
      * @param frame - TBD.
-     * @param group - TBD.
+     * @param {Group} group - TBD.
      * @returns {Image} TBD.
      */
-    image(x: number, y: number, key: string, frame: any, group?: any): Image;
+    image(x: number, y: number, key: string, frame: any, group?: Group): Image;
     /**
      * TBD.
-     * @param parent - TBD.
-     * @param name - TBD.
-     * @param addToStage - TBD.
+     * @param {Group} parent - TBD.
+     * @param {string} name - TBD.
+     * @param {boolean} addToStage - TBD.
      * @returns {Group} TBD.
      */
-    group(parent: any, name: any, addToStage: any): Group;
+    group(parent: Group, name: string, addToStage: boolean): Group;
     /**
      * TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
      * @param text - TBD.
      * @param style - TBD.
-     * @param group - TBD.
+     * @param {Group} group - TBD.
      * @returns {Text} TBD.
      */
-    text(x: number, y: number, text: any, style: any, group?: any): Text;
+    text(x: number, y: number, text: any, style: any, group?: Group): Text;
     /**
      * TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
      * @param {string} key - TBD.
-     * @param callback - TBD.
-     * @param callbackContext - TBD.
+     * @param {Function} callback - TBD.
+     * @param {object} callbackContext - TBD.
      * @param overFrame - TBD.
      * @param outFrame - TBD.
      * @param downFrame - TBD.
      * @param upFrame - TBD.
-     * @param group - TBD.
+     * @param {Group} group - TBD.
      * @returns {Button} TBD.
      */
-    button(x: number, y: number, key: string, callback: any, callbackContext: any, overFrame: any, outFrame: any, downFrame: any, upFrame: any, group?: any): Button;
+    button(x: number, y: number, key: string, callback: Function, callbackContext: object, overFrame: any, outFrame: any, downFrame: any, upFrame: any, group?: Group): Button;
     /**
      * TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
-     * @param group - TBD.
+     * @param {Group} group - TBD.
      * @returns {Graphics} TBD.
      */
-    graphics(x: number, y: number, group?: any): Graphics;
+    graphics(x: number, y: number, group?: Group): Graphics;
     /**
      * TBD.
      * @param {number} x - TBD.
@@ -63,15 +63,15 @@ export class GameObjectFactory {
      * @param font - TBD.
      * @param text - TBD.
      * @param size - TBD.
-     * @param group - TBD.
+     * @param {Group} group - TBD.
      * @param align - TBD.
      * @returns {BitmapText} TBD.
      */
-    bitmapText(x: number, y: number, font: any, text: any, size: any, group?: any, align?: string): BitmapText;
+    bitmapText(x: number, y: number, font: any, text: any, size: any, group?: Group, align?: string): BitmapText;
 }
 import { Game } from './game';
-import { Image } from '../display/image';
 import { Group } from '../display/group';
+import { Image } from '../display/image';
 import { Text } from '../display/text';
 import { Button } from '../display/button';
 import { Graphics } from '../display/graphics';

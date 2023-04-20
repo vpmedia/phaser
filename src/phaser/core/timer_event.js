@@ -6,8 +6,8 @@ export class TimerEvent {
    * @param tick - TBD.
    * @param repeatCount - TBD.
    * @param loop - TBD.
-   * @param callback - TBD.
-   * @param callbackContext - TBD.
+   * @param {Function} callback - TBD.
+   * @param {object} callbackContext - TBD.
    * @param args - TBD.
    */
   constructor(timer, delay, tick, repeatCount, loop, callback, callbackContext, args) {

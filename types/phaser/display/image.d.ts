@@ -19,6 +19,7 @@ export class Image extends DisplayObject {
     blendMode: number;
     shader: any;
     _frame: any;
+    pendingDestroy: boolean;
     events: EventManager;
     animations: AnimationManager;
     renderOrderID: number;
@@ -26,7 +27,7 @@ export class Image extends DisplayObject {
      * TBD.
      * @param {string} key - TBD.
      * @param frame - TBD.
-     * @param stopAnimation - TBD.
+     * @param {boolean} stopAnimation - TBD.
      */
     loadTexture(key: string, frame?: number, stopAnimation?: boolean): void;
     customRender: boolean;
@@ -50,19 +51,20 @@ export class Image extends DisplayObject {
     /**
      * TBD.
      */
-    set frame(arg: any);
+    set frame(arg: number);
     /**
      * TBD.
      */
-    get frame(): any;
+    get frame(): number;
     /**
      * TBD.
      */
-    set frameName(arg: any);
+    set frameName(arg: string);
     /**
      * TBD.
+     * @returns {string} TBD.
      */
-    get frameName(): any;
+    get frameName(): string;
     /**
      * TBD.
      * @param rect

@@ -43,7 +43,7 @@ export class ScaleManager {
     bounds: Rectangle;
     aspectRatio: number;
     sourceAspectRatio: number;
-    event: any;
+    event: Event;
     windowConstraints: {
         right: string;
         bottom: string;
@@ -62,7 +62,7 @@ export class ScaleManager {
     parentScaleFactor: Point;
     trackParentInterval: number;
     onSizeChange: Signal;
-    onResize: any;
+    onResize: Function;
     onResizeContext: any;
     _pendingScaleMode: any;
     _fullScreenRestore: {
@@ -135,10 +135,10 @@ export class ScaleManager {
     setUserScale(hScale: any, vScale: any, hTrim: any, vTrim: any): void;
     /**
      * TBD.
-     * @param callback - TBD.
+     * @param {Function} callback - TBD.
      * @param context - TBD.
      */
-    setResizeCallback(callback: any, context: any): void;
+    setResizeCallback(callback: Function, context: any): void;
     /**
      * TBD.
      */
@@ -187,14 +187,14 @@ export class ScaleManager {
     updateOrientationState(): boolean;
     /**
      * TBD.
-     * @param event - TBD.
+     * @param {Event} event - TBD.
      */
-    orientationChange(event: any): void;
+    orientationChange(event: Event): void;
     /**
      * TBD.
-     * @param event - TBD.
+     * @param {Event} event - TBD.
      */
-    windowResize(event: any): void;
+    windowResize(event: Event): void;
     /**
      * TBD.
      */
@@ -275,14 +275,14 @@ export class ScaleManager {
     prepScreenMode(enteringFullscreen: any): void;
     /**
      * TBD.
-     * @param event - TBD.
+     * @param {Event} event - TBD.
      */
-    fullScreenChange(event: any): void;
+    fullScreenChange(event: Event): void;
     /**
      * TBD.
-     * @param event - TBD.
+     * @param {Event} event - TBD.
      */
-    fullScreenError(event: any): void;
+    fullScreenError(event: Event): void;
     /**
      * TBD.
      */

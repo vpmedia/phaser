@@ -124,7 +124,7 @@ export class Input {
 
   /**
    * TBD.
-   * @param callback - TBD.
+   * @param {Function} callback - TBD.
    * @param context - TBD.
    */
   setInteractiveCandidateHandler(callback, context) {
@@ -134,7 +134,7 @@ export class Input {
 
   /**
    * TBD.
-   * @param callback - TBD.
+   * @param {Function} callback - TBD.
    * @param context - TBD.
    */
   addMoveCallback(callback, context) {
@@ -143,7 +143,7 @@ export class Input {
 
   /**
    * TBD.
-   * @param callback - TBD.
+   * @param {Function} callback - TBD.
    * @param context - TBD.
    */
   deleteMoveCallback(callback, context) {
@@ -159,6 +159,7 @@ export class Input {
 
   /**
    * TBD.
+   * @returns {Pointer} TBD.
    */
   addPointer() {
     if (this.pointers.length >= MAX_POINTERS) {
@@ -192,7 +193,7 @@ export class Input {
 
   /**
    * TBD.
-   * @param hard - TBD.
+   * @param {boolean} hard - TBD.
    */
   reset(hard = false) {
     if (!this.game.isBooted || this.resetLocked) {
@@ -231,7 +232,8 @@ export class Input {
 
   /**
    * TBD.
-   * @param event - TBD.
+   * @param {MouseEvent|TouchEvent|PointerEvent} event - TBD.
+   * @returns {Pointer} TBD.
    */
   startPointer(event) {
     if (this.maxPointers >= 0 && this.countActivePointers(this.maxPointers) >= this.maxPointers) {
@@ -254,7 +256,8 @@ export class Input {
 
   /**
    * TBD.
-   * @param event - TBD.
+   * @param {MouseEvent|TouchEvent|PointerEvent} event - TBD.
+   * @returns {Pointer} TBD.
    */
   updatePointer(event) {
     if (this.pointer1.active && this.pointer1.identifier === event.identifier) {
@@ -274,7 +277,8 @@ export class Input {
 
   /**
    * TBD.
-   * @param event - TBD.
+   * @param {MouseEvent|TouchEvent|PointerEvent} event - TBD.
+   * @returns {Pointer} TBD.
    */
   stopPointer(event) {
     if (this.pointer1.active && this.pointer1.identifier === event.identifier) {
@@ -295,6 +299,7 @@ export class Input {
   /**
    * TBD.
    * @param limit - TBD.
+   * @returns {number} TBD.
    */
   countActivePointers(limit = this.pointers.length) {
     let count = limit;
@@ -309,7 +314,8 @@ export class Input {
 
   /**
    * TBD.
-   * @param isActive - TBD.
+   * @param {boolean} isActive - TBD.
+   * @returns {Pointer} TBD.
    */
   getPointer(isActive = false) {
     for (let i = 0; i < this.pointers.length; i += 1) {
@@ -324,6 +330,7 @@ export class Input {
   /**
    * TBD.
    * @param identifier - TBD.
+   * @returns {Pointer} TBD.
    */
   getPointerFromIdentifier(identifier) {
     for (let i = 0; i < this.pointers.length; i += 1) {
@@ -339,6 +346,7 @@ export class Input {
   /**
    * TBD.
    * @param pointerId - TBD.
+   * @returns {Pointer} TBD.
    */
   getPointerFromId(pointerId) {
     for (let i = 0; i < this.pointers.length; i += 1) {
@@ -356,6 +364,7 @@ export class Input {
    * @param displayObject - TBD.
    * @param pointer - TBD.
    * @param output - TBD.
+   * @returns {Point} TBD.
    */
   getLocalPosition(displayObject, pointer, output = null) {
     const result = output || new Point();
@@ -372,6 +381,7 @@ export class Input {
    * @param displayObject - TBD.
    * @param pointer - TBD.
    * @param localPoint - TBD.
+   * @returns {boolean} TBD.
    */
   hitTest(displayObject, pointer, localPoint) {
     if (!displayObject.worldVisible) {
@@ -418,6 +428,7 @@ export class Input {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get x() {
     return this._x;
@@ -432,6 +443,7 @@ export class Input {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get y() {
     return this._y;
@@ -446,6 +458,7 @@ export class Input {
 
   /**
    * TBD.
+   * @returns {boolean} TBD.
    */
   get pollLocked() {
     return this.pollRate > 0 && this._pollCounter < this.pollRate;
@@ -453,6 +466,7 @@ export class Input {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get totalInactivePointers() {
     return this.pointers.length - this.countActivePointers();
@@ -460,6 +474,7 @@ export class Input {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get totalActivePointers() {
     return this.countActivePointers();
@@ -467,6 +482,7 @@ export class Input {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get worldX() {
     return this.x;
@@ -474,6 +490,7 @@ export class Input {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get worldY() {
     return this.y;

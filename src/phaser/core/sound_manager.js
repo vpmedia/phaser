@@ -124,7 +124,7 @@ export class SoundManager {
 
   /**
    * TBD.
-   * @param event - TBD.
+   * @param {Event} event - TBD.
    */
   onUnlockEvent(event) {
     const initialState = this.context.state;
@@ -230,8 +230,8 @@ export class SoundManager {
   /**
    * TBD.
    * @param files - TBD.
-   * @param callback - TBD.
-   * @param callbackContext - TBD.
+   * @param {Function} callback - TBD.
+   * @param {object} callbackContext - TBD.
    */
   setDecodedCallback(files, callback, callbackContext) {
     if (typeof files === 'string') {

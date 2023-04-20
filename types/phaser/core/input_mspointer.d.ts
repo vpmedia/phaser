@@ -12,7 +12,7 @@ export class MSPointer {
     pointerUpCallback: any;
     capture: boolean;
     button: number;
-    event: any;
+    event: Event;
     enabled: boolean;
     _onMSPointerDown: (event: any) => void;
     _onMSPointerMove: (event: any) => void;
@@ -30,39 +30,39 @@ export class MSPointer {
     stop(): void;
     /**
      * TBD.
-     * @param event
+     * @param {Event} event - TBD.
      */
-    onPointerDown(event: any): void;
+    onPointerDown(event: Event): void;
     /**
      * TBD.
-     * @param event
+     * @param {Event} event - TBD.
      */
-    onPointerMove(event: any): void;
+    onPointerMove(event: Event): void;
     /**
      * TBD.
-     * @param event
+     * @param {Event} event - TBD.
      */
-    onPointerUp(event: any): void;
+    onPointerUp(event: Event): void;
     /**
      * TBD.
-     * @param event
+     * @param {Event} event - TBD.
      */
-    onPointerUpGlobal(event: any): void;
+    onPointerUpGlobal(event: Event): void;
     /**
      * TBD.
-     * @param event
+     * @param {Event} event - TBD.
      */
-    onPointerOut(event: any): void;
+    onPointerOut(event: Event): void;
     /**
      * TBD.
-     * @param event
+     * @param {Event} event - TBD.
      */
-    onPointerOver(event: any): void;
+    onPointerOver(event: Event): void;
     /**
      * TBD.
-     * @param event
+     * @param {Event} event - TBD.
      */
-    eventPreventDefault(event: any): void;
+    eventPreventDefault(event: Event): void;
 }
 import { Game } from './game';
 //# sourceMappingURL=input_mspointer.d.ts.map

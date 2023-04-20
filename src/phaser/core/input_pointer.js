@@ -14,8 +14,8 @@ export class Pointer {
   /**
    * TBD.
    * @param {Game} game - TBD.
-   * @param id
-   * @param pointerMode
+   * @param {number} id - TBD.
+   * @param {number} pointerMode - TBD.
    */
   constructor(game, id, pointerMode) {
     this.game = game;
@@ -74,7 +74,7 @@ export class Pointer {
 
   /**
    * TBD.
-   * @param event
+   * @param {MouseEvent|PointerEvent} event - TBD.
    */
   updateButtons(event) {
     if (event.type.toLowerCase().substr(-4) === 'down') {
@@ -88,7 +88,8 @@ export class Pointer {
 
   /**
    * TBD.
-   * @param event
+   * @param {PointerEvent} event - TBD.
+   * @returns {Pointer} TBD.
    */
   start(event) {
     const input = this.game.input;
@@ -175,8 +176,9 @@ export class Pointer {
 
   /**
    * TBD.
-   * @param event
-   * @param fromClick
+   * @param {MouseEvent|PointerEvent} event - TBD.
+   * @param {boolean} fromClick - TBD.
+   * @returns {Pointer} TBD.
    */
   move(event, fromClick = false) {
     const input = this.game.input;
@@ -238,7 +240,8 @@ export class Pointer {
 
   /**
    * TBD.
-   * @param fromClick
+   * @param {boolean} fromClick - TBD.
+   * @returns {boolean} TBD.
    */
   processInteractiveObjects(fromClick = false) {
     // Work out which object is on the top
@@ -299,8 +302,8 @@ export class Pointer {
 
   /**
    * TBD.
-   * @param newTarget
-   * @param silent
+   * @param newTarget - TBD.
+   * @param {boolean} silent - TBD.
    */
   swapTarget(newTarget, silent = false) {
     //  Now we know the top-most item (if any) we can process it
@@ -331,7 +334,7 @@ export class Pointer {
 
   /**
    * TBD.
-   * @param event
+   * @param {MouseEvent|PointerEvent} event - TBD.
    */
   leave(event) {
     this.withinGame = false;
@@ -340,7 +343,8 @@ export class Pointer {
 
   /**
    * TBD.
-   * @param event
+   * @param {MouseEvent|PointerEvent} event - TBD.
+   * @returns {Pointer} TBD.
    */
   stop(event) {
     const input = this.game.input;
@@ -395,7 +399,8 @@ export class Pointer {
 
   /**
    * TBD.
-   * @param duration - TBD.
+   * @param {number} duration - TBD.
+   * @returns {boolean} TBD.
    */
   justPressed(duration) {
     duration = duration || this.game.input.justPressedRate;
@@ -404,7 +409,8 @@ export class Pointer {
 
   /**
    * TBD.
-   * @param duration - TBD.
+   * @param {number} duration - TBD.
+   * @returns {boolean} TBD.
    */
   justReleased(duration) {
     duration = duration || this.game.input.justReleasedRate;
@@ -413,10 +419,10 @@ export class Pointer {
 
   /**
    * TBD.
-   * @param name
-   * @param callback - TBD.
-   * @param callbackContext
-   * @param callbackArgs
+   * @param {string} name - TBD.
+   * @param {Function} callback - TBD.
+   * @param {object} callbackContext - TBD.
+   * @param callbackArgs - TBD.
    */
   addClickTrampoline(name, callback, callbackContext, callbackArgs) {
     if (!this.isDown) {
@@ -488,6 +494,7 @@ export class Pointer {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get duration() {
     if (this.isUp) {
@@ -498,6 +505,7 @@ export class Pointer {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get worldX() {
     return this.x;
@@ -505,6 +513,7 @@ export class Pointer {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get worldY() {
     return this.y;

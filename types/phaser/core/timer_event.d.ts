@@ -6,17 +6,17 @@ export class TimerEvent {
      * @param tick - TBD.
      * @param repeatCount - TBD.
      * @param loop - TBD.
-     * @param callback - TBD.
-     * @param callbackContext - TBD.
+     * @param {Function} callback - TBD.
+     * @param {object} callbackContext - TBD.
      * @param args - TBD.
      */
-    constructor(timer: any, delay: any, tick: any, repeatCount: any, loop: any, callback: any, callbackContext: any, args: any);
+    constructor(timer: any, delay: any, tick: any, repeatCount: any, loop: any, callback: Function, callbackContext: object, args: any);
     timer: any;
     delay: any;
     tick: any;
     repeatCount: number;
     loop: any;
-    callback: any;
+    callback: Function;
     callbackContext: any;
     args: any;
     pendingDelete: boolean;

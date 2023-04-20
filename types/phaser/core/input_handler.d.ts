@@ -208,7 +208,7 @@ export class InputHandler {
      * @param {Pointer} pointer - TBD.
      * @param {boolean} silent - TBD.
      */
-    _pointerOutHandler(pointer: Pointer, silent: boolean): void;
+    _pointerOutHandler(pointer: Pointer, silent?: boolean): void;
     /**
      * TBD.
      * @param {Pointer} pointer - TBD.
@@ -285,7 +285,7 @@ export class InputHandler {
      * TBD.
      */
     disableDrag(): void;
-    _draggedPointerID: any;
+    _draggedPointerID: number;
     /**
      * TBD.
      * @param {Pointer} pointer - TBD.

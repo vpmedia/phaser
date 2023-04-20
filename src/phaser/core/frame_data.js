@@ -91,7 +91,7 @@ export class FrameData {
 
   /**
    * TBD.
-   * @param {string[]} frames - TBD.
+   * @param {number[]|string[]} frames - TBD.
    * @param {boolean} useNumericIndex - TBD.
    * @param {number[]} output - TBD.
    * @returns {number[]} TBD.

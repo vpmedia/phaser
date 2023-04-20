@@ -27,80 +27,88 @@ export class Group extends DisplayObject {
     _sortProperty: string;
     /**
      * TBD.
-     * @param destroyChildren - TBD.
-     * @param soft - TBD.
+     * @param {boolean} destroyChildren - TBD.
+     * @param {boolean} soft - TBD.
      */
     destroy(destroyChildren?: boolean, soft?: boolean): void;
     filters: any;
     /**
      * TBD.
-     * @param child - TBD.
-     * @param silent - TBD.
-     * @param index - TBD.
+     * @param {DisplayObject} child - TBD.
+     * @param {boolean} silent - TBD.
+     * @param {number} index - TBD.
+     * @returns {DisplayObject} TBD.
      */
-    add(child: any, silent?: boolean, index?: number): any;
+    add(child: DisplayObject, silent?: boolean, index?: number): DisplayObject;
     /**
      * TBD.
-     * @param child - TBD.
-     * @param index - TBD.
-     * @param silent - TBD.
+     * @param {DisplayObject} child - TBD.
+     * @param {number} index - TBD.
+     * @param {boolean} silent - TBD.
      */
-    addAt(child: any, index: any, silent: any): void;
+    addAt(child: DisplayObject, index: number, silent: boolean): void;
     /**
      * TBD.
-     * @param index - TBD.
+     * @param {number} index - TBD.
+     * @returns {DisplayObject} TBD.
      */
-    getAt(index: any): any;
+    getAt(index: number): DisplayObject;
     /**
      * TBD.
      */
     updateZ(): void;
     /**
      * TBD.
+     * @returns {DisplayObject} TBD.
      */
-    next(): any;
+    next(): DisplayObject;
     /**
      * TBD.
+     * @returns {DisplayObject} TBD.
      */
-    previous(): any;
+    previous(): DisplayObject;
     /**
      * TBD.
-     * @param child1 - TBD.
-     * @param child2 - TBD.
+     * @param {DisplayObject} child1 - TBD.
+     * @param {DisplayObject} child2 - TBD.
      */
-    swap(child1: any, child2: any): void;
+    swap(child1: DisplayObject, child2: DisplayObject): void;
     /**
      * TBD.
-     * @param child - TBD.
+     * @param {DisplayObject} child - TBD.
+     * @returns {DisplayObject} TBD.
      */
-    bringToTop(child: any): any;
+    bringToTop(child: DisplayObject): DisplayObject;
     /**
      * TBD.
-     * @param child - TBD.
+     * @param {DisplayObject} child - TBD.
+     * @returns {DisplayObject} TBD.
      */
-    sendToBack(child: any): any;
+    sendToBack(child: DisplayObject): DisplayObject;
     /**
      * TBD.
      */
     reverse(): void;
     /**
      * TBD.
-     * @param child - TBD.
+     * @param {DisplayObject} child - TBD.
+     * @returns {number} TBD.
      */
-    getIndex(child: any): number;
+    getIndex(child: DisplayObject): number;
     renderOrderID: number;
     /**
      * TBD.
-     * @param child - TBD.
-     * @param destroy - TBD.
-     * @param silent - TBD.
+     * @param {DisplayObject} child - TBD.
+     * @param {boolean} destroy - TBD.
+     * @param {boolean} silent - TBD.
+     * @returns {boolean} TBD.
      */
-    remove(child: any, destroy?: boolean, silent?: boolean): boolean;
+    remove(child: DisplayObject, destroy?: boolean, silent?: boolean): boolean;
     /**
      * TBD.
-     * @param destroy - TBD.
-     * @param silent - TBD.
-     * @param destroyTexture - TBD.
+     * @param {boolean} destroy - TBD.
+     * @param {boolean} silent - TBD.
+     * @param {boolean} destroyTexture - TBD.
      */
     removeAll(destroy?: boolean, silent?: boolean, destroyTexture?: boolean): void;
 }

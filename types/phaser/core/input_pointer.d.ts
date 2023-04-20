@@ -2,18 +2,18 @@ export class Pointer {
     /**
      * TBD.
      * @param {Game} game - TBD.
-     * @param id
-     * @param pointerMode
+     * @param {number} id - TBD.
+     * @param {number} pointerMode - TBD.
      */
-    constructor(game: Game, id: any, pointerMode: any);
+    constructor(game: Game, id: number, pointerMode: number);
     game: Game;
-    id: any;
+    id: number;
     type: number;
     exists: boolean;
     identifier: number;
-    pointerId: any;
-    pointerMode: any;
-    target: any;
+    pointerId: number;
+    pointerMode: number;
+    target: EventTarget;
     button: any;
     _holdSent: boolean;
     _history: any[];
@@ -56,63 +56,69 @@ export class Pointer {
     resetButtons(): void;
     /**
      * TBD.
-     * @param event
+     * @param {MouseEvent|PointerEvent} event - TBD.
      */
-    updateButtons(event: any): void;
+    updateButtons(event: MouseEvent | PointerEvent): void;
     /**
      * TBD.
-     * @param event
+     * @param {PointerEvent} event - TBD.
+     * @returns {Pointer} TBD.
      */
-    start(event: any): Pointer;
+    start(event: PointerEvent): Pointer;
     /**
      * TBD.
      */
     update(): void;
     /**
      * TBD.
-     * @param event
-     * @param fromClick
+     * @param {MouseEvent|PointerEvent} event - TBD.
+     * @param {boolean} fromClick - TBD.
+     * @returns {Pointer} TBD.
      */
-    move(event: any, fromClick?: boolean): Pointer;
+    move(event: MouseEvent | PointerEvent, fromClick?: boolean): Pointer;
     /**
      * TBD.
-     * @param fromClick
+     * @param {boolean} fromClick - TBD.
+     * @returns {boolean} TBD.
      */
     processInteractiveObjects(fromClick?: boolean): boolean;
     /**
      * TBD.
-     * @param newTarget
-     * @param silent
+     * @param newTarget - TBD.
+     * @param {boolean} silent - TBD.
      */
     swapTarget(newTarget: any, silent?: boolean): void;
     /**
      * TBD.
-     * @param event
+     * @param {MouseEvent|PointerEvent} event - TBD.
      */
-    leave(event: any): void;
+    leave(event: MouseEvent | PointerEvent): void;
     /**
      * TBD.
-     * @param event
+     * @param {MouseEvent|PointerEvent} event - TBD.
+     * @returns {Pointer} TBD.
      */
-    stop(event: any): Pointer;
+    stop(event: MouseEvent | PointerEvent): Pointer;
     /**
      * TBD.
-     * @param duration - TBD.
+     * @param {number} duration - TBD.
+     * @returns {boolean} TBD.
      */
-    justPressed(duration: any): boolean;
+    justPressed(duration: number): boolean;
     /**
      * TBD.
-     * @param duration - TBD.
+     * @param {number} duration - TBD.
+     * @returns {boolean} TBD.
      */
-    justReleased(duration: any): boolean;
+    justReleased(duration: number): boolean;
     /**
      * TBD.
-     * @param name
-     * @param callback - TBD.
-     * @param callbackContext
-     * @param callbackArgs
+     * @param {string} name - TBD.
+     * @param {Function} callback - TBD.
+     * @param {object} callbackContext - TBD.
+     * @param callbackArgs - TBD.
      */
-    addClickTrampoline(name: any, callback: any, callbackContext: any, callbackArgs: any): void;
+    addClickTrampoline(name: string, callback: Function, callbackContext: object, callbackArgs: any): void;
     /**
      * TBD.
      */
@@ -127,14 +133,17 @@ export class Pointer {
     resetMovement(): void;
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get duration(): number;
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get worldX(): number;
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get worldY(): number;
 }

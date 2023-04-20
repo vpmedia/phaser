@@ -3,17 +3,17 @@ export class Animation {
      * TBD.
      * @param {Game} game - TBD.
      * @param parent - TBD.
-     * @param name - TBD.
-     * @param frameData - TBD.
+     * @param {string} name - TBD.
+     * @param {FrameData} frameData - TBD.
      * @param frames - TBD.
-     * @param frameRate - TBD.
-     * @param loop - TBD.
+     * @param {number} frameRate - TBD.
+     * @param {boolean} loop - TBD.
      */
-    constructor(game: Game, parent: any, name: any, frameData: any, frames: any, frameRate: any, loop?: boolean);
+    constructor(game: Game, parent: any, name: string, frameData: FrameData, frames: any, frameRate: number, loop?: boolean);
     game: Game;
     _parent: any;
-    _frameData: any;
-    name: any;
+    _frameData: FrameData;
+    name: string;
     _frames: any[];
     delay: number;
     loop: boolean;
@@ -26,7 +26,7 @@ export class Animation {
     _frameIndex: number;
     _frameDiff: number;
     _frameSkip: number;
-    currentFrame: any;
+    currentFrame: import("./frame").Frame;
     onStart: Signal;
     onUpdate: Signal;
     onComplete: Signal;
@@ -34,17 +34,19 @@ export class Animation {
     isReversed: boolean;
     /**
      * TBD.
-     * @param frameRate - TBD.
-     * @param loop - TBD.
-     * @param killOnComplete - TBD.
+     * @param {number} frameRate - TBD.
+     * @param {boolean} loop - TBD.
+     * @param {boolean} killOnComplete - TBD.
+     * @returns {Animation} TBD.
      */
-    play(frameRate: any, loop: any, killOnComplete: any): Animation;
+    play(frameRate: number, loop: boolean, killOnComplete: boolean): Animation;
     /**
      * TBD.
      */
     set paused(arg: boolean);
     /**
      * TBD.
+     * @returns {boolean} TBD.
      */
     get paused(): boolean;
     _timeLastFrame: number;
@@ -55,6 +57,7 @@ export class Animation {
     restart(): void;
     /**
      * TBD.
+     * @returns {Animation} TBD.
      */
     reverse(): Animation;
     /**
@@ -63,22 +66,24 @@ export class Animation {
     set reversed(arg: boolean);
     /**
      * TBD.
+     * @returns {boolean} TBD.
      */
     get reversed(): boolean;
     /**
      * TBD.
+     * @returns {Animation} TBD.
      */
     reverseOnce(): Animation;
     /**
      * TBD.
-     * @param frameId - TBD.
-     * @param useLocalFrameIndex - TBD.
+     * @param {number|string} frameId - TBD.
+     * @param {boolean} useLocalFrameIndex - TBD.
      */
-    setFrame(frameId: any, useLocalFrameIndex?: boolean): void;
+    setFrame(frameId: number | string, useLocalFrameIndex?: boolean): void;
     /**
      * TBD.
-     * @param resetFrame - TBD.
-     * @param dispatchComplete - TBD.
+     * @param {boolean} resetFrame - TBD.
+     * @param {boolean} dispatchComplete - TBD.
      */
     stop(resetFrame?: boolean, dispatchComplete?: boolean): void;
     /**
@@ -91,29 +96,31 @@ export class Animation {
     onResume(): void;
     /**
      * TBD.
+     * @returns {boolean} TBD.
      */
     update(): boolean;
     /**
      * TBD.
-     * @param signalUpdate - TBD.
-     * @param fromPlay - TBD.
+     * @param {boolean} signalUpdate - TBD.
+     * @param {boolean} fromPlay - TBD.
+     * @returns {boolean} TBD.
      */
-    updateCurrentFrame(signalUpdate: any, fromPlay?: boolean): boolean;
+    updateCurrentFrame(signalUpdate: boolean, fromPlay?: boolean): boolean;
     /**
      * TBD.
-     * @param quantity - TBD.
+     * @param {number} quantity - TBD.
      */
     next(quantity?: number): void;
     /**
      * TBD.
-     * @param quantity - TBD.
+     * @param {number} quantity - TBD.
      */
     previous(quantity?: number): void;
     /**
      * TBD.
-     * @param frameData - TBD.
+     * @param {FrameData} frameData - TBD.
      */
-    updateFrameData(frameData: any): void;
+    updateFrameData(frameData: FrameData): void;
     /**
      * TBD.
      */
@@ -124,22 +131,25 @@ export class Animation {
     complete(): void;
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get frameTotal(): number;
     /**
      * TBD.
      */
-    set frame(arg: any);
+    set frame(arg: number);
     /**
      * TBD.
+     * @returns {number} TBD.
      */
-    get frame(): any;
+    get frame(): number;
     /**
      * TBD.
      */
     set speed(arg: number);
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get speed(): number;
     /**
@@ -148,9 +158,11 @@ export class Animation {
     set enableUpdate(arg: boolean);
     /**
      * TBD.
+     * @returns {boolean} TBD.
      */
     get enableUpdate(): boolean;
 }
 import { Game } from './game';
+import { FrameData } from './frame_data';
 import { Signal } from './signal';
 //# sourceMappingURL=animation.d.ts.map

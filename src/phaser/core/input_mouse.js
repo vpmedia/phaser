@@ -12,8 +12,8 @@ import { Game } from './game';
 class WheelEventProxy {
   /**
    * TBD.
-   * @param scaleFactor
-   * @param deltaMode
+   * @param scaleFactor - TBD.
+   * @param deltaMode - TBD.
    */
   constructor(scaleFactor, deltaMode) {
     this._scaleFactor = scaleFactor;
@@ -25,7 +25,8 @@ class WheelEventProxy {
 
   /**
    * TBD.
-   * @param event
+   * @param {WheelEvent} event - TBD.
+   * @returns {WheelEventProxy} TBD.
    */
   bindEvent(event) {
     // TODO
@@ -54,6 +55,7 @@ class WheelEventProxy {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get deltaY() {
     return this._scaleFactor * (this.originalEvent.wheelDelta || this.originalEvent.detail) || 0;
@@ -61,6 +63,7 @@ class WheelEventProxy {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get deltaX() {
     return this._scaleFactor * this.originalEvent.wheelDeltaX || 0;
@@ -81,6 +84,7 @@ export class Mouse {
     this.mouseOutCallback = null;
     this.mouseOverCallback = null;
     this.mouseWheelCallback = null;
+    this.mouseMoveCallback = null;
     this.capture = false;
     this.button = -1;
     this.wheelDelta = 0;
@@ -152,7 +156,7 @@ export class Mouse {
 
   /**
    * TBD.
-   * @param event
+   * @param {MouseEvent} event - TBD.
    */
   onMouseDown(event) {
     this.event = event;
@@ -169,7 +173,7 @@ export class Mouse {
 
   /**
    * TBD.
-   * @param event
+   * @param {MouseEvent} event - TBD.
    */
   onMouseMove(event) {
     this.event = event;
@@ -186,7 +190,7 @@ export class Mouse {
 
   /**
    * TBD.
-   * @param event
+   * @param {MouseEvent} event - TBD.
    */
   onMouseUp(event) {
     this.event = event;
@@ -203,7 +207,7 @@ export class Mouse {
 
   /**
    * TBD.
-   * @param event
+   * @param {MouseEvent} event - TBD.
    */
   onMouseUpGlobal(event) {
     if (!this.input.mousePointer.withinGame) {
@@ -217,7 +221,7 @@ export class Mouse {
 
   /**
    * TBD.
-   * @param event
+   * @param {MouseEvent} event - TBD.
    */
   onMouseOutGlobal(event) {
     this.event = event;
@@ -236,7 +240,7 @@ export class Mouse {
 
   /**
    * TBD.
-   * @param event
+   * @param {MouseEvent} event - TBD.
    */
   onMouseOut(event) {
     this.event = event;
@@ -256,7 +260,7 @@ export class Mouse {
 
   /**
    * TBD.
-   * @param event
+   * @param {MouseEvent} event - TBD.
    */
   onMouseOver(event) {
     this.event = event;
@@ -269,7 +273,7 @@ export class Mouse {
 
   /**
    * TBD.
-   * @param event
+   * @param {WheelEvent} event - TBD.
    */
   onMouseWheel(event) {
     if (this._wheelEvent) {
@@ -286,7 +290,7 @@ export class Mouse {
 
   /**
    * TBD.
-   * @param event
+   * @param {MouseEvent} event - TBD.
    */
   eventPreventDefault(event) {
     if (this.capture) {

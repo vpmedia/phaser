@@ -46,12 +46,12 @@ export class FrameData {
     getFrameRange(start: number, end: number, output?: Frame[]): Frame[];
     /**
      * TBD.
-     * @param {string[]} frames - TBD.
+     * @param {number[]|string[]} frames - TBD.
      * @param {boolean} useNumericIndex - TBD.
      * @param {number[]} output - TBD.
      * @returns {number[]} TBD.
      */
-    getFrameIndexes(frames: string[], useNumericIndex?: boolean, output?: number[]): number[];
+    getFrameIndexes(frames: number[] | string[], useNumericIndex?: boolean, output?: number[]): number[];
     /**
      * TBD.
      */

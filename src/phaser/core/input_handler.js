@@ -525,7 +525,7 @@ export class InputHandler {
    * @param {Pointer} pointer - TBD.
    * @param {boolean} silent - TBD.
    */
-  _pointerOutHandler(pointer, silent) {
+  _pointerOutHandler(pointer, silent = false) {
     if (this.sprite === null) {
       // Abort. We've been destroyed.
       return;

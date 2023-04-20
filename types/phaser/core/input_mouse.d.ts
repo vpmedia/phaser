@@ -12,13 +12,14 @@ export class Mouse {
     mouseOutCallback: any;
     mouseOverCallback: any;
     mouseWheelCallback: any;
+    mouseMoveCallback: any;
     capture: boolean;
     button: number;
     wheelDelta: number;
     enabled: boolean;
     locked: boolean;
     stopOnGameOut: boolean;
-    event: any;
+    event: WheelEvent | MouseEvent;
     _onMouseDown: (event: any) => void;
     _onMouseMove: (event: any) => void;
     _onMouseUp: (event: any) => void;
@@ -38,49 +39,49 @@ export class Mouse {
     stop(): void;
     /**
      * TBD.
-     * @param event
+     * @param {MouseEvent} event - TBD.
      */
-    onMouseDown(event: any): void;
+    onMouseDown(event: MouseEvent): void;
     /**
      * TBD.
-     * @param event
+     * @param {MouseEvent} event - TBD.
      */
-    onMouseMove(event: any): void;
+    onMouseMove(event: MouseEvent): void;
     /**
      * TBD.
-     * @param event
+     * @param {MouseEvent} event - TBD.
      */
-    onMouseUp(event: any): void;
+    onMouseUp(event: MouseEvent): void;
     /**
      * TBD.
-     * @param event
+     * @param {MouseEvent} event - TBD.
      */
-    onMouseUpGlobal(event: any): void;
+    onMouseUpGlobal(event: MouseEvent): void;
     /**
      * TBD.
-     * @param event
+     * @param {MouseEvent} event - TBD.
      */
-    onMouseOutGlobal(event: any): void;
+    onMouseOutGlobal(event: MouseEvent): void;
     /**
      * TBD.
-     * @param event
+     * @param {MouseEvent} event - TBD.
      */
-    onMouseOut(event: any): void;
+    onMouseOut(event: MouseEvent): void;
     /**
      * TBD.
-     * @param event
+     * @param {MouseEvent} event - TBD.
      */
-    onMouseOver(event: any): void;
+    onMouseOver(event: MouseEvent): void;
     /**
      * TBD.
-     * @param event
+     * @param {WheelEvent} event - TBD.
      */
-    onMouseWheel(event: any): void;
+    onMouseWheel(event: WheelEvent): void;
     /**
      * TBD.
-     * @param event
+     * @param {MouseEvent} event - TBD.
      */
-    eventPreventDefault(event: any): void;
+    eventPreventDefault(event: MouseEvent): void;
 }
 import { Game } from './game';
 //# sourceMappingURL=input_mouse.d.ts.map

@@ -9,7 +9,7 @@ export class Input {
     hitContext: any;
     moveCallbacks: any[];
     lockCallbacks: any[];
-    customCandidateHandler: any;
+    customCandidateHandler: Function;
     customCandidateHandlerContext: any;
     pollRate: number;
     enabled: boolean;
@@ -66,24 +66,25 @@ export class Input {
     destroy(): void;
     /**
      * TBD.
-     * @param callback - TBD.
+     * @param {Function} callback - TBD.
      * @param context - TBD.
      */
-    setInteractiveCandidateHandler(callback: any, context: any): void;
+    setInteractiveCandidateHandler(callback: Function, context: any): void;
     /**
      * TBD.
-     * @param callback - TBD.
+     * @param {Function} callback - TBD.
      * @param context - TBD.
      */
-    addMoveCallback(callback: any, context: any): void;
+    addMoveCallback(callback: Function, context: any): void;
     /**
      * TBD.
-     * @param callback - TBD.
+     * @param {Function} callback - TBD.
      * @param context - TBD.
      */
-    deleteMoveCallback(callback: any, context: any): void;
+    deleteMoveCallback(callback: Function, context: any): void;
     /**
      * TBD.
+     * @returns {Pointer} TBD.
      */
     addPointer(): Pointer;
     /**
@@ -92,7 +93,7 @@ export class Input {
     update(): void;
     /**
      * TBD.
-     * @param hard - TBD.
+     * @param {boolean} hard - TBD.
      */
     reset(hard?: boolean): void;
     /**
@@ -103,53 +104,62 @@ export class Input {
     resetSpeed(x: number, y: number): void;
     /**
      * TBD.
-     * @param event - TBD.
+     * @param {MouseEvent|TouchEvent|PointerEvent} event - TBD.
+     * @returns {Pointer} TBD.
      */
-    startPointer(event: any): any;
+    startPointer(event: MouseEvent | TouchEvent | PointerEvent): Pointer;
     /**
      * TBD.
-     * @param event - TBD.
+     * @param {MouseEvent|TouchEvent|PointerEvent} event - TBD.
+     * @returns {Pointer} TBD.
      */
-    updatePointer(event: any): any;
+    updatePointer(event: MouseEvent | TouchEvent | PointerEvent): Pointer;
     /**
      * TBD.
-     * @param event - TBD.
+     * @param {MouseEvent|TouchEvent|PointerEvent} event - TBD.
+     * @returns {Pointer} TBD.
      */
-    stopPointer(event: any): any;
+    stopPointer(event: MouseEvent | TouchEvent | PointerEvent): Pointer;
     /**
      * TBD.
      * @param limit - TBD.
+     * @returns {number} TBD.
      */
     countActivePointers(limit?: number): number;
     /**
      * TBD.
-     * @param isActive - TBD.
+     * @param {boolean} isActive - TBD.
+     * @returns {Pointer} TBD.
      */
-    getPointer(isActive?: boolean): any;
+    getPointer(isActive?: boolean): Pointer;
     /**
      * TBD.
      * @param identifier - TBD.
+     * @returns {Pointer} TBD.
      */
-    getPointerFromIdentifier(identifier: any): any;
+    getPointerFromIdentifier(identifier: any): Pointer;
     /**
      * TBD.
      * @param pointerId - TBD.
+     * @returns {Pointer} TBD.
      */
-    getPointerFromId(pointerId: any): any;
+    getPointerFromId(pointerId: any): Pointer;
     /**
      * TBD.
      * @param displayObject - TBD.
      * @param pointer - TBD.
      * @param output - TBD.
+     * @returns {Point} TBD.
      */
-    getLocalPosition(displayObject: any, pointer: any, output?: any): any;
+    getLocalPosition(displayObject: any, pointer: any, output?: any): Point;
     /**
      * TBD.
      * @param displayObject - TBD.
      * @param pointer - TBD.
      * @param localPoint - TBD.
+     * @returns {boolean} TBD.
      */
-    hitTest(displayObject: any, pointer: any, localPoint: any): any;
+    hitTest(displayObject: any, pointer: any, localPoint: any): boolean;
     /**
      * TBD.
      */
@@ -160,6 +170,7 @@ export class Input {
     set x(arg: number);
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get x(): number;
     /**
@@ -168,26 +179,32 @@ export class Input {
     set y(arg: number);
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get y(): number;
     /**
      * TBD.
+     * @returns {boolean} TBD.
      */
     get pollLocked(): boolean;
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get totalInactivePointers(): number;
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get totalActivePointers(): number;
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get worldX(): number;
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get worldY(): number;
 }

@@ -104,10 +104,10 @@ export class Loader {
      * @param {string} key - TBD.
      * @param {string} url - TBD.
      * @param data - TBD.
-     * @param callbackContext - TBD.
+     * @param {object} callbackContext - TBD.
      * @returns {Loader} TBD.
      */
-    pack(key: string, url: string, data: any, callbackContext: any): Loader;
+    pack(key: string, url: string, data: any, callbackContext: object): Loader;
     /**
      * TBD.
      * @param {string} key - TBD.
@@ -201,11 +201,11 @@ export class Loader {
     atlas(key: string, textureURL: any, atlasURL?: any, atlasData?: any, format?: number): Loader;
     /**
      * TBD.
-     * @param callback - TBD.
-     * @param callbackContext - TBD.
+     * @param {Function} callback - TBD.
+     * @param {object} callbackContext - TBD.
      * @returns {Loader} TBD.
      */
-    withSyncPoint(callback: any, callbackContext: any): Loader;
+    withSyncPoint(callback: Function, callbackContext: object): Loader;
     /**
      * TBD.
      * @param type - TBD.

@@ -268,7 +268,7 @@ export class Tween {
 
   /**
    * TBD.
-   * @param callback - TBD.
+   * @param {Function} callback - TBD.
    * @param callbackContext
    */
   onUpdateCallback(callback, callbackContext) {

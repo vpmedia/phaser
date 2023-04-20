@@ -1,4 +1,5 @@
 import { Animation } from './animation';
+import { FrameData } from './frame_data';
 
 export class AnimationManager {
   /**
@@ -36,8 +37,9 @@ export class AnimationManager {
 
   /**
    * TBD.
-   * @param frameData - TBD.
-   * @param frame - TBD.
+   * @param {FrameData} frameData - TBD.
+   * @param {number|string} frame - TBD.
+   * @returns {boolean} TBD.
    */
   loadFrameData(frameData, frame) {
     if (!frameData) {
@@ -65,8 +67,9 @@ export class AnimationManager {
 
   /**
    * TBD.
-   * @param frameData - TBD.
-   * @param frame - TBD.
+   * @param {FrameData} frameData - TBD.
+   * @param {number|string} frame - TBD.
+   * @returns {boolean} TBD.
    */
   copyFrameData(frameData, frame) {
     this._frameData = frameData.clone();
@@ -91,11 +94,12 @@ export class AnimationManager {
 
   /**
    * TBD.
-   * @param name - TBD.
-   * @param frameList - TBD.
-   * @param frameRate - TBD.
-   * @param loop - TBD.
-   * @param useNumericIndex - TBD.
+   * @param {string} name - TBD.
+   * @param {number[]|string[]} frameList - TBD.
+   * @param {number} frameRate - TBD.
+   * @param {boolean} loop - TBD.
+   * @param {boolean} useNumericIndex - TBD.
+   * @returns {Animation} TBD.
    */
   add(name, frameList, frameRate = 60, loop = false, useNumericIndex = undefined) {
     const frames = frameList || [];
@@ -127,8 +131,9 @@ export class AnimationManager {
 
   /**
    * TBD.
-   * @param frames - TBD.
-   * @param useNumericIndex - TBD.
+   * @param {number[]} frames - TBD.
+   * @param {boolean} useNumericIndex - TBD.
+   * @returns {boolean} TBD.
    */
   validateFrames(frames, useNumericIndex = false) {
     for (let i = 0; i < frames.length; i += 1) {
@@ -145,10 +150,11 @@ export class AnimationManager {
 
   /**
    * TBD.
-   * @param name - TBD.
-   * @param frameRate - TBD.
-   * @param loop - TBD.
-   * @param killOnComplete - TBD.
+   * @param {string} name - TBD.
+   * @param {number} frameRate - TBD.
+   * @param {boolean} loop - TBD.
+   * @param {boolean} killOnComplete - TBD.
+   * @returns {Animation} TBD.
    */
   play(name, frameRate, loop, killOnComplete) {
     if (this._anims[name]) {
@@ -172,8 +178,8 @@ export class AnimationManager {
 
   /**
    * TBD.
-   * @param name - TBD.
-   * @param resetFrame - TBD.
+   * @param {string} name - TBD.
+   * @param {boolean} resetFrame - TBD.
    */
   stop(name, resetFrame = false) {
     if (this.currentAnim && (typeof name !== 'string' || name === this.currentAnim.name)) {
@@ -183,6 +189,7 @@ export class AnimationManager {
 
   /**
    * TBD.
+   * @returns {boolean} TBD.
    */
   update() {
     if (this.updateIfVisible && !this.sprite.visible) {
@@ -197,7 +204,7 @@ export class AnimationManager {
 
   /**
    * TBD.
-   * @param quantity - TBD.
+   * @param {number} quantity - TBD.
    */
   next(quantity) {
     if (this.currentAnim) {
@@ -208,7 +215,7 @@ export class AnimationManager {
 
   /**
    * TBD.
-   * @param quantity - TBD.
+   * @param {number} quantity - TBD.
    */
   previous(quantity) {
     if (this.currentAnim) {
@@ -219,7 +226,8 @@ export class AnimationManager {
 
   /**
    * TBD.
-   * @param name - TBD.
+   * @param {string} name - TBD.
+   * @returns {Animation} TBD.
    */
   getAnimation(name) {
     if (name && this._anims[name]) {
@@ -239,6 +247,7 @@ export class AnimationManager {
 
   /**
    * TBD.
+   * @returns {FrameData} TBD.
    */
   get frameData() {
     return this._frameData;
@@ -246,6 +255,7 @@ export class AnimationManager {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get frameTotal() {
     return this._frameData.total;
@@ -253,6 +263,7 @@ export class AnimationManager {
 
   /**
    * TBD.
+   * @returns {boolean} TBD.
    */
   get paused() {
     return this.currentAnim.isPaused;
@@ -267,6 +278,7 @@ export class AnimationManager {
 
   /**
    * TBD.
+   * @returns {string} TBD.
    */
   get name() {
     if (this.currentAnim) {
@@ -277,6 +289,7 @@ export class AnimationManager {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get frame() {
     if (this.currentFrame) {
@@ -301,6 +314,7 @@ export class AnimationManager {
 
   /**
    * TBD.
+   * @returns {string} TBD.
    */
   get frameName() {
     if (this.currentFrame) {

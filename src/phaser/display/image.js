@@ -33,6 +33,7 @@ export class Image extends DisplayObject {
     this.blendMode = BLEND_NORMAL;
     this.shader = null;
     this._frame = null;
+    this.pendingDestroy = false;
     /* if (this.texture.baseTexture.hasLoaded) {
       this.onTextureUpdate();
     } */
@@ -96,7 +97,7 @@ export class Image extends DisplayObject {
    * TBD.
    * @param {string} key - TBD.
    * @param frame - TBD.
-   * @param stopAnimation - TBD.
+   * @param {boolean} stopAnimation - TBD.
    */
   loadTexture(key, frame = 0, stopAnimation = true) {
     if (key === PENDING_ATLAS) {
@@ -217,6 +218,7 @@ export class Image extends DisplayObject {
 
   /**
    * TBD.
+   * @returns {string} TBD.
    */
   get frameName() {
     return this.animations.frameName;

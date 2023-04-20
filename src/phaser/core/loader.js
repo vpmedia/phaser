@@ -226,7 +226,7 @@ export class Loader {
    * @param {string} key - TBD.
    * @param {string} url - TBD.
    * @param data - TBD.
-   * @param callbackContext - TBD.
+   * @param {object} callbackContext - TBD.
    * @returns {Loader} TBD.
    */
   pack(key, url, data, callbackContext) {
@@ -458,8 +458,8 @@ export class Loader {
 
   /**
    * TBD.
-   * @param callback - TBD.
-   * @param callbackContext - TBD.
+   * @param {Function} callback - TBD.
+   * @param {object} callbackContext - TBD.
    * @returns {Loader} TBD.
    */
   withSyncPoint(callback, callbackContext) {

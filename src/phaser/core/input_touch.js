@@ -75,7 +75,7 @@ export class Touch {
 
   /**
    * TBD.
-   * @param event
+   * @param {TouchEvent} event - TBD.
    */
   onTouchStart(event) {
     this.event = event;
@@ -96,7 +96,7 @@ export class Touch {
 
   /**
    * TBD.
-   * @param event
+   * @param {TouchEvent} event - TBD.
    */
   onTouchCancel(event) {
     this.event = event;
@@ -116,7 +116,7 @@ export class Touch {
 
   /**
    * TBD.
-   * @param event
+   * @param {TouchEvent} event - TBD.
    */
   onTouchEnter(event) {
     this.event = event;
@@ -131,7 +131,7 @@ export class Touch {
 
   /**
    * TBD.
-   * @param event
+   * @param {TouchEvent} event - TBD.
    */
   onTouchLeave(event) {
     this.event = event;
@@ -143,7 +143,7 @@ export class Touch {
 
   /**
    * TBD.
-   * @param event
+   * @param {TouchEvent} event - TBD.
    */
   onTouchMove(event) {
     this.event = event;
@@ -158,7 +158,7 @@ export class Touch {
 
   /**
    * TBD.
-   * @param event
+   * @param {TouchEvent} event - TBD.
    */
   onTouchEnd(event) {
     this.event = event;
@@ -176,7 +176,7 @@ export class Touch {
 
   /**
    * TBD.
-   * @param event
+   * @param {TouchEvent} event - TBD.
    */
   eventPreventDefault(event) {
     if (this.preventDefault) {

@@ -1,16 +1,17 @@
 import { Game } from './game';
 import { Signal } from './signal';
+import { FrameData } from './frame_data';
 
 export class Animation {
   /**
    * TBD.
    * @param {Game} game - TBD.
    * @param parent - TBD.
-   * @param name - TBD.
-   * @param frameData - TBD.
+   * @param {string} name - TBD.
+   * @param {FrameData} frameData - TBD.
    * @param frames - TBD.
-   * @param frameRate - TBD.
-   * @param loop - TBD.
+   * @param {number} frameRate - TBD.
+   * @param {boolean} loop - TBD.
    */
   constructor(game, parent, name, frameData, frames, frameRate, loop = false) {
     this.game = game;
@@ -43,9 +44,10 @@ export class Animation {
 
   /**
    * TBD.
-   * @param frameRate - TBD.
-   * @param loop - TBD.
-   * @param killOnComplete - TBD.
+   * @param {number} frameRate - TBD.
+   * @param {boolean} loop - TBD.
+   * @param {boolean} killOnComplete - TBD.
+   * @returns {Animation} TBD.
    */
   play(frameRate, loop, killOnComplete) {
     if (typeof frameRate === 'number') {
@@ -95,6 +97,7 @@ export class Animation {
 
   /**
    * TBD.
+   * @returns {Animation} TBD.
    */
   reverse() {
     this.reversed = !this.reversed;
@@ -103,6 +106,7 @@ export class Animation {
 
   /**
    * TBD.
+   * @returns {Animation} TBD.
    */
   reverseOnce() {
     this.onComplete.addOnce(this.reverse, this);
@@ -111,8 +115,8 @@ export class Animation {
 
   /**
    * TBD.
-   * @param frameId - TBD.
-   * @param useLocalFrameIndex - TBD.
+   * @param {number|string} frameId - TBD.
+   * @param {boolean} useLocalFrameIndex - TBD.
    */
   setFrame(frameId, useLocalFrameIndex = false) {
     let frameIndex;
@@ -145,8 +149,8 @@ export class Animation {
 
   /**
    * TBD.
-   * @param resetFrame - TBD.
-   * @param dispatchComplete - TBD.
+   * @param {boolean} resetFrame - TBD.
+   * @param {boolean} dispatchComplete - TBD.
    */
   stop(resetFrame = false, dispatchComplete = false) {
     this.isPlaying = false;
@@ -184,6 +188,7 @@ export class Animation {
 
   /**
    * TBD.
+   * @returns {boolean} TBD.
    */
   update() {
     if (this.isPaused) {
@@ -242,8 +247,9 @@ export class Animation {
 
   /**
    * TBD.
-   * @param signalUpdate - TBD.
-   * @param fromPlay - TBD.
+   * @param {boolean} signalUpdate - TBD.
+   * @param {boolean} fromPlay - TBD.
+   * @returns {boolean} TBD.
    */
   updateCurrentFrame(signalUpdate, fromPlay = false) {
     if (!this._frameData || !this.currentFrame) {
@@ -266,7 +272,7 @@ export class Animation {
 
   /**
    * TBD.
-   * @param quantity - TBD.
+   * @param {number} quantity - TBD.
    */
   next(quantity = 1) {
     let frame = this._frameIndex + quantity;
@@ -285,7 +291,7 @@ export class Animation {
 
   /**
    * TBD.
-   * @param quantity - TBD.
+   * @param {number} quantity - TBD.
    */
   previous(quantity = 1) {
     let frame = this._frameIndex - quantity;
@@ -304,7 +310,7 @@ export class Animation {
 
   /**
    * TBD.
-   * @param frameData - TBD.
+   * @param {FrameData} frameData - TBD.
    */
   updateFrameData(frameData) {
     this._frameData = frameData;
@@ -355,6 +361,7 @@ export class Animation {
 
   /**
    * TBD.
+   * @returns {boolean} TBD.
    */
   get paused() {
     return this.isPaused;
@@ -374,6 +381,7 @@ export class Animation {
 
   /**
    * TBD.
+   * @returns {boolean} TBD.
    */
   get reversed() {
     return this.isReversed;
@@ -388,6 +396,7 @@ export class Animation {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get frameTotal() {
     return this._frames.length;
@@ -395,6 +404,7 @@ export class Animation {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get frame() {
     if (this.currentFrame !== null) {
@@ -419,6 +429,7 @@ export class Animation {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get speed() {
     return 1000 / this.delay;
@@ -435,6 +446,7 @@ export class Animation {
 
   /**
    * TBD.
+   * @returns {boolean} TBD.
    */
   get enableUpdate() {
     return this.onUpdate !== null;

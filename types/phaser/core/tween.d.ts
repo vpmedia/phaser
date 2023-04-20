@@ -24,7 +24,7 @@ export class Tween {
     properties: {};
     chainedTween: any;
     isPaused: boolean;
-    _onUpdateCallback: any;
+    _onUpdateCallback: Function;
     _onUpdateCallbackContext: any;
     _pausedTime: number;
     _codePaused: boolean;
@@ -130,10 +130,10 @@ export class Tween {
     loop(value?: boolean): Tween;
     /**
      * TBD.
-     * @param callback - TBD.
+     * @param {Function} callback - TBD.
      * @param callbackContext
      */
-    onUpdateCallback(callback: any, callbackContext: any): Tween;
+    onUpdateCallback(callback: Function, callbackContext: any): Tween;
     /**
      * TBD.
      */

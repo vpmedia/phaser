@@ -36,7 +36,7 @@ export class Timer {
    * @param delay - TBD.
    * @param loop
    * @param repeatCount
-   * @param callback - TBD.
+   * @param {Function} callback - TBD.
    * @param callbackContext
    * @param args - TBD.
    */
@@ -58,7 +58,7 @@ export class Timer {
   /**
    * TBD.
    * @param delay - TBD.
-   * @param callback - TBD.
+   * @param {Function} callback - TBD.
    * @param callbackContext
    * @param {...any} args
    */
@@ -70,7 +70,7 @@ export class Timer {
    * TBD.
    * @param delay - TBD.
    * @param repeatCount
-   * @param callback - TBD.
+   * @param {Function} callback - TBD.
    * @param callbackContext
    * @param {...any} args
    */
@@ -81,7 +81,7 @@ export class Timer {
   /**
    * TBD.
    * @param delay - TBD.
-   * @param callback - TBD.
+   * @param {Function} callback - TBD.
    * @param callbackContext
    * @param {...any} args
    */
@@ -117,7 +117,7 @@ export class Timer {
 
   /**
    * TBD.
-   * @param event - TBD.
+   * @param {Event} event - TBD.
    */
   remove(event) {
     for (let i = 0; i < this.events.length; i += 1) {

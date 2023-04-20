@@ -249,7 +249,7 @@ export class ScaleManager {
 
   /**
    * TBD.
-   * @param callback - TBD.
+   * @param {Function} callback - TBD.
    * @param context - TBD.
    */
   setResizeCallback(callback, context) {
@@ -428,7 +428,7 @@ export class ScaleManager {
 
   /**
    * TBD.
-   * @param event - TBD.
+   * @param {Event} event - TBD.
    */
   orientationChange(event) {
     this.event = event;
@@ -437,7 +437,7 @@ export class ScaleManager {
 
   /**
    * TBD.
-   * @param event - TBD.
+   * @param {Event} event - TBD.
    */
   windowResize(event) {
     this.event = event;
@@ -816,7 +816,7 @@ export class ScaleManager {
 
   /**
    * TBD.
-   * @param event - TBD.
+   * @param {Event} event - TBD.
    */
   fullScreenChange(event) {
     this.event = event;
@@ -835,7 +835,7 @@ export class ScaleManager {
 
   /**
    * TBD.
-   * @param event - TBD.
+   * @param {Event} event - TBD.
    */
   fullScreenError(event) {
     this.event = event;

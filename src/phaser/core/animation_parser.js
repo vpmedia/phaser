@@ -5,7 +5,7 @@ import { Game } from './game';
 /**
  * TBD.
  * @param {Game} game - TBD.
- * @param {object} key - TBD.
+ * @param {string} key - TBD.
  * @param {number} frameWidth - TBD.
  * @param {number} frameHeight - TBD.
  * @param {number} frameMax - TBD.

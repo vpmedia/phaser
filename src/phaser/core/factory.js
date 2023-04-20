@@ -21,7 +21,7 @@ export class GameObjectFactory {
    * @param {number} y - TBD.
    * @param {string} key - TBD.
    * @param frame - TBD.
-   * @param group - TBD.
+   * @param {Group} group - TBD.
    * @returns {Image} TBD.
    */
   image(x, y, key, frame, group = null) {
@@ -33,9 +33,9 @@ export class GameObjectFactory {
 
   /**
    * TBD.
-   * @param parent - TBD.
-   * @param name - TBD.
-   * @param addToStage - TBD.
+   * @param {Group} parent - TBD.
+   * @param {string} name - TBD.
+   * @param {boolean} addToStage - TBD.
    * @returns {Group} TBD.
    */
   group(parent, name, addToStage) {
@@ -48,7 +48,7 @@ export class GameObjectFactory {
    * @param {number} y - TBD.
    * @param text - TBD.
    * @param style - TBD.
-   * @param group - TBD.
+   * @param {Group} group - TBD.
    * @returns {Text} TBD.
    */
   text(x, y, text, style, group = null) {
@@ -61,13 +61,13 @@ export class GameObjectFactory {
    * @param {number} x - TBD.
    * @param {number} y - TBD.
    * @param {string} key - TBD.
-   * @param callback - TBD.
-   * @param callbackContext - TBD.
+   * @param {Function} callback - TBD.
+   * @param {object} callbackContext - TBD.
    * @param overFrame - TBD.
    * @param outFrame - TBD.
    * @param downFrame - TBD.
    * @param upFrame - TBD.
-   * @param group - TBD.
+   * @param {Group} group - TBD.
    * @returns {Button} TBD.
    */
   button(x, y, key, callback, callbackContext, overFrame, outFrame, downFrame, upFrame, group = null) {
@@ -81,7 +81,7 @@ export class GameObjectFactory {
    * TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
-   * @param group - TBD.
+   * @param {Group} group - TBD.
    * @returns {Graphics} TBD.
    */
   graphics(x, y, group = null) {
@@ -96,7 +96,7 @@ export class GameObjectFactory {
    * @param font - TBD.
    * @param text - TBD.
    * @param size - TBD.
-   * @param group - TBD.
+   * @param {Group} group - TBD.
    * @param align - TBD.
    * @returns {BitmapText} TBD.
    */

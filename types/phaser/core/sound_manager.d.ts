@@ -19,14 +19,14 @@ export class SoundManager {
     _sounds: any[];
     _watchList: ArraySet;
     _watching: boolean;
-    _watchCallback: any;
+    _watchCallback: Function;
     _watchContext: any;
     /**
      * TBD.
      */
     boot(): void;
     masterGain: any;
-    onUnlockEventBinded: (event: any) => void;
+    onUnlockEventBinded: (event: Event) => void;
     /**
      * TBD.
      */
@@ -37,9 +37,9 @@ export class SoundManager {
     removeUnlockHandlers(): void;
     /**
      * TBD.
-     * @param event - TBD.
+     * @param {Event} event - TBD.
      */
-    onUnlockEvent(event: any): void;
+    onUnlockEvent(event: Event): void;
     /**
      * TBD.
      */
@@ -60,10 +60,10 @@ export class SoundManager {
     /**
      * TBD.
      * @param files - TBD.
-     * @param callback - TBD.
-     * @param callbackContext - TBD.
+     * @param {Function} callback - TBD.
+     * @param {object} callbackContext - TBD.
      */
-    setDecodedCallback(files: any, callback: any, callbackContext: any): void;
+    setDecodedCallback(files: any, callback: Function, callbackContext: object): void;
     /**
      * TBD.
      */

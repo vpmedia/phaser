@@ -1,7 +1,7 @@
 export class ArraySet {
   /**
    * TBD.
-   * @param list - TBD.
+   * @param {object[]} list - TBD.
    */
   constructor(list = []) {
     this.position = 0;
@@ -10,7 +10,8 @@ export class ArraySet {
 
   /**
    * TBD.
-   * @param item - TBD.
+   * @param {object} item - TBD.
+   * @returns {object} TBD.
    */
   add(item) {
     if (!this.exists(item)) {
@@ -21,7 +22,8 @@ export class ArraySet {
 
   /**
    * TBD.
-   * @param item - TBD.
+   * @param {object} item - TBD.
+   * @returns {number} TBD.
    */
   getIndex(item) {
     return this.list.indexOf(item);
@@ -29,8 +31,9 @@ export class ArraySet {
 
   /**
    * TBD.
-   * @param property - TBD.
-   * @param value - TBD.
+   * @param {string} property - TBD.
+   * @param {object} value - TBD.
+   * @returns {object} TBD.
    */
   getByKey(property, value) {
     let i = this.list.length;
@@ -45,7 +48,8 @@ export class ArraySet {
 
   /**
    * TBD.
-   * @param item - TBD.
+   * @param {object} item - TBD.
+   * @returns {boolean} TBD.
    */
   exists(item) {
     return this.list.indexOf(item) > -1;
@@ -60,7 +64,8 @@ export class ArraySet {
 
   /**
    * TBD.
-   * @param item - TBD.
+   * @param {object} item - TBD.
+   * @returns {object} TBD.
    */
   remove(item) {
     const idx = this.list.indexOf(item);
@@ -74,7 +79,7 @@ export class ArraySet {
   /**
    * TBD.
    * @param {string} key - TBD.
-   * @param value - TBD.
+   * @param {object} value - TBD.
    */
   setAll(key, value) {
     let i = this.list.length;
@@ -103,7 +108,7 @@ export class ArraySet {
 
   /**
    * TBD.
-   * @param destroy - TBD.
+   * @param {boolean} destroy - TBD.
    */
   removeAll(destroy = false) {
     let i = this.list.length;
@@ -122,6 +127,7 @@ export class ArraySet {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get total() {
     return this.list.length;
@@ -129,6 +135,7 @@ export class ArraySet {
 
   /**
    * TBD.
+   * @returns {object} TBD.
    */
   get first() {
     this.position = 0;
@@ -140,6 +147,7 @@ export class ArraySet {
 
   /**
    * TBD.
+   * @returns {object} TBD.
    */
   get next() {
     if (this.position < this.list.length) {

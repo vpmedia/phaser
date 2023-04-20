@@ -30,36 +30,36 @@ export class Timer {
      * @param delay - TBD.
      * @param loop
      * @param repeatCount
-     * @param callback - TBD.
+     * @param {Function} callback - TBD.
      * @param callbackContext
      * @param args - TBD.
      */
-    create(delay: any, loop: any, repeatCount: any, callback: any, callbackContext: any, args: any): TimerEvent;
+    create(delay: any, loop: any, repeatCount: any, callback: Function, callbackContext: any, args: any): TimerEvent;
     /**
      * TBD.
      * @param delay - TBD.
-     * @param callback - TBD.
+     * @param {Function} callback - TBD.
      * @param callbackContext
      * @param {...any} args
      */
-    add(delay: any, callback: any, callbackContext: any, ...args: any[]): TimerEvent;
+    add(delay: any, callback: Function, callbackContext: any, ...args: any[]): TimerEvent;
     /**
      * TBD.
      * @param delay - TBD.
      * @param repeatCount
-     * @param callback - TBD.
+     * @param {Function} callback - TBD.
      * @param callbackContext
      * @param {...any} args
      */
-    repeat(delay: any, repeatCount: any, callback: any, callbackContext: any, ...args: any[]): TimerEvent;
+    repeat(delay: any, repeatCount: any, callback: Function, callbackContext: any, ...args: any[]): TimerEvent;
     /**
      * TBD.
      * @param delay - TBD.
-     * @param callback - TBD.
+     * @param {Function} callback - TBD.
      * @param callbackContext
      * @param {...any} args
      */
-    loop(delay: any, callback: any, callbackContext: any, ...args: any[]): TimerEvent;
+    loop(delay: any, callback: Function, callbackContext: any, ...args: any[]): TimerEvent;
     /**
      * TBD.
      * @param delay - TBD.
@@ -72,9 +72,9 @@ export class Timer {
     stop(clearEvents?: boolean): void;
     /**
      * TBD.
-     * @param event - TBD.
+     * @param {Event} event - TBD.
      */
-    remove(event: any): boolean;
+    remove(event: Event): boolean;
     /**
      * TBD.
      */
