@@ -12,6 +12,12 @@ import {
 } from './const';
 
 export class ScaleManager {
+  /**
+   *
+   * @param game
+   * @param width
+   * @param height
+   */
   constructor(game, width, height) {
     this.game = game;
     this.dom = new DOM(game.device);
@@ -90,6 +96,9 @@ export class ScaleManager {
     this.setupScale(width, height);
   }
 
+  /**
+   *
+   */
   boot() {
     // Configure device-dependent compatibility
     const compat = this.compatibility;
@@ -134,6 +143,10 @@ export class ScaleManager {
     }
   }
 
+  /**
+   *
+   * @param config
+   */
   parseConfig(config) {
     if (config.scaleMode !== undefined) {
       if (this._booted) {
@@ -152,6 +165,11 @@ export class ScaleManager {
     }
   }
 
+  /**
+   *
+   * @param width
+   * @param height
+   */
   setupScale(width, height) {
     let target;
     const rect = new Rectangle();
@@ -202,10 +220,18 @@ export class ScaleManager {
     this.updateDimensions(newWidth, newHeight, false);
   }
 
+  /**
+   *
+   */
   _gameResumed() {
     this.queueUpdate(true);
   }
 
+  /**
+   *
+   * @param width
+   * @param height
+   */
   setGameSize(width, height) {
     this._gameSize.setTo(0, 0, width, height);
     if (this.currentScaleMode !== SCALE_RESIZE) {
@@ -214,17 +240,32 @@ export class ScaleManager {
     this.queueUpdate(true);
   }
 
+  /**
+   *
+   * @param hScale
+   * @param vScale
+   * @param hTrim
+   * @param vTrim
+   */
   setUserScale(hScale, vScale, hTrim, vTrim) {
     this._userScaleFactor.setTo(hScale, vScale);
     this._userScaleTrim.setTo(hTrim | 0, vTrim | 0);
     this.queueUpdate(true);
   }
 
+  /**
+   *
+   * @param callback
+   * @param context
+   */
   setResizeCallback(callback, context) {
     this.onResize = callback;
     this.onResizeContext = context;
   }
 
+  /**
+   *
+   */
   signalSizeChange() {
     if (
       this.width !== this._lastReportedCanvasSize.width ||
@@ -245,6 +286,13 @@ export class ScaleManager {
     }
   }
 
+  /**
+   *
+   * @param minWidth
+   * @param minHeight
+   * @param maxWidth
+   * @param maxHeight
+   */
   setMinMax(minWidth, minHeight, maxWidth, maxHeight) {
     this.minWidth = minWidth;
     this.minHeight = minHeight;
@@ -256,6 +304,9 @@ export class ScaleManager {
     }
   }
 
+  /**
+   *
+   */
   preUpdate() {
     if (this.game.time.time < this._lastUpdate + this._updateThrottle) {
       return;
@@ -286,12 +337,21 @@ export class ScaleManager {
     this._lastUpdate = this.game.time.time;
   }
 
+  /**
+   *
+   */
   pauseUpdate() {
     this.preUpdate();
     // Updates at slowest.
     this._updateThrottle = this.trackParentInterval;
   }
 
+  /**
+   *
+   * @param width
+   * @param height
+   * @param resize
+   */
   updateDimensions(width, height, resize) {
     this.width = width * this.parentScaleFactor.x;
     this.height = height * this.parentScaleFactor.y;
@@ -305,6 +365,9 @@ export class ScaleManager {
     }
   }
 
+  /**
+   *
+   */
   updateScalingAndBounds() {
     this.scaleFactor.x = this.game.width / this.width;
     this.scaleFactor.y = this.game.height / this.height;
@@ -322,12 +385,21 @@ export class ScaleManager {
     }
   }
 
+  /**
+   *
+   * @param forceLandscape
+   * @param forcePortrait
+   */
   forceOrientation(forceLandscape = false, forcePortrait = false) {
     this.forceLandscape = forceLandscape;
     this.forcePortrait = forcePortrait;
     this.queueUpdate(true);
   }
 
+  /**
+   *
+   * @param orientation
+   */
   classifyOrientation(orientation) {
     if (orientation === 'portrait-primary' || orientation === 'portrait-secondary') {
       return 'portrait';
@@ -337,6 +409,9 @@ export class ScaleManager {
     return null;
   }
 
+  /**
+   *
+   */
   updateOrientationState() {
     const previousOrientation = this.screenOrientation;
     const previouslyIncorrect = this.incorrectOrientation;
@@ -358,20 +433,34 @@ export class ScaleManager {
     return changed || correctnessChanged;
   }
 
+  /**
+   *
+   * @param event
+   */
   orientationChange(event) {
     this.event = event;
     this.queueUpdate(true);
   }
 
+  /**
+   *
+   * @param event
+   */
   windowResize(event) {
     this.event = event;
     this.queueUpdate(true);
   }
 
+  /**
+   *
+   */
   refresh() {
     this.queueUpdate(true);
   }
 
+  /**
+   *
+   */
   updateLayout() {
     const scaleMode = this.currentScaleMode;
     if (scaleMode === SCALE_RESIZE) {
@@ -414,6 +503,10 @@ export class ScaleManager {
     this.reflowCanvas();
   }
 
+  /**
+   *
+   * @param target
+   */
   getParentBounds(target) {
     const bounds = target || new Rectangle();
     const parentNode = this.boundingParent;
@@ -452,6 +545,11 @@ export class ScaleManager {
     return bounds;
   }
 
+  /**
+   *
+   * @param horizontal
+   * @param vertical
+   */
   alignCanvas(horizontal, vertical) {
     const parentBounds = this.getParentBounds(this._tempBounds);
     const canvas = this.game.canvas;
@@ -495,12 +593,18 @@ export class ScaleManager {
     margin.y = margin.top;
   }
 
+  /**
+   *
+   */
   reflowGame() {
     this.resetCanvas('', '');
     const bounds = this.getParentBounds(this._tempBounds);
     this.updateDimensions(bounds.width, bounds.height, true);
   }
 
+  /**
+   *
+   */
   reflowCanvas() {
     if (!this.incorrectOrientation) {
       this.width = Math.max(this.minWidth || 0, Math.min(this.maxWidth || this.width, this.width));
@@ -520,6 +624,11 @@ export class ScaleManager {
     this.updateScalingAndBounds();
   }
 
+  /**
+   *
+   * @param cssWidth
+   * @param cssHeight
+   */
   resetCanvas(cssWidth = this.width + 'px', cssHeight = this.height + 'px') {
     const canvas = this.game.canvas;
     if (!this.compatibility.noMargins) {
@@ -532,6 +641,10 @@ export class ScaleManager {
     canvas.style.height = cssHeight;
   }
 
+  /**
+   *
+   * @param force
+   */
   queueUpdate(force) {
     if (force) {
       this._parentBounds.width = 0;
@@ -540,15 +653,25 @@ export class ScaleManager {
     this._updateThrottle = this._updateThrottleReset;
   }
 
+  /**
+   *
+   */
   reset() {
     // pass
   }
 
+  /**
+   *
+   */
   setMaximum() {
     this.width = this.dom.visualBounds.width;
     this.height = this.dom.visualBounds.height;
   }
 
+  /**
+   *
+   * @param expanding
+   */
   setShowAll(expanding = false) {
     const bounds = this.getParentBounds(this._tempBounds);
     const width = bounds.width;
@@ -563,6 +686,9 @@ export class ScaleManager {
     this.height = Math.round(this.game.height * multiplier);
   }
 
+  /**
+   *
+   */
   setExactFit() {
     const bounds = this.getParentBounds(this._tempBounds);
     this.width = bounds.width;
@@ -579,6 +705,9 @@ export class ScaleManager {
     }
   }
 
+  /**
+   *
+   */
   createFullScreenTarget() {
     const fsTarget = document.createElement('div');
     fsTarget.style.margin = '0';
@@ -587,6 +716,11 @@ export class ScaleManager {
     return fsTarget;
   }
 
+  /**
+   *
+   * @param antialias
+   * @param allowTrampoline
+   */
   startFullScreen(antialias, allowTrampoline) {
     if (this.isFullScreen) {
       return false;
@@ -640,6 +774,9 @@ export class ScaleManager {
     return true;
   }
 
+  /**
+   *
+   */
   stopFullScreen() {
     if (!this.isFullScreen || !this.compatibility.supportsFullScreen) {
       return false;
@@ -649,6 +786,9 @@ export class ScaleManager {
     return true;
   }
 
+  /**
+   *
+   */
   cleanupCreatedTarget() {
     const fsTarget = this._createdFullScreenTarget;
     if (fsTarget && fsTarget.parentNode) {
@@ -661,6 +801,10 @@ export class ScaleManager {
     this._createdFullScreenTarget = null;
   }
 
+  /**
+   *
+   * @param enteringFullscreen
+   */
   prepScreenMode(enteringFullscreen) {
     const fsTarget = this._createdFullScreenTarget || this.fullScreenTarget;
     if (!fsTarget) {
@@ -691,6 +835,10 @@ export class ScaleManager {
     }
   }
 
+  /**
+   *
+   * @param event
+   */
   fullScreenChange(event) {
     this.event = event;
     if (this.isFullScreen) {
@@ -706,12 +854,19 @@ export class ScaleManager {
     this.onFullScreenChange.dispatch(this, this.width, this.height);
   }
 
+  /**
+   *
+   * @param event
+   */
   fullScreenError(event) {
     this.event = event;
     this.cleanupCreatedTarget();
     this.onFullScreenError.dispatch(this);
   }
 
+  /**
+   *
+   */
   destroy() {
     this.game.onResume.remove(this._gameResumed, this);
     window.removeEventListener('orientationchange', this._orientationChange, false);
@@ -729,6 +884,9 @@ export class ScaleManager {
     }
   }
 
+  /**
+   *
+   */
   get boundingParent() {
     if (
       this.parentIsWindow ||
@@ -740,10 +898,16 @@ export class ScaleManager {
     return parentNode || null;
   }
 
+  /**
+   *
+   */
   get scaleMode() {
     return this._scaleMode;
   }
 
+  /**
+   *
+   */
   set scaleMode(value) {
     if (value !== this._scaleMode) {
       if (!this.isFullScreen) {
@@ -755,10 +919,16 @@ export class ScaleManager {
     // return this._scaleMode;
   }
 
+  /**
+   *
+   */
   get fullScreenScaleMode() {
     return this._fullScreenScaleMode;
   }
 
+  /**
+   *
+   */
   set fullScreenScaleMode(value) {
     if (value !== this._fullScreenScaleMode) {
       // If in fullscreen then need a wee bit more work
@@ -774,18 +944,30 @@ export class ScaleManager {
     // return this._fullScreenScaleMode;
   }
 
+  /**
+   *
+   */
   get currentScaleMode() {
     return this.isFullScreen ? this._fullScreenScaleMode : this._scaleMode;
   }
 
+  /**
+   *
+   */
   get pageAlignHorizontally() {
     return this._pageAlignHorizontally;
   }
 
+  /**
+   *
+   */
   get pageAlignVertically() {
     return this._pageAlignVertically;
   }
 
+  /**
+   *
+   */
   get isFullScreen() {
     return !!(
       document.fullscreenElement ||
@@ -795,18 +977,30 @@ export class ScaleManager {
     );
   }
 
+  /**
+   *
+   */
   get isPortrait() {
     return this.classifyOrientation(this.screenOrientation) === 'portrait';
   }
 
+  /**
+   *
+   */
   get isLandscape() {
     return this.classifyOrientation(this.screenOrientation) === 'landscape';
   }
 
+  /**
+   *
+   */
   get isGamePortrait() {
     return this.height > this.width;
   }
 
+  /**
+   *
+   */
   get isGameLandscape() {
     return this.width > this.height;
   }

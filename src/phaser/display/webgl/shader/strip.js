@@ -4,6 +4,10 @@ import { compileProgram } from '../util';
 // the next one is used for rendering triangle strips
 
 export class StripShader {
+  /**
+   *
+   * @param gl
+   */
   constructor(gl) {
     this.gl = gl;
     this._UID = generateShaderID();
@@ -41,6 +45,9 @@ export class StripShader {
     this.init();
   }
 
+  /**
+   *
+   */
   init() {
     const gl = this.gl;
     const program = compileProgram(gl, this.vertexSrc, this.fragmentSrc);
@@ -60,6 +67,9 @@ export class StripShader {
     this.program = program;
   }
 
+  /**
+   *
+   */
   destroy() {
     this.gl.deleteProgram(this.program);
     this.uniforms = null;

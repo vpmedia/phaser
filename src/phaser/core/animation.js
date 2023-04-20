@@ -1,6 +1,16 @@
 import { Signal } from  './signal';
 
 export class Animation {
+  /**
+   *
+   * @param game
+   * @param parent
+   * @param name
+   * @param frameData
+   * @param frames
+   * @param frameRate
+   * @param loop
+   */
   constructor(game, parent, name, frameData, frames, frameRate, loop = false) {
     this.game = game;
     this._parent = parent;
@@ -30,6 +40,12 @@ export class Animation {
     this.game.onResume.add(this.onResume, this);
   }
 
+  /**
+   *
+   * @param frameRate
+   * @param loop
+   * @param killOnComplete
+   */
   play(frameRate, loop, killOnComplete) {
     if (typeof frameRate === 'number') {
       //  If they set a new frame rate then use it, otherwise use the one set on creation
@@ -58,6 +74,9 @@ export class Animation {
     return this;
   }
 
+  /**
+   *
+   */
   restart() {
     this.isPlaying = true;
     this.isFinished = false;
@@ -73,16 +92,27 @@ export class Animation {
     this.onStart.dispatch(this._parent, this);
   }
 
+  /**
+   *
+   */
   reverse() {
     this.reversed = !this.reversed;
     return this;
   }
 
+  /**
+   *
+   */
   reverseOnce() {
     this.onComplete.addOnce(this.reverse, this);
     return this.reverse();
   }
 
+  /**
+   *
+   * @param frameId
+   * @param useLocalFrameIndex
+   */
   setFrame(frameId, useLocalFrameIndex = false) {
     let frameIndex;
     //  Find the index to the desired frame.
@@ -112,6 +142,11 @@ export class Animation {
     }
   }
 
+  /**
+   *
+   * @param resetFrame
+   * @param dispatchComplete
+   */
   stop(resetFrame = false, dispatchComplete = false) {
     this.isPlaying = false;
     this.isFinished = true;
@@ -128,18 +163,27 @@ export class Animation {
     }
   }
 
+  /**
+   *
+   */
   onPause() {
     if (this.isPlaying) {
       this._frameDiff = this._timeNextFrame - this.game.time.time;
     }
   }
 
+  /**
+   *
+   */
   onResume() {
     if (this.isPlaying) {
       this._timeNextFrame = this.game.time.time + this._frameDiff;
     }
   }
 
+  /**
+   *
+   */
   update() {
     if (this.isPaused) {
       return false;
@@ -195,6 +239,11 @@ export class Animation {
     return false;
   }
 
+  /**
+   *
+   * @param signalUpdate
+   * @param fromPlay
+   */
   updateCurrentFrame(signalUpdate, fromPlay = false) {
     if (!this._frameData || !this.currentFrame) {
       // The animation is already destroyed, probably from a callback
@@ -214,6 +263,10 @@ export class Animation {
     return true;
   }
 
+  /**
+   *
+   * @param quantity
+   */
   next(quantity = 1) {
     let frame = this._frameIndex + quantity;
     if (frame >= this._frames.length) {
@@ -229,6 +282,10 @@ export class Animation {
     }
   }
 
+  /**
+   *
+   * @param quantity
+   */
   previous(quantity = 1) {
     let frame = this._frameIndex - quantity;
     if (frame < 0) {
@@ -244,6 +301,10 @@ export class Animation {
     }
   }
 
+  /**
+   *
+   * @param frameData
+   */
   updateFrameData(frameData) {
     this._frameData = frameData;
     this.currentFrame = this._frameData
@@ -251,6 +312,9 @@ export class Animation {
       : null;
   }
 
+  /**
+   *
+   */
   destroy() {
     if (!this._frameData) {
       // Already destroyed
@@ -272,6 +336,9 @@ export class Animation {
     }
   }
 
+  /**
+   *
+   */
   complete() {
     this._frameIndex = this._frames.length - 1;
     this.currentFrame = this._frameData.getFrame(this._frames[this._frameIndex]);
@@ -285,10 +352,16 @@ export class Animation {
     }
   }
 
+  /**
+   *
+   */
   get paused() {
     return this.isPaused;
   }
 
+  /**
+   *
+   */
   set paused(value) {
     this.isPaused = value;
     if (value) {
@@ -298,18 +371,30 @@ export class Animation {
     }
   }
 
+  /**
+   *
+   */
   get reversed() {
     return this.isReversed;
   }
 
+  /**
+   *
+   */
   set reversed(value) {
     this.isReversed = value;
   }
 
+  /**
+   *
+   */
   get frameTotal() {
     return this._frames.length;
   }
 
+  /**
+   *
+   */
   get frame() {
     if (this.currentFrame !== null) {
       return this.currentFrame.index;
@@ -317,6 +402,9 @@ export class Animation {
     return this._frameIndex;
   }
 
+  /**
+   *
+   */
   set frame(value) {
     this.currentFrame = this._frameData.getFrame(this._frames[value]);
     if (this.currentFrame !== null) {
@@ -328,20 +416,32 @@ export class Animation {
     }
   }
 
+  /**
+   *
+   */
   get speed() {
     return 1000 / this.delay;
   }
 
+  /**
+   *
+   */
   set speed(value) {
     if (value > 0) {
       this.delay = 1000 / value;
     }
   }
 
+  /**
+   *
+   */
   get enableUpdate() {
     return this.onUpdate !== null;
   }
 
+  /**
+   *
+   */
   set enableUpdate(value) {
     if (value && this.onUpdate === null) {
       this.onUpdate = new Signal();

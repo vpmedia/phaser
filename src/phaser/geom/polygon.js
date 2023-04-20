@@ -3,6 +3,10 @@ import { clone } from './util/polygon';
 import { GEOM_POLYGON } from '../core/const';
 
 export class Polygon {
+  /**
+   *
+   * @param points
+   */
   constructor(points = null) {
     this.area = 0;
     this._points = [];
@@ -14,6 +18,10 @@ export class Polygon {
     }
   }
 
+  /**
+   *
+   * @param output
+   */
   toNumberArray(output = []) {
     for (let i = 0; i < this._points.length; i += 1) {
       if (typeof this._points[i] === 'number') {
@@ -28,16 +36,27 @@ export class Polygon {
     return output;
   }
 
+  /**
+   *
+   */
   flatten() {
     this._points = this.toNumberArray();
     this.flattened = true;
     return this;
   }
 
+  /**
+   *
+   */
   clone() {
     return clone(this);
   }
 
+  /**
+   *
+   * @param x
+   * @param y
+   */
   contains(x, y) {
     //  Adapted from http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html by Jonas Raoni Soares Silva
     let inside = false;
@@ -71,6 +90,10 @@ export class Polygon {
     return inside;
   }
 
+  /**
+   *
+   * @param points
+   */
   setTo(points) {
     this.area = 0;
     this._points = [];
@@ -105,6 +128,10 @@ export class Polygon {
     return this;
   }
 
+  /**
+   *
+   * @param y0
+   */
   calculateArea(y0) {
     let p1;
     let p2;
@@ -124,10 +151,16 @@ export class Polygon {
     return this.area;
   }
 
+  /**
+   *
+   */
   get points() {
     return this._points;
   }
 
+  /**
+   *
+   */
   set points(value) {
     if (value !== null) {
       this.setTo(value);

@@ -1,11 +1,18 @@
 import { cloneFrameData } from './frame_util';
 
 export class FrameData {
+  /**
+   *
+   */
   constructor() {
     this._frames = [];
     this._frameNames = [];
   }
 
+  /**
+   *
+   * @param frame
+   */
   addFrame(frame) {
     frame.index = this._frames.length;
     this._frames.push(frame);
@@ -15,6 +22,10 @@ export class FrameData {
     return frame;
   }
 
+  /**
+   *
+   * @param index
+   */
   getFrame(index = 0) {
     if (index >= this._frames.length) {
       index = 0;
@@ -22,6 +33,10 @@ export class FrameData {
     return this._frames[index];
   }
 
+  /**
+   *
+   * @param name
+   */
   getFrameByName(name) {
     if (typeof this._frameNames[name] === 'number') {
       return this._frames[this._frameNames[name]];
@@ -29,6 +44,10 @@ export class FrameData {
     return null;
   }
 
+  /**
+   *
+   * @param name
+   */
   checkFrameName(name) {
     if (this._frameNames[name] == null) {
       return false;
@@ -36,10 +55,19 @@ export class FrameData {
     return true;
   }
 
+  /**
+   *
+   */
   clone() {
     return cloneFrameData(this);
   }
 
+  /**
+   *
+   * @param start
+   * @param end
+   * @param output
+   */
   getFrameRange(start, end, output = null) {
     const result = output || [];
     for (let i = start; i <= end; i += 1) {
@@ -48,6 +76,12 @@ export class FrameData {
     return result;
   }
 
+  /**
+   *
+   * @param frames
+   * @param useNumericIndex
+   * @param output
+   */
   getFrameIndexes(frames, useNumericIndex = true, output = null) {
     const result = output || [];
     if (frames && frames.length > 0) {
@@ -66,11 +100,17 @@ export class FrameData {
     return result;
   }
 
+  /**
+   *
+   */
   destroy() {
     this._frames = null;
     this._frameNames = null;
   }
 
+  /**
+   *
+   */
   get total() {
     return this._frames.length;
   }

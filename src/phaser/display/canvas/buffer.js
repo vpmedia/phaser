@@ -1,6 +1,11 @@
 import { create, removeByCanvas } from './pool';
 
 export class CanvasBuffer {
+  /**
+   *
+   * @param width
+   * @param height
+   */
   constructor(width, height) {
     this.width = width;
     this.height = height;
@@ -10,11 +15,19 @@ export class CanvasBuffer {
     this.canvas.height = height;
   }
 
+  /**
+   *
+   */
   clear() {
     this.context.setTransform(1, 0, 0, 1, 0, 0);
     this.context.clearRect(0, 0, this.width, this.height);
   }
 
+  /**
+   *
+   * @param width
+   * @param height
+   */
   resize(width, height) {
     this.width = width;
     this.height = height;
@@ -22,6 +35,9 @@ export class CanvasBuffer {
     this.canvas.height = height;
   }
 
+  /**
+   *
+   */
   destroy() {
     removeByCanvas(this.canvas);
   }

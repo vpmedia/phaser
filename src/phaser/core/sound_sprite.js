@@ -1,4 +1,9 @@
 export class SoundSprite {
+  /**
+   *
+   * @param game
+   * @param key
+   */
   constructor(game, key) {
     this.game = game;
     this.key = key;
@@ -19,10 +24,19 @@ export class SoundSprite {
     }
   }
 
+  /**
+   *
+   * @param marker
+   * @param volume
+   */
   play(marker, volume = 1) {
     return this.sounds[marker].play(marker, null, volume);
   }
 
+  /**
+   *
+   * @param marker
+   */
   stop(marker) {
     if (!marker) {
       for (let key in this.sounds) {
@@ -33,6 +47,10 @@ export class SoundSprite {
     }
   }
 
+  /**
+   *
+   * @param marker
+   */
   get(marker) {
     return this.sounds[marker];
   }

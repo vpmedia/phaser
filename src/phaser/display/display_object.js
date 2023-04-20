@@ -36,6 +36,9 @@ export class DisplayObject {
     this.ignoreChildInput = false;
   }
 
+  /**
+   *
+   */
   destroy() {
     if (this.children) {
       let i = this.children.length;
@@ -67,10 +70,19 @@ export class DisplayObject {
     this.destroyCachedSprite();
   }
 
+  /**
+   *
+   * @param child
+   */
   addChild(child) {
     return this.addChildAt(child, this.children.length);
   }
 
+  /**
+   *
+   * @param child
+   * @param index
+   */
   addChildAt(child, index) {
     if (index >= 0 && index <= this.children.length) {
       if (child.parent) {
@@ -89,6 +101,11 @@ export class DisplayObject {
     );
   }
 
+  /**
+   *
+   * @param child
+   * @param child2
+   */
   swapChildren(child, child2) {
     if (child === child2) {
       return;
@@ -104,6 +121,10 @@ export class DisplayObject {
     this.children[index2] = child;
   }
 
+  /**
+   *
+   * @param child
+   */
   getChildIndex(child) {
     const index = this.children.indexOf(child);
     if (index === -1) {
@@ -112,6 +133,11 @@ export class DisplayObject {
     return index;
   }
 
+  /**
+   *
+   * @param child
+   * @param index
+   */
   setChildIndex(child, index) {
     if (index < 0 || index >= this.children.length) {
       throw new Error('The supplied index is out of bounds');
@@ -121,6 +147,10 @@ export class DisplayObject {
     this.children.splice(index, 0, child); // add at new position
   }
 
+  /**
+   *
+   * @param index
+   */
   getChildAt(index) {
     if (index < 0 || index >= this.children.length) {
       throw new Error(
@@ -132,6 +162,10 @@ export class DisplayObject {
     return this.children[index];
   }
 
+  /**
+   *
+   * @param child
+   */
   removeChild(child) {
     const index = this.children.indexOf(child);
     if (index === -1) {
@@ -140,6 +174,10 @@ export class DisplayObject {
     return this.removeChildAt(index);
   }
 
+  /**
+   *
+   * @param index
+   */
   removeChildAt(index) {
     const child = this.getChildAt(index);
     if (child) {
@@ -149,6 +187,11 @@ export class DisplayObject {
     return child;
   }
 
+  /**
+   *
+   * @param beginIndex
+   * @param endIndex
+   */
   removeChildren(beginIndex, endIndex) {
     if (beginIndex === undefined) {
       beginIndex = 0;
@@ -171,6 +214,10 @@ export class DisplayObject {
     throw new Error('removeChildren: Range Error, numeric values are outside the acceptable range');
   }
 
+  /**
+   *
+   * @param parent
+   */
   updateTransform(parent) {
     if (!parent && !this.parent) {
       return this;
@@ -254,6 +301,10 @@ export class DisplayObject {
     return this;
   }
 
+  /**
+   *
+   * @param targetCoordinateSpace
+   */
   getBounds(targetCoordinateSpace) {
     const isTargetCoordinateSpaceDisplayObject =
       targetCoordinateSpace && targetCoordinateSpace.contains !== undefined;
@@ -352,10 +403,17 @@ export class DisplayObject {
     return bounds;
   }
 
+  /**
+   *
+   */
   getLocalBounds() {
     return this.getBounds(this);
   }
 
+  /**
+   *
+   * @param child
+   */
   contains(child) {
     if (!child) {
       return false;
@@ -366,6 +424,10 @@ export class DisplayObject {
     return this.contains(child.parent);
   }
 
+  /**
+   *
+   * @param renderSession
+   */
   renderWebGL(renderSession) {
     if (!this.visible || this.alpha <= 0) {
       return;
@@ -396,6 +458,10 @@ export class DisplayObject {
     }
   }
 
+  /**
+   *
+   * @param renderSession
+   */
   renderCanvas(renderSession) {
     if (!this.visible || this.alpha <= 0) {
       return;
@@ -411,28 +477,49 @@ export class DisplayObject {
     }
   }
 
+  /**
+   *
+   */
   preUpdate() {
     // override
   }
 
+  /**
+   *
+   */
   update() {
     // override
   }
 
+  /**
+   *
+   */
   postUpdate() {
     // override
   }
 
+  /**
+   *
+   */
   generateTexture() {
     // TODO
     console.warn('display_object.generateTexture() is not implemented');
   }
 
+  /**
+   *
+   * @param position
+   */
   toGlobal(position) {
     this.updateTransform();
     return this.worldTransform.apply(position);
   }
 
+  /**
+   *
+   * @param position
+   * @param from
+   */
   toLocal(position, from) {
     if (from) {
       position = from.toGlobal(position);
@@ -441,6 +528,10 @@ export class DisplayObject {
     return this.worldTransform.applyInverse(position);
   }
 
+  /**
+   *
+   * @param renderSession
+   */
   renderCachedSprite(renderSession) {
     if (!this._cachedSprite) {
       return;
@@ -453,10 +544,16 @@ export class DisplayObject {
     }
   }
 
+  /**
+   *
+   */
   generateCachedSprite() {
     // TODO
   }
 
+  /**
+   *
+   */
   destroyCachedSprite() {
     if (!this._cachedSprite) {
       return;
@@ -467,10 +564,16 @@ export class DisplayObject {
 
   // GETTER SETTER
 
+  /**
+   *
+   */
   get width() {
     return this.getLocalBounds().width * this.scale.x;
   }
 
+  /**
+   *
+   */
   set width(value) {
     const width = this.getLocalBounds().width;
     if (width !== 0) {
@@ -481,10 +584,16 @@ export class DisplayObject {
     this._width = value;
   }
 
+  /**
+   *
+   */
   get height() {
     return this.getLocalBounds().height * this.scale.y;
   }
 
+  /**
+   *
+   */
   set height(value) {
     const height = this.getLocalBounds().height;
     if (height !== 0) {
@@ -495,22 +604,37 @@ export class DisplayObject {
     this._height = value;
   }
 
+  /**
+   *
+   */
   get x() {
     return this.position.x;
   }
 
+  /**
+   *
+   */
   set x(value) {
     this.position.x = value;
   }
 
+  /**
+   *
+   */
   get y() {
     return this.position.y;
   }
 
+  /**
+   *
+   */
   set y(value) {
     this.position.y = value;
   }
 
+  /**
+   *
+   */
   get worldVisible() {
     if (!this.visible) {
       return false;
@@ -530,10 +654,16 @@ export class DisplayObject {
 
   // MASK
 
+  /**
+   *
+   */
   get mask() {
     return this._mask;
   }
 
+  /**
+   *
+   */
   set mask(value) {
     if (this._mask) {
       this._mask.isMask = false;
@@ -546,58 +676,100 @@ export class DisplayObject {
 
   // BOUNDS
 
+  /**
+   *
+   */
   get offsetX() {
     return this.anchor.x * this.width;
   }
 
+  /**
+   *
+   */
   get offsetY() {
     return this.anchor.y * this.height;
   }
 
+  /**
+   *
+   */
   get centerX() {
     return this.x - this.offsetX + this.width * 0.5;
   }
 
+  /**
+   *
+   */
   set centerX(value) {
     this.x = value + this.offsetX - this.width * 0.5;
   }
 
+  /**
+   *
+   */
   get centerY() {
     return this.y - this.offsetY + this.height * 0.5;
   }
 
+  /**
+   *
+   */
   set centerY(value) {
     this.y = value + this.offsetY - this.height * 0.5;
   }
 
+  /**
+   *
+   */
   get left() {
     return this.x - this.offsetX;
   }
 
+  /**
+   *
+   */
   set left(value) {
     this.x = value + this.offsetX;
   }
 
+  /**
+   *
+   */
   get right() {
     return this.x + this.width - this.offsetX;
   }
 
+  /**
+   *
+   */
   set right(value) {
     this.x = value - this.width + this.offsetX;
   }
 
+  /**
+   *
+   */
   get top() {
     return this.y - this.offsetY;
   }
 
+  /**
+   *
+   */
   set top(value) {
     this.y = value + this.offsetY;
   }
 
+  /**
+   *
+   */
   get bottom() {
     return this.y + this.height - this.offsetY;
   }
 
+  /**
+   *
+   */
   set bottom(value) {
     this.y = value - this.height + this.offsetY;
   }

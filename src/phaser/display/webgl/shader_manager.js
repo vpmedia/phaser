@@ -5,6 +5,9 @@ import { FastShader } from './shader/fast';
 import { StripShader } from './shader/strip';
 
 export class WebGLShaderManager {
+  /**
+   *
+   */
   constructor() {
     this.gl = null;
     this.primitiveShader = null;
@@ -21,6 +24,10 @@ export class WebGLShaderManager {
     this.stack = [];
   }
 
+  /**
+   *
+   * @param gl
+   */
   setContext(gl) {
     this.gl = gl;
     this.primitiveShader = new PrimitiveShader(gl);
@@ -31,6 +38,10 @@ export class WebGLShaderManager {
     this.setShader(this.defaultShader);
   }
 
+  /**
+   *
+   * @param attribs
+   */
   setAttribs(attribs) {
     // reset temp state
     let i;
@@ -55,6 +66,10 @@ export class WebGLShaderManager {
     }
   }
 
+  /**
+   *
+   * @param shader
+   */
   setShader(shader) {
     if (this._currentId === shader._UID) {
       return false;
@@ -66,6 +81,9 @@ export class WebGLShaderManager {
     return true;
   }
 
+  /**
+   *
+   */
   destroy() {
     this.attribState = null;
     this.tempAttribState = null;

@@ -8,6 +8,11 @@ const WHEEL_UP = 1;
 const WHEEL_DOWN = -1; */
 
 class WheelEventProxy {
+  /**
+   *
+   * @param scaleFactor
+   * @param deltaMode
+   */
   constructor(scaleFactor, deltaMode) {
     this._scaleFactor = scaleFactor;
     this._deltaMode = deltaMode;
@@ -16,6 +21,10 @@ class WheelEventProxy {
     this.deltaZ = { value: 0 };
   }
 
+  /**
+   *
+   * @param event
+   */
   bindEvent(event) {
     // TODO
     console.warn('input_mouse.bindEvent() is not implemented');
@@ -34,20 +43,33 @@ class WheelEventProxy {
     return this;
   }
 
+  /**
+   *
+   */
   get deltaMode() {
     return this._deltaMode;
   }
 
+  /**
+   *
+   */
   get deltaY() {
     return this._scaleFactor * (this.originalEvent.wheelDelta || this.originalEvent.detail) || 0;
   }
 
+  /**
+   *
+   */
   get deltaX() {
     return this._scaleFactor * this.originalEvent.wheelDeltaX || 0;
   }
 }
 
 export class Mouse {
+  /**
+   *
+   * @param game
+   */
   constructor(game) {
     this.game = game;
     this.input = game.input;
@@ -73,6 +95,9 @@ export class Mouse {
     this._wheelEvent = null;
   }
 
+  /**
+   *
+   */
   start() {
     if (this.game.device.android && this.game.device.chrome === false) {
       //  Android stock browser fires mouse events even if you preventDefault on the touchStart, so ...
@@ -105,6 +130,9 @@ export class Mouse {
     }
   }
 
+  /**
+   *
+   */
   stop() {
     const canvas = this.game.canvas;
     canvas.removeEventListener('mousedown', this._onMouseDown, true);
@@ -120,6 +148,10 @@ export class Mouse {
     window.removeEventListener('mouseout', this._onMouseOutGlobal, true);
   }
 
+  /**
+   *
+   * @param event
+   */
   onMouseDown(event) {
     this.event = event;
     this.eventPreventDefault(event);
@@ -133,6 +165,10 @@ export class Mouse {
     this.input.mousePointer.start(event);
   }
 
+  /**
+   *
+   * @param event
+   */
   onMouseMove(event) {
     this.event = event;
     this.eventPreventDefault(event);
@@ -146,6 +182,10 @@ export class Mouse {
     this.input.mousePointer.move(event);
   }
 
+  /**
+   *
+   * @param event
+   */
   onMouseUp(event) {
     this.event = event;
     this.eventPreventDefault(event);
@@ -159,6 +199,10 @@ export class Mouse {
     this.input.mousePointer.stop(event);
   }
 
+  /**
+   *
+   * @param event
+   */
   onMouseUpGlobal(event) {
     if (!this.input.mousePointer.withinGame) {
       if (this.mouseUpCallback) {
@@ -169,6 +213,10 @@ export class Mouse {
     }
   }
 
+  /**
+   *
+   * @param event
+   */
   onMouseOutGlobal(event) {
     this.event = event;
     this.eventPreventDefault(event);
@@ -184,6 +232,10 @@ export class Mouse {
     this.input.mousePointer.stop(event);
   }
 
+  /**
+   *
+   * @param event
+   */
   onMouseOut(event) {
     this.event = event;
     this.eventPreventDefault(event);
@@ -200,6 +252,10 @@ export class Mouse {
     }
   }
 
+  /**
+   *
+   * @param event
+   */
   onMouseOver(event) {
     this.event = event;
     this.eventPreventDefault(event);
@@ -209,6 +265,10 @@ export class Mouse {
     }
   }
 
+  /**
+   *
+   * @param event
+   */
   onMouseWheel(event) {
     if (this._wheelEvent) {
       event = this._wheelEvent.bindEvent(event);
@@ -222,6 +282,10 @@ export class Mouse {
     }
   }
 
+  /**
+   *
+   * @param event
+   */
   eventPreventDefault(event) {
     if (this.capture) {
       if (typeof event.cancelable !== 'boolean' || event.cancelable) {

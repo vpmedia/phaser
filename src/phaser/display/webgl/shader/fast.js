@@ -4,6 +4,10 @@ import { compileProgram } from '../util';
 // this shader is used for the fast sprite rendering
 
 export class FastShader {
+  /**
+   *
+   * @param gl
+   */
   constructor(gl) {
     this.gl = gl;
     this._UID = generateShaderID();
@@ -50,6 +54,9 @@ export class FastShader {
     this.init();
   }
 
+  /**
+   *
+   */
   init() {
     const gl = this.gl;
     const program = compileProgram(gl, this.vertexSrc, this.fragmentSrc);
@@ -87,6 +94,9 @@ export class FastShader {
     this.program = program;
   }
 
+  /**
+   *
+   */
   destroy() {
     this.gl.deleteProgram(this.program);
     this.uniforms = null;

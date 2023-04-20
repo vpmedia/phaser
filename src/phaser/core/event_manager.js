@@ -1,6 +1,10 @@
 import { Signal } from  './signal';
 
 export class EventManager {
+  /**
+   *
+   * @param sprite
+   */
   constructor(sprite) {
     this.parent = sprite;
     this._onAddedToGroup = null;
@@ -20,6 +24,9 @@ export class EventManager {
     this._onAnimationLoop = null;
   }
 
+  /**
+   *
+   */
   destroy() {
     this._parent = null;
     if (this._onDestroy) {
@@ -69,6 +76,9 @@ export class EventManager {
     }
   }
 
+  /**
+   *
+   */
   get onAddedToGroup() {
     if (!this._onAddedToGroup) {
       this._onAddedToGroup = new Signal();
@@ -76,12 +86,19 @@ export class EventManager {
     return this._onAddedToGroup;
   }
 
+  /**
+   *
+   * @param {...any} args
+   */
   onAddedToGroup$dispatch(...args) {
     if (this._onAddedToGroup) {
       this._onAddedToGroup.dispatch(...args);
     }
   }
 
+  /**
+   *
+   */
   get onRemovedFromGroup() {
     if (!this._onRemovedFromGroup) {
       this._onRemovedFromGroup = new Signal();
@@ -89,12 +106,19 @@ export class EventManager {
     return this._onRemovedFromGroup;
   }
 
+  /**
+   *
+   * @param {...any} args
+   */
   onRemovedFromGroup$dispatch(...args) {
     if (this._onRemovedFromGroup) {
       this._onRemovedFromGroup.dispatch(...args);
     }
   }
 
+  /**
+   *
+   */
   get onDestroy() {
     if (!this._onDestroy) {
       this._onDestroy = new Signal();
@@ -102,12 +126,19 @@ export class EventManager {
     return this._onDestroy;
   }
 
+  /**
+   *
+   * @param {...any} args
+   */
   onDestroy$dispatch(...args) {
     if (this._onDestroy) {
       this._onDestroy.dispatch(...args);
     }
   }
 
+  /**
+   *
+   */
   get onOutOfBounds() {
     if (!this._onOutOfBounds) {
       this._onOutOfBounds = new Signal();
@@ -115,12 +146,19 @@ export class EventManager {
     return this._onOutOfBounds;
   }
 
+  /**
+   *
+   * @param {...any} args
+   */
   onOutOfBounds$dispatch(...args) {
     if (this._onOutOfBounds) {
       this._onOutOfBounds.dispatch(...args);
     }
   }
 
+  /**
+   *
+   */
   get onEnterBounds() {
     if (!this._onEnterBounds) {
       this._onEnterBounds = new Signal();
@@ -128,12 +166,19 @@ export class EventManager {
     return this._onEnterBounds;
   }
 
+  /**
+   *
+   * @param {...any} args
+   */
   onEnterBounds$dispatch(...args) {
     if (this._onEnterBounds) {
       this._onEnterBounds.dispatch(...args);
     }
   }
 
+  /**
+   *
+   */
   get onInputOver() {
     if (!this._onInputOver) {
       this._onInputOver = new Signal();
@@ -141,12 +186,19 @@ export class EventManager {
     return this._onInputOver;
   }
 
+  /**
+   *
+   * @param {...any} args
+   */
   onInputOver$dispatch(...args) {
     if (this._onInputOver) {
       this._onInputOver.dispatch(...args);
     }
   }
 
+  /**
+   *
+   */
   get onInputOut() {
     if (!this._onInputOut) {
       this._onInputOut = new Signal();
@@ -154,12 +206,19 @@ export class EventManager {
     return this._onInputOut;
   }
 
+  /**
+   *
+   * @param {...any} args
+   */
   onInputOut$dispatch(...args) {
     if (this._onInputOut) {
       this._onInputOut.dispatch(...args);
     }
   }
 
+  /**
+   *
+   */
   get onInputDown() {
     if (!this._onInputDown) {
       this._onInputDown = new Signal();
@@ -167,12 +226,19 @@ export class EventManager {
     return this._onInputDown;
   }
 
+  /**
+   *
+   * @param {...any} args
+   */
   onInputDown$dispatch(...args) {
     if (this._onInputDown) {
       this._onInputDown.dispatch(...args);
     }
   }
 
+  /**
+   *
+   */
   get onInputUp() {
     if (!this._onInputUp) {
       this._onInputUp = new Signal();
@@ -180,12 +246,19 @@ export class EventManager {
     return this._onInputUp;
   }
 
+  /**
+   *
+   * @param {...any} args
+   */
   onInputUp$dispatch(...args) {
     if (this._onInputUp) {
       this._onInputUp.dispatch(...args);
     }
   }
 
+  /**
+   *
+   */
   get onDragStart() {
     if (!this._onDragStart) {
       this._onDragStart = new Signal();
@@ -193,12 +266,19 @@ export class EventManager {
     return this._onDragStart;
   }
 
+  /**
+   *
+   * @param {...any} args
+   */
   onDragStart$dispatch(...args) {
     if (this._onDragStart) {
       this._onDragStart.dispatch(...args);
     }
   }
 
+  /**
+   *
+   */
   get onDragUpdate() {
     if (!this._onDragUpdate) {
       this._onDragUpdate = new Signal();
@@ -206,12 +286,19 @@ export class EventManager {
     return this._onDragUpdate;
   }
 
+  /**
+   *
+   * @param {...any} args
+   */
   onDragUpdate$dispatch(...args) {
     if (this._onDragUpdate) {
       this._onDragUpdate.dispatch(...args);
     }
   }
 
+  /**
+   *
+   */
   get onDragStop() {
     if (!this._onDragStop) {
       this._onDragStop = new Signal();
@@ -219,12 +306,19 @@ export class EventManager {
     return this._onDragStop;
   }
 
+  /**
+   *
+   * @param {...any} args
+   */
   onDragStop$dispatch(...args) {
     if (this._onDragStop) {
       this._onDragStop.dispatch(...args);
     }
   }
 
+  /**
+   *
+   */
   get onAnimationStart() {
     if (!this._onAnimationStart) {
       this._onAnimationStart = new Signal();
@@ -232,12 +326,19 @@ export class EventManager {
     return this._onAnimationStart;
   }
 
+  /**
+   *
+   * @param {...any} args
+   */
   onAnimationStart$dispatch(...args) {
     if (this._onAnimationStart) {
       this._onAnimationStart.dispatch(...args);
     }
   }
 
+  /**
+   *
+   */
   get onAnimationComplete() {
     if (!this._onAnimationComplete) {
       this._onAnimationComplete = new Signal();
@@ -245,12 +346,19 @@ export class EventManager {
     return this._onAnimationComplete;
   }
 
+  /**
+   *
+   * @param {...any} args
+   */
   onAnimationComplete$dispatch(...args) {
     if (this._onAnimationComplete) {
       this._onAnimationComplete.dispatch(...args);
     }
   }
 
+  /**
+   *
+   */
   get onAnimationLoop() {
     if (!this._onAnimationLoop) {
       this._onAnimationLoop = new Signal();
@@ -258,6 +366,10 @@ export class EventManager {
     return this._onAnimationLoop;
   }
 
+  /**
+   *
+   * @param {...any} args
+   */
   onAnimationLoop$dispatch(...args) {
     if (this._onAnimationLoop) {
       this._onAnimationLoop.dispatch(...args);

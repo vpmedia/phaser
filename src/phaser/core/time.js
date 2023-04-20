@@ -1,6 +1,10 @@
 import { Timer } from './timer';
 
 export class Time {
+  /**
+   *
+   * @param game
+   */
   constructor(game) {
     this.game = game;
     this.time = 0;
@@ -31,6 +35,9 @@ export class Time {
     this._timers = [];
   }
 
+  /**
+   *
+   */
   boot() {
     this._started = Date.now();
     this.time = Date.now();
@@ -38,17 +45,28 @@ export class Time {
     this.timeExpected = this.time;
   }
 
+  /**
+   *
+   * @param timer
+   */
   add(timer) {
     this._timers.push(timer);
     return timer;
   }
 
+  /**
+   *
+   * @param autoDestroy
+   */
   create(autoDestroy = true) {
     const timer = new Timer(this.game, autoDestroy);
     this._timers.push(timer);
     return timer;
   }
 
+  /**
+   *
+   */
   removeAll() {
     for (let i = 0; i < this._timers.length; i += 1) {
       this._timers[i].destroy();
@@ -57,6 +75,9 @@ export class Time {
     this.events.removeAll();
   }
 
+  /**
+   *
+   */
   refresh() {
     const previousDateNow = this.time;
     // this.time always holds a Date.now value
@@ -65,6 +86,10 @@ export class Time {
     this.elapsedMS = this.time - previousDateNow;
   }
 
+  /**
+   *
+   * @param time
+   */
   update(time) {
     const previousDateNow = this.time;
     // this.time always holds a Date.now value
@@ -91,6 +116,9 @@ export class Time {
     }
   }
 
+  /**
+   *
+   */
   updateTimers() {
     let i = 0;
     let len = this._timers.length;
@@ -105,6 +133,9 @@ export class Time {
     }
   }
 
+  /**
+   *
+   */
   updateAdvancedTiming() {
     // count the number of time.update calls
     this._frameCount += 1;
@@ -128,6 +159,9 @@ export class Time {
     }
   }
 
+  /**
+   *
+   */
   gamePaused() {
     this._pauseStarted = Date.now();
     this.events.pause();
@@ -138,6 +172,9 @@ export class Time {
     }
   }
 
+  /**
+   *
+   */
   gameResumed() {
     this.time = Date.now();
     this.pauseDuration = this.time - this._pauseStarted;
@@ -149,31 +186,54 @@ export class Time {
     }
   }
 
+  /**
+   *
+   */
   totalElapsedSeconds() {
     return (this.time - this._started) * 0.001;
   }
 
+  /**
+   *
+   * @param since
+   */
   elapsedSince(since) {
     return this.time - since;
   }
 
+  /**
+   *
+   * @param since
+   */
   elapsedSecondsSince(since) {
     return (this.time - since) * 0.001;
   }
 
+  /**
+   *
+   */
   reset() {
     this._started = this.time;
     this.removeAll();
   }
 
+  /**
+   *
+   */
   destroy() {
     this.reset();
   }
 
+  /**
+   *
+   */
   get desiredFps() {
     return this._desiredFps;
   }
 
+  /**
+   *
+   */
   set desiredFps(value) {
     this._desiredFps = value;
     this.desiredFpsMult = 1.0 / value;

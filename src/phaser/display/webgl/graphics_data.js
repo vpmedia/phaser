@@ -1,4 +1,8 @@
 export class GraphicsData {
+  /**
+   *
+   * @param gl
+   */
   constructor(gl) {
     this.gl = gl;
     // TODO does this need to be split before uploading??
@@ -12,6 +16,9 @@ export class GraphicsData {
     this.dirty = true;
   }
 
+  /**
+   *
+   */
   reset() {
     this.points = [];
     this.indices = [];
@@ -19,6 +26,9 @@ export class GraphicsData {
     this.glIndicies = null;
   }
 
+  /**
+   *
+   */
   upload() {
     const gl = this.gl;
     // this.lastIndex = graphics.graphicsData.length;

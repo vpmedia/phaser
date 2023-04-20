@@ -1,5 +1,14 @@
 
 export class SignalBinding {
+  /**
+   *
+   * @param signal
+   * @param listener
+   * @param isOnce
+   * @param listenerContext
+   * @param priority
+   * @param args
+   */
   constructor(signal, listener, isOnce = false, listenerContext = null, priority = 0, args = null) {
     this._signal = signal;
     this._listener = listener;
@@ -12,6 +21,10 @@ export class SignalBinding {
     this.params = null;
   }
 
+  /**
+   *
+   * @param paramsArr
+   */
   execute(paramsArr) {
     let handlerReturn;
     let params;
@@ -29,32 +42,53 @@ export class SignalBinding {
     return handlerReturn;
   }
 
+  /**
+   *
+   */
   detach() {
     return this.isBound() ? this._signal.remove(this._listener, this.context) : null;
   }
 
+  /**
+   *
+   */
   isBound() {
     return !!this._signal && !!this._listener;
   }
 
+  /**
+   *
+   */
   isOnce() {
     return this._isOnce;
   }
 
+  /**
+   *
+   */
   getListener() {
     return this._listener;
   }
 
+  /**
+   *
+   */
   getSignal() {
     return this._signal;
   }
 
+  /**
+   *
+   */
   _destroy() {
     delete this._signal;
     delete this._listener;
     delete this.context;
   }
 
+  /**
+   *
+   */
   toString() {
     return (
       '[SignalBinding isOnce:' +

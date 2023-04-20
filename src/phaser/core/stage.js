@@ -5,6 +5,10 @@ import { valueToColor } from '../util/math';
 import { SCALE_LINEAR, SCALE_NEAREST } from './const';
 
 export class Stage extends DisplayObject {
+  /**
+   *
+   * @param game
+   */
   constructor(game) {
     super();
     this.game = game;
@@ -28,6 +32,10 @@ export class Stage extends DisplayObject {
     }
   }
 
+  /**
+   *
+   * @param color
+   */
   setBackgroundColor(color) {
     if (this.game.config.transparent) {
       return;
@@ -40,11 +48,17 @@ export class Stage extends DisplayObject {
     this._bgColor.a = 1;
   }
 
+  /**
+   *
+   */
   boot() {
     setUserSelect(this.game.canvas, 'none');
     setTouchAction(this.game.canvas, 'none');
   }
 
+  /**
+   *
+   */
   preUpdate() {
     this.currentRenderOrderID = 0;
     //  This can't loop in reverse, we need the renderOrderID to be in sequence
@@ -53,6 +67,9 @@ export class Stage extends DisplayObject {
     }
   }
 
+  /**
+   *
+   */
   update() {
     let i = this.children.length;
     while (i) {
@@ -61,6 +78,9 @@ export class Stage extends DisplayObject {
     }
   }
 
+  /**
+   *
+   */
   postUpdate() {
     for (let i = 0; i < this.children.length; i += 1) {
       this.children[i].postUpdate();
@@ -68,6 +88,9 @@ export class Stage extends DisplayObject {
     this.updateTransform();
   }
 
+  /**
+   *
+   */
   updateTransform() {
     this.worldAlpha = 1;
     for (let i = 0; i < this.children.length; i += 1) {
@@ -75,6 +98,9 @@ export class Stage extends DisplayObject {
     }
   }
 
+  /**
+   *
+   */
   destroy() {
     this.exists = false;
     this.game = null;
@@ -82,18 +108,30 @@ export class Stage extends DisplayObject {
     this._bgColor = null;
   }
 
+  /**
+   *
+   */
   get backgroundColor() {
     return this._bgColor.color;
   }
 
+  /**
+   *
+   */
   set backgroundColor(value) {
     this.setBackgroundColor(value);
   }
 
+  /**
+   *
+   */
   get smoothed() {
     return window.PhaserRegistry.TEXTURE_SCALE_MODE === SCALE_LINEAR;
   }
 
+  /**
+   *
+   */
   set smoothed(value) {
     window.PhaserRegistry.TEXTURE_SCALE_MODE = value ? SCALE_LINEAR : SCALE_NEAREST;
   }

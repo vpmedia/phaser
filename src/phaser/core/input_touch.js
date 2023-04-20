@@ -1,5 +1,9 @@
 
 export class Touch {
+  /**
+   *
+   * @param game
+   */
   constructor(game) {
     this.game = game;
     this.enabled = true;
@@ -21,6 +25,9 @@ export class Touch {
     this._onTouchMove = null;
   }
 
+  /**
+   *
+   */
   start() {
     if (!this.game.device.touch || this._onTouchStart !== null) {
       return;
@@ -40,6 +47,9 @@ export class Touch {
     this.game.canvas.addEventListener('touchleave', this._onTouchLeave, false);
   }
 
+  /**
+   *
+   */
   stop() {
     if (!this.game.device.touch) {
       return;
@@ -52,6 +62,9 @@ export class Touch {
     this.game.canvas.removeEventListener('touchcancel', this._onTouchCancel);
   }
 
+  /**
+   *
+   */
   consumeDocumentTouches() {
     this._documentTouchMove = (event) => {
       event.preventDefault();
@@ -59,6 +72,10 @@ export class Touch {
     document.addEventListener('touchmove', this._documentTouchMove, false);
   }
 
+  /**
+   *
+   * @param event
+   */
   onTouchStart(event) {
     this.event = event;
     if (!this.game.input.enabled || !this.enabled) {
@@ -76,6 +93,10 @@ export class Touch {
     }
   }
 
+  /**
+   *
+   * @param event
+   */
   onTouchCancel(event) {
     this.event = event;
     if (this.touchCancelCallback) {
@@ -92,6 +113,10 @@ export class Touch {
     }
   }
 
+  /**
+   *
+   * @param event
+   */
   onTouchEnter(event) {
     this.event = event;
     if (this.touchEnterCallback) {
@@ -103,6 +128,10 @@ export class Touch {
     this.eventPreventDefault(event);
   }
 
+  /**
+   *
+   * @param event
+   */
   onTouchLeave(event) {
     this.event = event;
     if (this.touchLeaveCallback) {
@@ -111,6 +140,10 @@ export class Touch {
     this.eventPreventDefault(event);
   }
 
+  /**
+   *
+   * @param event
+   */
   onTouchMove(event) {
     this.event = event;
     if (this.touchMoveCallback) {
@@ -122,6 +155,10 @@ export class Touch {
     }
   }
 
+  /**
+   *
+   * @param event
+   */
   onTouchEnd(event) {
     this.event = event;
     if (this.touchEndCallback) {
@@ -136,6 +173,10 @@ export class Touch {
     }
   }
 
+  /**
+   *
+   * @param event
+   */
   eventPreventDefault(event) {
     if (this.preventDefault) {
       if (typeof event.cancelable !== 'boolean' || event.cancelable) {

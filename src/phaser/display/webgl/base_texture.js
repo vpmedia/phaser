@@ -1,6 +1,11 @@
 import { removeByCanvas } from '../canvas/pool';
 
 export class BaseTexture {
+  /**
+   *
+   * @param source
+   * @param scaleMode
+   */
   constructor(source, scaleMode) {
     this.resolution = 1;
     this.width = 100;
@@ -28,6 +33,11 @@ export class BaseTexture {
     }
   }
 
+  /**
+   *
+   * @param width
+   * @param height
+   */
   forceLoaded(width, height) {
     this.hasLoaded = true;
     this.width = width;
@@ -35,6 +45,9 @@ export class BaseTexture {
     this.dirty();
   }
 
+  /**
+   *
+   */
   destroy() {
     if (this.source) {
       removeByCanvas(this.source);
@@ -43,12 +56,18 @@ export class BaseTexture {
     this.unloadFromGPU();
   }
 
+  /**
+   *
+   */
   dirty() {
     for (let i = 0; i < this._glTextures.length; i += 1) {
       this._dirty[i] = true;
     }
   }
 
+  /**
+   *
+   */
   unloadFromGPU() {
     this.dirty();
     for (let i = this._glTextures.length - 1; i >= 0; i -= 1) {

@@ -18,6 +18,10 @@ export const XML = 8;
 export const RENDER_TEXTURE = 9;
 
 export class Cache {
+  /**
+   *
+   * @param game
+   */
   constructor(game) {
     this.game = game;
     this.autoResolveURL = false;
@@ -52,6 +56,9 @@ export class Cache {
     this.addMissingImage();
   }
 
+  /**
+   *
+   */
   addDefaultImage() {
     const img = new Image();
     img.src =
@@ -61,6 +68,9 @@ export class Cache {
     window.PhaserRegistry.CACHE_DEFAULT_IMAGE = new Texture(obj.base);
   }
 
+  /**
+   *
+   */
   addMissingImage() {
     const img = new Image();
     img.src =
@@ -69,6 +79,12 @@ export class Cache {
     window.PhaserRegistry.CACHE_MISSING_IMAGE = new Texture(obj.base);
   }
 
+  /**
+   *
+   * @param key
+   * @param url
+   * @param data
+   */
   addImage(key, url, data) {
     if (this.checkImageKey(key)) {
       this.removeImage(key);
@@ -90,6 +106,13 @@ export class Cache {
     return img;
   }
 
+  /**
+   *
+   * @param key
+   * @param url
+   * @param data
+   * @param atlasData
+   */
   addTextureAtlas(key, url, data, atlasData) {
     const obj = {
       key,
@@ -102,6 +125,12 @@ export class Cache {
     this._resolveURL(url, obj);
   }
 
+  /**
+   *
+   * @param key
+   * @param url
+   * @param data
+   */
   addSound(key, url, data) {
     this._cache.sound[key] = {
       url,
@@ -113,11 +142,27 @@ export class Cache {
     this._resolveURL(url, this._cache.sound[key]);
   }
 
+  /**
+   *
+   * @param key
+   * @param url
+   * @param data
+   */
   addText(key, url, data) {
     this._cache.text[key] = { url, data };
     this._resolveURL(url, this._cache.text[key]);
   }
 
+  /**
+   *
+   * @param key
+   * @param url
+   * @param data
+   * @param atlasData
+   * @param atlasType
+   * @param xSpacing
+   * @param ySpacing
+   */
   addBitmapFont(key, url, data, atlasData, atlasType, xSpacing = 0, ySpacing = 0) {
     const obj = {
       url,
@@ -134,11 +179,23 @@ export class Cache {
     this._resolveURL(url, obj);
   }
 
+  /**
+   *
+   * @param key
+   * @param url
+   * @param data
+   */
   addJSON(key, url, data) {
     this._cache.json[key] = { url, data };
     this._resolveURL(url, this._cache.json[key]);
   }
 
+  /**
+   *
+   * @param key
+   * @param url
+   * @param data
+   */
   addXML(key, url, data) {
     this._cache.xml[key] = { url, data };
     this._resolveURL(url, this._cache.xml[key]);
@@ -146,6 +203,10 @@ export class Cache {
 
   // SOUND
 
+  /**
+   *
+   * @param key
+   */
   reloadSound(key) {
     const scope = this;
     const sound = this.getSound(key);
@@ -156,6 +217,10 @@ export class Cache {
     }
   }
 
+  /**
+   *
+   * @param key
+   */
   reloadSoundComplete(key) {
     const sound = this.getSound(key);
     if (sound) {
@@ -164,6 +229,12 @@ export class Cache {
     }
   }
 
+  /**
+   *
+   * @param key
+   * @param property
+   * @param value
+   */
   updateSound(key, property, value) {
     const sound = this.getSound(key);
     if (sound) {
@@ -171,6 +242,11 @@ export class Cache {
     }
   }
 
+  /**
+   *
+   * @param key
+   * @param data
+   */
   decodedSound(key, data) {
     const sound = this.getSound(key);
     sound.data = data;
@@ -178,6 +254,10 @@ export class Cache {
     sound.isDecoding = false;
   }
 
+  /**
+   *
+   * @param key
+   */
   isSoundDecoded(key) {
     const sound = this.getItem(key, SOUND, 'isSoundDecoded');
     if (sound) {
@@ -186,6 +266,10 @@ export class Cache {
     return null;
   }
 
+  /**
+   *
+   * @param key
+   */
   isSoundReady(key) {
     const sound = this.getItem(key, SOUND, 'isSoundDecoded');
     if (sound) {
@@ -196,6 +280,11 @@ export class Cache {
 
   // CHECK
 
+  /**
+   *
+   * @param cache
+   * @param key
+   */
   checkKey(cache, key) {
     if (this._cacheMap[cache][key]) {
       return true;
@@ -203,6 +292,10 @@ export class Cache {
     return false;
   }
 
+  /**
+   *
+   * @param url
+   */
   checkURL(url) {
     if (this._urlMap[this._resolveURL(url)]) {
       return true;
@@ -210,44 +303,87 @@ export class Cache {
     return false;
   }
 
+  /**
+   *
+   * @param key
+   */
   checkCanvasKey(key) {
     return this.checkKey(CANVAS, key);
   }
 
+  /**
+   *
+   * @param key
+   */
   checkImageKey(key) {
     return this.checkKey(IMAGE, key);
   }
 
+  /**
+   *
+   * @param key
+   */
   checkTextureKey(key) {
     return this.checkKey(TEXTURE, key);
   }
 
+  /**
+   *
+   * @param key
+   */
   checkSoundKey(key) {
     return this.checkKey(SOUND, key);
   }
 
+  /**
+   *
+   * @param key
+   */
   checkTextKey(key) {
     return this.checkKey(TEXT, key);
   }
 
+  /**
+   *
+   * @param key
+   */
   checkBitmapDataKey(key) {
     return this.checkKey(BITMAPDATA, key);
   }
 
+  /**
+   *
+   * @param key
+   */
   checkBitmapFontKey(key) {
     return this.checkKey(BITMAPFONT, key);
   }
 
+  /**
+   *
+   * @param key
+   */
   checkJSONKey(key) {
     return this.checkKey(JSON, key);
   }
 
+  /**
+   *
+   * @param key
+   */
   checkXMLKey(key) {
     return this.checkKey(XML, key);
   }
 
   // GET
 
+  /**
+   *
+   * @param key
+   * @param cache
+   * @param method
+   * @param property
+   */
   getItem(key, cache, method, property = null) {
     if (this.checkKey(cache, key)) {
       if (!property) {
@@ -258,10 +394,19 @@ export class Cache {
     return null;
   }
 
+  /**
+   *
+   * @param key
+   */
   getCanvas(key) {
     return this.getItem(key, CANVAS, 'getCanvas', 'canvas');
   }
 
+  /**
+   *
+   * @param key
+   * @param full
+   */
   getImage(key = '__default', full = false) {
     let img = this.getItem(key, IMAGE, 'getImage');
     if (img === null) {
@@ -273,53 +418,105 @@ export class Cache {
     return img.data;
   }
 
+  /**
+   *
+   * @param key
+   */
   getTextureFrame(key) {
     return this.getItem(key, TEXTURE, 'getTextureFrame', 'frame');
   }
 
+  /**
+   *
+   * @param key
+   */
   getSound(key) {
     return this.getItem(key, SOUND, 'getSound');
   }
 
+  /**
+   *
+   * @param key
+   */
   getSoundData(key) {
     return this.getItem(key, SOUND, 'getSoundData', 'data');
   }
 
+  /**
+   *
+   * @param key
+   */
   getText(key) {
     return this.getItem(key, TEXT, 'getText', 'data');
   }
 
+  /**
+   *
+   * @param key
+   */
   getBitmapData(key) {
     return this.getItem(key, BITMAPDATA, 'getBitmapData', 'data');
   }
 
+  /**
+   *
+   * @param key
+   */
   getBitmapFont(key) {
     return this.getItem(key, BITMAPFONT, 'getBitmapFont');
   }
 
+  /**
+   *
+   * @param key
+   * @param isClone
+   */
   getJSON(key, isClone = false) {
     const data = this.getItem(key, JSON, 'getJSON', 'data');
     return isClone ? JSON.parse(JSON.stringify(data)) : data;
   }
 
+  /**
+   *
+   * @param key
+   */
   getXML(key) {
     return this.getItem(key, XML, 'getXML', 'data');
   }
 
+  /**
+   *
+   * @param key
+   */
   getRenderTexture(key) {
     return this.getItem(key, RENDER_TEXTURE, 'getRenderTexture');
   }
 
   // FRAME
 
+  /**
+   *
+   * @param key
+   * @param cache
+   */
   getBaseTexture(key, cache = IMAGE) {
     return this.getItem(key, cache, 'getBaseTexture', 'base');
   }
 
+  /**
+   *
+   * @param key
+   * @param cache
+   */
   getFrame(key, cache = IMAGE) {
     return this.getItem(key, cache, 'getFrame', 'frame');
   }
 
+  /**
+   *
+   * @param key
+   * @param cache
+   */
   getFrameCount(key, cache = IMAGE) {
     const data = this.getFrameData(key, cache);
     if (data) {
@@ -328,20 +525,42 @@ export class Cache {
     return 0;
   }
 
+  /**
+   *
+   * @param key
+   * @param cache
+   */
   getFrameData(key, cache = IMAGE) {
     return this.getItem(key, cache, 'getFrameData', 'frameData');
   }
 
+  /**
+   *
+   * @param key
+   * @param cache
+   */
   hasFrameData(key, cache = IMAGE) {
     return this.getItem(key, cache, '', 'frameData') !== null;
   }
 
+  /**
+   *
+   * @param key
+   * @param frameData
+   * @param cache
+   */
   updateFrameData(key, frameData, cache = IMAGE) {
     if (this._cacheMap[cache][key]) {
       this._cacheMap[cache][key].frameData = frameData;
     }
   }
 
+  /**
+   *
+   * @param key
+   * @param index
+   * @param cache
+   */
   getFrameByIndex(key, index, cache = IMAGE) {
     const data = this.getFrameData(key, cache);
     if (data) {
@@ -350,6 +569,12 @@ export class Cache {
     return null;
   }
 
+  /**
+   *
+   * @param key
+   * @param name
+   * @param cache
+   */
   getFrameByName(key, name, cache = IMAGE) {
     const data = this.getFrameData(key, cache);
     if (data) {
@@ -358,6 +583,10 @@ export class Cache {
     return null;
   }
 
+  /**
+   *
+   * @param url
+   */
   getURL(url) {
     const resolvedURL = this._resolveURL(url);
     if (resolvedURL) {
@@ -367,6 +596,10 @@ export class Cache {
     return null;
   }
 
+  /**
+   *
+   * @param cache
+   */
   getKeys(cache = IMAGE) {
     const result = [];
     if (this._cacheMap[cache]) {
@@ -383,10 +616,19 @@ export class Cache {
 
   // REMOVE
 
+  /**
+   *
+   * @param key
+   */
   removeCanvas(key) {
     delete this._cache.canvas[key];
   }
 
+  /**
+   *
+   * @param key
+   * @param destroyBaseTexture
+   */
   removeImage(key, destroyBaseTexture = true) {
     const img = this.getImage(key, true);
     if (destroyBaseTexture && img.base) {
@@ -395,42 +637,81 @@ export class Cache {
     delete this._cache.image[key];
   }
 
+  /**
+   *
+   * @param key
+   */
   removeSound(key) {
     delete this._cache.sound[key];
   }
 
+  /**
+   *
+   * @param key
+   */
   removeText(key) {
     delete this._cache.text[key];
   }
 
+  /**
+   *
+   * @param key
+   */
   removeBitmapData(key) {
     delete this._cache.bitmapData[key];
   }
 
+  /**
+   *
+   * @param key
+   */
   removeBitmapFont(key) {
     delete this._cache.bitmapFont[key];
   }
 
+  /**
+   *
+   * @param key
+   */
   removeJSON(key) {
     delete this._cache.json[key];
   }
 
+  /**
+   *
+   * @param key
+   */
   removeXML(key) {
     delete this._cache.xml[key];
   }
 
+  /**
+   *
+   * @param key
+   */
   removeRenderTexture(key) {
     delete this._cache.renderTexture[key];
   }
 
+  /**
+   *
+   * @param key
+   */
   removeSpriteSheet(key) {
     delete this._cache.spriteSheet[key];
   }
 
+  /**
+   *
+   * @param key
+   */
   removeTextureAtlas(key) {
     delete this._cache.atlas[key];
   }
 
+  /**
+   *
+   */
   clearGLTextures() {
     const keys = Object.keys(this._cache.image);
     for (let i = 0; i < keys.length; i += 1) {
@@ -439,6 +720,11 @@ export class Cache {
     }
   }
 
+  /**
+   *
+   * @param url
+   * @param data
+   */
   _resolveURL(url, data) {
     if (!this.autoResolveURL) {
       return null;
@@ -454,6 +740,9 @@ export class Cache {
     return this._urlTemp;
   }
 
+  /**
+   *
+   */
   destroy() {
     for (let i = 0; i < this._cacheMap.length; i += 1) {
       const cache = this._cacheMap[i];

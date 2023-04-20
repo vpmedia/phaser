@@ -5,6 +5,10 @@ import { canPlayAudio } from './device_util';
 const TEXTURE_ATLAS_JSON_HASH = 1;
 
 export class Loader {
+  /**
+   *
+   * @param game
+   */
   constructor(game) {
     this.game = game;
     this.cache = game.cache;
@@ -40,6 +44,11 @@ export class Loader {
     this._loadedFileCount = 0;
   }
 
+  /**
+   *
+   * @param sprite
+   * @param direction
+   */
   setPreloadSprite(sprite, direction = 0) {
     this.preloadSprite = {
       sprite,
@@ -59,16 +68,29 @@ export class Loader {
     sprite.visible = true;
   }
 
+  /**
+   *
+   */
   resize() {
     if (this.preloadSprite && this.preloadSprite.height !== this.preloadSprite.sprite.height) {
       this.preloadSprite.rect.height = this.preloadSprite.sprite.height;
     }
   }
 
+  /**
+   *
+   * @param type
+   * @param key
+   */
   checkKeyExists(type, key) {
     return this.getAssetIndex(type, key) > -1;
   }
 
+  /**
+   *
+   * @param type
+   * @param key
+   */
   getAssetIndex(type, key) {
     let bestFound = -1;
     for (let i = 0; i < this._fileList.length; i += 1) {
@@ -85,6 +107,11 @@ export class Loader {
     return bestFound;
   }
 
+  /**
+   *
+   * @param type
+   * @param key
+   */
   getAsset(type, key) {
     const fileIndex = this.getAssetIndex(type, key);
     if (fileIndex > -1) {
@@ -93,6 +120,11 @@ export class Loader {
     return null;
   }
 
+  /**
+   *
+   * @param hard
+   * @param clearEvents
+   */
   reset(hard, clearEvents = false) {
     if (hard) {
       this.preloadSprite = null;
@@ -116,6 +148,15 @@ export class Loader {
     }
   }
 
+  /**
+   *
+   * @param type
+   * @param key
+   * @param url
+   * @param properties
+   * @param overwrite
+   * @param extension
+   */
   addToFileList(
     type,
     key = '',
@@ -170,10 +211,24 @@ export class Loader {
     return this;
   }
 
+  /**
+   *
+   * @param type
+   * @param key
+   * @param url
+   * @param properties
+   */
   replaceInFileList(type, key, url, properties) {
     return this.addToFileList(type, key, url, properties, true);
   }
 
+  /**
+   *
+   * @param key
+   * @param url
+   * @param data
+   * @param callbackContext
+   */
   pack(key, url, data, callbackContext) {
     const pack = {
       type: 'packfile',
@@ -205,10 +260,21 @@ export class Loader {
     return this;
   }
 
+  /**
+   *
+   * @param key
+   * @param url
+   * @param overwrite
+   */
   image(key, url, overwrite) {
     return this.addToFileList('image', key, url, undefined, overwrite, '.png');
   }
 
+  /**
+   *
+   * @param keys
+   * @param urls
+   */
   images(keys, urls) {
     if (Array.isArray(urls)) {
       for (let i = 0; i < keys.length; i += 1) {
@@ -222,18 +288,46 @@ export class Loader {
     return this;
   }
 
+  /**
+   *
+   * @param key
+   * @param url
+   * @param overwrite
+   */
   text(key, url, overwrite) {
     return this.addToFileList('text', key, url, undefined, overwrite, '.txt');
   }
 
+  /**
+   *
+   * @param key
+   * @param url
+   * @param overwrite
+   */
   json(key, url, overwrite) {
     return this.addToFileList('json', key, url, undefined, overwrite, '.json');
   }
 
+  /**
+   *
+   * @param key
+   * @param url
+   * @param overwrite
+   */
   xml(key, url, overwrite) {
     return this.addToFileList('xml', key, url, undefined, overwrite, '.xml');
   }
 
+  /**
+   *
+   * @param key
+   * @param url
+   * @param frameWidth
+   * @param frameHeight
+   * @param frameMax
+   * @param margin
+   * @param spacing
+   */
   spritesheet(key, url, frameWidth, frameHeight, frameMax = -1, margin = 0, spacing = 0) {
     return this.addToFileList(
       'spritesheet',
@@ -245,6 +339,12 @@ export class Loader {
     );
   }
 
+  /**
+   *
+   * @param key
+   * @param urls
+   * @param autoDecode
+   */
   audio(key, urls, autoDecode = true) {
     if (this.game.sound.noAudio) {
       return this;
@@ -255,6 +355,14 @@ export class Loader {
     return this.addToFileList('audio', key, urls, { buffer: null, autoDecode });
   }
 
+  /**
+   *
+   * @param key
+   * @param urls
+   * @param jsonURL
+   * @param jsonData
+   * @param autoDecode
+   */
   audioSprite(key, urls, jsonURL, jsonData, autoDecode = true) {
     if (this.game.sound.noAudio) {
       return this;
@@ -271,6 +379,15 @@ export class Loader {
     return this;
   }
 
+  /**
+   *
+   * @param key
+   * @param textureURL
+   * @param atlasURL
+   * @param atlasData
+   * @param xSpacing
+   * @param ySpacing
+   */
   bitmapFont(
     key,
     textureURL = null,
@@ -311,6 +428,14 @@ export class Loader {
     return this;
   }
 
+  /**
+   *
+   * @param key
+   * @param textureURL
+   * @param atlasURL
+   * @param atlasData
+   * @param format
+   */
   atlas(key, textureURL, atlasURL = null, atlasData = null, format = TEXTURE_ATLAS_JSON_HASH) {
     if (textureURL === undefined || textureURL === null) {
       textureURL = key + '.png';
@@ -327,6 +452,11 @@ export class Loader {
     return this;
   }
 
+  /**
+   *
+   * @param callback
+   * @param callbackContext
+   */
   withSyncPoint(callback, callbackContext) {
     this._withSyncPointDepth += 1;
     try {
@@ -337,6 +467,11 @@ export class Loader {
     return this;
   }
 
+  /**
+   *
+   * @param type
+   * @param key
+   */
   addSyncPoint(type, key) {
     const asset = this.getAsset(type, key);
     if (asset) {
@@ -345,6 +480,11 @@ export class Loader {
     return this;
   }
 
+  /**
+   *
+   * @param type
+   * @param key
+   */
   removeFile(type, key) {
     const asset = this.getAsset(type, key);
     if (asset) {
@@ -354,11 +494,17 @@ export class Loader {
     }
   }
 
+  /**
+   *
+   */
   removeAll() {
     this._fileList.length = 0;
     this._flightQueue.length = 0;
   }
 
+  /**
+   *
+   */
   start() {
     if (this.isLoading) {
       return;
@@ -369,6 +515,9 @@ export class Loader {
     this.processLoadQueue();
   }
 
+  /**
+   *
+   */
   processLoadQueue() {
     if (!this.isLoading) {
       console.warn('Loader - active loading canceled / reset');
@@ -477,6 +626,10 @@ export class Loader {
     }
   }
 
+  /**
+   *
+   * @param abnormal
+   */
   finishedLoading(abnormal) {
     if (this.hasLoaded) {
       return;
@@ -496,6 +649,11 @@ export class Loader {
     // this.reset();
   }
 
+  /**
+   *
+   * @param file
+   * @param errorMessage
+   */
   asyncComplete(file, errorMessage = '') {
     file.loaded = true;
     file.error = !!errorMessage;
@@ -507,6 +665,10 @@ export class Loader {
     this.processLoadQueue();
   }
 
+  /**
+   *
+   * @param pack
+   */
   processPack(pack) {
     const packData = pack.data[pack.key];
     if (!packData) {
@@ -572,6 +734,11 @@ export class Loader {
     }
   }
 
+  /**
+   *
+   * @param url
+   * @param file
+   */
   transformUrl(url, file) {
     if (!url) {
       return false;
@@ -582,6 +749,10 @@ export class Loader {
     return this.baseURL + file.path + url;
   }
 
+  /**
+   *
+   * @param file
+   */
   loadFile(file) {
     switch (file.type) {
       case 'packfile':
@@ -620,6 +791,10 @@ export class Loader {
     }
   }
 
+  /**
+   *
+   * @param file
+   */
   loadImageTag(file) {
     this.log('loadImageTag', file);
     const scope = this;
@@ -648,6 +823,14 @@ export class Loader {
     file.data.src = this.transformUrl(file.url, file);
   }
 
+  /**
+   *
+   * @param file
+   * @param url
+   * @param type
+   * @param onload
+   * @param onerror
+   */
   xhrLoad(file, url, type, onload, onerror) {
     this.log('xhrLoad', file);
     const scope = this;
@@ -707,11 +890,18 @@ export class Loader {
     xhr.send();
   }
 
+  /**
+   *
+   */
   xhrLoadWithXDR() {
     // TODO
     console.warn('loader.xhrLoadWithXDR() is not implemented');
   }
 
+  /**
+   *
+   * @param urls
+   */
   getAudioURL(urls) {
     if (this.game.sound.noAudio) {
       return null;
@@ -745,6 +935,12 @@ export class Loader {
     return null;
   }
 
+  /**
+   *
+   * @param file
+   * @param xhr
+   * @param reason
+   */
   fileError(file, xhr, reason) {
     // const url = file.requestUrl || this.transformUrl(file.url, file);
     let message = 'Error loading asset';
@@ -757,6 +953,11 @@ export class Loader {
     this.asyncComplete(file, message);
   }
 
+  /**
+   *
+   * @param file
+   * @param xhr
+   */
   fileComplete(file, xhr) {
     let loadNext = true;
     switch (file.type) {
@@ -853,6 +1054,11 @@ export class Loader {
     }
   }
 
+  /**
+   *
+   * @param file
+   * @param xhr
+   */
   jsonLoadComplete(file, xhr) {
     const data = JSON.parse(xhr.responseText);
     if (file.type === 'bitmapfont') {
@@ -873,11 +1079,19 @@ export class Loader {
     this.asyncComplete(file);
   }
 
+  /**
+   *
+   */
   csvLoadComplete() {
     // TODO
     console.warn('loader.csvLoadComplete() is not implemented');
   }
 
+  /**
+   *
+   * @param file
+   * @param xhr
+   */
   xmlLoadComplete(file, xhr) {
     // Always try parsing the content as XML, regardless of actually response type
     const data = xhr.responseText;
@@ -906,6 +1120,10 @@ export class Loader {
     this.asyncComplete(file);
   }
 
+  /**
+   *
+   * @param data
+   */
   parseXml(data) {
     let xml = null;
     try {
@@ -927,6 +1145,9 @@ export class Loader {
     return xml;
   }
 
+  /**
+   *
+   */
   updateProgress() {
     if (this.preloadSprite) {
       if (this.preloadSprite.direction === 0) {
@@ -947,6 +1168,11 @@ export class Loader {
     }
   }
 
+  /**
+   *
+   * @param message
+   * @param data
+   */
   log(message, data = '') {
     if (!this.isUseLog) {
       return;
@@ -954,27 +1180,45 @@ export class Loader {
     console.log(`[Loader] ${message}`, data);
   }
 
+  /**
+   *
+   */
   totalLoadedFiles() {
     return this._loadedFileCount;
   }
 
+  /**
+   *
+   */
   totalQueuedFiles() {
     return this._totalFileCount - this._loadedFileCount;
   }
 
+  /**
+   *
+   */
   totalLoadedPacks() {
     return this._totalPackCount;
   }
 
+  /**
+   *
+   */
   totalQueuedPacks() {
     return this._totalPackCount - this._loadedPackCount;
   }
 
+  /**
+   *
+   */
   get progressFloat() {
     const progress = (this._loadedFileCount / this._totalFileCount) * 100;
     return Math.max(0, Math.min(100, progress || 0));
   }
 
+  /**
+   *
+   */
   get progress() {
     return Math.round(this.progressFloat);
   }

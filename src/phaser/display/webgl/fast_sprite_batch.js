@@ -1,4 +1,8 @@
 export class FastSpriteBatch {
+  /**
+   *
+   * @param gl
+   */
   constructor(gl) {
     this.vertSize = 10;
     this.maxSize = 6000; // Math.pow(2, 16) / this.vertSize;
@@ -30,6 +34,10 @@ export class FastSpriteBatch {
     this.setContext(gl);
   }
 
+  /**
+   *
+   * @param gl
+   */
   setContext(gl) {
     this.gl = gl;
     // create a couple of buffers
@@ -43,6 +51,11 @@ export class FastSpriteBatch {
     gl.bufferData(gl.ARRAY_BUFFER, this.vertices, gl.DYNAMIC_DRAW);
   }
 
+  /**
+   *
+   * @param spriteBatch
+   * @param renderSession
+   */
   begin(spriteBatch, renderSession) {
     this.renderSession = renderSession;
     this.shader = this.renderSession.shaderManager.fastShader;
@@ -50,10 +63,17 @@ export class FastSpriteBatch {
     this.start();
   }
 
+  /**
+   *
+   */
   end() {
     this.flush();
   }
 
+  /**
+   *
+   * @param spriteBatch
+   */
   render(spriteBatch) {
     const children = spriteBatch.children;
     const sprite = children[0];
@@ -74,6 +94,10 @@ export class FastSpriteBatch {
     this.flush();
   }
 
+  /**
+   *
+   * @param sprite
+   */
   renderSprite(sprite) {
     if (!sprite.visible) {
       return;
@@ -180,6 +204,9 @@ export class FastSpriteBatch {
     }
   }
 
+  /**
+   *
+   */
   flush() {
     // If the batch is length 0 then return as there is nothing to draw
     if (this.currentBatchSize === 0) {
@@ -206,10 +233,16 @@ export class FastSpriteBatch {
     this.renderSession.drawCount += 1;
   }
 
+  /**
+   *
+   */
   stop() {
     this.flush();
   }
 
+  /**
+   *
+   */
   start() {
     const gl = this.gl;
     // bind the main texture

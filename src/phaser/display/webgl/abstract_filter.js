@@ -1,4 +1,9 @@
 export class AbstractFilter {
+  /**
+   *
+   * @param fragmentSrc
+   * @param uniforms
+   */
   constructor(fragmentSrc, uniforms) {
     this.passes = [this];
     this.shaders = [];
@@ -8,6 +13,9 @@ export class AbstractFilter {
     this.fragmentSrc = fragmentSrc || [];
   }
 
+  /**
+   *
+   */
   syncUniforms() {
     for (let i = 0, j = this.shaders.length; i < j; i += 1) {
       this.shaders[i].dirty = true;

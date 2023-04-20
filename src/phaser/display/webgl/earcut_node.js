@@ -1,4 +1,10 @@
 export class Node {
+  /**
+   *
+   * @param i
+   * @param x
+   * @param y
+   */
   constructor(i, x, y) {
     // vertice index in coordinates array
     this.i = i;

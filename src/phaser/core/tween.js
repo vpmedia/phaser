@@ -4,6 +4,12 @@ import * as MathUtils from '../util/math';
 import { TWEEN_PENDING, TWEEN_RUNNING, TWEEN_COMPLETE, TWEEN_LOOPED } from './const';
 
 export class Tween {
+  /**
+   *
+   * @param target
+   * @param game
+   * @param manager
+   */
   constructor(target, game, manager) {
     this.game = game;
     this.target = target;
@@ -30,6 +36,16 @@ export class Tween {
     this._hasStarted = false;
   }
 
+  /**
+   *
+   * @param properties
+   * @param duration
+   * @param ease
+   * @param autoStart
+   * @param delay
+   * @param repeat
+   * @param yoyo
+   */
   to(
     properties,
     duration = 1000,
@@ -52,6 +68,16 @@ export class Tween {
     return this;
   }
 
+  /**
+   *
+   * @param properties
+   * @param duration
+   * @param ease
+   * @param autoStart
+   * @param delay
+   * @param repeat
+   * @param yoyo
+   */
   from(
     properties,
     duration = 1000,
@@ -75,6 +101,10 @@ export class Tween {
     return this;
   }
 
+  /**
+   *
+   * @param index
+   */
   start(index = 0) {
     if (
       this.game === null ||
@@ -110,6 +140,10 @@ export class Tween {
     return this;
   }
 
+  /**
+   *
+   * @param complete
+   */
   stop(complete = false) {
     this.isRunning = false;
     this._onUpdateCallback = null;
@@ -125,6 +159,12 @@ export class Tween {
     return this;
   }
 
+  /**
+   *
+   * @param property
+   * @param value
+   * @param index
+   */
   updateTweenData(property, value, index = 0) {
     if (this.timeline.length === 0) {
       return this;
@@ -139,28 +179,60 @@ export class Tween {
     return this;
   }
 
+  /**
+   *
+   * @param duration
+   * @param index
+   */
   delay(duration, index) {
     return this.updateTweenData('delay', duration, index);
   }
 
+  /**
+   *
+   * @param total
+   * @param repeatDelay
+   * @param index
+   */
   repeat(total, repeatDelay = 0, index = 0) {
     this.updateTweenData('repeatCounter', total, index);
     return this.updateTweenData('repeatDelay', repeatDelay, index);
   }
 
+  /**
+   *
+   * @param duration
+   * @param index
+   */
   repeatDelay(duration, index) {
     return this.updateTweenData('repeatDelay', duration, index);
   }
 
+  /**
+   *
+   * @param enable
+   * @param yoyoDelay
+   * @param index
+   */
   yoyo(enable, yoyoDelay = 0, index = 0) {
     this.updateTweenData('yoyo', enable, index);
     return this.updateTweenData('yoyoDelay', yoyoDelay, index);
   }
 
+  /**
+   *
+   * @param duration
+   * @param index
+   */
   yoyoDelay(duration, index) {
     return this.updateTweenData('yoyoDelay', duration, index);
   }
 
+  /**
+   *
+   * @param ease
+   * @param index
+   */
   easing(ease, index) {
     if (typeof ease === 'string' && this.manager.easeMap[ease]) {
       ease = this.manager.easeMap[ease];
@@ -168,16 +240,30 @@ export class Tween {
     return this.updateTweenData('easingFunction', ease, index);
   }
 
+  /**
+   *
+   * @param interpolation
+   * @param context
+   * @param index
+   */
   interpolation(interpolation, context = MathUtils, index = 0) {
     this.updateTweenData('interpolationFunction', interpolation, index);
     return this.updateTweenData('interpolationContext', context, index);
   }
 
+  /**
+   *
+   * @param total
+   */
   repeatAll(total = 0) {
     this.repeatCounter = total;
     return this;
   }
 
+  /**
+   *
+   * @param {...any} args
+   */
   chain(...args) {
     let i = args.length;
     while (i) {
@@ -191,23 +277,38 @@ export class Tween {
     return this;
   }
 
+  /**
+   *
+   * @param value
+   */
   loop(value = true) {
     this.repeatCounter = value ? -1 : 0;
     return this;
   }
 
+  /**
+   *
+   * @param callback
+   * @param callbackContext
+   */
   onUpdateCallback(callback, callbackContext) {
     this._onUpdateCallback = callback;
     this._onUpdateCallbackContext = callbackContext;
     return this;
   }
 
+  /**
+   *
+   */
   pause() {
     this.isPaused = true;
     this._codePaused = true;
     this._pausedTime = this.game.time.time;
   }
 
+  /**
+   *
+   */
   _pause() {
     if (!this._codePaused) {
       this.isPaused = true;
@@ -215,6 +316,9 @@ export class Tween {
     }
   }
 
+  /**
+   *
+   */
   resume() {
     if (this.isPaused) {
       this.isPaused = false;
@@ -227,12 +331,19 @@ export class Tween {
     }
   }
 
+  /**
+   *
+   */
   _resume() {
     if (!this._codePaused) {
       this.resume();
     }
   }
 
+  /**
+   *
+   * @param time
+   */
   update(time) {
     if (this.pendingDelete || !this.target) {
       return false;
@@ -311,6 +422,11 @@ export class Tween {
     return false;
   }
 
+  /**
+   *
+   * @param frameRate
+   * @param data
+   */
   generateData(frameRate = 60, data = []) {
     if (this.game === null || this.target === null) {
       return null;
@@ -337,6 +453,9 @@ export class Tween {
     return data;
   }
 
+  /**
+   *
+   */
   get totalDuration() {
     let total = 0;
     for (let i = 0; i < this.timeline.length; i += 1) {

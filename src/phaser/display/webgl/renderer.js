@@ -30,6 +30,10 @@ import { WebGLStencilManager } from './stencil_manager';
 import { WebGLBlendModeManager } from './blend_manager';
 
 export class WebGLRenderer {
+  /**
+   *
+   * @param game
+   */
   constructor(game) {
     this.type = RENDER_WEBGL;
     this.resolution = game.config.resolution;
@@ -69,6 +73,9 @@ export class WebGLRenderer {
     this.mapBlendModes();
   }
 
+  /**
+   *
+   */
   destroy() {
     window.PhaserRegistry.GL_CONTEXTS[this.glContextId] = null;
     this.projection = null;
@@ -94,6 +101,9 @@ export class WebGLRenderer {
     window.PhaserRegistry.GL_CONTEXT_ID -= 1;
   }
 
+  /**
+   *
+   */
   initRegistry() {
     if (!window.PhaserRegistry.GL_CONTEXT_ID) {
       window.PhaserRegistry.GL_CONTEXT_ID = 0;
@@ -106,6 +116,9 @@ export class WebGLRenderer {
     }
   }
 
+  /**
+   *
+   */
   initContext() {
     const gl =
       this.view.getContext('webgl', this._contextOptions) ||
@@ -136,6 +149,10 @@ export class WebGLRenderer {
     this.resize(this.width, this.height);
   }
 
+  /**
+   *
+   * @param stage
+   */
   render(stage) {
     if (this.contextLost) {
       return;
@@ -154,6 +171,13 @@ export class WebGLRenderer {
     this.renderDisplayObject(stage, this.projection);
   }
 
+  /**
+   *
+   * @param displayObject
+   * @param projection
+   * @param buffer
+   * @param matrix
+   */
   renderDisplayObject(displayObject, projection, buffer, matrix) {
     this.renderSession.blendModeManager.setBlendMode(BLEND_NORMAL);
     // reset the render session data..
@@ -174,6 +198,11 @@ export class WebGLRenderer {
     this.spriteBatch.end();
   }
 
+  /**
+   *
+   * @param width
+   * @param height
+   */
   resize(width, height) {
     this.width = width * this.resolution;
     this.height = height * this.resolution;
@@ -188,6 +217,10 @@ export class WebGLRenderer {
     this.projection.y = -this.height / 2 / this.resolution;
   }
 
+  /**
+   *
+   * @param texture
+   */
   updateTexture(texture) {
     if (!texture.hasLoaded) {
       return false;
@@ -230,6 +263,9 @@ export class WebGLRenderer {
     return true;
   }
 
+  /**
+   *
+   */
   mapBlendModes() {
     if (window.PhaserRegistry.blendModesWebGL) {
       return;

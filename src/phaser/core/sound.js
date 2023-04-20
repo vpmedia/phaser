@@ -1,6 +1,14 @@
 import { Signal } from  './signal';
 
 export class Sound {
+  /**
+   *
+   * @param game
+   * @param key
+   * @param volume
+   * @param loop
+   * @param connect
+   */
   constructor(game, key, volume = 1, loop = false, connect = null) {
     // TODO
     // https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Migrating_from_webkitAudioContext
@@ -69,6 +77,10 @@ export class Sound {
     this._paused = false;
   }
 
+  /**
+   *
+   * @param key
+   */
   soundHasUnlocked(key) {
     if (key === this.key) {
       this._sound = this.game.cache.getSoundData(this.key);
@@ -76,6 +88,14 @@ export class Sound {
     }
   }
 
+  /**
+   *
+   * @param name
+   * @param start
+   * @param duration
+   * @param volume
+   * @param loop
+   */
   addMarker(name, start, duration = 1, volume = 1, loop = false) {
     this.markers[name] = {
       name,
@@ -88,10 +108,17 @@ export class Sound {
     };
   }
 
+  /**
+   *
+   * @param name
+   */
   removeMarker(name) {
     delete this.markers[name];
   }
 
+  /**
+   *
+   */
   onEndedHandler() {
     this._sound.onended = null;
     this.isPlaying = false;
@@ -121,6 +148,9 @@ export class Sound {
     }
   }
 
+  /**
+   *
+   */
   update() {
     if (!this.game.cache.checkSoundKey(this.key)) {
       this.destroy();
@@ -168,10 +198,22 @@ export class Sound {
     }
   }
 
+  /**
+   *
+   * @param volume
+   */
   loopFull(volume) {
     return this.play(null, 0, volume, true);
   }
 
+  /**
+   *
+   * @param marker
+   * @param position
+   * @param volume
+   * @param loop
+   * @param forceRestart
+   */
   play(marker, position, volume, loop, forceRestart) {
     if (marker === undefined || marker === false || marker === null) {
       marker = '';
@@ -318,10 +360,20 @@ export class Sound {
     return this;
   }
 
+  /**
+   *
+   * @param marker
+   * @param position
+   * @param volume
+   * @param loop
+   */
   restart(marker = '', position = 0, volume = 1, loop = false) {
     this.play(marker, position, volume, loop, true);
   }
 
+  /**
+   *
+   */
   pause() {
     if (this.isPlaying && this._sound) {
       this.paused = true;
@@ -333,6 +385,9 @@ export class Sound {
     }
   }
 
+  /**
+   *
+   */
   resume() {
     if (this.paused && this._sound) {
       if (!this.game.sound.noAudio) {
@@ -367,6 +422,9 @@ export class Sound {
     }
   }
 
+  /**
+   *
+   */
   stop() {
     if (this.isPlaying && this._sound) {
       if (!this.game.sound.noAudio) {
@@ -397,6 +455,12 @@ export class Sound {
     }
   }
 
+  /**
+   *
+   * @param duration
+   * @param loop
+   * @param marker
+   */
   fadeIn(duration, loop = false, marker = this.currentMarker) {
     if (this.paused) {
       return;
@@ -405,10 +469,19 @@ export class Sound {
     this.fadeTo(duration, 1);
   }
 
+  /**
+   *
+   * @param duration
+   */
   fadeOut(duration) {
     this.fadeTo(duration, 0);
   }
 
+  /**
+   *
+   * @param duration
+   * @param volume
+   */
   fadeTo(duration = 100, volume = 0) {
     if (!this.isPlaying || this.paused || volume === this.volume) {
       return;
@@ -417,6 +490,9 @@ export class Sound {
     this.fadeTween.onComplete.add(this.fadeComplete, this);
   }
 
+  /**
+   *
+   */
   fadeComplete() {
     this.onFadeComplete.dispatch(this, this.volume);
     if (this.volume === 0) {
@@ -424,6 +500,10 @@ export class Sound {
     }
   }
 
+  /**
+   *
+   * @param remove
+   */
   destroy(remove = true) {
     this._markedToDelete = true;
     this._removeFromSoundManager = remove;
@@ -445,10 +525,16 @@ export class Sound {
     }
   }
 
+  /**
+   *
+   */
   get mute() {
     return this._muted || this.game.sound.mute;
   }
 
+  /**
+   *
+   */
   set mute(value) {
     value = value || false;
     if (value === this._muted) {
@@ -469,10 +555,16 @@ export class Sound {
     this.onMute.dispatch(this);
   }
 
+  /**
+   *
+   */
   get volume() {
     return this._volume;
   }
 
+  /**
+   *
+   */
   set volume(value) {
     if (this._muted) {
       this._muteVolume = value;

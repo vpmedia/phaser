@@ -2,6 +2,9 @@ import { AbstractFilter } from './abstract_filter';
 import { NormalShader } from './shader/normal';
 
 export class WebGLSpriteBatch {
+  /**
+   *
+   */
   constructor() {
     this.vertSize = 5;
     this.size = 2000; // Math.pow(2, 16) /  this.vertSize;
@@ -41,6 +44,10 @@ export class WebGLSpriteBatch {
     ]);
   }
 
+  /**
+   *
+   * @param gl
+   */
   setContext(gl) {
     this.gl = gl;
     // create a couple of buffers
@@ -60,16 +67,28 @@ export class WebGLSpriteBatch {
     this.defaultShader.shaders[gl.id] = shader;
   }
 
+  /**
+   *
+   * @param renderSession
+   */
   begin(renderSession) {
     this.renderSession = renderSession;
     this.shader = this.renderSession.shaderManager.defaultShader;
     this.start();
   }
 
+  /**
+   *
+   */
   end() {
     this.flush();
   }
 
+  /**
+   *
+   * @param sprite
+   * @param matrix
+   */
   render(sprite, matrix) {
     const texture = sprite.texture;
     //  They provided an alternative rendering matrix, so use it
@@ -168,10 +187,16 @@ export class WebGLSpriteBatch {
     this.currentBatchSize += 1;
   }
 
+  /**
+   *
+   */
   renderTilingSprite() {
     // TODO
   }
 
+  /**
+   *
+   */
   flush() {
     // If the batch is length 0 then return as there is nothing to draw
     if (this.currentBatchSize === 0) {
@@ -268,6 +293,12 @@ export class WebGLSpriteBatch {
     this.currentBatchSize = 0;
   }
 
+  /**
+   *
+   * @param texture
+   * @param size
+   * @param startIndex
+   */
   renderBatch(texture, size, startIndex) {
     if (size === 0) {
       return;
@@ -289,15 +320,24 @@ export class WebGLSpriteBatch {
     this.renderSession.drawCount += 1;
   }
 
+  /**
+   *
+   */
   stop() {
     this.flush();
     this.dirty = true;
   }
 
+  /**
+   *
+   */
   start() {
     this.dirty = true;
   }
 
+  /**
+   *
+   */
   destroy() {
     this.vertices = null;
     this.positions = null;

@@ -1,6 +1,16 @@
 import { clone } from './graphics_data_util';
 
 export class GraphicsData {
+  /**
+   *
+   * @param lineWidth
+   * @param lineColor
+   * @param lineAlpha
+   * @param fillColor
+   * @param fillAlpha
+   * @param fill
+   * @param shape
+   */
   constructor(lineWidth, lineColor, lineAlpha, fillColor, fillAlpha, fill, shape) {
     this.lineWidth = lineWidth;
     this.lineColor = lineColor;
@@ -14,6 +24,9 @@ export class GraphicsData {
     this.type = shape.type;
   }
 
+  /**
+   *
+   */
   clone() {
     return clone(this);
   }

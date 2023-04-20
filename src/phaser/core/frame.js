@@ -3,10 +3,28 @@ import { distance } from '../util/math';
 import { cloneFrame } from './frame_util';
 
 export class Frame {
+  /**
+   *
+   * @param index
+   * @param x
+   * @param y
+   * @param width
+   * @param height
+   * @param name
+   */
   constructor(index, x, y, width, height, name) {
     this.initialize(index, x, y, width, height, name);
   }
 
+  /**
+   *
+   * @param index
+   * @param x
+   * @param y
+   * @param width
+   * @param height
+   * @param name
+   */
   initialize(index, x, y, width, height, name) {
     this.index = index;
     this.x = x;
@@ -30,6 +48,11 @@ export class Frame {
     this.bottom = this.y + this.height;
   }
 
+  /**
+   *
+   * @param width
+   * @param height
+   */
   resize(width, height) {
     this.width = width;
     this.height = height;
@@ -42,6 +65,16 @@ export class Frame {
     this.bottom = this.y + height;
   }
 
+  /**
+   *
+   * @param trimmed
+   * @param actualWidth
+   * @param actualHeight
+   * @param destX
+   * @param destY
+   * @param destWidth
+   * @param destHeight
+   */
   setTrim(trimmed, actualWidth, actualHeight, destX, destY, destWidth, destHeight) {
     this.trimmed = trimmed;
     if (trimmed) {
@@ -56,10 +89,17 @@ export class Frame {
     }
   }
 
+  /**
+   *
+   */
   clone() {
     return cloneFrame(this);
   }
 
+  /**
+   *
+   * @param output
+   */
   getRect(output = null) {
     const result = output || new Rectangle();
     result.setTo(this.x, this.y, this.width, this.height);

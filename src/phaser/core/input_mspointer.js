@@ -1,5 +1,9 @@
 
 export class MSPointer {
+  /**
+   *
+   * @param game
+   */
   constructor(game) {
     this.game = game;
     this.input = game.input;
@@ -19,6 +23,9 @@ export class MSPointer {
     this._onMSPointerOver = null;
   }
 
+  /**
+   *
+   */
   start() {
     if (!this.game.device.mspointer || this._onMSPointerDown !== null) {
       return;
@@ -49,6 +56,9 @@ export class MSPointer {
     canvas.addEventListener('pointerout', this._onMSPointerOut, true);
   }
 
+  /**
+   *
+   */
   stop() {
     if (!this.game.device.mspointer) {
       return;
@@ -70,6 +80,10 @@ export class MSPointer {
     canvas.removeEventListener('pointerout', this._onMSPointerOut, true);
   }
 
+  /**
+   *
+   * @param event
+   */
   onPointerDown(event) {
     this.event = event;
     this.eventPreventDefault(event);
@@ -87,6 +101,10 @@ export class MSPointer {
     }
   }
 
+  /**
+   *
+   * @param event
+   */
   onPointerMove(event) {
     this.event = event;
     this.eventPreventDefault(event);
@@ -104,6 +122,10 @@ export class MSPointer {
     }
   }
 
+  /**
+   *
+   * @param event
+   */
   onPointerUp(event) {
     this.event = event;
     this.eventPreventDefault(event);
@@ -121,6 +143,10 @@ export class MSPointer {
     }
   }
 
+  /**
+   *
+   * @param event
+   */
   onPointerUpGlobal(event) {
     if (
       (event.pointerType === 'mouse' || event.pointerType === 0x00000004) &&
@@ -135,6 +161,10 @@ export class MSPointer {
     }
   }
 
+  /**
+   *
+   * @param event
+   */
   onPointerOut(event) {
     this.event = event;
     this.eventPreventDefault(event);
@@ -163,6 +193,10 @@ export class MSPointer {
     }
   }
 
+  /**
+   *
+   * @param event
+   */
   onPointerOver(event) {
     this.event = event;
     this.eventPreventDefault(event);
@@ -179,6 +213,10 @@ export class MSPointer {
     }
   }
 
+  /**
+   *
+   * @param event
+   */
   eventPreventDefault(event) {
     if (this.capture) {
       if (typeof event.cancelable !== 'boolean' || event.cancelable) {

@@ -1,6 +1,11 @@
 import { Scene } from './scene';
 
 export class SceneManager {
+  /**
+   *
+   * @param game
+   * @param pendingState
+   */
   constructor(game, pendingState) {
     this.game = game;
     this.states = {};
@@ -22,12 +27,21 @@ export class SceneManager {
     this.onShutDownCallback = null;
   }
 
+  /**
+   *
+   */
   boot() {
     if (this._pendingState !== null && typeof this._pendingState !== 'string') {
       this.add('default', this._pendingState, true);
     }
   }
 
+  /**
+   *
+   * @param key
+   * @param state
+   * @param autoStart
+   */
   add(key, state, autoStart = false) {
     let newState = null;
     if (state instanceof Scene) {
@@ -49,6 +63,10 @@ export class SceneManager {
     return newState;
   }
 
+  /**
+   *
+   * @param key
+   */
   remove(key) {
     if (this.current === key) {
       this.callbackContext = null;
@@ -63,6 +81,13 @@ export class SceneManager {
     delete this.states[key];
   }
 
+  /**
+   *
+   * @param key
+   * @param clearWorld
+   * @param clearCache
+   * @param {...any} args
+   */
   start(key, clearWorld = true, clearCache = false, ...args) {
     if (this.checkState(key)) {
       //  Place the state in the queue. It will be started the next time the game loop begins.
@@ -75,6 +100,12 @@ export class SceneManager {
     }
   }
 
+  /**
+   *
+   * @param clearWorld
+   * @param clearCache
+   * @param {...any} args
+   */
   restart(clearWorld = true, clearCache = false, ...args) {
     this._pendingState = this.current;
     this._clearWorld = clearWorld;
@@ -84,6 +115,9 @@ export class SceneManager {
     }
   }
 
+  /**
+   *
+   */
   preUpdate() {
     if (this._pendingState && this.game.isBooted) {
       // var previousStateKey = this.current;
@@ -115,6 +149,9 @@ export class SceneManager {
     }
   }
 
+  /**
+   *
+   */
   clearCurrentState() {
     if (this.current) {
       if (this.onShutDownCallback) {
@@ -133,6 +170,10 @@ export class SceneManager {
     }
   }
 
+  /**
+   *
+   * @param key
+   */
   checkState(key) {
     if (this.states[key]) {
       if (
@@ -148,17 +189,29 @@ export class SceneManager {
     return false;
   }
 
+  /**
+   *
+   * @param key
+   */
   link(key) {
     this.states[key].game = this.game;
     this.states[key].key = key;
   }
 
+  /**
+   *
+   * @param key
+   */
   unlink(key) {
     if (this.states[key]) {
       this.states[key].game = null;
     }
   }
 
+  /**
+   *
+   * @param key
+   */
   setCurrentState(key) {
     this.callbackContext = this.states[key];
     this.link(key);
@@ -179,10 +232,16 @@ export class SceneManager {
     this.game.isKickStart = true;
   }
 
+  /**
+   *
+   */
   getCurrentState() {
     return this.states[this.current];
   }
 
+  /**
+   *
+   */
   loadComplete() {
     if (this._created === false && this.onCreateCallback) {
       this._created = true;
@@ -192,24 +251,38 @@ export class SceneManager {
     }
   }
 
+  /**
+   *
+   */
   update() {
     if (this._created && this.onUpdateCallback) {
       this.onUpdateCallback.call(this.callbackContext, this.game);
     }
   }
 
+  /**
+   *
+   */
   pauseUpdate() {
     if (this._created && this.onPauseUpdateCallback) {
       this.onPauseUpdateCallback.call(this.callbackContext, this.game);
     }
   }
 
+  /**
+   *
+   * @param width
+   * @param height
+   */
   resize(width, height) {
     if (this.onResizeCallback) {
       this.onResizeCallback.call(this.callbackContext, width, height);
     }
   }
 
+  /**
+   *
+   */
   destroy() {
     this._clearWorld = true;
     this._clearCache = true;
@@ -227,10 +300,16 @@ export class SceneManager {
     this.current = '';
   }
 
+  /**
+   *
+   */
   dummy() {
     // pass
   }
 
+  /**
+   *
+   */
   get created() {
     return this._created;
   }

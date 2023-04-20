@@ -19,6 +19,11 @@ export class RoundedRectangle {
     this.type = GEOM_ROUNDED_RECTANGLE;
   }
 
+  /**
+   *
+   * @param x
+   * @param y
+   */
   contains(x, y) {
     if (this.width <= 0 || this.height <= 0) {
       return false;
@@ -31,6 +36,9 @@ export class RoundedRectangle {
     return false;
   }
 
+  /**
+   *
+   */
   clone() {
     return clone(this);
   }

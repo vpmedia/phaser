@@ -1,6 +1,10 @@
 import { Animation } from './animation';
 
 export class AnimationManager {
+  /**
+   *
+   * @param sprite
+   */
   constructor(sprite) {
     this.sprite = sprite;
     this.game = sprite.game;
@@ -13,6 +17,9 @@ export class AnimationManager {
     this._outputFrames = [];
   }
 
+  /**
+   *
+   */
   destroy() {
     const keys = Object.keys(this._anims);
     for (let i = 0; i < keys.length; i += 1) {
@@ -27,6 +34,11 @@ export class AnimationManager {
     this.game = null;
   }
 
+  /**
+   *
+   * @param frameData
+   * @param frame
+   */
   loadFrameData(frameData, frame) {
     if (!frameData) {
       return false;
@@ -51,6 +63,11 @@ export class AnimationManager {
     return true;
   }
 
+  /**
+   *
+   * @param frameData
+   * @param frame
+   */
   copyFrameData(frameData, frame) {
     this._frameData = frameData.clone();
     if (this.isLoaded) {
@@ -72,6 +89,14 @@ export class AnimationManager {
     return true;
   }
 
+  /**
+   *
+   * @param name
+   * @param frameList
+   * @param frameRate
+   * @param loop
+   * @param useNumericIndex
+   */
   add(name, frameList, frameRate = 60, loop = false, useNumericIndex = undefined) {
     const frames = frameList || [];
     //  If they didn't set the useNumericIndex then let's at least try and guess it
@@ -100,6 +125,11 @@ export class AnimationManager {
     return this._anims[name];
   }
 
+  /**
+   *
+   * @param frames
+   * @param useNumericIndex
+   */
   validateFrames(frames, useNumericIndex = false) {
     for (let i = 0; i < frames.length; i += 1) {
       if (useNumericIndex === true) {
@@ -113,6 +143,13 @@ export class AnimationManager {
     return true;
   }
 
+  /**
+   *
+   * @param name
+   * @param frameRate
+   * @param loop
+   * @param killOnComplete
+   */
   play(name, frameRate, loop, killOnComplete) {
     if (this._anims[name]) {
       if (this.currentAnim === this._anims[name]) {
@@ -133,12 +170,20 @@ export class AnimationManager {
     return null;
   }
 
+  /**
+   *
+   * @param name
+   * @param resetFrame
+   */
   stop(name, resetFrame = false) {
     if (this.currentAnim && (typeof name !== 'string' || name === this.currentAnim.name)) {
       this.currentAnim.stop(resetFrame);
     }
   }
 
+  /**
+   *
+   */
   update() {
     if (this.updateIfVisible && !this.sprite.visible) {
       return false;
@@ -150,6 +195,10 @@ export class AnimationManager {
     return false;
   }
 
+  /**
+   *
+   * @param quantity
+   */
   next(quantity) {
     if (this.currentAnim) {
       this.currentAnim.next(quantity);
@@ -157,6 +206,10 @@ export class AnimationManager {
     }
   }
 
+  /**
+   *
+   * @param quantity
+   */
   previous(quantity) {
     if (this.currentAnim) {
       this.currentAnim.previous(quantity);
@@ -164,6 +217,10 @@ export class AnimationManager {
     }
   }
 
+  /**
+   *
+   * @param name
+   */
   getAnimation(name) {
     if (name && this._anims[name]) {
       return this._anims[name];
@@ -171,28 +228,46 @@ export class AnimationManager {
     return null;
   }
 
+  /**
+   *
+   */
   refreshFrame() {
     // TODO
     console.warn('animation_manager.refreshFrame() is not implemented');
     // this.sprite.setTexture(PIXI.TextureCache[this.currentFrame.uuid]);
   }
 
+  /**
+   *
+   */
   get frameData() {
     return this._frameData;
   }
 
+  /**
+   *
+   */
   get frameTotal() {
     return this._frameData.total;
   }
 
+  /**
+   *
+   */
   get paused() {
     return this.currentAnim.isPaused;
   }
 
+  /**
+   *
+   */
   set paused(value) {
     this.currentAnim.paused = value;
   }
 
+  /**
+   *
+   */
   get name() {
     if (this.currentAnim) {
       return this.currentAnim.name;
@@ -200,6 +275,9 @@ export class AnimationManager {
     return null;
   }
 
+  /**
+   *
+   */
   get frame() {
     if (this.currentFrame) {
       return this.currentFrame.index;
@@ -207,6 +285,9 @@ export class AnimationManager {
     return 0;
   }
 
+  /**
+   *
+   */
   set frame(value) {
     if (typeof value === 'number' && this._frameData && this._frameData.getFrame(value) !== null) {
       this.currentFrame = this._frameData.getFrame(value);
@@ -218,6 +299,9 @@ export class AnimationManager {
     }
   }
 
+  /**
+   *
+   */
   get frameName() {
     if (this.currentFrame) {
       return this.currentFrame.name;
@@ -225,6 +309,9 @@ export class AnimationManager {
     return null;
   }
 
+  /**
+   *
+   */
   set frameName(value) {
     if (
       typeof value === 'string' &&

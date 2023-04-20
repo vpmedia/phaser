@@ -42,6 +42,9 @@ export class Image extends DisplayObject {
     this.loadTexture(key, frame);
   }
 
+  /**
+   *
+   */
   destroy() {
     this.game = null;
     this.key = null;
@@ -63,6 +66,9 @@ export class Image extends DisplayObject {
     super.destroy();
   }
 
+  /**
+   *
+   */
   preUpdate() {
     if (this.pendingDestroy) {
       this.destroy();
@@ -86,6 +92,12 @@ export class Image extends DisplayObject {
 
   // LoadTexture
 
+  /**
+   *
+   * @param key
+   * @param frame
+   * @param stopAnimation
+   */
   loadTexture(key, frame = 0, stopAnimation = true) {
     if (key === PENDING_ATLAS) {
       key = frame;
@@ -124,6 +136,10 @@ export class Image extends DisplayObject {
     }
   }
 
+  /**
+   *
+   * @param frame
+   */
   setFrame(frame) {
     this._frame = frame;
     this.texture.frame.x = frame.x;
@@ -165,35 +181,61 @@ export class Image extends DisplayObject {
     }
   }
 
+  /**
+   *
+   * @param parent
+   * @param width
+   * @param height
+   */
   resizeFrame(parent, width, height) {
     this.texture.frame.resize(width, height);
     this.texture.setFrame(this.texture.frame);
   }
 
+  /**
+   *
+   */
   resetFrame() {
     if (this._frame) {
       this.setFrame(this._frame);
     }
   }
 
+  /**
+   *
+   */
   get frame() {
     return this.animations.frame;
   }
 
+  /**
+   *
+   */
   set frame(value) {
     this.animations.frame = value;
   }
 
+  /**
+   *
+   */
   get frameName() {
     return this.animations.frameName;
   }
 
+  /**
+   *
+   */
   set frameName(value) {
     this.animations.frameName = value;
   }
 
   // Crop
 
+  /**
+   *
+   * @param rect
+   * @param copy
+   */
   crop(rect, copy = false) {
     if (rect) {
       if (copy && this.cropRect !== null) {
@@ -211,6 +253,9 @@ export class Image extends DisplayObject {
     }
   }
 
+  /**
+   *
+   */
   updateCrop() {
     if (!this.cropRect) {
       return;
@@ -240,24 +285,39 @@ export class Image extends DisplayObject {
     }
   }
 
+  /**
+   *
+   */
   get width() {
     return this.scale.x * this.texture.frame.width;
   }
 
+  /**
+   *
+   */
   set width(value) {
     this.scale.x = value / this.texture.frame.width;
     this._width = value;
   }
 
+  /**
+   *
+   */
   get height() {
     return this.scale.y * this.texture.frame.height;
   }
 
+  /**
+   *
+   */
   set height(value) {
     this.scale.y = value / this.texture.frame.height;
     this._height = value;
   }
 
+  /**
+   *
+   */
   onTextureUpdate() {
     // so if _width is 0 then width was not set..
     if (this._width) {
@@ -268,22 +328,44 @@ export class Image extends DisplayObject {
     }
   }
 
+  /**
+   *
+   * @param texture
+   * @param destroyBase
+   */
   setTexture(texture, destroyBase = false) {
     setTexture(this, texture, destroyBase);
   }
 
+  /**
+   *
+   * @param matrix
+   */
   getBounds(matrix = null) {
     return getBounds(this, matrix);
   }
 
+  /**
+   *
+   */
   getLocalBounds() {
     return getLocalBounds(this);
   }
 
+  /**
+   *
+   * @param renderSession
+   * @param matrix
+   */
   renderWebGL(renderSession, matrix = null) {
     renderWebGL(this, renderSession, matrix);
   }
 
+  /**
+   *
+   * @param renderSession
+   * @param matrix
+   */
   renderCanvas(renderSession, matrix = null) {
     renderCanvas(this, renderSession, matrix);
   }

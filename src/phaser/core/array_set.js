@@ -1,9 +1,17 @@
 export class ArraySet {
+  /**
+   *
+   * @param list
+   */
   constructor(list = []) {
     this.position = 0;
     this.list = list;
   }
 
+  /**
+   *
+   * @param item
+   */
   add(item) {
     if (!this.exists(item)) {
       this.list.push(item);
@@ -11,10 +19,19 @@ export class ArraySet {
     return item;
   }
 
+  /**
+   *
+   * @param item
+   */
   getIndex(item) {
     return this.list.indexOf(item);
   }
 
+  /**
+   *
+   * @param property
+   * @param value
+   */
   getByKey(property, value) {
     let i = this.list.length;
     while (i) {
@@ -26,14 +43,25 @@ export class ArraySet {
     return null;
   }
 
+  /**
+   *
+   * @param item
+   */
   exists(item) {
     return this.list.indexOf(item) > -1;
   }
 
+  /**
+   *
+   */
   reset() {
     this.list.length = 0;
   }
 
+  /**
+   *
+   * @param item
+   */
   remove(item) {
     const idx = this.list.indexOf(item);
     if (idx > -1) {
@@ -43,6 +71,11 @@ export class ArraySet {
     return null;
   }
 
+  /**
+   *
+   * @param key
+   * @param value
+   */
   setAll(key, value) {
     let i = this.list.length;
     while (i) {
@@ -53,6 +86,11 @@ export class ArraySet {
     }
   }
 
+  /**
+   *
+   * @param key
+   * @param {...any} args
+   */
   callAll(key, ...args) {
     let i = this.list.length;
     while (i) {
@@ -63,6 +101,10 @@ export class ArraySet {
     }
   }
 
+  /**
+   *
+   * @param destroy
+   */
   removeAll(destroy = false) {
     let i = this.list.length;
     while (i) {
@@ -78,10 +120,16 @@ export class ArraySet {
     this.list = [];
   }
 
+  /**
+   *
+   */
   get total() {
     return this.list.length;
   }
 
+  /**
+   *
+   */
   get first() {
     this.position = 0;
     if (this.list.length > 0) {
@@ -90,6 +138,9 @@ export class ArraySet {
     return null;
   }
 
+  /**
+   *
+   */
   get next() {
     if (this.position < this.list.length) {
       this.position += 1;

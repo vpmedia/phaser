@@ -45,6 +45,11 @@ export class Group extends DisplayObject {
     this._sortProperty = 'z';
   }
 
+  /**
+   *
+   * @param destroyChildren
+   * @param soft
+   */
   destroy(destroyChildren = true, soft = false) {
     if (this.game === null || this.ignoreDestroy) {
       return;
@@ -63,6 +68,12 @@ export class Group extends DisplayObject {
     }
   }
 
+  /**
+   *
+   * @param child
+   * @param silent
+   * @param index
+   */
   add(child, silent = false, index = -1) {
     if (child.parent === this) {
       return child;
@@ -86,10 +97,20 @@ export class Group extends DisplayObject {
     return child;
   }
 
+  /**
+   *
+   * @param child
+   * @param index
+   * @param silent
+   */
   addAt(child, index, silent) {
     this.add(child, silent, index);
   }
 
+  /**
+   *
+   * @param index
+   */
   getAt(index) {
     if (index < 0 || index >= this.children.length) {
       return -1;
@@ -97,6 +118,9 @@ export class Group extends DisplayObject {
     return this.getChildAt(index);
   }
 
+  /**
+   *
+   */
   updateZ() {
     let i = this.children.length;
     while (i) {
@@ -105,6 +129,9 @@ export class Group extends DisplayObject {
     }
   }
 
+  /**
+   *
+   */
   next() {
     if (this.cursor) {
       //  Wrap the cursor?
@@ -119,6 +146,9 @@ export class Group extends DisplayObject {
     return null;
   }
 
+  /**
+   *
+   */
   previous() {
     if (this.cursor) {
       //  Wrap the cursor?
@@ -133,11 +163,20 @@ export class Group extends DisplayObject {
     return null;
   }
 
+  /**
+   *
+   * @param child1
+   * @param child2
+   */
   swap(child1, child2) {
     this.swapChildren(child1, child2);
     this.updateZ();
   }
 
+  /**
+   *
+   * @param child
+   */
   bringToTop(child) {
     if (child.parent === this && this.getIndex(child) < this.children.length) {
       this.remove(child, false, true);
@@ -146,6 +185,10 @@ export class Group extends DisplayObject {
     return child;
   }
 
+  /**
+   *
+   * @param child
+   */
   sendToBack(child) {
     if (child.parent === this && this.getIndex(child) > 0) {
       this.remove(child, false, true);
@@ -154,15 +197,25 @@ export class Group extends DisplayObject {
     return child;
   }
 
+  /**
+   *
+   */
   reverse() {
     this.children.reverse();
     this.updateZ();
   }
 
+  /**
+   *
+   * @param child
+   */
   getIndex(child) {
     return this.children.indexOf(child);
   }
 
+  /**
+   *
+   */
   preUpdate() {
     if (this.pendingDestroy) {
       this.destroy();
@@ -177,6 +230,9 @@ export class Group extends DisplayObject {
     }
   }
 
+  /**
+   *
+   */
   update() {
     let i = this.children.length;
     while (i) {
@@ -185,12 +241,21 @@ export class Group extends DisplayObject {
     }
   }
 
+  /**
+   *
+   */
   postUpdate() {
     for (let i = 0; i < this.children.length; i += 1) {
       this.children[i].postUpdate();
     }
   }
 
+  /**
+   *
+   * @param child
+   * @param destroy
+   * @param silent
+   */
   remove(child, destroy = true, silent = false) {
     if (this.children.length === 0 || this.children.indexOf(child) === -1) {
       return false;
@@ -209,6 +274,12 @@ export class Group extends DisplayObject {
     return true;
   }
 
+  /**
+   *
+   * @param destroy
+   * @param silent
+   * @param destroyTexture
+   */
   removeAll(destroy = true, silent = false, destroyTexture = false) {
     if (this.children.length === 0) {
       return;

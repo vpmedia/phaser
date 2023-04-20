@@ -3,6 +3,10 @@ import { GROUP } from './const';
 import { distance } from '../util/math';
 
 export class InputHandler {
+  /**
+   *
+   * @param sprite
+   */
   constructor(sprite) {
     this.sprite = sprite;
     this.game = sprite.game;
@@ -64,6 +68,11 @@ export class InputHandler {
     });
   }
 
+  /**
+   *
+   * @param priority
+   * @param useHandCursor
+   */
   start(priority = 0, useHandCursor = false) {
     //  Turning on
     if (this.enabled === false) {
@@ -97,6 +106,9 @@ export class InputHandler {
     return this.sprite;
   }
 
+  /**
+   *
+   */
   addedToGroup() {
     if (this._dragPhase) {
       return;
@@ -106,6 +118,9 @@ export class InputHandler {
     }
   }
 
+  /**
+   *
+   */
   removedFromGroup() {
     if (this._dragPhase) {
       return;
@@ -118,6 +133,9 @@ export class InputHandler {
     }
   }
 
+  /**
+   *
+   */
   reset() {
     this.enabled = false;
     for (let i = 0; i < 10; i += 1) {
@@ -139,6 +157,9 @@ export class InputHandler {
     }
   }
 
+  /**
+   *
+   */
   stop() {
     if (this.enabled) {
       this.enabled = false;
@@ -146,6 +167,9 @@ export class InputHandler {
     }
   }
 
+  /**
+   *
+   */
   destroy() {
     if (this.sprite) {
       if (this._setHandCursor) {
@@ -161,6 +185,12 @@ export class InputHandler {
     }
   }
 
+  /**
+   *
+   * @param highestID
+   * @param highestRenderID
+   * @param includePixelPerfect
+   */
   validForInput(highestID, highestRenderID, includePixelPerfect = true) {
     if (
       !this.enabled ||
@@ -184,34 +214,65 @@ export class InputHandler {
     return false;
   }
 
+  /**
+   *
+   */
   isPixelPerfect() {
     return this.pixelPerfectClick || this.pixelPerfectOver;
   }
 
+  /**
+   *
+   * @param pointerId
+   */
   pointerX(pointerId = 0) {
     return this._pointerData[pointerId].x;
   }
 
+  /**
+   *
+   * @param pointerId
+   */
   pointerY(pointerId = 0) {
     return this._pointerData[pointerId].y;
   }
 
+  /**
+   *
+   * @param pointerId
+   */
   pointerDown(pointerId = 0) {
     return this._pointerData[pointerId].isDown;
   }
 
+  /**
+   *
+   * @param pointerId
+   */
   pointerUp(pointerId = 0) {
     return this._pointerData[pointerId].isUp;
   }
 
+  /**
+   *
+   * @param pointerId
+   */
   pointerTimeDown(pointerId = 0) {
     return this._pointerData[pointerId].timeDown;
   }
 
+  /**
+   *
+   * @param pointerId
+   */
   pointerTimeUp(pointerId = 0) {
     return this._pointerData[pointerId].timeUp;
   }
 
+  /**
+   *
+   * @param pointerId
+   */
   pointerOver(pointerId) {
     if (!this.enabled) {
       return false;
@@ -227,6 +288,10 @@ export class InputHandler {
     return this._pointerData[pointerId].isOver;
   }
 
+  /**
+   *
+   * @param pointerId
+   */
   pointerOut(pointerId) {
     if (!this.enabled) {
       return false;
@@ -241,18 +306,35 @@ export class InputHandler {
     return this._pointerData[pointerId].isOut;
   }
 
+  /**
+   *
+   * @param pointerId
+   */
   pointerTimeOver(pointerId = 0) {
     return this._pointerData[pointerId].timeOver;
   }
 
+  /**
+   *
+   * @param pointerId
+   */
   pointerTimeOut(pointerId = 0) {
     return this._pointerData[pointerId].timeOut;
   }
 
+  /**
+   *
+   * @param pointerId
+   */
   pointerDragged(pointerId = 0) {
     return this._pointerData[pointerId].isDragged;
   }
 
+  /**
+   *
+   * @param pointer
+   * @param fastTest
+   */
   checkPointerDown(pointer = 0, fastTest = false) {
     if (
       !pointer.isDown ||
@@ -276,6 +358,11 @@ export class InputHandler {
     return false;
   }
 
+  /**
+   *
+   * @param pointer
+   * @param fastTest
+   */
   checkPointerOver(pointer = 0, fastTest = false) {
     if (
       !this.enabled ||
@@ -298,6 +385,12 @@ export class InputHandler {
     return false;
   }
 
+  /**
+   *
+   * @param x
+   * @param y
+   * @param pointer
+   */
   checkPixel(x, y, pointer) {
     //  Grab a pixel from our image into the hitCanvas and then test it
     if (this.sprite.texture.baseTexture.source) {
@@ -352,6 +445,10 @@ export class InputHandler {
     return false;
   }
 
+  /**
+   *
+   * @param pointer
+   */
   update(pointer) {
     if (this.sprite === null || this.sprite.parent === undefined) {
       // Abort. We've been destroyed.
@@ -385,6 +482,11 @@ export class InputHandler {
     return false;
   }
 
+  /**
+   *
+   * @param pointer
+   * @param silent
+   */
   _pointerOverHandler(pointer, silent) {
     if (this.sprite === null) {
       // Abort. We've been destroyed.
@@ -411,6 +513,11 @@ export class InputHandler {
     }
   }
 
+  /**
+   *
+   * @param pointer
+   * @param silent
+   */
   _pointerOutHandler(pointer, silent) {
     if (this.sprite === null) {
       // Abort. We've been destroyed.
@@ -432,6 +539,10 @@ export class InputHandler {
     }
   }
 
+  /**
+   *
+   * @param pointer
+   */
   _touchedHandler(pointer) {
     if (this.sprite === null) {
       // Abort. We've been destroyed.
@@ -480,6 +591,10 @@ export class InputHandler {
     }
   }
 
+  /**
+   *
+   * @param pointer
+   */
   dragTimeElapsed(pointer) {
     this._dragTimePass = true;
     if (this._pendingDrag && this.sprite) {
@@ -489,6 +604,10 @@ export class InputHandler {
     }
   }
 
+  /**
+   *
+   * @param pointer
+   */
   _releasedHandler(pointer) {
     if (this.sprite === null) {
       // Abort. We've been destroyed.
@@ -534,6 +653,11 @@ export class InputHandler {
     }
   }
 
+  /**
+   *
+   * @param pointer
+   * @param fromStart
+   */
   updateDrag(pointer, fromStart = false) {
     if (pointer.isUp) {
       this.stopDrag(pointer);
@@ -575,10 +699,20 @@ export class InputHandler {
     return true;
   }
 
+  /**
+   *
+   * @param pointerId
+   * @param delay
+   */
   justOver(pointerId = 0, delay = 500) {
     return this._pointerData[pointerId].isOver && this.overDuration(pointerId) < delay;
   }
 
+  /**
+   *
+   * @param pointerId
+   * @param delay
+   */
   justOut(pointerId = 0, delay = 500) {
     return (
       this._pointerData[pointerId].isOut &&
@@ -586,10 +720,20 @@ export class InputHandler {
     );
   }
 
+  /**
+   *
+   * @param pointerId
+   * @param delay
+   */
   justPressed(pointerId = 0, delay = 500) {
     return this._pointerData[pointerId].isDown && this.downDuration(pointerId) < delay;
   }
 
+  /**
+   *
+   * @param pointerId
+   * @param delay
+   */
   justReleased(pointerId = 0, delay = 500) {
     return (
       this._pointerData[pointerId].isUp &&
@@ -597,6 +741,10 @@ export class InputHandler {
     );
   }
 
+  /**
+   *
+   * @param pointerId
+   */
   overDuration(pointerId = 0) {
     if (this._pointerData[pointerId].isOver) {
       return this.game.time.time - this._pointerData[pointerId].timeOver;
@@ -604,6 +752,10 @@ export class InputHandler {
     return -1;
   }
 
+  /**
+   *
+   * @param pointerId
+   */
   downDuration(pointerId = 0) {
     if (this._pointerData[pointerId].isDown) {
       return this.game.time.time - this._pointerData[pointerId].timeDown;
@@ -611,6 +763,15 @@ export class InputHandler {
     return -1;
   }
 
+  /**
+   *
+   * @param lockCenter
+   * @param bringToTop
+   * @param pixelPerfect
+   * @param alphaThreshold
+   * @param boundsRect
+   * @param boundsSprite
+   */
   enableDrag(
     lockCenter = false,
     bringToTop = false,
@@ -634,6 +795,9 @@ export class InputHandler {
     }
   }
 
+  /**
+   *
+   */
   disableDrag() {
     if (this._pointerData) {
       for (let i = 0; i < 10; i += 1) {
@@ -646,6 +810,10 @@ export class InputHandler {
     this._pendingDrag = false;
   }
 
+  /**
+   *
+   * @param pointer
+   */
   startDrag(pointer) {
     const x = this.sprite.x;
     const y = this.sprite.y;
@@ -673,6 +841,10 @@ export class InputHandler {
     this._pendingDrag = false;
   }
 
+  /**
+   *
+   * @param x
+   */
   globalToLocalX(x) {
     if (this.scaleLayer) {
       x -= this.game.scale.grid.boundsFluid.x;
@@ -681,6 +853,10 @@ export class InputHandler {
     return x;
   }
 
+  /**
+   *
+   * @param y
+   */
   globalToLocalY(y) {
     if (this.scaleLayer) {
       y -= this.game.scale.grid.boundsFluid.y;
@@ -689,6 +865,10 @@ export class InputHandler {
     return y;
   }
 
+  /**
+   *
+   * @param pointer
+   */
   stopDrag(pointer) {
     this.isDragged = false;
     this._draggedPointerID = -1;
@@ -709,11 +889,25 @@ export class InputHandler {
     }
   }
 
+  /**
+   *
+   * @param allowHorizontal
+   * @param allowVertical
+   */
   setDragLock(allowHorizontal = true, allowVertical = true) {
     this.allowHorizontalDrag = allowHorizontal;
     this.allowVerticalDrag = allowVertical;
   }
 
+  /**
+   *
+   * @param snapX
+   * @param snapY
+   * @param onDrag
+   * @param onRelease
+   * @param snapOffsetX
+   * @param snapOffsetY
+   */
   enableSnap(snapX, snapY, onDrag = true, onRelease = false, snapOffsetX = 0, snapOffsetY = 0) {
     this.snapX = snapX;
     this.snapY = snapY;
@@ -723,11 +917,17 @@ export class InputHandler {
     this.snapOnRelease = onRelease;
   }
 
+  /**
+   *
+   */
   disableSnap() {
     this.snapOnDrag = false;
     this.snapOnRelease = false;
   }
 
+  /**
+   *
+   */
   checkBoundsRect() {
     if (this.sprite.left < this.boundsRect.left) {
       this.sprite.x = this.boundsRect.x + this.sprite.offsetX;
@@ -741,6 +941,9 @@ export class InputHandler {
     }
   }
 
+  /**
+   *
+   */
   checkBoundsSprite() {
     if (this.sprite.left < this.boundsSprite.left) {
       this.sprite.x = this.boundsSprite.left + this.sprite.offsetX;

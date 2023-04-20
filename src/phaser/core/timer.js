@@ -2,6 +2,11 @@ import { Signal } from  './signal';
 import { TimerEvent } from './timer_event';
 
 export class Timer {
+  /**
+   *
+   * @param game
+   * @param autoDestroy
+   */
   constructor(game, autoDestroy = false) {
     this.game = game;
     this.running = false;
@@ -25,6 +30,15 @@ export class Timer {
     this._newTick = 0;
   }
 
+  /**
+   *
+   * @param delay
+   * @param loop
+   * @param repeatCount
+   * @param callback
+   * @param callbackContext
+   * @param args
+   */
   create(delay, loop, repeatCount, callback, callbackContext, args) {
     const roundedDelay = Math.round(delay);
     let tick = roundedDelay;
@@ -49,18 +63,44 @@ export class Timer {
     return event;
   }
 
+  /**
+   *
+   * @param delay
+   * @param callback
+   * @param callbackContext
+   * @param {...any} args
+   */
   add(delay, callback, callbackContext, ...args) {
     return this.create(delay, false, 0, callback, callbackContext, args);
   }
 
+  /**
+   *
+   * @param delay
+   * @param repeatCount
+   * @param callback
+   * @param callbackContext
+   * @param {...any} args
+   */
   repeat(delay, repeatCount, callback, callbackContext, ...args) {
     return this.create(delay, false, repeatCount, callback, callbackContext, args);
   }
 
+  /**
+   *
+   * @param delay
+   * @param callback
+   * @param callbackContext
+   * @param {...any} args
+   */
   loop(delay, callback, callbackContext, ...args) {
     return this.create(delay, true, 0, callback, callbackContext, args);
   }
 
+  /**
+   *
+   * @param delay
+   */
   start(delay) {
     if (this.running) {
       return;
@@ -72,6 +112,10 @@ export class Timer {
     }
   }
 
+  /**
+   *
+   * @param clearEvents
+   */
   stop(clearEvents = true) {
     this.running = false;
     if (clearEvents) {
@@ -79,6 +123,10 @@ export class Timer {
     }
   }
 
+  /**
+   *
+   * @param event
+   */
   remove(event) {
     for (let i = 0; i < this.events.length; i += 1) {
       if (this.events[i] === event) {
@@ -89,6 +137,9 @@ export class Timer {
     return false;
   }
 
+  /**
+   *
+   */
   order() {
     if (this.events.length > 0) {
       //  Sort the events so the one with the lowest tick is first
@@ -97,6 +148,11 @@ export class Timer {
     }
   }
 
+  /**
+   *
+   * @param a
+   * @param b
+   */
   sortHandler(a, b) {
     if (a.tick < b.tick) {
       return -1;
@@ -106,6 +162,9 @@ export class Timer {
     return 0;
   }
 
+  /**
+   *
+   */
   clearPendingEvents() {
     this._i = this.events.length;
     while (this._i) {
@@ -118,6 +177,10 @@ export class Timer {
     this._i = 0;
   }
 
+  /**
+   *
+   * @param time
+   */
   update(time) {
     if (this.paused) {
       return true;
@@ -183,6 +246,9 @@ export class Timer {
     return true;
   }
 
+  /**
+   *
+   */
   pause() {
     if (!this.running) {
       return;
@@ -195,6 +261,9 @@ export class Timer {
     this.paused = true;
   }
 
+  /**
+   *
+   */
   _pause() {
     if (this.paused || !this.running) {
       return;
@@ -203,6 +272,10 @@ export class Timer {
     this.paused = true;
   }
 
+  /**
+   *
+   * @param baseTime
+   */
   adjustEvents(baseTime) {
     for (let i = 0; i < this.events.length; i += 1) {
       if (!this.events[i].pendingDelete) {
@@ -223,6 +296,9 @@ export class Timer {
     }
   }
 
+  /**
+   *
+   */
   resume() {
     if (!this.paused) {
       return;
@@ -235,6 +311,9 @@ export class Timer {
     this._codePaused = false;
   }
 
+  /**
+   *
+   */
   _resume() {
     if (this._codePaused) {
       return;
@@ -242,6 +321,9 @@ export class Timer {
     this.resume();
   }
 
+  /**
+   *
+   */
   removeAll() {
     this.onComplete.removeAll();
     this.events.length = 0;
@@ -249,6 +331,9 @@ export class Timer {
     this._i = 0;
   }
 
+  /**
+   *
+   */
   destroy() {
     this.onComplete.removeAll();
     this.running = false;
@@ -257,10 +342,16 @@ export class Timer {
     this._i = 0;
   }
 
+  /**
+   *
+   */
   get next() {
     return this.nextTick;
   }
 
+  /**
+   *
+   */
   get duration() {
     if (this.running && this.nextTick > this._now) {
       return this.nextTick - this._now;
@@ -268,10 +359,16 @@ export class Timer {
     return 0;
   }
 
+  /**
+   *
+   */
   get length() {
     return this.events.length;
   }
 
+  /**
+   *
+   */
   get ms() {
     if (this.running) {
       return this._now - this._started - this._pauseTotal;
@@ -279,6 +376,9 @@ export class Timer {
     return 0;
   }
 
+  /**
+   *
+   */
   get seconds() {
     if (this.running) {
       return this.ms * 0.001;

@@ -19,6 +19,10 @@ import { create, removeFromDOM, addToDOM, setTouchAction } from '../display/canv
 import { initialize, checkOS } from './device_util';
 
 export class Game {
+  /**
+   * TBD.
+   * @param {object} gameConfig - TBD.
+   */
   constructor(gameConfig = {}) {
     if (!window.PhaserRegistry) {
       window.PhaserRegistry = {};
@@ -66,6 +70,9 @@ export class Game {
     }
   }
 
+  /**
+   * TBD.
+   */
   boot() {
     if (this.isBooted) {
       return;
@@ -99,6 +106,9 @@ export class Game {
     this.onBoot.dispatch(this);
   }
 
+  /**
+   * TBD.
+   */
   initRenderer() {
     if (this.config.canvas) {
       this.canvas = this.config.canvas;
@@ -159,6 +169,12 @@ export class Game {
     setTouchAction(this.canvas);
   }
 
+  /**
+   * TBD.
+   * @param {object} config - TBD.
+   * @param {string} key - TBD.
+   * @param {*} defaultValue - TBD.
+   */
   parseConfigElement(config, key, defaultValue) {
     if (config[key] !== undefined) {
       this.config[key] = config[key];
@@ -167,6 +183,10 @@ export class Game {
     }
   }
 
+  /**
+   * TBD.
+   * @param {object} config - TBD.
+   */
   parseConfig(config) {
     this.parseConfigElement(config, 'width', 800);
     this.parseConfigElement(config, 'height', 600);
@@ -199,6 +219,10 @@ export class Game {
     this.state = new SceneManager(this, state);
   }
 
+  /**
+   * TBD.
+   * @param {Event} event - TBD.
+   */
   contextLost(event) {
     event.preventDefault();
     if (this.renderer) {
@@ -206,6 +230,9 @@ export class Game {
     }
   }
 
+  /**
+   * TBD.
+   */
   contextRestored() {
     this.renderer.initContext();
     // this.cache.clearGLTextures();
@@ -214,6 +241,10 @@ export class Game {
     }
   }
 
+  /**
+   * TBD.
+   * @param {number} time - TBD.
+   */
   update(time) {
     this.time.update(time);
     if (!this.isPaused) {
@@ -234,6 +265,9 @@ export class Game {
     this.renderer.render(this.stage);
   }
 
+  /**
+   * TBD.
+   */
   destroy() {
     this.isPaused = true;
 

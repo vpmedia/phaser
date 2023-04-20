@@ -25,6 +25,10 @@ import { detectCapabilities } from './tinter';
 import * as CanvasMaskManager from './masker';
 
 export class CanvasRenderer {
+  /**
+   *
+   * @param game
+   */
   constructor(game) {
     detectCapabilities();
     this.type = RENDER_CANVAS;
@@ -52,6 +56,10 @@ export class CanvasRenderer {
     this.resize(this.width, this.height);
   }
 
+  /**
+   *
+   * @param root
+   */
   render(root) {
     if (!this.context) {
       return;
@@ -73,6 +81,10 @@ export class CanvasRenderer {
     this.renderDisplayObject(root);
   }
 
+  /**
+   *
+   * @param removeView
+   */
   destroy(removeView = true) {
     if (removeView && this.view.parent) {
       this.view.parent.removeChild(this.view);
@@ -82,6 +94,11 @@ export class CanvasRenderer {
     this.renderSession = null;
   }
 
+  /**
+   *
+   * @param width
+   * @param height
+   */
   resize(width, height) {
     this.width = width * this.resolution;
     this.height = height * this.resolution;
@@ -97,12 +114,21 @@ export class CanvasRenderer {
     }
   }
 
+  /**
+   *
+   * @param displayObject
+   * @param context
+   * @param matrix
+   */
   renderDisplayObject(displayObject, context, matrix) {
     this.renderSession.context = context || this.context;
     this.renderSession.resolution = this.resolution;
     displayObject.renderCanvas(this.renderSession, matrix);
   }
 
+  /**
+   *
+   */
   mapBlendModes() {
     if (window.PhaserRegistry.blendModesCanvas) {
       return;

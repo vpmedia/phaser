@@ -2,6 +2,10 @@ import * as MathUtils from '../util/math';
 import { TWEEN_PENDING, TWEEN_RUNNING, TWEEN_COMPLETE, TWEEN_LOOPED } from './const';
 
 export class TweenData {
+  /**
+   *
+   * @param parent
+   */
   constructor(parent) {
     this.parent = parent;
     this.game = parent.game;
@@ -29,6 +33,15 @@ export class TweenData {
     this.isFrom = false;
   }
 
+  /**
+   *
+   * @param properties
+   * @param duration
+   * @param ease
+   * @param delay
+   * @param repeat
+   * @param yoyo
+   */
   to(properties, duration, ease, delay, repeat, yoyo) {
     this.vEnd = properties;
     this.duration = duration;
@@ -40,6 +53,15 @@ export class TweenData {
     return this;
   }
 
+  /**
+   *
+   * @param properties
+   * @param duration
+   * @param ease
+   * @param delay
+   * @param repeat
+   * @param yoyo
+   */
   from(properties, duration, ease, delay, repeat, yoyo) {
     this.vEnd = properties;
     this.duration = duration;
@@ -51,6 +73,9 @@ export class TweenData {
     return this;
   }
 
+  /**
+   *
+   */
   start() {
     this.startTime = this.game.time.time + this.delay;
     if (this.parent.reverse) {
@@ -79,6 +104,9 @@ export class TweenData {
     return this;
   }
 
+  /**
+   *
+   */
   loadValues() {
     const keys = Object.keys(this.parent.properties);
     for (let k = 0; k < keys.length; k += 1) {
@@ -112,6 +140,10 @@ export class TweenData {
     return this;
   }
 
+  /**
+   *
+   * @param time
+   */
   update(time) {
     if (!this.isRunning) {
       if (time >= this.startTime) {
@@ -157,6 +189,10 @@ export class TweenData {
     return TWEEN_RUNNING;
   }
 
+  /**
+   *
+   * @param frameRate
+   */
   generateData(frameRate) {
     if (this.parent.reverse) {
       this.dt = this.duration;
@@ -204,6 +240,9 @@ export class TweenData {
     return data;
   }
 
+  /**
+   *
+   */
   repeat() {
     //  If not a yoyo and repeatCounter = 0 then we're done
     if (this.yoyo) {

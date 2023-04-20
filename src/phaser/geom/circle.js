@@ -22,10 +22,17 @@ export class Circle {
     this.type = GEOM_CIRCLE;
   }
 
+  /**
+   *
+   */
   circumference() {
     return 2 * (Math.PI * this._radius);
   }
 
+  /**
+   *
+   * @param output
+   */
   random(output = null) {
     const result = output || new Point();
     const t = 2 * Math.PI * Math.random();
@@ -38,10 +45,19 @@ export class Circle {
     return result;
   }
 
+  /**
+   *
+   */
   getBounds() {
     return new Rectangle(this.x - this.radius, this.y - this.radius, this.diameter, this.diameter);
   }
 
+  /**
+   *
+   * @param x
+   * @param y
+   * @param diameter
+   */
   setTo(x, y, diameter) {
     this.x = x;
     this.y = y;
@@ -50,10 +66,18 @@ export class Circle {
     return this;
   }
 
+  /**
+   *
+   * @param source
+   */
   copyFrom(source) {
     return this.setTo(source.x, source.y, source.diameter);
   }
 
+  /**
+   *
+   * @param dest
+   */
   copyTo(dest) {
     dest.x = this.x;
     dest.y = this.y;
@@ -61,33 +85,64 @@ export class Circle {
     return dest;
   }
 
+  /**
+   *
+   * @param dest
+   * @param round
+   */
   distance(dest, round = false) {
     const d = distance(this.x, this.y, dest.x, dest.y);
     return round ? Math.round(d) : d;
   }
 
+  /**
+   *
+   */
   clone() {
     return clone(this);
   }
 
+  /**
+   *
+   * @param x
+   * @param y
+   */
   contains(x, y) {
     return contains(this, x, y);
   }
 
+  /**
+   *
+   * @param angle
+   * @param asDegrees
+   * @param out
+   */
   circumferencePoint(angle, asDegrees, out) {
     return circumferencePoint(this, angle, asDegrees, out);
   }
 
+  /**
+   *
+   * @param dx
+   * @param dy
+   */
   offset(dx, dy) {
     this.x += dx;
     this.y += dy;
     return this;
   }
 
+  /**
+   *
+   * @param point
+   */
   offsetPoint(point) {
     return this.offset(point.x, point.y);
   }
 
+  /**
+   *
+   */
   toString() {
     return (
       '[{Circle (x=' +
@@ -102,10 +157,16 @@ export class Circle {
     );
   }
 
+  /**
+   *
+   */
   get diameter() {
     return this._diameter;
   }
 
+  /**
+   *
+   */
   set diameter(value) {
     if (value > 0) {
       this._diameter = value;
@@ -113,10 +174,16 @@ export class Circle {
     }
   }
 
+  /**
+   *
+   */
   get radius() {
     return this._radius;
   }
 
+  /**
+   *
+   */
   set radius(value) {
     if (value > 0) {
       this._radius = value;
@@ -124,10 +191,16 @@ export class Circle {
     }
   }
 
+  /**
+   *
+   */
   get left() {
     return this.x - this._radius;
   }
 
+  /**
+   *
+   */
   set left(value) {
     if (value > this.x) {
       this._radius = 0;
@@ -137,10 +210,16 @@ export class Circle {
     }
   }
 
+  /**
+   *
+   */
   get right() {
     return this.x + this._radius;
   }
 
+  /**
+   *
+   */
   set right(value) {
     if (value < this.x) {
       this._radius = 0;
@@ -150,10 +229,16 @@ export class Circle {
     }
   }
 
+  /**
+   *
+   */
   get top() {
     return this.y - this._radius;
   }
 
+  /**
+   *
+   */
   set top(value) {
     if (value > this.y) {
       this._radius = 0;
@@ -163,10 +248,16 @@ export class Circle {
     }
   }
 
+  /**
+   *
+   */
   get bottom() {
     return this.y + this._radius;
   }
 
+  /**
+   *
+   */
   set bottom(value) {
     if (value < this.y) {
       this._radius = 0;
@@ -176,6 +267,9 @@ export class Circle {
     }
   }
 
+  /**
+   *
+   */
   get area() {
     if (this._radius > 0) {
       return Math.PI * this._radius * this._radius;
@@ -183,10 +277,16 @@ export class Circle {
     return 0;
   }
 
+  /**
+   *
+   */
   get empty() {
     return this._diameter === 0;
   }
 
+  /**
+   *
+   */
   set empty(value) {
     if (value === true) {
       this.setTo(0, 0, 0);

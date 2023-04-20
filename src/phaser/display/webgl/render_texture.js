@@ -7,6 +7,14 @@ import { CanvasBuffer } from '../canvas/buffer';
 import { RENDER_WEBGL } from '../../core/const';
 
 export class RenderTexture extends Texture {
+  /**
+   *
+   * @param width
+   * @param height
+   * @param renderer
+   * @param scaleMode
+   * @param resolution
+   */
   constructor(width, height, renderer, scaleMode, resolution = 1) {
     const w = width || 100;
     const h = height || 100;
@@ -52,32 +60,53 @@ export class RenderTexture extends Texture {
     this._updateUvs();
   }
 
+  /**
+   *
+   */
   resize() {
     // TODO
   }
 
+  /**
+   *
+   */
   clear() {
     // TODO
   }
 
+  /**
+   *
+   */
   renderWebGL() {
     // TODO
   }
 
+  /**
+   *
+   */
   renderCanvas() {
     // TODO
   }
 
+  /**
+   *
+   */
   getImage() {
     const image = new Image();
     image.src = this.getBase64();
     return image;
   }
 
+  /**
+   *
+   */
   getBase64() {
     return this.getCanvas().toDataURL();
   }
 
+  /**
+   *
+   */
   getCanvas() {
     // TODO
   }

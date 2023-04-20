@@ -24,6 +24,10 @@ const defaultVertexSrc = [
 // this shader is used for the default sprite rendering
 
 export class NormalShader {
+  /**
+   *
+   * @param gl
+   */
   constructor(gl) {
     this.gl = gl;
     this._UID = generateShaderID();
@@ -45,6 +49,9 @@ export class NormalShader {
     this.init();
   }
 
+  /**
+   *
+   */
   init() {
     const gl = this.gl;
     const program = compileProgram(gl, this.vertexSrc || defaultVertexSrc, this.fragmentSrc);
@@ -78,6 +85,9 @@ export class NormalShader {
     this.program = program;
   }
 
+  /**
+   *
+   */
   initUniforms() {
     this.textureCount = 1;
     const gl = this.gl;
@@ -119,6 +129,10 @@ export class NormalShader {
     }
   }
 
+  /**
+   *
+   * @param uniform
+   */
   initSampler2D(uniform) {
     if (!uniform.value || !uniform.value.baseTexture || !uniform.value.baseTexture.hasLoaded) {
       return;
@@ -185,6 +199,9 @@ export class NormalShader {
     this.textureCount += 1;
   }
 
+  /**
+   *
+   */
   syncUniforms() {
     this.textureCount = 1;
     let uniform;
@@ -238,6 +255,9 @@ export class NormalShader {
     }
   }
 
+  /**
+   *
+   */
   destroy() {
     this.gl.deleteProgram(this.program);
     this.uniforms = null;

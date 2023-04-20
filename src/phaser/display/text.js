@@ -46,6 +46,9 @@ export class Text extends Image {
     }
   }
 
+  /**
+   *
+   */
   destroy() {
     this.texture.destroy(true);
     remove(this);
@@ -63,6 +66,15 @@ export class Text extends Image {
     super.destroy();
   }
 
+  /**
+   *
+   * @param x
+   * @param y
+   * @param color
+   * @param blur
+   * @param shadowStroke
+   * @param shadowFill
+   */
   setShadow(
     x = 0,
     y = 0,
@@ -81,6 +93,11 @@ export class Text extends Image {
     return this;
   }
 
+  /**
+   *
+   * @param style
+   * @param update
+   */
   setStyle(style = null, update = false) {
     style = JSON.parse(JSON.stringify(style)) || {};
     style.font = style.font || 'bold 20pt Arial';
@@ -125,6 +142,9 @@ export class Text extends Image {
     return this;
   }
 
+  /**
+   *
+   */
   updateText() {
     this.texture.baseTexture.resolution = this._res;
     this.context.font = this.style.font;
@@ -282,6 +302,13 @@ export class Text extends Image {
     this.dirty = false;
   }
 
+  /**
+   *
+   * @param line
+   * @param x
+   * @param y
+   * @param fill
+   */
   renderTabLine(line, x, y, fill) {
     const text = line.split(/(?:\t)/);
     const tabs = this.style.tabs;
@@ -314,6 +341,10 @@ export class Text extends Image {
     }
   }
 
+  /**
+   *
+   * @param state
+   */
   updateShadow(state) {
     if (state) {
       this.context.shadowOffsetX = this.style.shadowOffsetX;
@@ -328,6 +359,10 @@ export class Text extends Image {
     }
   }
 
+  /**
+   *
+   * @param line
+   */
   measureLine(line) {
     let lineLength = 0;
     for (let i = 0; i < line.length; i += 1) {
@@ -360,6 +395,12 @@ export class Text extends Image {
     return Math.ceil(lineLength);
   }
 
+  /**
+   *
+   * @param line
+   * @param x
+   * @param y
+   */
   updateLine(line, x, y) {
     for (let i = 0; i < line.length; i += 1) {
       const letter = line[i];
@@ -392,6 +433,9 @@ export class Text extends Image {
     }
   }
 
+  /**
+   *
+   */
   clearColors() {
     this.colors = [];
     this.strokeColors = [];
@@ -399,6 +443,9 @@ export class Text extends Image {
     return this;
   }
 
+  /**
+   *
+   */
   clearFontValues() {
     this.fontStyles = [];
     this.fontWeights = [];
@@ -406,30 +453,54 @@ export class Text extends Image {
     return this;
   }
 
+  /**
+   *
+   * @param color
+   * @param position
+   */
   addColor(color, position) {
     this.colors[position] = color;
     this.dirty = true;
     return this;
   }
 
+  /**
+   *
+   * @param color
+   * @param position
+   */
   addStrokeColor(color, position) {
     this.strokeColors[position] = color;
     this.dirty = true;
     return this;
   }
 
+  /**
+   *
+   * @param style
+   * @param position
+   */
   addFontStyle(style, position) {
     this.fontStyles[position] = style;
     this.dirty = true;
     return this;
   }
 
+  /**
+   *
+   * @param weight
+   * @param position
+   */
   addFontWeight(weight, position) {
     this.fontWeights[position] = weight;
     this.dirty = true;
     return this;
   }
 
+  /**
+   *
+   * @param text
+   */
   precalculateWordWrap(text) {
     this.texture.baseTexture.resolution = this._res;
     this.context.font = this.style.font;
@@ -437,6 +508,10 @@ export class Text extends Image {
     return wrappedLines.split(/(?:\r\n|\r|\n)/);
   }
 
+  /**
+   *
+   * @param text
+   */
   runWordWrap(text) {
     if (this.useAdvancedWrap) {
       return this.advancedWordWrap(text);
@@ -444,6 +519,10 @@ export class Text extends Image {
     return this.basicWordWrap(text);
   }
 
+  /**
+   *
+   * @param text
+   */
   advancedWordWrap(text) {
     const context = this.context;
     const wordWrapWidth = this.style.wordWrapWidth;
@@ -523,6 +602,10 @@ export class Text extends Image {
     return output;
   }
 
+  /**
+   *
+   * @param text
+   */
   basicWordWrap(text) {
     let result = '';
     const lines = text.split('\n');
@@ -551,6 +634,10 @@ export class Text extends Image {
     return result;
   }
 
+  /**
+   *
+   * @param components
+   */
   updateFont(components) {
     const font = this.componentsToFont(components);
     if (this.style.font !== font) {
@@ -562,6 +649,10 @@ export class Text extends Image {
     }
   }
 
+  /**
+   *
+   * @param font
+   */
   fontToComponents(font) {
     // The format is specified in http://www.w3.org/TR/CSS2/fonts.html#font-shorthand:
     // style - normal | italic | oblique | inherit
@@ -596,6 +687,10 @@ export class Text extends Image {
     return { font };
   }
 
+  /**
+   *
+   * @param components
+   */
   componentsToFont(components) {
     const parts = [];
     let v;
@@ -626,6 +721,11 @@ export class Text extends Image {
     return parts.join(' ');
   }
 
+  /**
+   *
+   * @param text
+   * @param immediate
+   */
   setText(text, immediate = false) {
     this.text = text.toString() || '';
     if (immediate) {
@@ -636,6 +736,10 @@ export class Text extends Image {
     return this;
   }
 
+  /**
+   *
+   * @param list
+   */
   parseList(list) {
     if (!Array.isArray(list)) {
       return this;
@@ -659,6 +763,13 @@ export class Text extends Image {
     return this;
   }
 
+  /**
+   *
+   * @param x
+   * @param y
+   * @param width
+   * @param height
+   */
   setTextBounds(x, y, width, height) {
     if (x === undefined) {
       this.textBounds = null;
@@ -676,6 +787,9 @@ export class Text extends Image {
     return this;
   }
 
+  /**
+   *
+   */
   updateTexture() {
     const base = this.texture.baseTexture;
     const crop = this.texture.crop;
@@ -715,6 +829,10 @@ export class Text extends Image {
     this.texture.baseTexture.dirty();
   }
 
+  /**
+   *
+   * @param renderSession
+   */
   renderWebGL(renderSession) {
     if (this.dirty) {
       this.updateText();
@@ -723,6 +841,10 @@ export class Text extends Image {
     renderWebGL(this, renderSession);
   }
 
+  /**
+   *
+   * @param renderSession
+   */
   renderCanvas(renderSession) {
     if (this.dirty) {
       this.updateText();
@@ -731,6 +853,9 @@ export class Text extends Image {
     renderCanvas(this, renderSession);
   }
 
+  /**
+   *
+   */
   getFontPropertiesCache() {
     if (!window.PhaserRegistry.fontPropertiesCache) {
       window.PhaserRegistry.fontPropertiesCache = {};
@@ -738,6 +863,9 @@ export class Text extends Image {
     return window.PhaserRegistry.fontPropertiesCache;
   }
 
+  /**
+   *
+   */
   getFontPropertiesCanvas() {
     if (!window.PhaserRegistry.fontPropertiesCanvas) {
       window.PhaserRegistry.fontPropertiesCanvas = document.createElement('canvas');
@@ -745,6 +873,9 @@ export class Text extends Image {
     return window.PhaserRegistry.fontPropertiesCanvas;
   }
 
+  /**
+   *
+   */
   getFontPropertiesContext() {
     if (!window.PhaserRegistry.fontPropertiesContext) {
       window.PhaserRegistry.fontPropertiesContext = this.getFontPropertiesCanvas().getContext(
@@ -755,6 +886,10 @@ export class Text extends Image {
     return window.PhaserRegistry.fontPropertiesContext;
   }
 
+  /**
+   *
+   * @param fontStyle
+   */
   determineFontProperties(fontStyle) {
     const fontPropertiesCache = this.getFontPropertiesCache();
     let properties = fontPropertiesCache[fontStyle];
@@ -829,6 +964,10 @@ export class Text extends Image {
     return properties;
   }
 
+  /**
+   *
+   * @param matrix
+   */
   getBounds(matrix = null) {
     if (this.dirty) {
       this.updateText();
@@ -837,10 +976,16 @@ export class Text extends Image {
     return getBounds(this, matrix);
   }
 
+  /**
+   *
+   */
   get text() {
     return this._text;
   }
 
+  /**
+   *
+   */
   set text(value) {
     if (value !== this._text) {
       this._text = value.toString() || '';
@@ -851,19 +996,31 @@ export class Text extends Image {
     }
   }
 
+  /**
+   *
+   */
   get cssFont() {
     return this.componentsToFont(this._fontComponents);
   }
 
+  /**
+   *
+   */
   set cssFont(value) {
     this._fontComponents = this.fontToComponents(value || 'bold 20pt Arial');
     this.updateFont(this._fontComponents);
   }
 
+  /**
+   *
+   */
   get font() {
     return this._fontComponents.fontFamily;
   }
 
+  /**
+   *
+   */
   set font(value) {
     let mutatedValue = value || 'Arial';
     mutatedValue = mutatedValue.trim();
@@ -879,6 +1036,9 @@ export class Text extends Image {
     this.updateFont(this._fontComponents);
   }
 
+  /**
+   *
+   */
   get fontSize() {
     const size = this._fontComponents.fontSize;
     if (size && /(?:^0$|px$)/.exec(size)) {
@@ -887,6 +1047,9 @@ export class Text extends Image {
     return size;
   }
 
+  /**
+   *
+   */
   set fontSize(value) {
     let mutatedValue = value || '0';
     if (typeof mutatedValue === 'number') {
@@ -896,37 +1059,61 @@ export class Text extends Image {
     this.updateFont(this._fontComponents);
   }
 
+  /**
+   *
+   */
   get fontWeight() {
     return this._fontComponents.fontWeight || 'normal';
   }
 
+  /**
+   *
+   */
   set fontWeight(value) {
     this._fontComponents.fontWeight = value || 'normal';
     this.updateFont(this._fontComponents);
   }
 
+  /**
+   *
+   */
   get fontStyle() {
     return this._fontComponents.fontStyle || 'normal';
   }
 
+  /**
+   *
+   */
   set fontStyle(value) {
     this._fontComponents.fontStyle = value || 'normal';
     this.updateFont(this._fontComponents);
   }
 
+  /**
+   *
+   */
   get fontVariant() {
     return this._fontComponents.fontVariant || 'normal';
   }
 
+  /**
+   *
+   */
   set fontVariant(value) {
     this._fontComponents.fontVariant = value || 'normal';
     this.updateFont(this._fontComponents);
   }
 
+  /**
+   *
+   */
   get fill() {
     return this.style.fill;
   }
 
+  /**
+   *
+   */
   set fill(value) {
     if (value !== this.style.fill) {
       this.style.fill = value;
@@ -934,10 +1121,16 @@ export class Text extends Image {
     }
   }
 
+  /**
+   *
+   */
   get align() {
     return this.style.align;
   }
 
+  /**
+   *
+   */
   set align(value) {
     if (value !== this.style.align) {
       this.style.align = value;
@@ -945,10 +1138,16 @@ export class Text extends Image {
     }
   }
 
+  /**
+   *
+   */
   get resolution() {
     return this._res;
   }
 
+  /**
+   *
+   */
   set resolution(value) {
     if (value !== this._res) {
       this._res = value;
@@ -956,10 +1155,16 @@ export class Text extends Image {
     }
   }
 
+  /**
+   *
+   */
   get tabs() {
     return this.style.tabs;
   }
 
+  /**
+   *
+   */
   set tabs(value) {
     if (value !== this.style.tabs) {
       this.style.tabs = value;
@@ -967,10 +1172,16 @@ export class Text extends Image {
     }
   }
 
+  /**
+   *
+   */
   get boundsAlignH() {
     return this.style.boundsAlignH;
   }
 
+  /**
+   *
+   */
   set boundsAlignH(value) {
     if (value !== this.style.boundsAlignH) {
       this.style.boundsAlignH = value;
@@ -978,10 +1189,16 @@ export class Text extends Image {
     }
   }
 
+  /**
+   *
+   */
   get boundsAlignV() {
     return this.style.boundsAlignV;
   }
 
+  /**
+   *
+   */
   set boundsAlignV(value) {
     if (value !== this.style.boundsAlignV) {
       this.style.boundsAlignV = value;
@@ -989,10 +1206,16 @@ export class Text extends Image {
     }
   }
 
+  /**
+   *
+   */
   get stroke() {
     return this.style.stroke;
   }
 
+  /**
+   *
+   */
   set stroke(value) {
     if (value !== this.style.stroke) {
       this.style.stroke = value;
@@ -1000,10 +1223,16 @@ export class Text extends Image {
     }
   }
 
+  /**
+   *
+   */
   get strokeThickness() {
     return this.style.strokeThickness;
   }
 
+  /**
+   *
+   */
   set strokeThickness(value) {
     if (value !== this.style.strokeThickness) {
       this.style.strokeThickness = value;
@@ -1011,10 +1240,16 @@ export class Text extends Image {
     }
   }
 
+  /**
+   *
+   */
   get wordWrap() {
     return this.style.wordWrap;
   }
 
+  /**
+   *
+   */
   set wordWrap(value) {
     if (value !== this.style.wordWrap) {
       this.style.wordWrap = value;
@@ -1022,10 +1257,16 @@ export class Text extends Image {
     }
   }
 
+  /**
+   *
+   */
   get wordWrapWidth() {
     return this.style.wordWrapWidth;
   }
 
+  /**
+   *
+   */
   set wordWrapWidth(value) {
     if (value !== this.style.wordWrapWidth) {
       this.style.wordWrapWidth = value;
@@ -1033,10 +1274,16 @@ export class Text extends Image {
     }
   }
 
+  /**
+   *
+   */
   get lineSpacing() {
     return this._lineSpacing;
   }
 
+  /**
+   *
+   */
   set lineSpacing(value) {
     if (value !== this._lineSpacing) {
       this._lineSpacing = parseFloat(value);
@@ -1047,10 +1294,16 @@ export class Text extends Image {
     }
   }
 
+  /**
+   *
+   */
   get shadowOffsetX() {
     return this.style.shadowOffsetX;
   }
 
+  /**
+   *
+   */
   set shadowOffsetX(value) {
     if (value !== this.style.shadowOffsetX) {
       this.style.shadowOffsetX = value;
@@ -1058,10 +1311,16 @@ export class Text extends Image {
     }
   }
 
+  /**
+   *
+   */
   get shadowOffsetY() {
     return this.style.shadowOffsetY;
   }
 
+  /**
+   *
+   */
   set shadowOffsetY(value) {
     if (value !== this.style.shadowOffsetY) {
       this.style.shadowOffsetY = value;
@@ -1069,10 +1328,16 @@ export class Text extends Image {
     }
   }
 
+  /**
+   *
+   */
   get shadowColor() {
     return this.style.shadowColor;
   }
 
+  /**
+   *
+   */
   set shadowColor(value) {
     if (value !== this.style.shadowColor) {
       this.style.shadowColor = value;
@@ -1080,10 +1345,16 @@ export class Text extends Image {
     }
   }
 
+  /**
+   *
+   */
   get shadowBlur() {
     return this.style.shadowBlur;
   }
 
+  /**
+   *
+   */
   set shadowBlur(value) {
     if (value !== this.style.shadowBlur) {
       this.style.shadowBlur = value;
@@ -1091,10 +1362,16 @@ export class Text extends Image {
     }
   }
 
+  /**
+   *
+   */
   get shadowStroke() {
     return this.style.shadowStroke;
   }
 
+  /**
+   *
+   */
   set shadowStroke(value) {
     if (value !== this.style.shadowStroke) {
       this.style.shadowStroke = value;
@@ -1102,10 +1379,16 @@ export class Text extends Image {
     }
   }
 
+  /**
+   *
+   */
   get shadowFill() {
     return this.style.shadowFill;
   }
 
+  /**
+   *
+   */
   set shadowFill(value) {
     if (value !== this.style.shadowFill) {
       this.style.shadowFill = value;
@@ -1113,6 +1396,9 @@ export class Text extends Image {
     }
   }
 
+  /**
+   *
+   */
   get width() {
     if (this.dirty) {
       this.updateText();
@@ -1121,11 +1407,17 @@ export class Text extends Image {
     return this.scale.x * this.texture.frame.width;
   }
 
+  /**
+   *
+   */
   set width(value) {
     this.scale.x = value / this.texture.frame.width;
     this._width = value;
   }
 
+  /**
+   *
+   */
   get height() {
     if (this.dirty) {
       this.updateText();
@@ -1134,6 +1426,9 @@ export class Text extends Image {
     return this.scale.y * this.texture.frame.height;
   }
 
+  /**
+   *
+   */
   set height(value) {
     this.scale.y = value / this.texture.frame.height;
     this._height = value;

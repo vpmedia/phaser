@@ -14,6 +14,10 @@ import { create, remove } from '../display/canvas/pool';
 const MAX_POINTERS = 10;
 
 export class Input {
+  /**
+   *
+   * @param game
+   */
   constructor(game) {
     this.game = game;
     this.hitCanvas = null;
@@ -68,6 +72,9 @@ export class Input {
     this._y = 0;
   }
 
+  /**
+   *
+   */
   boot() {
     this.mousePointer = new Pointer(this.game, 0, POINTER_CURSOR);
     this.addPointer();
@@ -99,6 +106,9 @@ export class Input {
     this.game.canvas.addEventListener('click', this._onClickTrampoline, false);
   }
 
+  /**
+   *
+   */
   destroy() {
     this.mouse.stop();
     if (this.game.device.mspointer) {
@@ -111,15 +121,30 @@ export class Input {
     this.game.canvas.removeEventListener('click', this._onClickTrampoline);
   }
 
+  /**
+   *
+   * @param callback
+   * @param context
+   */
   setInteractiveCandidateHandler(callback, context) {
     this.customCandidateHandler = callback;
     this.customCandidateHandlerContext = context;
   }
 
+  /**
+   *
+   * @param callback
+   * @param context
+   */
   addMoveCallback(callback, context) {
     this.moveCallbacks.push({ callback, context });
   }
 
+  /**
+   *
+   * @param callback
+   * @param context
+   */
   deleteMoveCallback(callback, context) {
     let i = this.moveCallbacks.length;
     while (i) {
@@ -134,6 +159,9 @@ export class Input {
     }
   }
 
+  /**
+   *
+   */
   addPointer() {
     if (this.pointers.length >= MAX_POINTERS) {
       console.warn('Input.addPointer: Maximum limit of ' + MAX_POINTERS + ' pointers reached.');
@@ -146,6 +174,9 @@ export class Input {
     return pointer;
   }
 
+  /**
+   *
+   */
   update() {
     if (this.pollRate > 0 && this._pollCounter < this.pollRate) {
       this._pollCounter += 1;
@@ -161,6 +192,10 @@ export class Input {
     this._pollCounter = 0;
   }
 
+  /**
+   *
+   * @param hard
+   */
   reset(hard = false) {
     if (!this.game.isBooted || this.resetLocked) {
       return;
@@ -186,11 +221,20 @@ export class Input {
     this._pollCounter = 0;
   }
 
+  /**
+   *
+   * @param x
+   * @param y
+   */
   resetSpeed(x, y) {
     this._oldPosition.setTo(x, y);
     this.speed.setTo(0, 0);
   }
 
+  /**
+   *
+   * @param event
+   */
   startPointer(event) {
     if (this.maxPointers >= 0 && this.countActivePointers(this.maxPointers) >= this.maxPointers) {
       return null;
@@ -210,6 +254,10 @@ export class Input {
     return null;
   }
 
+  /**
+   *
+   * @param event
+   */
   updatePointer(event) {
     if (this.pointer1.active && this.pointer1.identifier === event.identifier) {
       return this.pointer1.move(event);
@@ -226,6 +274,10 @@ export class Input {
     return null;
   }
 
+  /**
+   *
+   * @param event
+   */
   stopPointer(event) {
     if (this.pointer1.active && this.pointer1.identifier === event.identifier) {
       return this.pointer1.stop(event);
@@ -242,6 +294,10 @@ export class Input {
     return null;
   }
 
+  /**
+   *
+   * @param limit
+   */
   countActivePointers(limit = this.pointers.length) {
     let count = limit;
     for (let i = 0; i < this.pointers.length && count > 0; i += 1) {
@@ -253,6 +309,10 @@ export class Input {
     return limit - count;
   }
 
+  /**
+   *
+   * @param isActive
+   */
   getPointer(isActive = false) {
     for (let i = 0; i < this.pointers.length; i += 1) {
       const pointer = this.pointers[i];
@@ -263,6 +323,10 @@ export class Input {
     return null;
   }
 
+  /**
+   *
+   * @param identifier
+   */
   getPointerFromIdentifier(identifier) {
     for (let i = 0; i < this.pointers.length; i += 1) {
       const pointer = this.pointers[i];
@@ -274,6 +338,10 @@ export class Input {
     return null;
   }
 
+  /**
+   *
+   * @param pointerId
+   */
   getPointerFromId(pointerId) {
     for (let i = 0; i < this.pointers.length; i += 1) {
       const pointer = this.pointers[i];
@@ -285,6 +353,12 @@ export class Input {
     return null;
   }
 
+  /**
+   *
+   * @param displayObject
+   * @param pointer
+   * @param output
+   */
   getLocalPosition(displayObject, pointer, output = null) {
     const result = output || new Point();
     const wt = displayObject.worldTransform;
@@ -295,6 +369,12 @@ export class Input {
     );
   }
 
+  /**
+   *
+   * @param displayObject
+   * @param pointer
+   * @param localPoint
+   */
   hitTest(displayObject, pointer, localPoint) {
     if (!displayObject.worldVisible) {
       return false;
@@ -335,42 +415,72 @@ export class Input {
     return false;
   }
 
+  /**
+   *
+   */
   onClickTrampoline() {
     this.activePointer.processClickTrampolines();
   }
 
+  /**
+   *
+   */
   get x() {
     return this._x;
   }
 
+  /**
+   *
+   */
   set x(value) {
     this._x = Math.floor(value);
   }
 
+  /**
+   *
+   */
   get y() {
     return this._y;
   }
 
+  /**
+   *
+   */
   set y(value) {
     this._y = Math.floor(value);
   }
 
+  /**
+   *
+   */
   get pollLocked() {
     return this.pollRate > 0 && this._pollCounter < this.pollRate;
   }
 
+  /**
+   *
+   */
   get totalInactivePointers() {
     return this.pointers.length - this.countActivePointers();
   }
 
+  /**
+   *
+   */
   get totalActivePointers() {
     return this.countActivePointers();
   }
 
+  /**
+   *
+   */
   get worldX() {
     return this.x;
   }
 
+  /**
+   *
+   */
   get worldY() {
     return this.y;
   }

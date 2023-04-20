@@ -22,10 +22,23 @@ export class Matrix {
     this.type = GEOM_MATRIX;
   }
 
+  /**
+   *
+   * @param array
+   */
   fromArray(array) {
     return this.setTo(array[0], array[1], array[3], array[4], array[2], array[5]);
   }
 
+  /**
+   *
+   * @param a
+   * @param b
+   * @param c
+   * @param d
+   * @param tx
+   * @param ty
+   */
   setTo(a, b, c, d, tx, ty) {
     this.a = a;
     this.b = b;
@@ -36,15 +49,26 @@ export class Matrix {
     return this;
   }
 
+  /**
+   *
+   */
   clone() {
     return clone(this);
   }
 
+  /**
+   *
+   * @param matrix
+   */
   copyTo(matrix) {
     matrix.copyFrom(this);
     return matrix;
   }
 
+  /**
+   *
+   * @param matrix
+   */
   copyFrom(matrix) {
     this.a = matrix.a;
     this.b = matrix.b;
@@ -55,6 +79,11 @@ export class Matrix {
     return this;
   }
 
+  /**
+   *
+   * @param transpose
+   * @param output
+   */
   toArray(transpose = false, output = null) {
     const result = output || new Float32Array(9);
     if (transpose) {
@@ -81,6 +110,11 @@ export class Matrix {
     return result;
   }
 
+  /**
+   *
+   * @param pos
+   * @param output
+   */
   apply(pos, output = null) {
     const result = output || new Point();
     result.x = this.a * pos.x + this.c * pos.y + this.tx;
@@ -88,6 +122,11 @@ export class Matrix {
     return result;
   }
 
+  /**
+   *
+   * @param pos
+   * @param output
+   */
   applyInverse(pos, output = null) {
     const result = output || new Point();
     const id = 1 / (this.a * this.d + this.c * -this.b);
@@ -98,12 +137,22 @@ export class Matrix {
     return result;
   }
 
+  /**
+   *
+   * @param x
+   * @param y
+   */
   translate(x, y) {
     this.tx += x;
     this.ty += y;
     return this;
   }
 
+  /**
+   *
+   * @param x
+   * @param y
+   */
   scale(x, y) {
     this.a *= x;
     this.d *= y;
@@ -114,6 +163,10 @@ export class Matrix {
     return this;
   }
 
+  /**
+   *
+   * @param angle
+   */
   rotate(angle) {
     const cos = Math.cos(angle);
     const sin = Math.sin(angle);
@@ -129,6 +182,10 @@ export class Matrix {
     return this;
   }
 
+  /**
+   *
+   * @param matrix
+   */
   append(matrix) {
     const a1 = this.a;
     const b1 = this.b;
@@ -143,6 +200,9 @@ export class Matrix {
     return this;
   }
 
+  /**
+   *
+   */
   identity() {
     return this.setTo(1, 0, 0, 1, 0, 0);
   }

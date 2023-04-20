@@ -10,6 +10,12 @@ import {
 } from './const';
 
 export class Pointer {
+  /**
+   *
+   * @param game
+   * @param id
+   * @param pointerMode
+   */
   constructor(game, id, pointerMode) {
     this.game = game;
     this.id = id;
@@ -57,11 +63,18 @@ export class Pointer {
     this._trampolineTargetObject = null;
   }
 
+  /**
+   *
+   */
   resetButtons() {
     this.isDown = false;
     this.isUp = true;
   }
 
+  /**
+   *
+   * @param event
+   */
   updateButtons(event) {
     if (event.type.toLowerCase().substr(-4) === 'down') {
       this.isUp = false;
@@ -72,6 +85,10 @@ export class Pointer {
     }
   }
 
+  /**
+   *
+   * @param event
+   */
   start(event) {
     const input = this.game.input;
     if (event.pointerId) {
@@ -118,6 +135,9 @@ export class Pointer {
     return this;
   }
 
+  /**
+   *
+   */
   update() {
     const input = this.game.input;
     if (this.active) {
@@ -152,6 +172,11 @@ export class Pointer {
     }
   }
 
+  /**
+   *
+   * @param event
+   * @param fromClick
+   */
   move(event, fromClick = false) {
     const input = this.game.input;
     if (input.pollLocked) {
@@ -216,6 +241,10 @@ export class Pointer {
     return this;
   }
 
+  /**
+   *
+   * @param fromClick
+   */
   processInteractiveObjects(fromClick = false) {
     // Work out which object is on the top
     let highestRenderOrderID = 0;
@@ -276,6 +305,11 @@ export class Pointer {
     return this.targetObject !== null;
   }
 
+  /**
+   *
+   * @param newTarget
+   * @param silent
+   */
   swapTarget(newTarget, silent = false) {
     //  Now we know the top-most item (if any) we can process it
     if (newTarget === null) {
@@ -303,11 +337,19 @@ export class Pointer {
     }
   }
 
+  /**
+   *
+   * @param event
+   */
   leave(event) {
     this.withinGame = false;
     this.move(event, false);
   }
 
+  /**
+   *
+   * @param event
+   */
   stop(event) {
     const input = this.game.input;
     if (this._stateReset && this.withinGame) {
@@ -359,16 +401,31 @@ export class Pointer {
     return this;
   }
 
+  /**
+   *
+   * @param duration
+   */
   justPressed(duration) {
     duration = duration || this.game.input.justPressedRate;
     return this.isDown === true && this.timeDown + duration > this.game.time.time;
   }
 
+  /**
+   *
+   * @param duration
+   */
   justReleased(duration) {
     duration = duration || this.game.input.justReleasedRate;
     return this.isUp && this.timeUp + duration > this.game.time.time;
   }
 
+  /**
+   *
+   * @param name
+   * @param callback
+   * @param callbackContext
+   * @param callbackArgs
+   */
   addClickTrampoline(name, callback, callbackContext, callbackArgs) {
     if (!this.isDown) {
       return;
@@ -390,6 +447,9 @@ export class Pointer {
     });
   }
 
+  /**
+   *
+   */
   processClickTrampolines() {
     const trampolines = this._clickTrampolines;
     if (!trampolines) {
@@ -405,6 +465,9 @@ export class Pointer {
     this._trampolineTargetObject = null;
   }
 
+  /**
+   *
+   */
   reset() {
     if (this.isMouse === false) {
       this.active = false;
@@ -423,11 +486,17 @@ export class Pointer {
     this.targetObject = null;
   }
 
+  /**
+   *
+   */
   resetMovement() {
     this.movementX = 0;
     this.movementY = 0;
   }
 
+  /**
+   *
+   */
   get duration() {
     if (this.isUp) {
       return -1;
@@ -435,10 +504,16 @@ export class Pointer {
     return this.game.time.time - this.timeDown;
   }
 
+  /**
+   *
+   */
   get worldX() {
     return this.x;
   }
 
+  /**
+   *
+   */
   get worldY() {
     return this.y;
   }

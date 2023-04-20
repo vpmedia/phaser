@@ -35,6 +35,9 @@ export class BitmapText extends DisplayObject {
     this.dirty = false;
   }
 
+  /**
+   *
+   */
   destroy() {
     this._prevAnchor = null;
     this._glyphs = null;
@@ -43,6 +46,9 @@ export class BitmapText extends DisplayObject {
     super.destroy();
   }
 
+  /**
+   *
+   */
   preUpdate() {
     if (this.pendingDestroy) {
       this.destroy();
@@ -62,10 +68,20 @@ export class BitmapText extends DisplayObject {
     }
   }
 
+  /**
+   *
+   * @param text
+   */
   setText(text) {
     this.text = text;
   }
 
+  /**
+   *
+   * @param data
+   * @param scale
+   * @param text
+   */
   scanLine(data, scale, text) {
     let x = 0;
     let w = 0;
@@ -128,6 +144,11 @@ export class BitmapText extends DisplayObject {
     };
   }
 
+  /**
+   *
+   * @param text
+   * @param replace
+   */
   cleanText(text, replace = '') {
     const data = this._data.font;
     if (!data) {
@@ -150,6 +171,9 @@ export class BitmapText extends DisplayObject {
     return lines.join('\n');
   }
 
+  /**
+   *
+   */
   updateText() {
     const data = this._data.font;
     if (!data) {
@@ -218,6 +242,9 @@ export class BitmapText extends DisplayObject {
     }
   }
 
+  /**
+   *
+   */
   purgeGlyphs() {
     const len = this._glyphs.length;
     const kept = [];
@@ -234,6 +261,9 @@ export class BitmapText extends DisplayObject {
     return len - kept.length;
   }
 
+  /**
+   *
+   */
   updateTransform() {
     if (this.dirty || !this.anchor.equals(this._prevAnchor)) {
       this.updateText();
@@ -243,10 +273,16 @@ export class BitmapText extends DisplayObject {
     super.updateTransform();
   }
 
+  /**
+   *
+   */
   get align() {
     return this._align;
   }
 
+  /**
+   *
+   */
   set align(value) {
     if (value !== this._align && (value === 'left' || value === 'center' || value === 'right')) {
       this._align = value;
@@ -254,10 +290,16 @@ export class BitmapText extends DisplayObject {
     }
   }
 
+  /**
+   *
+   */
   get tint() {
     return this._tint;
   }
 
+  /**
+   *
+   */
   set tint(value) {
     if (value !== this._tint) {
       this._tint = value;
@@ -265,6 +307,9 @@ export class BitmapText extends DisplayObject {
     }
   }
 
+  /**
+   *
+   */
   get fill() {
     if (typeof this.tint === 'number') {
       let colorStr = this.tint.toString(16);
@@ -276,14 +321,23 @@ export class BitmapText extends DisplayObject {
     return this.tint;
   }
 
+  /**
+   *
+   */
   set fill(value) {
     this.tint = typeof value === 'string' ? parseInt(value.replace('#', ''), 16) : value;
   }
 
+  /**
+   *
+   */
   get font() {
     return this._font;
   }
 
+  /**
+   *
+   */
   set font(value) {
     const trimmedValue = value.trim();
     if (trimmedValue !== this._font) {
@@ -293,10 +347,16 @@ export class BitmapText extends DisplayObject {
     }
   }
 
+  /**
+   *
+   */
   get fontSize() {
     return this._fontSize;
   }
 
+  /**
+   *
+   */
   set fontSize(value) {
     value = parseInt(value, 10);
     if (value !== this._fontSize && value > 0) {
@@ -305,10 +365,16 @@ export class BitmapText extends DisplayObject {
     }
   }
 
+  /**
+   *
+   */
   get text() {
     return this._text;
   }
 
+  /**
+   *
+   */
   set text(value) {
     const typedValue = value.toString();
     if (typedValue !== this._text) {
@@ -317,10 +383,16 @@ export class BitmapText extends DisplayObject {
     }
   }
 
+  /**
+   *
+   */
   get maxWidth() {
     return this._maxWidth;
   }
 
+  /**
+   *
+   */
   set maxWidth(value) {
     if (value !== this._maxWidth) {
       this._maxWidth = value;
@@ -328,10 +400,16 @@ export class BitmapText extends DisplayObject {
     }
   }
 
+  /**
+   *
+   */
   get smoothed() {
     return !this._data.base.scaleMode;
   }
 
+  /**
+   *
+   */
   set smoothed(value) {
     if (value) {
       this._data.base.scaleMode = SCALE_LINEAR;

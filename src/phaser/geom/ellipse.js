@@ -19,6 +19,13 @@ export class Ellipse {
     this.type = GEOM_ELLIPSE;
   }
 
+  /**
+   *
+   * @param x
+   * @param y
+   * @param width
+   * @param height
+   */
   setTo(x, y, width, height) {
     this.x = x;
     this.y = y;
@@ -27,14 +34,25 @@ export class Ellipse {
     return this;
   }
 
+  /**
+   *
+   */
   getBounds() {
     return new Rectangle(this.x - this.width, this.y - this.height, this.width, this.height);
   }
 
+  /**
+   *
+   * @param source
+   */
   copyFrom(source) {
     return this.setTo(source.x, source.y, source.width, source.height);
   }
 
+  /**
+   *
+   * @param dest
+   */
   copyTo(dest) {
     dest.x = this.x;
     dest.y = this.y;
@@ -43,10 +61,19 @@ export class Ellipse {
     return dest;
   }
 
+  /**
+   *
+   * @param x
+   * @param y
+   */
   contains(x, y) {
     return contains(this, x, y);
   }
 
+  /**
+   *
+   * @param output
+   */
   random(output = null) {
     const result = output || new Point();
     const p = Math.random() * Math.PI * 2;
@@ -58,6 +85,9 @@ export class Ellipse {
     return result;
   }
 
+  /**
+   *
+   */
   toString() {
     return (
       '[{Ellipse (x=' +

@@ -58,12 +58,21 @@ export class Graphics extends DisplayObject {
     this.cachedSpriteDirty = false;
   }
 
+  /**
+   *
+   */
   destroy() {
     // TODO
     this.clear();
     super.destroy();
   }
 
+  /**
+   *
+   * @param lineWidth
+   * @param color
+   * @param alpha
+   */
   lineStyle(lineWidth = 0, color = 0, alpha = 1) {
     this.lineWidth = lineWidth || 0;
     this.lineColor = color || 0;
@@ -82,11 +91,21 @@ export class Graphics extends DisplayObject {
     return this;
   }
 
+  /**
+   *
+   * @param x
+   * @param y
+   */
   moveTo(x, y) {
     this.drawShape(new Polygon([x, y]));
     return this;
   }
 
+  /**
+   *
+   * @param x
+   * @param y
+   */
   lineTo(x, y) {
     if (!this.currentPath) {
       this.moveTo(0, 0);
@@ -97,6 +116,13 @@ export class Graphics extends DisplayObject {
     return this;
   }
 
+  /**
+   *
+   * @param cpX
+   * @param cpY
+   * @param toX
+   * @param toY
+   */
   quadraticCurveTo(cpX, cpY, toX, toY) {
     if (this.currentPath) {
       if (this.currentPath.shape.points.length === 0) {
@@ -126,6 +152,15 @@ export class Graphics extends DisplayObject {
     return this;
   }
 
+  /**
+   *
+   * @param cpX
+   * @param cpY
+   * @param cpX2
+   * @param cpY2
+   * @param toX
+   * @param toY
+   */
   bezierCurveTo(cpX, cpY, cpX2, cpY2, toX, toY) {
     if (this.currentPath) {
       if (this.currentPath.shape.points.length === 0) {
@@ -161,6 +196,14 @@ export class Graphics extends DisplayObject {
     return this;
   }
 
+  /**
+   *
+   * @param x1
+   * @param y1
+   * @param x2
+   * @param y2
+   * @param radius
+   */
   arcTo(x1, y1, x2, y2, radius) {
     if (this.currentPath) {
       if (this.currentPath.shape.points.length === 0) {
@@ -204,6 +247,16 @@ export class Graphics extends DisplayObject {
     return this;
   }
 
+  /**
+   *
+   * @param cx
+   * @param cy
+   * @param radius
+   * @param startAngle
+   * @param endAngle
+   * @param anticlockwise
+   * @param segments
+   */
   arc(cx, cy, radius, startAngle, endAngle, anticlockwise = false, segments = 40) {
     //  If we do this we can never draw a full circle
     if (startAngle === endAngle) {
@@ -250,6 +303,11 @@ export class Graphics extends DisplayObject {
     return this;
   }
 
+  /**
+   *
+   * @param color
+   * @param alpha
+   */
   beginFill(color = 0, alpha = 1) {
     this.filling = true;
     this.fillColor = color || 0;
@@ -264,6 +322,9 @@ export class Graphics extends DisplayObject {
     return this;
   }
 
+  /**
+   *
+   */
   endFill() {
     this.filling = false;
     this.fillColor = null;
@@ -271,26 +332,58 @@ export class Graphics extends DisplayObject {
     return this;
   }
 
+  /**
+   *
+   * @param x
+   * @param y
+   * @param width
+   * @param height
+   */
   drawRect(x, y, width, height) {
     this.drawShape(new Rectangle(x, y, width, height));
     return this;
   }
 
+  /**
+   *
+   * @param x
+   * @param y
+   * @param width
+   * @param height
+   * @param radius
+   */
   drawRoundedRect(x, y, width, height, radius) {
     this.drawShape(new RoundedRectangle(x, y, width, height, radius));
     return this;
   }
 
+  /**
+   *
+   * @param x
+   * @param y
+   * @param diameter
+   */
   drawCircle(x, y, diameter) {
     this.drawShape(new Circle(x, y, diameter));
     return this;
   }
 
+  /**
+   *
+   * @param x
+   * @param y
+   * @param width
+   * @param height
+   */
   drawEllipse(x, y, width, height) {
     this.drawShape(new Ellipse(x, y, width, height));
     return this;
   }
 
+  /**
+   *
+   * @param path
+   */
   drawPolygon(path) {
     let points;
     if (path instanceof Polygon) {
@@ -311,6 +404,9 @@ export class Graphics extends DisplayObject {
     return this;
   }
 
+  /**
+   *
+   */
   clear() {
     this.lineWidth = 0;
     this.filling = false;
@@ -322,11 +418,18 @@ export class Graphics extends DisplayObject {
     return this;
   }
 
+  /**
+   *
+   */
   generateTexture() {
     // TODO
     console.warn('graphics.generateTexture() is not implemented');
   }
 
+  /**
+   *
+   * @param renderSession
+   */
   renderWebGL(renderSession) {
     // if the sprite is not visible or the alpha is 0 then no need to render this element
     if (this.visible === false || this.alpha === 0 || this.isMask === true) {
@@ -384,6 +487,10 @@ export class Graphics extends DisplayObject {
     }
   }
 
+  /**
+   *
+   * @param renderSession
+   */
   renderCanvas(renderSession) {
     // if the sprite is not visible or the alpha is 0 then no need to render this element
     if (this.visible === false || this.alpha === 0 || this.isMask === true) {
@@ -437,6 +544,10 @@ export class Graphics extends DisplayObject {
     }
   }
 
+  /**
+   *
+   * @param matrix
+   */
   getBounds(matrix = null) {
     if (!this.renderable) {
       return getEmptyRectangle();
@@ -493,6 +604,9 @@ export class Graphics extends DisplayObject {
     return this.currentBounds;
   }
 
+  /**
+   *
+   */
   getLocalBounds() {
     const matrixCache = this.worldTransform;
     this.worldTransform = getIdentityMatrix();
@@ -507,6 +621,11 @@ export class Graphics extends DisplayObject {
     return bounds;
   }
 
+  /**
+   *
+   * @param point
+   * @param tempPoint
+   */
   containsPoint(point, tempPoint) {
     this.worldTransform.applyInverse(point, tempPoint);
     const graphicsData = this.graphicsData;
@@ -521,6 +640,9 @@ export class Graphics extends DisplayObject {
     return false;
   }
 
+  /**
+   *
+   */
   updateLocalBounds() {
     let minX = Infinity;
     let maxX = -Infinity;
@@ -599,6 +721,9 @@ export class Graphics extends DisplayObject {
     this._localBounds.height = maxY - minY + padding * 2;
   }
 
+  /**
+   *
+   */
   generateCachedSprite() {
     const bounds = this.getLocalBounds();
     if (!this._cachedSprite) {
@@ -622,6 +747,9 @@ export class Graphics extends DisplayObject {
     this._cachedSprite.alpha = this.alpha;
   }
 
+  /**
+   *
+   */
   updateCachedSpriteTexture() {
     const cachedSprite = this._cachedSprite;
     const texture = cachedSprite.texture;
@@ -638,6 +766,9 @@ export class Graphics extends DisplayObject {
     texture.baseTexture.dirty();
   }
 
+  /**
+   *
+   */
   destroyCachedSprite() {
     if (!this._cachedSprite) {
       return;
@@ -646,6 +777,10 @@ export class Graphics extends DisplayObject {
     this._cachedSprite = null;
   }
 
+  /**
+   *
+   * @param shape
+   */
   drawShape(shape) {
     if (this.currentPath) {
       // check current path!
@@ -678,6 +813,9 @@ export class Graphics extends DisplayObject {
     return data;
   }
 
+  /**
+   *
+   */
   postUpdate() {
     if (this._boundsDirty) {
       this.updateLocalBounds();
@@ -688,6 +826,11 @@ export class Graphics extends DisplayObject {
     }
   }
 
+  /**
+   *
+   * @param points
+   * @param cull
+   */
   drawTriangle(points, cull = false) {
     const triangle = new Polygon(points);
     if (cull) {
@@ -703,6 +846,12 @@ export class Graphics extends DisplayObject {
     }
   }
 
+  /**
+   *
+   * @param vertices
+   * @param indices
+   * @param cull
+   */
   drawTriangles(vertices, indices, cull = false) {
     const point1 = new Point();
     const point2 = new Point();

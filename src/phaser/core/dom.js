@@ -1,82 +1,130 @@
 import { Point } from '../geom/point';
 
 class VisualBoundsDesktopRectangle {
+  /**
+   *
+   */
   get x() {
     return window && 'pageXOffset' in window
       ? window.pageXOffset
       : document.documentElement.scrollLeft;
   }
 
+  /**
+   *
+   */
   get y() {
     return window && 'pageYOffset' in window
       ? window.pageYOffset
       : document.documentElement.scrollTop;
   }
 
+  /**
+   *
+   */
   get width() {
     return Math.max(window.innerWidth, document.documentElement.clientWidth);
   }
 
+  /**
+   *
+   */
   get height() {
     return Math.max(window.innerHeight, document.documentElement.clientHeight);
   }
 }
 
 class LayoutBoundsDesktopRectangle {
+  /**
+   *
+   */
   get x() {
     return 0;
   }
 
+  /**
+   *
+   */
   get y() {
     return 0;
   }
 
+  /**
+   *
+   */
   get width() {
     return Math.max(window.innerWidth, document.documentElement.clientWidth);
   }
 
+  /**
+   *
+   */
   get height() {
     return Math.max(window.innerHeight, document.documentElement.clientHeight);
   }
 }
 
 class VisualBoundsRectangle {
+  /**
+   *
+   */
   get x() {
     return window && 'pageXOffset' in window
       ? window.pageXOffset
       : document.documentElement.scrollLeft;
   }
 
+  /**
+   *
+   */
   get y() {
     return window && 'pageYOffset' in window
       ? window.pageYOffset
       : document.documentElement.scrollTop;
   }
 
+  /**
+   *
+   */
   get width() {
     return window.innerWidth;
   }
 
+  /**
+   *
+   */
   get height() {
     return window.innerHeight;
   }
 }
 
 class LayoutBoundsRectangle {
+  /**
+   *
+   */
   get x() {
     return 0;
   }
 
+  /**
+   *
+   */
   get y() {
     return 0;
   }
 
+  /**
+   *
+   */
   get width() {
     const a = document.documentElement.clientWidth;
     const b = window.innerWidth;
     return a < b ? b : a; // max
   }
 
+  /**
+   *
+   */
   get height() {
     const a = document.documentElement.clientHeight;
     const b = window.innerHeight;
@@ -88,19 +136,31 @@ class LayoutBoundsRectangle {
 // Ref. http://www.quirksmode.org/mobile/tableViewport_desktop.html
 
 class DocumentBoundsRectangle {
+  /**
+   *
+   */
   get x() {
     return 0;
   }
 
+  /**
+   *
+   */
   get y() {
     return 0;
   }
 
+  /**
+   *
+   */
   get width() {
     const d = document.documentElement;
     return Math.max(d.clientWidth, d.offsetWidth, d.scrollWidth);
   }
 
+  /**
+   *
+   */
   get height() {
     const d = document.documentElement;
     return Math.max(d.clientHeight, d.offsetHeight, d.scrollHeight);
@@ -108,6 +168,10 @@ class DocumentBoundsRectangle {
 }
 
 export class DOM {
+  /**
+   *
+   * @param device
+   */
   constructor(device) {
     this.treatAsDesktop =
       device.desktop &&
@@ -130,6 +194,11 @@ export class DOM {
         : () => document.documentElement.scrollTop;
   }
 
+  /**
+   *
+   * @param element
+   * @param point
+   */
   getOffset(element, point = null) {
     point = point || new Point();
     const box = element.getBoundingClientRect();
@@ -142,6 +211,11 @@ export class DOM {
     return point;
   }
 
+  /**
+   *
+   * @param element
+   * @param cushion
+   */
   getBounds(element, cushion = 0) {
     element = element && !element.nodeType ? element[0] : element;
     if (!element || element.nodeType !== 1) {
@@ -150,6 +224,11 @@ export class DOM {
     return this.calibrate(element.getBoundingClientRect(), cushion);
   }
 
+  /**
+   *
+   * @param coords
+   * @param cushion
+   */
   calibrate(coords, cushion = 0) {
     const output = {
       width: 0,
@@ -164,6 +243,10 @@ export class DOM {
     return output;
   }
 
+  /**
+   *
+   * @param primaryFallback
+   */
   getScreenOrientation(primaryFallback) {
     const screen = window.screen;
     const orientation = screen.orientation || screen.mozOrientation || screen.msOrientation;
@@ -193,18 +276,30 @@ export class DOM {
     return this.visualBounds.height > this.visualBounds.width ? PORTRAIT : LANDSCAPE;
   }
 
+  /**
+   *
+   */
   get scrollX() {
     return this.scrollXProvider();
   }
 
+  /**
+   *
+   */
   get scrollY() {
     return this.scrollYProvider();
   }
 
+  /**
+   *
+   */
   get clientWidth() {
     return Math.max(window.innerWidth, document.documentElement.clientWidth);
   }
 
+  /**
+   *
+   */
   get clientHeight() {
     return Math.max(window.innerHeight, document.documentElement.clientHeight);
   }

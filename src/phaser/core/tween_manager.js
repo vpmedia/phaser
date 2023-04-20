@@ -35,6 +35,10 @@ import {
 import { GROUP } from './const';
 
 export class TweenManager {
+  /**
+   *
+   * @param game
+   */
   constructor(game) {
     this.game = game;
     this._tweens = [];
@@ -87,10 +91,16 @@ export class TweenManager {
     this.game.onResume.add(this._resumeAll, this);
   }
 
+  /**
+   *
+   */
   getAll() {
     return this._tweens;
   }
 
+  /**
+   *
+   */
   removeAll() {
     for (let i = 0; i < this._tweens.length; i += 1) {
       this._tweens[i].pendingDelete = true;
@@ -98,6 +108,11 @@ export class TweenManager {
     this._add = [];
   }
 
+  /**
+   *
+   * @param obj
+   * @param children
+   */
   removeFrom(obj, children) {
     let i;
     let len;
@@ -123,15 +138,27 @@ export class TweenManager {
     }
   }
 
+  /**
+   *
+   * @param tween
+   */
   add(tween) {
     tween._manager = this;
     this._add.push(tween);
   }
 
+  /**
+   *
+   * @param object
+   */
   create(object) {
     return new Tween(object, this.game, this);
   }
 
+  /**
+   *
+   * @param tween
+   */
   remove(tween) {
     let i = this._tweens.indexOf(tween);
     if (i !== -1) {
@@ -144,6 +171,9 @@ export class TweenManager {
     }
   }
 
+  /**
+   *
+   */
   update() {
     const addTweens = this._add.length;
     let numTweens = this._tweens.length;
@@ -167,28 +197,44 @@ export class TweenManager {
     return true;
   }
 
+  /**
+   *
+   * @param object
+   */
   isTweening(object) {
     return this._tweens.some((tween) => tween.target === object);
   }
 
+  /**
+   *
+   */
   _pauseAll() {
     for (let i = this._tweens.length - 1; i >= 0; i -= 1) {
       this._tweens[i]._pause();
     }
   }
 
+  /**
+   *
+   */
   _resumeAll() {
     for (let i = this._tweens.length - 1; i >= 0; i -= 1) {
       this._tweens[i]._resume();
     }
   }
 
+  /**
+   *
+   */
   pauseAll() {
     for (let i = this._tweens.length - 1; i >= 0; i -= 1) {
       this._tweens[i].pause();
     }
   }
 
+  /**
+   *
+   */
   resumeAll() {
     for (let i = this._tweens.length - 1; i >= 0; i -= 1) {
       this._tweens[i].resume(true);

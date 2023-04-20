@@ -1,6 +1,9 @@
 import { SignalBinding } from  './signal_binding';
 
 export class Signal {
+  /**
+   *
+   */
   constructor() {
     this._bindings = null;
     this._prevParams = null;
@@ -10,6 +13,11 @@ export class Signal {
     this._boundDispatch = false;
   }
 
+  /**
+   *
+   * @param listener
+   * @param fnName
+   */
   validateListener(listener, fnName) {
     if (typeof listener !== 'function') {
       throw new Error(
@@ -21,6 +29,14 @@ export class Signal {
     }
   }
 
+  /**
+   *
+   * @param listener
+   * @param isOnce
+   * @param listenerContext
+   * @param priority
+   * @param args
+   */
   _registerListener(listener, isOnce, listenerContext, priority, args) {
     const prevIndex = this._indexOfListener(listener, listenerContext);
     let binding;
@@ -45,6 +61,10 @@ export class Signal {
     return binding;
   }
 
+  /**
+   *
+   * @param binding
+   */
   _addBinding(binding) {
     if (!this._bindings) {
       this._bindings = [];
@@ -57,6 +77,11 @@ export class Signal {
     this._bindings.splice(n + 1, 0, binding);
   }
 
+  /**
+   *
+   * @param listener
+   * @param context
+   */
   _indexOfListener(listener, context = null) {
     if (!this._bindings) {
       return -1;
@@ -73,20 +98,44 @@ export class Signal {
     return -1;
   }
 
+  /**
+   *
+   * @param listener
+   * @param context
+   */
   has(listener, context) {
     return this._indexOfListener(listener, context) !== -1;
   }
 
+  /**
+   *
+   * @param listener
+   * @param listenerContext
+   * @param priority
+   * @param {...any} args
+   */
   add(listener, listenerContext, priority, ...args) {
     this.validateListener(listener, 'add');
     return this._registerListener(listener, false, listenerContext, priority, args);
   }
 
+  /**
+   *
+   * @param listener
+   * @param listenerContext
+   * @param priority
+   * @param {...any} args
+   */
   addOnce(listener, listenerContext, priority, ...args) {
     this.validateListener(listener, 'addOnce');
     return this._registerListener(listener, true, listenerContext, priority, args);
   }
 
+  /**
+   *
+   * @param listener
+   * @param context
+   */
   remove(listener, context) {
     this.validateListener(listener, 'remove');
     const i = this._indexOfListener(listener, context);
@@ -98,6 +147,10 @@ export class Signal {
     return listener;
   }
 
+  /**
+   *
+   * @param context
+   */
   removeAll(context = null) {
     if (!this._bindings) {
       return;
@@ -119,14 +172,24 @@ export class Signal {
     }
   }
 
+  /**
+   *
+   */
   getNumListeners() {
     return this._bindings ? this._bindings.length : 0;
   }
 
+  /**
+   *
+   */
   halt() {
     this._shouldPropagate = false;
   }
 
+  /**
+   *
+   * @param {...any} args
+   */
   dispatch(...args) {
     if (!this.active || !this._bindings) {
       return;
@@ -151,22 +214,34 @@ export class Signal {
     } while (bindings[n] && this._shouldPropagate && bindings[n].execute(paramsArr) !== false);
   }
 
+  /**
+   *
+   */
   forget() {
     if (this._prevParams) {
       this._prevParams = null;
     }
   }
 
+  /**
+   *
+   */
   dispose() {
     this.removeAll();
     this.forget();
     this._bindings = null;
   }
 
+  /**
+   *
+   */
   toString() {
     return '[Signal active:' + this.active + ' numListeners:' + this.getNumListeners() + ']';
   }
 
+  /**
+   *
+   */
   get boundDispatch() {
     const _this = this;
     if (!this._boundDispatch) {

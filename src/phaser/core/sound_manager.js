@@ -4,6 +4,10 @@ import { Sound } from './sound';
 import { SoundSprite } from './sound_sprite';
 
 export class SoundManager {
+  /**
+   *
+   * @param game
+   */
   constructor(game) {
     this.game = game;
     this.onChange = new Signal();
@@ -24,6 +28,9 @@ export class SoundManager {
     this._watchContext = null;
   }
 
+  /**
+   *
+   */
   boot() {
     if (this.game.config.isForceDisabledAudio) {
       this.noAudio = true;
@@ -89,6 +96,9 @@ export class SoundManager {
     });
   }
 
+  /**
+   *
+   */
   addUnlockHandlers() {
     this.isLocked = true;
     this.onChange.dispatch('addUnlockHandlers', {
@@ -101,6 +111,9 @@ export class SoundManager {
     document.body.addEventListener('keydown', this.onUnlockEventBinded, false);
   }
 
+  /**
+   *
+   */
   removeUnlockHandlers() {
     this.isLocked = false;
     this.onChange.dispatch('removeUnlockHandlers', {
@@ -113,6 +126,10 @@ export class SoundManager {
     document.body.removeEventListener('keydown', this.onUnlockEventBinded);
   }
 
+  /**
+   *
+   * @param event
+   */
   onUnlockEvent(event) {
     const initialState = this.context.state;
     if (initialState !== 'suspended' && initialState !== 'interrupted') {
@@ -151,6 +168,9 @@ export class SoundManager {
       });
   }
 
+  /**
+   *
+   */
   stopAll() {
     if (this.noAudio) {
       return;
@@ -162,6 +182,9 @@ export class SoundManager {
     }
   }
 
+  /**
+   *
+   */
   pauseAll() {
     if (this.noAudio) {
       return;
@@ -173,6 +196,9 @@ export class SoundManager {
     }
   }
 
+  /**
+   *
+   */
   resumeAll() {
     if (this.noAudio) {
       return;
@@ -184,6 +210,10 @@ export class SoundManager {
     }
   }
 
+  /**
+   *
+   * @param key
+   */
   decode(key) {
     const soundData = this.game.cache.getSoundData(key);
     if (soundData) {
@@ -201,6 +231,12 @@ export class SoundManager {
     }
   }
 
+  /**
+   *
+   * @param files
+   * @param callback
+   * @param callbackContext
+   */
   setDecodedCallback(files, callback, callbackContext) {
     if (typeof files === 'string') {
       files = [files];
@@ -226,6 +262,9 @@ export class SoundManager {
     }
   }
 
+  /**
+   *
+   */
   update() {
     if (this.noAudio) {
       return;
@@ -248,16 +287,31 @@ export class SoundManager {
     }
   }
 
+  /**
+   *
+   * @param key
+   * @param volume
+   * @param loop
+   * @param connect
+   */
   add(key, volume = 1, loop = false, connect = this.connectToMaster) {
     const sound = new Sound(this.game, key, volume, loop, connect);
     this._sounds.push(sound);
     return sound;
   }
 
+  /**
+   *
+   * @param key
+   */
   addSprite(key) {
     return new SoundSprite(this.game, key);
   }
 
+  /**
+   *
+   * @param sound
+   */
   remove(sound) {
     let i = this._sounds.length;
     while (i) {
@@ -271,6 +325,10 @@ export class SoundManager {
     return false;
   }
 
+  /**
+   *
+   * @param key
+   */
   removeByKey(key) {
     let i = this._sounds.length;
     let removed = 0;
@@ -285,6 +343,12 @@ export class SoundManager {
     return removed;
   }
 
+  /**
+   *
+   * @param key
+   * @param volume
+   * @param loop
+   */
   play(key, volume = 1, loop = false) {
     if (this.noAudio) {
       return null;
@@ -294,6 +358,9 @@ export class SoundManager {
     return sound;
   }
 
+  /**
+   *
+   */
   setMute() {
     if (this._muted) {
       return;
@@ -306,6 +373,9 @@ export class SoundManager {
     this.onChange.dispatch('muted');
   }
 
+  /**
+   *
+   */
   unsetMute() {
     if (!this._muted || this._codeMuted) {
       return;
@@ -317,6 +387,9 @@ export class SoundManager {
     this.onChange.dispatch('unmuted');
   }
 
+  /**
+   *
+   */
   destroy() {
     this.stopAll();
     for (let i = 0; i < this._sounds.length; i += 1) {
@@ -335,10 +408,16 @@ export class SoundManager {
     }
   }
 
+  /**
+   *
+   */
   get mute() {
     return this._muted;
   }
 
+  /**
+   *
+   */
   set mute(value) {
     if (value || false) {
       if (this._muted) {
@@ -355,10 +434,16 @@ export class SoundManager {
     }
   }
 
+  /**
+   *
+   */
   get volume() {
     return this._volume;
   }
 
+  /**
+   *
+   */
   set volume(value) {
     if (value < 0) {
       value = 0;

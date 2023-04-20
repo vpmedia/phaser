@@ -1,5 +1,16 @@
 
 export class TimerEvent {
+  /**
+   *
+   * @param timer
+   * @param delay
+   * @param tick
+   * @param repeatCount
+   * @param loop
+   * @param callback
+   * @param callbackContext
+   * @param args
+   */
   constructor(timer, delay, tick, repeatCount, loop, callback, callbackContext, args) {
     this.timer = timer;
     this.delay = delay;

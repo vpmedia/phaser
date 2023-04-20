@@ -1,5 +1,8 @@
 
 export class Device {
+  /**
+   *
+   */
   constructor() {
     this.desktop = false;
     this.iOS = false;

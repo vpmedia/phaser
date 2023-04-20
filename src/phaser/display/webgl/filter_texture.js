@@ -1,6 +1,13 @@
 import { SCALE_LINEAR } from '../../core/const';
 
 export class FilterTexture {
+  /**
+   *
+   * @param gl
+   * @param width
+   * @param height
+   * @param scaleMode
+   */
   constructor(gl, width, height, scaleMode) {
     this.gl = gl;
     this.frameBuffer = gl.createFramebuffer();
@@ -34,12 +41,20 @@ export class FilterTexture {
     this.resize(width, height);
   }
 
+  /**
+   *
+   */
   clear() {
     const gl = this.gl;
     gl.clearColor(0, 0, 0, 0);
     gl.clear(gl.COLOR_BUFFER_BIT);
   }
 
+  /**
+   *
+   * @param width
+   * @param height
+   */
   resize(width, height) {
     if (this.width === width && this.height === height) {
       return;
@@ -54,6 +69,9 @@ export class FilterTexture {
     gl.renderbufferStorage(gl.RENDERBUFFER, gl.DEPTH_STENCIL, width, height);
   }
 
+  /**
+   *
+   */
   destroy() {
     const gl = this.gl;
     gl.deleteFramebuffer(this.frameBuffer);

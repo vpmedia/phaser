@@ -17,12 +17,25 @@ export class Line {
     this.type = GEOM_LINE;
   }
 
+  /**
+   *
+   * @param x1
+   * @param y1
+   * @param x2
+   * @param y2
+   */
   setTo(x1, y1, x2, y2) {
     this.start.setTo(x1, y1);
     this.end.setTo(x2, y2);
     return this;
   }
 
+  /**
+   *
+   * @param startSprite
+   * @param endSprite
+   * @param useCenter
+   */
   fromSprite(startSprite, endSprite, useCenter = false) {
     if (useCenter) {
       return this.setTo(
@@ -35,12 +48,24 @@ export class Line {
     return this.setTo(startSprite.x, startSprite.y, endSprite.x, endSprite.y);
   }
 
+  /**
+   *
+   * @param x
+   * @param y
+   * @param angle
+   * @param length
+   */
   fromAngle(x, y, angle, length) {
     this.start.setTo(x, y);
     this.end.setTo(x + Math.cos(angle) * length, y + Math.sin(angle) * length);
     return this;
   }
 
+  /**
+   *
+   * @param angle
+   * @param asDegrees
+   */
   rotate(angle, asDegrees = false) {
     const cx = (this.start.x + this.end.x) / 2;
     const cy = (this.start.y + this.end.y) / 2;
@@ -49,20 +74,41 @@ export class Line {
     return this;
   }
 
+  /**
+   *
+   * @param x
+   * @param y
+   * @param angle
+   * @param asDegrees
+   */
   rotateAround(x, y, angle, asDegrees = false) {
     this.start.rotate(x, y, angle, asDegrees);
     this.end.rotate(x, y, angle, asDegrees);
     return this;
   }
 
+  /**
+   *
+   * @param line
+   * @param asSegment
+   * @param result
+   */
   intersects(line, asSegment, result) {
     return intersectsPoints(this.start, this.end, line.start, line.end, asSegment, result);
   }
 
+  /**
+   *
+   * @param line
+   */
   reflect(line) {
     return reflect(this, line);
   }
 
+  /**
+   *
+   * @param output
+   */
   midPoint(output = null) {
     const result = output || new Point();
     result.x = (this.start.x + this.end.x) / 2;
@@ -70,6 +116,11 @@ export class Line {
     return result;
   }
 
+  /**
+   *
+   * @param x
+   * @param y
+   */
   centerOn(x, y) {
     const cx = (this.start.x + this.end.x) / 2;
     const cy = (this.start.y + this.end.y) / 2;
@@ -79,6 +130,11 @@ export class Line {
     this.end.add(tx, ty);
   }
 
+  /**
+   *
+   * @param x
+   * @param y
+   */
   pointOnLine(x, y) {
     return (
       (x - this.start.x) * (this.end.y - this.start.y) ===
@@ -86,6 +142,11 @@ export class Line {
     );
   }
 
+  /**
+   *
+   * @param x
+   * @param y
+   */
   pointOnSegment(x, y) {
     const xMin = Math.min(this.start.x, this.end.x);
     const xMax = Math.max(this.start.x, this.end.x);
@@ -94,6 +155,10 @@ export class Line {
     return this.pointOnLine(x, y) && x >= xMin && x <= xMax && y >= yMin && y <= yMax;
   }
 
+  /**
+   *
+   * @param output
+   */
   random(output = null) {
     const result = output || new Point();
     const t = Math.random();
@@ -102,6 +167,11 @@ export class Line {
     return result;
   }
 
+  /**
+   *
+   * @param stepRate
+   * @param results
+   */
   coordinatesOnLine(stepRate = 1, results = []) {
     let x1 = Math.round(this.start.x);
     let y1 = Math.round(this.start.y);
@@ -132,10 +202,16 @@ export class Line {
     return results;
   }
 
+  /**
+   *
+   */
   clone() {
     return clone(this);
   }
 
+  /**
+   *
+   */
   get length() {
     return Math.sqrt(
       (this.end.x - this.start.x) * (this.end.x - this.start.x) +
@@ -143,58 +219,100 @@ export class Line {
     );
   }
 
+  /**
+   *
+   */
   get angle() {
     return Math.atan2(this.end.y - this.start.y, this.end.x - this.start.x);
   }
 
+  /**
+   *
+   */
   get slope() {
     return (this.end.y - this.start.y) / (this.end.x - this.start.x);
   }
 
+  /**
+   *
+   */
   get perpSlope() {
     return -((this.end.x - this.start.x) / (this.end.y - this.start.y));
   }
 
+  /**
+   *
+   */
   get x() {
     return Math.min(this.start.x, this.end.x);
   }
 
+  /**
+   *
+   */
   get y() {
     return Math.min(this.start.y, this.end.y);
   }
 
+  /**
+   *
+   */
   get left() {
     return Math.min(this.start.x, this.end.x);
   }
 
+  /**
+   *
+   */
   get right() {
     return Math.max(this.start.x, this.end.x);
   }
 
+  /**
+   *
+   */
   get top() {
     return Math.min(this.start.y, this.end.y);
   }
 
+  /**
+   *
+   */
   get bottom() {
     return Math.max(this.start.y, this.end.y);
   }
 
+  /**
+   *
+   */
   get width() {
     return Math.abs(this.start.x - this.end.x);
   }
 
+  /**
+   *
+   */
   get height() {
     return Math.abs(this.start.y - this.end.y);
   }
 
+  /**
+   *
+   */
   get normalX() {
     return Math.cos(this.angle - 1.5707963267948966);
   }
 
+  /**
+   *
+   */
   get normalY() {
     return Math.sin(this.angle - 1.5707963267948966);
   }
 
+  /**
+   *
+   */
   get normalAngle() {
     return wrap(this.angle - 1.5707963267948966, -Math.PI, Math.PI);
   }

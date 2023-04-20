@@ -65,6 +65,9 @@ export class Button extends Image {
     this.events.onInputUp.add(this.onInputUpHandler, this);
   }
 
+  /**
+   *
+   */
   destroy() {
     this._onOverFrame = null;
     this._onOutFrame = null;
@@ -88,6 +91,11 @@ export class Button extends Image {
     super.destroy();
   }
 
+  /**
+   *
+   * @param isEnabled
+   * @param isImmediate
+   */
   setEnabled(isEnabled, isImmediate) {
     this.input.enabled = isEnabled;
     if (isImmediate) {
@@ -99,14 +107,26 @@ export class Button extends Image {
     }
   }
 
+  /**
+   *
+   */
   clearFrames() {
     this.setFrames(null, null, null, null);
   }
 
+  /**
+   *
+   */
   removedFromWorld() {
     this.inputEnabled = false;
   }
 
+  /**
+   *
+   * @param state
+   * @param frame
+   * @param switchImmediately
+   */
   setStateFrame(state, frame, switchImmediately = false) {
     const frameKey = '_on' + state + 'Frame';
     if (frame) {
@@ -119,6 +139,10 @@ export class Button extends Image {
     }
   }
 
+  /**
+   *
+   * @param newState
+   */
   changeStateFrame(newState) {
     if (this.freezeFrames) {
       return false;
@@ -136,6 +160,13 @@ export class Button extends Image {
     return false;
   }
 
+  /**
+   *
+   * @param overFrame
+   * @param outFrame
+   * @param downFrame
+   * @param upFrame
+   */
   setFrames(overFrame, outFrame, downFrame, upFrame) {
     this.setStateFrame(STATE_OVER, overFrame, this.input.pointerOver());
     this.setStateFrame(STATE_OUT, outFrame, !this.input.pointerOver());
@@ -143,6 +174,11 @@ export class Button extends Image {
     this.setStateFrame(STATE_UP, upFrame, this.input.pointerUp());
   }
 
+  /**
+   *
+   * @param sprite
+   * @param pointer
+   */
   onInputOverHandler(sprite, pointer) {
     if (
       pointer.justReleased() &&
@@ -160,6 +196,11 @@ export class Button extends Image {
     }
   }
 
+  /**
+   *
+   * @param sprite
+   * @param pointer
+   */
   onInputOutHandler(sprite, pointer) {
     this.changeStateFrame(STATE_OUT);
     if (this.onInputOut) {
@@ -167,6 +208,11 @@ export class Button extends Image {
     }
   }
 
+  /**
+   *
+   * @param sprite
+   * @param pointer
+   */
   onInputDownHandler(sprite, pointer) {
     this.changeStateFrame(STATE_DOWN);
     if (this.onInputDown) {
@@ -174,6 +220,12 @@ export class Button extends Image {
     }
   }
 
+  /**
+   *
+   * @param sprite
+   * @param pointer
+   * @param isOver
+   */
   onInputUpHandler(sprite, pointer, isOver) {
     if (this.onInputUp) {
       this.onInputUp.dispatch(this, pointer, isOver);
@@ -196,10 +248,16 @@ export class Button extends Image {
     }
   }
 
+  /**
+   *
+   */
   get inputEnabled() {
     return this.input && this.input.enabled;
   }
 
+  /**
+   *
+   */
   set inputEnabled(value) {
     if (value) {
       if (this.input === null) {

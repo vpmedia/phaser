@@ -4,6 +4,10 @@ import { compileProgram } from '../util';
 // the next one is used for rendering primitives
 
 export class PrimitiveShader {
+  /**
+   *
+   * @param gl
+   */
   constructor(gl) {
     this.gl = gl;
     this._UID = generateShaderID();
@@ -37,6 +41,9 @@ export class PrimitiveShader {
     this.init();
   }
 
+  /**
+   *
+   */
   init() {
     const gl = this.gl;
     const program = compileProgram(gl, this.vertexSrc, this.fragmentSrc);
@@ -55,6 +62,9 @@ export class PrimitiveShader {
     this.program = program;
   }
 
+  /**
+   *
+   */
   destroy() {
     this.gl.deleteProgram(this.program);
     this.uniforms = null;

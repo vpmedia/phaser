@@ -1,21 +1,37 @@
 import { hex2rgb } from '../../util/math';
 
 export class WebGLStencilManager {
+  /**
+   *
+   */
   constructor() {
     this.stencilStack = [];
     this.reverse = true;
     this.count = 0;
   }
 
+  /**
+   *
+   * @param gl
+   */
   setContext(gl) {
     this.gl = gl;
   }
 
+  /**
+   *
+   */
   destroy() {
     this.stencilStack = null;
     this.gl = null;
   }
 
+  /**
+   *
+   * @param graphics
+   * @param webGLData
+   * @param renderSession
+   */
   pushStencil(graphics, webGLData, renderSession) {
     const gl = renderSession.gl;
     this.bindGraphics(graphics, webGLData, renderSession);
@@ -68,6 +84,12 @@ export class WebGLStencilManager {
     this.count += 1;
   }
 
+  /**
+   *
+   * @param graphics
+   * @param webGLData
+   * @param renderSession
+   */
   bindGraphics(graphics, webGLData, renderSession) {
     // if(this._currentGraphics === graphics)return;
     // this._currentGraphics = graphics;
@@ -109,6 +131,12 @@ export class WebGLStencilManager {
     }
   }
 
+  /**
+   *
+   * @param graphics
+   * @param webGLData
+   * @param renderSession
+   */
   popStencil(graphics, webGLData, renderSession) {
     const gl = renderSession.gl;
     this.stencilStack.pop();
