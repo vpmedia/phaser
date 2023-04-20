@@ -7,65 +7,74 @@ export class Signal {
     _boundDispatch: boolean;
     /**
      * TBD.
-     * @param listener
-     * @param fnName
+     * @param {Function} listener - TBD.
+     * @param {string} fnName - TBD.
+     * @throws Error.
      */
-    validateListener(listener: any, fnName: any): void;
+    validateListener(listener: Function, fnName: string): void;
     /**
      * TBD.
-     * @param listener
-     * @param isOnce
-     * @param listenerContext
-     * @param priority
-     * @param args - TBD.
+     * @param {Function} listener - TBD.
+     * @param {boolean} isOnce - TBD.
+     * @param {object} listenerContext - TBD.
+     * @param {number} priority - TBD.
+     * @param {...any} args - TBD.
+     * @returns {SignalBinding} TBD.
+     * @throws Error.
      */
-    _registerListener(listener: any, isOnce: any, listenerContext: any, priority: any, args: any): any;
+    _registerListener(listener: Function, isOnce: boolean, listenerContext: object, priority: number, args: any[]): SignalBinding;
     /**
      * TBD.
-     * @param binding
+     * @param {SignalBinding} binding - TBD.
      */
-    _addBinding(binding: any): void;
+    _addBinding(binding: SignalBinding): void;
     /**
      * TBD.
-     * @param listener
-     * @param context
+     * @param {Function} listener - TBD.
+     * @param {object} context - TBD.
+     * @returns {number} TBD.
      */
-    _indexOfListener(listener: any, context?: any): number;
+    _indexOfListener(listener: Function, context?: object): number;
     /**
      * TBD.
-     * @param listener
-     * @param context
+     * @param {Function} listener - TBD.
+     * @param {object} context - TBD.
+     * @returns {boolean} TBD.
      */
-    has(listener: any, context: any): boolean;
+    has(listener: Function, context: object): boolean;
     /**
      * TBD.
-     * @param listener
-     * @param listenerContext
-     * @param priority
-     * @param {...any} args
+     * @param {Function} listener - TBD.
+     * @param {object} listenerContext - TBD.
+     * @param {number} priority - TBD.
+     * @param {...any} args - TBD.
+     * @returns {SignalBinding} TBD.
      */
-    add(listener: any, listenerContext: any, priority: any, ...args: any[]): any;
+    add(listener: Function, listenerContext: object, priority: number, ...args: any[]): SignalBinding;
     /**
      * TBD.
-     * @param listener
-     * @param listenerContext
-     * @param priority
-     * @param {...any} args
+     * @param {Function} listener - TBD.
+     * @param {object} listenerContext - TBD.
+     * @param {number} priority - TBD.
+     * @param {...any} args - TBD.
+     * @returns {SignalBinding} TBD.
      */
-    addOnce(listener: any, listenerContext: any, priority: any, ...args: any[]): any;
+    addOnce(listener: Function, listenerContext: object, priority: number, ...args: any[]): SignalBinding;
     /**
      * TBD.
-     * @param listener
-     * @param context
+     * @param {Function} listener - TBD.
+     * @param {object} context - TBD.
+     * @returns {Function} TBD.
      */
-    remove(listener: any, context: any): any;
+    remove(listener: Function, context: object): Function;
     /**
      * TBD.
-     * @param context
+     * @param {object} context - TBD.
      */
-    removeAll(context?: any): void;
+    removeAll(context?: object): void;
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     getNumListeners(): number;
     /**
@@ -74,7 +83,7 @@ export class Signal {
     halt(): void;
     /**
      * TBD.
-     * @param {...any} args
+     * @param {...any} args - TBD.
      */
     dispatch(...args: any[]): void;
     /**
@@ -87,11 +96,14 @@ export class Signal {
     dispose(): void;
     /**
      * TBD.
+     * @returns {string} TBD.
      */
     toString(): string;
     /**
      * TBD.
+     * @returns {boolean} TBD.
      */
     get boundDispatch(): boolean;
 }
+import { SignalBinding } from './signal_binding';
 //# sourceMappingURL=signal.d.ts.map

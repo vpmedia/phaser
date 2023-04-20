@@ -1,14 +1,14 @@
 export class Sound {
     /**
      * TBD.
-     * @param {object} game - TBD.
+     * @param {Game} game - TBD.
      * @param {string} key - TBD.
      * @param volume - TBD.
-     * @param loop
-     * @param connect
+     * @param loop - TBD.
+     * @param connect - TBD.
      */
-    constructor(game: object, key: string, volume?: number, loop?: boolean, connect?: any);
-    game: any;
+    constructor(game: Game, key: string, volume?: number, loop?: boolean, connect?: any);
+    game: Game;
     name: string;
     key: string;
     loop: boolean;
@@ -27,7 +27,7 @@ export class Sound {
     pausedTime: number;
     isPlaying: boolean;
     currentMarker: string;
-    fadeTween: any;
+    fadeTween: import("./tween").Tween;
     pendingPlayback: boolean;
     override: boolean;
     allowMultiple: boolean;
@@ -62,18 +62,18 @@ export class Sound {
     soundHasUnlocked(key: string): void;
     /**
      * TBD.
-     * @param name
-     * @param start
-     * @param duration - TBD.
-     * @param volume - TBD.
-     * @param loop
+     * @param {string} name - TBD.
+     * @param {number} start - TBD.
+     * @param {number} duration - TBD.
+     * @param {number} volume - TBD.
+     * @param {boolean} loop - TBD.
      */
-    addMarker(name: any, start: any, duration?: number, volume?: number, loop?: boolean): void;
+    addMarker(name: string, start: number, duration?: number, volume?: number, loop?: boolean): void;
     /**
      * TBD.
-     * @param name
+     * @param {string} name - TBD.
      */
-    removeMarker(name: any): void;
+    removeMarker(name: string): void;
     /**
      * TBD.
      */
@@ -84,32 +84,35 @@ export class Sound {
     update(): void;
     /**
      * TBD.
-     * @param volume - TBD.
+     * @param {number} volume - TBD.
+     * @returns {Sound} TBD.
      */
-    loopFull(volume: any): Sound;
+    loopFull(volume: number): Sound;
     /**
      * TBD.
-     * @param marker
-     * @param position - TBD.
-     * @param volume - TBD.
-     * @param loop
-     * @param forceRestart
+     * @param {string} marker - TBD.
+     * @param {number} position - TBD.
+     * @param {number} volume - TBD.
+     * @param {boolean} loop - TBD.
+     * @param {boolean} forceRestart - TBD.
+     * @returns {Sound} TBD.
      */
-    play(marker: any, position: any, volume: any, loop: any, forceRestart: any): Sound;
+    play(marker: string, position: number, volume: number, loop: boolean, forceRestart: boolean): Sound;
     /**
      * TBD.
      */
     set volume(arg: number);
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get volume(): number;
     /**
      * TBD.
-     * @param marker
-     * @param position - TBD.
-     * @param volume - TBD.
-     * @param loop
+     * @param {string} marker - TBD.
+     * @param {number} position - TBD.
+     * @param {number} volume - TBD.
+     * @param {boolean} loop - TBD.
      */
     restart(marker?: string, position?: number, volume?: number, loop?: boolean): void;
     /**
@@ -126,20 +129,20 @@ export class Sound {
     stop(): void;
     /**
      * TBD.
-     * @param duration - TBD.
-     * @param loop
-     * @param marker
+     * @param {number} duration - TBD.
+     * @param {boolean} loop - TBD.
+     * @param {string} marker - TBD.
      */
-    fadeIn(duration: any, loop?: boolean, marker?: string): void;
+    fadeIn(duration: number, loop?: boolean, marker?: string): void;
     /**
      * TBD.
-     * @param duration - TBD.
+     * @param {number} duration - TBD.
      */
-    fadeOut(duration: any): void;
+    fadeOut(duration: number): void;
     /**
      * TBD.
-     * @param duration - TBD.
-     * @param volume - TBD.
+     * @param {number} duration - TBD.
+     * @param {number} volume - TBD.
      */
     fadeTo(duration?: number, volume?: number): void;
     /**
@@ -148,17 +151,19 @@ export class Sound {
     fadeComplete(): void;
     /**
      * TBD.
-     * @param remove
+     * @param {boolean} remove - TBD.
      */
     destroy(remove?: boolean): void;
     /**
      * TBD.
      */
-    set mute(arg: any);
+    set mute(arg: boolean);
     /**
      * TBD.
+     * @returns {boolean} TBD.
      */
-    get mute(): any;
+    get mute(): boolean;
 }
+import { Game } from './game';
 import { Signal } from './signal';
 //# sourceMappingURL=sound.d.ts.map

@@ -1,9 +1,10 @@
+import { Game } from './game';
 import { Signal } from './signal';
 
 export class Animation {
   /**
    * TBD.
-   * @param {object} game - TBD.
+   * @param {Game} game - TBD.
    * @param parent - TBD.
    * @param name - TBD.
    * @param frameData - TBD.

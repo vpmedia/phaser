@@ -78,6 +78,7 @@ export class EventManager {
 
   /**
    * TBD.
+   * @returns {Signal} TBD.
    */
   get onAddedToGroup() {
     if (!this._onAddedToGroup) {
@@ -98,6 +99,7 @@ export class EventManager {
 
   /**
    * TBD.
+   * @returns {Signal} TBD.
    */
   get onRemovedFromGroup() {
     if (!this._onRemovedFromGroup) {
@@ -118,6 +120,7 @@ export class EventManager {
 
   /**
    * TBD.
+   * @returns {Signal} TBD.
    */
   get onDestroy() {
     if (!this._onDestroy) {
@@ -138,6 +141,7 @@ export class EventManager {
 
   /**
    * TBD.
+   * @returns {Signal} TBD.
    */
   get onOutOfBounds() {
     if (!this._onOutOfBounds) {
@@ -158,6 +162,7 @@ export class EventManager {
 
   /**
    * TBD.
+   * @returns {Signal} TBD.
    */
   get onEnterBounds() {
     if (!this._onEnterBounds) {
@@ -178,6 +183,7 @@ export class EventManager {
 
   /**
    * TBD.
+   * @returns {Signal} TBD.
    */
   get onInputOver() {
     if (!this._onInputOver) {
@@ -198,6 +204,7 @@ export class EventManager {
 
   /**
    * TBD.
+   * @returns {Signal} TBD.
    */
   get onInputOut() {
     if (!this._onInputOut) {
@@ -218,6 +225,7 @@ export class EventManager {
 
   /**
    * TBD.
+   * @returns {Signal} TBD.
    */
   get onInputDown() {
     if (!this._onInputDown) {
@@ -238,6 +246,7 @@ export class EventManager {
 
   /**
    * TBD.
+   * @returns {Signal} TBD.
    */
   get onInputUp() {
     if (!this._onInputUp) {
@@ -258,6 +267,7 @@ export class EventManager {
 
   /**
    * TBD.
+   * @returns {Signal} TBD.
    */
   get onDragStart() {
     if (!this._onDragStart) {
@@ -278,6 +288,7 @@ export class EventManager {
 
   /**
    * TBD.
+   * @returns {Signal} TBD.
    */
   get onDragUpdate() {
     if (!this._onDragUpdate) {
@@ -298,6 +309,7 @@ export class EventManager {
 
   /**
    * TBD.
+   * @returns {Signal} TBD.
    */
   get onDragStop() {
     if (!this._onDragStop) {
@@ -318,6 +330,7 @@ export class EventManager {
 
   /**
    * TBD.
+   * @returns {Signal} TBD.
    */
   get onAnimationStart() {
     if (!this._onAnimationStart) {
@@ -338,6 +351,7 @@ export class EventManager {
 
   /**
    * TBD.
+   * @returns {Signal} TBD.
    */
   get onAnimationComplete() {
     if (!this._onAnimationComplete) {
@@ -358,6 +372,7 @@ export class EventManager {
 
   /**
    * TBD.
+   * @returns {Signal} TBD.
    */
   get onAnimationLoop() {
     if (!this._onAnimationLoop) {

@@ -11,10 +11,10 @@ export const RENDER_TEXTURE: 9;
 export class Cache {
     /**
      * TBD.
-     * @param {object} game - TBD.
+     * @param {Game} game - TBD.
      */
-    constructor(game: object);
-    game: any;
+    constructor(game: Game);
+    game: Game;
     autoResolveURL: boolean;
     _cache: {
         canvas: {};
@@ -388,6 +388,7 @@ export class Cache {
      */
     destroy(): void;
 }
+import { Game } from './game';
 import { Signal } from './signal';
 import { BaseTexture } from '../display/webgl/base_texture';
 import { Frame } from './frame';

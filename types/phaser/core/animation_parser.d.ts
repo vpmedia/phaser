@@ -1,6 +1,6 @@
 /**
  * TBD.
- * @param {object} game - TBD.
+ * @param {Game} game - TBD.
  * @param {object} key - TBD.
  * @param {number} frameWidth - TBD.
  * @param {number} frameHeight - TBD.
@@ -9,12 +9,13 @@
  * @param {number} spacing - TBD.
  * @returns {object} TBD.
  */
-export function spriteSheet(game: object, key: object, frameWidth: number, frameHeight: number, frameMax: number, margin: number, spacing: number): object;
+export function spriteSheet(game: Game, key: object, frameWidth: number, frameHeight: number, frameMax: number, margin: number, spacing: number): object;
 /**
  * TBD.
- * @param {object} game - TBD.
+ * @param {Game} game - TBD.
  * @param {object} json - TBD.
  * @returns {object} TBD.
  */
-export function JSONDataHash(game: object, json: object): object;
+export function JSONDataHash(game: Game, json: object): object;
+import { Game } from './game';
 //# sourceMappingURL=animation_parser.d.ts.map

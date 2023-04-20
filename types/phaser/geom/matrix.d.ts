@@ -59,18 +59,18 @@ export class Matrix {
     toArray(transpose?: boolean, output?: Float32Array): Float32Array;
     /**
      * TBD.
-     * @param {object} pos - TBD.
+     * @param {Point} pos - TBD.
      * @param {Point} output - TBD.
      * @returns {Point} TBD.
      */
-    apply(pos: object, output?: Point): Point;
+    apply(pos: Point, output?: Point): Point;
     /**
      * TBD.
-     * @param {object} pos - TBD.
+     * @param {Point} pos - TBD.
      * @param {Point} output - TBD.
      * @returns {Point} TBD.
      */
-    applyInverse(pos: object, output?: Point): Point;
+    applyInverse(pos: Point, output?: Point): Point;
     /**
      * TBD.
      * @param {number} x - TBD.

@@ -1,11 +1,11 @@
 export class SceneManager {
     /**
      * TBD.
-     * @param {object} game - TBD.
+     * @param {Game} game - TBD.
      * @param pendingState
      */
-    constructor(game: object, pendingState: any);
-    game: any;
+    constructor(game: Game, pendingState: any);
+    game: Game;
     states: {};
     _pendingState: any;
     _clearWorld: boolean;
@@ -115,4 +115,5 @@ export class SceneManager {
      */
     get created(): boolean;
 }
+import { Game } from './game';
 //# sourceMappingURL=scene_manager.d.ts.map

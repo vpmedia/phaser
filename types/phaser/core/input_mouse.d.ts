@@ -1,12 +1,12 @@
 export class Mouse {
     /**
      * TBD.
-     * @param {object} game - TBD.
+     * @param {Game} game - TBD.
      */
-    constructor(game: object);
-    game: any;
-    input: any;
-    callbackContext: any;
+    constructor(game: Game);
+    game: Game;
+    input: import("./input").Input;
+    callbackContext: Game;
     mouseDownCallback: any;
     mouseUpCallback: any;
     mouseOutCallback: any;
@@ -82,4 +82,5 @@ export class Mouse {
      */
     eventPreventDefault(event: any): void;
 }
+import { Game } from './game';
 //# sourceMappingURL=input_mouse.d.ts.map

@@ -23,11 +23,12 @@ import {
 import { getSmoothingPrefix } from './util';
 import { detectCapabilities } from './tinter';
 import * as CanvasMaskManager from './masker';
+import { Game } from '../../core/game';
 
 export class CanvasRenderer {
   /**
    * TBD.
-   * @param {object} game - TBD.
+   * @param {Game} game - TBD.
    */
   constructor(game) {
     detectCapabilities();

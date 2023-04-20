@@ -1,7 +1,7 @@
 export class Animation {
     /**
      * TBD.
-     * @param {object} game - TBD.
+     * @param {Game} game - TBD.
      * @param parent - TBD.
      * @param name - TBD.
      * @param frameData - TBD.
@@ -9,8 +9,8 @@ export class Animation {
      * @param frameRate - TBD.
      * @param loop - TBD.
      */
-    constructor(game: object, parent: any, name: any, frameData: any, frames: any, frameRate: any, loop?: boolean);
-    game: any;
+    constructor(game: Game, parent: any, name: any, frameData: any, frames: any, frameRate: any, loop?: boolean);
+    game: Game;
     _parent: any;
     _frameData: any;
     name: any;
@@ -47,8 +47,8 @@ export class Animation {
      * TBD.
      */
     get paused(): boolean;
-    _timeLastFrame: any;
-    _timeNextFrame: any;
+    _timeLastFrame: number;
+    _timeNextFrame: number;
     /**
      * TBD.
      */
@@ -151,5 +151,6 @@ export class Animation {
      */
     get enableUpdate(): boolean;
 }
+import { Game } from './game';
 import { Signal } from './signal';
 //# sourceMappingURL=animation.d.ts.map

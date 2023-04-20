@@ -2,12 +2,13 @@ import { Signal } from './signal';
 import { TweenData } from './tween_data';
 import * as MathUtils from '../util/math';
 import { TWEEN_PENDING, TWEEN_RUNNING, TWEEN_COMPLETE, TWEEN_LOOPED } from './const';
+import { Game } from './game';
 
 export class Tween {
   /**
    * TBD.
    * @param target - TBD.
-   * @param {object} game - TBD.
+   * @param {Game} game - TBD.
    * @param manager
    */
   constructor(target, game, manager) {

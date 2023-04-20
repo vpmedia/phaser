@@ -1,13 +1,14 @@
+import { Game } from './game';
 import { Signal } from './signal';
 
 export class Sound {
   /**
    * TBD.
-   * @param {object} game - TBD.
+   * @param {Game} game - TBD.
    * @param {string} key - TBD.
    * @param volume - TBD.
-   * @param loop
-   * @param connect
+   * @param loop - TBD.
+   * @param connect - TBD.
    */
   constructor(game, key, volume = 1, loop = false, connect = null) {
     // TODO
@@ -90,11 +91,11 @@ export class Sound {
 
   /**
    * TBD.
-   * @param name
-   * @param start
-   * @param duration - TBD.
-   * @param volume - TBD.
-   * @param loop
+   * @param {string} name - TBD.
+   * @param {number} start - TBD.
+   * @param {number} duration - TBD.
+   * @param {number} volume - TBD.
+   * @param {boolean} loop - TBD.
    */
   addMarker(name, start, duration = 1, volume = 1, loop = false) {
     this.markers[name] = {
@@ -110,7 +111,7 @@ export class Sound {
 
   /**
    * TBD.
-   * @param name
+   * @param {string} name - TBD.
    */
   removeMarker(name) {
     delete this.markers[name];
@@ -200,7 +201,8 @@ export class Sound {
 
   /**
    * TBD.
-   * @param volume - TBD.
+   * @param {number} volume - TBD.
+   * @returns {Sound} TBD.
    */
   loopFull(volume) {
     return this.play(null, 0, volume, true);
@@ -208,11 +210,12 @@ export class Sound {
 
   /**
    * TBD.
-   * @param marker
-   * @param position - TBD.
-   * @param volume - TBD.
-   * @param loop
-   * @param forceRestart
+   * @param {string} marker - TBD.
+   * @param {number} position - TBD.
+   * @param {number} volume - TBD.
+   * @param {boolean} loop - TBD.
+   * @param {boolean} forceRestart - TBD.
+   * @returns {Sound} TBD.
    */
   play(marker, position, volume, loop, forceRestart) {
     if (marker === undefined || marker === false || marker === null) {
@@ -359,10 +362,10 @@ export class Sound {
 
   /**
    * TBD.
-   * @param marker
-   * @param position - TBD.
-   * @param volume - TBD.
-   * @param loop
+   * @param {string} marker - TBD.
+   * @param {number} position - TBD.
+   * @param {number} volume - TBD.
+   * @param {boolean} loop - TBD.
    */
   restart(marker = '', position = 0, volume = 1, loop = false) {
     this.play(marker, position, volume, loop, true);
@@ -454,9 +457,9 @@ export class Sound {
 
   /**
    * TBD.
-   * @param duration - TBD.
-   * @param loop
-   * @param marker
+   * @param {number} duration - TBD.
+   * @param {boolean} loop - TBD.
+   * @param {string} marker - TBD.
    */
   fadeIn(duration, loop = false, marker = this.currentMarker) {
     if (this.paused) {
@@ -468,7 +471,7 @@ export class Sound {
 
   /**
    * TBD.
-   * @param duration - TBD.
+   * @param {number} duration - TBD.
    */
   fadeOut(duration) {
     this.fadeTo(duration, 0);
@@ -476,8 +479,8 @@ export class Sound {
 
   /**
    * TBD.
-   * @param duration - TBD.
-   * @param volume - TBD.
+   * @param {number} duration - TBD.
+   * @param {number} volume - TBD.
    */
   fadeTo(duration = 100, volume = 0) {
     if (!this.isPlaying || this.paused || volume === this.volume) {
@@ -499,7 +502,7 @@ export class Sound {
 
   /**
    * TBD.
-   * @param remove
+   * @param {boolean} remove - TBD.
    */
   destroy(remove = true) {
     this._markedToDelete = true;
@@ -524,6 +527,7 @@ export class Sound {
 
   /**
    * TBD.
+   * @returns {boolean} TBD.
    */
   get mute() {
     return this._muted || this.game.sound.mute;
@@ -554,6 +558,7 @@ export class Sound {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get volume() {
     return this._volume;

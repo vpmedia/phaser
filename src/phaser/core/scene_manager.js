@@ -1,9 +1,10 @@
+import { Game } from './game';
 import { Scene } from './scene';
 
 export class SceneManager {
   /**
    * TBD.
-   * @param {object} game - TBD.
+   * @param {Game} game - TBD.
    * @param pendingState
    */
   constructor(game, pendingState) {

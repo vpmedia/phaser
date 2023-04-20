@@ -33,11 +33,12 @@ import {
   BounceInOut,
 } from './tween_easing';
 import { GROUP } from './const';
+import { Game } from './game';
 
 export class TweenManager {
   /**
    * TBD.
-   * @param {object} game - TBD.
+   * @param {Game} game - TBD.
    */
   constructor(game) {
     this.game = game;

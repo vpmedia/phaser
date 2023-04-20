@@ -1,11 +1,12 @@
+import { Game } from './game';
 import { Signal } from './signal';
 import { TimerEvent } from './timer_event';
 
 export class Timer {
   /**
    * TBD.
-   * @param {object} game - TBD.
-   * @param autoDestroy
+   * @param {Game} game - TBD.
+   * @param {boolean} autoDestroy - TBD.
    */
   constructor(game, autoDestroy = false) {
     this.game = game;

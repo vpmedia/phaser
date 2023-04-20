@@ -1,7 +1,9 @@
+import { Game } from './game';
+
 export class Touch {
   /**
    * TBD.
-   * @param {object} game - TBD.
+   * @param {Game} game - TBD.
    */
   constructor(game) {
     this.game = game;

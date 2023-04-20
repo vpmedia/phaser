@@ -1,10 +1,10 @@
 export class RequestAnimationFrame {
     /**
      * TBD.
-     * @param {object} game - TBD.
+     * @param {Game} game - TBD.
      */
-    constructor(game: object);
-    game: any;
+    constructor(game: Game);
+    game: Game;
     rafId: number;
     updateBinded: (rafTime: any) => void;
     /**
@@ -21,4 +21,5 @@ export class RequestAnimationFrame {
      */
     update(rafTime: any): void;
 }
+import { Game } from './game';
 //# sourceMappingURL=raf.d.ts.map

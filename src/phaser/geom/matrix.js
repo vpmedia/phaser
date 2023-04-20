@@ -118,7 +118,7 @@ export class Matrix {
 
   /**
    * TBD.
-   * @param {object} pos - TBD.
+   * @param {Point} pos - TBD.
    * @param {Point} output - TBD.
    * @returns {Point} TBD.
    */
@@ -131,7 +131,7 @@ export class Matrix {
 
   /**
    * TBD.
-   * @param {object} pos - TBD.
+   * @param {Point} pos - TBD.
    * @param {Point} output - TBD.
    * @returns {Point} TBD.
    */

@@ -1,42 +1,42 @@
 export class Frame {
     /**
      * TBD.
-     * @param index - TBD.
+     * @param {number} index - TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
      * @param {number} width - TBD.
      * @param {number} height - TBD.
-     * @param name
+     * @param {string} name - TBD.
      */
-    constructor(index: any, x: number, y: number, width: number, height: number, name: any);
+    constructor(index: number, x: number, y: number, width: number, height: number, name: string);
     /**
      * TBD.
-     * @param index - TBD.
+     * @param {number} index - TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
      * @param {number} width - TBD.
      * @param {number} height - TBD.
-     * @param name
+     * @param {string} name - TBD.
      */
-    initialize(index: any, x: number, y: number, width: number, height: number, name: any): void;
-    index: any;
+    initialize(index: number, x: number, y: number, width: number, height: number, name: string): void;
+    index: number;
     x: number;
     y: number;
     width: number;
     height: number;
-    name: any;
+    name: string;
     centerX: number;
     centerY: number;
     distance: number;
     rotated: boolean;
     rotationDirection: string;
-    trimmed: any;
-    sourceSizeW: any;
-    sourceSizeH: any;
-    spriteSourceSizeX: any;
-    spriteSourceSizeY: any;
-    spriteSourceSizeW: any;
-    spriteSourceSizeH: any;
+    trimmed: boolean;
+    sourceSizeW: number;
+    sourceSizeH: number;
+    spriteSourceSizeX: number;
+    spriteSourceSizeY: number;
+    spriteSourceSizeW: number;
+    spriteSourceSizeH: number;
     right: number;
     bottom: number;
     /**
@@ -47,23 +47,26 @@ export class Frame {
     resize(width: number, height: number): void;
     /**
      * TBD.
-     * @param trimmed
-     * @param actualWidth
-     * @param actualHeight
-     * @param destX
-     * @param destY
-     * @param destWidth
-     * @param destHeight
+     * @param {boolean} trimmed - TBD.
+     * @param {number} actualWidth - TBD.
+     * @param {number} actualHeight - TBD.
+     * @param {number} destX - TBD.
+     * @param {number} destY - TBD.
+     * @param {number} destWidth - TBD.
+     * @param {number} destHeight - TBD.
      */
-    setTrim(trimmed: any, actualWidth: any, actualHeight: any, destX: any, destY: any, destWidth: any, destHeight: any): void;
+    setTrim(trimmed: boolean, actualWidth: number, actualHeight: number, destX: number, destY: number, destWidth: number, destHeight: number): void;
     /**
      * TBD.
+     * @returns {Frame} TBD.
      */
-    clone(): any;
+    clone(): Frame;
     /**
      * TBD.
-     * @param output
+     * @param {Rectangle} output - TBD.
+     * @returns {Rectangle} TBD.
      */
-    getRect(output?: any): any;
+    getRect(output?: Rectangle): Rectangle;
 }
+import { Rectangle } from '../geom/rectangle';
 //# sourceMappingURL=frame.d.ts.map

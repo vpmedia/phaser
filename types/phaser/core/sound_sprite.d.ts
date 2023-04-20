@@ -1,11 +1,11 @@
 export class SoundSprite {
     /**
      * TBD.
-     * @param {object} game - TBD.
+     * @param {Game} game - TBD.
      * @param {string} key - TBD.
      */
-    constructor(game: object, key: string);
-    game: any;
+    constructor(game: Game, key: string);
+    game: Game;
     key: string;
     config: any;
     autoplayKey: any;
@@ -28,4 +28,5 @@ export class SoundSprite {
      */
     get(marker: any): any;
 }
+import { Game } from './game';
 //# sourceMappingURL=sound_sprite.d.ts.map

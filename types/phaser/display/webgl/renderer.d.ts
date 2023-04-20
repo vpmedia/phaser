@@ -1,15 +1,15 @@
 export class WebGLRenderer {
     /**
      * TBD.
-     * @param {object} game - TBD.
+     * @param {Game} game - TBD.
      */
-    constructor(game: object);
+    constructor(game: Game);
     type: number;
     resolution: any;
     autoResize: boolean;
     clearBeforeRender: any;
-    width: any;
-    height: any;
+    width: number;
+    height: number;
     view: any;
     _contextOptions: {
         alpha: any;
@@ -77,4 +77,5 @@ import { WebGLSpriteBatch } from './sprite_batch';
 import { WebGLFilterManager } from './filter_manager';
 import { WebGLStencilManager } from './stencil_manager';
 import { WebGLBlendModeManager } from './blend_manager';
+import { Game } from '../../core/game';
 //# sourceMappingURL=renderer.d.ts.map

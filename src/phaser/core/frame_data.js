@@ -1,17 +1,25 @@
 import { cloneFrameData } from './frame_util';
+import { Frame } from './frame';
 
 export class FrameData {
   /**
    * TBD.
    */
   constructor() {
+    /**
+     * @type {Frame[]}
+     */
     this._frames = [];
+    /**
+     * @type {string[]}
+     */
     this._frameNames = [];
   }
 
   /**
    * TBD.
-   * @param frame - TBD.
+   * @param {Frame} frame - TBD.
+   * @returns {Frame} TBD.
    */
   addFrame(frame) {
     frame.index = this._frames.length;
@@ -24,7 +32,8 @@ export class FrameData {
 
   /**
    * TBD.
-   * @param index - TBD.
+   * @param {number} index - TBD.
+   * @returns {Frame} TBD.
    */
   getFrame(index = 0) {
     if (index >= this._frames.length) {
@@ -35,7 +44,8 @@ export class FrameData {
 
   /**
    * TBD.
-   * @param name
+   * @param {string} name - TBD.
+   * @returns {Frame} TBD.
    */
   getFrameByName(name) {
     if (typeof this._frameNames[name] === 'number') {
@@ -46,7 +56,8 @@ export class FrameData {
 
   /**
    * TBD.
-   * @param name
+   * @param {string} name - TBD.
+   * @returns {boolean} TBD.
    */
   checkFrameName(name) {
     if (this._frameNames[name] == null) {
@@ -57,6 +68,7 @@ export class FrameData {
 
   /**
    * TBD.
+   * @returns {FrameData} TBD.
    */
   clone() {
     return cloneFrameData(this);
@@ -64,9 +76,10 @@ export class FrameData {
 
   /**
    * TBD.
-   * @param start
-   * @param end
-   * @param output
+   * @param {number} start - TBD.
+   * @param {number} end - TBD.
+   * @param {Frame[]} output - TBD.
+   * @returns {Frame[]} TBD.
    */
   getFrameRange(start, end, output = null) {
     const result = output || [];
@@ -78,9 +91,10 @@ export class FrameData {
 
   /**
    * TBD.
-   * @param frames
-   * @param useNumericIndex
-   * @param output
+   * @param {string[]} frames - TBD.
+   * @param {boolean} useNumericIndex - TBD.
+   * @param {number[]} output - TBD.
+   * @returns {number[]} TBD.
    */
   getFrameIndexes(frames, useNumericIndex = true, output = null) {
     const result = output || [];
@@ -110,6 +124,7 @@ export class FrameData {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get total() {
     return this._frames.length;

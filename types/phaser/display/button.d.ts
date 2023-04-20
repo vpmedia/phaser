@@ -29,10 +29,10 @@ export class Button extends Image {
     input: InputHandler;
     /**
      * TBD.
-     * @param isEnabled
-     * @param isImmediate
+     * @param {boolean} isEnabled - TBD.
+     * @param {boolean} isImmediate - TBD.
      */
-    setEnabled(isEnabled: any, isImmediate: any): void;
+    setEnabled(isEnabled: boolean, isImmediate: boolean): void;
     /**
      * TBD.
      */
@@ -47,53 +47,55 @@ export class Button extends Image {
     set inputEnabled(arg: boolean);
     /**
      * TBD.
+     * @returns {boolean} TBD.
      */
     get inputEnabled(): boolean;
     /**
      * TBD.
-     * @param state
-     * @param frame - TBD.
-     * @param switchImmediately
+     * @param {string} state - TBD.
+     * @param {string} frame - TBD.
+     * @param {boolean} switchImmediately - TBD.
      */
-    setStateFrame(state: any, frame: any, switchImmediately?: boolean): void;
+    setStateFrame(state: string, frame: string, switchImmediately?: boolean): void;
     /**
      * TBD.
-     * @param newState
+     * @param {string} newState - TBD.
+     * @returns {boolean} TBD.
      */
-    changeStateFrame(newState: any): boolean;
+    changeStateFrame(newState: string): boolean;
     /**
      * TBD.
-     * @param overFrame
-     * @param outFrame
-     * @param downFrame
-     * @param upFrame
+     * @param {string} overFrame - TBD.
+     * @param {string} outFrame - TBD.
+     * @param {string} downFrame - TBD.
+     * @param {string} upFrame - TBD.
      */
-    setFrames(overFrame: any, outFrame: any, downFrame: any, upFrame: any): void;
+    setFrames(overFrame: string, outFrame: string, downFrame: string, upFrame: string): void;
     /**
      * TBD.
-     * @param sprite
-     * @param pointer
+     * @param {object} sprite - TBD.
+     * @param {object} pointer - TBD.
      */
-    onInputOverHandler(sprite: any, pointer: any): void;
+    onInputOverHandler(sprite: object, pointer: object): void;
     /**
      * TBD.
-     * @param sprite
-     * @param pointer
+     * @param {object} sprite - TBD.
+     * @param {object} pointer - TBD.
      */
-    onInputOutHandler(sprite: any, pointer: any): void;
+    onInputOutHandler(sprite: object, pointer: object): void;
     /**
      * TBD.
-     * @param sprite
-     * @param pointer
+     * @param {object} sprite - TBD.
+     * @param {object} pointer - TBD.
      */
-    onInputDownHandler(sprite: any, pointer: any): void;
+    onInputDownHandler(sprite: object, pointer: object): void;
     /**
      * TBD.
-     * @param sprite
-     * @param pointer
-     * @param isOver
+     * @param {object} sprite - TBD.
+     * @param {object} pointer - TBD.
+     * @param {boolean} isOver - TBD.
      */
-    onInputUpHandler(sprite: any, pointer: any, isOver: any): void;
+    onInputUpHandler(sprite: object, pointer: object, isOver: boolean): void;
 }
 import { Image } from './image';
 import { Signal } from '../core/signal';

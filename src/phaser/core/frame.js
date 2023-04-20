@@ -5,12 +5,12 @@ import { cloneFrame } from './frame_util';
 export class Frame {
   /**
    * TBD.
-   * @param index - TBD.
+   * @param {number} index - TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
    * @param {number} width - TBD.
    * @param {number} height - TBD.
-   * @param name
+   * @param {string} name - TBD.
    */
   constructor(index, x, y, width, height, name) {
     this.initialize(index, x, y, width, height, name);
@@ -18,12 +18,12 @@ export class Frame {
 
   /**
    * TBD.
-   * @param index - TBD.
+   * @param {number} index - TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
    * @param {number} width - TBD.
    * @param {number} height - TBD.
-   * @param name
+   * @param {string} name - TBD.
    */
   initialize(index, x, y, width, height, name) {
     this.index = index;
@@ -67,13 +67,13 @@ export class Frame {
 
   /**
    * TBD.
-   * @param trimmed
-   * @param actualWidth
-   * @param actualHeight
-   * @param destX
-   * @param destY
-   * @param destWidth
-   * @param destHeight
+   * @param {boolean} trimmed - TBD.
+   * @param {number} actualWidth - TBD.
+   * @param {number} actualHeight - TBD.
+   * @param {number} destX - TBD.
+   * @param {number} destY - TBD.
+   * @param {number} destWidth - TBD.
+   * @param {number} destHeight - TBD.
    */
   setTrim(trimmed, actualWidth, actualHeight, destX, destY, destWidth, destHeight) {
     this.trimmed = trimmed;
@@ -91,6 +91,7 @@ export class Frame {
 
   /**
    * TBD.
+   * @returns {Frame} TBD.
    */
   clone() {
     return cloneFrame(this);
@@ -98,7 +99,8 @@ export class Frame {
 
   /**
    * TBD.
-   * @param output
+   * @param {Rectangle} output - TBD.
+   * @returns {Rectangle} TBD.
    */
   getRect(output = null) {
     const result = output || new Rectangle();

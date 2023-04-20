@@ -28,11 +28,12 @@ import * as WebGLMaskManager from './mask_manager';
 import { WebGLFilterManager } from './filter_manager';
 import { WebGLStencilManager } from './stencil_manager';
 import { WebGLBlendModeManager } from './blend_manager';
+import { Game } from '../../core/game';
 
 export class WebGLRenderer {
   /**
    * TBD.
-   * @param {object} game - TBD.
+   * @param {Game} game - TBD.
    */
   constructor(game) {
     this.type = RENDER_WEBGL;

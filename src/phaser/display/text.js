@@ -954,6 +954,7 @@ export class Text extends Image {
   /**
    * TBD.
    * @param matrix - TBD.
+   * @returns {Rectangle} TBD.
    */
   getBounds(matrix = null) {
     if (this.dirty) {
@@ -965,6 +966,7 @@ export class Text extends Image {
 
   /**
    * TBD.
+   * @returns {string} TBD.
    */
   get text() {
     return this._text;
@@ -985,6 +987,7 @@ export class Text extends Image {
 
   /**
    * TBD.
+   * @returns {string} TBD.
    */
   get cssFont() {
     return this.componentsToFont(this._fontComponents);
@@ -1000,6 +1003,7 @@ export class Text extends Image {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get font() {
     return this._fontComponents.fontFamily;
@@ -1022,6 +1026,7 @@ export class Text extends Image {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get fontSize() {
     const size = this._fontComponents.fontSize;
@@ -1045,6 +1050,7 @@ export class Text extends Image {
 
   /**
    * TBD.
+   * @returns {string} TBD.
    */
   get fontWeight() {
     return this._fontComponents.fontWeight || 'normal';
@@ -1060,6 +1066,7 @@ export class Text extends Image {
 
   /**
    * TBD.
+   * @returns {string} TBD.
    */
   get fontStyle() {
     return this._fontComponents.fontStyle || 'normal';
@@ -1075,6 +1082,7 @@ export class Text extends Image {
 
   /**
    * TBD.
+   * @returns {string} TBD.
    */
   get fontVariant() {
     return this._fontComponents.fontVariant || 'normal';
@@ -1090,6 +1098,7 @@ export class Text extends Image {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get fill() {
     return this.style.fill;
@@ -1107,6 +1116,7 @@ export class Text extends Image {
 
   /**
    * TBD.
+   * @returns {string} TBD.
    */
   get align() {
     return this.style.align;
@@ -1124,6 +1134,7 @@ export class Text extends Image {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get resolution() {
     return this._res;
@@ -1141,6 +1152,7 @@ export class Text extends Image {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get tabs() {
     return this.style.tabs;
@@ -1158,6 +1170,7 @@ export class Text extends Image {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get boundsAlignH() {
     return this.style.boundsAlignH;
@@ -1175,6 +1188,7 @@ export class Text extends Image {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get boundsAlignV() {
     return this.style.boundsAlignV;
@@ -1192,6 +1206,7 @@ export class Text extends Image {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get stroke() {
     return this.style.stroke;
@@ -1209,6 +1224,7 @@ export class Text extends Image {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get strokeThickness() {
     return this.style.strokeThickness;
@@ -1226,6 +1242,7 @@ export class Text extends Image {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get wordWrap() {
     return this.style.wordWrap;
@@ -1243,6 +1260,7 @@ export class Text extends Image {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get wordWrapWidth() {
     return this.style.wordWrapWidth;
@@ -1260,6 +1278,7 @@ export class Text extends Image {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get lineSpacing() {
     return this._lineSpacing;
@@ -1280,6 +1299,7 @@ export class Text extends Image {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get shadowOffsetX() {
     return this.style.shadowOffsetX;
@@ -1297,6 +1317,7 @@ export class Text extends Image {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get shadowOffsetY() {
     return this.style.shadowOffsetY;
@@ -1314,6 +1335,7 @@ export class Text extends Image {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get shadowColor() {
     return this.style.shadowColor;
@@ -1331,6 +1353,7 @@ export class Text extends Image {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get shadowBlur() {
     return this.style.shadowBlur;
@@ -1348,6 +1371,7 @@ export class Text extends Image {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get shadowStroke() {
     return this.style.shadowStroke;
@@ -1365,6 +1389,7 @@ export class Text extends Image {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get shadowFill() {
     return this.style.shadowFill;
@@ -1382,6 +1407,7 @@ export class Text extends Image {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get width() {
     if (this.dirty) {
@@ -1401,6 +1427,7 @@ export class Text extends Image {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get height() {
     if (this.dirty) {

@@ -15,8 +15,9 @@ export class Signal {
 
   /**
    * TBD.
-   * @param listener
-   * @param fnName
+   * @param {Function} listener - TBD.
+   * @param {string} fnName - TBD.
+   * @throws Error.
    */
   validateListener(listener, fnName) {
     if (typeof listener !== 'function') {
@@ -28,11 +29,13 @@ export class Signal {
 
   /**
    * TBD.
-   * @param listener
-   * @param isOnce
-   * @param listenerContext
-   * @param priority
-   * @param args - TBD.
+   * @param {Function} listener - TBD.
+   * @param {boolean} isOnce - TBD.
+   * @param {object} listenerContext - TBD.
+   * @param {number} priority - TBD.
+   * @param {...any} args - TBD.
+   * @returns {SignalBinding} TBD.
+   * @throws Error.
    */
   _registerListener(listener, isOnce, listenerContext, priority, args) {
     const prevIndex = this._indexOfListener(listener, listenerContext);
@@ -60,7 +63,7 @@ export class Signal {
 
   /**
    * TBD.
-   * @param binding
+   * @param {SignalBinding} binding - TBD.
    */
   _addBinding(binding) {
     if (!this._bindings) {
@@ -76,8 +79,9 @@ export class Signal {
 
   /**
    * TBD.
-   * @param listener
-   * @param context
+   * @param {Function} listener - TBD.
+   * @param {object} context - TBD.
+   * @returns {number} TBD.
    */
   _indexOfListener(listener, context = null) {
     if (!this._bindings) {
@@ -97,8 +101,9 @@ export class Signal {
 
   /**
    * TBD.
-   * @param listener
-   * @param context
+   * @param {Function} listener - TBD.
+   * @param {object} context - TBD.
+   * @returns {boolean} TBD.
    */
   has(listener, context) {
     return this._indexOfListener(listener, context) !== -1;
@@ -106,10 +111,11 @@ export class Signal {
 
   /**
    * TBD.
-   * @param listener
-   * @param listenerContext
-   * @param priority
-   * @param {...any} args
+   * @param {Function} listener - TBD.
+   * @param {object} listenerContext - TBD.
+   * @param {number} priority - TBD.
+   * @param {...any} args - TBD.
+   * @returns {SignalBinding} TBD.
    */
   add(listener, listenerContext, priority, ...args) {
     this.validateListener(listener, 'add');
@@ -118,10 +124,11 @@ export class Signal {
 
   /**
    * TBD.
-   * @param listener
-   * @param listenerContext
-   * @param priority
-   * @param {...any} args
+   * @param {Function} listener - TBD.
+   * @param {object} listenerContext - TBD.
+   * @param {number} priority - TBD.
+   * @param {...any} args - TBD.
+   * @returns {SignalBinding} TBD.
    */
   addOnce(listener, listenerContext, priority, ...args) {
     this.validateListener(listener, 'addOnce');
@@ -130,8 +137,9 @@ export class Signal {
 
   /**
    * TBD.
-   * @param listener
-   * @param context
+   * @param {Function} listener - TBD.
+   * @param {object} context - TBD.
+   * @returns {Function} TBD.
    */
   remove(listener, context) {
     this.validateListener(listener, 'remove');
@@ -146,7 +154,7 @@ export class Signal {
 
   /**
    * TBD.
-   * @param context
+   * @param {object} context - TBD.
    */
   removeAll(context = null) {
     if (!this._bindings) {
@@ -171,6 +179,7 @@ export class Signal {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   getNumListeners() {
     return this._bindings ? this._bindings.length : 0;
@@ -185,7 +194,7 @@ export class Signal {
 
   /**
    * TBD.
-   * @param {...any} args
+   * @param {...any} args - TBD.
    */
   dispatch(...args) {
     if (!this.active || !this._bindings) {
@@ -231,6 +240,7 @@ export class Signal {
 
   /**
    * TBD.
+   * @returns {string} TBD.
    */
   toString() {
     return '[Signal active:' + this.active + ' numListeners:' + this.getNumListeners() + ']';
@@ -238,6 +248,7 @@ export class Signal {
 
   /**
    * TBD.
+   * @returns {boolean} TBD.
    */
   get boundDispatch() {
     const _this = this;

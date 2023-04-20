@@ -26,8 +26,8 @@ export class InputHandler {
     pixelPerfectClick: boolean;
     pixelPerfectAlpha: number;
     draggable: boolean;
-    boundsRect: any;
-    boundsSprite: any;
+    boundsRect: Rectangle;
+    boundsSprite: DisplayObject;
     scaleLayer: boolean;
     dragOffset: Point;
     dragFromCenter: boolean;
@@ -63,10 +63,11 @@ export class InputHandler {
     }[];
     /**
      * TBD.
-     * @param priority
-     * @param useHandCursor
+     * @param {number} priority - TBD.
+     * @param {boolean} useHandCursor - TBD.
+     * @returns {DisplayObject} TBD.
      */
-    start(priority?: number, useHandCursor?: boolean): any;
+    start(priority?: number, useHandCursor?: boolean): DisplayObject;
     /**
      * TBD.
      */
@@ -89,173 +90,197 @@ export class InputHandler {
     destroy(): void;
     /**
      * TBD.
-     * @param highestID
-     * @param highestRenderID
-     * @param includePixelPerfect
+     * @param {number} highestID - TBD.
+     * @param {number} highestRenderID - TBD.
+     * @param {boolean} includePixelPerfect - TBD.
+     * @returns {boolean} TBD.
      */
-    validForInput(highestID: any, highestRenderID: any, includePixelPerfect?: boolean): boolean;
+    validForInput(highestID: number, highestRenderID: number, includePixelPerfect?: boolean): boolean;
     /**
      * TBD.
+     * @returns {boolean} TBD.
      */
     isPixelPerfect(): boolean;
     /**
      * TBD.
-     * @param pointerId
+     * @param {number} pointerId - TBD.
+     * @returns {number} TBD.
      */
     pointerX(pointerId?: number): number;
     /**
      * TBD.
-     * @param pointerId
+     * @param {number} pointerId - TBD.
+     * @returns {number} TBD.
      */
     pointerY(pointerId?: number): number;
     /**
      * TBD.
-     * @param pointerId
+     * @param {number} pointerId - TBD.
+     * @returns {boolean} TBD.
      */
     pointerDown(pointerId?: number): boolean;
     /**
      * TBD.
-     * @param pointerId
+     * @param {number} pointerId - TBD.
+     * @returns {boolean} TBD.
      */
     pointerUp(pointerId?: number): boolean;
     /**
      * TBD.
-     * @param pointerId
+     * @param {number} pointerId - TBD.
+     * @returns {number} TBD.
      */
     pointerTimeDown(pointerId?: number): number;
     /**
      * TBD.
-     * @param pointerId
+     * @param {number} pointerId - TBD.
+     * @returns {number} TBD.
      */
     pointerTimeUp(pointerId?: number): number;
     /**
      * TBD.
-     * @param pointerId
+     * @param {number} pointerId - TBD.
+     * @returns {boolean} TBD.
      */
-    pointerOver(pointerId: any): boolean;
+    pointerOver(pointerId: number): boolean;
     /**
      * TBD.
-     * @param pointerId
+     * @param {number} pointerId - TBD.
+     * @returns {boolean} TBD.
      */
-    pointerOut(pointerId: any): boolean;
+    pointerOut(pointerId: number): boolean;
     /**
      * TBD.
-     * @param pointerId
+     * @param {number} pointerId - TBD.
+     * @returns {number} TBD.
      */
     pointerTimeOver(pointerId?: number): number;
     /**
      * TBD.
-     * @param pointerId
+     * @param {number} pointerId - TBD.
+     * @returns {number} TBD.
      */
     pointerTimeOut(pointerId?: number): number;
     /**
      * TBD.
-     * @param pointerId
+     * @param {number} pointerId - TBD.
+     * @returns {boolean} TBD.
      */
     pointerDragged(pointerId?: number): boolean;
     /**
      * TBD.
-     * @param pointer
-     * @param fastTest
+     * @param {Pointer} pointer - TBD.
+     * @param {boolean} fastTest - TBD.
+     * @returns {boolean} TBD.
      */
-    checkPointerDown(pointer?: number, fastTest?: boolean): boolean;
+    checkPointerDown(pointer: Pointer, fastTest?: boolean): boolean;
     /**
      * TBD.
-     * @param pointer
-     * @param fastTest
+     * @param {Pointer} pointer - TBD.
+     * @param {boolean} fastTest - TBD.
+     * @returns {boolean} TBD.
      */
-    checkPointerOver(pointer?: number, fastTest?: boolean): boolean;
+    checkPointerOver(pointer: Pointer, fastTest?: boolean): boolean;
     /**
      * TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
-     * @param pointer
+     * @param {Pointer} pointer - TBD.
+     * @returns {boolean} TBD.
      */
-    checkPixel(x: number, y: number, pointer: any): boolean;
+    checkPixel(x: number, y: number, pointer: Pointer): boolean;
     _dx: number;
     _dy: number;
     /**
      * TBD.
-     * @param pointer
+     * @param {Pointer} pointer - TBD.
+     * @returns {boolean} TBD.
      */
-    update(pointer: any): boolean;
+    update(pointer: Pointer): boolean;
     /**
      * TBD.
-     * @param pointer
-     * @param silent
+     * @param {Pointer} pointer - TBD.
+     * @param {boolean} silent - TBD.
      */
-    _pointerOverHandler(pointer: any, silent: any): void;
+    _pointerOverHandler(pointer: Pointer, silent: boolean): void;
     /**
      * TBD.
-     * @param pointer
-     * @param silent
+     * @param {Pointer} pointer - TBD.
+     * @param {boolean} silent - TBD.
      */
-    _pointerOutHandler(pointer: any, silent: any): void;
+    _pointerOutHandler(pointer: Pointer, silent: boolean): void;
     /**
      * TBD.
-     * @param pointer
+     * @param {Pointer} pointer - TBD.
      */
-    _touchedHandler(pointer: any): void;
+    _touchedHandler(pointer: Pointer): void;
     /**
      * TBD.
-     * @param pointer
+     * @param {Pointer} pointer - TBD.
      */
-    dragTimeElapsed(pointer: any): void;
+    dragTimeElapsed(pointer: Pointer): void;
     /**
      * TBD.
-     * @param pointer
+     * @param {Pointer} pointer - TBD.
      */
-    _releasedHandler(pointer: any): void;
+    _releasedHandler(pointer: Pointer): void;
     /**
      * TBD.
-     * @param pointer
-     * @param fromStart
+     * @param {Pointer} pointer - TBD.
+     * @param {boolean} fromStart - TBD.
+     * @returns {boolean} TBD.
      */
-    updateDrag(pointer: any, fromStart?: boolean): boolean;
+    updateDrag(pointer: Pointer, fromStart?: boolean): boolean;
     /**
      * TBD.
-     * @param pointerId
-     * @param delay - TBD.
+     * @param {number} pointerId - TBD.
+     * @param {number} delay - TBD.
+     * @returns {boolean} TBD.
      */
     justOver(pointerId?: number, delay?: number): boolean;
     /**
      * TBD.
-     * @param pointerId
-     * @param delay - TBD.
+     * @param {number} pointerId - TBD.
+     * @param {number} delay - TBD.
+     * @returns {boolean} TBD.
      */
     justOut(pointerId?: number, delay?: number): boolean;
     /**
      * TBD.
-     * @param pointerId
-     * @param delay - TBD.
+     * @param {number} pointerId - TBD.
+     * @param {number} delay - TBD.
+     * @returns {boolean} TBD.
      */
     justPressed(pointerId?: number, delay?: number): boolean;
     /**
      * TBD.
-     * @param pointerId
-     * @param delay - TBD.
+     * @param {number} pointerId - TBD.
+     * @param {number} delay - TBD.
+     * @returns {boolean} TBD.
      */
     justReleased(pointerId?: number, delay?: number): boolean;
     /**
      * TBD.
-     * @param pointerId
+     * @param {number} pointerId - TBD.
+     * @returns {number} TBD.
      */
     overDuration(pointerId?: number): number;
     /**
      * TBD.
-     * @param pointerId
+     * @param {number} pointerId - TBD.
+     * @returns {number} TBD.
      */
     downDuration(pointerId?: number): number;
     /**
      * TBD.
-     * @param lockCenter
-     * @param bringToTop
-     * @param pixelPerfect
-     * @param alphaThreshold
-     * @param boundsRect
-     * @param boundsSprite
+     * @param {boolean} lockCenter - TBD.
+     * @param {boolean} bringToTop - TBD.
+     * @param {boolean} pixelPerfect - TBD.
+     * @param {number} alphaThreshold - TBD.
+     * @param {Rectangle} boundsRect - TBD.
+     * @param {DisplayObject} boundsSprite - TBD.
      */
-    enableDrag(lockCenter?: boolean, bringToTop?: boolean, pixelPerfect?: boolean, alphaThreshold?: number, boundsRect?: any, boundsSprite?: any): void;
+    enableDrag(lockCenter?: boolean, bringToTop?: boolean, pixelPerfect?: boolean, alphaThreshold?: number, boundsRect?: Rectangle, boundsSprite?: DisplayObject): void;
     /**
      * TBD.
      */
@@ -263,40 +288,42 @@ export class InputHandler {
     _draggedPointerID: any;
     /**
      * TBD.
-     * @param pointer
+     * @param {Pointer} pointer - TBD.
      */
-    startDrag(pointer: any): void;
+    startDrag(pointer: Pointer): void;
     /**
      * TBD.
      * @param {number} x - TBD.
+     * @returns {number} TBD.
      */
     globalToLocalX(x: number): number;
     /**
      * TBD.
      * @param {number} y - TBD.
+     * @returns {number} TBD.
      */
     globalToLocalY(y: number): number;
     /**
      * TBD.
-     * @param pointer
+     * @param {Pointer} pointer - TBD.
      */
-    stopDrag(pointer: any): void;
+    stopDrag(pointer: Pointer): void;
     /**
      * TBD.
-     * @param allowHorizontal
-     * @param allowVertical
+     * @param {boolean} allowHorizontal - TBD.
+     * @param {boolean} allowVertical - TBD.
      */
     setDragLock(allowHorizontal?: boolean, allowVertical?: boolean): void;
     /**
      * TBD.
-     * @param snapX
-     * @param snapY
-     * @param onDrag
-     * @param onRelease
-     * @param snapOffsetX
-     * @param snapOffsetY
+     * @param {number} snapX - TBD.
+     * @param {number} snapY - TBD.
+     * @param {boolean} onDrag - TBD.
+     * @param {boolean} onRelease - TBD.
+     * @param {number} snapOffsetX - TBD.
+     * @param {number} snapOffsetY - TBD.
      */
-    enableSnap(snapX: any, snapY: any, onDrag?: boolean, onRelease?: boolean, snapOffsetX?: number, snapOffsetY?: number): void;
+    enableSnap(snapX: number, snapY: number, onDrag?: boolean, onRelease?: boolean, snapOffsetX?: number, snapOffsetY?: number): void;
     /**
      * TBD.
      */
@@ -311,4 +338,7 @@ export class InputHandler {
     checkBoundsSprite(): void;
 }
 import { Point } from '../geom/point';
+import { Rectangle } from '../geom/rectangle';
+import { DisplayObject } from '../display/display_object';
+import { Pointer } from './input_pointer';
 //# sourceMappingURL=input_handler.d.ts.map

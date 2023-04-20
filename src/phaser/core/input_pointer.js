@@ -8,11 +8,12 @@ import {
   TOUCH_OVERRIDES_MOUSE,
   MOUSE_TOUCH_COMBINE,
 } from './const';
+import { Game } from './game';
 
 export class Pointer {
   /**
    * TBD.
-   * @param {object} game - TBD.
+   * @param {Game} game - TBD.
    * @param id
    * @param pointerMode
    */

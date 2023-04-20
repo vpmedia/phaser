@@ -1,10 +1,10 @@
 export class TweenManager {
     /**
      * TBD.
-     * @param {object} game - TBD.
+     * @param {Game} game - TBD.
      */
-    constructor(game: object);
-    game: any;
+    constructor(game: Game);
+    game: Game;
     _tweens: any[];
     _add: any[];
     easeMap: {
@@ -105,6 +105,7 @@ export class TweenManager {
      */
     resumeAll(): void;
 }
+import { Game } from './game';
 import { LinearNone } from './tween_easing';
 import { QuadraticOut } from './tween_easing';
 import { CubicOut } from './tween_easing';

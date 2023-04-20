@@ -4,11 +4,12 @@ import { Group } from '../display/group';
 import { Graphics } from '../display/graphics';
 import { Image } from '../display/image';
 import { Text } from '../display/text';
+import { Game } from './game';
 
 export class GameObjectFactory {
   /**
    * TBD.
-   * @param {object} game - TBD.
+   * @param {Game} game - TBD.
    */
   constructor(game) {
     this.game = game;

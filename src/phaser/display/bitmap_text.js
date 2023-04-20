@@ -78,9 +78,10 @@ export class BitmapText extends DisplayObject {
 
   /**
    * TBD.
-   * @param data
-   * @param scale
+   * @param data - TBD.
+   * @param scale - TBD.
    * @param text - TBD.
+   * @returns {object} TBD.
    */
   scanLine(data, scale, text) {
     let x = 0;
@@ -146,7 +147,8 @@ export class BitmapText extends DisplayObject {
   /**
    * TBD.
    * @param text - TBD.
-   * @param replace
+   * @param replace - TBD.
+   * @returns {string} TBD.
    */
   cleanText(text, replace = '') {
     const data = this._data.font;
@@ -243,6 +245,7 @@ export class BitmapText extends DisplayObject {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   purgeGlyphs() {
     const len = this._glyphs.length;
@@ -274,6 +277,7 @@ export class BitmapText extends DisplayObject {
 
   /**
    * TBD.
+   * @returns {string} TBD.
    */
   get align() {
     return this._align;
@@ -291,6 +295,7 @@ export class BitmapText extends DisplayObject {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get tint() {
     return this._tint;
@@ -308,6 +313,7 @@ export class BitmapText extends DisplayObject {
 
   /**
    * TBD.
+   * @returns {string} TBD.
    */
   get fill() {
     if (typeof this.tint === 'number') {
@@ -329,6 +335,7 @@ export class BitmapText extends DisplayObject {
 
   /**
    * TBD.
+   * @returns {string} TBD.
    */
   get font() {
     return this._font;
@@ -348,6 +355,7 @@ export class BitmapText extends DisplayObject {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get fontSize() {
     return this._fontSize;
@@ -366,6 +374,7 @@ export class BitmapText extends DisplayObject {
 
   /**
    * TBD.
+   * @returns {string} TBD.
    */
   get text() {
     return this._text;
@@ -401,6 +410,7 @@ export class BitmapText extends DisplayObject {
 
   /**
    * TBD.
+   * @returns {boolean} TBD.
    */
   get smoothed() {
     return !this._data.base.scaleMode;

@@ -96,7 +96,7 @@ export class Image extends DisplayObject {
    * TBD.
    * @param {string} key - TBD.
    * @param frame - TBD.
-   * @param stopAnimation
+   * @param stopAnimation - TBD.
    */
   loadTexture(key, frame = 0, stopAnimation = true) {
     if (key === PENDING_ATLAS) {

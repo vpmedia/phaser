@@ -1,12 +1,12 @@
 export class Pointer {
     /**
      * TBD.
-     * @param {object} game - TBD.
+     * @param {Game} game - TBD.
      * @param id
      * @param pointerMode
      */
-    constructor(game: object, id: any, pointerMode: any);
-    game: any;
+    constructor(game: Game, id: any, pointerMode: any);
+    game: Game;
     id: any;
     type: number;
     exists: boolean;
@@ -138,6 +138,7 @@ export class Pointer {
      */
     get worldY(): number;
 }
+import { Game } from './game';
 import { Point } from '../geom/point';
 import { Circle } from '../geom/circle';
 //# sourceMappingURL=input_pointer.d.ts.map

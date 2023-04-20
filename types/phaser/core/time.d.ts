@@ -1,10 +1,10 @@
 export class Time {
     /**
      * TBD.
-     * @param {object} game - TBD.
+     * @param {Game} game - TBD.
      */
-    constructor(game: object);
-    game: any;
+    constructor(game: Game);
+    game: Game;
     time: number;
     prevTime: number;
     now: number;
@@ -37,12 +37,14 @@ export class Time {
     boot(): void;
     /**
      * TBD.
-     * @param timer
+     * @param {Timer} timer - TBD.
+     * @returns {Timer} TBD.
      */
-    add(timer: any): any;
+    add(timer: Timer): Timer;
     /**
      * TBD.
-     * @param autoDestroy
+     * @param {boolean} autoDestroy - TBD.
+     * @returns {Timer} TBD.
      */
     create(autoDestroy?: boolean): Timer;
     /**
@@ -55,9 +57,9 @@ export class Time {
     refresh(): void;
     /**
      * TBD.
-     * @param time
+     * @param {number} time - TBD.
      */
-    update(time: any): void;
+    update(time: number): void;
     /**
      * TBD.
      */
@@ -76,18 +78,21 @@ export class Time {
     gameResumed(): void;
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     totalElapsedSeconds(): number;
     /**
      * TBD.
-     * @param since
+     * @param {number} since - TBD.
+     * @returns {number} TBD.
      */
-    elapsedSince(since: any): number;
+    elapsedSince(since: number): number;
     /**
      * TBD.
-     * @param since
+     * @param {number} since - TBD.
+     * @returns {number} TBD.
      */
-    elapsedSecondsSince(since: any): number;
+    elapsedSecondsSince(since: number): number;
     /**
      * TBD.
      */
@@ -102,8 +107,10 @@ export class Time {
     set desiredFps(arg: number);
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get desiredFps(): number;
 }
+import { Game } from './game';
 import { Timer } from './timer';
 //# sourceMappingURL=time.d.ts.map

@@ -7,6 +7,8 @@ const FORWARD_BUTTON = 4;
 const WHEEL_UP = 1;
 const WHEEL_DOWN = -1; */
 
+import { Game } from './game';
+
 class WheelEventProxy {
   /**
    * TBD.
@@ -68,7 +70,7 @@ class WheelEventProxy {
 export class Mouse {
   /**
    * TBD.
-   * @param {object} game - TBD.
+   * @param {Game} game - TBD.
    */
   constructor(game) {
     this.game = game;

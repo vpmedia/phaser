@@ -47,8 +47,8 @@ export class Group extends DisplayObject {
 
   /**
    * TBD.
-   * @param destroyChildren
-   * @param soft
+   * @param destroyChildren - TBD.
+   * @param soft - TBD.
    */
   destroy(destroyChildren = true, soft = false) {
     if (this.game === null || this.ignoreDestroy) {
@@ -71,7 +71,7 @@ export class Group extends DisplayObject {
   /**
    * TBD.
    * @param child - TBD.
-   * @param silent
+   * @param silent - TBD.
    * @param index - TBD.
    */
   add(child, silent = false, index = -1) {
@@ -101,7 +101,7 @@ export class Group extends DisplayObject {
    * TBD.
    * @param child - TBD.
    * @param index - TBD.
-   * @param silent
+   * @param silent - TBD.
    */
   addAt(child, index, silent) {
     this.add(child, silent, index);
@@ -165,8 +165,8 @@ export class Group extends DisplayObject {
 
   /**
    * TBD.
-   * @param child1
-   * @param child2
+   * @param child1 - TBD.
+   * @param child2 - TBD.
    */
   swap(child1, child2) {
     this.swapChildren(child1, child2);
@@ -253,8 +253,8 @@ export class Group extends DisplayObject {
   /**
    * TBD.
    * @param child - TBD.
-   * @param destroy
-   * @param silent
+   * @param destroy - TBD.
+   * @param silent - TBD.
    */
   remove(child, destroy = true, silent = false) {
     if (this.children.length === 0 || this.children.indexOf(child) === -1) {
@@ -276,9 +276,9 @@ export class Group extends DisplayObject {
 
   /**
    * TBD.
-   * @param destroy
-   * @param silent
-   * @param destroyTexture
+   * @param destroy - TBD.
+   * @param silent - TBD.
+   * @param destroyTexture - TBD.
    */
   removeAll(destroy = true, silent = false, destroyTexture = false) {
     if (this.children.length === 0) {

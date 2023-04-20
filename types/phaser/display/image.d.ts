@@ -26,7 +26,7 @@ export class Image extends DisplayObject {
      * TBD.
      * @param {string} key - TBD.
      * @param frame - TBD.
-     * @param stopAnimation
+     * @param stopAnimation - TBD.
      */
     loadTexture(key: string, frame?: number, stopAnimation?: boolean): void;
     customRender: boolean;

@@ -27,15 +27,15 @@ export class Group extends DisplayObject {
     _sortProperty: string;
     /**
      * TBD.
-     * @param destroyChildren
-     * @param soft
+     * @param destroyChildren - TBD.
+     * @param soft - TBD.
      */
     destroy(destroyChildren?: boolean, soft?: boolean): void;
     filters: any;
     /**
      * TBD.
      * @param child - TBD.
-     * @param silent
+     * @param silent - TBD.
      * @param index - TBD.
      */
     add(child: any, silent?: boolean, index?: number): any;
@@ -43,7 +43,7 @@ export class Group extends DisplayObject {
      * TBD.
      * @param child - TBD.
      * @param index - TBD.
-     * @param silent
+     * @param silent - TBD.
      */
     addAt(child: any, index: any, silent: any): void;
     /**
@@ -65,8 +65,8 @@ export class Group extends DisplayObject {
     previous(): any;
     /**
      * TBD.
-     * @param child1
-     * @param child2
+     * @param child1 - TBD.
+     * @param child2 - TBD.
      */
     swap(child1: any, child2: any): void;
     /**
@@ -92,15 +92,15 @@ export class Group extends DisplayObject {
     /**
      * TBD.
      * @param child - TBD.
-     * @param destroy
-     * @param silent
+     * @param destroy - TBD.
+     * @param silent - TBD.
      */
     remove(child: any, destroy?: boolean, silent?: boolean): boolean;
     /**
      * TBD.
-     * @param destroy
-     * @param silent
-     * @param destroyTexture
+     * @param destroy - TBD.
+     * @param silent - TBD.
+     * @param destroyTexture - TBD.
      */
     removeAll(destroy?: boolean, silent?: boolean, destroyTexture?: boolean): void;
 }

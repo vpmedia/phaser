@@ -81,7 +81,7 @@ export class DisplayObject {
   /**
    * TBD.
    * @param child - TBD.
-   * @param index - TBD.
+   * @param {number} index - TBD.
    */
   addChildAt(child, index) {
     if (index >= 0 && index <= this.children.length) {
@@ -98,7 +98,7 @@ export class DisplayObject {
   /**
    * TBD.
    * @param child - TBD.
-   * @param child2
+   * @param child2 - TBD.
    */
   swapChildren(child, child2) {
     if (child === child2) {
@@ -128,7 +128,7 @@ export class DisplayObject {
   /**
    * TBD.
    * @param child - TBD.
-   * @param index - TBD.
+   * @param {number} index - TBD.
    */
   setChildIndex(child, index) {
     if (index < 0 || index >= this.children.length) {
@@ -141,7 +141,7 @@ export class DisplayObject {
 
   /**
    * TBD.
-   * @param index - TBD.
+   * @param {number} index - TBD.
    */
   getChildAt(index) {
     if (index < 0 || index >= this.children.length) {
@@ -168,7 +168,7 @@ export class DisplayObject {
 
   /**
    * TBD.
-   * @param index - TBD.
+   * @param {number} index - TBD.
    */
   removeChildAt(index) {
     const child = this.getChildAt(index);
@@ -181,8 +181,8 @@ export class DisplayObject {
 
   /**
    * TBD.
-   * @param beginIndex
-   * @param endIndex
+   * @param {number} beginIndex - TBD.
+   * @param {number} endIndex - TBD.
    */
   removeChildren(beginIndex, endIndex) {
     if (beginIndex === undefined) {
@@ -208,7 +208,7 @@ export class DisplayObject {
 
   /**
    * TBD.
-   * @param parent
+   * @param parent - TBD.
    */
   updateTransform(parent) {
     if (!parent && !this.parent) {
@@ -295,7 +295,7 @@ export class DisplayObject {
 
   /**
    * TBD.
-   * @param targetCoordinateSpace
+   * @param targetCoordinateSpace - TBD.
    */
   getBounds(targetCoordinateSpace) {
     const isTargetCoordinateSpaceDisplayObject = targetCoordinateSpace && targetCoordinateSpace.contains !== undefined;
@@ -396,6 +396,7 @@ export class DisplayObject {
 
   /**
    * TBD.
+   * @returns {Rectangle} TBD.
    */
   getLocalBounds() {
     return this.getBounds(this);
@@ -404,6 +405,7 @@ export class DisplayObject {
   /**
    * TBD.
    * @param child - TBD.
+   * @returns {boolean} TBD.
    */
   contains(child) {
     if (!child) {
@@ -509,7 +511,7 @@ export class DisplayObject {
   /**
    * TBD.
    * @param position - TBD.
-   * @param from
+   * @param from - TBD.
    */
   toLocal(position, from) {
     if (from) {
@@ -557,6 +559,7 @@ export class DisplayObject {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get width() {
     return this.getLocalBounds().width * this.scale.x;
@@ -577,6 +580,7 @@ export class DisplayObject {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get height() {
     return this.getLocalBounds().height * this.scale.y;
@@ -597,6 +601,7 @@ export class DisplayObject {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get x() {
     return this.position.x;
@@ -611,6 +616,7 @@ export class DisplayObject {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get y() {
     return this.position.y;
@@ -625,6 +631,7 @@ export class DisplayObject {
 
   /**
    * TBD.
+   * @returns {boolean} TBD.
    */
   get worldVisible() {
     if (!this.visible) {
@@ -669,6 +676,7 @@ export class DisplayObject {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get offsetX() {
     return this.anchor.x * this.width;
@@ -676,6 +684,7 @@ export class DisplayObject {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get offsetY() {
     return this.anchor.y * this.height;
@@ -683,6 +692,7 @@ export class DisplayObject {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get centerX() {
     return this.x - this.offsetX + this.width * 0.5;
@@ -697,6 +707,7 @@ export class DisplayObject {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get centerY() {
     return this.y - this.offsetY + this.height * 0.5;
@@ -711,6 +722,7 @@ export class DisplayObject {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get left() {
     return this.x - this.offsetX;
@@ -725,6 +737,7 @@ export class DisplayObject {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get right() {
     return this.x + this.width - this.offsetX;
@@ -739,6 +752,7 @@ export class DisplayObject {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get top() {
     return this.y - this.offsetY;
@@ -753,6 +767,7 @@ export class DisplayObject {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get bottom() {
     return this.y + this.height - this.offsetY;

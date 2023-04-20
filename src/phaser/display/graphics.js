@@ -66,7 +66,7 @@ export class Graphics extends DisplayObject {
 
   /**
    * TBD.
-   * @param lineWidth
+   * @param lineWidth - TBD.
    * @param color - TBD.
    * @param alpha - TBD.
    */
@@ -115,10 +115,10 @@ export class Graphics extends DisplayObject {
 
   /**
    * TBD.
-   * @param cpX
-   * @param cpY
-   * @param toX
-   * @param toY
+   * @param cpX - TBD.
+   * @param cpY - TBD.
+   * @param toX - TBD.
+   * @param toY - TBD.
    */
   quadraticCurveTo(cpX, cpY, toX, toY) {
     if (this.currentPath) {
@@ -151,12 +151,12 @@ export class Graphics extends DisplayObject {
 
   /**
    * TBD.
-   * @param cpX
-   * @param cpY
-   * @param cpX2
-   * @param cpY2
-   * @param toX
-   * @param toY
+   * @param cpX - TBD.
+   * @param cpY - TBD.
+   * @param cpX2 - TBD.
+   * @param cpY2 - TBD.
+   * @param toX - TBD.
+   * @param toY - TBD.
    */
   bezierCurveTo(cpX, cpY, cpX2, cpY2, toX, toY) {
     if (this.currentPath) {
@@ -195,10 +195,10 @@ export class Graphics extends DisplayObject {
 
   /**
    * TBD.
-   * @param x1
-   * @param y1
-   * @param x2
-   * @param y2
+   * @param x1 - TBD.
+   * @param y1 - TBD.
+   * @param x2 - TBD.
+   * @param y2 - TBD.
    * @param radius - TBD.
    */
   arcTo(x1, y1, x2, y2, radius) {
@@ -246,13 +246,13 @@ export class Graphics extends DisplayObject {
 
   /**
    * TBD.
-   * @param cx
-   * @param cy
+   * @param cx - TBD.
+   * @param cy - TBD.
    * @param radius - TBD.
-   * @param startAngle
-   * @param endAngle
-   * @param anticlockwise
-   * @param segments
+   * @param startAngle - TBD.
+   * @param endAngle - TBD.
+   * @param anticlockwise - TBD.
+   * @param segments - TBD.
    */
   arc(cx, cy, radius, startAngle, endAngle, anticlockwise = false, segments = 40) {
     //  If we do this we can never draw a full circle
@@ -376,7 +376,7 @@ export class Graphics extends DisplayObject {
 
   /**
    * TBD.
-   * @param path
+   * @param path - TBD.
    */
   drawPolygon(path) {
     let points;
@@ -615,8 +615,8 @@ export class Graphics extends DisplayObject {
 
   /**
    * TBD.
-   * @param point
-   * @param tempPoint
+   * @param point - TBD.
+   * @param tempPoint - TBD.
    */
   containsPoint(point, tempPoint) {
     this.worldTransform.applyInverse(point, tempPoint);
@@ -771,7 +771,7 @@ export class Graphics extends DisplayObject {
 
   /**
    * TBD.
-   * @param shape
+   * @param shape - TBD.
    */
   drawShape(shape) {
     if (this.currentPath) {
@@ -820,8 +820,8 @@ export class Graphics extends DisplayObject {
 
   /**
    * TBD.
-   * @param points
-   * @param cull
+   * @param points - TBD.
+   * @param cull - TBD.
    */
   drawTriangle(points, cull = false) {
     const triangle = new Polygon(points);
@@ -840,9 +840,9 @@ export class Graphics extends DisplayObject {
 
   /**
    * TBD.
-   * @param vertices
-   * @param indices
-   * @param cull
+   * @param vertices - TBD.
+   * @param indices - TBD.
+   * @param cull - TBD.
    */
   drawTriangles(vertices, indices, cull = false) {
     const point1 = new Point();

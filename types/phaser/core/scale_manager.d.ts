@@ -1,12 +1,12 @@
 export class ScaleManager {
     /**
      * TBD.
-     * @param {object} game - TBD.
+     * @param {Game} game - TBD.
      * @param {number} width - TBD.
      * @param {number} height - TBD.
      */
-    constructor(game: object, width: number, height: number);
-    game: any;
+    constructor(game: Game, width: number, height: number);
+    game: Game;
     dom: DOM;
     width: number;
     height: number;
@@ -58,7 +58,7 @@ export class ScaleManager {
     _scaleMode: number;
     _fullScreenScaleMode: number;
     parentIsWindow: boolean;
-    parentNode: any;
+    parentNode: HTMLElement;
     parentScaleFactor: Point;
     trackParentInterval: number;
     onSizeChange: Signal;
@@ -324,6 +324,7 @@ export class ScaleManager {
      */
     get isGameLandscape(): boolean;
 }
+import { Game } from './game';
 import { DOM } from './dom';
 import { Point } from '../geom/point';
 import { Signal } from './signal';

@@ -3,6 +3,7 @@ import { Point } from '../geom/point';
 class VisualBoundsDesktopRectangle {
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get x() {
     return window && 'pageXOffset' in window ? window.pageXOffset : document.documentElement.scrollLeft;
@@ -10,6 +11,7 @@ class VisualBoundsDesktopRectangle {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get y() {
     return window && 'pageYOffset' in window ? window.pageYOffset : document.documentElement.scrollTop;
@@ -17,6 +19,7 @@ class VisualBoundsDesktopRectangle {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get width() {
     return Math.max(window.innerWidth, document.documentElement.clientWidth);
@@ -24,6 +27,7 @@ class VisualBoundsDesktopRectangle {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get height() {
     return Math.max(window.innerHeight, document.documentElement.clientHeight);
@@ -33,6 +37,7 @@ class VisualBoundsDesktopRectangle {
 class LayoutBoundsDesktopRectangle {
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get x() {
     return 0;
@@ -40,6 +45,7 @@ class LayoutBoundsDesktopRectangle {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get y() {
     return 0;
@@ -47,6 +53,7 @@ class LayoutBoundsDesktopRectangle {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get width() {
     return Math.max(window.innerWidth, document.documentElement.clientWidth);
@@ -54,6 +61,7 @@ class LayoutBoundsDesktopRectangle {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get height() {
     return Math.max(window.innerHeight, document.documentElement.clientHeight);
@@ -63,6 +71,7 @@ class LayoutBoundsDesktopRectangle {
 class VisualBoundsRectangle {
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get x() {
     return window && 'pageXOffset' in window ? window.pageXOffset : document.documentElement.scrollLeft;
@@ -70,6 +79,7 @@ class VisualBoundsRectangle {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get y() {
     return window && 'pageYOffset' in window ? window.pageYOffset : document.documentElement.scrollTop;
@@ -77,6 +87,7 @@ class VisualBoundsRectangle {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get width() {
     return window.innerWidth;
@@ -84,6 +95,7 @@ class VisualBoundsRectangle {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get height() {
     return window.innerHeight;
@@ -93,6 +105,7 @@ class VisualBoundsRectangle {
 class LayoutBoundsRectangle {
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get x() {
     return 0;
@@ -100,6 +113,7 @@ class LayoutBoundsRectangle {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get y() {
     return 0;
@@ -107,6 +121,7 @@ class LayoutBoundsRectangle {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get width() {
     const a = document.documentElement.clientWidth;
@@ -116,6 +131,7 @@ class LayoutBoundsRectangle {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get height() {
     const a = document.documentElement.clientHeight;
@@ -130,6 +146,7 @@ class LayoutBoundsRectangle {
 class DocumentBoundsRectangle {
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get x() {
     return 0;
@@ -137,6 +154,7 @@ class DocumentBoundsRectangle {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get y() {
     return 0;
@@ -144,6 +162,7 @@ class DocumentBoundsRectangle {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get width() {
     const d = document.documentElement;
@@ -152,6 +171,7 @@ class DocumentBoundsRectangle {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get height() {
     const d = document.documentElement;
@@ -262,6 +282,7 @@ export class DOM {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get scrollX() {
     return this.scrollXProvider();
@@ -269,6 +290,7 @@ export class DOM {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get scrollY() {
     return this.scrollYProvider();
@@ -276,6 +298,7 @@ export class DOM {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get clientWidth() {
     return Math.max(window.innerWidth, document.documentElement.clientWidth);
@@ -283,6 +306,7 @@ export class DOM {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get clientHeight() {
     return Math.max(window.innerHeight, document.documentElement.clientHeight);

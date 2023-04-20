@@ -1,10 +1,10 @@
 export class Stage extends DisplayObject {
     /**
      * TBD.
-     * @param {object} game - TBD.
+     * @param {Game} game - TBD.
      */
-    constructor(game: object);
-    game: any;
+    constructor(game: Game);
+    game: Game;
     name: string;
     currentRenderOrderID: number;
     _bgColor: {
@@ -17,9 +17,9 @@ export class Stage extends DisplayObject {
     };
     /**
      * TBD.
-     * @param color - TBD.
+     * @param {number} color - TBD.
      */
-    setBackgroundColor(color: any): void;
+    setBackgroundColor(color: number): void;
     /**
      * TBD.
      */
@@ -34,6 +34,7 @@ export class Stage extends DisplayObject {
     set backgroundColor(arg: number);
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get backgroundColor(): number;
     /**
@@ -42,8 +43,10 @@ export class Stage extends DisplayObject {
     set smoothed(arg: boolean);
     /**
      * TBD.
+     * @returns {boolean} TBD.
      */
     get smoothed(): boolean;
 }
 import { DisplayObject } from '../display/display_object';
+import { Game } from './game';
 //# sourceMappingURL=stage.d.ts.map

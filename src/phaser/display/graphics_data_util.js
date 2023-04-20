@@ -3,7 +3,7 @@ import { GraphicsData } from './graphics_data';
 /**
  * TBD.
  * @param {object} source - TBD.
- * @returns {object} TBD.
+ * @returns {GraphicsData} TBD.
  */
 export function clone(source) {
   return new GraphicsData(

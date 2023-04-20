@@ -36,32 +36,31 @@ export class BitmapText extends DisplayObject {
     set text(arg: string);
     /**
      * TBD.
+     * @returns {string} TBD.
      */
     get text(): string;
     /**
      * TBD.
-     * @param data
-     * @param scale
+     * @param data - TBD.
+     * @param scale - TBD.
      * @param text - TBD.
+     * @returns {object} TBD.
      */
-    scanLine(data: any, scale: any, text: any): {
-        width: number;
-        text: any;
-        end: boolean;
-        chars: number[];
-    };
+    scanLine(data: any, scale: any, text: any): object;
     /**
      * TBD.
      * @param text - TBD.
-     * @param replace
+     * @param replace - TBD.
+     * @returns {string} TBD.
      */
-    cleanText(text: any, replace?: string): any;
+    cleanText(text: any, replace?: string): string;
     /**
      * TBD.
      */
     updateText(): void;
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     purgeGlyphs(): number;
     /**
@@ -74,6 +73,7 @@ export class BitmapText extends DisplayObject {
     set align(arg: string);
     /**
      * TBD.
+     * @returns {string} TBD.
      */
     get align(): string;
     /**
@@ -82,6 +82,7 @@ export class BitmapText extends DisplayObject {
     set tint(arg: number);
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get tint(): number;
     /**
@@ -90,6 +91,7 @@ export class BitmapText extends DisplayObject {
     set fill(arg: string);
     /**
      * TBD.
+     * @returns {string} TBD.
      */
     get fill(): string;
     /**
@@ -98,6 +100,7 @@ export class BitmapText extends DisplayObject {
     set font(arg: string);
     /**
      * TBD.
+     * @returns {string} TBD.
      */
     get font(): string;
     /**
@@ -106,6 +109,7 @@ export class BitmapText extends DisplayObject {
     set fontSize(arg: number);
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get fontSize(): number;
     /**
@@ -122,6 +126,7 @@ export class BitmapText extends DisplayObject {
     set smoothed(arg: boolean);
     /**
      * TBD.
+     * @returns {boolean} TBD.
      */
     get smoothed(): boolean;
 }

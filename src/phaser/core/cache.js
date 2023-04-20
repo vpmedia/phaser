@@ -5,6 +5,7 @@ import { Frame } from './frame';
 import { FrameData } from './frame_data';
 import { JSONDataHash } from './animation_parser';
 import { jsonBitmapFont, xmlBitmapFont } from './loader_parser';
+import { Game } from './game';
 
 export const CANVAS = 0;
 export const IMAGE = 1;
@@ -20,7 +21,7 @@ export const RENDER_TEXTURE = 9;
 export class Cache {
   /**
    * TBD.
-   * @param {object} game - TBD.
+   * @param {Game} game - TBD.
    */
   constructor(game) {
     this.game = game;

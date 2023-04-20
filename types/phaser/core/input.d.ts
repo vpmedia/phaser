@@ -1,10 +1,10 @@
 export class Input {
     /**
      * TBD.
-     * @param {object} game - TBD.
+     * @param {Game} game - TBD.
      */
-    constructor(game: object);
-    game: any;
+    constructor(game: Game);
+    game: Game;
     hitCanvas: any;
     hitContext: any;
     moveCallbacks: any[];
@@ -191,6 +191,7 @@ export class Input {
      */
     get worldY(): number;
 }
+import { Game } from './game';
 import { Point } from '../geom/point';
 import { Circle } from '../geom/circle';
 import { Pointer } from './input_pointer';

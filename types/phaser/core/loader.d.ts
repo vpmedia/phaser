@@ -1,11 +1,11 @@
 export class Loader {
     /**
      * TBD.
-     * @param {object} game - TBD.
+     * @param {Game} game - TBD.
      */
-    constructor(game: object);
-    game: any;
-    cache: any;
+    constructor(game: Game);
+    game: Game;
+    cache: import("./cache").Cache;
     isLoading: boolean;
     isUseLog: boolean;
     isUseRetry: boolean;
@@ -334,5 +334,6 @@ export class Loader {
      */
     get progress(): number;
 }
+import { Game } from './game';
 import { Signal } from './signal';
 //# sourceMappingURL=loader.d.ts.map

@@ -10,13 +10,14 @@ import { Pointer } from './input_pointer';
 import { Touch } from './input_touch';
 import { POINTER_CURSOR, POINTER_CONTACT, MOUSE_TOUCH_COMBINE } from './const';
 import { create, remove } from '../display/canvas/pool';
+import { Game } from './game';
 
 const MAX_POINTERS = 10;
 
 export class Input {
   /**
    * TBD.
-   * @param {object} game - TBD.
+   * @param {Game} game - TBD.
    */
   constructor(game) {
     this.game = game;

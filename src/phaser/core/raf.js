@@ -1,7 +1,9 @@
+import { Game } from './game';
+
 export class RequestAnimationFrame {
   /**
    * TBD.
-   * @param {object} game - TBD.
+   * @param {Game} game - TBD.
    */
   constructor(game) {
     this.game = game;

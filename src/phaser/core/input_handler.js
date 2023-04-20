@@ -1,6 +1,9 @@
 import { Point } from '../geom/point';
 import { GROUP } from './const';
 import { distance } from '../util/math';
+import { Pointer } from './input_pointer';
+import { Rectangle } from '../geom/rectangle';
+import { DisplayObject } from '../display/display_object';
 
 export class InputHandler {
   /**
@@ -70,8 +73,9 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param priority
-   * @param useHandCursor
+   * @param {number} priority - TBD.
+   * @param {boolean} useHandCursor - TBD.
+   * @returns {DisplayObject} TBD.
    */
   start(priority = 0, useHandCursor = false) {
     //  Turning on
@@ -187,9 +191,10 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param highestID
-   * @param highestRenderID
-   * @param includePixelPerfect
+   * @param {number} highestID - TBD.
+   * @param {number} highestRenderID - TBD.
+   * @param {boolean} includePixelPerfect - TBD.
+   * @returns {boolean} TBD.
    */
   validForInput(highestID, highestRenderID, includePixelPerfect = true) {
     if (
@@ -213,6 +218,7 @@ export class InputHandler {
 
   /**
    * TBD.
+   * @returns {boolean} TBD.
    */
   isPixelPerfect() {
     return this.pixelPerfectClick || this.pixelPerfectOver;
@@ -220,7 +226,8 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param pointerId
+   * @param {number} pointerId - TBD.
+   * @returns {number} TBD.
    */
   pointerX(pointerId = 0) {
     return this._pointerData[pointerId].x;
@@ -228,7 +235,8 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param pointerId
+   * @param {number} pointerId - TBD.
+   * @returns {number} TBD.
    */
   pointerY(pointerId = 0) {
     return this._pointerData[pointerId].y;
@@ -236,7 +244,8 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param pointerId
+   * @param {number} pointerId - TBD.
+   * @returns {boolean} TBD.
    */
   pointerDown(pointerId = 0) {
     return this._pointerData[pointerId].isDown;
@@ -244,7 +253,8 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param pointerId
+   * @param {number} pointerId - TBD.
+   * @returns {boolean} TBD.
    */
   pointerUp(pointerId = 0) {
     return this._pointerData[pointerId].isUp;
@@ -252,7 +262,8 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param pointerId
+   * @param {number} pointerId - TBD.
+   * @returns {number} TBD.
    */
   pointerTimeDown(pointerId = 0) {
     return this._pointerData[pointerId].timeDown;
@@ -260,7 +271,8 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param pointerId
+   * @param {number} pointerId - TBD.
+   * @returns {number} TBD.
    */
   pointerTimeUp(pointerId = 0) {
     return this._pointerData[pointerId].timeUp;
@@ -268,7 +280,8 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param pointerId
+   * @param {number} pointerId - TBD.
+   * @returns {boolean} TBD.
    */
   pointerOver(pointerId) {
     if (!this.enabled) {
@@ -287,7 +300,8 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param pointerId
+   * @param {number} pointerId - TBD.
+   * @returns {boolean} TBD.
    */
   pointerOut(pointerId) {
     if (!this.enabled) {
@@ -305,7 +319,8 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param pointerId
+   * @param {number} pointerId - TBD.
+   * @returns {number} TBD.
    */
   pointerTimeOver(pointerId = 0) {
     return this._pointerData[pointerId].timeOver;
@@ -313,7 +328,8 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param pointerId
+   * @param {number} pointerId - TBD.
+   * @returns {number} TBD.
    */
   pointerTimeOut(pointerId = 0) {
     return this._pointerData[pointerId].timeOut;
@@ -321,7 +337,8 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param pointerId
+   * @param {number} pointerId - TBD.
+   * @returns {boolean} TBD.
    */
   pointerDragged(pointerId = 0) {
     return this._pointerData[pointerId].isDragged;
@@ -329,10 +346,11 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param pointer
-   * @param fastTest
+   * @param {Pointer} pointer - TBD.
+   * @param {boolean} fastTest - TBD.
+   * @returns {boolean} TBD.
    */
-  checkPointerDown(pointer = 0, fastTest = false) {
+  checkPointerDown(pointer, fastTest = false) {
     if (
       !pointer.isDown ||
       !this.enabled ||
@@ -357,10 +375,11 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param pointer
-   * @param fastTest
+   * @param {Pointer} pointer - TBD.
+   * @param {boolean} fastTest - TBD.
+   * @returns {boolean} TBD.
    */
-  checkPointerOver(pointer = 0, fastTest = false) {
+  checkPointerOver(pointer, fastTest = false) {
     if (
       !this.enabled ||
       !this.sprite ||
@@ -386,7 +405,8 @@ export class InputHandler {
    * TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
-   * @param pointer
+   * @param {Pointer} pointer - TBD.
+   * @returns {boolean} TBD.
    */
   checkPixel(x, y, pointer) {
     //  Grab a pixel from our image into the hitCanvas and then test it
@@ -434,7 +454,8 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param pointer
+   * @param {Pointer} pointer - TBD.
+   * @returns {boolean} TBD.
    */
   update(pointer) {
     if (this.sprite === null || this.sprite.parent === undefined) {
@@ -470,8 +491,8 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param pointer
-   * @param silent
+   * @param {Pointer} pointer - TBD.
+   * @param {boolean} silent - TBD.
    */
   _pointerOverHandler(pointer, silent) {
     if (this.sprite === null) {
@@ -501,8 +522,8 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param pointer
-   * @param silent
+   * @param {Pointer} pointer - TBD.
+   * @param {boolean} silent - TBD.
    */
   _pointerOutHandler(pointer, silent) {
     if (this.sprite === null) {
@@ -527,7 +548,7 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param pointer
+   * @param {Pointer} pointer - TBD.
    */
   _touchedHandler(pointer) {
     if (this.sprite === null) {
@@ -579,7 +600,7 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param pointer
+   * @param {Pointer} pointer - TBD.
    */
   dragTimeElapsed(pointer) {
     this._dragTimePass = true;
@@ -592,7 +613,7 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param pointer
+   * @param {Pointer} pointer - TBD.
    */
   _releasedHandler(pointer) {
     if (this.sprite === null) {
@@ -640,8 +661,9 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param pointer
-   * @param fromStart
+   * @param {Pointer} pointer - TBD.
+   * @param {boolean} fromStart - TBD.
+   * @returns {boolean} TBD.
    */
   updateDrag(pointer, fromStart = false) {
     if (pointer.isUp) {
@@ -679,8 +701,9 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param pointerId
-   * @param delay - TBD.
+   * @param {number} pointerId - TBD.
+   * @param {number} delay - TBD.
+   * @returns {boolean} TBD.
    */
   justOver(pointerId = 0, delay = 500) {
     return this._pointerData[pointerId].isOver && this.overDuration(pointerId) < delay;
@@ -688,8 +711,9 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param pointerId
-   * @param delay - TBD.
+   * @param {number} pointerId - TBD.
+   * @param {number} delay - TBD.
+   * @returns {boolean} TBD.
    */
   justOut(pointerId = 0, delay = 500) {
     return this._pointerData[pointerId].isOut && this.game.time.time - this._pointerData[pointerId].timeOut < delay;
@@ -697,8 +721,9 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param pointerId
-   * @param delay - TBD.
+   * @param {number} pointerId - TBD.
+   * @param {number} delay - TBD.
+   * @returns {boolean} TBD.
    */
   justPressed(pointerId = 0, delay = 500) {
     return this._pointerData[pointerId].isDown && this.downDuration(pointerId) < delay;
@@ -706,8 +731,9 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param pointerId
-   * @param delay - TBD.
+   * @param {number} pointerId - TBD.
+   * @param {number} delay - TBD.
+   * @returns {boolean} TBD.
    */
   justReleased(pointerId = 0, delay = 500) {
     return this._pointerData[pointerId].isUp && this.game.time.time - this._pointerData[pointerId].timeUp < delay;
@@ -715,7 +741,8 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param pointerId
+   * @param {number} pointerId - TBD.
+   * @returns {number} TBD.
    */
   overDuration(pointerId = 0) {
     if (this._pointerData[pointerId].isOver) {
@@ -726,7 +753,8 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param pointerId
+   * @param {number} pointerId - TBD.
+   * @returns {number} TBD.
    */
   downDuration(pointerId = 0) {
     if (this._pointerData[pointerId].isDown) {
@@ -737,12 +765,12 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param lockCenter
-   * @param bringToTop
-   * @param pixelPerfect
-   * @param alphaThreshold
-   * @param boundsRect
-   * @param boundsSprite
+   * @param {boolean} lockCenter - TBD.
+   * @param {boolean} bringToTop - TBD.
+   * @param {boolean} pixelPerfect - TBD.
+   * @param {number} alphaThreshold - TBD.
+   * @param {Rectangle} boundsRect - TBD.
+   * @param {DisplayObject} boundsSprite - TBD.
    */
   enableDrag(
     lockCenter = false,
@@ -784,7 +812,7 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param pointer
+   * @param {Pointer} pointer - TBD.
    */
   startDrag(pointer) {
     const x = this.sprite.x;
@@ -816,6 +844,7 @@ export class InputHandler {
   /**
    * TBD.
    * @param {number} x - TBD.
+   * @returns {number} TBD.
    */
   globalToLocalX(x) {
     if (this.scaleLayer) {
@@ -828,6 +857,7 @@ export class InputHandler {
   /**
    * TBD.
    * @param {number} y - TBD.
+   * @returns {number} TBD.
    */
   globalToLocalY(y) {
     if (this.scaleLayer) {
@@ -839,7 +869,7 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param pointer
+   * @param {Pointer} pointer - TBD.
    */
   stopDrag(pointer) {
     this.isDragged = false;
@@ -863,8 +893,8 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param allowHorizontal
-   * @param allowVertical
+   * @param {boolean} allowHorizontal - TBD.
+   * @param {boolean} allowVertical - TBD.
    */
   setDragLock(allowHorizontal = true, allowVertical = true) {
     this.allowHorizontalDrag = allowHorizontal;
@@ -873,12 +903,12 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param snapX
-   * @param snapY
-   * @param onDrag
-   * @param onRelease
-   * @param snapOffsetX
-   * @param snapOffsetY
+   * @param {number} snapX - TBD.
+   * @param {number} snapY - TBD.
+   * @param {boolean} onDrag - TBD.
+   * @param {boolean} onRelease - TBD.
+   * @param {number} snapOffsetX - TBD.
+   * @param {number} snapOffsetY - TBD.
    */
   enableSnap(snapX, snapY, onDrag = true, onRelease = false, snapOffsetX = 0, snapOffsetY = 0) {
     this.snapX = snapX;

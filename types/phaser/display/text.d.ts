@@ -21,7 +21,21 @@ export class Text extends Image {
     useAdvancedWrap: boolean;
     _res: any;
     _text: string;
-    _fontComponents: any;
+    _fontComponents: {
+        font: any;
+        fontStyle: any;
+        fontVariant: any;
+        fontWeight: any;
+        fontSize: any;
+        fontFamily: any;
+    } | {
+        font: any;
+        fontStyle?: undefined;
+        fontVariant?: undefined;
+        fontWeight?: undefined;
+        fontSize?: undefined;
+        fontFamily?: undefined;
+    };
     _lineSpacing: number;
     _charCount: number;
     /**
@@ -163,6 +177,7 @@ export class Text extends Image {
     set text(arg: string);
     /**
      * TBD.
+     * @returns {string} TBD.
      */
     get text(): string;
     /**
@@ -211,188 +226,217 @@ export class Text extends Image {
     determineFontProperties(fontStyle: any): any;
     /**
      * TBD.
+     * @param matrix - TBD.
+     * @returns {Rectangle} TBD.
+     */
+    getBounds(matrix?: any): Rectangle;
+    /**
+     * TBD.
      */
     set cssFont(arg: string);
     /**
      * TBD.
+     * @returns {string} TBD.
      */
     get cssFont(): string;
     /**
      * TBD.
      */
-    set font(arg: any);
+    set font(arg: number);
+    /**
+     * TBD.
+     * @returns {number} TBD.
+     */
+    get font(): number;
     /**
      * TBD.
      */
-    get font(): any;
+    set fontSize(arg: number);
+    /**
+     * TBD.
+     * @returns {number} TBD.
+     */
+    get fontSize(): number;
     /**
      * TBD.
      */
-    set fontSize(arg: any);
+    set fontWeight(arg: string);
+    /**
+     * TBD.
+     * @returns {string} TBD.
+     */
+    get fontWeight(): string;
     /**
      * TBD.
      */
-    get fontSize(): any;
+    set fontStyle(arg: string);
+    /**
+     * TBD.
+     * @returns {string} TBD.
+     */
+    get fontStyle(): string;
     /**
      * TBD.
      */
-    set fontWeight(arg: any);
+    set fontVariant(arg: string);
+    /**
+     * TBD.
+     * @returns {string} TBD.
+     */
+    get fontVariant(): string;
     /**
      * TBD.
      */
-    get fontWeight(): any;
+    set fill(arg: number);
+    /**
+     * TBD.
+     * @returns {number} TBD.
+     */
+    get fill(): number;
     /**
      * TBD.
      */
-    set fontStyle(arg: any);
+    set align(arg: string);
+    /**
+     * TBD.
+     * @returns {string} TBD.
+     */
+    get align(): string;
     /**
      * TBD.
      */
-    get fontStyle(): any;
+    set resolution(arg: number);
+    /**
+     * TBD.
+     * @returns {number} TBD.
+     */
+    get resolution(): number;
     /**
      * TBD.
      */
-    set fontVariant(arg: any);
+    set tabs(arg: number);
+    /**
+     * TBD.
+     * @returns {number} TBD.
+     */
+    get tabs(): number;
     /**
      * TBD.
      */
-    get fontVariant(): any;
+    set boundsAlignH(arg: number);
+    /**
+     * TBD.
+     * @returns {number} TBD.
+     */
+    get boundsAlignH(): number;
     /**
      * TBD.
      */
-    set fill(arg: any);
+    set boundsAlignV(arg: number);
+    /**
+     * TBD.
+     * @returns {number} TBD.
+     */
+    get boundsAlignV(): number;
     /**
      * TBD.
      */
-    get fill(): any;
+    set stroke(arg: number);
+    /**
+     * TBD.
+     * @returns {number} TBD.
+     */
+    get stroke(): number;
     /**
      * TBD.
      */
-    set align(arg: any);
+    set strokeThickness(arg: number);
+    /**
+     * TBD.
+     * @returns {number} TBD.
+     */
+    get strokeThickness(): number;
     /**
      * TBD.
      */
-    get align(): any;
+    set wordWrap(arg: number);
+    /**
+     * TBD.
+     * @returns {number} TBD.
+     */
+    get wordWrap(): number;
     /**
      * TBD.
      */
-    set resolution(arg: any);
+    set wordWrapWidth(arg: number);
     /**
      * TBD.
+     * @returns {number} TBD.
      */
-    get resolution(): any;
-    /**
-     * TBD.
-     */
-    set tabs(arg: any);
-    /**
-     * TBD.
-     */
-    get tabs(): any;
-    /**
-     * TBD.
-     */
-    set boundsAlignH(arg: any);
-    /**
-     * TBD.
-     */
-    get boundsAlignH(): any;
-    /**
-     * TBD.
-     */
-    set boundsAlignV(arg: any);
-    /**
-     * TBD.
-     */
-    get boundsAlignV(): any;
-    /**
-     * TBD.
-     */
-    set stroke(arg: any);
-    /**
-     * TBD.
-     */
-    get stroke(): any;
-    /**
-     * TBD.
-     */
-    set strokeThickness(arg: any);
-    /**
-     * TBD.
-     */
-    get strokeThickness(): any;
-    /**
-     * TBD.
-     */
-    set wordWrap(arg: any);
-    /**
-     * TBD.
-     */
-    get wordWrap(): any;
-    /**
-     * TBD.
-     */
-    set wordWrapWidth(arg: any);
-    /**
-     * TBD.
-     */
-    get wordWrapWidth(): any;
+    get wordWrapWidth(): number;
     /**
      * TBD.
      */
     set lineSpacing(arg: number);
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get lineSpacing(): number;
     /**
      * TBD.
      */
-    set shadowOffsetX(arg: any);
+    set shadowOffsetX(arg: number);
+    /**
+     * TBD.
+     * @returns {number} TBD.
+     */
+    get shadowOffsetX(): number;
     /**
      * TBD.
      */
-    get shadowOffsetX(): any;
+    set shadowOffsetY(arg: number);
+    /**
+     * TBD.
+     * @returns {number} TBD.
+     */
+    get shadowOffsetY(): number;
     /**
      * TBD.
      */
-    set shadowOffsetY(arg: any);
+    set shadowColor(arg: number);
+    /**
+     * TBD.
+     * @returns {number} TBD.
+     */
+    get shadowColor(): number;
     /**
      * TBD.
      */
-    get shadowOffsetY(): any;
+    set shadowBlur(arg: number);
+    /**
+     * TBD.
+     * @returns {number} TBD.
+     */
+    get shadowBlur(): number;
     /**
      * TBD.
      */
-    set shadowColor(arg: any);
+    set shadowStroke(arg: number);
+    /**
+     * TBD.
+     * @returns {number} TBD.
+     */
+    get shadowStroke(): number;
     /**
      * TBD.
      */
-    get shadowColor(): any;
+    set shadowFill(arg: number);
     /**
      * TBD.
+     * @returns {number} TBD.
      */
-    set shadowBlur(arg: any);
-    /**
-     * TBD.
-     */
-    get shadowBlur(): any;
-    /**
-     * TBD.
-     */
-    set shadowStroke(arg: any);
-    /**
-     * TBD.
-     */
-    get shadowStroke(): any;
-    /**
-     * TBD.
-     */
-    set shadowFill(arg: any);
-    /**
-     * TBD.
-     */
-    get shadowFill(): any;
+    get shadowFill(): number;
 }
 import { Image } from './image';
 import { Point } from '../geom/point';

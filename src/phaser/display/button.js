@@ -93,8 +93,8 @@ export class Button extends Image {
 
   /**
    * TBD.
-   * @param isEnabled
-   * @param isImmediate
+   * @param {boolean} isEnabled - TBD.
+   * @param {boolean} isImmediate - TBD.
    */
   setEnabled(isEnabled, isImmediate) {
     this.input.enabled = isEnabled;
@@ -123,9 +123,9 @@ export class Button extends Image {
 
   /**
    * TBD.
-   * @param state
-   * @param frame - TBD.
-   * @param switchImmediately
+   * @param {string} state - TBD.
+   * @param {string} frame - TBD.
+   * @param {boolean} switchImmediately - TBD.
    */
   setStateFrame(state, frame, switchImmediately = false) {
     const frameKey = '_on' + state + 'Frame';
@@ -141,7 +141,8 @@ export class Button extends Image {
 
   /**
    * TBD.
-   * @param newState
+   * @param {string} newState - TBD.
+   * @returns {boolean} TBD.
    */
   changeStateFrame(newState) {
     if (this.freezeFrames) {
@@ -162,10 +163,10 @@ export class Button extends Image {
 
   /**
    * TBD.
-   * @param overFrame
-   * @param outFrame
-   * @param downFrame
-   * @param upFrame
+   * @param {string} overFrame - TBD.
+   * @param {string} outFrame - TBD.
+   * @param {string} downFrame - TBD.
+   * @param {string} upFrame - TBD.
    */
   setFrames(overFrame, outFrame, downFrame, upFrame) {
     this.setStateFrame(STATE_OVER, overFrame, this.input.pointerOver());
@@ -176,8 +177,8 @@ export class Button extends Image {
 
   /**
    * TBD.
-   * @param sprite
-   * @param pointer
+   * @param {object} sprite - TBD.
+   * @param {object} pointer - TBD.
    */
   onInputOverHandler(sprite, pointer) {
     if (pointer.justReleased() && (this.justReleasedPreventsOver & pointer.pointerMode) === pointer.pointerMode) {
@@ -195,8 +196,8 @@ export class Button extends Image {
 
   /**
    * TBD.
-   * @param sprite
-   * @param pointer
+   * @param {object} sprite - TBD.
+   * @param {object} pointer - TBD.
    */
   onInputOutHandler(sprite, pointer) {
     this.changeStateFrame(STATE_OUT);
@@ -207,8 +208,8 @@ export class Button extends Image {
 
   /**
    * TBD.
-   * @param sprite
-   * @param pointer
+   * @param {object} sprite - TBD.
+   * @param {object} pointer - TBD.
    */
   onInputDownHandler(sprite, pointer) {
     this.changeStateFrame(STATE_DOWN);
@@ -219,9 +220,9 @@ export class Button extends Image {
 
   /**
    * TBD.
-   * @param sprite
-   * @param pointer
-   * @param isOver
+   * @param {object} sprite - TBD.
+   * @param {object} pointer - TBD.
+   * @param {boolean} isOver - TBD.
    */
   onInputUpHandler(sprite, pointer, isOver) {
     if (this.onInputUp) {
@@ -247,6 +248,7 @@ export class Button extends Image {
 
   /**
    * TBD.
+   * @returns {boolean} TBD.
    */
   get inputEnabled() {
     return this.input && this.input.enabled;

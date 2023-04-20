@@ -1,9 +1,10 @@
+import { Game } from './game';
 import { Timer } from './timer';
 
 export class Time {
   /**
    * TBD.
-   * @param {object} game - TBD.
+   * @param {Game} game - TBD.
    */
   constructor(game) {
     this.game = game;
@@ -47,7 +48,8 @@ export class Time {
 
   /**
    * TBD.
-   * @param timer
+   * @param {Timer} timer - TBD.
+   * @returns {Timer} TBD.
    */
   add(timer) {
     this._timers.push(timer);
@@ -56,7 +58,8 @@ export class Time {
 
   /**
    * TBD.
-   * @param autoDestroy
+   * @param {boolean} autoDestroy - TBD.
+   * @returns {Timer} TBD.
    */
   create(autoDestroy = true) {
     const timer = new Timer(this.game, autoDestroy);
@@ -88,7 +91,7 @@ export class Time {
 
   /**
    * TBD.
-   * @param time
+   * @param {number} time - TBD.
    */
   update(time) {
     const previousDateNow = this.time;
@@ -188,6 +191,7 @@ export class Time {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   totalElapsedSeconds() {
     return (this.time - this._started) * 0.001;
@@ -195,7 +199,8 @@ export class Time {
 
   /**
    * TBD.
-   * @param since
+   * @param {number} since - TBD.
+   * @returns {number} TBD.
    */
   elapsedSince(since) {
     return this.time - since;
@@ -203,7 +208,8 @@ export class Time {
 
   /**
    * TBD.
-   * @param since
+   * @param {number} since - TBD.
+   * @returns {number} TBD.
    */
   elapsedSecondsSince(since) {
     return (this.time - since) * 0.001;
@@ -226,6 +232,7 @@ export class Time {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get desiredFps() {
     return this._desiredFps;

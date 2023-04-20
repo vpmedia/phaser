@@ -3,11 +3,12 @@ import { DisplayObject } from '../display/display_object';
 import { setUserSelect, setTouchAction } from '../display/canvas/util';
 import { valueToColor } from '../util/math';
 import { SCALE_LINEAR, SCALE_NEAREST } from './const';
+import { Game } from './game';
 
 export class Stage extends DisplayObject {
   /**
    * TBD.
-   * @param {object} game - TBD.
+   * @param {Game} game - TBD.
    */
   constructor(game) {
     super();
@@ -34,7 +35,7 @@ export class Stage extends DisplayObject {
 
   /**
    * TBD.
-   * @param color - TBD.
+   * @param {number} color - TBD.
    */
   setBackgroundColor(color) {
     if (this.game.config.transparent) {
@@ -110,6 +111,7 @@ export class Stage extends DisplayObject {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get backgroundColor() {
     return this._bgColor.color;
@@ -124,6 +126,7 @@ export class Stage extends DisplayObject {
 
   /**
    * TBD.
+   * @returns {boolean} TBD.
    */
   get smoothed() {
     return window.PhaserRegistry.TEXTURE_SCALE_MODE === SCALE_LINEAR;

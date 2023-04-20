@@ -1,9 +1,10 @@
+import { Game } from '../core/game';
 import { DisplayObject } from './display_object';
 
 export class SpriteBatch extends DisplayObject {
   /**
    * TBD.
-   * @param {object} game - TBD.
+   * @param {Game} game - TBD.
    */
   constructor(game) {
     super();

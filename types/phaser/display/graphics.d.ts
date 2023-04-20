@@ -25,7 +25,7 @@ export class Graphics extends DisplayObject {
     cachedSpriteDirty: boolean;
     /**
      * TBD.
-     * @param lineWidth
+     * @param lineWidth - TBD.
      * @param color - TBD.
      * @param alpha - TBD.
      */
@@ -45,40 +45,40 @@ export class Graphics extends DisplayObject {
     lineTo(x: number, y: number): Graphics;
     /**
      * TBD.
-     * @param cpX
-     * @param cpY
-     * @param toX
-     * @param toY
+     * @param cpX - TBD.
+     * @param cpY - TBD.
+     * @param toX - TBD.
+     * @param toY - TBD.
      */
     quadraticCurveTo(cpX: any, cpY: any, toX: any, toY: any): Graphics;
     /**
      * TBD.
-     * @param cpX
-     * @param cpY
-     * @param cpX2
-     * @param cpY2
-     * @param toX
-     * @param toY
+     * @param cpX - TBD.
+     * @param cpY - TBD.
+     * @param cpX2 - TBD.
+     * @param cpY2 - TBD.
+     * @param toX - TBD.
+     * @param toY - TBD.
      */
     bezierCurveTo(cpX: any, cpY: any, cpX2: any, cpY2: any, toX: any, toY: any): Graphics;
     /**
      * TBD.
-     * @param x1
-     * @param y1
-     * @param x2
-     * @param y2
+     * @param x1 - TBD.
+     * @param y1 - TBD.
+     * @param x2 - TBD.
+     * @param y2 - TBD.
      * @param radius - TBD.
      */
     arcTo(x1: any, y1: any, x2: any, y2: any, radius: any): Graphics;
     /**
      * TBD.
-     * @param cx
-     * @param cy
+     * @param cx - TBD.
+     * @param cy - TBD.
      * @param radius - TBD.
-     * @param startAngle
-     * @param endAngle
-     * @param anticlockwise
-     * @param segments
+     * @param startAngle - TBD.
+     * @param endAngle - TBD.
+     * @param anticlockwise - TBD.
+     * @param segments - TBD.
      */
     arc(cx: any, cy: any, radius: any, startAngle: any, endAngle: any, anticlockwise?: boolean, segments?: number): Graphics;
     /**
@@ -127,7 +127,7 @@ export class Graphics extends DisplayObject {
     drawEllipse(x: number, y: number, width: number, height: number): Graphics;
     /**
      * TBD.
-     * @param path
+     * @param path - TBD.
      */
     drawPolygon(path: any): Graphics;
     /**
@@ -148,8 +148,8 @@ export class Graphics extends DisplayObject {
     worldTransform: any;
     /**
      * TBD.
-     * @param point
-     * @param tempPoint
+     * @param point - TBD.
+     * @param tempPoint - TBD.
      */
     containsPoint(point: any, tempPoint: any): boolean;
     /**
@@ -162,20 +162,20 @@ export class Graphics extends DisplayObject {
     updateCachedSpriteTexture(): void;
     /**
      * TBD.
-     * @param shape
+     * @param shape - TBD.
      */
     drawShape(shape: any): GraphicsData;
     /**
      * TBD.
-     * @param points
-     * @param cull
+     * @param points - TBD.
+     * @param cull - TBD.
      */
     drawTriangle(points: any, cull?: boolean): void;
     /**
      * TBD.
-     * @param vertices
-     * @param indices
-     * @param cull
+     * @param vertices - TBD.
+     * @param indices - TBD.
+     * @param cull - TBD.
      */
     drawTriangles(vertices: any, indices: any, cull?: boolean): void;
 }

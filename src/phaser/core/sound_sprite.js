@@ -1,7 +1,9 @@
+import { Game } from './game';
+
 export class SoundSprite {
   /**
    * TBD.
-   * @param {object} game - TBD.
+   * @param {Game} game - TBD.
    * @param {string} key - TBD.
    */
   constructor(game, key) {

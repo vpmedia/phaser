@@ -1,9 +1,9 @@
 export class CanvasRenderer {
     /**
      * TBD.
-     * @param {object} game - TBD.
+     * @param {Game} game - TBD.
      */
-    constructor(game: object);
+    constructor(game: Game);
     type: number;
     resolution: any;
     clearBeforeRender: any;
@@ -51,4 +51,5 @@ export class CanvasRenderer {
     mapBlendModes(): void;
 }
 import * as CanvasMaskManager from './masker';
+import { Game } from '../../core/game';
 //# sourceMappingURL=renderer.d.ts.map

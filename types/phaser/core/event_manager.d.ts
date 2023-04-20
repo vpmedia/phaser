@@ -27,6 +27,7 @@ export class EventManager {
     _parent: any;
     /**
      * TBD.
+     * @returns {Signal} TBD.
      */
     get onAddedToGroup(): Signal;
     /**
@@ -36,6 +37,7 @@ export class EventManager {
     onAddedToGroup$dispatch(...args: any[]): void;
     /**
      * TBD.
+     * @returns {Signal} TBD.
      */
     get onRemovedFromGroup(): Signal;
     /**
@@ -45,6 +47,7 @@ export class EventManager {
     onRemovedFromGroup$dispatch(...args: any[]): void;
     /**
      * TBD.
+     * @returns {Signal} TBD.
      */
     get onDestroy(): Signal;
     /**
@@ -54,6 +57,7 @@ export class EventManager {
     onDestroy$dispatch(...args: any[]): void;
     /**
      * TBD.
+     * @returns {Signal} TBD.
      */
     get onOutOfBounds(): Signal;
     /**
@@ -63,6 +67,7 @@ export class EventManager {
     onOutOfBounds$dispatch(...args: any[]): void;
     /**
      * TBD.
+     * @returns {Signal} TBD.
      */
     get onEnterBounds(): Signal;
     /**
@@ -72,6 +77,7 @@ export class EventManager {
     onEnterBounds$dispatch(...args: any[]): void;
     /**
      * TBD.
+     * @returns {Signal} TBD.
      */
     get onInputOver(): Signal;
     /**
@@ -81,6 +87,7 @@ export class EventManager {
     onInputOver$dispatch(...args: any[]): void;
     /**
      * TBD.
+     * @returns {Signal} TBD.
      */
     get onInputOut(): Signal;
     /**
@@ -90,6 +97,7 @@ export class EventManager {
     onInputOut$dispatch(...args: any[]): void;
     /**
      * TBD.
+     * @returns {Signal} TBD.
      */
     get onInputDown(): Signal;
     /**
@@ -99,6 +107,7 @@ export class EventManager {
     onInputDown$dispatch(...args: any[]): void;
     /**
      * TBD.
+     * @returns {Signal} TBD.
      */
     get onInputUp(): Signal;
     /**
@@ -108,6 +117,7 @@ export class EventManager {
     onInputUp$dispatch(...args: any[]): void;
     /**
      * TBD.
+     * @returns {Signal} TBD.
      */
     get onDragStart(): Signal;
     /**
@@ -117,6 +127,7 @@ export class EventManager {
     onDragStart$dispatch(...args: any[]): void;
     /**
      * TBD.
+     * @returns {Signal} TBD.
      */
     get onDragUpdate(): Signal;
     /**
@@ -126,6 +137,7 @@ export class EventManager {
     onDragUpdate$dispatch(...args: any[]): void;
     /**
      * TBD.
+     * @returns {Signal} TBD.
      */
     get onDragStop(): Signal;
     /**
@@ -135,6 +147,7 @@ export class EventManager {
     onDragStop$dispatch(...args: any[]): void;
     /**
      * TBD.
+     * @returns {Signal} TBD.
      */
     get onAnimationStart(): Signal;
     /**
@@ -144,6 +157,7 @@ export class EventManager {
     onAnimationStart$dispatch(...args: any[]): void;
     /**
      * TBD.
+     * @returns {Signal} TBD.
      */
     get onAnimationComplete(): Signal;
     /**
@@ -153,6 +167,7 @@ export class EventManager {
     onAnimationComplete$dispatch(...args: any[]): void;
     /**
      * TBD.
+     * @returns {Signal} TBD.
      */
     get onAnimationLoop(): Signal;
     /**

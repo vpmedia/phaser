@@ -2,11 +2,11 @@ export class Tween {
     /**
      * TBD.
      * @param target - TBD.
-     * @param {object} game - TBD.
+     * @param {Game} game - TBD.
      * @param manager
      */
-    constructor(target: any, game: object, manager: any);
-    game: any;
+    constructor(target: any, game: Game, manager: any);
+    game: Game;
     target: any;
     manager: any;
     timeline: any[];
@@ -166,6 +166,7 @@ export class Tween {
      */
     get totalDuration(): number;
 }
+import { Game } from './game';
 import { Signal } from './signal';
 import * as MathUtils from '../util/math';
 //# sourceMappingURL=tween.d.ts.map

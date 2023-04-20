@@ -33,13 +33,13 @@ export class DisplayObject {
     /**
      * TBD.
      * @param child - TBD.
-     * @param index - TBD.
+     * @param {number} index - TBD.
      */
-    addChildAt(child: any, index: any): any;
+    addChildAt(child: any, index: number): any;
     /**
      * TBD.
      * @param child - TBD.
-     * @param child2
+     * @param child2 - TBD.
      */
     swapChildren(child: any, child2: any): void;
     /**
@@ -50,14 +50,14 @@ export class DisplayObject {
     /**
      * TBD.
      * @param child - TBD.
-     * @param index - TBD.
+     * @param {number} index - TBD.
      */
-    setChildIndex(child: any, index: any): void;
+    setChildIndex(child: any, index: number): void;
     /**
      * TBD.
-     * @param index - TBD.
+     * @param {number} index - TBD.
      */
-    getChildAt(index: any): any;
+    getChildAt(index: number): any;
     /**
      * TBD.
      * @param child - TBD.
@@ -65,36 +65,38 @@ export class DisplayObject {
     removeChild(child: any): any;
     /**
      * TBD.
-     * @param index - TBD.
+     * @param {number} index - TBD.
      */
-    removeChildAt(index: any): any;
+    removeChildAt(index: number): any;
     /**
      * TBD.
-     * @param beginIndex
-     * @param endIndex
+     * @param {number} beginIndex - TBD.
+     * @param {number} endIndex - TBD.
      */
-    removeChildren(beginIndex: any, endIndex: any): any[];
+    removeChildren(beginIndex: number, endIndex: number): any[];
     /**
      * TBD.
-     * @param parent
+     * @param parent - TBD.
      */
     updateTransform(parent: any): DisplayObject;
     rotationCache: any;
     worldRotation: number;
     /**
      * TBD.
-     * @param targetCoordinateSpace
+     * @param targetCoordinateSpace - TBD.
      */
     getBounds(targetCoordinateSpace: any): Rectangle;
     /**
      * TBD.
+     * @returns {Rectangle} TBD.
      */
     getLocalBounds(): Rectangle;
     /**
      * TBD.
      * @param child - TBD.
+     * @returns {boolean} TBD.
      */
-    contains(child: any): any;
+    contains(child: any): boolean;
     /**
      * TBD.
      * @param renderSession - TBD.
@@ -129,7 +131,7 @@ export class DisplayObject {
     /**
      * TBD.
      * @param position - TBD.
-     * @param from
+     * @param from - TBD.
      */
     toLocal(position: any, from: any): Point;
     /**
@@ -152,6 +154,7 @@ export class DisplayObject {
     set width(arg: number);
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get width(): number;
     _width: number;
@@ -161,6 +164,7 @@ export class DisplayObject {
     set height(arg: number);
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get height(): number;
     _height: number;
@@ -170,6 +174,7 @@ export class DisplayObject {
     set x(arg: number);
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get x(): number;
     /**
@@ -178,10 +183,12 @@ export class DisplayObject {
     set y(arg: number);
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get y(): number;
     /**
      * TBD.
+     * @returns {boolean} TBD.
      */
     get worldVisible(): boolean;
     /**
@@ -194,10 +201,12 @@ export class DisplayObject {
     get mask(): any;
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get offsetX(): number;
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get offsetY(): number;
     /**
@@ -206,6 +215,7 @@ export class DisplayObject {
     set centerX(arg: number);
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get centerX(): number;
     /**
@@ -214,6 +224,7 @@ export class DisplayObject {
     set centerY(arg: number);
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get centerY(): number;
     /**
@@ -222,6 +233,7 @@ export class DisplayObject {
     set left(arg: number);
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get left(): number;
     /**
@@ -230,6 +242,7 @@ export class DisplayObject {
     set right(arg: number);
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get right(): number;
     /**
@@ -238,6 +251,7 @@ export class DisplayObject {
     set top(arg: number);
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get top(): number;
     /**
@@ -246,6 +260,7 @@ export class DisplayObject {
     set bottom(arg: number);
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get bottom(): number;
 }
