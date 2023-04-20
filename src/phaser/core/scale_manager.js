@@ -139,7 +139,7 @@ export class ScaleManager {
 
   /**
    * TBD.
-   * @param config
+   * @param config - TBD.
    */
   parseConfig(config) {
     if (config.scaleMode !== undefined) {
@@ -236,10 +236,10 @@ export class ScaleManager {
 
   /**
    * TBD.
-   * @param hScale
-   * @param vScale
-   * @param hTrim
-   * @param vTrim
+   * @param hScale - TBD.
+   * @param vScale - TBD.
+   * @param hTrim - TBD.
+   * @param vTrim - TBD.
    */
   setUserScale(hScale, vScale, hTrim, vTrim) {
     this._userScaleFactor.setTo(hScale, vScale);
@@ -250,7 +250,7 @@ export class ScaleManager {
   /**
    * TBD.
    * @param callback - TBD.
-   * @param context
+   * @param context - TBD.
    */
   setResizeCallback(callback, context) {
     this.onResize = callback;
@@ -282,10 +282,10 @@ export class ScaleManager {
 
   /**
    * TBD.
-   * @param minWidth
-   * @param minHeight
-   * @param maxWidth
-   * @param maxHeight
+   * @param minWidth - TBD.
+   * @param minHeight - TBD.
+   * @param maxWidth - TBD.
+   * @param maxHeight - TBD.
    */
   setMinMax(minWidth, minHeight, maxWidth, maxHeight) {
     this.minWidth = minWidth;
@@ -381,8 +381,8 @@ export class ScaleManager {
 
   /**
    * TBD.
-   * @param forceLandscape
-   * @param forcePortrait
+   * @param forceLandscape - TBD.
+   * @param forcePortrait - TBD.
    */
   forceOrientation(forceLandscape = false, forcePortrait = false) {
     this.forceLandscape = forceLandscape;
@@ -392,7 +392,7 @@ export class ScaleManager {
 
   /**
    * TBD.
-   * @param orientation
+   * @param orientation - TBD.
    */
   classifyOrientation(orientation) {
     if (orientation === 'portrait-primary' || orientation === 'portrait-secondary') {
@@ -428,7 +428,7 @@ export class ScaleManager {
 
   /**
    * TBD.
-   * @param event
+   * @param event - TBD.
    */
   orientationChange(event) {
     this.event = event;
@@ -437,7 +437,7 @@ export class ScaleManager {
 
   /**
    * TBD.
-   * @param event
+   * @param event - TBD.
    */
   windowResize(event) {
     this.event = event;
@@ -532,8 +532,8 @@ export class ScaleManager {
 
   /**
    * TBD.
-   * @param horizontal
-   * @param vertical
+   * @param horizontal - TBD.
+   * @param vertical - TBD.
    */
   alignCanvas(horizontal, vertical) {
     const parentBounds = this.getParentBounds(this._tempBounds);
@@ -608,8 +608,8 @@ export class ScaleManager {
 
   /**
    * TBD.
-   * @param cssWidth
-   * @param cssHeight
+   * @param cssWidth - TBD.
+   * @param cssHeight - TBD.
    */
   resetCanvas(cssWidth = this.width + 'px', cssHeight = this.height + 'px') {
     const canvas = this.game.canvas;
@@ -625,7 +625,7 @@ export class ScaleManager {
 
   /**
    * TBD.
-   * @param force
+   * @param force - TBD.
    */
   queueUpdate(force) {
     if (force) {
@@ -652,7 +652,7 @@ export class ScaleManager {
 
   /**
    * TBD.
-   * @param expanding
+   * @param expanding - TBD.
    */
   setShowAll(expanding = false) {
     const bounds = this.getParentBounds(this._tempBounds);
@@ -700,8 +700,8 @@ export class ScaleManager {
 
   /**
    * TBD.
-   * @param antialias
-   * @param allowTrampoline
+   * @param antialias - TBD.
+   * @param allowTrampoline - TBD.
    */
   startFullScreen(antialias, allowTrampoline) {
     if (this.isFullScreen) {
@@ -782,7 +782,7 @@ export class ScaleManager {
 
   /**
    * TBD.
-   * @param enteringFullscreen
+   * @param enteringFullscreen - TBD.
    */
   prepScreenMode(enteringFullscreen) {
     const fsTarget = this._createdFullScreenTarget || this.fullScreenTarget;
@@ -816,7 +816,7 @@ export class ScaleManager {
 
   /**
    * TBD.
-   * @param event
+   * @param event - TBD.
    */
   fullScreenChange(event) {
     this.event = event;
@@ -835,7 +835,7 @@ export class ScaleManager {
 
   /**
    * TBD.
-   * @param event
+   * @param event - TBD.
    */
   fullScreenError(event) {
     this.event = event;

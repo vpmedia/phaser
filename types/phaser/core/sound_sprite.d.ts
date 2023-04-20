@@ -13,18 +13,18 @@ export class SoundSprite {
     sounds: {};
     /**
      * TBD.
-     * @param marker
+     * @param marker - TBD.
      * @param volume - TBD.
      */
     play(marker: any, volume?: number): any;
     /**
      * TBD.
-     * @param marker
+     * @param marker - TBD.
      */
     stop(marker: any): void;
     /**
      * TBD.
-     * @param marker
+     * @param marker - TBD.
      */
     get(marker: any): any;
 }

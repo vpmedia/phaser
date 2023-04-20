@@ -117,7 +117,7 @@ export class Timer {
 
   /**
    * TBD.
-   * @param event
+   * @param event - TBD.
    */
   remove(event) {
     for (let i = 0; i < this.events.length; i += 1) {
@@ -142,8 +142,8 @@ export class Timer {
 
   /**
    * TBD.
-   * @param a
-   * @param b
+   * @param a - TBD.
+   * @param b - TBD.
    */
   sortHandler(a, b) {
     if (a.tick < b.tick) {
@@ -171,7 +171,7 @@ export class Timer {
 
   /**
    * TBD.
-   * @param time
+   * @param time - TBD.
    */
   update(time) {
     if (this.paused) {
@@ -256,7 +256,7 @@ export class Timer {
 
   /**
    * TBD.
-   * @param baseTime
+   * @param baseTime - TBD.
    */
   adjustEvents(baseTime) {
     for (let i = 0; i < this.events.length; i += 1) {

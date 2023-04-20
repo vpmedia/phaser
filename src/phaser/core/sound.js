@@ -6,9 +6,9 @@ export class Sound {
    * TBD.
    * @param {Game} game - TBD.
    * @param {string} key - TBD.
-   * @param volume - TBD.
-   * @param loop - TBD.
-   * @param connect - TBD.
+   * @param {number} volume - TBD.
+   * @param {boolean} loop - TBD.
+   * @param {boolean} connect - TBD.
    */
   constructor(game, key, volume = 1, loop = false, connect = null) {
     // TODO

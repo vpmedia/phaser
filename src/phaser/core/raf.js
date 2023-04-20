@@ -27,7 +27,7 @@ export class RequestAnimationFrame {
 
   /**
    * TBD.
-   * @param rafTime
+   * @param {number} rafTime - TBD.
    */
   update(rafTime) {
     this.game.update(rafTime);

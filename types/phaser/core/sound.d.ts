@@ -3,11 +3,11 @@ export class Sound {
      * TBD.
      * @param {Game} game - TBD.
      * @param {string} key - TBD.
-     * @param volume - TBD.
-     * @param loop - TBD.
-     * @param connect - TBD.
+     * @param {number} volume - TBD.
+     * @param {boolean} loop - TBD.
+     * @param {boolean} connect - TBD.
      */
-    constructor(game: Game, key: string, volume?: number, loop?: boolean, connect?: any);
+    constructor(game: Game, key: string, volume?: number, loop?: boolean, connect?: boolean);
     game: Game;
     name: string;
     key: string;

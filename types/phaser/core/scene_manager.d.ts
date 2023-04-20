@@ -2,7 +2,7 @@ export class SceneManager {
     /**
      * TBD.
      * @param {Game} game - TBD.
-     * @param pendingState
+     * @param pendingState - TBD.
      */
     constructor(game: Game, pendingState: any);
     game: Game;
@@ -27,8 +27,8 @@ export class SceneManager {
     /**
      * TBD.
      * @param {string} key - TBD.
-     * @param state
-     * @param autoStart
+     * @param state - TBD.
+     * @param autoStart - TBD.
      */
     add(key: string, state: any, autoStart?: boolean): any;
     /**
@@ -40,16 +40,16 @@ export class SceneManager {
     /**
      * TBD.
      * @param {string} key - TBD.
-     * @param clearWorld
-     * @param clearCache
-     * @param {...any} args
+     * @param clearWorld - TBD.
+     * @param clearCache - TBD.
+     * @param {...any} args - TBD.
      */
     start(key: string, clearWorld?: boolean, clearCache?: boolean, ...args: any[]): void;
     /**
      * TBD.
-     * @param clearWorld
-     * @param clearCache
-     * @param {...any} args
+     * @param clearWorld - TBD.
+     * @param clearCache - TBD.
+     * @param {...any} args - TBD.
      */
     restart(clearWorld?: boolean, clearCache?: boolean, ...args: any[]): void;
     /**

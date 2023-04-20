@@ -37,7 +37,7 @@ export class SoundManager {
     removeUnlockHandlers(): void;
     /**
      * TBD.
-     * @param event
+     * @param event - TBD.
      */
     onUnlockEvent(event: any): void;
     /**
@@ -59,9 +59,9 @@ export class SoundManager {
     decode(key: string): void;
     /**
      * TBD.
-     * @param files
+     * @param files - TBD.
      * @param callback - TBD.
-     * @param callbackContext
+     * @param callbackContext - TBD.
      */
     setDecodedCallback(files: any, callback: any, callbackContext: any): void;
     /**
@@ -72,8 +72,8 @@ export class SoundManager {
      * TBD.
      * @param {string} key - TBD.
      * @param volume - TBD.
-     * @param loop
-     * @param connect
+     * @param loop - TBD.
+     * @param connect - TBD.
      */
     add(key: string, volume?: number, loop?: boolean, connect?: boolean): Sound;
     /**
@@ -83,7 +83,7 @@ export class SoundManager {
     addSprite(key: string): SoundSprite;
     /**
      * TBD.
-     * @param sound
+     * @param sound - TBD.
      */
     remove(sound: any): boolean;
     /**
@@ -95,7 +95,7 @@ export class SoundManager {
      * TBD.
      * @param {string} key - TBD.
      * @param volume - TBD.
-     * @param loop
+     * @param loop - TBD.
      */
     play(key: string, volume?: number, loop?: boolean): Sound;
     /**

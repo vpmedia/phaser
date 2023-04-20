@@ -72,7 +72,7 @@ export class Timer {
     stop(clearEvents?: boolean): void;
     /**
      * TBD.
-     * @param event
+     * @param event - TBD.
      */
     remove(event: any): boolean;
     /**
@@ -81,8 +81,8 @@ export class Timer {
     order(): void;
     /**
      * TBD.
-     * @param a
-     * @param b
+     * @param a - TBD.
+     * @param b - TBD.
      */
     sortHandler(a: any, b: any): 0 | 1 | -1;
     /**
@@ -91,7 +91,7 @@ export class Timer {
     clearPendingEvents(): void;
     /**
      * TBD.
-     * @param time
+     * @param time - TBD.
      */
     update(time: any): boolean;
     /**
@@ -104,7 +104,7 @@ export class Timer {
     _pause(): void;
     /**
      * TBD.
-     * @param baseTime
+     * @param baseTime - TBD.
      */
     adjustEvents(baseTime: any): void;
     /**

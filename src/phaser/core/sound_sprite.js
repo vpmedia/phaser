@@ -28,7 +28,7 @@ export class SoundSprite {
 
   /**
    * TBD.
-   * @param marker
+   * @param marker - TBD.
    * @param volume - TBD.
    */
   play(marker, volume = 1) {
@@ -37,7 +37,7 @@ export class SoundSprite {
 
   /**
    * TBD.
-   * @param marker
+   * @param marker - TBD.
    */
   stop(marker) {
     if (!marker) {
@@ -51,7 +51,7 @@ export class SoundSprite {
 
   /**
    * TBD.
-   * @param marker
+   * @param marker - TBD.
    */
   get(marker) {
     return this.sounds[marker];

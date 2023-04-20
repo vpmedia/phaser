@@ -5,7 +5,7 @@ export class SceneManager {
   /**
    * TBD.
    * @param {Game} game - TBD.
-   * @param pendingState
+   * @param pendingState - TBD.
    */
   constructor(game, pendingState) {
     this.game = game;
@@ -40,8 +40,8 @@ export class SceneManager {
   /**
    * TBD.
    * @param {string} key - TBD.
-   * @param state
-   * @param autoStart
+   * @param state - TBD.
+   * @param autoStart - TBD.
    */
   add(key, state, autoStart = false) {
     let newState = null;
@@ -85,9 +85,9 @@ export class SceneManager {
   /**
    * TBD.
    * @param {string} key - TBD.
-   * @param clearWorld
-   * @param clearCache
-   * @param {...any} args
+   * @param clearWorld - TBD.
+   * @param clearCache - TBD.
+   * @param {...any} args - TBD.
    */
   start(key, clearWorld = true, clearCache = false, ...args) {
     if (this.checkState(key)) {
@@ -103,9 +103,9 @@ export class SceneManager {
 
   /**
    * TBD.
-   * @param clearWorld
-   * @param clearCache
-   * @param {...any} args
+   * @param clearWorld - TBD.
+   * @param clearCache - TBD.
+   * @param {...any} args - TBD.
    */
   restart(clearWorld = true, clearCache = false, ...args) {
     this._pendingState = this.current;

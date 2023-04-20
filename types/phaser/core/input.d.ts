@@ -67,19 +67,19 @@ export class Input {
     /**
      * TBD.
      * @param callback - TBD.
-     * @param context
+     * @param context - TBD.
      */
     setInteractiveCandidateHandler(callback: any, context: any): void;
     /**
      * TBD.
      * @param callback - TBD.
-     * @param context
+     * @param context - TBD.
      */
     addMoveCallback(callback: any, context: any): void;
     /**
      * TBD.
      * @param callback - TBD.
-     * @param context
+     * @param context - TBD.
      */
     deleteMoveCallback(callback: any, context: any): void;
     /**
@@ -92,7 +92,7 @@ export class Input {
     update(): void;
     /**
      * TBD.
-     * @param hard
+     * @param hard - TBD.
      */
     reset(hard?: boolean): void;
     /**
@@ -103,51 +103,51 @@ export class Input {
     resetSpeed(x: number, y: number): void;
     /**
      * TBD.
-     * @param event
+     * @param event - TBD.
      */
     startPointer(event: any): any;
     /**
      * TBD.
-     * @param event
+     * @param event - TBD.
      */
     updatePointer(event: any): any;
     /**
      * TBD.
-     * @param event
+     * @param event - TBD.
      */
     stopPointer(event: any): any;
     /**
      * TBD.
-     * @param limit
+     * @param limit - TBD.
      */
     countActivePointers(limit?: number): number;
     /**
      * TBD.
-     * @param isActive
+     * @param isActive - TBD.
      */
     getPointer(isActive?: boolean): any;
     /**
      * TBD.
-     * @param identifier
+     * @param identifier - TBD.
      */
     getPointerFromIdentifier(identifier: any): any;
     /**
      * TBD.
-     * @param pointerId
+     * @param pointerId - TBD.
      */
     getPointerFromId(pointerId: any): any;
     /**
      * TBD.
-     * @param displayObject
-     * @param pointer
-     * @param output
+     * @param displayObject - TBD.
+     * @param pointer - TBD.
+     * @param output - TBD.
      */
     getLocalPosition(displayObject: any, pointer: any, output?: any): any;
     /**
      * TBD.
-     * @param displayObject
-     * @param pointer
-     * @param localPoint
+     * @param displayObject - TBD.
+     * @param pointer - TBD.
+     * @param localPoint - TBD.
      */
     hitTest(displayObject: any, pointer: any, localPoint: any): any;
     /**

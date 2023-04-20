@@ -125,7 +125,7 @@ export class Input {
   /**
    * TBD.
    * @param callback - TBD.
-   * @param context
+   * @param context - TBD.
    */
   setInteractiveCandidateHandler(callback, context) {
     this.customCandidateHandler = callback;
@@ -135,7 +135,7 @@ export class Input {
   /**
    * TBD.
    * @param callback - TBD.
-   * @param context
+   * @param context - TBD.
    */
   addMoveCallback(callback, context) {
     this.moveCallbacks.push({ callback, context });
@@ -144,7 +144,7 @@ export class Input {
   /**
    * TBD.
    * @param callback - TBD.
-   * @param context
+   * @param context - TBD.
    */
   deleteMoveCallback(callback, context) {
     let i = this.moveCallbacks.length;
@@ -192,7 +192,7 @@ export class Input {
 
   /**
    * TBD.
-   * @param hard
+   * @param hard - TBD.
    */
   reset(hard = false) {
     if (!this.game.isBooted || this.resetLocked) {
@@ -231,7 +231,7 @@ export class Input {
 
   /**
    * TBD.
-   * @param event
+   * @param event - TBD.
    */
   startPointer(event) {
     if (this.maxPointers >= 0 && this.countActivePointers(this.maxPointers) >= this.maxPointers) {
@@ -254,7 +254,7 @@ export class Input {
 
   /**
    * TBD.
-   * @param event
+   * @param event - TBD.
    */
   updatePointer(event) {
     if (this.pointer1.active && this.pointer1.identifier === event.identifier) {
@@ -274,7 +274,7 @@ export class Input {
 
   /**
    * TBD.
-   * @param event
+   * @param event - TBD.
    */
   stopPointer(event) {
     if (this.pointer1.active && this.pointer1.identifier === event.identifier) {
@@ -294,7 +294,7 @@ export class Input {
 
   /**
    * TBD.
-   * @param limit
+   * @param limit - TBD.
    */
   countActivePointers(limit = this.pointers.length) {
     let count = limit;
@@ -309,7 +309,7 @@ export class Input {
 
   /**
    * TBD.
-   * @param isActive
+   * @param isActive - TBD.
    */
   getPointer(isActive = false) {
     for (let i = 0; i < this.pointers.length; i += 1) {
@@ -323,7 +323,7 @@ export class Input {
 
   /**
    * TBD.
-   * @param identifier
+   * @param identifier - TBD.
    */
   getPointerFromIdentifier(identifier) {
     for (let i = 0; i < this.pointers.length; i += 1) {
@@ -338,7 +338,7 @@ export class Input {
 
   /**
    * TBD.
-   * @param pointerId
+   * @param pointerId - TBD.
    */
   getPointerFromId(pointerId) {
     for (let i = 0; i < this.pointers.length; i += 1) {
@@ -353,9 +353,9 @@ export class Input {
 
   /**
    * TBD.
-   * @param displayObject
-   * @param pointer
-   * @param output
+   * @param displayObject - TBD.
+   * @param pointer - TBD.
+   * @param output - TBD.
    */
   getLocalPosition(displayObject, pointer, output = null) {
     const result = output || new Point();
@@ -369,9 +369,9 @@ export class Input {
 
   /**
    * TBD.
-   * @param displayObject
-   * @param pointer
-   * @param localPoint
+   * @param displayObject - TBD.
+   * @param pointer - TBD.
+   * @param localPoint - TBD.
    */
   hitTest(displayObject, pointer, localPoint) {
     if (!displayObject.worldVisible) {

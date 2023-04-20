@@ -124,7 +124,7 @@ export class SoundManager {
 
   /**
    * TBD.
-   * @param event
+   * @param event - TBD.
    */
   onUnlockEvent(event) {
     const initialState = this.context.state;
@@ -229,9 +229,9 @@ export class SoundManager {
 
   /**
    * TBD.
-   * @param files
+   * @param files - TBD.
    * @param callback - TBD.
-   * @param callbackContext
+   * @param callbackContext - TBD.
    */
   setDecodedCallback(files, callback, callbackContext) {
     if (typeof files === 'string') {
@@ -287,8 +287,8 @@ export class SoundManager {
    * TBD.
    * @param {string} key - TBD.
    * @param volume - TBD.
-   * @param loop
-   * @param connect
+   * @param loop - TBD.
+   * @param connect - TBD.
    */
   add(key, volume = 1, loop = false, connect = this.connectToMaster) {
     const sound = new Sound(this.game, key, volume, loop, connect);
@@ -306,7 +306,7 @@ export class SoundManager {
 
   /**
    * TBD.
-   * @param sound
+   * @param sound - TBD.
    */
   remove(sound) {
     let i = this._sounds.length;
@@ -343,7 +343,7 @@ export class SoundManager {
    * TBD.
    * @param {string} key - TBD.
    * @param volume - TBD.
-   * @param loop
+   * @param loop - TBD.
    */
   play(key, volume = 1, loop = false) {
     if (this.noAudio) {
