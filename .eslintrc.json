@@ -20,7 +20,7 @@
   },
   "rules": {
     "no-unused-vars": "warn",
-    "require-jsdoc": ["warn", {
+    "jsdoc/require-jsdoc": ["warn", {
       "require": {
           "FunctionDeclaration": true,
           "MethodDefinition": true,
