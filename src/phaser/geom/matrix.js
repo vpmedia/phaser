@@ -24,7 +24,7 @@ export class Matrix {
 
   /**
    * TBD.
-   * @param array
+   * @param array - TBD.
    */
   fromArray(array) {
     return this.setTo(array[0], array[1], array[3], array[4], array[2], array[5]);
@@ -32,12 +32,12 @@ export class Matrix {
 
   /**
    * TBD.
-   * @param a
-   * @param b
-   * @param c
-   * @param d
-   * @param tx
-   * @param ty
+   * @param a - TBD.
+   * @param b - TBD.
+   * @param c - TBD.
+   * @param d - TBD.
+   * @param tx - TBD.
+   * @param ty - TBD.
    */
   setTo(a, b, c, d, tx, ty) {
     this.a = a;
@@ -58,7 +58,7 @@ export class Matrix {
 
   /**
    * TBD.
-   * @param matrix
+   * @param matrix - TBD.
    */
   copyTo(matrix) {
     matrix.copyFrom(this);
@@ -67,7 +67,7 @@ export class Matrix {
 
   /**
    * TBD.
-   * @param matrix
+   * @param matrix - TBD.
    */
   copyFrom(matrix) {
     this.a = matrix.a;
@@ -81,8 +81,8 @@ export class Matrix {
 
   /**
    * TBD.
-   * @param transpose
-   * @param output
+   * @param transpose - TBD.
+   * @param output - TBD.
    */
   toArray(transpose = false, output = null) {
     const result = output || new Float32Array(9);
@@ -112,8 +112,8 @@ export class Matrix {
 
   /**
    * TBD.
-   * @param pos
-   * @param output
+   * @param pos - TBD.
+   * @param output - TBD.
    */
   apply(pos, output = null) {
     const result = output || new Point();
@@ -124,8 +124,8 @@ export class Matrix {
 
   /**
    * TBD.
-   * @param pos
-   * @param output
+   * @param pos - TBD.
+   * @param output - TBD.
    */
   applyInverse(pos, output = null) {
     const result = output || new Point();
@@ -165,7 +165,7 @@ export class Matrix {
 
   /**
    * TBD.
-   * @param angle
+   * @param angle - TBD.
    */
   rotate(angle) {
     const cos = Math.cos(angle);
@@ -184,7 +184,7 @@ export class Matrix {
 
   /**
    * TBD.
-   * @param matrix
+   * @param matrix - TBD.
    */
   append(matrix) {
     const a1 = this.a;

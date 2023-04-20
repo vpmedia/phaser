@@ -25,6 +25,7 @@ export class Ellipse {
    * @param {number} y - TBD.
    * @param {number} width - TBD.
    * @param {number} height - TBD.
+   * @returns {Ellipse} TBD.
    */
   setTo(x, y, width, height) {
     this.x = x;
@@ -36,6 +37,7 @@ export class Ellipse {
 
   /**
    * TBD.
+   * @returns {Rectangle} TBD.
    */
   getBounds() {
     return new Rectangle(this.x - this.width, this.y - this.height, this.width, this.height);
@@ -43,7 +45,8 @@ export class Ellipse {
 
   /**
    * TBD.
-   * @param source
+   * @param source - TBD.
+   * @returns {Ellipse} TBD.
    */
   copyFrom(source) {
     return this.setTo(source.x, source.y, source.width, source.height);
@@ -51,7 +54,8 @@ export class Ellipse {
 
   /**
    * TBD.
-   * @param dest
+   * @param dest - TBD.
+   * @returns {Ellipse} TBD.
    */
   copyTo(dest) {
     dest.x = this.x;
@@ -65,6 +69,7 @@ export class Ellipse {
    * TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
+   * @returns {boolean} TBD.
    */
   contains(x, y) {
     return contains(this, x, y);
@@ -72,7 +77,8 @@ export class Ellipse {
 
   /**
    * TBD.
-   * @param output
+   * @param output - TBD.
+   * @returns {Point} TBD.
    */
   random(output = null) {
     const result = output || new Point();
@@ -87,6 +93,7 @@ export class Ellipse {
 
   /**
    * TBD.
+   * @returns {string} TBD.
    */
   toString() {
     return (

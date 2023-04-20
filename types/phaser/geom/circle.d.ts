@@ -17,7 +17,7 @@ export class Circle {
     circumference(): number;
     /**
      * TBD.
-     * @param output
+     * @param output - TBD.
      */
     random(output?: any): any;
     /**
@@ -28,23 +28,23 @@ export class Circle {
      * TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
-     * @param diameter
+     * @param diameter - TBD.
      */
     setTo(x: number, y: number, diameter: any): Circle;
     /**
      * TBD.
-     * @param source
+     * @param source - TBD.
      */
     copyFrom(source: any): Circle;
     /**
      * TBD.
-     * @param dest
+     * @param dest - TBD.
      */
     copyTo(dest: any): any;
     /**
      * TBD.
-     * @param dest
-     * @param round
+     * @param dest - TBD.
+     * @param round - TBD.
      */
     distance(dest: any, round?: boolean): number;
     /**
@@ -59,20 +59,20 @@ export class Circle {
     contains(x: number, y: number): boolean;
     /**
      * TBD.
-     * @param angle
-     * @param asDegrees
-     * @param out
+     * @param angle - TBD.
+     * @param asDegrees - TBD.
+     * @param out - TBD.
      */
-    circumferencePoint(angle: any, asDegrees: any, out: any): Circle;
+    circumferencePoint(angle: any, asDegrees: any, out: any): Point;
     /**
      * TBD.
-     * @param dx
-     * @param dy
+     * @param dx - TBD.
+     * @param dy - TBD.
      */
     offset(dx: any, dy: any): Circle;
     /**
      * TBD.
-     * @param point
+     * @param point - TBD.
      */
     offsetPoint(point: any): Circle;
     /**
@@ -141,4 +141,5 @@ export class Circle {
     get empty(): boolean;
 }
 import { Rectangle } from './rectangle';
+import { Point } from './point';
 //# sourceMappingURL=circle.d.ts.map

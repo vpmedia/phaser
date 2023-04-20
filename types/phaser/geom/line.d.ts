@@ -12,56 +12,56 @@ export class Line {
     type: number;
     /**
      * TBD.
-     * @param x1
-     * @param y1
-     * @param x2
-     * @param y2
+     * @param x1 - TBD.
+     * @param y1 - TBD.
+     * @param x2 - TBD.
+     * @param y2 - TBD.
      */
     setTo(x1: any, y1: any, x2: any, y2: any): Line;
     /**
      * TBD.
-     * @param startSprite
-     * @param endSprite
-     * @param useCenter
+     * @param startSprite - TBD.
+     * @param endSprite - TBD.
+     * @param useCenter - TBD.
      */
     fromSprite(startSprite: any, endSprite: any, useCenter?: boolean): Line;
     /**
      * TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
-     * @param angle
-     * @param length
+     * @param angle - TBD.
+     * @param length - TBD.
      */
     fromAngle(x: number, y: number, angle: any, length: any): Line;
     /**
      * TBD.
-     * @param angle
-     * @param asDegrees
+     * @param angle - TBD.
+     * @param asDegrees - TBD.
      */
     rotate(angle: any, asDegrees?: boolean): Line;
     /**
      * TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
-     * @param angle
-     * @param asDegrees
+     * @param angle - TBD.
+     * @param asDegrees - TBD.
      */
     rotateAround(x: number, y: number, angle: any, asDegrees?: boolean): Line;
     /**
      * TBD.
-     * @param line
-     * @param asSegment
-     * @param result
+     * @param line - TBD.
+     * @param asSegment - TBD.
+     * @param result - TBD.
      */
-    intersects(line: any, asSegment: any, result: any): boolean;
+    intersects(line: any, asSegment: any, result: any): Point;
     /**
      * TBD.
-     * @param line
+     * @param line - TBD.
      */
     reflect(line: any): number;
     /**
      * TBD.
-     * @param output
+     * @param output - TBD.
      */
     midPoint(output?: any): any;
     /**
@@ -84,13 +84,13 @@ export class Line {
     pointOnSegment(x: number, y: number): boolean;
     /**
      * TBD.
-     * @param output
+     * @param output - TBD.
      */
     random(output?: any): any;
     /**
      * TBD.
-     * @param stepRate
-     * @param results
+     * @param stepRate - TBD.
+     * @param results - TBD.
      */
     coordinatesOnLine(stepRate?: number, results?: any[]): any[];
     /**

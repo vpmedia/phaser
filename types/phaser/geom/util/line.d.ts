@@ -13,9 +13,9 @@ export function clone(input: Line, output?: Line): Line;
  * @param {object} f - TBD.
  * @param {boolean} asSegment - TBD.
  * @param {Point} output - TBD.
- * @returns {boolean} TBD.
+ * @returns {Point} TBD.
  */
-export function intersectsPoints(a: object, b: object, e: object, f: object, asSegment?: boolean, output?: Point): boolean;
+export function intersectsPoints(a: object, b: object, e: object, f: object, asSegment?: boolean, output?: Point): Point;
 /**
  * TBD.
  * @param {object} a - TBD.

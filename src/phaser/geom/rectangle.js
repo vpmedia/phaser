@@ -42,8 +42,8 @@ export class Rectangle {
 
   /**
    * TBD.
-   * @param dx
-   * @param dy
+   * @param dx - TBD.
+   * @param dy - TBD.
    */
   offset(dx, dy) {
     this.x += dx;
@@ -53,7 +53,7 @@ export class Rectangle {
 
   /**
    * TBD.
-   * @param point
+   * @param point - TBD.
    */
   offsetPoint(point) {
     return this.offset(point.x, point.y);
@@ -137,7 +137,7 @@ export class Rectangle {
 
   /**
    * TBD.
-   * @param source
+   * @param source - TBD.
    */
   copyFrom(source) {
     return this.setTo(source.x, source.y, source.width, source.height);
@@ -145,7 +145,7 @@ export class Rectangle {
 
   /**
    * TBD.
-   * @param dest
+   * @param dest - TBD.
    */
   copyTo(dest) {
     dest.x = this.x;
@@ -157,8 +157,8 @@ export class Rectangle {
 
   /**
    * TBD.
-   * @param dx
-   * @param dy
+   * @param dx - TBD.
+   * @param dy - TBD.
    */
   inflate(dx, dy) {
     return inflate(this, dx, dy);
@@ -166,7 +166,7 @@ export class Rectangle {
 
   /**
    * TBD.
-   * @param output
+   * @param output - TBD.
    */
   size(output) {
     return size(this, output);
@@ -185,7 +185,7 @@ export class Rectangle {
 
   /**
    * TBD.
-   * @param output
+   * @param output - TBD.
    */
   clone(output) {
     return clone(this, output);
@@ -202,7 +202,7 @@ export class Rectangle {
 
   /**
    * TBD.
-   * @param b
+   * @param b - TBD.
    */
   containsRect(b) {
     return containsRect(b, this);
@@ -210,7 +210,7 @@ export class Rectangle {
 
   /**
    * TBD.
-   * @param b
+   * @param b - TBD.
    */
   equals(b) {
     return equals(this, b);
@@ -218,8 +218,8 @@ export class Rectangle {
 
   /**
    * TBD.
-   * @param b
-   * @param out
+   * @param b - TBD.
+   * @param out - TBD.
    */
   intersection(b, out) {
     return intersection(this, b, out);
@@ -227,7 +227,7 @@ export class Rectangle {
 
   /**
    * TBD.
-   * @param b
+   * @param b - TBD.
    */
   intersects(b) {
     return intersects(this, b);
@@ -235,11 +235,11 @@ export class Rectangle {
 
   /**
    * TBD.
-   * @param left
-   * @param right
-   * @param top
-   * @param bottom
-   * @param tolerance
+   * @param left - TBD.
+   * @param right - TBD.
+   * @param top - TBD.
+   * @param bottom - TBD.
+   * @param tolerance - TBD.
    */
   intersectsRaw(left, right, top, bottom, tolerance) {
     return intersectsRaw(this, left, right, top, bottom, tolerance);
@@ -247,8 +247,8 @@ export class Rectangle {
 
   /**
    * TBD.
-   * @param b
-   * @param out
+   * @param b - TBD.
+   * @param out - TBD.
    */
   union(b, out) {
     return union(this, b, out);
@@ -256,7 +256,7 @@ export class Rectangle {
 
   /**
    * TBD.
-   * @param output
+   * @param output - TBD.
    */
   random(output = null) {
     const result = output || new Point();
@@ -267,8 +267,8 @@ export class Rectangle {
 
   /**
    * TBD.
-   * @param position
-   * @param output
+   * @param position - TBD.
+   * @param output - TBD.
    */
   getPoint(position, output = null) {
     const result = output || new Point();

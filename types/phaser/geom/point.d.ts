@@ -10,7 +10,7 @@ export class Point {
     type: number;
     /**
      * TBD.
-     * @param source
+     * @param source - TBD.
      */
     copyFrom(source: any): Point;
     /**
@@ -55,20 +55,20 @@ export class Point {
     divide(x: number, y: number): Point;
     /**
      * TBD.
-     * @param min
-     * @param max
+     * @param min - TBD.
+     * @param max - TBD.
      */
     clampX(min: any, max: any): Point;
     /**
      * TBD.
-     * @param min
-     * @param max
+     * @param min - TBD.
+     * @param max - TBD.
      */
     clampY(min: any, max: any): Point;
     /**
      * TBD.
-     * @param min
-     * @param max
+     * @param min - TBD.
+     * @param max - TBD.
      */
     clamp(min: any, max: any): Point;
     /**
@@ -77,32 +77,32 @@ export class Point {
     clone(): Point;
     /**
      * TBD.
-     * @param dest
+     * @param dest - TBD.
      */
     copyTo(dest: any): any;
     /**
      * TBD.
-     * @param b
+     * @param b - TBD.
      */
     distance(b: any): number;
     /**
      * TBD.
-     * @param a
+     * @param a - TBD.
      */
     equals(a: any): boolean;
     /**
      * TBD.
-     * @param a
-     * @param asDegrees
+     * @param a - TBD.
+     * @param asDegrees - TBD.
      */
     angle(a: any, asDegrees?: boolean): number;
     /**
      * TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
-     * @param angle
-     * @param asDegrees
-     * @param dist
+     * @param angle - TBD.
+     * @param asDegrees - TBD.
+     * @param dist - TBD.
      */
     rotate(x: number, y: number, angle: any, asDegrees: any, dist: any): any;
     /**
@@ -115,7 +115,7 @@ export class Point {
     getMagnitudeSq(): number;
     /**
      * TBD.
-     * @param magnitude
+     * @param magnitude - TBD.
      */
     setMagnitude(magnitude: any): Point;
     /**
@@ -128,12 +128,12 @@ export class Point {
     isZero(): boolean;
     /**
      * TBD.
-     * @param a
+     * @param a - TBD.
      */
     dot(a: any): number;
     /**
      * TBD.
-     * @param a
+     * @param a - TBD.
      */
     cross(a: any): number;
     /**

@@ -25,7 +25,7 @@ export function clone(input, output = null) {
  * @param {object} f - TBD.
  * @param {boolean} asSegment - TBD.
  * @param {Point} output - TBD.
- * @returns {boolean} TBD.
+ * @returns {Point} TBD.
  */
 export function intersectsPoints(a, b, e, f, asSegment = true, output = null) {
   const result = output || new Point();

@@ -57,8 +57,8 @@ export function intersects(a, b) {
  * @param {Circle} a - TBD.
  * @param {number} angle - TBD.
  * @param {boolean} asDegrees - TBD.
- * @param {Circle} output - TBD.
- * @returns {Circle} TBD.
+ * @param {Point} output - TBD.
+ * @returns {Point} TBD.
  */
 export function circumferencePoint(a, angle, asDegrees = false, output = null) {
   const result = output || new Point();

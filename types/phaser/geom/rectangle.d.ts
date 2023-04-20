@@ -14,13 +14,13 @@ export class Rectangle {
     type: number;
     /**
      * TBD.
-     * @param dx
-     * @param dy
+     * @param dx - TBD.
+     * @param dy - TBD.
      */
     offset(dx: any, dy: any): Rectangle;
     /**
      * TBD.
-     * @param point
+     * @param point - TBD.
      */
     offsetPoint(point: any): Rectangle;
     /**
@@ -77,23 +77,23 @@ export class Rectangle {
     ceilAll(): void;
     /**
      * TBD.
-     * @param source
+     * @param source - TBD.
      */
     copyFrom(source: any): Rectangle;
     /**
      * TBD.
-     * @param dest
+     * @param dest - TBD.
      */
     copyTo(dest: any): any;
     /**
      * TBD.
-     * @param dx
-     * @param dy
+     * @param dx - TBD.
+     * @param dy - TBD.
      */
     inflate(dx: any, dy: any): Rectangle;
     /**
      * TBD.
-     * @param output
+     * @param output - TBD.
      */
     size(output: any): Point;
     /**
@@ -104,7 +104,7 @@ export class Rectangle {
     resize(width: number, height: number): Rectangle;
     /**
      * TBD.
-     * @param output
+     * @param output - TBD.
      */
     clone(output: any): Rectangle;
     /**
@@ -115,49 +115,49 @@ export class Rectangle {
     contains(x: number, y: number): boolean;
     /**
      * TBD.
-     * @param b
+     * @param b - TBD.
      */
     containsRect(b: any): boolean;
     /**
      * TBD.
-     * @param b
+     * @param b - TBD.
      */
     equals(b: any): boolean;
     /**
      * TBD.
-     * @param b
-     * @param out
+     * @param b - TBD.
+     * @param out - TBD.
      */
     intersection(b: any, out: any): Rectangle;
     /**
      * TBD.
-     * @param b
+     * @param b - TBD.
      */
     intersects(b: any): boolean;
     /**
      * TBD.
-     * @param left
-     * @param right
-     * @param top
-     * @param bottom
-     * @param tolerance
+     * @param left - TBD.
+     * @param right - TBD.
+     * @param top - TBD.
+     * @param bottom - TBD.
+     * @param tolerance - TBD.
      */
     intersectsRaw(left: any, right: any, top: any, bottom: any, tolerance: any): boolean;
     /**
      * TBD.
-     * @param b
-     * @param out
+     * @param b - TBD.
+     * @param out - TBD.
      */
     union(b: any, out: any): Rectangle;
     /**
      * TBD.
-     * @param output
+     * @param output - TBD.
      */
     random(output?: any): any;
     /**
      * TBD.
-     * @param position
-     * @param output
+     * @param position - TBD.
+     * @param output - TBD.
      */
     getPoint(position: any, output?: any): any;
     /**

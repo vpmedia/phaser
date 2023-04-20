@@ -56,6 +56,7 @@ export class Polygon {
    * TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
+   * @returns {boolean} TBD.
    */
   contains(x, y) {
     //  Adapted from http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html by Jonas Raoni Soares Silva
@@ -93,6 +94,7 @@ export class Polygon {
   /**
    * TBD.
    * @param points
+   * @returns {Polygon} TBD.
    */
   setTo(points) {
     this.area = 0;
@@ -131,6 +133,7 @@ export class Polygon {
   /**
    * TBD.
    * @param y0
+   * @returns {number} TBD.
    */
   calculateArea(y0) {
     let p1;

@@ -31,7 +31,7 @@ export class Circle {
 
   /**
    * TBD.
-   * @param output
+   * @param output - TBD.
    */
   random(output = null) {
     const result = output || new Point();
@@ -56,7 +56,7 @@ export class Circle {
    * TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
-   * @param diameter
+   * @param diameter - TBD.
    */
   setTo(x, y, diameter) {
     this.x = x;
@@ -68,7 +68,7 @@ export class Circle {
 
   /**
    * TBD.
-   * @param source
+   * @param source - TBD.
    */
   copyFrom(source) {
     return this.setTo(source.x, source.y, source.diameter);
@@ -76,7 +76,7 @@ export class Circle {
 
   /**
    * TBD.
-   * @param dest
+   * @param dest - TBD.
    */
   copyTo(dest) {
     dest.x = this.x;
@@ -87,8 +87,8 @@ export class Circle {
 
   /**
    * TBD.
-   * @param dest
-   * @param round
+   * @param dest - TBD.
+   * @param round - TBD.
    */
   distance(dest, round = false) {
     const d = distance(this.x, this.y, dest.x, dest.y);
@@ -113,9 +113,9 @@ export class Circle {
 
   /**
    * TBD.
-   * @param angle
-   * @param asDegrees
-   * @param out
+   * @param angle - TBD.
+   * @param asDegrees - TBD.
+   * @param out - TBD.
    */
   circumferencePoint(angle, asDegrees, out) {
     return circumferencePoint(this, angle, asDegrees, out);
@@ -123,8 +123,8 @@ export class Circle {
 
   /**
    * TBD.
-   * @param dx
-   * @param dy
+   * @param dx - TBD.
+   * @param dy - TBD.
    */
   offset(dx, dy) {
     this.x += dx;
@@ -134,7 +134,7 @@ export class Circle {
 
   /**
    * TBD.
-   * @param point
+   * @param point - TBD.
    */
   offsetPoint(point) {
     return this.offset(point.x, point.y);

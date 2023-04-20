@@ -18,17 +18,17 @@ export class Matrix {
     type: number;
     /**
      * TBD.
-     * @param array
+     * @param array - TBD.
      */
     fromArray(array: any): Matrix;
     /**
      * TBD.
-     * @param a
-     * @param b
-     * @param c
-     * @param d
-     * @param tx
-     * @param ty
+     * @param a - TBD.
+     * @param b - TBD.
+     * @param c - TBD.
+     * @param d - TBD.
+     * @param tx - TBD.
+     * @param ty - TBD.
      */
     setTo(a: any, b: any, c: any, d: any, tx: any, ty: any): Matrix;
     /**
@@ -37,30 +37,30 @@ export class Matrix {
     clone(): Matrix;
     /**
      * TBD.
-     * @param matrix
+     * @param matrix - TBD.
      */
     copyTo(matrix: any): any;
     /**
      * TBD.
-     * @param matrix
+     * @param matrix - TBD.
      */
     copyFrom(matrix: any): Matrix;
     /**
      * TBD.
-     * @param transpose
-     * @param output
+     * @param transpose - TBD.
+     * @param output - TBD.
      */
     toArray(transpose?: boolean, output?: any): any;
     /**
      * TBD.
-     * @param pos
-     * @param output
+     * @param pos - TBD.
+     * @param output - TBD.
      */
     apply(pos: any, output?: any): any;
     /**
      * TBD.
-     * @param pos
-     * @param output
+     * @param pos - TBD.
+     * @param output - TBD.
      */
     applyInverse(pos: any, output?: any): any;
     /**
@@ -77,12 +77,12 @@ export class Matrix {
     scale(x: number, y: number): Matrix;
     /**
      * TBD.
-     * @param angle
+     * @param angle - TBD.
      */
     rotate(angle: any): Matrix;
     /**
      * TBD.
-     * @param matrix
+     * @param matrix - TBD.
      */
     append(matrix: any): Matrix;
     /**

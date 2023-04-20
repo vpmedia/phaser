@@ -26,16 +26,19 @@ export class Polygon {
      * TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
+     * @returns {boolean} TBD.
      */
     contains(x: number, y: number): boolean;
     /**
      * TBD.
      * @param points
+     * @returns {Polygon} TBD.
      */
     setTo(points: any): Polygon;
     /**
      * TBD.
      * @param y0
+     * @returns {number} TBD.
      */
     calculateArea(y0: any): number;
     /**

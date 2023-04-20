@@ -15,7 +15,7 @@ export class Point {
 
   /**
    * TBD.
-   * @param source
+   * @param source - TBD.
    */
   copyFrom(source) {
     return this.setTo(source.x, source.y);
@@ -97,8 +97,8 @@ export class Point {
 
   /**
    * TBD.
-   * @param min
-   * @param max
+   * @param min - TBD.
+   * @param max - TBD.
    */
   clampX(min, max) {
     this.x = Math.max(min, Math.min(max, this.x));
@@ -107,8 +107,8 @@ export class Point {
 
   /**
    * TBD.
-   * @param min
-   * @param max
+   * @param min - TBD.
+   * @param max - TBD.
    */
   clampY(min, max) {
     this.y = Math.max(min, Math.min(max, this.y));
@@ -117,8 +117,8 @@ export class Point {
 
   /**
    * TBD.
-   * @param min
-   * @param max
+   * @param min - TBD.
+   * @param max - TBD.
    */
   clamp(min, max) {
     this.x = Math.max(min, Math.min(max, this.x));
@@ -135,7 +135,7 @@ export class Point {
 
   /**
    * TBD.
-   * @param dest
+   * @param dest - TBD.
    */
   copyTo(dest) {
     dest.x = this.x;
@@ -145,7 +145,7 @@ export class Point {
 
   /**
    * TBD.
-   * @param b
+   * @param b - TBD.
    */
   distance(b) {
     return distance(this, b);
@@ -153,7 +153,7 @@ export class Point {
 
   /**
    * TBD.
-   * @param a
+   * @param a - TBD.
    */
   equals(a) {
     return a.x === this.x && a.y === this.y;
@@ -161,8 +161,8 @@ export class Point {
 
   /**
    * TBD.
-   * @param a
-   * @param asDegrees
+   * @param a - TBD.
+   * @param asDegrees - TBD.
    */
   angle(a, asDegrees = false) {
     if (asDegrees) {
@@ -175,9 +175,9 @@ export class Point {
    * TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
-   * @param angle
-   * @param asDegrees
-   * @param dist
+   * @param angle - TBD.
+   * @param asDegrees - TBD.
+   * @param dist - TBD.
    */
   rotate(x, y, angle, asDegrees, dist) {
     return rotate(this, x, y, angle, asDegrees, dist);
@@ -199,7 +199,7 @@ export class Point {
 
   /**
    * TBD.
-   * @param magnitude
+   * @param magnitude - TBD.
    */
   setMagnitude(magnitude) {
     return this.normalize().multiply(magnitude, magnitude);
@@ -226,7 +226,7 @@ export class Point {
 
   /**
    * TBD.
-   * @param a
+   * @param a - TBD.
    */
   dot(a) {
     return this.x * a.x + this.y * a.y;
@@ -234,7 +234,7 @@ export class Point {
 
   /**
    * TBD.
-   * @param a
+   * @param a - TBD.
    */
   cross(a) {
     return this.x * a.y - this.y * a.x;

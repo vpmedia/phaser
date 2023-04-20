@@ -19,10 +19,10 @@ export class Line {
 
   /**
    * TBD.
-   * @param x1
-   * @param y1
-   * @param x2
-   * @param y2
+   * @param x1 - TBD.
+   * @param y1 - TBD.
+   * @param x2 - TBD.
+   * @param y2 - TBD.
    */
   setTo(x1, y1, x2, y2) {
     this.start.setTo(x1, y1);
@@ -32,9 +32,9 @@ export class Line {
 
   /**
    * TBD.
-   * @param startSprite
-   * @param endSprite
-   * @param useCenter
+   * @param startSprite - TBD.
+   * @param endSprite - TBD.
+   * @param useCenter - TBD.
    */
   fromSprite(startSprite, endSprite, useCenter = false) {
     if (useCenter) {
@@ -52,8 +52,8 @@ export class Line {
    * TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
-   * @param angle
-   * @param length
+   * @param angle - TBD.
+   * @param length - TBD.
    */
   fromAngle(x, y, angle, length) {
     this.start.setTo(x, y);
@@ -63,8 +63,8 @@ export class Line {
 
   /**
    * TBD.
-   * @param angle
-   * @param asDegrees
+   * @param angle - TBD.
+   * @param asDegrees - TBD.
    */
   rotate(angle, asDegrees = false) {
     const cx = (this.start.x + this.end.x) / 2;
@@ -78,8 +78,8 @@ export class Line {
    * TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
-   * @param angle
-   * @param asDegrees
+   * @param angle - TBD.
+   * @param asDegrees - TBD.
    */
   rotateAround(x, y, angle, asDegrees = false) {
     this.start.rotate(x, y, angle, asDegrees);
@@ -89,9 +89,9 @@ export class Line {
 
   /**
    * TBD.
-   * @param line
-   * @param asSegment
-   * @param result
+   * @param line - TBD.
+   * @param asSegment - TBD.
+   * @param result - TBD.
    */
   intersects(line, asSegment, result) {
     return intersectsPoints(this.start, this.end, line.start, line.end, asSegment, result);
@@ -99,7 +99,7 @@ export class Line {
 
   /**
    * TBD.
-   * @param line
+   * @param line - TBD.
    */
   reflect(line) {
     return reflect(this, line);
@@ -107,7 +107,7 @@ export class Line {
 
   /**
    * TBD.
-   * @param output
+   * @param output - TBD.
    */
   midPoint(output = null) {
     const result = output || new Point();
@@ -157,7 +157,7 @@ export class Line {
 
   /**
    * TBD.
-   * @param output
+   * @param output - TBD.
    */
   random(output = null) {
     const result = output || new Point();
@@ -169,8 +169,8 @@ export class Line {
 
   /**
    * TBD.
-   * @param stepRate
-   * @param results
+   * @param stepRate - TBD.
+   * @param results - TBD.
    */
   coordinatesOnLine(stepRate = 1, results = []) {
     let x1 = Math.round(this.start.x);

@@ -32,10 +32,10 @@ export function intersects(a: Circle, b: Circle): boolean;
  * @param {Circle} a - TBD.
  * @param {number} angle - TBD.
  * @param {boolean} asDegrees - TBD.
- * @param {Circle} output - TBD.
- * @returns {Circle} TBD.
+ * @param {Point} output - TBD.
+ * @returns {Point} TBD.
  */
-export function circumferencePoint(a: Circle, angle: number, asDegrees?: boolean, output?: Circle): Circle;
+export function circumferencePoint(a: Circle, angle: number, asDegrees?: boolean, output?: Point): Point;
 /**
  * TBD.
  * @param {Circle} a - TBD.
