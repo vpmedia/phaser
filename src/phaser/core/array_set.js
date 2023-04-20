@@ -1,6 +1,6 @@
 export class ArraySet {
   /**
-   *
+   * TBD.
    * @param list
    */
   constructor(list = []) {
@@ -9,7 +9,7 @@ export class ArraySet {
   }
 
   /**
-   *
+   * TBD.
    * @param item
    */
   add(item) {
@@ -20,7 +20,7 @@ export class ArraySet {
   }
 
   /**
-   *
+   * TBD.
    * @param item
    */
   getIndex(item) {
@@ -28,7 +28,7 @@ export class ArraySet {
   }
 
   /**
-   *
+   * TBD.
    * @param property
    * @param value
    */
@@ -44,7 +44,7 @@ export class ArraySet {
   }
 
   /**
-   *
+   * TBD.
    * @param item
    */
   exists(item) {
@@ -52,14 +52,14 @@ export class ArraySet {
   }
 
   /**
-   *
+   * TBD.
    */
   reset() {
     this.list.length = 0;
   }
 
   /**
-   *
+   * TBD.
    * @param item
    */
   remove(item) {
@@ -72,8 +72,8 @@ export class ArraySet {
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    * @param value
    */
   setAll(key, value) {
@@ -87,8 +87,8 @@ export class ArraySet {
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    * @param {...any} args
    */
   callAll(key, ...args) {
@@ -102,7 +102,7 @@ export class ArraySet {
   }
 
   /**
-   *
+   * TBD.
    * @param destroy
    */
   removeAll(destroy = false) {
@@ -121,14 +121,14 @@ export class ArraySet {
   }
 
   /**
-   *
+   * TBD.
    */
   get total() {
     return this.list.length;
   }
 
   /**
-   *
+   * TBD.
    */
   get first() {
     this.position = 0;
@@ -139,7 +139,7 @@ export class ArraySet {
   }
 
   /**
-   *
+   * TBD.
    */
   get next() {
     if (this.position < this.list.length) {

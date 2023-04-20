@@ -41,7 +41,7 @@ export class Rectangle {
   }
 
   /**
-   *
+   * TBD.
    * @param dx
    * @param dy
    */
@@ -52,7 +52,7 @@ export class Rectangle {
   }
 
   /**
-   *
+   * TBD.
    * @param point
    */
   offsetPoint(point) {
@@ -60,11 +60,11 @@ export class Rectangle {
   }
 
   /**
-   *
-   * @param x
-   * @param y
-   * @param width
-   * @param height
+   * TBD.
+   * @param {number} x - TBD.
+   * @param {number} y - TBD.
+   * @param {number} width - TBD.
+   * @param {number} height - TBD.
    */
   setTo(x, y, width, height) {
     this.x = x;
@@ -75,9 +75,9 @@ export class Rectangle {
   }
 
   /**
-   *
-   * @param x
-   * @param y
+   * TBD.
+   * @param {number} x - TBD.
+   * @param {number} y - TBD.
    */
   scale(x, y) {
     if (y === undefined) {
@@ -89,9 +89,9 @@ export class Rectangle {
   }
 
   /**
-   *
-   * @param x
-   * @param y
+   * TBD.
+   * @param {number} x - TBD.
+   * @param {number} y - TBD.
    */
   centerOn(x, y) {
     this.centerX = x;
@@ -100,7 +100,7 @@ export class Rectangle {
   }
 
   /**
-   *
+   * TBD.
    */
   floor() {
     this.x = Math.floor(this.x);
@@ -108,7 +108,7 @@ export class Rectangle {
   }
 
   /**
-   *
+   * TBD.
    */
   floorAll() {
     this.x = Math.floor(this.x);
@@ -118,7 +118,7 @@ export class Rectangle {
   }
 
   /**
-   *
+   * TBD.
    */
   ceil() {
     this.x = Math.ceil(this.x);
@@ -126,7 +126,7 @@ export class Rectangle {
   }
 
   /**
-   *
+   * TBD.
    */
   ceilAll() {
     this.x = Math.ceil(this.x);
@@ -136,7 +136,7 @@ export class Rectangle {
   }
 
   /**
-   *
+   * TBD.
    * @param source
    */
   copyFrom(source) {
@@ -144,7 +144,7 @@ export class Rectangle {
   }
 
   /**
-   *
+   * TBD.
    * @param dest
    */
   copyTo(dest) {
@@ -156,7 +156,7 @@ export class Rectangle {
   }
 
   /**
-   *
+   * TBD.
    * @param dx
    * @param dy
    */
@@ -165,7 +165,7 @@ export class Rectangle {
   }
 
   /**
-   *
+   * TBD.
    * @param output
    */
   size(output) {
@@ -173,9 +173,9 @@ export class Rectangle {
   }
 
   /**
-   *
-   * @param width
-   * @param height
+   * TBD.
+   * @param {number} width - TBD.
+   * @param {number} height - TBD.
    */
   resize(width, height) {
     this.width = width;
@@ -184,7 +184,7 @@ export class Rectangle {
   }
 
   /**
-   *
+   * TBD.
    * @param output
    */
   clone(output) {
@@ -192,16 +192,16 @@ export class Rectangle {
   }
 
   /**
-   *
-   * @param x
-   * @param y
+   * TBD.
+   * @param {number} x - TBD.
+   * @param {number} y - TBD.
    */
   contains(x, y) {
     return contains(this, x, y);
   }
 
   /**
-   *
+   * TBD.
    * @param b
    */
   containsRect(b) {
@@ -209,7 +209,7 @@ export class Rectangle {
   }
 
   /**
-   *
+   * TBD.
    * @param b
    */
   equals(b) {
@@ -217,7 +217,7 @@ export class Rectangle {
   }
 
   /**
-   *
+   * TBD.
    * @param b
    * @param out
    */
@@ -226,7 +226,7 @@ export class Rectangle {
   }
 
   /**
-   *
+   * TBD.
    * @param b
    */
   intersects(b) {
@@ -234,7 +234,7 @@ export class Rectangle {
   }
 
   /**
-   *
+   * TBD.
    * @param left
    * @param right
    * @param top
@@ -246,7 +246,7 @@ export class Rectangle {
   }
 
   /**
-   *
+   * TBD.
    * @param b
    * @param out
    */
@@ -255,7 +255,7 @@ export class Rectangle {
   }
 
   /**
-   *
+   * TBD.
    * @param output
    */
   random(output = null) {
@@ -266,7 +266,7 @@ export class Rectangle {
   }
 
   /**
-   *
+   * TBD.
    * @param position
    * @param output
    */
@@ -297,7 +297,7 @@ export class Rectangle {
   }
 
   /**
-   *
+   * TBD.
    */
   toString() {
     return (
@@ -316,28 +316,28 @@ export class Rectangle {
   }
 
   /**
-   *
+   * TBD.
    */
   get halfWidth() {
     return Math.round(this.width / 2);
   }
 
   /**
-   *
+   * TBD.
    */
   get halfHeight() {
     return Math.round(this.height / 2);
   }
 
   /**
-   *
+   * TBD.
    */
   get top() {
     return this.y;
   }
 
   /**
-   *
+   * TBD.
    */
   set top(value) {
     if (value >= this.bottom) {
@@ -349,14 +349,14 @@ export class Rectangle {
   }
 
   /**
-   *
+   * TBD.
    */
   get topLeft() {
     return new Point(this.x, this.y);
   }
 
   /**
-   *
+   * TBD.
    */
   set topLeft(value) {
     this.x = value.x;
@@ -364,14 +364,14 @@ export class Rectangle {
   }
 
   /**
-   *
+   * TBD.
    */
   get topRight() {
     return new Point(this.x + this.width, this.y);
   }
 
   /**
-   *
+   * TBD.
    */
   set topRight(value) {
     this.right = value.x;
@@ -379,14 +379,14 @@ export class Rectangle {
   }
 
   /**
-   *
+   * TBD.
    */
   get bottom() {
     return this.y + this.height;
   }
 
   /**
-   *
+   * TBD.
    */
   set bottom(value) {
     if (value <= this.y) {
@@ -397,14 +397,14 @@ export class Rectangle {
   }
 
   /**
-   *
+   * TBD.
    */
   get bottomLeft() {
     return new Point(this.x, this.bottom);
   }
 
   /**
-   *
+   * TBD.
    */
   set bottomLeft(value) {
     this.x = value.x;
@@ -412,14 +412,14 @@ export class Rectangle {
   }
 
   /**
-   *
+   * TBD.
    */
   get bottomRight() {
     return new Point(this.right, this.bottom);
   }
 
   /**
-   *
+   * TBD.
    */
   set bottomRight(value) {
     this.right = value.x;
@@ -427,14 +427,14 @@ export class Rectangle {
   }
 
   /**
-   *
+   * TBD.
    */
   get left() {
     return this.x;
   }
 
   /**
-   *
+   * TBD.
    */
   set left(value) {
     if (value >= this.right) {
@@ -446,14 +446,14 @@ export class Rectangle {
   }
 
   /**
-   *
+   * TBD.
    */
   get right() {
     return this.x + this.width;
   }
 
   /**
-   *
+   * TBD.
    */
   set right(value) {
     if (value <= this.x) {
@@ -464,70 +464,70 @@ export class Rectangle {
   }
 
   /**
-   *
+   * TBD.
    */
   get volume() {
     return this.width * this.height;
   }
 
   /**
-   *
+   * TBD.
    */
   get perimeter() {
     return this.width * 2 + this.height * 2;
   }
 
   /**
-   *
+   * TBD.
    */
   get centerX() {
     return this.x + this.halfWidth;
   }
 
   /**
-   *
+   * TBD.
    */
   set centerX(value) {
     this.x = value - this.halfWidth;
   }
 
   /**
-   *
+   * TBD.
    */
   get centerY() {
     return this.y + this.halfHeight;
   }
 
   /**
-   *
+   * TBD.
    */
   set centerY(value) {
     this.y = value - this.halfHeight;
   }
 
   /**
-   *
+   * TBD.
    */
   get randomX() {
     return this.x + Math.random() * this.width;
   }
 
   /**
-   *
+   * TBD.
    */
   get randomY() {
     return this.y + Math.random() * this.height;
   }
 
   /**
-   *
+   * TBD.
    */
   get empty() {
     return !this.width || !this.height;
   }
 
   /**
-   *
+   * TBD.
    */
   set empty(value) {
     if (value === true) {

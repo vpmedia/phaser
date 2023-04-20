@@ -25,7 +25,7 @@ const defaultVertexSrc = [
 
 export class NormalShader {
   /**
-   *
+   * TBD.
    * @param gl
    */
   constructor(gl) {
@@ -50,7 +50,7 @@ export class NormalShader {
   }
 
   /**
-   *
+   * TBD.
    */
   init() {
     const gl = this.gl;
@@ -86,7 +86,7 @@ export class NormalShader {
   }
 
   /**
-   *
+   * TBD.
    */
   initUniforms() {
     this.textureCount = 1;
@@ -130,7 +130,7 @@ export class NormalShader {
   }
 
   /**
-   *
+   * TBD.
    * @param uniform
    */
   initSampler2D(uniform) {
@@ -200,7 +200,7 @@ export class NormalShader {
   }
 
   /**
-   *
+   * TBD.
    */
   syncUniforms() {
     this.textureCount = 1;
@@ -256,7 +256,7 @@ export class NormalShader {
   }
 
   /**
-   *
+   * TBD.
    */
   destroy() {
     this.gl.deleteProgram(this.program);

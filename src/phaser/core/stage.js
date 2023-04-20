@@ -6,8 +6,8 @@ import { SCALE_LINEAR, SCALE_NEAREST } from './const';
 
 export class Stage extends DisplayObject {
   /**
-   *
-   * @param game
+   * TBD.
+   * @param {object} game - TBD.
    */
   constructor(game) {
     super();
@@ -33,7 +33,7 @@ export class Stage extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    * @param color
    */
   setBackgroundColor(color) {
@@ -49,7 +49,7 @@ export class Stage extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   boot() {
     setUserSelect(this.game.canvas, 'none');
@@ -57,7 +57,7 @@ export class Stage extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   preUpdate() {
     this.currentRenderOrderID = 0;
@@ -68,7 +68,7 @@ export class Stage extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   update() {
     let i = this.children.length;
@@ -79,7 +79,7 @@ export class Stage extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   postUpdate() {
     for (let i = 0; i < this.children.length; i += 1) {
@@ -89,7 +89,7 @@ export class Stage extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   updateTransform() {
     this.worldAlpha = 1;
@@ -99,7 +99,7 @@ export class Stage extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   destroy() {
     this.exists = false;
@@ -109,28 +109,28 @@ export class Stage extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   get backgroundColor() {
     return this._bgColor.color;
   }
 
   /**
-   *
+   * TBD.
    */
   set backgroundColor(value) {
     this.setBackgroundColor(value);
   }
 
   /**
-   *
+   * TBD.
    */
   get smoothed() {
     return window.PhaserRegistry.TEXTURE_SCALE_MODE === SCALE_LINEAR;
   }
 
   /**
-   *
+   * TBD.
    */
   set smoothed(value) {
     window.PhaserRegistry.TEXTURE_SCALE_MODE = value ? SCALE_LINEAR : SCALE_NEAREST;

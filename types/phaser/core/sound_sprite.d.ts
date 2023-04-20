@@ -1,18 +1,31 @@
-/**
- * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
- * @author       Andras Csizmadia <andras@vpmedia.hu>
- * @author       Richard Davey <rich@photonstorm.com>
- */
 export class SoundSprite {
-    constructor(game: any, key: any);
+    /**
+     * TBD.
+     * @param {object} game - TBD.
+     * @param {string} key - TBD.
+     */
+    constructor(game: object, key: string);
     game: any;
-    key: any;
+    key: string;
     config: any;
     autoplayKey: any;
     autoplay: any;
     sounds: {};
+    /**
+     * TBD.
+     * @param marker
+     * @param volume
+     */
     play(marker: any, volume?: number): any;
+    /**
+     * TBD.
+     * @param marker
+     */
     stop(marker: any): void;
+    /**
+     * TBD.
+     * @param marker
+     */
     get(marker: any): any;
 }
 //# sourceMappingURL=sound_sprite.d.ts.map

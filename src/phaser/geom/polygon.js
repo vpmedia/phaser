@@ -4,7 +4,7 @@ import { GEOM_POLYGON } from '../core/const';
 
 export class Polygon {
   /**
-   *
+   * TBD.
    * @param points
    */
   constructor(points = null) {
@@ -19,7 +19,7 @@ export class Polygon {
   }
 
   /**
-   *
+   * TBD.
    * @param output
    */
   toNumberArray(output = []) {
@@ -37,7 +37,7 @@ export class Polygon {
   }
 
   /**
-   *
+   * TBD.
    */
   flatten() {
     this._points = this.toNumberArray();
@@ -46,16 +46,16 @@ export class Polygon {
   }
 
   /**
-   *
+   * TBD.
    */
   clone() {
     return clone(this);
   }
 
   /**
-   *
-   * @param x
-   * @param y
+   * TBD.
+   * @param {number} x - TBD.
+   * @param {number} y - TBD.
    */
   contains(x, y) {
     //  Adapted from http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html by Jonas Raoni Soares Silva
@@ -91,7 +91,7 @@ export class Polygon {
   }
 
   /**
-   *
+   * TBD.
    * @param points
    */
   setTo(points) {
@@ -129,7 +129,7 @@ export class Polygon {
   }
 
   /**
-   *
+   * TBD.
    * @param y0
    */
   calculateArea(y0) {
@@ -152,14 +152,14 @@ export class Polygon {
   }
 
   /**
-   *
+   * TBD.
    */
   get points() {
     return this._points;
   }
 
   /**
-   *
+   * TBD.
    */
   set points(value) {
     if (value !== null) {

@@ -2,8 +2,8 @@ import { Timer } from './timer';
 
 export class Time {
   /**
-   *
-   * @param game
+   * TBD.
+   * @param {object} game - TBD.
    */
   constructor(game) {
     this.game = game;
@@ -36,7 +36,7 @@ export class Time {
   }
 
   /**
-   *
+   * TBD.
    */
   boot() {
     this._started = Date.now();
@@ -46,7 +46,7 @@ export class Time {
   }
 
   /**
-   *
+   * TBD.
    * @param timer
    */
   add(timer) {
@@ -55,7 +55,7 @@ export class Time {
   }
 
   /**
-   *
+   * TBD.
    * @param autoDestroy
    */
   create(autoDestroy = true) {
@@ -65,7 +65,7 @@ export class Time {
   }
 
   /**
-   *
+   * TBD.
    */
   removeAll() {
     for (let i = 0; i < this._timers.length; i += 1) {
@@ -76,7 +76,7 @@ export class Time {
   }
 
   /**
-   *
+   * TBD.
    */
   refresh() {
     const previousDateNow = this.time;
@@ -87,7 +87,7 @@ export class Time {
   }
 
   /**
-   *
+   * TBD.
    * @param time
    */
   update(time) {
@@ -117,7 +117,7 @@ export class Time {
   }
 
   /**
-   *
+   * TBD.
    */
   updateTimers() {
     let i = 0;
@@ -134,7 +134,7 @@ export class Time {
   }
 
   /**
-   *
+   * TBD.
    */
   updateAdvancedTiming() {
     // count the number of time.update calls
@@ -160,7 +160,7 @@ export class Time {
   }
 
   /**
-   *
+   * TBD.
    */
   gamePaused() {
     this._pauseStarted = Date.now();
@@ -173,7 +173,7 @@ export class Time {
   }
 
   /**
-   *
+   * TBD.
    */
   gameResumed() {
     this.time = Date.now();
@@ -187,14 +187,14 @@ export class Time {
   }
 
   /**
-   *
+   * TBD.
    */
   totalElapsedSeconds() {
     return (this.time - this._started) * 0.001;
   }
 
   /**
-   *
+   * TBD.
    * @param since
    */
   elapsedSince(since) {
@@ -202,7 +202,7 @@ export class Time {
   }
 
   /**
-   *
+   * TBD.
    * @param since
    */
   elapsedSecondsSince(since) {
@@ -210,7 +210,7 @@ export class Time {
   }
 
   /**
-   *
+   * TBD.
    */
   reset() {
     this._started = this.time;
@@ -218,21 +218,21 @@ export class Time {
   }
 
   /**
-   *
+   * TBD.
    */
   destroy() {
     this.reset();
   }
 
   /**
-   *
+   * TBD.
    */
   get desiredFps() {
     return this._desiredFps;
   }
 
   /**
-   *
+   * TBD.
    */
   set desiredFps(value) {
     this._desiredFps = value;

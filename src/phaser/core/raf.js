@@ -1,7 +1,7 @@
 export class RequestAnimationFrame {
   /**
-   *
-   * @param game
+   * TBD.
+   * @param {object} game - TBD.
    */
   constructor(game) {
     this.game = game;
@@ -10,21 +10,21 @@ export class RequestAnimationFrame {
   }
 
   /**
-   *
+   * TBD.
    */
   start() {
     this.rafId = requestAnimationFrame(this.updateBinded);
   }
 
   /**
-   *
+   * TBD.
    */
   stop() {
     cancelAnimationFrame(this.rafId);
   }
 
   /**
-   *
+   * TBD.
    * @param rafTime
    */
   update(rafTime) {

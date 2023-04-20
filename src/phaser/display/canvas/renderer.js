@@ -26,8 +26,8 @@ import * as CanvasMaskManager from './masker';
 
 export class CanvasRenderer {
   /**
-   *
-   * @param game
+   * TBD.
+   * @param {object} game - TBD.
    */
   constructor(game) {
     detectCapabilities();
@@ -57,7 +57,7 @@ export class CanvasRenderer {
   }
 
   /**
-   *
+   * TBD.
    * @param root
    */
   render(root) {
@@ -82,7 +82,7 @@ export class CanvasRenderer {
   }
 
   /**
-   *
+   * TBD.
    * @param removeView
    */
   destroy(removeView = true) {
@@ -95,9 +95,9 @@ export class CanvasRenderer {
   }
 
   /**
-   *
-   * @param width
-   * @param height
+   * TBD.
+   * @param {number} width - TBD.
+   * @param {number} height - TBD.
    */
   resize(width, height) {
     this.width = width * this.resolution;
@@ -115,7 +115,7 @@ export class CanvasRenderer {
   }
 
   /**
-   *
+   * TBD.
    * @param displayObject
    * @param context
    * @param matrix
@@ -127,7 +127,7 @@ export class CanvasRenderer {
   }
 
   /**
-   *
+   * TBD.
    */
   mapBlendModes() {
     if (window.PhaserRegistry.blendModesCanvas) {

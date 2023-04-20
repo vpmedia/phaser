@@ -1,7 +1,7 @@
 
 export class Device {
   /**
-   *
+   * TBD.
    */
   constructor() {
     this.desktop = false;

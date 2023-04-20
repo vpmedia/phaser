@@ -36,7 +36,7 @@ export class BitmapText extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   destroy() {
     this._prevAnchor = null;
@@ -47,7 +47,7 @@ export class BitmapText extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   preUpdate() {
     if (this.pendingDestroy) {
@@ -69,7 +69,7 @@ export class BitmapText extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    * @param text
    */
   setText(text) {
@@ -77,7 +77,7 @@ export class BitmapText extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    * @param data
    * @param scale
    * @param text
@@ -145,7 +145,7 @@ export class BitmapText extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    * @param text
    * @param replace
    */
@@ -172,7 +172,7 @@ export class BitmapText extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   updateText() {
     const data = this._data.font;
@@ -243,7 +243,7 @@ export class BitmapText extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   purgeGlyphs() {
     const len = this._glyphs.length;
@@ -262,7 +262,7 @@ export class BitmapText extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   updateTransform() {
     if (this.dirty || !this.anchor.equals(this._prevAnchor)) {
@@ -274,14 +274,14 @@ export class BitmapText extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   get align() {
     return this._align;
   }
 
   /**
-   *
+   * TBD.
    */
   set align(value) {
     if (value !== this._align && (value === 'left' || value === 'center' || value === 'right')) {
@@ -291,14 +291,14 @@ export class BitmapText extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   get tint() {
     return this._tint;
   }
 
   /**
-   *
+   * TBD.
    */
   set tint(value) {
     if (value !== this._tint) {
@@ -308,7 +308,7 @@ export class BitmapText extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   get fill() {
     if (typeof this.tint === 'number') {
@@ -322,21 +322,21 @@ export class BitmapText extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   set fill(value) {
     this.tint = typeof value === 'string' ? parseInt(value.replace('#', ''), 16) : value;
   }
 
   /**
-   *
+   * TBD.
    */
   get font() {
     return this._font;
   }
 
   /**
-   *
+   * TBD.
    */
   set font(value) {
     const trimmedValue = value.trim();
@@ -348,14 +348,14 @@ export class BitmapText extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   get fontSize() {
     return this._fontSize;
   }
 
   /**
-   *
+   * TBD.
    */
   set fontSize(value) {
     value = parseInt(value, 10);
@@ -366,14 +366,14 @@ export class BitmapText extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   get text() {
     return this._text;
   }
 
   /**
-   *
+   * TBD.
    */
   set text(value) {
     const typedValue = value.toString();
@@ -384,14 +384,14 @@ export class BitmapText extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   get maxWidth() {
     return this._maxWidth;
   }
 
   /**
-   *
+   * TBD.
    */
   set maxWidth(value) {
     if (value !== this._maxWidth) {
@@ -401,14 +401,14 @@ export class BitmapText extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   get smoothed() {
     return !this._data.base.scaleMode;
   }
 
   /**
-   *
+   * TBD.
    */
   set smoothed(value) {
     if (value) {

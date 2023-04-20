@@ -2,8 +2,8 @@ import { Scene } from './scene';
 
 export class SceneManager {
   /**
-   *
-   * @param game
+   * TBD.
+   * @param {object} game - TBD.
    * @param pendingState
    */
   constructor(game, pendingState) {
@@ -28,7 +28,7 @@ export class SceneManager {
   }
 
   /**
-   *
+   * TBD.
    */
   boot() {
     if (this._pendingState !== null && typeof this._pendingState !== 'string') {
@@ -37,8 +37,8 @@ export class SceneManager {
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    * @param state
    * @param autoStart
    */
@@ -64,8 +64,8 @@ export class SceneManager {
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    */
   remove(key) {
     if (this.current === key) {
@@ -82,8 +82,8 @@ export class SceneManager {
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    * @param clearWorld
    * @param clearCache
    * @param {...any} args
@@ -101,7 +101,7 @@ export class SceneManager {
   }
 
   /**
-   *
+   * TBD.
    * @param clearWorld
    * @param clearCache
    * @param {...any} args
@@ -116,7 +116,7 @@ export class SceneManager {
   }
 
   /**
-   *
+   * TBD.
    */
   preUpdate() {
     if (this._pendingState && this.game.isBooted) {
@@ -150,7 +150,7 @@ export class SceneManager {
   }
 
   /**
-   *
+   * TBD.
    */
   clearCurrentState() {
     if (this.current) {
@@ -171,8 +171,8 @@ export class SceneManager {
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    */
   checkState(key) {
     if (this.states[key]) {
@@ -190,8 +190,8 @@ export class SceneManager {
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    */
   link(key) {
     this.states[key].game = this.game;
@@ -199,8 +199,8 @@ export class SceneManager {
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    */
   unlink(key) {
     if (this.states[key]) {
@@ -209,8 +209,8 @@ export class SceneManager {
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    */
   setCurrentState(key) {
     this.callbackContext = this.states[key];
@@ -233,14 +233,14 @@ export class SceneManager {
   }
 
   /**
-   *
+   * TBD.
    */
   getCurrentState() {
     return this.states[this.current];
   }
 
   /**
-   *
+   * TBD.
    */
   loadComplete() {
     if (this._created === false && this.onCreateCallback) {
@@ -252,7 +252,7 @@ export class SceneManager {
   }
 
   /**
-   *
+   * TBD.
    */
   update() {
     if (this._created && this.onUpdateCallback) {
@@ -261,7 +261,7 @@ export class SceneManager {
   }
 
   /**
-   *
+   * TBD.
    */
   pauseUpdate() {
     if (this._created && this.onPauseUpdateCallback) {
@@ -270,9 +270,9 @@ export class SceneManager {
   }
 
   /**
-   *
-   * @param width
-   * @param height
+   * TBD.
+   * @param {number} width - TBD.
+   * @param {number} height - TBD.
    */
   resize(width, height) {
     if (this.onResizeCallback) {
@@ -281,7 +281,7 @@ export class SceneManager {
   }
 
   /**
-   *
+   * TBD.
    */
   destroy() {
     this._clearWorld = true;
@@ -301,14 +301,14 @@ export class SceneManager {
   }
 
   /**
-   *
+   * TBD.
    */
   dummy() {
     // pass
   }
 
   /**
-   *
+   * TBD.
    */
   get created() {
     return this._created;

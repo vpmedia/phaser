@@ -1,5 +1,12 @@
 export class World extends Group {
-    constructor(game: any);
+    /**
+     * TBD.
+     * @param {object} game - TBD.
+     */
+    constructor(game: object);
+    /**
+     * TBD.
+     */
     boot(): void;
 }
 import { Group } from '../display/group';

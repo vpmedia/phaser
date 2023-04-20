@@ -1,10 +1,17 @@
 export class ComplexPrimitiveShader {
+    /**
+     * TBD.
+     * @param gl
+     */
     constructor(gl: any);
     gl: any;
     _UID: string;
     program: any;
     fragmentSrc: string[];
     vertexSrc: string[];
+    /**
+     * TBD.
+     */
     init(): void;
     projectionVector: any;
     offsetVector: any;
@@ -15,6 +22,9 @@ export class ComplexPrimitiveShader {
     attributes: any[];
     translationMatrix: any;
     alpha: any;
+    /**
+     * TBD.
+     */
     destroy(): void;
     uniforms: any;
     attribute: any;

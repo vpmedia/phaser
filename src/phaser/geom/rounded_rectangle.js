@@ -20,9 +20,10 @@ export class RoundedRectangle {
   }
 
   /**
-   *
-   * @param x
-   * @param y
+   * TBD.
+   * @param {number} x - TBD.
+   * @param {number} y - TBD.
+   * @returns {boolean} TBD.
    */
   contains(x, y) {
     if (this.width <= 0 || this.height <= 0) {
@@ -37,7 +38,8 @@ export class RoundedRectangle {
   }
 
   /**
-   *
+   * TBD.
+   * @returns {RoundedRectangle} TBD.
    */
   clone() {
     return clone(this);

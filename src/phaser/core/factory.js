@@ -7,18 +7,18 @@ import { Text } from  '../display/text';
 
 export class GameObjectFactory {
   /**
-   *
-   * @param game
+   * TBD.
+   * @param {object} game - TBD.
    */
   constructor(game) {
     this.game = game;
   }
 
   /**
-   *
-   * @param x
-   * @param y
-   * @param key
+   * TBD.
+   * @param {number} x - TBD.
+   * @param {number} y - TBD.
+   * @param {string} key - TBD.
    * @param frame
    * @param group
    */
@@ -30,7 +30,7 @@ export class GameObjectFactory {
   }
 
   /**
-   *
+   * TBD.
    * @param parent
    * @param name
    * @param addToStage
@@ -40,9 +40,9 @@ export class GameObjectFactory {
   }
 
   /**
-   *
-   * @param x
-   * @param y
+   * TBD.
+   * @param {number} x - TBD.
+   * @param {number} y - TBD.
    * @param text
    * @param style
    * @param group
@@ -53,10 +53,10 @@ export class GameObjectFactory {
   }
 
   /**
-   *
-   * @param x
-   * @param y
-   * @param key
+   * TBD.
+   * @param {number} x - TBD.
+   * @param {number} y - TBD.
+   * @param {string} key - TBD.
    * @param callback
    * @param callbackContext
    * @param overFrame
@@ -95,9 +95,9 @@ export class GameObjectFactory {
   }
 
   /**
-   *
-   * @param x
-   * @param y
+   * TBD.
+   * @param {number} x - TBD.
+   * @param {number} y - TBD.
    * @param group
    */
   graphics(x, y, group = null) {
@@ -106,9 +106,9 @@ export class GameObjectFactory {
   }
 
   /**
-   *
-   * @param x
-   * @param y
+   * TBD.
+   * @param {number} x - TBD.
+   * @param {number} y - TBD.
    * @param font
    * @param text
    * @param size

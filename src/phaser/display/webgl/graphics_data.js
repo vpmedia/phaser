@@ -1,6 +1,6 @@
 export class GraphicsData {
   /**
-   *
+   * TBD.
    * @param gl
    */
   constructor(gl) {
@@ -17,7 +17,7 @@ export class GraphicsData {
   }
 
   /**
-   *
+   * TBD.
    */
   reset() {
     this.points = [];
@@ -27,7 +27,7 @@ export class GraphicsData {
   }
 
   /**
-   *
+   * TBD.
    */
   upload() {
     const gl = this.gl;

@@ -27,17 +27,72 @@ export class Button extends Image {
     freezeFrames: boolean;
     forceOut: boolean;
     input: InputHandler;
+    /**
+     * TBD.
+     * @param isEnabled
+     * @param isImmediate
+     */
     setEnabled(isEnabled: any, isImmediate: any): void;
+    /**
+     * TBD.
+     */
     clearFrames(): void;
+    /**
+     * TBD.
+     */
     removedFromWorld(): void;
+    /**
+     * TBD.
+     */
     set inputEnabled(arg: boolean);
+    /**
+     * TBD.
+     */
     get inputEnabled(): boolean;
+    /**
+     * TBD.
+     * @param state
+     * @param frame
+     * @param switchImmediately
+     */
     setStateFrame(state: any, frame: any, switchImmediately?: boolean): void;
+    /**
+     * TBD.
+     * @param newState
+     */
     changeStateFrame(newState: any): boolean;
+    /**
+     * TBD.
+     * @param overFrame
+     * @param outFrame
+     * @param downFrame
+     * @param upFrame
+     */
     setFrames(overFrame: any, outFrame: any, downFrame: any, upFrame: any): void;
+    /**
+     * TBD.
+     * @param sprite
+     * @param pointer
+     */
     onInputOverHandler(sprite: any, pointer: any): void;
+    /**
+     * TBD.
+     * @param sprite
+     * @param pointer
+     */
     onInputOutHandler(sprite: any, pointer: any): void;
+    /**
+     * TBD.
+     * @param sprite
+     * @param pointer
+     */
     onInputDownHandler(sprite: any, pointer: any): void;
+    /**
+     * TBD.
+     * @param sprite
+     * @param pointer
+     * @param isOver
+     */
     onInputUpHandler(sprite: any, pointer: any, isOver: any): void;
 }
 import { Image } from './image';

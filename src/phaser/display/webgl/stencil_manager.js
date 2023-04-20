@@ -2,7 +2,7 @@ import { hex2rgb } from '../../util/math';
 
 export class WebGLStencilManager {
   /**
-   *
+   * TBD.
    */
   constructor() {
     this.stencilStack = [];
@@ -11,7 +11,7 @@ export class WebGLStencilManager {
   }
 
   /**
-   *
+   * TBD.
    * @param gl
    */
   setContext(gl) {
@@ -19,7 +19,7 @@ export class WebGLStencilManager {
   }
 
   /**
-   *
+   * TBD.
    */
   destroy() {
     this.stencilStack = null;
@@ -27,7 +27,7 @@ export class WebGLStencilManager {
   }
 
   /**
-   *
+   * TBD.
    * @param graphics
    * @param webGLData
    * @param renderSession
@@ -85,7 +85,7 @@ export class WebGLStencilManager {
   }
 
   /**
-   *
+   * TBD.
    * @param graphics
    * @param webGLData
    * @param renderSession
@@ -132,7 +132,7 @@ export class WebGLStencilManager {
   }
 
   /**
-   *
+   * TBD.
    * @param graphics
    * @param webGLData
    * @param renderSession

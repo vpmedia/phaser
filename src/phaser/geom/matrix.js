@@ -23,7 +23,7 @@ export class Matrix {
   }
 
   /**
-   *
+   * TBD.
    * @param array
    */
   fromArray(array) {
@@ -31,7 +31,7 @@ export class Matrix {
   }
 
   /**
-   *
+   * TBD.
    * @param a
    * @param b
    * @param c
@@ -50,14 +50,14 @@ export class Matrix {
   }
 
   /**
-   *
+   * TBD.
    */
   clone() {
     return clone(this);
   }
 
   /**
-   *
+   * TBD.
    * @param matrix
    */
   copyTo(matrix) {
@@ -66,7 +66,7 @@ export class Matrix {
   }
 
   /**
-   *
+   * TBD.
    * @param matrix
    */
   copyFrom(matrix) {
@@ -80,7 +80,7 @@ export class Matrix {
   }
 
   /**
-   *
+   * TBD.
    * @param transpose
    * @param output
    */
@@ -111,7 +111,7 @@ export class Matrix {
   }
 
   /**
-   *
+   * TBD.
    * @param pos
    * @param output
    */
@@ -123,7 +123,7 @@ export class Matrix {
   }
 
   /**
-   *
+   * TBD.
    * @param pos
    * @param output
    */
@@ -138,9 +138,9 @@ export class Matrix {
   }
 
   /**
-   *
-   * @param x
-   * @param y
+   * TBD.
+   * @param {number} x - TBD.
+   * @param {number} y - TBD.
    */
   translate(x, y) {
     this.tx += x;
@@ -149,9 +149,9 @@ export class Matrix {
   }
 
   /**
-   *
-   * @param x
-   * @param y
+   * TBD.
+   * @param {number} x - TBD.
+   * @param {number} y - TBD.
    */
   scale(x, y) {
     this.a *= x;
@@ -164,7 +164,7 @@ export class Matrix {
   }
 
   /**
-   *
+   * TBD.
    * @param angle
    */
   rotate(angle) {
@@ -183,7 +183,7 @@ export class Matrix {
   }
 
   /**
-   *
+   * TBD.
    * @param matrix
    */
   append(matrix) {
@@ -201,7 +201,7 @@ export class Matrix {
   }
 
   /**
-   *
+   * TBD.
    */
   identity() {
     return this.setTo(1, 0, 0, 1, 0, 0);

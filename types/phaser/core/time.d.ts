@@ -1,5 +1,9 @@
 export class Time {
-    constructor(game: any);
+    /**
+     * TBD.
+     * @param {object} game - TBD.
+     */
+    constructor(game: object);
     game: any;
     time: number;
     prevTime: number;
@@ -27,22 +31,78 @@ export class Time {
     _pauseStarted: number;
     _justResumed: boolean;
     _timers: any[];
+    /**
+     * TBD.
+     */
     boot(): void;
+    /**
+     * TBD.
+     * @param timer
+     */
     add(timer: any): any;
+    /**
+     * TBD.
+     * @param autoDestroy
+     */
     create(autoDestroy?: boolean): Timer;
+    /**
+     * TBD.
+     */
     removeAll(): void;
+    /**
+     * TBD.
+     */
     refresh(): void;
+    /**
+     * TBD.
+     * @param time
+     */
     update(time: any): void;
+    /**
+     * TBD.
+     */
     updateTimers(): void;
+    /**
+     * TBD.
+     */
     updateAdvancedTiming(): void;
+    /**
+     * TBD.
+     */
     gamePaused(): void;
+    /**
+     * TBD.
+     */
     gameResumed(): void;
+    /**
+     * TBD.
+     */
     totalElapsedSeconds(): number;
+    /**
+     * TBD.
+     * @param since
+     */
     elapsedSince(since: any): number;
+    /**
+     * TBD.
+     * @param since
+     */
     elapsedSecondsSince(since: any): number;
+    /**
+     * TBD.
+     */
     reset(): void;
+    /**
+     * TBD.
+     */
     destroy(): void;
+    /**
+     * TBD.
+     */
     set desiredFps(arg: number);
+    /**
+     * TBD.
+     */
     get desiredFps(): number;
 }
 import { Timer } from './timer';

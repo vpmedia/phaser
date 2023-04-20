@@ -6,8 +6,8 @@ const TEXTURE_ATLAS_JSON_HASH = 1;
 
 export class Loader {
   /**
-   *
-   * @param game
+   * TBD.
+   * @param {object} game - TBD.
    */
   constructor(game) {
     this.game = game;
@@ -45,7 +45,7 @@ export class Loader {
   }
 
   /**
-   *
+   * TBD.
    * @param sprite
    * @param direction
    */
@@ -69,7 +69,7 @@ export class Loader {
   }
 
   /**
-   *
+   * TBD.
    */
   resize() {
     if (this.preloadSprite && this.preloadSprite.height !== this.preloadSprite.sprite.height) {
@@ -78,18 +78,18 @@ export class Loader {
   }
 
   /**
-   *
+   * TBD.
    * @param type
-   * @param key
+   * @param {string} key - TBD.
    */
   checkKeyExists(type, key) {
     return this.getAssetIndex(type, key) > -1;
   }
 
   /**
-   *
+   * TBD.
    * @param type
-   * @param key
+   * @param {string} key - TBD.
    */
   getAssetIndex(type, key) {
     let bestFound = -1;
@@ -108,9 +108,9 @@ export class Loader {
   }
 
   /**
-   *
+   * TBD.
    * @param type
-   * @param key
+   * @param {string} key - TBD.
    */
   getAsset(type, key) {
     const fileIndex = this.getAssetIndex(type, key);
@@ -121,7 +121,7 @@ export class Loader {
   }
 
   /**
-   *
+   * TBD.
    * @param hard
    * @param clearEvents
    */
@@ -149,9 +149,9 @@ export class Loader {
   }
 
   /**
-   *
+   * TBD.
    * @param type
-   * @param key
+   * @param {string} key - TBD.
    * @param url
    * @param properties
    * @param overwrite
@@ -212,9 +212,9 @@ export class Loader {
   }
 
   /**
-   *
+   * TBD.
    * @param type
-   * @param key
+   * @param {string} key - TBD.
    * @param url
    * @param properties
    */
@@ -223,8 +223,8 @@ export class Loader {
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    * @param url
    * @param data
    * @param callbackContext
@@ -261,8 +261,8 @@ export class Loader {
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    * @param url
    * @param overwrite
    */
@@ -271,7 +271,7 @@ export class Loader {
   }
 
   /**
-   *
+   * TBD.
    * @param keys
    * @param urls
    */
@@ -289,8 +289,8 @@ export class Loader {
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    * @param url
    * @param overwrite
    */
@@ -299,8 +299,8 @@ export class Loader {
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    * @param url
    * @param overwrite
    */
@@ -309,8 +309,8 @@ export class Loader {
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    * @param url
    * @param overwrite
    */
@@ -319,8 +319,8 @@ export class Loader {
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    * @param url
    * @param frameWidth
    * @param frameHeight
@@ -340,8 +340,8 @@ export class Loader {
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    * @param urls
    * @param autoDecode
    */
@@ -356,8 +356,8 @@ export class Loader {
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    * @param urls
    * @param jsonURL
    * @param jsonData
@@ -380,8 +380,8 @@ export class Loader {
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    * @param textureURL
    * @param atlasURL
    * @param atlasData
@@ -429,8 +429,8 @@ export class Loader {
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    * @param textureURL
    * @param atlasURL
    * @param atlasData
@@ -453,7 +453,7 @@ export class Loader {
   }
 
   /**
-   *
+   * TBD.
    * @param callback
    * @param callbackContext
    */
@@ -468,9 +468,9 @@ export class Loader {
   }
 
   /**
-   *
+   * TBD.
    * @param type
-   * @param key
+   * @param {string} key - TBD.
    */
   addSyncPoint(type, key) {
     const asset = this.getAsset(type, key);
@@ -481,9 +481,9 @@ export class Loader {
   }
 
   /**
-   *
+   * TBD.
    * @param type
-   * @param key
+   * @param {string} key - TBD.
    */
   removeFile(type, key) {
     const asset = this.getAsset(type, key);
@@ -495,7 +495,7 @@ export class Loader {
   }
 
   /**
-   *
+   * TBD.
    */
   removeAll() {
     this._fileList.length = 0;
@@ -503,7 +503,7 @@ export class Loader {
   }
 
   /**
-   *
+   * TBD.
    */
   start() {
     if (this.isLoading) {
@@ -516,7 +516,7 @@ export class Loader {
   }
 
   /**
-   *
+   * TBD.
    */
   processLoadQueue() {
     if (!this.isLoading) {
@@ -627,7 +627,7 @@ export class Loader {
   }
 
   /**
-   *
+   * TBD.
    * @param abnormal
    */
   finishedLoading(abnormal) {
@@ -650,7 +650,7 @@ export class Loader {
   }
 
   /**
-   *
+   * TBD.
    * @param file
    * @param errorMessage
    */
@@ -666,7 +666,7 @@ export class Loader {
   }
 
   /**
-   *
+   * TBD.
    * @param pack
    */
   processPack(pack) {
@@ -735,7 +735,7 @@ export class Loader {
   }
 
   /**
-   *
+   * TBD.
    * @param url
    * @param file
    */
@@ -750,7 +750,7 @@ export class Loader {
   }
 
   /**
-   *
+   * TBD.
    * @param file
    */
   loadFile(file) {
@@ -792,7 +792,7 @@ export class Loader {
   }
 
   /**
-   *
+   * TBD.
    * @param file
    */
   loadImageTag(file) {
@@ -824,7 +824,7 @@ export class Loader {
   }
 
   /**
-   *
+   * TBD.
    * @param file
    * @param url
    * @param type
@@ -891,7 +891,7 @@ export class Loader {
   }
 
   /**
-   *
+   * TBD.
    */
   xhrLoadWithXDR() {
     // TODO
@@ -899,7 +899,7 @@ export class Loader {
   }
 
   /**
-   *
+   * TBD.
    * @param urls
    */
   getAudioURL(urls) {
@@ -936,7 +936,7 @@ export class Loader {
   }
 
   /**
-   *
+   * TBD.
    * @param file
    * @param xhr
    * @param reason
@@ -954,7 +954,7 @@ export class Loader {
   }
 
   /**
-   *
+   * TBD.
    * @param file
    * @param xhr
    */
@@ -1055,7 +1055,7 @@ export class Loader {
   }
 
   /**
-   *
+   * TBD.
    * @param file
    * @param xhr
    */
@@ -1080,7 +1080,7 @@ export class Loader {
   }
 
   /**
-   *
+   * TBD.
    */
   csvLoadComplete() {
     // TODO
@@ -1088,7 +1088,7 @@ export class Loader {
   }
 
   /**
-   *
+   * TBD.
    * @param file
    * @param xhr
    */
@@ -1121,7 +1121,7 @@ export class Loader {
   }
 
   /**
-   *
+   * TBD.
    * @param data
    */
   parseXml(data) {
@@ -1146,7 +1146,7 @@ export class Loader {
   }
 
   /**
-   *
+   * TBD.
    */
   updateProgress() {
     if (this.preloadSprite) {
@@ -1169,7 +1169,7 @@ export class Loader {
   }
 
   /**
-   *
+   * TBD.
    * @param message
    * @param data
    */
@@ -1181,35 +1181,35 @@ export class Loader {
   }
 
   /**
-   *
+   * TBD.
    */
   totalLoadedFiles() {
     return this._loadedFileCount;
   }
 
   /**
-   *
+   * TBD.
    */
   totalQueuedFiles() {
     return this._totalFileCount - this._loadedFileCount;
   }
 
   /**
-   *
+   * TBD.
    */
   totalLoadedPacks() {
     return this._totalPackCount;
   }
 
   /**
-   *
+   * TBD.
    */
   totalQueuedPacks() {
     return this._totalPackCount - this._loadedPackCount;
   }
 
   /**
-   *
+   * TBD.
    */
   get progressFloat() {
     const progress = (this._loadedFileCount / this._totalFileCount) * 100;
@@ -1217,7 +1217,7 @@ export class Loader {
   }
 
   /**
-   *
+   * TBD.
    */
   get progress() {
     return Math.round(this.progressFloat);

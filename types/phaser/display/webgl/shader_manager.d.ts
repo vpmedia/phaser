@@ -9,11 +9,26 @@ export class WebGLShaderManager {
     attribState: boolean[];
     tempAttribState: any[];
     stack: any[];
+    /**
+     * TBD.
+     * @param gl
+     */
     setContext(gl: any): void;
+    /**
+     * TBD.
+     * @param attribs
+     */
     setAttribs(attribs: any): void;
+    /**
+     * TBD.
+     * @param shader
+     */
     setShader(shader: any): boolean;
     _currentId: any;
     currentShader: any;
+    /**
+     * TBD.
+     */
     destroy(): void;
 }
 import { PrimitiveShader } from './shader/primitive';

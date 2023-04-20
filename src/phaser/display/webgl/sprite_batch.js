@@ -3,7 +3,7 @@ import { NormalShader } from './shader/normal';
 
 export class WebGLSpriteBatch {
   /**
-   *
+   * TBD.
    */
   constructor() {
     this.vertSize = 5;
@@ -45,7 +45,7 @@ export class WebGLSpriteBatch {
   }
 
   /**
-   *
+   * TBD.
    * @param gl
    */
   setContext(gl) {
@@ -68,7 +68,7 @@ export class WebGLSpriteBatch {
   }
 
   /**
-   *
+   * TBD.
    * @param renderSession
    */
   begin(renderSession) {
@@ -78,14 +78,14 @@ export class WebGLSpriteBatch {
   }
 
   /**
-   *
+   * TBD.
    */
   end() {
     this.flush();
   }
 
   /**
-   *
+   * TBD.
    * @param sprite
    * @param matrix
    */
@@ -188,14 +188,14 @@ export class WebGLSpriteBatch {
   }
 
   /**
-   *
+   * TBD.
    */
   renderTilingSprite() {
     // TODO
   }
 
   /**
-   *
+   * TBD.
    */
   flush() {
     // If the batch is length 0 then return as there is nothing to draw
@@ -294,7 +294,7 @@ export class WebGLSpriteBatch {
   }
 
   /**
-   *
+   * TBD.
    * @param texture
    * @param size
    * @param startIndex
@@ -321,7 +321,7 @@ export class WebGLSpriteBatch {
   }
 
   /**
-   *
+   * TBD.
    */
   stop() {
     this.flush();
@@ -329,14 +329,14 @@ export class WebGLSpriteBatch {
   }
 
   /**
-   *
+   * TBD.
    */
   start() {
     this.dirty = true;
   }
 
   /**
-   *
+   * TBD.
    */
   destroy() {
     this.vertices = null;

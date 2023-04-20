@@ -5,7 +5,7 @@ import { compileProgram } from '../util';
 
 export class PrimitiveShader {
   /**
-   *
+   * TBD.
    * @param gl
    */
   constructor(gl) {
@@ -42,7 +42,7 @@ export class PrimitiveShader {
   }
 
   /**
-   *
+   * TBD.
    */
   init() {
     const gl = this.gl;
@@ -63,7 +63,7 @@ export class PrimitiveShader {
   }
 
   /**
-   *
+   * TBD.
    */
   destroy() {
     this.gl.deleteProgram(this.program);

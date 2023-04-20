@@ -8,9 +8,9 @@ import { RENDER_WEBGL } from '../../core/const';
 
 export class RenderTexture extends Texture {
   /**
-   *
-   * @param width
-   * @param height
+   * TBD.
+   * @param {number} width - TBD.
+   * @param {number} height - TBD.
    * @param renderer
    * @param scaleMode
    * @param resolution
@@ -61,35 +61,35 @@ export class RenderTexture extends Texture {
   }
 
   /**
-   *
+   * TBD.
    */
   resize() {
     // TODO
   }
 
   /**
-   *
+   * TBD.
    */
   clear() {
     // TODO
   }
 
   /**
-   *
+   * TBD.
    */
   renderWebGL() {
     // TODO
   }
 
   /**
-   *
+   * TBD.
    */
   renderCanvas() {
     // TODO
   }
 
   /**
-   *
+   * TBD.
    */
   getImage() {
     const image = new Image();
@@ -98,14 +98,14 @@ export class RenderTexture extends Texture {
   }
 
   /**
-   *
+   * TBD.
    */
   getBase64() {
     return this.getCanvas().toDataURL();
   }
 
   /**
-   *
+   * TBD.
    */
   getCanvas() {
     // TODO

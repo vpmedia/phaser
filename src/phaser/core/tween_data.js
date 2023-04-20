@@ -3,7 +3,7 @@ import { TWEEN_PENDING, TWEEN_RUNNING, TWEEN_COMPLETE, TWEEN_LOOPED } from './co
 
 export class TweenData {
   /**
-   *
+   * TBD.
    * @param parent
    */
   constructor(parent) {
@@ -34,7 +34,7 @@ export class TweenData {
   }
 
   /**
-   *
+   * TBD.
    * @param properties
    * @param duration
    * @param ease
@@ -54,7 +54,7 @@ export class TweenData {
   }
 
   /**
-   *
+   * TBD.
    * @param properties
    * @param duration
    * @param ease
@@ -74,7 +74,7 @@ export class TweenData {
   }
 
   /**
-   *
+   * TBD.
    */
   start() {
     this.startTime = this.game.time.time + this.delay;
@@ -105,7 +105,7 @@ export class TweenData {
   }
 
   /**
-   *
+   * TBD.
    */
   loadValues() {
     const keys = Object.keys(this.parent.properties);
@@ -141,7 +141,7 @@ export class TweenData {
   }
 
   /**
-   *
+   * TBD.
    * @param time
    */
   update(time) {
@@ -190,7 +190,7 @@ export class TweenData {
   }
 
   /**
-   *
+   * TBD.
    * @param frameRate
    */
   generateData(frameRate) {
@@ -241,7 +241,7 @@ export class TweenData {
   }
 
   /**
-   *
+   * TBD.
    */
   repeat() {
     //  If not a yoyo and repeatCounter = 0 then we're done

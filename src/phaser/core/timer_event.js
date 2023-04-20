@@ -1,7 +1,7 @@
 
 export class TimerEvent {
   /**
-   *
+   * TBD.
    * @param timer
    * @param delay
    * @param tick

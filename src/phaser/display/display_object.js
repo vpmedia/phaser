@@ -37,7 +37,7 @@ export class DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   destroy() {
     if (this.children) {
@@ -71,7 +71,7 @@ export class DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    * @param child
    */
   addChild(child) {
@@ -79,7 +79,7 @@ export class DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    * @param child
    * @param index
    */
@@ -102,7 +102,7 @@ export class DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    * @param child
    * @param child2
    */
@@ -122,7 +122,7 @@ export class DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    * @param child
    */
   getChildIndex(child) {
@@ -134,7 +134,7 @@ export class DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    * @param child
    * @param index
    */
@@ -148,7 +148,7 @@ export class DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    * @param index
    */
   getChildAt(index) {
@@ -163,7 +163,7 @@ export class DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    * @param child
    */
   removeChild(child) {
@@ -175,7 +175,7 @@ export class DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    * @param index
    */
   removeChildAt(index) {
@@ -188,7 +188,7 @@ export class DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    * @param beginIndex
    * @param endIndex
    */
@@ -215,7 +215,7 @@ export class DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    * @param parent
    */
   updateTransform(parent) {
@@ -302,7 +302,7 @@ export class DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    * @param targetCoordinateSpace
    */
   getBounds(targetCoordinateSpace) {
@@ -404,14 +404,14 @@ export class DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   getLocalBounds() {
     return this.getBounds(this);
   }
 
   /**
-   *
+   * TBD.
    * @param child
    */
   contains(child) {
@@ -425,7 +425,7 @@ export class DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    * @param renderSession
    */
   renderWebGL(renderSession) {
@@ -459,7 +459,7 @@ export class DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    * @param renderSession
    */
   renderCanvas(renderSession) {
@@ -478,28 +478,28 @@ export class DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   preUpdate() {
     // override
   }
 
   /**
-   *
+   * TBD.
    */
   update() {
     // override
   }
 
   /**
-   *
+   * TBD.
    */
   postUpdate() {
     // override
   }
 
   /**
-   *
+   * TBD.
    */
   generateTexture() {
     // TODO
@@ -507,7 +507,7 @@ export class DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    * @param position
    */
   toGlobal(position) {
@@ -516,7 +516,7 @@ export class DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    * @param position
    * @param from
    */
@@ -529,7 +529,7 @@ export class DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    * @param renderSession
    */
   renderCachedSprite(renderSession) {
@@ -545,14 +545,14 @@ export class DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   generateCachedSprite() {
     // TODO
   }
 
   /**
-   *
+   * TBD.
    */
   destroyCachedSprite() {
     if (!this._cachedSprite) {
@@ -565,14 +565,14 @@ export class DisplayObject {
   // GETTER SETTER
 
   /**
-   *
+   * TBD.
    */
   get width() {
     return this.getLocalBounds().width * this.scale.x;
   }
 
   /**
-   *
+   * TBD.
    */
   set width(value) {
     const width = this.getLocalBounds().width;
@@ -585,14 +585,14 @@ export class DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   get height() {
     return this.getLocalBounds().height * this.scale.y;
   }
 
   /**
-   *
+   * TBD.
    */
   set height(value) {
     const height = this.getLocalBounds().height;
@@ -605,35 +605,35 @@ export class DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   get x() {
     return this.position.x;
   }
 
   /**
-   *
+   * TBD.
    */
   set x(value) {
     this.position.x = value;
   }
 
   /**
-   *
+   * TBD.
    */
   get y() {
     return this.position.y;
   }
 
   /**
-   *
+   * TBD.
    */
   set y(value) {
     this.position.y = value;
   }
 
   /**
-   *
+   * TBD.
    */
   get worldVisible() {
     if (!this.visible) {
@@ -655,14 +655,14 @@ export class DisplayObject {
   // MASK
 
   /**
-   *
+   * TBD.
    */
   get mask() {
     return this._mask;
   }
 
   /**
-   *
+   * TBD.
    */
   set mask(value) {
     if (this._mask) {
@@ -677,98 +677,98 @@ export class DisplayObject {
   // BOUNDS
 
   /**
-   *
+   * TBD.
    */
   get offsetX() {
     return this.anchor.x * this.width;
   }
 
   /**
-   *
+   * TBD.
    */
   get offsetY() {
     return this.anchor.y * this.height;
   }
 
   /**
-   *
+   * TBD.
    */
   get centerX() {
     return this.x - this.offsetX + this.width * 0.5;
   }
 
   /**
-   *
+   * TBD.
    */
   set centerX(value) {
     this.x = value + this.offsetX - this.width * 0.5;
   }
 
   /**
-   *
+   * TBD.
    */
   get centerY() {
     return this.y - this.offsetY + this.height * 0.5;
   }
 
   /**
-   *
+   * TBD.
    */
   set centerY(value) {
     this.y = value + this.offsetY - this.height * 0.5;
   }
 
   /**
-   *
+   * TBD.
    */
   get left() {
     return this.x - this.offsetX;
   }
 
   /**
-   *
+   * TBD.
    */
   set left(value) {
     this.x = value + this.offsetX;
   }
 
   /**
-   *
+   * TBD.
    */
   get right() {
     return this.x + this.width - this.offsetX;
   }
 
   /**
-   *
+   * TBD.
    */
   set right(value) {
     this.x = value - this.width + this.offsetX;
   }
 
   /**
-   *
+   * TBD.
    */
   get top() {
     return this.y - this.offsetY;
   }
 
   /**
-   *
+   * TBD.
    */
   set top(value) {
     this.y = value + this.offsetY;
   }
 
   /**
-   *
+   * TBD.
    */
   get bottom() {
     return this.y + this.height - this.offsetY;
   }
 
   /**
-   *
+   * TBD.
    */
   set bottom(value) {
     this.y = value - this.height + this.offsetY;

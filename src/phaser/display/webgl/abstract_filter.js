@@ -1,6 +1,6 @@
 export class AbstractFilter {
   /**
-   *
+   * TBD.
    * @param fragmentSrc
    * @param uniforms
    */
@@ -14,7 +14,7 @@ export class AbstractFilter {
   }
 
   /**
-   *
+   * TBD.
    */
   syncUniforms() {
     for (let i = 0, j = this.shaders.length; i < j; i += 1) {

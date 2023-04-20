@@ -2,7 +2,7 @@ import { Rectangle } from  '../../geom/rectangle';
 
 export class TextureUvs {
   /**
-   *
+   * TBD.
    */
   constructor() {
     this.x0 = 0;
@@ -18,7 +18,7 @@ export class TextureUvs {
 
 export class Texture {
   /**
-   *
+   * TBD.
    * @param baseTexture
    * @param frame
    * @param crop
@@ -53,7 +53,7 @@ export class Texture {
   }
 
   /**
-   *
+   * TBD.
    */
   onBaseTextureLoaded() {
     if (this.noFrame) {
@@ -63,7 +63,7 @@ export class Texture {
   }
 
   /**
-   *
+   * TBD.
    * @param destroyBase
    */
   destroy(destroyBase = false) {
@@ -74,7 +74,7 @@ export class Texture {
   }
 
   /**
-   *
+   * TBD.
    * @param frame
    */
   setFrame(frame) {
@@ -117,7 +117,7 @@ export class Texture {
   }
 
   /**
-   *
+   * TBD.
    */
   _updateUvs() {
     if (!this._uvs) {

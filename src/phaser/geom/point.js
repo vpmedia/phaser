@@ -14,7 +14,7 @@ export class Point {
   }
 
   /**
-   *
+   * TBD.
    * @param source
    */
   copyFrom(source) {
@@ -22,16 +22,16 @@ export class Point {
   }
 
   /**
-   *
+   * TBD.
    */
   invert() {
     return this.setTo(this.y, this.x);
   }
 
   /**
-   *
-   * @param x
-   * @param y
+   * TBD.
+   * @param {number} x - TBD.
+   * @param {number} y - TBD.
    */
   setTo(x, y) {
     this.x = x || 0;
@@ -40,9 +40,9 @@ export class Point {
   }
 
   /**
-   *
-   * @param x
-   * @param y
+   * TBD.
+   * @param {number} x - TBD.
+   * @param {number} y - TBD.
    */
   set(x, y) {
     // deprecated, use setTo(x, y)
@@ -52,9 +52,9 @@ export class Point {
   }
 
   /**
-   *
-   * @param x
-   * @param y
+   * TBD.
+   * @param {number} x - TBD.
+   * @param {number} y - TBD.
    */
   add(x, y) {
     this.x += x;
@@ -63,9 +63,9 @@ export class Point {
   }
 
   /**
-   *
-   * @param x
-   * @param y
+   * TBD.
+   * @param {number} x - TBD.
+   * @param {number} y - TBD.
    */
   subtract(x, y) {
     this.x -= x;
@@ -74,9 +74,9 @@ export class Point {
   }
 
   /**
-   *
-   * @param x
-   * @param y
+   * TBD.
+   * @param {number} x - TBD.
+   * @param {number} y - TBD.
    */
   multiply(x, y) {
     this.x *= x;
@@ -85,9 +85,9 @@ export class Point {
   }
 
   /**
-   *
-   * @param x
-   * @param y
+   * TBD.
+   * @param {number} x - TBD.
+   * @param {number} y - TBD.
    */
   divide(x, y) {
     this.x /= x;
@@ -96,7 +96,7 @@ export class Point {
   }
 
   /**
-   *
+   * TBD.
    * @param min
    * @param max
    */
@@ -106,7 +106,7 @@ export class Point {
   }
 
   /**
-   *
+   * TBD.
    * @param min
    * @param max
    */
@@ -116,7 +116,7 @@ export class Point {
   }
 
   /**
-   *
+   * TBD.
    * @param min
    * @param max
    */
@@ -127,14 +127,14 @@ export class Point {
   }
 
   /**
-   *
+   * TBD.
    */
   clone() {
     return clone(this);
   }
 
   /**
-   *
+   * TBD.
    * @param dest
    */
   copyTo(dest) {
@@ -144,7 +144,7 @@ export class Point {
   }
 
   /**
-   *
+   * TBD.
    * @param b
    */
   distance(b) {
@@ -152,7 +152,7 @@ export class Point {
   }
 
   /**
-   *
+   * TBD.
    * @param a
    */
   equals(a) {
@@ -160,7 +160,7 @@ export class Point {
   }
 
   /**
-   *
+   * TBD.
    * @param a
    * @param asDegrees
    */
@@ -172,9 +172,9 @@ export class Point {
   }
 
   /**
-   *
-   * @param x
-   * @param y
+   * TBD.
+   * @param {number} x - TBD.
+   * @param {number} y - TBD.
    * @param angle
    * @param asDegrees
    * @param dist
@@ -184,21 +184,21 @@ export class Point {
   }
 
   /**
-   *
+   * TBD.
    */
   getMagnitude() {
     return Math.sqrt(this.x * this.x + this.y * this.y);
   }
 
   /**
-   *
+   * TBD.
    */
   getMagnitudeSq() {
     return this.x * this.x + this.y * this.y;
   }
 
   /**
-   *
+   * TBD.
    * @param magnitude
    */
   setMagnitude(magnitude) {
@@ -206,7 +206,7 @@ export class Point {
   }
 
   /**
-   *
+   * TBD.
    */
   normalize() {
     if (!this.isZero()) {
@@ -218,14 +218,14 @@ export class Point {
   }
 
   /**
-   *
+   * TBD.
    */
   isZero() {
     return this.x === 0 && this.y === 0;
   }
 
   /**
-   *
+   * TBD.
    * @param a
    */
   dot(a) {
@@ -233,7 +233,7 @@ export class Point {
   }
 
   /**
-   *
+   * TBD.
    * @param a
    */
   cross(a) {
@@ -241,42 +241,42 @@ export class Point {
   }
 
   /**
-   *
+   * TBD.
    */
   perp() {
     return this.setTo(-this.y, this.x);
   }
 
   /**
-   *
+   * TBD.
    */
   rperp() {
     return this.setTo(this.y, -this.x);
   }
 
   /**
-   *
+   * TBD.
    */
   normalRightHand() {
     return this.setTo(this.y * -1, this.x);
   }
 
   /**
-   *
+   * TBD.
    */
   floor() {
     return this.setTo(Math.floor(this.x), Math.floor(this.y));
   }
 
   /**
-   *
+   * TBD.
    */
   ceil() {
     return this.setTo(Math.ceil(this.x), Math.ceil(this.y));
   }
 
   /**
-   *
+   * TBD.
    */
   toString() {
     return '[{Point (x=' + this.x + ' y=' + this.y + ')}]';

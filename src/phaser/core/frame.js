@@ -4,12 +4,12 @@ import { cloneFrame } from './frame_util';
 
 export class Frame {
   /**
-   *
+   * TBD.
    * @param index
-   * @param x
-   * @param y
-   * @param width
-   * @param height
+   * @param {number} x - TBD.
+   * @param {number} y - TBD.
+   * @param {number} width - TBD.
+   * @param {number} height - TBD.
    * @param name
    */
   constructor(index, x, y, width, height, name) {
@@ -17,12 +17,12 @@ export class Frame {
   }
 
   /**
-   *
+   * TBD.
    * @param index
-   * @param x
-   * @param y
-   * @param width
-   * @param height
+   * @param {number} x - TBD.
+   * @param {number} y - TBD.
+   * @param {number} width - TBD.
+   * @param {number} height - TBD.
    * @param name
    */
   initialize(index, x, y, width, height, name) {
@@ -49,9 +49,9 @@ export class Frame {
   }
 
   /**
-   *
-   * @param width
-   * @param height
+   * TBD.
+   * @param {number} width - TBD.
+   * @param {number} height - TBD.
    */
   resize(width, height) {
     this.width = width;
@@ -66,7 +66,7 @@ export class Frame {
   }
 
   /**
-   *
+   * TBD.
    * @param trimmed
    * @param actualWidth
    * @param actualHeight
@@ -90,14 +90,14 @@ export class Frame {
   }
 
   /**
-   *
+   * TBD.
    */
   clone() {
     return cloneFrame(this);
   }
 
   /**
-   *
+   * TBD.
    * @param output
    */
   getRect(output = null) {

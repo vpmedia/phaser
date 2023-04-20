@@ -2,7 +2,7 @@ import { Point } from '../geom/point';
 
 class VisualBoundsDesktopRectangle {
   /**
-   *
+   * TBD.
    */
   get x() {
     return window && 'pageXOffset' in window
@@ -11,7 +11,7 @@ class VisualBoundsDesktopRectangle {
   }
 
   /**
-   *
+   * TBD.
    */
   get y() {
     return window && 'pageYOffset' in window
@@ -20,14 +20,14 @@ class VisualBoundsDesktopRectangle {
   }
 
   /**
-   *
+   * TBD.
    */
   get width() {
     return Math.max(window.innerWidth, document.documentElement.clientWidth);
   }
 
   /**
-   *
+   * TBD.
    */
   get height() {
     return Math.max(window.innerHeight, document.documentElement.clientHeight);
@@ -36,28 +36,28 @@ class VisualBoundsDesktopRectangle {
 
 class LayoutBoundsDesktopRectangle {
   /**
-   *
+   * TBD.
    */
   get x() {
     return 0;
   }
 
   /**
-   *
+   * TBD.
    */
   get y() {
     return 0;
   }
 
   /**
-   *
+   * TBD.
    */
   get width() {
     return Math.max(window.innerWidth, document.documentElement.clientWidth);
   }
 
   /**
-   *
+   * TBD.
    */
   get height() {
     return Math.max(window.innerHeight, document.documentElement.clientHeight);
@@ -66,7 +66,7 @@ class LayoutBoundsDesktopRectangle {
 
 class VisualBoundsRectangle {
   /**
-   *
+   * TBD.
    */
   get x() {
     return window && 'pageXOffset' in window
@@ -75,7 +75,7 @@ class VisualBoundsRectangle {
   }
 
   /**
-   *
+   * TBD.
    */
   get y() {
     return window && 'pageYOffset' in window
@@ -84,14 +84,14 @@ class VisualBoundsRectangle {
   }
 
   /**
-   *
+   * TBD.
    */
   get width() {
     return window.innerWidth;
   }
 
   /**
-   *
+   * TBD.
    */
   get height() {
     return window.innerHeight;
@@ -100,21 +100,21 @@ class VisualBoundsRectangle {
 
 class LayoutBoundsRectangle {
   /**
-   *
+   * TBD.
    */
   get x() {
     return 0;
   }
 
   /**
-   *
+   * TBD.
    */
   get y() {
     return 0;
   }
 
   /**
-   *
+   * TBD.
    */
   get width() {
     const a = document.documentElement.clientWidth;
@@ -123,7 +123,7 @@ class LayoutBoundsRectangle {
   }
 
   /**
-   *
+   * TBD.
    */
   get height() {
     const a = document.documentElement.clientHeight;
@@ -137,21 +137,21 @@ class LayoutBoundsRectangle {
 
 class DocumentBoundsRectangle {
   /**
-   *
+   * TBD.
    */
   get x() {
     return 0;
   }
 
   /**
-   *
+   * TBD.
    */
   get y() {
     return 0;
   }
 
   /**
-   *
+   * TBD.
    */
   get width() {
     const d = document.documentElement;
@@ -159,7 +159,7 @@ class DocumentBoundsRectangle {
   }
 
   /**
-   *
+   * TBD.
    */
   get height() {
     const d = document.documentElement;
@@ -169,7 +169,7 @@ class DocumentBoundsRectangle {
 
 export class DOM {
   /**
-   *
+   * TBD.
    * @param device
    */
   constructor(device) {
@@ -195,7 +195,7 @@ export class DOM {
   }
 
   /**
-   *
+   * TBD.
    * @param element
    * @param point
    */
@@ -212,7 +212,7 @@ export class DOM {
   }
 
   /**
-   *
+   * TBD.
    * @param element
    * @param cushion
    */
@@ -225,7 +225,7 @@ export class DOM {
   }
 
   /**
-   *
+   * TBD.
    * @param coords
    * @param cushion
    */
@@ -244,7 +244,7 @@ export class DOM {
   }
 
   /**
-   *
+   * TBD.
    * @param primaryFallback
    */
   getScreenOrientation(primaryFallback) {
@@ -277,28 +277,28 @@ export class DOM {
   }
 
   /**
-   *
+   * TBD.
    */
   get scrollX() {
     return this.scrollXProvider();
   }
 
   /**
-   *
+   * TBD.
    */
   get scrollY() {
     return this.scrollYProvider();
   }
 
   /**
-   *
+   * TBD.
    */
   get clientWidth() {
     return Math.max(window.innerWidth, document.documentElement.clientWidth);
   }
 
   /**
-   *
+   * TBD.
    */
   get clientHeight() {
     return Math.max(window.innerHeight, document.documentElement.clientHeight);

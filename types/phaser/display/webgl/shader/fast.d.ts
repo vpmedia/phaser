@@ -1,4 +1,8 @@
 export class FastShader {
+    /**
+     * TBD.
+     * @param gl
+     */
     constructor(gl: any);
     gl: any;
     _UID: string;
@@ -6,6 +10,9 @@ export class FastShader {
     textureCount: number;
     fragmentSrc: string[];
     vertexSrc: string[];
+    /**
+     * TBD.
+     */
     init(): void;
     uSampler: any;
     projectionVector: any;
@@ -19,6 +26,9 @@ export class FastShader {
     aTextureCoord: any;
     colorAttribute: any;
     attributes: any[];
+    /**
+     * TBD.
+     */
     destroy(): void;
     uniforms: any;
 }

@@ -18,7 +18,7 @@ export class Line {
   }
 
   /**
-   *
+   * TBD.
    * @param x1
    * @param y1
    * @param x2
@@ -31,7 +31,7 @@ export class Line {
   }
 
   /**
-   *
+   * TBD.
    * @param startSprite
    * @param endSprite
    * @param useCenter
@@ -49,9 +49,9 @@ export class Line {
   }
 
   /**
-   *
-   * @param x
-   * @param y
+   * TBD.
+   * @param {number} x - TBD.
+   * @param {number} y - TBD.
    * @param angle
    * @param length
    */
@@ -62,7 +62,7 @@ export class Line {
   }
 
   /**
-   *
+   * TBD.
    * @param angle
    * @param asDegrees
    */
@@ -75,9 +75,9 @@ export class Line {
   }
 
   /**
-   *
-   * @param x
-   * @param y
+   * TBD.
+   * @param {number} x - TBD.
+   * @param {number} y - TBD.
    * @param angle
    * @param asDegrees
    */
@@ -88,7 +88,7 @@ export class Line {
   }
 
   /**
-   *
+   * TBD.
    * @param line
    * @param asSegment
    * @param result
@@ -98,7 +98,7 @@ export class Line {
   }
 
   /**
-   *
+   * TBD.
    * @param line
    */
   reflect(line) {
@@ -106,7 +106,7 @@ export class Line {
   }
 
   /**
-   *
+   * TBD.
    * @param output
    */
   midPoint(output = null) {
@@ -117,9 +117,9 @@ export class Line {
   }
 
   /**
-   *
-   * @param x
-   * @param y
+   * TBD.
+   * @param {number} x - TBD.
+   * @param {number} y - TBD.
    */
   centerOn(x, y) {
     const cx = (this.start.x + this.end.x) / 2;
@@ -131,9 +131,9 @@ export class Line {
   }
 
   /**
-   *
-   * @param x
-   * @param y
+   * TBD.
+   * @param {number} x - TBD.
+   * @param {number} y - TBD.
    */
   pointOnLine(x, y) {
     return (
@@ -143,9 +143,9 @@ export class Line {
   }
 
   /**
-   *
-   * @param x
-   * @param y
+   * TBD.
+   * @param {number} x - TBD.
+   * @param {number} y - TBD.
    */
   pointOnSegment(x, y) {
     const xMin = Math.min(this.start.x, this.end.x);
@@ -156,7 +156,7 @@ export class Line {
   }
 
   /**
-   *
+   * TBD.
    * @param output
    */
   random(output = null) {
@@ -168,7 +168,7 @@ export class Line {
   }
 
   /**
-   *
+   * TBD.
    * @param stepRate
    * @param results
    */
@@ -203,14 +203,14 @@ export class Line {
   }
 
   /**
-   *
+   * TBD.
    */
   clone() {
     return clone(this);
   }
 
   /**
-   *
+   * TBD.
    */
   get length() {
     return Math.sqrt(
@@ -220,98 +220,98 @@ export class Line {
   }
 
   /**
-   *
+   * TBD.
    */
   get angle() {
     return Math.atan2(this.end.y - this.start.y, this.end.x - this.start.x);
   }
 
   /**
-   *
+   * TBD.
    */
   get slope() {
     return (this.end.y - this.start.y) / (this.end.x - this.start.x);
   }
 
   /**
-   *
+   * TBD.
    */
   get perpSlope() {
     return -((this.end.x - this.start.x) / (this.end.y - this.start.y));
   }
 
   /**
-   *
+   * TBD.
    */
   get x() {
     return Math.min(this.start.x, this.end.x);
   }
 
   /**
-   *
+   * TBD.
    */
   get y() {
     return Math.min(this.start.y, this.end.y);
   }
 
   /**
-   *
+   * TBD.
    */
   get left() {
     return Math.min(this.start.x, this.end.x);
   }
 
   /**
-   *
+   * TBD.
    */
   get right() {
     return Math.max(this.start.x, this.end.x);
   }
 
   /**
-   *
+   * TBD.
    */
   get top() {
     return Math.min(this.start.y, this.end.y);
   }
 
   /**
-   *
+   * TBD.
    */
   get bottom() {
     return Math.max(this.start.y, this.end.y);
   }
 
   /**
-   *
+   * TBD.
    */
   get width() {
     return Math.abs(this.start.x - this.end.x);
   }
 
   /**
-   *
+   * TBD.
    */
   get height() {
     return Math.abs(this.start.y - this.end.y);
   }
 
   /**
-   *
+   * TBD.
    */
   get normalX() {
     return Math.cos(this.angle - 1.5707963267948966);
   }
 
   /**
-   *
+   * TBD.
    */
   get normalY() {
     return Math.sin(this.angle - 1.5707963267948966);
   }
 
   /**
-   *
+   * TBD.
    */
   get normalAngle() {
     return wrap(this.angle - 1.5707963267948966, -Math.PI, Math.PI);

@@ -1,10 +1,9 @@
-/**
- * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
- * @author       Andras Csizmadia <andras@vpmedia.hu>
- * @author       Richard Davey <rich@photonstorm.com>
- */
 export class Touch {
-    constructor(game: any);
+    /**
+     * TBD.
+     * @param {object} game - TBD.
+     */
+    constructor(game: object);
     game: any;
     enabled: boolean;
     callbackContext: any;
@@ -22,16 +21,53 @@ export class Touch {
     _onTouchEnter: (event: any) => void;
     _onTouchLeave: (event: any) => void;
     _onTouchCancel: (event: any) => void;
+    /**
+     * TBD.
+     */
     start(): void;
+    /**
+     * TBD.
+     */
     stop(): void;
+    /**
+     * TBD.
+     */
     consumeDocumentTouches(): void;
     _documentTouchMove: (event: any) => void;
+    /**
+     * TBD.
+     * @param event
+     */
     onTouchStart(event: any): void;
+    /**
+     * TBD.
+     * @param event
+     */
     onTouchCancel(event: any): void;
+    /**
+     * TBD.
+     * @param event
+     */
     onTouchEnter(event: any): void;
+    /**
+     * TBD.
+     * @param event
+     */
     onTouchLeave(event: any): void;
+    /**
+     * TBD.
+     * @param event
+     */
     onTouchMove(event: any): void;
+    /**
+     * TBD.
+     * @param event
+     */
     onTouchEnd(event: any): void;
+    /**
+     * TBD.
+     * @param event
+     */
     eventPreventDefault(event: any): void;
 }
 //# sourceMappingURL=input_touch.d.ts.map

@@ -13,10 +13,10 @@ import {
 
 export class ScaleManager {
   /**
-   *
-   * @param game
-   * @param width
-   * @param height
+   * TBD.
+   * @param {object} game - TBD.
+   * @param {number} width - TBD.
+   * @param {number} height - TBD.
    */
   constructor(game, width, height) {
     this.game = game;
@@ -97,7 +97,7 @@ export class ScaleManager {
   }
 
   /**
-   *
+   * TBD.
    */
   boot() {
     // Configure device-dependent compatibility
@@ -144,7 +144,7 @@ export class ScaleManager {
   }
 
   /**
-   *
+   * TBD.
    * @param config
    */
   parseConfig(config) {
@@ -166,9 +166,9 @@ export class ScaleManager {
   }
 
   /**
-   *
-   * @param width
-   * @param height
+   * TBD.
+   * @param {number} width - TBD.
+   * @param {number} height - TBD.
    */
   setupScale(width, height) {
     let target;
@@ -221,16 +221,16 @@ export class ScaleManager {
   }
 
   /**
-   *
+   * TBD.
    */
   _gameResumed() {
     this.queueUpdate(true);
   }
 
   /**
-   *
-   * @param width
-   * @param height
+   * TBD.
+   * @param {number} width - TBD.
+   * @param {number} height - TBD.
    */
   setGameSize(width, height) {
     this._gameSize.setTo(0, 0, width, height);
@@ -241,7 +241,7 @@ export class ScaleManager {
   }
 
   /**
-   *
+   * TBD.
    * @param hScale
    * @param vScale
    * @param hTrim
@@ -254,7 +254,7 @@ export class ScaleManager {
   }
 
   /**
-   *
+   * TBD.
    * @param callback
    * @param context
    */
@@ -264,7 +264,7 @@ export class ScaleManager {
   }
 
   /**
-   *
+   * TBD.
    */
   signalSizeChange() {
     if (
@@ -287,7 +287,7 @@ export class ScaleManager {
   }
 
   /**
-   *
+   * TBD.
    * @param minWidth
    * @param minHeight
    * @param maxWidth
@@ -305,7 +305,7 @@ export class ScaleManager {
   }
 
   /**
-   *
+   * TBD.
    */
   preUpdate() {
     if (this.game.time.time < this._lastUpdate + this._updateThrottle) {
@@ -338,7 +338,7 @@ export class ScaleManager {
   }
 
   /**
-   *
+   * TBD.
    */
   pauseUpdate() {
     this.preUpdate();
@@ -347,9 +347,9 @@ export class ScaleManager {
   }
 
   /**
-   *
-   * @param width
-   * @param height
+   * TBD.
+   * @param {number} width - TBD.
+   * @param {number} height - TBD.
    * @param resize
    */
   updateDimensions(width, height, resize) {
@@ -366,7 +366,7 @@ export class ScaleManager {
   }
 
   /**
-   *
+   * TBD.
    */
   updateScalingAndBounds() {
     this.scaleFactor.x = this.game.width / this.width;
@@ -386,7 +386,7 @@ export class ScaleManager {
   }
 
   /**
-   *
+   * TBD.
    * @param forceLandscape
    * @param forcePortrait
    */
@@ -397,7 +397,7 @@ export class ScaleManager {
   }
 
   /**
-   *
+   * TBD.
    * @param orientation
    */
   classifyOrientation(orientation) {
@@ -410,7 +410,7 @@ export class ScaleManager {
   }
 
   /**
-   *
+   * TBD.
    */
   updateOrientationState() {
     const previousOrientation = this.screenOrientation;
@@ -434,7 +434,7 @@ export class ScaleManager {
   }
 
   /**
-   *
+   * TBD.
    * @param event
    */
   orientationChange(event) {
@@ -443,7 +443,7 @@ export class ScaleManager {
   }
 
   /**
-   *
+   * TBD.
    * @param event
    */
   windowResize(event) {
@@ -452,14 +452,14 @@ export class ScaleManager {
   }
 
   /**
-   *
+   * TBD.
    */
   refresh() {
     this.queueUpdate(true);
   }
 
   /**
-   *
+   * TBD.
    */
   updateLayout() {
     const scaleMode = this.currentScaleMode;
@@ -504,7 +504,7 @@ export class ScaleManager {
   }
 
   /**
-   *
+   * TBD.
    * @param target
    */
   getParentBounds(target) {
@@ -546,7 +546,7 @@ export class ScaleManager {
   }
 
   /**
-   *
+   * TBD.
    * @param horizontal
    * @param vertical
    */
@@ -594,7 +594,7 @@ export class ScaleManager {
   }
 
   /**
-   *
+   * TBD.
    */
   reflowGame() {
     this.resetCanvas('', '');
@@ -603,7 +603,7 @@ export class ScaleManager {
   }
 
   /**
-   *
+   * TBD.
    */
   reflowCanvas() {
     if (!this.incorrectOrientation) {
@@ -625,7 +625,7 @@ export class ScaleManager {
   }
 
   /**
-   *
+   * TBD.
    * @param cssWidth
    * @param cssHeight
    */
@@ -642,7 +642,7 @@ export class ScaleManager {
   }
 
   /**
-   *
+   * TBD.
    * @param force
    */
   queueUpdate(force) {
@@ -654,14 +654,14 @@ export class ScaleManager {
   }
 
   /**
-   *
+   * TBD.
    */
   reset() {
     // pass
   }
 
   /**
-   *
+   * TBD.
    */
   setMaximum() {
     this.width = this.dom.visualBounds.width;
@@ -669,7 +669,7 @@ export class ScaleManager {
   }
 
   /**
-   *
+   * TBD.
    * @param expanding
    */
   setShowAll(expanding = false) {
@@ -687,7 +687,7 @@ export class ScaleManager {
   }
 
   /**
-   *
+   * TBD.
    */
   setExactFit() {
     const bounds = this.getParentBounds(this._tempBounds);
@@ -706,7 +706,7 @@ export class ScaleManager {
   }
 
   /**
-   *
+   * TBD.
    */
   createFullScreenTarget() {
     const fsTarget = document.createElement('div');
@@ -717,7 +717,7 @@ export class ScaleManager {
   }
 
   /**
-   *
+   * TBD.
    * @param antialias
    * @param allowTrampoline
    */
@@ -775,7 +775,7 @@ export class ScaleManager {
   }
 
   /**
-   *
+   * TBD.
    */
   stopFullScreen() {
     if (!this.isFullScreen || !this.compatibility.supportsFullScreen) {
@@ -787,7 +787,7 @@ export class ScaleManager {
   }
 
   /**
-   *
+   * TBD.
    */
   cleanupCreatedTarget() {
     const fsTarget = this._createdFullScreenTarget;
@@ -802,7 +802,7 @@ export class ScaleManager {
   }
 
   /**
-   *
+   * TBD.
    * @param enteringFullscreen
    */
   prepScreenMode(enteringFullscreen) {
@@ -836,7 +836,7 @@ export class ScaleManager {
   }
 
   /**
-   *
+   * TBD.
    * @param event
    */
   fullScreenChange(event) {
@@ -855,7 +855,7 @@ export class ScaleManager {
   }
 
   /**
-   *
+   * TBD.
    * @param event
    */
   fullScreenError(event) {
@@ -865,7 +865,7 @@ export class ScaleManager {
   }
 
   /**
-   *
+   * TBD.
    */
   destroy() {
     this.game.onResume.remove(this._gameResumed, this);
@@ -885,7 +885,7 @@ export class ScaleManager {
   }
 
   /**
-   *
+   * TBD.
    */
   get boundingParent() {
     if (
@@ -899,14 +899,14 @@ export class ScaleManager {
   }
 
   /**
-   *
+   * TBD.
    */
   get scaleMode() {
     return this._scaleMode;
   }
 
   /**
-   *
+   * TBD.
    */
   set scaleMode(value) {
     if (value !== this._scaleMode) {
@@ -920,14 +920,14 @@ export class ScaleManager {
   }
 
   /**
-   *
+   * TBD.
    */
   get fullScreenScaleMode() {
     return this._fullScreenScaleMode;
   }
 
   /**
-   *
+   * TBD.
    */
   set fullScreenScaleMode(value) {
     if (value !== this._fullScreenScaleMode) {
@@ -945,28 +945,28 @@ export class ScaleManager {
   }
 
   /**
-   *
+   * TBD.
    */
   get currentScaleMode() {
     return this.isFullScreen ? this._fullScreenScaleMode : this._scaleMode;
   }
 
   /**
-   *
+   * TBD.
    */
   get pageAlignHorizontally() {
     return this._pageAlignHorizontally;
   }
 
   /**
-   *
+   * TBD.
    */
   get pageAlignVertically() {
     return this._pageAlignVertically;
   }
 
   /**
-   *
+   * TBD.
    */
   get isFullScreen() {
     return !!(
@@ -978,28 +978,28 @@ export class ScaleManager {
   }
 
   /**
-   *
+   * TBD.
    */
   get isPortrait() {
     return this.classifyOrientation(this.screenOrientation) === 'portrait';
   }
 
   /**
-   *
+   * TBD.
    */
   get isLandscape() {
     return this.classifyOrientation(this.screenOrientation) === 'landscape';
   }
 
   /**
-   *
+   * TBD.
    */
   get isGamePortrait() {
     return this.height > this.width;
   }
 
   /**
-   *
+   * TBD.
    */
   get isGameLandscape() {
     return this.width > this.height;

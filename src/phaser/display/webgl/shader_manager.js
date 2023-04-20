@@ -6,7 +6,7 @@ import { StripShader } from './shader/strip';
 
 export class WebGLShaderManager {
   /**
-   *
+   * TBD.
    */
   constructor() {
     this.gl = null;
@@ -25,7 +25,7 @@ export class WebGLShaderManager {
   }
 
   /**
-   *
+   * TBD.
    * @param gl
    */
   setContext(gl) {
@@ -39,7 +39,7 @@ export class WebGLShaderManager {
   }
 
   /**
-   *
+   * TBD.
    * @param attribs
    */
   setAttribs(attribs) {
@@ -67,7 +67,7 @@ export class WebGLShaderManager {
   }
 
   /**
-   *
+   * TBD.
    * @param shader
    */
   setShader(shader) {
@@ -82,7 +82,7 @@ export class WebGLShaderManager {
   }
 
   /**
-   *
+   * TBD.
    */
   destroy() {
     this.attribState = null;

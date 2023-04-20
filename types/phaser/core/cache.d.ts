@@ -9,7 +9,11 @@ export const JSON: 7;
 export const XML: 8;
 export const RENDER_TEXTURE: 9;
 export class Cache {
-    constructor(game: any);
+    /**
+     * TBD.
+     * @param {object} game - TBD.
+     */
+    constructor(game: object);
     game: any;
     autoResolveURL: boolean;
     _cache: {
@@ -29,74 +33,359 @@ export class Cache {
     _urlTemp: string;
     onSoundUnlock: Signal;
     _cacheMap: {}[];
+    /**
+     * TBD.
+     */
     addDefaultImage(): void;
+    /**
+     * TBD.
+     */
     addMissingImage(): void;
-    addImage(key: any, url: any, data: any): {
-        key: any;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     * @param url
+     * @param data
+     */
+    addImage(key: string, url: any, data: any): {
+        key: string;
         url: any;
         data: any;
         base: BaseTexture;
         frame: Frame;
         frameData: FrameData;
     };
-    addTextureAtlas(key: any, url: any, data: any, atlasData: any): void;
-    addSound(key: any, url: any, data: any): void;
-    addText(key: any, url: any, data: any): void;
-    addBitmapFont(key: any, url: any, data: any, atlasData: any, atlasType: any, xSpacing?: number, ySpacing?: number): void;
-    addJSON(key: any, url: any, data: any): void;
-    addXML(key: any, url: any, data: any): void;
-    reloadSound(key: any): void;
-    reloadSoundComplete(key: any): void;
-    updateSound(key: any, property: any, value: any): void;
-    decodedSound(key: any, data: any): void;
-    isSoundDecoded(key: any): any;
-    isSoundReady(key: any): boolean;
-    checkKey(cache: any, key: any): boolean;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     * @param url
+     * @param data
+     * @param atlasData
+     */
+    addTextureAtlas(key: string, url: any, data: any, atlasData: any): void;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     * @param url
+     * @param data
+     */
+    addSound(key: string, url: any, data: any): void;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     * @param url
+     * @param data
+     */
+    addText(key: string, url: any, data: any): void;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     * @param url
+     * @param data
+     * @param atlasData
+     * @param atlasType
+     * @param xSpacing
+     * @param ySpacing
+     */
+    addBitmapFont(key: string, url: any, data: any, atlasData: any, atlasType: any, xSpacing?: number, ySpacing?: number): void;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     * @param url
+     * @param data
+     */
+    addJSON(key: string, url: any, data: any): void;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     * @param url
+     * @param data
+     */
+    addXML(key: string, url: any, data: any): void;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     */
+    reloadSound(key: string): void;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     */
+    reloadSoundComplete(key: string): void;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     * @param property
+     * @param value
+     */
+    updateSound(key: string, property: any, value: any): void;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     * @param data
+     */
+    decodedSound(key: string, data: any): void;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     */
+    isSoundDecoded(key: string): any;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     */
+    isSoundReady(key: string): boolean;
+    /**
+     * TBD.
+     * @param cache
+     * @param {string} key - TBD.
+     */
+    checkKey(cache: any, key: string): boolean;
+    /**
+     * TBD.
+     * @param url
+     */
     checkURL(url: any): boolean;
-    checkCanvasKey(key: any): boolean;
-    checkImageKey(key: any): boolean;
-    checkTextureKey(key: any): boolean;
-    checkSoundKey(key: any): boolean;
-    checkTextKey(key: any): boolean;
-    checkBitmapDataKey(key: any): boolean;
-    checkBitmapFontKey(key: any): boolean;
-    checkJSONKey(key: any): boolean;
-    checkXMLKey(key: any): boolean;
-    getItem(key: any, cache: any, method: any, property?: any): any;
-    getCanvas(key: any): any;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     */
+    checkCanvasKey(key: string): boolean;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     */
+    checkImageKey(key: string): boolean;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     */
+    checkTextureKey(key: string): boolean;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     */
+    checkSoundKey(key: string): boolean;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     */
+    checkTextKey(key: string): boolean;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     */
+    checkBitmapDataKey(key: string): boolean;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     */
+    checkBitmapFontKey(key: string): boolean;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     */
+    checkJSONKey(key: string): boolean;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     */
+    checkXMLKey(key: string): boolean;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     * @param cache
+     * @param method
+     * @param property
+     */
+    getItem(key: string, cache: any, method: any, property?: any): any;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     */
+    getCanvas(key: string): any;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     * @param full
+     */
     getImage(key?: string, full?: boolean): any;
-    getTextureFrame(key: any): any;
-    getSound(key: any): any;
-    getSoundData(key: any): any;
-    getText(key: any): any;
-    getBitmapData(key: any): any;
-    getBitmapFont(key: any): any;
-    getJSON(key: any, isClone?: boolean): any;
-    getXML(key: any): any;
-    getRenderTexture(key: any): any;
-    getBaseTexture(key: any, cache?: number): any;
-    getFrame(key: any, cache?: number): any;
-    getFrameCount(key: any, cache?: number): any;
-    getFrameData(key: any, cache?: number): any;
-    hasFrameData(key: any, cache?: number): boolean;
-    updateFrameData(key: any, frameData: any, cache?: number): void;
-    getFrameByIndex(key: any, index: any, cache?: number): any;
-    getFrameByName(key: any, name: any, cache?: number): any;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     */
+    getTextureFrame(key: string): any;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     */
+    getSound(key: string): any;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     */
+    getSoundData(key: string): any;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     */
+    getText(key: string): any;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     */
+    getBitmapData(key: string): any;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     */
+    getBitmapFont(key: string): any;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     * @param isClone
+     */
+    getJSON(key: string, isClone?: boolean): any;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     */
+    getXML(key: string): any;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     */
+    getRenderTexture(key: string): any;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     * @param cache
+     */
+    getBaseTexture(key: string, cache?: number): any;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     * @param cache
+     */
+    getFrame(key: string, cache?: number): any;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     * @param cache
+     */
+    getFrameCount(key: string, cache?: number): any;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     * @param cache
+     */
+    getFrameData(key: string, cache?: number): any;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     * @param cache
+     */
+    hasFrameData(key: string, cache?: number): boolean;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     * @param frameData
+     * @param cache
+     */
+    updateFrameData(key: string, frameData: any, cache?: number): void;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     * @param index
+     * @param cache
+     */
+    getFrameByIndex(key: string, index: any, cache?: number): any;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     * @param name
+     * @param cache
+     */
+    getFrameByName(key: string, name: any, cache?: number): any;
+    /**
+     * TBD.
+     * @param url
+     */
     getURL(url: any): any;
+    /**
+     * TBD.
+     * @param cache
+     */
     getKeys(cache?: number): string[];
-    removeCanvas(key: any): void;
-    removeImage(key: any, destroyBaseTexture?: boolean): void;
-    removeSound(key: any): void;
-    removeText(key: any): void;
-    removeBitmapData(key: any): void;
-    removeBitmapFont(key: any): void;
-    removeJSON(key: any): void;
-    removeXML(key: any): void;
-    removeRenderTexture(key: any): void;
-    removeSpriteSheet(key: any): void;
-    removeTextureAtlas(key: any): void;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     */
+    removeCanvas(key: string): void;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     * @param destroyBaseTexture
+     */
+    removeImage(key: string, destroyBaseTexture?: boolean): void;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     */
+    removeSound(key: string): void;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     */
+    removeText(key: string): void;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     */
+    removeBitmapData(key: string): void;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     */
+    removeBitmapFont(key: string): void;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     */
+    removeJSON(key: string): void;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     */
+    removeXML(key: string): void;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     */
+    removeRenderTexture(key: string): void;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     */
+    removeSpriteSheet(key: string): void;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     */
+    removeTextureAtlas(key: string): void;
+    /**
+     * TBD.
+     */
     clearGLTextures(): void;
+    /**
+     * TBD.
+     * @param url
+     * @param data
+     */
     _resolveURL(url: any, data: any): string;
+    /**
+     * TBD.
+     */
     destroy(): void;
 }
 import { Signal } from './signal';

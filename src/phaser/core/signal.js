@@ -2,7 +2,7 @@ import { SignalBinding } from  './signal_binding';
 
 export class Signal {
   /**
-   *
+   * TBD.
    */
   constructor() {
     this._bindings = null;
@@ -14,7 +14,7 @@ export class Signal {
   }
 
   /**
-   *
+   * TBD.
    * @param listener
    * @param fnName
    */
@@ -30,7 +30,7 @@ export class Signal {
   }
 
   /**
-   *
+   * TBD.
    * @param listener
    * @param isOnce
    * @param listenerContext
@@ -62,7 +62,7 @@ export class Signal {
   }
 
   /**
-   *
+   * TBD.
    * @param binding
    */
   _addBinding(binding) {
@@ -78,7 +78,7 @@ export class Signal {
   }
 
   /**
-   *
+   * TBD.
    * @param listener
    * @param context
    */
@@ -99,7 +99,7 @@ export class Signal {
   }
 
   /**
-   *
+   * TBD.
    * @param listener
    * @param context
    */
@@ -108,7 +108,7 @@ export class Signal {
   }
 
   /**
-   *
+   * TBD.
    * @param listener
    * @param listenerContext
    * @param priority
@@ -120,7 +120,7 @@ export class Signal {
   }
 
   /**
-   *
+   * TBD.
    * @param listener
    * @param listenerContext
    * @param priority
@@ -132,7 +132,7 @@ export class Signal {
   }
 
   /**
-   *
+   * TBD.
    * @param listener
    * @param context
    */
@@ -148,7 +148,7 @@ export class Signal {
   }
 
   /**
-   *
+   * TBD.
    * @param context
    */
   removeAll(context = null) {
@@ -173,21 +173,21 @@ export class Signal {
   }
 
   /**
-   *
+   * TBD.
    */
   getNumListeners() {
     return this._bindings ? this._bindings.length : 0;
   }
 
   /**
-   *
+   * TBD.
    */
   halt() {
     this._shouldPropagate = false;
   }
 
   /**
-   *
+   * TBD.
    * @param {...any} args
    */
   dispatch(...args) {
@@ -215,7 +215,7 @@ export class Signal {
   }
 
   /**
-   *
+   * TBD.
    */
   forget() {
     if (this._prevParams) {
@@ -224,7 +224,7 @@ export class Signal {
   }
 
   /**
-   *
+   * TBD.
    */
   dispose() {
     this.removeAll();
@@ -233,14 +233,14 @@ export class Signal {
   }
 
   /**
-   *
+   * TBD.
    */
   toString() {
     return '[Signal active:' + this.active + ' numListeners:' + this.getNumListeners() + ']';
   }
 
   /**
-   *
+   * TBD.
    */
   get boundDispatch() {
     const _this = this;

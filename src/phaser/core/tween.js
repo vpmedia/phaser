@@ -5,9 +5,9 @@ import { TWEEN_PENDING, TWEEN_RUNNING, TWEEN_COMPLETE, TWEEN_LOOPED } from './co
 
 export class Tween {
   /**
-   *
+   * TBD.
    * @param target
-   * @param game
+   * @param {object} game - TBD.
    * @param manager
    */
   constructor(target, game, manager) {
@@ -37,7 +37,7 @@ export class Tween {
   }
 
   /**
-   *
+   * TBD.
    * @param properties
    * @param duration
    * @param ease
@@ -69,7 +69,7 @@ export class Tween {
   }
 
   /**
-   *
+   * TBD.
    * @param properties
    * @param duration
    * @param ease
@@ -102,7 +102,7 @@ export class Tween {
   }
 
   /**
-   *
+   * TBD.
    * @param index
    */
   start(index = 0) {
@@ -141,7 +141,7 @@ export class Tween {
   }
 
   /**
-   *
+   * TBD.
    * @param complete
    */
   stop(complete = false) {
@@ -160,7 +160,7 @@ export class Tween {
   }
 
   /**
-   *
+   * TBD.
    * @param property
    * @param value
    * @param index
@@ -180,7 +180,7 @@ export class Tween {
   }
 
   /**
-   *
+   * TBD.
    * @param duration
    * @param index
    */
@@ -189,7 +189,7 @@ export class Tween {
   }
 
   /**
-   *
+   * TBD.
    * @param total
    * @param repeatDelay
    * @param index
@@ -200,7 +200,7 @@ export class Tween {
   }
 
   /**
-   *
+   * TBD.
    * @param duration
    * @param index
    */
@@ -209,7 +209,7 @@ export class Tween {
   }
 
   /**
-   *
+   * TBD.
    * @param enable
    * @param yoyoDelay
    * @param index
@@ -220,7 +220,7 @@ export class Tween {
   }
 
   /**
-   *
+   * TBD.
    * @param duration
    * @param index
    */
@@ -229,7 +229,7 @@ export class Tween {
   }
 
   /**
-   *
+   * TBD.
    * @param ease
    * @param index
    */
@@ -241,7 +241,7 @@ export class Tween {
   }
 
   /**
-   *
+   * TBD.
    * @param interpolation
    * @param context
    * @param index
@@ -252,7 +252,7 @@ export class Tween {
   }
 
   /**
-   *
+   * TBD.
    * @param total
    */
   repeatAll(total = 0) {
@@ -261,7 +261,7 @@ export class Tween {
   }
 
   /**
-   *
+   * TBD.
    * @param {...any} args
    */
   chain(...args) {
@@ -278,7 +278,7 @@ export class Tween {
   }
 
   /**
-   *
+   * TBD.
    * @param value
    */
   loop(value = true) {
@@ -287,7 +287,7 @@ export class Tween {
   }
 
   /**
-   *
+   * TBD.
    * @param callback
    * @param callbackContext
    */
@@ -298,7 +298,7 @@ export class Tween {
   }
 
   /**
-   *
+   * TBD.
    */
   pause() {
     this.isPaused = true;
@@ -307,7 +307,7 @@ export class Tween {
   }
 
   /**
-   *
+   * TBD.
    */
   _pause() {
     if (!this._codePaused) {
@@ -317,7 +317,7 @@ export class Tween {
   }
 
   /**
-   *
+   * TBD.
    */
   resume() {
     if (this.isPaused) {
@@ -332,7 +332,7 @@ export class Tween {
   }
 
   /**
-   *
+   * TBD.
    */
   _resume() {
     if (!this._codePaused) {
@@ -341,7 +341,7 @@ export class Tween {
   }
 
   /**
-   *
+   * TBD.
    * @param time
    */
   update(time) {
@@ -423,7 +423,7 @@ export class Tween {
   }
 
   /**
-   *
+   * TBD.
    * @param frameRate
    * @param data
    */
@@ -454,7 +454,7 @@ export class Tween {
   }
 
   /**
-   *
+   * TBD.
    */
   get totalDuration() {
     let total = 0;

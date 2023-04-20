@@ -14,7 +14,17 @@ export class RoundedRectangle {
     height: number;
     radius: number;
     type: number;
-    contains(x: any, y: any): boolean;
+    /**
+     * TBD.
+     * @param {number} x - TBD.
+     * @param {number} y - TBD.
+     * @returns {boolean} TBD.
+     */
+    contains(x: number, y: number): boolean;
+    /**
+     * TBD.
+     * @returns {RoundedRectangle} TBD.
+     */
     clone(): RoundedRectangle;
 }
 //# sourceMappingURL=rounded_rectangle.d.ts.map

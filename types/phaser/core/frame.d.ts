@@ -1,11 +1,29 @@
 export class Frame {
-    constructor(index: any, x: any, y: any, width: any, height: any, name: any);
-    initialize(index: any, x: any, y: any, width: any, height: any, name: any): void;
+    /**
+     * TBD.
+     * @param index
+     * @param {number} x - TBD.
+     * @param {number} y - TBD.
+     * @param {number} width - TBD.
+     * @param {number} height - TBD.
+     * @param name
+     */
+    constructor(index: any, x: number, y: number, width: number, height: number, name: any);
+    /**
+     * TBD.
+     * @param index
+     * @param {number} x - TBD.
+     * @param {number} y - TBD.
+     * @param {number} width - TBD.
+     * @param {number} height - TBD.
+     * @param name
+     */
+    initialize(index: any, x: number, y: number, width: number, height: number, name: any): void;
     index: any;
-    x: any;
-    y: any;
-    width: any;
-    height: any;
+    x: number;
+    y: number;
+    width: number;
+    height: number;
     name: any;
     centerX: number;
     centerY: number;
@@ -19,11 +37,33 @@ export class Frame {
     spriteSourceSizeY: any;
     spriteSourceSizeW: any;
     spriteSourceSizeH: any;
-    right: any;
-    bottom: any;
-    resize(width: any, height: any): void;
+    right: number;
+    bottom: number;
+    /**
+     * TBD.
+     * @param {number} width - TBD.
+     * @param {number} height - TBD.
+     */
+    resize(width: number, height: number): void;
+    /**
+     * TBD.
+     * @param trimmed
+     * @param actualWidth
+     * @param actualHeight
+     * @param destX
+     * @param destY
+     * @param destWidth
+     * @param destHeight
+     */
     setTrim(trimmed: any, actualWidth: any, actualHeight: any, destX: any, destY: any, destWidth: any, destHeight: any): void;
+    /**
+     * TBD.
+     */
     clone(): any;
+    /**
+     * TBD.
+     * @param output
+     */
     getRect(output?: any): any;
 }
 //# sourceMappingURL=frame.d.ts.map

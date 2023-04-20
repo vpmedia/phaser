@@ -1,8 +1,8 @@
 
 export class Touch {
   /**
-   *
-   * @param game
+   * TBD.
+   * @param {object} game - TBD.
    */
   constructor(game) {
     this.game = game;
@@ -26,7 +26,7 @@ export class Touch {
   }
 
   /**
-   *
+   * TBD.
    */
   start() {
     if (!this.game.device.touch || this._onTouchStart !== null) {
@@ -48,7 +48,7 @@ export class Touch {
   }
 
   /**
-   *
+   * TBD.
    */
   stop() {
     if (!this.game.device.touch) {
@@ -63,7 +63,7 @@ export class Touch {
   }
 
   /**
-   *
+   * TBD.
    */
   consumeDocumentTouches() {
     this._documentTouchMove = (event) => {
@@ -73,7 +73,7 @@ export class Touch {
   }
 
   /**
-   *
+   * TBD.
    * @param event
    */
   onTouchStart(event) {
@@ -94,7 +94,7 @@ export class Touch {
   }
 
   /**
-   *
+   * TBD.
    * @param event
    */
   onTouchCancel(event) {
@@ -114,7 +114,7 @@ export class Touch {
   }
 
   /**
-   *
+   * TBD.
    * @param event
    */
   onTouchEnter(event) {
@@ -129,7 +129,7 @@ export class Touch {
   }
 
   /**
-   *
+   * TBD.
    * @param event
    */
   onTouchLeave(event) {
@@ -141,7 +141,7 @@ export class Touch {
   }
 
   /**
-   *
+   * TBD.
    * @param event
    */
   onTouchMove(event) {
@@ -156,7 +156,7 @@ export class Touch {
   }
 
   /**
-   *
+   * TBD.
    * @param event
    */
   onTouchEnd(event) {
@@ -174,7 +174,7 @@ export class Touch {
   }
 
   /**
-   *
+   * TBD.
    * @param event
    */
   eventPreventDefault(event) {

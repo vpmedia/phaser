@@ -1,4 +1,8 @@
 export class NormalShader {
+    /**
+     * TBD.
+     * @param gl
+     */
     constructor(gl: any);
     gl: any;
     _UID: string;
@@ -9,6 +13,9 @@ export class NormalShader {
     dirty: boolean;
     uniforms: {};
     attributes: any[];
+    /**
+     * TBD.
+     */
     init(): void;
     uSampler: any;
     projectionVector: any;
@@ -17,9 +24,22 @@ export class NormalShader {
     aVertexPosition: any;
     aTextureCoord: any;
     colorAttribute: any;
+    /**
+     * TBD.
+     */
     initUniforms(): void;
+    /**
+     * TBD.
+     * @param uniform
+     */
     initSampler2D(uniform: any): void;
+    /**
+     * TBD.
+     */
     syncUniforms(): void;
+    /**
+     * TBD.
+     */
     destroy(): void;
 }
 //# sourceMappingURL=normal.d.ts.map

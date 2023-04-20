@@ -1,10 +1,8 @@
-/**
- * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
- * @author       Andras Csizmadia <andras@vpmedia.hu>
- * @author       Richard Davey <rich@photonstorm.com>
- * @author       Mat Groves http://matgroves.com/ @Doormat23
- */
 export class FastSpriteBatch {
+    /**
+     * TBD.
+     * @param gl
+     */
     constructor(gl: any);
     vertSize: number;
     maxSize: number;
@@ -21,14 +19,43 @@ export class FastSpriteBatch {
     renderSession: any;
     shader: any;
     matrix: any;
+    /**
+     * TBD.
+     * @param gl
+     */
     setContext(gl: any): void;
     gl: any;
+    /**
+     * TBD.
+     * @param spriteBatch
+     * @param renderSession
+     */
     begin(spriteBatch: any, renderSession: any): void;
+    /**
+     * TBD.
+     */
     end(): void;
+    /**
+     * TBD.
+     * @param spriteBatch
+     */
     render(spriteBatch: any): void;
+    /**
+     * TBD.
+     * @param sprite
+     */
     renderSprite(sprite: any): void;
+    /**
+     * TBD.
+     */
     flush(): void;
+    /**
+     * TBD.
+     */
     stop(): void;
+    /**
+     * TBD.
+     */
     start(): void;
 }
 //# sourceMappingURL=fast_sprite_batch.d.ts.map

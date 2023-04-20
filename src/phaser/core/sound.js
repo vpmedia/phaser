@@ -2,9 +2,9 @@ import { Signal } from  './signal';
 
 export class Sound {
   /**
-   *
-   * @param game
-   * @param key
+   * TBD.
+   * @param {object} game - TBD.
+   * @param {string} key - TBD.
    * @param volume
    * @param loop
    * @param connect
@@ -78,8 +78,8 @@ export class Sound {
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    */
   soundHasUnlocked(key) {
     if (key === this.key) {
@@ -89,7 +89,7 @@ export class Sound {
   }
 
   /**
-   *
+   * TBD.
    * @param name
    * @param start
    * @param duration
@@ -109,7 +109,7 @@ export class Sound {
   }
 
   /**
-   *
+   * TBD.
    * @param name
    */
   removeMarker(name) {
@@ -117,7 +117,7 @@ export class Sound {
   }
 
   /**
-   *
+   * TBD.
    */
   onEndedHandler() {
     this._sound.onended = null;
@@ -149,7 +149,7 @@ export class Sound {
   }
 
   /**
-   *
+   * TBD.
    */
   update() {
     if (!this.game.cache.checkSoundKey(this.key)) {
@@ -199,7 +199,7 @@ export class Sound {
   }
 
   /**
-   *
+   * TBD.
    * @param volume
    */
   loopFull(volume) {
@@ -207,7 +207,7 @@ export class Sound {
   }
 
   /**
-   *
+   * TBD.
    * @param marker
    * @param position
    * @param volume
@@ -361,7 +361,7 @@ export class Sound {
   }
 
   /**
-   *
+   * TBD.
    * @param marker
    * @param position
    * @param volume
@@ -372,7 +372,7 @@ export class Sound {
   }
 
   /**
-   *
+   * TBD.
    */
   pause() {
     if (this.isPlaying && this._sound) {
@@ -386,7 +386,7 @@ export class Sound {
   }
 
   /**
-   *
+   * TBD.
    */
   resume() {
     if (this.paused && this._sound) {
@@ -423,7 +423,7 @@ export class Sound {
   }
 
   /**
-   *
+   * TBD.
    */
   stop() {
     if (this.isPlaying && this._sound) {
@@ -456,7 +456,7 @@ export class Sound {
   }
 
   /**
-   *
+   * TBD.
    * @param duration
    * @param loop
    * @param marker
@@ -470,7 +470,7 @@ export class Sound {
   }
 
   /**
-   *
+   * TBD.
    * @param duration
    */
   fadeOut(duration) {
@@ -478,7 +478,7 @@ export class Sound {
   }
 
   /**
-   *
+   * TBD.
    * @param duration
    * @param volume
    */
@@ -491,7 +491,7 @@ export class Sound {
   }
 
   /**
-   *
+   * TBD.
    */
   fadeComplete() {
     this.onFadeComplete.dispatch(this, this.volume);
@@ -501,7 +501,7 @@ export class Sound {
   }
 
   /**
-   *
+   * TBD.
    * @param remove
    */
   destroy(remove = true) {
@@ -526,14 +526,14 @@ export class Sound {
   }
 
   /**
-   *
+   * TBD.
    */
   get mute() {
     return this._muted || this.game.sound.mute;
   }
 
   /**
-   *
+   * TBD.
    */
   set mute(value) {
     value = value || false;
@@ -556,14 +556,14 @@ export class Sound {
   }
 
   /**
-   *
+   * TBD.
    */
   get volume() {
     return this._volume;
   }
 
   /**
-   *
+   * TBD.
    */
   set volume(value) {
     if (this._muted) {

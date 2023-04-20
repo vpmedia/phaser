@@ -1,8 +1,8 @@
 export class SoundSprite {
   /**
-   *
-   * @param game
-   * @param key
+   * TBD.
+   * @param {object} game - TBD.
+   * @param {string} key - TBD.
    */
   constructor(game, key) {
     this.game = game;
@@ -25,7 +25,7 @@ export class SoundSprite {
   }
 
   /**
-   *
+   * TBD.
    * @param marker
    * @param volume
    */
@@ -34,7 +34,7 @@ export class SoundSprite {
   }
 
   /**
-   *
+   * TBD.
    * @param marker
    */
   stop(marker) {
@@ -48,7 +48,7 @@ export class SoundSprite {
   }
 
   /**
-   *
+   * TBD.
    * @param marker
    */
   get(marker) {

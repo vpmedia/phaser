@@ -11,8 +11,8 @@ import {
 
 export class Pointer {
   /**
-   *
-   * @param game
+   * TBD.
+   * @param {object} game - TBD.
    * @param id
    * @param pointerMode
    */
@@ -64,7 +64,7 @@ export class Pointer {
   }
 
   /**
-   *
+   * TBD.
    */
   resetButtons() {
     this.isDown = false;
@@ -72,7 +72,7 @@ export class Pointer {
   }
 
   /**
-   *
+   * TBD.
    * @param event
    */
   updateButtons(event) {
@@ -86,7 +86,7 @@ export class Pointer {
   }
 
   /**
-   *
+   * TBD.
    * @param event
    */
   start(event) {
@@ -136,7 +136,7 @@ export class Pointer {
   }
 
   /**
-   *
+   * TBD.
    */
   update() {
     const input = this.game.input;
@@ -173,7 +173,7 @@ export class Pointer {
   }
 
   /**
-   *
+   * TBD.
    * @param event
    * @param fromClick
    */
@@ -242,7 +242,7 @@ export class Pointer {
   }
 
   /**
-   *
+   * TBD.
    * @param fromClick
    */
   processInteractiveObjects(fromClick = false) {
@@ -306,7 +306,7 @@ export class Pointer {
   }
 
   /**
-   *
+   * TBD.
    * @param newTarget
    * @param silent
    */
@@ -338,7 +338,7 @@ export class Pointer {
   }
 
   /**
-   *
+   * TBD.
    * @param event
    */
   leave(event) {
@@ -347,7 +347,7 @@ export class Pointer {
   }
 
   /**
-   *
+   * TBD.
    * @param event
    */
   stop(event) {
@@ -402,7 +402,7 @@ export class Pointer {
   }
 
   /**
-   *
+   * TBD.
    * @param duration
    */
   justPressed(duration) {
@@ -411,7 +411,7 @@ export class Pointer {
   }
 
   /**
-   *
+   * TBD.
    * @param duration
    */
   justReleased(duration) {
@@ -420,7 +420,7 @@ export class Pointer {
   }
 
   /**
-   *
+   * TBD.
    * @param name
    * @param callback
    * @param callbackContext
@@ -448,7 +448,7 @@ export class Pointer {
   }
 
   /**
-   *
+   * TBD.
    */
   processClickTrampolines() {
     const trampolines = this._clickTrampolines;
@@ -466,7 +466,7 @@ export class Pointer {
   }
 
   /**
-   *
+   * TBD.
    */
   reset() {
     if (this.isMouse === false) {
@@ -487,7 +487,7 @@ export class Pointer {
   }
 
   /**
-   *
+   * TBD.
    */
   resetMovement() {
     this.movementX = 0;
@@ -495,7 +495,7 @@ export class Pointer {
   }
 
   /**
-   *
+   * TBD.
    */
   get duration() {
     if (this.isUp) {
@@ -505,14 +505,14 @@ export class Pointer {
   }
 
   /**
-   *
+   * TBD.
    */
   get worldX() {
     return this.x;
   }
 
   /**
-   *
+   * TBD.
    */
   get worldY() {
     return this.y;

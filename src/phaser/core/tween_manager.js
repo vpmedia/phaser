@@ -36,8 +36,8 @@ import { GROUP } from './const';
 
 export class TweenManager {
   /**
-   *
-   * @param game
+   * TBD.
+   * @param {object} game - TBD.
    */
   constructor(game) {
     this.game = game;
@@ -92,14 +92,14 @@ export class TweenManager {
   }
 
   /**
-   *
+   * TBD.
    */
   getAll() {
     return this._tweens;
   }
 
   /**
-   *
+   * TBD.
    */
   removeAll() {
     for (let i = 0; i < this._tweens.length; i += 1) {
@@ -109,7 +109,7 @@ export class TweenManager {
   }
 
   /**
-   *
+   * TBD.
    * @param obj
    * @param children
    */
@@ -139,7 +139,7 @@ export class TweenManager {
   }
 
   /**
-   *
+   * TBD.
    * @param tween
    */
   add(tween) {
@@ -148,7 +148,7 @@ export class TweenManager {
   }
 
   /**
-   *
+   * TBD.
    * @param object
    */
   create(object) {
@@ -156,7 +156,7 @@ export class TweenManager {
   }
 
   /**
-   *
+   * TBD.
    * @param tween
    */
   remove(tween) {
@@ -172,7 +172,7 @@ export class TweenManager {
   }
 
   /**
-   *
+   * TBD.
    */
   update() {
     const addTweens = this._add.length;
@@ -198,7 +198,7 @@ export class TweenManager {
   }
 
   /**
-   *
+   * TBD.
    * @param object
    */
   isTweening(object) {
@@ -206,7 +206,7 @@ export class TweenManager {
   }
 
   /**
-   *
+   * TBD.
    */
   _pauseAll() {
     for (let i = this._tweens.length - 1; i >= 0; i -= 1) {
@@ -215,7 +215,7 @@ export class TweenManager {
   }
 
   /**
-   *
+   * TBD.
    */
   _resumeAll() {
     for (let i = this._tweens.length - 1; i >= 0; i -= 1) {
@@ -224,7 +224,7 @@ export class TweenManager {
   }
 
   /**
-   *
+   * TBD.
    */
   pauseAll() {
     for (let i = this._tweens.length - 1; i >= 0; i -= 1) {
@@ -233,7 +233,7 @@ export class TweenManager {
   }
 
   /**
-   *
+   * TBD.
    */
   resumeAll() {
     for (let i = this._tweens.length - 1; i >= 0; i -= 1) {

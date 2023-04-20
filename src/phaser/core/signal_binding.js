@@ -1,7 +1,7 @@
 
 export class SignalBinding {
   /**
-   *
+   * TBD.
    * @param signal
    * @param listener
    * @param isOnce
@@ -22,7 +22,7 @@ export class SignalBinding {
   }
 
   /**
-   *
+   * TBD.
    * @param paramsArr
    */
   execute(paramsArr) {
@@ -43,42 +43,42 @@ export class SignalBinding {
   }
 
   /**
-   *
+   * TBD.
    */
   detach() {
     return this.isBound() ? this._signal.remove(this._listener, this.context) : null;
   }
 
   /**
-   *
+   * TBD.
    */
   isBound() {
     return !!this._signal && !!this._listener;
   }
 
   /**
-   *
+   * TBD.
    */
   isOnce() {
     return this._isOnce;
   }
 
   /**
-   *
+   * TBD.
    */
   getListener() {
     return this._listener;
   }
 
   /**
-   *
+   * TBD.
    */
   getSignal() {
     return this._signal;
   }
 
   /**
-   *
+   * TBD.
    */
   _destroy() {
     delete this._signal;
@@ -87,7 +87,7 @@ export class SignalBinding {
   }
 
   /**
-   *
+   * TBD.
    */
   toString() {
     return (

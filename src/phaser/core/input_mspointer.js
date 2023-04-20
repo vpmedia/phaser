@@ -1,8 +1,8 @@
 
 export class MSPointer {
   /**
-   *
-   * @param game
+   * TBD.
+   * @param {object} game - TBD.
    */
   constructor(game) {
     this.game = game;
@@ -24,7 +24,7 @@ export class MSPointer {
   }
 
   /**
-   *
+   * TBD.
    */
   start() {
     if (!this.game.device.mspointer || this._onMSPointerDown !== null) {
@@ -57,7 +57,7 @@ export class MSPointer {
   }
 
   /**
-   *
+   * TBD.
    */
   stop() {
     if (!this.game.device.mspointer) {
@@ -81,7 +81,7 @@ export class MSPointer {
   }
 
   /**
-   *
+   * TBD.
    * @param event
    */
   onPointerDown(event) {
@@ -102,7 +102,7 @@ export class MSPointer {
   }
 
   /**
-   *
+   * TBD.
    * @param event
    */
   onPointerMove(event) {
@@ -123,7 +123,7 @@ export class MSPointer {
   }
 
   /**
-   *
+   * TBD.
    * @param event
    */
   onPointerUp(event) {
@@ -144,7 +144,7 @@ export class MSPointer {
   }
 
   /**
-   *
+   * TBD.
    * @param event
    */
   onPointerUpGlobal(event) {
@@ -162,7 +162,7 @@ export class MSPointer {
   }
 
   /**
-   *
+   * TBD.
    * @param event
    */
   onPointerOut(event) {
@@ -194,7 +194,7 @@ export class MSPointer {
   }
 
   /**
-   *
+   * TBD.
    * @param event
    */
   onPointerOver(event) {
@@ -214,7 +214,7 @@ export class MSPointer {
   }
 
   /**
-   *
+   * TBD.
    * @param event
    */
   eventPreventDefault(event) {

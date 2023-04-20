@@ -2,7 +2,7 @@ import { cloneFrameData } from './frame_util';
 
 export class FrameData {
   /**
-   *
+   * TBD.
    */
   constructor() {
     this._frames = [];
@@ -10,7 +10,7 @@ export class FrameData {
   }
 
   /**
-   *
+   * TBD.
    * @param frame
    */
   addFrame(frame) {
@@ -23,7 +23,7 @@ export class FrameData {
   }
 
   /**
-   *
+   * TBD.
    * @param index
    */
   getFrame(index = 0) {
@@ -34,7 +34,7 @@ export class FrameData {
   }
 
   /**
-   *
+   * TBD.
    * @param name
    */
   getFrameByName(name) {
@@ -45,7 +45,7 @@ export class FrameData {
   }
 
   /**
-   *
+   * TBD.
    * @param name
    */
   checkFrameName(name) {
@@ -56,14 +56,14 @@ export class FrameData {
   }
 
   /**
-   *
+   * TBD.
    */
   clone() {
     return cloneFrameData(this);
   }
 
   /**
-   *
+   * TBD.
    * @param start
    * @param end
    * @param output
@@ -77,7 +77,7 @@ export class FrameData {
   }
 
   /**
-   *
+   * TBD.
    * @param frames
    * @param useNumericIndex
    * @param output
@@ -101,7 +101,7 @@ export class FrameData {
   }
 
   /**
-   *
+   * TBD.
    */
   destroy() {
     this._frames = null;
@@ -109,7 +109,7 @@ export class FrameData {
   }
 
   /**
-   *
+   * TBD.
    */
   get total() {
     return this._frames.length;

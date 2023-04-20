@@ -47,7 +47,7 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    */
   destroy() {
     this.texture.destroy(true);
@@ -67,9 +67,9 @@ export class Text extends Image {
   }
 
   /**
-   *
-   * @param x
-   * @param y
+   * TBD.
+   * @param {number} x - TBD.
+   * @param {number} y - TBD.
    * @param color
    * @param blur
    * @param shadowStroke
@@ -94,7 +94,7 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    * @param style
    * @param update
    */
@@ -143,7 +143,7 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    */
   updateText() {
     this.texture.baseTexture.resolution = this._res;
@@ -303,10 +303,10 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    * @param line
-   * @param x
-   * @param y
+   * @param {number} x - TBD.
+   * @param {number} y - TBD.
    * @param fill
    */
   renderTabLine(line, x, y, fill) {
@@ -342,7 +342,7 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    * @param state
    */
   updateShadow(state) {
@@ -360,7 +360,7 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    * @param line
    */
   measureLine(line) {
@@ -396,10 +396,10 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    * @param line
-   * @param x
-   * @param y
+   * @param {number} x - TBD.
+   * @param {number} y - TBD.
    */
   updateLine(line, x, y) {
     for (let i = 0; i < line.length; i += 1) {
@@ -434,7 +434,7 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    */
   clearColors() {
     this.colors = [];
@@ -444,7 +444,7 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    */
   clearFontValues() {
     this.fontStyles = [];
@@ -454,7 +454,7 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    * @param color
    * @param position
    */
@@ -465,7 +465,7 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    * @param color
    * @param position
    */
@@ -476,7 +476,7 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    * @param style
    * @param position
    */
@@ -487,7 +487,7 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    * @param weight
    * @param position
    */
@@ -498,7 +498,7 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    * @param text
    */
   precalculateWordWrap(text) {
@@ -509,7 +509,7 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    * @param text
    */
   runWordWrap(text) {
@@ -520,7 +520,7 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    * @param text
    */
   advancedWordWrap(text) {
@@ -603,7 +603,7 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    * @param text
    */
   basicWordWrap(text) {
@@ -635,7 +635,7 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    * @param components
    */
   updateFont(components) {
@@ -650,7 +650,7 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    * @param font
    */
   fontToComponents(font) {
@@ -688,7 +688,7 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    * @param components
    */
   componentsToFont(components) {
@@ -722,7 +722,7 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    * @param text
    * @param immediate
    */
@@ -737,7 +737,7 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    * @param list
    */
   parseList(list) {
@@ -764,11 +764,11 @@ export class Text extends Image {
   }
 
   /**
-   *
-   * @param x
-   * @param y
-   * @param width
-   * @param height
+   * TBD.
+   * @param {number} x - TBD.
+   * @param {number} y - TBD.
+   * @param {number} width - TBD.
+   * @param {number} height - TBD.
    */
   setTextBounds(x, y, width, height) {
     if (x === undefined) {
@@ -788,7 +788,7 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    */
   updateTexture() {
     const base = this.texture.baseTexture;
@@ -830,7 +830,7 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    * @param renderSession
    */
   renderWebGL(renderSession) {
@@ -842,7 +842,7 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    * @param renderSession
    */
   renderCanvas(renderSession) {
@@ -854,7 +854,7 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    */
   getFontPropertiesCache() {
     if (!window.PhaserRegistry.fontPropertiesCache) {
@@ -864,7 +864,7 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    */
   getFontPropertiesCanvas() {
     if (!window.PhaserRegistry.fontPropertiesCanvas) {
@@ -874,7 +874,7 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    */
   getFontPropertiesContext() {
     if (!window.PhaserRegistry.fontPropertiesContext) {
@@ -887,7 +887,7 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    * @param fontStyle
    */
   determineFontProperties(fontStyle) {
@@ -965,7 +965,7 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    * @param matrix
    */
   getBounds(matrix = null) {
@@ -977,14 +977,14 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    */
   get text() {
     return this._text;
   }
 
   /**
-   *
+   * TBD.
    */
   set text(value) {
     if (value !== this._text) {
@@ -997,14 +997,14 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    */
   get cssFont() {
     return this.componentsToFont(this._fontComponents);
   }
 
   /**
-   *
+   * TBD.
    */
   set cssFont(value) {
     this._fontComponents = this.fontToComponents(value || 'bold 20pt Arial');
@@ -1012,14 +1012,14 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    */
   get font() {
     return this._fontComponents.fontFamily;
   }
 
   /**
-   *
+   * TBD.
    */
   set font(value) {
     let mutatedValue = value || 'Arial';
@@ -1037,7 +1037,7 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    */
   get fontSize() {
     const size = this._fontComponents.fontSize;
@@ -1048,7 +1048,7 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    */
   set fontSize(value) {
     let mutatedValue = value || '0';
@@ -1060,14 +1060,14 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    */
   get fontWeight() {
     return this._fontComponents.fontWeight || 'normal';
   }
 
   /**
-   *
+   * TBD.
    */
   set fontWeight(value) {
     this._fontComponents.fontWeight = value || 'normal';
@@ -1075,14 +1075,14 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    */
   get fontStyle() {
     return this._fontComponents.fontStyle || 'normal';
   }
 
   /**
-   *
+   * TBD.
    */
   set fontStyle(value) {
     this._fontComponents.fontStyle = value || 'normal';
@@ -1090,14 +1090,14 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    */
   get fontVariant() {
     return this._fontComponents.fontVariant || 'normal';
   }
 
   /**
-   *
+   * TBD.
    */
   set fontVariant(value) {
     this._fontComponents.fontVariant = value || 'normal';
@@ -1105,14 +1105,14 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    */
   get fill() {
     return this.style.fill;
   }
 
   /**
-   *
+   * TBD.
    */
   set fill(value) {
     if (value !== this.style.fill) {
@@ -1122,14 +1122,14 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    */
   get align() {
     return this.style.align;
   }
 
   /**
-   *
+   * TBD.
    */
   set align(value) {
     if (value !== this.style.align) {
@@ -1139,14 +1139,14 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    */
   get resolution() {
     return this._res;
   }
 
   /**
-   *
+   * TBD.
    */
   set resolution(value) {
     if (value !== this._res) {
@@ -1156,14 +1156,14 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    */
   get tabs() {
     return this.style.tabs;
   }
 
   /**
-   *
+   * TBD.
    */
   set tabs(value) {
     if (value !== this.style.tabs) {
@@ -1173,14 +1173,14 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    */
   get boundsAlignH() {
     return this.style.boundsAlignH;
   }
 
   /**
-   *
+   * TBD.
    */
   set boundsAlignH(value) {
     if (value !== this.style.boundsAlignH) {
@@ -1190,14 +1190,14 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    */
   get boundsAlignV() {
     return this.style.boundsAlignV;
   }
 
   /**
-   *
+   * TBD.
    */
   set boundsAlignV(value) {
     if (value !== this.style.boundsAlignV) {
@@ -1207,14 +1207,14 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    */
   get stroke() {
     return this.style.stroke;
   }
 
   /**
-   *
+   * TBD.
    */
   set stroke(value) {
     if (value !== this.style.stroke) {
@@ -1224,14 +1224,14 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    */
   get strokeThickness() {
     return this.style.strokeThickness;
   }
 
   /**
-   *
+   * TBD.
    */
   set strokeThickness(value) {
     if (value !== this.style.strokeThickness) {
@@ -1241,14 +1241,14 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    */
   get wordWrap() {
     return this.style.wordWrap;
   }
 
   /**
-   *
+   * TBD.
    */
   set wordWrap(value) {
     if (value !== this.style.wordWrap) {
@@ -1258,14 +1258,14 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    */
   get wordWrapWidth() {
     return this.style.wordWrapWidth;
   }
 
   /**
-   *
+   * TBD.
    */
   set wordWrapWidth(value) {
     if (value !== this.style.wordWrapWidth) {
@@ -1275,14 +1275,14 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    */
   get lineSpacing() {
     return this._lineSpacing;
   }
 
   /**
-   *
+   * TBD.
    */
   set lineSpacing(value) {
     if (value !== this._lineSpacing) {
@@ -1295,14 +1295,14 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    */
   get shadowOffsetX() {
     return this.style.shadowOffsetX;
   }
 
   /**
-   *
+   * TBD.
    */
   set shadowOffsetX(value) {
     if (value !== this.style.shadowOffsetX) {
@@ -1312,14 +1312,14 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    */
   get shadowOffsetY() {
     return this.style.shadowOffsetY;
   }
 
   /**
-   *
+   * TBD.
    */
   set shadowOffsetY(value) {
     if (value !== this.style.shadowOffsetY) {
@@ -1329,14 +1329,14 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    */
   get shadowColor() {
     return this.style.shadowColor;
   }
 
   /**
-   *
+   * TBD.
    */
   set shadowColor(value) {
     if (value !== this.style.shadowColor) {
@@ -1346,14 +1346,14 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    */
   get shadowBlur() {
     return this.style.shadowBlur;
   }
 
   /**
-   *
+   * TBD.
    */
   set shadowBlur(value) {
     if (value !== this.style.shadowBlur) {
@@ -1363,14 +1363,14 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    */
   get shadowStroke() {
     return this.style.shadowStroke;
   }
 
   /**
-   *
+   * TBD.
    */
   set shadowStroke(value) {
     if (value !== this.style.shadowStroke) {
@@ -1380,14 +1380,14 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    */
   get shadowFill() {
     return this.style.shadowFill;
   }
 
   /**
-   *
+   * TBD.
    */
   set shadowFill(value) {
     if (value !== this.style.shadowFill) {
@@ -1397,7 +1397,7 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    */
   get width() {
     if (this.dirty) {
@@ -1408,7 +1408,7 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    */
   set width(value) {
     this.scale.x = value / this.texture.frame.width;
@@ -1416,7 +1416,7 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    */
   get height() {
     if (this.dirty) {
@@ -1427,7 +1427,7 @@ export class Text extends Image {
   }
 
   /**
-   *
+   * TBD.
    */
   set height(value) {
     this.scale.y = value / this.texture.frame.height;

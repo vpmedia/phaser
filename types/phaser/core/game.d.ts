@@ -1,5 +1,9 @@
 export class Game {
-    constructor(gameConfig?: {});
+    /**
+     * TBD.
+     * @param {object} gameConfig - TBD.
+     */
+    constructor(gameConfig?: object);
     config: {};
     id: number;
     parent: string;
@@ -26,16 +30,46 @@ export class Game {
     onResume: Signal;
     onBoot: Signal;
     isPaused: boolean;
+    /**
+     * TBD.
+     */
     boot(): void;
+    /**
+     * TBD.
+     */
     initRenderer(): void;
-    contextLostBinded: (event: any) => void;
+    contextLostBinded: (event: Event) => void;
     contextRestoredBinded: () => void;
-    parseConfigElement(config: any, key: any, defaultValue: any): void;
-    parseConfig(config: any): void;
+    /**
+     * TBD.
+     * @param {object} config - TBD.
+     * @param {string} key - TBD.
+     * @param {*} defaultValue - TBD.
+     */
+    parseConfigElement(config: object, key: string, defaultValue: any): void;
+    /**
+     * TBD.
+     * @param {object} config - TBD.
+     */
+    parseConfig(config: object): void;
     exceptionHandler: any;
-    contextLost(event: any): void;
+    /**
+     * TBD.
+     * @param {Event} event - TBD.
+     */
+    contextLost(event: Event): void;
+    /**
+     * TBD.
+     */
     contextRestored(): void;
-    update(time: any): void;
+    /**
+     * TBD.
+     * @param {number} time - TBD.
+     */
+    update(time: number): void;
+    /**
+     * TBD.
+     */
     destroy(): void;
 }
 import { CanvasRenderer } from '../display/canvas/renderer';

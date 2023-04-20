@@ -1,9 +1,9 @@
 export class Node {
   /**
-   *
+   * TBD.
    * @param i
-   * @param x
-   * @param y
+   * @param {number} x - TBD.
+   * @param {number} y - TBD.
    */
   constructor(i, x, y) {
     // vertice index in coordinates array

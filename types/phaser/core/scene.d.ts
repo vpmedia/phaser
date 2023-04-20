@@ -1,17 +1,33 @@
-/**
- * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
- * @author       Andras Csizmadia <andras@vpmedia.hu>
- * @author       Richard Davey <rich@photonstorm.com>
- */
 export class Scene {
     game: any;
     key: string;
+    /**
+     * TBD.
+     */
     init(): void;
+    /**
+     * TBD.
+     */
     preload(): void;
+    /**
+     * TBD.
+     */
     create(): void;
+    /**
+     * TBD.
+     */
     update(): void;
+    /**
+     * TBD.
+     */
     resize(): void;
+    /**
+     * TBD.
+     */
     pauseUpdate(): void;
+    /**
+     * TBD.
+     */
     shutdown(): void;
 }
 //# sourceMappingURL=scene.d.ts.map

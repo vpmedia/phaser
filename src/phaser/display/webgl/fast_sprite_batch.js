@@ -1,6 +1,6 @@
 export class FastSpriteBatch {
   /**
-   *
+   * TBD.
    * @param gl
    */
   constructor(gl) {
@@ -35,7 +35,7 @@ export class FastSpriteBatch {
   }
 
   /**
-   *
+   * TBD.
    * @param gl
    */
   setContext(gl) {
@@ -52,7 +52,7 @@ export class FastSpriteBatch {
   }
 
   /**
-   *
+   * TBD.
    * @param spriteBatch
    * @param renderSession
    */
@@ -64,14 +64,14 @@ export class FastSpriteBatch {
   }
 
   /**
-   *
+   * TBD.
    */
   end() {
     this.flush();
   }
 
   /**
-   *
+   * TBD.
    * @param spriteBatch
    */
   render(spriteBatch) {
@@ -95,7 +95,7 @@ export class FastSpriteBatch {
   }
 
   /**
-   *
+   * TBD.
    * @param sprite
    */
   renderSprite(sprite) {
@@ -205,7 +205,7 @@ export class FastSpriteBatch {
   }
 
   /**
-   *
+   * TBD.
    */
   flush() {
     // If the batch is length 0 then return as there is nothing to draw
@@ -234,14 +234,14 @@ export class FastSpriteBatch {
   }
 
   /**
-   *
+   * TBD.
    */
   stop() {
     this.flush();
   }
 
   /**
-   *
+   * TBD.
    */
   start() {
     const gl = this.gl;

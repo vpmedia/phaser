@@ -23,34 +23,160 @@ export class Graphics extends DisplayObject {
     _boundsDirty: boolean;
     webGLDirty: boolean;
     cachedSpriteDirty: boolean;
+    /**
+     * TBD.
+     * @param lineWidth
+     * @param color
+     * @param alpha
+     */
     lineStyle(lineWidth?: number, color?: number, alpha?: number): Graphics;
     lineAlpha: number;
-    moveTo(x: any, y: any): Graphics;
-    lineTo(x: any, y: any): Graphics;
+    /**
+     * TBD.
+     * @param {number} x - TBD.
+     * @param {number} y - TBD.
+     */
+    moveTo(x: number, y: number): Graphics;
+    /**
+     * TBD.
+     * @param {number} x - TBD.
+     * @param {number} y - TBD.
+     */
+    lineTo(x: number, y: number): Graphics;
+    /**
+     * TBD.
+     * @param cpX
+     * @param cpY
+     * @param toX
+     * @param toY
+     */
     quadraticCurveTo(cpX: any, cpY: any, toX: any, toY: any): Graphics;
+    /**
+     * TBD.
+     * @param cpX
+     * @param cpY
+     * @param cpX2
+     * @param cpY2
+     * @param toX
+     * @param toY
+     */
     bezierCurveTo(cpX: any, cpY: any, cpX2: any, cpY2: any, toX: any, toY: any): Graphics;
+    /**
+     * TBD.
+     * @param x1
+     * @param y1
+     * @param x2
+     * @param y2
+     * @param radius
+     */
     arcTo(x1: any, y1: any, x2: any, y2: any, radius: any): Graphics;
+    /**
+     * TBD.
+     * @param cx
+     * @param cy
+     * @param radius
+     * @param startAngle
+     * @param endAngle
+     * @param anticlockwise
+     * @param segments
+     */
     arc(cx: any, cy: any, radius: any, startAngle: any, endAngle: any, anticlockwise?: boolean, segments?: number): Graphics;
+    /**
+     * TBD.
+     * @param color
+     * @param alpha
+     */
     beginFill(color?: number, alpha?: number): Graphics;
     filling: boolean;
     fillColor: number;
+    /**
+     * TBD.
+     */
     endFill(): Graphics;
-    drawRect(x: any, y: any, width: any, height: any): Graphics;
-    drawRoundedRect(x: any, y: any, width: any, height: any, radius: any): Graphics;
-    drawCircle(x: any, y: any, diameter: any): Graphics;
-    drawEllipse(x: any, y: any, width: any, height: any): Graphics;
+    /**
+     * TBD.
+     * @param {number} x - TBD.
+     * @param {number} y - TBD.
+     * @param {number} width - TBD.
+     * @param {number} height - TBD.
+     */
+    drawRect(x: number, y: number, width: number, height: number): Graphics;
+    /**
+     * TBD.
+     * @param {number} x - TBD.
+     * @param {number} y - TBD.
+     * @param {number} width - TBD.
+     * @param {number} height - TBD.
+     * @param radius
+     */
+    drawRoundedRect(x: number, y: number, width: number, height: number, radius: any): Graphics;
+    /**
+     * TBD.
+     * @param {number} x - TBD.
+     * @param {number} y - TBD.
+     * @param diameter
+     */
+    drawCircle(x: number, y: number, diameter: any): Graphics;
+    /**
+     * TBD.
+     * @param {number} x - TBD.
+     * @param {number} y - TBD.
+     * @param {number} width - TBD.
+     * @param {number} height - TBD.
+     */
+    drawEllipse(x: number, y: number, width: number, height: number): Graphics;
+    /**
+     * TBD.
+     * @param path
+     */
     drawPolygon(path: any): Graphics;
+    /**
+     * TBD.
+     */
     clear(): Graphics;
     clearDirty: boolean;
     _prevTint: any;
+    /**
+     * TBD.
+     * @param matrix
+     */
     getBounds(matrix?: any): any;
+    /**
+     * TBD.
+     */
     getLocalBounds(): any;
     worldTransform: any;
+    /**
+     * TBD.
+     * @param point
+     * @param tempPoint
+     */
     containsPoint(point: any, tempPoint: any): boolean;
+    /**
+     * TBD.
+     */
     updateLocalBounds(): void;
+    /**
+     * TBD.
+     */
     updateCachedSpriteTexture(): void;
+    /**
+     * TBD.
+     * @param shape
+     */
     drawShape(shape: any): GraphicsData;
+    /**
+     * TBD.
+     * @param points
+     * @param cull
+     */
     drawTriangle(points: any, cull?: boolean): void;
+    /**
+     * TBD.
+     * @param vertices
+     * @param indices
+     * @param cull
+     */
     drawTriangles(vertices: any, indices: any, cull?: boolean): void;
 }
 import { DisplayObject } from './display_object';

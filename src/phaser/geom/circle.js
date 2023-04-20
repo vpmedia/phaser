@@ -23,14 +23,14 @@ export class Circle {
   }
 
   /**
-   *
+   * TBD.
    */
   circumference() {
     return 2 * (Math.PI * this._radius);
   }
 
   /**
-   *
+   * TBD.
    * @param output
    */
   random(output = null) {
@@ -46,16 +46,16 @@ export class Circle {
   }
 
   /**
-   *
+   * TBD.
    */
   getBounds() {
     return new Rectangle(this.x - this.radius, this.y - this.radius, this.diameter, this.diameter);
   }
 
   /**
-   *
-   * @param x
-   * @param y
+   * TBD.
+   * @param {number} x - TBD.
+   * @param {number} y - TBD.
    * @param diameter
    */
   setTo(x, y, diameter) {
@@ -67,7 +67,7 @@ export class Circle {
   }
 
   /**
-   *
+   * TBD.
    * @param source
    */
   copyFrom(source) {
@@ -75,7 +75,7 @@ export class Circle {
   }
 
   /**
-   *
+   * TBD.
    * @param dest
    */
   copyTo(dest) {
@@ -86,7 +86,7 @@ export class Circle {
   }
 
   /**
-   *
+   * TBD.
    * @param dest
    * @param round
    */
@@ -96,23 +96,23 @@ export class Circle {
   }
 
   /**
-   *
+   * TBD.
    */
   clone() {
     return clone(this);
   }
 
   /**
-   *
-   * @param x
-   * @param y
+   * TBD.
+   * @param {number} x - TBD.
+   * @param {number} y - TBD.
    */
   contains(x, y) {
     return contains(this, x, y);
   }
 
   /**
-   *
+   * TBD.
    * @param angle
    * @param asDegrees
    * @param out
@@ -122,7 +122,7 @@ export class Circle {
   }
 
   /**
-   *
+   * TBD.
    * @param dx
    * @param dy
    */
@@ -133,7 +133,7 @@ export class Circle {
   }
 
   /**
-   *
+   * TBD.
    * @param point
    */
   offsetPoint(point) {
@@ -141,7 +141,7 @@ export class Circle {
   }
 
   /**
-   *
+   * TBD.
    */
   toString() {
     return (
@@ -158,14 +158,14 @@ export class Circle {
   }
 
   /**
-   *
+   * TBD.
    */
   get diameter() {
     return this._diameter;
   }
 
   /**
-   *
+   * TBD.
    */
   set diameter(value) {
     if (value > 0) {
@@ -175,14 +175,14 @@ export class Circle {
   }
 
   /**
-   *
+   * TBD.
    */
   get radius() {
     return this._radius;
   }
 
   /**
-   *
+   * TBD.
    */
   set radius(value) {
     if (value > 0) {
@@ -192,14 +192,14 @@ export class Circle {
   }
 
   /**
-   *
+   * TBD.
    */
   get left() {
     return this.x - this._radius;
   }
 
   /**
-   *
+   * TBD.
    */
   set left(value) {
     if (value > this.x) {
@@ -211,14 +211,14 @@ export class Circle {
   }
 
   /**
-   *
+   * TBD.
    */
   get right() {
     return this.x + this._radius;
   }
 
   /**
-   *
+   * TBD.
    */
   set right(value) {
     if (value < this.x) {
@@ -230,14 +230,14 @@ export class Circle {
   }
 
   /**
-   *
+   * TBD.
    */
   get top() {
     return this.y - this._radius;
   }
 
   /**
-   *
+   * TBD.
    */
   set top(value) {
     if (value > this.y) {
@@ -249,14 +249,14 @@ export class Circle {
   }
 
   /**
-   *
+   * TBD.
    */
   get bottom() {
     return this.y + this._radius;
   }
 
   /**
-   *
+   * TBD.
    */
   set bottom(value) {
     if (value < this.y) {
@@ -268,7 +268,7 @@ export class Circle {
   }
 
   /**
-   *
+   * TBD.
    */
   get area() {
     if (this._radius > 0) {
@@ -278,14 +278,14 @@ export class Circle {
   }
 
   /**
-   *
+   * TBD.
    */
   get empty() {
     return this._diameter === 0;
   }
 
   /**
-   *
+   * TBD.
    */
   set empty(value) {
     if (value === true) {

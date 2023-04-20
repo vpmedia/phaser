@@ -46,7 +46,7 @@ export class Group extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    * @param destroyChildren
    * @param soft
    */
@@ -69,7 +69,7 @@ export class Group extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    * @param child
    * @param silent
    * @param index
@@ -98,7 +98,7 @@ export class Group extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    * @param child
    * @param index
    * @param silent
@@ -108,7 +108,7 @@ export class Group extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    * @param index
    */
   getAt(index) {
@@ -119,7 +119,7 @@ export class Group extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   updateZ() {
     let i = this.children.length;
@@ -130,7 +130,7 @@ export class Group extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   next() {
     if (this.cursor) {
@@ -147,7 +147,7 @@ export class Group extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   previous() {
     if (this.cursor) {
@@ -164,7 +164,7 @@ export class Group extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    * @param child1
    * @param child2
    */
@@ -174,7 +174,7 @@ export class Group extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    * @param child
    */
   bringToTop(child) {
@@ -186,7 +186,7 @@ export class Group extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    * @param child
    */
   sendToBack(child) {
@@ -198,7 +198,7 @@ export class Group extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   reverse() {
     this.children.reverse();
@@ -206,7 +206,7 @@ export class Group extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    * @param child
    */
   getIndex(child) {
@@ -214,7 +214,7 @@ export class Group extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   preUpdate() {
     if (this.pendingDestroy) {
@@ -231,7 +231,7 @@ export class Group extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   update() {
     let i = this.children.length;
@@ -242,7 +242,7 @@ export class Group extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   postUpdate() {
     for (let i = 0; i < this.children.length; i += 1) {
@@ -251,7 +251,7 @@ export class Group extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    * @param child
    * @param destroy
    * @param silent
@@ -275,7 +275,7 @@ export class Group extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    * @param destroy
    * @param silent
    * @param destroyTexture

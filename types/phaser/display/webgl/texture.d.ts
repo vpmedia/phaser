@@ -9,6 +9,13 @@ export class TextureUvs {
     y3: number;
 }
 export class Texture {
+    /**
+     * TBD.
+     * @param baseTexture
+     * @param frame
+     * @param crop
+     * @param trim
+     */
     constructor(baseTexture: any, frame: any, crop: any, trim: any);
     noFrame: boolean;
     baseTexture: any;
@@ -22,9 +29,23 @@ export class Texture {
     width: number;
     height: number;
     crop: any;
+    /**
+     * TBD.
+     */
     onBaseTextureLoaded(): void;
+    /**
+     * TBD.
+     * @param destroyBase
+     */
     destroy(destroyBase?: boolean): void;
+    /**
+     * TBD.
+     * @param frame
+     */
     setFrame(frame: any): void;
+    /**
+     * TBD.
+     */
     _updateUvs(): void;
 }
 //# sourceMappingURL=texture.d.ts.map

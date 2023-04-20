@@ -66,7 +66,7 @@ export class Button extends Image {
   }
 
   /**
-   *
+   * TBD.
    */
   destroy() {
     this._onOverFrame = null;
@@ -92,7 +92,7 @@ export class Button extends Image {
   }
 
   /**
-   *
+   * TBD.
    * @param isEnabled
    * @param isImmediate
    */
@@ -108,21 +108,21 @@ export class Button extends Image {
   }
 
   /**
-   *
+   * TBD.
    */
   clearFrames() {
     this.setFrames(null, null, null, null);
   }
 
   /**
-   *
+   * TBD.
    */
   removedFromWorld() {
     this.inputEnabled = false;
   }
 
   /**
-   *
+   * TBD.
    * @param state
    * @param frame
    * @param switchImmediately
@@ -140,7 +140,7 @@ export class Button extends Image {
   }
 
   /**
-   *
+   * TBD.
    * @param newState
    */
   changeStateFrame(newState) {
@@ -161,7 +161,7 @@ export class Button extends Image {
   }
 
   /**
-   *
+   * TBD.
    * @param overFrame
    * @param outFrame
    * @param downFrame
@@ -175,7 +175,7 @@ export class Button extends Image {
   }
 
   /**
-   *
+   * TBD.
    * @param sprite
    * @param pointer
    */
@@ -197,7 +197,7 @@ export class Button extends Image {
   }
 
   /**
-   *
+   * TBD.
    * @param sprite
    * @param pointer
    */
@@ -209,7 +209,7 @@ export class Button extends Image {
   }
 
   /**
-   *
+   * TBD.
    * @param sprite
    * @param pointer
    */
@@ -221,7 +221,7 @@ export class Button extends Image {
   }
 
   /**
-   *
+   * TBD.
    * @param sprite
    * @param pointer
    * @param isOver
@@ -249,14 +249,14 @@ export class Button extends Image {
   }
 
   /**
-   *
+   * TBD.
    */
   get inputEnabled() {
     return this.input && this.input.enabled;
   }
 
   /**
-   *
+   * TBD.
    */
   set inputEnabled(value) {
     if (value) {

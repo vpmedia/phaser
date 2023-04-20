@@ -2,8 +2,8 @@ import { Signal } from  './signal';
 
 export class Animation {
   /**
-   *
-   * @param game
+   * TBD.
+   * @param {object} game - TBD.
    * @param parent
    * @param name
    * @param frameData
@@ -41,7 +41,7 @@ export class Animation {
   }
 
   /**
-   *
+   * TBD.
    * @param frameRate
    * @param loop
    * @param killOnComplete
@@ -75,7 +75,7 @@ export class Animation {
   }
 
   /**
-   *
+   * TBD.
    */
   restart() {
     this.isPlaying = true;
@@ -93,7 +93,7 @@ export class Animation {
   }
 
   /**
-   *
+   * TBD.
    */
   reverse() {
     this.reversed = !this.reversed;
@@ -101,7 +101,7 @@ export class Animation {
   }
 
   /**
-   *
+   * TBD.
    */
   reverseOnce() {
     this.onComplete.addOnce(this.reverse, this);
@@ -109,7 +109,7 @@ export class Animation {
   }
 
   /**
-   *
+   * TBD.
    * @param frameId
    * @param useLocalFrameIndex
    */
@@ -143,7 +143,7 @@ export class Animation {
   }
 
   /**
-   *
+   * TBD.
    * @param resetFrame
    * @param dispatchComplete
    */
@@ -164,7 +164,7 @@ export class Animation {
   }
 
   /**
-   *
+   * TBD.
    */
   onPause() {
     if (this.isPlaying) {
@@ -173,7 +173,7 @@ export class Animation {
   }
 
   /**
-   *
+   * TBD.
    */
   onResume() {
     if (this.isPlaying) {
@@ -182,7 +182,7 @@ export class Animation {
   }
 
   /**
-   *
+   * TBD.
    */
   update() {
     if (this.isPaused) {
@@ -240,7 +240,7 @@ export class Animation {
   }
 
   /**
-   *
+   * TBD.
    * @param signalUpdate
    * @param fromPlay
    */
@@ -264,7 +264,7 @@ export class Animation {
   }
 
   /**
-   *
+   * TBD.
    * @param quantity
    */
   next(quantity = 1) {
@@ -283,7 +283,7 @@ export class Animation {
   }
 
   /**
-   *
+   * TBD.
    * @param quantity
    */
   previous(quantity = 1) {
@@ -302,7 +302,7 @@ export class Animation {
   }
 
   /**
-   *
+   * TBD.
    * @param frameData
    */
   updateFrameData(frameData) {
@@ -313,7 +313,7 @@ export class Animation {
   }
 
   /**
-   *
+   * TBD.
    */
   destroy() {
     if (!this._frameData) {
@@ -337,7 +337,7 @@ export class Animation {
   }
 
   /**
-   *
+   * TBD.
    */
   complete() {
     this._frameIndex = this._frames.length - 1;
@@ -353,14 +353,14 @@ export class Animation {
   }
 
   /**
-   *
+   * TBD.
    */
   get paused() {
     return this.isPaused;
   }
 
   /**
-   *
+   * TBD.
    */
   set paused(value) {
     this.isPaused = value;
@@ -372,28 +372,28 @@ export class Animation {
   }
 
   /**
-   *
+   * TBD.
    */
   get reversed() {
     return this.isReversed;
   }
 
   /**
-   *
+   * TBD.
    */
   set reversed(value) {
     this.isReversed = value;
   }
 
   /**
-   *
+   * TBD.
    */
   get frameTotal() {
     return this._frames.length;
   }
 
   /**
-   *
+   * TBD.
    */
   get frame() {
     if (this.currentFrame !== null) {
@@ -403,7 +403,7 @@ export class Animation {
   }
 
   /**
-   *
+   * TBD.
    */
   set frame(value) {
     this.currentFrame = this._frameData.getFrame(this._frames[value]);
@@ -417,14 +417,14 @@ export class Animation {
   }
 
   /**
-   *
+   * TBD.
    */
   get speed() {
     return 1000 / this.delay;
   }
 
   /**
-   *
+   * TBD.
    */
   set speed(value) {
     if (value > 0) {
@@ -433,14 +433,14 @@ export class Animation {
   }
 
   /**
-   *
+   * TBD.
    */
   get enableUpdate() {
     return this.onUpdate !== null;
   }
 
   /**
-   *
+   * TBD.
    */
   set enableUpdate(value) {
     if (value && this.onUpdate === null) {

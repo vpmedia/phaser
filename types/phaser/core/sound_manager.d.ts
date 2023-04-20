@@ -1,5 +1,9 @@
 export class SoundManager {
-    constructor(game: any);
+    /**
+     * TBD.
+     * @param {object} game - TBD.
+     */
+    constructor(game: object);
     game: any;
     onChange: Signal;
     context: any;
@@ -17,30 +21,111 @@ export class SoundManager {
     _watching: boolean;
     _watchCallback: any;
     _watchContext: any;
+    /**
+     * TBD.
+     */
     boot(): void;
     masterGain: any;
     onUnlockEventBinded: (event: any) => void;
+    /**
+     * TBD.
+     */
     addUnlockHandlers(): void;
+    /**
+     * TBD.
+     */
     removeUnlockHandlers(): void;
+    /**
+     * TBD.
+     * @param event
+     */
     onUnlockEvent(event: any): void;
+    /**
+     * TBD.
+     */
     stopAll(): void;
+    /**
+     * TBD.
+     */
     pauseAll(): void;
+    /**
+     * TBD.
+     */
     resumeAll(): void;
-    decode(key: any): void;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     */
+    decode(key: string): void;
+    /**
+     * TBD.
+     * @param files
+     * @param callback
+     * @param callbackContext
+     */
     setDecodedCallback(files: any, callback: any, callbackContext: any): void;
+    /**
+     * TBD.
+     */
     update(): void;
-    add(key: any, volume?: number, loop?: boolean, connect?: boolean): Sound;
-    addSprite(key: any): SoundSprite;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     * @param volume
+     * @param loop
+     * @param connect
+     */
+    add(key: string, volume?: number, loop?: boolean, connect?: boolean): Sound;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     */
+    addSprite(key: string): SoundSprite;
+    /**
+     * TBD.
+     * @param sound
+     */
     remove(sound: any): boolean;
-    removeByKey(key: any): number;
-    play(key: any, volume?: number, loop?: boolean): Sound;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     */
+    removeByKey(key: string): number;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     * @param volume
+     * @param loop
+     */
+    play(key: string, volume?: number, loop?: boolean): Sound;
+    /**
+     * TBD.
+     */
     setMute(): void;
     _muteVolume: any;
+    /**
+     * TBD.
+     */
     unsetMute(): void;
+    /**
+     * TBD.
+     */
     destroy(): void;
+    /**
+     * TBD.
+     */
     set mute(arg: boolean);
+    /**
+     * TBD.
+     */
     get mute(): boolean;
+    /**
+     * TBD.
+     */
     set volume(arg: number);
+    /**
+     * TBD.
+     */
     get volume(): number;
 }
 import { Signal } from './signal';

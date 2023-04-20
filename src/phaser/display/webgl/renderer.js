@@ -31,8 +31,8 @@ import { WebGLBlendModeManager } from './blend_manager';
 
 export class WebGLRenderer {
   /**
-   *
-   * @param game
+   * TBD.
+   * @param {object} game - TBD.
    */
   constructor(game) {
     this.type = RENDER_WEBGL;
@@ -74,7 +74,7 @@ export class WebGLRenderer {
   }
 
   /**
-   *
+   * TBD.
    */
   destroy() {
     window.PhaserRegistry.GL_CONTEXTS[this.glContextId] = null;
@@ -102,7 +102,7 @@ export class WebGLRenderer {
   }
 
   /**
-   *
+   * TBD.
    */
   initRegistry() {
     if (!window.PhaserRegistry.GL_CONTEXT_ID) {
@@ -117,7 +117,7 @@ export class WebGLRenderer {
   }
 
   /**
-   *
+   * TBD.
    */
   initContext() {
     const gl =
@@ -150,7 +150,7 @@ export class WebGLRenderer {
   }
 
   /**
-   *
+   * TBD.
    * @param stage
    */
   render(stage) {
@@ -172,7 +172,7 @@ export class WebGLRenderer {
   }
 
   /**
-   *
+   * TBD.
    * @param displayObject
    * @param projection
    * @param buffer
@@ -199,9 +199,9 @@ export class WebGLRenderer {
   }
 
   /**
-   *
-   * @param width
-   * @param height
+   * TBD.
+   * @param {number} width - TBD.
+   * @param {number} height - TBD.
    */
   resize(width, height) {
     this.width = width * this.resolution;
@@ -218,7 +218,7 @@ export class WebGLRenderer {
   }
 
   /**
-   *
+   * TBD.
    * @param texture
    */
   updateTexture(texture) {
@@ -264,7 +264,7 @@ export class WebGLRenderer {
   }
 
   /**
-   *
+   * TBD.
    */
   mapBlendModes() {
     if (window.PhaserRegistry.blendModesWebGL) {

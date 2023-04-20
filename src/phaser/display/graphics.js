@@ -59,7 +59,7 @@ export class Graphics extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   destroy() {
     // TODO
@@ -68,7 +68,7 @@ export class Graphics extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    * @param lineWidth
    * @param color
    * @param alpha
@@ -92,9 +92,9 @@ export class Graphics extends DisplayObject {
   }
 
   /**
-   *
-   * @param x
-   * @param y
+   * TBD.
+   * @param {number} x - TBD.
+   * @param {number} y - TBD.
    */
   moveTo(x, y) {
     this.drawShape(new Polygon([x, y]));
@@ -102,9 +102,9 @@ export class Graphics extends DisplayObject {
   }
 
   /**
-   *
-   * @param x
-   * @param y
+   * TBD.
+   * @param {number} x - TBD.
+   * @param {number} y - TBD.
    */
   lineTo(x, y) {
     if (!this.currentPath) {
@@ -117,7 +117,7 @@ export class Graphics extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    * @param cpX
    * @param cpY
    * @param toX
@@ -153,7 +153,7 @@ export class Graphics extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    * @param cpX
    * @param cpY
    * @param cpX2
@@ -197,7 +197,7 @@ export class Graphics extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    * @param x1
    * @param y1
    * @param x2
@@ -248,7 +248,7 @@ export class Graphics extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    * @param cx
    * @param cy
    * @param radius
@@ -304,7 +304,7 @@ export class Graphics extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    * @param color
    * @param alpha
    */
@@ -323,7 +323,7 @@ export class Graphics extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   endFill() {
     this.filling = false;
@@ -333,11 +333,11 @@ export class Graphics extends DisplayObject {
   }
 
   /**
-   *
-   * @param x
-   * @param y
-   * @param width
-   * @param height
+   * TBD.
+   * @param {number} x - TBD.
+   * @param {number} y - TBD.
+   * @param {number} width - TBD.
+   * @param {number} height - TBD.
    */
   drawRect(x, y, width, height) {
     this.drawShape(new Rectangle(x, y, width, height));
@@ -345,11 +345,11 @@ export class Graphics extends DisplayObject {
   }
 
   /**
-   *
-   * @param x
-   * @param y
-   * @param width
-   * @param height
+   * TBD.
+   * @param {number} x - TBD.
+   * @param {number} y - TBD.
+   * @param {number} width - TBD.
+   * @param {number} height - TBD.
    * @param radius
    */
   drawRoundedRect(x, y, width, height, radius) {
@@ -358,9 +358,9 @@ export class Graphics extends DisplayObject {
   }
 
   /**
-   *
-   * @param x
-   * @param y
+   * TBD.
+   * @param {number} x - TBD.
+   * @param {number} y - TBD.
    * @param diameter
    */
   drawCircle(x, y, diameter) {
@@ -369,11 +369,11 @@ export class Graphics extends DisplayObject {
   }
 
   /**
-   *
-   * @param x
-   * @param y
-   * @param width
-   * @param height
+   * TBD.
+   * @param {number} x - TBD.
+   * @param {number} y - TBD.
+   * @param {number} width - TBD.
+   * @param {number} height - TBD.
    */
   drawEllipse(x, y, width, height) {
     this.drawShape(new Ellipse(x, y, width, height));
@@ -381,7 +381,7 @@ export class Graphics extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    * @param path
    */
   drawPolygon(path) {
@@ -405,7 +405,7 @@ export class Graphics extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   clear() {
     this.lineWidth = 0;
@@ -419,7 +419,7 @@ export class Graphics extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   generateTexture() {
     // TODO
@@ -427,7 +427,7 @@ export class Graphics extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    * @param renderSession
    */
   renderWebGL(renderSession) {
@@ -488,7 +488,7 @@ export class Graphics extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    * @param renderSession
    */
   renderCanvas(renderSession) {
@@ -545,7 +545,7 @@ export class Graphics extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    * @param matrix
    */
   getBounds(matrix = null) {
@@ -605,7 +605,7 @@ export class Graphics extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   getLocalBounds() {
     const matrixCache = this.worldTransform;
@@ -622,7 +622,7 @@ export class Graphics extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    * @param point
    * @param tempPoint
    */
@@ -641,7 +641,7 @@ export class Graphics extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   updateLocalBounds() {
     let minX = Infinity;
@@ -722,7 +722,7 @@ export class Graphics extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   generateCachedSprite() {
     const bounds = this.getLocalBounds();
@@ -748,7 +748,7 @@ export class Graphics extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   updateCachedSpriteTexture() {
     const cachedSprite = this._cachedSprite;
@@ -767,7 +767,7 @@ export class Graphics extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   destroyCachedSprite() {
     if (!this._cachedSprite) {
@@ -778,7 +778,7 @@ export class Graphics extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    * @param shape
    */
   drawShape(shape) {
@@ -814,7 +814,7 @@ export class Graphics extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   postUpdate() {
     if (this._boundsDirty) {
@@ -827,7 +827,7 @@ export class Graphics extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    * @param points
    * @param cull
    */
@@ -847,7 +847,7 @@ export class Graphics extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    * @param vertices
    * @param indices
    * @param cull

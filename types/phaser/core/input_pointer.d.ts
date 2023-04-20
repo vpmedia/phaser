@@ -1,5 +1,11 @@
 export class Pointer {
-    constructor(game: any, id: any, pointerMode: any);
+    /**
+     * TBD.
+     * @param {object} game - TBD.
+     * @param id
+     * @param pointerMode
+     */
+    constructor(game: object, id: any, pointerMode: any);
     game: any;
     id: any;
     type: number;
@@ -44,23 +50,92 @@ export class Pointer {
     circle: Circle;
     _clickTrampolines: any;
     _trampolineTargetObject: any;
+    /**
+     * TBD.
+     */
     resetButtons(): void;
+    /**
+     * TBD.
+     * @param event
+     */
     updateButtons(event: any): void;
+    /**
+     * TBD.
+     * @param event
+     */
     start(event: any): Pointer;
+    /**
+     * TBD.
+     */
     update(): void;
+    /**
+     * TBD.
+     * @param event
+     * @param fromClick
+     */
     move(event: any, fromClick?: boolean): Pointer;
+    /**
+     * TBD.
+     * @param fromClick
+     */
     processInteractiveObjects(fromClick?: boolean): boolean;
+    /**
+     * TBD.
+     * @param newTarget
+     * @param silent
+     */
     swapTarget(newTarget: any, silent?: boolean): void;
+    /**
+     * TBD.
+     * @param event
+     */
     leave(event: any): void;
+    /**
+     * TBD.
+     * @param event
+     */
     stop(event: any): Pointer;
+    /**
+     * TBD.
+     * @param duration
+     */
     justPressed(duration: any): boolean;
+    /**
+     * TBD.
+     * @param duration
+     */
     justReleased(duration: any): boolean;
+    /**
+     * TBD.
+     * @param name
+     * @param callback
+     * @param callbackContext
+     * @param callbackArgs
+     */
     addClickTrampoline(name: any, callback: any, callbackContext: any, callbackArgs: any): void;
+    /**
+     * TBD.
+     */
     processClickTrampolines(): void;
+    /**
+     * TBD.
+     */
     reset(): void;
+    /**
+     * TBD.
+     */
     resetMovement(): void;
+    /**
+     * TBD.
+     */
     get duration(): number;
+    /**
+     * TBD.
+     */
     get worldX(): number;
+    /**
+     * TBD.
+     */
     get worldY(): number;
 }
 import { Point } from '../geom/point';

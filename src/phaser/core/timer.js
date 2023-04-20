@@ -3,8 +3,8 @@ import { TimerEvent } from './timer_event';
 
 export class Timer {
   /**
-   *
-   * @param game
+   * TBD.
+   * @param {object} game - TBD.
    * @param autoDestroy
    */
   constructor(game, autoDestroy = false) {
@@ -31,7 +31,7 @@ export class Timer {
   }
 
   /**
-   *
+   * TBD.
    * @param delay
    * @param loop
    * @param repeatCount
@@ -64,7 +64,7 @@ export class Timer {
   }
 
   /**
-   *
+   * TBD.
    * @param delay
    * @param callback
    * @param callbackContext
@@ -75,7 +75,7 @@ export class Timer {
   }
 
   /**
-   *
+   * TBD.
    * @param delay
    * @param repeatCount
    * @param callback
@@ -87,7 +87,7 @@ export class Timer {
   }
 
   /**
-   *
+   * TBD.
    * @param delay
    * @param callback
    * @param callbackContext
@@ -98,7 +98,7 @@ export class Timer {
   }
 
   /**
-   *
+   * TBD.
    * @param delay
    */
   start(delay) {
@@ -113,7 +113,7 @@ export class Timer {
   }
 
   /**
-   *
+   * TBD.
    * @param clearEvents
    */
   stop(clearEvents = true) {
@@ -124,7 +124,7 @@ export class Timer {
   }
 
   /**
-   *
+   * TBD.
    * @param event
    */
   remove(event) {
@@ -138,7 +138,7 @@ export class Timer {
   }
 
   /**
-   *
+   * TBD.
    */
   order() {
     if (this.events.length > 0) {
@@ -149,7 +149,7 @@ export class Timer {
   }
 
   /**
-   *
+   * TBD.
    * @param a
    * @param b
    */
@@ -163,7 +163,7 @@ export class Timer {
   }
 
   /**
-   *
+   * TBD.
    */
   clearPendingEvents() {
     this._i = this.events.length;
@@ -178,7 +178,7 @@ export class Timer {
   }
 
   /**
-   *
+   * TBD.
    * @param time
    */
   update(time) {
@@ -247,7 +247,7 @@ export class Timer {
   }
 
   /**
-   *
+   * TBD.
    */
   pause() {
     if (!this.running) {
@@ -262,7 +262,7 @@ export class Timer {
   }
 
   /**
-   *
+   * TBD.
    */
   _pause() {
     if (this.paused || !this.running) {
@@ -273,7 +273,7 @@ export class Timer {
   }
 
   /**
-   *
+   * TBD.
    * @param baseTime
    */
   adjustEvents(baseTime) {
@@ -297,7 +297,7 @@ export class Timer {
   }
 
   /**
-   *
+   * TBD.
    */
   resume() {
     if (!this.paused) {
@@ -312,7 +312,7 @@ export class Timer {
   }
 
   /**
-   *
+   * TBD.
    */
   _resume() {
     if (this._codePaused) {
@@ -322,7 +322,7 @@ export class Timer {
   }
 
   /**
-   *
+   * TBD.
    */
   removeAll() {
     this.onComplete.removeAll();
@@ -332,7 +332,7 @@ export class Timer {
   }
 
   /**
-   *
+   * TBD.
    */
   destroy() {
     this.onComplete.removeAll();
@@ -343,14 +343,14 @@ export class Timer {
   }
 
   /**
-   *
+   * TBD.
    */
   get next() {
     return this.nextTick;
   }
 
   /**
-   *
+   * TBD.
    */
   get duration() {
     if (this.running && this.nextTick > this._now) {
@@ -360,14 +360,14 @@ export class Timer {
   }
 
   /**
-   *
+   * TBD.
    */
   get length() {
     return this.events.length;
   }
 
   /**
-   *
+   * TBD.
    */
   get ms() {
     if (this.running) {
@@ -377,7 +377,7 @@ export class Timer {
   }
 
   /**
-   *
+   * TBD.
    */
   get seconds() {
     if (this.running) {

@@ -1,5 +1,9 @@
 export class TweenManager {
-    constructor(game: any);
+    /**
+     * TBD.
+     * @param {object} game - TBD.
+     */
+    constructor(game: object);
     game: any;
     _tweens: any[];
     _add: any[];
@@ -46,17 +50,59 @@ export class TweenManager {
         'Back.easeInOut': typeof BackInOut;
         'Bounce.easeInOut': typeof BounceInOut;
     };
+    /**
+     * TBD.
+     */
     getAll(): any[];
+    /**
+     * TBD.
+     */
     removeAll(): void;
+    /**
+     * TBD.
+     * @param obj
+     * @param children
+     */
     removeFrom(obj: any, children: any): void;
+    /**
+     * TBD.
+     * @param tween
+     */
     add(tween: any): void;
+    /**
+     * TBD.
+     * @param object
+     */
     create(object: any): Tween;
+    /**
+     * TBD.
+     * @param tween
+     */
     remove(tween: any): void;
+    /**
+     * TBD.
+     */
     update(): boolean;
+    /**
+     * TBD.
+     * @param object
+     */
     isTweening(object: any): boolean;
+    /**
+     * TBD.
+     */
     _pauseAll(): void;
+    /**
+     * TBD.
+     */
     _resumeAll(): void;
+    /**
+     * TBD.
+     */
     pauseAll(): void;
+    /**
+     * TBD.
+     */
     resumeAll(): void;
 }
 import { LinearNone } from './tween_easing';

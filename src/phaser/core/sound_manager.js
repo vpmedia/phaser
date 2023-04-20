@@ -5,8 +5,8 @@ import { SoundSprite } from './sound_sprite';
 
 export class SoundManager {
   /**
-   *
-   * @param game
+   * TBD.
+   * @param {object} game - TBD.
    */
   constructor(game) {
     this.game = game;
@@ -29,7 +29,7 @@ export class SoundManager {
   }
 
   /**
-   *
+   * TBD.
    */
   boot() {
     if (this.game.config.isForceDisabledAudio) {
@@ -97,7 +97,7 @@ export class SoundManager {
   }
 
   /**
-   *
+   * TBD.
    */
   addUnlockHandlers() {
     this.isLocked = true;
@@ -112,7 +112,7 @@ export class SoundManager {
   }
 
   /**
-   *
+   * TBD.
    */
   removeUnlockHandlers() {
     this.isLocked = false;
@@ -127,7 +127,7 @@ export class SoundManager {
   }
 
   /**
-   *
+   * TBD.
    * @param event
    */
   onUnlockEvent(event) {
@@ -169,7 +169,7 @@ export class SoundManager {
   }
 
   /**
-   *
+   * TBD.
    */
   stopAll() {
     if (this.noAudio) {
@@ -183,7 +183,7 @@ export class SoundManager {
   }
 
   /**
-   *
+   * TBD.
    */
   pauseAll() {
     if (this.noAudio) {
@@ -197,7 +197,7 @@ export class SoundManager {
   }
 
   /**
-   *
+   * TBD.
    */
   resumeAll() {
     if (this.noAudio) {
@@ -211,8 +211,8 @@ export class SoundManager {
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    */
   decode(key) {
     const soundData = this.game.cache.getSoundData(key);
@@ -232,7 +232,7 @@ export class SoundManager {
   }
 
   /**
-   *
+   * TBD.
    * @param files
    * @param callback
    * @param callbackContext
@@ -263,7 +263,7 @@ export class SoundManager {
   }
 
   /**
-   *
+   * TBD.
    */
   update() {
     if (this.noAudio) {
@@ -288,8 +288,8 @@ export class SoundManager {
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    * @param volume
    * @param loop
    * @param connect
@@ -301,15 +301,15 @@ export class SoundManager {
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    */
   addSprite(key) {
     return new SoundSprite(this.game, key);
   }
 
   /**
-   *
+   * TBD.
    * @param sound
    */
   remove(sound) {
@@ -326,8 +326,8 @@ export class SoundManager {
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    */
   removeByKey(key) {
     let i = this._sounds.length;
@@ -344,8 +344,8 @@ export class SoundManager {
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    * @param volume
    * @param loop
    */
@@ -359,7 +359,7 @@ export class SoundManager {
   }
 
   /**
-   *
+   * TBD.
    */
   setMute() {
     if (this._muted) {
@@ -374,7 +374,7 @@ export class SoundManager {
   }
 
   /**
-   *
+   * TBD.
    */
   unsetMute() {
     if (!this._muted || this._codeMuted) {
@@ -388,7 +388,7 @@ export class SoundManager {
   }
 
   /**
-   *
+   * TBD.
    */
   destroy() {
     this.stopAll();
@@ -409,14 +409,14 @@ export class SoundManager {
   }
 
   /**
-   *
+   * TBD.
    */
   get mute() {
     return this._muted;
   }
 
   /**
-   *
+   * TBD.
    */
   set mute(value) {
     if (value || false) {
@@ -435,14 +435,14 @@ export class SoundManager {
   }
 
   /**
-   *
+   * TBD.
    */
   get volume() {
     return this._volume;
   }
 
   /**
-   *
+   * TBD.
    */
   set volume(value) {
     if (value < 0) {

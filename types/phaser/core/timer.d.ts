@@ -1,5 +1,10 @@
 export class Timer {
-    constructor(game: any, autoDestroy?: boolean);
+    /**
+     * TBD.
+     * @param {object} game - TBD.
+     * @param autoDestroy
+     */
+    constructor(game: object, autoDestroy?: boolean);
     game: any;
     running: boolean;
     autoDestroy: boolean;
@@ -20,28 +25,123 @@ export class Timer {
     _i: number;
     _diff: number;
     _newTick: number;
+    /**
+     * TBD.
+     * @param delay
+     * @param loop
+     * @param repeatCount
+     * @param callback
+     * @param callbackContext
+     * @param args
+     */
     create(delay: any, loop: any, repeatCount: any, callback: any, callbackContext: any, args: any): TimerEvent;
+    /**
+     * TBD.
+     * @param delay
+     * @param callback
+     * @param callbackContext
+     * @param {...any} args
+     */
     add(delay: any, callback: any, callbackContext: any, ...args: any[]): TimerEvent;
+    /**
+     * TBD.
+     * @param delay
+     * @param repeatCount
+     * @param callback
+     * @param callbackContext
+     * @param {...any} args
+     */
     repeat(delay: any, repeatCount: any, callback: any, callbackContext: any, ...args: any[]): TimerEvent;
+    /**
+     * TBD.
+     * @param delay
+     * @param callback
+     * @param callbackContext
+     * @param {...any} args
+     */
     loop(delay: any, callback: any, callbackContext: any, ...args: any[]): TimerEvent;
+    /**
+     * TBD.
+     * @param delay
+     */
     start(delay: any): void;
+    /**
+     * TBD.
+     * @param clearEvents
+     */
     stop(clearEvents?: boolean): void;
+    /**
+     * TBD.
+     * @param event
+     */
     remove(event: any): boolean;
+    /**
+     * TBD.
+     */
     order(): void;
+    /**
+     * TBD.
+     * @param a
+     * @param b
+     */
     sortHandler(a: any, b: any): 0 | 1 | -1;
+    /**
+     * TBD.
+     */
     clearPendingEvents(): void;
+    /**
+     * TBD.
+     * @param time
+     */
     update(time: any): boolean;
+    /**
+     * TBD.
+     */
     pause(): void;
+    /**
+     * TBD.
+     */
     _pause(): void;
+    /**
+     * TBD.
+     * @param baseTime
+     */
     adjustEvents(baseTime: any): void;
+    /**
+     * TBD.
+     */
     resume(): void;
+    /**
+     * TBD.
+     */
     _resume(): void;
+    /**
+     * TBD.
+     */
     removeAll(): void;
+    /**
+     * TBD.
+     */
     destroy(): void;
+    /**
+     * TBD.
+     */
     get next(): number;
+    /**
+     * TBD.
+     */
     get duration(): number;
+    /**
+     * TBD.
+     */
     get length(): number;
+    /**
+     * TBD.
+     */
     get ms(): number;
+    /**
+     * TBD.
+     */
     get seconds(): number;
 }
 import { Signal } from './signal';

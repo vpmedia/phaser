@@ -1,10 +1,9 @@
-/**
- * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
- * @author       Andras Csizmadia <andras@vpmedia.hu>
- * @author       Richard Davey <rich@photonstorm.com>
- */
 export class MSPointer {
-    constructor(game: any);
+    /**
+     * TBD.
+     * @param {object} game - TBD.
+     */
+    constructor(game: object);
     game: any;
     input: any;
     callbackContext: any;
@@ -21,14 +20,48 @@ export class MSPointer {
     _onMSPointerUpGlobal: (event: any) => void;
     _onMSPointerOut: (event: any) => void;
     _onMSPointerOver: (event: any) => void;
+    /**
+     * TBD.
+     */
     start(): void;
+    /**
+     * TBD.
+     */
     stop(): void;
+    /**
+     * TBD.
+     * @param event
+     */
     onPointerDown(event: any): void;
+    /**
+     * TBD.
+     * @param event
+     */
     onPointerMove(event: any): void;
+    /**
+     * TBD.
+     * @param event
+     */
     onPointerUp(event: any): void;
+    /**
+     * TBD.
+     * @param event
+     */
     onPointerUpGlobal(event: any): void;
+    /**
+     * TBD.
+     * @param event
+     */
     onPointerOut(event: any): void;
+    /**
+     * TBD.
+     * @param event
+     */
     onPointerOver(event: any): void;
+    /**
+     * TBD.
+     * @param event
+     */
     eventPreventDefault(event: any): void;
 }
 //# sourceMappingURL=input_mspointer.d.ts.map

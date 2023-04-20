@@ -43,7 +43,7 @@ export class Image extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   destroy() {
     this.game = null;
@@ -67,7 +67,7 @@ export class Image extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   preUpdate() {
     if (this.pendingDestroy) {
@@ -93,8 +93,8 @@ export class Image extends DisplayObject {
   // LoadTexture
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    * @param frame
    * @param stopAnimation
    */
@@ -137,7 +137,7 @@ export class Image extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    * @param frame
    */
   setFrame(frame) {
@@ -182,10 +182,10 @@ export class Image extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    * @param parent
-   * @param width
-   * @param height
+   * @param {number} width - TBD.
+   * @param {number} height - TBD.
    */
   resizeFrame(parent, width, height) {
     this.texture.frame.resize(width, height);
@@ -193,7 +193,7 @@ export class Image extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   resetFrame() {
     if (this._frame) {
@@ -202,28 +202,28 @@ export class Image extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   get frame() {
     return this.animations.frame;
   }
 
   /**
-   *
+   * TBD.
    */
   set frame(value) {
     this.animations.frame = value;
   }
 
   /**
-   *
+   * TBD.
    */
   get frameName() {
     return this.animations.frameName;
   }
 
   /**
-   *
+   * TBD.
    */
   set frameName(value) {
     this.animations.frameName = value;
@@ -232,7 +232,7 @@ export class Image extends DisplayObject {
   // Crop
 
   /**
-   *
+   * TBD.
    * @param rect
    * @param copy
    */
@@ -254,7 +254,7 @@ export class Image extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   updateCrop() {
     if (!this.cropRect) {
@@ -286,14 +286,14 @@ export class Image extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   get width() {
     return this.scale.x * this.texture.frame.width;
   }
 
   /**
-   *
+   * TBD.
    */
   set width(value) {
     this.scale.x = value / this.texture.frame.width;
@@ -301,14 +301,14 @@ export class Image extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   get height() {
     return this.scale.y * this.texture.frame.height;
   }
 
   /**
-   *
+   * TBD.
    */
   set height(value) {
     this.scale.y = value / this.texture.frame.height;
@@ -316,7 +316,7 @@ export class Image extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   onTextureUpdate() {
     // so if _width is 0 then width was not set..
@@ -329,7 +329,7 @@ export class Image extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    * @param texture
    * @param destroyBase
    */
@@ -338,7 +338,7 @@ export class Image extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    * @param matrix
    */
   getBounds(matrix = null) {
@@ -346,14 +346,14 @@ export class Image extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    */
   getLocalBounds() {
     return getLocalBounds(this);
   }
 
   /**
-   *
+   * TBD.
    * @param renderSession
    * @param matrix
    */
@@ -362,7 +362,7 @@ export class Image extends DisplayObject {
   }
 
   /**
-   *
+   * TBD.
    * @param renderSession
    * @param matrix
    */

@@ -2,7 +2,7 @@ import { removeByCanvas } from '../canvas/pool';
 
 export class BaseTexture {
   /**
-   *
+   * TBD.
    * @param source
    * @param scaleMode
    */
@@ -34,9 +34,9 @@ export class BaseTexture {
   }
 
   /**
-   *
-   * @param width
-   * @param height
+   * TBD.
+   * @param {number} width - TBD.
+   * @param {number} height - TBD.
    */
   forceLoaded(width, height) {
     this.hasLoaded = true;
@@ -46,7 +46,7 @@ export class BaseTexture {
   }
 
   /**
-   *
+   * TBD.
    */
   destroy() {
     if (this.source) {
@@ -57,7 +57,7 @@ export class BaseTexture {
   }
 
   /**
-   *
+   * TBD.
    */
   dirty() {
     for (let i = 0; i < this._glTextures.length; i += 1) {
@@ -66,7 +66,7 @@ export class BaseTexture {
   }
 
   /**
-   *
+   * TBD.
    */
   unloadFromGPU() {
     this.dirty();

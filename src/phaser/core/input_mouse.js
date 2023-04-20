@@ -9,7 +9,7 @@ const WHEEL_DOWN = -1; */
 
 class WheelEventProxy {
   /**
-   *
+   * TBD.
    * @param scaleFactor
    * @param deltaMode
    */
@@ -22,7 +22,7 @@ class WheelEventProxy {
   }
 
   /**
-   *
+   * TBD.
    * @param event
    */
   bindEvent(event) {
@@ -44,21 +44,21 @@ class WheelEventProxy {
   }
 
   /**
-   *
+   * TBD.
    */
   get deltaMode() {
     return this._deltaMode;
   }
 
   /**
-   *
+   * TBD.
    */
   get deltaY() {
     return this._scaleFactor * (this.originalEvent.wheelDelta || this.originalEvent.detail) || 0;
   }
 
   /**
-   *
+   * TBD.
    */
   get deltaX() {
     return this._scaleFactor * this.originalEvent.wheelDeltaX || 0;
@@ -67,8 +67,8 @@ class WheelEventProxy {
 
 export class Mouse {
   /**
-   *
-   * @param game
+   * TBD.
+   * @param {object} game - TBD.
    */
   constructor(game) {
     this.game = game;
@@ -96,7 +96,7 @@ export class Mouse {
   }
 
   /**
-   *
+   * TBD.
    */
   start() {
     if (this.game.device.android && this.game.device.chrome === false) {
@@ -131,7 +131,7 @@ export class Mouse {
   }
 
   /**
-   *
+   * TBD.
    */
   stop() {
     const canvas = this.game.canvas;
@@ -149,7 +149,7 @@ export class Mouse {
   }
 
   /**
-   *
+   * TBD.
    * @param event
    */
   onMouseDown(event) {
@@ -166,7 +166,7 @@ export class Mouse {
   }
 
   /**
-   *
+   * TBD.
    * @param event
    */
   onMouseMove(event) {
@@ -183,7 +183,7 @@ export class Mouse {
   }
 
   /**
-   *
+   * TBD.
    * @param event
    */
   onMouseUp(event) {
@@ -200,7 +200,7 @@ export class Mouse {
   }
 
   /**
-   *
+   * TBD.
    * @param event
    */
   onMouseUpGlobal(event) {
@@ -214,7 +214,7 @@ export class Mouse {
   }
 
   /**
-   *
+   * TBD.
    * @param event
    */
   onMouseOutGlobal(event) {
@@ -233,7 +233,7 @@ export class Mouse {
   }
 
   /**
-   *
+   * TBD.
    * @param event
    */
   onMouseOut(event) {
@@ -253,7 +253,7 @@ export class Mouse {
   }
 
   /**
-   *
+   * TBD.
    * @param event
    */
   onMouseOver(event) {
@@ -266,7 +266,7 @@ export class Mouse {
   }
 
   /**
-   *
+   * TBD.
    * @param event
    */
   onMouseWheel(event) {
@@ -283,7 +283,7 @@ export class Mouse {
   }
 
   /**
-   *
+   * TBD.
    * @param event
    */
   eventPreventDefault(event) {

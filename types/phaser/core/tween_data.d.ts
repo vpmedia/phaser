@@ -1,4 +1,8 @@
 export class TweenData {
+    /**
+     * TBD.
+     * @param parent
+     */
     constructor(parent: any);
     parent: any;
     game: any;
@@ -24,13 +28,48 @@ export class TweenData {
     interpolationContext: typeof MathUtils;
     isRunning: boolean;
     isFrom: boolean;
+    /**
+     * TBD.
+     * @param properties
+     * @param duration
+     * @param ease
+     * @param delay
+     * @param repeat
+     * @param yoyo
+     */
     to(properties: any, duration: any, ease: any, delay: any, repeat: any, yoyo: any): TweenData;
+    /**
+     * TBD.
+     * @param properties
+     * @param duration
+     * @param ease
+     * @param delay
+     * @param repeat
+     * @param yoyo
+     */
     from(properties: any, duration: any, ease: any, delay: any, repeat: any, yoyo: any): TweenData;
+    /**
+     * TBD.
+     */
     start(): TweenData;
     yoyoCounter: number;
+    /**
+     * TBD.
+     */
     loadValues(): TweenData;
+    /**
+     * TBD.
+     * @param time
+     */
     update(time: any): 0 | 1 | 2 | 3;
+    /**
+     * TBD.
+     * @param frameRate
+     */
     generateData(frameRate: any): {}[];
+    /**
+     * TBD.
+     */
     repeat(): 2 | 3;
 }
 import * as MathUtils from '../util/math';

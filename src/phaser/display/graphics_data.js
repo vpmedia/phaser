@@ -2,7 +2,7 @@ import { clone } from './graphics_data_util';
 
 export class GraphicsData {
   /**
-   *
+   * TBD.
    * @param lineWidth
    * @param lineColor
    * @param lineAlpha
@@ -25,7 +25,7 @@ export class GraphicsData {
   }
 
   /**
-   *
+   * TBD.
    */
   clone() {
     return clone(this);

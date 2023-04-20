@@ -5,7 +5,7 @@ import { compileProgram } from '../util';
 
 export class FastShader {
   /**
-   *
+   * TBD.
    * @param gl
    */
   constructor(gl) {
@@ -55,7 +55,7 @@ export class FastShader {
   }
 
   /**
-   *
+   * TBD.
    */
   init() {
     const gl = this.gl;
@@ -95,7 +95,7 @@ export class FastShader {
   }
 
   /**
-   *
+   * TBD.
    */
   destroy() {
     this.gl.deleteProgram(this.program);

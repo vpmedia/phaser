@@ -1,14 +1,14 @@
-/**
- * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
- * @author       Andras Csizmadia <andras@vpmedia.hu>
- * @author       Richard Davey <rich@photonstorm.com>
- * @author       Mat Groves http://matgroves.com/ @Doormat23
- */
 export class Node {
-    constructor(i: any, x: any, y: any);
+    /**
+     * TBD.
+     * @param i
+     * @param {number} x - TBD.
+     * @param {number} y - TBD.
+     */
+    constructor(i: any, x: number, y: number);
     i: any;
-    x: any;
-    y: any;
+    x: number;
+    y: number;
     prev: any;
     next: any;
     z: any;

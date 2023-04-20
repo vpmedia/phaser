@@ -5,7 +5,7 @@ import { compileProgram } from '../util';
 
 export class StripShader {
   /**
-   *
+   * TBD.
    * @param gl
    */
   constructor(gl) {
@@ -46,7 +46,7 @@ export class StripShader {
   }
 
   /**
-   *
+   * TBD.
    */
   init() {
     const gl = this.gl;
@@ -68,7 +68,7 @@ export class StripShader {
   }
 
   /**
-   *
+   * TBD.
    */
   destroy() {
     this.gl.deleteProgram(this.program);

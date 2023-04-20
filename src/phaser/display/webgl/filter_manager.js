@@ -1,6 +1,6 @@
 export class WebGLFilterManager {
   /**
-   *
+   * TBD.
    */
   constructor() {
     this.filterStack = [];
@@ -9,7 +9,7 @@ export class WebGLFilterManager {
   }
 
   /**
-   *
+   * TBD.
    * @param gl
    */
   setContext(gl) {
@@ -19,42 +19,42 @@ export class WebGLFilterManager {
   }
 
   /**
-   *
+   * TBD.
    */
   begin() {
     // TODO
   }
 
   /**
-   *
+   * TBD.
    */
   pushFilter() {
     // TODO
   }
 
   /**
-   *
+   * TBD.
    */
   popFilter() {
     // TODO
   }
 
   /**
-   *
+   * TBD.
    */
   applyFilterPass() {
     // TODO
   }
 
   /**
-   *
+   * TBD.
    */
   initShaderBuffers() {
     // TODO
   }
 
   /**
-   *
+   * TBD.
    */
   destroy() {
     // TODO

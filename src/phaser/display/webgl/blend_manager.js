@@ -1,6 +1,6 @@
 export class WebGLBlendModeManager {
   /**
-   *
+   * TBD.
    */
   constructor() {
     this.gl = null;
@@ -8,7 +8,7 @@ export class WebGLBlendModeManager {
   }
 
   /**
-   *
+   * TBD.
    * @param gl
    */
   setContext(gl) {
@@ -16,7 +16,7 @@ export class WebGLBlendModeManager {
   }
 
   /**
-   *
+   * TBD.
    * @param blendMode
    */
   setBlendMode(blendMode) {
@@ -32,7 +32,7 @@ export class WebGLBlendModeManager {
   }
 
   /**
-   *
+   * TBD.
    */
   destroy() {
     this.gl = null;

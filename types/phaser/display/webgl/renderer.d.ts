@@ -1,5 +1,9 @@
 export class WebGLRenderer {
-    constructor(game: any);
+    /**
+     * TBD.
+     * @param {object} game - TBD.
+     */
+    constructor(game: object);
     type: number;
     resolution: any;
     autoResize: boolean;
@@ -24,15 +28,47 @@ export class WebGLRenderer {
     stencilManager: WebGLStencilManager;
     blendModeManager: WebGLBlendModeManager;
     renderSession: {};
+    /**
+     * TBD.
+     */
     destroy(): void;
     gl: any;
+    /**
+     * TBD.
+     */
     initRegistry(): void;
+    /**
+     * TBD.
+     */
     initContext(): void;
     glContextId: any;
+    /**
+     * TBD.
+     * @param stage
+     */
     render(stage: any): void;
+    /**
+     * TBD.
+     * @param displayObject
+     * @param projection
+     * @param buffer
+     * @param matrix
+     */
     renderDisplayObject(displayObject: any, projection: any, buffer: any, matrix: any): void;
-    resize(width: any, height: any): void;
+    /**
+     * TBD.
+     * @param {number} width - TBD.
+     * @param {number} height - TBD.
+     */
+    resize(width: number, height: number): void;
+    /**
+     * TBD.
+     * @param texture
+     */
     updateTexture(texture: any): boolean;
+    /**
+     * TBD.
+     */
     mapBlendModes(): void;
 }
 import { Point } from '../../geom/point';

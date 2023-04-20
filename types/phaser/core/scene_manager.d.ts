@@ -1,5 +1,10 @@
 export class SceneManager {
-    constructor(game: any, pendingState: any);
+    /**
+     * TBD.
+     * @param {object} game - TBD.
+     * @param pendingState
+     */
+    constructor(game: object, pendingState: any);
     game: any;
     states: {};
     _pendingState: any;
@@ -15,25 +20,99 @@ export class SceneManager {
     onResizeCallback: any;
     onPauseUpdateCallback: any;
     onShutDownCallback: any;
+    /**
+     * TBD.
+     */
     boot(): void;
-    add(key: any, state: any, autoStart?: boolean): any;
-    remove(key: any): void;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     * @param state
+     * @param autoStart
+     */
+    add(key: string, state: any, autoStart?: boolean): any;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     */
+    remove(key: string): void;
     callbackContext: any;
-    start(key: any, clearWorld?: boolean, clearCache?: boolean, ...args: any[]): void;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     * @param clearWorld
+     * @param clearCache
+     * @param {...any} args
+     */
+    start(key: string, clearWorld?: boolean, clearCache?: boolean, ...args: any[]): void;
+    /**
+     * TBD.
+     * @param clearWorld
+     * @param clearCache
+     * @param {...any} args
+     */
     restart(clearWorld?: boolean, clearCache?: boolean, ...args: any[]): void;
+    /**
+     * TBD.
+     */
     preUpdate(): void;
+    /**
+     * TBD.
+     */
     clearCurrentState(): void;
-    checkState(key: any): boolean;
-    link(key: any): void;
-    unlink(key: any): void;
-    setCurrentState(key: any): void;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     */
+    checkState(key: string): boolean;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     */
+    link(key: string): void;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     */
+    unlink(key: string): void;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     */
+    setCurrentState(key: string): void;
+    /**
+     * TBD.
+     */
     getCurrentState(): any;
+    /**
+     * TBD.
+     */
     loadComplete(): void;
+    /**
+     * TBD.
+     */
     update(): void;
+    /**
+     * TBD.
+     */
     pauseUpdate(): void;
-    resize(width: any, height: any): void;
+    /**
+     * TBD.
+     * @param {number} width - TBD.
+     * @param {number} height - TBD.
+     */
+    resize(width: number, height: number): void;
+    /**
+     * TBD.
+     */
     destroy(): void;
+    /**
+     * TBD.
+     */
     dummy(): void;
+    /**
+     * TBD.
+     */
     get created(): boolean;
 }
 //# sourceMappingURL=scene_manager.d.ts.map

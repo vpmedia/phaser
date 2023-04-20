@@ -1,1 +1,1 @@
-{"version":3,"file":"buffer.d.ts","sourceRoot":"","sources":["../../../../src/phaser/display/canvas/buffer.js"],"names":[],"mappings":"AAQA;IACE,qCAOC;IANC,WAAkB;IAClB,YAAoB;IACpB,YAAmD;IACnD,aAA2C;IAK7C,cAGC;IAED,sCAKC;IAED,gBAEC;CACF"}
+{"version":3,"file":"buffer.d.ts","sourceRoot":"","sources":["../../../../src/phaser/display/canvas/buffer.js"],"names":[],"mappings":"AAEA;IACE;;;;OAIG;IACH,mBAHW,MAAM,UACN,MAAM,EAShB;IANC,cAAkB;IAClB,eAAoB;IACpB,YAAmD;IACnD,aAA2C;IAK7C;;OAEG;IACH,cAGC;IAED;;;;OAIG;IACH,cAHW,MAAM,UACN,MAAM,QAOhB;IAED;;OAEG;IACH,gBAEC;CACF"}

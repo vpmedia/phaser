@@ -1,4 +1,9 @@
 export class BaseTexture {
+    /**
+     * TBD.
+     * @param source
+     * @param scaleMode
+     */
     constructor(source: any, scaleMode: any);
     resolution: number;
     width: any;
@@ -12,9 +17,23 @@ export class BaseTexture {
     skipRender: boolean;
     _powerOf2: boolean;
     _dirty: boolean[];
-    forceLoaded(width: any, height: any): void;
+    /**
+     * TBD.
+     * @param {number} width - TBD.
+     * @param {number} height - TBD.
+     */
+    forceLoaded(width: number, height: number): void;
+    /**
+     * TBD.
+     */
     destroy(): void;
+    /**
+     * TBD.
+     */
     dirty(): void;
+    /**
+     * TBD.
+     */
     unloadFromGPU(): void;
 }
 //# sourceMappingURL=base_texture.d.ts.map

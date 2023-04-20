@@ -15,8 +15,8 @@ const MAX_POINTERS = 10;
 
 export class Input {
   /**
-   *
-   * @param game
+   * TBD.
+   * @param {object} game - TBD.
    */
   constructor(game) {
     this.game = game;
@@ -73,7 +73,7 @@ export class Input {
   }
 
   /**
-   *
+   * TBD.
    */
   boot() {
     this.mousePointer = new Pointer(this.game, 0, POINTER_CURSOR);
@@ -107,7 +107,7 @@ export class Input {
   }
 
   /**
-   *
+   * TBD.
    */
   destroy() {
     this.mouse.stop();
@@ -122,7 +122,7 @@ export class Input {
   }
 
   /**
-   *
+   * TBD.
    * @param callback
    * @param context
    */
@@ -132,7 +132,7 @@ export class Input {
   }
 
   /**
-   *
+   * TBD.
    * @param callback
    * @param context
    */
@@ -141,7 +141,7 @@ export class Input {
   }
 
   /**
-   *
+   * TBD.
    * @param callback
    * @param context
    */
@@ -160,7 +160,7 @@ export class Input {
   }
 
   /**
-   *
+   * TBD.
    */
   addPointer() {
     if (this.pointers.length >= MAX_POINTERS) {
@@ -175,7 +175,7 @@ export class Input {
   }
 
   /**
-   *
+   * TBD.
    */
   update() {
     if (this.pollRate > 0 && this._pollCounter < this.pollRate) {
@@ -193,7 +193,7 @@ export class Input {
   }
 
   /**
-   *
+   * TBD.
    * @param hard
    */
   reset(hard = false) {
@@ -222,9 +222,9 @@ export class Input {
   }
 
   /**
-   *
-   * @param x
-   * @param y
+   * TBD.
+   * @param {number} x - TBD.
+   * @param {number} y - TBD.
    */
   resetSpeed(x, y) {
     this._oldPosition.setTo(x, y);
@@ -232,7 +232,7 @@ export class Input {
   }
 
   /**
-   *
+   * TBD.
    * @param event
    */
   startPointer(event) {
@@ -255,7 +255,7 @@ export class Input {
   }
 
   /**
-   *
+   * TBD.
    * @param event
    */
   updatePointer(event) {
@@ -275,7 +275,7 @@ export class Input {
   }
 
   /**
-   *
+   * TBD.
    * @param event
    */
   stopPointer(event) {
@@ -295,7 +295,7 @@ export class Input {
   }
 
   /**
-   *
+   * TBD.
    * @param limit
    */
   countActivePointers(limit = this.pointers.length) {
@@ -310,7 +310,7 @@ export class Input {
   }
 
   /**
-   *
+   * TBD.
    * @param isActive
    */
   getPointer(isActive = false) {
@@ -324,7 +324,7 @@ export class Input {
   }
 
   /**
-   *
+   * TBD.
    * @param identifier
    */
   getPointerFromIdentifier(identifier) {
@@ -339,7 +339,7 @@ export class Input {
   }
 
   /**
-   *
+   * TBD.
    * @param pointerId
    */
   getPointerFromId(pointerId) {
@@ -354,7 +354,7 @@ export class Input {
   }
 
   /**
-   *
+   * TBD.
    * @param displayObject
    * @param pointer
    * @param output
@@ -370,7 +370,7 @@ export class Input {
   }
 
   /**
-   *
+   * TBD.
    * @param displayObject
    * @param pointer
    * @param localPoint
@@ -416,70 +416,70 @@ export class Input {
   }
 
   /**
-   *
+   * TBD.
    */
   onClickTrampoline() {
     this.activePointer.processClickTrampolines();
   }
 
   /**
-   *
+   * TBD.
    */
   get x() {
     return this._x;
   }
 
   /**
-   *
+   * TBD.
    */
   set x(value) {
     this._x = Math.floor(value);
   }
 
   /**
-   *
+   * TBD.
    */
   get y() {
     return this._y;
   }
 
   /**
-   *
+   * TBD.
    */
   set y(value) {
     this._y = Math.floor(value);
   }
 
   /**
-   *
+   * TBD.
    */
   get pollLocked() {
     return this.pollRate > 0 && this._pollCounter < this.pollRate;
   }
 
   /**
-   *
+   * TBD.
    */
   get totalInactivePointers() {
     return this.pointers.length - this.countActivePointers();
   }
 
   /**
-   *
+   * TBD.
    */
   get totalActivePointers() {
     return this.countActivePointers();
   }
 
   /**
-   *
+   * TBD.
    */
   get worldX() {
     return this.x;
   }
 
   /**
-   *
+   * TBD.
    */
   get worldY() {
     return this.y;

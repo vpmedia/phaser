@@ -1,10 +1,8 @@
-/**
- * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
- * @author       Andras Csizmadia <andras@vpmedia.hu>
- * @author       Richard Davey <rich@photonstorm.com>
- * @author       Mat Groves http://matgroves.com/ @Doormat23
- */
 export class GraphicsData {
+    /**
+     * TBD.
+     * @param gl
+     */
     constructor(gl: any);
     gl: any;
     color: number[];
@@ -15,9 +13,15 @@ export class GraphicsData {
     mode: number;
     alpha: number;
     dirty: boolean;
+    /**
+     * TBD.
+     */
     reset(): void;
     glPoints: Float32Array;
     glIndicies: Uint16Array;
+    /**
+     * TBD.
+     */
     upload(): void;
 }
 //# sourceMappingURL=graphics_data.d.ts.map

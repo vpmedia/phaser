@@ -2,7 +2,7 @@ import { Animation } from './animation';
 
 export class AnimationManager {
   /**
-   *
+   * TBD.
    * @param sprite
    */
   constructor(sprite) {
@@ -18,7 +18,7 @@ export class AnimationManager {
   }
 
   /**
-   *
+   * TBD.
    */
   destroy() {
     const keys = Object.keys(this._anims);
@@ -35,7 +35,7 @@ export class AnimationManager {
   }
 
   /**
-   *
+   * TBD.
    * @param frameData
    * @param frame
    */
@@ -64,7 +64,7 @@ export class AnimationManager {
   }
 
   /**
-   *
+   * TBD.
    * @param frameData
    * @param frame
    */
@@ -90,7 +90,7 @@ export class AnimationManager {
   }
 
   /**
-   *
+   * TBD.
    * @param name
    * @param frameList
    * @param frameRate
@@ -126,7 +126,7 @@ export class AnimationManager {
   }
 
   /**
-   *
+   * TBD.
    * @param frames
    * @param useNumericIndex
    */
@@ -144,7 +144,7 @@ export class AnimationManager {
   }
 
   /**
-   *
+   * TBD.
    * @param name
    * @param frameRate
    * @param loop
@@ -171,7 +171,7 @@ export class AnimationManager {
   }
 
   /**
-   *
+   * TBD.
    * @param name
    * @param resetFrame
    */
@@ -182,7 +182,7 @@ export class AnimationManager {
   }
 
   /**
-   *
+   * TBD.
    */
   update() {
     if (this.updateIfVisible && !this.sprite.visible) {
@@ -196,7 +196,7 @@ export class AnimationManager {
   }
 
   /**
-   *
+   * TBD.
    * @param quantity
    */
   next(quantity) {
@@ -207,7 +207,7 @@ export class AnimationManager {
   }
 
   /**
-   *
+   * TBD.
    * @param quantity
    */
   previous(quantity) {
@@ -218,7 +218,7 @@ export class AnimationManager {
   }
 
   /**
-   *
+   * TBD.
    * @param name
    */
   getAnimation(name) {
@@ -229,7 +229,7 @@ export class AnimationManager {
   }
 
   /**
-   *
+   * TBD.
    */
   refreshFrame() {
     // TODO
@@ -238,35 +238,35 @@ export class AnimationManager {
   }
 
   /**
-   *
+   * TBD.
    */
   get frameData() {
     return this._frameData;
   }
 
   /**
-   *
+   * TBD.
    */
   get frameTotal() {
     return this._frameData.total;
   }
 
   /**
-   *
+   * TBD.
    */
   get paused() {
     return this.currentAnim.isPaused;
   }
 
   /**
-   *
+   * TBD.
    */
   set paused(value) {
     this.currentAnim.paused = value;
   }
 
   /**
-   *
+   * TBD.
    */
   get name() {
     if (this.currentAnim) {
@@ -276,7 +276,7 @@ export class AnimationManager {
   }
 
   /**
-   *
+   * TBD.
    */
   get frame() {
     if (this.currentFrame) {
@@ -286,7 +286,7 @@ export class AnimationManager {
   }
 
   /**
-   *
+   * TBD.
    */
   set frame(value) {
     if (typeof value === 'number' && this._frameData && this._frameData.getFrame(value) !== null) {
@@ -300,7 +300,7 @@ export class AnimationManager {
   }
 
   /**
-   *
+   * TBD.
    */
   get frameName() {
     if (this.currentFrame) {
@@ -310,7 +310,7 @@ export class AnimationManager {
   }
 
   /**
-   *
+   * TBD.
    */
   set frameName(value) {
     if (

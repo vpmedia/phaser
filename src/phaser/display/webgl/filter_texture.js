@@ -2,10 +2,10 @@ import { SCALE_LINEAR } from '../../core/const';
 
 export class FilterTexture {
   /**
-   *
+   * TBD.
    * @param gl
-   * @param width
-   * @param height
+   * @param {number} width - TBD.
+   * @param {number} height - TBD.
    * @param scaleMode
    */
   constructor(gl, width, height, scaleMode) {
@@ -42,7 +42,7 @@ export class FilterTexture {
   }
 
   /**
-   *
+   * TBD.
    */
   clear() {
     const gl = this.gl;
@@ -51,9 +51,9 @@ export class FilterTexture {
   }
 
   /**
-   *
-   * @param width
-   * @param height
+   * TBD.
+   * @param {number} width - TBD.
+   * @param {number} height - TBD.
    */
   resize(width, height) {
     if (this.width === width && this.height === height) {
@@ -70,7 +70,7 @@ export class FilterTexture {
   }
 
   /**
-   *
+   * TBD.
    */
   destroy() {
     const gl = this.gl;

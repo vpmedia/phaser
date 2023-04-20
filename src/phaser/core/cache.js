@@ -19,8 +19,8 @@ export const RENDER_TEXTURE = 9;
 
 export class Cache {
   /**
-   *
-   * @param game
+   * TBD.
+   * @param {object} game - TBD.
    */
   constructor(game) {
     this.game = game;
@@ -57,7 +57,7 @@ export class Cache {
   }
 
   /**
-   *
+   * TBD.
    */
   addDefaultImage() {
     const img = new Image();
@@ -69,7 +69,7 @@ export class Cache {
   }
 
   /**
-   *
+   * TBD.
    */
   addMissingImage() {
     const img = new Image();
@@ -80,8 +80,8 @@ export class Cache {
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    * @param url
    * @param data
    */
@@ -107,8 +107,8 @@ export class Cache {
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    * @param url
    * @param data
    * @param atlasData
@@ -126,8 +126,8 @@ export class Cache {
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    * @param url
    * @param data
    */
@@ -143,8 +143,8 @@ export class Cache {
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    * @param url
    * @param data
    */
@@ -154,8 +154,8 @@ export class Cache {
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    * @param url
    * @param data
    * @param atlasData
@@ -180,8 +180,8 @@ export class Cache {
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    * @param url
    * @param data
    */
@@ -191,8 +191,8 @@ export class Cache {
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    * @param url
    * @param data
    */
@@ -204,8 +204,8 @@ export class Cache {
   // SOUND
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    */
   reloadSound(key) {
     const scope = this;
@@ -218,8 +218,8 @@ export class Cache {
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    */
   reloadSoundComplete(key) {
     const sound = this.getSound(key);
@@ -230,8 +230,8 @@ export class Cache {
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    * @param property
    * @param value
    */
@@ -243,8 +243,8 @@ export class Cache {
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    * @param data
    */
   decodedSound(key, data) {
@@ -255,8 +255,8 @@ export class Cache {
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    */
   isSoundDecoded(key) {
     const sound = this.getItem(key, SOUND, 'isSoundDecoded');
@@ -267,8 +267,8 @@ export class Cache {
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    */
   isSoundReady(key) {
     const sound = this.getItem(key, SOUND, 'isSoundDecoded');
@@ -281,9 +281,9 @@ export class Cache {
   // CHECK
 
   /**
-   *
+   * TBD.
    * @param cache
-   * @param key
+   * @param {string} key - TBD.
    */
   checkKey(cache, key) {
     if (this._cacheMap[cache][key]) {
@@ -293,7 +293,7 @@ export class Cache {
   }
 
   /**
-   *
+   * TBD.
    * @param url
    */
   checkURL(url) {
@@ -304,72 +304,72 @@ export class Cache {
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    */
   checkCanvasKey(key) {
     return this.checkKey(CANVAS, key);
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    */
   checkImageKey(key) {
     return this.checkKey(IMAGE, key);
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    */
   checkTextureKey(key) {
     return this.checkKey(TEXTURE, key);
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    */
   checkSoundKey(key) {
     return this.checkKey(SOUND, key);
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    */
   checkTextKey(key) {
     return this.checkKey(TEXT, key);
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    */
   checkBitmapDataKey(key) {
     return this.checkKey(BITMAPDATA, key);
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    */
   checkBitmapFontKey(key) {
     return this.checkKey(BITMAPFONT, key);
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    */
   checkJSONKey(key) {
     return this.checkKey(JSON, key);
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    */
   checkXMLKey(key) {
     return this.checkKey(XML, key);
@@ -378,8 +378,8 @@ export class Cache {
   // GET
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    * @param cache
    * @param method
    * @param property
@@ -395,16 +395,16 @@ export class Cache {
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    */
   getCanvas(key) {
     return this.getItem(key, CANVAS, 'getCanvas', 'canvas');
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    * @param full
    */
   getImage(key = '__default', full = false) {
@@ -419,56 +419,56 @@ export class Cache {
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    */
   getTextureFrame(key) {
     return this.getItem(key, TEXTURE, 'getTextureFrame', 'frame');
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    */
   getSound(key) {
     return this.getItem(key, SOUND, 'getSound');
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    */
   getSoundData(key) {
     return this.getItem(key, SOUND, 'getSoundData', 'data');
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    */
   getText(key) {
     return this.getItem(key, TEXT, 'getText', 'data');
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    */
   getBitmapData(key) {
     return this.getItem(key, BITMAPDATA, 'getBitmapData', 'data');
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    */
   getBitmapFont(key) {
     return this.getItem(key, BITMAPFONT, 'getBitmapFont');
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    * @param isClone
    */
   getJSON(key, isClone = false) {
@@ -477,16 +477,16 @@ export class Cache {
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    */
   getXML(key) {
     return this.getItem(key, XML, 'getXML', 'data');
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    */
   getRenderTexture(key) {
     return this.getItem(key, RENDER_TEXTURE, 'getRenderTexture');
@@ -495,8 +495,8 @@ export class Cache {
   // FRAME
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    * @param cache
    */
   getBaseTexture(key, cache = IMAGE) {
@@ -504,8 +504,8 @@ export class Cache {
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    * @param cache
    */
   getFrame(key, cache = IMAGE) {
@@ -513,8 +513,8 @@ export class Cache {
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    * @param cache
    */
   getFrameCount(key, cache = IMAGE) {
@@ -526,8 +526,8 @@ export class Cache {
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    * @param cache
    */
   getFrameData(key, cache = IMAGE) {
@@ -535,8 +535,8 @@ export class Cache {
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    * @param cache
    */
   hasFrameData(key, cache = IMAGE) {
@@ -544,8 +544,8 @@ export class Cache {
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    * @param frameData
    * @param cache
    */
@@ -556,8 +556,8 @@ export class Cache {
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    * @param index
    * @param cache
    */
@@ -570,8 +570,8 @@ export class Cache {
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    * @param name
    * @param cache
    */
@@ -584,7 +584,7 @@ export class Cache {
   }
 
   /**
-   *
+   * TBD.
    * @param url
    */
   getURL(url) {
@@ -597,7 +597,7 @@ export class Cache {
   }
 
   /**
-   *
+   * TBD.
    * @param cache
    */
   getKeys(cache = IMAGE) {
@@ -617,16 +617,16 @@ export class Cache {
   // REMOVE
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    */
   removeCanvas(key) {
     delete this._cache.canvas[key];
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    * @param destroyBaseTexture
    */
   removeImage(key, destroyBaseTexture = true) {
@@ -638,79 +638,79 @@ export class Cache {
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    */
   removeSound(key) {
     delete this._cache.sound[key];
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    */
   removeText(key) {
     delete this._cache.text[key];
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    */
   removeBitmapData(key) {
     delete this._cache.bitmapData[key];
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    */
   removeBitmapFont(key) {
     delete this._cache.bitmapFont[key];
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    */
   removeJSON(key) {
     delete this._cache.json[key];
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    */
   removeXML(key) {
     delete this._cache.xml[key];
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    */
   removeRenderTexture(key) {
     delete this._cache.renderTexture[key];
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    */
   removeSpriteSheet(key) {
     delete this._cache.spriteSheet[key];
   }
 
   /**
-   *
-   * @param key
+   * TBD.
+   * @param {string} key - TBD.
    */
   removeTextureAtlas(key) {
     delete this._cache.atlas[key];
   }
 
   /**
-   *
+   * TBD.
    */
   clearGLTextures() {
     const keys = Object.keys(this._cache.image);
@@ -721,7 +721,7 @@ export class Cache {
   }
 
   /**
-   *
+   * TBD.
    * @param url
    * @param data
    */
@@ -741,7 +741,7 @@ export class Cache {
   }
 
   /**
-   *
+   * TBD.
    */
   destroy() {
     for (let i = 0; i < this._cacheMap.length; i += 1) {

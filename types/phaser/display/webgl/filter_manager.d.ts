@@ -1,21 +1,37 @@
-/**
- * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
- * @author       Andras Csizmadia <andras@vpmedia.hu>
- * @author       Richard Davey <rich@photonstorm.com>
- * @author       Mat Groves http://matgroves.com/ @Doormat23
- */
 export class WebGLFilterManager {
     filterStack: any[];
     offsetX: number;
     offsetY: number;
+    /**
+     * TBD.
+     * @param gl
+     */
     setContext(gl: any): void;
     gl: any;
     texturePool: any[];
+    /**
+     * TBD.
+     */
     begin(): void;
+    /**
+     * TBD.
+     */
     pushFilter(): void;
+    /**
+     * TBD.
+     */
     popFilter(): void;
+    /**
+     * TBD.
+     */
     applyFilterPass(): void;
+    /**
+     * TBD.
+     */
     initShaderBuffers(): void;
+    /**
+     * TBD.
+     */
     destroy(): void;
 }
 //# sourceMappingURL=filter_manager.d.ts.map

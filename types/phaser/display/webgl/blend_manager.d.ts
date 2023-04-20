@@ -1,14 +1,19 @@
-/**
- * @copyright    Copyright (c) 2018-present Richard Davey, Photon Storm Ltd., Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)
- * @author       Andras Csizmadia <andras@vpmedia.hu>
- * @author       Richard Davey <rich@photonstorm.com>
- * @author       Mat Groves http://matgroves.com/ @Doormat23
- */
 export class WebGLBlendModeManager {
     gl: any;
     currentBlendMode: number;
+    /**
+     * TBD.
+     * @param gl
+     */
     setContext(gl: any): void;
+    /**
+     * TBD.
+     * @param blendMode
+     */
     setBlendMode(blendMode: any): boolean;
+    /**
+     * TBD.
+     */
     destroy(): void;
 }
 //# sourceMappingURL=blend_manager.d.ts.map

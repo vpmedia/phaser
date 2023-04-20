@@ -1,5 +1,9 @@
 export class Input {
-    constructor(game: any);
+    /**
+     * TBD.
+     * @param {object} game - TBD.
+     */
+    constructor(game: object);
     game: any;
     hitCanvas: any;
     hitContext: any;
@@ -51,34 +55,140 @@ export class Input {
     _oldPosition: Point;
     _x: number;
     _y: number;
+    /**
+     * TBD.
+     */
     boot(): void;
     _onClickTrampoline: (event: any) => void;
+    /**
+     * TBD.
+     */
     destroy(): void;
+    /**
+     * TBD.
+     * @param callback
+     * @param context
+     */
     setInteractiveCandidateHandler(callback: any, context: any): void;
+    /**
+     * TBD.
+     * @param callback
+     * @param context
+     */
     addMoveCallback(callback: any, context: any): void;
+    /**
+     * TBD.
+     * @param callback
+     * @param context
+     */
     deleteMoveCallback(callback: any, context: any): void;
+    /**
+     * TBD.
+     */
     addPointer(): Pointer;
+    /**
+     * TBD.
+     */
     update(): void;
+    /**
+     * TBD.
+     * @param hard
+     */
     reset(hard?: boolean): void;
-    resetSpeed(x: any, y: any): void;
+    /**
+     * TBD.
+     * @param {number} x - TBD.
+     * @param {number} y - TBD.
+     */
+    resetSpeed(x: number, y: number): void;
+    /**
+     * TBD.
+     * @param event
+     */
     startPointer(event: any): any;
+    /**
+     * TBD.
+     * @param event
+     */
     updatePointer(event: any): any;
+    /**
+     * TBD.
+     * @param event
+     */
     stopPointer(event: any): any;
+    /**
+     * TBD.
+     * @param limit
+     */
     countActivePointers(limit?: number): number;
+    /**
+     * TBD.
+     * @param isActive
+     */
     getPointer(isActive?: boolean): any;
+    /**
+     * TBD.
+     * @param identifier
+     */
     getPointerFromIdentifier(identifier: any): any;
+    /**
+     * TBD.
+     * @param pointerId
+     */
     getPointerFromId(pointerId: any): any;
+    /**
+     * TBD.
+     * @param displayObject
+     * @param pointer
+     * @param output
+     */
     getLocalPosition(displayObject: any, pointer: any, output?: any): any;
+    /**
+     * TBD.
+     * @param displayObject
+     * @param pointer
+     * @param localPoint
+     */
     hitTest(displayObject: any, pointer: any, localPoint: any): any;
+    /**
+     * TBD.
+     */
     onClickTrampoline(): void;
+    /**
+     * TBD.
+     */
     set x(arg: number);
+    /**
+     * TBD.
+     */
     get x(): number;
+    /**
+     * TBD.
+     */
     set y(arg: number);
+    /**
+     * TBD.
+     */
     get y(): number;
+    /**
+     * TBD.
+     */
     get pollLocked(): boolean;
+    /**
+     * TBD.
+     */
     get totalInactivePointers(): number;
+    /**
+     * TBD.
+     */
     get totalActivePointers(): number;
+    /**
+     * TBD.
+     */
     get worldX(): number;
+    /**
+     * TBD.
+     */
     get worldY(): number;
 }
 import { Point } from '../geom/point';

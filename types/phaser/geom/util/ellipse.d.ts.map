@@ -1,1 +1,1 @@
-{"version":3,"file":"ellipse.d.ts","sourceRoot":"","sources":["../../../../src/phaser/geom/util/ellipse.js"],"names":[],"mappings":"AAAA;;;;;GAKG;AAEH;;;;;;GAMG;AACH,4BALW,MAAM,KACN,MAAM,KACN,MAAM,GACJ,OAAO,CAYnB"}
+{"version":3,"file":"ellipse.d.ts","sourceRoot":"","sources":["../../../../src/phaser/geom/util/ellipse.js"],"names":[],"mappings":"AAAA;;;;;;GAMG;AACH,4BALW,MAAM,KACN,MAAM,KACN,MAAM,GACJ,OAAO,CAYnB"}
