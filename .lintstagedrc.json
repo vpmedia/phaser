@@ -1,4 +1,4 @@
 {
-  "*.{js,ts}": "eslint",
-  "*.{js,ts,json}": "prettier --write"
+  "*.{js,jsx}": "eslint",
+  "*.{js,jsx,json,md}": "prettier --write"
 }

@@ -36,10 +36,11 @@
   },
   "scripts": {
     "test": "NODE_OPTIONS=--experimental-vm-modules jest --passWithNoTests",
-    "lint": "eslint \"**/*.js\"",
-    "lint-fix": "eslint \"**/*.js\" --fix",
+    "lint": "eslint \"**/*.{js,jsx}\"",
+    "lint-fix": "eslint --fix \"**/*.{js,jsx}\"",
     "typecheck": "tsc",
-    "format": "prettier --write \"**/*.{js,json}\"",
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "prepare": "husky install",
     "lint-staged": "lint-staged"
   },
   "engines": {
