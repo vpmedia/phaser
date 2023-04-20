@@ -1,5 +1,5 @@
 import { Point } from './point';
-import { Rectangle } from  './rectangle';
+import { Rectangle } from './rectangle';
 import { contains } from './util/ellipse';
 import { GEOM_ELLIPSE } from '../core/const';
 
@@ -96,16 +96,6 @@ export class Ellipse {
    * @returns {string} TBD.
    */
   toString() {
-    return (
-      '[{Ellipse (x=' +
-      this.x +
-      ' y=' +
-      this.y +
-      ' width=' +
-      this.width +
-      ' height=' +
-      this.height +
-      ')}]'
-    );
+    return '[{Ellipse (x=' + this.x + ' y=' + this.y + ' width=' + this.width + ' height=' + this.height + ')}]';
   }
 }

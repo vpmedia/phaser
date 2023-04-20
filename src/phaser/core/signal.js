@@ -1,4 +1,4 @@
-import { SignalBinding } from  './signal_binding';
+import { SignalBinding } from './signal_binding';
 
 export class Signal {
   /**
@@ -21,10 +21,7 @@ export class Signal {
   validateListener(listener, fnName) {
     if (typeof listener !== 'function') {
       throw new Error(
-        'Signal: listener is a required param of {fn}() and should be a Function.'.replace(
-          '{fn}',
-          fnName
-        )
+        'Signal: listener is a required param of {fn}() and should be a Function.'.replace('{fn}', fnName)
       );
     }
   }

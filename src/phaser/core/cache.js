@@ -1,6 +1,6 @@
 import { Texture } from '../display/webgl/texture';
 import { BaseTexture } from '../display/webgl/base_texture';
-import { Signal } from  './signal';
+import { Signal } from './signal';
 import { Frame } from './frame';
 import { FrameData } from './frame_data';
 import { JSONDataHash } from './animation_parser';

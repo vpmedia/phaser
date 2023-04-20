@@ -205,10 +205,7 @@ export function getColor(r, g, b) {
  */
 export function hexToColor(value, out) {
   // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
-  value = value.replace(
-    /^(?:#|0x)?([a-f\d])([a-f\d])([a-f\d])$/i,
-    (m, r, g, b) => r + r + g + g + b + b
-  );
+  value = value.replace(/^(?:#|0x)?([a-f\d])([a-f\d])([a-f\d])$/i, (m, r, g, b) => r + r + g + g + b + b);
   const result = /^(?:#|0x)?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(value);
   if (result) {
     out.r = parseInt(result[1], 16);
@@ -223,9 +220,7 @@ export function hexToColor(value, out) {
  * @param {object} out - TBD.
  */
 export function webToColor(value, out) {
-  const result = /^rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(?:,\s*(\d+(?:\.\d+)?))?\s*\)$/.exec(
-    value
-  );
+  const result = /^rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(?:,\s*(\d+(?:\.\d+)?))?\s*\)$/.exec(value);
   if (result) {
     out.r = parseInt(result[1], 10);
     out.g = parseInt(result[2], 10);
@@ -290,15 +285,7 @@ export function valueToColor(value, out) {
     out.a = tempColor.a / 255;
   }
   out.rgba =
-    'rgba(' +
-    out.r.toString() +
-    ',' +
-    out.g.toString() +
-    ',' +
-    out.b.toString() +
-    ',' +
-    out.a.toString() +
-    ')';
+    'rgba(' + out.r.toString() + ',' + out.g.toString() + ',' + out.b.toString() + ',' + out.a.toString() + ')';
   out.color = getColor(out.r, out.g, out.b);
   out.color32 = getColor32(out.a * 255, out.r, out.g, out.b);
   return out;

@@ -205,10 +205,7 @@ export class InputHandler {
     if (!includePixelPerfect && (this.pixelPerfectClick || this.pixelPerfectOver)) {
       return false;
     }
-    if (
-      this.priorityID > highestID ||
-      (this.priorityID === highestID && this.sprite.renderOrderID > highestRenderID)
-    ) {
+    if (this.priorityID > highestID || (this.priorityID === highestID && this.sprite.renderOrderID > highestRenderID)) {
       return true;
     }
     return false;
@@ -426,17 +423,7 @@ export class InputHandler {
       this._dx = x;
       this._dy = y;
       this.game.input.hitContext.clearRect(0, 0, 1, 1);
-      this.game.input.hitContext.drawImage(
-        this.sprite.texture.baseTexture.source,
-        x,
-        y,
-        1,
-        1,
-        0,
-        0,
-        1,
-        1
-      );
+      this.game.input.hitContext.drawImage(this.sprite.texture.baseTexture.source, x, y, 1, 1, 0, 0, 1, 1);
       const rgb = this.game.input.hitContext.getImageData(0, 0, 1, 1);
       if (rgb.data[3] >= this.pixelPerfectAlpha) {
         return true;
@@ -461,8 +448,7 @@ export class InputHandler {
     if (this._pendingDrag) {
       if (!this._dragDistancePass) {
         this._dragDistancePass =
-          distance(pointer.x, pointer.y, this.downPoint.x, this.downPoint.y) >=
-          this.dragDistanceThreshold;
+          distance(pointer.x, pointer.y, this.downPoint.x, this.downPoint.y) >= this.dragDistanceThreshold;
       }
       if (this._dragDistancePass && this._dragTimePass) {
         this.startDrag(pointer);
@@ -625,8 +611,7 @@ export class InputHandler {
       if (this.sprite && this.sprite.events) {
         if (
           !this.dragStopBlocksInputUp ||
-          (this.dragStopBlocksInputUp &&
-            !(this.draggable && this.isDragged && this._draggedPointerID === pointer.id))
+          (this.dragStopBlocksInputUp && !(this.draggable && this.isDragged && this._draggedPointerID === pointer.id))
         ) {
           this.sprite.events.onInputUp$dispatch(this.sprite, pointer, isOver);
         }
@@ -688,14 +673,7 @@ export class InputHandler {
         (this.snapOffsetY % this.snapY);
       this.snapPoint.set(this.sprite.x, this.sprite.y);
     }
-    this.sprite.events.onDragUpdate.dispatch(
-      this.sprite,
-      pointer,
-      px,
-      py,
-      this.snapPoint,
-      fromStart
-    );
+    this.sprite.events.onDragUpdate.dispatch(this.sprite, pointer, px, py, this.snapPoint, fromStart);
     return true;
   }
 
@@ -714,10 +692,7 @@ export class InputHandler {
    * @param delay
    */
   justOut(pointerId = 0, delay = 500) {
-    return (
-      this._pointerData[pointerId].isOut &&
-      this.game.time.time - this._pointerData[pointerId].timeOut < delay
-    );
+    return this._pointerData[pointerId].isOut && this.game.time.time - this._pointerData[pointerId].timeOut < delay;
   }
 
   /**
@@ -735,10 +710,7 @@ export class InputHandler {
    * @param delay
    */
   justReleased(pointerId = 0, delay = 500) {
-    return (
-      this._pointerData[pointerId].isUp &&
-      this.game.time.time - this._pointerData[pointerId].timeUp < delay
-    );
+    return this._pointerData[pointerId].isUp && this.game.time.time - this._pointerData[pointerId].timeUp < delay;
   }
 
   /**

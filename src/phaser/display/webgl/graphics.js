@@ -1,12 +1,6 @@
-import { GraphicsData } from  './graphics_data';
+import { GraphicsData } from './graphics_data';
 import { Point } from '../../geom/point';
-import {
-  GEOM_CIRCLE,
-  GEOM_ELLIPSE,
-  GEOM_POLYGON,
-  GEOM_RECTANGLE,
-  GEOM_ROUNDED_RECTANGLE,
-} from '../../core/const';
+import { GEOM_CIRCLE, GEOM_ELLIPSE, GEOM_POLYGON, GEOM_RECTANGLE, GEOM_ROUNDED_RECTANGLE } from '../../core/const';
 import { hex2rgb } from '../../util/math';
 import { triangulate } from './earcut';
 
@@ -318,22 +312,11 @@ export function buildRoundedRectangle(graphicsData, webGLData) {
   const radius = rrectData.radius;
   let recPoints = [];
   recPoints.push(x, y + radius);
+  recPoints = recPoints.concat(quadraticBezierCurve(x, y + height - radius, x, y + height, x + radius, y + height));
   recPoints = recPoints.concat(
-    quadraticBezierCurve(x, y + height - radius, x, y + height, x + radius, y + height)
+    quadraticBezierCurve(x + width - radius, y + height, x + width, y + height, x + width, y + height - radius)
   );
-  recPoints = recPoints.concat(
-    quadraticBezierCurve(
-      x + width - radius,
-      y + height,
-      x + width,
-      y + height,
-      x + width,
-      y + height - radius
-    )
-  );
-  recPoints = recPoints.concat(
-    quadraticBezierCurve(x + width, y + radius, x + width, y, x + width - radius, y)
-  );
+  recPoints = recPoints.concat(quadraticBezierCurve(x + width, y + radius, x + width, y, x + width - radius, y));
   recPoints = recPoints.concat(quadraticBezierCurve(x + radius, y, x, y, x, y + radius));
   if (graphicsData.fill) {
     const color = hex2rgb(graphicsData.fillColor);

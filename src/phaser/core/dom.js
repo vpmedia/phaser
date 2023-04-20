@@ -5,18 +5,14 @@ class VisualBoundsDesktopRectangle {
    * TBD.
    */
   get x() {
-    return window && 'pageXOffset' in window
-      ? window.pageXOffset
-      : document.documentElement.scrollLeft;
+    return window && 'pageXOffset' in window ? window.pageXOffset : document.documentElement.scrollLeft;
   }
 
   /**
    * TBD.
    */
   get y() {
-    return window && 'pageYOffset' in window
-      ? window.pageYOffset
-      : document.documentElement.scrollTop;
+    return window && 'pageYOffset' in window ? window.pageYOffset : document.documentElement.scrollTop;
   }
 
   /**
@@ -69,18 +65,14 @@ class VisualBoundsRectangle {
    * TBD.
    */
   get x() {
-    return window && 'pageXOffset' in window
-      ? window.pageXOffset
-      : document.documentElement.scrollLeft;
+    return window && 'pageXOffset' in window ? window.pageXOffset : document.documentElement.scrollLeft;
   }
 
   /**
    * TBD.
    */
   get y() {
-    return window && 'pageYOffset' in window
-      ? window.pageYOffset
-      : document.documentElement.scrollTop;
+    return window && 'pageYOffset' in window ? window.pageYOffset : document.documentElement.scrollTop;
   }
 
   /**
@@ -177,21 +169,13 @@ export class DOM {
       device.desktop &&
       document.documentElement.clientWidth <= window.innerWidth &&
       document.documentElement.clientHeight <= window.innerHeight;
-    this.visualBounds = this.treatAsDesktop
-      ? new VisualBoundsDesktopRectangle()
-      : new VisualBoundsRectangle();
-    this.layoutBounds = this.treatAsDesktop
-      ? new LayoutBoundsDesktopRectangle()
-      : new LayoutBoundsRectangle();
+    this.visualBounds = this.treatAsDesktop ? new VisualBoundsDesktopRectangle() : new VisualBoundsRectangle();
+    this.layoutBounds = this.treatAsDesktop ? new LayoutBoundsDesktopRectangle() : new LayoutBoundsRectangle();
     this.documentBounds = new DocumentBoundsRectangle();
     this.scrollXProvider =
-      window && 'pageXOffset' in window
-        ? () => window.pageXOffset
-        : () => document.documentElement.scrollLeft;
+      window && 'pageXOffset' in window ? () => window.pageXOffset : () => document.documentElement.scrollLeft;
     this.scrollYProvider =
-      window && 'pageYOffset' in window
-        ? () => window.pageYOffset
-        : () => document.documentElement.scrollTop;
+      window && 'pageYOffset' in window ? () => window.pageYOffset : () => document.documentElement.scrollTop;
   }
 
   /**

@@ -1,5 +1,5 @@
 import { Point } from '../geom/point';
-import { Circle } from  '../geom/circle';
+import { Circle } from '../geom/circle';
 import {
   POINTER,
   POINTER_CURSOR,
@@ -222,13 +222,7 @@ export class Pointer {
     let i = input.moveCallbacks.length;
     while (i) {
       i -= 1;
-      input.moveCallbacks[i].callback.call(
-        input.moveCallbacks[i].context,
-        this,
-        this.x,
-        this.y,
-        fromClick
-      );
+      input.moveCallbacks[i].callback.call(input.moveCallbacks[i].context, this, this.x, this.y, fromClick);
     }
     //  Easy out if we're dragging something and it still exists
     if (this.targetObject !== null && this.targetObject.isDragged === true) {
@@ -277,10 +271,7 @@ export class Pointer {
     // (A node that was previously checked did not request a pixel-perfect check.)
     currentNode = this.game.input.interactiveItems.first;
     while (currentNode) {
-      if (
-        !currentNode.checked &&
-        currentNode.validForInput(highestInputPriorityID, highestRenderOrderID, true)
-      ) {
+      if (!currentNode.checked && currentNode.validForInput(highestInputPriorityID, highestRenderOrderID, true)) {
         if (
           (fromClick && currentNode.checkPointerDown(this, false)) ||
           (!fromClick && currentNode.checkPointerOver(this, false))

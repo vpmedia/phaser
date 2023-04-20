@@ -1,5 +1,5 @@
 import { Texture } from '../display/webgl/texture';
-import { Rectangle } from  '../geom/rectangle';
+import { Rectangle } from '../geom/rectangle';
 
 /**
  * TBD.
@@ -10,10 +10,7 @@ import { Rectangle } from  '../geom/rectangle';
 export function finalizeBitmapFont(baseTexture, bitmapFontData) {
   Object.keys(bitmapFontData.chars).forEach((charCode) => {
     const letter = bitmapFontData.chars[charCode];
-    letter.texture = new Texture(
-      baseTexture,
-      new Rectangle(letter.x, letter.y, letter.width, letter.height)
-    );
+    letter.texture = new Texture(baseTexture, new Rectangle(letter.x, letter.y, letter.width, letter.height));
   });
   return bitmapFontData;
 }

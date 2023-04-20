@@ -1,4 +1,3 @@
-
 /**
  * TBD.
  * @param {number} k - TBD.
@@ -268,8 +267,7 @@ export function ElasticInOut(k) {
   } else {
     s = (p * Math.asin(1 / a)) / (2 * Math.PI);
   }
-  if ((k *= 2) < 1)
-    return -0.5 * (a * Math.pow(2, 10 * (k -= 1)) * Math.sin(((k - s) * (2 * Math.PI)) / p));
+  if ((k *= 2) < 1) return -0.5 * (a * Math.pow(2, 10 * (k -= 1)) * Math.sin(((k - s) * (2 * Math.PI)) / p));
   return a * Math.pow(2, -10 * (k -= 1)) * Math.sin(((k - s) * (2 * Math.PI)) / p) * 0.5 + 1;
 }
 

@@ -1,5 +1,5 @@
 import { Point } from './point';
-import { Rectangle } from  './rectangle';
+import { Rectangle } from './rectangle';
 import { distance } from '../util/math';
 import { clone, contains, circumferencePoint } from './util/circle';
 import { GEOM_CIRCLE } from '../core/const';
@@ -144,17 +144,7 @@ export class Circle {
    * TBD.
    */
   toString() {
-    return (
-      '[{Circle (x=' +
-      this.x +
-      ' y=' +
-      this.y +
-      ' diameter=' +
-      this.diameter +
-      ' radius=' +
-      this.radius +
-      ')}]'
-    );
+    return '[{Circle (x=' + this.x + ' y=' + this.y + ' diameter=' + this.diameter + ' radius=' + this.radius + ')}]';
   }
 
   /**

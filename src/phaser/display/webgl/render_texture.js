@@ -1,4 +1,4 @@
-import { Rectangle } from  '../../geom/rectangle';
+import { Rectangle } from '../../geom/rectangle';
 import { Point } from '../../geom/point';
 import { Texture } from './texture';
 import { BaseTexture } from './base_texture';
@@ -19,10 +19,7 @@ export class RenderTexture extends Texture {
     const w = width || 100;
     const h = height || 100;
     const res = resolution || 1;
-    const baseTexture = new BaseTexture(
-      null,
-      scaleMode || window.PhaserRegistry.TEXTURE_SCALE_MODE
-    );
+    const baseTexture = new BaseTexture(null, scaleMode || window.PhaserRegistry.TEXTURE_SCALE_MODE);
     baseTexture.width = width * res;
     baseTexture.height = height * res;
     baseTexture._glTextures = [];
@@ -39,21 +36,13 @@ export class RenderTexture extends Texture {
     if (this.renderer.type === RENDER_WEBGL) {
       const gl = this.renderer.gl;
       this.baseTexture._dirty[gl.id] = false;
-      this.textureBuffer = new FilterTexture(
-        gl,
-        this.width,
-        this.height,
-        this.baseTexture.scaleMode
-      );
+      this.textureBuffer = new FilterTexture(gl, this.width, this.height, this.baseTexture.scaleMode);
       this.baseTexture._glTextures[gl.id] = this.textureBuffer.texture;
       this.render = this.renderWebGL;
       this.projection = new Point(this.width * 0.5, -this.height * 0.5);
     } else {
       this.render = this.renderCanvas;
-      this.textureBuffer = new CanvasBuffer(
-        this.width * this.resolution,
-        this.height * this.resolution
-      );
+      this.textureBuffer = new CanvasBuffer(this.width * this.resolution, this.height * this.resolution);
       this.baseTexture.source = this.textureBuffer.canvas;
     }
     this.valid = true;

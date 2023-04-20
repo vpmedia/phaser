@@ -1,4 +1,4 @@
-import { Group } from  '../display/group';
+import { Group } from '../display/group';
 
 export class World extends Group {
   /**

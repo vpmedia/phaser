@@ -1,9 +1,9 @@
 import { Texture } from './webgl/texture';
 import { AnimationManager } from '../core/animation_manager';
 import { EventManager } from '../core/event_manager';
-import { Rectangle } from  '../geom/rectangle';
-import { DisplayObject } from  './display_object';
-import { Game } from  '../core/game';
+import { Rectangle } from '../geom/rectangle';
+import { DisplayObject } from './display_object';
+import { Game } from '../core/game';
 import { clone } from '../geom/util/rectangle';
 import { IMAGE, PENDING_ATLAS, BLEND_NORMAL, SCALE_NEAREST } from '../core/const';
 import { setTexture, getBounds, getLocalBounds, renderCanvas, renderWebGL } from './sprite_util';

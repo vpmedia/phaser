@@ -1,4 +1,4 @@
-import { Signal } from  './signal';
+import { Signal } from './signal';
 import { TweenData } from './tween_data';
 import * as MathUtils from '../util/math';
 import { TWEEN_PENDING, TWEEN_RUNNING, TWEEN_COMPLETE, TWEEN_LOOPED } from './const';
@@ -46,15 +46,7 @@ export class Tween {
    * @param repeat
    * @param yoyo
    */
-  to(
-    properties,
-    duration = 1000,
-    ease = 'Linear',
-    autoStart = false,
-    delay = 0,
-    repeat = 0,
-    yoyo = false
-  ) {
+  to(properties, duration = 1000, ease = 'Linear', autoStart = false, delay = 0, repeat = 0, yoyo = false) {
     if (typeof ease === 'string' && this.manager.easeMap[ease]) {
       ease = this.manager.easeMap[ease];
     }
@@ -78,15 +70,7 @@ export class Tween {
    * @param repeat
    * @param yoyo
    */
-  from(
-    properties,
-    duration = 1000,
-    ease = 'Linear',
-    autoStart = false,
-    delay = 0,
-    repeat = 0,
-    yoyo = false
-  ) {
+  from(properties, duration = 1000, ease = 'Linear', autoStart = false, delay = 0, repeat = 0, yoyo = false) {
     if (typeof ease === 'string' && this.manager.easeMap[ease]) {
       ease = this.manager.easeMap[ease];
     }
@@ -106,12 +90,7 @@ export class Tween {
    * @param index
    */
   start(index = 0) {
-    if (
-      this.game === null ||
-      this.target === null ||
-      this.timeline.length === 0 ||
-      this.isRunning
-    ) {
+    if (this.game === null || this.target === null || this.timeline.length === 0 || this.isRunning) {
       return this;
     }
     //  Populate the tween data

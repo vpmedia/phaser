@@ -1,4 +1,4 @@
-import { Device } from "./device";
+import { Device } from './device';
 
 /**
  * TBD.
@@ -58,12 +58,7 @@ export function checkOS(device) {
     device.desktop = true;
   }
   // iOS / Windows Phone / Tablet reset
-  if (
-    device.android ||
-    device.iOS ||
-    device.windowsPhone ||
-    (/Windows NT/i.test(ua) && /Touch/i.test(ua))
-  ) {
+  if (device.android || device.iOS || device.windowsPhone || (/Windows NT/i.test(ua) && /Touch/i.test(ua))) {
     device.desktop = false;
   }
 }
@@ -181,10 +176,7 @@ export function checkAudio(device) {
       if (audioElement.canPlayType('audio/wav; codecs="1"').replace(/^no$/, '')) {
         device.wav = true;
       }
-      if (
-        audioElement.canPlayType('audio/x-m4a;') ||
-        audioElement.canPlayType('audio/aac;').replace(/^no$/, '')
-      ) {
+      if (audioElement.canPlayType('audio/x-m4a;') || audioElement.canPlayType('audio/aac;').replace(/^no$/, '')) {
         device.m4a = true;
       }
       if (audioElement.canPlayType('audio/webm; codecs="vorbis"').replace(/^no$/, '')) {

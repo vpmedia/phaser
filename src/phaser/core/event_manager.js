@@ -1,4 +1,4 @@
-import { Signal } from  './signal';
+import { Signal } from './signal';
 
 export class EventManager {
   /**

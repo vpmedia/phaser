@@ -1,6 +1,6 @@
 import { Image } from './image';
-import { Signal } from  '../core/signal';
-import { Game } from  '../core/game';
+import { Signal } from '../core/signal';
+import { Game } from '../core/game';
 import { InputHandler } from '../core/input_handler';
 import { BUTTON, POINTER_CONTACT } from '../core/const';
 
@@ -180,10 +180,7 @@ export class Button extends Image {
    * @param pointer
    */
   onInputOverHandler(sprite, pointer) {
-    if (
-      pointer.justReleased() &&
-      (this.justReleasedPreventsOver & pointer.pointerMode) === pointer.pointerMode
-    ) {
+    if (pointer.justReleased() && (this.justReleasedPreventsOver & pointer.pointerMode) === pointer.pointerMode) {
       //  If the Pointer was only just released then we don't fire an over event
       return;
     }

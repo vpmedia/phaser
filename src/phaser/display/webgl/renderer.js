@@ -232,11 +232,7 @@ export class WebGLRenderer {
     gl.bindTexture(gl.TEXTURE_2D, texture._glTextures[gl.id]);
     gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, texture.premultipliedAlpha);
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, texture.source);
-    gl.texParameteri(
-      gl.TEXTURE_2D,
-      gl.TEXTURE_MAG_FILTER,
-      texture.scaleMode === SCALE_LINEAR ? gl.LINEAR : gl.NEAREST
-    );
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, texture.scaleMode === SCALE_LINEAR ? gl.LINEAR : gl.NEAREST);
     if (texture.mipmap && isPowerOfTwo(texture.width, texture.height)) {
       gl.texParameteri(
         gl.TEXTURE_2D,

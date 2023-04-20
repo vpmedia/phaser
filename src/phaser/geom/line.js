@@ -38,12 +38,7 @@ export class Line {
    */
   fromSprite(startSprite, endSprite, useCenter = false) {
     if (useCenter) {
-      return this.setTo(
-        startSprite.center.x,
-        startSprite.center.y,
-        endSprite.center.x,
-        endSprite.center.y
-      );
+      return this.setTo(startSprite.center.x, startSprite.center.y, endSprite.center.x, endSprite.center.y);
     }
     return this.setTo(startSprite.x, startSprite.y, endSprite.x, endSprite.y);
   }
@@ -136,10 +131,7 @@ export class Line {
    * @param {number} y - TBD.
    */
   pointOnLine(x, y) {
-    return (
-      (x - this.start.x) * (this.end.y - this.start.y) ===
-      (this.end.x - this.start.x) * (y - this.start.y)
-    );
+    return (x - this.start.x) * (this.end.y - this.start.y) === (this.end.x - this.start.x) * (y - this.start.y);
   }
 
   /**

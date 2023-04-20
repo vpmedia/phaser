@@ -67,10 +67,7 @@ export class Polygon {
         const iy = this._points[i + 1];
         const jx = this._points[j];
         const jy = this._points[j + 1];
-        if (
-          ((iy <= y && y < jy) || (jy <= y && y < iy)) &&
-          x < ((jx - ix) * (y - iy)) / (jy - iy) + ix
-        ) {
+        if (((iy <= y && y < jy) || (jy <= y && y < iy)) && x < ((jx - ix) * (y - iy)) / (jy - iy) + ix) {
           inside = !inside;
         }
       }
@@ -80,10 +77,7 @@ export class Polygon {
         const iy = this._points[i].y;
         const jx = this._points[j].x;
         const jy = this._points[j].y;
-        if (
-          ((iy <= y && y < jy) || (jy <= y && y < iy)) &&
-          x < ((jx - ix) * (y - iy)) / (jy - iy) + ix
-        ) {
+        if (((iy <= y && y < jy) || (jy <= y && y < iy)) && x < ((jx - ix) * (y - iy)) / (jy - iy) + ix) {
           inside = !inside;
         }
       }

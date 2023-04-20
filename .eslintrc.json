@@ -10,7 +10,13 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "extends": ["eslint:recommended", "plugin:import/recommended", "plugin:jsdoc/recommended", "plugin:jest/recommended"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:import/recommended",
+    "plugin:prettier/recommended",
+    "plugin:jsdoc/recommended",
+    "plugin:jest/recommended"
+  ],
   "settings": {
     "import/resolver": {
       "node": {
@@ -20,15 +26,18 @@
   },
   "rules": {
     "no-unused-vars": "warn",
-    "jsdoc/require-jsdoc": ["warn", {
-      "require": {
+    "jsdoc/require-jsdoc": [
+      "warn",
+      {
+        "require": {
           "FunctionDeclaration": true,
           "MethodDefinition": true,
           "ClassDeclaration": false,
           "ArrowFunctionExpression": false,
           "FunctionExpression": false
+        }
       }
-    }],
+    ],
     "jsdoc/check-indentation": 1,
     "jsdoc/check-line-alignment": 1,
     "jsdoc/check-syntax": 1,

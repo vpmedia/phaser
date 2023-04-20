@@ -1,5 +1,4 @@
-@vpmedia/phaser
-===============
+# @vpmedia/phaser
 
 [![npm version](https://badge.fury.io/js/@vpmedia%2Fphaser.svg?v=1.15.0)](https://badge.fury.io/js/@vpmedia%2Fphaser)
 [![Node.js CI](https://github.com/vpmedia/phaser/actions/workflows/node.js.yml/badge.svg)](https://github.com/vpmedia/phaser/actions/workflows/node.js.yml)
@@ -17,6 +16,7 @@ https://github.com/vpmedia/phaser-example
 ### Comments
 
 Some features has not been ported compared to the original version:
+
 - Creature, RetroFont, Rope, SpriteBatch and Video display objects
 - Particle System
 - Physics System

@@ -1,5 +1,5 @@
 import { Point } from '../point';
-import { Line } from  '../line';
+import { Line } from '../line';
 import { intersects as intersectsRect } from './rectangle';
 
 /**
@@ -87,10 +87,7 @@ export function intersectsRectangle(line, rect) {
   let t = 0;
   //  If the start or end of the line is inside the rect then we assume
   //  collision, as rects are solid for our use-case.
-  if (
-    (x1 >= bx1 && x1 <= bx2 && y1 >= by1 && y1 <= by2) ||
-    (x2 >= bx1 && x2 <= bx2 && y2 >= by1 && y2 <= by2)
-  ) {
+  if ((x1 >= bx1 && x1 <= bx2 && y1 >= by1 && y1 <= by2) || (x2 >= bx1 && x2 <= bx2 && y2 >= by1 && y2 <= by2)) {
     return true;
   }
   if (x1 < bx1 && x2 >= bx1) {

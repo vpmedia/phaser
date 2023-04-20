@@ -1,7 +1,7 @@
-import { DisplayObject } from  './display_object';
+import { DisplayObject } from './display_object';
 import { Image } from './image';
-import { Signal } from  '../core/signal';
-import { Game } from  '../core/game';
+import { Signal } from '../core/signal';
+import { Game } from '../core/game';
 import { GROUP } from '../core/const';
 
 export const SORT_ASCENDING = -1;

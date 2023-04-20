@@ -103,10 +103,7 @@ export class FastSpriteBatch {
       return;
     }
     // TODO trim??
-    if (
-      sprite.texture.baseTexture !== this.currentBaseTexture &&
-      !sprite.texture.baseTexture.skipRender
-    ) {
+    if (sprite.texture.baseTexture !== this.currentBaseTexture && !sprite.texture.baseTexture.skipRender) {
       this.flush();
       this.currentBaseTexture = sprite.texture.baseTexture;
       if (!sprite.texture._uvs) {

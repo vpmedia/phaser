@@ -31,29 +31,9 @@ export function tintWithMultiply(texture, color, canvas) {
   context.fillStyle = '#' + ('00000' + (color | 0).toString(16)).substr(-6);
   context.fillRect(0, 0, crop.width, crop.height);
   context.globalCompositeOperation = 'multiply';
-  context.drawImage(
-    texture.baseTexture.source,
-    crop.x,
-    crop.y,
-    crop.width,
-    crop.height,
-    0,
-    0,
-    crop.width,
-    crop.height
-  );
+  context.drawImage(texture.baseTexture.source, crop.x, crop.y, crop.width, crop.height, 0, 0, crop.width, crop.height);
   context.globalCompositeOperation = 'destination-atop';
-  context.drawImage(
-    texture.baseTexture.source,
-    crop.x,
-    crop.y,
-    crop.width,
-    crop.height,
-    0,
-    0,
-    crop.width,
-    crop.height
-  );
+  context.drawImage(texture.baseTexture.source, crop.x, crop.y, crop.width, crop.height, 0, 0, crop.width, crop.height);
 }
 
 /**
@@ -68,17 +48,7 @@ export function tintWithPerPixel(texture, color, canvas) {
   canvas.width = crop.width;
   canvas.height = crop.height;
   context.globalCompositeOperation = 'copy';
-  context.drawImage(
-    texture.baseTexture.source,
-    crop.x,
-    crop.y,
-    crop.width,
-    crop.height,
-    0,
-    0,
-    crop.width,
-    crop.height
-  );
+  context.drawImage(texture.baseTexture.source, crop.x, crop.y, crop.width, crop.height, 0, 0, crop.width, crop.height);
   const rgbValues = hex2rgb(color);
   const r = rgbValues[0];
   const g = rgbValues[1];
@@ -120,10 +90,7 @@ export function checkInverseAlpha() {
   const s2 = canvas.context.getImageData(1, 0, 1, 1);
   //  Compare and return
   return (
-    s2.data[0] === s1.data[0] &&
-    s2.data[1] === s1.data[1] &&
-    s2.data[2] === s1.data[2] &&
-    s2.data[3] === s1.data[3]
+    s2.data[0] === s1.data[0] && s2.data[1] === s1.data[1] && s2.data[2] === s1.data[2] && s2.data[3] === s1.data[3]
   );
 }
 

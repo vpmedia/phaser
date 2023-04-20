@@ -1,4 +1,3 @@
-
 export class SignalBinding {
   /**
    * TBD.
@@ -90,14 +89,6 @@ export class SignalBinding {
    * TBD.
    */
   toString() {
-    return (
-      '[SignalBinding isOnce:' +
-      this._isOnce +
-      ', isBound:' +
-      this.isBound() +
-      ', active:' +
-      this.active +
-      ']'
-    );
+    return '[SignalBinding isOnce:' + this._isOnce + ', isBound:' + this.isBound() + ', active:' + this.active + ']';
   }
 }

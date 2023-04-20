@@ -1,4 +1,4 @@
-import { GraphicsData } from  './graphics_data';
+import { GraphicsData } from './graphics_data';
 
 /**
  * TBD.

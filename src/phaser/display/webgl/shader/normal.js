@@ -167,27 +167,10 @@ export class NormalShader {
         const border = data.border ? data.border : 0;
 
         // void texImage2D(GLenum target, GLint level, GLenum internalformat, GLsizei width, GLsizei height, GLint border, GLenum format, GLenum type, ArrayBufferView? pixels);
-        gl.texImage2D(
-          gl.TEXTURE_2D,
-          0,
-          format,
-          width,
-          height,
-          border,
-          format,
-          gl.UNSIGNED_BYTE,
-          null
-        );
+        gl.texImage2D(gl.TEXTURE_2D, 0, format, width, height, border, format, gl.UNSIGNED_BYTE, null);
       } else {
         //  void texImage2D(GLenum target, GLint level, GLenum internalformat, GLenum format, GLenum type, ImageData? pixels);
-        gl.texImage2D(
-          gl.TEXTURE_2D,
-          0,
-          format,
-          gl.RGBA,
-          gl.UNSIGNED_BYTE,
-          uniform.value.baseTexture.source
-        );
+        gl.texImage2D(gl.TEXTURE_2D, 0, format, gl.RGBA, gl.UNSIGNED_BYTE, uniform.value.baseTexture.source);
       }
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, magFilter);
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, minFilter);
@@ -220,13 +203,7 @@ export class NormalShader {
       } else if (uniform.glValueLength === 2) {
         uniform.glFunc.call(gl, uniform.uniformLocation, uniform.value.x, uniform.value.y);
       } else if (uniform.glValueLength === 3) {
-        uniform.glFunc.call(
-          gl,
-          uniform.uniformLocation,
-          uniform.value.x,
-          uniform.value.y,
-          uniform.value.z
-        );
+        uniform.glFunc.call(gl, uniform.uniformLocation, uniform.value.x, uniform.value.y, uniform.value.z);
       } else if (uniform.glValueLength === 4) {
         uniform.glFunc.call(
           gl,

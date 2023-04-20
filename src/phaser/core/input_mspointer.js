@@ -1,4 +1,3 @@
-
 export class MSPointer {
   /**
    * TBD.
@@ -148,10 +147,7 @@ export class MSPointer {
    * @param event
    */
   onPointerUpGlobal(event) {
-    if (
-      (event.pointerType === 'mouse' || event.pointerType === 0x00000004) &&
-      !this.input.mousePointer.withinGame
-    ) {
+    if ((event.pointerType === 'mouse' || event.pointerType === 0x00000004) && !this.input.mousePointer.withinGame) {
       this.onPointerUp(event);
     } else {
       const pointer = this.input.getPointerFromIdentifier(event.identifier);

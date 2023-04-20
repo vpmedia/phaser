@@ -1,9 +1,9 @@
 import { ArraySet } from './array_set';
-import { Graphics } from  '../display/graphics';
+import { Graphics } from '../display/graphics';
 import { Image } from '../display/image';
-import { Signal } from  './signal';
+import { Signal } from './signal';
 import { Point } from '../geom/point';
-import { Circle } from  '../geom/circle';
+import { Circle } from '../geom/circle';
 import { Mouse } from './input_mouse';
 import { MSPointer } from './input_mspointer';
 import { Pointer } from './input_pointer';
@@ -149,10 +149,7 @@ export class Input {
     let i = this.moveCallbacks.length;
     while (i) {
       i -= 1;
-      if (
-        this.moveCallbacks[i].callback === callback &&
-        this.moveCallbacks[i].context === context
-      ) {
+      if (this.moveCallbacks[i].callback === callback && this.moveCallbacks[i].context === context) {
         this.moveCallbacks.splice(i, 1);
         return;
       }
@@ -396,11 +393,7 @@ export class Input {
     } else if (displayObject instanceof Graphics) {
       for (let i = 0; i < displayObject.graphicsData.length; i += 1) {
         const data = displayObject.graphicsData[i];
-        if (
-          data.fill &&
-          data.shape &&
-          data.shape.contains(this._localPoint.x, this._localPoint.y)
-        ) {
+        if (data.fill && data.shape && data.shape.contains(this._localPoint.x, this._localPoint.y)) {
           // Only deal with fills..
           return true;
         }

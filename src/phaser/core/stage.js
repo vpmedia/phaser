@@ -1,5 +1,5 @@
-import { Matrix } from  '../geom/matrix';
-import { DisplayObject } from  '../display/display_object';
+import { Matrix } from '../geom/matrix';
+import { DisplayObject } from '../display/display_object';
 import { setUserSelect, setTouchAction } from '../display/canvas/util';
 import { valueToColor } from '../util/math';
 import { SCALE_LINEAR, SCALE_NEAREST } from './const';

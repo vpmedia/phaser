@@ -1,9 +1,9 @@
 import { Point } from '../geom/point';
-import { Rectangle } from  '../geom/rectangle';
+import { Rectangle } from '../geom/rectangle';
 import { Image } from './image';
 import { create, remove } from './canvas/pool';
 import { textureFromCanvas } from './webgl/texture_util';
-import { Game } from  '../core/game';
+import { Game } from '../core/game';
 import { TEXT } from '../core/const';
 import { snapToCeil } from '../util/math';
 import { renderCanvas, renderWebGL, getBounds } from './sprite_util';
@@ -75,14 +75,7 @@ export class Text extends Image {
    * @param shadowStroke
    * @param shadowFill
    */
-  setShadow(
-    x = 0,
-    y = 0,
-    color = 'rgba(0, 0, 0, 1)',
-    blur = 0,
-    shadowStroke = true,
-    shadowFill = true
-  ) {
+  setShadow(x = 0, y = 0, color = 'rgba(0, 0, 0, 1)', blur = 0, shadowStroke = true, shadowFill = true) {
     this.style.shadowOffsetX = x;
     this.style.shadowOffsetY = y;
     this.style.shadowColor = color;
@@ -565,9 +558,7 @@ export class Text extends Image {
               // if wordWrapWidth is too small for even a single
               // letter, shame user failure with a fatal error
               if (!newWord.length) {
-                throw new Error(
-                  "This text's wordWrapWidth setting is less than a single character!"
-                );
+                throw new Error("This text's wordWrapWidth setting is less than a single character!");
               }
               // replace current word in array with remainder
               const secondPart = word.substr(newWord.length);
@@ -668,10 +659,7 @@ export class Text extends Image {
     if (m) {
       let family = m[5].trim();
       // If it looks like the value should be quoted, but isn't, then quote it.
-      if (
-        !/^(?:inherit|serif|sans-serif|cursive|fantasy|monospace)$/.exec(family) &&
-        !/['",]/.exec(family)
-      ) {
+      if (!/^(?:inherit|serif|sans-serif|cursive|fantasy|monospace)$/.exec(family) && !/['",]/.exec(family)) {
         family = "'" + family + "'";
       }
       return {
@@ -878,10 +866,9 @@ export class Text extends Image {
    */
   getFontPropertiesContext() {
     if (!window.PhaserRegistry.fontPropertiesContext) {
-      window.PhaserRegistry.fontPropertiesContext = this.getFontPropertiesCanvas().getContext(
-        '2d',
-        { willReadFrequently: true }
-      );
+      window.PhaserRegistry.fontPropertiesContext = this.getFontPropertiesCanvas().getContext('2d', {
+        willReadFrequently: true,
+      });
     }
     return window.PhaserRegistry.fontPropertiesContext;
   }
@@ -1025,10 +1012,7 @@ export class Text extends Image {
     let mutatedValue = value || 'Arial';
     mutatedValue = mutatedValue.trim();
     // If it looks like the value should be quoted, but isn't, then quote it.
-    if (
-      !/^(?:inherit|serif|sans-serif|cursive|fantasy|monospace)$/.exec(mutatedValue) &&
-      !/['",]/.exec(mutatedValue)
-    ) {
+    if (!/^(?:inherit|serif|sans-serif|cursive|fantasy|monospace)$/.exec(mutatedValue) && !/['",]/.exec(mutatedValue)) {
       mutatedValue = "'" + mutatedValue + "'";
     }
 

@@ -177,8 +177,7 @@ export class WebGLSpriteBatch {
     positions[i + 18] = uvs.y3;
     // color and alpha
     const tint = sprite.tint;
-    colors[i + 4] =
-      (tint >> 16) + (tint & 0xff00) + ((tint & 0xff) << 16) + ((sprite.worldAlpha * 255) << 24);
+    colors[i + 4] = (tint >> 16) + (tint & 0xff00) + ((tint & 0xff) << 16) + ((sprite.worldAlpha * 255) << 24);
     colors[i + 9] = colors[i + 4];
     colors[i + 14] = colors[i + 4];
     colors[i + 19] = colors[i + 4];

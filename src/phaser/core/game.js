@@ -1,6 +1,6 @@
 import { CanvasRenderer } from '../display/canvas/renderer';
 import { WebGLRenderer } from '../display/webgl/renderer';
-import { Signal } from  './signal';
+import { Signal } from './signal';
 import { Loader } from './loader';
 import { Cache } from './cache';
 import { Input } from './input';

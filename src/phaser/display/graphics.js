@@ -1,21 +1,18 @@
-import { DisplayObject } from  './display_object';
+import { DisplayObject } from './display_object';
 import { Image } from './image';
-import { Game } from  '../core/game';
-import { Rectangle } from  '../geom/rectangle';
-import { RoundedRectangle } from  '../geom/rounded_rectangle';
-import { Polygon } from  '../geom/polygon';
-import { Circle } from  '../geom/circle';
-import { Ellipse } from  '../geom/ellipse';
+import { Game } from '../core/game';
+import { Rectangle } from '../geom/rectangle';
+import { RoundedRectangle } from '../geom/rounded_rectangle';
+import { Polygon } from '../geom/polygon';
+import { Circle } from '../geom/circle';
+import { Ellipse } from '../geom/ellipse';
 import { Point } from '../geom/point';
-import { GraphicsData } from  './graphics_data';
+import { GraphicsData } from './graphics_data';
 import { CanvasBuffer } from './canvas/buffer';
 import { textureFromCanvas } from './webgl/texture_util';
 import { renderGraphics as renderCanvasGraphics } from './canvas/graphics';
 import { renderGraphics as renderWebGLGraphics } from './webgl/graphics';
-import {
-  renderCanvas as renderSpriteCanvas,
-  renderWebGL as renderSpriteWebGL,
-} from './sprite_util';
+import { renderCanvas as renderSpriteCanvas, renderWebGL as renderSpriteWebGL } from './sprite_util';
 import { getEmptyRectangle } from '../geom/util/rectangle';
 import { getIdentityMatrix } from '../geom/util/matrix';
 import {
@@ -293,10 +290,7 @@ export class Graphics extends DisplayObject {
       const angle = theta + startAngle + theta2 * real;
       const c = Math.cos(angle);
       const s = -Math.sin(angle);
-      points.push(
-        (cTheta * c + sTheta * s) * radius + cx,
-        (cTheta * -s + sTheta * c) * radius + cy
-      );
+      points.push((cTheta * c + sTheta * s) * radius + cx, (cTheta * -s + sTheta * c) * radius + cy);
     }
     this.dirty = true;
     this._boundsDirty = true;
@@ -457,8 +451,7 @@ export class Graphics extends DisplayObject {
       // check blend mode
       if (this.blendMode !== renderSession.spriteBatch.currentBlendMode) {
         renderSession.spriteBatch.currentBlendMode = this.blendMode;
-        const blendModeWebGL =
-          window.PhaserRegistry.blendModesWebGL[renderSession.spriteBatch.currentBlendMode];
+        const blendModeWebGL = window.PhaserRegistry.blendModesWebGL[renderSession.spriteBatch.currentBlendMode];
         renderSession.spriteBatch.gl.blendFunc(blendModeWebGL[0], blendModeWebGL[1]);
       }
       // check if the webgl graphic needs to be updated
@@ -516,8 +509,7 @@ export class Graphics extends DisplayObject {
       const transform = this.worldTransform;
       if (this.blendMode !== renderSession.currentBlendMode) {
         renderSession.currentBlendMode = this.blendMode;
-        context.globalCompositeOperation =
-          window.PhaserRegistry.blendModesCanvas[renderSession.currentBlendMode];
+        context.globalCompositeOperation = window.PhaserRegistry.blendModesCanvas[renderSession.currentBlendMode];
       }
       if (this._mask) {
         renderSession.maskManager.pushMask(this._mask, renderSession);

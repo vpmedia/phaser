@@ -20,11 +20,7 @@ export class BaseTexture {
     this._powerOf2 = false;
     this._dirty = [true, true, true, true];
     if (source) {
-      if (
-        (this.source.complete || this.source.getContext) &&
-        this.source.width &&
-        this.source.height
-      ) {
+      if ((this.source.complete || this.source.getContext) && this.source.width && this.source.height) {
         this.hasLoaded = true;
         this.width = this.source.naturalWidth || this.source.width;
         this.height = this.source.naturalHeight || this.source.height;

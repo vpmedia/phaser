@@ -1,4 +1,4 @@
-import { Rectangle } from  '../geom/rectangle';
+import { Rectangle } from '../geom/rectangle';
 import { distance } from '../util/math';
 import { cloneFrame } from './frame_util';
 

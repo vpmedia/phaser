@@ -1,6 +1,6 @@
 import { Point } from '../geom/point';
-import { Rectangle } from  '../geom/rectangle';
-import { Matrix } from  '../geom/matrix';
+import { Rectangle } from '../geom/rectangle';
+import { Matrix } from '../geom/matrix';
 import { getIdentityMatrix } from '../geom/util/matrix';
 import { PI_2 } from '../util/math';
 import { renderCanvas, renderWebGL } from './sprite_util';
@@ -92,13 +92,7 @@ export class DisplayObject {
       this.children.splice(index, 0, child);
       return child;
     }
-    throw new Error(
-      child +
-        'addChildAt: The index ' +
-        index +
-        ' supplied is out of bounds ' +
-        this.children.length
-    );
+    throw new Error(child + 'addChildAt: The index ' + index + ' supplied is out of bounds ' + this.children.length);
   }
 
   /**
@@ -113,9 +107,7 @@ export class DisplayObject {
     const index1 = this.getChildIndex(child);
     const index2 = this.getChildIndex(child2);
     if (index1 < 0 || index2 < 0) {
-      throw new Error(
-        'swapChildren: Both the supplied DisplayObjects must be a child of the caller.'
-      );
+      throw new Error('swapChildren: Both the supplied DisplayObjects must be a child of the caller.');
     }
     this.children[index1] = child2;
     this.children[index2] = child;
@@ -306,8 +298,7 @@ export class DisplayObject {
    * @param targetCoordinateSpace
    */
   getBounds(targetCoordinateSpace) {
-    const isTargetCoordinateSpaceDisplayObject =
-      targetCoordinateSpace && targetCoordinateSpace.contains !== undefined;
+    const isTargetCoordinateSpaceDisplayObject = targetCoordinateSpace && targetCoordinateSpace.contains !== undefined;
     let isTargetCoordinateSpaceThisOrParent = true;
     if (!isTargetCoordinateSpaceDisplayObject) {
       targetCoordinateSpace = this;

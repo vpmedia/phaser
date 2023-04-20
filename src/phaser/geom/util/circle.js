@@ -1,4 +1,4 @@
-import { Circle } from  '../circle';
+import { Circle } from '../circle';
 import { Point } from '../point';
 import { degToRad, distance } from '../../util/math';
 

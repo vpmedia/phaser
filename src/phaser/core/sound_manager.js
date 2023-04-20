@@ -1,5 +1,5 @@
 import { ArraySet } from './array_set';
-import { Signal } from  './signal';
+import { Signal } from './signal';
 import { Sound } from './sound';
 import { SoundSprite } from './sound_sprite';
 
@@ -59,9 +59,7 @@ export class SoundManager {
     }
     if (
       this.context === null ||
-      (this.context &&
-        this.context.createGain === undefined &&
-        this.context.createGainNode === undefined)
+      (this.context && this.context.createGain === undefined && this.context.createGainNode === undefined)
     ) {
       this.noAudio = true;
       return;
@@ -85,10 +83,7 @@ export class SoundManager {
         state: this.context.state,
         isLocked: this.isLocked,
       });
-      if (
-        !this.isLocked &&
-        (this.context.state === 'suspended' || this.context.state === 'interrupted')
-      ) {
+      if (!this.isLocked && (this.context.state === 'suspended' || this.context.state === 'interrupted')) {
         this.addUnlockHandlers();
       } else if (this.isLocked && this.context.state === 'running') {
         this.removeUnlockHandlers();

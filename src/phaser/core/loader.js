@@ -1,5 +1,5 @@
-import { Signal } from  './signal';
-import { Rectangle } from  '../geom/rectangle';
+import { Signal } from './signal';
+import { Rectangle } from '../geom/rectangle';
 import { canPlayAudio } from './device_util';
 
 const TEXTURE_ATLAS_JSON_HASH = 1;
@@ -157,14 +157,7 @@ export class Loader {
    * @param overwrite
    * @param extension
    */
-  addToFileList(
-    type,
-    key = '',
-    url = null,
-    properties = null,
-    overwrite = false,
-    extension = null
-  ) {
+  addToFileList(type, key = '', url = null, properties = null, overwrite = false, extension = null) {
     if (key === undefined || key === '') {
       console.warn('Loader: Invalid or no key given of type ' + type);
       return this;
@@ -388,14 +381,7 @@ export class Loader {
    * @param xSpacing
    * @param ySpacing
    */
-  bitmapFont(
-    key,
-    textureURL = null,
-    atlasURL = null,
-    atlasData = null,
-    xSpacing = 0,
-    ySpacing = 0
-  ) {
+  bitmapFont(key, textureURL = null, atlasURL = null, atlasData = null, xSpacing = 0, ySpacing = 0) {
     if (textureURL === undefined || textureURL === null) {
       textureURL = key + '.png';
     }
@@ -548,12 +534,7 @@ export class Loader {
         } else if (file.type === 'packfile' && file.error) {
           // Non-error pack files are handled when processing the file queue
           this._loadedPackCount += 1;
-          this.onPackComplete.dispatch(
-            file.key,
-            !file.error,
-            this._loadedPackCount,
-            this._totalPackCount
-          );
+          this.onPackComplete.dispatch(file.key, !file.error, this._loadedPackCount, this._totalPackCount);
         }
       }
     }
@@ -567,12 +548,7 @@ export class Loader {
         // Processing the pack / adds more files
         this.processPack(file);
         this._loadedPackCount += 1;
-        this.onPackComplete.dispatch(
-          file.key,
-          !file.error,
-          this._loadedPackCount,
-          this._totalPackCount
-        );
+        this.onPackComplete.dispatch(file.key, !file.error, this._loadedPackCount, this._totalPackCount);
       }
       if (file.loaded || file.error) {
         // Item at the start of file list finished, can skip it in future
@@ -603,10 +579,7 @@ export class Loader {
       }
       // Stop looking if queue full - or if syncblocked and there are no more packs.
       // (As only packs can be loaded around a syncblock)
-      if (
-        this._flightQueue.length >= inflightLimit ||
-        (syncblock && this._loadedPackCount === this._totalPackCount)
-      ) {
+      if (this._flightQueue.length >= inflightLimit || (syncblock && this._loadedPackCount === this._totalPackCount)) {
         break;
       }
     }
@@ -722,13 +695,7 @@ export class Loader {
           );
           break;
         case 'atlas':
-          this.atlas(
-            file.key,
-            file.textureURL,
-            file.atlasURL,
-            file.atlasData,
-            TEXTURE_ATLAS_JSON_HASH
-          );
+          this.atlas(file.key, file.textureURL, file.atlasURL, file.atlasData, TEXTURE_ATLAS_JSON_HASH);
           break;
       }
     }
@@ -769,11 +736,7 @@ export class Loader {
         if (file.url) {
           this.xhrLoad(file, this.transformUrl(file.url, file), 'arraybuffer', this.fileComplete);
         } else {
-          this.fileError(
-            file,
-            null,
-            'No supported audio URL specified or device does not have audio playback support'
-          );
+          this.fileError(file, null, 'No supported audio URL specified or device does not have audio playback support');
         }
         break;
       case 'json':
@@ -986,12 +949,7 @@ export class Loader {
         } else {
           loadNext = false;
           if (file.format === TEXTURE_ATLAS_JSON_HASH) {
-            this.xhrLoad(
-              file,
-              this.transformUrl(file.atlasURL, file),
-              'text',
-              this.jsonLoadComplete
-            );
+            this.xhrLoad(file, this.transformUrl(file.atlasURL, file), 'text', this.jsonLoadComplete);
           } else {
             throw new Error('Invalid Texture Atlas format: ' + file.format);
           }
@@ -1011,27 +969,22 @@ export class Loader {
         } else {
           //  Load the XML before carrying on with the next file
           loadNext = false;
-          this.xhrLoad(
-            file,
-            this.transformUrl(file.atlasURL, file),
-            'text',
-            (bitmapFontFile, bitmapFontXhr) => {
-              let json;
-              try {
-                // Try to parse as JSON, if it fails, then it's hopefully XML
-                json = JSON.parse(bitmapFontXhr.responseText);
-              } catch (e) {
-                // pass
-              }
-              if (json) {
-                bitmapFontFile.atlasType = 'json';
-                this.jsonLoadComplete(bitmapFontFile, bitmapFontXhr);
-              } else {
-                bitmapFontFile.atlasType = 'xml';
-                this.xmlLoadComplete(bitmapFontFile, bitmapFontXhr);
-              }
+          this.xhrLoad(file, this.transformUrl(file.atlasURL, file), 'text', (bitmapFontFile, bitmapFontXhr) => {
+            let json;
+            try {
+              // Try to parse as JSON, if it fails, then it's hopefully XML
+              json = JSON.parse(bitmapFontXhr.responseText);
+            } catch (e) {
+              // pass
             }
-          );
+            if (json) {
+              bitmapFontFile.atlasType = 'json';
+              this.jsonLoadComplete(bitmapFontFile, bitmapFontXhr);
+            } else {
+              bitmapFontFile.atlasType = 'xml';
+              this.xmlLoadComplete(bitmapFontFile, bitmapFontXhr);
+            }
+          });
         }
         break;
       case 'audio':
@@ -1062,15 +1015,7 @@ export class Loader {
   jsonLoadComplete(file, xhr) {
     const data = JSON.parse(xhr.responseText);
     if (file.type === 'bitmapfont') {
-      this.cache.addBitmapFont(
-        file.key,
-        file.url,
-        file.data,
-        data,
-        file.atlasType,
-        file.xSpacing,
-        file.ySpacing
-      );
+      this.cache.addBitmapFont(file.key, file.url, file.data, data, file.atlasType, file.xSpacing, file.ySpacing);
     } else if (file.type === 'json') {
       this.cache.addJSON(file.key, file.url, data);
     } else {
@@ -1103,15 +1048,7 @@ export class Loader {
       return;
     }
     if (file.type === 'bitmapfont') {
-      this.cache.addBitmapFont(
-        file.key,
-        file.url,
-        file.data,
-        xml,
-        file.atlasType,
-        file.xSpacing,
-        file.ySpacing
-      );
+      this.cache.addBitmapFont(file.key, file.url, file.data, xml, file.atlasType, file.xSpacing, file.ySpacing);
     } else if (file.type === 'textureatlas') {
       this.cache.addTextureAtlas(file.key, file.url, file.data, xml, file.format);
     } else if (file.type === 'xml') {
@@ -1151,13 +1088,9 @@ export class Loader {
   updateProgress() {
     if (this.preloadSprite) {
       if (this.preloadSprite.direction === 0) {
-        this.preloadSprite.rect.width = Math.floor(
-          (this.preloadSprite.width / 100) * this.progress
-        );
+        this.preloadSprite.rect.width = Math.floor((this.preloadSprite.width / 100) * this.progress);
       } else {
-        this.preloadSprite.rect.height = Math.floor(
-          (this.preloadSprite.height / 100) * this.progress
-        );
+        this.preloadSprite.rect.height = Math.floor((this.preloadSprite.height / 100) * this.progress);
       }
       if (this.preloadSprite.sprite) {
         this.preloadSprite.sprite.updateCrop();

@@ -171,19 +171,12 @@ export class TweenData {
       const start = this.vStart[property];
       const end = this.vEnd[property];
       if (Array.isArray(end)) {
-        this.parent.target[property] = this.interpolationFunction.call(
-          this.interpolationContext,
-          end,
-          this.value
-        );
+        this.parent.target[property] = this.interpolationFunction.call(this.interpolationContext, end, this.value);
       } else {
         this.parent.target[property] = start + (end - start) * this.value;
       }
     }
-    if (
-      (!this.parent.reverse && this.percent === 1) ||
-      (this.parent.reverse && this.percent === 0)
-    ) {
+    if ((!this.parent.reverse && this.percent === 1) || (this.parent.reverse && this.percent === 0)) {
       return this.repeat();
     }
     return TWEEN_RUNNING;
@@ -225,10 +218,7 @@ export class TweenData {
         }
       }
       data.push(blob);
-      if (
-        (!this.parent.reverse && this.percent === 1) ||
-        (this.parent.reverse && this.percent === 0)
-      ) {
+      if ((!this.parent.reverse && this.percent === 1) || (this.parent.reverse && this.percent === 0)) {
         complete = true;
       }
     } while (!complete);

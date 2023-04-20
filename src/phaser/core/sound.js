@@ -1,4 +1,4 @@
-import { Signal } from  './signal';
+import { Signal } from './signal';
 
 export class Sound {
   /**
@@ -324,10 +324,7 @@ export class Sound {
         this.onPlay.dispatch(this);
       } else {
         this.pendingPlayback = true;
-        if (
-          this.game.cache.getSound(this.key) &&
-          this.game.cache.getSound(this.key).isDecoding === false
-        ) {
+        if (this.game.cache.getSound(this.key) && this.game.cache.getSound(this.key).isDecoding === false) {
           this.game.sound.decode(this.key, this);
         }
       }

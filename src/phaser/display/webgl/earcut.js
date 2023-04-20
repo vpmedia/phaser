@@ -185,9 +185,7 @@ export function equals(p1, p2) {
  * @returns {boolean} TBD.
  */
 export function intersects(p1, q1, p2, q2) {
-  return (
-    area(p1, q1, p2) > 0 !== area(p1, q1, q2) > 0 && area(p2, q2, p1) > 0 !== area(p2, q2, q1) > 0
-  );
+  return area(p1, q1, p2) > 0 !== area(p1, q1, q2) > 0 && area(p2, q2, p1) > 0 !== area(p2, q2, q1) > 0;
 }
 
 /**
@@ -199,14 +197,7 @@ export function intersects(p1, q1, p2, q2) {
 export function intersectsPolygon(a, b) {
   let p = a;
   do {
-    if (
-      p.i !== a.i &&
-      p.next.i !== a.i &&
-      p.i !== b.i &&
-      p.next.i !== b.i &&
-      intersects(p, p.next, a, b)
-    )
-      return true;
+    if (p.i !== a.i && p.next.i !== a.i && p.i !== b.i && p.next.i !== b.i && intersects(p, p.next, a, b)) return true;
     p = p.next;
   } while (p !== a);
   return false;
@@ -236,10 +227,7 @@ export function middleInside(a, b) {
   const px = (a.x + b.x) / 2;
   const py = (a.y + b.y) / 2;
   do {
-    if (
-      p.y > py !== p.next.y > py &&
-      px < ((p.next.x - p.x) * (py - p.y)) / (p.next.y - p.y) + p.x
-    ) {
+    if (p.y > py !== p.next.y > py && px < ((p.next.x - p.x) * (py - p.y)) / (p.next.y - p.y) + p.x) {
       inside = !inside;
     }
     p = p.next;
@@ -337,8 +325,7 @@ export function isEar(ear) {
   // now make sure we don't have other points inside the potential ear
   let p = ear.next.next;
   while (p !== ear.prev) {
-    if (pointInTriangle(a.x, a.y, b.x, b.y, c.x, c.y, p.x, p.y) && area(p.prev, p, p.next) >= 0)
-      return false;
+    if (pointInTriangle(a.x, a.y, b.x, b.y, c.x, c.y, p.x, p.y) && area(p.prev, p, p.next) >= 0) return false;
     p = p.next;
   }
   return true;

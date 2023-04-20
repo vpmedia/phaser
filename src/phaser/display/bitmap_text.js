@@ -1,6 +1,6 @@
-import { DisplayObject } from  './display_object';
+import { DisplayObject } from './display_object';
 import { Image } from './image';
-import { Game } from  '../core/game';
+import { Game } from '../core/game';
 import { Point } from '../geom/point';
 import { BITMAP_TEXT, SCALE_LINEAR, SCALE_NEAREST } from '../core/const';
 
@@ -112,8 +112,7 @@ export class BitmapText extends DisplayObject {
         charData = data.chars[charCode];
       }
       //  Adjust for kerning from previous character to this one
-      const kerning =
-        prevCharCode && charData.kerning[prevCharCode] ? charData.kerning[prevCharCode] : 0;
+      const kerning = prevCharCode && charData.kerning[prevCharCode] ? charData.kerning[prevCharCode] : 0;
       //  Record the last space in the string and the current width
       if (/(\s)/.test(text.charAt(i))) {
         lastSpace = i;

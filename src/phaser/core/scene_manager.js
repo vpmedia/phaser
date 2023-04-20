@@ -176,12 +176,7 @@ export class SceneManager {
    */
   checkState(key) {
     if (this.states[key]) {
-      if (
-        this.states[key].preload ||
-        this.states[key].create ||
-        this.states[key].update ||
-        this.states[key].render
-      ) {
+      if (this.states[key].preload || this.states[key].create || this.states[key].update || this.states[key].render) {
         return true;
       }
       return false;

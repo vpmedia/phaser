@@ -1,15 +1,8 @@
-import { Signal } from  './signal';
+import { Signal } from './signal';
 import { DOM } from './dom';
 import { Point } from '../geom/point';
-import { Rectangle } from  '../geom/rectangle';
-import {
-  SCALE_OFF,
-  SCALE_RESIZE,
-  SCALE_EXACT_FIT,
-  SCALE_USER,
-  SCALE_SHOW_ALL,
-  RENDER_CANVAS,
-} from './const';
+import { Rectangle } from '../geom/rectangle';
+import { SCALE_OFF, SCALE_RESIZE, SCALE_EXACT_FIT, SCALE_USER, SCALE_SHOW_ALL, RENDER_CANVAS } from './const';
 
 export class ScaleManager {
   /**
@@ -416,8 +409,7 @@ export class ScaleManager {
     const previousOrientation = this.screenOrientation;
     const previouslyIncorrect = this.incorrectOrientation;
     this.screenOrientation = this.dom.getScreenOrientation(this.compatibility.orientationFallback);
-    this.incorrectOrientation =
-      (this.forceLandscape && !this.isLandscape) || (this.forcePortrait && !this.isPortrait);
+    this.incorrectOrientation = (this.forceLandscape && !this.isLandscape) || (this.forcePortrait && !this.isPortrait);
     const changed = previousOrientation !== this.screenOrientation;
     const correctnessChanged = previouslyIncorrect !== this.incorrectOrientation;
     if (correctnessChanged) {
@@ -489,10 +481,7 @@ export class ScaleManager {
       this.width = this.game.width * this._userScaleFactor.x - this._userScaleTrim.x;
       this.height = this.game.height * this._userScaleFactor.y - this._userScaleTrim.y;
     }
-    if (
-      !this.compatibility.canExpandParent &&
-      (scaleMode === SCALE_SHOW_ALL || scaleMode === SCALE_USER)
-    ) {
+    if (!this.compatibility.canExpandParent && (scaleMode === SCALE_SHOW_ALL || scaleMode === SCALE_USER)) {
       const bounds = this.getParentBounds(this._tempBounds);
       this.width = Math.min(this.width, bounds.width);
       this.height = Math.min(this.height, bounds.height);
@@ -536,12 +525,7 @@ export class ScaleManager {
         bounds.bottom = Math.min(bounds.bottom, windowBounds.height);
       }
     }
-    bounds.setTo(
-      Math.round(bounds.x),
-      Math.round(bounds.y),
-      Math.round(bounds.width),
-      Math.round(bounds.height)
-    );
+    bounds.setTo(Math.round(bounds.x), Math.round(bounds.y), Math.round(bounds.width), Math.round(bounds.height));
     return bounds;
   }
 
@@ -608,10 +592,7 @@ export class ScaleManager {
   reflowCanvas() {
     if (!this.incorrectOrientation) {
       this.width = Math.max(this.minWidth || 0, Math.min(this.maxWidth || this.width, this.width));
-      this.height = Math.max(
-        this.minHeight || 0,
-        Math.min(this.maxHeight || this.height, this.height)
-      );
+      this.height = Math.max(this.minHeight || 0, Math.min(this.maxHeight || this.height, this.height));
     }
     this.resetCanvas();
     if (!this.compatibility.noMargins) {
@@ -740,10 +721,7 @@ export class ScaleManager {
         input.activePointer !== input.mousePointer &&
         (allowTrampoline || allowTrampoline !== false)
       ) {
-        input.activePointer.addClickTrampoline('startFullScreen', this.startFullScreen, this, [
-          antialias,
-          false,
-        ]);
+        input.activePointer.addClickTrampoline('startFullScreen', this.startFullScreen, this, [antialias, false]);
         return false;
       }
     }
@@ -888,10 +866,7 @@ export class ScaleManager {
    * TBD.
    */
   get boundingParent() {
-    if (
-      this.parentIsWindow ||
-      (this.isFullScreen && this.hasPhaserSetFullScreen && !this._createdFullScreenTarget)
-    ) {
+    if (this.parentIsWindow || (this.isFullScreen && this.hasPhaserSetFullScreen && !this._createdFullScreenTarget)) {
       return null;
     }
     const parentNode = this.game.canvas && this.game.canvas.parentNode;

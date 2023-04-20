@@ -206,13 +206,9 @@ export function renderCanvas(target, renderSession, matrix) {
     renderSession.context.globalAlpha = target.worldAlpha;
 
     //  If smoothingEnabled is supported and we need to change the smoothing property for this texture
-    if (
-      renderSession.smoothProperty &&
-      renderSession.scaleMode !== target.texture.baseTexture.scaleMode
-    ) {
+    if (renderSession.smoothProperty && renderSession.scaleMode !== target.texture.baseTexture.scaleMode) {
       renderSession.scaleMode = target.texture.baseTexture.scaleMode;
-      renderSession.context[renderSession.smoothProperty] =
-        renderSession.scaleMode === SCALE_LINEAR;
+      renderSession.context[renderSession.smoothProperty] = renderSession.scaleMode === SCALE_LINEAR;
     }
     //  If the texture is trimmed we offset by the trim x/y, otherwise we use the frame dimensions
     let dx = target.texture.trim
@@ -241,17 +237,7 @@ export function renderCanvas(target, renderSession, matrix) {
         target.cachedTint = target.tint;
         target.texture.requiresReTint = false;
       }
-      renderSession.context.drawImage(
-        target.tintedTexture,
-        0,
-        0,
-        cw,
-        ch,
-        dx,
-        dy,
-        cw / resolution,
-        ch / resolution
-      );
+      renderSession.context.drawImage(target.tintedTexture, 0, 0, cw, ch, dx, dy, cw / resolution, ch / resolution);
     } else {
       const cx = target.texture.crop.x;
       const cy = target.texture.crop.y;
