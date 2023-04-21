@@ -1,8 +1,8 @@
 export class AbstractFilter {
     /**
      * TBD.
-     * @param fragmentSrc
-     * @param uniforms
+     * @param fragmentSrc - TBD.
+     * @param uniforms - TBD.
      */
     constructor(fragmentSrc: any, uniforms: any);
     passes: AbstractFilter[];

@@ -1,16 +1,17 @@
 export class WebGLBlendModeManager {
-    gl: any;
+    gl: WebGLRenderingContext;
     currentBlendMode: number;
     /**
      * TBD.
-     * @param gl - TBD.
+     * @param {WebGLRenderingContext} gl - TBD.
      */
-    setContext(gl: any): void;
+    setContext(gl: WebGLRenderingContext): void;
     /**
      * TBD.
-     * @param blendMode
+     * @param {number} blendMode - TBD.
+     * @returns {boolean} TBD.
      */
-    setBlendMode(blendMode: any): boolean;
+    setBlendMode(blendMode: number): boolean;
     /**
      * TBD.
      */

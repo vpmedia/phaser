@@ -70,7 +70,7 @@ export class BitmapText extends DisplayObject {
 
   /**
    * TBD.
-   * @param text - TBD.
+   * @param {string} text - TBD.
    */
   setText(text) {
     this.text = text;
@@ -78,9 +78,9 @@ export class BitmapText extends DisplayObject {
 
   /**
    * TBD.
-   * @param data - TBD.
-   * @param scale - TBD.
-   * @param text - TBD.
+   * @param {object} data - TBD.
+   * @param {number} scale - TBD.
+   * @param {string} text - TBD.
    * @returns {object} TBD.
    */
   scanLine(data, scale, text) {
@@ -146,8 +146,8 @@ export class BitmapText extends DisplayObject {
 
   /**
    * TBD.
-   * @param text - TBD.
-   * @param replace - TBD.
+   * @param {string} text - TBD.
+   * @param {string} replace - TBD.
    * @returns {string} TBD.
    */
   cleanText(text, replace = '') {
@@ -393,6 +393,7 @@ export class BitmapText extends DisplayObject {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get maxWidth() {
     return this._maxWidth;

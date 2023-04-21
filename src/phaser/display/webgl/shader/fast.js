@@ -6,7 +6,7 @@ import { compileProgram } from '../util';
 export class FastShader {
   /**
    * TBD.
-   * @param gl - TBD.
+   * @param {WebGLRenderingContext} gl - TBD.
    */
   constructor(gl) {
     this.gl = gl;

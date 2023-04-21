@@ -27,9 +27,9 @@ export class BitmapText extends DisplayObject {
     renderOrderID: number;
     /**
      * TBD.
-     * @param text - TBD.
+     * @param {string} text - TBD.
      */
-    setText(text: any): void;
+    setText(text: string): void;
     /**
      * TBD.
      */
@@ -41,19 +41,19 @@ export class BitmapText extends DisplayObject {
     get text(): string;
     /**
      * TBD.
-     * @param data - TBD.
-     * @param scale - TBD.
-     * @param text - TBD.
+     * @param {object} data - TBD.
+     * @param {number} scale - TBD.
+     * @param {string} text - TBD.
      * @returns {object} TBD.
      */
-    scanLine(data: any, scale: any, text: any): object;
+    scanLine(data: object, scale: number, text: string): object;
     /**
      * TBD.
-     * @param text - TBD.
-     * @param replace - TBD.
+     * @param {string} text - TBD.
+     * @param {string} replace - TBD.
      * @returns {string} TBD.
      */
-    cleanText(text: any, replace?: string): string;
+    cleanText(text: string, replace?: string): string;
     /**
      * TBD.
      */
@@ -118,6 +118,7 @@ export class BitmapText extends DisplayObject {
     set maxWidth(arg: number);
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get maxWidth(): number;
     /**

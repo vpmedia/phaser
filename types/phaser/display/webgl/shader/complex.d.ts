@@ -1,10 +1,10 @@
 export class ComplexPrimitiveShader {
     /**
      * TBD.
-     * @param gl - TBD.
+     * @param {WebGLRenderingContext} gl - TBD.
      */
-    constructor(gl: any);
-    gl: any;
+    constructor(gl: WebGLRenderingContext);
+    gl: WebGLRenderingContext;
     _UID: string;
     program: any;
     fragmentSrc: string[];
@@ -13,15 +13,15 @@ export class ComplexPrimitiveShader {
      * TBD.
      */
     init(): void;
-    projectionVector: any;
-    offsetVector: any;
-    tintColor: any;
-    color: any;
-    flipY: any;
-    aVertexPosition: any;
+    projectionVector: WebGLUniformLocation;
+    offsetVector: WebGLUniformLocation;
+    tintColor: WebGLUniformLocation;
+    color: WebGLUniformLocation;
+    flipY: WebGLUniformLocation;
+    aVertexPosition: number;
     attributes: any[];
-    translationMatrix: any;
-    alpha: any;
+    translationMatrix: WebGLUniformLocation;
+    alpha: WebGLUniformLocation;
     /**
      * TBD.
      */

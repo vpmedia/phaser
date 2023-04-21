@@ -2,6 +2,7 @@ import { Texture } from './webgl/texture';
 import { AnimationManager } from '../core/animation_manager';
 import { EventManager } from '../core/event_manager';
 import { Rectangle } from '../geom/rectangle';
+import { Matrix } from '../geom/matrix';
 import { DisplayObject } from './display_object';
 import { Game } from '../core/game';
 import { clone } from '../geom/util/rectangle';
@@ -341,7 +342,7 @@ export class Image extends DisplayObject {
 
   /**
    * TBD.
-   * @param matrix - TBD.
+   * @param {Matrix} matrix - TBD.
    */
   getBounds(matrix = null) {
     return getBounds(this, matrix);
@@ -356,8 +357,8 @@ export class Image extends DisplayObject {
 
   /**
    * TBD.
-   * @param renderSession - TBD.
-   * @param matrix - TBD.
+   * @param {object} renderSession - TBD.
+   * @param {Matrix} matrix - TBD.
    */
   renderWebGL(renderSession, matrix = null) {
     renderWebGL(this, renderSession, matrix);
@@ -365,8 +366,8 @@ export class Image extends DisplayObject {
 
   /**
    * TBD.
-   * @param renderSession - TBD.
-   * @param matrix - TBD.
+   * @param {object} renderSession - TBD.
+   * @param {Matrix} matrix - TBD.
    */
   renderCanvas(renderSession, matrix = null) {
     renderCanvas(this, renderSession, matrix);

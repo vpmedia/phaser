@@ -3,8 +3,8 @@ import { removeByCanvas } from '../canvas/pool';
 export class BaseTexture {
   /**
    * TBD.
-   * @param source
-   * @param scaleMode
+   * @param source - TBD.
+   * @param scaleMode - TBD.
    */
   constructor(source, scaleMode) {
     this.resolution = 1;

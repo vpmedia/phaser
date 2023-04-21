@@ -1,15 +1,15 @@
 export class GraphicsData {
     /**
      * TBD.
-     * @param gl - TBD.
+     * @param {WebGLRenderingContext} gl - TBD.
      */
-    constructor(gl: any);
-    gl: any;
+    constructor(gl: WebGLRenderingContext);
+    gl: WebGLRenderingContext;
     color: number[];
     points: any[];
     indices: any[];
-    buffer: any;
-    indexBuffer: any;
+    buffer: WebGLBuffer;
+    indexBuffer: WebGLBuffer;
     mode: number;
     alpha: number;
     dirty: boolean;

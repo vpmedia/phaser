@@ -46,7 +46,7 @@ export class WebGLSpriteBatch {
 
   /**
    * TBD.
-   * @param gl - TBD.
+   * @param {WebGLRenderingContext} gl - TBD.
    */
   setContext(gl) {
     this.gl = gl;
@@ -69,7 +69,7 @@ export class WebGLSpriteBatch {
 
   /**
    * TBD.
-   * @param renderSession - TBD.
+   * @param {object} renderSession - TBD.
    */
   begin(renderSession) {
     this.renderSession = renderSession;

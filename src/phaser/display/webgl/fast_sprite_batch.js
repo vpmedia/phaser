@@ -1,7 +1,7 @@
 export class FastSpriteBatch {
   /**
    * TBD.
-   * @param gl - TBD.
+   * @param {WebGLRenderingContext} gl - TBD.
    */
   constructor(gl) {
     this.vertSize = 10;
@@ -36,7 +36,7 @@ export class FastSpriteBatch {
 
   /**
    * TBD.
-   * @param gl - TBD.
+   * @param {WebGLRenderingContext} gl - TBD.
    */
   setContext(gl) {
     this.gl = gl;
@@ -53,8 +53,8 @@ export class FastSpriteBatch {
 
   /**
    * TBD.
-   * @param spriteBatch
-   * @param renderSession - TBD.
+   * @param spriteBatch - TBD.
+   * @param {object} renderSession - TBD.
    */
   begin(spriteBatch, renderSession) {
     this.renderSession = renderSession;
@@ -72,7 +72,7 @@ export class FastSpriteBatch {
 
   /**
    * TBD.
-   * @param spriteBatch
+   * @param spriteBatch - TBD.
    */
   render(spriteBatch) {
     const children = spriteBatch.children;
@@ -96,7 +96,7 @@ export class FastSpriteBatch {
 
   /**
    * TBD.
-   * @param sprite
+   * @param sprite - TBD.
    */
   renderSprite(sprite) {
     if (!sprite.visible) {

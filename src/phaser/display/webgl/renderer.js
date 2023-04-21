@@ -174,9 +174,9 @@ export class WebGLRenderer {
 
   /**
    * TBD.
-   * @param displayObject
-   * @param projection
-   * @param buffer
+   * @param displayObject - TBD.
+   * @param projection - TBD.
+   * @param buffer - TBD.
    * @param matrix - TBD.
    */
   renderDisplayObject(displayObject, projection, buffer, matrix) {
@@ -220,7 +220,8 @@ export class WebGLRenderer {
 
   /**
    * TBD.
-   * @param texture
+   * @param texture - TBD.
+   * @returns {boolean} TBD.
    */
   updateTexture(texture) {
     if (!texture.hasLoaded) {

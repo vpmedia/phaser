@@ -9,7 +9,7 @@ export class WebGLBlendModeManager {
 
   /**
    * TBD.
-   * @param gl - TBD.
+   * @param {WebGLRenderingContext} gl - TBD.
    */
   setContext(gl) {
     this.gl = gl;
@@ -17,7 +17,8 @@ export class WebGLBlendModeManager {
 
   /**
    * TBD.
-   * @param blendMode
+   * @param {number} blendMode - TBD.
+   * @returns {boolean} TBD.
    */
   setBlendMode(blendMode) {
     if (this.currentBlendMode === blendMode) {

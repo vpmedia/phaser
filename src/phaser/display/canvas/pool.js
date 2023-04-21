@@ -91,7 +91,7 @@ export function getFree() {
  * @param {object} parent - TBD.
  * @param {number} width - TBD.
  * @param {number} height - TBD.
- * @returns {object} TBD.
+ * @returns {HTMLCanvasElement} TBD.
  */
 export function create(parent, width, height) {
   if (parent === undefined) {

@@ -24,12 +24,12 @@ export class CanvasRenderer {
     };
     /**
      * TBD.
-     * @param root
+     * @param root - TBD.
      */
     render(root: any): void;
     /**
      * TBD.
-     * @param removeView
+     * @param removeView - TBD.
      */
     destroy(removeView?: boolean): void;
     /**
@@ -40,8 +40,8 @@ export class CanvasRenderer {
     resize(width: number, height: number): void;
     /**
      * TBD.
-     * @param displayObject
-     * @param context
+     * @param displayObject - TBD.
+     * @param context - TBD.
      * @param matrix - TBD.
      */
     renderDisplayObject(displayObject: any, context: any, matrix: any): void;

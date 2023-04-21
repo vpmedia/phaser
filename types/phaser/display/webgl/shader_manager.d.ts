@@ -1,5 +1,5 @@
 export class WebGLShaderManager {
-    gl: any;
+    gl: WebGLRenderingContext;
     primitiveShader: PrimitiveShader;
     complexPrimitiveShader: ComplexPrimitiveShader;
     defaultShader: NormalShader;
@@ -11,9 +11,9 @@ export class WebGLShaderManager {
     stack: any[];
     /**
      * TBD.
-     * @param gl - TBD.
+     * @param {WebGLRenderingContext} gl - TBD.
      */
-    setContext(gl: any): void;
+    setContext(gl: WebGLRenderingContext): void;
     /**
      * TBD.
      * @param attribs

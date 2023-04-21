@@ -17,18 +17,18 @@ export class WebGLSpriteBatch {
     defaultShader: AbstractFilter;
     /**
      * TBD.
-     * @param gl - TBD.
+     * @param {WebGLRenderingContext} gl - TBD.
      */
-    setContext(gl: any): void;
-    gl: any;
-    vertexBuffer: any;
-    indexBuffer: any;
+    setContext(gl: WebGLRenderingContext): void;
+    gl: WebGLRenderingContext;
+    vertexBuffer: WebGLBuffer;
+    indexBuffer: WebGLBuffer;
     currentBlendMode: number;
     /**
      * TBD.
-     * @param renderSession - TBD.
+     * @param {object} renderSession - TBD.
      */
-    begin(renderSession: any): void;
+    begin(renderSession: object): void;
     renderSession: any;
     shader: any;
     /**

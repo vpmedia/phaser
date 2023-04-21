@@ -59,7 +59,7 @@ export class CanvasRenderer {
 
   /**
    * TBD.
-   * @param root
+   * @param root - TBD.
    */
   render(root) {
     if (!this.context) {
@@ -84,7 +84,7 @@ export class CanvasRenderer {
 
   /**
    * TBD.
-   * @param removeView
+   * @param removeView - TBD.
    */
   destroy(removeView = true) {
     if (removeView && this.view.parent) {
@@ -116,8 +116,8 @@ export class CanvasRenderer {
 
   /**
    * TBD.
-   * @param displayObject
-   * @param context
+   * @param displayObject - TBD.
+   * @param context - TBD.
    * @param matrix - TBD.
    */
   renderDisplayObject(displayObject, context, matrix) {

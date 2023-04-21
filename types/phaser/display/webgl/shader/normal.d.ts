@@ -1,10 +1,10 @@
 export class NormalShader {
     /**
      * TBD.
-     * @param gl - TBD.
+     * @param {WebGLRenderingContext} gl - TBD.
      */
-    constructor(gl: any);
-    gl: any;
+    constructor(gl: WebGLRenderingContext);
+    gl: WebGLRenderingContext;
     _UID: string;
     program: any;
     fragmentSrc: string[];
@@ -17,13 +17,13 @@ export class NormalShader {
      * TBD.
      */
     init(): void;
-    uSampler: any;
-    projectionVector: any;
-    offsetVector: any;
-    dimensions: any;
-    aVertexPosition: any;
-    aTextureCoord: any;
-    colorAttribute: any;
+    uSampler: WebGLUniformLocation;
+    projectionVector: WebGLUniformLocation;
+    offsetVector: WebGLUniformLocation;
+    dimensions: WebGLUniformLocation;
+    aVertexPosition: number;
+    aTextureCoord: number;
+    colorAttribute: number;
     /**
      * TBD.
      */

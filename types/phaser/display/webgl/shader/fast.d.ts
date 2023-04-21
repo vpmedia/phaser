@@ -1,10 +1,10 @@
 export class FastShader {
     /**
      * TBD.
-     * @param gl - TBD.
+     * @param {WebGLRenderingContext} gl - TBD.
      */
-    constructor(gl: any);
-    gl: any;
+    constructor(gl: WebGLRenderingContext);
+    gl: WebGLRenderingContext;
     _UID: string;
     program: any;
     textureCount: number;
@@ -14,18 +14,18 @@ export class FastShader {
      * TBD.
      */
     init(): void;
-    uSampler: any;
-    projectionVector: any;
-    offsetVector: any;
-    dimensions: any;
-    uMatrix: any;
-    aVertexPosition: any;
-    aPositionCoord: any;
-    aScale: any;
-    aRotation: any;
-    aTextureCoord: any;
-    colorAttribute: any;
-    attributes: any[];
+    uSampler: WebGLUniformLocation;
+    projectionVector: WebGLUniformLocation;
+    offsetVector: WebGLUniformLocation;
+    dimensions: WebGLUniformLocation;
+    uMatrix: WebGLUniformLocation;
+    aVertexPosition: number;
+    aPositionCoord: number;
+    aScale: number;
+    aRotation: number;
+    aTextureCoord: number;
+    colorAttribute: number;
+    attributes: number[];
     /**
      * TBD.
      */

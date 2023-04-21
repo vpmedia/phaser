@@ -1,16 +1,16 @@
 export class FastSpriteBatch {
     /**
      * TBD.
-     * @param gl - TBD.
+     * @param {WebGLRenderingContext} gl - TBD.
      */
-    constructor(gl: any);
+    constructor(gl: WebGLRenderingContext);
     vertSize: number;
     maxSize: number;
     size: number;
     vertices: Float32Array;
     indices: Uint16Array;
-    vertexBuffer: any;
-    indexBuffer: any;
+    vertexBuffer: WebGLBuffer;
+    indexBuffer: WebGLBuffer;
     lastIndexCount: number;
     drawing: boolean;
     currentBatchSize: number;
@@ -21,28 +21,28 @@ export class FastSpriteBatch {
     matrix: any;
     /**
      * TBD.
-     * @param gl - TBD.
+     * @param {WebGLRenderingContext} gl - TBD.
      */
-    setContext(gl: any): void;
-    gl: any;
+    setContext(gl: WebGLRenderingContext): void;
+    gl: WebGLRenderingContext;
     /**
      * TBD.
-     * @param spriteBatch
-     * @param renderSession - TBD.
+     * @param spriteBatch - TBD.
+     * @param {object} renderSession - TBD.
      */
-    begin(spriteBatch: any, renderSession: any): void;
+    begin(spriteBatch: any, renderSession: object): void;
     /**
      * TBD.
      */
     end(): void;
     /**
      * TBD.
-     * @param spriteBatch
+     * @param spriteBatch - TBD.
      */
     render(spriteBatch: any): void;
     /**
      * TBD.
-     * @param sprite
+     * @param sprite - TBD.
      */
     renderSprite(sprite: any): void;
     /**

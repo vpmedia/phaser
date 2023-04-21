@@ -21,13 +21,15 @@ export class Graphics extends DisplayObject {
     _localBounds: Rectangle;
     dirty: boolean;
     _boundsDirty: boolean;
+    _cacheAsBitmap: boolean;
     webGLDirty: boolean;
     cachedSpriteDirty: boolean;
     /**
      * TBD.
-     * @param lineWidth - TBD.
-     * @param color - TBD.
-     * @param alpha - TBD.
+     * @param {number} lineWidth - TBD.
+     * @param {number} color - TBD.
+     * @param {number} alpha - TBD.
+     * @returns {Graphics} TBD.
      */
     lineStyle(lineWidth?: number, color?: number, alpha?: number): Graphics;
     lineAlpha: number;
@@ -35,62 +37,70 @@ export class Graphics extends DisplayObject {
      * TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
+     * @returns {Graphics} TBD.
      */
     moveTo(x: number, y: number): Graphics;
     /**
      * TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
+     * @returns {Graphics} TBD.
      */
     lineTo(x: number, y: number): Graphics;
     /**
      * TBD.
-     * @param cpX - TBD.
-     * @param cpY - TBD.
-     * @param toX - TBD.
-     * @param toY - TBD.
+     * @param {number} cpX - TBD.
+     * @param {number} cpY - TBD.
+     * @param {number} toX - TBD.
+     * @param {number} toY - TBD.
+     * @returns {Graphics} TBD.
      */
-    quadraticCurveTo(cpX: any, cpY: any, toX: any, toY: any): Graphics;
+    quadraticCurveTo(cpX: number, cpY: number, toX: number, toY: number): Graphics;
     /**
      * TBD.
-     * @param cpX - TBD.
-     * @param cpY - TBD.
-     * @param cpX2 - TBD.
-     * @param cpY2 - TBD.
-     * @param toX - TBD.
-     * @param toY - TBD.
+     * @param {number} cpX - TBD.
+     * @param {number} cpY - TBD.
+     * @param {number} cpX2 - TBD.
+     * @param {number} cpY2 - TBD.
+     * @param {number} toX - TBD.
+     * @param {number} toY - TBD.
+     * @returns {Graphics} TBD.
      */
-    bezierCurveTo(cpX: any, cpY: any, cpX2: any, cpY2: any, toX: any, toY: any): Graphics;
+    bezierCurveTo(cpX: number, cpY: number, cpX2: number, cpY2: number, toX: number, toY: number): Graphics;
     /**
      * TBD.
-     * @param x1 - TBD.
-     * @param y1 - TBD.
-     * @param x2 - TBD.
-     * @param y2 - TBD.
-     * @param radius - TBD.
+     * @param {number} x1 - TBD.
+     * @param {number} y1 - TBD.
+     * @param {number} x2 - TBD.
+     * @param {number} y2 - TBD.
+     * @param {number} radius - TBD.
+     * @returns {Graphics} TBD.
      */
-    arcTo(x1: any, y1: any, x2: any, y2: any, radius: any): Graphics;
+    arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): Graphics;
     /**
      * TBD.
-     * @param cx - TBD.
-     * @param cy - TBD.
-     * @param radius - TBD.
-     * @param startAngle - TBD.
-     * @param endAngle - TBD.
+     * @param {number} cx - TBD.
+     * @param {number} cy - TBD.
+     * @param {number} radius - TBD.
+     * @param {number} startAngle - TBD.
+     * @param {number} endAngle - TBD.
      * @param anticlockwise - TBD.
      * @param segments - TBD.
+     * @returns {Graphics} TBD.
      */
-    arc(cx: any, cy: any, radius: any, startAngle: any, endAngle: any, anticlockwise?: boolean, segments?: number): Graphics;
+    arc(cx: number, cy: number, radius: number, startAngle: number, endAngle: number, anticlockwise?: boolean, segments?: number): Graphics;
     /**
      * TBD.
-     * @param color - TBD.
-     * @param alpha - TBD.
+     * @param {number} color - TBD.
+     * @param {number} alpha - TBD.
+     * @returns {Graphics} TBD.
      */
     beginFill(color?: number, alpha?: number): Graphics;
     filling: boolean;
     fillColor: number;
     /**
      * TBD.
+     * @returns {Graphics} TBD.
      */
     endFill(): Graphics;
     /**
@@ -99,6 +109,7 @@ export class Graphics extends DisplayObject {
      * @param {number} y - TBD.
      * @param {number} width - TBD.
      * @param {number} height - TBD.
+     * @returns {Graphics} TBD.
      */
     drawRect(x: number, y: number, width: number, height: number): Graphics;
     /**
@@ -108,6 +119,7 @@ export class Graphics extends DisplayObject {
      * @param {number} width - TBD.
      * @param {number} height - TBD.
      * @param radius - TBD.
+     * @returns {Graphics} TBD.
      */
     drawRoundedRect(x: number, y: number, width: number, height: number, radius: any): Graphics;
     /**
@@ -115,6 +127,7 @@ export class Graphics extends DisplayObject {
      * @param {number} x - TBD.
      * @param {number} y - TBD.
      * @param diameter - TBD.
+     * @returns {Graphics} TBD.
      */
     drawCircle(x: number, y: number, diameter: any): Graphics;
     /**
@@ -123,33 +136,33 @@ export class Graphics extends DisplayObject {
      * @param {number} y - TBD.
      * @param {number} width - TBD.
      * @param {number} height - TBD.
+     * @returns {Graphics} TBD.
      */
     drawEllipse(x: number, y: number, width: number, height: number): Graphics;
     /**
      * TBD.
      * @param path - TBD.
+     * @returns {Graphics} TBD.
      */
     drawPolygon(path: any): Graphics;
     /**
      * TBD.
+     * @returns {Graphics} TBD.
      */
     clear(): Graphics;
     clearDirty: boolean;
     _prevTint: any;
     /**
      * TBD.
-     * @param matrix - TBD.
+     * @param {Matrix} matrix - TBD.
      */
-    getBounds(matrix?: any): any;
-    /**
-     * TBD.
-     */
-    getLocalBounds(): any;
+    getBounds(matrix?: Matrix): any;
     worldTransform: any;
     /**
      * TBD.
      * @param point - TBD.
      * @param tempPoint - TBD.
+     * @returns {boolean} TBD.
      */
     containsPoint(point: any, tempPoint: any): boolean;
     /**
@@ -183,4 +196,5 @@ import { DisplayObject } from './display_object';
 import { Game } from '../core/game';
 import { GraphicsData } from './graphics_data';
 import { Rectangle } from '../geom/rectangle';
+import { Matrix } from '../geom/matrix';
 //# sourceMappingURL=graphics.d.ts.map

@@ -1,10 +1,10 @@
 export class StripShader {
     /**
      * TBD.
-     * @param gl - TBD.
+     * @param {WebGLRenderingContext} gl - TBD.
      */
-    constructor(gl: any);
-    gl: any;
+    constructor(gl: WebGLRenderingContext);
+    gl: WebGLRenderingContext;
     _UID: string;
     program: any;
     fragmentSrc: string[];
@@ -13,15 +13,15 @@ export class StripShader {
      * TBD.
      */
     init(): void;
-    uSampler: any;
-    projectionVector: any;
-    offsetVector: any;
-    colorAttribute: any;
-    aVertexPosition: any;
-    aTextureCoord: any;
-    attributes: any[];
-    translationMatrix: any;
-    alpha: any;
+    uSampler: WebGLUniformLocation;
+    projectionVector: WebGLUniformLocation;
+    offsetVector: WebGLUniformLocation;
+    colorAttribute: number;
+    aVertexPosition: number;
+    aTextureCoord: number;
+    attributes: number[];
+    translationMatrix: WebGLUniformLocation;
+    alpha: WebGLUniformLocation;
     /**
      * TBD.
      */

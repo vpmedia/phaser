@@ -8,8 +8,8 @@ export class Text extends Image {
      * @param {object} style - TBD.
      */
     constructor(game: Game, x: number, y: number, text?: string, style?: object);
-    canvas: any;
-    context: any;
+    canvas: HTMLCanvasElement;
+    context: CanvasRenderingContext2D;
     padding: Point;
     textBounds: Rectangle;
     style: any;
@@ -21,21 +21,7 @@ export class Text extends Image {
     useAdvancedWrap: boolean;
     _res: any;
     _text: string;
-    _fontComponents: {
-        font: any;
-        fontStyle: any;
-        fontVariant: any;
-        fontWeight: any;
-        fontSize: any;
-        fontFamily: any;
-    } | {
-        font: any;
-        fontStyle?: undefined;
-        fontVariant?: undefined;
-        fontWeight?: undefined;
-        fontSize?: undefined;
-        fontFamily?: undefined;
-    };
+    _fontComponents: any;
     _lineSpacing: number;
     _charCount: number;
     /**
@@ -96,24 +82,28 @@ export class Text extends Image {
      * TBD.
      * @param color - TBD.
      * @param position - TBD.
+     * @returns {Text} TBD.
      */
     addColor(color: any, position: any): Text;
     /**
      * TBD.
      * @param color - TBD.
      * @param position - TBD.
+     * @returns {Text} TBD.
      */
     addStrokeColor(color: any, position: any): Text;
     /**
      * TBD.
      * @param style
      * @param position - TBD.
+     * @returns {Text} TBD.
      */
     addFontStyle(style: any, position: any): Text;
     /**
      * TBD.
      * @param weight
      * @param position - TBD.
+     * @returns {Text} TBD.
      */
     addFontWeight(weight: any, position: any): Text;
     /**
@@ -144,22 +134,9 @@ export class Text extends Image {
     /**
      * TBD.
      * @param font - TBD.
+     * @returns {object} TBD.
      */
-    fontToComponents(font: any): {
-        font: any;
-        fontStyle: any;
-        fontVariant: any;
-        fontWeight: any;
-        fontSize: any;
-        fontFamily: any;
-    } | {
-        font: any;
-        fontStyle?: undefined;
-        fontVariant?: undefined;
-        fontWeight?: undefined;
-        fontSize?: undefined;
-        fontFamily?: undefined;
-    };
+    fontToComponents(font: any): object;
     /**
      * TBD.
      * @param components
@@ -168,7 +145,8 @@ export class Text extends Image {
     /**
      * TBD.
      * @param text - TBD.
-     * @param immediate
+     * @param immediate - TBD.
+     * @returns {Text} TBD.
      */
     setText(text: any, immediate?: boolean): Text;
     /**
@@ -199,22 +177,24 @@ export class Text extends Image {
     updateTexture(): void;
     /**
      * TBD.
-     * @param renderSession - TBD.
+     * @param {object} renderSession - TBD.
      */
-    renderWebGL(renderSession: any): void;
+    renderWebGL(renderSession: object): void;
     /**
      * TBD.
-     * @param renderSession - TBD.
+     * @param {object} renderSession - TBD.
      */
-    renderCanvas(renderSession: any): void;
+    renderCanvas(renderSession: object): void;
     /**
      * TBD.
+     * @returns {object} TBD.
      */
-    getFontPropertiesCache(): any;
+    getFontPropertiesCache(): object;
     /**
      * TBD.
+     * @returns {HTMLCanvasElement} TBD.
      */
-    getFontPropertiesCanvas(): any;
+    getFontPropertiesCanvas(): HTMLCanvasElement;
     /**
      * TBD.
      */
@@ -226,10 +206,10 @@ export class Text extends Image {
     determineFontProperties(fontStyle: any): any;
     /**
      * TBD.
-     * @param matrix - TBD.
+     * @param {Matrix} matrix - TBD.
      * @returns {Rectangle} TBD.
      */
-    getBounds(matrix?: any): Rectangle;
+    getBounds(matrix?: Matrix): Rectangle;
     /**
      * TBD.
      */
@@ -441,5 +421,6 @@ export class Text extends Image {
 import { Image } from './image';
 import { Point } from '../geom/point';
 import { Rectangle } from '../geom/rectangle';
+import { Matrix } from '../geom/matrix';
 import { Game } from '../core/game';
 //# sourceMappingURL=text.d.ts.map

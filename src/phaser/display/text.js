@@ -1,5 +1,6 @@
 import { Point } from '../geom/point';
 import { Rectangle } from '../geom/rectangle';
+import { Matrix } from '../geom/matrix';
 import { Image } from './image';
 import { create, remove } from './canvas/pool';
 import { textureFromCanvas } from './webgl/texture_util';
@@ -450,6 +451,7 @@ export class Text extends Image {
    * TBD.
    * @param color - TBD.
    * @param position - TBD.
+   * @returns {Text} TBD.
    */
   addColor(color, position) {
     this.colors[position] = color;
@@ -461,6 +463,7 @@ export class Text extends Image {
    * TBD.
    * @param color - TBD.
    * @param position - TBD.
+   * @returns {Text} TBD.
    */
   addStrokeColor(color, position) {
     this.strokeColors[position] = color;
@@ -472,6 +475,7 @@ export class Text extends Image {
    * TBD.
    * @param style
    * @param position - TBD.
+   * @returns {Text} TBD.
    */
   addFontStyle(style, position) {
     this.fontStyles[position] = style;
@@ -483,6 +487,7 @@ export class Text extends Image {
    * TBD.
    * @param weight
    * @param position - TBD.
+   * @returns {Text} TBD.
    */
   addFontWeight(weight, position) {
     this.fontWeights[position] = weight;
@@ -643,6 +648,7 @@ export class Text extends Image {
   /**
    * TBD.
    * @param font - TBD.
+   * @returns {object} TBD.
    */
   fontToComponents(font) {
     // The format is specified in http://www.w3.org/TR/CSS2/fonts.html#font-shorthand:
@@ -712,7 +718,8 @@ export class Text extends Image {
   /**
    * TBD.
    * @param text - TBD.
-   * @param immediate
+   * @param immediate - TBD.
+   * @returns {Text} TBD.
    */
   setText(text, immediate = false) {
     this.text = text.toString() || '';
@@ -819,7 +826,7 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @param renderSession - TBD.
+   * @param {object} renderSession - TBD.
    */
   renderWebGL(renderSession) {
     if (this.dirty) {
@@ -831,7 +838,7 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @param renderSession - TBD.
+   * @param {object} renderSession - TBD.
    */
   renderCanvas(renderSession) {
     if (this.dirty) {
@@ -843,6 +850,7 @@ export class Text extends Image {
 
   /**
    * TBD.
+   * @returns {object} TBD.
    */
   getFontPropertiesCache() {
     if (!window.PhaserRegistry.fontPropertiesCache) {
@@ -853,6 +861,7 @@ export class Text extends Image {
 
   /**
    * TBD.
+   * @returns {HTMLCanvasElement} TBD.
    */
   getFontPropertiesCanvas() {
     if (!window.PhaserRegistry.fontPropertiesCanvas) {
@@ -953,7 +962,7 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @param matrix - TBD.
+   * @param {Matrix} matrix - TBD.
    * @returns {Rectangle} TBD.
    */
   getBounds(matrix = null) {

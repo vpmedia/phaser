@@ -89,28 +89,29 @@ export class Image extends DisplayObject {
     setTexture(texture: any, destroyBase?: boolean): void;
     /**
      * TBD.
-     * @param matrix - TBD.
+     * @param {Matrix} matrix - TBD.
      */
-    getBounds(matrix?: any): any;
+    getBounds(matrix?: Matrix): any;
     /**
      * TBD.
      */
     getLocalBounds(): any;
     /**
      * TBD.
-     * @param renderSession - TBD.
-     * @param matrix - TBD.
+     * @param {object} renderSession - TBD.
+     * @param {Matrix} matrix - TBD.
      */
-    renderWebGL(renderSession: any, matrix?: any): void;
+    renderWebGL(renderSession: object, matrix?: Matrix): void;
     /**
      * TBD.
-     * @param renderSession - TBD.
-     * @param matrix - TBD.
+     * @param {object} renderSession - TBD.
+     * @param {Matrix} matrix - TBD.
      */
-    renderCanvas(renderSession: any, matrix?: any): void;
+    renderCanvas(renderSession: object, matrix?: Matrix): void;
 }
 import { DisplayObject } from './display_object';
 import { Game } from '../core/game';
 import { EventManager } from '../core/event_manager';
 import { AnimationManager } from '../core/animation_manager';
+import { Matrix } from '../geom/matrix';
 //# sourceMappingURL=image.d.ts.map

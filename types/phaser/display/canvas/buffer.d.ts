@@ -7,8 +7,8 @@ export class CanvasBuffer {
     constructor(width: number, height: number);
     width: number;
     height: number;
-    canvas: any;
-    context: any;
+    canvas: HTMLCanvasElement;
+    context: CanvasRenderingContext2D;
     /**
      * TBD.
      */

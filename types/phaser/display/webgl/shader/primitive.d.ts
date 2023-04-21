@@ -1,10 +1,10 @@
 export class PrimitiveShader {
     /**
      * TBD.
-     * @param gl - TBD.
+     * @param {WebGLRenderingContext} gl - TBD.
      */
-    constructor(gl: any);
-    gl: any;
+    constructor(gl: WebGLRenderingContext);
+    gl: WebGLRenderingContext;
     _UID: string;
     program: any;
     fragmentSrc: string[];
@@ -13,15 +13,15 @@ export class PrimitiveShader {
      * TBD.
      */
     init(): void;
-    projectionVector: any;
-    offsetVector: any;
-    tintColor: any;
-    flipY: any;
-    aVertexPosition: any;
-    colorAttribute: any;
-    attributes: any[];
-    translationMatrix: any;
-    alpha: any;
+    projectionVector: WebGLUniformLocation;
+    offsetVector: WebGLUniformLocation;
+    tintColor: WebGLUniformLocation;
+    flipY: WebGLUniformLocation;
+    aVertexPosition: number;
+    colorAttribute: number;
+    attributes: number[];
+    translationMatrix: WebGLUniformLocation;
+    alpha: WebGLUniformLocation;
     /**
      * TBD.
      */

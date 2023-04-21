@@ -1,8 +1,8 @@
 export class BaseTexture {
     /**
      * TBD.
-     * @param source
-     * @param scaleMode
+     * @param source - TBD.
+     * @param scaleMode - TBD.
      */
     constructor(source: any, scaleMode: any);
     resolution: number;

@@ -27,58 +27,72 @@ export class DisplayObject {
     destroy(): void;
     /**
      * TBD.
-     * @param child - TBD.
+     * @param {DisplayObject} child - TBD.
+     * @returns {DisplayObject} TBD.
      */
-    addChild(child: any): any;
+    addChild(child: DisplayObject): DisplayObject;
     /**
      * TBD.
-     * @param child - TBD.
+     * @param {DisplayObject} child - TBD.
      * @param {number} index - TBD.
+     * @returns {DisplayObject} TBD.
+     * @throws Error.
      */
-    addChildAt(child: any, index: number): any;
+    addChildAt(child: DisplayObject, index: number): DisplayObject;
     /**
      * TBD.
-     * @param child - TBD.
-     * @param child2 - TBD.
+     * @param {DisplayObject} child - TBD.
+     * @param {DisplayObject} child2 - TBD.
+     * @throws Error.
      */
-    swapChildren(child: any, child2: any): void;
+    swapChildren(child: DisplayObject, child2: DisplayObject): void;
     /**
      * TBD.
-     * @param child - TBD.
+     * @param {DisplayObject} child - TBD.
+     * @returns {number} TBD.
+     * @throws Error.
      */
-    getChildIndex(child: any): number;
+    getChildIndex(child: DisplayObject): number;
     /**
      * TBD.
-     * @param child - TBD.
+     * @param {DisplayObject} child - TBD.
      * @param {number} index - TBD.
+     * @throws Error.
      */
-    setChildIndex(child: any, index: number): void;
-    /**
-     * TBD.
-     * @param {number} index - TBD.
-     */
-    getChildAt(index: number): any;
-    /**
-     * TBD.
-     * @param child - TBD.
-     */
-    removeChild(child: any): any;
+    setChildIndex(child: DisplayObject, index: number): void;
     /**
      * TBD.
      * @param {number} index - TBD.
+     * @returns {DisplayObject} TBD.
+     * @throws Error.
      */
-    removeChildAt(index: number): any;
+    getChildAt(index: number): DisplayObject;
+    /**
+     * TBD.
+     * @param {DisplayObject} child - TBD.
+     * @returns {DisplayObject} TBD.
+     */
+    removeChild(child: DisplayObject): DisplayObject;
+    /**
+     * TBD.
+     * @param {number} index - TBD.
+     * @returns {DisplayObject} TBD.
+     */
+    removeChildAt(index: number): DisplayObject;
     /**
      * TBD.
      * @param {number} beginIndex - TBD.
      * @param {number} endIndex - TBD.
+     * @returns {DisplayObject} TBD.
+     * @throws Error.
      */
-    removeChildren(beginIndex: number, endIndex: number): any[];
+    removeChildren(beginIndex: number, endIndex: number): DisplayObject;
     /**
      * TBD.
-     * @param parent - TBD.
+     * @param {DisplayObject} parent - TBD.
+     * @returns {DisplayObject} TBD.
      */
-    updateTransform(parent: any): DisplayObject;
+    updateTransform(parent: DisplayObject): DisplayObject;
     rotationCache: any;
     worldRotation: number;
     /**
@@ -93,20 +107,20 @@ export class DisplayObject {
     getLocalBounds(): Rectangle;
     /**
      * TBD.
-     * @param child - TBD.
+     * @param {DisplayObject} child - TBD.
      * @returns {boolean} TBD.
      */
-    contains(child: any): boolean;
+    contains(child: DisplayObject): boolean;
     /**
      * TBD.
-     * @param renderSession - TBD.
+     * @param {object} renderSession - TBD.
      */
-    renderWebGL(renderSession: any): void;
+    renderWebGL(renderSession: object): void;
     /**
      * TBD.
-     * @param renderSession - TBD.
+     * @param {object} renderSession - TBD.
      */
-    renderCanvas(renderSession: any): void;
+    renderCanvas(renderSession: object): void;
     /**
      * TBD.
      */
@@ -126,19 +140,21 @@ export class DisplayObject {
     /**
      * TBD.
      * @param position - TBD.
+     * @returns {Point} TBD.
      */
     toGlobal(position: any): Point;
     /**
      * TBD.
      * @param position - TBD.
      * @param from - TBD.
+     * @returns {Point} TBD.
      */
     toLocal(position: any, from: any): Point;
     /**
      * TBD.
-     * @param renderSession - TBD.
+     * @param {object} renderSession - TBD.
      */
-    renderCachedSprite(renderSession: any): void;
+    renderCachedSprite(renderSession: object): void;
     /**
      * TBD.
      */

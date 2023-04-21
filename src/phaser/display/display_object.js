@@ -72,7 +72,8 @@ export class DisplayObject {
 
   /**
    * TBD.
-   * @param child - TBD.
+   * @param {DisplayObject} child - TBD.
+   * @returns {DisplayObject} TBD.
    */
   addChild(child) {
     return this.addChildAt(child, this.children.length);
@@ -80,8 +81,10 @@ export class DisplayObject {
 
   /**
    * TBD.
-   * @param child - TBD.
+   * @param {DisplayObject} child - TBD.
    * @param {number} index - TBD.
+   * @returns {DisplayObject} TBD.
+   * @throws Error.
    */
   addChildAt(child, index) {
     if (index >= 0 && index <= this.children.length) {
@@ -97,8 +100,9 @@ export class DisplayObject {
 
   /**
    * TBD.
-   * @param child - TBD.
-   * @param child2 - TBD.
+   * @param {DisplayObject} child - TBD.
+   * @param {DisplayObject} child2 - TBD.
+   * @throws Error.
    */
   swapChildren(child, child2) {
     if (child === child2) {
@@ -115,7 +119,9 @@ export class DisplayObject {
 
   /**
    * TBD.
-   * @param child - TBD.
+   * @param {DisplayObject} child - TBD.
+   * @returns {number} TBD.
+   * @throws Error.
    */
   getChildIndex(child) {
     const index = this.children.indexOf(child);
@@ -127,8 +133,9 @@ export class DisplayObject {
 
   /**
    * TBD.
-   * @param child - TBD.
+   * @param {DisplayObject} child - TBD.
    * @param {number} index - TBD.
+   * @throws Error.
    */
   setChildIndex(child, index) {
     if (index < 0 || index >= this.children.length) {
@@ -142,6 +149,8 @@ export class DisplayObject {
   /**
    * TBD.
    * @param {number} index - TBD.
+   * @returns {DisplayObject} TBD.
+   * @throws Error.
    */
   getChildAt(index) {
     if (index < 0 || index >= this.children.length) {
@@ -156,7 +165,8 @@ export class DisplayObject {
 
   /**
    * TBD.
-   * @param child - TBD.
+   * @param {DisplayObject} child - TBD.
+   * @returns {DisplayObject} TBD.
    */
   removeChild(child) {
     const index = this.children.indexOf(child);
@@ -169,6 +179,7 @@ export class DisplayObject {
   /**
    * TBD.
    * @param {number} index - TBD.
+   * @returns {DisplayObject} TBD.
    */
   removeChildAt(index) {
     const child = this.getChildAt(index);
@@ -183,6 +194,8 @@ export class DisplayObject {
    * TBD.
    * @param {number} beginIndex - TBD.
    * @param {number} endIndex - TBD.
+   * @returns {DisplayObject} TBD.
+   * @throws Error.
    */
   removeChildren(beginIndex, endIndex) {
     if (beginIndex === undefined) {
@@ -208,7 +221,8 @@ export class DisplayObject {
 
   /**
    * TBD.
-   * @param parent - TBD.
+   * @param {DisplayObject} parent - TBD.
+   * @returns {DisplayObject} TBD.
    */
   updateTransform(parent) {
     if (!parent && !this.parent) {
@@ -404,7 +418,7 @@ export class DisplayObject {
 
   /**
    * TBD.
-   * @param child - TBD.
+   * @param {DisplayObject} child - TBD.
    * @returns {boolean} TBD.
    */
   contains(child) {
@@ -419,7 +433,7 @@ export class DisplayObject {
 
   /**
    * TBD.
-   * @param renderSession - TBD.
+   * @param {object} renderSession - TBD.
    */
   renderWebGL(renderSession) {
     if (!this.visible || this.alpha <= 0) {
@@ -453,7 +467,7 @@ export class DisplayObject {
 
   /**
    * TBD.
-   * @param renderSession - TBD.
+   * @param {object} renderSession - TBD.
    */
   renderCanvas(renderSession) {
     if (!this.visible || this.alpha <= 0) {
@@ -502,6 +516,7 @@ export class DisplayObject {
   /**
    * TBD.
    * @param position - TBD.
+   * @returns {Point} TBD.
    */
   toGlobal(position) {
     this.updateTransform();
@@ -512,6 +527,7 @@ export class DisplayObject {
    * TBD.
    * @param position - TBD.
    * @param from - TBD.
+   * @returns {Point} TBD.
    */
   toLocal(position, from) {
     if (from) {
@@ -523,7 +539,7 @@ export class DisplayObject {
 
   /**
    * TBD.
-   * @param renderSession - TBD.
+   * @param {object} renderSession - TBD.
    */
   renderCachedSprite(renderSession) {
     if (!this._cachedSprite) {

@@ -5,8 +5,8 @@ export class Input {
      */
     constructor(game: Game);
     game: Game;
-    hitCanvas: any;
-    hitContext: any;
+    hitCanvas: HTMLCanvasElement;
+    hitContext: CanvasRenderingContext2D;
     moveCallbacks: any[];
     lockCallbacks: any[];
     customCandidateHandler: Function;

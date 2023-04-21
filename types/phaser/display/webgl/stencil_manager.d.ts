@@ -4,10 +4,10 @@ export class WebGLStencilManager {
     count: number;
     /**
      * TBD.
-     * @param gl - TBD.
+     * @param {WebGLRenderingContext} gl - TBD.
      */
-    setContext(gl: any): void;
-    gl: any;
+    setContext(gl: WebGLRenderingContext): void;
+    gl: WebGLRenderingContext;
     /**
      * TBD.
      */
@@ -16,22 +16,22 @@ export class WebGLStencilManager {
      * TBD.
      * @param graphics - TBD.
      * @param webGLData
-     * @param renderSession - TBD.
+     * @param {object} renderSession - TBD.
      */
-    pushStencil(graphics: any, webGLData: any, renderSession: any): void;
+    pushStencil(graphics: any, webGLData: any, renderSession: object): void;
     /**
      * TBD.
      * @param graphics - TBD.
      * @param webGLData
-     * @param renderSession - TBD.
+     * @param {object} renderSession - TBD.
      */
-    bindGraphics(graphics: any, webGLData: any, renderSession: any): void;
+    bindGraphics(graphics: any, webGLData: any, renderSession: object): void;
     /**
      * TBD.
      * @param graphics - TBD.
      * @param webGLData
-     * @param renderSession - TBD.
+     * @param {object} renderSession - TBD.
      */
-    popStencil(graphics: any, webGLData: any, renderSession: any): void;
+    popStencil(graphics: any, webGLData: any, renderSession: object): void;
 }
 //# sourceMappingURL=stencil_manager.d.ts.map

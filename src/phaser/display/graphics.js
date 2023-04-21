@@ -7,6 +7,7 @@ import { Polygon } from '../geom/polygon';
 import { Circle } from '../geom/circle';
 import { Ellipse } from '../geom/ellipse';
 import { Point } from '../geom/point';
+import { Matrix } from '../geom/matrix';
 import { GraphicsData } from './graphics_data';
 import { CanvasBuffer } from './canvas/buffer';
 import { textureFromCanvas } from './webgl/texture_util';
@@ -51,6 +52,7 @@ export class Graphics extends DisplayObject {
     this._localBounds = new Rectangle(0, 0, 1, 1);
     this.dirty = true;
     this._boundsDirty = false;
+    this._cacheAsBitmap = false;
     this.webGLDirty = false;
     this.cachedSpriteDirty = false;
   }
@@ -66,9 +68,10 @@ export class Graphics extends DisplayObject {
 
   /**
    * TBD.
-   * @param lineWidth - TBD.
-   * @param color - TBD.
-   * @param alpha - TBD.
+   * @param {number} lineWidth - TBD.
+   * @param {number} color - TBD.
+   * @param {number} alpha - TBD.
+   * @returns {Graphics} TBD.
    */
   lineStyle(lineWidth = 0, color = 0, alpha = 1) {
     this.lineWidth = lineWidth || 0;
@@ -92,6 +95,7 @@ export class Graphics extends DisplayObject {
    * TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
+   * @returns {Graphics} TBD.
    */
   moveTo(x, y) {
     this.drawShape(new Polygon([x, y]));
@@ -102,6 +106,7 @@ export class Graphics extends DisplayObject {
    * TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
+   * @returns {Graphics} TBD.
    */
   lineTo(x, y) {
     if (!this.currentPath) {
@@ -115,10 +120,11 @@ export class Graphics extends DisplayObject {
 
   /**
    * TBD.
-   * @param cpX - TBD.
-   * @param cpY - TBD.
-   * @param toX - TBD.
-   * @param toY - TBD.
+   * @param {number} cpX - TBD.
+   * @param {number} cpY - TBD.
+   * @param {number} toX - TBD.
+   * @param {number} toY - TBD.
+   * @returns {Graphics} TBD.
    */
   quadraticCurveTo(cpX, cpY, toX, toY) {
     if (this.currentPath) {
@@ -151,12 +157,13 @@ export class Graphics extends DisplayObject {
 
   /**
    * TBD.
-   * @param cpX - TBD.
-   * @param cpY - TBD.
-   * @param cpX2 - TBD.
-   * @param cpY2 - TBD.
-   * @param toX - TBD.
-   * @param toY - TBD.
+   * @param {number} cpX - TBD.
+   * @param {number} cpY - TBD.
+   * @param {number} cpX2 - TBD.
+   * @param {number} cpY2 - TBD.
+   * @param {number} toX - TBD.
+   * @param {number} toY - TBD.
+   * @returns {Graphics} TBD.
    */
   bezierCurveTo(cpX, cpY, cpX2, cpY2, toX, toY) {
     if (this.currentPath) {
@@ -195,11 +202,12 @@ export class Graphics extends DisplayObject {
 
   /**
    * TBD.
-   * @param x1 - TBD.
-   * @param y1 - TBD.
-   * @param x2 - TBD.
-   * @param y2 - TBD.
-   * @param radius - TBD.
+   * @param {number} x1 - TBD.
+   * @param {number} y1 - TBD.
+   * @param {number} x2 - TBD.
+   * @param {number} y2 - TBD.
+   * @param {number} radius - TBD.
+   * @returns {Graphics} TBD.
    */
   arcTo(x1, y1, x2, y2, radius) {
     if (this.currentPath) {
@@ -246,13 +254,14 @@ export class Graphics extends DisplayObject {
 
   /**
    * TBD.
-   * @param cx - TBD.
-   * @param cy - TBD.
-   * @param radius - TBD.
-   * @param startAngle - TBD.
-   * @param endAngle - TBD.
+   * @param {number} cx - TBD.
+   * @param {number} cy - TBD.
+   * @param {number} radius - TBD.
+   * @param {number} startAngle - TBD.
+   * @param {number} endAngle - TBD.
    * @param anticlockwise - TBD.
    * @param segments - TBD.
+   * @returns {Graphics} TBD.
    */
   arc(cx, cy, radius, startAngle, endAngle, anticlockwise = false, segments = 40) {
     //  If we do this we can never draw a full circle
@@ -299,8 +308,9 @@ export class Graphics extends DisplayObject {
 
   /**
    * TBD.
-   * @param color - TBD.
-   * @param alpha - TBD.
+   * @param {number} color - TBD.
+   * @param {number} alpha - TBD.
+   * @returns {Graphics} TBD.
    */
   beginFill(color = 0, alpha = 1) {
     this.filling = true;
@@ -318,6 +328,7 @@ export class Graphics extends DisplayObject {
 
   /**
    * TBD.
+   * @returns {Graphics} TBD.
    */
   endFill() {
     this.filling = false;
@@ -332,6 +343,7 @@ export class Graphics extends DisplayObject {
    * @param {number} y - TBD.
    * @param {number} width - TBD.
    * @param {number} height - TBD.
+   * @returns {Graphics} TBD.
    */
   drawRect(x, y, width, height) {
     this.drawShape(new Rectangle(x, y, width, height));
@@ -345,6 +357,7 @@ export class Graphics extends DisplayObject {
    * @param {number} width - TBD.
    * @param {number} height - TBD.
    * @param radius - TBD.
+   * @returns {Graphics} TBD.
    */
   drawRoundedRect(x, y, width, height, radius) {
     this.drawShape(new RoundedRectangle(x, y, width, height, radius));
@@ -356,6 +369,7 @@ export class Graphics extends DisplayObject {
    * @param {number} x - TBD.
    * @param {number} y - TBD.
    * @param diameter - TBD.
+   * @returns {Graphics} TBD.
    */
   drawCircle(x, y, diameter) {
     this.drawShape(new Circle(x, y, diameter));
@@ -368,6 +382,7 @@ export class Graphics extends DisplayObject {
    * @param {number} y - TBD.
    * @param {number} width - TBD.
    * @param {number} height - TBD.
+   * @returns {Graphics} TBD.
    */
   drawEllipse(x, y, width, height) {
     this.drawShape(new Ellipse(x, y, width, height));
@@ -377,6 +392,7 @@ export class Graphics extends DisplayObject {
   /**
    * TBD.
    * @param path - TBD.
+   * @returns {Graphics} TBD.
    */
   drawPolygon(path) {
     let points;
@@ -400,6 +416,7 @@ export class Graphics extends DisplayObject {
 
   /**
    * TBD.
+   * @returns {Graphics} TBD.
    */
   clear() {
     this.lineWidth = 0;
@@ -422,7 +439,7 @@ export class Graphics extends DisplayObject {
 
   /**
    * TBD.
-   * @param renderSession - TBD.
+   * @param {object} renderSession - TBD.
    */
   renderWebGL(renderSession) {
     // if the sprite is not visible or the alpha is 0 then no need to render this element
@@ -482,7 +499,7 @@ export class Graphics extends DisplayObject {
 
   /**
    * TBD.
-   * @param renderSession - TBD.
+   * @param {object} renderSession - TBD.
    */
   renderCanvas(renderSession) {
     // if the sprite is not visible or the alpha is 0 then no need to render this element
@@ -538,7 +555,7 @@ export class Graphics extends DisplayObject {
 
   /**
    * TBD.
-   * @param matrix - TBD.
+   * @param {Matrix} matrix - TBD.
    */
   getBounds(matrix = null) {
     if (!this.renderable) {
@@ -598,6 +615,7 @@ export class Graphics extends DisplayObject {
 
   /**
    * TBD.
+   * @returns {Rectangle} TBD.
    */
   getLocalBounds() {
     const matrixCache = this.worldTransform;
@@ -617,6 +635,7 @@ export class Graphics extends DisplayObject {
    * TBD.
    * @param point - TBD.
    * @param tempPoint - TBD.
+   * @returns {boolean} TBD.
    */
   containsPoint(point, tempPoint) {
     this.worldTransform.applyInverse(point, tempPoint);

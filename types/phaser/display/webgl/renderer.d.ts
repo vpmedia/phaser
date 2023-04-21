@@ -49,9 +49,9 @@ export class WebGLRenderer {
     render(stage: any): void;
     /**
      * TBD.
-     * @param displayObject
-     * @param projection
-     * @param buffer
+     * @param displayObject - TBD.
+     * @param projection - TBD.
+     * @param buffer - TBD.
      * @param matrix - TBD.
      */
     renderDisplayObject(displayObject: any, projection: any, buffer: any, matrix: any): void;
@@ -63,7 +63,8 @@ export class WebGLRenderer {
     resize(width: number, height: number): void;
     /**
      * TBD.
-     * @param texture
+     * @param texture - TBD.
+     * @returns {boolean} TBD.
      */
     updateTexture(texture: any): boolean;
     /**

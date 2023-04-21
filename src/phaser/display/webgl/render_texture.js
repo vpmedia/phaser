@@ -11,9 +11,9 @@ export class RenderTexture extends Texture {
    * TBD.
    * @param {number} width - TBD.
    * @param {number} height - TBD.
-   * @param renderer
-   * @param scaleMode
-   * @param resolution
+   * @param renderer - TBD.
+   * @param scaleMode - TBD.
+   * @param resolution - TBD.
    */
   constructor(width, height, renderer, scaleMode, resolution = 1) {
     const w = width || 100;
