@@ -6,10 +6,10 @@ export class GraphicsData {
      * @param {number} lineAlpha - TBD.
      * @param {number} fillColor - TBD.
      * @param {number} fillAlpha - TBD.
-     * @param {number} fill - TBD.
+     * @param {boolean} fill - TBD.
      * @param {object} shape - TBD.
      */
-    constructor(lineWidth: number, lineColor: number, lineAlpha: number, fillColor: number, fillAlpha: number, fill: number, shape: object);
+    constructor(lineWidth: number, lineColor: number, lineAlpha: number, fillColor: number, fillAlpha: number, fill: boolean, shape: object);
     lineWidth: number;
     lineColor: number;
     lineAlpha: number;
@@ -17,7 +17,7 @@ export class GraphicsData {
     fillColor: number;
     fillAlpha: number;
     _fillTint: number;
-    fill: number;
+    fill: boolean;
     shape: any;
     type: any;
     /**

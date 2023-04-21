@@ -97,7 +97,7 @@ export class Image extends DisplayObject {
   /**
    * TBD.
    * @param {string} key - TBD.
-   * @param frame - TBD.
+   * @param {number} frame - TBD.
    * @param {boolean} stopAnimation - TBD.
    */
   loadTexture(key, frame = 0, stopAnimation = true) {
@@ -185,7 +185,7 @@ export class Image extends DisplayObject {
 
   /**
    * TBD.
-   * @param parent
+   * @param parent - TBD.
    * @param {number} width - TBD.
    * @param {number} height - TBD.
    */
@@ -236,8 +236,8 @@ export class Image extends DisplayObject {
 
   /**
    * TBD.
-   * @param rect
-   * @param copy
+   * @param rect - TBD.
+   * @param {boolean} copy - TBD.
    */
   crop(rect, copy = false) {
     if (rect) {
@@ -290,6 +290,7 @@ export class Image extends DisplayObject {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get width() {
     return this.scale.x * this.texture.frame.width;
@@ -305,6 +306,7 @@ export class Image extends DisplayObject {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get height() {
     return this.scale.y * this.texture.frame.height;
@@ -333,8 +335,8 @@ export class Image extends DisplayObject {
 
   /**
    * TBD.
-   * @param texture
-   * @param destroyBase
+   * @param texture - TBD.
+   * @param {boolean} destroyBase - TBD.
    */
   setTexture(texture, destroyBase = false) {
     setTexture(this, texture, destroyBase);

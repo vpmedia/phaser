@@ -26,7 +26,7 @@ export class Image extends DisplayObject {
     /**
      * TBD.
      * @param {string} key - TBD.
-     * @param frame - TBD.
+     * @param {number} frame - TBD.
      * @param {boolean} stopAnimation - TBD.
      */
     loadTexture(key: string, frame?: number, stopAnimation?: boolean): void;
@@ -39,7 +39,7 @@ export class Image extends DisplayObject {
     refreshTexture: boolean;
     /**
      * TBD.
-     * @param parent
+     * @param parent - TBD.
      * @param {number} width - TBD.
      * @param {number} height - TBD.
      */
@@ -67,8 +67,8 @@ export class Image extends DisplayObject {
     get frameName(): string;
     /**
      * TBD.
-     * @param rect
-     * @param copy
+     * @param rect - TBD.
+     * @param {boolean} copy - TBD.
      */
     crop(rect: any, copy?: boolean): void;
     cropRect: any;
@@ -83,8 +83,8 @@ export class Image extends DisplayObject {
     onTextureUpdate(): void;
     /**
      * TBD.
-     * @param texture
-     * @param destroyBase
+     * @param texture - TBD.
+     * @param {boolean} destroyBase - TBD.
      */
     setTexture(texture: any, destroyBase?: boolean): void;
     /**

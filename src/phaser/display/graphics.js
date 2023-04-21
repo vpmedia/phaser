@@ -863,7 +863,7 @@ export class Graphics extends DisplayObject {
    * TBD.
    * @param vertices - TBD.
    * @param indices - TBD.
-   * @param cull - TBD.
+   * @param {boolean} cull - TBD.
    */
   drawTriangles(vertices, indices, cull = false) {
     const point1 = new Point();

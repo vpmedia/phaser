@@ -8,7 +8,7 @@ export class GraphicsData {
    * @param {number} lineAlpha - TBD.
    * @param {number} fillColor - TBD.
    * @param {number} fillAlpha - TBD.
-   * @param {number} fill - TBD.
+   * @param {boolean} fill - TBD.
    * @param {object} shape - TBD.
    */
   constructor(lineWidth, lineColor, lineAlpha, fillColor, fillAlpha, fill, shape) {
