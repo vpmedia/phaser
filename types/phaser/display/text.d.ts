@@ -206,12 +206,6 @@ export class Text extends Image {
     determineFontProperties(fontStyle: any): any;
     /**
      * TBD.
-     * @param {Matrix} matrix - TBD.
-     * @returns {Rectangle} TBD.
-     */
-    getBounds(matrix?: Matrix): Rectangle;
-    /**
-     * TBD.
      */
     set cssFont(arg: string);
     /**
@@ -421,6 +415,5 @@ export class Text extends Image {
 import { Image } from './image';
 import { Point } from '../geom/point';
 import { Rectangle } from '../geom/rectangle';
-import { Matrix } from '../geom/matrix';
 import { Game } from '../core/game';
 //# sourceMappingURL=text.d.ts.map

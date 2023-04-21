@@ -90,12 +90,9 @@ export class Image extends DisplayObject {
     /**
      * TBD.
      * @param {Matrix} matrix - TBD.
+     * @returns {Rectangle} TBD.
      */
-    getBounds(matrix?: Matrix): any;
-    /**
-     * TBD.
-     */
-    getLocalBounds(): any;
+    getBounds(matrix?: Matrix): Rectangle;
     /**
      * TBD.
      * @param {object} renderSession - TBD.
@@ -114,4 +111,5 @@ import { Game } from '../core/game';
 import { EventManager } from '../core/event_manager';
 import { AnimationManager } from '../core/animation_manager';
 import { Matrix } from '../geom/matrix';
+import { Rectangle } from '../geom/rectangle';
 //# sourceMappingURL=image.d.ts.map

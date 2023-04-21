@@ -1,5 +1,6 @@
 import { getTintedTexture } from './canvas/tinter';
 import { getIdentityMatrix } from '../geom/util/matrix';
+import { Rectangle } from '../geom/rectangle';
 import { SCALE_LINEAR } from '../core/const';
 
 /**
@@ -22,7 +23,7 @@ export function setTexture(target, texture, destroyBase = false) {
  * TBD.
  * @param {object} target - TBD.
  * @param {object} matrix - TBD.
- * @returns {object} TBD.
+ * @returns {Rectangle} TBD.
  */
 export function getBounds(target, matrix = null) {
   // TODO verify
@@ -104,7 +105,7 @@ export function getBounds(target, matrix = null) {
 /**
  * TBD.
  * @param {object} target - TBD.
- * @returns {object} TBD.
+ * @returns {Rectangle} TBD.
  */
 export function getLocalBounds(target) {
   const matrixCache = target.worldTransform;

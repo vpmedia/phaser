@@ -83,10 +83,10 @@ export class DisplayObject {
      * TBD.
      * @param {number} beginIndex - TBD.
      * @param {number} endIndex - TBD.
-     * @returns {DisplayObject} TBD.
+     * @returns {DisplayObject[]} TBD.
      * @throws Error.
      */
-    removeChildren(beginIndex: number, endIndex: number): DisplayObject;
+    removeChildren(beginIndex: number, endIndex: number): DisplayObject[];
     /**
      * TBD.
      * @param {DisplayObject} parent - TBD.

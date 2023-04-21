@@ -3,13 +3,13 @@ import { clone } from './graphics_data_util';
 export class GraphicsData {
   /**
    * TBD.
-   * @param lineWidth - TBD.
-   * @param lineColor - TBD.
-   * @param lineAlpha - TBD.
-   * @param fillColor - TBD.
-   * @param fillAlpha - TBD.
-   * @param fill - TBD.
-   * @param shape - TBD.
+   * @param {number} lineWidth - TBD.
+   * @param {number} lineColor - TBD.
+   * @param {number} lineAlpha - TBD.
+   * @param {number} fillColor - TBD.
+   * @param {number} fillAlpha - TBD.
+   * @param {number} fill - TBD.
+   * @param {object} shape - TBD.
    */
   constructor(lineWidth, lineColor, lineAlpha, fillColor, fillAlpha, fill, shape) {
     this.lineWidth = lineWidth;

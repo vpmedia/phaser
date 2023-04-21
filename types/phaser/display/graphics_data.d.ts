@@ -1,23 +1,23 @@
 export class GraphicsData {
     /**
      * TBD.
-     * @param lineWidth - TBD.
-     * @param lineColor - TBD.
-     * @param lineAlpha - TBD.
-     * @param fillColor - TBD.
-     * @param fillAlpha - TBD.
-     * @param fill - TBD.
-     * @param shape - TBD.
+     * @param {number} lineWidth - TBD.
+     * @param {number} lineColor - TBD.
+     * @param {number} lineAlpha - TBD.
+     * @param {number} fillColor - TBD.
+     * @param {number} fillAlpha - TBD.
+     * @param {number} fill - TBD.
+     * @param {object} shape - TBD.
      */
-    constructor(lineWidth: any, lineColor: any, lineAlpha: any, fillColor: any, fillAlpha: any, fill: any, shape: any);
-    lineWidth: any;
-    lineColor: any;
-    lineAlpha: any;
-    _lineTint: any;
-    fillColor: any;
-    fillAlpha: any;
-    _fillTint: any;
-    fill: any;
+    constructor(lineWidth: number, lineColor: number, lineAlpha: number, fillColor: number, fillAlpha: number, fill: number, shape: object);
+    lineWidth: number;
+    lineColor: number;
+    lineAlpha: number;
+    _lineTint: number;
+    fillColor: number;
+    fillAlpha: number;
+    _fillTint: number;
+    fill: number;
     shape: any;
     type: any;
     /**

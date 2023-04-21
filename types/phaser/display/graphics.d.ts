@@ -84,8 +84,8 @@ export class Graphics extends DisplayObject {
      * @param {number} radius - TBD.
      * @param {number} startAngle - TBD.
      * @param {number} endAngle - TBD.
-     * @param anticlockwise - TBD.
-     * @param segments - TBD.
+     * @param {boolean} anticlockwise - TBD.
+     * @param {number} segments - TBD.
      * @returns {Graphics} TBD.
      */
     arc(cx: number, cy: number, radius: number, startAngle: number, endAngle: number, anticlockwise?: boolean, segments?: number): Graphics;
@@ -118,18 +118,18 @@ export class Graphics extends DisplayObject {
      * @param {number} y - TBD.
      * @param {number} width - TBD.
      * @param {number} height - TBD.
-     * @param radius - TBD.
+     * @param {number} radius - TBD.
      * @returns {Graphics} TBD.
      */
-    drawRoundedRect(x: number, y: number, width: number, height: number, radius: any): Graphics;
+    drawRoundedRect(x: number, y: number, width: number, height: number, radius: number): Graphics;
     /**
      * TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
-     * @param diameter - TBD.
+     * @param {number} diameter - TBD.
      * @returns {Graphics} TBD.
      */
-    drawCircle(x: number, y: number, diameter: any): Graphics;
+    drawCircle(x: number, y: number, diameter: number): Graphics;
     /**
      * TBD.
      * @param {number} x - TBD.
@@ -141,10 +141,10 @@ export class Graphics extends DisplayObject {
     drawEllipse(x: number, y: number, width: number, height: number): Graphics;
     /**
      * TBD.
-     * @param path - TBD.
+     * @param {Polygon} path - TBD.
      * @returns {Graphics} TBD.
      */
-    drawPolygon(path: any): Graphics;
+    drawPolygon(path: Polygon): Graphics;
     /**
      * TBD.
      * @returns {Graphics} TBD.
@@ -155,16 +155,17 @@ export class Graphics extends DisplayObject {
     /**
      * TBD.
      * @param {Matrix} matrix - TBD.
+     * @returns {Rectangle} TBD.
      */
-    getBounds(matrix?: Matrix): any;
+    getBounds(matrix?: Matrix): Rectangle;
     worldTransform: any;
     /**
      * TBD.
-     * @param point - TBD.
-     * @param tempPoint - TBD.
+     * @param {Point} point - TBD.
+     * @param {Point} tempPoint - TBD.
      * @returns {boolean} TBD.
      */
-    containsPoint(point: any, tempPoint: any): boolean;
+    containsPoint(point: Point, tempPoint: Point): boolean;
     /**
      * TBD.
      */
@@ -176,6 +177,7 @@ export class Graphics extends DisplayObject {
     /**
      * TBD.
      * @param shape - TBD.
+     * @returns {GraphicsData} TBD.
      */
     drawShape(shape: any): GraphicsData;
     /**
@@ -196,5 +198,7 @@ import { DisplayObject } from './display_object';
 import { Game } from '../core/game';
 import { GraphicsData } from './graphics_data';
 import { Rectangle } from '../geom/rectangle';
+import { Polygon } from '../geom/polygon';
 import { Matrix } from '../geom/matrix';
+import { Point } from '../geom/point';
 //# sourceMappingURL=graphics.d.ts.map

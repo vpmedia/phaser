@@ -9,15 +9,15 @@ export function setTexture(target: object, texture: object, destroyBase?: boolea
  * TBD.
  * @param {object} target - TBD.
  * @param {object} matrix - TBD.
- * @returns {object} TBD.
+ * @returns {Rectangle} TBD.
  */
-export function getBounds(target: object, matrix?: object): object;
+export function getBounds(target: object, matrix?: object): Rectangle;
 /**
  * TBD.
  * @param {object} target - TBD.
- * @returns {object} TBD.
+ * @returns {Rectangle} TBD.
  */
-export function getLocalBounds(target: object): object;
+export function getLocalBounds(target: object): Rectangle;
 /**
  * TBD.
  * @param {object} target - TBD.
@@ -32,4 +32,5 @@ export function renderWebGL(target: object, renderSession: object, matrix: objec
  * @param {object} matrix - TBD.
  */
 export function renderCanvas(target: object, renderSession: object, matrix: object): void;
+import { Rectangle } from '../geom/rectangle';
 //# sourceMappingURL=sprite_util.d.ts.map

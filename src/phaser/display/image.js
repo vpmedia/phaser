@@ -343,6 +343,7 @@ export class Image extends DisplayObject {
   /**
    * TBD.
    * @param {Matrix} matrix - TBD.
+   * @returns {Rectangle} TBD.
    */
   getBounds(matrix = null) {
     return getBounds(this, matrix);
@@ -350,6 +351,7 @@ export class Image extends DisplayObject {
 
   /**
    * TBD.
+   * @returns {Rectangle} TBD.
    */
   getLocalBounds() {
     return getLocalBounds(this);

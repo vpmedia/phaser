@@ -259,8 +259,8 @@ export class Graphics extends DisplayObject {
    * @param {number} radius - TBD.
    * @param {number} startAngle - TBD.
    * @param {number} endAngle - TBD.
-   * @param anticlockwise - TBD.
-   * @param segments - TBD.
+   * @param {boolean} anticlockwise - TBD.
+   * @param {number} segments - TBD.
    * @returns {Graphics} TBD.
    */
   arc(cx, cy, radius, startAngle, endAngle, anticlockwise = false, segments = 40) {
@@ -356,7 +356,7 @@ export class Graphics extends DisplayObject {
    * @param {number} y - TBD.
    * @param {number} width - TBD.
    * @param {number} height - TBD.
-   * @param radius - TBD.
+   * @param {number} radius - TBD.
    * @returns {Graphics} TBD.
    */
   drawRoundedRect(x, y, width, height, radius) {
@@ -368,7 +368,7 @@ export class Graphics extends DisplayObject {
    * TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
-   * @param diameter - TBD.
+   * @param {number} diameter - TBD.
    * @returns {Graphics} TBD.
    */
   drawCircle(x, y, diameter) {
@@ -391,7 +391,7 @@ export class Graphics extends DisplayObject {
 
   /**
    * TBD.
-   * @param path - TBD.
+   * @param {Polygon} path - TBD.
    * @returns {Graphics} TBD.
    */
   drawPolygon(path) {
@@ -556,6 +556,7 @@ export class Graphics extends DisplayObject {
   /**
    * TBD.
    * @param {Matrix} matrix - TBD.
+   * @returns {Rectangle} TBD.
    */
   getBounds(matrix = null) {
     if (!this.renderable) {
@@ -633,8 +634,8 @@ export class Graphics extends DisplayObject {
 
   /**
    * TBD.
-   * @param point - TBD.
-   * @param tempPoint - TBD.
+   * @param {Point} point - TBD.
+   * @param {Point} tempPoint - TBD.
    * @returns {boolean} TBD.
    */
   containsPoint(point, tempPoint) {
@@ -791,6 +792,7 @@ export class Graphics extends DisplayObject {
   /**
    * TBD.
    * @param shape - TBD.
+   * @returns {GraphicsData} TBD.
    */
   drawShape(shape) {
     if (this.currentPath) {
