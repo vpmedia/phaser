@@ -37,10 +37,10 @@ export class WebGLSpriteBatch {
     end(): void;
     /**
      * TBD.
-     * @param sprite - TBD.
+     * @param {Image} sprite - TBD.
      * @param {Matrix} matrix - TBD.
      */
-    render(sprite: any, matrix: Matrix): void;
+    render(sprite: Image, matrix: Matrix): void;
     /**
      * TBD.
      */
@@ -70,6 +70,7 @@ export class WebGLSpriteBatch {
     destroy(): void;
 }
 import { AbstractFilter } from './abstract_filter';
+import { Image } from '../../display/image';
 import { Matrix } from '../../geom/matrix';
 import { BaseTexture } from './base_texture';
 //# sourceMappingURL=sprite_batch.d.ts.map

@@ -15,23 +15,24 @@ export class WebGLStencilManager {
     /**
      * TBD.
      * @param graphics - TBD.
-     * @param webGLData - TBD.
+     * @param {GraphicsData} webGLData - TBD.
      * @param {object} renderSession - TBD.
      */
-    pushStencil(graphics: any, webGLData: any, renderSession: object): void;
+    pushStencil(graphics: any, webGLData: GraphicsData, renderSession: object): void;
     /**
      * TBD.
      * @param graphics - TBD.
-     * @param webGLData - TBD.
+     * @param {GraphicsData} webGLData - TBD.
      * @param {object} renderSession - TBD.
      */
-    bindGraphics(graphics: any, webGLData: any, renderSession: object): void;
+    bindGraphics(graphics: any, webGLData: GraphicsData, renderSession: object): void;
     /**
      * TBD.
      * @param graphics - TBD.
-     * @param webGLData - TBD.
+     * @param {GraphicsData} webGLData - TBD.
      * @param {object} renderSession - TBD.
      */
-    popStencil(graphics: any, webGLData: any, renderSession: object): void;
+    popStencil(graphics: any, webGLData: GraphicsData, renderSession: object): void;
 }
+import { GraphicsData } from './graphics_data';
 //# sourceMappingURL=stencil_manager.d.ts.map

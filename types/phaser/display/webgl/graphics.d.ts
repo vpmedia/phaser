@@ -18,15 +18,15 @@ export function switchMode(webGL: object, type: number): object;
 /**
  * TBD.
  * @param {object} graphicsData - TBD.
- * @param {object} webGLData - TBD.
+ * @param {GraphicsData} webGLData - TBD.
  */
-export function buildLine(graphicsData: object, webGLData: object): void;
+export function buildLine(graphicsData: object, webGLData: GraphicsData): void;
 /**
  * TBD.
  * @param {object} graphicsData - TBD.
- * @param {object} webGLData - TBD.
+ * @param {GraphicsData} webGLData - TBD.
  */
-export function buildRectangle(graphicsData: object, webGLData: object): void;
+export function buildRectangle(graphicsData: object, webGLData: GraphicsData): void;
 /**
  * TBD.
  * @param {number} fromX - TBD.
@@ -41,28 +41,28 @@ export function quadraticBezierCurve(fromX: number, fromY: number, cpX: number, 
 /**
  * TBD.
  * @param {object} graphicsData - TBD.
- * @param {object} webGLData - TBD.
+ * @param {GraphicsData} webGLData - TBD.
  */
-export function buildRoundedRectangle(graphicsData: object, webGLData: object): void;
+export function buildRoundedRectangle(graphicsData: object, webGLData: GraphicsData): void;
 /**
  * TBD.
  * @param {object} graphicsData - TBD.
- * @param {object} webGLData - TBD.
+ * @param {GraphicsData} webGLData - TBD.
  */
-export function buildCircle(graphicsData: object, webGLData: object): void;
+export function buildCircle(graphicsData: object, webGLData: GraphicsData): void;
 /**
  * TBD.
  * @param {object} graphicsData - TBD.
- * @param {object} webGLData - TBD.
+ * @param {GraphicsData} webGLData - TBD.
  */
-export function buildComplexPoly(graphicsData: object, webGLData: object): void;
+export function buildComplexPoly(graphicsData: object, webGLData: GraphicsData): void;
 /**
  * TBD.
  * @param {object} graphicsData - TBD.
- * @param {object} webGLData - TBD.
+ * @param {GraphicsData} webGLData - TBD.
  * @returns {boolean} TBD.
  */
-export function buildPoly(graphicsData: object, webGLData: object): boolean;
+export function buildPoly(graphicsData: object, webGLData: GraphicsData): boolean;
 /**
  * TBD.
  * @param {object} graphics - TBD.
@@ -75,4 +75,5 @@ export function updateGraphics(graphics: object, gl: object): void;
  * @param {object} renderSession - TBD.
  */
 export function renderGraphics(graphics: object, renderSession: object): void;
+import { GraphicsData } from './graphics_data';
 //# sourceMappingURL=graphics.d.ts.map
