@@ -20,7 +20,7 @@ export class GameObjectFactory {
    * @param {number} x - TBD.
    * @param {number} y - TBD.
    * @param {string} key - TBD.
-   * @param frame - TBD.
+   * @param {string} frame - TBD.
    * @param {Group} group - TBD.
    * @returns {Image} TBD.
    */
@@ -46,8 +46,8 @@ export class GameObjectFactory {
    * TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
-   * @param text - TBD.
-   * @param style - TBD.
+   * @param {string} text - TBD.
+   * @param {object} style - TBD.
    * @param {Group} group - TBD.
    * @returns {Text} TBD.
    */
@@ -63,10 +63,10 @@ export class GameObjectFactory {
    * @param {string} key - TBD.
    * @param {Function} callback - TBD.
    * @param {object} callbackContext - TBD.
-   * @param overFrame - TBD.
-   * @param outFrame - TBD.
-   * @param downFrame - TBD.
-   * @param upFrame - TBD.
+   * @param {string} overFrame - TBD.
+   * @param {string} outFrame - TBD.
+   * @param {string} downFrame - TBD.
+   * @param {string} upFrame - TBD.
    * @param {Group} group - TBD.
    * @returns {Button} TBD.
    */
@@ -93,11 +93,11 @@ export class GameObjectFactory {
    * TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
-   * @param font - TBD.
-   * @param text - TBD.
-   * @param size - TBD.
+   * @param {string} font - TBD.
+   * @param {string} text - TBD.
+   * @param {number} size - TBD.
    * @param {Group} group - TBD.
-   * @param align - TBD.
+   * @param {string} align - TBD.
    * @returns {BitmapText} TBD.
    */
   bitmapText(x, y, font, text, size, group = null, align = 'left') {

@@ -4,10 +4,10 @@ export class RenderTexture extends Texture {
      * @param {number} width - TBD.
      * @param {number} height - TBD.
      * @param renderer - TBD.
-     * @param scaleMode - TBD.
-     * @param resolution - TBD.
+     * @param {number} scaleMode - TBD.
+     * @param {number} resolution - TBD.
      */
-    constructor(width: number, height: number, renderer: any, scaleMode: any, resolution?: number);
+    constructor(width: number, height: number, renderer: any, scaleMode: number, resolution?: number);
     resolution: number;
     renderer: any;
     textureBuffer: CanvasBuffer | FilterTexture;
@@ -31,16 +31,19 @@ export class RenderTexture extends Texture {
     renderCanvas(): void;
     /**
      * TBD.
+     * @returns {HTMLImageElement} TBD.
      */
     getImage(): HTMLImageElement;
     /**
      * TBD.
+     * @returns {string} TBD.
      */
-    getBase64(): any;
+    getBase64(): string;
     /**
      * TBD.
+     * @returns {HTMLCanvasElement} TBD.
      */
-    getCanvas(): void;
+    getCanvas(): HTMLCanvasElement;
 }
 import { Texture } from './texture';
 import { CanvasBuffer } from '../canvas/buffer';

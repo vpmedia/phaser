@@ -22,6 +22,7 @@ import {
 import { remove } from '../canvas/pool';
 import { isPowerOfTwo } from '../../util/math';
 import { Point } from '../../geom/point';
+import { Matrix } from '../../geom/matrix';
 import { WebGLShaderManager } from './shader_manager';
 import { WebGLSpriteBatch } from './sprite_batch';
 import * as WebGLMaskManager from './mask_manager';
@@ -39,6 +40,7 @@ export class WebGLRenderer {
     this.type = RENDER_WEBGL;
     this.resolution = game.config.resolution;
     this.autoResize = false;
+    this.contextLost = false;
     this.clearBeforeRender = game.config.clearBeforeRender;
     this.width = game.width;
     this.height = game.height;
@@ -152,7 +154,7 @@ export class WebGLRenderer {
 
   /**
    * TBD.
-   * @param stage
+   * @param stage - TBD.
    */
   render(stage) {
     if (this.contextLost) {
@@ -177,7 +179,7 @@ export class WebGLRenderer {
    * @param displayObject - TBD.
    * @param projection - TBD.
    * @param buffer - TBD.
-   * @param matrix - TBD.
+   * @param {Matrix} matrix - TBD.
    */
   renderDisplayObject(displayObject, projection, buffer, matrix) {
     this.renderSession.blendModeManager.setBlendMode(BLEND_NORMAL);

@@ -116,9 +116,9 @@ export class Pointer {
      * @param {string} name - TBD.
      * @param {Function} callback - TBD.
      * @param {object} callbackContext - TBD.
-     * @param callbackArgs - TBD.
+     * @param {...any} callbackArgs - TBD.
      */
-    addClickTrampoline(name: string, callback: Function, callbackContext: object, callbackArgs: any): void;
+    addClickTrampoline(name: string, callback: Function, callbackContext: object, callbackArgs: any[]): void;
     /**
      * TBD.
      */

@@ -83,7 +83,7 @@ export class MSPointer {
 
   /**
    * TBD.
-   * @param {Event} event - TBD.
+   * @param {PointerEvent} event - TBD.
    */
   onPointerDown(event) {
     this.event = event;
@@ -104,7 +104,7 @@ export class MSPointer {
 
   /**
    * TBD.
-   * @param {Event} event - TBD.
+   * @param {PointerEvent} event - TBD.
    */
   onPointerMove(event) {
     this.event = event;
@@ -125,7 +125,7 @@ export class MSPointer {
 
   /**
    * TBD.
-   * @param {Event} event - TBD.
+   * @param {PointerEvent} event - TBD.
    */
   onPointerUp(event) {
     this.event = event;
@@ -146,7 +146,7 @@ export class MSPointer {
 
   /**
    * TBD.
-   * @param {Event} event - TBD.
+   * @param {PointerEvent} event - TBD.
    */
   onPointerUpGlobal(event) {
     if ((event.pointerType === 'mouse' || event.pointerType === 0x00000004) && !this.input.mousePointer.withinGame) {
@@ -161,7 +161,7 @@ export class MSPointer {
 
   /**
    * TBD.
-   * @param {Event} event - TBD.
+   * @param {PointerEvent} event - TBD.
    */
   onPointerOut(event) {
     this.event = event;
@@ -193,7 +193,7 @@ export class MSPointer {
 
   /**
    * TBD.
-   * @param {Event} event - TBD.
+   * @param {PointerEvent} event - TBD.
    */
   onPointerOver(event) {
     this.event = event;

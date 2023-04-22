@@ -72,9 +72,9 @@ export class Text extends Image {
    * @param {number} x - TBD.
    * @param {number} y - TBD.
    * @param color - TBD.
-   * @param blur
-   * @param shadowStroke
-   * @param shadowFill
+   * @param blur - TBD.
+   * @param shadowStroke - TBD.
+   * @param shadowFill - TBD.
    */
   setShadow(x = 0, y = 0, color = 'rgba(0, 0, 0, 1)', blur = 0, shadowStroke = true, shadowFill = true) {
     this.style.shadowOffsetX = x;
@@ -298,10 +298,10 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @param line
+   * @param line - TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
-   * @param fill
+   * @param fill - TBD.
    */
   renderTabLine(line, x, y, fill) {
     const text = line.split(/(?:\t)/);
@@ -355,7 +355,7 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @param line
+   * @param line - TBD.
    */
   measureLine(line) {
     let lineLength = 0;
@@ -391,7 +391,7 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @param line
+   * @param line - TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
    */
@@ -429,6 +429,7 @@ export class Text extends Image {
 
   /**
    * TBD.
+   * @returns {Text} TBD.
    */
   clearColors() {
     this.colors = [];
@@ -439,6 +440,7 @@ export class Text extends Image {
 
   /**
    * TBD.
+   * @returns {Text} TBD.
    */
   clearFontValues() {
     this.fontStyles = [];
@@ -473,7 +475,7 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @param style
+   * @param style - TBD.
    * @param position - TBD.
    * @returns {Text} TBD.
    */
@@ -485,7 +487,7 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @param weight
+   * @param weight - TBD.
    * @param position - TBD.
    * @returns {Text} TBD.
    */
@@ -683,7 +685,7 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @param components
+   * @param components - TBD.
    */
   componentsToFont(components) {
     const parts = [];
@@ -734,6 +736,7 @@ export class Text extends Image {
   /**
    * TBD.
    * @param list
+   * @returns {Text} TBD.
    */
   parseList(list) {
     if (!Array.isArray(list)) {
@@ -764,6 +767,7 @@ export class Text extends Image {
    * @param {number} y - TBD.
    * @param {number} width - TBD.
    * @param {number} height - TBD.
+   * @returns {Text} TBD.
    */
   setTextBounds(x, y, width, height) {
     if (x === undefined) {

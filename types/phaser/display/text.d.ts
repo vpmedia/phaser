@@ -29,9 +29,9 @@ export class Text extends Image {
      * @param {number} x - TBD.
      * @param {number} y - TBD.
      * @param color - TBD.
-     * @param blur
-     * @param shadowStroke
-     * @param shadowFill
+     * @param blur - TBD.
+     * @param shadowStroke - TBD.
+     * @param shadowFill - TBD.
      */
     setShadow(x?: number, y?: number, color?: string, blur?: number, shadowStroke?: boolean, shadowFill?: boolean): Text;
     dirty: boolean;
@@ -47,10 +47,10 @@ export class Text extends Image {
     updateText(): void;
     /**
      * TBD.
-     * @param line
+     * @param line - TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
-     * @param fill
+     * @param fill - TBD.
      */
     renderTabLine(line: any, x: number, y: number, fill: any): void;
     /**
@@ -60,22 +60,24 @@ export class Text extends Image {
     updateShadow(state: any): void;
     /**
      * TBD.
-     * @param line
+     * @param line - TBD.
      */
     measureLine(line: any): number;
     /**
      * TBD.
-     * @param line
+     * @param line - TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
      */
     updateLine(line: any, x: number, y: number): void;
     /**
      * TBD.
+     * @returns {Text} TBD.
      */
     clearColors(): Text;
     /**
      * TBD.
+     * @returns {Text} TBD.
      */
     clearFontValues(): Text;
     /**
@@ -94,14 +96,14 @@ export class Text extends Image {
     addStrokeColor(color: any, position: any): Text;
     /**
      * TBD.
-     * @param style
+     * @param style - TBD.
      * @param position - TBD.
      * @returns {Text} TBD.
      */
     addFontStyle(style: any, position: any): Text;
     /**
      * TBD.
-     * @param weight
+     * @param weight - TBD.
      * @param position - TBD.
      * @returns {Text} TBD.
      */
@@ -139,7 +141,7 @@ export class Text extends Image {
     fontToComponents(font: any): object;
     /**
      * TBD.
-     * @param components
+     * @param components - TBD.
      */
     componentsToFont(components: any): string;
     /**
@@ -161,6 +163,7 @@ export class Text extends Image {
     /**
      * TBD.
      * @param list
+     * @returns {Text} TBD.
      */
     parseList(list: any): Text;
     /**
@@ -169,6 +172,7 @@ export class Text extends Image {
      * @param {number} y - TBD.
      * @param {number} width - TBD.
      * @param {number} height - TBD.
+     * @returns {Text} TBD.
      */
     setTextBounds(x: number, y: number, width: number, height: number): Text;
     /**

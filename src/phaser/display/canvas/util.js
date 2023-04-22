@@ -40,7 +40,7 @@ export function setBackgroundColor(canvas, color) {
  * @param {string} value - TBD.
  * @returns {object} TBD.
  */
-export function setTouchAction(canvas, value) {
+export function setTouchAction(canvas, value = 'none') {
   value = value || 'none';
   canvas.style.msTouchAction = value;
   canvas.style['ms-touch-action'] = value;
@@ -54,7 +54,7 @@ export function setTouchAction(canvas, value) {
  * @param {string} value - TBD.
  * @returns {object} TBD.
  */
-export function setUserSelect(canvas, value) {
+export function setUserSelect(canvas, value = 'none') {
   value = value || 'none';
   canvas.style['-webkit-touch-callout'] = value;
   canvas.style['-webkit-user-select'] = value;

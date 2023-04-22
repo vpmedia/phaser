@@ -35,6 +35,7 @@ export class Game {
     this.renderer = null;
     this.state = null;
     this.isBooted = false;
+    this.paused = false;
     this.raf = null;
     this.add = null;
     this.cache = null;

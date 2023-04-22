@@ -159,26 +159,92 @@ export const TOUCH_OVERRIDES_MOUSE: number;
  * @type {number}
  */
 export const MOUSE_TOUCH_COMBINE: number;
-export const GROUP: 7;
-export const SPRITE: 0;
-export const SPRITE_BATCH: 17;
-export const BUTTON: 1;
-export const IMAGE: 2;
-export const GRAPHICS: 3;
-export const TEXT: 4;
-export const BITMAP_TEXT: 6;
-export const TILE_SPRITE: 5;
-export const RENDER_TEXTURE: 8;
-export const FILTER_CANVAS: 14;
-export const FILTER_WEBGL: 15;
-export const POINTER: 19;
-export const GEOM_POLYGON: 12;
-export const GEOM_RECTANGLE: 22;
-export const GEOM_CIRCLE: 21;
-export const GEOM_ELLIPSE: 16;
-export const GEOM_ROUNDED_RECTANGLE: 26;
-export const GEOM_LINE: 23;
-export const GEOM_MATRIX: 24;
-export const GEOM_POINT: 25;
-export const PENDING_ATLAS: -1;
+/**
+ * @type {number}
+ */
+export const GROUP: number;
+/**
+ * @type {number}
+ */
+export const SPRITE: number;
+/**
+ * @type {number}
+ */
+export const SPRITE_BATCH: number;
+/**
+ * @type {number}
+ */
+export const BUTTON: number;
+/**
+ * @type {number}
+ */
+export const IMAGE: number;
+/**
+ * @type {number}
+ */
+export const GRAPHICS: number;
+/**
+ * @type {number}
+ */
+export const TEXT: number;
+/**
+ * @type {number}
+ */
+export const BITMAP_TEXT: number;
+/**
+ * @type {number}
+ */
+export const TILE_SPRITE: number;
+/**
+ * @type {number}
+ */
+export const RENDER_TEXTURE: number;
+/**
+ * @type {number}
+ */
+export const FILTER_CANVAS: number;
+/**
+ * @type {number}
+ */
+export const FILTER_WEBGL: number;
+/**
+ * @type {number}
+ */
+export const POINTER: number;
+/**
+ * @type {number}
+ */
+export const GEOM_POLYGON: number;
+/**
+ * @type {number}
+ */
+export const GEOM_RECTANGLE: number;
+/**
+ * @type {number}
+ */
+export const GEOM_CIRCLE: number;
+/**
+ * @type {number}
+ */
+export const GEOM_ELLIPSE: number;
+/**
+ * @type {number}
+ */
+export const GEOM_ROUNDED_RECTANGLE: number;
+/**
+ * @type {number}
+ */
+export const GEOM_LINE: number;
+/**
+ * @type {number}
+ */
+export const GEOM_MATRIX: number;
+/**
+ * @type {number}
+ */
+export const GEOM_POINT: number;
+/**
+ * @type {number}
+ */
+export const PENDING_ATLAS: number;
 //# sourceMappingURL=const.d.ts.map

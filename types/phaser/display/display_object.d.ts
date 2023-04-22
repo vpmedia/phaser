@@ -97,9 +97,10 @@ export class DisplayObject {
     worldRotation: number;
     /**
      * TBD.
-     * @param targetCoordinateSpace - TBD.
+     * @param {DisplayObject} targetCoordinateSpace - TBD.
+     * @returns {Rectangle} TBD.
      */
-    getBounds(targetCoordinateSpace: any): Rectangle;
+    getBounds(targetCoordinateSpace: DisplayObject): Rectangle;
     /**
      * TBD.
      * @returns {Rectangle} TBD.
@@ -139,17 +140,17 @@ export class DisplayObject {
     generateTexture(): void;
     /**
      * TBD.
-     * @param position - TBD.
+     * @param {Point} position - TBD.
      * @returns {Point} TBD.
      */
-    toGlobal(position: any): Point;
+    toGlobal(position: Point): Point;
     /**
      * TBD.
-     * @param position - TBD.
-     * @param from - TBD.
+     * @param {Point} position - TBD.
+     * @param {DisplayObject} from - TBD.
      * @returns {Point} TBD.
      */
-    toLocal(position: any, from: any): Point;
+    toLocal(position: Point, from: DisplayObject): Point;
     /**
      * TBD.
      * @param {object} renderSession - TBD.

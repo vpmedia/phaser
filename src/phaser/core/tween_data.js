@@ -35,7 +35,7 @@ export class TweenData {
 
   /**
    * TBD.
-   * @param properties - TBD.
+   * @param {object} properties - TBD.
    * @param {number} duration - TBD.
    * @param {string} ease - TBD.
    * @param {number} delay - TBD.
@@ -56,7 +56,7 @@ export class TweenData {
 
   /**
    * TBD.
-   * @param properties - TBD.
+   * @param {object} properties - TBD.
    * @param {number} duration - TBD.
    * @param {string} ease - TBD.
    * @param {number} delay - TBD.

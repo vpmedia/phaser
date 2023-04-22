@@ -169,25 +169,91 @@ export const TOUCH_OVERRIDES_MOUSE = 1;
  */
 export const MOUSE_TOUCH_COMBINE = 2;
 // game objects
+/**
+ * @type {number}
+ */
 export const GROUP = 7;
+/**
+ * @type {number}
+ */
 export const SPRITE = 0;
+/**
+ * @type {number}
+ */
 export const SPRITE_BATCH = 17;
+/**
+ * @type {number}
+ */
 export const BUTTON = 1;
+/**
+ * @type {number}
+ */
 export const IMAGE = 2;
+/**
+ * @type {number}
+ */
 export const GRAPHICS = 3;
+/**
+ * @type {number}
+ */
 export const TEXT = 4;
+/**
+ * @type {number}
+ */
 export const BITMAP_TEXT = 6;
+/**
+ * @type {number}
+ */
 export const TILE_SPRITE = 5;
+/**
+ * @type {number}
+ */
 export const RENDER_TEXTURE = 8;
+/**
+ * @type {number}
+ */
 export const FILTER_CANVAS = 14;
+/**
+ * @type {number}
+ */
 export const FILTER_WEBGL = 15;
+/**
+ * @type {number}
+ */
 export const POINTER = 19;
+/**
+ * @type {number}
+ */
 export const GEOM_POLYGON = 12;
+/**
+ * @type {number}
+ */
 export const GEOM_RECTANGLE = 22;
+/**
+ * @type {number}
+ */
 export const GEOM_CIRCLE = 21;
+/**
+ * @type {number}
+ */
 export const GEOM_ELLIPSE = 16;
+/**
+ * @type {number}
+ */
 export const GEOM_ROUNDED_RECTANGLE = 26;
+/**
+ * @type {number}
+ */
 export const GEOM_LINE = 23;
+/**
+ * @type {number}
+ */
 export const GEOM_MATRIX = 24;
+/**
+ * @type {number}
+ */
 export const GEOM_POINT = 25;
+/**
+ * @type {number}
+ */
 export const PENDING_ATLAS = -1;

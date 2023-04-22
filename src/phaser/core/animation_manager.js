@@ -1,10 +1,11 @@
 import { Animation } from './animation';
 import { FrameData } from './frame_data';
+import { Image } from '../display/image';
 
 export class AnimationManager {
   /**
    * TBD.
-   * @param sprite - TBD.
+   * @param {Image} sprite - TBD.
    */
   constructor(sprite) {
     this.sprite = sprite;
@@ -131,7 +132,7 @@ export class AnimationManager {
 
   /**
    * TBD.
-   * @param {number[]} frames - TBD.
+   * @param {string[]|number[]} frames - TBD.
    * @param {boolean} useNumericIndex - TBD.
    * @returns {boolean} TBD.
    */

@@ -10,10 +10,10 @@ export class ScaleManager {
     dom: DOM;
     width: number;
     height: number;
-    minWidth: any;
-    maxWidth: any;
-    minHeight: any;
-    maxHeight: any;
+    minWidth: number;
+    maxWidth: number;
+    minHeight: number;
+    maxHeight: number;
     offset: Point;
     forceLandscape: boolean;
     forcePortrait: boolean;
@@ -29,7 +29,7 @@ export class ScaleManager {
     onFullScreenInit: Signal;
     onFullScreenChange: Signal;
     onFullScreenError: Signal;
-    screenOrientation: any;
+    screenOrientation: string;
     scaleFactor: Point;
     scaleFactorInversed: Point;
     margin: {
@@ -99,9 +99,9 @@ export class ScaleManager {
     get scaleMode(): number;
     /**
      * TBD.
-     * @param {boolean} config - TBD.
+     * @param {object} config - TBD.
      */
-    parseConfig(config: boolean): void;
+    parseConfig(config: object): void;
     /**
      * TBD.
      */
@@ -138,21 +138,21 @@ export class ScaleManager {
     /**
      * TBD.
      * @param {Function} callback - TBD.
-     * @param context - TBD.
+     * @param {object} context - TBD.
      */
-    setResizeCallback(callback: Function, context: any): void;
+    setResizeCallback(callback: Function, context: object): void;
     /**
      * TBD.
      */
     signalSizeChange(): void;
     /**
      * TBD.
-     * @param minWidth - TBD.
-     * @param minHeight - TBD.
-     * @param maxWidth - TBD.
-     * @param maxHeight - TBD.
+     * @param {number} minWidth - TBD.
+     * @param {number} minHeight - TBD.
+     * @param {number} maxWidth - TBD.
+     * @param {number} maxHeight - TBD.
      */
-    setMinMax(minWidth: any, minHeight: any, maxWidth: any, maxHeight: any): void;
+    setMinMax(minWidth: number, minHeight: number, maxWidth: number, maxHeight: number): void;
     /**
      * TBD.
      */
@@ -297,6 +297,7 @@ export class ScaleManager {
     destroy(): void;
     /**
      * TBD.
+     * @returns {object} TBD.
      */
     get boundingParent(): any;
     /**

@@ -12,7 +12,7 @@ export class MSPointer {
     pointerUpCallback: any;
     capture: boolean;
     button: number;
-    event: Event;
+    event: PointerEvent;
     enabled: boolean;
     _onMSPointerDown: (event: any) => void;
     _onMSPointerMove: (event: any) => void;
@@ -30,34 +30,34 @@ export class MSPointer {
     stop(): void;
     /**
      * TBD.
-     * @param {Event} event - TBD.
+     * @param {PointerEvent} event - TBD.
      */
-    onPointerDown(event: Event): void;
+    onPointerDown(event: PointerEvent): void;
     /**
      * TBD.
-     * @param {Event} event - TBD.
+     * @param {PointerEvent} event - TBD.
      */
-    onPointerMove(event: Event): void;
+    onPointerMove(event: PointerEvent): void;
     /**
      * TBD.
-     * @param {Event} event - TBD.
+     * @param {PointerEvent} event - TBD.
      */
-    onPointerUp(event: Event): void;
+    onPointerUp(event: PointerEvent): void;
     /**
      * TBD.
-     * @param {Event} event - TBD.
+     * @param {PointerEvent} event - TBD.
      */
-    onPointerUpGlobal(event: Event): void;
+    onPointerUpGlobal(event: PointerEvent): void;
     /**
      * TBD.
-     * @param {Event} event - TBD.
+     * @param {PointerEvent} event - TBD.
      */
-    onPointerOut(event: Event): void;
+    onPointerOut(event: PointerEvent): void;
     /**
      * TBD.
-     * @param {Event} event - TBD.
+     * @param {PointerEvent} event - TBD.
      */
-    onPointerOver(event: Event): void;
+    onPointerOver(event: PointerEvent): void;
     /**
      * TBD.
      * @param {Event} event - TBD.

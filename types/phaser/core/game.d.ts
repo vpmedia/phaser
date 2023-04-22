@@ -12,6 +12,7 @@ export class Game {
     renderer: CanvasRenderer | WebGLRenderer;
     state: SceneManager;
     isBooted: boolean;
+    paused: boolean;
     raf: RequestAnimationFrame;
     add: GameObjectFactory;
     cache: Cache;

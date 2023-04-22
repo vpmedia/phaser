@@ -2,16 +2,16 @@ export class Animation {
     /**
      * TBD.
      * @param {Game} game - TBD.
-     * @param parent - TBD.
+     * @param {Image} parent - TBD.
      * @param {string} name - TBD.
      * @param {FrameData} frameData - TBD.
-     * @param frames - TBD.
+     * @param {string[]|number[]} frames - TBD.
      * @param {number} frameRate - TBD.
      * @param {boolean} loop - TBD.
      */
-    constructor(game: Game, parent: any, name: string, frameData: FrameData, frames: any, frameRate: number, loop?: boolean);
+    constructor(game: Game, parent: Image, name: string, frameData: FrameData, frames: string[] | number[], frameRate: number, loop?: boolean);
     game: Game;
-    _parent: any;
+    _parent: Image;
     _frameData: FrameData;
     name: string;
     _frames: any[];
@@ -163,6 +163,7 @@ export class Animation {
     get enableUpdate(): boolean;
 }
 import { Game } from './game';
+import { Image } from '../display/image';
 import { FrameData } from './frame_data';
 import { Signal } from './signal';
 //# sourceMappingURL=animation.d.ts.map

@@ -33,12 +33,13 @@ export class Timer {
 
   /**
    * TBD.
-   * @param delay - TBD.
-   * @param loop
-   * @param repeatCount
+   * @param {number} delay - TBD.
+   * @param {boolean} loop - TBD.
+   * @param {number} repeatCount - TBD.
    * @param {Function} callback - TBD.
-   * @param callbackContext
-   * @param args - TBD.
+   * @param {object} callbackContext - TBD.
+   * @param {...any} args - TBD.
+   * @returns {TimerEvent} TBD.
    */
   create(delay, loop, repeatCount, callback, callbackContext, args) {
     const roundedDelay = Math.round(delay);
@@ -57,10 +58,11 @@ export class Timer {
 
   /**
    * TBD.
-   * @param delay - TBD.
+   * @param {number} delay - TBD.
    * @param {Function} callback - TBD.
-   * @param callbackContext
-   * @param {...any} args
+   * @param {object} callbackContext - TBD.
+   * @param {...any} args - TBD.
+   * @returns {TimerEvent} TBD.
    */
   add(delay, callback, callbackContext, ...args) {
     return this.create(delay, false, 0, callback, callbackContext, args);
@@ -68,11 +70,12 @@ export class Timer {
 
   /**
    * TBD.
-   * @param delay - TBD.
-   * @param repeatCount
+   * @param {number} delay - TBD.
+   * @param {number} repeatCount - TBD.
    * @param {Function} callback - TBD.
-   * @param callbackContext
-   * @param {...any} args
+   * @param {object} callbackContext - TBD.
+   * @param {...any} args - TBD.
+   * @returns {TimerEvent} TBD.
    */
   repeat(delay, repeatCount, callback, callbackContext, ...args) {
     return this.create(delay, false, repeatCount, callback, callbackContext, args);
@@ -80,10 +83,11 @@ export class Timer {
 
   /**
    * TBD.
-   * @param delay - TBD.
+   * @param {number} delay - TBD.
    * @param {Function} callback - TBD.
-   * @param callbackContext
-   * @param {...any} args
+   * @param {object} callbackContext - TBD.
+   * @param {...any} args - TBD.
+   * @returns {TimerEvent} TBD.
    */
   loop(delay, callback, callbackContext, ...args) {
     return this.create(delay, true, 0, callback, callbackContext, args);
@@ -91,7 +95,7 @@ export class Timer {
 
   /**
    * TBD.
-   * @param delay - TBD.
+   * @param {number} delay - TBD.
    */
   start(delay) {
     if (this.running) {
@@ -106,7 +110,7 @@ export class Timer {
 
   /**
    * TBD.
-   * @param clearEvents
+   * @param {boolean} clearEvents - TBD.
    */
   stop(clearEvents = true) {
     this.running = false;
@@ -118,6 +122,7 @@ export class Timer {
   /**
    * TBD.
    * @param {Event} event - TBD.
+   * @returns {boolean} TBD.
    */
   remove(event) {
     for (let i = 0; i < this.events.length; i += 1) {
@@ -142,8 +147,9 @@ export class Timer {
 
   /**
    * TBD.
-   * @param a - TBD.
-   * @param b - TBD.
+   * @param {TimerEvent} a - TBD.
+   * @param {TimerEvent} b - TBD.
+   * @returns {number} TBD.
    */
   sortHandler(a, b) {
     if (a.tick < b.tick) {
@@ -171,7 +177,8 @@ export class Timer {
 
   /**
    * TBD.
-   * @param time - TBD.
+   * @param {number} time - TBD.
+   * @returns {boolean} TBD.
    */
   update(time) {
     if (this.paused) {
@@ -256,7 +263,7 @@ export class Timer {
 
   /**
    * TBD.
-   * @param baseTime - TBD.
+   * @param {number} baseTime - TBD.
    */
   adjustEvents(baseTime) {
     for (let i = 0; i < this.events.length; i += 1) {
@@ -326,6 +333,7 @@ export class Timer {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get next() {
     return this.nextTick;
@@ -333,6 +341,7 @@ export class Timer {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get duration() {
     if (this.running && this.nextTick > this._now) {
@@ -343,6 +352,7 @@ export class Timer {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get length() {
     return this.events.length;
@@ -350,6 +360,7 @@ export class Timer {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get ms() {
     if (this.running) {
@@ -360,6 +371,7 @@ export class Timer {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get seconds() {
     if (this.running) {

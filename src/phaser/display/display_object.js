@@ -309,7 +309,8 @@ export class DisplayObject {
 
   /**
    * TBD.
-   * @param targetCoordinateSpace - TBD.
+   * @param {DisplayObject} targetCoordinateSpace - TBD.
+   * @returns {Rectangle} TBD.
    */
   getBounds(targetCoordinateSpace) {
     const isTargetCoordinateSpaceDisplayObject = targetCoordinateSpace && targetCoordinateSpace.contains !== undefined;
@@ -515,7 +516,7 @@ export class DisplayObject {
 
   /**
    * TBD.
-   * @param position - TBD.
+   * @param {Point} position - TBD.
    * @returns {Point} TBD.
    */
   toGlobal(position) {
@@ -525,8 +526,8 @@ export class DisplayObject {
 
   /**
    * TBD.
-   * @param position - TBD.
-   * @param from - TBD.
+   * @param {Point} position - TBD.
+   * @param {DisplayObject} from - TBD.
    * @returns {Point} TBD.
    */
   toLocal(position, from) {

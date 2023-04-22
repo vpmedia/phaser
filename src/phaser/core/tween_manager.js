@@ -94,6 +94,7 @@ export class TweenManager {
 
   /**
    * TBD.
+   * @returns {Tween[]} TBD.
    */
   getAll() {
     return this._tweens;
@@ -111,8 +112,8 @@ export class TweenManager {
 
   /**
    * TBD.
-   * @param obj
-   * @param children
+   * @param {object} obj - TBD.
+   * @param {object[]} children - TBD.
    */
   removeFrom(obj, children) {
     let i;
@@ -141,7 +142,7 @@ export class TweenManager {
 
   /**
    * TBD.
-   * @param tween
+   * @param {Tween} tween - TBD.
    */
   add(tween) {
     tween._manager = this;
@@ -150,7 +151,8 @@ export class TweenManager {
 
   /**
    * TBD.
-   * @param object
+   * @param {object} object - TBD.
+   * @returns {Tween} TBD.
    */
   create(object) {
     return new Tween(object, this.game, this);
@@ -158,7 +160,7 @@ export class TweenManager {
 
   /**
    * TBD.
-   * @param tween
+   * @param {Tween} tween - TBD.
    */
   remove(tween) {
     let i = this._tweens.indexOf(tween);
@@ -174,6 +176,7 @@ export class TweenManager {
 
   /**
    * TBD.
+   * @returns {boolean} TBD.
    */
   update() {
     const addTweens = this._add.length;
@@ -200,7 +203,8 @@ export class TweenManager {
 
   /**
    * TBD.
-   * @param object
+   * @param {object} object - TBD.
+   * @returns {boolean} TBD.
    */
   isTweening(object) {
     return this._tweens.some((tween) => tween.target === object);

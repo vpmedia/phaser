@@ -9,6 +9,7 @@ export class CanvasRenderer {
     clearBeforeRender: any;
     transparent: any;
     autoResize: boolean;
+    contextLost: boolean;
     width: number;
     height: number;
     view: any;

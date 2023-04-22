@@ -10,11 +10,11 @@ export class GameObjectFactory {
      * @param {number} x - TBD.
      * @param {number} y - TBD.
      * @param {string} key - TBD.
-     * @param frame - TBD.
+     * @param {string} frame - TBD.
      * @param {Group} group - TBD.
      * @returns {Image} TBD.
      */
-    image(x: number, y: number, key: string, frame: any, group?: Group): Image;
+    image(x: number, y: number, key: string, frame: string, group?: Group): Image;
     /**
      * TBD.
      * @param {Group} parent - TBD.
@@ -27,12 +27,12 @@ export class GameObjectFactory {
      * TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
-     * @param text - TBD.
-     * @param style - TBD.
+     * @param {string} text - TBD.
+     * @param {object} style - TBD.
      * @param {Group} group - TBD.
      * @returns {Text} TBD.
      */
-    text(x: number, y: number, text: any, style: any, group?: Group): Text;
+    text(x: number, y: number, text: string, style: object, group?: Group): Text;
     /**
      * TBD.
      * @param {number} x - TBD.
@@ -40,14 +40,14 @@ export class GameObjectFactory {
      * @param {string} key - TBD.
      * @param {Function} callback - TBD.
      * @param {object} callbackContext - TBD.
-     * @param overFrame - TBD.
-     * @param outFrame - TBD.
-     * @param downFrame - TBD.
-     * @param upFrame - TBD.
+     * @param {string} overFrame - TBD.
+     * @param {string} outFrame - TBD.
+     * @param {string} downFrame - TBD.
+     * @param {string} upFrame - TBD.
      * @param {Group} group - TBD.
      * @returns {Button} TBD.
      */
-    button(x: number, y: number, key: string, callback: Function, callbackContext: object, overFrame: any, outFrame: any, downFrame: any, upFrame: any, group?: Group): Button;
+    button(x: number, y: number, key: string, callback: Function, callbackContext: object, overFrame: string, outFrame: string, downFrame: string, upFrame: string, group?: Group): Button;
     /**
      * TBD.
      * @param {number} x - TBD.
@@ -60,14 +60,14 @@ export class GameObjectFactory {
      * TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
-     * @param font - TBD.
-     * @param text - TBD.
-     * @param size - TBD.
+     * @param {string} font - TBD.
+     * @param {string} text - TBD.
+     * @param {number} size - TBD.
      * @param {Group} group - TBD.
-     * @param align - TBD.
+     * @param {string} align - TBD.
      * @returns {BitmapText} TBD.
      */
-    bitmapText(x: number, y: number, font: any, text: any, size: any, group?: Group, align?: string): BitmapText;
+    bitmapText(x: number, y: number, font: string, text: string, size: number, group?: Group, align?: string): BitmapText;
 }
 import { Game } from './game';
 import { Group } from '../display/group';

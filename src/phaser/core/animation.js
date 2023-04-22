@@ -1,15 +1,16 @@
 import { Game } from './game';
 import { Signal } from './signal';
 import { FrameData } from './frame_data';
+import { Image } from '../display/image';
 
 export class Animation {
   /**
    * TBD.
    * @param {Game} game - TBD.
-   * @param parent - TBD.
+   * @param {Image} parent - TBD.
    * @param {string} name - TBD.
    * @param {FrameData} frameData - TBD.
-   * @param frames - TBD.
+   * @param {string[]|number[]} frames - TBD.
    * @param {number} frameRate - TBD.
    * @param {boolean} loop - TBD.
    */

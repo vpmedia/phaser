@@ -52,42 +52,46 @@ export class TweenManager {
     };
     /**
      * TBD.
+     * @returns {Tween[]} TBD.
      */
-    getAll(): any[];
+    getAll(): Tween[];
     /**
      * TBD.
      */
     removeAll(): void;
     /**
      * TBD.
-     * @param obj
-     * @param children
+     * @param {object} obj - TBD.
+     * @param {object[]} children - TBD.
      */
-    removeFrom(obj: any, children: any): void;
+    removeFrom(obj: object, children: object[]): void;
     /**
      * TBD.
-     * @param tween
+     * @param {Tween} tween - TBD.
      */
-    add(tween: any): void;
+    add(tween: Tween): void;
     /**
      * TBD.
-     * @param object
+     * @param {object} object - TBD.
+     * @returns {Tween} TBD.
      */
-    create(object: any): Tween;
+    create(object: object): Tween;
     /**
      * TBD.
-     * @param tween
+     * @param {Tween} tween - TBD.
      */
-    remove(tween: any): void;
+    remove(tween: Tween): void;
     /**
      * TBD.
+     * @returns {boolean} TBD.
      */
     update(): boolean;
     /**
      * TBD.
-     * @param object
+     * @param {object} object - TBD.
+     * @returns {boolean} TBD.
      */
-    isTweening(object: any): boolean;
+    isTweening(object: object): boolean;
     /**
      * TBD.
      */

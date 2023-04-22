@@ -139,7 +139,7 @@ export class ScaleManager {
 
   /**
    * TBD.
-   * @param {boolean} config - TBD.
+   * @param {object} config - TBD.
    */
   parseConfig(config) {
     if (config.scaleMode !== undefined) {
@@ -250,7 +250,7 @@ export class ScaleManager {
   /**
    * TBD.
    * @param {Function} callback - TBD.
-   * @param context - TBD.
+   * @param {object} context - TBD.
    */
   setResizeCallback(callback, context) {
     this.onResize = callback;
@@ -282,10 +282,10 @@ export class ScaleManager {
 
   /**
    * TBD.
-   * @param minWidth - TBD.
-   * @param minHeight - TBD.
-   * @param maxWidth - TBD.
-   * @param maxHeight - TBD.
+   * @param {number} minWidth - TBD.
+   * @param {number} minHeight - TBD.
+   * @param {number} maxWidth - TBD.
+   * @param {number} maxHeight - TBD.
    */
   setMinMax(minWidth, minHeight, maxWidth, maxHeight) {
     this.minWidth = minWidth;
@@ -871,6 +871,7 @@ export class ScaleManager {
 
   /**
    * TBD.
+   * @returns {object} TBD.
    */
   get boundingParent() {
     if (this.parentIsWindow || (this.isFullScreen && this.hasPhaserSetFullScreen && !this._createdFullScreenTarget)) {

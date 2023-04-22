@@ -229,7 +229,7 @@ export class SoundManager {
 
   /**
    * TBD.
-   * @param files - TBD.
+   * @param {Sound[]|string[]} files - TBD.
    * @param {Function} callback - TBD.
    * @param {object} callbackContext - TBD.
    */
@@ -286,9 +286,10 @@ export class SoundManager {
   /**
    * TBD.
    * @param {string} key - TBD.
-   * @param volume - TBD.
-   * @param loop - TBD.
-   * @param connect - TBD.
+   * @param {number} volume - TBD.
+   * @param {boolean} loop - TBD.
+   * @param {boolean} connect - TBD.
+   * @returns {Sound} TBD.
    */
   add(key, volume = 1, loop = false, connect = this.connectToMaster) {
     const sound = new Sound(this.game, key, volume, loop, connect);
@@ -299,6 +300,7 @@ export class SoundManager {
   /**
    * TBD.
    * @param {string} key - TBD.
+   * @returns {SoundSprite} TBD.
    */
   addSprite(key) {
     return new SoundSprite(this.game, key);
@@ -306,7 +308,8 @@ export class SoundManager {
 
   /**
    * TBD.
-   * @param sound - TBD.
+   * @param {Sound} sound - TBD.
+   * @returns {boolean} TBD.
    */
   remove(sound) {
     let i = this._sounds.length;
@@ -324,6 +327,7 @@ export class SoundManager {
   /**
    * TBD.
    * @param {string} key - TBD.
+   * @returns {number} TBD.
    */
   removeByKey(key) {
     let i = this._sounds.length;
@@ -342,8 +346,9 @@ export class SoundManager {
   /**
    * TBD.
    * @param {string} key - TBD.
-   * @param volume - TBD.
-   * @param loop - TBD.
+   * @param {number} volume - TBD.
+   * @param {boolean} loop - TBD.
+   * @returns {Sound} TBD.
    */
   play(key, volume = 1, loop = false) {
     if (this.noAudio) {
@@ -406,6 +411,7 @@ export class SoundManager {
 
   /**
    * TBD.
+   * @returns {boolean} TBD.
    */
   get mute() {
     return this._muted;
@@ -432,6 +438,7 @@ export class SoundManager {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get volume() {
     return this._volume;

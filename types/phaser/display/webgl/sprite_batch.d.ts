@@ -37,7 +37,7 @@ export class WebGLSpriteBatch {
     end(): void;
     /**
      * TBD.
-     * @param sprite
+     * @param sprite - TBD.
      * @param {Matrix} matrix - TBD.
      */
     render(sprite: any, matrix: Matrix): void;

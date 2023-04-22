@@ -12,8 +12,8 @@ export class RenderTexture extends Texture {
    * @param {number} width - TBD.
    * @param {number} height - TBD.
    * @param renderer - TBD.
-   * @param scaleMode - TBD.
-   * @param resolution - TBD.
+   * @param {number} scaleMode - TBD.
+   * @param {number} resolution - TBD.
    */
   constructor(width, height, renderer, scaleMode, resolution = 1) {
     const w = width || 100;
@@ -79,6 +79,7 @@ export class RenderTexture extends Texture {
 
   /**
    * TBD.
+   * @returns {HTMLImageElement} TBD.
    */
   getImage() {
     const image = new Image();
@@ -88,6 +89,7 @@ export class RenderTexture extends Texture {
 
   /**
    * TBD.
+   * @returns {string} TBD.
    */
   getBase64() {
     return this.getCanvas().toDataURL();
@@ -95,8 +97,10 @@ export class RenderTexture extends Texture {
 
   /**
    * TBD.
+   * @returns {HTMLCanvasElement} TBD.
    */
   getCanvas() {
     // TODO
+    return null;
   }
 }

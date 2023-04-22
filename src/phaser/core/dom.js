@@ -1,4 +1,5 @@
 import { Point } from '../geom/point';
+import { Device } from './device';
 
 class VisualBoundsDesktopRectangle {
   /**
@@ -182,7 +183,7 @@ class DocumentBoundsRectangle {
 export class DOM {
   /**
    * TBD.
-   * @param device
+   * @param {Device} device - TBD.
    */
   constructor(device) {
     this.treatAsDesktop =
@@ -200,8 +201,9 @@ export class DOM {
 
   /**
    * TBD.
-   * @param element
-   * @param point
+   * @param element - TBD.
+   * @param {Point} point - TBD.
+   * @returns {Point} TBD.
    */
   getOffset(element, point = null) {
     point = point || new Point();
@@ -217,8 +219,9 @@ export class DOM {
 
   /**
    * TBD.
-   * @param element
-   * @param cushion
+   * @param element - TBD.
+   * @param {number} cushion - TBD.
+   * @returns {boolean} TBD.
    */
   getBounds(element, cushion = 0) {
     element = element && !element.nodeType ? element[0] : element;
@@ -230,8 +233,9 @@ export class DOM {
 
   /**
    * TBD.
-   * @param coords
-   * @param cushion
+   * @param coords - TBD.
+   * @param {number} cushion - TBD.
+   * @returns {object} TBD.
    */
   calibrate(coords, cushion = 0) {
     const output = {
@@ -249,7 +253,8 @@ export class DOM {
 
   /**
    * TBD.
-   * @param primaryFallback
+   * @param {string} primaryFallback - TBD.
+   * @returns {string} TBD.
    */
   getScreenOrientation(primaryFallback) {
     const screen = window.screen;

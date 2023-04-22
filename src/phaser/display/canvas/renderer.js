@@ -37,6 +37,7 @@ export class CanvasRenderer {
     this.clearBeforeRender = game.config.clearBeforeRender;
     this.transparent = game.config.transparent;
     this.autoResize = false;
+    this.contextLost = false;
     this.width = game.width * this.resolution;
     this.height = game.height * this.resolution;
     this.view = game.canvas;

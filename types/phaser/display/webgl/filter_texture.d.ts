@@ -4,9 +4,9 @@ export class FilterTexture {
      * @param {WebGLRenderingContext} gl - TBD.
      * @param {number} width - TBD.
      * @param {number} height - TBD.
-     * @param scaleMode - TBD.
+     * @param {number} scaleMode - TBD.
      */
-    constructor(gl: WebGLRenderingContext, width: number, height: number, scaleMode: any);
+    constructor(gl: WebGLRenderingContext, width: number, height: number, scaleMode: number);
     gl: WebGLRenderingContext;
     frameBuffer: WebGLFramebuffer;
     texture: WebGLTexture;

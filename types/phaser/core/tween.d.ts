@@ -1,14 +1,14 @@
 export class Tween {
     /**
      * TBD.
-     * @param target - TBD.
+     * @param {DisplayObject} target - TBD.
      * @param {Game} game - TBD.
-     * @param manager - TBD.
+     * @param {TweenManager} manager - TBD.
      */
-    constructor(target: any, game: Game, manager: any);
+    constructor(target: DisplayObject, game: Game, manager: TweenManager);
     game: Game;
-    target: any;
-    manager: any;
+    target: DisplayObject;
+    manager: TweenManager;
     timeline: any[];
     reverse: boolean;
     timeScale: number;
@@ -31,125 +31,125 @@ export class Tween {
     _hasStarted: boolean;
     /**
      * TBD.
-     * @param properties - TBD.
-     * @param duration - TBD.
-     * @param ease - TBD.
-     * @param autoStart
-     * @param delay - TBD.
-     * @param repeat - TBD.
-     * @param yoyo - TBD.
+     * @param {object} properties - TBD.
+     * @param {number} duration - TBD.
+     * @param {string} ease - TBD.
+     * @param {boolean} autoStart - TBD.
+     * @param {number} delay - TBD.
+     * @param {number} repeat - TBD.
+     * @param {boolean} yoyo - TBD.
      * @returns {Tween} TBD.
      */
-    to(properties: any, duration?: number, ease?: string, autoStart?: boolean, delay?: number, repeat?: number, yoyo?: boolean): Tween;
+    to(properties: object, duration?: number, ease?: string, autoStart?: boolean, delay?: number, repeat?: number, yoyo?: boolean): Tween;
     /**
      * TBD.
-     * @param properties - TBD.
-     * @param duration - TBD.
-     * @param ease - TBD.
-     * @param autoStart
-     * @param delay - TBD.
-     * @param repeat - TBD.
-     * @param yoyo - TBD.
+     * @param {object} properties - TBD.
+     * @param {number} duration - TBD.
+     * @param {string} ease - TBD.
+     * @param {boolean} autoStart - TBD.
+     * @param {number} delay - TBD.
+     * @param {number} repeat - TBD.
+     * @param {boolean} yoyo - TBD.
      * @returns {Tween} TBD.
      */
-    from(properties: any, duration?: number, ease?: string, autoStart?: boolean, delay?: number, repeat?: number, yoyo?: boolean): Tween;
+    from(properties: object, duration?: number, ease?: string, autoStart?: boolean, delay?: number, repeat?: number, yoyo?: boolean): Tween;
     /**
      * TBD.
-     * @param index - TBD.
+     * @param {number} index - TBD.
      * @returns {Tween} TBD.
      */
     start(index?: number): Tween;
     /**
      * TBD.
-     * @param complete - TBD.
+     * @param {boolean} complete - TBD.
      * @returns {Tween} TBD.
      */
     stop(complete?: boolean): Tween;
     /**
      * TBD.
-     * @param property - TBD.
-     * @param value - TBD.
-     * @param index - TBD.
+     * @param {string} property - TBD.
+     * @param {number} value - TBD.
+     * @param {number} index - TBD.
      * @returns {Tween} TBD.
      */
-    updateTweenData(property: any, value: any, index?: number): Tween;
+    updateTweenData(property: string, value: number, index?: number): Tween;
     /**
      * TBD.
-     * @param duration - TBD.
-     * @param index - TBD.
+     * @param {number} duration - TBD.
+     * @param {number} index - TBD.
      * @returns {Tween} TBD.
      */
-    delay(duration: any, index: any): Tween;
+    delay(duration: number, index: number): Tween;
     /**
      * TBD.
-     * @param total - TBD.
-     * @param repeatDelay - TBD.
-     * @param index - TBD.
+     * @param {number} total - TBD.
+     * @param {number} repeatDelay - TBD.
+     * @param {number} index - TBD.
      * @returns {Tween} TBD.
      */
-    repeat(total: any, repeatDelay?: number, index?: number): Tween;
+    repeat(total: number, repeatDelay?: number, index?: number): Tween;
     /**
      * TBD.
-     * @param duration - TBD.
-     * @param index - TBD.
+     * @param {number} duration - TBD.
+     * @param {number} index - TBD.
      * @returns {Tween} TBD.
      */
-    repeatDelay(duration: any, index: any): Tween;
+    repeatDelay(duration: number, index: number): Tween;
     /**
      * TBD.
-     * @param enable - TBD.
-     * @param yoyoDelay - TBD.
-     * @param index - TBD.
+     * @param {boolean} enable - TBD.
+     * @param {number} yoyoDelay - TBD.
+     * @param {number} index - TBD.
      * @returns {Tween} TBD.
      */
-    yoyo(enable: any, yoyoDelay?: number, index?: number): Tween;
+    yoyo(enable: boolean, yoyoDelay?: number, index?: number): Tween;
     /**
      * TBD.
-     * @param duration - TBD.
-     * @param index - TBD.
+     * @param {number} duration - TBD.
+     * @param {number} index - TBD.
      * @returns {Tween} TBD.
      */
-    yoyoDelay(duration: any, index: any): Tween;
+    yoyoDelay(duration: number, index: number): Tween;
     /**
      * TBD.
-     * @param ease - TBD.
-     * @param index - TBD.
+     * @param {string|Function} ease - TBD.
+     * @param {number} index - TBD.
      * @returns {Tween} TBD.
      */
-    easing(ease: any, index: any): Tween;
+    easing(ease: string | Function, index: number): Tween;
     /**
      * TBD.
      * @param interpolation - TBD.
      * @param context - TBD.
-     * @param index - TBD.
+     * @param {number} index - TBD.
      * @returns {Tween} TBD.
      */
     interpolation(interpolation: any, context?: typeof MathUtils, index?: number): Tween;
     /**
      * TBD.
-     * @param total - TBD.
+     * @param {number} total - TBD.
      * @returns {Tween} TBD.
      */
     repeatAll(total?: number): Tween;
     /**
      * TBD.
-     * @param {...any} args
+     * @param {...any} args - TBD.
      * @returns {Tween} TBD.
      */
     chain(...args: any[]): Tween;
     /**
      * TBD.
-     * @param value - TBD.
+     * @param {boolean} value - TBD.
      * @returns {Tween} TBD.
      */
     loop(value?: boolean): Tween;
     /**
      * TBD.
      * @param {Function} callback - TBD.
-     * @param callbackContext
+     * @param {object} callbackContext - TBD.
      * @returns {Tween} TBD.
      */
-    onUpdateCallback(callback: Function, callbackContext: any): Tween;
+    onUpdateCallback(callback: Function, callbackContext: object): Tween;
     /**
      * TBD.
      */
@@ -174,8 +174,8 @@ export class Tween {
     update(time: number): boolean;
     /**
      * TBD.
-     * @param frameRate
-     * @param data
+     * @param {number} frameRate - TBD.
+     * @param data - TBD.
      */
     generateData(frameRate?: number, data?: any[]): any[];
     /**
@@ -185,6 +185,8 @@ export class Tween {
     get totalDuration(): number;
 }
 import { Game } from './game';
+import { DisplayObject } from '../display/display_object';
+import { TweenManager } from './tween_manager';
 import { Signal } from './signal';
 import * as MathUtils from '../util/math';
 //# sourceMappingURL=tween.d.ts.map

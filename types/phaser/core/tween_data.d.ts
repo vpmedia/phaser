@@ -30,7 +30,7 @@ export class TweenData {
     isFrom: boolean;
     /**
      * TBD.
-     * @param properties - TBD.
+     * @param {object} properties - TBD.
      * @param {number} duration - TBD.
      * @param {string} ease - TBD.
      * @param {number} delay - TBD.
@@ -38,10 +38,10 @@ export class TweenData {
      * @param {boolean} yoyo - TBD.
      * @returns {TweenData} TBD.
      */
-    to(properties: any, duration: number, ease: string, delay: number, repeat: number, yoyo: boolean): TweenData;
+    to(properties: object, duration: number, ease: string, delay: number, repeat: number, yoyo: boolean): TweenData;
     /**
      * TBD.
-     * @param properties - TBD.
+     * @param {object} properties - TBD.
      * @param {number} duration - TBD.
      * @param {string} ease - TBD.
      * @param {number} delay - TBD.
@@ -49,7 +49,7 @@ export class TweenData {
      * @param {boolean} yoyo - TBD.
      * @returns {TweenData} TBD.
      */
-    from(properties: any, duration: number, ease: string, delay: number, repeat: number, yoyo: boolean): TweenData;
+    from(properties: object, duration: number, ease: string, delay: number, repeat: number, yoyo: boolean): TweenData;
     /**
      * TBD.
      * @returns {TweenData} TBD.

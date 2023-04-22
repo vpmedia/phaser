@@ -27,52 +27,57 @@ export class Timer {
     _newTick: number;
     /**
      * TBD.
-     * @param delay - TBD.
-     * @param loop
-     * @param repeatCount
+     * @param {number} delay - TBD.
+     * @param {boolean} loop - TBD.
+     * @param {number} repeatCount - TBD.
      * @param {Function} callback - TBD.
-     * @param callbackContext
-     * @param args - TBD.
+     * @param {object} callbackContext - TBD.
+     * @param {...any} args - TBD.
+     * @returns {TimerEvent} TBD.
      */
-    create(delay: any, loop: any, repeatCount: any, callback: Function, callbackContext: any, args: any): TimerEvent;
+    create(delay: number, loop: boolean, repeatCount: number, callback: Function, callbackContext: object, args: any[]): TimerEvent;
     /**
      * TBD.
-     * @param delay - TBD.
+     * @param {number} delay - TBD.
      * @param {Function} callback - TBD.
-     * @param callbackContext
-     * @param {...any} args
+     * @param {object} callbackContext - TBD.
+     * @param {...any} args - TBD.
+     * @returns {TimerEvent} TBD.
      */
-    add(delay: any, callback: Function, callbackContext: any, ...args: any[]): TimerEvent;
+    add(delay: number, callback: Function, callbackContext: object, ...args: any[]): TimerEvent;
     /**
      * TBD.
-     * @param delay - TBD.
-     * @param repeatCount
+     * @param {number} delay - TBD.
+     * @param {number} repeatCount - TBD.
      * @param {Function} callback - TBD.
-     * @param callbackContext
-     * @param {...any} args
+     * @param {object} callbackContext - TBD.
+     * @param {...any} args - TBD.
+     * @returns {TimerEvent} TBD.
      */
-    repeat(delay: any, repeatCount: any, callback: Function, callbackContext: any, ...args: any[]): TimerEvent;
+    repeat(delay: number, repeatCount: number, callback: Function, callbackContext: object, ...args: any[]): TimerEvent;
     /**
      * TBD.
-     * @param delay - TBD.
+     * @param {number} delay - TBD.
      * @param {Function} callback - TBD.
-     * @param callbackContext
-     * @param {...any} args
+     * @param {object} callbackContext - TBD.
+     * @param {...any} args - TBD.
+     * @returns {TimerEvent} TBD.
      */
-    loop(delay: any, callback: Function, callbackContext: any, ...args: any[]): TimerEvent;
+    loop(delay: number, callback: Function, callbackContext: object, ...args: any[]): TimerEvent;
     /**
      * TBD.
-     * @param delay - TBD.
+     * @param {number} delay - TBD.
      */
-    start(delay: any): void;
+    start(delay: number): void;
     /**
      * TBD.
-     * @param clearEvents
+     * @param {boolean} clearEvents - TBD.
      */
     stop(clearEvents?: boolean): void;
     /**
      * TBD.
      * @param {Event} event - TBD.
+     * @returns {boolean} TBD.
      */
     remove(event: Event): boolean;
     /**
@@ -81,19 +86,21 @@ export class Timer {
     order(): void;
     /**
      * TBD.
-     * @param a - TBD.
-     * @param b - TBD.
+     * @param {TimerEvent} a - TBD.
+     * @param {TimerEvent} b - TBD.
+     * @returns {number} TBD.
      */
-    sortHandler(a: any, b: any): 0 | 1 | -1;
+    sortHandler(a: TimerEvent, b: TimerEvent): number;
     /**
      * TBD.
      */
     clearPendingEvents(): void;
     /**
      * TBD.
-     * @param time - TBD.
+     * @param {number} time - TBD.
+     * @returns {boolean} TBD.
      */
-    update(time: any): boolean;
+    update(time: number): boolean;
     /**
      * TBD.
      */
@@ -104,9 +111,9 @@ export class Timer {
     _pause(): void;
     /**
      * TBD.
-     * @param baseTime - TBD.
+     * @param {number} baseTime - TBD.
      */
-    adjustEvents(baseTime: any): void;
+    adjustEvents(baseTime: number): void;
     /**
      * TBD.
      */
@@ -125,22 +132,27 @@ export class Timer {
     destroy(): void;
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get next(): number;
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get duration(): number;
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get length(): number;
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get ms(): number;
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get seconds(): number;
 }

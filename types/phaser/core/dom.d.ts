@@ -1,9 +1,9 @@
 export class DOM {
     /**
      * TBD.
-     * @param device
+     * @param {Device} device - TBD.
      */
-    constructor(device: any);
+    constructor(device: Device);
     treatAsDesktop: boolean;
     visualBounds: VisualBoundsDesktopRectangle | VisualBoundsRectangle;
     layoutBounds: LayoutBoundsDesktopRectangle | LayoutBoundsRectangle;
@@ -12,41 +12,31 @@ export class DOM {
     scrollYProvider: () => number;
     /**
      * TBD.
-     * @param element
-     * @param point
+     * @param element - TBD.
+     * @param {Point} point - TBD.
+     * @returns {Point} TBD.
      */
-    getOffset(element: any, point?: any): any;
+    getOffset(element: any, point?: Point): Point;
     /**
      * TBD.
-     * @param element
-     * @param cushion
+     * @param element - TBD.
+     * @param {number} cushion - TBD.
+     * @returns {boolean} TBD.
      */
-    getBounds(element: any, cushion?: number): false | {
-        width: number;
-        height: number;
-        left: number;
-        right: number;
-        top: number;
-        bottom: number;
-    };
+    getBounds(element: any, cushion?: number): boolean;
     /**
      * TBD.
-     * @param coords
-     * @param cushion
+     * @param coords - TBD.
+     * @param {number} cushion - TBD.
+     * @returns {object} TBD.
      */
-    calibrate(coords: any, cushion?: number): {
-        width: number;
-        height: number;
-        left: number;
-        right: number;
-        top: number;
-        bottom: number;
-    };
+    calibrate(coords: any, cushion?: number): object;
     /**
      * TBD.
-     * @param primaryFallback
+     * @param {string} primaryFallback - TBD.
+     * @returns {string} TBD.
      */
-    getScreenOrientation(primaryFallback: any): any;
+    getScreenOrientation(primaryFallback: string): string;
     /**
      * TBD.
      * @returns {number} TBD.
@@ -178,5 +168,7 @@ declare class DocumentBoundsRectangle {
      */
     get height(): number;
 }
+import { Point } from '../geom/point';
+import { Device } from './device';
 export {};
 //# sourceMappingURL=dom.d.ts.map

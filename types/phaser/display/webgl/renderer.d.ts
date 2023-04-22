@@ -7,6 +7,7 @@ export class WebGLRenderer {
     type: number;
     resolution: any;
     autoResize: boolean;
+    contextLost: boolean;
     clearBeforeRender: any;
     width: number;
     height: number;
@@ -44,7 +45,7 @@ export class WebGLRenderer {
     glContextId: any;
     /**
      * TBD.
-     * @param stage
+     * @param stage - TBD.
      */
     render(stage: any): void;
     /**
@@ -52,9 +53,9 @@ export class WebGLRenderer {
      * @param displayObject - TBD.
      * @param projection - TBD.
      * @param buffer - TBD.
-     * @param matrix - TBD.
+     * @param {Matrix} matrix - TBD.
      */
-    renderDisplayObject(displayObject: any, projection: any, buffer: any, matrix: any): void;
+    renderDisplayObject(displayObject: any, projection: any, buffer: any, matrix: Matrix): void;
     /**
      * TBD.
      * @param {number} width - TBD.
@@ -78,5 +79,6 @@ import { WebGLSpriteBatch } from './sprite_batch';
 import { WebGLFilterManager } from './filter_manager';
 import { WebGLStencilManager } from './stencil_manager';
 import { WebGLBlendModeManager } from './blend_manager';
+import { Matrix } from '../../geom/matrix';
 import { Game } from '../../core/game';
 //# sourceMappingURL=renderer.d.ts.map

@@ -422,7 +422,7 @@ export class Pointer {
    * @param {string} name - TBD.
    * @param {Function} callback - TBD.
    * @param {object} callbackContext - TBD.
-   * @param callbackArgs - TBD.
+   * @param {...any} callbackArgs - TBD.
    */
   addClickTrampoline(name, callback, callbackContext, callbackArgs) {
     if (!this.isDown) {

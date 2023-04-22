@@ -59,11 +59,11 @@ export class SoundManager {
     decode(key: string): void;
     /**
      * TBD.
-     * @param files - TBD.
+     * @param {Sound[]|string[]} files - TBD.
      * @param {Function} callback - TBD.
      * @param {object} callbackContext - TBD.
      */
-    setDecodedCallback(files: any, callback: Function, callbackContext: object): void;
+    setDecodedCallback(files: Sound[] | string[], callback: Function, callbackContext: object): void;
     /**
      * TBD.
      */
@@ -71,31 +71,36 @@ export class SoundManager {
     /**
      * TBD.
      * @param {string} key - TBD.
-     * @param volume - TBD.
-     * @param loop - TBD.
-     * @param connect - TBD.
+     * @param {number} volume - TBD.
+     * @param {boolean} loop - TBD.
+     * @param {boolean} connect - TBD.
+     * @returns {Sound} TBD.
      */
     add(key: string, volume?: number, loop?: boolean, connect?: boolean): Sound;
     /**
      * TBD.
      * @param {string} key - TBD.
+     * @returns {SoundSprite} TBD.
      */
     addSprite(key: string): SoundSprite;
     /**
      * TBD.
-     * @param sound - TBD.
+     * @param {Sound} sound - TBD.
+     * @returns {boolean} TBD.
      */
-    remove(sound: any): boolean;
+    remove(sound: Sound): boolean;
     /**
      * TBD.
      * @param {string} key - TBD.
+     * @returns {number} TBD.
      */
     removeByKey(key: string): number;
     /**
      * TBD.
      * @param {string} key - TBD.
-     * @param volume - TBD.
-     * @param loop - TBD.
+     * @param {number} volume - TBD.
+     * @param {boolean} loop - TBD.
+     * @returns {Sound} TBD.
      */
     play(key: string, volume?: number, loop?: boolean): Sound;
     /**
@@ -117,6 +122,7 @@ export class SoundManager {
     set mute(arg: boolean);
     /**
      * TBD.
+     * @returns {boolean} TBD.
      */
     get mute(): boolean;
     /**
@@ -125,6 +131,7 @@ export class SoundManager {
     set volume(arg: number);
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get volume(): number;
 }

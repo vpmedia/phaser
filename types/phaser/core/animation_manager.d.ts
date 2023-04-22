@@ -1,11 +1,11 @@
 export class AnimationManager {
     /**
      * TBD.
-     * @param sprite - TBD.
+     * @param {Image} sprite - TBD.
      */
-    constructor(sprite: any);
-    sprite: any;
-    game: any;
+    constructor(sprite: Image);
+    sprite: Image;
+    game: import("./game").Game;
     currentFrame: any;
     currentAnim: any;
     updateIfVisible: boolean;
@@ -61,11 +61,11 @@ export class AnimationManager {
     add(name: string, frameList: number[] | string[], frameRate?: number, loop?: boolean, useNumericIndex?: boolean): Animation;
     /**
      * TBD.
-     * @param {number[]} frames - TBD.
+     * @param {string[]|number[]} frames - TBD.
      * @param {boolean} useNumericIndex - TBD.
      * @returns {boolean} TBD.
      */
-    validateFrames(frames: number[], useNumericIndex?: boolean): boolean;
+    validateFrames(frames: string[] | number[], useNumericIndex?: boolean): boolean;
     /**
      * TBD.
      * @param {string} name - TBD.
@@ -132,6 +132,7 @@ export class AnimationManager {
     get name(): string;
     _frameIndex: any;
 }
+import { Image } from '../display/image';
 import { FrameData } from './frame_data';
 import { Animation } from './animation';
 //# sourceMappingURL=animation_manager.d.ts.map

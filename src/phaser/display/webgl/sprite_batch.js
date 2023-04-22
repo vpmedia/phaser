@@ -88,7 +88,7 @@ export class WebGLSpriteBatch {
 
   /**
    * TBD.
-   * @param sprite
+   * @param sprite - TBD.
    * @param {Matrix} matrix - TBD.
    */
   render(sprite, matrix) {

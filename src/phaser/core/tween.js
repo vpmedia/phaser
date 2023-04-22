@@ -1,5 +1,7 @@
 import { Signal } from './signal';
 import { TweenData } from './tween_data';
+import { TweenManager } from './tween_manager';
+import { DisplayObject } from '../display/display_object';
 import * as MathUtils from '../util/math';
 import { TWEEN_PENDING, TWEEN_RUNNING, TWEEN_COMPLETE, TWEEN_LOOPED } from './const';
 import { Game } from './game';
@@ -7,9 +9,9 @@ import { Game } from './game';
 export class Tween {
   /**
    * TBD.
-   * @param target - TBD.
+   * @param {DisplayObject} target - TBD.
    * @param {Game} game - TBD.
-   * @param manager - TBD.
+   * @param {TweenManager} manager - TBD.
    */
   constructor(target, game, manager) {
     this.game = game;
@@ -39,13 +41,13 @@ export class Tween {
 
   /**
    * TBD.
-   * @param properties - TBD.
-   * @param duration - TBD.
-   * @param ease - TBD.
-   * @param autoStart
-   * @param delay - TBD.
-   * @param repeat - TBD.
-   * @param yoyo - TBD.
+   * @param {object} properties - TBD.
+   * @param {number} duration - TBD.
+   * @param {string} ease - TBD.
+   * @param {boolean} autoStart - TBD.
+   * @param {number} delay - TBD.
+   * @param {number} repeat - TBD.
+   * @param {boolean} yoyo - TBD.
    * @returns {Tween} TBD.
    */
   to(properties, duration = 1000, ease = 'Linear', autoStart = false, delay = 0, repeat = 0, yoyo = false) {
@@ -64,13 +66,13 @@ export class Tween {
 
   /**
    * TBD.
-   * @param properties - TBD.
-   * @param duration - TBD.
-   * @param ease - TBD.
-   * @param autoStart
-   * @param delay - TBD.
-   * @param repeat - TBD.
-   * @param yoyo - TBD.
+   * @param {object} properties - TBD.
+   * @param {number} duration - TBD.
+   * @param {string} ease - TBD.
+   * @param {boolean} autoStart - TBD.
+   * @param {number} delay - TBD.
+   * @param {number} repeat - TBD.
+   * @param {boolean} yoyo - TBD.
    * @returns {Tween} TBD.
    */
   from(properties, duration = 1000, ease = 'Linear', autoStart = false, delay = 0, repeat = 0, yoyo = false) {
@@ -90,7 +92,7 @@ export class Tween {
 
   /**
    * TBD.
-   * @param index - TBD.
+   * @param {number} index - TBD.
    * @returns {Tween} TBD.
    */
   start(index = 0) {
@@ -125,7 +127,7 @@ export class Tween {
 
   /**
    * TBD.
-   * @param complete - TBD.
+   * @param {boolean} complete - TBD.
    * @returns {Tween} TBD.
    */
   stop(complete = false) {
@@ -145,9 +147,9 @@ export class Tween {
 
   /**
    * TBD.
-   * @param property - TBD.
-   * @param value - TBD.
-   * @param index - TBD.
+   * @param {string} property - TBD.
+   * @param {number} value - TBD.
+   * @param {number} index - TBD.
    * @returns {Tween} TBD.
    */
   updateTweenData(property, value, index = 0) {
@@ -166,8 +168,8 @@ export class Tween {
 
   /**
    * TBD.
-   * @param duration - TBD.
-   * @param index - TBD.
+   * @param {number} duration - TBD.
+   * @param {number} index - TBD.
    * @returns {Tween} TBD.
    */
   delay(duration, index) {
@@ -176,9 +178,9 @@ export class Tween {
 
   /**
    * TBD.
-   * @param total - TBD.
-   * @param repeatDelay - TBD.
-   * @param index - TBD.
+   * @param {number} total - TBD.
+   * @param {number} repeatDelay - TBD.
+   * @param {number} index - TBD.
    * @returns {Tween} TBD.
    */
   repeat(total, repeatDelay = 0, index = 0) {
@@ -188,8 +190,8 @@ export class Tween {
 
   /**
    * TBD.
-   * @param duration - TBD.
-   * @param index - TBD.
+   * @param {number} duration - TBD.
+   * @param {number} index - TBD.
    * @returns {Tween} TBD.
    */
   repeatDelay(duration, index) {
@@ -198,9 +200,9 @@ export class Tween {
 
   /**
    * TBD.
-   * @param enable - TBD.
-   * @param yoyoDelay - TBD.
-   * @param index - TBD.
+   * @param {boolean} enable - TBD.
+   * @param {number} yoyoDelay - TBD.
+   * @param {number} index - TBD.
    * @returns {Tween} TBD.
    */
   yoyo(enable, yoyoDelay = 0, index = 0) {
@@ -210,8 +212,8 @@ export class Tween {
 
   /**
    * TBD.
-   * @param duration - TBD.
-   * @param index - TBD.
+   * @param {number} duration - TBD.
+   * @param {number} index - TBD.
    * @returns {Tween} TBD.
    */
   yoyoDelay(duration, index) {
@@ -220,8 +222,8 @@ export class Tween {
 
   /**
    * TBD.
-   * @param ease - TBD.
-   * @param index - TBD.
+   * @param {string|Function} ease - TBD.
+   * @param {number} index - TBD.
    * @returns {Tween} TBD.
    */
   easing(ease, index) {
@@ -235,7 +237,7 @@ export class Tween {
    * TBD.
    * @param interpolation - TBD.
    * @param context - TBD.
-   * @param index - TBD.
+   * @param {number} index - TBD.
    * @returns {Tween} TBD.
    */
   interpolation(interpolation, context = MathUtils, index = 0) {
@@ -245,7 +247,7 @@ export class Tween {
 
   /**
    * TBD.
-   * @param total - TBD.
+   * @param {number} total - TBD.
    * @returns {Tween} TBD.
    */
   repeatAll(total = 0) {
@@ -255,7 +257,7 @@ export class Tween {
 
   /**
    * TBD.
-   * @param {...any} args
+   * @param {...any} args - TBD.
    * @returns {Tween} TBD.
    */
   chain(...args) {
@@ -273,7 +275,7 @@ export class Tween {
 
   /**
    * TBD.
-   * @param value - TBD.
+   * @param {boolean} value - TBD.
    * @returns {Tween} TBD.
    */
   loop(value = true) {
@@ -284,7 +286,7 @@ export class Tween {
   /**
    * TBD.
    * @param {Function} callback - TBD.
-   * @param callbackContext
+   * @param {object} callbackContext - TBD.
    * @returns {Tween} TBD.
    */
   onUpdateCallback(callback, callbackContext) {
@@ -421,8 +423,8 @@ export class Tween {
 
   /**
    * TBD.
-   * @param frameRate
-   * @param data
+   * @param {number} frameRate - TBD.
+   * @param data - TBD.
    */
   generateData(frameRate = 60, data = []) {
     if (this.game === null || this.target === null) {

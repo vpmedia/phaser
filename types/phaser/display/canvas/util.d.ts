@@ -21,14 +21,14 @@ export function setBackgroundColor(canvas: HTMLCanvasElement, color: string): ob
  * @param {string} value - TBD.
  * @returns {object} TBD.
  */
-export function setTouchAction(canvas: HTMLCanvasElement, value: string): object;
+export function setTouchAction(canvas: HTMLCanvasElement, value?: string): object;
 /**
  * TBD.
  * @param {HTMLCanvasElement} canvas - TBD.
  * @param {string} value - TBD.
  * @returns {object} TBD.
  */
-export function setUserSelect(canvas: HTMLCanvasElement, value: string): object;
+export function setUserSelect(canvas: HTMLCanvasElement, value?: string): object;
 /**
  * TBD.
  * @param {HTMLCanvasElement} canvas - TBD.
