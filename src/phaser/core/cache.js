@@ -113,7 +113,7 @@ export class Cache {
    * @param {string} key - TBD.
    * @param {string} url - TBD.
    * @param data - TBD.
-   * @param atlasData - TBD.
+   * @param {object} atlasData - TBD.
    */
   addTextureAtlas(key, url, data, atlasData) {
     const obj = {

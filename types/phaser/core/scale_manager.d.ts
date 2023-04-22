@@ -94,19 +94,21 @@ export class ScaleManager {
     set scaleMode(arg: number);
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get scaleMode(): number;
     /**
      * TBD.
-     * @param config - TBD.
+     * @param {boolean} config - TBD.
      */
-    parseConfig(config: any): void;
+    parseConfig(config: boolean): void;
     /**
      * TBD.
      */
     set fullScreenScaleMode(arg: number);
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get fullScreenScaleMode(): number;
     /**
@@ -127,12 +129,12 @@ export class ScaleManager {
     setGameSize(width: number, height: number): void;
     /**
      * TBD.
-     * @param hScale - TBD.
-     * @param vScale - TBD.
-     * @param hTrim - TBD.
-     * @param vTrim - TBD.
+     * @param {number} hScale - TBD.
+     * @param {number} vScale - TBD.
+     * @param {number} hTrim - TBD.
+     * @param {number} vTrim - TBD.
      */
-    setUserScale(hScale: any, vScale: any, hTrim: any, vTrim: any): void;
+    setUserScale(hScale: number, vScale: number, hTrim: number, vTrim: number): void;
     /**
      * TBD.
      * @param {Function} callback - TBD.
@@ -163,26 +165,28 @@ export class ScaleManager {
      * TBD.
      * @param {number} width - TBD.
      * @param {number} height - TBD.
-     * @param resize
+     * @param {boolean} resize - TBD.
      */
-    updateDimensions(width: number, height: number, resize: any): void;
+    updateDimensions(width: number, height: number, resize: boolean): void;
     /**
      * TBD.
      */
     updateScalingAndBounds(): void;
     /**
      * TBD.
-     * @param forceLandscape - TBD.
-     * @param forcePortrait - TBD.
+     * @param {boolean} forceLandscape - TBD.
+     * @param {boolean} forcePortrait - TBD.
      */
     forceOrientation(forceLandscape?: boolean, forcePortrait?: boolean): void;
     /**
      * TBD.
-     * @param orientation - TBD.
+     * @param {string} orientation - TBD.
+     * @returns {string} TBD.
      */
-    classifyOrientation(orientation: any): "portrait" | "landscape";
+    classifyOrientation(orientation: string): string;
     /**
      * TBD.
+     * @returns {boolean} TBD.
      */
     updateOrientationState(): boolean;
     /**
@@ -205,15 +209,16 @@ export class ScaleManager {
     updateLayout(): void;
     /**
      * TBD.
-     * @param target - TBD.
+     * @param {Rectangle} target - TBD.
+     * @returns {Rectangle} TBD.
      */
-    getParentBounds(target: any): any;
+    getParentBounds(target: Rectangle): Rectangle;
     /**
      * TBD.
-     * @param horizontal - TBD.
-     * @param vertical - TBD.
+     * @param {boolean} horizontal - TBD.
+     * @param {boolean} vertical - TBD.
      */
-    alignCanvas(horizontal: any, vertical: any): void;
+    alignCanvas(horizontal: boolean, vertical: boolean): void;
     /**
      * TBD.
      */
@@ -224,15 +229,15 @@ export class ScaleManager {
     reflowCanvas(): void;
     /**
      * TBD.
-     * @param cssWidth - TBD.
-     * @param cssHeight - TBD.
+     * @param {string} cssWidth - TBD.
+     * @param {string} cssHeight - TBD.
      */
     resetCanvas(cssWidth?: string, cssHeight?: string): void;
     /**
      * TBD.
-     * @param force - TBD.
+     * @param {boolean} force - TBD.
      */
-    queueUpdate(force: any): void;
+    queueUpdate(force: boolean): void;
     /**
      * TBD.
      */
@@ -243,7 +248,7 @@ export class ScaleManager {
     setMaximum(): void;
     /**
      * TBD.
-     * @param expanding - TBD.
+     * @param {boolean} expanding - TBD.
      */
     setShowAll(expanding?: boolean): void;
     /**
@@ -252,16 +257,19 @@ export class ScaleManager {
     setExactFit(): void;
     /**
      * TBD.
+     * @returns {HTMLDivElement} TBD.
      */
     createFullScreenTarget(): HTMLDivElement;
     /**
      * TBD.
-     * @param antialias - TBD.
-     * @param allowTrampoline - TBD.
+     * @param {boolean} antialias - TBD.
+     * @param {boolean} allowTrampoline - TBD.
+     * @returns {boolean} TBD.
      */
-    startFullScreen(antialias: any, allowTrampoline: any): boolean;
+    startFullScreen(antialias: boolean, allowTrampoline: boolean): boolean;
     /**
      * TBD.
+     * @returns {boolean} TBD.
      */
     stopFullScreen(): boolean;
     /**
@@ -270,9 +278,9 @@ export class ScaleManager {
     cleanupCreatedTarget(): void;
     /**
      * TBD.
-     * @param enteringFullscreen - TBD.
+     * @param {boolean} enteringFullscreen - TBD.
      */
-    prepScreenMode(enteringFullscreen: any): void;
+    prepScreenMode(enteringFullscreen: boolean): void;
     /**
      * TBD.
      * @param {Event} event - TBD.
@@ -293,34 +301,42 @@ export class ScaleManager {
     get boundingParent(): any;
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get currentScaleMode(): number;
     /**
      * TBD.
+     * @returns {boolean} TBD.
      */
     get pageAlignHorizontally(): boolean;
     /**
      * TBD.
+     * @returns {boolean} TBD.
      */
     get pageAlignVertically(): boolean;
     /**
      * TBD.
+     * @returns {boolean} TBD.
      */
     get isFullScreen(): boolean;
     /**
      * TBD.
+     * @returns {boolean} TBD.
      */
     get isPortrait(): boolean;
     /**
      * TBD.
+     * @returns {boolean} TBD.
      */
     get isLandscape(): boolean;
     /**
      * TBD.
+     * @returns {boolean} TBD.
      */
     get isGamePortrait(): boolean;
     /**
      * TBD.
+     * @returns {boolean} TBD.
      */
     get isGameLandscape(): boolean;
 }

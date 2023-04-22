@@ -2,12 +2,12 @@ export class SceneManager {
     /**
      * TBD.
      * @param {Game} game - TBD.
-     * @param pendingState - TBD.
+     * @param {string} pendingState - TBD.
      */
-    constructor(game: Game, pendingState: any);
+    constructor(game: Game, pendingState: string);
     game: Game;
     states: {};
-    _pendingState: any;
+    _pendingState: string;
     _clearWorld: boolean;
     _clearCache: boolean;
     _created: boolean;
@@ -28,9 +28,10 @@ export class SceneManager {
      * TBD.
      * @param {string} key - TBD.
      * @param state - TBD.
-     * @param autoStart - TBD.
+     * @param {boolean} autoStart - TBD.
+     * @returns {Scene|object} TBD.
      */
-    add(key: string, state: any, autoStart?: boolean): any;
+    add(key: string, state: any, autoStart?: boolean): Scene | object;
     /**
      * TBD.
      * @param {string} key - TBD.
@@ -40,15 +41,15 @@ export class SceneManager {
     /**
      * TBD.
      * @param {string} key - TBD.
-     * @param clearWorld - TBD.
-     * @param clearCache - TBD.
+     * @param {boolean} clearWorld - TBD.
+     * @param {boolean} clearCache - TBD.
      * @param {...any} args - TBD.
      */
     start(key: string, clearWorld?: boolean, clearCache?: boolean, ...args: any[]): void;
     /**
      * TBD.
-     * @param clearWorld - TBD.
-     * @param clearCache - TBD.
+     * @param {boolean} clearWorld - TBD.
+     * @param {boolean} clearCache - TBD.
      * @param {...any} args - TBD.
      */
     restart(clearWorld?: boolean, clearCache?: boolean, ...args: any[]): void;
@@ -63,6 +64,7 @@ export class SceneManager {
     /**
      * TBD.
      * @param {string} key - TBD.
+     * @returns {boolean} TBD.
      */
     checkState(key: string): boolean;
     /**
@@ -82,8 +84,9 @@ export class SceneManager {
     setCurrentState(key: string): void;
     /**
      * TBD.
+     * @returns {Scene} TBD.
      */
-    getCurrentState(): any;
+    getCurrentState(): Scene;
     /**
      * TBD.
      */
@@ -112,8 +115,10 @@ export class SceneManager {
     dummy(): void;
     /**
      * TBD.
+     * @returns {boolean} TBD.
      */
     get created(): boolean;
 }
 import { Game } from './game';
+import { Scene } from './scene';
 //# sourceMappingURL=scene_manager.d.ts.map

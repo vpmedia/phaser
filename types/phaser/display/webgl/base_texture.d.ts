@@ -1,16 +1,16 @@
 export class BaseTexture {
     /**
      * TBD.
-     * @param source - TBD.
-     * @param scaleMode - TBD.
+     * @param {HTMLCanvasElement} source - TBD.
+     * @param {number} scaleMode - TBD.
      */
-    constructor(source: any, scaleMode: any);
+    constructor(source: HTMLCanvasElement, scaleMode: number);
     resolution: number;
     width: any;
     height: any;
     scaleMode: any;
     hasLoaded: boolean;
-    source: any;
+    source: HTMLCanvasElement;
     premultipliedAlpha: boolean;
     _glTextures: any[];
     mipmap: boolean;

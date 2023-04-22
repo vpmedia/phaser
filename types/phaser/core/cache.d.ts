@@ -54,9 +54,9 @@ export class Cache {
      * @param {string} key - TBD.
      * @param {string} url - TBD.
      * @param data - TBD.
-     * @param atlasData - TBD.
+     * @param {object} atlasData - TBD.
      */
-    addTextureAtlas(key: string, url: string, data: any, atlasData: any): void;
+    addTextureAtlas(key: string, url: string, data: any, atlasData: object): void;
     /**
      * TBD.
      * @param {string} key - TBD.

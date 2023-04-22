@@ -2,9 +2,9 @@ export class AbstractFilter {
     /**
      * TBD.
      * @param fragmentSrc - TBD.
-     * @param uniforms - TBD.
+     * @param {object} uniforms - TBD.
      */
-    constructor(fragmentSrc: any, uniforms: any);
+    constructor(fragmentSrc: any, uniforms: object);
     passes: AbstractFilter[];
     shaders: any[];
     dirty: boolean;

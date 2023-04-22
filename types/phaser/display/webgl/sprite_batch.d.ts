@@ -38,9 +38,9 @@ export class WebGLSpriteBatch {
     /**
      * TBD.
      * @param sprite
-     * @param matrix - TBD.
+     * @param {Matrix} matrix - TBD.
      */
-    render(sprite: any, matrix: any): void;
+    render(sprite: any, matrix: Matrix): void;
     /**
      * TBD.
      */
@@ -51,11 +51,11 @@ export class WebGLSpriteBatch {
     flush(): void;
     /**
      * TBD.
-     * @param texture
-     * @param size
-     * @param startIndex
+     * @param {BaseTexture} texture - TBD.
+     * @param {number} size - TBD.
+     * @param {number} startIndex - TBD.
      */
-    renderBatch(texture: any, size: any, startIndex: any): void;
+    renderBatch(texture: BaseTexture, size: number, startIndex: number): void;
     /**
      * TBD.
      */
@@ -70,4 +70,6 @@ export class WebGLSpriteBatch {
     destroy(): void;
 }
 import { AbstractFilter } from './abstract_filter';
+import { Matrix } from '../../geom/matrix';
+import { BaseTexture } from './base_texture';
 //# sourceMappingURL=sprite_batch.d.ts.map

@@ -1,4 +1,5 @@
 import { Rectangle } from '../../geom/rectangle';
+import { BaseTexture } from './base_texture';
 
 export class TextureUvs {
   /**
@@ -19,10 +20,10 @@ export class TextureUvs {
 export class Texture {
   /**
    * TBD.
-   * @param baseTexture - TBD.
-   * @param frame - TBD.
-   * @param crop - TBD.
-   * @param trim - TBD.
+   * @param {BaseTexture} baseTexture - TBD.
+   * @param {Rectangle} frame - TBD.
+   * @param {Rectangle} crop - TBD.
+   * @param {Rectangle} trim - TBD.
    */
   constructor(baseTexture, frame, crop, trim) {
     this.noFrame = false;
@@ -64,7 +65,7 @@ export class Texture {
 
   /**
    * TBD.
-   * @param destroyBase - TBD.
+   * @param {boolean} destroyBase - TBD.
    */
   destroy(destroyBase = false) {
     if (destroyBase) {
@@ -75,7 +76,8 @@ export class Texture {
 
   /**
    * TBD.
-   * @param frame - TBD.
+   * @param {Rectangle} frame - TBD.
+   * @throws Error.
    */
   setFrame(frame) {
     this.noFrame = false;

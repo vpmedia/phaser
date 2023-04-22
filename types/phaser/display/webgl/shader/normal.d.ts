@@ -30,7 +30,7 @@ export class NormalShader {
     initUniforms(): void;
     /**
      * TBD.
-     * @param uniform
+     * @param uniform - TBD.
      */
     initSampler2D(uniform: any): void;
     /**

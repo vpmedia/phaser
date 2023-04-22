@@ -5,7 +5,7 @@ export class SceneManager {
   /**
    * TBD.
    * @param {Game} game - TBD.
-   * @param pendingState - TBD.
+   * @param {string} pendingState - TBD.
    */
   constructor(game, pendingState) {
     this.game = game;
@@ -41,7 +41,8 @@ export class SceneManager {
    * TBD.
    * @param {string} key - TBD.
    * @param state - TBD.
-   * @param autoStart - TBD.
+   * @param {boolean} autoStart - TBD.
+   * @returns {Scene|object} TBD.
    */
   add(key, state, autoStart = false) {
     let newState = null;
@@ -85,8 +86,8 @@ export class SceneManager {
   /**
    * TBD.
    * @param {string} key - TBD.
-   * @param clearWorld - TBD.
-   * @param clearCache - TBD.
+   * @param {boolean} clearWorld - TBD.
+   * @param {boolean} clearCache - TBD.
    * @param {...any} args - TBD.
    */
   start(key, clearWorld = true, clearCache = false, ...args) {
@@ -103,8 +104,8 @@ export class SceneManager {
 
   /**
    * TBD.
-   * @param clearWorld - TBD.
-   * @param clearCache - TBD.
+   * @param {boolean} clearWorld - TBD.
+   * @param {boolean} clearCache - TBD.
    * @param {...any} args - TBD.
    */
   restart(clearWorld = true, clearCache = false, ...args) {
@@ -174,6 +175,7 @@ export class SceneManager {
   /**
    * TBD.
    * @param {string} key - TBD.
+   * @returns {boolean} TBD.
    */
   checkState(key) {
     if (this.states[key]) {
@@ -230,6 +232,7 @@ export class SceneManager {
 
   /**
    * TBD.
+   * @returns {Scene} TBD.
    */
   getCurrentState() {
     return this.states[this.current];
@@ -305,6 +308,7 @@ export class SceneManager {
 
   /**
    * TBD.
+   * @returns {boolean} TBD.
    */
   get created() {
     return this._created;

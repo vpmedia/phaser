@@ -13,20 +13,23 @@ export class SoundSprite {
     sounds: {};
     /**
      * TBD.
-     * @param marker - TBD.
-     * @param volume - TBD.
+     * @param {string} marker - TBD.
+     * @param {number} volume - TBD.
+     * @returns {Sound} TBD.
      */
-    play(marker: any, volume?: number): any;
+    play(marker: string, volume?: number): Sound;
     /**
      * TBD.
-     * @param marker - TBD.
+     * @param {string} marker - TBD.
      */
-    stop(marker: any): void;
+    stop(marker: string): void;
     /**
      * TBD.
-     * @param marker - TBD.
+     * @param {string} marker - TBD.
+     * @returns {Sound} TBD.
      */
-    get(marker: any): any;
+    get(marker: string): Sound;
 }
 import { Game } from './game';
+import { Sound } from './sound';
 //# sourceMappingURL=sound_sprite.d.ts.map

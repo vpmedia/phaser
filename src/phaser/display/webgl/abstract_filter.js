@@ -2,7 +2,7 @@ export class AbstractFilter {
   /**
    * TBD.
    * @param fragmentSrc - TBD.
-   * @param uniforms - TBD.
+   * @param {object} uniforms - TBD.
    */
   constructor(fragmentSrc, uniforms) {
     this.passes = [this];

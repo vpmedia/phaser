@@ -1,5 +1,7 @@
 import { AbstractFilter } from './abstract_filter';
 import { NormalShader } from './shader/normal';
+import { BaseTexture } from './base_texture';
+import { Matrix } from '../../geom/matrix';
 
 export class WebGLSpriteBatch {
   /**
@@ -87,7 +89,7 @@ export class WebGLSpriteBatch {
   /**
    * TBD.
    * @param sprite
-   * @param matrix - TBD.
+   * @param {Matrix} matrix - TBD.
    */
   render(sprite, matrix) {
     const texture = sprite.texture;
@@ -294,9 +296,9 @@ export class WebGLSpriteBatch {
 
   /**
    * TBD.
-   * @param texture
-   * @param size
-   * @param startIndex
+   * @param {BaseTexture} texture - TBD.
+   * @param {number} size - TBD.
+   * @param {number} startIndex - TBD.
    */
   renderBatch(texture, size, startIndex) {
     if (size === 0) {

@@ -9,8 +9,6 @@ export class RenderTexture extends Texture {
      */
     constructor(width: number, height: number, renderer: any, scaleMode: any, resolution?: number);
     resolution: number;
-    frame: Rectangle;
-    crop: Rectangle;
     renderer: any;
     textureBuffer: CanvasBuffer | FilterTexture;
     render: () => void;
@@ -45,7 +43,6 @@ export class RenderTexture extends Texture {
     getCanvas(): void;
 }
 import { Texture } from './texture';
-import { Rectangle } from '../../geom/rectangle';
 import { CanvasBuffer } from '../canvas/buffer';
 import { FilterTexture } from './filter_texture';
 import { Point } from '../../geom/point';

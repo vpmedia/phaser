@@ -11,16 +11,16 @@ export class TextureUvs {
 export class Texture {
     /**
      * TBD.
-     * @param baseTexture - TBD.
-     * @param frame - TBD.
-     * @param crop - TBD.
-     * @param trim - TBD.
+     * @param {BaseTexture} baseTexture - TBD.
+     * @param {Rectangle} frame - TBD.
+     * @param {Rectangle} crop - TBD.
+     * @param {Rectangle} trim - TBD.
      */
-    constructor(baseTexture: any, frame: any, crop: any, trim: any);
+    constructor(baseTexture: BaseTexture, frame: Rectangle, crop: Rectangle, trim: Rectangle);
     noFrame: boolean;
-    baseTexture: any;
-    frame: any;
-    trim: any;
+    baseTexture: BaseTexture;
+    frame: Rectangle;
+    trim: Rectangle;
     valid: boolean;
     isTiling: boolean;
     requiresUpdate: boolean;
@@ -28,24 +28,27 @@ export class Texture {
     _uvs: TextureUvs;
     width: number;
     height: number;
-    crop: any;
+    crop: Rectangle;
     /**
      * TBD.
      */
     onBaseTextureLoaded(): void;
     /**
      * TBD.
-     * @param destroyBase - TBD.
+     * @param {boolean} destroyBase - TBD.
      */
     destroy(destroyBase?: boolean): void;
     /**
      * TBD.
-     * @param frame - TBD.
+     * @param {Rectangle} frame - TBD.
+     * @throws Error.
      */
-    setFrame(frame: any): void;
+    setFrame(frame: Rectangle): void;
     /**
      * TBD.
      */
     _updateUvs(): void;
 }
+import { BaseTexture } from './base_texture';
+import { Rectangle } from '../../geom/rectangle';
 //# sourceMappingURL=texture.d.ts.map

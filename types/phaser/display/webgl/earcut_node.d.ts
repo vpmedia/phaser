@@ -1,12 +1,12 @@
 export class Node {
     /**
      * TBD.
-     * @param i
+     * @param {number} i - TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
      */
-    constructor(i: any, x: number, y: number);
-    i: any;
+    constructor(i: number, x: number, y: number);
+    i: number;
     x: number;
     y: number;
     prev: any;

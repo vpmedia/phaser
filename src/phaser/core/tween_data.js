@@ -4,7 +4,7 @@ import { TWEEN_PENDING, TWEEN_RUNNING, TWEEN_COMPLETE, TWEEN_LOOPED } from './co
 export class TweenData {
   /**
    * TBD.
-   * @param parent
+   * @param parent - TBD.
    */
   constructor(parent) {
     this.parent = parent;
@@ -35,12 +35,13 @@ export class TweenData {
 
   /**
    * TBD.
-   * @param properties
-   * @param duration - TBD.
-   * @param ease - TBD.
-   * @param delay - TBD.
-   * @param repeat
-   * @param yoyo
+   * @param properties - TBD.
+   * @param {number} duration - TBD.
+   * @param {string} ease - TBD.
+   * @param {number} delay - TBD.
+   * @param {number} repeat - TBD.
+   * @param {boolean} yoyo - TBD.
+   * @returns {TweenData} TBD.
    */
   to(properties, duration, ease, delay, repeat, yoyo) {
     this.vEnd = properties;
@@ -55,12 +56,13 @@ export class TweenData {
 
   /**
    * TBD.
-   * @param properties
-   * @param duration - TBD.
-   * @param ease - TBD.
-   * @param delay - TBD.
-   * @param repeat
-   * @param yoyo
+   * @param properties - TBD.
+   * @param {number} duration - TBD.
+   * @param {string} ease - TBD.
+   * @param {number} delay - TBD.
+   * @param {number} repeat - TBD.
+   * @param {boolean} yoyo - TBD.
+   * @returns {TweenData} TBD.
    */
   from(properties, duration, ease, delay, repeat, yoyo) {
     this.vEnd = properties;
@@ -75,6 +77,7 @@ export class TweenData {
 
   /**
    * TBD.
+   * @returns {TweenData} TBD.
    */
   start() {
     this.startTime = this.game.time.time + this.delay;
@@ -106,6 +109,7 @@ export class TweenData {
 
   /**
    * TBD.
+   * @returns {TweenData} TBD.
    */
   loadValues() {
     const keys = Object.keys(this.parent.properties);
@@ -142,7 +146,8 @@ export class TweenData {
 
   /**
    * TBD.
-   * @param time
+   * @param {number} time - TBD.
+   * @returns {number} TBD.
    */
   update(time) {
     if (!this.isRunning) {
@@ -184,7 +189,8 @@ export class TweenData {
 
   /**
    * TBD.
-   * @param frameRate
+   * @param {number} frameRate - TBD.
+   * @returns {object[]} TBD.
    */
   generateData(frameRate) {
     if (this.parent.reverse) {
@@ -232,6 +238,7 @@ export class TweenData {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   repeat() {
     //  If not a yoyo and repeatCounter = 0 then we're done

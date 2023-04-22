@@ -29,7 +29,7 @@ export class WebGLStencilManager {
   /**
    * TBD.
    * @param graphics - TBD.
-   * @param webGLData
+   * @param webGLData - TBD.
    * @param {object} renderSession - TBD.
    */
   pushStencil(graphics, webGLData, renderSession) {
@@ -87,7 +87,7 @@ export class WebGLStencilManager {
   /**
    * TBD.
    * @param graphics - TBD.
-   * @param webGLData
+   * @param webGLData - TBD.
    * @param {object} renderSession - TBD.
    */
   bindGraphics(graphics, webGLData, renderSession) {
@@ -134,7 +134,7 @@ export class WebGLStencilManager {
   /**
    * TBD.
    * @param graphics - TBD.
-   * @param webGLData
+   * @param webGLData - TBD.
    * @param {object} renderSession - TBD.
    */
   popStencil(graphics, webGLData, renderSession) {

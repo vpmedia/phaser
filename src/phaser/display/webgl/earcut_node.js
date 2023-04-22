@@ -1,7 +1,7 @@
 export class Node {
   /**
    * TBD.
-   * @param i
+   * @param {number} i - TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
    */

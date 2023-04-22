@@ -1,7 +1,7 @@
 export class TweenData {
     /**
      * TBD.
-     * @param parent
+     * @param parent - TBD.
      */
     constructor(parent: any);
     parent: any;
@@ -30,45 +30,52 @@ export class TweenData {
     isFrom: boolean;
     /**
      * TBD.
-     * @param properties
-     * @param duration - TBD.
-     * @param ease - TBD.
-     * @param delay - TBD.
-     * @param repeat
-     * @param yoyo
+     * @param properties - TBD.
+     * @param {number} duration - TBD.
+     * @param {string} ease - TBD.
+     * @param {number} delay - TBD.
+     * @param {number} repeat - TBD.
+     * @param {boolean} yoyo - TBD.
+     * @returns {TweenData} TBD.
      */
-    to(properties: any, duration: any, ease: any, delay: any, repeat: any, yoyo: any): TweenData;
+    to(properties: any, duration: number, ease: string, delay: number, repeat: number, yoyo: boolean): TweenData;
     /**
      * TBD.
-     * @param properties
-     * @param duration - TBD.
-     * @param ease - TBD.
-     * @param delay - TBD.
-     * @param repeat
-     * @param yoyo
+     * @param properties - TBD.
+     * @param {number} duration - TBD.
+     * @param {string} ease - TBD.
+     * @param {number} delay - TBD.
+     * @param {number} repeat - TBD.
+     * @param {boolean} yoyo - TBD.
+     * @returns {TweenData} TBD.
      */
-    from(properties: any, duration: any, ease: any, delay: any, repeat: any, yoyo: any): TweenData;
+    from(properties: any, duration: number, ease: string, delay: number, repeat: number, yoyo: boolean): TweenData;
     /**
      * TBD.
+     * @returns {TweenData} TBD.
      */
     start(): TweenData;
     yoyoCounter: number;
     /**
      * TBD.
+     * @returns {TweenData} TBD.
      */
     loadValues(): TweenData;
     /**
      * TBD.
-     * @param time
+     * @param {number} time - TBD.
+     * @returns {number} TBD.
      */
-    update(time: any): number;
+    update(time: number): number;
     /**
      * TBD.
-     * @param frameRate
+     * @param {number} frameRate - TBD.
+     * @returns {object[]} TBD.
      */
-    generateData(frameRate: any): {}[];
+    generateData(frameRate: number): object[];
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     repeat(): number;
 }

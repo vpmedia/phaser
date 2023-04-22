@@ -139,7 +139,7 @@ export class ScaleManager {
 
   /**
    * TBD.
-   * @param config - TBD.
+   * @param {boolean} config - TBD.
    */
   parseConfig(config) {
     if (config.scaleMode !== undefined) {
@@ -236,10 +236,10 @@ export class ScaleManager {
 
   /**
    * TBD.
-   * @param hScale - TBD.
-   * @param vScale - TBD.
-   * @param hTrim - TBD.
-   * @param vTrim - TBD.
+   * @param {number} hScale - TBD.
+   * @param {number} vScale - TBD.
+   * @param {number} hTrim - TBD.
+   * @param {number} vTrim - TBD.
    */
   setUserScale(hScale, vScale, hTrim, vTrim) {
     this._userScaleFactor.setTo(hScale, vScale);
@@ -344,7 +344,7 @@ export class ScaleManager {
    * TBD.
    * @param {number} width - TBD.
    * @param {number} height - TBD.
-   * @param resize
+   * @param {boolean} resize - TBD.
    */
   updateDimensions(width, height, resize) {
     this.width = width * this.parentScaleFactor.x;
@@ -381,8 +381,8 @@ export class ScaleManager {
 
   /**
    * TBD.
-   * @param forceLandscape - TBD.
-   * @param forcePortrait - TBD.
+   * @param {boolean} forceLandscape - TBD.
+   * @param {boolean} forcePortrait - TBD.
    */
   forceOrientation(forceLandscape = false, forcePortrait = false) {
     this.forceLandscape = forceLandscape;
@@ -392,7 +392,8 @@ export class ScaleManager {
 
   /**
    * TBD.
-   * @param orientation - TBD.
+   * @param {string} orientation - TBD.
+   * @returns {string} TBD.
    */
   classifyOrientation(orientation) {
     if (orientation === 'portrait-primary' || orientation === 'portrait-secondary') {
@@ -405,6 +406,7 @@ export class ScaleManager {
 
   /**
    * TBD.
+   * @returns {boolean} TBD.
    */
   updateOrientationState() {
     const previousOrientation = this.screenOrientation;
@@ -495,7 +497,8 @@ export class ScaleManager {
 
   /**
    * TBD.
-   * @param target - TBD.
+   * @param {Rectangle} target - TBD.
+   * @returns {Rectangle} TBD.
    */
   getParentBounds(target) {
     const bounds = target || new Rectangle();
@@ -532,8 +535,8 @@ export class ScaleManager {
 
   /**
    * TBD.
-   * @param horizontal - TBD.
-   * @param vertical - TBD.
+   * @param {boolean} horizontal - TBD.
+   * @param {boolean} vertical - TBD.
    */
   alignCanvas(horizontal, vertical) {
     const parentBounds = this.getParentBounds(this._tempBounds);
@@ -608,8 +611,8 @@ export class ScaleManager {
 
   /**
    * TBD.
-   * @param cssWidth - TBD.
-   * @param cssHeight - TBD.
+   * @param {string} cssWidth - TBD.
+   * @param {string} cssHeight - TBD.
    */
   resetCanvas(cssWidth = this.width + 'px', cssHeight = this.height + 'px') {
     const canvas = this.game.canvas;
@@ -625,7 +628,7 @@ export class ScaleManager {
 
   /**
    * TBD.
-   * @param force - TBD.
+   * @param {boolean} force - TBD.
    */
   queueUpdate(force) {
     if (force) {
@@ -652,7 +655,7 @@ export class ScaleManager {
 
   /**
    * TBD.
-   * @param expanding - TBD.
+   * @param {boolean} expanding - TBD.
    */
   setShowAll(expanding = false) {
     const bounds = this.getParentBounds(this._tempBounds);
@@ -689,6 +692,7 @@ export class ScaleManager {
 
   /**
    * TBD.
+   * @returns {HTMLDivElement} TBD.
    */
   createFullScreenTarget() {
     const fsTarget = document.createElement('div');
@@ -700,8 +704,9 @@ export class ScaleManager {
 
   /**
    * TBD.
-   * @param antialias - TBD.
-   * @param allowTrampoline - TBD.
+   * @param {boolean} antialias - TBD.
+   * @param {boolean} allowTrampoline - TBD.
+   * @returns {boolean} TBD.
    */
   startFullScreen(antialias, allowTrampoline) {
     if (this.isFullScreen) {
@@ -755,6 +760,7 @@ export class ScaleManager {
 
   /**
    * TBD.
+   * @returns {boolean} TBD.
    */
   stopFullScreen() {
     if (!this.isFullScreen || !this.compatibility.supportsFullScreen) {
@@ -782,7 +788,7 @@ export class ScaleManager {
 
   /**
    * TBD.
-   * @param enteringFullscreen - TBD.
+   * @param {boolean} enteringFullscreen - TBD.
    */
   prepScreenMode(enteringFullscreen) {
     const fsTarget = this._createdFullScreenTarget || this.fullScreenTarget;
@@ -876,6 +882,7 @@ export class ScaleManager {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get scaleMode() {
     return this._scaleMode;
@@ -897,6 +904,7 @@ export class ScaleManager {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get fullScreenScaleMode() {
     return this._fullScreenScaleMode;
@@ -922,6 +930,7 @@ export class ScaleManager {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get currentScaleMode() {
     return this.isFullScreen ? this._fullScreenScaleMode : this._scaleMode;
@@ -929,6 +938,7 @@ export class ScaleManager {
 
   /**
    * TBD.
+   * @returns {boolean} TBD.
    */
   get pageAlignHorizontally() {
     return this._pageAlignHorizontally;
@@ -936,6 +946,7 @@ export class ScaleManager {
 
   /**
    * TBD.
+   * @returns {boolean} TBD.
    */
   get pageAlignVertically() {
     return this._pageAlignVertically;
@@ -943,6 +954,7 @@ export class ScaleManager {
 
   /**
    * TBD.
+   * @returns {boolean} TBD.
    */
   get isFullScreen() {
     return !!(
@@ -955,6 +967,7 @@ export class ScaleManager {
 
   /**
    * TBD.
+   * @returns {boolean} TBD.
    */
   get isPortrait() {
     return this.classifyOrientation(this.screenOrientation) === 'portrait';
@@ -962,6 +975,7 @@ export class ScaleManager {
 
   /**
    * TBD.
+   * @returns {boolean} TBD.
    */
   get isLandscape() {
     return this.classifyOrientation(this.screenOrientation) === 'landscape';
@@ -969,6 +983,7 @@ export class ScaleManager {
 
   /**
    * TBD.
+   * @returns {boolean} TBD.
    */
   get isGamePortrait() {
     return this.height > this.width;
@@ -976,6 +991,7 @@ export class ScaleManager {
 
   /**
    * TBD.
+   * @returns {boolean} TBD.
    */
   get isGameLandscape() {
     return this.width > this.height;
