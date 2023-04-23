@@ -126,10 +126,10 @@ export class Loader {
 
   /**
    * TBD.
-   * @param {boolean} hard
-   * @param {boolean} clearEvents
+   * @param {boolean} hard - TBD.
+   * @param {boolean} clearEvents - TBD.
    */
-  reset(hard, clearEvents = false) {
+  reset(hard = false, clearEvents = false) {
     if (hard) {
       this.preloadSprite = null;
     }
@@ -157,9 +157,9 @@ export class Loader {
    * @param {string} type - TBD.
    * @param {string} key - TBD.
    * @param {string} url - TBD.
-   * @param properties - TBD.
+   * @param {object} properties - TBD.
    * @param {boolean} overwrite - TBD.
-   * @param extension - TBD.
+   * @param {string} extension - TBD.
    * @returns {Loader} TBD.
    */
   addToFileList(type, key = '', url = null, properties = null, overwrite = false, extension = null) {
@@ -225,7 +225,7 @@ export class Loader {
    * TBD.
    * @param {string} key - TBD.
    * @param {string} url - TBD.
-   * @param data - TBD.
+   * @param {object} data - TBD.
    * @param {object} callbackContext - TBD.
    * @returns {Loader} TBD.
    */
@@ -267,7 +267,7 @@ export class Loader {
    * @param {boolean} overwrite - TBD.
    * @returns {Loader} TBD.
    */
-  image(key, url, overwrite) {
+  image(key, url, overwrite = false) {
     return this.addToFileList('image', key, url, undefined, overwrite, '.png');
   }
 
@@ -327,11 +327,11 @@ export class Loader {
    * TBD.
    * @param {string} key - TBD.
    * @param {string} url - TBD.
-   * @param frameWidth - TBD.
-   * @param frameHeight - TBD.
-   * @param frameMax - TBD.
-   * @param margin - TBD.
-   * @param spacing - TBD.
+   * @param {number} frameWidth - TBD.
+   * @param {number} frameHeight - TBD.
+   * @param {number} frameMax - TBD.
+   * @param {number} margin - TBD.
+   * @param {number} spacing - TBD.
    * @returns {Loader} TBD.
    */
   spritesheet(key, url, frameWidth, frameHeight, frameMax = -1, margin = 0, spacing = 0) {
@@ -348,8 +348,8 @@ export class Loader {
   /**
    * TBD.
    * @param {string} key - TBD.
-   * @param urls
-   * @param {boolean} autoDecode
+   * @param {string[]} urls - TBD.
+   * @param {boolean} autoDecode - TBD.
    * @returns {Loader} TBD.
    */
   audio(key, urls, autoDecode = true) {
@@ -365,10 +365,10 @@ export class Loader {
   /**
    * TBD.
    * @param {string} key - TBD.
-   * @param urls - TBD.
-   * @param jsonURL - TBD.
-   * @param jsonData - TBD.
-   * @param autoDecode - TBD.
+   * @param {string} urls - TBD.
+   * @param {string} jsonURL - TBD.
+   * @param {object} jsonData - TBD.
+   * @param {boolean} autoDecode - TBD.
    * @returns {Loader} TBD.
    */
   audioSprite(key, urls, jsonURL, jsonData, autoDecode = true) {
@@ -390,11 +390,11 @@ export class Loader {
   /**
    * TBD.
    * @param {string} key - TBD.
-   * @param textureURL - TBD.
-   * @param atlasURL - TBD.
-   * @param atlasData - TBD.
-   * @param xSpacing - TBD.
-   * @param ySpacing - TBD.
+   * @param {string} textureURL - TBD.
+   * @param {string} atlasURL - TBD.
+   * @param {object} atlasData - TBD.
+   * @param {number} xSpacing - TBD.
+   * @param {number} ySpacing - TBD.
    * @returns {Loader} TBD.
    * @throws Error.
    */
@@ -436,7 +436,7 @@ export class Loader {
    * @param {string} key - TBD.
    * @param {string} textureURL - TBD.
    * @param {string} atlasURL - TBD.
-   * @param atlasData - TBD.
+   * @param {object} atlasData - TBD.
    * @param {number} format - TBD.
    * @returns {Loader} TBD.
    */
@@ -815,7 +815,7 @@ export class Loader {
    * @param {Function} onload - TBD.
    * @param {Function} onerror - TBD.
    */
-  xhrLoad(file, url, type, onload, onerror) {
+  xhrLoad(file, url, type, onload, onerror = null) {
     this.log('xhrLoad', file);
     const scope = this;
     const xhr = new XMLHttpRequest();
@@ -923,7 +923,7 @@ export class Loader {
   /**
    * TBD.
    * @param {object} file - TBD.
-   * @param xhr - TBD.
+   * @param {XMLHttpRequest} xhr - TBD.
    * @param {number} reason - TBD.
    */
   fileError(file, xhr, reason) {
@@ -941,7 +941,7 @@ export class Loader {
   /**
    * TBD.
    * @param {object} file - TBD.
-   * @param xhr - TBD.
+   * @param {XMLHttpRequest} xhr - TBD.
    * @throws Error.
    */
   fileComplete(file, xhr) {
@@ -1033,7 +1033,7 @@ export class Loader {
   /**
    * TBD.
    * @param {object} file - TBD.
-   * @param xhr - TBD.
+   * @param {XMLHttpRequest} xhr - TBD.
    */
   jsonLoadComplete(file, xhr) {
     const data = JSON.parse(xhr.responseText);
@@ -1058,7 +1058,7 @@ export class Loader {
   /**
    * TBD.
    * @param {object} file - TBD.
-   * @param xhr - TBD.
+   * @param {XMLHttpRequest} xhr - TBD.
    */
   xmlLoadComplete(file, xhr) {
     // Always try parsing the content as XML, regardless of actually response type
@@ -1082,7 +1082,7 @@ export class Loader {
 
   /**
    * TBD.
-   * @param data - TBD.
+   * @param {object} data - TBD.
    * @returns {Document} TBD.
    */
   parseXml(data) {

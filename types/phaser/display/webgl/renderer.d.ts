@@ -40,6 +40,7 @@ export class WebGLRenderer {
     initRegistry(): void;
     /**
      * TBD.
+     * @throws Error.
      */
     initContext(): void;
     glContextId: any;

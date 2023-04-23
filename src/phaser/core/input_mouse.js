@@ -48,6 +48,7 @@ class WheelEventProxy {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get deltaMode() {
     return this._deltaMode;

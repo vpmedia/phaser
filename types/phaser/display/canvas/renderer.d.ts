@@ -30,7 +30,7 @@ export class CanvasRenderer {
     render(root: any): void;
     /**
      * TBD.
-     * @param removeView - TBD.
+     * @param {boolean} removeView - TBD.
      */
     destroy(removeView?: boolean): void;
     /**

@@ -67,21 +67,21 @@ export class Input {
     /**
      * TBD.
      * @param {Function} callback - TBD.
-     * @param context - TBD.
+     * @param {object} context - TBD.
      */
-    setInteractiveCandidateHandler(callback: Function, context: any): void;
+    setInteractiveCandidateHandler(callback: Function, context: object): void;
     /**
      * TBD.
      * @param {Function} callback - TBD.
-     * @param context - TBD.
+     * @param {object} context - TBD.
      */
-    addMoveCallback(callback: Function, context: any): void;
+    addMoveCallback(callback: Function, context: object): void;
     /**
      * TBD.
      * @param {Function} callback - TBD.
-     * @param context - TBD.
+     * @param {object} context - TBD.
      */
-    deleteMoveCallback(callback: Function, context: any): void;
+    deleteMoveCallback(callback: Function, context: object): void;
     /**
      * TBD.
      * @returns {Pointer} TBD.

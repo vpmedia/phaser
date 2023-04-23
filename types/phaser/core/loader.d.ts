@@ -75,21 +75,21 @@ export class Loader {
     getAsset(type: string, key: string): object;
     /**
      * TBD.
-     * @param {boolean} hard
-     * @param {boolean} clearEvents
+     * @param {boolean} hard - TBD.
+     * @param {boolean} clearEvents - TBD.
      */
-    reset(hard: boolean, clearEvents?: boolean): void;
+    reset(hard?: boolean, clearEvents?: boolean): void;
     /**
      * TBD.
      * @param {string} type - TBD.
      * @param {string} key - TBD.
      * @param {string} url - TBD.
-     * @param properties - TBD.
+     * @param {object} properties - TBD.
      * @param {boolean} overwrite - TBD.
-     * @param extension - TBD.
+     * @param {string} extension - TBD.
      * @returns {Loader} TBD.
      */
-    addToFileList(type: string, key?: string, url?: string, properties?: any, overwrite?: boolean, extension?: any): Loader;
+    addToFileList(type: string, key?: string, url?: string, properties?: object, overwrite?: boolean, extension?: string): Loader;
     /**
      * TBD.
      * @param {string} type - TBD.
@@ -103,11 +103,11 @@ export class Loader {
      * TBD.
      * @param {string} key - TBD.
      * @param {string} url - TBD.
-     * @param data - TBD.
+     * @param {object} data - TBD.
      * @param {object} callbackContext - TBD.
      * @returns {Loader} TBD.
      */
-    pack(key: string, url: string, data: any, callbackContext: object): Loader;
+    pack(key: string, url: string, data: object, callbackContext: object): Loader;
     /**
      * TBD.
      * @param {string} key - TBD.
@@ -115,7 +115,7 @@ export class Loader {
      * @param {boolean} overwrite - TBD.
      * @returns {Loader} TBD.
      */
-    image(key: string, url: string, overwrite: boolean): Loader;
+    image(key: string, url: string, overwrite?: boolean): Loader;
     /**
      * TBD.
      * @param {string[]} keys - TBD.
@@ -151,54 +151,54 @@ export class Loader {
      * TBD.
      * @param {string} key - TBD.
      * @param {string} url - TBD.
-     * @param frameWidth - TBD.
-     * @param frameHeight - TBD.
-     * @param frameMax - TBD.
-     * @param margin - TBD.
-     * @param spacing - TBD.
+     * @param {number} frameWidth - TBD.
+     * @param {number} frameHeight - TBD.
+     * @param {number} frameMax - TBD.
+     * @param {number} margin - TBD.
+     * @param {number} spacing - TBD.
      * @returns {Loader} TBD.
      */
-    spritesheet(key: string, url: string, frameWidth: any, frameHeight: any, frameMax?: number, margin?: number, spacing?: number): Loader;
+    spritesheet(key: string, url: string, frameWidth: number, frameHeight: number, frameMax?: number, margin?: number, spacing?: number): Loader;
     /**
      * TBD.
      * @param {string} key - TBD.
-     * @param urls
-     * @param {boolean} autoDecode
+     * @param {string[]} urls - TBD.
+     * @param {boolean} autoDecode - TBD.
      * @returns {Loader} TBD.
      */
-    audio(key: string, urls: any, autoDecode?: boolean): Loader;
+    audio(key: string, urls: string[], autoDecode?: boolean): Loader;
     /**
      * TBD.
      * @param {string} key - TBD.
-     * @param urls - TBD.
-     * @param jsonURL - TBD.
-     * @param jsonData - TBD.
-     * @param autoDecode - TBD.
+     * @param {string} urls - TBD.
+     * @param {string} jsonURL - TBD.
+     * @param {object} jsonData - TBD.
+     * @param {boolean} autoDecode - TBD.
      * @returns {Loader} TBD.
      */
-    audioSprite(key: string, urls: any, jsonURL: any, jsonData: any, autoDecode?: boolean): Loader;
-    /**
-     * TBD.
-     * @param {string} key - TBD.
-     * @param textureURL - TBD.
-     * @param atlasURL - TBD.
-     * @param atlasData - TBD.
-     * @param xSpacing - TBD.
-     * @param ySpacing - TBD.
-     * @returns {Loader} TBD.
-     * @throws Error.
-     */
-    bitmapFont(key: string, textureURL?: any, atlasURL?: any, atlasData?: any, xSpacing?: number, ySpacing?: number): Loader;
+    audioSprite(key: string, urls: string, jsonURL: string, jsonData: object, autoDecode?: boolean): Loader;
     /**
      * TBD.
      * @param {string} key - TBD.
      * @param {string} textureURL - TBD.
      * @param {string} atlasURL - TBD.
-     * @param atlasData - TBD.
+     * @param {object} atlasData - TBD.
+     * @param {number} xSpacing - TBD.
+     * @param {number} ySpacing - TBD.
+     * @returns {Loader} TBD.
+     * @throws Error.
+     */
+    bitmapFont(key: string, textureURL?: string, atlasURL?: string, atlasData?: object, xSpacing?: number, ySpacing?: number): Loader;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     * @param {string} textureURL - TBD.
+     * @param {string} atlasURL - TBD.
+     * @param {object} atlasData - TBD.
      * @param {number} format - TBD.
      * @returns {Loader} TBD.
      */
-    atlas(key: string, textureURL: string, atlasURL?: string, atlasData?: any, format?: number): Loader;
+    atlas(key: string, textureURL: string, atlasURL?: string, atlasData?: object, format?: number): Loader;
     /**
      * TBD.
      * @param {Function} callback - TBD.
@@ -272,7 +272,7 @@ export class Loader {
      * @param {Function} onload - TBD.
      * @param {Function} onerror - TBD.
      */
-    xhrLoad(file: object, url: string, type: string, onload: Function, onerror: Function): void;
+    xhrLoad(file: object, url: string, type: string, onload: Function, onerror?: Function): void;
     /**
      * TBD.
      */
@@ -286,23 +286,23 @@ export class Loader {
     /**
      * TBD.
      * @param {object} file - TBD.
-     * @param xhr - TBD.
+     * @param {XMLHttpRequest} xhr - TBD.
      * @param {number} reason - TBD.
      */
-    fileError(file: object, xhr: any, reason: number): void;
+    fileError(file: object, xhr: XMLHttpRequest, reason: number): void;
     /**
      * TBD.
      * @param {object} file - TBD.
-     * @param xhr - TBD.
+     * @param {XMLHttpRequest} xhr - TBD.
      * @throws Error.
      */
-    fileComplete(file: object, xhr: any): void;
+    fileComplete(file: object, xhr: XMLHttpRequest): void;
     /**
      * TBD.
      * @param {object} file - TBD.
-     * @param xhr - TBD.
+     * @param {XMLHttpRequest} xhr - TBD.
      */
-    jsonLoadComplete(file: object, xhr: any): void;
+    jsonLoadComplete(file: object, xhr: XMLHttpRequest): void;
     /**
      * TBD.
      */
@@ -310,15 +310,15 @@ export class Loader {
     /**
      * TBD.
      * @param {object} file - TBD.
-     * @param xhr - TBD.
+     * @param {XMLHttpRequest} xhr - TBD.
      */
-    xmlLoadComplete(file: object, xhr: any): void;
+    xmlLoadComplete(file: object, xhr: XMLHttpRequest): void;
     /**
      * TBD.
-     * @param data - TBD.
+     * @param {object} data - TBD.
      * @returns {Document} TBD.
      */
-    parseXml(data: any): Document;
+    parseXml(data: object): Document;
     /**
      * TBD.
      */

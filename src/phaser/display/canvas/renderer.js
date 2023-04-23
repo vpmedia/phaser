@@ -87,7 +87,7 @@ export class CanvasRenderer {
 
   /**
    * TBD.
-   * @param removeView - TBD.
+   * @param {boolean} removeView - TBD.
    */
   destroy(removeView = true) {
     if (removeView && this.view.parent) {

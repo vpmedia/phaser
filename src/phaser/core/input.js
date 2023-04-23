@@ -125,7 +125,7 @@ export class Input {
   /**
    * TBD.
    * @param {Function} callback - TBD.
-   * @param context - TBD.
+   * @param {object} context - TBD.
    */
   setInteractiveCandidateHandler(callback, context) {
     this.customCandidateHandler = callback;
@@ -135,7 +135,7 @@ export class Input {
   /**
    * TBD.
    * @param {Function} callback - TBD.
-   * @param context - TBD.
+   * @param {object} context - TBD.
    */
   addMoveCallback(callback, context) {
     this.moveCallbacks.push({ callback, context });
@@ -144,7 +144,7 @@ export class Input {
   /**
    * TBD.
    * @param {Function} callback - TBD.
-   * @param context - TBD.
+   * @param {object} context - TBD.
    */
   deleteMoveCallback(callback, context) {
     let i = this.moveCallbacks.length;

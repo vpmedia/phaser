@@ -45,25 +45,25 @@ export class Cache {
      * TBD.
      * @param {string} key - TBD.
      * @param {string} url - TBD.
-     * @param {HTMLCanvasElement} data - TBD.
+     * @param {HTMLImageElement} data - TBD.
      * @returns {object} TBD.
      */
-    addImage(key: string, url: string, data: HTMLCanvasElement): object;
+    addImage(key: string, url: string, data: HTMLImageElement): object;
     /**
      * TBD.
      * @param {string} key - TBD.
      * @param {string} url - TBD.
-     * @param data - TBD.
+     * @param {HTMLCanvasElement} data - TBD.
      * @param {object} atlasData - TBD.
      */
-    addTextureAtlas(key: string, url: string, data: any, atlasData: object): void;
+    addTextureAtlas(key: string, url: string, data: HTMLCanvasElement, atlasData: object): void;
     /**
      * TBD.
      * @param {string} key - TBD.
      * @param {string} url - TBD.
-     * @param data - TBD.
+     * @param {object} data - TBD.
      */
-    addSound(key: string, url: string, data: any): void;
+    addSound(key: string, url: string, data: object): void;
     /**
      * TBD.
      * @param {string} key - TBD.
@@ -93,9 +93,9 @@ export class Cache {
      * TBD.
      * @param {string} key - TBD.
      * @param {string} url - TBD.
-     * @param data - TBD.
+     * @param {XMLDocument} data - TBD.
      */
-    addXML(key: string, url: string, data: any): void;
+    addXML(key: string, url: string, data: XMLDocument): void;
     /**
      * TBD.
      * @param {string} key - TBD.
@@ -116,9 +116,9 @@ export class Cache {
     /**
      * TBD.
      * @param {string} key - TBD.
-     * @param data - TBD.
+     * @param {object} data - TBD.
      */
-    decodedSound(key: string, data: any): void;
+    decodedSound(key: string, data: object): void;
     /**
      * TBD.
      * @param {string} key - TBD.
@@ -216,39 +216,46 @@ export class Cache {
     /**
      * TBD.
      * @param {string} key - TBD.
-     * @param full - TBD.
+     * @param {boolean} full - TBD.
+     * @returns {HTMLImageElement} TBD.
      */
-    getImage(key?: string, full?: boolean): any;
+    getImage(key?: string, full?: boolean): HTMLImageElement;
     /**
      * TBD.
      * @param {string} key - TBD.
+     * @returns {object} TBD.
      */
-    getTextureFrame(key: string): any;
+    getTextureFrame(key: string): object;
     /**
      * TBD.
      * @param {string} key - TBD.
+     * @returns {object} TBD.
      */
-    getSound(key: string): any;
+    getSound(key: string): object;
     /**
      * TBD.
      * @param {string} key - TBD.
+     * @returns {object} TBD.
      */
-    getSoundData(key: string): any;
+    getSoundData(key: string): object;
     /**
      * TBD.
      * @param {string} key - TBD.
+     * @returns {object} TBD.
      */
-    getText(key: string): any;
+    getText(key: string): object;
     /**
      * TBD.
      * @param {string} key - TBD.
+     * @returns {object} TBD.
      */
-    getBitmapData(key: string): any;
+    getBitmapData(key: string): object;
     /**
      * TBD.
      * @param {string} key - TBD.
+     * @returns {object} TBD.
      */
-    getBitmapFont(key: string): any;
+    getBitmapFont(key: string): object;
     /**
      * TBD.
      * @param {string} key - TBD.
@@ -259,8 +266,9 @@ export class Cache {
     /**
      * TBD.
      * @param {string} key - TBD.
+     * @returns {XMLDocument} TBD.
      */
-    getXML(key: string): any;
+    getXML(key: string): XMLDocument;
     /**
      * TBD.
      * @param {string} key - TBD.

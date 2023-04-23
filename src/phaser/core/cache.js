@@ -85,7 +85,7 @@ export class Cache {
    * TBD.
    * @param {string} key - TBD.
    * @param {string} url - TBD.
-   * @param {HTMLCanvasElement} data - TBD.
+   * @param {HTMLImageElement} data - TBD.
    * @returns {object} TBD.
    */
   addImage(key, url, data) {
@@ -113,7 +113,7 @@ export class Cache {
    * TBD.
    * @param {string} key - TBD.
    * @param {string} url - TBD.
-   * @param data - TBD.
+   * @param {HTMLCanvasElement} data - TBD.
    * @param {object} atlasData - TBD.
    */
   addTextureAtlas(key, url, data, atlasData) {
@@ -132,7 +132,7 @@ export class Cache {
    * TBD.
    * @param {string} key - TBD.
    * @param {string} url - TBD.
-   * @param data - TBD.
+   * @param {object} data - TBD.
    */
   addSound(key, url, data) {
     this._cache.sound[key] = {
@@ -197,7 +197,7 @@ export class Cache {
    * TBD.
    * @param {string} key - TBD.
    * @param {string} url - TBD.
-   * @param data - TBD.
+   * @param {XMLDocument} data - TBD.
    */
   addXML(key, url, data) {
     this._cache.xml[key] = { url, data };
@@ -248,7 +248,7 @@ export class Cache {
   /**
    * TBD.
    * @param {string} key - TBD.
-   * @param data - TBD.
+   * @param {object} data - TBD.
    */
   decodedSound(key, data) {
     const sound = this.getSound(key);
@@ -423,7 +423,8 @@ export class Cache {
   /**
    * TBD.
    * @param {string} key - TBD.
-   * @param full - TBD.
+   * @param {boolean} full - TBD.
+   * @returns {HTMLImageElement} TBD.
    */
   getImage(key = '__default', full = false) {
     let img = this.getItem(key, IMAGE, 'getImage');
@@ -439,6 +440,7 @@ export class Cache {
   /**
    * TBD.
    * @param {string} key - TBD.
+   * @returns {object} TBD.
    */
   getTextureFrame(key) {
     return this.getItem(key, TEXTURE, 'getTextureFrame', 'frame');
@@ -447,6 +449,7 @@ export class Cache {
   /**
    * TBD.
    * @param {string} key - TBD.
+   * @returns {object} TBD.
    */
   getSound(key) {
     return this.getItem(key, SOUND, 'getSound');
@@ -455,6 +458,7 @@ export class Cache {
   /**
    * TBD.
    * @param {string} key - TBD.
+   * @returns {object} TBD.
    */
   getSoundData(key) {
     return this.getItem(key, SOUND, 'getSoundData', 'data');
@@ -463,6 +467,7 @@ export class Cache {
   /**
    * TBD.
    * @param {string} key - TBD.
+   * @returns {object} TBD.
    */
   getText(key) {
     return this.getItem(key, TEXT, 'getText', 'data');
@@ -471,6 +476,7 @@ export class Cache {
   /**
    * TBD.
    * @param {string} key - TBD.
+   * @returns {object} TBD.
    */
   getBitmapData(key) {
     return this.getItem(key, BITMAPDATA, 'getBitmapData', 'data');
@@ -479,6 +485,7 @@ export class Cache {
   /**
    * TBD.
    * @param {string} key - TBD.
+   * @returns {object} TBD.
    */
   getBitmapFont(key) {
     return this.getItem(key, BITMAPFONT, 'getBitmapFont');
@@ -498,6 +505,7 @@ export class Cache {
   /**
    * TBD.
    * @param {string} key - TBD.
+   * @returns {XMLDocument} TBD.
    */
   getXML(key) {
     return this.getItem(key, XML, 'getXML', 'data');

@@ -121,6 +121,7 @@ export class WebGLRenderer {
 
   /**
    * TBD.
+   * @throws Error.
    */
   initContext() {
     const gl =

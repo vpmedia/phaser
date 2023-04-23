@@ -40,7 +40,7 @@ export class SceneManager {
   /**
    * TBD.
    * @param {string} key - TBD.
-   * @param state - TBD.
+   * @param {object} state - TBD.
    * @param {boolean} autoStart - TBD.
    * @returns {Scene|object} TBD.
    */

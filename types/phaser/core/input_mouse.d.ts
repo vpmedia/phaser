@@ -19,7 +19,7 @@ export class Mouse {
     enabled: boolean;
     locked: boolean;
     stopOnGameOut: boolean;
-    event: WheelEvent | MouseEvent;
+    event: MouseEvent | WheelEvent;
     _onMouseDown: (event: any) => void;
     _onMouseMove: (event: any) => void;
     _onMouseUp: (event: any) => void;
