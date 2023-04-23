@@ -32,6 +32,7 @@ export class Text extends Image {
      * @param blur - TBD.
      * @param shadowStroke - TBD.
      * @param shadowFill - TBD.
+     * @returns {Text} TBD.
      */
     setShadow(x?: number, y?: number, color?: string, blur?: number, shadowStroke?: boolean, shadowFill?: boolean): Text;
     dirty: boolean;
@@ -39,6 +40,7 @@ export class Text extends Image {
      * TBD.
      * @param style
      * @param update
+     * @returns {Text} TBD.
      */
     setStyle(style?: any, update?: boolean): Text;
     /**
@@ -110,24 +112,25 @@ export class Text extends Image {
     addFontWeight(weight: any, position: any): Text;
     /**
      * TBD.
-     * @param text - TBD.
+     * @param {string} text - TBD.
      */
-    precalculateWordWrap(text: any): string[];
+    precalculateWordWrap(text: string): string[];
     /**
      * TBD.
-     * @param text - TBD.
+     * @param {string} text - TBD.
      */
-    runWordWrap(text: any): string;
+    runWordWrap(text: string): string;
     /**
      * TBD.
-     * @param text - TBD.
+     * @param {string} text - TBD.
      */
-    advancedWordWrap(text: any): string;
+    advancedWordWrap(text: string): string;
     /**
      * TBD.
-     * @param text - TBD.
+     * @param {string} text - TBD.
+     * @returns {string} TBD.
      */
-    basicWordWrap(text: any): string;
+    basicWordWrap(text: string): string;
     /**
      * TBD.
      * @param components
@@ -146,11 +149,11 @@ export class Text extends Image {
     componentsToFont(components: any): string;
     /**
      * TBD.
-     * @param text - TBD.
-     * @param immediate - TBD.
+     * @param {string} text - TBD.
+     * @param {boolean} immediate - TBD.
      * @returns {Text} TBD.
      */
-    setText(text: any, immediate?: boolean): Text;
+    setText(text: string, immediate?: boolean): Text;
     /**
      * TBD.
      */
@@ -162,10 +165,10 @@ export class Text extends Image {
     get text(): string;
     /**
      * TBD.
-     * @param list
+     * @param {string[]|string[][]} list
      * @returns {Text} TBD.
      */
-    parseList(list: any): Text;
+    parseList(list: string[] | string[][]): Text;
     /**
      * TBD.
      * @param {number} x - TBD.

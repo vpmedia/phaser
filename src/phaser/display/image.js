@@ -337,7 +337,7 @@ export class Image extends DisplayObject {
 
   /**
    * TBD.
-   * @param texture - TBD.
+   * @param {Texture} texture - TBD.
    * @param {boolean} destroyBase - TBD.
    */
   setTexture(texture, destroyBase = false) {

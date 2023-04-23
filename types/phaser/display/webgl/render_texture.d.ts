@@ -3,13 +3,13 @@ export class RenderTexture extends Texture {
      * TBD.
      * @param {number} width - TBD.
      * @param {number} height - TBD.
-     * @param renderer - TBD.
+     * @param {WebGLRenderer|CanvasRenderer} renderer - TBD.
      * @param {number} scaleMode - TBD.
      * @param {number} resolution - TBD.
      */
-    constructor(width: number, height: number, renderer: any, scaleMode: number, resolution?: number);
+    constructor(width: number, height: number, renderer: WebGLRenderer | CanvasRenderer, scaleMode: number, resolution?: number);
     resolution: number;
-    renderer: any;
+    renderer: CanvasRenderer | WebGLRenderer;
     textureBuffer: CanvasBuffer | FilterTexture;
     render: () => void;
     projection: Point;
@@ -46,6 +46,8 @@ export class RenderTexture extends Texture {
     getCanvas(): HTMLCanvasElement;
 }
 import { Texture } from './texture';
+import { CanvasRenderer } from '../canvas/renderer';
+import { WebGLRenderer } from './renderer';
 import { CanvasBuffer } from '../canvas/buffer';
 import { FilterTexture } from './filter_texture';
 import { Point } from '../../geom/point';

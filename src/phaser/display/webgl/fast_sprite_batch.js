@@ -1,3 +1,5 @@
+import { Image } from '../image';
+
 export class FastSpriteBatch {
   /**
    * TBD.
@@ -96,7 +98,7 @@ export class FastSpriteBatch {
 
   /**
    * TBD.
-   * @param sprite - TBD.
+   * @param {Image} sprite - TBD.
    */
   renderSprite(sprite) {
     if (!sprite.visible) {

@@ -4,6 +4,7 @@ import { Matrix } from '../geom/matrix';
 import { getIdentityMatrix } from '../geom/util/matrix';
 import { PI_2 } from '../util/math';
 import { renderCanvas, renderWebGL } from './sprite_util';
+import { Graphics } from './graphics';
 
 export class DisplayObject {
   /**
@@ -671,6 +672,7 @@ export class DisplayObject {
 
   /**
    * TBD.
+   * @returns {Graphics} TBD.
    */
   get mask() {
     return this._mask;

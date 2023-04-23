@@ -84,10 +84,10 @@ export class Image extends DisplayObject {
     onTextureUpdate(): void;
     /**
      * TBD.
-     * @param texture - TBD.
+     * @param {Texture} texture - TBD.
      * @param {boolean} destroyBase - TBD.
      */
-    setTexture(texture: any, destroyBase?: boolean): void;
+    setTexture(texture: Texture, destroyBase?: boolean): void;
     /**
      * TBD.
      * @param {Matrix} matrix - TBD.
@@ -113,5 +113,6 @@ import { Rectangle } from '../geom/rectangle';
 import { Frame } from '../core/frame';
 import { EventManager } from '../core/event_manager';
 import { AnimationManager } from '../core/animation_manager';
+import { Texture } from './webgl/texture';
 import { Matrix } from '../geom/matrix';
 //# sourceMappingURL=image.d.ts.map

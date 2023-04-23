@@ -75,6 +75,7 @@ export class Text extends Image {
    * @param blur - TBD.
    * @param shadowStroke - TBD.
    * @param shadowFill - TBD.
+   * @returns {Text} TBD.
    */
   setShadow(x = 0, y = 0, color = 'rgba(0, 0, 0, 1)', blur = 0, shadowStroke = true, shadowFill = true) {
     this.style.shadowOffsetX = x;
@@ -91,6 +92,7 @@ export class Text extends Image {
    * TBD.
    * @param style
    * @param update
+   * @returns {Text} TBD.
    */
   setStyle(style = null, update = false) {
     style = JSON.parse(JSON.stringify(style)) || {};
@@ -499,7 +501,7 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @param text - TBD.
+   * @param {string} text - TBD.
    */
   precalculateWordWrap(text) {
     this.texture.baseTexture.resolution = this._res;
@@ -510,7 +512,7 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @param text - TBD.
+   * @param {string} text - TBD.
    */
   runWordWrap(text) {
     if (this.useAdvancedWrap) {
@@ -521,7 +523,7 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @param text - TBD.
+   * @param {string} text - TBD.
    */
   advancedWordWrap(text) {
     const context = this.context;
@@ -602,7 +604,8 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @param text - TBD.
+   * @param {string} text - TBD.
+   * @returns {string} TBD.
    */
   basicWordWrap(text) {
     let result = '';
@@ -719,8 +722,8 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @param text - TBD.
-   * @param immediate - TBD.
+   * @param {string} text - TBD.
+   * @param {boolean} immediate - TBD.
    * @returns {Text} TBD.
    */
   setText(text, immediate = false) {
@@ -735,7 +738,7 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @param list
+   * @param {string[]|string[][]} list
    * @returns {Text} TBD.
    */
   parseList(list) {

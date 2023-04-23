@@ -41,16 +41,18 @@ export class CanvasRenderer {
     resize(width: number, height: number): void;
     /**
      * TBD.
-     * @param displayObject - TBD.
-     * @param context - TBD.
-     * @param matrix - TBD.
+     * @param {Image} displayObject - TBD.
+     * @param {object} context - TBD.
+     * @param {Matrix} matrix - TBD.
      */
-    renderDisplayObject(displayObject: any, context: any, matrix: any): void;
+    renderDisplayObject(displayObject: Image, context: object, matrix: Matrix): void;
     /**
      * TBD.
      */
     mapBlendModes(): void;
 }
 import * as CanvasMaskManager from './masker';
+import { Image } from '../image';
+import { Matrix } from '../../geom/matrix';
 import { Game } from '../../core/game';
 //# sourceMappingURL=renderer.d.ts.map

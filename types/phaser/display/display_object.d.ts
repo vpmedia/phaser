@@ -18,7 +18,7 @@ export class DisplayObject {
     _cr: number;
     cachedBounds: Rectangle;
     currentBounds: any;
-    _mask: any;
+    _mask: Graphics;
     children: any[];
     ignoreChildInput: boolean;
     /**
@@ -211,11 +211,12 @@ export class DisplayObject {
     /**
      * TBD.
      */
-    set mask(arg: any);
+    set mask(arg: Graphics);
     /**
      * TBD.
+     * @returns {Graphics} TBD.
      */
-    get mask(): any;
+    get mask(): Graphics;
     /**
      * TBD.
      * @returns {number} TBD.
@@ -284,4 +285,5 @@ export class DisplayObject {
 import { Point } from '../geom/point';
 import { Matrix } from '../geom/matrix';
 import { Rectangle } from '../geom/rectangle';
+import { Graphics } from './graphics';
 //# sourceMappingURL=display_object.d.ts.map

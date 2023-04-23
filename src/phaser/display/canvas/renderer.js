@@ -24,6 +24,8 @@ import { getSmoothingPrefix } from './util';
 import { detectCapabilities } from './tinter';
 import * as CanvasMaskManager from './masker';
 import { Game } from '../../core/game';
+import { Image } from '../image';
+import { Matrix } from '../../geom/matrix';
 
 export class CanvasRenderer {
   /**
@@ -117,9 +119,9 @@ export class CanvasRenderer {
 
   /**
    * TBD.
-   * @param displayObject - TBD.
-   * @param context - TBD.
-   * @param matrix - TBD.
+   * @param {Image} displayObject - TBD.
+   * @param {object} context - TBD.
+   * @param {Matrix} matrix - TBD.
    */
   renderDisplayObject(displayObject, context, matrix) {
     this.renderSession.context = context || this.context;

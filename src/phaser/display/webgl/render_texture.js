@@ -4,6 +4,8 @@ import { Texture } from './texture';
 import { BaseTexture } from './base_texture';
 import { FilterTexture } from './filter_texture';
 import { CanvasBuffer } from '../canvas/buffer';
+import { CanvasRenderer } from '../canvas/renderer';
+import { WebGLRenderer } from './renderer';
 import { RENDER_WEBGL } from '../../core/const';
 
 export class RenderTexture extends Texture {
@@ -11,7 +13,7 @@ export class RenderTexture extends Texture {
    * TBD.
    * @param {number} width - TBD.
    * @param {number} height - TBD.
-   * @param renderer - TBD.
+   * @param {WebGLRenderer|CanvasRenderer} renderer - TBD.
    * @param {number} scaleMode - TBD.
    * @param {number} resolution - TBD.
    */
