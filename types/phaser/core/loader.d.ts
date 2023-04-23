@@ -45,7 +45,7 @@ export class Loader {
     /**
      * TBD.
      * @param sprite - TBD.
-     * @param direction - TBD.
+     * @param {number} direction - TBD.
      */
     setPreloadSprite(sprite: any, direction?: number): void;
     /**
@@ -54,51 +54,51 @@ export class Loader {
     resize(): void;
     /**
      * TBD.
-     * @param type - TBD.
+     * @param {string} type - TBD.
      * @param {string} key - TBD.
      * @returns {boolean} TBD.
      */
-    checkKeyExists(type: any, key: string): boolean;
+    checkKeyExists(type: string, key: string): boolean;
     /**
      * TBD.
-     * @param type - TBD.
+     * @param {string} type - TBD.
      * @param {string} key - TBD.
      * @returns {number} TBD.
      */
-    getAssetIndex(type: any, key: string): number;
+    getAssetIndex(type: string, key: string): number;
     /**
      * TBD.
-     * @param type - TBD.
+     * @param {string} type - TBD.
      * @param {string} key - TBD.
      * @returns {object} TBD.
      */
-    getAsset(type: any, key: string): object;
+    getAsset(type: string, key: string): object;
     /**
      * TBD.
-     * @param hard
-     * @param clearEvents
+     * @param {boolean} hard
+     * @param {boolean} clearEvents
      */
-    reset(hard: any, clearEvents?: boolean): void;
+    reset(hard: boolean, clearEvents?: boolean): void;
     /**
      * TBD.
-     * @param type - TBD.
+     * @param {string} type - TBD.
      * @param {string} key - TBD.
      * @param {string} url - TBD.
      * @param properties - TBD.
-     * @param overwrite - TBD.
+     * @param {boolean} overwrite - TBD.
      * @param extension - TBD.
      * @returns {Loader} TBD.
      */
-    addToFileList(type: any, key?: string, url?: string, properties?: any, overwrite?: boolean, extension?: any): Loader;
+    addToFileList(type: string, key?: string, url?: string, properties?: any, overwrite?: boolean, extension?: any): Loader;
     /**
      * TBD.
-     * @param type - TBD.
+     * @param {string} type - TBD.
      * @param {string} key - TBD.
      * @param {string} url - TBD.
-     * @param properties - TBD.
+     * @param {object} properties - TBD.
      * @returns {Loader} TBD.
      */
-    replaceInFileList(type: any, key: string, url: string, properties: any): Loader;
+    replaceInFileList(type: string, key: string, url: string, properties: object): Loader;
     /**
      * TBD.
      * @param {string} key - TBD.
@@ -112,41 +112,41 @@ export class Loader {
      * TBD.
      * @param {string} key - TBD.
      * @param {string} url - TBD.
-     * @param overwrite - TBD.
+     * @param {boolean} overwrite - TBD.
      * @returns {Loader} TBD.
      */
-    image(key: string, url: string, overwrite: any): Loader;
+    image(key: string, url: string, overwrite: boolean): Loader;
     /**
      * TBD.
-     * @param keys - TBD.
-     * @param urls - TBD.
+     * @param {string[]} keys - TBD.
+     * @param {string[]} urls - TBD.
      * @returns {Loader} TBD.
      */
-    images(keys: any, urls: any): Loader;
-    /**
-     * TBD.
-     * @param {string} key - TBD.
-     * @param {string} url - TBD.
-     * @param overwrite - TBD.
-     * @returns {Loader} TBD.
-     */
-    text(key: string, url: string, overwrite: any): Loader;
+    images(keys: string[], urls: string[]): Loader;
     /**
      * TBD.
      * @param {string} key - TBD.
      * @param {string} url - TBD.
-     * @param overwrite - TBD.
+     * @param {boolean} overwrite - TBD.
      * @returns {Loader} TBD.
      */
-    json(key: string, url: string, overwrite: any): Loader;
+    text(key: string, url: string, overwrite: boolean): Loader;
     /**
      * TBD.
      * @param {string} key - TBD.
      * @param {string} url - TBD.
-     * @param overwrite - TBD.
+     * @param {boolean} overwrite - TBD.
      * @returns {Loader} TBD.
      */
-    xml(key: string, url: string, overwrite: any): Loader;
+    json(key: string, url: string, overwrite: boolean): Loader;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     * @param {string} url - TBD.
+     * @param {boolean} overwrite - TBD.
+     * @returns {Loader} TBD.
+     */
+    xml(key: string, url: string, overwrite: boolean): Loader;
     /**
      * TBD.
      * @param {string} key - TBD.
@@ -163,7 +163,7 @@ export class Loader {
      * TBD.
      * @param {string} key - TBD.
      * @param urls
-     * @param autoDecode
+     * @param {boolean} autoDecode
      * @returns {Loader} TBD.
      */
     audio(key: string, urls: any, autoDecode?: boolean): Loader;
@@ -192,13 +192,13 @@ export class Loader {
     /**
      * TBD.
      * @param {string} key - TBD.
-     * @param textureURL - TBD.
-     * @param atlasURL - TBD.
+     * @param {string} textureURL - TBD.
+     * @param {string} atlasURL - TBD.
      * @param atlasData - TBD.
-     * @param format - TBD.
+     * @param {number} format - TBD.
      * @returns {Loader} TBD.
      */
-    atlas(key: string, textureURL: any, atlasURL?: any, atlasData?: any, format?: number): Loader;
+    atlas(key: string, textureURL: string, atlasURL?: string, atlasData?: any, format?: number): Loader;
     /**
      * TBD.
      * @param {Function} callback - TBD.
@@ -208,17 +208,17 @@ export class Loader {
     withSyncPoint(callback: Function, callbackContext: object): Loader;
     /**
      * TBD.
-     * @param type - TBD.
+     * @param {string} type - TBD.
      * @param {string} key - TBD.
      * @returns {Loader} TBD.
      */
-    addSyncPoint(type: any, key: string): Loader;
+    addSyncPoint(type: string, key: string): Loader;
     /**
      * TBD.
-     * @param type - TBD.
+     * @param {string} type - TBD.
      * @param {string} key - TBD.
      */
-    removeFile(type: any, key: string): void;
+    removeFile(type: string, key: string): void;
     /**
      * TBD.
      */
@@ -233,86 +233,86 @@ export class Loader {
     processLoadQueue(): void;
     /**
      * TBD.
-     * @param abnormal - TBD.
+     * @param {boolean} abnormal - TBD.
      */
-    finishedLoading(abnormal: any): void;
+    finishedLoading(abnormal: boolean): void;
     /**
      * TBD.
-     * @param file - TBD.
-     * @param errorMessage - TBD.
+     * @param {object} file - TBD.
+     * @param {string} errorMessage - TBD.
      */
-    asyncComplete(file: any, errorMessage?: string): void;
+    asyncComplete(file: object, errorMessage?: string): void;
     /**
      * TBD.
-     * @param pack - TBD.
+     * @param {object} pack - TBD.
      */
-    processPack(pack: any): void;
+    processPack(pack: object): void;
     /**
      * TBD.
      * @param {string} url - TBD.
-     * @param file - TBD.
+     * @param {object} file - TBD.
      * @returns {string} TBD.
      */
-    transformUrl(url: string, file: any): string;
+    transformUrl(url: string, file: object): string;
     /**
      * TBD.
-     * @param file - TBD.
+     * @param {object} file - TBD.
      */
-    loadFile(file: any): void;
+    loadFile(file: object): void;
     /**
      * TBD.
-     * @param file - TBD.
+     * @param {object} file - TBD.
      */
-    loadImageTag(file: any): void;
+    loadImageTag(file: object): void;
     /**
      * TBD.
-     * @param file - TBD.
+     * @param {object} file - TBD.
      * @param {string} url - TBD.
-     * @param type - TBD.
-     * @param onload - TBD.
-     * @param onerror - TBD.
+     * @param {string} type - TBD.
+     * @param {Function} onload - TBD.
+     * @param {Function} onerror - TBD.
      */
-    xhrLoad(file: any, url: string, type: any, onload: any, onerror: any): void;
+    xhrLoad(file: object, url: string, type: string, onload: Function, onerror: Function): void;
     /**
      * TBD.
      */
     xhrLoadWithXDR(): void;
     /**
      * TBD.
-     * @param urls - TBD.
+     * @param {object[]} urls - TBD.
      * @returns {string} TBD.
      */
-    getAudioURL(urls: any): string;
+    getAudioURL(urls: object[]): string;
     /**
      * TBD.
-     * @param file - TBD.
+     * @param {object} file - TBD.
      * @param xhr - TBD.
-     * @param reason - TBD.
+     * @param {number} reason - TBD.
      */
-    fileError(file: any, xhr: any, reason: any): void;
+    fileError(file: object, xhr: any, reason: number): void;
     /**
      * TBD.
-     * @param file - TBD.
+     * @param {object} file - TBD.
      * @param xhr - TBD.
      * @throws Error.
      */
-    fileComplete(file: any, xhr: any): void;
+    fileComplete(file: object, xhr: any): void;
     /**
      * TBD.
-     * @param file - TBD.
+     * @param {object} file - TBD.
      * @param xhr - TBD.
      */
-    jsonLoadComplete(file: any, xhr: any): void;
+    jsonLoadComplete(file: object, xhr: any): void;
     /**
      * TBD.
      */
     csvLoadComplete(): void;
     /**
      * TBD.
-     * @param file - TBD.
+     * @param {object} file - TBD.
      * @param xhr - TBD.
      */
-    xmlLoadComplete(file: any, xhr: any): void;
+    xmlLoadComplete(file: object, xhr: any): void;
     /**
      * TBD.
      * @param data - TBD.
@@ -325,10 +325,10 @@ export class Loader {
     updateProgress(): void;
     /**
      * TBD.
-     * @param message - TBD.
-     * @param data - TBD.
+     * @param {string} message - TBD.
+     * @param {string|object} data - TBD.
      */
-    log(message: any, data?: string): void;
+    log(message: string, data?: string | object): void;
     /**
      * TBD.
      * @returns {number} TBD.

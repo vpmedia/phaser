@@ -48,7 +48,7 @@ export class Loader {
   /**
    * TBD.
    * @param sprite - TBD.
-   * @param direction - TBD.
+   * @param {number} direction - TBD.
    */
   setPreloadSprite(sprite, direction = 0) {
     this.preloadSprite = {
@@ -80,7 +80,7 @@ export class Loader {
 
   /**
    * TBD.
-   * @param type - TBD.
+   * @param {string} type - TBD.
    * @param {string} key - TBD.
    * @returns {boolean} TBD.
    */
@@ -90,7 +90,7 @@ export class Loader {
 
   /**
    * TBD.
-   * @param type - TBD.
+   * @param {string} type - TBD.
    * @param {string} key - TBD.
    * @returns {number} TBD.
    */
@@ -112,7 +112,7 @@ export class Loader {
 
   /**
    * TBD.
-   * @param type - TBD.
+   * @param {string} type - TBD.
    * @param {string} key - TBD.
    * @returns {object} TBD.
    */
@@ -126,8 +126,8 @@ export class Loader {
 
   /**
    * TBD.
-   * @param hard
-   * @param clearEvents
+   * @param {boolean} hard
+   * @param {boolean} clearEvents
    */
   reset(hard, clearEvents = false) {
     if (hard) {
@@ -154,11 +154,11 @@ export class Loader {
 
   /**
    * TBD.
-   * @param type - TBD.
+   * @param {string} type - TBD.
    * @param {string} key - TBD.
    * @param {string} url - TBD.
    * @param properties - TBD.
-   * @param overwrite - TBD.
+   * @param {boolean} overwrite - TBD.
    * @param extension - TBD.
    * @returns {Loader} TBD.
    */
@@ -211,10 +211,10 @@ export class Loader {
 
   /**
    * TBD.
-   * @param type - TBD.
+   * @param {string} type - TBD.
    * @param {string} key - TBD.
    * @param {string} url - TBD.
-   * @param properties - TBD.
+   * @param {object} properties - TBD.
    * @returns {Loader} TBD.
    */
   replaceInFileList(type, key, url, properties) {
@@ -264,7 +264,7 @@ export class Loader {
    * TBD.
    * @param {string} key - TBD.
    * @param {string} url - TBD.
-   * @param overwrite - TBD.
+   * @param {boolean} overwrite - TBD.
    * @returns {Loader} TBD.
    */
   image(key, url, overwrite) {
@@ -273,8 +273,8 @@ export class Loader {
 
   /**
    * TBD.
-   * @param keys - TBD.
-   * @param urls - TBD.
+   * @param {string[]} keys - TBD.
+   * @param {string[]} urls - TBD.
    * @returns {Loader} TBD.
    */
   images(keys, urls) {
@@ -294,7 +294,7 @@ export class Loader {
    * TBD.
    * @param {string} key - TBD.
    * @param {string} url - TBD.
-   * @param overwrite - TBD.
+   * @param {boolean} overwrite - TBD.
    * @returns {Loader} TBD.
    */
   text(key, url, overwrite) {
@@ -305,7 +305,7 @@ export class Loader {
    * TBD.
    * @param {string} key - TBD.
    * @param {string} url - TBD.
-   * @param overwrite - TBD.
+   * @param {boolean} overwrite - TBD.
    * @returns {Loader} TBD.
    */
   json(key, url, overwrite) {
@@ -316,7 +316,7 @@ export class Loader {
    * TBD.
    * @param {string} key - TBD.
    * @param {string} url - TBD.
-   * @param overwrite - TBD.
+   * @param {boolean} overwrite - TBD.
    * @returns {Loader} TBD.
    */
   xml(key, url, overwrite) {
@@ -349,7 +349,7 @@ export class Loader {
    * TBD.
    * @param {string} key - TBD.
    * @param urls
-   * @param autoDecode
+   * @param {boolean} autoDecode
    * @returns {Loader} TBD.
    */
   audio(key, urls, autoDecode = true) {
@@ -434,10 +434,10 @@ export class Loader {
   /**
    * TBD.
    * @param {string} key - TBD.
-   * @param textureURL - TBD.
-   * @param atlasURL - TBD.
+   * @param {string} textureURL - TBD.
+   * @param {string} atlasURL - TBD.
    * @param atlasData - TBD.
-   * @param format - TBD.
+   * @param {number} format - TBD.
    * @returns {Loader} TBD.
    */
   atlas(key, textureURL, atlasURL = null, atlasData = null, format = TEXTURE_ATLAS_JSON_HASH) {
@@ -474,7 +474,7 @@ export class Loader {
 
   /**
    * TBD.
-   * @param type - TBD.
+   * @param {string} type - TBD.
    * @param {string} key - TBD.
    * @returns {Loader} TBD.
    */
@@ -488,7 +488,7 @@ export class Loader {
 
   /**
    * TBD.
-   * @param type - TBD.
+   * @param {string} type - TBD.
    * @param {string} key - TBD.
    */
   removeFile(type, key) {
@@ -621,7 +621,7 @@ export class Loader {
 
   /**
    * TBD.
-   * @param abnormal - TBD.
+   * @param {boolean} abnormal - TBD.
    */
   finishedLoading(abnormal) {
     if (this.hasLoaded) {
@@ -644,8 +644,8 @@ export class Loader {
 
   /**
    * TBD.
-   * @param file - TBD.
-   * @param errorMessage - TBD.
+   * @param {object} file - TBD.
+   * @param {string} errorMessage - TBD.
    */
   asyncComplete(file, errorMessage = '') {
     file.loaded = true;
@@ -660,7 +660,7 @@ export class Loader {
 
   /**
    * TBD.
-   * @param pack - TBD.
+   * @param {object} pack - TBD.
    */
   processPack(pack) {
     const packData = pack.data[pack.key];
@@ -724,7 +724,7 @@ export class Loader {
   /**
    * TBD.
    * @param {string} url - TBD.
-   * @param file - TBD.
+   * @param {object} file - TBD.
    * @returns {string} TBD.
    */
   transformUrl(url, file) {
@@ -739,7 +739,7 @@ export class Loader {
 
   /**
    * TBD.
-   * @param file - TBD.
+   * @param {object} file - TBD.
    */
   loadFile(file) {
     switch (file.type) {
@@ -777,7 +777,7 @@ export class Loader {
 
   /**
    * TBD.
-   * @param file - TBD.
+   * @param {object} file - TBD.
    */
   loadImageTag(file) {
     this.log('loadImageTag', file);
@@ -809,11 +809,11 @@ export class Loader {
 
   /**
    * TBD.
-   * @param file - TBD.
+   * @param {object} file - TBD.
    * @param {string} url - TBD.
-   * @param type - TBD.
-   * @param onload - TBD.
-   * @param onerror - TBD.
+   * @param {string} type - TBD.
+   * @param {Function} onload - TBD.
+   * @param {Function} onerror - TBD.
    */
   xhrLoad(file, url, type, onload, onerror) {
     this.log('xhrLoad', file);
@@ -884,7 +884,7 @@ export class Loader {
 
   /**
    * TBD.
-   * @param urls - TBD.
+   * @param {object[]} urls - TBD.
    * @returns {string} TBD.
    */
   getAudioURL(urls) {
@@ -922,9 +922,9 @@ export class Loader {
 
   /**
    * TBD.
-   * @param file - TBD.
+   * @param {object} file - TBD.
    * @param xhr - TBD.
-   * @param reason - TBD.
+   * @param {number} reason - TBD.
    */
   fileError(file, xhr, reason) {
     // const url = file.requestUrl || this.transformUrl(file.url, file);
@@ -940,7 +940,7 @@ export class Loader {
 
   /**
    * TBD.
-   * @param file - TBD.
+   * @param {object} file - TBD.
    * @param xhr - TBD.
    * @throws Error.
    */
@@ -1032,7 +1032,7 @@ export class Loader {
 
   /**
    * TBD.
-   * @param file - TBD.
+   * @param {object} file - TBD.
    * @param xhr - TBD.
    */
   jsonLoadComplete(file, xhr) {
@@ -1057,7 +1057,7 @@ export class Loader {
 
   /**
    * TBD.
-   * @param file - TBD.
+   * @param {object} file - TBD.
    * @param xhr - TBD.
    */
   xmlLoadComplete(file, xhr) {
@@ -1127,8 +1127,8 @@ export class Loader {
 
   /**
    * TBD.
-   * @param message - TBD.
-   * @param data - TBD.
+   * @param {string} message - TBD.
+   * @param {string|object} data - TBD.
    */
   log(message, data = '') {
     if (!this.isUseLog) {

@@ -18,7 +18,7 @@ export class Image extends DisplayObject {
     tintedTexture: any;
     blendMode: number;
     shader: any;
-    _frame: any;
+    _frame: Rectangle | Frame;
     pendingDestroy: boolean;
     events: EventManager;
     animations: AnimationManager;
@@ -33,17 +33,17 @@ export class Image extends DisplayObject {
     customRender: boolean;
     /**
      * TBD.
-     * @param frame - TBD.
+     * @param {Frame} frame - TBD.
      */
-    setFrame(frame: any): void;
+    setFrame(frame: Frame): void;
     refreshTexture: boolean;
     /**
      * TBD.
-     * @param parent - TBD.
+     * @param {DisplayObject} parent - TBD.
      * @param {number} width - TBD.
      * @param {number} height - TBD.
      */
-    resizeFrame(parent: any, width: number, height: number): void;
+    resizeFrame(parent: DisplayObject, width: number, height: number): void;
     /**
      * TBD.
      */
@@ -54,6 +54,7 @@ export class Image extends DisplayObject {
     set frame(arg: number);
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get frame(): number;
     /**
@@ -67,11 +68,11 @@ export class Image extends DisplayObject {
     get frameName(): string;
     /**
      * TBD.
-     * @param rect - TBD.
+     * @param {Rectangle} rect - TBD.
      * @param {boolean} copy - TBD.
      */
-    crop(rect: any, copy?: boolean): void;
-    cropRect: any;
+    crop(rect: Rectangle, copy?: boolean): void;
+    cropRect: Rectangle;
     _crop: any;
     /**
      * TBD.
@@ -108,8 +109,9 @@ export class Image extends DisplayObject {
 }
 import { DisplayObject } from './display_object';
 import { Game } from '../core/game';
+import { Rectangle } from '../geom/rectangle';
+import { Frame } from '../core/frame';
 import { EventManager } from '../core/event_manager';
 import { AnimationManager } from '../core/animation_manager';
 import { Matrix } from '../geom/matrix';
-import { Rectangle } from '../geom/rectangle';
 //# sourceMappingURL=image.d.ts.map

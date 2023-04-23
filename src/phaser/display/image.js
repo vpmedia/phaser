@@ -1,6 +1,7 @@
 import { Texture } from './webgl/texture';
 import { AnimationManager } from '../core/animation_manager';
 import { EventManager } from '../core/event_manager';
+import { Frame } from '../core/frame';
 import { Rectangle } from '../geom/rectangle';
 import { Matrix } from '../geom/matrix';
 import { DisplayObject } from './display_object';
@@ -140,7 +141,7 @@ export class Image extends DisplayObject {
 
   /**
    * TBD.
-   * @param frame - TBD.
+   * @param {Frame} frame - TBD.
    */
   setFrame(frame) {
     this._frame = frame;
@@ -185,7 +186,7 @@ export class Image extends DisplayObject {
 
   /**
    * TBD.
-   * @param parent - TBD.
+   * @param {DisplayObject} parent - TBD.
    * @param {number} width - TBD.
    * @param {number} height - TBD.
    */
@@ -205,6 +206,7 @@ export class Image extends DisplayObject {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get frame() {
     return this.animations.frame;
@@ -236,7 +238,7 @@ export class Image extends DisplayObject {
 
   /**
    * TBD.
-   * @param rect - TBD.
+   * @param {Rectangle} rect - TBD.
    * @param {boolean} copy - TBD.
    */
   crop(rect, copy = false) {
