@@ -37,7 +37,7 @@ export class Signal {
    * @returns {SignalBinding} TBD.
    * @throws Error.
    */
-  _registerListener(listener, isOnce, listenerContext, priority, args) {
+  _registerListener(listener, isOnce = false, listenerContext = null, priority = 0, args = null) {
     const prevIndex = this._indexOfListener(listener, listenerContext);
     let binding;
     if (prevIndex !== -1) {
@@ -105,7 +105,7 @@ export class Signal {
    * @param {object} context - TBD.
    * @returns {boolean} TBD.
    */
-  has(listener, context) {
+  has(listener, context = null) {
     return this._indexOfListener(listener, context) !== -1;
   }
 
@@ -117,7 +117,7 @@ export class Signal {
    * @param {...any} args - TBD.
    * @returns {SignalBinding} TBD.
    */
-  add(listener, listenerContext, priority, ...args) {
+  add(listener, listenerContext = null, priority = 0, ...args) {
     this.validateListener(listener, 'add');
     return this._registerListener(listener, false, listenerContext, priority, args);
   }
@@ -130,7 +130,7 @@ export class Signal {
    * @param {...any} args - TBD.
    * @returns {SignalBinding} TBD.
    */
-  addOnce(listener, listenerContext, priority, ...args) {
+  addOnce(listener, listenerContext = null, priority = 0, ...args) {
     this.validateListener(listener, 'addOnce');
     return this._registerListener(listener, true, listenerContext, priority, args);
   }
@@ -141,7 +141,7 @@ export class Signal {
    * @param {object} context - TBD.
    * @returns {Function} TBD.
    */
-  remove(listener, context) {
+  remove(listener, context = null) {
     this.validateListener(listener, 'remove');
     const i = this._indexOfListener(listener, context);
     if (i !== -1) {

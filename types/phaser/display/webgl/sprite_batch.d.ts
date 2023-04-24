@@ -37,10 +37,10 @@ export class WebGLSpriteBatch {
     end(): void;
     /**
      * TBD.
-     * @param {Image} sprite - TBD.
+     * @param {import('../../display/image').Image} sprite - TBD.
      * @param {import('../../geom/matrix').Matrix} matrix - TBD.
      */
-    render(sprite: new (width?: number, height?: number) => HTMLImageElement, matrix: import('../../geom/matrix').Matrix): void;
+    render(sprite: import('../../display/image').Image, matrix: import('../../geom/matrix').Matrix): void;
     /**
      * TBD.
      */

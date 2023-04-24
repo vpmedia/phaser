@@ -2,16 +2,16 @@ export class Animation {
     /**
      * TBD.
      * @param {import('./game').Game} game - TBD.
-     * @param {Image} parent - TBD.
+     * @param {import('../display/image').Image} parent - TBD.
      * @param {string} name - TBD.
      * @param {import('./frame_data').FrameData} frameData - TBD.
      * @param {string[]|number[]} frames - TBD.
      * @param {number} frameRate - TBD.
      * @param {boolean} loop - TBD.
      */
-    constructor(game: import('./game').Game, parent: new (width?: number, height?: number) => HTMLImageElement, name: string, frameData: import('./frame_data').FrameData, frames: string[] | number[], frameRate: number, loop?: boolean);
+    constructor(game: import('./game').Game, parent: import('../display/image').Image, name: string, frameData: import('./frame_data').FrameData, frames: string[] | number[], frameRate: number, loop?: boolean);
     game: import("./game").Game;
-    _parent: new (width?: number, height?: number) => HTMLImageElement;
+    _parent: import("../display/image").Image;
     _frameData: import("./frame_data").FrameData;
     name: string;
     _frames: any[];

@@ -4,7 +4,7 @@ export class Animation {
   /**
    * TBD.
    * @param {import('./game').Game} game - TBD.
-   * @param {Image} parent - TBD.
+   * @param {import('../display/image').Image} parent - TBD.
    * @param {string} name - TBD.
    * @param {import('./frame_data').FrameData} frameData - TBD.
    * @param {string[]|number[]} frames - TBD.

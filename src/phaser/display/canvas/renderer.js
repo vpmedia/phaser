@@ -116,7 +116,7 @@ export class CanvasRenderer {
 
   /**
    * TBD.
-   * @param {Image} displayObject - TBD.
+   * @param {import('../../display/image').Image} displayObject - TBD.
    * @param {CanvasRenderingContext2D} context - TBD.
    * @param {import('../../geom/matrix').Matrix} matrix - TBD.
    */

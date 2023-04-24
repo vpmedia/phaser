@@ -86,7 +86,7 @@ export class WebGLSpriteBatch {
 
   /**
    * TBD.
-   * @param {Image} sprite - TBD.
+   * @param {import('../../display/image').Image} sprite - TBD.
    * @param {import('../../geom/matrix').Matrix} matrix - TBD.
    */
   render(sprite, matrix) {

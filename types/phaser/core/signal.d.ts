@@ -22,7 +22,7 @@ export class Signal {
      * @returns {SignalBinding} TBD.
      * @throws Error.
      */
-    _registerListener(listener: Function, isOnce: boolean, listenerContext: object, priority: number, args: any[]): SignalBinding;
+    _registerListener(listener: Function, isOnce?: boolean, listenerContext?: object, priority?: number, args?: any[]): SignalBinding;
     /**
      * TBD.
      * @param {SignalBinding} binding - TBD.
@@ -41,7 +41,7 @@ export class Signal {
      * @param {object} context - TBD.
      * @returns {boolean} TBD.
      */
-    has(listener: Function, context: object): boolean;
+    has(listener: Function, context?: object): boolean;
     /**
      * TBD.
      * @param {Function} listener - TBD.
@@ -50,7 +50,7 @@ export class Signal {
      * @param {...any} args - TBD.
      * @returns {SignalBinding} TBD.
      */
-    add(listener: Function, listenerContext: object, priority: number, ...args: any[]): SignalBinding;
+    add(listener: Function, listenerContext?: object, priority?: number, ...args: any[]): SignalBinding;
     /**
      * TBD.
      * @param {Function} listener - TBD.
@@ -59,14 +59,14 @@ export class Signal {
      * @param {...any} args - TBD.
      * @returns {SignalBinding} TBD.
      */
-    addOnce(listener: Function, listenerContext: object, priority: number, ...args: any[]): SignalBinding;
+    addOnce(listener: Function, listenerContext?: object, priority?: number, ...args: any[]): SignalBinding;
     /**
      * TBD.
      * @param {Function} listener - TBD.
      * @param {object} context - TBD.
      * @returns {Function} TBD.
      */
-    remove(listener: Function, context: object): Function;
+    remove(listener: Function, context?: object): Function;
     /**
      * TBD.
      * @param {object} context - TBD.

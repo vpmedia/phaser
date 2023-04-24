@@ -41,11 +41,11 @@ export class CanvasRenderer {
     resize(width: number, height: number): void;
     /**
      * TBD.
-     * @param {Image} displayObject - TBD.
+     * @param {import('../../display/image').Image} displayObject - TBD.
      * @param {CanvasRenderingContext2D} context - TBD.
      * @param {import('../../geom/matrix').Matrix} matrix - TBD.
      */
-    renderDisplayObject(displayObject: new (width?: number, height?: number) => HTMLImageElement, context: CanvasRenderingContext2D, matrix: import('../../geom/matrix').Matrix): void;
+    renderDisplayObject(displayObject: import('../../display/image').Image, context: CanvasRenderingContext2D, matrix: import('../../geom/matrix').Matrix): void;
     /**
      * TBD.
      */

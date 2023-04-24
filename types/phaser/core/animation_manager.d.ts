@@ -1,11 +1,11 @@
 export class AnimationManager {
     /**
      * TBD.
-     * @param {Image} sprite - TBD.
+     * @param {import('../display/image').Image} sprite - TBD.
      */
-    constructor(sprite: new (width?: number, height?: number) => HTMLImageElement);
-    sprite: new (width?: number, height?: number) => HTMLImageElement;
-    game: any;
+    constructor(sprite: import('../display/image').Image);
+    sprite: import("../display/image").Image;
+    game: import("./game").Game;
     currentFrame: any;
     currentAnim: any;
     updateIfVisible: boolean;

@@ -3,7 +3,7 @@ import { Animation } from './animation';
 export class AnimationManager {
   /**
    * TBD.
-   * @param {Image} sprite - TBD.
+   * @param {import('../display/image').Image} sprite - TBD.
    */
   constructor(sprite) {
     this.sprite = sprite;

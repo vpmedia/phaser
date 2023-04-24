@@ -26,7 +26,7 @@ export class Button extends Image {
     justReleasedPreventsOver: number;
     freezeFrames: boolean;
     forceOut: boolean;
-    input: InputHandler;
+    input: any;
     /**
      * TBD.
      * @param {boolean} isEnabled - TBD.
@@ -63,6 +63,8 @@ export class Button extends Image {
      * @returns {boolean} TBD.
      */
     changeStateFrame(newState: string): boolean;
+    frameName: any;
+    frame: any;
     /**
      * TBD.
      * @param {string} overFrame - TBD.
@@ -99,5 +101,4 @@ export class Button extends Image {
 }
 import { Image } from './image';
 import { Signal } from '../core/signal';
-import { InputHandler } from '../core/input_handler';
 //# sourceMappingURL=button.d.ts.map

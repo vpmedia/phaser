@@ -42,9 +42,9 @@ export class FastSpriteBatch {
     render(spriteBatch: object): void;
     /**
      * TBD.
-     * @param {Image} sprite - TBD.
+     * @param {import('../../display/image').Image} sprite - TBD.
      */
-    renderSprite(sprite: new (width?: number, height?: number) => HTMLImageElement): void;
+    renderSprite(sprite: import('../../display/image').Image): void;
     /**
      * TBD.
      */

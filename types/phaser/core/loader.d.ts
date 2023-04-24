@@ -12,10 +12,10 @@ export class Loader {
     maxRetry: number;
     hasLoaded: boolean;
     preloadSprite: {
-        sprite: new (width?: number, height?: number) => HTMLImageElement;
+        sprite: import("../display/image").Image;
         direction: number;
-        width: any;
-        height: any;
+        width: number;
+        height: number;
         rect: any;
     };
     crossOrigin: boolean;
@@ -44,10 +44,10 @@ export class Loader {
     _loadedFileCount: number;
     /**
      * TBD.
-     * @param {Image} sprite - TBD.
+     * @param {import('../display/image').Image} sprite - TBD.
      * @param {number} direction - TBD.
      */
-    setPreloadSprite(sprite: new (width?: number, height?: number) => HTMLImageElement, direction?: number): void;
+    setPreloadSprite(sprite: import('../display/image').Image, direction?: number): void;
     /**
      * TBD.
      */
