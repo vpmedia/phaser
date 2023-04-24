@@ -1,14 +1,11 @@
 import { Point } from '../geom/point';
 import { GROUP } from './const';
 import { distance } from '../util/math';
-import { Pointer } from './input_pointer';
-import { Rectangle } from '../geom/rectangle';
-import { DisplayObject } from '../display/display_object';
 
 export class InputHandler {
   /**
    * TBD.
-   * @param sprite
+   * @param {Image} sprite - TBD.
    */
   constructor(sprite) {
     this.sprite = sprite;

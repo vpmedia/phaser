@@ -1,4 +1,3 @@
-import { Game } from '../core/game';
 import { DisplayObject } from './display_object';
 
 export class SpriteBatch extends DisplayObject {

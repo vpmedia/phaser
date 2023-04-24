@@ -7,13 +7,11 @@ const FORWARD_BUTTON = 4;
 const WHEEL_UP = 1;
 const WHEEL_DOWN = -1; */
 
-import { Game } from './game';
-
 class WheelEventProxy {
   /**
    * TBD.
-   * @param scaleFactor - TBD.
-   * @param deltaMode - TBD.
+   * @param {number} scaleFactor - TBD.
+   * @param {number} deltaMode - TBD.
    */
   constructor(scaleFactor, deltaMode) {
     this._scaleFactor = scaleFactor;
@@ -48,6 +46,7 @@ class WheelEventProxy {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get deltaMode() {
     return this._deltaMode;

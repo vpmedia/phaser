@@ -1,5 +1,4 @@
 import { ArraySet } from './array_set';
-import { Game } from './game';
 import { Signal } from './signal';
 import { Sound } from './sound';
 import { SoundSprite } from './sound_sprite';

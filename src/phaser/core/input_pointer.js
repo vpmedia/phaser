@@ -8,7 +8,6 @@ import {
   TOUCH_OVERRIDES_MOUSE,
   MOUSE_TOUCH_COMBINE,
 } from './const';
-import { Game } from './game';
 
 export class Pointer {
   /**
@@ -302,7 +301,7 @@ export class Pointer {
 
   /**
    * TBD.
-   * @param newTarget - TBD.
+   * @param {InputHandler} newTarget - TBD.
    * @param {boolean} silent - TBD.
    */
   swapTarget(newTarget, silent = false) {

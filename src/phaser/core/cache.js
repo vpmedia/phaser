@@ -5,7 +5,6 @@ import { Frame } from './frame';
 import { FrameData } from './frame_data';
 import { JSONDataHash } from './animation_parser';
 import { jsonBitmapFont, xmlBitmapFont } from './loader_parser';
-import { Game } from './game';
 
 export const CANVAS = 0;
 export const IMAGE = 1;
@@ -84,7 +83,7 @@ export class Cache {
    * TBD.
    * @param {string} key - TBD.
    * @param {string} url - TBD.
-   * @param data - TBD.
+   * @param {HTMLImageElement} data - TBD.
    * @returns {object} TBD.
    */
   addImage(key, url, data) {
@@ -112,7 +111,7 @@ export class Cache {
    * TBD.
    * @param {string} key - TBD.
    * @param {string} url - TBD.
-   * @param data - TBD.
+   * @param {HTMLCanvasElement} data - TBD.
    * @param {object} atlasData - TBD.
    */
   addTextureAtlas(key, url, data, atlasData) {
@@ -131,7 +130,7 @@ export class Cache {
    * TBD.
    * @param {string} key - TBD.
    * @param {string} url - TBD.
-   * @param data - TBD.
+   * @param {object} data - TBD.
    */
   addSound(key, url, data) {
     this._cache.sound[key] = {
@@ -148,7 +147,7 @@ export class Cache {
    * TBD.
    * @param {string} key - TBD.
    * @param {string} url - TBD.
-   * @param data - TBD.
+   * @param {string} data - TBD.
    */
   addText(key, url, data) {
     this._cache.text[key] = { url, data };
@@ -159,11 +158,11 @@ export class Cache {
    * TBD.
    * @param {string} key - TBD.
    * @param {string} url - TBD.
-   * @param data - TBD.
-   * @param atlasData - TBD.
-   * @param atlasType - TBD.
-   * @param xSpacing - TBD.
-   * @param ySpacing - TBD.
+   * @param {HTMLCanvasElement} data - TBD.
+   * @param {object} atlasData - TBD.
+   * @param {string} atlasType - TBD.
+   * @param {number} xSpacing - TBD.
+   * @param {number} ySpacing - TBD.
    */
   addBitmapFont(key, url, data, atlasData, atlasType, xSpacing = 0, ySpacing = 0) {
     const obj = {
@@ -185,7 +184,7 @@ export class Cache {
    * TBD.
    * @param {string} key - TBD.
    * @param {string} url - TBD.
-   * @param data - TBD.
+   * @param {object} data - TBD.
    */
   addJSON(key, url, data) {
     this._cache.json[key] = { url, data };
@@ -196,7 +195,7 @@ export class Cache {
    * TBD.
    * @param {string} key - TBD.
    * @param {string} url - TBD.
-   * @param data - TBD.
+   * @param {XMLDocument} data - TBD.
    */
   addXML(key, url, data) {
     this._cache.xml[key] = { url, data };
@@ -235,7 +234,7 @@ export class Cache {
    * TBD.
    * @param {string} key - TBD.
    * @param {string} property - TBD.
-   * @param value - TBD.
+   * @param {any} value - TBD.
    */
   updateSound(key, property, value) {
     const sound = this.getSound(key);
@@ -247,7 +246,7 @@ export class Cache {
   /**
    * TBD.
    * @param {string} key - TBD.
-   * @param data - TBD.
+   * @param {object} data - TBD.
    */
   decodedSound(key, data) {
     const sound = this.getSound(key);
@@ -413,6 +412,7 @@ export class Cache {
   /**
    * TBD.
    * @param {string} key - TBD.
+   * @returns {HTMLCanvasElement} TBD.
    */
   getCanvas(key) {
     return this.getItem(key, CANVAS, 'getCanvas', 'canvas');
@@ -421,7 +421,8 @@ export class Cache {
   /**
    * TBD.
    * @param {string} key - TBD.
-   * @param full - TBD.
+   * @param {boolean} full - TBD.
+   * @returns {HTMLImageElement} TBD.
    */
   getImage(key = '__default', full = false) {
     let img = this.getItem(key, IMAGE, 'getImage');
@@ -437,6 +438,7 @@ export class Cache {
   /**
    * TBD.
    * @param {string} key - TBD.
+   * @returns {object} TBD.
    */
   getTextureFrame(key) {
     return this.getItem(key, TEXTURE, 'getTextureFrame', 'frame');
@@ -445,6 +447,7 @@ export class Cache {
   /**
    * TBD.
    * @param {string} key - TBD.
+   * @returns {object} TBD.
    */
   getSound(key) {
     return this.getItem(key, SOUND, 'getSound');
@@ -453,6 +456,7 @@ export class Cache {
   /**
    * TBD.
    * @param {string} key - TBD.
+   * @returns {object} TBD.
    */
   getSoundData(key) {
     return this.getItem(key, SOUND, 'getSoundData', 'data');
@@ -461,6 +465,7 @@ export class Cache {
   /**
    * TBD.
    * @param {string} key - TBD.
+   * @returns {object} TBD.
    */
   getText(key) {
     return this.getItem(key, TEXT, 'getText', 'data');
@@ -469,6 +474,7 @@ export class Cache {
   /**
    * TBD.
    * @param {string} key - TBD.
+   * @returns {object} TBD.
    */
   getBitmapData(key) {
     return this.getItem(key, BITMAPDATA, 'getBitmapData', 'data');
@@ -477,6 +483,7 @@ export class Cache {
   /**
    * TBD.
    * @param {string} key - TBD.
+   * @returns {object} TBD.
    */
   getBitmapFont(key) {
     return this.getItem(key, BITMAPFONT, 'getBitmapFont');
@@ -486,6 +493,7 @@ export class Cache {
    * TBD.
    * @param {string} key - TBD.
    * @param {boolean} isClone - TBD.
+   * @returns {object} TBD.
    */
   getJSON(key, isClone = false) {
     const data = this.getItem(key, JSON, 'getJSON', 'data');
@@ -495,6 +503,7 @@ export class Cache {
   /**
    * TBD.
    * @param {string} key - TBD.
+   * @returns {XMLDocument} TBD.
    */
   getXML(key) {
     return this.getItem(key, XML, 'getXML', 'data');
@@ -503,6 +512,7 @@ export class Cache {
   /**
    * TBD.
    * @param {string} key - TBD.
+   * @returns {RenderTexture} TBD.
    */
   getRenderTexture(key) {
     return this.getItem(key, RENDER_TEXTURE, 'getRenderTexture');
@@ -514,6 +524,7 @@ export class Cache {
    * TBD.
    * @param {string} key - TBD.
    * @param {number} cache - TBD.
+   * @returns {BaseTexture} TBD.
    */
   getBaseTexture(key, cache = IMAGE) {
     return this.getItem(key, cache, 'getBaseTexture', 'base');
@@ -523,6 +534,7 @@ export class Cache {
    * TBD.
    * @param {string} key - TBD.
    * @param {number} cache - TBD.
+   * @returns {Frame} TBD.
    */
   getFrame(key, cache = IMAGE) {
     return this.getItem(key, cache, 'getFrame', 'frame');
@@ -532,6 +544,7 @@ export class Cache {
    * TBD.
    * @param {string} key - TBD.
    * @param {number} cache - TBD.
+   * @returns {number} TBD.
    */
   getFrameCount(key, cache = IMAGE) {
     const data = this.getFrameData(key, cache);
@@ -545,6 +558,7 @@ export class Cache {
    * TBD.
    * @param {string} key - TBD.
    * @param {number} cache - TBD.
+   * @returns {FrameData} TBD.
    */
   getFrameData(key, cache = IMAGE) {
     return this.getItem(key, cache, 'getFrameData', 'frameData');
@@ -554,6 +568,7 @@ export class Cache {
    * TBD.
    * @param {string} key - TBD.
    * @param {number} cache - TBD.
+   * @returns {boolean} TBD.
    */
   hasFrameData(key, cache = IMAGE) {
     return this.getItem(key, cache, '', 'frameData') !== null;
@@ -562,7 +577,7 @@ export class Cache {
   /**
    * TBD.
    * @param {string} key - TBD.
-   * @param frameData - TBD.
+   * @param {FrameData} frameData - TBD.
    * @param {number} cache - TBD.
    */
   updateFrameData(key, frameData, cache = IMAGE) {
@@ -576,6 +591,7 @@ export class Cache {
    * @param {string} key - TBD.
    * @param {number} index - TBD.
    * @param {number} cache - TBD.
+   * @returns {Frame} TBD.
    */
   getFrameByIndex(key, index, cache = IMAGE) {
     const data = this.getFrameData(key, cache);
@@ -590,6 +606,7 @@ export class Cache {
    * @param {string} key - TBD.
    * @param {string} name - TBD.
    * @param {number} cache - TBD.
+   * @returns {Frame} TBD.
    */
   getFrameByName(key, name, cache = IMAGE) {
     const data = this.getFrameData(key, cache);
@@ -602,6 +619,7 @@ export class Cache {
   /**
    * TBD.
    * @param {string} url - TBD.
+   * @returns {string} TBD.
    */
   getURL(url) {
     const resolvedURL = this._resolveURL(url);
@@ -615,6 +633,7 @@ export class Cache {
   /**
    * TBD.
    * @param {object} cache - TBD.
+   * @returns {string[]} TBD.
    */
   getKeys(cache = IMAGE) {
     const result = [];
@@ -739,7 +758,7 @@ export class Cache {
   /**
    * TBD.
    * @param {string} url - TBD.
-   * @param data - TBD.
+   * @param {object} data - TBD.
    * @returns {string} TBD.
    */
   _resolveURL(url, data) {

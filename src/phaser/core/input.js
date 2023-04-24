@@ -10,7 +10,6 @@ import { Pointer } from './input_pointer';
 import { Touch } from './input_touch';
 import { POINTER_CURSOR, POINTER_CONTACT, MOUSE_TOUCH_COMBINE } from './const';
 import { create, remove } from '../display/canvas/pool';
-import { Game } from './game';
 
 const MAX_POINTERS = 10;
 
@@ -125,7 +124,7 @@ export class Input {
   /**
    * TBD.
    * @param {Function} callback - TBD.
-   * @param context - TBD.
+   * @param {object} context - TBD.
    */
   setInteractiveCandidateHandler(callback, context) {
     this.customCandidateHandler = callback;
@@ -135,7 +134,7 @@ export class Input {
   /**
    * TBD.
    * @param {Function} callback - TBD.
-   * @param context - TBD.
+   * @param {object} context - TBD.
    */
   addMoveCallback(callback, context) {
     this.moveCallbacks.push({ callback, context });
@@ -144,7 +143,7 @@ export class Input {
   /**
    * TBD.
    * @param {Function} callback - TBD.
-   * @param context - TBD.
+   * @param {object} context - TBD.
    */
   deleteMoveCallback(callback, context) {
     let i = this.moveCallbacks.length;
@@ -298,7 +297,7 @@ export class Input {
 
   /**
    * TBD.
-   * @param limit - TBD.
+   * @param {number} limit - TBD.
    * @returns {number} TBD.
    */
   countActivePointers(limit = this.pointers.length) {
@@ -329,7 +328,7 @@ export class Input {
 
   /**
    * TBD.
-   * @param identifier - TBD.
+   * @param {number} identifier - TBD.
    * @returns {Pointer} TBD.
    */
   getPointerFromIdentifier(identifier) {
@@ -345,7 +344,7 @@ export class Input {
 
   /**
    * TBD.
-   * @param pointerId - TBD.
+   * @param {number} pointerId - TBD.
    * @returns {Pointer} TBD.
    */
   getPointerFromId(pointerId) {
@@ -361,9 +360,9 @@ export class Input {
 
   /**
    * TBD.
-   * @param displayObject - TBD.
-   * @param pointer - TBD.
-   * @param output - TBD.
+   * @param {DisplayObject} displayObject - TBD.
+   * @param {Pointer} pointer - TBD.
+   * @param {Point} output - TBD.
    * @returns {Point} TBD.
    */
   getLocalPosition(displayObject, pointer, output = null) {
@@ -378,9 +377,9 @@ export class Input {
 
   /**
    * TBD.
-   * @param displayObject - TBD.
-   * @param pointer - TBD.
-   * @param localPoint - TBD.
+   * @param {DisplayObject} displayObject - TBD.
+   * @param {Pointer} pointer - TBD.
+   * @param {Point} localPoint - TBD.
    * @returns {boolean} TBD.
    */
   hitTest(displayObject, pointer, localPoint) {

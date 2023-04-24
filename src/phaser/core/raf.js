@@ -1,5 +1,3 @@
-import { Game } from './game';
-
 export class RequestAnimationFrame {
   /**
    * TBD.

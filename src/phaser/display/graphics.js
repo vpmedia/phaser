@@ -1,13 +1,11 @@
 import { DisplayObject } from './display_object';
 import { Image } from './image';
-import { Game } from '../core/game';
 import { Rectangle } from '../geom/rectangle';
 import { RoundedRectangle } from '../geom/rounded_rectangle';
 import { Polygon } from '../geom/polygon';
 import { Circle } from '../geom/circle';
 import { Ellipse } from '../geom/ellipse';
 import { Point } from '../geom/point';
-import { Matrix } from '../geom/matrix';
 import { GraphicsData } from './graphics_data';
 import { CanvasBuffer } from './canvas/buffer';
 import { textureFromCanvas } from './webgl/texture_util';
@@ -841,8 +839,8 @@ export class Graphics extends DisplayObject {
 
   /**
    * TBD.
-   * @param points - TBD.
-   * @param cull - TBD.
+   * @param {Point[]} points - TBD.
+   * @param {boolean} cull - TBD.
    */
   drawTriangle(points, cull = false) {
     const triangle = new Polygon(points);
@@ -861,8 +859,8 @@ export class Graphics extends DisplayObject {
 
   /**
    * TBD.
-   * @param vertices - TBD.
-   * @param indices - TBD.
+   * @param {number[]|Point[]} vertices - TBD.
+   * @param {number[]} indices - TBD.
    * @param {boolean} cull - TBD.
    */
   drawTriangles(vertices, indices, cull = false) {

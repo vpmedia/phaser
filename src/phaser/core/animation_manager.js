@@ -1,6 +1,4 @@
 import { Animation } from './animation';
-import { FrameData } from './frame_data';
-import { Image } from '../display/image';
 
 export class AnimationManager {
   /**

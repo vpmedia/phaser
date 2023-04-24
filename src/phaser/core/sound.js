@@ -1,4 +1,3 @@
-import { Game } from './game';
 import { Signal } from './signal';
 
 export class Sound {

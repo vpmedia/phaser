@@ -2,9 +2,7 @@ import { Texture } from './webgl/texture';
 import { AnimationManager } from '../core/animation_manager';
 import { EventManager } from '../core/event_manager';
 import { Rectangle } from '../geom/rectangle';
-import { Matrix } from '../geom/matrix';
 import { DisplayObject } from './display_object';
-import { Game } from '../core/game';
 import { clone } from '../geom/util/rectangle';
 import { IMAGE, PENDING_ATLAS, BLEND_NORMAL, SCALE_NEAREST } from '../core/const';
 import { setTexture, getBounds, getLocalBounds, renderCanvas, renderWebGL } from './sprite_util';
@@ -140,7 +138,7 @@ export class Image extends DisplayObject {
 
   /**
    * TBD.
-   * @param frame - TBD.
+   * @param {Frame} frame - TBD.
    */
   setFrame(frame) {
     this._frame = frame;
@@ -185,7 +183,7 @@ export class Image extends DisplayObject {
 
   /**
    * TBD.
-   * @param parent - TBD.
+   * @param {DisplayObject} parent - TBD.
    * @param {number} width - TBD.
    * @param {number} height - TBD.
    */
@@ -205,6 +203,7 @@ export class Image extends DisplayObject {
 
   /**
    * TBD.
+   * @returns {number} TBD.
    */
   get frame() {
     return this.animations.frame;
@@ -236,7 +235,7 @@ export class Image extends DisplayObject {
 
   /**
    * TBD.
-   * @param rect - TBD.
+   * @param {Rectangle} rect - TBD.
    * @param {boolean} copy - TBD.
    */
   crop(rect, copy = false) {
@@ -335,7 +334,7 @@ export class Image extends DisplayObject {
 
   /**
    * TBD.
-   * @param texture - TBD.
+   * @param {Texture} texture - TBD.
    * @param {boolean} destroyBase - TBD.
    */
   setTexture(texture, destroyBase = false) {

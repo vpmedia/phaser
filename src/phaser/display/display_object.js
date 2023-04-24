@@ -671,6 +671,7 @@ export class DisplayObject {
 
   /**
    * TBD.
+   * @returns {Graphics} TBD.
    */
   get mask() {
     return this._mask;

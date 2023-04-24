@@ -1,7 +1,6 @@
 import { Signal } from './signal';
 import { Rectangle } from '../geom/rectangle';
 import { canPlayAudio } from './device_util';
-import { Game } from './game';
 
 const TEXTURE_ATLAS_JSON_HASH = 1;
 
@@ -47,8 +46,8 @@ export class Loader {
 
   /**
    * TBD.
-   * @param sprite - TBD.
-   * @param direction - TBD.
+   * @param {Image} sprite - TBD.
+   * @param {number} direction - TBD.
    */
   setPreloadSprite(sprite, direction = 0) {
     this.preloadSprite = {
@@ -80,7 +79,7 @@ export class Loader {
 
   /**
    * TBD.
-   * @param type - TBD.
+   * @param {string} type - TBD.
    * @param {string} key - TBD.
    * @returns {boolean} TBD.
    */
@@ -90,7 +89,7 @@ export class Loader {
 
   /**
    * TBD.
-   * @param type - TBD.
+   * @param {string} type - TBD.
    * @param {string} key - TBD.
    * @returns {number} TBD.
    */
@@ -112,7 +111,7 @@ export class Loader {
 
   /**
    * TBD.
-   * @param type - TBD.
+   * @param {string} type - TBD.
    * @param {string} key - TBD.
    * @returns {object} TBD.
    */
@@ -126,10 +125,10 @@ export class Loader {
 
   /**
    * TBD.
-   * @param hard
-   * @param clearEvents
+   * @param {boolean} hard - TBD.
+   * @param {boolean} clearEvents - TBD.
    */
-  reset(hard, clearEvents = false) {
+  reset(hard = false, clearEvents = false) {
     if (hard) {
       this.preloadSprite = null;
     }
@@ -154,12 +153,12 @@ export class Loader {
 
   /**
    * TBD.
-   * @param type - TBD.
+   * @param {string} type - TBD.
    * @param {string} key - TBD.
    * @param {string} url - TBD.
-   * @param properties - TBD.
-   * @param overwrite - TBD.
-   * @param extension - TBD.
+   * @param {object} properties - TBD.
+   * @param {boolean} overwrite - TBD.
+   * @param {string} extension - TBD.
    * @returns {Loader} TBD.
    */
   addToFileList(type, key = '', url = null, properties = null, overwrite = false, extension = null) {
@@ -211,10 +210,10 @@ export class Loader {
 
   /**
    * TBD.
-   * @param type - TBD.
+   * @param {string} type - TBD.
    * @param {string} key - TBD.
    * @param {string} url - TBD.
-   * @param properties - TBD.
+   * @param {object} properties - TBD.
    * @returns {Loader} TBD.
    */
   replaceInFileList(type, key, url, properties) {
@@ -225,7 +224,7 @@ export class Loader {
    * TBD.
    * @param {string} key - TBD.
    * @param {string} url - TBD.
-   * @param data - TBD.
+   * @param {object} data - TBD.
    * @param {object} callbackContext - TBD.
    * @returns {Loader} TBD.
    */
@@ -264,17 +263,17 @@ export class Loader {
    * TBD.
    * @param {string} key - TBD.
    * @param {string} url - TBD.
-   * @param overwrite - TBD.
+   * @param {boolean} overwrite - TBD.
    * @returns {Loader} TBD.
    */
-  image(key, url, overwrite) {
+  image(key, url, overwrite = false) {
     return this.addToFileList('image', key, url, undefined, overwrite, '.png');
   }
 
   /**
    * TBD.
-   * @param keys - TBD.
-   * @param urls - TBD.
+   * @param {string[]} keys - TBD.
+   * @param {string[]} urls - TBD.
    * @returns {Loader} TBD.
    */
   images(keys, urls) {
@@ -294,7 +293,7 @@ export class Loader {
    * TBD.
    * @param {string} key - TBD.
    * @param {string} url - TBD.
-   * @param overwrite - TBD.
+   * @param {boolean} overwrite - TBD.
    * @returns {Loader} TBD.
    */
   text(key, url, overwrite) {
@@ -305,7 +304,7 @@ export class Loader {
    * TBD.
    * @param {string} key - TBD.
    * @param {string} url - TBD.
-   * @param overwrite - TBD.
+   * @param {boolean} overwrite - TBD.
    * @returns {Loader} TBD.
    */
   json(key, url, overwrite) {
@@ -316,7 +315,7 @@ export class Loader {
    * TBD.
    * @param {string} key - TBD.
    * @param {string} url - TBD.
-   * @param overwrite - TBD.
+   * @param {boolean} overwrite - TBD.
    * @returns {Loader} TBD.
    */
   xml(key, url, overwrite) {
@@ -327,11 +326,11 @@ export class Loader {
    * TBD.
    * @param {string} key - TBD.
    * @param {string} url - TBD.
-   * @param frameWidth - TBD.
-   * @param frameHeight - TBD.
-   * @param frameMax - TBD.
-   * @param margin - TBD.
-   * @param spacing - TBD.
+   * @param {number} frameWidth - TBD.
+   * @param {number} frameHeight - TBD.
+   * @param {number} frameMax - TBD.
+   * @param {number} margin - TBD.
+   * @param {number} spacing - TBD.
    * @returns {Loader} TBD.
    */
   spritesheet(key, url, frameWidth, frameHeight, frameMax = -1, margin = 0, spacing = 0) {
@@ -348,8 +347,8 @@ export class Loader {
   /**
    * TBD.
    * @param {string} key - TBD.
-   * @param urls
-   * @param autoDecode
+   * @param {string[]} urls - TBD.
+   * @param {boolean} autoDecode - TBD.
    * @returns {Loader} TBD.
    */
   audio(key, urls, autoDecode = true) {
@@ -365,10 +364,10 @@ export class Loader {
   /**
    * TBD.
    * @param {string} key - TBD.
-   * @param urls - TBD.
-   * @param jsonURL - TBD.
-   * @param jsonData - TBD.
-   * @param autoDecode - TBD.
+   * @param {string} urls - TBD.
+   * @param {string} jsonURL - TBD.
+   * @param {object} jsonData - TBD.
+   * @param {boolean} autoDecode - TBD.
    * @returns {Loader} TBD.
    */
   audioSprite(key, urls, jsonURL, jsonData, autoDecode = true) {
@@ -390,11 +389,11 @@ export class Loader {
   /**
    * TBD.
    * @param {string} key - TBD.
-   * @param textureURL - TBD.
-   * @param atlasURL - TBD.
-   * @param atlasData - TBD.
-   * @param xSpacing - TBD.
-   * @param ySpacing - TBD.
+   * @param {string} textureURL - TBD.
+   * @param {string} atlasURL - TBD.
+   * @param {object} atlasData - TBD.
+   * @param {number} xSpacing - TBD.
+   * @param {number} ySpacing - TBD.
    * @returns {Loader} TBD.
    * @throws Error.
    */
@@ -434,10 +433,10 @@ export class Loader {
   /**
    * TBD.
    * @param {string} key - TBD.
-   * @param textureURL - TBD.
-   * @param atlasURL - TBD.
-   * @param atlasData - TBD.
-   * @param format - TBD.
+   * @param {string} textureURL - TBD.
+   * @param {string} atlasURL - TBD.
+   * @param {object} atlasData - TBD.
+   * @param {number} format - TBD.
    * @returns {Loader} TBD.
    */
   atlas(key, textureURL, atlasURL = null, atlasData = null, format = TEXTURE_ATLAS_JSON_HASH) {
@@ -474,7 +473,7 @@ export class Loader {
 
   /**
    * TBD.
-   * @param type - TBD.
+   * @param {string} type - TBD.
    * @param {string} key - TBD.
    * @returns {Loader} TBD.
    */
@@ -488,7 +487,7 @@ export class Loader {
 
   /**
    * TBD.
-   * @param type - TBD.
+   * @param {string} type - TBD.
    * @param {string} key - TBD.
    */
   removeFile(type, key) {
@@ -621,7 +620,7 @@ export class Loader {
 
   /**
    * TBD.
-   * @param abnormal - TBD.
+   * @param {boolean} abnormal - TBD.
    */
   finishedLoading(abnormal) {
     if (this.hasLoaded) {
@@ -644,8 +643,8 @@ export class Loader {
 
   /**
    * TBD.
-   * @param file - TBD.
-   * @param errorMessage - TBD.
+   * @param {object} file - TBD.
+   * @param {string} errorMessage - TBD.
    */
   asyncComplete(file, errorMessage = '') {
     file.loaded = true;
@@ -660,7 +659,7 @@ export class Loader {
 
   /**
    * TBD.
-   * @param pack - TBD.
+   * @param {object} pack - TBD.
    */
   processPack(pack) {
     const packData = pack.data[pack.key];
@@ -724,7 +723,7 @@ export class Loader {
   /**
    * TBD.
    * @param {string} url - TBD.
-   * @param file - TBD.
+   * @param {object} file - TBD.
    * @returns {string} TBD.
    */
   transformUrl(url, file) {
@@ -739,7 +738,7 @@ export class Loader {
 
   /**
    * TBD.
-   * @param file - TBD.
+   * @param {object} file - TBD.
    */
   loadFile(file) {
     switch (file.type) {
@@ -777,7 +776,7 @@ export class Loader {
 
   /**
    * TBD.
-   * @param file - TBD.
+   * @param {object} file - TBD.
    */
   loadImageTag(file) {
     this.log('loadImageTag', file);
@@ -809,13 +808,13 @@ export class Loader {
 
   /**
    * TBD.
-   * @param file - TBD.
+   * @param {object} file - TBD.
    * @param {string} url - TBD.
-   * @param type - TBD.
-   * @param onload - TBD.
-   * @param onerror - TBD.
+   * @param {string} type - TBD.
+   * @param {Function} onload - TBD.
+   * @param {Function} onerror - TBD.
    */
-  xhrLoad(file, url, type, onload, onerror) {
+  xhrLoad(file, url, type, onload, onerror = null) {
     this.log('xhrLoad', file);
     const scope = this;
     const xhr = new XMLHttpRequest();
@@ -884,7 +883,7 @@ export class Loader {
 
   /**
    * TBD.
-   * @param urls - TBD.
+   * @param {object[]} urls - TBD.
    * @returns {string} TBD.
    */
   getAudioURL(urls) {
@@ -922,9 +921,9 @@ export class Loader {
 
   /**
    * TBD.
-   * @param file - TBD.
-   * @param xhr - TBD.
-   * @param reason - TBD.
+   * @param {object} file - TBD.
+   * @param {XMLHttpRequest} xhr - TBD.
+   * @param {number} reason - TBD.
    */
   fileError(file, xhr, reason) {
     // const url = file.requestUrl || this.transformUrl(file.url, file);
@@ -940,8 +939,8 @@ export class Loader {
 
   /**
    * TBD.
-   * @param file - TBD.
-   * @param xhr - TBD.
+   * @param {object} file - TBD.
+   * @param {XMLHttpRequest} xhr - TBD.
    * @throws Error.
    */
   fileComplete(file, xhr) {
@@ -1032,8 +1031,8 @@ export class Loader {
 
   /**
    * TBD.
-   * @param file - TBD.
-   * @param xhr - TBD.
+   * @param {object} file - TBD.
+   * @param {XMLHttpRequest} xhr - TBD.
    */
   jsonLoadComplete(file, xhr) {
     const data = JSON.parse(xhr.responseText);
@@ -1057,8 +1056,8 @@ export class Loader {
 
   /**
    * TBD.
-   * @param file - TBD.
-   * @param xhr - TBD.
+   * @param {object} file - TBD.
+   * @param {XMLHttpRequest} xhr - TBD.
    */
   xmlLoadComplete(file, xhr) {
     // Always try parsing the content as XML, regardless of actually response type
@@ -1082,7 +1081,7 @@ export class Loader {
 
   /**
    * TBD.
-   * @param data - TBD.
+   * @param {object} data - TBD.
    * @returns {Document} TBD.
    */
   parseXml(data) {
@@ -1127,8 +1126,8 @@ export class Loader {
 
   /**
    * TBD.
-   * @param message - TBD.
-   * @param data - TBD.
+   * @param {string} message - TBD.
+   * @param {string|object} data - TBD.
    */
   log(message, data = '') {
     if (!this.isUseLog) {

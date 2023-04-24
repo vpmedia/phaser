@@ -1,6 +1,5 @@
 import { getTintedTexture } from './canvas/tinter';
 import { getIdentityMatrix } from '../geom/util/matrix';
-import { Rectangle } from '../geom/rectangle';
 import { SCALE_LINEAR } from '../core/const';
 
 /**

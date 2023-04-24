@@ -53,7 +53,7 @@ export function switchMode(webGL, type) {
 /**
  * TBD.
  * @param {object} graphicsData - TBD.
- * @param {object} webGLData - TBD.
+ * @param {GraphicsData} webGLData - TBD.
  */
 export function buildLine(graphicsData, webGLData) {
   // TODO OPTIMISE!
@@ -218,7 +218,7 @@ export function buildLine(graphicsData, webGLData) {
 /**
  * TBD.
  * @param {object} graphicsData - TBD.
- * @param {object} webGLData - TBD.
+ * @param {GraphicsData} webGLData - TBD.
  */
 export function buildRectangle(graphicsData, webGLData) {
   //
@@ -301,7 +301,7 @@ export function quadraticBezierCurve(fromX, fromY, cpX, cpY, toX, toY) {
 /**
  * TBD.
  * @param {object} graphicsData - TBD.
- * @param {object} webGLData - TBD.
+ * @param {GraphicsData} webGLData - TBD.
  */
 export function buildRoundedRectangle(graphicsData, webGLData) {
   const rrectData = graphicsData.shape;
@@ -351,7 +351,7 @@ export function buildRoundedRectangle(graphicsData, webGLData) {
 /**
  * TBD.
  * @param {object} graphicsData - TBD.
- * @param {object} webGLData - TBD.
+ * @param {GraphicsData} webGLData - TBD.
  */
 export function buildCircle(graphicsData, webGLData) {
   // need to convert points to a nice regular data
@@ -402,7 +402,7 @@ export function buildCircle(graphicsData, webGLData) {
 /**
  * TBD.
  * @param {object} graphicsData - TBD.
- * @param {object} webGLData - TBD.
+ * @param {GraphicsData} webGLData - TBD.
  */
 export function buildComplexPoly(graphicsData, webGLData) {
   // TODO - no need to copy this as it gets turned into a Float32Array anyways..
@@ -446,7 +446,7 @@ export function buildComplexPoly(graphicsData, webGLData) {
 /**
  * TBD.
  * @param {object} graphicsData - TBD.
- * @param {object} webGLData - TBD.
+ * @param {GraphicsData} webGLData - TBD.
  * @returns {boolean} TBD.
  */
 export function buildPoly(graphicsData, webGLData) {

@@ -1,6 +1,3 @@
-import { Game } from './game';
-import { Sound } from './sound';
-
 export class SoundSprite {
   /**
    * TBD.

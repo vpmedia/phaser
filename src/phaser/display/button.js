@@ -1,6 +1,5 @@
 import { Image } from './image';
 import { Signal } from '../core/signal';
-import { Game } from '../core/game';
 import { InputHandler } from '../core/input_handler';
 import { BUTTON, POINTER_CONTACT } from '../core/const';
 

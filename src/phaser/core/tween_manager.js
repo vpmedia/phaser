@@ -33,7 +33,6 @@ import {
   BounceInOut,
 } from './tween_easing';
 import { GROUP } from './const';
-import { Game } from './game';
 
 export class TweenManager {
   /**

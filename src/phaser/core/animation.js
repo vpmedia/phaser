@@ -1,7 +1,4 @@
-import { Game } from './game';
 import { Signal } from './signal';
-import { FrameData } from './frame_data';
-import { Image } from '../display/image';
 
 export class Animation {
   /**

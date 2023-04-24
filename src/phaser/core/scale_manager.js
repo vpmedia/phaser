@@ -3,7 +3,6 @@ import { DOM } from './dom';
 import { Point } from '../geom/point';
 import { Rectangle } from '../geom/rectangle';
 import { SCALE_OFF, SCALE_RESIZE, SCALE_EXACT_FIT, SCALE_USER, SCALE_SHOW_ALL, RENDER_CANVAS } from './const';
-import { Game } from './game';
 
 export class ScaleManager {
   /**

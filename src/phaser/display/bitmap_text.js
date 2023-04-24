@@ -1,6 +1,5 @@
 import { DisplayObject } from './display_object';
 import { Image } from './image';
-import { Game } from '../core/game';
 import { Point } from '../geom/point';
 import { BITMAP_TEXT, SCALE_LINEAR, SCALE_NEAREST } from '../core/const';
 

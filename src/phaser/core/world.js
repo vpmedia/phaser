@@ -1,5 +1,4 @@
 import { Group } from '../display/group';
-import { Game } from './game';
 
 export class World extends Group {
   /**

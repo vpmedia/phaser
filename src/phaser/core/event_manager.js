@@ -1,5 +1,4 @@
 import { Signal } from './signal';
-import { DisplayObject } from '../display/display_object';
 
 export class EventManager {
   /**

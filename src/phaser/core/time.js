@@ -1,4 +1,3 @@
-import { Game } from './game';
 import { Timer } from './timer';
 
 export class Time {

@@ -1,5 +1,4 @@
 import { cloneFrameData } from './frame_util';
-import { Frame } from './frame';
 
 export class FrameData {
   /**

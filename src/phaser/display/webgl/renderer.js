@@ -22,14 +22,12 @@ import {
 import { remove } from '../canvas/pool';
 import { isPowerOfTwo } from '../../util/math';
 import { Point } from '../../geom/point';
-import { Matrix } from '../../geom/matrix';
 import { WebGLShaderManager } from './shader_manager';
 import { WebGLSpriteBatch } from './sprite_batch';
 import * as WebGLMaskManager from './mask_manager';
 import { WebGLFilterManager } from './filter_manager';
 import { WebGLStencilManager } from './stencil_manager';
 import { WebGLBlendModeManager } from './blend_manager';
-import { Game } from '../../core/game';
 
 export class WebGLRenderer {
   /**
@@ -121,6 +119,7 @@ export class WebGLRenderer {
 
   /**
    * TBD.
+   * @throws Error.
    */
   initContext() {
     const gl =
@@ -154,7 +153,7 @@ export class WebGLRenderer {
 
   /**
    * TBD.
-   * @param stage - TBD.
+   * @param {Stage} stage - TBD.
    */
   render(stage) {
     if (this.contextLost) {
@@ -176,9 +175,9 @@ export class WebGLRenderer {
 
   /**
    * TBD.
-   * @param displayObject - TBD.
-   * @param projection - TBD.
-   * @param buffer - TBD.
+   * @param {DisplayObject} displayObject - TBD.
+   * @param {Point} projection - TBD.
+   * @param {object} buffer - TBD.
    * @param {Matrix} matrix - TBD.
    */
   renderDisplayObject(displayObject, projection, buffer, matrix) {
@@ -222,7 +221,7 @@ export class WebGLRenderer {
 
   /**
    * TBD.
-   * @param texture - TBD.
+   * @param {BaseTexture} texture - TBD.
    * @returns {boolean} TBD.
    */
   updateTexture(texture) {

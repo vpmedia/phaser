@@ -1,5 +1,4 @@
 import { Rectangle } from '../../geom/rectangle';
-import { BaseTexture } from './base_texture';
 
 export class TextureUvs {
   /**

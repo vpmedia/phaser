@@ -96,7 +96,7 @@ export class FastSpriteBatch {
 
   /**
    * TBD.
-   * @param sprite - TBD.
+   * @param {Image} sprite - TBD.
    */
   renderSprite(sprite) {
     if (!sprite.visible) {

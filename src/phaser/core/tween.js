@@ -1,10 +1,7 @@
 import { Signal } from './signal';
 import { TweenData } from './tween_data';
-import { TweenManager } from './tween_manager';
-import { DisplayObject } from '../display/display_object';
 import * as MathUtils from '../util/math';
 import { TWEEN_PENDING, TWEEN_RUNNING, TWEEN_COMPLETE, TWEEN_LOOPED } from './const';
-import { Game } from './game';
 
 export class Tween {
   /**
@@ -148,7 +145,7 @@ export class Tween {
   /**
    * TBD.
    * @param {string} property - TBD.
-   * @param {number} value - TBD.
+   * @param {object} value - TBD.
    * @param {number} index - TBD.
    * @returns {Tween} TBD.
    */
@@ -235,8 +232,8 @@ export class Tween {
 
   /**
    * TBD.
-   * @param interpolation - TBD.
-   * @param context - TBD.
+   * @param {Function} interpolation - TBD.
+   * @param {object} context - TBD.
    * @param {number} index - TBD.
    * @returns {Tween} TBD.
    */
@@ -424,7 +421,8 @@ export class Tween {
   /**
    * TBD.
    * @param {number} frameRate - TBD.
-   * @param data - TBD.
+   * @param {object[]} data - TBD.
+   * @returns {object[]} TBD.
    */
   generateData(frameRate = 60, data = []) {
     if (this.game === null || this.target === null) {
