@@ -1,5 +1,6 @@
 import { ArraySet } from './array_set';
 import { Graphics } from '../display/graphics';
+import { DisplayObject } from '../display/display_object';
 import { Image } from '../display/image';
 import { Signal } from './signal';
 import { Point } from '../geom/point';
@@ -298,7 +299,7 @@ export class Input {
 
   /**
    * TBD.
-   * @param limit - TBD.
+   * @param {number} limit - TBD.
    * @returns {number} TBD.
    */
   countActivePointers(limit = this.pointers.length) {
@@ -329,7 +330,7 @@ export class Input {
 
   /**
    * TBD.
-   * @param identifier - TBD.
+   * @param {number} identifier - TBD.
    * @returns {Pointer} TBD.
    */
   getPointerFromIdentifier(identifier) {
@@ -345,7 +346,7 @@ export class Input {
 
   /**
    * TBD.
-   * @param pointerId - TBD.
+   * @param {number} pointerId - TBD.
    * @returns {Pointer} TBD.
    */
   getPointerFromId(pointerId) {
@@ -361,9 +362,9 @@ export class Input {
 
   /**
    * TBD.
-   * @param displayObject - TBD.
-   * @param pointer - TBD.
-   * @param output - TBD.
+   * @param {DisplayObject} displayObject - TBD.
+   * @param {Pointer} pointer - TBD.
+   * @param {Point} output - TBD.
    * @returns {Point} TBD.
    */
   getLocalPosition(displayObject, pointer, output = null) {
@@ -378,9 +379,9 @@ export class Input {
 
   /**
    * TBD.
-   * @param displayObject - TBD.
-   * @param pointer - TBD.
-   * @param localPoint - TBD.
+   * @param {DisplayObject} displayObject - TBD.
+   * @param {Pointer} pointer - TBD.
+   * @param {Point} localPoint - TBD.
    * @returns {boolean} TBD.
    */
   hitTest(displayObject, pointer, localPoint) {

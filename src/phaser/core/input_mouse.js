@@ -12,8 +12,8 @@ import { Game } from './game';
 class WheelEventProxy {
   /**
    * TBD.
-   * @param scaleFactor - TBD.
-   * @param deltaMode - TBD.
+   * @param {number} scaleFactor - TBD.
+   * @param {number} deltaMode - TBD.
    */
   constructor(scaleFactor, deltaMode) {
     this._scaleFactor = scaleFactor;

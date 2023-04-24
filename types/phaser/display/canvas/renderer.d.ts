@@ -25,9 +25,9 @@ export class CanvasRenderer {
     };
     /**
      * TBD.
-     * @param root - TBD.
+     * @param {Stage} root - TBD.
      */
-    render(root: any): void;
+    render(root: Stage): void;
     /**
      * TBD.
      * @param {boolean} removeView - TBD.
@@ -42,16 +42,17 @@ export class CanvasRenderer {
     /**
      * TBD.
      * @param {Image} displayObject - TBD.
-     * @param {object} context - TBD.
+     * @param {CanvasRenderingContext2D} context - TBD.
      * @param {Matrix} matrix - TBD.
      */
-    renderDisplayObject(displayObject: Image, context: object, matrix: Matrix): void;
+    renderDisplayObject(displayObject: Image, context: CanvasRenderingContext2D, matrix: Matrix): void;
     /**
      * TBD.
      */
     mapBlendModes(): void;
 }
 import * as CanvasMaskManager from './masker';
+import { Stage } from '../../core/stage';
 import { Image } from '../image';
 import { Matrix } from '../../geom/matrix';
 import { Game } from '../../core/game';

@@ -24,6 +24,7 @@ import { getSmoothingPrefix } from './util';
 import { detectCapabilities } from './tinter';
 import * as CanvasMaskManager from './masker';
 import { Game } from '../../core/game';
+import { Stage } from '../../core/stage';
 import { Image } from '../image';
 import { Matrix } from '../../geom/matrix';
 
@@ -62,7 +63,7 @@ export class CanvasRenderer {
 
   /**
    * TBD.
-   * @param root - TBD.
+   * @param {Stage} root - TBD.
    */
   render(root) {
     if (!this.context) {
@@ -120,7 +121,7 @@ export class CanvasRenderer {
   /**
    * TBD.
    * @param {Image} displayObject - TBD.
-   * @param {object} context - TBD.
+   * @param {CanvasRenderingContext2D} context - TBD.
    * @param {Matrix} matrix - TBD.
    */
   renderDisplayObject(displayObject, context, matrix) {

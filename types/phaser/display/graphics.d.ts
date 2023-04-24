@@ -182,17 +182,17 @@ export class Graphics extends DisplayObject {
     drawShape(shape: any): GraphicsData;
     /**
      * TBD.
-     * @param points - TBD.
-     * @param cull - TBD.
-     */
-    drawTriangle(points: any, cull?: boolean): void;
-    /**
-     * TBD.
-     * @param vertices - TBD.
-     * @param indices - TBD.
+     * @param {Point[]} points - TBD.
      * @param {boolean} cull - TBD.
      */
-    drawTriangles(vertices: any, indices: any, cull?: boolean): void;
+    drawTriangle(points: Point[], cull?: boolean): void;
+    /**
+     * TBD.
+     * @param {number[]|Point[]} vertices - TBD.
+     * @param {number[]} indices - TBD.
+     * @param {boolean} cull - TBD.
+     */
+    drawTriangles(vertices: number[] | Point[], indices: number[], cull?: boolean): void;
 }
 import { DisplayObject } from './display_object';
 import { Game } from '../core/game';

@@ -29,6 +29,9 @@ import * as WebGLMaskManager from './mask_manager';
 import { WebGLFilterManager } from './filter_manager';
 import { WebGLStencilManager } from './stencil_manager';
 import { WebGLBlendModeManager } from './blend_manager';
+import { BaseTexture } from './base_texture';
+import { DisplayObject } from '../../display/display_object';
+import { Stage } from '../../core/stage';
 import { Game } from '../../core/game';
 
 export class WebGLRenderer {
@@ -155,7 +158,7 @@ export class WebGLRenderer {
 
   /**
    * TBD.
-   * @param stage - TBD.
+   * @param {Stage} stage - TBD.
    */
   render(stage) {
     if (this.contextLost) {
@@ -177,9 +180,9 @@ export class WebGLRenderer {
 
   /**
    * TBD.
-   * @param displayObject - TBD.
-   * @param projection - TBD.
-   * @param buffer - TBD.
+   * @param {DisplayObject} displayObject - TBD.
+   * @param {Point} projection - TBD.
+   * @param {object} buffer - TBD.
    * @param {Matrix} matrix - TBD.
    */
   renderDisplayObject(displayObject, projection, buffer, matrix) {
@@ -223,7 +226,7 @@ export class WebGLRenderer {
 
   /**
    * TBD.
-   * @param texture - TBD.
+   * @param {BaseTexture} texture - TBD.
    * @returns {boolean} TBD.
    */
   updateTexture(texture) {

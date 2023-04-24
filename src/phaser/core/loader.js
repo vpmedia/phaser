@@ -1,5 +1,6 @@
 import { Signal } from './signal';
 import { Rectangle } from '../geom/rectangle';
+import { Image } from '../display/image';
 import { canPlayAudio } from './device_util';
 import { Game } from './game';
 
@@ -47,7 +48,7 @@ export class Loader {
 
   /**
    * TBD.
-   * @param sprite - TBD.
+   * @param {Image} sprite - TBD.
    * @param {number} direction - TBD.
    */
   setPreloadSprite(sprite, direction = 0) {

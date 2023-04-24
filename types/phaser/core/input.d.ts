@@ -122,7 +122,7 @@ export class Input {
     stopPointer(event: MouseEvent | TouchEvent | PointerEvent): Pointer;
     /**
      * TBD.
-     * @param limit - TBD.
+     * @param {number} limit - TBD.
      * @returns {number} TBD.
      */
     countActivePointers(limit?: number): number;
@@ -134,32 +134,32 @@ export class Input {
     getPointer(isActive?: boolean): Pointer;
     /**
      * TBD.
-     * @param identifier - TBD.
+     * @param {number} identifier - TBD.
      * @returns {Pointer} TBD.
      */
-    getPointerFromIdentifier(identifier: any): Pointer;
+    getPointerFromIdentifier(identifier: number): Pointer;
     /**
      * TBD.
-     * @param pointerId - TBD.
+     * @param {number} pointerId - TBD.
      * @returns {Pointer} TBD.
      */
-    getPointerFromId(pointerId: any): Pointer;
+    getPointerFromId(pointerId: number): Pointer;
     /**
      * TBD.
-     * @param displayObject - TBD.
-     * @param pointer - TBD.
-     * @param output - TBD.
+     * @param {DisplayObject} displayObject - TBD.
+     * @param {Pointer} pointer - TBD.
+     * @param {Point} output - TBD.
      * @returns {Point} TBD.
      */
-    getLocalPosition(displayObject: any, pointer: any, output?: any): Point;
+    getLocalPosition(displayObject: DisplayObject, pointer: Pointer, output?: Point): Point;
     /**
      * TBD.
-     * @param displayObject - TBD.
-     * @param pointer - TBD.
-     * @param localPoint - TBD.
+     * @param {DisplayObject} displayObject - TBD.
+     * @param {Pointer} pointer - TBD.
+     * @param {Point} localPoint - TBD.
      * @returns {boolean} TBD.
      */
-    hitTest(displayObject: any, pointer: any, localPoint: any): boolean;
+    hitTest(displayObject: DisplayObject, pointer: Pointer, localPoint: Point): boolean;
     /**
      * TBD.
      */
@@ -217,4 +217,5 @@ import { Touch } from './input_touch';
 import { MSPointer } from './input_mspointer';
 import { Signal } from './signal';
 import { ArraySet } from './array_set';
+import { DisplayObject } from '../display/display_object';
 //# sourceMappingURL=input.d.ts.map

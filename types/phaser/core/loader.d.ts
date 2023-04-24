@@ -12,10 +12,10 @@ export class Loader {
     maxRetry: number;
     hasLoaded: boolean;
     preloadSprite: {
-        sprite: any;
+        sprite: Image;
         direction: number;
-        width: any;
-        height: any;
+        width: number;
+        height: number;
         rect: any;
     };
     crossOrigin: boolean;
@@ -44,10 +44,10 @@ export class Loader {
     _loadedFileCount: number;
     /**
      * TBD.
-     * @param sprite - TBD.
+     * @param {Image} sprite - TBD.
      * @param {number} direction - TBD.
      */
-    setPreloadSprite(sprite: any, direction?: number): void;
+    setPreloadSprite(sprite: Image, direction?: number): void;
     /**
      * TBD.
      */
@@ -361,5 +361,6 @@ export class Loader {
     get progress(): number;
 }
 import { Game } from './game';
+import { Image } from '../display/image';
 import { Signal } from './signal';
 //# sourceMappingURL=loader.d.ts.map
