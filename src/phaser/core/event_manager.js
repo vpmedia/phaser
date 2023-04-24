@@ -3,7 +3,7 @@ import { Signal } from './signal';
 export class EventManager {
   /**
    * TBD.
-   * @param {DisplayObject} sprite - TBD.
+   * @param {import('../display/display_object').DisplayObject} sprite - TBD.
    */
   constructor(sprite) {
     this.parent = sprite;

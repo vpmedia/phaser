@@ -87,7 +87,7 @@ export class WebGLSpriteBatch {
   /**
    * TBD.
    * @param {Image} sprite - TBD.
-   * @param {Matrix} matrix - TBD.
+   * @param {import('../../geom/matrix').Matrix} matrix - TBD.
    */
   render(sprite, matrix) {
     const texture = sprite.texture;
@@ -294,7 +294,7 @@ export class WebGLSpriteBatch {
 
   /**
    * TBD.
-   * @param {BaseTexture} texture - TBD.
+   * @param {import('./base_texture').BaseTexture} texture - TBD.
    * @param {number} size - TBD.
    * @param {number} startIndex - TBD.
    */

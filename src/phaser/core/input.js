@@ -16,7 +16,7 @@ const MAX_POINTERS = 10;
 export class Input {
   /**
    * TBD.
-   * @param {Game} game - TBD.
+   * @param {import('./game').Game} game - TBD.
    */
   constructor(game) {
     this.game = game;
@@ -360,7 +360,7 @@ export class Input {
 
   /**
    * TBD.
-   * @param {DisplayObject} displayObject - TBD.
+   * @param {import('../display/display_object').DisplayObject} displayObject - TBD.
    * @param {Pointer} pointer - TBD.
    * @param {Point} output - TBD.
    * @returns {Point} TBD.
@@ -377,7 +377,7 @@ export class Input {
 
   /**
    * TBD.
-   * @param {DisplayObject} displayObject - TBD.
+   * @param {import('../display/display_object').DisplayObject} displayObject - TBD.
    * @param {Pointer} pointer - TBD.
    * @param {Point} localPoint - TBD.
    * @returns {boolean} TBD.

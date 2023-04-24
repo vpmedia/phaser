@@ -16,16 +16,17 @@ export class WebGLShaderManager {
     setContext(gl: WebGLRenderingContext): void;
     /**
      * TBD.
-     * @param attribs - TBD.
+     * @param {number[]} attribs - TBD.
      */
-    setAttribs(attribs: any): void;
+    setAttribs(attribs: number[]): void;
     /**
      * TBD.
-     * @param shader - TBD.
+     * @param {NormalShader} shader - TBD.
+     * @returns {boolean} TBD.
      */
-    setShader(shader: any): boolean;
+    setShader(shader: NormalShader): boolean;
     _currentId: any;
-    currentShader: any;
+    currentShader: NormalShader;
     /**
      * TBD.
      */

@@ -1,7 +1,7 @@
 export class SignalBinding {
   /**
    * TBD.
-   * @param {Signal} signal - TBD.
+   * @param {import('./signal').Signal} signal - TBD.
    * @param {Function} listener - TBD.
    * @param {boolean} isOnce - TBD.
    * @param {object} listenerContext - TBD.
@@ -76,7 +76,7 @@ export class SignalBinding {
 
   /**
    * TBD.
-   * @returns {Signal} TBD.
+   * @returns {import('./signal').Signal} TBD.
    */
   getSignal() {
     return this._signal;

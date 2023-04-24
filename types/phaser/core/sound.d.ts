@@ -1,14 +1,14 @@
 export class Sound {
     /**
      * TBD.
-     * @param {Game} game - TBD.
+     * @param {import('./game').Game} game - TBD.
      * @param {string} key - TBD.
      * @param {number} volume - TBD.
      * @param {boolean} loop - TBD.
      * @param {boolean} connect - TBD.
      */
-    constructor(game: Game, key: string, volume?: number, loop?: boolean, connect?: boolean);
-    game: Game;
+    constructor(game: import('./game').Game, key: string, volume?: number, loop?: boolean, connect?: boolean);
+    game: import("./game").Game;
     name: string;
     key: string;
     loop: boolean;
@@ -164,6 +164,5 @@ export class Sound {
      */
     get mute(): boolean;
 }
-import { Game } from './game';
 import { Signal } from './signal';
 //# sourceMappingURL=sound.d.ts.map

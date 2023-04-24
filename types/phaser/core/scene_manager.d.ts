@@ -1,11 +1,11 @@
 export class SceneManager {
     /**
      * TBD.
-     * @param {Game} game - TBD.
+     * @param {import('./game').Game} game - TBD.
      * @param {string} pendingState - TBD.
      */
-    constructor(game: Game, pendingState: string);
-    game: Game;
+    constructor(game: import('./game').Game, pendingState: string);
+    game: import("./game").Game;
     states: {};
     _pendingState: string;
     _clearWorld: boolean;
@@ -27,11 +27,11 @@ export class SceneManager {
     /**
      * TBD.
      * @param {string} key - TBD.
-     * @param state - TBD.
+     * @param {object} state - TBD.
      * @param {boolean} autoStart - TBD.
      * @returns {Scene|object} TBD.
      */
-    add(key: string, state: any, autoStart?: boolean): Scene | object;
+    add(key: string, state: object, autoStart?: boolean): Scene | object;
     /**
      * TBD.
      * @param {string} key - TBD.
@@ -119,6 +119,5 @@ export class SceneManager {
      */
     get created(): boolean;
 }
-import { Game } from './game';
 import { Scene } from './scene';
 //# sourceMappingURL=scene_manager.d.ts.map

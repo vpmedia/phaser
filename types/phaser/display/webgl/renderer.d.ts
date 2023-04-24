@@ -1,9 +1,9 @@
 export class WebGLRenderer {
     /**
      * TBD.
-     * @param {Game} game - TBD.
+     * @param {import('../../core/game').Game} game - TBD.
      */
-    constructor(game: Game);
+    constructor(game: import('../../core/game').Game);
     type: number;
     resolution: any;
     autoResize: boolean;
@@ -40,22 +40,23 @@ export class WebGLRenderer {
     initRegistry(): void;
     /**
      * TBD.
+     * @throws Error.
      */
     initContext(): void;
     glContextId: any;
     /**
      * TBD.
-     * @param stage - TBD.
+     * @param {import('../../core/stage').Stage} stage - TBD.
      */
-    render(stage: any): void;
+    render(stage: import('../../core/stage').Stage): void;
     /**
      * TBD.
-     * @param displayObject - TBD.
-     * @param projection - TBD.
-     * @param buffer - TBD.
-     * @param {Matrix} matrix - TBD.
+     * @param {import('../../display/display_object').DisplayObject} displayObject - TBD.
+     * @param {Point} projection - TBD.
+     * @param {object} buffer - TBD.
+     * @param {import('../../geom/matrix').Matrix} matrix - TBD.
      */
-    renderDisplayObject(displayObject: any, projection: any, buffer: any, matrix: Matrix): void;
+    renderDisplayObject(displayObject: import('../../display/display_object').DisplayObject, projection: Point, buffer: object, matrix: import('../../geom/matrix').Matrix): void;
     /**
      * TBD.
      * @param {number} width - TBD.
@@ -64,10 +65,10 @@ export class WebGLRenderer {
     resize(width: number, height: number): void;
     /**
      * TBD.
-     * @param texture - TBD.
+     * @param {import('./base_texture').BaseTexture} texture - TBD.
      * @returns {boolean} TBD.
      */
-    updateTexture(texture: any): boolean;
+    updateTexture(texture: import('./base_texture').BaseTexture): boolean;
     /**
      * TBD.
      */
@@ -79,6 +80,4 @@ import { WebGLSpriteBatch } from './sprite_batch';
 import { WebGLFilterManager } from './filter_manager';
 import { WebGLStencilManager } from './stencil_manager';
 import { WebGLBlendModeManager } from './blend_manager';
-import { Matrix } from '../../geom/matrix';
-import { Game } from '../../core/game';
 //# sourceMappingURL=renderer.d.ts.map

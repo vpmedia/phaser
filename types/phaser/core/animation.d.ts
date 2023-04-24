@@ -1,18 +1,18 @@
 export class Animation {
     /**
      * TBD.
-     * @param {Game} game - TBD.
+     * @param {import('./game').Game} game - TBD.
      * @param {Image} parent - TBD.
      * @param {string} name - TBD.
-     * @param {FrameData} frameData - TBD.
+     * @param {import('./frame_data').FrameData} frameData - TBD.
      * @param {string[]|number[]} frames - TBD.
      * @param {number} frameRate - TBD.
      * @param {boolean} loop - TBD.
      */
-    constructor(game: Game, parent: Image, name: string, frameData: FrameData, frames: string[] | number[], frameRate: number, loop?: boolean);
-    game: Game;
-    _parent: Image;
-    _frameData: FrameData;
+    constructor(game: import('./game').Game, parent: new (width?: number, height?: number) => HTMLImageElement, name: string, frameData: import('./frame_data').FrameData, frames: string[] | number[], frameRate: number, loop?: boolean);
+    game: import("./game").Game;
+    _parent: new (width?: number, height?: number) => HTMLImageElement;
+    _frameData: import("./frame_data").FrameData;
     name: string;
     _frames: any[];
     delay: number;
@@ -118,9 +118,9 @@ export class Animation {
     previous(quantity?: number): void;
     /**
      * TBD.
-     * @param {FrameData} frameData - TBD.
+     * @param {import('./frame_data').FrameData} frameData - TBD.
      */
-    updateFrameData(frameData: FrameData): void;
+    updateFrameData(frameData: import('./frame_data').FrameData): void;
     /**
      * TBD.
      */
@@ -162,8 +162,5 @@ export class Animation {
      */
     get enableUpdate(): boolean;
 }
-import { Game } from './game';
-import { Image } from '../display/image';
-import { FrameData } from './frame_data';
 import { Signal } from './signal';
 //# sourceMappingURL=animation.d.ts.map

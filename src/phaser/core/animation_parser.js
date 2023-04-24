@@ -3,7 +3,7 @@ import { FrameData } from './frame_data';
 
 /**
  * TBD.
- * @param {Game} game - TBD.
+ * @param {import('./game').Game} game - TBD.
  * @param {string} key - TBD.
  * @param {number} frameWidth - TBD.
  * @param {number} frameHeight - TBD.
@@ -58,7 +58,7 @@ export function spriteSheet(game, key, frameWidth, frameHeight, frameMax, margin
 
 /**
  * TBD.
- * @param {Game} game - TBD.
+ * @param {import('./game').Game} game - TBD.
  * @param {object} json - TBD.
  * @returns {object} TBD.
  */

@@ -12,7 +12,7 @@ import {
 export class Pointer {
   /**
    * TBD.
-   * @param {Game} game - TBD.
+   * @param {import('./game').Game} game - TBD.
    * @param {number} id - TBD.
    * @param {number} pointerMode - TBD.
    */
@@ -301,7 +301,7 @@ export class Pointer {
 
   /**
    * TBD.
-   * @param {InputHandler} newTarget - TBD.
+   * @param {import('./input_handler').InputHandler} newTarget - TBD.
    * @param {boolean} silent - TBD.
    */
   swapTarget(newTarget, silent = false) {

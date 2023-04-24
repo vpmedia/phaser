@@ -1,12 +1,12 @@
 export class Touch {
     /**
      * TBD.
-     * @param {Game} game - TBD.
+     * @param {import('./game').Game} game - TBD.
      */
-    constructor(game: Game);
-    game: Game;
+    constructor(game: import('./game').Game);
+    game: import("./game").Game;
     enabled: boolean;
-    callbackContext: Game;
+    callbackContext: import("./game").Game;
     touchStartCallback: any;
     touchMoveCallback: any;
     touchEndCallback: any;
@@ -70,5 +70,4 @@ export class Touch {
      */
     eventPreventDefault(event: TouchEvent): void;
 }
-import { Game } from './game';
 //# sourceMappingURL=input_touch.d.ts.map

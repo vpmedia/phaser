@@ -53,7 +53,7 @@ export class FastSpriteBatch {
 
   /**
    * TBD.
-   * @param spriteBatch - TBD.
+   * @param {object} spriteBatch - TBD.
    * @param {object} renderSession - TBD.
    */
   begin(spriteBatch, renderSession) {
@@ -72,7 +72,7 @@ export class FastSpriteBatch {
 
   /**
    * TBD.
-   * @param spriteBatch - TBD.
+   * @param {object} spriteBatch - TBD.
    */
   render(spriteBatch) {
     const children = spriteBatch.children;

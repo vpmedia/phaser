@@ -1,12 +1,12 @@
 export class Mouse {
     /**
      * TBD.
-     * @param {Game} game - TBD.
+     * @param {import('./game').Game} game - TBD.
      */
-    constructor(game: Game);
-    game: Game;
+    constructor(game: import('./game').Game);
+    game: import("./game").Game;
     input: import("./input").Input;
-    callbackContext: Game;
+    callbackContext: import("./game").Game;
     mouseDownCallback: any;
     mouseUpCallback: any;
     mouseOutCallback: any;
@@ -19,7 +19,7 @@ export class Mouse {
     enabled: boolean;
     locked: boolean;
     stopOnGameOut: boolean;
-    event: WheelEvent | MouseEvent;
+    event: MouseEvent | WheelEvent;
     _onMouseDown: (event: any) => void;
     _onMouseMove: (event: any) => void;
     _onMouseUp: (event: any) => void;
@@ -83,5 +83,4 @@ export class Mouse {
      */
     eventPreventDefault(event: MouseEvent): void;
 }
-import { Game } from './game';
 //# sourceMappingURL=input_mouse.d.ts.map

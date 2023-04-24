@@ -1,9 +1,9 @@
 export class CanvasRenderer {
     /**
      * TBD.
-     * @param {Game} game - TBD.
+     * @param {import('../../core/game').Game} game - TBD.
      */
-    constructor(game: Game);
+    constructor(game: import('../../core/game').Game);
     type: number;
     resolution: any;
     clearBeforeRender: any;
@@ -25,12 +25,12 @@ export class CanvasRenderer {
     };
     /**
      * TBD.
-     * @param root - TBD.
+     * @param {import('../../core/stage').Stage} root - TBD.
      */
-    render(root: any): void;
+    render(root: import('../../core/stage').Stage): void;
     /**
      * TBD.
-     * @param removeView - TBD.
+     * @param {boolean} removeView - TBD.
      */
     destroy(removeView?: boolean): void;
     /**
@@ -41,16 +41,15 @@ export class CanvasRenderer {
     resize(width: number, height: number): void;
     /**
      * TBD.
-     * @param displayObject - TBD.
-     * @param context - TBD.
-     * @param matrix - TBD.
+     * @param {Image} displayObject - TBD.
+     * @param {CanvasRenderingContext2D} context - TBD.
+     * @param {import('../../geom/matrix').Matrix} matrix - TBD.
      */
-    renderDisplayObject(displayObject: any, context: any, matrix: any): void;
+    renderDisplayObject(displayObject: new (width?: number, height?: number) => HTMLImageElement, context: CanvasRenderingContext2D, matrix: import('../../geom/matrix').Matrix): void;
     /**
      * TBD.
      */
     mapBlendModes(): void;
 }
 import * as CanvasMaskManager from './masker';
-import { Game } from '../../core/game';
 //# sourceMappingURL=renderer.d.ts.map

@@ -1,10 +1,10 @@
 export class GameObjectFactory {
     /**
      * TBD.
-     * @param {Game} game - TBD.
+     * @param {import('./game').Game} game - TBD.
      */
-    constructor(game: Game);
-    game: Game;
+    constructor(game: import('./game').Game);
+    game: import("./game").Game;
     /**
      * TBD.
      * @param {number} x - TBD.
@@ -69,7 +69,6 @@ export class GameObjectFactory {
      */
     bitmapText(x: number, y: number, font: string, text: string, size: number, group?: Group, align?: string): BitmapText;
 }
-import { Game } from './game';
 import { Group } from '../display/group';
 import { Image } from '../display/image';
 import { Text } from '../display/text';

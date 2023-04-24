@@ -1,30 +1,30 @@
 export class FrameData {
     /**
-     * @type {Frame[]}
+     * @type {import('./frame').Frame[]}
      */
-    _frames: Frame[];
+    _frames: import('./frame').Frame[];
     /**
      * @type {string[]}
      */
     _frameNames: string[];
     /**
      * TBD.
-     * @param {Frame} frame - TBD.
-     * @returns {Frame} TBD.
+     * @param {import('./frame').Frame} frame - TBD.
+     * @returns {import('./frame').Frame} TBD.
      */
-    addFrame(frame: Frame): Frame;
+    addFrame(frame: import('./frame').Frame): import('./frame').Frame;
     /**
      * TBD.
      * @param {number} index - TBD.
-     * @returns {Frame} TBD.
+     * @returns {import('./frame').Frame} TBD.
      */
-    getFrame(index?: number): Frame;
+    getFrame(index?: number): import('./frame').Frame;
     /**
      * TBD.
      * @param {string} name - TBD.
-     * @returns {Frame} TBD.
+     * @returns {import('./frame').Frame} TBD.
      */
-    getFrameByName(name: string): Frame;
+    getFrameByName(name: string): import('./frame').Frame;
     /**
      * TBD.
      * @param {string} name - TBD.
@@ -40,10 +40,10 @@ export class FrameData {
      * TBD.
      * @param {number} start - TBD.
      * @param {number} end - TBD.
-     * @param {Frame[]} output - TBD.
-     * @returns {Frame[]} TBD.
+     * @param {import('./frame').Frame[]} output - TBD.
+     * @returns {import('./frame').Frame[]} TBD.
      */
-    getFrameRange(start: number, end: number, output?: Frame[]): Frame[];
+    getFrameRange(start: number, end: number, output?: import('./frame').Frame[]): import('./frame').Frame[];
     /**
      * TBD.
      * @param {number[]|string[]} frames - TBD.
@@ -62,5 +62,4 @@ export class FrameData {
      */
     get total(): number;
 }
-import { Frame } from './frame';
 //# sourceMappingURL=frame_data.d.ts.map

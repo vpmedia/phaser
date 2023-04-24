@@ -20,7 +20,7 @@ export const RENDER_TEXTURE = 9;
 export class Cache {
   /**
    * TBD.
-   * @param {Game} game - TBD.
+   * @param {import('./game').Game} game - TBD.
    */
   constructor(game) {
     this.game = game;
@@ -512,7 +512,7 @@ export class Cache {
   /**
    * TBD.
    * @param {string} key - TBD.
-   * @returns {RenderTexture} TBD.
+   * @returns {import('../display/webgl/render_texture').RenderTexture} TBD.
    */
   getRenderTexture(key) {
     return this.getItem(key, RENDER_TEXTURE, 'getRenderTexture');

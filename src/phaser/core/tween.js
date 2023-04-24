@@ -6,9 +6,9 @@ import { TWEEN_PENDING, TWEEN_RUNNING, TWEEN_COMPLETE, TWEEN_LOOPED } from './co
 export class Tween {
   /**
    * TBD.
-   * @param {DisplayObject} target - TBD.
-   * @param {Game} game - TBD.
-   * @param {TweenManager} manager - TBD.
+   * @param {import('../display/display_object').DisplayObject} target - TBD.
+   * @param {import('./game').Game} game - TBD.
+   * @param {import('./tween_manager').TweenManager} manager - TBD.
    */
   constructor(target, game, manager) {
     this.game = game;

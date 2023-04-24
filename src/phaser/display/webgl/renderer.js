@@ -32,7 +32,7 @@ import { WebGLBlendModeManager } from './blend_manager';
 export class WebGLRenderer {
   /**
    * TBD.
-   * @param {Game} game - TBD.
+   * @param {import('../../core/game').Game} game - TBD.
    */
   constructor(game) {
     this.type = RENDER_WEBGL;
@@ -153,7 +153,7 @@ export class WebGLRenderer {
 
   /**
    * TBD.
-   * @param {Stage} stage - TBD.
+   * @param {import('../../core/stage').Stage} stage - TBD.
    */
   render(stage) {
     if (this.contextLost) {
@@ -175,10 +175,10 @@ export class WebGLRenderer {
 
   /**
    * TBD.
-   * @param {DisplayObject} displayObject - TBD.
+   * @param {import('../../display/display_object').DisplayObject} displayObject - TBD.
    * @param {Point} projection - TBD.
    * @param {object} buffer - TBD.
-   * @param {Matrix} matrix - TBD.
+   * @param {import('../../geom/matrix').Matrix} matrix - TBD.
    */
   renderDisplayObject(displayObject, projection, buffer, matrix) {
     this.renderSession.blendModeManager.setBlendMode(BLEND_NORMAL);
@@ -221,7 +221,7 @@ export class WebGLRenderer {
 
   /**
    * TBD.
-   * @param {BaseTexture} texture - TBD.
+   * @param {import('./base_texture').BaseTexture} texture - TBD.
    * @returns {boolean} TBD.
    */
   updateTexture(texture) {

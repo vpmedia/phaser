@@ -1,10 +1,10 @@
 export class Input {
     /**
      * TBD.
-     * @param {Game} game - TBD.
+     * @param {import('./game').Game} game - TBD.
      */
-    constructor(game: Game);
-    game: Game;
+    constructor(game: import('./game').Game);
+    game: import("./game").Game;
     hitCanvas: HTMLCanvasElement;
     hitContext: CanvasRenderingContext2D;
     moveCallbacks: any[];
@@ -67,21 +67,21 @@ export class Input {
     /**
      * TBD.
      * @param {Function} callback - TBD.
-     * @param context - TBD.
+     * @param {object} context - TBD.
      */
-    setInteractiveCandidateHandler(callback: Function, context: any): void;
+    setInteractiveCandidateHandler(callback: Function, context: object): void;
     /**
      * TBD.
      * @param {Function} callback - TBD.
-     * @param context - TBD.
+     * @param {object} context - TBD.
      */
-    addMoveCallback(callback: Function, context: any): void;
+    addMoveCallback(callback: Function, context: object): void;
     /**
      * TBD.
      * @param {Function} callback - TBD.
-     * @param context - TBD.
+     * @param {object} context - TBD.
      */
-    deleteMoveCallback(callback: Function, context: any): void;
+    deleteMoveCallback(callback: Function, context: object): void;
     /**
      * TBD.
      * @returns {Pointer} TBD.
@@ -122,7 +122,7 @@ export class Input {
     stopPointer(event: MouseEvent | TouchEvent | PointerEvent): Pointer;
     /**
      * TBD.
-     * @param limit - TBD.
+     * @param {number} limit - TBD.
      * @returns {number} TBD.
      */
     countActivePointers(limit?: number): number;
@@ -134,32 +134,32 @@ export class Input {
     getPointer(isActive?: boolean): Pointer;
     /**
      * TBD.
-     * @param identifier - TBD.
+     * @param {number} identifier - TBD.
      * @returns {Pointer} TBD.
      */
-    getPointerFromIdentifier(identifier: any): Pointer;
+    getPointerFromIdentifier(identifier: number): Pointer;
     /**
      * TBD.
-     * @param pointerId - TBD.
+     * @param {number} pointerId - TBD.
      * @returns {Pointer} TBD.
      */
-    getPointerFromId(pointerId: any): Pointer;
+    getPointerFromId(pointerId: number): Pointer;
     /**
      * TBD.
-     * @param displayObject - TBD.
-     * @param pointer - TBD.
-     * @param output - TBD.
+     * @param {import('../display/display_object').DisplayObject} displayObject - TBD.
+     * @param {Pointer} pointer - TBD.
+     * @param {Point} output - TBD.
      * @returns {Point} TBD.
      */
-    getLocalPosition(displayObject: any, pointer: any, output?: any): Point;
+    getLocalPosition(displayObject: import('../display/display_object').DisplayObject, pointer: Pointer, output?: Point): Point;
     /**
      * TBD.
-     * @param displayObject - TBD.
-     * @param pointer - TBD.
-     * @param localPoint - TBD.
+     * @param {import('../display/display_object').DisplayObject} displayObject - TBD.
+     * @param {Pointer} pointer - TBD.
+     * @param {Point} localPoint - TBD.
      * @returns {boolean} TBD.
      */
-    hitTest(displayObject: any, pointer: any, localPoint: any): boolean;
+    hitTest(displayObject: import('../display/display_object').DisplayObject, pointer: Pointer, localPoint: Point): boolean;
     /**
      * TBD.
      */
@@ -208,7 +208,6 @@ export class Input {
      */
     get worldY(): number;
 }
-import { Game } from './game';
 import { Point } from '../geom/point';
 import { Circle } from '../geom/circle';
 import { Pointer } from './input_pointer';

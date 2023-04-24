@@ -27,7 +27,7 @@ import * as CanvasMaskManager from './masker';
 export class CanvasRenderer {
   /**
    * TBD.
-   * @param {Game} game - TBD.
+   * @param {import('../../core/game').Game} game - TBD.
    */
   constructor(game) {
     detectCapabilities();
@@ -59,7 +59,7 @@ export class CanvasRenderer {
 
   /**
    * TBD.
-   * @param {Stage} root - TBD.
+   * @param {import('../../core/stage').Stage} root - TBD.
    */
   render(root) {
     if (!this.context) {
@@ -118,7 +118,7 @@ export class CanvasRenderer {
    * TBD.
    * @param {Image} displayObject - TBD.
    * @param {CanvasRenderingContext2D} context - TBD.
-   * @param {Matrix} matrix - TBD.
+   * @param {import('../../geom/matrix').Matrix} matrix - TBD.
    */
   renderDisplayObject(displayObject, context, matrix) {
     this.renderSession.context = context || this.context;

@@ -1,10 +1,10 @@
 export class InputHandler {
     /**
      * TBD.
-     * @param sprite
+     * @param {Image} sprite - TBD.
      */
-    constructor(sprite: any);
-    sprite: any;
+    constructor(sprite: new (width?: number, height?: number) => HTMLImageElement);
+    sprite: new (width?: number, height?: number) => HTMLImageElement;
     game: any;
     enabled: boolean;
     checked: boolean;
@@ -26,8 +26,8 @@ export class InputHandler {
     pixelPerfectClick: boolean;
     pixelPerfectAlpha: number;
     draggable: boolean;
-    boundsRect: Rectangle;
-    boundsSprite: DisplayObject;
+    boundsRect: import("../geom/rectangle").Rectangle;
+    boundsSprite: import("../display/display_object").DisplayObject;
     scaleLayer: boolean;
     dragOffset: Point;
     dragFromCenter: boolean;
@@ -65,9 +65,9 @@ export class InputHandler {
      * TBD.
      * @param {number} priority - TBD.
      * @param {boolean} useHandCursor - TBD.
-     * @returns {DisplayObject} TBD.
+     * @returns {import('../display/display_object').DisplayObject} TBD.
      */
-    start(priority?: number, useHandCursor?: boolean): DisplayObject;
+    start(priority?: number, useHandCursor?: boolean): import('../display/display_object').DisplayObject;
     /**
      * TBD.
      */
@@ -169,68 +169,68 @@ export class InputHandler {
     pointerDragged(pointerId?: number): boolean;
     /**
      * TBD.
-     * @param {Pointer} pointer - TBD.
+     * @param {import('./input_pointer').Pointer} pointer - TBD.
      * @param {boolean} fastTest - TBD.
      * @returns {boolean} TBD.
      */
-    checkPointerDown(pointer: Pointer, fastTest?: boolean): boolean;
+    checkPointerDown(pointer: import('./input_pointer').Pointer, fastTest?: boolean): boolean;
     /**
      * TBD.
-     * @param {Pointer} pointer - TBD.
+     * @param {import('./input_pointer').Pointer} pointer - TBD.
      * @param {boolean} fastTest - TBD.
      * @returns {boolean} TBD.
      */
-    checkPointerOver(pointer: Pointer, fastTest?: boolean): boolean;
+    checkPointerOver(pointer: import('./input_pointer').Pointer, fastTest?: boolean): boolean;
     /**
      * TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
-     * @param {Pointer} pointer - TBD.
+     * @param {import('./input_pointer').Pointer} pointer - TBD.
      * @returns {boolean} TBD.
      */
-    checkPixel(x: number, y: number, pointer: Pointer): boolean;
+    checkPixel(x: number, y: number, pointer: import('./input_pointer').Pointer): boolean;
     _dx: number;
     _dy: number;
     /**
      * TBD.
-     * @param {Pointer} pointer - TBD.
+     * @param {import('./input_pointer').Pointer} pointer - TBD.
      * @returns {boolean} TBD.
      */
-    update(pointer: Pointer): boolean;
+    update(pointer: import('./input_pointer').Pointer): boolean;
     /**
      * TBD.
-     * @param {Pointer} pointer - TBD.
+     * @param {import('./input_pointer').Pointer} pointer - TBD.
      * @param {boolean} silent - TBD.
      */
-    _pointerOverHandler(pointer: Pointer, silent: boolean): void;
+    _pointerOverHandler(pointer: import('./input_pointer').Pointer, silent: boolean): void;
     /**
      * TBD.
-     * @param {Pointer} pointer - TBD.
+     * @param {import('./input_pointer').Pointer} pointer - TBD.
      * @param {boolean} silent - TBD.
      */
-    _pointerOutHandler(pointer: Pointer, silent?: boolean): void;
+    _pointerOutHandler(pointer: import('./input_pointer').Pointer, silent?: boolean): void;
     /**
      * TBD.
-     * @param {Pointer} pointer - TBD.
+     * @param {import('./input_pointer').Pointer} pointer - TBD.
      */
-    _touchedHandler(pointer: Pointer): void;
+    _touchedHandler(pointer: import('./input_pointer').Pointer): void;
     /**
      * TBD.
-     * @param {Pointer} pointer - TBD.
+     * @param {import('./input_pointer').Pointer} pointer - TBD.
      */
-    dragTimeElapsed(pointer: Pointer): void;
+    dragTimeElapsed(pointer: import('./input_pointer').Pointer): void;
     /**
      * TBD.
-     * @param {Pointer} pointer - TBD.
+     * @param {import('./input_pointer').Pointer} pointer - TBD.
      */
-    _releasedHandler(pointer: Pointer): void;
+    _releasedHandler(pointer: import('./input_pointer').Pointer): void;
     /**
      * TBD.
-     * @param {Pointer} pointer - TBD.
+     * @param {import('./input_pointer').Pointer} pointer - TBD.
      * @param {boolean} fromStart - TBD.
      * @returns {boolean} TBD.
      */
-    updateDrag(pointer: Pointer, fromStart?: boolean): boolean;
+    updateDrag(pointer: import('./input_pointer').Pointer, fromStart?: boolean): boolean;
     /**
      * TBD.
      * @param {number} pointerId - TBD.
@@ -277,10 +277,10 @@ export class InputHandler {
      * @param {boolean} bringToTop - TBD.
      * @param {boolean} pixelPerfect - TBD.
      * @param {number} alphaThreshold - TBD.
-     * @param {Rectangle} boundsRect - TBD.
-     * @param {DisplayObject} boundsSprite - TBD.
+     * @param {import('../geom/rectangle').Rectangle} boundsRect - TBD.
+     * @param {import('../display/display_object').DisplayObject} boundsSprite - TBD.
      */
-    enableDrag(lockCenter?: boolean, bringToTop?: boolean, pixelPerfect?: boolean, alphaThreshold?: number, boundsRect?: Rectangle, boundsSprite?: DisplayObject): void;
+    enableDrag(lockCenter?: boolean, bringToTop?: boolean, pixelPerfect?: boolean, alphaThreshold?: number, boundsRect?: import('../geom/rectangle').Rectangle, boundsSprite?: import('../display/display_object').DisplayObject): void;
     /**
      * TBD.
      */
@@ -288,9 +288,9 @@ export class InputHandler {
     _draggedPointerID: number;
     /**
      * TBD.
-     * @param {Pointer} pointer - TBD.
+     * @param {import('./input_pointer').Pointer} pointer - TBD.
      */
-    startDrag(pointer: Pointer): void;
+    startDrag(pointer: import('./input_pointer').Pointer): void;
     /**
      * TBD.
      * @param {number} x - TBD.
@@ -305,9 +305,9 @@ export class InputHandler {
     globalToLocalY(y: number): number;
     /**
      * TBD.
-     * @param {Pointer} pointer - TBD.
+     * @param {import('./input_pointer').Pointer} pointer - TBD.
      */
-    stopDrag(pointer: Pointer): void;
+    stopDrag(pointer: import('./input_pointer').Pointer): void;
     /**
      * TBD.
      * @param {boolean} allowHorizontal - TBD.
@@ -338,7 +338,4 @@ export class InputHandler {
     checkBoundsSprite(): void;
 }
 import { Point } from '../geom/point';
-import { Rectangle } from '../geom/rectangle';
-import { DisplayObject } from '../display/display_object';
-import { Pointer } from './input_pointer';
 //# sourceMappingURL=input_handler.d.ts.map

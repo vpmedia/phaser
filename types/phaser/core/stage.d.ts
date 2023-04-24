@@ -1,10 +1,10 @@
 export class Stage extends DisplayObject {
     /**
      * TBD.
-     * @param {Game} game - TBD.
+     * @param {import('./game').Game} game - TBD.
      */
-    constructor(game: Game);
-    game: Game;
+    constructor(game: import('./game').Game);
+    game: import("./game").Game;
     name: string;
     currentRenderOrderID: number;
     _bgColor: {
@@ -48,5 +48,4 @@ export class Stage extends DisplayObject {
     get smoothed(): boolean;
 }
 import { DisplayObject } from '../display/display_object';
-import { Game } from './game';
 //# sourceMappingURL=stage.d.ts.map

@@ -1,11 +1,11 @@
 export class SoundSprite {
     /**
      * TBD.
-     * @param {Game} game - TBD.
+     * @param {import('./game').Game} game - TBD.
      * @param {string} key - TBD.
      */
-    constructor(game: Game, key: string);
-    game: Game;
+    constructor(game: import('./game').Game, key: string);
+    game: import("./game").Game;
     key: string;
     config: any;
     autoplayKey: any;
@@ -15,9 +15,9 @@ export class SoundSprite {
      * TBD.
      * @param {string} marker - TBD.
      * @param {number} volume - TBD.
-     * @returns {Sound} TBD.
+     * @returns {import('./sound').Sound} TBD.
      */
-    play(marker: string, volume?: number): Sound;
+    play(marker: string, volume?: number): import('./sound').Sound;
     /**
      * TBD.
      * @param {string} marker - TBD.
@@ -26,10 +26,8 @@ export class SoundSprite {
     /**
      * TBD.
      * @param {string} marker - TBD.
-     * @returns {Sound} TBD.
+     * @returns {import('./sound').Sound} TBD.
      */
-    get(marker: string): Sound;
+    get(marker: string): import('./sound').Sound;
 }
-import { Game } from './game';
-import { Sound } from './sound';
 //# sourceMappingURL=sound_sprite.d.ts.map

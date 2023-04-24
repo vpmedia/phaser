@@ -27,24 +27,24 @@ export class FastSpriteBatch {
     gl: WebGLRenderingContext;
     /**
      * TBD.
-     * @param spriteBatch - TBD.
+     * @param {object} spriteBatch - TBD.
      * @param {object} renderSession - TBD.
      */
-    begin(spriteBatch: any, renderSession: object): void;
+    begin(spriteBatch: object, renderSession: object): void;
     /**
      * TBD.
      */
     end(): void;
     /**
      * TBD.
-     * @param spriteBatch - TBD.
+     * @param {object} spriteBatch - TBD.
      */
-    render(spriteBatch: any): void;
+    render(spriteBatch: object): void;
     /**
      * TBD.
-     * @param sprite - TBD.
+     * @param {Image} sprite - TBD.
      */
-    renderSprite(sprite: any): void;
+    renderSprite(sprite: new (width?: number, height?: number) => HTMLImageElement): void;
     /**
      * TBD.
      */

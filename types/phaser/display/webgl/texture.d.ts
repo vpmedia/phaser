@@ -11,14 +11,14 @@ export class TextureUvs {
 export class Texture {
     /**
      * TBD.
-     * @param {BaseTexture} baseTexture - TBD.
+     * @param {import('./base_texture').BaseTexture} baseTexture - TBD.
      * @param {Rectangle} frame - TBD.
      * @param {Rectangle} crop - TBD.
      * @param {Rectangle} trim - TBD.
      */
-    constructor(baseTexture: BaseTexture, frame: Rectangle, crop: Rectangle, trim: Rectangle);
+    constructor(baseTexture: import('./base_texture').BaseTexture, frame: Rectangle, crop: Rectangle, trim: Rectangle);
     noFrame: boolean;
-    baseTexture: BaseTexture;
+    baseTexture: import("./base_texture").BaseTexture;
     frame: Rectangle;
     trim: Rectangle;
     valid: boolean;
@@ -49,6 +49,5 @@ export class Texture {
      */
     _updateUvs(): void;
 }
-import { BaseTexture } from './base_texture';
 import { Rectangle } from '../../geom/rectangle';
 //# sourceMappingURL=texture.d.ts.map

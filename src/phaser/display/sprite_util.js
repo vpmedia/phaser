@@ -22,7 +22,7 @@ export function setTexture(target, texture, destroyBase = false) {
  * TBD.
  * @param {object} target - TBD.
  * @param {object} matrix - TBD.
- * @returns {Rectangle} TBD.
+ * @returns {import('../geom/rectangle').Rectangle} TBD.
  */
 export function getBounds(target, matrix = null) {
   // TODO verify
@@ -104,7 +104,7 @@ export function getBounds(target, matrix = null) {
 /**
  * TBD.
  * @param {object} target - TBD.
- * @returns {Rectangle} TBD.
+ * @returns {import('../geom/rectangle').Rectangle} TBD.
  */
 export function getLocalBounds(target) {
   const matrixCache = target.worldTransform;

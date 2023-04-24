@@ -1,14 +1,14 @@
 export class Image extends DisplayObject {
     /**
      * TBD.
-     * @param {Game} game - TBD.
+     * @param {import('../core/game').Game} game - TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
      * @param {string} key - TBD.
      * @param {string} frame - TBD.
      */
-    constructor(game: Game, x: number, y: number, key: string, frame: string);
-    game: Game;
+    constructor(game: import('../core/game').Game, x: number, y: number, key: string, frame: string);
+    game: import("../core/game").Game;
     type: number;
     key: string;
     texture: any;
@@ -18,7 +18,7 @@ export class Image extends DisplayObject {
     tintedTexture: any;
     blendMode: number;
     shader: any;
-    _frame: any;
+    _frame: Rectangle | import("../core/frame").Frame;
     pendingDestroy: boolean;
     events: EventManager;
     animations: AnimationManager;
@@ -33,17 +33,17 @@ export class Image extends DisplayObject {
     customRender: boolean;
     /**
      * TBD.
-     * @param frame - TBD.
+     * @param {import('../core/frame').Frame} frame - TBD.
      */
-    setFrame(frame: any): void;
+    setFrame(frame: import('../core/frame').Frame): void;
     refreshTexture: boolean;
     /**
      * TBD.
-     * @param parent - TBD.
+     * @param {DisplayObject} parent - TBD.
      * @param {number} width - TBD.
      * @param {number} height - TBD.
      */
-    resizeFrame(parent: any, width: number, height: number): void;
+    resizeFrame(parent: DisplayObject, width: number, height: number): void;
     /**
      * TBD.
      */
@@ -54,6 +54,7 @@ export class Image extends DisplayObject {
     set frame(arg: number);
     /**
      * TBD.
+     * @returns {number} TBD.
      */
     get frame(): number;
     /**
@@ -67,11 +68,11 @@ export class Image extends DisplayObject {
     get frameName(): string;
     /**
      * TBD.
-     * @param rect - TBD.
+     * @param {Rectangle} rect - TBD.
      * @param {boolean} copy - TBD.
      */
-    crop(rect: any, copy?: boolean): void;
-    cropRect: any;
+    crop(rect: Rectangle, copy?: boolean): void;
+    cropRect: Rectangle;
     _crop: any;
     /**
      * TBD.
@@ -83,33 +84,32 @@ export class Image extends DisplayObject {
     onTextureUpdate(): void;
     /**
      * TBD.
-     * @param texture - TBD.
+     * @param {Texture} texture - TBD.
      * @param {boolean} destroyBase - TBD.
      */
-    setTexture(texture: any, destroyBase?: boolean): void;
+    setTexture(texture: Texture, destroyBase?: boolean): void;
     /**
      * TBD.
-     * @param {Matrix} matrix - TBD.
+     * @param {import('../geom/matrix').Matrix} matrix - TBD.
      * @returns {Rectangle} TBD.
      */
-    getBounds(matrix?: Matrix): Rectangle;
+    getBounds(matrix?: import('../geom/matrix').Matrix): Rectangle;
     /**
      * TBD.
      * @param {object} renderSession - TBD.
-     * @param {Matrix} matrix - TBD.
+     * @param {import('../geom/matrix').Matrix} matrix - TBD.
      */
-    renderWebGL(renderSession: object, matrix?: Matrix): void;
+    renderWebGL(renderSession: object, matrix?: import('../geom/matrix').Matrix): void;
     /**
      * TBD.
      * @param {object} renderSession - TBD.
-     * @param {Matrix} matrix - TBD.
+     * @param {import('../geom/matrix').Matrix} matrix - TBD.
      */
-    renderCanvas(renderSession: object, matrix?: Matrix): void;
+    renderCanvas(renderSession: object, matrix?: import('../geom/matrix').Matrix): void;
 }
 import { DisplayObject } from './display_object';
-import { Game } from '../core/game';
+import { Rectangle } from '../geom/rectangle';
 import { EventManager } from '../core/event_manager';
 import { AnimationManager } from '../core/animation_manager';
-import { Matrix } from '../geom/matrix';
-import { Rectangle } from '../geom/rectangle';
+import { Texture } from './webgl/texture';
 //# sourceMappingURL=image.d.ts.map

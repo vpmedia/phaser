@@ -1,11 +1,11 @@
 export class TweenData {
     /**
      * TBD.
-     * @param parent - TBD.
+     * @param {import('./tween').Tween} parent - TBD.
      */
-    constructor(parent: any);
-    parent: any;
-    game: any;
+    constructor(parent: import('./tween').Tween);
+    parent: import("./tween").Tween;
+    game: import("./game").Game;
     vStart: {};
     vStartCache: {};
     vEnd: {};
@@ -22,7 +22,7 @@ export class TweenData {
     inReverse: boolean;
     delay: number;
     dt: number;
-    startTime: any;
+    startTime: number;
     easingFunction: string;
     interpolationFunction: typeof MathUtils.linearInterpolation;
     interpolationContext: typeof MathUtils;

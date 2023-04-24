@@ -7,7 +7,7 @@ const TEXTURE_ATLAS_JSON_HASH = 1;
 export class Loader {
   /**
    * TBD.
-   * @param {Game} game - TBD.
+   * @param {import('./game').Game} game - TBD.
    */
   constructor(game) {
     this.game = game;

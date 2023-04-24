@@ -1,14 +1,14 @@
 export class Tween {
     /**
      * TBD.
-     * @param {DisplayObject} target - TBD.
-     * @param {Game} game - TBD.
-     * @param {TweenManager} manager - TBD.
+     * @param {import('../display/display_object').DisplayObject} target - TBD.
+     * @param {import('./game').Game} game - TBD.
+     * @param {import('./tween_manager').TweenManager} manager - TBD.
      */
-    constructor(target: DisplayObject, game: Game, manager: TweenManager);
-    game: Game;
-    target: DisplayObject;
-    manager: TweenManager;
+    constructor(target: import('../display/display_object').DisplayObject, game: import('./game').Game, manager: import('./tween_manager').TweenManager);
+    game: import("./game").Game;
+    target: import("../display/display_object").DisplayObject;
+    manager: import("./tween_manager").TweenManager;
     timeline: any[];
     reverse: boolean;
     timeScale: number;
@@ -68,11 +68,11 @@ export class Tween {
     /**
      * TBD.
      * @param {string} property - TBD.
-     * @param {number} value - TBD.
+     * @param {object} value - TBD.
      * @param {number} index - TBD.
      * @returns {Tween} TBD.
      */
-    updateTweenData(property: string, value: number, index?: number): Tween;
+    updateTweenData(property: string, value: object, index?: number): Tween;
     /**
      * TBD.
      * @param {number} duration - TBD.
@@ -119,12 +119,12 @@ export class Tween {
     easing(ease: string | Function, index: number): Tween;
     /**
      * TBD.
-     * @param interpolation - TBD.
-     * @param context - TBD.
+     * @param {Function} interpolation - TBD.
+     * @param {object} context - TBD.
      * @param {number} index - TBD.
      * @returns {Tween} TBD.
      */
-    interpolation(interpolation: any, context?: typeof MathUtils, index?: number): Tween;
+    interpolation(interpolation: Function, context?: object, index?: number): Tween;
     /**
      * TBD.
      * @param {number} total - TBD.
@@ -175,18 +175,15 @@ export class Tween {
     /**
      * TBD.
      * @param {number} frameRate - TBD.
-     * @param data - TBD.
+     * @param {object[]} data - TBD.
+     * @returns {object[]} TBD.
      */
-    generateData(frameRate?: number, data?: any[]): any[];
+    generateData(frameRate?: number, data?: object[]): object[];
     /**
      * TBD.
      * @returns {number} TBD.
      */
     get totalDuration(): number;
 }
-import { Game } from './game';
-import { DisplayObject } from '../display/display_object';
-import { TweenManager } from './tween_manager';
 import { Signal } from './signal';
-import * as MathUtils from '../util/math';
 //# sourceMappingURL=tween.d.ts.map

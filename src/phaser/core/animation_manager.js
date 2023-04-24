@@ -36,7 +36,7 @@ export class AnimationManager {
 
   /**
    * TBD.
-   * @param {FrameData} frameData - TBD.
+   * @param {import('./frame_data').FrameData} frameData - TBD.
    * @param {number|string} frame - TBD.
    * @returns {boolean} TBD.
    */
@@ -66,7 +66,7 @@ export class AnimationManager {
 
   /**
    * TBD.
-   * @param {FrameData} frameData - TBD.
+   * @param {import('./frame_data').FrameData} frameData - TBD.
    * @param {number|string} frame - TBD.
    * @returns {boolean} TBD.
    */
@@ -246,7 +246,7 @@ export class AnimationManager {
 
   /**
    * TBD.
-   * @returns {FrameData} TBD.
+   * @returns {import('./frame_data').FrameData} TBD.
    */
   get frameData() {
     return this._frameData;

@@ -6,7 +6,7 @@ import { SoundSprite } from './sound_sprite';
 export class SoundManager {
   /**
    * TBD.
-   * @param {Game} game - TBD.
+   * @param {import('./game').Game} game - TBD.
    */
   constructor(game) {
     this.game = game;

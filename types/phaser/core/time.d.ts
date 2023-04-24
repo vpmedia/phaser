@@ -1,10 +1,10 @@
 export class Time {
     /**
      * TBD.
-     * @param {Game} game - TBD.
+     * @param {import('./game').Game} game - TBD.
      */
-    constructor(game: Game);
-    game: Game;
+    constructor(game: import('./game').Game);
+    game: import("./game").Game;
     time: number;
     prevTime: number;
     now: number;
@@ -111,6 +111,5 @@ export class Time {
      */
     get desiredFps(): number;
 }
-import { Game } from './game';
 import { Timer } from './timer';
 //# sourceMappingURL=time.d.ts.map

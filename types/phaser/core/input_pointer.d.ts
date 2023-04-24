@@ -1,12 +1,12 @@
 export class Pointer {
     /**
      * TBD.
-     * @param {Game} game - TBD.
+     * @param {import('./game').Game} game - TBD.
      * @param {number} id - TBD.
      * @param {number} pointerMode - TBD.
      */
-    constructor(game: Game, id: number, pointerMode: number);
-    game: Game;
+    constructor(game: import('./game').Game, id: number, pointerMode: number);
+    game: import("./game").Game;
     id: number;
     type: number;
     exists: boolean;
@@ -84,10 +84,10 @@ export class Pointer {
     processInteractiveObjects(fromClick?: boolean): boolean;
     /**
      * TBD.
-     * @param newTarget - TBD.
+     * @param {import('./input_handler').InputHandler} newTarget - TBD.
      * @param {boolean} silent - TBD.
      */
-    swapTarget(newTarget: any, silent?: boolean): void;
+    swapTarget(newTarget: import('./input_handler').InputHandler, silent?: boolean): void;
     /**
      * TBD.
      * @param {MouseEvent|PointerEvent} event - TBD.
@@ -147,7 +147,6 @@ export class Pointer {
      */
     get worldY(): number;
 }
-import { Game } from './game';
 import { Point } from '../geom/point';
 import { Circle } from '../geom/circle';
 //# sourceMappingURL=input_pointer.d.ts.map

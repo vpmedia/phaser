@@ -19,7 +19,7 @@ export class TextureUvs {
 export class Texture {
   /**
    * TBD.
-   * @param {BaseTexture} baseTexture - TBD.
+   * @param {import('./base_texture').BaseTexture} baseTexture - TBD.
    * @param {Rectangle} frame - TBD.
    * @param {Rectangle} crop - TBD.
    * @param {Rectangle} trim - TBD.

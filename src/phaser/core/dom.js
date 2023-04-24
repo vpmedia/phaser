@@ -182,7 +182,7 @@ class DocumentBoundsRectangle {
 export class DOM {
   /**
    * TBD.
-   * @param {Device} device - TBD.
+   * @param {import('./device').Device} device - TBD.
    */
   constructor(device) {
     this.treatAsDesktop =

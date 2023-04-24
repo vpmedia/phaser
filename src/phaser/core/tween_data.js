@@ -4,7 +4,7 @@ import { TWEEN_PENDING, TWEEN_RUNNING, TWEEN_COMPLETE, TWEEN_LOOPED } from './co
 export class TweenData {
   /**
    * TBD.
-   * @param {Tween} parent - TBD.
+   * @param {import('./tween').Tween} parent - TBD.
    */
   constructor(parent) {
     this.parent = parent;

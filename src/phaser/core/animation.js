@@ -3,10 +3,10 @@ import { Signal } from './signal';
 export class Animation {
   /**
    * TBD.
-   * @param {Game} game - TBD.
+   * @param {import('./game').Game} game - TBD.
    * @param {Image} parent - TBD.
    * @param {string} name - TBD.
-   * @param {FrameData} frameData - TBD.
+   * @param {import('./frame_data').FrameData} frameData - TBD.
    * @param {string[]|number[]} frames - TBD.
    * @param {number} frameRate - TBD.
    * @param {boolean} loop - TBD.
@@ -308,7 +308,7 @@ export class Animation {
 
   /**
    * TBD.
-   * @param {FrameData} frameData - TBD.
+   * @param {import('./frame_data').FrameData} frameData - TBD.
    */
   updateFrameData(frameData) {
     this._frameData = frameData;

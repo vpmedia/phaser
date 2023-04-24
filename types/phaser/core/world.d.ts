@@ -1,14 +1,13 @@
 export class World extends Group {
     /**
      * TBD.
-     * @param {Game} game - TBD.
+     * @param {import('./game').Game} game - TBD.
      */
-    constructor(game: Game);
+    constructor(game: import('./game').Game);
     /**
      * TBD.
      */
     boot(): void;
 }
 import { Group } from '../display/group';
-import { Game } from './game';
 //# sourceMappingURL=world.d.ts.map

@@ -1,9 +1,9 @@
 export class DOM {
     /**
      * TBD.
-     * @param {Device} device - TBD.
+     * @param {import('./device').Device} device - TBD.
      */
-    constructor(device: Device);
+    constructor(device: import('./device').Device);
     treatAsDesktop: boolean;
     visualBounds: VisualBoundsDesktopRectangle | VisualBoundsRectangle;
     layoutBounds: LayoutBoundsDesktopRectangle | LayoutBoundsRectangle;
@@ -12,25 +12,25 @@ export class DOM {
     scrollYProvider: () => number;
     /**
      * TBD.
-     * @param element - TBD.
+     * @param {HTMLCanvasElement} element - TBD.
      * @param {Point} point - TBD.
      * @returns {Point} TBD.
      */
-    getOffset(element: any, point?: Point): Point;
+    getOffset(element: HTMLCanvasElement, point?: Point): Point;
     /**
      * TBD.
-     * @param element - TBD.
+     * @param {HTMLCanvasElement} element - TBD.
      * @param {number} cushion - TBD.
      * @returns {boolean} TBD.
      */
-    getBounds(element: any, cushion?: number): boolean;
+    getBounds(element: HTMLCanvasElement, cushion?: number): boolean;
     /**
      * TBD.
-     * @param coords - TBD.
+     * @param {DOMRect} coords - TBD.
      * @param {number} cushion - TBD.
      * @returns {object} TBD.
      */
-    calibrate(coords: any, cushion?: number): object;
+    calibrate(coords: DOMRect, cushion?: number): object;
     /**
      * TBD.
      * @param {string} primaryFallback - TBD.
@@ -169,6 +169,5 @@ declare class DocumentBoundsRectangle {
     get height(): number;
 }
 import { Point } from '../geom/point';
-import { Device } from './device';
 export {};
 //# sourceMappingURL=dom.d.ts.map

@@ -3,7 +3,7 @@ import { Group } from '../display/group';
 export class World extends Group {
   /**
    * TBD.
-   * @param {Game} game - TBD.
+   * @param {import('./game').Game} game - TBD.
    */
   constructor(game) {
     super(game, null, '__world', false);

@@ -1,12 +1,12 @@
 export class MSPointer {
     /**
      * TBD.
-     * @param {Game} game - TBD.
+     * @param {import('./game').Game} game - TBD.
      */
-    constructor(game: Game);
-    game: Game;
+    constructor(game: import('./game').Game);
+    game: import("./game").Game;
     input: import("./input").Input;
-    callbackContext: Game;
+    callbackContext: import("./game").Game;
     pointerDownCallback: any;
     pointerMoveCallback: any;
     pointerUpCallback: any;
@@ -64,5 +64,4 @@ export class MSPointer {
      */
     eventPreventDefault(event: Event): void;
 }
-import { Game } from './game';
 //# sourceMappingURL=input_mspointer.d.ts.map

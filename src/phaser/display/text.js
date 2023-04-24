@@ -10,7 +10,7 @@ import { renderCanvas, renderWebGL, getBounds } from './sprite_util';
 export class Text extends Image {
   /**
    * TBD.
-   * @param {Game} game - TBD.
+   * @param {import('../core/game').Game} game - TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
    * @param {string} text - TBD.
@@ -975,7 +975,7 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @param {Matrix} matrix - TBD.
+   * @param {import('../geom/matrix').Matrix} matrix - TBD.
    * @returns {Rectangle} TBD.
    */
   getBounds(matrix = null) {

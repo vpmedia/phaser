@@ -1,7 +1,7 @@
 export class SoundSprite {
   /**
    * TBD.
-   * @param {Game} game - TBD.
+   * @param {import('./game').Game} game - TBD.
    * @param {string} key - TBD.
    */
   constructor(game, key) {
@@ -28,7 +28,7 @@ export class SoundSprite {
    * TBD.
    * @param {string} marker - TBD.
    * @param {number} volume - TBD.
-   * @returns {Sound} TBD.
+   * @returns {import('./sound').Sound} TBD.
    */
   play(marker, volume = 1) {
     return this.sounds[marker].play(marker, null, volume);
@@ -51,7 +51,7 @@ export class SoundSprite {
   /**
    * TBD.
    * @param {string} marker - TBD.
-   * @returns {Sound} TBD.
+   * @returns {import('./sound').Sound} TBD.
    */
   get(marker) {
     return this.sounds[marker];

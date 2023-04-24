@@ -1,12 +1,12 @@
 export class Graphics extends DisplayObject {
     /**
      * TBD.
-     * @param {Game} game - TBD.
+     * @param {import('../core/game').Game} game - TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
      */
-    constructor(game: Game, x?: number, y?: number);
-    game: Game;
+    constructor(game: import('../core/game').Game, x?: number, y?: number);
+    game: import("../core/game").Game;
     type: number;
     fillAlpha: number;
     lineWidth: number;
@@ -154,10 +154,10 @@ export class Graphics extends DisplayObject {
     _prevTint: any;
     /**
      * TBD.
-     * @param {Matrix} matrix - TBD.
+     * @param {import('../geom/matrix').Matrix} matrix - TBD.
      * @returns {Rectangle} TBD.
      */
-    getBounds(matrix?: Matrix): Rectangle;
+    getBounds(matrix?: import('../geom/matrix').Matrix): Rectangle;
     worldTransform: any;
     /**
      * TBD.
@@ -176,29 +176,27 @@ export class Graphics extends DisplayObject {
     updateCachedSpriteTexture(): void;
     /**
      * TBD.
-     * @param shape - TBD.
+     * @param {object} shape - TBD.
      * @returns {GraphicsData} TBD.
      */
-    drawShape(shape: any): GraphicsData;
+    drawShape(shape: object): GraphicsData;
     /**
      * TBD.
-     * @param points - TBD.
-     * @param cull - TBD.
-     */
-    drawTriangle(points: any, cull?: boolean): void;
-    /**
-     * TBD.
-     * @param vertices - TBD.
-     * @param indices - TBD.
+     * @param {Point[]} points - TBD.
      * @param {boolean} cull - TBD.
      */
-    drawTriangles(vertices: any, indices: any, cull?: boolean): void;
+    drawTriangle(points: Point[], cull?: boolean): void;
+    /**
+     * TBD.
+     * @param {number[]|Point[]} vertices - TBD.
+     * @param {number[]} indices - TBD.
+     * @param {boolean} cull - TBD.
+     */
+    drawTriangles(vertices: number[] | Point[], indices: number[], cull?: boolean): void;
 }
 import { DisplayObject } from './display_object';
-import { Game } from '../core/game';
 import { GraphicsData } from './graphics_data';
 import { Rectangle } from '../geom/rectangle';
 import { Polygon } from '../geom/polygon';
-import { Matrix } from '../geom/matrix';
 import { Point } from '../geom/point';
 //# sourceMappingURL=graphics.d.ts.map

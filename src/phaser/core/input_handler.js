@@ -72,7 +72,7 @@ export class InputHandler {
    * TBD.
    * @param {number} priority - TBD.
    * @param {boolean} useHandCursor - TBD.
-   * @returns {DisplayObject} TBD.
+   * @returns {import('../display/display_object').DisplayObject} TBD.
    */
   start(priority = 0, useHandCursor = false) {
     //  Turning on
@@ -343,7 +343,7 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param {Pointer} pointer - TBD.
+   * @param {import('./input_pointer').Pointer} pointer - TBD.
    * @param {boolean} fastTest - TBD.
    * @returns {boolean} TBD.
    */
@@ -372,7 +372,7 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param {Pointer} pointer - TBD.
+   * @param {import('./input_pointer').Pointer} pointer - TBD.
    * @param {boolean} fastTest - TBD.
    * @returns {boolean} TBD.
    */
@@ -402,7 +402,7 @@ export class InputHandler {
    * TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
-   * @param {Pointer} pointer - TBD.
+   * @param {import('./input_pointer').Pointer} pointer - TBD.
    * @returns {boolean} TBD.
    */
   checkPixel(x, y, pointer) {
@@ -451,7 +451,7 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param {Pointer} pointer - TBD.
+   * @param {import('./input_pointer').Pointer} pointer - TBD.
    * @returns {boolean} TBD.
    */
   update(pointer) {
@@ -488,7 +488,7 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param {Pointer} pointer - TBD.
+   * @param {import('./input_pointer').Pointer} pointer - TBD.
    * @param {boolean} silent - TBD.
    */
   _pointerOverHandler(pointer, silent) {
@@ -519,7 +519,7 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param {Pointer} pointer - TBD.
+   * @param {import('./input_pointer').Pointer} pointer - TBD.
    * @param {boolean} silent - TBD.
    */
   _pointerOutHandler(pointer, silent = false) {
@@ -545,7 +545,7 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param {Pointer} pointer - TBD.
+   * @param {import('./input_pointer').Pointer} pointer - TBD.
    */
   _touchedHandler(pointer) {
     if (this.sprite === null) {
@@ -597,7 +597,7 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param {Pointer} pointer - TBD.
+   * @param {import('./input_pointer').Pointer} pointer - TBD.
    */
   dragTimeElapsed(pointer) {
     this._dragTimePass = true;
@@ -610,7 +610,7 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param {Pointer} pointer - TBD.
+   * @param {import('./input_pointer').Pointer} pointer - TBD.
    */
   _releasedHandler(pointer) {
     if (this.sprite === null) {
@@ -658,7 +658,7 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param {Pointer} pointer - TBD.
+   * @param {import('./input_pointer').Pointer} pointer - TBD.
    * @param {boolean} fromStart - TBD.
    * @returns {boolean} TBD.
    */
@@ -766,8 +766,8 @@ export class InputHandler {
    * @param {boolean} bringToTop - TBD.
    * @param {boolean} pixelPerfect - TBD.
    * @param {number} alphaThreshold - TBD.
-   * @param {Rectangle} boundsRect - TBD.
-   * @param {DisplayObject} boundsSprite - TBD.
+   * @param {import('../geom/rectangle').Rectangle} boundsRect - TBD.
+   * @param {import('../display/display_object').DisplayObject} boundsSprite - TBD.
    */
   enableDrag(
     lockCenter = false,
@@ -809,7 +809,7 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param {Pointer} pointer - TBD.
+   * @param {import('./input_pointer').Pointer} pointer - TBD.
    */
   startDrag(pointer) {
     const x = this.sprite.x;
@@ -866,7 +866,7 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param {Pointer} pointer - TBD.
+   * @param {import('./input_pointer').Pointer} pointer - TBD.
    */
   stopDrag(pointer) {
     this.isDragged = false;

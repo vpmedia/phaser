@@ -12,7 +12,7 @@ const STATE_DISABLED = 'Disabled';
 export class Button extends Image {
   /**
    * TBD.
-   * @param {Game} game - TBD.
+   * @param {import('../core/game').Game} game - TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
    * @param {string} key - TBD.

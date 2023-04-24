@@ -1,10 +1,10 @@
 export class SoundManager {
     /**
      * TBD.
-     * @param {Game} game - TBD.
+     * @param {import('./game').Game} game - TBD.
      */
-    constructor(game: Game);
-    game: Game;
+    constructor(game: import('./game').Game);
+    game: import("./game").Game;
     onChange: Signal;
     context: any;
     baseLatency: number;
@@ -135,7 +135,6 @@ export class SoundManager {
      */
     get volume(): number;
 }
-import { Game } from './game';
 import { Signal } from './signal';
 import { ArraySet } from './array_set';
 import { Sound } from './sound';

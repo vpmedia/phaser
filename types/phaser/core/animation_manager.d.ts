@@ -3,14 +3,14 @@ export class AnimationManager {
      * TBD.
      * @param {Image} sprite - TBD.
      */
-    constructor(sprite: Image);
-    sprite: Image;
-    game: import("./game").Game;
+    constructor(sprite: new (width?: number, height?: number) => HTMLImageElement);
+    sprite: new (width?: number, height?: number) => HTMLImageElement;
+    game: any;
     currentFrame: any;
     currentAnim: any;
     updateIfVisible: boolean;
     isLoaded: boolean;
-    _frameData: FrameData;
+    _frameData: import("./frame_data").FrameData;
     _anims: {};
     _outputFrames: any[];
     /**
@@ -19,11 +19,11 @@ export class AnimationManager {
     destroy(): void;
     /**
      * TBD.
-     * @param {FrameData} frameData - TBD.
+     * @param {import('./frame_data').FrameData} frameData - TBD.
      * @param {number|string} frame - TBD.
      * @returns {boolean} TBD.
      */
-    loadFrameData(frameData: FrameData, frame: number | string): boolean;
+    loadFrameData(frameData: import('./frame_data').FrameData, frame: number | string): boolean;
     /**
      * TBD.
      */
@@ -44,11 +44,11 @@ export class AnimationManager {
     get frameName(): string;
     /**
      * TBD.
-     * @param {FrameData} frameData - TBD.
+     * @param {import('./frame_data').FrameData} frameData - TBD.
      * @param {number|string} frame - TBD.
      * @returns {boolean} TBD.
      */
-    copyFrameData(frameData: FrameData, frame: number | string): boolean;
+    copyFrameData(frameData: import('./frame_data').FrameData, frame: number | string): boolean;
     /**
      * TBD.
      * @param {string} name - TBD.
@@ -108,9 +108,9 @@ export class AnimationManager {
     refreshFrame(): void;
     /**
      * TBD.
-     * @returns {FrameData} TBD.
+     * @returns {import('./frame_data').FrameData} TBD.
      */
-    get frameData(): FrameData;
+    get frameData(): import("./frame_data").FrameData;
     /**
      * TBD.
      * @returns {number} TBD.
@@ -132,7 +132,5 @@ export class AnimationManager {
     get name(): string;
     _frameIndex: any;
 }
-import { Image } from '../display/image';
-import { FrameData } from './frame_data';
 import { Animation } from './animation';
 //# sourceMappingURL=animation_manager.d.ts.map

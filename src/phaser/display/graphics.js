@@ -27,7 +27,7 @@ import {
 export class Graphics extends DisplayObject {
   /**
    * TBD.
-   * @param {Game} game - TBD.
+   * @param {import('../core/game').Game} game - TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
    */
@@ -553,7 +553,7 @@ export class Graphics extends DisplayObject {
 
   /**
    * TBD.
-   * @param {Matrix} matrix - TBD.
+   * @param {import('../geom/matrix').Matrix} matrix - TBD.
    * @returns {Rectangle} TBD.
    */
   getBounds(matrix = null) {
@@ -789,7 +789,7 @@ export class Graphics extends DisplayObject {
 
   /**
    * TBD.
-   * @param shape - TBD.
+   * @param {object} shape - TBD.
    * @returns {GraphicsData} TBD.
    */
   drawShape(shape) {

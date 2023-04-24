@@ -7,7 +7,7 @@ import { SCALE_LINEAR, SCALE_NEAREST } from './const';
 export class Stage extends DisplayObject {
   /**
    * TBD.
-   * @param {Game} game - TBD.
+   * @param {import('./game').Game} game - TBD.
    */
   constructor(game) {
     super();

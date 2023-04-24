@@ -1,12 +1,12 @@
 export class ScaleManager {
     /**
      * TBD.
-     * @param {Game} game - TBD.
+     * @param {import('./game').Game} game - TBD.
      * @param {number} width - TBD.
      * @param {number} height - TBD.
      */
-    constructor(game: Game, width: number, height: number);
-    game: Game;
+    constructor(game: import('./game').Game, width: number, height: number);
+    game: import("./game").Game;
     dom: DOM;
     width: number;
     height: number;
@@ -341,7 +341,6 @@ export class ScaleManager {
      */
     get isGameLandscape(): boolean;
 }
-import { Game } from './game';
 import { DOM } from './dom';
 import { Point } from '../geom/point';
 import { Signal } from './signal';
