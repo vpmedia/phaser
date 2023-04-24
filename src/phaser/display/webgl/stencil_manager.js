@@ -1,6 +1,4 @@
 import { hex2rgb } from '../../util/math';
-import { GraphicsData } from './graphics_data';
-import { Graphics } from '../../display/graphics';
 
 export class WebGLStencilManager {
   /**
@@ -30,8 +28,8 @@ export class WebGLStencilManager {
 
   /**
    * TBD.
-   * @param {Graphics} graphics - TBD.
-   * @param {GraphicsData} webGLData - TBD.
+   * @param graphics - TBD.
+   * @param webGLData - TBD.
    * @param {object} renderSession - TBD.
    */
   pushStencil(graphics, webGLData, renderSession) {
@@ -88,8 +86,8 @@ export class WebGLStencilManager {
 
   /**
    * TBD.
-   * @param {Graphics} graphics - TBD.
-   * @param {GraphicsData} webGLData - TBD.
+   * @param graphics - TBD.
+   * @param webGLData - TBD.
    * @param {object} renderSession - TBD.
    */
   bindGraphics(graphics, webGLData, renderSession) {
@@ -135,8 +133,8 @@ export class WebGLStencilManager {
 
   /**
    * TBD.
-   * @param {Graphics} graphics - TBD.
-   * @param {GraphicsData} webGLData - TBD.
+   * @param graphics - TBD.
+   * @param webGLData - TBD.
    * @param {object} renderSession - TBD.
    */
   popStencil(graphics, webGLData, renderSession) {

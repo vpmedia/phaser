@@ -131,7 +131,7 @@ export class NormalShader {
 
   /**
    * TBD.
-   * @param {object} uniform - TBD.
+   * @param uniform - TBD.
    */
   initSampler2D(uniform) {
     if (!uniform.value || !uniform.value.baseTexture || !uniform.value.baseTexture.hasLoaded) {

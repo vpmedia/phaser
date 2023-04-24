@@ -40,23 +40,22 @@ export class WebGLRenderer {
     initRegistry(): void;
     /**
      * TBD.
-     * @throws Error.
      */
     initContext(): void;
     glContextId: any;
     /**
      * TBD.
-     * @param {Stage} stage - TBD.
+     * @param stage - TBD.
      */
-    render(stage: Stage): void;
+    render(stage: any): void;
     /**
      * TBD.
-     * @param {DisplayObject} displayObject - TBD.
-     * @param {Point} projection - TBD.
-     * @param {object} buffer - TBD.
+     * @param displayObject - TBD.
+     * @param projection - TBD.
+     * @param buffer - TBD.
      * @param {Matrix} matrix - TBD.
      */
-    renderDisplayObject(displayObject: DisplayObject, projection: Point, buffer: object, matrix: Matrix): void;
+    renderDisplayObject(displayObject: any, projection: any, buffer: any, matrix: Matrix): void;
     /**
      * TBD.
      * @param {number} width - TBD.
@@ -65,10 +64,10 @@ export class WebGLRenderer {
     resize(width: number, height: number): void;
     /**
      * TBD.
-     * @param {BaseTexture} texture - TBD.
+     * @param texture - TBD.
      * @returns {boolean} TBD.
      */
-    updateTexture(texture: BaseTexture): boolean;
+    updateTexture(texture: any): boolean;
     /**
      * TBD.
      */
@@ -80,9 +79,6 @@ import { WebGLSpriteBatch } from './sprite_batch';
 import { WebGLFilterManager } from './filter_manager';
 import { WebGLStencilManager } from './stencil_manager';
 import { WebGLBlendModeManager } from './blend_manager';
-import { Stage } from '../../core/stage';
-import { DisplayObject } from '../../display/display_object';
 import { Matrix } from '../../geom/matrix';
-import { BaseTexture } from './base_texture';
 import { Game } from '../../core/game';
 //# sourceMappingURL=renderer.d.ts.map

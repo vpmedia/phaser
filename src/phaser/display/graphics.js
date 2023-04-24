@@ -841,8 +841,8 @@ export class Graphics extends DisplayObject {
 
   /**
    * TBD.
-   * @param {Point[]} points - TBD.
-   * @param {boolean} cull - TBD.
+   * @param points - TBD.
+   * @param cull - TBD.
    */
   drawTriangle(points, cull = false) {
     const triangle = new Polygon(points);
@@ -861,8 +861,8 @@ export class Graphics extends DisplayObject {
 
   /**
    * TBD.
-   * @param {number[]|Point[]} vertices - TBD.
-   * @param {number[]} indices - TBD.
+   * @param vertices - TBD.
+   * @param indices - TBD.
    * @param {boolean} cull - TBD.
    */
   drawTriangles(vertices, indices, cull = false) {

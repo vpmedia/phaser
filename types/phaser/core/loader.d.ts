@@ -12,10 +12,10 @@ export class Loader {
     maxRetry: number;
     hasLoaded: boolean;
     preloadSprite: {
-        sprite: Image;
+        sprite: any;
         direction: number;
-        width: number;
-        height: number;
+        width: any;
+        height: any;
         rect: any;
     };
     crossOrigin: boolean;
@@ -44,161 +44,161 @@ export class Loader {
     _loadedFileCount: number;
     /**
      * TBD.
-     * @param {Image} sprite - TBD.
-     * @param {number} direction - TBD.
+     * @param sprite - TBD.
+     * @param direction - TBD.
      */
-    setPreloadSprite(sprite: Image, direction?: number): void;
+    setPreloadSprite(sprite: any, direction?: number): void;
     /**
      * TBD.
      */
     resize(): void;
     /**
      * TBD.
-     * @param {string} type - TBD.
+     * @param type - TBD.
      * @param {string} key - TBD.
      * @returns {boolean} TBD.
      */
-    checkKeyExists(type: string, key: string): boolean;
+    checkKeyExists(type: any, key: string): boolean;
     /**
      * TBD.
-     * @param {string} type - TBD.
+     * @param type - TBD.
      * @param {string} key - TBD.
      * @returns {number} TBD.
      */
-    getAssetIndex(type: string, key: string): number;
+    getAssetIndex(type: any, key: string): number;
     /**
      * TBD.
-     * @param {string} type - TBD.
+     * @param type - TBD.
      * @param {string} key - TBD.
      * @returns {object} TBD.
      */
-    getAsset(type: string, key: string): object;
+    getAsset(type: any, key: string): object;
     /**
      * TBD.
-     * @param {boolean} hard - TBD.
-     * @param {boolean} clearEvents - TBD.
+     * @param hard
+     * @param clearEvents
      */
-    reset(hard?: boolean, clearEvents?: boolean): void;
+    reset(hard: any, clearEvents?: boolean): void;
     /**
      * TBD.
-     * @param {string} type - TBD.
+     * @param type - TBD.
      * @param {string} key - TBD.
      * @param {string} url - TBD.
-     * @param {object} properties - TBD.
-     * @param {boolean} overwrite - TBD.
-     * @param {string} extension - TBD.
+     * @param properties - TBD.
+     * @param overwrite - TBD.
+     * @param extension - TBD.
      * @returns {Loader} TBD.
      */
-    addToFileList(type: string, key?: string, url?: string, properties?: object, overwrite?: boolean, extension?: string): Loader;
+    addToFileList(type: any, key?: string, url?: string, properties?: any, overwrite?: boolean, extension?: any): Loader;
     /**
      * TBD.
-     * @param {string} type - TBD.
+     * @param type - TBD.
      * @param {string} key - TBD.
      * @param {string} url - TBD.
-     * @param {object} properties - TBD.
+     * @param properties - TBD.
      * @returns {Loader} TBD.
      */
-    replaceInFileList(type: string, key: string, url: string, properties: object): Loader;
+    replaceInFileList(type: any, key: string, url: string, properties: any): Loader;
     /**
      * TBD.
      * @param {string} key - TBD.
      * @param {string} url - TBD.
-     * @param {object} data - TBD.
+     * @param data - TBD.
      * @param {object} callbackContext - TBD.
      * @returns {Loader} TBD.
      */
-    pack(key: string, url: string, data: object, callbackContext: object): Loader;
+    pack(key: string, url: string, data: any, callbackContext: object): Loader;
     /**
      * TBD.
      * @param {string} key - TBD.
      * @param {string} url - TBD.
-     * @param {boolean} overwrite - TBD.
+     * @param overwrite - TBD.
      * @returns {Loader} TBD.
      */
-    image(key: string, url: string, overwrite?: boolean): Loader;
+    image(key: string, url: string, overwrite: any): Loader;
     /**
      * TBD.
-     * @param {string[]} keys - TBD.
-     * @param {string[]} urls - TBD.
+     * @param keys - TBD.
+     * @param urls - TBD.
      * @returns {Loader} TBD.
      */
-    images(keys: string[], urls: string[]): Loader;
-    /**
-     * TBD.
-     * @param {string} key - TBD.
-     * @param {string} url - TBD.
-     * @param {boolean} overwrite - TBD.
-     * @returns {Loader} TBD.
-     */
-    text(key: string, url: string, overwrite: boolean): Loader;
+    images(keys: any, urls: any): Loader;
     /**
      * TBD.
      * @param {string} key - TBD.
      * @param {string} url - TBD.
-     * @param {boolean} overwrite - TBD.
+     * @param overwrite - TBD.
      * @returns {Loader} TBD.
      */
-    json(key: string, url: string, overwrite: boolean): Loader;
+    text(key: string, url: string, overwrite: any): Loader;
     /**
      * TBD.
      * @param {string} key - TBD.
      * @param {string} url - TBD.
-     * @param {boolean} overwrite - TBD.
+     * @param overwrite - TBD.
      * @returns {Loader} TBD.
      */
-    xml(key: string, url: string, overwrite: boolean): Loader;
+    json(key: string, url: string, overwrite: any): Loader;
     /**
      * TBD.
      * @param {string} key - TBD.
      * @param {string} url - TBD.
-     * @param {number} frameWidth - TBD.
-     * @param {number} frameHeight - TBD.
-     * @param {number} frameMax - TBD.
-     * @param {number} margin - TBD.
-     * @param {number} spacing - TBD.
+     * @param overwrite - TBD.
      * @returns {Loader} TBD.
      */
-    spritesheet(key: string, url: string, frameWidth: number, frameHeight: number, frameMax?: number, margin?: number, spacing?: number): Loader;
+    xml(key: string, url: string, overwrite: any): Loader;
     /**
      * TBD.
      * @param {string} key - TBD.
-     * @param {string[]} urls - TBD.
-     * @param {boolean} autoDecode - TBD.
+     * @param {string} url - TBD.
+     * @param frameWidth - TBD.
+     * @param frameHeight - TBD.
+     * @param frameMax - TBD.
+     * @param margin - TBD.
+     * @param spacing - TBD.
      * @returns {Loader} TBD.
      */
-    audio(key: string, urls: string[], autoDecode?: boolean): Loader;
+    spritesheet(key: string, url: string, frameWidth: any, frameHeight: any, frameMax?: number, margin?: number, spacing?: number): Loader;
     /**
      * TBD.
      * @param {string} key - TBD.
-     * @param {string} urls - TBD.
-     * @param {string} jsonURL - TBD.
-     * @param {object} jsonData - TBD.
-     * @param {boolean} autoDecode - TBD.
+     * @param urls
+     * @param autoDecode
      * @returns {Loader} TBD.
      */
-    audioSprite(key: string, urls: string, jsonURL: string, jsonData: object, autoDecode?: boolean): Loader;
+    audio(key: string, urls: any, autoDecode?: boolean): Loader;
     /**
      * TBD.
      * @param {string} key - TBD.
-     * @param {string} textureURL - TBD.
-     * @param {string} atlasURL - TBD.
-     * @param {object} atlasData - TBD.
-     * @param {number} xSpacing - TBD.
-     * @param {number} ySpacing - TBD.
+     * @param urls - TBD.
+     * @param jsonURL - TBD.
+     * @param jsonData - TBD.
+     * @param autoDecode - TBD.
+     * @returns {Loader} TBD.
+     */
+    audioSprite(key: string, urls: any, jsonURL: any, jsonData: any, autoDecode?: boolean): Loader;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     * @param textureURL - TBD.
+     * @param atlasURL - TBD.
+     * @param atlasData - TBD.
+     * @param xSpacing - TBD.
+     * @param ySpacing - TBD.
      * @returns {Loader} TBD.
      * @throws Error.
      */
-    bitmapFont(key: string, textureURL?: string, atlasURL?: string, atlasData?: object, xSpacing?: number, ySpacing?: number): Loader;
+    bitmapFont(key: string, textureURL?: any, atlasURL?: any, atlasData?: any, xSpacing?: number, ySpacing?: number): Loader;
     /**
      * TBD.
      * @param {string} key - TBD.
-     * @param {string} textureURL - TBD.
-     * @param {string} atlasURL - TBD.
-     * @param {object} atlasData - TBD.
-     * @param {number} format - TBD.
+     * @param textureURL - TBD.
+     * @param atlasURL - TBD.
+     * @param atlasData - TBD.
+     * @param format - TBD.
      * @returns {Loader} TBD.
      */
-    atlas(key: string, textureURL: string, atlasURL?: string, atlasData?: object, format?: number): Loader;
+    atlas(key: string, textureURL: any, atlasURL?: any, atlasData?: any, format?: number): Loader;
     /**
      * TBD.
      * @param {Function} callback - TBD.
@@ -208,17 +208,17 @@ export class Loader {
     withSyncPoint(callback: Function, callbackContext: object): Loader;
     /**
      * TBD.
-     * @param {string} type - TBD.
+     * @param type - TBD.
      * @param {string} key - TBD.
      * @returns {Loader} TBD.
      */
-    addSyncPoint(type: string, key: string): Loader;
+    addSyncPoint(type: any, key: string): Loader;
     /**
      * TBD.
-     * @param {string} type - TBD.
+     * @param type - TBD.
      * @param {string} key - TBD.
      */
-    removeFile(type: string, key: string): void;
+    removeFile(type: any, key: string): void;
     /**
      * TBD.
      */
@@ -233,102 +233,102 @@ export class Loader {
     processLoadQueue(): void;
     /**
      * TBD.
-     * @param {boolean} abnormal - TBD.
+     * @param abnormal - TBD.
      */
-    finishedLoading(abnormal: boolean): void;
+    finishedLoading(abnormal: any): void;
     /**
      * TBD.
-     * @param {object} file - TBD.
-     * @param {string} errorMessage - TBD.
+     * @param file - TBD.
+     * @param errorMessage - TBD.
      */
-    asyncComplete(file: object, errorMessage?: string): void;
+    asyncComplete(file: any, errorMessage?: string): void;
     /**
      * TBD.
-     * @param {object} pack - TBD.
+     * @param pack - TBD.
      */
-    processPack(pack: object): void;
+    processPack(pack: any): void;
     /**
      * TBD.
      * @param {string} url - TBD.
-     * @param {object} file - TBD.
+     * @param file - TBD.
      * @returns {string} TBD.
      */
-    transformUrl(url: string, file: object): string;
+    transformUrl(url: string, file: any): string;
     /**
      * TBD.
-     * @param {object} file - TBD.
+     * @param file - TBD.
      */
-    loadFile(file: object): void;
+    loadFile(file: any): void;
     /**
      * TBD.
-     * @param {object} file - TBD.
+     * @param file - TBD.
      */
-    loadImageTag(file: object): void;
+    loadImageTag(file: any): void;
     /**
      * TBD.
-     * @param {object} file - TBD.
+     * @param file - TBD.
      * @param {string} url - TBD.
-     * @param {string} type - TBD.
-     * @param {Function} onload - TBD.
-     * @param {Function} onerror - TBD.
+     * @param type - TBD.
+     * @param onload - TBD.
+     * @param onerror - TBD.
      */
-    xhrLoad(file: object, url: string, type: string, onload: Function, onerror?: Function): void;
+    xhrLoad(file: any, url: string, type: any, onload: any, onerror: any): void;
     /**
      * TBD.
      */
     xhrLoadWithXDR(): void;
     /**
      * TBD.
-     * @param {object[]} urls - TBD.
+     * @param urls - TBD.
      * @returns {string} TBD.
      */
-    getAudioURL(urls: object[]): string;
+    getAudioURL(urls: any): string;
     /**
      * TBD.
-     * @param {object} file - TBD.
-     * @param {XMLHttpRequest} xhr - TBD.
-     * @param {number} reason - TBD.
+     * @param file - TBD.
+     * @param xhr - TBD.
+     * @param reason - TBD.
      */
-    fileError(file: object, xhr: XMLHttpRequest, reason: number): void;
+    fileError(file: any, xhr: any, reason: any): void;
     /**
      * TBD.
-     * @param {object} file - TBD.
-     * @param {XMLHttpRequest} xhr - TBD.
+     * @param file - TBD.
+     * @param xhr - TBD.
      * @throws Error.
      */
-    fileComplete(file: object, xhr: XMLHttpRequest): void;
+    fileComplete(file: any, xhr: any): void;
     /**
      * TBD.
-     * @param {object} file - TBD.
-     * @param {XMLHttpRequest} xhr - TBD.
+     * @param file - TBD.
+     * @param xhr - TBD.
      */
-    jsonLoadComplete(file: object, xhr: XMLHttpRequest): void;
+    jsonLoadComplete(file: any, xhr: any): void;
     /**
      * TBD.
      */
     csvLoadComplete(): void;
     /**
      * TBD.
-     * @param {object} file - TBD.
-     * @param {XMLHttpRequest} xhr - TBD.
+     * @param file - TBD.
+     * @param xhr - TBD.
      */
-    xmlLoadComplete(file: object, xhr: XMLHttpRequest): void;
+    xmlLoadComplete(file: any, xhr: any): void;
     /**
      * TBD.
-     * @param {object} data - TBD.
+     * @param data - TBD.
      * @returns {Document} TBD.
      */
-    parseXml(data: object): Document;
+    parseXml(data: any): Document;
     /**
      * TBD.
      */
     updateProgress(): void;
     /**
      * TBD.
-     * @param {string} message - TBD.
-     * @param {string|object} data - TBD.
+     * @param message - TBD.
+     * @param data - TBD.
      */
-    log(message: string, data?: string | object): void;
+    log(message: any, data?: string): void;
     /**
      * TBD.
      * @returns {number} TBD.
@@ -361,6 +361,5 @@ export class Loader {
     get progress(): number;
 }
 import { Game } from './game';
-import { Image } from '../display/image';
 import { Signal } from './signal';
 //# sourceMappingURL=loader.d.ts.map

@@ -27,11 +27,11 @@ export class SceneManager {
     /**
      * TBD.
      * @param {string} key - TBD.
-     * @param {object} state - TBD.
+     * @param state - TBD.
      * @param {boolean} autoStart - TBD.
      * @returns {Scene|object} TBD.
      */
-    add(key: string, state: object, autoStart?: boolean): Scene | object;
+    add(key: string, state: any, autoStart?: boolean): Scene | object;
     /**
      * TBD.
      * @param {string} key - TBD.

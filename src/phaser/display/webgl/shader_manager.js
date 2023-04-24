@@ -40,7 +40,7 @@ export class WebGLShaderManager {
 
   /**
    * TBD.
-   * @param {number[]} attribs - TBD.
+   * @param attribs - TBD.
    */
   setAttribs(attribs) {
     // reset temp state
@@ -68,8 +68,7 @@ export class WebGLShaderManager {
 
   /**
    * TBD.
-   * @param {NormalShader} shader - TBD.
-   * @returns {boolean} TBD.
+   * @param shader - TBD.
    */
   setShader(shader) {
     if (this._currentId === shader._UID) {

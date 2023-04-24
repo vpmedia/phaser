@@ -1,14 +1,12 @@
-import { Signal } from './signal';
-
 export class SignalBinding {
   /**
    * TBD.
-   * @param {Signal} signal - TBD.
-   * @param {Function} listener - TBD.
-   * @param {boolean} isOnce - TBD.
-   * @param {object} listenerContext - TBD.
-   * @param {number} priority - TBD.
-   * @param {...any} args - TBD.
+   * @param signal
+   * @param listener
+   * @param isOnce
+   * @param listenerContext
+   * @param priority
+   * @param args - TBD.
    */
   constructor(signal, listener, isOnce = false, listenerContext = null, priority = 0, args = null) {
     this._signal = signal;
@@ -24,8 +22,7 @@ export class SignalBinding {
 
   /**
    * TBD.
-   * @param {any[]} paramsArr - TBD.
-   * @returns {Function} TBD.
+   * @param paramsArr
    */
   execute(paramsArr) {
     let handlerReturn;
@@ -46,7 +43,6 @@ export class SignalBinding {
 
   /**
    * TBD.
-   * @returns {Function} TBD.
    */
   detach() {
     return this.isBound() ? this._signal.remove(this._listener, this.context) : null;
@@ -54,7 +50,6 @@ export class SignalBinding {
 
   /**
    * TBD.
-   * @returns {boolean} TBD.
    */
   isBound() {
     return !!this._signal && !!this._listener;
@@ -62,7 +57,6 @@ export class SignalBinding {
 
   /**
    * TBD.
-   * @returns {boolean} TBD.
    */
   isOnce() {
     return this._isOnce;
@@ -70,7 +64,6 @@ export class SignalBinding {
 
   /**
    * TBD.
-   * @returns {Function} TBD.
    */
   getListener() {
     return this._listener;
@@ -78,7 +71,6 @@ export class SignalBinding {
 
   /**
    * TBD.
-   * @returns {Signal} TBD.
    */
   getSignal() {
     return this._signal;
@@ -95,7 +87,6 @@ export class SignalBinding {
 
   /**
    * TBD.
-   * @returns {string} TBD.
    */
   toString() {
     return '[SignalBinding isOnce:' + this._isOnce + ', isBound:' + this.isBound() + ', active:' + this.active + ']';

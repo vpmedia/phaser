@@ -1,7 +1,7 @@
 export class AbstractFilter {
   /**
    * TBD.
-   * @param {string[]} fragmentSrc - TBD.
+   * @param fragmentSrc - TBD.
    * @param {object} uniforms - TBD.
    */
   constructor(fragmentSrc, uniforms) {

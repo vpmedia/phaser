@@ -84,10 +84,10 @@ export class Pointer {
     processInteractiveObjects(fromClick?: boolean): boolean;
     /**
      * TBD.
-     * @param {InputHandler} newTarget - TBD.
+     * @param newTarget - TBD.
      * @param {boolean} silent - TBD.
      */
-    swapTarget(newTarget: InputHandler, silent?: boolean): void;
+    swapTarget(newTarget: any, silent?: boolean): void;
     /**
      * TBD.
      * @param {MouseEvent|PointerEvent} event - TBD.
@@ -150,5 +150,4 @@ export class Pointer {
 import { Game } from './game';
 import { Point } from '../geom/point';
 import { Circle } from '../geom/circle';
-import { InputHandler } from './input_handler';
 //# sourceMappingURL=input_pointer.d.ts.map

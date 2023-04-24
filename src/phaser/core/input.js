@@ -1,6 +1,5 @@
 import { ArraySet } from './array_set';
 import { Graphics } from '../display/graphics';
-import { DisplayObject } from '../display/display_object';
 import { Image } from '../display/image';
 import { Signal } from './signal';
 import { Point } from '../geom/point';
@@ -126,7 +125,7 @@ export class Input {
   /**
    * TBD.
    * @param {Function} callback - TBD.
-   * @param {object} context - TBD.
+   * @param context - TBD.
    */
   setInteractiveCandidateHandler(callback, context) {
     this.customCandidateHandler = callback;
@@ -136,7 +135,7 @@ export class Input {
   /**
    * TBD.
    * @param {Function} callback - TBD.
-   * @param {object} context - TBD.
+   * @param context - TBD.
    */
   addMoveCallback(callback, context) {
     this.moveCallbacks.push({ callback, context });
@@ -145,7 +144,7 @@ export class Input {
   /**
    * TBD.
    * @param {Function} callback - TBD.
-   * @param {object} context - TBD.
+   * @param context - TBD.
    */
   deleteMoveCallback(callback, context) {
     let i = this.moveCallbacks.length;
@@ -299,7 +298,7 @@ export class Input {
 
   /**
    * TBD.
-   * @param {number} limit - TBD.
+   * @param limit - TBD.
    * @returns {number} TBD.
    */
   countActivePointers(limit = this.pointers.length) {
@@ -330,7 +329,7 @@ export class Input {
 
   /**
    * TBD.
-   * @param {number} identifier - TBD.
+   * @param identifier - TBD.
    * @returns {Pointer} TBD.
    */
   getPointerFromIdentifier(identifier) {
@@ -346,7 +345,7 @@ export class Input {
 
   /**
    * TBD.
-   * @param {number} pointerId - TBD.
+   * @param pointerId - TBD.
    * @returns {Pointer} TBD.
    */
   getPointerFromId(pointerId) {
@@ -362,9 +361,9 @@ export class Input {
 
   /**
    * TBD.
-   * @param {DisplayObject} displayObject - TBD.
-   * @param {Pointer} pointer - TBD.
-   * @param {Point} output - TBD.
+   * @param displayObject - TBD.
+   * @param pointer - TBD.
+   * @param output - TBD.
    * @returns {Point} TBD.
    */
   getLocalPosition(displayObject, pointer, output = null) {
@@ -379,9 +378,9 @@ export class Input {
 
   /**
    * TBD.
-   * @param {DisplayObject} displayObject - TBD.
-   * @param {Pointer} pointer - TBD.
-   * @param {Point} localPoint - TBD.
+   * @param displayObject - TBD.
+   * @param pointer - TBD.
+   * @param localPoint - TBD.
    * @returns {boolean} TBD.
    */
   hitTest(displayObject, pointer, localPoint) {

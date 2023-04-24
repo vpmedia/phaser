@@ -45,57 +45,57 @@ export class Cache {
      * TBD.
      * @param {string} key - TBD.
      * @param {string} url - TBD.
-     * @param {HTMLImageElement} data - TBD.
+     * @param data - TBD.
      * @returns {object} TBD.
      */
-    addImage(key: string, url: string, data: HTMLImageElement): object;
+    addImage(key: string, url: string, data: any): object;
     /**
      * TBD.
      * @param {string} key - TBD.
      * @param {string} url - TBD.
-     * @param {HTMLCanvasElement} data - TBD.
+     * @param data - TBD.
      * @param {object} atlasData - TBD.
      */
-    addTextureAtlas(key: string, url: string, data: HTMLCanvasElement, atlasData: object): void;
+    addTextureAtlas(key: string, url: string, data: any, atlasData: object): void;
     /**
      * TBD.
      * @param {string} key - TBD.
      * @param {string} url - TBD.
-     * @param {object} data - TBD.
+     * @param data - TBD.
      */
-    addSound(key: string, url: string, data: object): void;
+    addSound(key: string, url: string, data: any): void;
     /**
      * TBD.
      * @param {string} key - TBD.
      * @param {string} url - TBD.
-     * @param {string} data - TBD.
+     * @param data - TBD.
      */
-    addText(key: string, url: string, data: string): void;
+    addText(key: string, url: string, data: any): void;
     /**
      * TBD.
      * @param {string} key - TBD.
      * @param {string} url - TBD.
-     * @param {HTMLCanvasElement} data - TBD.
-     * @param {object} atlasData - TBD.
-     * @param {string} atlasType - TBD.
-     * @param {number} xSpacing - TBD.
-     * @param {number} ySpacing - TBD.
+     * @param data - TBD.
+     * @param atlasData - TBD.
+     * @param atlasType - TBD.
+     * @param xSpacing - TBD.
+     * @param ySpacing - TBD.
      */
-    addBitmapFont(key: string, url: string, data: HTMLCanvasElement, atlasData: object, atlasType: string, xSpacing?: number, ySpacing?: number): void;
+    addBitmapFont(key: string, url: string, data: any, atlasData: any, atlasType: any, xSpacing?: number, ySpacing?: number): void;
     /**
      * TBD.
      * @param {string} key - TBD.
      * @param {string} url - TBD.
-     * @param {object} data - TBD.
+     * @param data - TBD.
      */
-    addJSON(key: string, url: string, data: object): void;
+    addJSON(key: string, url: string, data: any): void;
     /**
      * TBD.
      * @param {string} key - TBD.
      * @param {string} url - TBD.
-     * @param {XMLDocument} data - TBD.
+     * @param data - TBD.
      */
-    addXML(key: string, url: string, data: XMLDocument): void;
+    addXML(key: string, url: string, data: any): void;
     /**
      * TBD.
      * @param {string} key - TBD.
@@ -110,15 +110,15 @@ export class Cache {
      * TBD.
      * @param {string} key - TBD.
      * @param {string} property - TBD.
-     * @param {any} value - TBD.
+     * @param value - TBD.
      */
     updateSound(key: string, property: string, value: any): void;
     /**
      * TBD.
      * @param {string} key - TBD.
-     * @param {object} data - TBD.
+     * @param data - TBD.
      */
-    decodedSound(key: string, data: object): void;
+    decodedSound(key: string, data: any): void;
     /**
      * TBD.
      * @param {string} key - TBD.
@@ -210,139 +210,119 @@ export class Cache {
     /**
      * TBD.
      * @param {string} key - TBD.
-     * @returns {HTMLCanvasElement} TBD.
      */
-    getCanvas(key: string): HTMLCanvasElement;
+    getCanvas(key: string): any;
     /**
      * TBD.
      * @param {string} key - TBD.
-     * @param {boolean} full - TBD.
-     * @returns {HTMLImageElement} TBD.
+     * @param full - TBD.
      */
-    getImage(key?: string, full?: boolean): HTMLImageElement;
+    getImage(key?: string, full?: boolean): any;
     /**
      * TBD.
      * @param {string} key - TBD.
-     * @returns {object} TBD.
      */
-    getTextureFrame(key: string): object;
+    getTextureFrame(key: string): any;
     /**
      * TBD.
      * @param {string} key - TBD.
-     * @returns {object} TBD.
      */
-    getSound(key: string): object;
+    getSound(key: string): any;
     /**
      * TBD.
      * @param {string} key - TBD.
-     * @returns {object} TBD.
      */
-    getSoundData(key: string): object;
+    getSoundData(key: string): any;
     /**
      * TBD.
      * @param {string} key - TBD.
-     * @returns {object} TBD.
      */
-    getText(key: string): object;
+    getText(key: string): any;
     /**
      * TBD.
      * @param {string} key - TBD.
-     * @returns {object} TBD.
      */
-    getBitmapData(key: string): object;
+    getBitmapData(key: string): any;
     /**
      * TBD.
      * @param {string} key - TBD.
-     * @returns {object} TBD.
      */
-    getBitmapFont(key: string): object;
+    getBitmapFont(key: string): any;
     /**
      * TBD.
      * @param {string} key - TBD.
      * @param {boolean} isClone - TBD.
-     * @returns {object} TBD.
      */
-    getJSON(key: string, isClone?: boolean): object;
+    getJSON(key: string, isClone?: boolean): any;
     /**
      * TBD.
      * @param {string} key - TBD.
-     * @returns {XMLDocument} TBD.
      */
-    getXML(key: string): XMLDocument;
+    getXML(key: string): any;
     /**
      * TBD.
      * @param {string} key - TBD.
-     * @returns {RenderTexture} TBD.
      */
-    getRenderTexture(key: string): RenderTexture;
-    /**
-     * TBD.
-     * @param {string} key - TBD.
-     * @param {number} cache - TBD.
-     * @returns {BaseTexture} TBD.
-     */
-    getBaseTexture(key: string, cache?: number): BaseTexture;
+    getRenderTexture(key: string): any;
     /**
      * TBD.
      * @param {string} key - TBD.
      * @param {number} cache - TBD.
-     * @returns {Frame} TBD.
      */
-    getFrame(key: string, cache?: number): Frame;
+    getBaseTexture(key: string, cache?: number): any;
     /**
      * TBD.
      * @param {string} key - TBD.
      * @param {number} cache - TBD.
-     * @returns {number} TBD.
      */
-    getFrameCount(key: string, cache?: number): number;
+    getFrame(key: string, cache?: number): any;
     /**
      * TBD.
      * @param {string} key - TBD.
      * @param {number} cache - TBD.
-     * @returns {FrameData} TBD.
      */
-    getFrameData(key: string, cache?: number): FrameData;
+    getFrameCount(key: string, cache?: number): any;
     /**
      * TBD.
      * @param {string} key - TBD.
      * @param {number} cache - TBD.
-     * @returns {boolean} TBD.
+     */
+    getFrameData(key: string, cache?: number): any;
+    /**
+     * TBD.
+     * @param {string} key - TBD.
+     * @param {number} cache - TBD.
      */
     hasFrameData(key: string, cache?: number): boolean;
     /**
      * TBD.
      * @param {string} key - TBD.
-     * @param {FrameData} frameData - TBD.
+     * @param frameData - TBD.
      * @param {number} cache - TBD.
      */
-    updateFrameData(key: string, frameData: FrameData, cache?: number): void;
+    updateFrameData(key: string, frameData: any, cache?: number): void;
     /**
      * TBD.
      * @param {string} key - TBD.
      * @param {number} index - TBD.
      * @param {number} cache - TBD.
-     * @returns {Frame} TBD.
      */
-    getFrameByIndex(key: string, index: number, cache?: number): Frame;
+    getFrameByIndex(key: string, index: number, cache?: number): any;
     /**
      * TBD.
      * @param {string} key - TBD.
      * @param {string} name - TBD.
      * @param {number} cache - TBD.
-     * @returns {Frame} TBD.
      */
-    getFrameByName(key: string, name: string, cache?: number): Frame;
+    getFrameByName(key: string, name: string, cache?: number): any;
     /**
      * TBD.
      * @param {string} url - TBD.
-     * @returns {string} TBD.
      */
-    getURL(url: string): string;
+    getURL(url: string): any;
     /**
      * TBD.
      * @param {object} cache - TBD.
-     * @returns {string[]} TBD.
      */
     getKeys(cache?: object): string[];
     /**
@@ -408,10 +388,10 @@ export class Cache {
     /**
      * TBD.
      * @param {string} url - TBD.
-     * @param {object} data - TBD.
+     * @param data - TBD.
      * @returns {string} TBD.
      */
-    _resolveURL(url: string, data: object): string;
+    _resolveURL(url: string, data: any): string;
     /**
      * TBD.
      */
@@ -419,8 +399,4 @@ export class Cache {
 }
 import { Game } from './game';
 import { Signal } from './signal';
-import { RenderTexture } from '../display/webgl/render_texture';
-import { BaseTexture } from '../display/webgl/base_texture';
-import { Frame } from './frame';
-import { FrameData } from './frame_data';
 //# sourceMappingURL=cache.d.ts.map

@@ -28,51 +28,48 @@ export class Text extends Image {
      * TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
-     * @param {string} color - TBD.
-     * @param {number} blur - TBD.
-     * @param {boolean} shadowStroke - TBD.
-     * @param {boolean} shadowFill - TBD.
-     * @returns {Text} TBD.
+     * @param color - TBD.
+     * @param blur - TBD.
+     * @param shadowStroke - TBD.
+     * @param shadowFill - TBD.
      */
     setShadow(x?: number, y?: number, color?: string, blur?: number, shadowStroke?: boolean, shadowFill?: boolean): Text;
     dirty: boolean;
     /**
      * TBD.
-     * @param {object} style - TBD.
-     * @param {boolean} update - TBD.
-     * @returns {Text} TBD.
+     * @param style
+     * @param update
      */
-    setStyle(style?: object, update?: boolean): Text;
+    setStyle(style?: any, update?: boolean): Text;
     /**
      * TBD.
      */
     updateText(): void;
     /**
      * TBD.
-     * @param {string} line - TBD.
+     * @param line - TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
-     * @param {boolean} fill - TBD.
+     * @param fill - TBD.
      */
-    renderTabLine(line: string, x: number, y: number, fill: boolean): void;
+    renderTabLine(line: any, x: number, y: number, fill: any): void;
     /**
      * TBD.
-     * @param {string} state - TBD.
+     * @param state
      */
-    updateShadow(state: string): void;
+    updateShadow(state: any): void;
     /**
      * TBD.
-     * @param {string} line - TBD.
-     * @returns {number} TBD.
+     * @param line - TBD.
      */
-    measureLine(line: string): number;
+    measureLine(line: any): number;
     /**
      * TBD.
-     * @param {string} line - TBD.
+     * @param line - TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
      */
-    updateLine(line: string, x: number, y: number): void;
+    updateLine(line: any, x: number, y: number): void;
     /**
      * TBD.
      * @returns {Text} TBD.
@@ -85,81 +82,75 @@ export class Text extends Image {
     clearFontValues(): Text;
     /**
      * TBD.
-     * @param {number} color - TBD.
-     * @param {number} position - TBD.
+     * @param color - TBD.
+     * @param position - TBD.
      * @returns {Text} TBD.
      */
-    addColor(color: number, position: number): Text;
+    addColor(color: any, position: any): Text;
     /**
      * TBD.
-     * @param {number} color - TBD.
-     * @param {number} position - TBD.
+     * @param color - TBD.
+     * @param position - TBD.
      * @returns {Text} TBD.
      */
-    addStrokeColor(color: number, position: number): Text;
+    addStrokeColor(color: any, position: any): Text;
     /**
      * TBD.
-     * @param {object} style - TBD.
-     * @param {number} position - TBD.
+     * @param style - TBD.
+     * @param position - TBD.
      * @returns {Text} TBD.
      */
-    addFontStyle(style: object, position: number): Text;
+    addFontStyle(style: any, position: any): Text;
     /**
      * TBD.
-     * @param {number} weight - TBD.
-     * @param {number} position - TBD.
+     * @param weight - TBD.
+     * @param position - TBD.
      * @returns {Text} TBD.
      */
-    addFontWeight(weight: number, position: number): Text;
+    addFontWeight(weight: any, position: any): Text;
     /**
      * TBD.
-     * @param {string} text - TBD.
-     * @returns {string[]} TBD.
+     * @param text - TBD.
      */
-    precalculateWordWrap(text: string): string[];
+    precalculateWordWrap(text: any): string[];
     /**
      * TBD.
-     * @param {string} text - TBD.
-     * @returns {string} TBD.
+     * @param text - TBD.
      */
-    runWordWrap(text: string): string;
+    runWordWrap(text: any): string;
     /**
      * TBD.
-     * @param {string} text - TBD.
-     * @returns {string} TBD.
-     * @throws Error.
+     * @param text - TBD.
      */
-    advancedWordWrap(text: string): string;
+    advancedWordWrap(text: any): string;
     /**
      * TBD.
-     * @param {string} text - TBD.
-     * @returns {string} TBD.
+     * @param text - TBD.
      */
-    basicWordWrap(text: string): string;
+    basicWordWrap(text: any): string;
     /**
      * TBD.
-     * @param {object} components - TBD.
+     * @param components
      */
-    updateFont(components: object): void;
+    updateFont(components: any): void;
     /**
      * TBD.
-     * @param {string} font - TBD.
+     * @param font - TBD.
      * @returns {object} TBD.
      */
-    fontToComponents(font: string): object;
+    fontToComponents(font: any): object;
     /**
      * TBD.
-     * @param {object} components - TBD.
-     * @returns {string} TBD.
+     * @param components - TBD.
      */
-    componentsToFont(components: object): string;
+    componentsToFont(components: any): string;
     /**
      * TBD.
-     * @param {string} text - TBD.
-     * @param {boolean} immediate - TBD.
+     * @param text - TBD.
+     * @param immediate - TBD.
      * @returns {Text} TBD.
      */
-    setText(text: string, immediate?: boolean): Text;
+    setText(text: any, immediate?: boolean): Text;
     /**
      * TBD.
      */
@@ -171,10 +162,10 @@ export class Text extends Image {
     get text(): string;
     /**
      * TBD.
-     * @param {string[]|string[][]} list - TBD.
+     * @param list
      * @returns {Text} TBD.
      */
-    parseList(list: string[] | string[][]): Text;
+    parseList(list: any): Text;
     /**
      * TBD.
      * @param {number} x - TBD.
@@ -210,15 +201,13 @@ export class Text extends Image {
     getFontPropertiesCanvas(): HTMLCanvasElement;
     /**
      * TBD.
-     * @returns {CanvasRenderingContext2D} TBD.
      */
-    getFontPropertiesContext(): CanvasRenderingContext2D;
+    getFontPropertiesContext(): any;
     /**
      * TBD.
-     * @param {string} fontStyle - TBD.
-     * @returns {object} TBD.
+     * @param fontStyle
      */
-    determineFontProperties(fontStyle: string): object;
+    determineFontProperties(fontStyle: any): any;
     /**
      * TBD.
      */

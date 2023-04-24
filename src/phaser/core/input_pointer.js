@@ -9,7 +9,6 @@ import {
   MOUSE_TOUCH_COMBINE,
 } from './const';
 import { Game } from './game';
-import { InputHandler } from './input_handler';
 
 export class Pointer {
   /**
@@ -303,7 +302,7 @@ export class Pointer {
 
   /**
    * TBD.
-   * @param {InputHandler} newTarget - TBD.
+   * @param newTarget - TBD.
    * @param {boolean} silent - TBD.
    */
   swapTarget(newTarget, silent = false) {

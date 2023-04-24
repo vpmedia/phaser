@@ -42,9 +42,9 @@ export class FastSpriteBatch {
     render(spriteBatch: any): void;
     /**
      * TBD.
-     * @param {Image} sprite - TBD.
+     * @param sprite - TBD.
      */
-    renderSprite(sprite: Image): void;
+    renderSprite(sprite: any): void;
     /**
      * TBD.
      */
@@ -58,5 +58,4 @@ export class FastSpriteBatch {
      */
     start(): void;
 }
-import { Image } from '../image';
 //# sourceMappingURL=fast_sprite_batch.d.ts.map

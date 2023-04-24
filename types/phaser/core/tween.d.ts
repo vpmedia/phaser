@@ -68,11 +68,11 @@ export class Tween {
     /**
      * TBD.
      * @param {string} property - TBD.
-     * @param {object} value - TBD.
+     * @param {number} value - TBD.
      * @param {number} index - TBD.
      * @returns {Tween} TBD.
      */
-    updateTweenData(property: string, value: object, index?: number): Tween;
+    updateTweenData(property: string, value: number, index?: number): Tween;
     /**
      * TBD.
      * @param {number} duration - TBD.
@@ -119,12 +119,12 @@ export class Tween {
     easing(ease: string | Function, index: number): Tween;
     /**
      * TBD.
-     * @param {Function} interpolation - TBD.
-     * @param {object} context - TBD.
+     * @param interpolation - TBD.
+     * @param context - TBD.
      * @param {number} index - TBD.
      * @returns {Tween} TBD.
      */
-    interpolation(interpolation: Function, context?: object, index?: number): Tween;
+    interpolation(interpolation: any, context?: typeof MathUtils, index?: number): Tween;
     /**
      * TBD.
      * @param {number} total - TBD.
@@ -175,10 +175,9 @@ export class Tween {
     /**
      * TBD.
      * @param {number} frameRate - TBD.
-     * @param {object[]} data - TBD.
-     * @returns {object[]} TBD.
+     * @param data - TBD.
      */
-    generateData(frameRate?: number, data?: object[]): object[];
+    generateData(frameRate?: number, data?: any[]): any[];
     /**
      * TBD.
      * @returns {number} TBD.
@@ -189,4 +188,5 @@ import { Game } from './game';
 import { DisplayObject } from '../display/display_object';
 import { TweenManager } from './tween_manager';
 import { Signal } from './signal';
+import * as MathUtils from '../util/math';
 //# sourceMappingURL=tween.d.ts.map

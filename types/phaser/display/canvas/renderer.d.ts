@@ -25,12 +25,12 @@ export class CanvasRenderer {
     };
     /**
      * TBD.
-     * @param {Stage} root - TBD.
+     * @param root - TBD.
      */
-    render(root: Stage): void;
+    render(root: any): void;
     /**
      * TBD.
-     * @param {boolean} removeView - TBD.
+     * @param removeView - TBD.
      */
     destroy(removeView?: boolean): void;
     /**
@@ -41,19 +41,16 @@ export class CanvasRenderer {
     resize(width: number, height: number): void;
     /**
      * TBD.
-     * @param {Image} displayObject - TBD.
-     * @param {CanvasRenderingContext2D} context - TBD.
-     * @param {Matrix} matrix - TBD.
+     * @param displayObject - TBD.
+     * @param context - TBD.
+     * @param matrix - TBD.
      */
-    renderDisplayObject(displayObject: Image, context: CanvasRenderingContext2D, matrix: Matrix): void;
+    renderDisplayObject(displayObject: any, context: any, matrix: any): void;
     /**
      * TBD.
      */
     mapBlendModes(): void;
 }
 import * as CanvasMaskManager from './masker';
-import { Stage } from '../../core/stage';
-import { Image } from '../image';
-import { Matrix } from '../../geom/matrix';
 import { Game } from '../../core/game';
 //# sourceMappingURL=renderer.d.ts.map

@@ -67,21 +67,21 @@ export class Input {
     /**
      * TBD.
      * @param {Function} callback - TBD.
-     * @param {object} context - TBD.
+     * @param context - TBD.
      */
-    setInteractiveCandidateHandler(callback: Function, context: object): void;
+    setInteractiveCandidateHandler(callback: Function, context: any): void;
     /**
      * TBD.
      * @param {Function} callback - TBD.
-     * @param {object} context - TBD.
+     * @param context - TBD.
      */
-    addMoveCallback(callback: Function, context: object): void;
+    addMoveCallback(callback: Function, context: any): void;
     /**
      * TBD.
      * @param {Function} callback - TBD.
-     * @param {object} context - TBD.
+     * @param context - TBD.
      */
-    deleteMoveCallback(callback: Function, context: object): void;
+    deleteMoveCallback(callback: Function, context: any): void;
     /**
      * TBD.
      * @returns {Pointer} TBD.
@@ -122,7 +122,7 @@ export class Input {
     stopPointer(event: MouseEvent | TouchEvent | PointerEvent): Pointer;
     /**
      * TBD.
-     * @param {number} limit - TBD.
+     * @param limit - TBD.
      * @returns {number} TBD.
      */
     countActivePointers(limit?: number): number;
@@ -134,32 +134,32 @@ export class Input {
     getPointer(isActive?: boolean): Pointer;
     /**
      * TBD.
-     * @param {number} identifier - TBD.
+     * @param identifier - TBD.
      * @returns {Pointer} TBD.
      */
-    getPointerFromIdentifier(identifier: number): Pointer;
+    getPointerFromIdentifier(identifier: any): Pointer;
     /**
      * TBD.
-     * @param {number} pointerId - TBD.
+     * @param pointerId - TBD.
      * @returns {Pointer} TBD.
      */
-    getPointerFromId(pointerId: number): Pointer;
+    getPointerFromId(pointerId: any): Pointer;
     /**
      * TBD.
-     * @param {DisplayObject} displayObject - TBD.
-     * @param {Pointer} pointer - TBD.
-     * @param {Point} output - TBD.
+     * @param displayObject - TBD.
+     * @param pointer - TBD.
+     * @param output - TBD.
      * @returns {Point} TBD.
      */
-    getLocalPosition(displayObject: DisplayObject, pointer: Pointer, output?: Point): Point;
+    getLocalPosition(displayObject: any, pointer: any, output?: any): Point;
     /**
      * TBD.
-     * @param {DisplayObject} displayObject - TBD.
-     * @param {Pointer} pointer - TBD.
-     * @param {Point} localPoint - TBD.
+     * @param displayObject - TBD.
+     * @param pointer - TBD.
+     * @param localPoint - TBD.
      * @returns {boolean} TBD.
      */
-    hitTest(displayObject: DisplayObject, pointer: Pointer, localPoint: Point): boolean;
+    hitTest(displayObject: any, pointer: any, localPoint: any): boolean;
     /**
      * TBD.
      */
@@ -217,5 +217,4 @@ import { Touch } from './input_touch';
 import { MSPointer } from './input_mspointer';
 import { Signal } from './signal';
 import { ArraySet } from './array_set';
-import { DisplayObject } from '../display/display_object';
 //# sourceMappingURL=input.d.ts.map

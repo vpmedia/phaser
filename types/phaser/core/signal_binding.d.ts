@@ -1,16 +1,16 @@
 export class SignalBinding {
     /**
      * TBD.
-     * @param {Signal} signal - TBD.
-     * @param {Function} listener - TBD.
-     * @param {boolean} isOnce - TBD.
-     * @param {object} listenerContext - TBD.
-     * @param {number} priority - TBD.
-     * @param {...any} args - TBD.
+     * @param signal
+     * @param listener
+     * @param isOnce
+     * @param listenerContext
+     * @param priority
+     * @param args - TBD.
      */
-    constructor(signal: Signal, listener: Function, isOnce?: boolean, listenerContext?: object, priority?: number, args?: any[]);
-    _signal: Signal;
-    _listener: Function;
+    constructor(signal: any, listener: any, isOnce?: boolean, listenerContext?: any, priority?: number, args?: any);
+    _signal: any;
+    _listener: any;
     _args: any;
     _priority: number;
     _isOnce: boolean;
@@ -20,44 +20,36 @@ export class SignalBinding {
     params: any;
     /**
      * TBD.
-     * @param {any[]} paramsArr - TBD.
-     * @returns {Function} TBD.
+     * @param paramsArr
      */
-    execute(paramsArr: any[]): Function;
+    execute(paramsArr: any): any;
     /**
      * TBD.
-     * @returns {Function} TBD.
      */
-    detach(): Function;
+    detach(): any;
     /**
      * TBD.
-     * @returns {boolean} TBD.
      */
     isBound(): boolean;
     /**
      * TBD.
-     * @returns {boolean} TBD.
      */
     isOnce(): boolean;
     /**
      * TBD.
-     * @returns {Function} TBD.
      */
-    getListener(): Function;
+    getListener(): any;
     /**
      * TBD.
-     * @returns {Signal} TBD.
      */
-    getSignal(): Signal;
+    getSignal(): any;
     /**
      * TBD.
      */
     _destroy(): void;
     /**
      * TBD.
-     * @returns {string} TBD.
      */
     toString(): string;
 }
-import { Signal } from './signal';
 //# sourceMappingURL=signal_binding.d.ts.map

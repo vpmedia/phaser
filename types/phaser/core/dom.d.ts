@@ -12,25 +12,25 @@ export class DOM {
     scrollYProvider: () => number;
     /**
      * TBD.
-     * @param {HTMLCanvasElement} element - TBD.
+     * @param element - TBD.
      * @param {Point} point - TBD.
      * @returns {Point} TBD.
      */
-    getOffset(element: HTMLCanvasElement, point?: Point): Point;
+    getOffset(element: any, point?: Point): Point;
     /**
      * TBD.
-     * @param {HTMLCanvasElement} element - TBD.
+     * @param element - TBD.
      * @param {number} cushion - TBD.
      * @returns {boolean} TBD.
      */
-    getBounds(element: HTMLCanvasElement, cushion?: number): boolean;
+    getBounds(element: any, cushion?: number): boolean;
     /**
      * TBD.
-     * @param {DOMRect} coords - TBD.
+     * @param coords - TBD.
      * @param {number} cushion - TBD.
      * @returns {object} TBD.
      */
-    calibrate(coords: DOMRect, cushion?: number): object;
+    calibrate(coords: any, cushion?: number): object;
     /**
      * TBD.
      * @param {string} primaryFallback - TBD.

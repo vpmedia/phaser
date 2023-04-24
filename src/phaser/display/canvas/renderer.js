@@ -24,9 +24,6 @@ import { getSmoothingPrefix } from './util';
 import { detectCapabilities } from './tinter';
 import * as CanvasMaskManager from './masker';
 import { Game } from '../../core/game';
-import { Stage } from '../../core/stage';
-import { Image } from '../image';
-import { Matrix } from '../../geom/matrix';
 
 export class CanvasRenderer {
   /**
@@ -63,7 +60,7 @@ export class CanvasRenderer {
 
   /**
    * TBD.
-   * @param {Stage} root - TBD.
+   * @param root - TBD.
    */
   render(root) {
     if (!this.context) {
@@ -88,7 +85,7 @@ export class CanvasRenderer {
 
   /**
    * TBD.
-   * @param {boolean} removeView - TBD.
+   * @param removeView - TBD.
    */
   destroy(removeView = true) {
     if (removeView && this.view.parent) {
@@ -120,9 +117,9 @@ export class CanvasRenderer {
 
   /**
    * TBD.
-   * @param {Image} displayObject - TBD.
-   * @param {CanvasRenderingContext2D} context - TBD.
-   * @param {Matrix} matrix - TBD.
+   * @param displayObject - TBD.
+   * @param context - TBD.
+   * @param matrix - TBD.
    */
   renderDisplayObject(displayObject, context, matrix) {
     this.renderSession.context = context || this.context;

@@ -201,7 +201,7 @@ export class DOM {
 
   /**
    * TBD.
-   * @param {HTMLCanvasElement} element - TBD.
+   * @param element - TBD.
    * @param {Point} point - TBD.
    * @returns {Point} TBD.
    */
@@ -219,7 +219,7 @@ export class DOM {
 
   /**
    * TBD.
-   * @param {HTMLCanvasElement} element - TBD.
+   * @param element - TBD.
    * @param {number} cushion - TBD.
    * @returns {boolean} TBD.
    */
@@ -233,7 +233,7 @@ export class DOM {
 
   /**
    * TBD.
-   * @param {DOMRect} coords - TBD.
+   * @param coords - TBD.
    * @param {number} cushion - TBD.
    * @returns {object} TBD.
    */

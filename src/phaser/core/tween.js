@@ -148,7 +148,7 @@ export class Tween {
   /**
    * TBD.
    * @param {string} property - TBD.
-   * @param {object} value - TBD.
+   * @param {number} value - TBD.
    * @param {number} index - TBD.
    * @returns {Tween} TBD.
    */
@@ -235,8 +235,8 @@ export class Tween {
 
   /**
    * TBD.
-   * @param {Function} interpolation - TBD.
-   * @param {object} context - TBD.
+   * @param interpolation - TBD.
+   * @param context - TBD.
    * @param {number} index - TBD.
    * @returns {Tween} TBD.
    */
@@ -424,8 +424,7 @@ export class Tween {
   /**
    * TBD.
    * @param {number} frameRate - TBD.
-   * @param {object[]} data - TBD.
-   * @returns {object[]} TBD.
+   * @param data - TBD.
    */
   generateData(frameRate = 60, data = []) {
     if (this.game === null || this.target === null) {

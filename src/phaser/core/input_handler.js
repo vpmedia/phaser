@@ -3,13 +3,12 @@ import { GROUP } from './const';
 import { distance } from '../util/math';
 import { Pointer } from './input_pointer';
 import { Rectangle } from '../geom/rectangle';
-import { Image } from '../display/image';
 import { DisplayObject } from '../display/display_object';
 
 export class InputHandler {
   /**
    * TBD.
-   * @param {Image} sprite - TBD.
+   * @param sprite
    */
   constructor(sprite) {
     this.sprite = sprite;

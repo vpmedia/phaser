@@ -18,7 +18,7 @@ export class Image extends DisplayObject {
     tintedTexture: any;
     blendMode: number;
     shader: any;
-    _frame: Rectangle | Frame;
+    _frame: any;
     pendingDestroy: boolean;
     events: EventManager;
     animations: AnimationManager;
@@ -33,17 +33,17 @@ export class Image extends DisplayObject {
     customRender: boolean;
     /**
      * TBD.
-     * @param {Frame} frame - TBD.
+     * @param frame - TBD.
      */
-    setFrame(frame: Frame): void;
+    setFrame(frame: any): void;
     refreshTexture: boolean;
     /**
      * TBD.
-     * @param {DisplayObject} parent - TBD.
+     * @param parent - TBD.
      * @param {number} width - TBD.
      * @param {number} height - TBD.
      */
-    resizeFrame(parent: DisplayObject, width: number, height: number): void;
+    resizeFrame(parent: any, width: number, height: number): void;
     /**
      * TBD.
      */
@@ -54,7 +54,6 @@ export class Image extends DisplayObject {
     set frame(arg: number);
     /**
      * TBD.
-     * @returns {number} TBD.
      */
     get frame(): number;
     /**
@@ -68,11 +67,11 @@ export class Image extends DisplayObject {
     get frameName(): string;
     /**
      * TBD.
-     * @param {Rectangle} rect - TBD.
+     * @param rect - TBD.
      * @param {boolean} copy - TBD.
      */
-    crop(rect: Rectangle, copy?: boolean): void;
-    cropRect: Rectangle;
+    crop(rect: any, copy?: boolean): void;
+    cropRect: any;
     _crop: any;
     /**
      * TBD.
@@ -84,10 +83,10 @@ export class Image extends DisplayObject {
     onTextureUpdate(): void;
     /**
      * TBD.
-     * @param {Texture} texture - TBD.
+     * @param texture - TBD.
      * @param {boolean} destroyBase - TBD.
      */
-    setTexture(texture: Texture, destroyBase?: boolean): void;
+    setTexture(texture: any, destroyBase?: boolean): void;
     /**
      * TBD.
      * @param {Matrix} matrix - TBD.
@@ -109,10 +108,8 @@ export class Image extends DisplayObject {
 }
 import { DisplayObject } from './display_object';
 import { Game } from '../core/game';
-import { Rectangle } from '../geom/rectangle';
-import { Frame } from '../core/frame';
 import { EventManager } from '../core/event_manager';
 import { AnimationManager } from '../core/animation_manager';
-import { Texture } from './webgl/texture';
 import { Matrix } from '../geom/matrix';
+import { Rectangle } from '../geom/rectangle';
 //# sourceMappingURL=image.d.ts.map

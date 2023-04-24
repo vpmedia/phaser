@@ -1,11 +1,11 @@
 export class InputHandler {
     /**
      * TBD.
-     * @param {Image} sprite - TBD.
+     * @param sprite
      */
-    constructor(sprite: Image);
-    sprite: Image;
-    game: import("./game").Game;
+    constructor(sprite: any);
+    sprite: any;
+    game: any;
     enabled: boolean;
     checked: boolean;
     priorityID: number;
@@ -337,7 +337,6 @@ export class InputHandler {
      */
     checkBoundsSprite(): void;
 }
-import { Image } from '../display/image';
 import { Point } from '../geom/point';
 import { Rectangle } from '../geom/rectangle';
 import { DisplayObject } from '../display/display_object';

@@ -71,11 +71,10 @@ export class Text extends Image {
    * TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
-   * @param {string} color - TBD.
-   * @param {number} blur - TBD.
-   * @param {boolean} shadowStroke - TBD.
-   * @param {boolean} shadowFill - TBD.
-   * @returns {Text} TBD.
+   * @param color - TBD.
+   * @param blur - TBD.
+   * @param shadowStroke - TBD.
+   * @param shadowFill - TBD.
    */
   setShadow(x = 0, y = 0, color = 'rgba(0, 0, 0, 1)', blur = 0, shadowStroke = true, shadowFill = true) {
     this.style.shadowOffsetX = x;
@@ -90,9 +89,8 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @param {object} style - TBD.
-   * @param {boolean} update - TBD.
-   * @returns {Text} TBD.
+   * @param style
+   * @param update
    */
   setStyle(style = null, update = false) {
     style = JSON.parse(JSON.stringify(style)) || {};
@@ -300,10 +298,10 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @param {string} line - TBD.
+   * @param line - TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
-   * @param {boolean} fill - TBD.
+   * @param fill - TBD.
    */
   renderTabLine(line, x, y, fill) {
     const text = line.split(/(?:\t)/);
@@ -339,7 +337,7 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @param {string} state - TBD.
+   * @param state
    */
   updateShadow(state) {
     if (state) {
@@ -357,8 +355,7 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @param {string} line - TBD.
-   * @returns {number} TBD.
+   * @param line - TBD.
    */
   measureLine(line) {
     let lineLength = 0;
@@ -394,7 +391,7 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @param {string} line - TBD.
+   * @param line - TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
    */
@@ -454,8 +451,8 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @param {number} color - TBD.
-   * @param {number} position - TBD.
+   * @param color - TBD.
+   * @param position - TBD.
    * @returns {Text} TBD.
    */
   addColor(color, position) {
@@ -466,8 +463,8 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @param {number} color - TBD.
-   * @param {number} position - TBD.
+   * @param color - TBD.
+   * @param position - TBD.
    * @returns {Text} TBD.
    */
   addStrokeColor(color, position) {
@@ -478,8 +475,8 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @param {object} style - TBD.
-   * @param {number} position - TBD.
+   * @param style - TBD.
+   * @param position - TBD.
    * @returns {Text} TBD.
    */
   addFontStyle(style, position) {
@@ -490,8 +487,8 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @param {number} weight - TBD.
-   * @param {number} position - TBD.
+   * @param weight - TBD.
+   * @param position - TBD.
    * @returns {Text} TBD.
    */
   addFontWeight(weight, position) {
@@ -502,8 +499,7 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @param {string} text - TBD.
-   * @returns {string[]} TBD.
+   * @param text - TBD.
    */
   precalculateWordWrap(text) {
     this.texture.baseTexture.resolution = this._res;
@@ -514,8 +510,7 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @param {string} text - TBD.
-   * @returns {string} TBD.
+   * @param text - TBD.
    */
   runWordWrap(text) {
     if (this.useAdvancedWrap) {
@@ -526,9 +521,7 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @param {string} text - TBD.
-   * @returns {string} TBD.
-   * @throws Error.
+   * @param text - TBD.
    */
   advancedWordWrap(text) {
     const context = this.context;
@@ -609,8 +602,7 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @param {string} text - TBD.
-   * @returns {string} TBD.
+   * @param text - TBD.
    */
   basicWordWrap(text) {
     let result = '';
@@ -642,7 +634,7 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @param {object} components - TBD.
+   * @param components
    */
   updateFont(components) {
     const font = this.componentsToFont(components);
@@ -657,7 +649,7 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @param {string} font - TBD.
+   * @param font - TBD.
    * @returns {object} TBD.
    */
   fontToComponents(font) {
@@ -693,8 +685,7 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @param {object} components - TBD.
-   * @returns {string} TBD.
+   * @param components - TBD.
    */
   componentsToFont(components) {
     const parts = [];
@@ -728,8 +719,8 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @param {string} text - TBD.
-   * @param {boolean} immediate - TBD.
+   * @param text - TBD.
+   * @param immediate - TBD.
    * @returns {Text} TBD.
    */
   setText(text, immediate = false) {
@@ -744,7 +735,7 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @param {string[]|string[][]} list - TBD.
+   * @param list
    * @returns {Text} TBD.
    */
   parseList(list) {
@@ -885,7 +876,6 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @returns {CanvasRenderingContext2D} TBD.
    */
   getFontPropertiesContext() {
     if (!window.PhaserRegistry.fontPropertiesContext) {
@@ -898,8 +888,7 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @param {string} fontStyle - TBD.
-   * @returns {object} TBD.
+   * @param fontStyle
    */
   determineFontProperties(fontStyle) {
     const fontPropertiesCache = this.getFontPropertiesCache();
