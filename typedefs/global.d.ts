@@ -1,6 +1,6 @@
 declare global {
   interface Window {
-    PhaserRegistry: object;
+    PhaserRegistry: any;
   }
 }
 
