@@ -69,7 +69,18 @@ export class GameObjectFactory {
    * @param {Group} group - TBD.
    * @returns {Button} TBD.
    */
-  button(x, y, key, callback, callbackContext, overFrame, outFrame, downFrame, upFrame, group = null) {
+  button(
+    x,
+    y,
+    key,
+    callback = null,
+    callbackContext = null,
+    overFrame = null,
+    outFrame = null,
+    downFrame = null,
+    upFrame = null,
+    group = null
+  ) {
     const parent = group || this.game.world;
     return parent.add(
       new Button(this.game, x, y, key, callback, callbackContext, overFrame, outFrame, downFrame, upFrame)
@@ -83,7 +94,7 @@ export class GameObjectFactory {
    * @param {Group} group - TBD.
    * @returns {Graphics} TBD.
    */
-  graphics(x, y, group = null) {
+  graphics(x = 0, y = 0, group = null) {
     const parent = group || this.game.world;
     return parent.add(new Graphics(this.game, x, y));
   }

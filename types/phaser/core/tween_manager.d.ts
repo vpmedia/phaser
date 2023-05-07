@@ -64,7 +64,7 @@ export class TweenManager {
      * @param {object} obj - TBD.
      * @param {object[]} children - TBD.
      */
-    removeFrom(obj: object, children: object[]): void;
+    removeFrom(obj: object, children?: object[]): void;
     /**
      * TBD.
      * @param {Tween} tween - TBD.

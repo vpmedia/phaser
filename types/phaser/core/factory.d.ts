@@ -47,7 +47,7 @@ export class GameObjectFactory {
      * @param {Group} group - TBD.
      * @returns {Button} TBD.
      */
-    button(x: number, y: number, key: string, callback: Function, callbackContext: object, overFrame: string, outFrame: string, downFrame: string, upFrame: string, group?: Group): Button;
+    button(x: number, y: number, key: string, callback?: Function, callbackContext?: object, overFrame?: string, outFrame?: string, downFrame?: string, upFrame?: string, group?: Group): Button;
     /**
      * TBD.
      * @param {number} x - TBD.
@@ -55,7 +55,7 @@ export class GameObjectFactory {
      * @param {Group} group - TBD.
      * @returns {Graphics} TBD.
      */
-    graphics(x: number, y: number, group?: Group): Graphics;
+    graphics(x?: number, y?: number, group?: Group): Graphics;
     /**
      * TBD.
      * @param {number} x - TBD.

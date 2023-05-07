@@ -101,9 +101,9 @@ export class Signal {
     toString(): string;
     /**
      * TBD.
-     * @returns {boolean} TBD.
+     * @returns {Function} TBD.
      */
-    get boundDispatch(): boolean;
+    get boundDispatch(): Function;
 }
 import { SignalBinding } from './signal_binding';
 //# sourceMappingURL=signal.d.ts.map
