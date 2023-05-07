@@ -248,7 +248,7 @@ export class Signal {
 
   /**
    * TBD.
-   * @returns {boolean} TBD.
+   * @returns {Function} TBD.
    */
   get boundDispatch() {
     const _this = this;

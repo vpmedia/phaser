@@ -40,7 +40,7 @@ export class Timer {
    * @param {...any} args - TBD.
    * @returns {TimerEvent} TBD.
    */
-  create(delay, loop, repeatCount, callback, callbackContext, args) {
+  create(delay, loop, repeatCount, callback, callbackContext = null, args) {
     const roundedDelay = Math.round(delay);
     let tick = roundedDelay;
     if (this._now === 0) {
@@ -63,7 +63,7 @@ export class Timer {
    * @param {...any} args - TBD.
    * @returns {TimerEvent} TBD.
    */
-  add(delay, callback, callbackContext, ...args) {
+  add(delay, callback, callbackContext = null, ...args) {
     return this.create(delay, false, 0, callback, callbackContext, args);
   }
 
@@ -76,7 +76,7 @@ export class Timer {
    * @param {...any} args - TBD.
    * @returns {TimerEvent} TBD.
    */
-  repeat(delay, repeatCount, callback, callbackContext, ...args) {
+  repeat(delay, repeatCount, callback, callbackContext = null, ...args) {
     return this.create(delay, false, repeatCount, callback, callbackContext, args);
   }
 
@@ -88,7 +88,7 @@ export class Timer {
    * @param {...any} args - TBD.
    * @returns {TimerEvent} TBD.
    */
-  loop(delay, callback, callbackContext, ...args) {
+  loop(delay, callback, callbackContext = null, ...args) {
     return this.create(delay, true, 0, callback, callbackContext, args);
   }
 

@@ -44,7 +44,7 @@ export class Timer {
      * @param {...any} args - TBD.
      * @returns {TimerEvent} TBD.
      */
-    add(delay: number, callback: Function, callbackContext: object, ...args: any[]): TimerEvent;
+    add(delay: number, callback: Function, callbackContext?: object, ...args: any[]): TimerEvent;
     /**
      * TBD.
      * @param {number} delay - TBD.
@@ -54,7 +54,7 @@ export class Timer {
      * @param {...any} args - TBD.
      * @returns {TimerEvent} TBD.
      */
-    repeat(delay: number, repeatCount: number, callback: Function, callbackContext: object, ...args: any[]): TimerEvent;
+    repeat(delay: number, repeatCount: number, callback: Function, callbackContext?: object, ...args: any[]): TimerEvent;
     /**
      * TBD.
      * @param {number} delay - TBD.
@@ -63,7 +63,7 @@ export class Timer {
      * @param {...any} args - TBD.
      * @returns {TimerEvent} TBD.
      */
-    loop(delay: number, callback: Function, callbackContext: object, ...args: any[]): TimerEvent;
+    loop(delay: number, callback: Function, callbackContext?: object, ...args: any[]): TimerEvent;
     /**
      * TBD.
      * @param {number} delay - TBD.

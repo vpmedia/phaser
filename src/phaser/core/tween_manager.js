@@ -114,7 +114,7 @@ export class TweenManager {
    * @param {object} obj - TBD.
    * @param {object[]} children - TBD.
    */
-  removeFrom(obj, children) {
+  removeFrom(obj, children = null) {
     let i;
     let len;
     if (Array.isArray(obj)) {
