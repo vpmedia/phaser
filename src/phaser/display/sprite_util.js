@@ -4,8 +4,8 @@ import { SCALE_LINEAR } from '../core/const';
 
 /**
  * TBD.
- * @param {object} target - TBD.
- * @param {object} texture - TBD.
+ * @param {import('./image').Image} target - TBD.
+ * @param {import('./webgl/texture').Texture} texture - TBD.
  * @param {boolean} destroyBase - TBD.
  */
 export function setTexture(target, texture, destroyBase = false) {
@@ -20,7 +20,7 @@ export function setTexture(target, texture, destroyBase = false) {
 
 /**
  * TBD.
- * @param {object} target - TBD.
+ * @param {import('./image').Image} target - TBD.
  * @param {object} matrix - TBD.
  * @returns {import('../geom/rectangle').Rectangle} TBD.
  */
@@ -103,7 +103,7 @@ export function getBounds(target, matrix = null) {
 
 /**
  * TBD.
- * @param {object} target - TBD.
+ * @param {import('./image').Image} target - TBD.
  * @returns {import('../geom/rectangle').Rectangle} TBD.
  */
 export function getLocalBounds(target) {
@@ -123,9 +123,9 @@ export function getLocalBounds(target) {
 
 /**
  * TBD.
- * @param {object} target - TBD.
+ * @param {import('./image').Image} target - TBD.
  * @param {object} renderSession - TBD.
- * @param {object} matrix - TBD.
+ * @param {import('../geom/matrix').Matrix} matrix - TBD.
  */
 export function renderWebGL(target, renderSession, matrix) {
   // if the sprite is not visible or the alpha is 0 then no need to render this element
@@ -172,9 +172,9 @@ export function renderWebGL(target, renderSession, matrix) {
 
 /**
  * TBD.
- * @param {object} target - TBD.
+ * @param {import('./image').Image} target - TBD.
  * @param {object} renderSession - TBD.
- * @param {object} matrix - TBD.
+ * @param {import('../geom/matrix').Matrix} matrix - TBD.
  */
 export function renderCanvas(target, renderSession, matrix) {
   // If the sprite is not visible or the alpha is 0 then no need to render this element

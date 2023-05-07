@@ -20,10 +20,10 @@ export class AnimationManager {
     /**
      * TBD.
      * @param {import('./frame_data').FrameData} frameData - TBD.
-     * @param {number|string} frame - TBD.
+     * @param {string|number} frame - TBD.
      * @returns {boolean} TBD.
      */
-    loadFrameData(frameData: import('./frame_data').FrameData, frame: number | string): boolean;
+    loadFrameData(frameData: import('./frame_data').FrameData, frame: string | number): boolean;
     /**
      * TBD.
      */
@@ -45,10 +45,10 @@ export class AnimationManager {
     /**
      * TBD.
      * @param {import('./frame_data').FrameData} frameData - TBD.
-     * @param {number|string} frame - TBD.
+     * @param {string|number} frame - TBD.
      * @returns {boolean} TBD.
      */
-    copyFrameData(frameData: import('./frame_data').FrameData, frame: number | string): boolean;
+    copyFrameData(frameData: import('./frame_data').FrameData, frame: string | number): boolean;
     /**
      * TBD.
      * @param {string} name - TBD.

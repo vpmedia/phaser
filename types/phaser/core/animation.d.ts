@@ -76,10 +76,10 @@ export class Animation {
     reverseOnce(): Animation;
     /**
      * TBD.
-     * @param {number|string} frameId - TBD.
+     * @param {string|number} frameId - TBD.
      * @param {boolean} useLocalFrameIndex - TBD.
      */
-    setFrame(frameId: number | string, useLocalFrameIndex?: boolean): void;
+    setFrame(frameId: string | number, useLocalFrameIndex?: boolean): void;
     /**
      * TBD.
      * @param {boolean} resetFrame - TBD.

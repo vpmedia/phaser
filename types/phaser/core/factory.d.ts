@@ -10,11 +10,11 @@ export class GameObjectFactory {
      * @param {number} x - TBD.
      * @param {number} y - TBD.
      * @param {string} key - TBD.
-     * @param {string} frame - TBD.
+     * @param {string|number} frame - TBD.
      * @param {Group} group - TBD.
      * @returns {Image} TBD.
      */
-    image(x: number, y: number, key: string, frame: string, group?: Group): Image;
+    image(x: number, y: number, key: string, frame: string | number, group?: Group): Image;
     /**
      * TBD.
      * @param {Group} parent - TBD.

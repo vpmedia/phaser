@@ -14,7 +14,7 @@ export class Image extends DisplayObject {
    * @param {number} x - TBD.
    * @param {number} y - TBD.
    * @param {string} key - TBD.
-   * @param {string} frame - TBD.
+   * @param {string|number} frame - TBD.
    */
   constructor(game, x, y, key, frame) {
     super();
@@ -95,7 +95,7 @@ export class Image extends DisplayObject {
   /**
    * TBD.
    * @param {string} key - TBD.
-   * @param {number} frame - TBD.
+   * @param {string|number} frame - TBD.
    * @param {boolean} stopAnimation - TBD.
    */
   loadTexture(key, frame = 0, stopAnimation = true) {

@@ -37,7 +37,7 @@ export class AnimationManager {
   /**
    * TBD.
    * @param {import('./frame_data').FrameData} frameData - TBD.
-   * @param {number|string} frame - TBD.
+   * @param {string|number} frame - TBD.
    * @returns {boolean} TBD.
    */
   loadFrameData(frameData, frame) {
@@ -67,7 +67,7 @@ export class AnimationManager {
   /**
    * TBD.
    * @param {import('./frame_data').FrameData} frameData - TBD.
-   * @param {number|string} frame - TBD.
+   * @param {string|number} frame - TBD.
    * @returns {boolean} TBD.
    */
   copyFrameData(frameData, frame) {

@@ -19,7 +19,7 @@ export class GameObjectFactory {
    * @param {number} x - TBD.
    * @param {number} y - TBD.
    * @param {string} key - TBD.
-   * @param {string} frame - TBD.
+   * @param {string|number} frame - TBD.
    * @param {Group} group - TBD.
    * @returns {Image} TBD.
    */

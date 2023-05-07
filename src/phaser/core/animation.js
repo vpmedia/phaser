@@ -113,7 +113,7 @@ export class Animation {
 
   /**
    * TBD.
-   * @param {number|string} frameId - TBD.
+   * @param {string|number} frameId - TBD.
    * @param {boolean} useLocalFrameIndex - TBD.
    */
   setFrame(frameId, useLocalFrameIndex = false) {
