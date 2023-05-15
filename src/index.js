@@ -3,6 +3,9 @@ import * as Const from './phaser/core/const';
 import { Game } from './phaser/core/game';
 import { Signal } from './phaser/core/signal';
 import * as MathUtils from './phaser/util/math';
+// sound
+import { Sound } from './phaser/core/sound';
+import { SoundSprite } from './phaser/core/sound_sprite';
 // texture
 import { BaseTexture } from './phaser/display/webgl/base_texture';
 import { Texture } from './phaser/display/webgl/texture';
@@ -30,6 +33,8 @@ export {
   Signal,
   MathUtils,
   BaseTexture,
+  Sound,
+  SoundSprite,
   Texture,
   Circle,
   Ellipse,
