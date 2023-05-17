@@ -6,6 +6,13 @@ import * as MathUtils from './phaser/util/math';
 // sound
 import { Sound } from './phaser/core/sound';
 import { SoundSprite } from './phaser/core/sound_sprite';
+// time
+import { Time } from './phaser/core/time';
+import { Timer } from './phaser/core/timer';
+import { TimerEvent } from './phaser/core/timer_event';
+// tween
+import { Tween } from './phaser/core/tween';
+import { TweenData } from './phaser/core/tween_data';
 // texture
 import { BaseTexture } from './phaser/display/webgl/base_texture';
 import { Texture } from './phaser/display/webgl/texture';
@@ -35,6 +42,11 @@ export {
   BaseTexture,
   Sound,
   SoundSprite,
+  Time,
+  Timer,
+  TimerEvent,
+  Tween,
+  TweenData,
   Texture,
   Circle,
   Ellipse,
