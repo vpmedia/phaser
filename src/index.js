@@ -1,11 +1,13 @@
 // core
 import * as Const from './phaser/core/const';
 import { Game } from './phaser/core/game';
+import { GameObjectFactory } from './phaser/core/factory';
 import { Signal } from './phaser/core/signal';
 import * as MathUtils from './phaser/util/math';
 // sound
 import { Sound } from './phaser/core/sound';
 import { SoundSprite } from './phaser/core/sound_sprite';
+import { SoundManager } from './phaser/core/sound_manager';
 // time
 import { Time } from './phaser/core/time';
 import { Timer } from './phaser/core/timer';
@@ -13,6 +15,10 @@ import { TimerEvent } from './phaser/core/timer_event';
 // tween
 import { Tween } from './phaser/core/tween';
 import { TweenData } from './phaser/core/tween_data';
+import { TweenManager } from './phaser/core/tween_manager';
+// animation
+import { Animation } from './phaser/core/animation';
+import { AnimationManager } from './phaser/core/animation_manager';
 // texture
 import { BaseTexture } from './phaser/display/webgl/base_texture';
 import { Texture } from './phaser/display/webgl/texture';
@@ -37,16 +43,21 @@ import { Graphics } from './phaser/display/graphics';
 export {
   Const,
   Game,
+  GameObjectFactory,
   Signal,
   MathUtils,
   BaseTexture,
   Sound,
   SoundSprite,
+  SoundManager,
   Time,
   Timer,
   TimerEvent,
   Tween,
   TweenData,
+  TweenManager,
+  Animation,
+  AnimationManager,
   Texture,
   Circle,
   Ellipse,
