@@ -152,15 +152,14 @@ export class AnimationManager {
    * @param {string} name - TBD.
    * @param {number} frameRate - TBD.
    * @param {boolean} loop - TBD.
-   * @param {boolean} killOnComplete - TBD.
    * @returns {Animation} TBD.
    */
-  play(name, frameRate, loop, killOnComplete) {
+  play(name, frameRate, loop) {
     if (this._anims[name]) {
       if (this.currentAnim === this._anims[name]) {
         if (this.currentAnim.isPlaying === false) {
           this.currentAnim.paused = false;
-          return this.currentAnim.play(frameRate, loop, killOnComplete);
+          return this.currentAnim.play(frameRate, loop);
         }
         return this.currentAnim;
       }
@@ -170,7 +169,7 @@ export class AnimationManager {
       this.currentAnim = this._anims[name];
       this.currentAnim.paused = false;
       this.currentFrame = this.currentAnim.currentFrame;
-      return this.currentAnim.play(frameRate, loop, killOnComplete);
+      return this.currentAnim.play(frameRate, loop);
     }
     return null;
   }

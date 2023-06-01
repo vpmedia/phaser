@@ -71,10 +71,9 @@ export class AnimationManager {
      * @param {string} name - TBD.
      * @param {number} frameRate - TBD.
      * @param {boolean} loop - TBD.
-     * @param {boolean} killOnComplete - TBD.
      * @returns {Animation} TBD.
      */
-    play(name: string, frameRate: number, loop: boolean, killOnComplete: boolean): Animation;
+    play(name: string, frameRate: number, loop: boolean): Animation;
     /**
      * TBD.
      * @param {string} name - TBD.

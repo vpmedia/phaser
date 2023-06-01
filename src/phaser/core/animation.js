@@ -21,7 +21,6 @@ export class Animation {
     this.delay = 1000 / frameRate;
     this.loop = loop;
     this.loopCount = 0;
-    this.killOnComplete = false;
     this.isFinished = false;
     this.isPlaying = false;
     this.isPaused = false;
@@ -44,10 +43,9 @@ export class Animation {
    * TBD.
    * @param {number} frameRate - TBD.
    * @param {boolean} loop - TBD.
-   * @param {boolean} killOnComplete - TBD.
    * @returns {Animation} TBD.
    */
-  play(frameRate, loop, killOnComplete) {
+  play(frameRate, loop) {
     if (typeof frameRate === 'number') {
       //  If they set a new frame rate then use it, otherwise use the one set on creation
       this.delay = 1000 / frameRate;
@@ -55,10 +53,6 @@ export class Animation {
     if (typeof loop === 'boolean') {
       //  If they set a new loop value then use it, otherwise use the one set on creation
       this.loop = loop;
-    }
-    if (typeof killOnComplete !== 'undefined') {
-      //  Remove the parent sprite once the animation has finished?
-      this.killOnComplete = killOnComplete;
     }
     this.isPlaying = true;
     this.isFinished = false;
@@ -352,9 +346,6 @@ export class Animation {
     this.paused = false;
     this._parent.events.onAnimationComplete$dispatch(this._parent, this);
     this.onComplete.dispatch(this._parent, this);
-    if (this.killOnComplete) {
-      this._parent.kill();
-    }
   }
 
   /**

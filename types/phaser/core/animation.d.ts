@@ -18,7 +18,6 @@ export class Animation {
     delay: number;
     loop: boolean;
     loopCount: number;
-    killOnComplete: boolean;
     isFinished: boolean;
     isPlaying: boolean;
     isPaused: boolean;
@@ -36,10 +35,9 @@ export class Animation {
      * TBD.
      * @param {number} frameRate - TBD.
      * @param {boolean} loop - TBD.
-     * @param {boolean} killOnComplete - TBD.
      * @returns {Animation} TBD.
      */
-    play(frameRate: number, loop: boolean, killOnComplete: boolean): Animation;
+    play(frameRate: number, loop: boolean): Animation;
     /**
      * TBD.
      */
