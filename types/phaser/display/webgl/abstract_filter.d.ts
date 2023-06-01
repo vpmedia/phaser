@@ -5,7 +5,7 @@ export class AbstractFilter {
      * @param {object} uniforms - TBD.
      */
     constructor(fragmentSrc: string[], uniforms: object);
-    passes: AbstractFilter[];
+    passes: this[];
     shaders: any[];
     dirty: boolean;
     padding: number;

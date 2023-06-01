@@ -158,7 +158,6 @@ export class Graphics extends DisplayObject {
      * @returns {Rectangle} TBD.
      */
     getBounds(matrix?: import('../geom/matrix').Matrix): Rectangle;
-    worldTransform: any;
     /**
      * TBD.
      * @param {Point} point - TBD.
