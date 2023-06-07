@@ -15,7 +15,7 @@ export class Loader {
     this.isLoading = false;
     this.isUseLog = false;
     this.isUseRetry = true;
-    this.maxRetry = 1;
+    this.maxRetry = 3;
     this.hasLoaded = false;
     this.preloadSprite = null;
     this.crossOrigin = false;
@@ -795,8 +795,10 @@ export class Loader {
     };
     file.data.onerror = () => {
       if (scope.isUseRetry && (!file.numRetry || file.numRetry < scope.maxRetry)) {
-        file.numRetry = !file.numRetry ? 1 : (file.numRetry += 1);
-        scope.loadImageTag(file);
+        setTimeout(() => {
+          file.numRetry = !file.numRetry ? 1 : (file.numRetry += 1);
+          scope.loadImageTag(file);
+        }, 1000);
       } else if (file.data.onload) {
         file.data.onload = null;
         file.data.onerror = null;
@@ -832,8 +834,10 @@ export class Loader {
         if (xhr.readyState === 4 && xhr.status >= 400 && xhr.status <= 599) {
           // Handle HTTP status codes of 4xx and 5xx as errors, even if xhr.onerror was not called.
           if (scope.isUseRetry && (!file.numRetry || file.numRetry < scope.maxRetry)) {
-            file.numRetry = !file.numRetry ? 1 : (file.numRetry += 1);
-            scope.xhrLoad(file, url, type, onload, onerror);
+            setTimeout(() => {
+              file.numRetry = !file.numRetry ? 1 : (file.numRetry += 1);
+              scope.xhrLoad(file, url, type, onload, onerror);
+            }, 1000);
             return null;
           } else {
             return onerror.call(scope, file, xhr);
@@ -853,8 +857,10 @@ export class Loader {
     };
     xhr.onerror = () => {
       if (scope.isUseRetry && (!file.numRetry || file.numRetry < scope.maxRetry)) {
-        file.numRetry = !file.numRetry ? 1 : (file.numRetry += 1);
-        scope.xhrLoad(file, url, type, onload, onerror);
+        setTimeout(() => {
+          file.numRetry = !file.numRetry ? 1 : (file.numRetry += 1);
+          scope.xhrLoad(file, url, type, onload, onerror);
+        }, 1000);
       } else {
         try {
           return onerror.call(scope, file, xhr);
@@ -925,15 +931,12 @@ export class Loader {
    * @param {XMLHttpRequest} xhr - TBD.
    * @param {number} reason - TBD.
    */
-  fileError(file, xhr, reason) {
+  fileError(file, xhr = null, reason = 0) {
     // const url = file.requestUrl || this.transformUrl(file.url, file);
-    let message = 'Error loading asset';
     if (!reason && xhr) {
       reason = xhr.status;
     }
-    if (reason || reason === 0) {
-      message = message + ' (' + reason + ')';
-    }
+    const message = 'Error loading asset (' + reason + ')';
     this.asyncComplete(file, message);
   }
 
