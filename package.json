@@ -21,6 +21,7 @@
   ],
   "main": "./src/index.js",
   "types": "./types/index.d.ts",
+  "type": "module",
   "devDependencies": {
     "eslint": "^8.43.0",
     "eslint-config-prettier": "^8.8.0",
