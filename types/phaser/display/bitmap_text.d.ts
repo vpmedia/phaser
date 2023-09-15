@@ -9,8 +9,8 @@ export class BitmapText extends DisplayObject {
      * @param {number} size - TBD.
      * @param {string} align - TBD.
      */
-    constructor(game: import('../core/game').Game, x?: number, y?: number, font?: string, text?: string, size?: number, align?: string);
-    game: import("../core/game").Game;
+    constructor(game: import('../core/game.js').Game, x?: number, y?: number, font?: string, text?: string, size?: number, align?: string);
+    game: import("../core/game.js").Game;
     type: number;
     textWidth: number;
     textHeight: number;
@@ -131,6 +131,6 @@ export class BitmapText extends DisplayObject {
      */
     get smoothed(): boolean;
 }
-import { Point } from '../geom/point';
-import { DisplayObject } from './display_object';
+import { DisplayObject } from './display_object.js';
+import { Point } from '../geom/point.js';
 //# sourceMappingURL=bitmap_text.d.ts.map

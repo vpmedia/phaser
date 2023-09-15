@@ -299,5 +299,5 @@ export class Rectangle {
      */
     get empty(): boolean;
 }
-import { Point } from './point';
+import { Point } from './point.js';
 //# sourceMappingURL=rectangle.d.ts.map

@@ -13,8 +13,8 @@ export class Cache {
      * TBD.
      * @param {import('./game.js').Game} game - TBD.
      */
-    constructor(game: import('./game').Game);
-    game: import("./game").Game;
+    constructor(game: import('./game.js').Game);
+    game: import("./game.js").Game;
     autoResolveURL: boolean;
     _cache: {
         canvas: {};
@@ -417,8 +417,8 @@ export class Cache {
      */
     destroy(): void;
 }
-import { BaseTexture } from '../display/webgl/base_texture';
-import { Frame } from './frame';
-import { FrameData } from './frame_data';
-import { Signal } from './signal';
+import { Signal } from './signal.js';
+import { BaseTexture } from '../display/webgl/base_texture.js';
+import { Frame } from './frame.js';
+import { FrameData } from './frame_data.js';
 //# sourceMappingURL=cache.d.ts.map

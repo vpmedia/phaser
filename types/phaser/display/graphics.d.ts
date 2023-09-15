@@ -5,8 +5,8 @@ export class Graphics extends DisplayObject {
      * @param {number} x - TBD.
      * @param {number} y - TBD.
      */
-    constructor(game: import('../core/game').Game, x?: number, y?: number);
-    game: import("../core/game").Game;
+    constructor(game: import('../core/game.js').Game, x?: number, y?: number);
+    game: import("../core/game.js").Game;
     type: number;
     fillAlpha: number;
     lineWidth: number;
@@ -154,10 +154,10 @@ export class Graphics extends DisplayObject {
     _prevTint: any;
     /**
      * TBD.
-     * @param {import('../geom/matrix').Matrix} matrix - TBD.
+     * @param {import('../geom/matrix.js').Matrix} matrix - TBD.
      * @returns {Rectangle} TBD.
      */
-    getBounds(matrix?: import('../geom/matrix').Matrix): Rectangle;
+    getBounds(matrix?: import('../geom/matrix.js').Matrix): Rectangle;
     /**
      * TBD.
      * @param {Point} point - TBD.
@@ -193,9 +193,9 @@ export class Graphics extends DisplayObject {
      */
     drawTriangles(vertices: number[] | Point[], indices: number[], cull?: boolean): void;
 }
-import { Point } from '../geom/point';
-import { Polygon } from '../geom/polygon';
-import { Rectangle } from '../geom/rectangle';
-import { DisplayObject } from './display_object';
-import { GraphicsData } from './graphics_data';
+import { DisplayObject } from './display_object.js';
+import { GraphicsData } from './graphics_data.js';
+import { Rectangle } from '../geom/rectangle.js';
+import { Polygon } from '../geom/polygon.js';
+import { Point } from '../geom/point.js';
 //# sourceMappingURL=graphics.d.ts.map

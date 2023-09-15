@@ -2,17 +2,17 @@ export class Animation {
     /**
      * TBD.
      * @param {import('./game.js').Game} game - TBD.
-     * @param {import('../display/image').Image} parent - TBD.
+     * @param {import('../display/image.js').Image} parent - TBD.
      * @param {string} name - TBD.
-     * @param {import('./frame_data').FrameData} frameData - TBD.
+     * @param {import('./frame_data.js').FrameData} frameData - TBD.
      * @param {string[]|number[]} frames - TBD.
      * @param {number} frameRate - TBD.
      * @param {boolean} loop - TBD.
      */
-    constructor(game: import('./game').Game, parent: import('../display/image').Image, name: string, frameData: import('./frame_data').FrameData, frames: string[] | number[], frameRate: number, loop?: boolean);
-    game: import("./game").Game;
-    _parent: import("../display/image").Image;
-    _frameData: import("./frame_data").FrameData;
+    constructor(game: import('./game.js').Game, parent: import('../display/image.js').Image, name: string, frameData: import('./frame_data.js').FrameData, frames: string[] | number[], frameRate: number, loop?: boolean);
+    game: import("./game.js").Game;
+    _parent: import("../display/image.js").Image;
+    _frameData: import("./frame_data.js").FrameData;
     name: string;
     _frames: any[];
     delay: number;
@@ -25,7 +25,7 @@ export class Animation {
     _frameIndex: number;
     _frameDiff: number;
     _frameSkip: number;
-    currentFrame: import("./frame").Frame;
+    currentFrame: import("./frame.js").Frame;
     onStart: Signal;
     onUpdate: Signal;
     onComplete: Signal;
@@ -116,9 +116,9 @@ export class Animation {
     previous(quantity?: number): void;
     /**
      * TBD.
-     * @param {import('./frame_data').FrameData} frameData - TBD.
+     * @param {import('./frame_data.js').FrameData} frameData - TBD.
      */
-    updateFrameData(frameData: import('./frame_data').FrameData): void;
+    updateFrameData(frameData: import('./frame_data.js').FrameData): void;
     /**
      * TBD.
      */
@@ -160,5 +160,5 @@ export class Animation {
      */
     get enableUpdate(): boolean;
 }
-import { Signal } from './signal';
+import { Signal } from './signal.js';
 //# sourceMappingURL=animation.d.ts.map

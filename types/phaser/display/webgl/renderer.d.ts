@@ -3,7 +3,7 @@ export class WebGLRenderer {
      * TBD.
      * @param {import('../../core/game.js').Game} game - TBD.
      */
-    constructor(game: import('../../core/game').Game);
+    constructor(game: import('../../core/game.js').Game);
     type: number;
     resolution: any;
     autoResize: boolean;
@@ -51,12 +51,12 @@ export class WebGLRenderer {
     render(stage: import('../../core/stage').Stage): void;
     /**
      * TBD.
-     * @param {import('../../display/display_object').DisplayObject} displayObject - TBD.
+     * @param {import('../../display/display_object.js').DisplayObject} displayObject - TBD.
      * @param {Point} projection - TBD.
      * @param {object} buffer - TBD.
-     * @param {import('../../geom/matrix').Matrix} matrix - TBD.
+     * @param {import('../../geom/matrix.js').Matrix} matrix - TBD.
      */
-    renderDisplayObject(displayObject: import('../../display/display_object').DisplayObject, projection: Point, buffer: object, matrix: import('../../geom/matrix').Matrix): void;
+    renderDisplayObject(displayObject: import('../../display/display_object.js').DisplayObject, projection: Point, buffer: object, matrix: import('../../geom/matrix.js').Matrix): void;
     /**
      * TBD.
      * @param {number} width - TBD.
@@ -74,10 +74,10 @@ export class WebGLRenderer {
      */
     mapBlendModes(): void;
 }
-import { Point } from '../../geom/point';
-import { WebGLBlendModeManager } from './blend_manager';
-import { WebGLFilterManager } from './filter_manager';
-import { WebGLShaderManager } from './shader_manager';
-import { WebGLSpriteBatch } from './sprite_batch';
-import { WebGLStencilManager } from './stencil_manager';
+import { Point } from '../../geom/point.js';
+import { WebGLShaderManager } from './shader_manager.js';
+import { WebGLSpriteBatch } from './sprite_batch.js';
+import { WebGLFilterManager } from './filter_manager.js';
+import { WebGLStencilManager } from './stencil_manager.js';
+import { WebGLBlendModeManager } from './blend_manager.js';
 //# sourceMappingURL=renderer.d.ts.map

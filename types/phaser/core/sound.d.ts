@@ -7,8 +7,8 @@ export class Sound {
      * @param {boolean} loop - TBD.
      * @param {boolean} connect - TBD.
      */
-    constructor(game: import('./game').Game, key: string, volume?: number, loop?: boolean, connect?: boolean);
-    game: import("./game").Game;
+    constructor(game: import('./game.js').Game, key: string, volume?: number, loop?: boolean, connect?: boolean);
+    game: import("./game.js").Game;
     name: string;
     key: string;
     loop: boolean;
@@ -27,7 +27,7 @@ export class Sound {
     pausedTime: number;
     isPlaying: boolean;
     currentMarker: string;
-    fadeTween: import("./tween").Tween;
+    fadeTween: import("./tween.js").Tween;
     pendingPlayback: boolean;
     override: boolean;
     allowMultiple: boolean;
@@ -164,5 +164,5 @@ export class Sound {
      */
     get mute(): boolean;
 }
-import { Signal } from './signal';
+import { Signal } from './signal.js';
 //# sourceMappingURL=sound.d.ts.map

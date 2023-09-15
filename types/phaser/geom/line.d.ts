@@ -186,5 +186,5 @@ export class Line {
      */
     get normalAngle(): number;
 }
-import { Point } from './point';
+import { Point } from './point.js';
 //# sourceMappingURL=line.d.ts.map

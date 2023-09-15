@@ -86,8 +86,8 @@ export class WebGLSpriteBatch {
 
   /**
    * TBD.
-   * @param {import('../../display/image').Image} sprite - TBD.
-   * @param {import('../../geom/matrix').Matrix} matrix - TBD.
+   * @param {import('../../display/image.js').Image} sprite - TBD.
+   * @param {import('../../geom/matrix.js').Matrix} matrix - TBD.
    */
   render(sprite, matrix) {
     const texture = sprite.texture;

@@ -3,8 +3,8 @@ export class TweenManager {
      * TBD.
      * @param {import('./game.js').Game} game - TBD.
      */
-    constructor(game: import('./game').Game);
-    game: import("./game").Game;
+    constructor(game: import('./game.js').Game);
+    game: import("./game.js").Game;
     _tweens: any[];
     _add: any[];
     easeMap: {
@@ -109,6 +109,36 @@ export class TweenManager {
      */
     resumeAll(): void;
 }
-import { Tween } from './tween';
-import { BackIn, BackInOut, BackOut, BounceIn, BounceInOut, BounceOut, CircularIn, CircularInOut, CircularOut, CubicIn, CubicInOut, CubicOut, ElasticIn, ElasticInOut, ElasticOut, ExponentialIn, ExponentialInOut, ExponentialOut, LinearNone, QuadraticIn, QuadraticInOut, QuadraticOut, QuarticIn, QuarticInOut, QuarticOut, QuinticIn, QuinticInOut, QuinticOut, SinusoidalIn, SinusoidalInOut, SinusoidalOut } from './tween_easing';
+import { LinearNone } from './tween_easing.js';
+import { QuadraticOut } from './tween_easing.js';
+import { CubicOut } from './tween_easing.js';
+import { QuarticOut } from './tween_easing.js';
+import { QuinticOut } from './tween_easing.js';
+import { SinusoidalOut } from './tween_easing.js';
+import { ExponentialOut } from './tween_easing.js';
+import { CircularOut } from './tween_easing.js';
+import { ElasticOut } from './tween_easing.js';
+import { BackOut } from './tween_easing.js';
+import { BounceOut } from './tween_easing.js';
+import { QuadraticIn } from './tween_easing.js';
+import { CubicIn } from './tween_easing.js';
+import { QuarticIn } from './tween_easing.js';
+import { QuinticIn } from './tween_easing.js';
+import { SinusoidalIn } from './tween_easing.js';
+import { ExponentialIn } from './tween_easing.js';
+import { CircularIn } from './tween_easing.js';
+import { ElasticIn } from './tween_easing.js';
+import { BackIn } from './tween_easing.js';
+import { BounceIn } from './tween_easing.js';
+import { QuadraticInOut } from './tween_easing.js';
+import { CubicInOut } from './tween_easing.js';
+import { QuarticInOut } from './tween_easing.js';
+import { QuinticInOut } from './tween_easing.js';
+import { SinusoidalInOut } from './tween_easing.js';
+import { ExponentialInOut } from './tween_easing.js';
+import { CircularInOut } from './tween_easing.js';
+import { ElasticInOut } from './tween_easing.js';
+import { BackInOut } from './tween_easing.js';
+import { BounceInOut } from './tween_easing.js';
+import { Tween } from './tween.js';
 //# sourceMappingURL=tween_manager.d.ts.map

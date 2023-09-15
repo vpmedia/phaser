@@ -7,7 +7,7 @@ export class Text extends Image {
      * @param {string} text - TBD.
      * @param {object} style - TBD.
      */
-    constructor(game: import('../core/game').Game, x: number, y: number, text?: string, style?: object);
+    constructor(game: import('../core/game.js').Game, x: number, y: number, text?: string, style?: object);
     canvas: HTMLCanvasElement;
     context: CanvasRenderingContext2D;
     padding: Point;
@@ -427,7 +427,7 @@ export class Text extends Image {
      */
     get shadowFill(): number;
 }
-import { Point } from '../geom/point';
-import { Rectangle } from '../geom/rectangle';
-import { Image } from './image';
+import { Image } from './image.js';
+import { Point } from '../geom/point.js';
+import { Rectangle } from '../geom/rectangle.js';
 //# sourceMappingURL=text.d.ts.map

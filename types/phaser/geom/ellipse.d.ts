@@ -57,6 +57,6 @@ export class Ellipse {
      */
     toString(): string;
 }
-import { Rectangle } from './rectangle';
-import { Point } from './point';
+import { Rectangle } from './rectangle.js';
+import { Point } from './point.js';
 //# sourceMappingURL=ellipse.d.ts.map

@@ -3,8 +3,8 @@ export class SoundManager {
      * TBD.
      * @param {import('./game.js').Game} game - TBD.
      */
-    constructor(game: import('./game').Game);
-    game: import("./game").Game;
+    constructor(game: import('./game.js').Game);
+    game: import("./game.js").Game;
     onChange: Signal;
     context: any;
     baseLatency: number;
@@ -135,8 +135,8 @@ export class SoundManager {
      */
     get volume(): number;
 }
-import { ArraySet } from './array_set';
-import { Signal } from './signal';
-import { Sound } from './sound';
-import { SoundSprite } from './sound_sprite';
+import { Signal } from './signal.js';
+import { ArraySet } from './array_set.js';
+import { Sound } from './sound.js';
+import { SoundSprite } from './sound_sprite.js';
 //# sourceMappingURL=sound_manager.d.ts.map

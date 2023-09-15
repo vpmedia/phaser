@@ -37,10 +37,10 @@ export class WebGLSpriteBatch {
     end(): void;
     /**
      * TBD.
-     * @param {import('../../display/image').Image} sprite - TBD.
-     * @param {import('../../geom/matrix').Matrix} matrix - TBD.
+     * @param {import('../../display/image.js').Image} sprite - TBD.
+     * @param {import('../../geom/matrix.js').Matrix} matrix - TBD.
      */
-    render(sprite: import('../../display/image').Image, matrix: import('../../geom/matrix').Matrix): void;
+    render(sprite: import('../../display/image.js').Image, matrix: import('../../geom/matrix.js').Matrix): void;
     /**
      * TBD.
      */
@@ -69,5 +69,5 @@ export class WebGLSpriteBatch {
      */
     destroy(): void;
 }
-import { AbstractFilter } from './abstract_filter';
+import { AbstractFilter } from './abstract_filter.js';
 //# sourceMappingURL=sprite_batch.d.ts.map

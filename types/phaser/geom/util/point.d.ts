@@ -155,5 +155,5 @@ export function parse(obj: object, xProp?: string, yProp?: string): Point;
  * @returns {Point} TBD.
  */
 export function clone(input: Point, output?: Point): Point;
-import { Point } from '../point';
+import { Point } from '../point.js';
 //# sourceMappingURL=point.d.ts.map

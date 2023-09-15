@@ -1,11 +1,11 @@
 export class InputHandler {
     /**
      * TBD.
-     * @param {import('../display/image').Image} sprite - TBD.
+     * @param {import('../display/image.js').Image} sprite - TBD.
      */
-    constructor(sprite: import('../display/image').Image);
-    sprite: import("../display/image").Image;
-    game: import("./game").Game;
+    constructor(sprite: import('../display/image.js').Image);
+    sprite: import("../display/image.js").Image;
+    game: import("./game.js").Game;
     enabled: boolean;
     checked: boolean;
     priorityID: number;
@@ -26,8 +26,8 @@ export class InputHandler {
     pixelPerfectClick: boolean;
     pixelPerfectAlpha: number;
     draggable: boolean;
-    boundsRect: import("../geom/rectangle").Rectangle;
-    boundsSprite: import("../display/display_object").DisplayObject;
+    boundsRect: import("../geom/rectangle.js").Rectangle;
+    boundsSprite: import("../display/display_object.js").DisplayObject;
     scaleLayer: boolean;
     dragOffset: Point;
     dragFromCenter: boolean;
@@ -65,9 +65,9 @@ export class InputHandler {
      * TBD.
      * @param {number} priority - TBD.
      * @param {boolean} useHandCursor - TBD.
-     * @returns {import('../display/display_object').DisplayObject} TBD.
+     * @returns {import('../display/display_object.js').DisplayObject} TBD.
      */
-    start(priority?: number, useHandCursor?: boolean): import('../display/display_object').DisplayObject;
+    start(priority?: number, useHandCursor?: boolean): import('../display/display_object.js').DisplayObject;
     /**
      * TBD.
      */
@@ -277,10 +277,10 @@ export class InputHandler {
      * @param {boolean} bringToTop - TBD.
      * @param {boolean} pixelPerfect - TBD.
      * @param {number} alphaThreshold - TBD.
-     * @param {import('../geom/rectangle').Rectangle} boundsRect - TBD.
-     * @param {import('../display/display_object').DisplayObject} boundsSprite - TBD.
+     * @param {import('../geom/rectangle.js').Rectangle} boundsRect - TBD.
+     * @param {import('../display/display_object.js').DisplayObject} boundsSprite - TBD.
      */
-    enableDrag(lockCenter?: boolean, bringToTop?: boolean, pixelPerfect?: boolean, alphaThreshold?: number, boundsRect?: import('../geom/rectangle').Rectangle, boundsSprite?: import('../display/display_object').DisplayObject): void;
+    enableDrag(lockCenter?: boolean, bringToTop?: boolean, pixelPerfect?: boolean, alphaThreshold?: number, boundsRect?: import('../geom/rectangle.js').Rectangle, boundsSprite?: import('../display/display_object.js').DisplayObject): void;
     /**
      * TBD.
      */
@@ -337,5 +337,5 @@ export class InputHandler {
      */
     checkBoundsSprite(): void;
 }
-import { Point } from '../geom/point';
+import { Point } from '../geom/point.js';
 //# sourceMappingURL=input_handler.d.ts.map

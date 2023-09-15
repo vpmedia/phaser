@@ -3,7 +3,7 @@ export class CanvasRenderer {
      * TBD.
      * @param {import('../../core/game.js').Game} game - TBD.
      */
-    constructor(game: import('../../core/game').Game);
+    constructor(game: import('../../core/game.js').Game);
     type: number;
     resolution: any;
     clearBeforeRender: any;
@@ -41,15 +41,15 @@ export class CanvasRenderer {
     resize(width: number, height: number): void;
     /**
      * TBD.
-     * @param {import('../../display/image').Image} displayObject - TBD.
+     * @param {import('../../display/image.js').Image} displayObject - TBD.
      * @param {CanvasRenderingContext2D} context - TBD.
-     * @param {import('../../geom/matrix').Matrix} matrix - TBD.
+     * @param {import('../../geom/matrix.js').Matrix} matrix - TBD.
      */
-    renderDisplayObject(displayObject: import('../../display/image').Image, context: CanvasRenderingContext2D, matrix: import('../../geom/matrix').Matrix): void;
+    renderDisplayObject(displayObject: import('../../display/image.js').Image, context: CanvasRenderingContext2D, matrix: import('../../geom/matrix.js').Matrix): void;
     /**
      * TBD.
      */
     mapBlendModes(): void;
 }
-import * as CanvasMaskManager from './masker';
+import * as CanvasMaskManager from './masker.js';
 //# sourceMappingURL=renderer.d.ts.map

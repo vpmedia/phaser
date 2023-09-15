@@ -1,10 +1,10 @@
 export class EventManager {
     /**
      * TBD.
-     * @param {import('../display/display_object').DisplayObject} sprite - TBD.
+     * @param {import('../display/display_object.js').DisplayObject} sprite - TBD.
      */
-    constructor(sprite: import('../display/display_object').DisplayObject);
-    parent: import("../display/display_object").DisplayObject;
+    constructor(sprite: import('../display/display_object.js').DisplayObject);
+    parent: import("../display/display_object.js").DisplayObject;
     _onAddedToGroup: Signal;
     _onRemovedFromGroup: Signal;
     _onDestroy: Signal;
@@ -176,5 +176,5 @@ export class EventManager {
      */
     onAnimationLoop$dispatch(...args: any[]): void;
 }
-import { Signal } from './signal';
+import { Signal } from './signal.js';
 //# sourceMappingURL=event_manager.d.ts.map

@@ -553,7 +553,7 @@ export class Graphics extends DisplayObject {
 
   /**
    * TBD.
-   * @param {import('../geom/matrix').Matrix} matrix - TBD.
+   * @param {import('../geom/matrix.js').Matrix} matrix - TBD.
    * @returns {Rectangle} TBD.
    */
   getBounds(matrix = null) {

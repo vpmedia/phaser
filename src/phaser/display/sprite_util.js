@@ -1,10 +1,10 @@
-import { getTintedTexture } from './canvas/tinter.js';
-import { getIdentityMatrix } from '../geom/util/matrix.js';
 import { SCALE_LINEAR } from '../core/const.js';
+import { getIdentityMatrix } from '../geom/util/matrix.js';
+import { getTintedTexture } from './canvas/tinter.js';
 
 /**
  * TBD.
- * @param {import('./image').Image} target - TBD.
+ * @param {import('./image.js').Image} target - TBD.
  * @param {import('./webgl/texture').Texture} texture - TBD.
  * @param {boolean} destroyBase - TBD.
  */
@@ -20,9 +20,9 @@ export function setTexture(target, texture, destroyBase = false) {
 
 /**
  * TBD.
- * @param {import('./image').Image} target - TBD.
+ * @param {import('./image.js').Image} target - TBD.
  * @param {object} matrix - TBD.
- * @returns {import('../geom/rectangle').Rectangle} TBD.
+ * @returns {import('../geom/rectangle.js').Rectangle} TBD.
  */
 export function getBounds(target, matrix = null) {
   // TODO verify
@@ -103,8 +103,8 @@ export function getBounds(target, matrix = null) {
 
 /**
  * TBD.
- * @param {import('./image').Image} target - TBD.
- * @returns {import('../geom/rectangle').Rectangle} TBD.
+ * @param {import('./image.js').Image} target - TBD.
+ * @returns {import('../geom/rectangle.js').Rectangle} TBD.
  */
 export function getLocalBounds(target) {
   const matrixCache = target.worldTransform;
@@ -123,9 +123,9 @@ export function getLocalBounds(target) {
 
 /**
  * TBD.
- * @param {import('./image').Image} target - TBD.
+ * @param {import('./image.js').Image} target - TBD.
  * @param {object} renderSession - TBD.
- * @param {import('../geom/matrix').Matrix} matrix - TBD.
+ * @param {import('../geom/matrix.js').Matrix} matrix - TBD.
  */
 export function renderWebGL(target, renderSession, matrix) {
   // if the sprite is not visible or the alpha is 0 then no need to render this element
@@ -172,9 +172,9 @@ export function renderWebGL(target, renderSession, matrix) {
 
 /**
  * TBD.
- * @param {import('./image').Image} target - TBD.
+ * @param {import('./image.js').Image} target - TBD.
  * @param {object} renderSession - TBD.
- * @param {import('../geom/matrix').Matrix} matrix - TBD.
+ * @param {import('../geom/matrix.js').Matrix} matrix - TBD.
  */
 export function renderCanvas(target, renderSession, matrix) {
   // If the sprite is not visible or the alpha is 0 then no need to render this element

@@ -8,8 +8,8 @@ export class Group extends DisplayObject {
      * @param {string} name - TBD.
      * @param {boolean} addToStage - TBD.
      */
-    constructor(game: import('../core/game').Game, parent?: DisplayObject, name?: string, addToStage?: boolean);
-    game: import("../core/game").Game;
+    constructor(game: import('../core/game.js').Game, parent?: DisplayObject, name?: string, addToStage?: boolean);
+    game: import("../core/game.js").Game;
     type: number;
     name: string;
     z: number;
@@ -112,7 +112,7 @@ export class Group extends DisplayObject {
      */
     removeAll(destroy?: boolean, silent?: boolean, destroyTexture?: boolean): void;
 }
-import { Signal } from '../core/signal';
-import { DisplayObject } from './display_object';
-import { Image } from './image';
+import { DisplayObject } from './display_object.js';
+import { Image } from './image.js';
+import { Signal } from '../core/signal.js';
 //# sourceMappingURL=group.d.ts.map

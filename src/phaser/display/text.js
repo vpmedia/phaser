@@ -975,7 +975,7 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @param {import('../geom/matrix').Matrix} matrix - TBD.
+   * @param {import('../geom/matrix.js').Matrix} matrix - TBD.
    * @returns {Rectangle} TBD.
    */
   getBounds(matrix = null) {

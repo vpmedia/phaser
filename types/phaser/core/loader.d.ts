@@ -3,16 +3,16 @@ export class Loader {
      * TBD.
      * @param {import('./game.js').Game} game - TBD.
      */
-    constructor(game: import('./game').Game);
-    game: import("./game").Game;
-    cache: import("./cache").Cache;
+    constructor(game: import('./game.js').Game);
+    game: import("./game.js").Game;
+    cache: import("./cache.js").Cache;
     isLoading: boolean;
     isUseLog: boolean;
     isUseRetry: boolean;
     maxRetry: number;
     hasLoaded: boolean;
     preloadSprite: {
-        sprite: import("../display/image").Image;
+        sprite: import("../display/image.js").Image;
         direction: number;
         width: number;
         height: number;
@@ -44,10 +44,10 @@ export class Loader {
     _loadedFileCount: number;
     /**
      * TBD.
-     * @param {import('../display/image').Image} sprite - TBD.
+     * @param {import('../display/image.js').Image} sprite - TBD.
      * @param {number} direction - TBD.
      */
-    setPreloadSprite(sprite: import('../display/image').Image, direction?: number): void;
+    setPreloadSprite(sprite: import('../display/image.js').Image, direction?: number): void;
     /**
      * TBD.
      */
@@ -289,7 +289,7 @@ export class Loader {
      * @param {XMLHttpRequest} xhr - TBD.
      * @param {number} reason - TBD.
      */
-    fileError(file: object, xhr: XMLHttpRequest, reason: number): void;
+    fileError(file: object, xhr?: XMLHttpRequest, reason?: number): void;
     /**
      * TBD.
      * @param {object} file - TBD.
@@ -360,5 +360,5 @@ export class Loader {
      */
     get progress(): number;
 }
-import { Signal } from './signal';
+import { Signal } from './signal.js';
 //# sourceMappingURL=loader.d.ts.map

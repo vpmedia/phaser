@@ -3,8 +3,8 @@ export class RequestAnimationFrame {
      * TBD.
      * @param {import('./game.js').Game} game - TBD.
      */
-    constructor(game: import('./game').Game);
-    game: import("./game").Game;
+    constructor(game: import('./game.js').Game);
+    game: import("./game.js").Game;
     rafId: number;
     updateBinded: (rafTime: number) => void;
     /**

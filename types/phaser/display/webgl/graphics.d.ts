@@ -75,5 +75,5 @@ export function updateGraphics(graphics: object, gl: object): void;
  * @param {object} renderSession - TBD.
  */
 export function renderGraphics(graphics: object, renderSession: object): void;
-import { GraphicsData } from './graphics_data';
+import { GraphicsData } from './graphics_data.js';
 //# sourceMappingURL=graphics.d.ts.map

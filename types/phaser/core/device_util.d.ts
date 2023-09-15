@@ -45,5 +45,5 @@ export function initialize(device: Device): void;
  * @returns {Device} TBD.
  */
 export function createDevice(): Device;
-import { Device } from './device';
+import { Device } from './device.js';
 //# sourceMappingURL=device_util.d.ts.map

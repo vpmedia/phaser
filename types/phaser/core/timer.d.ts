@@ -4,8 +4,8 @@ export class Timer {
      * @param {import('./game.js').Game} game - TBD.
      * @param {boolean} autoDestroy - TBD.
      */
-    constructor(game: import('./game').Game, autoDestroy?: boolean);
-    game: import("./game").Game;
+    constructor(game: import('./game.js').Game, autoDestroy?: boolean);
+    game: import("./game.js").Game;
     running: boolean;
     autoDestroy: boolean;
     expired: boolean;
@@ -156,6 +156,6 @@ export class Timer {
      */
     get seconds(): number;
 }
-import { Signal } from './signal';
-import { TimerEvent } from './timer_event';
+import { Signal } from './signal.js';
+import { TimerEvent } from './timer_event.js';
 //# sourceMappingURL=timer.d.ts.map

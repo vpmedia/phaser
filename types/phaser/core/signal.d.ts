@@ -105,5 +105,5 @@ export class Signal {
      */
     get boundDispatch(): Function;
 }
-import { SignalBinding } from './signal_binding';
+import { SignalBinding } from './signal_binding.js';
 //# sourceMappingURL=signal.d.ts.map

@@ -161,6 +161,6 @@ export class Circle {
      */
     get empty(): boolean;
 }
-import { Point } from './point';
-import { Rectangle } from './rectangle';
+import { Point } from './point.js';
+import { Rectangle } from './rectangle.js';
 //# sourceMappingURL=circle.d.ts.map

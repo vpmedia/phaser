@@ -12,6 +12,6 @@ export function cloneFrame(frame: Frame, output?: Frame): Frame;
  * @returns {FrameData} TBD.
  */
 export function cloneFrameData(frameData: FrameData, output?: FrameData): FrameData;
-import { Frame } from './frame';
-import { FrameData } from './frame_data';
+import { Frame } from './frame.js';
+import { FrameData } from './frame_data.js';
 //# sourceMappingURL=frame_util.d.ts.map

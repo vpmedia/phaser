@@ -360,7 +360,7 @@ export class Input {
 
   /**
    * TBD.
-   * @param {import('../display/display_object').DisplayObject} displayObject - TBD.
+   * @param {import('../display/display_object.js').DisplayObject} displayObject - TBD.
    * @param {Pointer} pointer - TBD.
    * @param {Point} output - TBD.
    * @returns {Point} TBD.
@@ -377,7 +377,7 @@ export class Input {
 
   /**
    * TBD.
-   * @param {import('../display/display_object').DisplayObject} displayObject - TBD.
+   * @param {import('../display/display_object.js').DisplayObject} displayObject - TBD.
    * @param {Pointer} pointer - TBD.
    * @param {Point} localPoint - TBD.
    * @returns {boolean} TBD.

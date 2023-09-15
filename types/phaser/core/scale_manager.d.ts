@@ -5,8 +5,8 @@ export class ScaleManager {
      * @param {number} width - TBD.
      * @param {number} height - TBD.
      */
-    constructor(game: import('./game').Game, width: number, height: number);
-    game: import("./game").Game;
+    constructor(game: import('./game.js').Game, width: number, height: number);
+    game: import("./game.js").Game;
     dom: DOM;
     width: number;
     height: number;
@@ -341,8 +341,8 @@ export class ScaleManager {
      */
     get isGameLandscape(): boolean;
 }
-import { Point } from '../geom/point';
-import { Rectangle } from '../geom/rectangle';
-import { DOM } from './dom';
-import { Signal } from './signal';
+import { DOM } from './dom.js';
+import { Point } from '../geom/point.js';
+import { Signal } from './signal.js';
+import { Rectangle } from '../geom/rectangle.js';
 //# sourceMappingURL=scale_manager.d.ts.map

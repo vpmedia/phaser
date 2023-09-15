@@ -3,10 +3,10 @@ export class MSPointer {
      * TBD.
      * @param {import('./game.js').Game} game - TBD.
      */
-    constructor(game: import('./game').Game);
-    game: import("./game").Game;
-    input: import("./input").Input;
-    callbackContext: import("./game").Game;
+    constructor(game: import('./game.js').Game);
+    game: import("./game.js").Game;
+    input: import("./input.js").Input;
+    callbackContext: import("./game.js").Game;
     pointerDownCallback: any;
     pointerMoveCallback: any;
     pointerUpCallback: any;

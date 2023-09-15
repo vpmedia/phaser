@@ -3,7 +3,7 @@ import { Animation } from './animation.js';
 export class AnimationManager {
   /**
    * TBD.
-   * @param {import('../display/image').Image} sprite - TBD.
+   * @param {import('../display/image.js').Image} sprite - TBD.
    */
   constructor(sprite) {
     this.sprite = sprite;
@@ -36,7 +36,7 @@ export class AnimationManager {
 
   /**
    * TBD.
-   * @param {import('./frame_data').FrameData} frameData - TBD.
+   * @param {import('./frame_data.js').FrameData} frameData - TBD.
    * @param {string|number} frame - TBD.
    * @returns {boolean} TBD.
    */
@@ -66,7 +66,7 @@ export class AnimationManager {
 
   /**
    * TBD.
-   * @param {import('./frame_data').FrameData} frameData - TBD.
+   * @param {import('./frame_data.js').FrameData} frameData - TBD.
    * @param {string|number} frame - TBD.
    * @returns {boolean} TBD.
    */
@@ -245,7 +245,7 @@ export class AnimationManager {
 
   /**
    * TBD.
-   * @returns {import('./frame_data').FrameData} TBD.
+   * @returns {import('./frame_data.js').FrameData} TBD.
    */
   get frameData() {
     return this._frameData;

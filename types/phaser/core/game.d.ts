@@ -73,20 +73,20 @@ export class Game {
      */
     destroy(): void;
 }
-import { CanvasRenderer } from '../display/canvas/renderer';
-import { WebGLRenderer } from '../display/webgl/renderer';
-import { SceneManager } from './scene_manager';
-import { RequestAnimationFrame } from './raf';
-import { GameObjectFactory } from './factory';
-import { Cache } from './cache';
-import { Input } from './input';
-import { Loader } from './loader';
-import { ScaleManager } from './scale_manager';
-import { SoundManager } from './sound_manager';
-import { Stage } from './stage';
-import { Time } from './time';
-import { TweenManager } from './tween_manager';
-import { World } from './world';
-import { Device } from './device';
-import { Signal } from './signal';
+import { CanvasRenderer } from '../display/canvas/renderer.js';
+import { WebGLRenderer } from '../display/webgl/renderer.js';
+import { SceneManager } from './scene_manager.js';
+import { RequestAnimationFrame } from './raf.js';
+import { GameObjectFactory } from './factory.js';
+import { Cache } from './cache.js';
+import { Input } from './input.js';
+import { Loader } from './loader.js';
+import { ScaleManager } from './scale_manager.js';
+import { SoundManager } from './sound_manager.js';
+import { Stage } from './stage.js';
+import { Time } from './time.js';
+import { TweenManager } from './tween_manager.js';
+import { World } from './world.js';
+import { Device } from './device.js';
+import { Signal } from './signal.js';
 //# sourceMappingURL=game.d.ts.map

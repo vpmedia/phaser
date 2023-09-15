@@ -282,7 +282,7 @@ export class DisplayObject {
      */
     get bottom(): number;
 }
-import { Point } from '../geom/point';
-import { Matrix } from '../geom/matrix';
-import { Rectangle } from '../geom/rectangle';
+import { Point } from '../geom/point.js';
+import { Matrix } from '../geom/matrix.js';
+import { Rectangle } from '../geom/rectangle.js';
 //# sourceMappingURL=display_object.d.ts.map

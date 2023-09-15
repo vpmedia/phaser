@@ -15,5 +15,5 @@ export function getIdentityMatrix(): Matrix;
  * @returns {Matrix} TBD.
  */
 export function getTempMatrix(): Matrix;
-import { Matrix } from '../matrix';
+import { Matrix } from '../matrix.js';
 //# sourceMappingURL=matrix.d.ts.map

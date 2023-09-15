@@ -4,9 +4,9 @@ export class Animation {
   /**
    * TBD.
    * @param {import('./game.js').Game} game - TBD.
-   * @param {import('../display/image').Image} parent - TBD.
+   * @param {import('../display/image.js').Image} parent - TBD.
    * @param {string} name - TBD.
-   * @param {import('./frame_data').FrameData} frameData - TBD.
+   * @param {import('./frame_data.js').FrameData} frameData - TBD.
    * @param {string[]|number[]} frames - TBD.
    * @param {number} frameRate - TBD.
    * @param {boolean} loop - TBD.
@@ -302,7 +302,7 @@ export class Animation {
 
   /**
    * TBD.
-   * @param {import('./frame_data').FrameData} frameData - TBD.
+   * @param {import('./frame_data.js').FrameData} frameData - TBD.
    */
   updateFrameData(frameData) {
     this._frameData = frameData;

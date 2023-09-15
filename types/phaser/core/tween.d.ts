@@ -1,13 +1,13 @@
 export class Tween {
     /**
      * TBD.
-     * @param {import('../display/display_object').DisplayObject} target - TBD.
+     * @param {import('../display/display_object.js').DisplayObject} target - TBD.
      * @param {import('./game.js').Game} game - TBD.
      * @param {import('./tween_manager').TweenManager} manager - TBD.
      */
-    constructor(target: import('../display/display_object').DisplayObject, game: import('./game').Game, manager: import('./tween_manager').TweenManager);
-    game: import("./game").Game;
-    target: import("../display/display_object").DisplayObject;
+    constructor(target: import('../display/display_object.js').DisplayObject, game: import('./game.js').Game, manager: import('./tween_manager').TweenManager);
+    game: import("./game.js").Game;
+    target: import("../display/display_object.js").DisplayObject;
     manager: import("./tween_manager").TweenManager;
     timeline: any[];
     reverse: boolean;
@@ -185,5 +185,5 @@ export class Tween {
      */
     get totalDuration(): number;
 }
-import { Signal } from './signal';
+import { Signal } from './signal.js';
 //# sourceMappingURL=tween.d.ts.map

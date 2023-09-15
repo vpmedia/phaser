@@ -175,10 +175,10 @@ export class WebGLRenderer {
 
   /**
    * TBD.
-   * @param {import('../../display/display_object').DisplayObject} displayObject - TBD.
+   * @param {import('../../display/display_object.js').DisplayObject} displayObject - TBD.
    * @param {Point} projection - TBD.
    * @param {object} buffer - TBD.
-   * @param {import('../../geom/matrix').Matrix} matrix - TBD.
+   * @param {import('../../geom/matrix.js').Matrix} matrix - TBD.
    */
   renderDisplayObject(displayObject, projection, buffer, matrix) {
     this.renderSession.blendModeManager.setBlendMode(BLEND_NORMAL);

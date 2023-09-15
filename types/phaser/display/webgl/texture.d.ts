@@ -49,5 +49,5 @@ export class Texture {
      */
     _updateUvs(): void;
 }
-import { Rectangle } from '../../geom/rectangle';
+import { Rectangle } from '../../geom/rectangle.js';
 //# sourceMappingURL=texture.d.ts.map

@@ -5,7 +5,7 @@ export class TweenData {
      */
     constructor(parent: import('./tween').Tween);
     parent: import("./tween").Tween;
-    game: import("./game").Game;
+    game: import("./game.js").Game;
     vStart: {};
     vStartCache: {};
     vEnd: {};
@@ -79,5 +79,5 @@ export class TweenData {
      */
     repeat(): number;
 }
-import * as MathUtils from '../util/math';
+import * as MathUtils from '../util/math.js';
 //# sourceMappingURL=tween_data.d.ts.map

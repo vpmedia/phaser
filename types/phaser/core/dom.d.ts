@@ -168,6 +168,6 @@ declare class DocumentBoundsRectangle {
      */
     get height(): number;
 }
-import { Point } from '../geom/point';
+import { Point } from '../geom/point.js';
 export {};
 //# sourceMappingURL=dom.d.ts.map

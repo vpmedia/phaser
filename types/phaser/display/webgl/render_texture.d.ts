@@ -45,8 +45,8 @@ export class RenderTexture extends Texture {
      */
     getCanvas(): HTMLCanvasElement;
 }
-import { Texture } from './texture';
-import { CanvasBuffer } from '../canvas/buffer';
-import { FilterTexture } from './filter_texture';
-import { Point } from '../../geom/point';
+import { Texture } from './texture.js';
+import { CanvasBuffer } from '../canvas/buffer.js';
+import { FilterTexture } from './filter_texture.js';
+import { Point } from '../../geom/point.js';
 //# sourceMappingURL=render_texture.d.ts.map

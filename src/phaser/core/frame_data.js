@@ -6,7 +6,7 @@ export class FrameData {
    */
   constructor() {
     /**
-     * @type {import('./frame').Frame[]}
+     * @type {import('./frame.js').Frame[]}
      */
     this._frames = [];
     /**
@@ -17,8 +17,8 @@ export class FrameData {
 
   /**
    * TBD.
-   * @param {import('./frame').Frame} frame - TBD.
-   * @returns {import('./frame').Frame} TBD.
+   * @param {import('./frame.js').Frame} frame - TBD.
+   * @returns {import('./frame.js').Frame} TBD.
    */
   addFrame(frame) {
     frame.index = this._frames.length;
@@ -32,7 +32,7 @@ export class FrameData {
   /**
    * TBD.
    * @param {number} index - TBD.
-   * @returns {import('./frame').Frame} TBD.
+   * @returns {import('./frame.js').Frame} TBD.
    */
   getFrame(index = 0) {
     if (index >= this._frames.length) {
@@ -44,7 +44,7 @@ export class FrameData {
   /**
    * TBD.
    * @param {string} name - TBD.
-   * @returns {import('./frame').Frame} TBD.
+   * @returns {import('./frame.js').Frame} TBD.
    */
   getFrameByName(name) {
     if (typeof this._frameNames[name] === 'number') {
@@ -77,8 +77,8 @@ export class FrameData {
    * TBD.
    * @param {number} start - TBD.
    * @param {number} end - TBD.
-   * @param {import('./frame').Frame[]} output - TBD.
-   * @returns {import('./frame').Frame[]} TBD.
+   * @param {import('./frame.js').Frame[]} output - TBD.
+   * @returns {import('./frame.js').Frame[]} TBD.
    */
   getFrameRange(start, end, output = null) {
     const result = output || [];

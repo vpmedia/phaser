@@ -138,7 +138,7 @@ export class Image extends DisplayObject {
 
   /**
    * TBD.
-   * @param {import('../core/frame').Frame} frame - TBD.
+   * @param {import('../core/frame.js').Frame} frame - TBD.
    */
   setFrame(frame) {
     this._frame = frame;
@@ -343,7 +343,7 @@ export class Image extends DisplayObject {
 
   /**
    * TBD.
-   * @param {import('../geom/matrix').Matrix} matrix - TBD.
+   * @param {import('../geom/matrix.js').Matrix} matrix - TBD.
    * @returns {Rectangle} TBD.
    */
   getBounds(matrix = null) {
@@ -361,7 +361,7 @@ export class Image extends DisplayObject {
   /**
    * TBD.
    * @param {object} renderSession - TBD.
-   * @param {import('../geom/matrix').Matrix} matrix - TBD.
+   * @param {import('../geom/matrix.js').Matrix} matrix - TBD.
    */
   renderWebGL(renderSession, matrix = null) {
     renderWebGL(this, renderSession, matrix);
@@ -370,7 +370,7 @@ export class Image extends DisplayObject {
   /**
    * TBD.
    * @param {object} renderSession - TBD.
-   * @param {import('../geom/matrix').Matrix} matrix - TBD.
+   * @param {import('../geom/matrix.js').Matrix} matrix - TBD.
    */
   renderCanvas(renderSession, matrix = null) {
     renderCanvas(this, renderSession, matrix);

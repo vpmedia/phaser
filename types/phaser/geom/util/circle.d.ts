@@ -52,6 +52,6 @@ export function intersectsPoint(a: Circle, angle: number, asDegrees?: boolean, o
  * @returns {boolean} TBD.
  */
 export function intersectsRectangle(c: Circle, r: object): boolean;
-import { Circle } from '../circle';
-import { Point } from '../point';
+import { Circle } from '../circle.js';
+import { Point } from '../point.js';
 //# sourceMappingURL=circle.d.ts.map

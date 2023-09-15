@@ -103,5 +103,5 @@ export class Matrix {
      */
     identity(): Matrix;
 }
-import { Point } from './point';
+import { Point } from './point.js';
 //# sourceMappingURL=matrix.d.ts.map

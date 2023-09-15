@@ -116,9 +116,9 @@ export class CanvasRenderer {
 
   /**
    * TBD.
-   * @param {import('../../display/image').Image} displayObject - TBD.
+   * @param {import('../../display/image.js').Image} displayObject - TBD.
    * @param {CanvasRenderingContext2D} context - TBD.
-   * @param {import('../../geom/matrix').Matrix} matrix - TBD.
+   * @param {import('../../geom/matrix.js').Matrix} matrix - TBD.
    */
   renderDisplayObject(displayObject, context, matrix) {
     this.renderSession.context = context || this.context;

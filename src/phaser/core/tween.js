@@ -6,7 +6,7 @@ import { TweenData } from './tween_data.js';
 export class Tween {
   /**
    * TBD.
-   * @param {import('../display/display_object').DisplayObject} target - TBD.
+   * @param {import('../display/display_object.js').DisplayObject} target - TBD.
    * @param {import('./game.js').Game} game - TBD.
    * @param {import('./tween_manager').TweenManager} manager - TBD.
    */

@@ -1,30 +1,30 @@
 export class FrameData {
     /**
-     * @type {import('./frame').Frame[]}
+     * @type {import('./frame.js').Frame[]}
      */
-    _frames: import('./frame').Frame[];
+    _frames: import('./frame.js').Frame[];
     /**
      * @type {string[]}
      */
     _frameNames: string[];
     /**
      * TBD.
-     * @param {import('./frame').Frame} frame - TBD.
-     * @returns {import('./frame').Frame} TBD.
+     * @param {import('./frame.js').Frame} frame - TBD.
+     * @returns {import('./frame.js').Frame} TBD.
      */
-    addFrame(frame: import('./frame').Frame): import('./frame').Frame;
+    addFrame(frame: import('./frame.js').Frame): import('./frame.js').Frame;
     /**
      * TBD.
      * @param {number} index - TBD.
-     * @returns {import('./frame').Frame} TBD.
+     * @returns {import('./frame.js').Frame} TBD.
      */
-    getFrame(index?: number): import('./frame').Frame;
+    getFrame(index?: number): import('./frame.js').Frame;
     /**
      * TBD.
      * @param {string} name - TBD.
-     * @returns {import('./frame').Frame} TBD.
+     * @returns {import('./frame.js').Frame} TBD.
      */
-    getFrameByName(name: string): import('./frame').Frame;
+    getFrameByName(name: string): import('./frame.js').Frame;
     /**
      * TBD.
      * @param {string} name - TBD.
@@ -40,10 +40,10 @@ export class FrameData {
      * TBD.
      * @param {number} start - TBD.
      * @param {number} end - TBD.
-     * @param {import('./frame').Frame[]} output - TBD.
-     * @returns {import('./frame').Frame[]} TBD.
+     * @param {import('./frame.js').Frame[]} output - TBD.
+     * @returns {import('./frame.js').Frame[]} TBD.
      */
-    getFrameRange(start: number, end: number, output?: import('./frame').Frame[]): import('./frame').Frame[];
+    getFrameRange(start: number, end: number, output?: import('./frame.js').Frame[]): import('./frame.js').Frame[];
     /**
      * TBD.
      * @param {number[]|string[]} frames - TBD.

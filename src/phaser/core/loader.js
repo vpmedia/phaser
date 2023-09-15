@@ -46,7 +46,7 @@ export class Loader {
 
   /**
    * TBD.
-   * @param {import('../display/image').Image} sprite - TBD.
+   * @param {import('../display/image.js').Image} sprite - TBD.
    * @param {number} direction - TBD.
    */
   setPreloadSprite(sprite, direction = 0) {

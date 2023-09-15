@@ -1,16 +1,16 @@
 export class AnimationManager {
     /**
      * TBD.
-     * @param {import('../display/image').Image} sprite - TBD.
+     * @param {import('../display/image.js').Image} sprite - TBD.
      */
-    constructor(sprite: import('../display/image').Image);
-    sprite: import("../display/image").Image;
-    game: import("./game").Game;
+    constructor(sprite: import('../display/image.js').Image);
+    sprite: import("../display/image.js").Image;
+    game: import("./game.js").Game;
     currentFrame: any;
     currentAnim: any;
     updateIfVisible: boolean;
     isLoaded: boolean;
-    _frameData: import("./frame_data").FrameData;
+    _frameData: import("./frame_data.js").FrameData;
     _anims: {};
     _outputFrames: any[];
     /**
@@ -19,11 +19,11 @@ export class AnimationManager {
     destroy(): void;
     /**
      * TBD.
-     * @param {import('./frame_data').FrameData} frameData - TBD.
+     * @param {import('./frame_data.js').FrameData} frameData - TBD.
      * @param {string|number} frame - TBD.
      * @returns {boolean} TBD.
      */
-    loadFrameData(frameData: import('./frame_data').FrameData, frame: string | number): boolean;
+    loadFrameData(frameData: import('./frame_data.js').FrameData, frame: string | number): boolean;
     /**
      * TBD.
      */
@@ -44,11 +44,11 @@ export class AnimationManager {
     get frameName(): string;
     /**
      * TBD.
-     * @param {import('./frame_data').FrameData} frameData - TBD.
+     * @param {import('./frame_data.js').FrameData} frameData - TBD.
      * @param {string|number} frame - TBD.
      * @returns {boolean} TBD.
      */
-    copyFrameData(frameData: import('./frame_data').FrameData, frame: string | number): boolean;
+    copyFrameData(frameData: import('./frame_data.js').FrameData, frame: string | number): boolean;
     /**
      * TBD.
      * @param {string} name - TBD.
@@ -107,9 +107,9 @@ export class AnimationManager {
     refreshFrame(): void;
     /**
      * TBD.
-     * @returns {import('./frame_data').FrameData} TBD.
+     * @returns {import('./frame_data.js').FrameData} TBD.
      */
-    get frameData(): import("./frame_data").FrameData;
+    get frameData(): import("./frame_data.js").FrameData;
     /**
      * TBD.
      * @returns {number} TBD.
@@ -131,5 +131,5 @@ export class AnimationManager {
     get name(): string;
     _frameIndex: any;
 }
-import { Animation } from './animation';
+import { Animation } from './animation.js';
 //# sourceMappingURL=animation_manager.d.ts.map

@@ -1,11 +1,11 @@
 import { Point } from '../geom/point.js';
-import { GROUP } from './const.js';
 import { distance } from '../util/math.js';
+import { GROUP } from './const.js';
 
 export class InputHandler {
   /**
    * TBD.
-   * @param {import('../display/image').Image} sprite - TBD.
+   * @param {import('../display/image.js').Image} sprite - TBD.
    */
   constructor(sprite) {
     this.sprite = sprite;
@@ -72,7 +72,7 @@ export class InputHandler {
    * TBD.
    * @param {number} priority - TBD.
    * @param {boolean} useHandCursor - TBD.
-   * @returns {import('../display/display_object').DisplayObject} TBD.
+   * @returns {import('../display/display_object.js').DisplayObject} TBD.
    */
   start(priority = 0, useHandCursor = false) {
     //  Turning on
@@ -766,8 +766,8 @@ export class InputHandler {
    * @param {boolean} bringToTop - TBD.
    * @param {boolean} pixelPerfect - TBD.
    * @param {number} alphaThreshold - TBD.
-   * @param {import('../geom/rectangle').Rectangle} boundsRect - TBD.
-   * @param {import('../display/display_object').DisplayObject} boundsSprite - TBD.
+   * @param {import('../geom/rectangle.js').Rectangle} boundsRect - TBD.
+   * @param {import('../display/display_object.js').DisplayObject} boundsSprite - TBD.
    */
   enableDrag(
     lockCenter = false,

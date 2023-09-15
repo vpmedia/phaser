@@ -68,5 +68,5 @@ export class Frame {
      */
     getRect(output?: Rectangle): Rectangle;
 }
-import { Rectangle } from '../geom/rectangle';
+import { Rectangle } from '../geom/rectangle.js';
 //# sourceMappingURL=frame.d.ts.map

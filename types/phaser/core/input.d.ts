@@ -3,8 +3,8 @@ export class Input {
      * TBD.
      * @param {import('./game.js').Game} game - TBD.
      */
-    constructor(game: import('./game').Game);
-    game: import("./game").Game;
+    constructor(game: import('./game.js').Game);
+    game: import("./game.js").Game;
     hitCanvas: HTMLCanvasElement;
     hitContext: CanvasRenderingContext2D;
     moveCallbacks: any[];
@@ -146,20 +146,20 @@ export class Input {
     getPointerFromId(pointerId: number): Pointer;
     /**
      * TBD.
-     * @param {import('../display/display_object').DisplayObject} displayObject - TBD.
+     * @param {import('../display/display_object.js').DisplayObject} displayObject - TBD.
      * @param {Pointer} pointer - TBD.
      * @param {Point} output - TBD.
      * @returns {Point} TBD.
      */
-    getLocalPosition(displayObject: import('../display/display_object').DisplayObject, pointer: Pointer, output?: Point): Point;
+    getLocalPosition(displayObject: import('../display/display_object.js').DisplayObject, pointer: Pointer, output?: Point): Point;
     /**
      * TBD.
-     * @param {import('../display/display_object').DisplayObject} displayObject - TBD.
+     * @param {import('../display/display_object.js').DisplayObject} displayObject - TBD.
      * @param {Pointer} pointer - TBD.
      * @param {Point} localPoint - TBD.
      * @returns {boolean} TBD.
      */
-    hitTest(displayObject: import('../display/display_object').DisplayObject, pointer: Pointer, localPoint: Point): boolean;
+    hitTest(displayObject: import('../display/display_object.js').DisplayObject, pointer: Pointer, localPoint: Point): boolean;
     /**
      * TBD.
      */
@@ -208,12 +208,12 @@ export class Input {
      */
     get worldY(): number;
 }
-import { Circle } from '../geom/circle';
-import { Point } from '../geom/point';
-import { ArraySet } from './array_set';
-import { Mouse } from './input_mouse';
-import { MSPointer } from './input_mspointer';
-import { Pointer } from './input_pointer';
-import { Touch } from './input_touch';
-import { Signal } from './signal';
+import { Point } from '../geom/point.js';
+import { Circle } from '../geom/circle.js';
+import { Pointer } from './input_pointer.js';
+import { Mouse } from './input_mouse.js';
+import { Touch } from './input_touch.js';
+import { MSPointer } from './input_mspointer.js';
+import { Signal } from './signal.js';
+import { ArraySet } from './array_set.js';
 //# sourceMappingURL=input.d.ts.map
