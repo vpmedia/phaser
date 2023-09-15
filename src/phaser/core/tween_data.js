@@ -1,10 +1,10 @@
 import * as MathUtils from '../util/math.js';
-import { TWEEN_PENDING, TWEEN_RUNNING, TWEEN_COMPLETE, TWEEN_LOOPED } from './const.js';
+import { TWEEN_COMPLETE, TWEEN_LOOPED, TWEEN_PENDING, TWEEN_RUNNING } from './const.js';
 
 export class TweenData {
   /**
    * TBD.
-   * @param {import('./tween').Tween} parent - TBD.
+   * @param {import('./tween.js').Tween} parent - TBD.
    */
   constructor(parent) {
     this.parent = parent;

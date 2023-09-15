@@ -46,9 +46,9 @@ export class WebGLRenderer {
     glContextId: any;
     /**
      * TBD.
-     * @param {import('../../core/stage').Stage} stage - TBD.
+     * @param {import('../../core/stage.js').Stage} stage - TBD.
      */
-    render(stage: import('../../core/stage').Stage): void;
+    render(stage: import('../../core/stage.js').Stage): void;
     /**
      * TBD.
      * @param {import('../../display/display_object.js').DisplayObject} displayObject - TBD.
@@ -65,10 +65,10 @@ export class WebGLRenderer {
     resize(width: number, height: number): void;
     /**
      * TBD.
-     * @param {import('./base_texture').BaseTexture} texture - TBD.
+     * @param {import('./base_texture.js').BaseTexture} texture - TBD.
      * @returns {boolean} TBD.
      */
-    updateTexture(texture: import('./base_texture').BaseTexture): boolean;
+    updateTexture(texture: import('./base_texture.js').BaseTexture): boolean;
     /**
      * TBD.
      */

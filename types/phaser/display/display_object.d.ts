@@ -18,7 +18,7 @@ export class DisplayObject {
     _cr: number;
     cachedBounds: Rectangle;
     currentBounds: any;
-    _mask: import("./graphics").Graphics;
+    _mask: import("./graphics.js").Graphics;
     children: any[];
     ignoreChildInput: boolean;
     /**
@@ -211,12 +211,12 @@ export class DisplayObject {
     /**
      * TBD.
      */
-    set mask(arg: import("./graphics").Graphics);
+    set mask(arg: import("./graphics.js").Graphics);
     /**
      * TBD.
-     * @returns {import('./graphics').Graphics} TBD.
+     * @returns {import('./graphics.js').Graphics} TBD.
      */
-    get mask(): import("./graphics").Graphics;
+    get mask(): import("./graphics.js").Graphics;
     /**
      * TBD.
      * @returns {number} TBD.

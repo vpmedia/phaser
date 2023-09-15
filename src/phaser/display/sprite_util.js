@@ -5,7 +5,7 @@ import { getTintedTexture } from './canvas/tinter.js';
 /**
  * TBD.
  * @param {import('./image.js').Image} target - TBD.
- * @param {import('./webgl/texture').Texture} texture - TBD.
+ * @param {import('./webgl/texture.js').Texture} texture - TBD.
  * @param {boolean} destroyBase - TBD.
  */
 export function setTexture(target, texture, destroyBase = false) {

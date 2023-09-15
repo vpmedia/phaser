@@ -15,9 +15,9 @@ export class SoundSprite {
      * TBD.
      * @param {string} marker - TBD.
      * @param {number} volume - TBD.
-     * @returns {import('./sound').Sound} TBD.
+     * @returns {import('./sound.js').Sound} TBD.
      */
-    play(marker: string, volume?: number): import('./sound').Sound;
+    play(marker: string, volume?: number): import('./sound.js').Sound;
     /**
      * TBD.
      * @param {string} marker - TBD.
@@ -26,8 +26,8 @@ export class SoundSprite {
     /**
      * TBD.
      * @param {string} marker - TBD.
-     * @returns {import('./sound').Sound} TBD.
+     * @returns {import('./sound.js').Sound} TBD.
      */
-    get(marker: string): import('./sound').Sound;
+    get(marker: string): import('./sound.js').Sound;
 }
 //# sourceMappingURL=sound_sprite.d.ts.map

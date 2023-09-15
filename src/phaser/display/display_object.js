@@ -1,6 +1,6 @@
+import { Matrix } from '../geom/matrix.js';
 import { Point } from '../geom/point.js';
 import { Rectangle } from '../geom/rectangle.js';
-import { Matrix } from '../geom/matrix.js';
 import { getIdentityMatrix } from '../geom/util/matrix.js';
 import { PI_2 } from '../util/math.js';
 import { renderCanvas, renderWebGL } from './sprite_util.js';
@@ -671,7 +671,7 @@ export class DisplayObject {
 
   /**
    * TBD.
-   * @returns {import('./graphics').Graphics} TBD.
+   * @returns {import('./graphics.js').Graphics} TBD.
    */
   get mask() {
     return this._mask;

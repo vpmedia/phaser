@@ -28,8 +28,8 @@ export class WebGLStencilManager {
 
   /**
    * TBD.
-   * @param {import('../graphics').Graphics} graphics - TBD.
-   * @param {import('./graphics_data').GraphicsData} webGLData - TBD.
+   * @param {import('../graphics.js').Graphics} graphics - TBD.
+   * @param {import('./graphics_data.js').GraphicsData} webGLData - TBD.
    * @param {object} renderSession - TBD.
    */
   pushStencil(graphics, webGLData, renderSession) {
@@ -86,8 +86,8 @@ export class WebGLStencilManager {
 
   /**
    * TBD.
-   * @param {import('../graphics').Graphics} graphics - TBD.
-   * @param {import('./graphics_data').GraphicsData} webGLData - TBD.
+   * @param {import('../graphics.js').Graphics} graphics - TBD.
+   * @param {import('./graphics_data.js').GraphicsData} webGLData - TBD.
    * @param {object} renderSession - TBD.
    */
   bindGraphics(graphics, webGLData, renderSession) {
@@ -133,8 +133,8 @@ export class WebGLStencilManager {
 
   /**
    * TBD.
-   * @param {import('../graphics').Graphics} graphics - TBD.
-   * @param {import('./graphics_data').GraphicsData} webGLData - TBD.
+   * @param {import('../graphics.js').Graphics} graphics - TBD.
+   * @param {import('./graphics_data.js').GraphicsData} webGLData - TBD.
    * @param {object} renderSession - TBD.
    */
   popStencil(graphics, webGLData, renderSession) {

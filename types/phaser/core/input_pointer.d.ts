@@ -84,10 +84,10 @@ export class Pointer {
     processInteractiveObjects(fromClick?: boolean): boolean;
     /**
      * TBD.
-     * @param {import('./input_handler').InputHandler} newTarget - TBD.
+     * @param {import('./input_handler.js').InputHandler} newTarget - TBD.
      * @param {boolean} silent - TBD.
      */
-    swapTarget(newTarget: import('./input_handler').InputHandler, silent?: boolean): void;
+    swapTarget(newTarget: import('./input_handler.js').InputHandler, silent?: boolean): void;
     /**
      * TBD.
      * @param {MouseEvent|PointerEvent} event - TBD.

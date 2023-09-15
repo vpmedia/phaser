@@ -169,68 +169,68 @@ export class InputHandler {
     pointerDragged(pointerId?: number): boolean;
     /**
      * TBD.
-     * @param {import('./input_pointer').Pointer} pointer - TBD.
+     * @param {import('./input_pointer.js').Pointer} pointer - TBD.
      * @param {boolean} fastTest - TBD.
      * @returns {boolean} TBD.
      */
-    checkPointerDown(pointer: import('./input_pointer').Pointer, fastTest?: boolean): boolean;
+    checkPointerDown(pointer: import('./input_pointer.js').Pointer, fastTest?: boolean): boolean;
     /**
      * TBD.
-     * @param {import('./input_pointer').Pointer} pointer - TBD.
+     * @param {import('./input_pointer.js').Pointer} pointer - TBD.
      * @param {boolean} fastTest - TBD.
      * @returns {boolean} TBD.
      */
-    checkPointerOver(pointer: import('./input_pointer').Pointer, fastTest?: boolean): boolean;
+    checkPointerOver(pointer: import('./input_pointer.js').Pointer, fastTest?: boolean): boolean;
     /**
      * TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
-     * @param {import('./input_pointer').Pointer} pointer - TBD.
+     * @param {import('./input_pointer.js').Pointer} pointer - TBD.
      * @returns {boolean} TBD.
      */
-    checkPixel(x: number, y: number, pointer: import('./input_pointer').Pointer): boolean;
+    checkPixel(x: number, y: number, pointer: import('./input_pointer.js').Pointer): boolean;
     _dx: number;
     _dy: number;
     /**
      * TBD.
-     * @param {import('./input_pointer').Pointer} pointer - TBD.
+     * @param {import('./input_pointer.js').Pointer} pointer - TBD.
      * @returns {boolean} TBD.
      */
-    update(pointer: import('./input_pointer').Pointer): boolean;
+    update(pointer: import('./input_pointer.js').Pointer): boolean;
     /**
      * TBD.
-     * @param {import('./input_pointer').Pointer} pointer - TBD.
+     * @param {import('./input_pointer.js').Pointer} pointer - TBD.
      * @param {boolean} silent - TBD.
      */
-    _pointerOverHandler(pointer: import('./input_pointer').Pointer, silent: boolean): void;
+    _pointerOverHandler(pointer: import('./input_pointer.js').Pointer, silent: boolean): void;
     /**
      * TBD.
-     * @param {import('./input_pointer').Pointer} pointer - TBD.
+     * @param {import('./input_pointer.js').Pointer} pointer - TBD.
      * @param {boolean} silent - TBD.
      */
-    _pointerOutHandler(pointer: import('./input_pointer').Pointer, silent?: boolean): void;
+    _pointerOutHandler(pointer: import('./input_pointer.js').Pointer, silent?: boolean): void;
     /**
      * TBD.
-     * @param {import('./input_pointer').Pointer} pointer - TBD.
+     * @param {import('./input_pointer.js').Pointer} pointer - TBD.
      */
-    _touchedHandler(pointer: import('./input_pointer').Pointer): void;
+    _touchedHandler(pointer: import('./input_pointer.js').Pointer): void;
     /**
      * TBD.
-     * @param {import('./input_pointer').Pointer} pointer - TBD.
+     * @param {import('./input_pointer.js').Pointer} pointer - TBD.
      */
-    dragTimeElapsed(pointer: import('./input_pointer').Pointer): void;
+    dragTimeElapsed(pointer: import('./input_pointer.js').Pointer): void;
     /**
      * TBD.
-     * @param {import('./input_pointer').Pointer} pointer - TBD.
+     * @param {import('./input_pointer.js').Pointer} pointer - TBD.
      */
-    _releasedHandler(pointer: import('./input_pointer').Pointer): void;
+    _releasedHandler(pointer: import('./input_pointer.js').Pointer): void;
     /**
      * TBD.
-     * @param {import('./input_pointer').Pointer} pointer - TBD.
+     * @param {import('./input_pointer.js').Pointer} pointer - TBD.
      * @param {boolean} fromStart - TBD.
      * @returns {boolean} TBD.
      */
-    updateDrag(pointer: import('./input_pointer').Pointer, fromStart?: boolean): boolean;
+    updateDrag(pointer: import('./input_pointer.js').Pointer, fromStart?: boolean): boolean;
     /**
      * TBD.
      * @param {number} pointerId - TBD.
@@ -288,9 +288,9 @@ export class InputHandler {
     _draggedPointerID: number;
     /**
      * TBD.
-     * @param {import('./input_pointer').Pointer} pointer - TBD.
+     * @param {import('./input_pointer.js').Pointer} pointer - TBD.
      */
-    startDrag(pointer: import('./input_pointer').Pointer): void;
+    startDrag(pointer: import('./input_pointer.js').Pointer): void;
     /**
      * TBD.
      * @param {number} x - TBD.
@@ -305,9 +305,9 @@ export class InputHandler {
     globalToLocalY(y: number): number;
     /**
      * TBD.
-     * @param {import('./input_pointer').Pointer} pointer - TBD.
+     * @param {import('./input_pointer.js').Pointer} pointer - TBD.
      */
-    stopDrag(pointer: import('./input_pointer').Pointer): void;
+    stopDrag(pointer: import('./input_pointer.js').Pointer): void;
     /**
      * TBD.
      * @param {boolean} allowHorizontal - TBD.

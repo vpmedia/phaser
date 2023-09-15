@@ -1,9 +1,9 @@
 export class DOM {
     /**
      * TBD.
-     * @param {import('./device').Device} device - TBD.
+     * @param {import('./device.js').Device} device - TBD.
      */
-    constructor(device: import('./device').Device);
+    constructor(device: import('./device.js').Device);
     treatAsDesktop: boolean;
     visualBounds: VisualBoundsDesktopRectangle | VisualBoundsRectangle;
     layoutBounds: LayoutBoundsDesktopRectangle | LayoutBoundsRectangle;

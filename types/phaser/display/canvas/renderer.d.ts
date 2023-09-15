@@ -25,9 +25,9 @@ export class CanvasRenderer {
     };
     /**
      * TBD.
-     * @param {import('../../core/stage').Stage} root - TBD.
+     * @param {import('../../core/stage.js').Stage} root - TBD.
      */
-    render(root: import('../../core/stage').Stage): void;
+    render(root: import('../../core/stage.js').Stage): void;
     /**
      * TBD.
      * @param {boolean} removeView - TBD.

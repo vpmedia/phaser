@@ -1,10 +1,10 @@
 /**
  * TBD.
  * @param {import('./image.js').Image} target - TBD.
- * @param {import('./webgl/texture').Texture} texture - TBD.
+ * @param {import('./webgl/texture.js').Texture} texture - TBD.
  * @param {boolean} destroyBase - TBD.
  */
-export function setTexture(target: import('./image.js').Image, texture: import('./webgl/texture').Texture, destroyBase?: boolean): void;
+export function setTexture(target: import('./image.js').Image, texture: import('./webgl/texture.js').Texture, destroyBase?: boolean): void;
 /**
  * TBD.
  * @param {import('./image.js').Image} target - TBD.

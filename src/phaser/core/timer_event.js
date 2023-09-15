@@ -1,7 +1,7 @@
 export class TimerEvent {
   /**
    * TBD.
-   * @param {import('./timer').Timer} timer - TBD.
+   * @param {import('./timer.js').Timer} timer - TBD.
    * @param {number} delay - TBD.
    * @param {number} tick - TBD.
    * @param {number} repeatCount - TBD.

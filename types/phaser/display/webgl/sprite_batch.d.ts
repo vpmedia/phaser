@@ -51,11 +51,11 @@ export class WebGLSpriteBatch {
     flush(): void;
     /**
      * TBD.
-     * @param {import('./base_texture').BaseTexture} texture - TBD.
+     * @param {import('./base_texture.js').BaseTexture} texture - TBD.
      * @param {number} size - TBD.
      * @param {number} startIndex - TBD.
      */
-    renderBatch(texture: import('./base_texture').BaseTexture, size: number, startIndex: number): void;
+    renderBatch(texture: import('./base_texture.js').BaseTexture, size: number, startIndex: number): void;
     /**
      * TBD.
      */

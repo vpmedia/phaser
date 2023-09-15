@@ -153,7 +153,7 @@ export class WebGLRenderer {
 
   /**
    * TBD.
-   * @param {import('../../core/stage').Stage} stage - TBD.
+   * @param {import('../../core/stage.js').Stage} stage - TBD.
    */
   render(stage) {
     if (this.contextLost) {
@@ -221,7 +221,7 @@ export class WebGLRenderer {
 
   /**
    * TBD.
-   * @param {import('./base_texture').BaseTexture} texture - TBD.
+   * @param {import('./base_texture.js').BaseTexture} texture - TBD.
    * @returns {boolean} TBD.
    */
   updateTexture(texture) {

@@ -301,7 +301,7 @@ export class Pointer {
 
   /**
    * TBD.
-   * @param {import('./input_handler').InputHandler} newTarget - TBD.
+   * @param {import('./input_handler.js').InputHandler} newTarget - TBD.
    * @param {boolean} silent - TBD.
    */
   swapTarget(newTarget, silent = false) {

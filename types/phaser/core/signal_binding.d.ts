@@ -1,15 +1,15 @@
 export class SignalBinding {
     /**
      * TBD.
-     * @param {import('./signal').Signal} signal - TBD.
+     * @param {import('./signal.js').Signal} signal - TBD.
      * @param {Function} listener - TBD.
      * @param {boolean} isOnce - TBD.
      * @param {object} listenerContext - TBD.
      * @param {number} priority - TBD.
      * @param {...any} args - TBD.
      */
-    constructor(signal: import('./signal').Signal, listener: Function, isOnce?: boolean, listenerContext?: object, priority?: number, args?: any[]);
-    _signal: import("./signal").Signal;
+    constructor(signal: import('./signal.js').Signal, listener: Function, isOnce?: boolean, listenerContext?: object, priority?: number, args?: any[]);
+    _signal: import("./signal.js").Signal;
     _listener: Function;
     _args: any;
     _priority: number;
@@ -46,9 +46,9 @@ export class SignalBinding {
     getListener(): Function;
     /**
      * TBD.
-     * @returns {import('./signal').Signal} TBD.
+     * @returns {import('./signal.js').Signal} TBD.
      */
-    getSignal(): import('./signal').Signal;
+    getSignal(): import('./signal.js').Signal;
     /**
      * TBD.
      */

@@ -1,10 +1,10 @@
 export class TweenData {
     /**
      * TBD.
-     * @param {import('./tween').Tween} parent - TBD.
+     * @param {import('./tween.js').Tween} parent - TBD.
      */
-    constructor(parent: import('./tween').Tween);
-    parent: import("./tween").Tween;
+    constructor(parent: import('./tween.js').Tween);
+    parent: import("./tween.js").Tween;
     game: import("./game.js").Game;
     vStart: {};
     vStartCache: {};

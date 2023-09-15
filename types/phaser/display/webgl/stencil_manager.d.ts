@@ -14,24 +14,24 @@ export class WebGLStencilManager {
     destroy(): void;
     /**
      * TBD.
-     * @param {import('../graphics').Graphics} graphics - TBD.
-     * @param {import('./graphics_data').GraphicsData} webGLData - TBD.
+     * @param {import('../graphics.js').Graphics} graphics - TBD.
+     * @param {import('./graphics_data.js').GraphicsData} webGLData - TBD.
      * @param {object} renderSession - TBD.
      */
-    pushStencil(graphics: import('../graphics').Graphics, webGLData: import('./graphics_data').GraphicsData, renderSession: object): void;
+    pushStencil(graphics: import('../graphics.js').Graphics, webGLData: import('./graphics_data.js').GraphicsData, renderSession: object): void;
     /**
      * TBD.
-     * @param {import('../graphics').Graphics} graphics - TBD.
-     * @param {import('./graphics_data').GraphicsData} webGLData - TBD.
+     * @param {import('../graphics.js').Graphics} graphics - TBD.
+     * @param {import('./graphics_data.js').GraphicsData} webGLData - TBD.
      * @param {object} renderSession - TBD.
      */
-    bindGraphics(graphics: import('../graphics').Graphics, webGLData: import('./graphics_data').GraphicsData, renderSession: object): void;
+    bindGraphics(graphics: import('../graphics.js').Graphics, webGLData: import('./graphics_data.js').GraphicsData, renderSession: object): void;
     /**
      * TBD.
-     * @param {import('../graphics').Graphics} graphics - TBD.
-     * @param {import('./graphics_data').GraphicsData} webGLData - TBD.
+     * @param {import('../graphics.js').Graphics} graphics - TBD.
+     * @param {import('./graphics_data.js').GraphicsData} webGLData - TBD.
      * @param {object} renderSession - TBD.
      */
-    popStencil(graphics: import('../graphics').Graphics, webGLData: import('./graphics_data').GraphicsData, renderSession: object): void;
+    popStencil(graphics: import('../graphics.js').Graphics, webGLData: import('./graphics_data.js').GraphicsData, renderSession: object): void;
 }
 //# sourceMappingURL=stencil_manager.d.ts.map

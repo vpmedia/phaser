@@ -11,14 +11,14 @@ export class TextureUvs {
 export class Texture {
     /**
      * TBD.
-     * @param {import('./base_texture').BaseTexture} baseTexture - TBD.
+     * @param {import('./base_texture.js').BaseTexture} baseTexture - TBD.
      * @param {Rectangle} frame - TBD.
      * @param {Rectangle} crop - TBD.
      * @param {Rectangle} trim - TBD.
      */
-    constructor(baseTexture: import('./base_texture').BaseTexture, frame: Rectangle, crop: Rectangle, trim: Rectangle);
+    constructor(baseTexture: import('./base_texture.js').BaseTexture, frame: Rectangle, crop: Rectangle, trim: Rectangle);
     noFrame: boolean;
-    baseTexture: import("./base_texture").BaseTexture;
+    baseTexture: import("./base_texture.js").BaseTexture;
     frame: Rectangle;
     trim: Rectangle;
     valid: boolean;

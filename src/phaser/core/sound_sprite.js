@@ -28,7 +28,7 @@ export class SoundSprite {
    * TBD.
    * @param {string} marker - TBD.
    * @param {number} volume - TBD.
-   * @returns {import('./sound').Sound} TBD.
+   * @returns {import('./sound.js').Sound} TBD.
    */
   play(marker, volume = 1) {
     return this.sounds[marker].play(marker, null, volume);
@@ -51,7 +51,7 @@ export class SoundSprite {
   /**
    * TBD.
    * @param {string} marker - TBD.
-   * @returns {import('./sound').Sound} TBD.
+   * @returns {import('./sound.js').Sound} TBD.
    */
   get(marker) {
     return this.sounds[marker];

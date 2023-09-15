@@ -3,13 +3,13 @@ export class RenderTexture extends Texture {
      * TBD.
      * @param {number} width - TBD.
      * @param {number} height - TBD.
-     * @param {import('./renderer').WebGLRenderer|import('../canvas/renderer').CanvasRenderer} renderer - TBD.
+     * @param {import('./renderer.js').WebGLRenderer|import('../canvas/renderer.js').CanvasRenderer} renderer - TBD.
      * @param {number} scaleMode - TBD.
      * @param {number} resolution - TBD.
      */
-    constructor(width: number, height: number, renderer: import('./renderer').WebGLRenderer | import('../canvas/renderer').CanvasRenderer, scaleMode: number, resolution?: number);
+    constructor(width: number, height: number, renderer: import('./renderer.js').WebGLRenderer | import('../canvas/renderer.js').CanvasRenderer, scaleMode: number, resolution?: number);
     resolution: number;
-    renderer: import("../canvas/renderer").CanvasRenderer | import("./renderer").WebGLRenderer;
+    renderer: import("../canvas/renderer.js").CanvasRenderer | import("./renderer.js").WebGLRenderer;
     textureBuffer: CanvasBuffer | FilterTexture;
     render: () => void;
     projection: Point;

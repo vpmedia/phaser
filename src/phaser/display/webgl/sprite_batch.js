@@ -294,7 +294,7 @@ export class WebGLSpriteBatch {
 
   /**
    * TBD.
-   * @param {import('./base_texture').BaseTexture} texture - TBD.
+   * @param {import('./base_texture.js').BaseTexture} texture - TBD.
    * @param {number} size - TBD.
    * @param {number} startIndex - TBD.
    */

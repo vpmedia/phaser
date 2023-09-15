@@ -11,7 +11,7 @@ export class RenderTexture extends Texture {
    * TBD.
    * @param {number} width - TBD.
    * @param {number} height - TBD.
-   * @param {import('./renderer').WebGLRenderer|import('../canvas/renderer').CanvasRenderer} renderer - TBD.
+   * @param {import('./renderer.js').WebGLRenderer|import('../canvas/renderer.js').CanvasRenderer} renderer - TBD.
    * @param {number} scaleMode - TBD.
    * @param {number} resolution - TBD.
    */
