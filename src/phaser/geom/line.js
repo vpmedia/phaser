@@ -1,7 +1,7 @@
-import { Point } from './point';
-import { clone, intersectsPoints, reflect } from './util/line';
-import { wrap } from '../util/math';
-import { GEOM_LINE } from '../core/const';
+import { Point } from './point.js';
+import { clone, intersectsPoints, reflect } from './util/line.js';
+import { wrap } from '../util/math.js';
+import { GEOM_LINE } from '../core/const.js';
 
 export class Line {
   /**
@@ -221,7 +221,7 @@ export class Line {
   get length() {
     return Math.sqrt(
       (this.end.x - this.start.x) * (this.end.x - this.start.x) +
-        (this.end.y - this.start.y) * (this.end.y - this.start.y)
+        (this.end.y - this.start.y) * (this.end.y - this.start.y),
     );
   }
 

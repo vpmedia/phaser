@@ -1,4 +1,4 @@
-import { clone } from './graphics_data_util';
+import { clone } from './graphics_data_util.js';
 
 export class GraphicsData {
   /**

@@ -1,5 +1,5 @@
-import { Frame } from './frame';
-import { FrameData } from './frame_data';
+import { Frame } from './frame.js';
+import { FrameData } from './frame_data.js';
 
 /**
  * TBD.

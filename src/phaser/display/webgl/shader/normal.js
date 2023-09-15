@@ -1,5 +1,5 @@
-import { generateShaderID } from '../../../util/math';
-import { compileProgram } from '../util';
+import { generateShaderID } from '../../../util/math.js';
+import { compileProgram } from '../util.js';
 
 const defaultVertexSrc = [
   'attribute vec2 aVertexPosition;',
@@ -211,7 +211,7 @@ export class NormalShader {
           uniform.value.x,
           uniform.value.y,
           uniform.value.z,
-          uniform.value.w
+          uniform.value.w,
         );
       } else if (uniform.type === 'sampler2D') {
         if (uniform._init) {

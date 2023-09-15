@@ -1,10 +1,10 @@
-import { Rectangle } from '../../geom/rectangle';
-import { Point } from '../../geom/point';
-import { Texture } from './texture';
-import { BaseTexture } from './base_texture';
-import { FilterTexture } from './filter_texture';
-import { CanvasBuffer } from '../canvas/buffer';
-import { RENDER_WEBGL } from '../../core/const';
+import { Rectangle } from '../../geom/rectangle.js';
+import { Point } from '../../geom/point.js';
+import { Texture } from './texture.js';
+import { BaseTexture } from './base_texture.js';
+import { FilterTexture } from './filter_texture.js';
+import { CanvasBuffer } from '../canvas/buffer.js';
+import { RENDER_WEBGL } from '../../core/const.js';
 
 export class RenderTexture extends Texture {
   /**

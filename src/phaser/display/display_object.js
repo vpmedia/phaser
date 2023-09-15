@@ -1,9 +1,9 @@
-import { Point } from '../geom/point';
-import { Rectangle } from '../geom/rectangle';
-import { Matrix } from '../geom/matrix';
-import { getIdentityMatrix } from '../geom/util/matrix';
-import { PI_2 } from '../util/math';
-import { renderCanvas, renderWebGL } from './sprite_util';
+import { Point } from '../geom/point.js';
+import { Rectangle } from '../geom/rectangle.js';
+import { Matrix } from '../geom/matrix.js';
+import { getIdentityMatrix } from '../geom/util/matrix.js';
+import { PI_2 } from '../util/math.js';
+import { renderCanvas, renderWebGL } from './sprite_util.js';
 
 export class DisplayObject {
   /**
@@ -157,7 +157,7 @@ export class DisplayObject {
       throw new Error(
         'getChildAt: Supplied index ' +
           index +
-          ' does not exist in the child list, or the supplied DisplayObject must be a child of the caller'
+          ' does not exist in the child list, or the supplied DisplayObject must be a child of the caller',
       );
     }
     return this.children[index];
@@ -292,7 +292,7 @@ export class DisplayObject {
     // this.worldPosition.set(wt.tx, wt.ty);
     this.worldScale.set(
       this.scale.x * Math.sqrt(wt.a * wt.a + wt.c * wt.c),
-      this.scale.y * Math.sqrt(wt.b * wt.b + wt.d * wt.d)
+      this.scale.y * Math.sqrt(wt.b * wt.b + wt.d * wt.d),
     );
     this.worldRotation = Math.atan2(-wt.c, wt.d);
     // reset the bounds each time this is called!

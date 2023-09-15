@@ -19,10 +19,10 @@ import {
   BLEND_COLOR,
   BLEND_LUMINOSITY,
   SCALE_NEAREST,
-} from '../../core/const';
-import { getSmoothingPrefix } from './util';
-import { detectCapabilities } from './tinter';
-import * as CanvasMaskManager from './masker';
+} from '../../core/const.js';
+import { getSmoothingPrefix } from './util.js';
+import { detectCapabilities } from './tinter.js';
+import * as CanvasMaskManager from './masker.js';
 
 export class CanvasRenderer {
   /**

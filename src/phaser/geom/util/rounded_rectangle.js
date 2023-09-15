@@ -1,4 +1,4 @@
-import { RoundedRectangle } from '../rounded_rectangle';
+import { RoundedRectangle } from '../rounded_rectangle.js';
 
 /**
  * TBD.

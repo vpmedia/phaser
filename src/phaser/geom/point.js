@@ -1,5 +1,5 @@
-import { distance, rotate, clone } from './util/point';
-import { GEOM_POINT } from '../core/const';
+import { distance, rotate, clone } from './util/point.js';
+import { GEOM_POINT } from '../core/const.js';
 
 export class Point {
   /**

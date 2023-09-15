@@ -1,11 +1,11 @@
-import { Point } from '../geom/point';
-import { Rectangle } from '../geom/rectangle';
-import { Image } from './image';
-import { create, remove } from './canvas/pool';
-import { textureFromCanvas } from './webgl/texture_util';
-import { TEXT } from '../core/const';
-import { snapToCeil } from '../util/math';
-import { renderCanvas, renderWebGL, getBounds } from './sprite_util';
+import { Point } from '../geom/point.js';
+import { Rectangle } from '../geom/rectangle.js';
+import { Image } from './image.js';
+import { create, remove } from './canvas/pool.js';
+import { textureFromCanvas } from './webgl/texture_util.js';
+import { TEXT } from '../core/const.js';
+import { snapToCeil } from '../util/math.js';
+import { renderCanvas, renderWebGL, getBounds } from './sprite_util.js';
 
 export class Text extends Image {
   /**
@@ -668,7 +668,7 @@ export class Text extends Image {
     //        {number} (em | ex | ch | rem | vh | vw | vmin | vmax | px | mm | cm | in | pt | pc | %)
     // font-family - rest (but identifiers or quoted with comma separation)
     const m = font.match(
-      /^\s*(?:\b(normal|italic|oblique|inherit)?\b)\s*(?:\b(normal|small-caps|inherit)?\b)\s*(?:\b(normal|bold|bolder|lighter|100|200|300|400|500|600|700|800|900|inherit)?\b)\s*(?:\b(xx-small|x-small|small|medium|large|x-large|xx-large|larger|smaller|0|\d*(?:[.]\d*)?(?:%|[a-z]{2,5}))?\b)\s*(.*)\s*$/
+      /^\s*(?:\b(normal|italic|oblique|inherit)?\b)\s*(?:\b(normal|small-caps|inherit)?\b)\s*(?:\b(normal|bold|bolder|lighter|100|200|300|400|500|600|700|800|900|inherit)?\b)\s*(?:\b(xx-small|x-small|small|medium|large|x-large|xx-large|larger|smaller|0|\d*(?:[.]\d*)?(?:%|[a-z]{2,5}))?\b)\s*(.*)\s*$/,
     );
     if (m) {
       let family = m[5].trim();

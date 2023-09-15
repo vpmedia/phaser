@@ -1,4 +1,4 @@
-import { Point } from '../geom/point';
+import { Point } from '../geom/point.js';
 
 class VisualBoundsDesktopRectangle {
   /**

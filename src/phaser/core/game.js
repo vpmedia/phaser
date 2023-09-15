@@ -1,22 +1,22 @@
-import { CanvasRenderer } from '../display/canvas/renderer';
-import { WebGLRenderer } from '../display/webgl/renderer';
-import { Signal } from './signal';
-import { Loader } from './loader';
-import { Cache } from './cache';
-import { Input } from './input';
-import { Device } from './device';
-import { GameObjectFactory } from './factory';
-import { RequestAnimationFrame } from './raf';
-import { ScaleManager } from './scale_manager';
-import { SoundManager } from './sound_manager';
-import { SceneManager } from './scene_manager';
-import { Time } from './time';
-import { TweenManager } from './tween_manager';
-import { World } from './world';
-import { Stage } from './stage';
-import { RENDER_AUTO, RENDER_WEBGL } from './const';
-import { create, removeFromDOM, addToDOM, setTouchAction } from '../display/canvas/util';
-import { initialize, checkOS } from './device_util';
+import { CanvasRenderer } from '../display/canvas/renderer.js';
+import { WebGLRenderer } from '../display/webgl/renderer.js';
+import { Signal } from './signal.js';
+import { Loader } from './loader.js';
+import { Cache } from './cache.js';
+import { Input } from './input.js';
+import { Device } from './device.js';
+import { GameObjectFactory } from './factory.js';
+import { RequestAnimationFrame } from './raf.js';
+import { ScaleManager } from './scale_manager.js';
+import { SoundManager } from './sound_manager.js';
+import { SceneManager } from './scene_manager.js';
+import { Time } from './time.js';
+import { TweenManager } from './tween_manager.js';
+import { World } from './world.js';
+import { Stage } from './stage.js';
+import { RENDER_AUTO, RENDER_WEBGL } from './const.js';
+import { create, removeFromDOM, addToDOM, setTouchAction } from '../display/canvas/util.js';
+import { initialize, checkOS } from './device_util.js';
 
 export class Game {
   /**
@@ -66,7 +66,7 @@ export class Game {
           initialize(this.device);
           this.boot();
         },
-        false
+        false,
       );
     }
   }

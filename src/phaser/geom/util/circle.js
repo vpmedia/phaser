@@ -1,6 +1,6 @@
-import { Circle } from '../circle';
-import { Point } from '../point';
-import { degToRad, distance } from '../../util/math';
+import { Circle } from '../circle.js';
+import { Point } from '../point.js';
+import { degToRad, distance } from '../../util/math.js';
 
 /**
  * TBD.

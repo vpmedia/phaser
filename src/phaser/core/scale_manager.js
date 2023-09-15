@@ -1,8 +1,8 @@
-import { Signal } from './signal';
-import { DOM } from './dom';
-import { Point } from '../geom/point';
-import { Rectangle } from '../geom/rectangle';
-import { SCALE_OFF, SCALE_RESIZE, SCALE_EXACT_FIT, SCALE_USER, SCALE_SHOW_ALL, RENDER_CANVAS } from './const';
+import { Signal } from './signal.js';
+import { DOM } from './dom.js';
+import { Point } from '../geom/point.js';
+import { Rectangle } from '../geom/rectangle.js';
+import { SCALE_OFF, SCALE_RESIZE, SCALE_EXACT_FIT, SCALE_USER, SCALE_SHOW_ALL, RENDER_CANVAS } from './const.js';
 
 export class ScaleManager {
   /**
@@ -516,7 +516,7 @@ export class ScaleManager {
         clientRect.left - parentRect.left,
         clientRect.top - parentRect.top,
         clientRect.width,
-        clientRect.height
+        clientRect.height,
       );
       const wc = this.windowConstraints;
       if (wc.right) {

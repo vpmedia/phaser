@@ -1,15 +1,15 @@
-import { ArraySet } from './array_set';
-import { Graphics } from '../display/graphics';
-import { Image } from '../display/image';
-import { Signal } from './signal';
-import { Point } from '../geom/point';
-import { Circle } from '../geom/circle';
-import { Mouse } from './input_mouse';
-import { MSPointer } from './input_mspointer';
-import { Pointer } from './input_pointer';
-import { Touch } from './input_touch';
-import { POINTER_CURSOR, POINTER_CONTACT, MOUSE_TOUCH_COMBINE } from './const';
-import { create, remove } from '../display/canvas/pool';
+import { ArraySet } from './array_set.js';
+import { Graphics } from '../display/graphics.js';
+import { Image } from '../display/image.js';
+import { Signal } from './signal.js';
+import { Point } from '../geom/point.js';
+import { Circle } from '../geom/circle.js';
+import { Mouse } from './input_mouse.js';
+import { MSPointer } from './input_mspointer.js';
+import { Pointer } from './input_pointer.js';
+import { Touch } from './input_touch.js';
+import { POINTER_CURSOR, POINTER_CONTACT, MOUSE_TOUCH_COMBINE } from './const.js';
+import { create, remove } from '../display/canvas/pool.js';
 
 const MAX_POINTERS = 10;
 
@@ -371,7 +371,7 @@ export class Input {
     const id = 1 / (wt.a * wt.d + wt.c * -wt.b);
     return result.setTo(
       wt.d * id * pointer.x + -wt.c * id * pointer.y + (wt.ty * wt.c - wt.tx * wt.d) * id,
-      wt.a * id * pointer.y + -wt.b * id * pointer.x + (-wt.ty * wt.a + wt.tx * wt.b) * id
+      wt.a * id * pointer.y + -wt.b * id * pointer.x + (-wt.ty * wt.a + wt.tx * wt.b) * id,
     );
   }
 

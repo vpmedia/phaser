@@ -1,6 +1,6 @@
-import { getTintedTexture } from './canvas/tinter';
-import { getIdentityMatrix } from '../geom/util/matrix';
-import { SCALE_LINEAR } from '../core/const';
+import { getTintedTexture } from './canvas/tinter.js';
+import { getIdentityMatrix } from '../geom/util/matrix.js';
+import { SCALE_LINEAR } from '../core/const.js';
 
 /**
  * TBD.
@@ -253,7 +253,7 @@ export function renderCanvas(target, renderSession, matrix) {
         dx,
         dy,
         cw / resolution,
-        ch / resolution
+        ch / resolution,
       );
     }
   }

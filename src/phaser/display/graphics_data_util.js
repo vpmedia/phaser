@@ -1,4 +1,4 @@
-import { GraphicsData } from './graphics_data';
+import { GraphicsData } from './graphics_data.js';
 
 /**
  * TBD.
@@ -13,6 +13,6 @@ export function clone(source) {
     source.fillColor,
     source.fillAlpha,
     source.fill,
-    source.shape
+    source.shape,
   );
 }

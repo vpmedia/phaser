@@ -1,6 +1,6 @@
-import { Point } from '../point';
-import { Line } from '../line';
-import { intersects as intersectsRect } from './rectangle';
+import { Point } from '../point.js';
+import { Line } from '../line.js';
+import { intersects as intersectsRect } from './rectangle.js';
 
 /**
  * TBD.

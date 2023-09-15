@@ -1,19 +1,19 @@
-import { DisplayObject } from './display_object';
-import { Image } from './image';
-import { Rectangle } from '../geom/rectangle';
-import { RoundedRectangle } from '../geom/rounded_rectangle';
-import { Polygon } from '../geom/polygon';
-import { Circle } from '../geom/circle';
-import { Ellipse } from '../geom/ellipse';
-import { Point } from '../geom/point';
-import { GraphicsData } from './graphics_data';
-import { CanvasBuffer } from './canvas/buffer';
-import { textureFromCanvas } from './webgl/texture_util';
-import { renderGraphics as renderCanvasGraphics } from './canvas/graphics';
-import { renderGraphics as renderWebGLGraphics } from './webgl/graphics';
-import { renderCanvas as renderSpriteCanvas, renderWebGL as renderSpriteWebGL } from './sprite_util';
-import { getEmptyRectangle } from '../geom/util/rectangle';
-import { getIdentityMatrix } from '../geom/util/matrix';
+import { DisplayObject } from './display_object.js';
+import { Image } from './image.js';
+import { Rectangle } from '../geom/rectangle.js';
+import { RoundedRectangle } from '../geom/rounded_rectangle.js';
+import { Polygon } from '../geom/polygon.js';
+import { Circle } from '../geom/circle.js';
+import { Ellipse } from '../geom/ellipse.js';
+import { Point } from '../geom/point.js';
+import { GraphicsData } from './graphics_data.js';
+import { CanvasBuffer } from './canvas/buffer.js';
+import { textureFromCanvas } from './webgl/texture_util.js';
+import { renderGraphics as renderCanvasGraphics } from './canvas/graphics.js';
+import { renderGraphics as renderWebGLGraphics } from './webgl/graphics.js';
+import { renderCanvas as renderSpriteCanvas, renderWebGL as renderSpriteWebGL } from './sprite_util.js';
+import { getEmptyRectangle } from '../geom/util/rectangle.js';
+import { getIdentityMatrix } from '../geom/util/matrix.js';
 import {
   BLEND_NORMAL,
   GRAPHICS,
@@ -22,7 +22,7 @@ import {
   GEOM_ELLIPSE,
   GEOM_RECTANGLE,
   GEOM_ROUNDED_RECTANGLE,
-} from '../core/const';
+} from '../core/const.js';
 
 export class Graphics extends DisplayObject {
   /**
@@ -190,7 +190,7 @@ export class Graphics extends DisplayObject {
       t3 = t2 * j;
       points.push(
         dt3 * fromX + 3 * dt2 * j * cpX + 3 * dt * t2 * cpX2 + t3 * toX,
-        dt3 * fromY + 3 * dt2 * j * cpY + 3 * dt * t2 * cpY2 + t3 * toY
+        dt3 * fromY + 3 * dt2 * j * cpY + 3 * dt * t2 * cpY2 + t3 * toY,
       );
     }
     this.dirty = true;
@@ -538,7 +538,7 @@ export class Graphics extends DisplayObject {
         transform.c * resolution,
         transform.d * resolution,
         tx,
-        ty
+        ty,
       );
       renderCanvasGraphics(this, context);
       // simple render children!
@@ -812,7 +812,7 @@ export class Graphics extends DisplayObject {
       this.fillColor,
       this.fillAlpha,
       this.filling,
-      shape
+      shape,
     );
     this.graphicsData.push(data);
     if (data.type === GEOM_POLYGON) {

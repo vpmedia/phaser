@@ -1,4 +1,4 @@
-import { SCALE_LINEAR } from '../../core/const';
+import { SCALE_LINEAR } from '../../core/const.js';
 
 export class FilterTexture {
   /**

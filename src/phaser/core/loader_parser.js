@@ -1,5 +1,5 @@
-import { Texture } from '../display/webgl/texture';
-import { Rectangle } from '../geom/rectangle';
+import { Texture } from '../display/webgl/texture.js';
+import { Rectangle } from '../geom/rectangle.js';
 
 /**
  * TBD.

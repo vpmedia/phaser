@@ -1,4 +1,4 @@
-import { DisplayObject } from './display_object';
+import { DisplayObject } from './display_object.js';
 
 export class SpriteBatch extends DisplayObject {
   /**

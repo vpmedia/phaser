@@ -1,5 +1,5 @@
-import { BaseTexture } from './base_texture';
-import { Texture } from './texture';
+import { BaseTexture } from './base_texture.js';
+import { Texture } from './texture.js';
 
 /**
  * TBD.

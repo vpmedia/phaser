@@ -1,7 +1,7 @@
-import { Image } from './image';
-import { Signal } from '../core/signal';
-import { InputHandler } from '../core/input_handler';
-import { BUTTON, POINTER_CONTACT } from '../core/const';
+import { Image } from './image.js';
+import { Signal } from '../core/signal.js';
+import { InputHandler } from '../core/input_handler.js';
+import { BUTTON, POINTER_CONTACT } from '../core/const.js';
 
 const STATE_OVER = 'Over';
 const STATE_OUT = 'Out';
@@ -33,7 +33,7 @@ export class Button extends Image {
     overFrame = null,
     outFrame = null,
     downFrame = null,
-    upFrame = null
+    upFrame = null,
   ) {
     super(game, x, y, key, outFrame);
     this.type = BUTTON;

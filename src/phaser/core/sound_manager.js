@@ -1,7 +1,7 @@
-import { ArraySet } from './array_set';
-import { Signal } from './signal';
-import { Sound } from './sound';
-import { SoundSprite } from './sound_sprite';
+import { ArraySet } from './array_set.js';
+import { Signal } from './signal.js';
+import { Sound } from './sound.js';
+import { SoundSprite } from './sound_sprite.js';
 
 export class SoundManager {
   /**

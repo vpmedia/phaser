@@ -1,8 +1,8 @@
-import { PrimitiveShader } from './shader/primitive';
-import { ComplexPrimitiveShader } from './shader/complex';
-import { NormalShader } from './shader/normal';
-import { FastShader } from './shader/fast';
-import { StripShader } from './shader/strip';
+import { PrimitiveShader } from './shader/primitive.js';
+import { ComplexPrimitiveShader } from './shader/complex.js';
+import { NormalShader } from './shader/normal.js';
+import { FastShader } from './shader/fast.js';
+import { StripShader } from './shader/strip.js';
 
 export class WebGLShaderManager {
   /**

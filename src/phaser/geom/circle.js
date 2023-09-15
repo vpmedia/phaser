@@ -1,8 +1,8 @@
-import { Point } from './point';
-import { Rectangle } from './rectangle';
-import { distance } from '../util/math';
-import { clone, contains, circumferencePoint } from './util/circle';
-import { GEOM_CIRCLE } from '../core/const';
+import { Point } from './point.js';
+import { Rectangle } from './rectangle.js';
+import { distance } from '../util/math.js';
+import { clone, contains, circumferencePoint } from './util/circle.js';
+import { GEOM_CIRCLE } from '../core/const.js';
 
 export class Circle {
   /**

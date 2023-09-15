@@ -1,4 +1,4 @@
-import { create, removeByCanvas } from './pool';
+import { create, removeByCanvas } from './pool.js';
 
 export class CanvasBuffer {
   /**

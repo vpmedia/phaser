@@ -18,16 +18,16 @@ import {
   BLEND_SATURATION,
   BLEND_COLOR,
   BLEND_LUMINOSITY,
-} from '../../core/const';
-import { remove } from '../canvas/pool';
-import { isPowerOfTwo } from '../../util/math';
-import { Point } from '../../geom/point';
-import { WebGLShaderManager } from './shader_manager';
-import { WebGLSpriteBatch } from './sprite_batch';
-import * as WebGLMaskManager from './mask_manager';
-import { WebGLFilterManager } from './filter_manager';
-import { WebGLStencilManager } from './stencil_manager';
-import { WebGLBlendModeManager } from './blend_manager';
+} from '../../core/const.js';
+import { remove } from '../canvas/pool.js';
+import { isPowerOfTwo } from '../../util/math.js';
+import { Point } from '../../geom/point.js';
+import { WebGLShaderManager } from './shader_manager.js';
+import { WebGLSpriteBatch } from './sprite_batch.js';
+import * as WebGLMaskManager from './mask_manager.js';
+import { WebGLFilterManager } from './filter_manager.js';
+import { WebGLStencilManager } from './stencil_manager.js';
+import { WebGLBlendModeManager } from './blend_manager.js';
 
 export class WebGLRenderer {
   /**
@@ -240,14 +240,14 @@ export class WebGLRenderer {
       gl.texParameteri(
         gl.TEXTURE_2D,
         gl.TEXTURE_MIN_FILTER,
-        texture.scaleMode === SCALE_LINEAR ? gl.LINEAR_MIPMAP_LINEAR : gl.NEAREST_MIPMAP_NEAREST
+        texture.scaleMode === SCALE_LINEAR ? gl.LINEAR_MIPMAP_LINEAR : gl.NEAREST_MIPMAP_NEAREST,
       );
       gl.generateMipmap(gl.TEXTURE_2D);
     } else {
       gl.texParameteri(
         gl.TEXTURE_2D,
         gl.TEXTURE_MIN_FILTER,
-        texture.scaleMode === SCALE_LINEAR ? gl.LINEAR : gl.NEAREST
+        texture.scaleMode === SCALE_LINEAR ? gl.LINEAR : gl.NEAREST,
       );
     }
     if (!texture._powerOf2) {

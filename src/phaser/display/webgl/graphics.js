@@ -1,8 +1,8 @@
-import { GraphicsData } from './graphics_data';
-import { Point } from '../../geom/point';
-import { GEOM_CIRCLE, GEOM_ELLIPSE, GEOM_POLYGON, GEOM_RECTANGLE, GEOM_ROUNDED_RECTANGLE } from '../../core/const';
-import { hex2rgb } from '../../util/math';
-import { triangulate } from './earcut';
+import { GraphicsData } from './graphics_data.js';
+import { Point } from '../../geom/point.js';
+import { GEOM_CIRCLE, GEOM_ELLIPSE, GEOM_POLYGON, GEOM_RECTANGLE, GEOM_ROUNDED_RECTANGLE } from '../../core/const.js';
+import { hex2rgb } from '../../util/math.js';
+import { triangulate } from './earcut.js';
 
 /**
  * TBD.
@@ -314,7 +314,7 @@ export function buildRoundedRectangle(graphicsData, webGLData) {
   recPoints.push(x, y + radius);
   recPoints = recPoints.concat(quadraticBezierCurve(x, y + height - radius, x, y + height, x + radius, y + height));
   recPoints = recPoints.concat(
-    quadraticBezierCurve(x + width - radius, y + height, x + width, y + height, x + width, y + height - radius)
+    quadraticBezierCurve(x + width - radius, y + height, x + width, y + height, x + width, y + height - radius),
   );
   recPoints = recPoints.concat(quadraticBezierCurve(x + width, y + radius, x + width, y, x + width - radius, y));
   recPoints = recPoints.concat(quadraticBezierCurve(x + radius, y, x, y, x, y + radius));

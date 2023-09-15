@@ -1,6 +1,6 @@
-import { Point } from './point';
-import { clone } from './util/matrix';
-import { GEOM_MATRIX } from '../core/const';
+import { Point } from './point.js';
+import { clone } from './util/matrix.js';
+import { GEOM_MATRIX } from '../core/const.js';
 
 export class Matrix {
   /**

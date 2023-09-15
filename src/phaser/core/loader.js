@@ -1,6 +1,6 @@
-import { Signal } from './signal';
-import { Rectangle } from '../geom/rectangle';
-import { canPlayAudio } from './device_util';
+import { Signal } from './signal.js';
+import { Rectangle } from '../geom/rectangle.js';
+import { canPlayAudio } from './device_util.js';
 
 const TEXTURE_ATLAS_JSON_HASH = 1;
 
@@ -340,7 +340,7 @@ export class Loader {
       url,
       { frameWidth, frameHeight, frameMax, margin, spacing },
       false,
-      '.png'
+      '.png',
     );
   }
 
@@ -548,7 +548,7 @@ export class Loader {
             file.key,
             !file.error,
             this._loadedFileCount,
-            this._totalFileCount
+            this._totalFileCount,
           );
         } else if (file.type === 'packfile' && file.error) {
           // Non-error pack files are handled when processing the file queue
@@ -691,7 +691,7 @@ export class Loader {
             file.frameHeight,
             file.frameMax,
             file.margin,
-            file.spacing
+            file.spacing,
           );
           break;
         case 'audio':
@@ -710,7 +710,7 @@ export class Loader {
             file.fontDataURL ? file.fontDataURL : file.atlasURL,
             file.atlasData,
             file.xSpacing,
-            file.ySpacing
+            file.ySpacing,
           );
           break;
         case 'atlas':
@@ -965,7 +965,7 @@ export class Loader {
           file.frameHeight,
           file.frameMax,
           file.margin,
-          file.spacing
+          file.spacing,
         );
         break;
       case 'textureatlas':
@@ -989,7 +989,7 @@ export class Loader {
             file.atlasData,
             file.atlasType,
             file.xSpacing,
-            file.ySpacing
+            file.ySpacing,
           );
         } else {
           //  Load the XML before carrying on with the next file

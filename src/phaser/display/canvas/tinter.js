@@ -1,6 +1,6 @@
-import { CanvasBuffer } from './buffer';
-import { create, removeByCanvas } from './pool';
-import { hex2rgb } from '../../util/math';
+import { CanvasBuffer } from './buffer.js';
+import { create, removeByCanvas } from './pool.js';
+import { hex2rgb } from '../../util/math.js';
 
 /**
  * TBD.

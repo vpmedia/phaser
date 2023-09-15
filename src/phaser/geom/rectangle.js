@@ -1,4 +1,4 @@
-import { Point } from './point';
+import { Point } from './point.js';
 import {
   inflate,
   size,
@@ -10,7 +10,7 @@ import {
   intersection,
   intersectsRaw,
   union,
-} from './util/rectangle';
+} from './util/rectangle.js';
 import {
   GEOM_RECTANGLE,
   TOP_LEFT,
@@ -22,7 +22,7 @@ import {
   BOTTOM_LEFT,
   BOTTOM_CENTER,
   BOTTOM_RIGHT,
-} from '../core/const';
+} from '../core/const.js';
 
 export class Rectangle {
   /**

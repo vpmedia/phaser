@@ -1,9 +1,9 @@
-import { BitmapText } from '../display/bitmap_text';
-import { Button } from '../display/button';
-import { Group } from '../display/group';
-import { Graphics } from '../display/graphics';
-import { Image } from '../display/image';
-import { Text } from '../display/text';
+import { BitmapText } from '../display/bitmap_text.js';
+import { Button } from '../display/button.js';
+import { Group } from '../display/group.js';
+import { Graphics } from '../display/graphics.js';
+import { Image } from '../display/image.js';
+import { Text } from '../display/text.js';
 
 export class GameObjectFactory {
   /**
@@ -79,11 +79,11 @@ export class GameObjectFactory {
     outFrame = null,
     downFrame = null,
     upFrame = null,
-    group = null
+    group = null,
   ) {
     const parent = group || this.game.world;
     return parent.add(
-      new Button(this.game, x, y, key, callback, callbackContext, overFrame, outFrame, downFrame, upFrame)
+      new Button(this.game, x, y, key, callback, callbackContext, overFrame, outFrame, downFrame, upFrame),
     );
   }
 

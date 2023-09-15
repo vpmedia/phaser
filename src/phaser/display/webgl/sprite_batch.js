@@ -1,5 +1,5 @@
-import { AbstractFilter } from './abstract_filter';
-import { NormalShader } from './shader/normal';
+import { AbstractFilter } from './abstract_filter.js';
+import { NormalShader } from './shader/normal.js';
 
 export class WebGLSpriteBatch {
   /**

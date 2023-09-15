@@ -1,7 +1,7 @@
-import { DisplayObject } from './display_object';
-import { Image } from './image';
-import { Signal } from '../core/signal';
-import { GROUP } from '../core/const';
+import { DisplayObject } from './display_object.js';
+import { Image } from './image.js';
+import { Signal } from '../core/signal.js';
+import { GROUP } from '../core/const.js';
 
 export const SORT_ASCENDING = -1;
 export const SORT_DESCENDING = 1;

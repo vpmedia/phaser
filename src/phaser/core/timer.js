@@ -1,5 +1,5 @@
-import { Signal } from './signal';
-import { TimerEvent } from './timer_event';
+import { Signal } from './signal.js';
+import { TimerEvent } from './timer_event.js';
 
 export class Timer {
   /**

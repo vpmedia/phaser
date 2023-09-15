@@ -1,4 +1,4 @@
-import { removeByCanvas } from '../canvas/pool';
+import { removeByCanvas } from '../canvas/pool.js';
 
 export class BaseTexture {
   /**

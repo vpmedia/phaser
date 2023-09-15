@@ -1,6 +1,6 @@
-import { Rectangle } from '../geom/rectangle';
-import { distance } from '../util/math';
-import { cloneFrame } from './frame_util';
+import { Rectangle } from '../geom/rectangle.js';
+import { distance } from '../util/math.js';
+import { cloneFrame } from './frame_util.js';
 
 export class Frame {
   /**

@@ -1,4 +1,4 @@
-import { SignalBinding } from './signal_binding';
+import { SignalBinding } from './signal_binding.js';
 
 export class Signal {
   /**
@@ -22,7 +22,7 @@ export class Signal {
   validateListener(listener, fnName) {
     if (typeof listener !== 'function') {
       throw new Error(
-        'Signal: listener is a required param of {fn}() and should be a Function.'.replace('{fn}', fnName)
+        'Signal: listener is a required param of {fn}() and should be a Function.'.replace('{fn}', fnName),
       );
     }
   }
@@ -48,7 +48,7 @@ export class Signal {
             (isOnce ? '' : 'Once') +
             '() then add' +
             (!isOnce ? '' : 'Once') +
-            '() the same listener without removing the relationship first.'
+            '() the same listener without removing the relationship first.',
         );
       }
     } else {

@@ -1,4 +1,4 @@
-import { Node } from './earcut_node';
+import { Node } from './earcut_node.js';
 
 /**
  * TBD.

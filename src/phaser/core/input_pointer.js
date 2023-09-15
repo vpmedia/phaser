@@ -1,5 +1,5 @@
-import { Point } from '../geom/point';
-import { Circle } from '../geom/circle';
+import { Point } from '../geom/point.js';
+import { Circle } from '../geom/circle.js';
 import {
   POINTER,
   POINTER_CURSOR,
@@ -7,7 +7,7 @@ import {
   MOUSE_OVERRIDES_TOUCH,
   TOUCH_OVERRIDES_MOUSE,
   MOUSE_TOUCH_COMBINE,
-} from './const';
+} from './const.js';
 
 export class Pointer {
   /**
@@ -292,7 +292,7 @@ export class Pointer {
         this.game.input.customCandidateHandlerContext,
         this,
         this.interactiveCandidates,
-        candidateTarget
+        candidateTarget,
       );
     }
     this.swapTarget(candidateTarget, false);

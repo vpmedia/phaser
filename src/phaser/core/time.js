@@ -1,4 +1,4 @@
-import { Timer } from './timer';
+import { Timer } from './timer.js';
 
 export class Time {
   /**

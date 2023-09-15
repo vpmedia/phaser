@@ -1,7 +1,7 @@
-import { Signal } from './signal';
-import { TweenData } from './tween_data';
-import * as MathUtils from '../util/math';
-import { TWEEN_PENDING, TWEEN_RUNNING, TWEEN_COMPLETE, TWEEN_LOOPED } from './const';
+import { Signal } from './signal.js';
+import { TweenData } from './tween_data.js';
+import * as MathUtils from '../util/math.js';
+import { TWEEN_PENDING, TWEEN_RUNNING, TWEEN_COMPLETE, TWEEN_LOOPED } from './const.js';
 
 export class Tween {
   /**
@@ -360,7 +360,7 @@ export class Tween {
           this._onUpdateCallbackContext,
           this,
           this.timeline[this.current].value,
-          this.timeline[this.current]
+          this.timeline[this.current],
         );
       }
       //  In case the update callback modifies this tween

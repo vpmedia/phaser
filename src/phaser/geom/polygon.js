@@ -1,6 +1,6 @@
-import { Point } from './point';
-import { clone } from './util/polygon';
-import { GEOM_POLYGON } from '../core/const';
+import { Point } from './point.js';
+import { clone } from './util/polygon.js';
+import { GEOM_POLYGON } from '../core/const.js';
 
 export class Polygon {
   /**

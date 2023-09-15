@@ -1,4 +1,4 @@
-import { hex2rgb } from '../../util/math';
+import { hex2rgb } from '../../util/math.js';
 
 export class WebGLStencilManager {
   /**

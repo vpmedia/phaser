@@ -1,4 +1,4 @@
-import { updateGraphics } from './graphics';
+import { updateGraphics } from './graphics.js';
 
 /**
  * TBD.

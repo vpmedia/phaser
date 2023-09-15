@@ -1,5 +1,5 @@
-import { clone } from './util/rounded_rectangle';
-import { GEOM_ROUNDED_RECTANGLE } from '../core/const';
+import { clone } from './util/rounded_rectangle.js';
+import { GEOM_ROUNDED_RECTANGLE } from '../core/const.js';
 
 export class RoundedRectangle {
   /**

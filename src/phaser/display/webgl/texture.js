@@ -1,4 +1,4 @@
-import { Rectangle } from '../../geom/rectangle';
+import { Rectangle } from '../../geom/rectangle.js';
 
 export class TextureUvs {
   /**

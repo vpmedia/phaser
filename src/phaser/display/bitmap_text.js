@@ -1,7 +1,7 @@
-import { DisplayObject } from './display_object';
-import { Image } from './image';
-import { Point } from '../geom/point';
-import { BITMAP_TEXT, SCALE_LINEAR, SCALE_NEAREST } from '../core/const';
+import { DisplayObject } from './display_object.js';
+import { Image } from './image.js';
+import { Point } from '../geom/point.js';
+import { BITMAP_TEXT, SCALE_LINEAR, SCALE_NEAREST } from '../core/const.js';
 
 export class BitmapText extends DisplayObject {
   /**

@@ -1,7 +1,7 @@
-import { Point } from './point';
-import { Rectangle } from './rectangle';
-import { contains } from './util/ellipse';
-import { GEOM_ELLIPSE } from '../core/const';
+import { Point } from './point.js';
+import { Rectangle } from './rectangle.js';
+import { contains } from './util/ellipse.js';
+import { GEOM_ELLIPSE } from '../core/const.js';
 
 export class Ellipse {
   /**

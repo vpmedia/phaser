@@ -1,4 +1,4 @@
-import { cloneFrameData } from './frame_util';
+import { cloneFrameData } from './frame_util.js';
 
 export class FrameData {
   /**

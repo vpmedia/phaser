@@ -1,6 +1,6 @@
-import { Point } from '../geom/point';
-import { GROUP } from './const';
-import { distance } from '../util/math';
+import { Point } from '../geom/point.js';
+import { GROUP } from './const.js';
+import { distance } from '../util/math.js';
 
 export class InputHandler {
   /**
@@ -775,7 +775,7 @@ export class InputHandler {
     pixelPerfect = false,
     alphaThreshold = 255,
     boundsRect = null,
-    boundsSprite = null
+    boundsSprite = null,
   ) {
     this._dragPoint = new Point();
     this.draggable = true;
@@ -826,7 +826,7 @@ export class InputHandler {
     }
     this._dragPoint.setTo(
       this.sprite.x - this.globalToLocalX(pointer.x),
-      this.sprite.y - this.globalToLocalY(pointer.y)
+      this.sprite.y - this.globalToLocalY(pointer.y),
     );
     this.updateDrag(pointer, true);
     if (this.bringToTop) {

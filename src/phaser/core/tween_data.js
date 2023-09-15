@@ -1,5 +1,5 @@
-import * as MathUtils from '../util/math';
-import { TWEEN_PENDING, TWEEN_RUNNING, TWEEN_COMPLETE, TWEEN_LOOPED } from './const';
+import * as MathUtils from '../util/math.js';
+import { TWEEN_PENDING, TWEEN_RUNNING, TWEEN_COMPLETE, TWEEN_LOOPED } from './const.js';
 
 export class TweenData {
   /**

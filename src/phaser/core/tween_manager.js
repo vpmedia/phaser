@@ -1,4 +1,4 @@
-import { Tween } from './tween';
+import { Tween } from './tween.js';
 import {
   LinearNone,
   QuadraticIn,
@@ -31,8 +31,8 @@ import {
   BounceIn,
   BounceOut,
   BounceInOut,
-} from './tween_easing';
-import { GROUP } from './const';
+} from './tween_easing.js';
+import { GROUP } from './const.js';
 
 export class TweenManager {
   /**

@@ -1,5 +1,5 @@
-import { generateShaderID } from '../../../util/math';
-import { compileProgram } from '../util';
+import { generateShaderID } from '../../../util/math.js';
+import { compileProgram } from '../util.js';
 
 // the next one is used for rendering primitives
 

@@ -1,8 +1,8 @@
-import { Matrix } from '../geom/matrix';
-import { DisplayObject } from '../display/display_object';
-import { setUserSelect, setTouchAction } from '../display/canvas/util';
-import { valueToColor } from '../util/math';
-import { SCALE_LINEAR, SCALE_NEAREST } from './const';
+import { Matrix } from '../geom/matrix.js';
+import { DisplayObject } from '../display/display_object.js';
+import { setUserSelect, setTouchAction } from '../display/canvas/util.js';
+import { valueToColor } from '../util/math.js';
+import { SCALE_LINEAR, SCALE_NEAREST } from './const.js';
 
 export class Stage extends DisplayObject {
   /**

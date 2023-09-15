@@ -1,10 +1,10 @@
-import { Texture } from '../display/webgl/texture';
-import { BaseTexture } from '../display/webgl/base_texture';
-import { Signal } from './signal';
-import { Frame } from './frame';
-import { FrameData } from './frame_data';
-import { JSONDataHash } from './animation_parser';
-import { jsonBitmapFont, xmlBitmapFont } from './loader_parser';
+import { Texture } from '../display/webgl/texture.js';
+import { BaseTexture } from '../display/webgl/base_texture.js';
+import { Signal } from './signal.js';
+import { Frame } from './frame.js';
+import { FrameData } from './frame_data.js';
+import { JSONDataHash } from './animation_parser.js';
+import { jsonBitmapFont, xmlBitmapFont } from './loader_parser.js';
 
 export const CANVAS = 0;
 export const IMAGE = 1;

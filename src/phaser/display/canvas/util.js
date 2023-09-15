@@ -1,4 +1,4 @@
-import { create as createCanvas } from './pool';
+import { create as createCanvas } from './pool.js';
 
 /**
  * TBD.
