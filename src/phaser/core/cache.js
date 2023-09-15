@@ -512,7 +512,7 @@ export class Cache {
   /**
    * TBD.
    * @param {string} key - TBD.
-   * @returns {import('../display/webgl/render_texture').RenderTexture} TBD.
+   * @returns {import('../display/webgl/render_texture.js').RenderTexture} TBD.
    */
   getRenderTexture(key) {
     return this.getItem(key, RENDER_TEXTURE, 'getRenderTexture');
