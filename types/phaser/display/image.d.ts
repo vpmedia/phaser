@@ -1,7 +1,7 @@
 export class Image extends DisplayObject {
     /**
      * TBD.
-     * @param {import('../core/game').Game} game - TBD.
+     * @param {import('../core/game.js').Game} game - TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
      * @param {string} key - TBD.
@@ -107,9 +107,9 @@ export class Image extends DisplayObject {
      */
     renderCanvas(renderSession: object, matrix?: import('../geom/matrix').Matrix): void;
 }
-import { DisplayObject } from './display_object';
-import { Rectangle } from '../geom/rectangle';
-import { EventManager } from '../core/event_manager';
 import { AnimationManager } from '../core/animation_manager';
+import { EventManager } from '../core/event_manager';
+import { Rectangle } from '../geom/rectangle';
+import { DisplayObject } from './display_object';
 import { Texture } from './webgl/texture';
 //# sourceMappingURL=image.d.ts.map

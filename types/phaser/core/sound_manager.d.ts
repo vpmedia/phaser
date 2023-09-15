@@ -1,7 +1,7 @@
 export class SoundManager {
     /**
      * TBD.
-     * @param {import('./game').Game} game - TBD.
+     * @param {import('./game.js').Game} game - TBD.
      */
     constructor(game: import('./game').Game);
     game: import("./game").Game;
@@ -135,8 +135,8 @@ export class SoundManager {
      */
     get volume(): number;
 }
-import { Signal } from './signal';
 import { ArraySet } from './array_set';
+import { Signal } from './signal';
 import { Sound } from './sound';
 import { SoundSprite } from './sound_sprite';
 //# sourceMappingURL=sound_manager.d.ts.map

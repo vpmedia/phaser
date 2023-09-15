@@ -1,10 +1,10 @@
-import { Texture } from '../display/webgl/texture.js';
 import { BaseTexture } from '../display/webgl/base_texture.js';
-import { Signal } from './signal.js';
+import { Texture } from '../display/webgl/texture.js';
+import { JSONDataHash } from './animation_parser.js';
 import { Frame } from './frame.js';
 import { FrameData } from './frame_data.js';
-import { JSONDataHash } from './animation_parser.js';
 import { jsonBitmapFont, xmlBitmapFont } from './loader_parser.js';
+import { Signal } from './signal.js';
 
 export const CANVAS = 0;
 export const IMAGE = 1;
@@ -20,7 +20,7 @@ export const RENDER_TEXTURE = 9;
 export class Cache {
   /**
    * TBD.
-   * @param {import('./game').Game} game - TBD.
+   * @param {import('./game.js').Game} game - TBD.
    */
   constructor(game) {
     this.game = game;

@@ -1,7 +1,7 @@
-import { Image } from './image.js';
-import { Signal } from '../core/signal.js';
-import { InputHandler } from '../core/input_handler.js';
 import { BUTTON, POINTER_CONTACT } from '../core/const.js';
+import { InputHandler } from '../core/input_handler.js';
+import { Signal } from '../core/signal.js';
+import { Image } from './image.js';
 
 const STATE_OVER = 'Over';
 const STATE_OUT = 'Out';
@@ -12,7 +12,7 @@ const STATE_DISABLED = 'Disabled';
 export class Button extends Image {
   /**
    * TBD.
-   * @param {import('../core/game').Game} game - TBD.
+   * @param {import('../core/game.js').Game} game - TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
    * @param {string} key - TBD.

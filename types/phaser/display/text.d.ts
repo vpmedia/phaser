@@ -1,7 +1,7 @@
 export class Text extends Image {
     /**
      * TBD.
-     * @param {import('../core/game').Game} game - TBD.
+     * @param {import('../core/game.js').Game} game - TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
      * @param {string} text - TBD.
@@ -427,7 +427,7 @@ export class Text extends Image {
      */
     get shadowFill(): number;
 }
-import { Image } from './image';
 import { Point } from '../geom/point';
 import { Rectangle } from '../geom/rectangle';
+import { Image } from './image';
 //# sourceMappingURL=text.d.ts.map

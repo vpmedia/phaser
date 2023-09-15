@@ -1,13 +1,13 @@
-import { Signal } from './signal.js';
-import { DOM } from './dom.js';
 import { Point } from '../geom/point.js';
 import { Rectangle } from '../geom/rectangle.js';
-import { SCALE_OFF, SCALE_RESIZE, SCALE_EXACT_FIT, SCALE_USER, SCALE_SHOW_ALL, RENDER_CANVAS } from './const.js';
+import { RENDER_CANVAS, SCALE_EXACT_FIT, SCALE_OFF, SCALE_RESIZE, SCALE_SHOW_ALL, SCALE_USER } from './const.js';
+import { DOM } from './dom.js';
+import { Signal } from './signal.js';
 
 export class ScaleManager {
   /**
    * TBD.
-   * @param {import('./game').Game} game - TBD.
+   * @param {import('./game.js').Game} game - TBD.
    * @param {number} width - TBD.
    * @param {number} height - TBD.
    */

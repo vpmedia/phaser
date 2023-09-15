@@ -1,18 +1,18 @@
-import { Point } from '../geom/point.js';
 import { Circle } from '../geom/circle.js';
+import { Point } from '../geom/point.js';
 import {
-  POINTER,
-  POINTER_CURSOR,
-  POINTER_CONTACT,
   MOUSE_OVERRIDES_TOUCH,
-  TOUCH_OVERRIDES_MOUSE,
   MOUSE_TOUCH_COMBINE,
+  POINTER,
+  POINTER_CONTACT,
+  POINTER_CURSOR,
+  TOUCH_OVERRIDES_MOUSE,
 } from './const.js';
 
 export class Pointer {
   /**
    * TBD.
-   * @param {import('./game').Game} game - TBD.
+   * @param {import('./game.js').Game} game - TBD.
    * @param {number} id - TBD.
    * @param {number} pointerMode - TBD.
    */

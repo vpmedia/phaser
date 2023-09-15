@@ -11,7 +11,7 @@ export const RENDER_TEXTURE: 9;
 export class Cache {
     /**
      * TBD.
-     * @param {import('./game').Game} game - TBD.
+     * @param {import('./game.js').Game} game - TBD.
      */
     constructor(game: import('./game').Game);
     game: import("./game").Game;
@@ -417,8 +417,8 @@ export class Cache {
      */
     destroy(): void;
 }
-import { Signal } from './signal';
 import { BaseTexture } from '../display/webgl/base_texture';
 import { Frame } from './frame';
 import { FrameData } from './frame_data';
+import { Signal } from './signal';
 //# sourceMappingURL=cache.d.ts.map

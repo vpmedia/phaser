@@ -3,7 +3,7 @@ import { Signal } from './signal.js';
 export class Sound {
   /**
    * TBD.
-   * @param {import('./game').Game} game - TBD.
+   * @param {import('./game.js').Game} game - TBD.
    * @param {string} key - TBD.
    * @param {number} volume - TBD.
    * @param {boolean} loop - TBD.

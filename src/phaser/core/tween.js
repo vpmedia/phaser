@@ -1,13 +1,13 @@
+import * as MathUtils from '../util/math.js';
+import { TWEEN_COMPLETE, TWEEN_LOOPED, TWEEN_PENDING, TWEEN_RUNNING } from './const.js';
 import { Signal } from './signal.js';
 import { TweenData } from './tween_data.js';
-import * as MathUtils from '../util/math.js';
-import { TWEEN_PENDING, TWEEN_RUNNING, TWEEN_COMPLETE, TWEEN_LOOPED } from './const.js';
 
 export class Tween {
   /**
    * TBD.
    * @param {import('../display/display_object').DisplayObject} target - TBD.
-   * @param {import('./game').Game} game - TBD.
+   * @param {import('./game.js').Game} game - TBD.
    * @param {import('./tween_manager').TweenManager} manager - TBD.
    */
   constructor(target, game, manager) {

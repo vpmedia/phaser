@@ -72,7 +72,7 @@ class WheelEventProxy {
 export class Mouse {
   /**
    * TBD.
-   * @param {import('./game').Game} game - TBD.
+   * @param {import('./game.js').Game} game - TBD.
    */
   constructor(game) {
     this.game = game;

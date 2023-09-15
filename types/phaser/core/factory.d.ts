@@ -1,7 +1,7 @@
 export class GameObjectFactory {
     /**
      * TBD.
-     * @param {import('./game').Game} game - TBD.
+     * @param {import('./game.js').Game} game - TBD.
      */
     constructor(game: import('./game').Game);
     game: import("./game").Game;
@@ -69,10 +69,10 @@ export class GameObjectFactory {
      */
     bitmapText(x: number, y: number, font: string, text: string, size: number, group?: Group, align?: string): BitmapText;
 }
+import { BitmapText } from '../display/bitmap_text';
+import { Button } from '../display/button';
+import { Graphics } from '../display/graphics';
 import { Group } from '../display/group';
 import { Image } from '../display/image';
 import { Text } from '../display/text';
-import { Button } from '../display/button';
-import { Graphics } from '../display/graphics';
-import { BitmapText } from '../display/bitmap_text';
 //# sourceMappingURL=factory.d.ts.map

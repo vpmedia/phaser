@@ -3,7 +3,7 @@ export const SORT_DESCENDING: 1;
 export class Group extends DisplayObject {
     /**
      * TBD.
-     * @param {import('../core/game').Game} game - TBD.
+     * @param {import('../core/game.js').Game} game - TBD.
      * @param {DisplayObject} parent - TBD.
      * @param {string} name - TBD.
      * @param {boolean} addToStage - TBD.
@@ -112,7 +112,7 @@ export class Group extends DisplayObject {
      */
     removeAll(destroy?: boolean, silent?: boolean, destroyTexture?: boolean): void;
 }
+import { Signal } from '../core/signal';
 import { DisplayObject } from './display_object';
 import { Image } from './image';
-import { Signal } from '../core/signal';
 //# sourceMappingURL=group.d.ts.map

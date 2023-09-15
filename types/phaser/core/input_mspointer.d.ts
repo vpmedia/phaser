@@ -1,7 +1,7 @@
 export class MSPointer {
     /**
      * TBD.
-     * @param {import('./game').Game} game - TBD.
+     * @param {import('./game.js').Game} game - TBD.
      */
     constructor(game: import('./game').Game);
     game: import("./game").Game;

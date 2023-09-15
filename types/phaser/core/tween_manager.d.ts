@@ -1,7 +1,7 @@
 export class TweenManager {
     /**
      * TBD.
-     * @param {import('./game').Game} game - TBD.
+     * @param {import('./game.js').Game} game - TBD.
      */
     constructor(game: import('./game').Game);
     game: import("./game").Game;
@@ -109,36 +109,6 @@ export class TweenManager {
      */
     resumeAll(): void;
 }
-import { LinearNone } from './tween_easing';
-import { QuadraticOut } from './tween_easing';
-import { CubicOut } from './tween_easing';
-import { QuarticOut } from './tween_easing';
-import { QuinticOut } from './tween_easing';
-import { SinusoidalOut } from './tween_easing';
-import { ExponentialOut } from './tween_easing';
-import { CircularOut } from './tween_easing';
-import { ElasticOut } from './tween_easing';
-import { BackOut } from './tween_easing';
-import { BounceOut } from './tween_easing';
-import { QuadraticIn } from './tween_easing';
-import { CubicIn } from './tween_easing';
-import { QuarticIn } from './tween_easing';
-import { QuinticIn } from './tween_easing';
-import { SinusoidalIn } from './tween_easing';
-import { ExponentialIn } from './tween_easing';
-import { CircularIn } from './tween_easing';
-import { ElasticIn } from './tween_easing';
-import { BackIn } from './tween_easing';
-import { BounceIn } from './tween_easing';
-import { QuadraticInOut } from './tween_easing';
-import { CubicInOut } from './tween_easing';
-import { QuarticInOut } from './tween_easing';
-import { QuinticInOut } from './tween_easing';
-import { SinusoidalInOut } from './tween_easing';
-import { ExponentialInOut } from './tween_easing';
-import { CircularInOut } from './tween_easing';
-import { ElasticInOut } from './tween_easing';
-import { BackInOut } from './tween_easing';
-import { BounceInOut } from './tween_easing';
 import { Tween } from './tween';
+import { BackIn, BackInOut, BackOut, BounceIn, BounceInOut, BounceOut, CircularIn, CircularInOut, CircularOut, CubicIn, CubicInOut, CubicOut, ElasticIn, ElasticInOut, ElasticOut, ExponentialIn, ExponentialInOut, ExponentialOut, LinearNone, QuadraticIn, QuadraticInOut, QuadraticOut, QuarticIn, QuarticInOut, QuarticOut, QuinticIn, QuinticInOut, QuinticOut, SinusoidalIn, SinusoidalInOut, SinusoidalOut } from './tween_easing';
 //# sourceMappingURL=tween_manager.d.ts.map

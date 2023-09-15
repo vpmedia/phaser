@@ -1,14 +1,14 @@
 import { BitmapText } from '../display/bitmap_text.js';
 import { Button } from '../display/button.js';
-import { Group } from '../display/group.js';
 import { Graphics } from '../display/graphics.js';
+import { Group } from '../display/group.js';
 import { Image } from '../display/image.js';
 import { Text } from '../display/text.js';
 
 export class GameObjectFactory {
   /**
    * TBD.
-   * @param {import('./game').Game} game - TBD.
+   * @param {import('./game.js').Game} game - TBD.
    */
   constructor(game) {
     this.game = game;

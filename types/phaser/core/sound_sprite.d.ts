@@ -1,7 +1,7 @@
 export class SoundSprite {
     /**
      * TBD.
-     * @param {import('./game').Game} game - TBD.
+     * @param {import('./game.js').Game} game - TBD.
      * @param {string} key - TBD.
      */
     constructor(game: import('./game').Game, key: string);

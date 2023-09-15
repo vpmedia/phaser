@@ -1,33 +1,33 @@
-import { DisplayObject } from './display_object.js';
-import { Image } from './image.js';
-import { Rectangle } from '../geom/rectangle.js';
-import { RoundedRectangle } from '../geom/rounded_rectangle.js';
-import { Polygon } from '../geom/polygon.js';
+import {
+  BLEND_NORMAL,
+  GEOM_CIRCLE,
+  GEOM_ELLIPSE,
+  GEOM_POLYGON,
+  GEOM_RECTANGLE,
+  GEOM_ROUNDED_RECTANGLE,
+  GRAPHICS,
+} from '../core/const.js';
 import { Circle } from '../geom/circle.js';
 import { Ellipse } from '../geom/ellipse.js';
 import { Point } from '../geom/point.js';
-import { GraphicsData } from './graphics_data.js';
-import { CanvasBuffer } from './canvas/buffer.js';
-import { textureFromCanvas } from './webgl/texture_util.js';
-import { renderGraphics as renderCanvasGraphics } from './canvas/graphics.js';
-import { renderGraphics as renderWebGLGraphics } from './webgl/graphics.js';
-import { renderCanvas as renderSpriteCanvas, renderWebGL as renderSpriteWebGL } from './sprite_util.js';
-import { getEmptyRectangle } from '../geom/util/rectangle.js';
+import { Polygon } from '../geom/polygon.js';
+import { Rectangle } from '../geom/rectangle.js';
+import { RoundedRectangle } from '../geom/rounded_rectangle.js';
 import { getIdentityMatrix } from '../geom/util/matrix.js';
-import {
-  BLEND_NORMAL,
-  GRAPHICS,
-  GEOM_POLYGON,
-  GEOM_CIRCLE,
-  GEOM_ELLIPSE,
-  GEOM_RECTANGLE,
-  GEOM_ROUNDED_RECTANGLE,
-} from '../core/const.js';
+import { getEmptyRectangle } from '../geom/util/rectangle.js';
+import { CanvasBuffer } from './canvas/buffer.js';
+import { renderGraphics as renderCanvasGraphics } from './canvas/graphics.js';
+import { DisplayObject } from './display_object.js';
+import { GraphicsData } from './graphics_data.js';
+import { Image } from './image.js';
+import { renderCanvas as renderSpriteCanvas, renderWebGL as renderSpriteWebGL } from './sprite_util.js';
+import { renderGraphics as renderWebGLGraphics } from './webgl/graphics.js';
+import { textureFromCanvas } from './webgl/texture_util.js';
 
 export class Graphics extends DisplayObject {
   /**
    * TBD.
-   * @param {import('../core/game').Game} game - TBD.
+   * @param {import('../core/game.js').Game} game - TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
    */

@@ -1,13 +1,13 @@
-import { Signal } from './signal.js';
 import { Rectangle } from '../geom/rectangle.js';
 import { canPlayAudio } from './device_util.js';
+import { Signal } from './signal.js';
 
 const TEXTURE_ATLAS_JSON_HASH = 1;
 
 export class Loader {
   /**
    * TBD.
-   * @param {import('./game').Game} game - TBD.
+   * @param {import('./game.js').Game} game - TBD.
    */
   constructor(game) {
     this.game = game;

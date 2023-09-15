@@ -1,7 +1,7 @@
 export class CanvasRenderer {
     /**
      * TBD.
-     * @param {import('../../core/game').Game} game - TBD.
+     * @param {import('../../core/game.js').Game} game - TBD.
      */
     constructor(game: import('../../core/game').Game);
     type: number;

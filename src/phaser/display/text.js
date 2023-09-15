@@ -1,16 +1,16 @@
+import { TEXT } from '../core/const.js';
 import { Point } from '../geom/point.js';
 import { Rectangle } from '../geom/rectangle.js';
-import { Image } from './image.js';
-import { create, remove } from './canvas/pool.js';
-import { textureFromCanvas } from './webgl/texture_util.js';
-import { TEXT } from '../core/const.js';
 import { snapToCeil } from '../util/math.js';
-import { renderCanvas, renderWebGL, getBounds } from './sprite_util.js';
+import { create, remove } from './canvas/pool.js';
+import { Image } from './image.js';
+import { getBounds, renderCanvas, renderWebGL } from './sprite_util.js';
+import { textureFromCanvas } from './webgl/texture_util.js';
 
 export class Text extends Image {
   /**
    * TBD.
-   * @param {import('../core/game').Game} game - TBD.
+   * @param {import('../core/game.js').Game} game - TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
    * @param {string} text - TBD.

@@ -1,7 +1,7 @@
 export class Animation {
     /**
      * TBD.
-     * @param {import('./game').Game} game - TBD.
+     * @param {import('./game.js').Game} game - TBD.
      * @param {import('../display/image').Image} parent - TBD.
      * @param {string} name - TBD.
      * @param {import('./frame_data').FrameData} frameData - TBD.

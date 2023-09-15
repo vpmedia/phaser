@@ -2,7 +2,7 @@ export class Tween {
     /**
      * TBD.
      * @param {import('../display/display_object').DisplayObject} target - TBD.
-     * @param {import('./game').Game} game - TBD.
+     * @param {import('./game.js').Game} game - TBD.
      * @param {import('./tween_manager').TweenManager} manager - TBD.
      */
     constructor(target: import('../display/display_object').DisplayObject, game: import('./game').Game, manager: import('./tween_manager').TweenManager);

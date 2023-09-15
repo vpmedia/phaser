@@ -1,38 +1,38 @@
 import {
-  RENDER_WEBGL,
-  SCALE_LINEAR,
-  BLEND_NORMAL,
   BLEND_ADD,
-  BLEND_MULTIPLY,
-  BLEND_SCREEN,
-  BLEND_OVERLAY,
-  BLEND_DARKEN,
-  BLEND_LIGHTEN,
-  BLEND_COLOR_DODGE,
+  BLEND_COLOR,
   BLEND_COLOR_BURN,
-  BLEND_HARD_LIGHT,
-  BLEND_SOFT_LIGHT,
+  BLEND_COLOR_DODGE,
+  BLEND_DARKEN,
   BLEND_DIFFERENCE,
   BLEND_EXCLUSION,
+  BLEND_HARD_LIGHT,
   BLEND_HUE,
-  BLEND_SATURATION,
-  BLEND_COLOR,
+  BLEND_LIGHTEN,
   BLEND_LUMINOSITY,
+  BLEND_MULTIPLY,
+  BLEND_NORMAL,
+  BLEND_OVERLAY,
+  BLEND_SATURATION,
+  BLEND_SCREEN,
+  BLEND_SOFT_LIGHT,
+  RENDER_WEBGL,
+  SCALE_LINEAR,
 } from '../../core/const.js';
-import { remove } from '../canvas/pool.js';
-import { isPowerOfTwo } from '../../util/math.js';
 import { Point } from '../../geom/point.js';
+import { isPowerOfTwo } from '../../util/math.js';
+import { remove } from '../canvas/pool.js';
+import { WebGLBlendModeManager } from './blend_manager.js';
+import { WebGLFilterManager } from './filter_manager.js';
+import * as WebGLMaskManager from './mask_manager.js';
 import { WebGLShaderManager } from './shader_manager.js';
 import { WebGLSpriteBatch } from './sprite_batch.js';
-import * as WebGLMaskManager from './mask_manager.js';
-import { WebGLFilterManager } from './filter_manager.js';
 import { WebGLStencilManager } from './stencil_manager.js';
-import { WebGLBlendModeManager } from './blend_manager.js';
 
 export class WebGLRenderer {
   /**
    * TBD.
-   * @param {import('../../core/game').Game} game - TBD.
+   * @param {import('../../core/game.js').Game} game - TBD.
    */
   constructor(game) {
     this.type = RENDER_WEBGL;

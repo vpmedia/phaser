@@ -1,33 +1,33 @@
 import {
-  RENDER_CANVAS,
-  SCALE_LINEAR,
-  BLEND_NORMAL,
   BLEND_ADD,
-  BLEND_MULTIPLY,
-  BLEND_SCREEN,
-  BLEND_OVERLAY,
-  BLEND_DARKEN,
-  BLEND_LIGHTEN,
-  BLEND_COLOR_DODGE,
+  BLEND_COLOR,
   BLEND_COLOR_BURN,
-  BLEND_HARD_LIGHT,
-  BLEND_SOFT_LIGHT,
+  BLEND_COLOR_DODGE,
+  BLEND_DARKEN,
   BLEND_DIFFERENCE,
   BLEND_EXCLUSION,
+  BLEND_HARD_LIGHT,
   BLEND_HUE,
-  BLEND_SATURATION,
-  BLEND_COLOR,
+  BLEND_LIGHTEN,
   BLEND_LUMINOSITY,
+  BLEND_MULTIPLY,
+  BLEND_NORMAL,
+  BLEND_OVERLAY,
+  BLEND_SATURATION,
+  BLEND_SCREEN,
+  BLEND_SOFT_LIGHT,
+  RENDER_CANVAS,
+  SCALE_LINEAR,
   SCALE_NEAREST,
 } from '../../core/const.js';
-import { getSmoothingPrefix } from './util.js';
-import { detectCapabilities } from './tinter.js';
 import * as CanvasMaskManager from './masker.js';
+import { detectCapabilities } from './tinter.js';
+import { getSmoothingPrefix } from './util.js';
 
 export class CanvasRenderer {
   /**
    * TBD.
-   * @param {import('../../core/game').Game} game - TBD.
+   * @param {import('../../core/game.js').Game} game - TBD.
    */
   constructor(game) {
     detectCapabilities();

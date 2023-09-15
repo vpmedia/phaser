@@ -1,7 +1,7 @@
 export class BitmapText extends DisplayObject {
     /**
      * TBD.
-     * @param {import('../core/game').Game} game - TBD.
+     * @param {import('../core/game.js').Game} game - TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
      * @param {string} font - TBD.
@@ -131,6 +131,6 @@ export class BitmapText extends DisplayObject {
      */
     get smoothed(): boolean;
 }
-import { DisplayObject } from './display_object';
 import { Point } from '../geom/point';
+import { DisplayObject } from './display_object';
 //# sourceMappingURL=bitmap_text.d.ts.map

@@ -3,7 +3,7 @@ import { Scene } from './scene.js';
 export class SceneManager {
   /**
    * TBD.
-   * @param {import('./game').Game} game - TBD.
+   * @param {import('./game.js').Game} game - TBD.
    * @param {string} pendingState - TBD.
    */
   constructor(game, pendingState) {

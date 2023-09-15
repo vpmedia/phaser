@@ -1,16 +1,16 @@
-import { Texture } from './webgl/texture.js';
 import { AnimationManager } from '../core/animation_manager.js';
+import { BLEND_NORMAL, IMAGE, PENDING_ATLAS, SCALE_NEAREST } from '../core/const.js';
 import { EventManager } from '../core/event_manager.js';
 import { Rectangle } from '../geom/rectangle.js';
-import { DisplayObject } from './display_object.js';
 import { clone } from '../geom/util/rectangle.js';
-import { IMAGE, PENDING_ATLAS, BLEND_NORMAL, SCALE_NEAREST } from '../core/const.js';
-import { setTexture, getBounds, getLocalBounds, renderCanvas, renderWebGL } from './sprite_util.js';
+import { DisplayObject } from './display_object.js';
+import { getBounds, getLocalBounds, renderCanvas, renderWebGL, setTexture } from './sprite_util.js';
+import { Texture } from './webgl/texture.js';
 
 export class Image extends DisplayObject {
   /**
    * TBD.
-   * @param {import('../core/game').Game} game - TBD.
+   * @param {import('../core/game.js').Game} game - TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
    * @param {string} key - TBD.

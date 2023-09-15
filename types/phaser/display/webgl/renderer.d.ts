@@ -1,7 +1,7 @@
 export class WebGLRenderer {
     /**
      * TBD.
-     * @param {import('../../core/game').Game} game - TBD.
+     * @param {import('../../core/game.js').Game} game - TBD.
      */
     constructor(game: import('../../core/game').Game);
     type: number;
@@ -75,9 +75,9 @@ export class WebGLRenderer {
     mapBlendModes(): void;
 }
 import { Point } from '../../geom/point';
+import { WebGLBlendModeManager } from './blend_manager';
+import { WebGLFilterManager } from './filter_manager';
 import { WebGLShaderManager } from './shader_manager';
 import { WebGLSpriteBatch } from './sprite_batch';
-import { WebGLFilterManager } from './filter_manager';
 import { WebGLStencilManager } from './stencil_manager';
-import { WebGLBlendModeManager } from './blend_manager';
 //# sourceMappingURL=renderer.d.ts.map

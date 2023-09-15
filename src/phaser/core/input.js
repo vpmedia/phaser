@@ -1,22 +1,22 @@
-import { ArraySet } from './array_set.js';
+import { create, remove } from '../display/canvas/pool.js';
 import { Graphics } from '../display/graphics.js';
 import { Image } from '../display/image.js';
-import { Signal } from './signal.js';
-import { Point } from '../geom/point.js';
 import { Circle } from '../geom/circle.js';
+import { Point } from '../geom/point.js';
+import { ArraySet } from './array_set.js';
+import { MOUSE_TOUCH_COMBINE, POINTER_CONTACT, POINTER_CURSOR } from './const.js';
 import { Mouse } from './input_mouse.js';
 import { MSPointer } from './input_mspointer.js';
 import { Pointer } from './input_pointer.js';
 import { Touch } from './input_touch.js';
-import { POINTER_CURSOR, POINTER_CONTACT, MOUSE_TOUCH_COMBINE } from './const.js';
-import { create, remove } from '../display/canvas/pool.js';
+import { Signal } from './signal.js';
 
 const MAX_POINTERS = 10;
 
 export class Input {
   /**
    * TBD.
-   * @param {import('./game').Game} game - TBD.
+   * @param {import('./game.js').Game} game - TBD.
    */
   constructor(game) {
     this.game = game;

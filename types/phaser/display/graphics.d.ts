@@ -1,7 +1,7 @@
 export class Graphics extends DisplayObject {
     /**
      * TBD.
-     * @param {import('../core/game').Game} game - TBD.
+     * @param {import('../core/game.js').Game} game - TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
      */
@@ -193,9 +193,9 @@ export class Graphics extends DisplayObject {
      */
     drawTriangles(vertices: number[] | Point[], indices: number[], cull?: boolean): void;
 }
+import { Point } from '../geom/point';
+import { Polygon } from '../geom/polygon';
+import { Rectangle } from '../geom/rectangle';
 import { DisplayObject } from './display_object';
 import { GraphicsData } from './graphics_data';
-import { Rectangle } from '../geom/rectangle';
-import { Polygon } from '../geom/polygon';
-import { Point } from '../geom/point';
 //# sourceMappingURL=graphics.d.ts.map

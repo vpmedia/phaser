@@ -3,7 +3,7 @@ import { Timer } from './timer.js';
 export class Time {
   /**
    * TBD.
-   * @param {import('./game').Game} game - TBD.
+   * @param {import('./game.js').Game} game - TBD.
    */
   constructor(game) {
     this.game = game;

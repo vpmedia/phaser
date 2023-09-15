@@ -1,7 +1,7 @@
 export class Pointer {
     /**
      * TBD.
-     * @param {import('./game').Game} game - TBD.
+     * @param {import('./game.js').Game} game - TBD.
      * @param {number} id - TBD.
      * @param {number} pointerMode - TBD.
      */
@@ -147,6 +147,6 @@ export class Pointer {
      */
     get worldY(): number;
 }
-import { Point } from '../geom/point';
 import { Circle } from '../geom/circle';
+import { Point } from '../geom/point';
 //# sourceMappingURL=input_pointer.d.ts.map

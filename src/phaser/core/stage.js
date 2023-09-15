@@ -1,13 +1,13 @@
-import { Matrix } from '../geom/matrix.js';
+import { setTouchAction, setUserSelect } from '../display/canvas/util.js';
 import { DisplayObject } from '../display/display_object.js';
-import { setUserSelect, setTouchAction } from '../display/canvas/util.js';
+import { Matrix } from '../geom/matrix.js';
 import { valueToColor } from '../util/math.js';
 import { SCALE_LINEAR, SCALE_NEAREST } from './const.js';
 
 export class Stage extends DisplayObject {
   /**
    * TBD.
-   * @param {import('./game').Game} game - TBD.
+   * @param {import('./game.js').Game} game - TBD.
    */
   constructor(game) {
     super();

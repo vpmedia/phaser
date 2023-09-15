@@ -1,7 +1,7 @@
 export class Button extends Image {
     /**
      * TBD.
-     * @param {import('../core/game').Game} game - TBD.
+     * @param {import('../core/game.js').Game} game - TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
      * @param {string} key - TBD.
@@ -98,7 +98,7 @@ export class Button extends Image {
      */
     onInputUpHandler(sprite: object, pointer: object, isOver: boolean): void;
 }
-import { Image } from './image';
-import { Signal } from '../core/signal';
 import { InputHandler } from '../core/input_handler';
+import { Signal } from '../core/signal';
+import { Image } from './image';
 //# sourceMappingURL=button.d.ts.map

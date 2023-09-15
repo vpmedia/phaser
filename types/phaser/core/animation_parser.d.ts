@@ -1,6 +1,6 @@
 /**
  * TBD.
- * @param {import('./game').Game} game - TBD.
+ * @param {import('./game.js').Game} game - TBD.
  * @param {string} key - TBD.
  * @param {number} frameWidth - TBD.
  * @param {number} frameHeight - TBD.
@@ -12,7 +12,7 @@
 export function spriteSheet(game: import('./game').Game, key: string, frameWidth: number, frameHeight: number, frameMax: number, margin: number, spacing: number): object;
 /**
  * TBD.
- * @param {import('./game').Game} game - TBD.
+ * @param {import('./game.js').Game} game - TBD.
  * @param {object} json - TBD.
  * @returns {object} TBD.
  */

@@ -1,43 +1,43 @@
+import { GROUP } from './const.js';
 import { Tween } from './tween.js';
 import {
+  BackIn,
+  BackInOut,
+  BackOut,
+  BounceIn,
+  BounceInOut,
+  BounceOut,
+  CircularIn,
+  CircularInOut,
+  CircularOut,
+  CubicIn,
+  CubicInOut,
+  CubicOut,
+  ElasticIn,
+  ElasticInOut,
+  ElasticOut,
+  ExponentialIn,
+  ExponentialInOut,
+  ExponentialOut,
   LinearNone,
   QuadraticIn,
-  QuadraticOut,
   QuadraticInOut,
-  CubicIn,
-  CubicOut,
-  CubicInOut,
+  QuadraticOut,
   QuarticIn,
-  QuarticOut,
   QuarticInOut,
+  QuarticOut,
   QuinticIn,
-  QuinticOut,
   QuinticInOut,
+  QuinticOut,
   SinusoidalIn,
-  SinusoidalOut,
   SinusoidalInOut,
-  ExponentialIn,
-  ExponentialOut,
-  ExponentialInOut,
-  CircularIn,
-  CircularOut,
-  CircularInOut,
-  ElasticIn,
-  ElasticOut,
-  ElasticInOut,
-  BackIn,
-  BackOut,
-  BackInOut,
-  BounceIn,
-  BounceOut,
-  BounceInOut,
+  SinusoidalOut,
 } from './tween_easing.js';
-import { GROUP } from './const.js';
 
 export class TweenManager {
   /**
    * TBD.
-   * @param {import('./game').Game} game - TBD.
+   * @param {import('./game.js').Game} game - TBD.
    */
   constructor(game) {
     this.game = game;

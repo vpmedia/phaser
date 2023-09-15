@@ -4,7 +4,7 @@ import { TimerEvent } from './timer_event.js';
 export class Timer {
   /**
    * TBD.
-   * @param {import('./game').Game} game - TBD.
+   * @param {import('./game.js').Game} game - TBD.
    * @param {boolean} autoDestroy - TBD.
    */
   constructor(game, autoDestroy = false) {

@@ -1,12 +1,12 @@
+import { BITMAP_TEXT, SCALE_LINEAR, SCALE_NEAREST } from '../core/const.js';
+import { Point } from '../geom/point.js';
 import { DisplayObject } from './display_object.js';
 import { Image } from './image.js';
-import { Point } from '../geom/point.js';
-import { BITMAP_TEXT, SCALE_LINEAR, SCALE_NEAREST } from '../core/const.js';
 
 export class BitmapText extends DisplayObject {
   /**
    * TBD.
-   * @param {import('../core/game').Game} game - TBD.
+   * @param {import('../core/game.js').Game} game - TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
    * @param {string} font - TBD.

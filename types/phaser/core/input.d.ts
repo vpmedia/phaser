@@ -1,7 +1,7 @@
 export class Input {
     /**
      * TBD.
-     * @param {import('./game').Game} game - TBD.
+     * @param {import('./game.js').Game} game - TBD.
      */
     constructor(game: import('./game').Game);
     game: import("./game").Game;
@@ -208,12 +208,12 @@ export class Input {
      */
     get worldY(): number;
 }
-import { Point } from '../geom/point';
 import { Circle } from '../geom/circle';
-import { Pointer } from './input_pointer';
-import { Mouse } from './input_mouse';
-import { Touch } from './input_touch';
-import { MSPointer } from './input_mspointer';
-import { Signal } from './signal';
+import { Point } from '../geom/point';
 import { ArraySet } from './array_set';
+import { Mouse } from './input_mouse';
+import { MSPointer } from './input_mspointer';
+import { Pointer } from './input_pointer';
+import { Touch } from './input_touch';
+import { Signal } from './signal';
 //# sourceMappingURL=input.d.ts.map
