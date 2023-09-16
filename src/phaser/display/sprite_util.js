@@ -253,7 +253,7 @@ export function renderCanvas(target, renderSession, matrix) {
         dx,
         dy,
         cw / resolution,
-        ch / resolution,
+        ch / resolution
       );
     }
   }

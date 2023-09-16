@@ -211,7 +211,7 @@ export class NormalShader {
           uniform.value.x,
           uniform.value.y,
           uniform.value.z,
-          uniform.value.w,
+          uniform.value.w
         );
       } else if (uniform.type === 'sampler2D') {
         if (uniform._init) {

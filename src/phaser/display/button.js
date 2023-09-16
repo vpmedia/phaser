@@ -33,7 +33,7 @@ export class Button extends Image {
     overFrame = null,
     outFrame = null,
     downFrame = null,
-    upFrame = null,
+    upFrame = null
   ) {
     super(game, x, y, key, outFrame);
     this.type = BUTTON;

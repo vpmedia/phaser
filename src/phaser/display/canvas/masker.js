@@ -17,7 +17,7 @@ export function pushMask(maskData, renderSession) {
     transform.c * resolution,
     transform.d * resolution,
     transform.tx * resolution,
-    transform.ty * resolution,
+    transform.ty * resolution
   );
   renderGraphicsMask(maskData, context);
   context.clip();

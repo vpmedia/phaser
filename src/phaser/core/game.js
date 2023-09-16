@@ -66,7 +66,7 @@ export class Game {
           initialize(this.device);
           this.boot();
         },
-        false,
+        false
       );
     }
   }

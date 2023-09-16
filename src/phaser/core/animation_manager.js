@@ -119,7 +119,7 @@ export class AnimationManager {
       this._frameData,
       this._outputFrames,
       frameRate,
-      loop,
+      loop
     );
     this.currentAnim = this._anims[name];
     if (this.sprite.tilingTexture) {

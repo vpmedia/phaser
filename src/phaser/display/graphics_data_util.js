@@ -13,6 +13,6 @@ export function clone(source) {
     source.fillColor,
     source.fillAlpha,
     source.fill,
-    source.shape,
+    source.shape
   );
 }

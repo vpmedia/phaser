@@ -157,7 +157,7 @@ export class DisplayObject {
       throw new Error(
         'getChildAt: Supplied index ' +
           index +
-          ' does not exist in the child list, or the supplied DisplayObject must be a child of the caller',
+          ' does not exist in the child list, or the supplied DisplayObject must be a child of the caller'
       );
     }
     return this.children[index];
@@ -292,7 +292,7 @@ export class DisplayObject {
     // this.worldPosition.set(wt.tx, wt.ty);
     this.worldScale.set(
       this.scale.x * Math.sqrt(wt.a * wt.a + wt.c * wt.c),
-      this.scale.y * Math.sqrt(wt.b * wt.b + wt.d * wt.d),
+      this.scale.y * Math.sqrt(wt.b * wt.b + wt.d * wt.d)
     );
     this.worldRotation = Math.atan2(-wt.c, wt.d);
     // reset the bounds each time this is called!

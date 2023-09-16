@@ -190,7 +190,7 @@ export class Graphics extends DisplayObject {
       t3 = t2 * j;
       points.push(
         dt3 * fromX + 3 * dt2 * j * cpX + 3 * dt * t2 * cpX2 + t3 * toX,
-        dt3 * fromY + 3 * dt2 * j * cpY + 3 * dt * t2 * cpY2 + t3 * toY,
+        dt3 * fromY + 3 * dt2 * j * cpY + 3 * dt * t2 * cpY2 + t3 * toY
       );
     }
     this.dirty = true;
@@ -538,7 +538,7 @@ export class Graphics extends DisplayObject {
         transform.c * resolution,
         transform.d * resolution,
         tx,
-        ty,
+        ty
       );
       renderCanvasGraphics(this, context);
       // simple render children!
@@ -812,7 +812,7 @@ export class Graphics extends DisplayObject {
       this.fillColor,
       this.fillAlpha,
       this.filling,
-      shape,
+      shape
     );
     this.graphicsData.push(data);
     if (data.type === GEOM_POLYGON) {

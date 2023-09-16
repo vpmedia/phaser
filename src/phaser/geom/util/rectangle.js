@@ -184,7 +184,7 @@ export function union(a, b, output = null) {
     Math.min(a.x, b.x),
     Math.min(a.y, b.y),
     Math.max(a.right, b.right) - Math.min(a.left, b.left),
-    Math.max(a.bottom, b.bottom) - Math.min(a.top, b.top),
+    Math.max(a.bottom, b.bottom) - Math.min(a.top, b.top)
   );
 }
 

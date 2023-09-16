@@ -360,7 +360,7 @@ export class Tween {
           this._onUpdateCallbackContext,
           this,
           this.timeline[this.current].value,
-          this.timeline[this.current],
+          this.timeline[this.current]
         );
       }
       //  In case the update callback modifies this tween

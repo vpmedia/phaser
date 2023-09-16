@@ -371,7 +371,7 @@ export class Input {
     const id = 1 / (wt.a * wt.d + wt.c * -wt.b);
     return result.setTo(
       wt.d * id * pointer.x + -wt.c * id * pointer.y + (wt.ty * wt.c - wt.tx * wt.d) * id,
-      wt.a * id * pointer.y + -wt.b * id * pointer.x + (-wt.ty * wt.a + wt.tx * wt.b) * id,
+      wt.a * id * pointer.y + -wt.b * id * pointer.x + (-wt.ty * wt.a + wt.tx * wt.b) * id
     );
   }
 

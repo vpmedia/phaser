@@ -516,7 +516,7 @@ export class ScaleManager {
         clientRect.left - parentRect.left,
         clientRect.top - parentRect.top,
         clientRect.width,
-        clientRect.height,
+        clientRect.height
       );
       const wc = this.windowConstraints;
       if (wc.right) {

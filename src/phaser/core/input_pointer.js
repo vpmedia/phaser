@@ -292,7 +292,7 @@ export class Pointer {
         this.game.input.customCandidateHandlerContext,
         this,
         this.interactiveCandidates,
-        candidateTarget,
+        candidateTarget
       );
     }
     this.swapTarget(candidateTarget, false);

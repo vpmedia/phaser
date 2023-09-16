@@ -221,7 +221,7 @@ export class Line {
   get length() {
     return Math.sqrt(
       (this.end.x - this.start.x) * (this.end.x - this.start.x) +
-        (this.end.y - this.start.y) * (this.end.y - this.start.y),
+        (this.end.y - this.start.y) * (this.end.y - this.start.y)
     );
   }
 

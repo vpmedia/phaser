@@ -79,11 +79,11 @@ export class GameObjectFactory {
     outFrame = null,
     downFrame = null,
     upFrame = null,
-    group = null,
+    group = null
   ) {
     const parent = group || this.game.world;
     return parent.add(
-      new Button(this.game, x, y, key, callback, callbackContext, overFrame, outFrame, downFrame, upFrame),
+      new Button(this.game, x, y, key, callback, callbackContext, overFrame, outFrame, downFrame, upFrame)
     );
   }
 

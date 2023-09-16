@@ -314,7 +314,7 @@ export function buildRoundedRectangle(graphicsData, webGLData) {
   recPoints.push(x, y + radius);
   recPoints = recPoints.concat(quadraticBezierCurve(x, y + height - radius, x, y + height, x + radius, y + height));
   recPoints = recPoints.concat(
-    quadraticBezierCurve(x + width - radius, y + height, x + width, y + height, x + width, y + height - radius),
+    quadraticBezierCurve(x + width - radius, y + height, x + width, y + height, x + width, y + height - radius)
   );
   recPoints = recPoints.concat(quadraticBezierCurve(x + width, y + radius, x + width, y, x + width - radius, y));
   recPoints = recPoints.concat(quadraticBezierCurve(x + radius, y, x, y, x, y + radius));

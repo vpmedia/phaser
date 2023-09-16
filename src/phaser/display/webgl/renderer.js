@@ -240,14 +240,14 @@ export class WebGLRenderer {
       gl.texParameteri(
         gl.TEXTURE_2D,
         gl.TEXTURE_MIN_FILTER,
-        texture.scaleMode === SCALE_LINEAR ? gl.LINEAR_MIPMAP_LINEAR : gl.NEAREST_MIPMAP_NEAREST,
+        texture.scaleMode === SCALE_LINEAR ? gl.LINEAR_MIPMAP_LINEAR : gl.NEAREST_MIPMAP_NEAREST
       );
       gl.generateMipmap(gl.TEXTURE_2D);
     } else {
       gl.texParameteri(
         gl.TEXTURE_2D,
         gl.TEXTURE_MIN_FILTER,
-        texture.scaleMode === SCALE_LINEAR ? gl.LINEAR : gl.NEAREST,
+        texture.scaleMode === SCALE_LINEAR ? gl.LINEAR : gl.NEAREST
       );
     }
     if (!texture._powerOf2) {
