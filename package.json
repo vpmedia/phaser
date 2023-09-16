@@ -23,6 +23,7 @@
   "types": "./types/index.d.ts",
   "type": "module",
   "devDependencies": {
+    "@jest/globals": "^29.7.0",
     "eslint": "^8.49.0",
     "eslint-plugin-import": "^2.28.1",
     "eslint-plugin-jest": "^27.4.0",
@@ -36,8 +37,7 @@
   },
   "scripts": {
     "test": "NODE_OPTIONS=--experimental-vm-modules jest --passWithNoTests",
-    "lint": "eslint \"**/*.{js,jsx}\"",
-    "lint-fix": "eslint --fix \"**/*.{js,jsx}\"",
+    "lint": "eslint --fix \"**/*.{js,jsx}\"",
     "typecheck": "tsc",
     "format": "prettier --write \"**/*.{css,js,jsx,json,md}\"",
     "prepare": "husky install",
