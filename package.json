@@ -45,6 +45,11 @@
     "prepare": "husky install",
     "lint-staged": "lint-staged"
   },
+  "browserslist": [
+    "> 1%",
+    "not dead",
+    "not op_mini all"
+  ],
   "engines": {
     "npm": ">=9.0.0",
     "node": ">=19.0.0"
