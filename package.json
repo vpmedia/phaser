@@ -24,6 +24,7 @@
   "type": "module",
   "devDependencies": {
     "@jest/globals": "^29.7.0",
+    "@types/jest": "^29.5.6",
     "eslint": "^8.51.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-import": "^2.28.1",
@@ -33,7 +34,7 @@
     "husky": "^8.0.3",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
-    "lint-staged": "^14.0.1",
+    "lint-staged": "^15.0.1",
     "prettier": "^3.0.3",
     "typescript": "^5.2.2"
   },
@@ -51,7 +52,7 @@
     "not op_mini all"
   ],
   "engines": {
-    "npm": ">=9.0.0",
-    "node": ">=19.0.0"
+    "npm": ">=8.0.0",
+    "node": ">=18.0.0"
   }
 }
