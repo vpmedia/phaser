@@ -306,7 +306,6 @@ export class AnimationManager {
         this.sprite.setFrame(this.currentFrame);
       }
     } else {
-      console.warn('Cannot set frame: ' + value);
       this.game.exceptionHandler(new Error('Cannot set frame'), { key: value });
     }
   }
@@ -333,7 +332,6 @@ export class AnimationManager {
         this.sprite.setFrame(this.currentFrame);
       }
     } else {
-      console.warn('Cannot set frameName: ' + value);
       this.game.exceptionHandler(new Error('Cannot set frameName'), { key: value });
     }
   }
