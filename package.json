@@ -41,7 +41,9 @@
     "test": "NODE_OPTIONS=--experimental-vm-modules jest --passWithNoTests",
     "lint": "eslint --fix \"**/*.{js,jsx}\"",
     "typecheck": "tsc",
-    "format": "prettier --write \"**/*.{css,js,jsx,json,md}\""
+    "format": "prettier --write \"**/*.{css,js,jsx,json,md}\"",
+    "lefthook:install": "lefthook install",
+    "lefthook:uninstall": "lefthook uninstall"
   },
   "browserslist": [
     "> 1%",
