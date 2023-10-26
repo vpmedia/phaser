@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.42.0
+
+- Added error notification for invalid texture frames
+
 ## 1.41.0
 
 - Updated dependencies
