@@ -1,6 +1,6 @@
 {
   "name": "@vpmedia/phaser",
-  "version": "1.42.0",
+  "version": "1.43.0",
   "description": "@vpmedia/phaser is the modern ECMAScript port of the popular Phaser game engine v2.6.2",
   "author": "Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)",
   "license": "MIT",
@@ -24,7 +24,7 @@
   "type": "module",
   "devDependencies": {
     "@jest/globals": "^29.7.0",
-    "@types/jest": "^29.5.11",
+    "@types/jest": "^29.5.12",
     "eslint": "^8.56.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jest": "^27.6.3",
