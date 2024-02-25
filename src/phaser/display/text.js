@@ -545,7 +545,7 @@ export class Text extends Image {
       // append the entire line and exit early
       const lineWidth = context.measureText(line).width;
       if (lineWidth < wordWrapWidth) {
-        output += line + '\n';
+        output += `${line  }\n`;
       } else {
         // otherwise, calculate new lines
         let currentLineWidth = wordWrapWidth;
@@ -553,7 +553,7 @@ export class Text extends Image {
         const words = line.split(' ');
         for (let j = 0; j < words.length; j += 1) {
           const word = words[j];
-          const wordWithSpace = word + ' ';
+          const wordWithSpace = `${word  } `;
           let wordWidth = context.measureText(wordWithSpace).width;
           if (wordWidth > currentLineWidth) {
             // break word
@@ -587,7 +587,7 @@ export class Text extends Image {
               .join(' ')
               .replace(/[ \n]*$/gi, '');
             // prepend remainder to next line
-            lines[i + 1] = remainder + ' ' + (lines[i + 1] || '');
+            lines[i + 1] = `${remainder  } ${  lines[i + 1] || ''}`;
             linesCount = lines.length;
             break; // processing on this line
             // append word with space to output
@@ -597,7 +597,7 @@ export class Text extends Image {
           }
         }
         // append processed line to output
-        output += out.replace(/[ \n]*$/gi, '') + '\n';
+        output += `${out.replace(/[ \n]*$/gi, '')  }\n`;
       }
     }
     // trim the end of the string
@@ -624,11 +624,11 @@ export class Text extends Image {
           if (j > 0) {
             result += '\n';
           }
-          result += words[j] + ' ';
+          result += `${words[j]  } `;
           spaceLeft = this.style.wordWrapWidth - wordWidth;
         } else {
           spaceLeft -= wordWidthWithSpace;
-          result += words[j] + ' ';
+          result += `${words[j]  } `;
         }
       }
       if (i < lines.length - 1) {
@@ -674,7 +674,7 @@ export class Text extends Image {
       let family = m[5].trim();
       // If it looks like the value should be quoted, but isn't, then quote it.
       if (!/^(?:inherit|serif|sans-serif|cursive|fantasy|monospace)$/.exec(family) && !/['",]/.exec(family)) {
-        family = "'" + family + "'";
+        family = `'${  family  }'`;
       }
       return {
         font,
@@ -685,7 +685,7 @@ export class Text extends Image {
         fontFamily: family,
       };
     }
-    console.warn('[Text] Error parsing CSS font: ' + font);
+    console.warn(`[Text] Error parsing CSS font: ${  font}`);
     return { font };
   }
 
@@ -1039,7 +1039,7 @@ export class Text extends Image {
     mutatedValue = mutatedValue.trim();
     // If it looks like the value should be quoted, but isn't, then quote it.
     if (!/^(?:inherit|serif|sans-serif|cursive|fantasy|monospace)$/.exec(mutatedValue) && !/['",]/.exec(mutatedValue)) {
-      mutatedValue = "'" + mutatedValue + "'";
+      mutatedValue = `'${  mutatedValue  }'`;
     }
 
     this._fontComponents.fontFamily = mutatedValue;

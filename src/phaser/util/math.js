@@ -285,7 +285,7 @@ export function valueToColor(value, out) {
     out.a = tempColor.a / 255;
   }
   out.rgba =
-    'rgba(' + out.r.toString() + ',' + out.g.toString() + ',' + out.b.toString() + ',' + out.a.toString() + ')';
+    `rgba(${  out.r.toString()  },${  out.g.toString()  },${  out.b.toString()  },${  out.a.toString()  })`;
   out.color = getColor(out.r, out.g, out.b);
   out.color32 = getColor32(out.a * 255, out.r, out.g, out.b);
   return out;

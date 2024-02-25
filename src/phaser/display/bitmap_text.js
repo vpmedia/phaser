@@ -318,7 +318,7 @@ export class BitmapText extends DisplayObject {
     if (typeof this.tint === 'number') {
       let colorStr = this.tint.toString(16);
       while (colorStr.length < 6) {
-        colorStr = '0' + colorStr;
+        colorStr = `0${  colorStr}`;
       }
       return `#${colorStr.toUpperCase()}`;
     }

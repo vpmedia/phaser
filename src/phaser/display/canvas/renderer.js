@@ -106,8 +106,8 @@ export class CanvasRenderer {
     this.view.width = this.width;
     this.view.height = this.height;
     if (this.autoResize) {
-      this.view.style.width = this.width / this.resolution + 'px';
-      this.view.style.height = this.height / this.resolution + 'px';
+      this.view.style.width = `${this.width / this.resolution  }px`;
+      this.view.style.height = `${this.height / this.resolution  }px`;
     }
     if (this.renderSession.smoothProperty) {
       this.context[this.renderSession.smoothProperty] = this.renderSession.scaleMode === SCALE_LINEAR;

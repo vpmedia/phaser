@@ -59,23 +59,23 @@ export function renderGraphics(graphics, context) {
       }
       if (data.fill) {
         context.globalAlpha = data.fillAlpha * worldAlpha;
-        context.fillStyle = '#' + ('00000' + (fillColor | 0).toString(16)).substr(-6);
+        context.fillStyle = `#${  (`00000${  (fillColor | 0).toString(16)}`).substr(-6)}`;
         context.fill();
       }
       if (data.lineWidth) {
         context.globalAlpha = data.lineAlpha * worldAlpha;
-        context.strokeStyle = '#' + ('00000' + (lineColor | 0).toString(16)).substr(-6);
+        context.strokeStyle = `#${  (`00000${  (lineColor | 0).toString(16)}`).substr(-6)}`;
         context.stroke();
       }
     } else if (data.type === GEOM_RECTANGLE) {
       if (data.fillColor || data.fillColor === 0) {
         context.globalAlpha = data.fillAlpha * worldAlpha;
-        context.fillStyle = '#' + ('00000' + (fillColor | 0).toString(16)).substr(-6);
+        context.fillStyle = `#${  (`00000${  (fillColor | 0).toString(16)}`).substr(-6)}`;
         context.fillRect(shape.x, shape.y, shape.width, shape.height);
       }
       if (data.lineWidth) {
         context.globalAlpha = data.lineAlpha * worldAlpha;
-        context.strokeStyle = '#' + ('00000' + (lineColor | 0).toString(16)).substr(-6);
+        context.strokeStyle = `#${  (`00000${  (lineColor | 0).toString(16)}`).substr(-6)}`;
         context.strokeRect(shape.x, shape.y, shape.width, shape.height);
       }
     } else if (data.type === GEOM_CIRCLE) {
@@ -84,12 +84,12 @@ export function renderGraphics(graphics, context) {
       context.closePath();
       if (data.fill) {
         context.globalAlpha = data.fillAlpha * worldAlpha;
-        context.fillStyle = '#' + ('00000' + (fillColor | 0).toString(16)).substr(-6);
+        context.fillStyle = `#${  (`00000${  (fillColor | 0).toString(16)}`).substr(-6)}`;
         context.fill();
       }
       if (data.lineWidth) {
         context.globalAlpha = data.lineAlpha * worldAlpha;
-        context.strokeStyle = '#' + ('00000' + (lineColor | 0).toString(16)).substr(-6);
+        context.strokeStyle = `#${  (`00000${  (lineColor | 0).toString(16)}`).substr(-6)}`;
         context.stroke();
       }
     } else if (data.type === GEOM_ELLIPSE) {
@@ -114,12 +114,12 @@ export function renderGraphics(graphics, context) {
       context.closePath();
       if (data.fill) {
         context.globalAlpha = data.fillAlpha * worldAlpha;
-        context.fillStyle = '#' + ('00000' + (fillColor | 0).toString(16)).substr(-6);
+        context.fillStyle = `#${  (`00000${  (fillColor | 0).toString(16)}`).substr(-6)}`;
         context.fill();
       }
       if (data.lineWidth) {
         context.globalAlpha = data.lineAlpha * worldAlpha;
-        context.strokeStyle = '#' + ('00000' + (lineColor | 0).toString(16)).substr(-6);
+        context.strokeStyle = `#${  (`00000${  (lineColor | 0).toString(16)}`).substr(-6)}`;
         context.stroke();
       }
     } else if (data.type === GEOM_ROUNDED_RECTANGLE) {
@@ -143,12 +143,12 @@ export function renderGraphics(graphics, context) {
       context.closePath();
       if (data.fillColor || data.fillColor === 0) {
         context.globalAlpha = data.fillAlpha * worldAlpha;
-        context.fillStyle = '#' + ('00000' + (fillColor | 0).toString(16)).substr(-6);
+        context.fillStyle = `#${  (`00000${  (fillColor | 0).toString(16)}`).substr(-6)}`;
         context.fill();
       }
       if (data.lineWidth) {
         context.globalAlpha = data.lineAlpha * worldAlpha;
-        context.strokeStyle = '#' + ('00000' + (lineColor | 0).toString(16)).substr(-6);
+        context.strokeStyle = `#${  (`00000${  (lineColor | 0).toString(16)}`).substr(-6)}`;
         context.stroke();
       }
     }

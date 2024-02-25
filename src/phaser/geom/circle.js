@@ -157,7 +157,7 @@ export class Circle {
    * @returns {string} TBD.
    */
   toString() {
-    return '[{Circle (x=' + this.x + ' y=' + this.y + ' diameter=' + this.diameter + ' radius=' + this.radius + ')}]';
+    return `[{Circle (x=${  this.x  } y=${  this.y  } diameter=${  this.diameter  } radius=${  this.radius  })}]`;
   }
 
   /**

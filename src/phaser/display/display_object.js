@@ -95,7 +95,7 @@ export class DisplayObject {
       this.children.splice(index, 0, child);
       return child;
     }
-    throw new Error(child + 'addChildAt: The index ' + index + ' supplied is out of bounds ' + this.children.length);
+    throw new Error(`${child  }addChildAt: The index ${  index  } supplied is out of bounds ${  this.children.length}`);
   }
 
   /**
@@ -155,9 +155,9 @@ export class DisplayObject {
   getChildAt(index) {
     if (index < 0 || index >= this.children.length) {
       throw new Error(
-        'getChildAt: Supplied index ' +
-          index +
-          ' does not exist in the child list, or the supplied DisplayObject must be a child of the caller'
+        `getChildAt: Supplied index ${ 
+          index 
+          } does not exist in the child list, or the supplied DisplayObject must be a child of the caller`
       );
     }
     return this.children[index];

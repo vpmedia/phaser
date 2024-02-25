@@ -211,8 +211,8 @@ export class WebGLRenderer {
     this.view.width = this.width;
     this.view.height = this.height;
     if (this.autoResize) {
-      this.view.style.width = this.width / this.resolution + 'px';
-      this.view.style.height = this.height / this.resolution + 'px';
+      this.view.style.width = `${this.width / this.resolution  }px`;
+      this.view.style.height = `${this.height / this.resolution  }px`;
     }
     this.gl.viewport(0, 0, this.width, this.height);
     this.projection.x = this.width / 2 / this.resolution;

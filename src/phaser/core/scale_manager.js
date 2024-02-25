@@ -552,10 +552,10 @@ export class ScaleManager {
         const offset = targetEdge - currentEdge;
         margin.left = Math.round(offset);
       }
-      canvas.style.marginLeft = margin.left + 'px';
+      canvas.style.marginLeft = `${margin.left  }px`;
       if (margin.left !== 0) {
         margin.right = -(parentBounds.width - canvasBounds.width - margin.left);
-        canvas.style.marginRight = margin.right + 'px';
+        canvas.style.marginRight = `${margin.right  }px`;
       }
     }
     if (vertical) {
@@ -569,10 +569,10 @@ export class ScaleManager {
         const offset = targetEdge - currentEdge;
         margin.top = Math.round(offset);
       }
-      canvas.style.marginTop = margin.top + 'px';
+      canvas.style.marginTop = `${margin.top  }px`;
       if (margin.top !== 0) {
         margin.bottom = -(parentBounds.height - canvasBounds.height - margin.top);
-        canvas.style.marginBottom = margin.bottom + 'px';
+        canvas.style.marginBottom = `${margin.bottom  }px`;
       }
     }
     // Silly backwards compatibility..
@@ -613,7 +613,7 @@ export class ScaleManager {
    * @param {string} cssWidth - TBD.
    * @param {string} cssHeight - TBD.
    */
-  resetCanvas(cssWidth = this.width + 'px', cssHeight = this.height + 'px') {
+  resetCanvas(cssWidth = `${this.width  }px`, cssHeight = `${this.height  }px`) {
     const canvas = this.game.canvas;
     if (!this.compatibility.noMargins) {
       canvas.style.marginLeft = '';

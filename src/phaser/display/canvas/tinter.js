@@ -28,7 +28,7 @@ export function tintWithMultiply(texture, color, canvas) {
     canvas.height = crop.height;
   }
   context.clearRect(0, 0, crop.width, crop.height);
-  context.fillStyle = '#' + ('00000' + (color | 0).toString(16)).substr(-6);
+  context.fillStyle = `#${  (`00000${  (color | 0).toString(16)}`).substr(-6)}`;
   context.fillRect(0, 0, crop.width, crop.height);
   context.globalCompositeOperation = 'multiply';
   context.drawImage(texture.baseTexture.source, crop.x, crop.y, crop.width, crop.height, 0, 0, crop.width, crop.height);
@@ -105,9 +105,9 @@ export function canUseNewCanvasBlendModes() {
   const pngHead = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAABAQMAAADD8p2OAAAAA1BMVEX/';
   const pngEnd = 'AAAACklEQVQI12NgAAAAAgAB4iG8MwAAAABJRU5ErkJggg==';
   const magenta = new Image();
-  magenta.src = pngHead + 'AP804Oa6' + pngEnd;
+  magenta.src = `${pngHead  }AP804Oa6${  pngEnd}`;
   const yellow = new Image();
-  yellow.src = pngHead + '/wCKxvRF' + pngEnd;
+  yellow.src = `${pngHead  }/wCKxvRF${  pngEnd}`;
   const canvas = create('CanvasTinter', 6, 1);
   const context = canvas.getContext('2d');
   context.globalCompositeOperation = 'multiply';

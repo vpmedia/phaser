@@ -96,6 +96,6 @@ export class SignalBinding {
    * @returns {string} TBD.
    */
   toString() {
-    return '[SignalBinding isOnce:' + this._isOnce + ', isBound:' + this.isBound() + ', active:' + this.active + ']';
+    return `[SignalBinding isOnce:${  this._isOnce  }, isBound:${  this.isBound()  }, active:${  this.active  }]`;
   }
 }
