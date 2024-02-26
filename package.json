@@ -40,7 +40,7 @@
   },
   "scripts": {
     "test": "NODE_OPTIONS=--experimental-vm-modules jest --passWithNoTests",
-    "lint": "eslint --fix \"**/*.{js,jsx}\"",
+    "lint": "eslint \"**/*.{js,jsx}\"",
     "typecheck": "tsc",
     "format": "prettier --write \"./**/*.{js,jsx,mjs,cjs,ts,tsx,json,md,css}\"",
     "lefthook:install": "lefthook install",
