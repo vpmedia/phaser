@@ -1,7 +1,7 @@
 import js from '@eslint/js';
 import importPlugin from 'eslint-plugin-import';
 import jsdocPlugin from 'eslint-plugin-jsdoc';
-// import unicornPlugin from 'eslint-plugin-unicorn';
+import unicornPlugin from 'eslint-plugin-unicorn';
 import globals from 'globals';
 
 /** @type { import('eslint').Linter.FlatConfig[] } */
@@ -39,10 +39,20 @@ export default [
     plugins: {
       import: importPlugin,
       jsdoc: jsdocPlugin,
-      // unicorn: unicornPlugin,
+      unicorn: unicornPlugin,
+    },
+    settings: {
+      'import/parsers': {
+        espree: ['.js', '.cjs', '.mjs', '.jsx'],
+      },
+      'import/resolver': {
+        node: true,
+      },
     },
     rules: {
       ...js.configs.recommended.rules,
+      ...jsdocPlugin.configs['flat/recommended'].rules,
+      ...importPlugin.configs.recommended.rules,
       'no-unused-vars': 'warn',
       'prefer-arrow-callback': 'warn',
       'prefer-template': 'warn',
