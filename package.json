@@ -47,7 +47,7 @@
     "lefthook:uninstall": "lefthook uninstall"
   },
   "browserslist": [
-    "> 1%",
+    "> 0.5%",
     "not dead",
     "not op_mini all"
   ],
