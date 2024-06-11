@@ -27,13 +27,13 @@
     "@jest/globals": "^29.7.0",
     "@types/jest": "^29.5.12",
     "eslint": "^9.4.0",
-    "eslint-plugin-jsdoc": "^48.2.7",
+    "eslint-plugin-jsdoc": "^48.2.9",
     "eslint-plugin-unicorn": "^53.0.0",
-    "globals": "^15.3.0",
+    "globals": "^15.4.0",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "lefthook": "^1.6.15",
-    "prettier": "^3.3.1",
+    "prettier": "^3.3.2",
     "typescript": "^5.4.5"
   },
   "scripts": {
