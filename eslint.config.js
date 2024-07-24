@@ -4,7 +4,7 @@ import jsdocPlugin from 'eslint-plugin-jsdoc';
 import unicornPlugin from 'eslint-plugin-unicorn';
 import globals from 'globals';
 
-/** @type { import('eslint').Linter.FlatConfig[] } */
+/** @type { import('eslint').Linter.Config[] } */
 export default [
   {
     ignores: [
