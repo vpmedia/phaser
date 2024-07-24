@@ -53,7 +53,7 @@ export default [
       ...js.configs.recommended.rules,
       ...jsdocPlugin.configs['flat/recommended'].rules,
       // ...importPlugin.configs.recommended.rules,
-      'no-unused-vars': 'warn',
+      'no-unused-vars': 'off',
       'prefer-arrow-callback': 'warn',
       'prefer-template': 'warn',
       // 'import/extensions': ['warn', 'always'],
