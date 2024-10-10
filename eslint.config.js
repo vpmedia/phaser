@@ -1,5 +1,4 @@
 import js from '@eslint/js';
-// import importPlugin from 'eslint-plugin-import';
 import jsdocPlugin from 'eslint-plugin-jsdoc';
 import unicornPlugin from 'eslint-plugin-unicorn';
 import globals from 'globals';
@@ -37,7 +36,6 @@ export default [
     },
     files: ['**/*.{js,jsx,mjs,cjs,ts,tsx}'],
     plugins: {
-      // import: importPlugin,
       jsdoc: jsdocPlugin,
       unicorn: unicornPlugin,
     },
@@ -52,11 +50,9 @@ export default [
     rules: {
       ...js.configs.recommended.rules,
       ...jsdocPlugin.configs['flat/recommended'].rules,
-      // ...importPlugin.configs.recommended.rules,
       'no-unused-vars': 'off',
       'prefer-arrow-callback': 'warn',
       'prefer-template': 'warn',
-      // 'import/extensions': ['warn', 'always'],
       'jsdoc/require-jsdoc': [
         'warn',
         {
