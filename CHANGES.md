@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.44.0
+
+- Improved Canvas2D fallback handling
+
 ## 1.43.0
 
 - Updated dependencies

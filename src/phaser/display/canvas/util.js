@@ -7,7 +7,7 @@ import { create as createCanvas } from './pool.js';
  * @param {number} height - TBD.
  * @param {string} id - TBD.
  * @param {boolean} skipPool - TBD.
- * @returns {object} TBD.
+ * @returns {HTMLCanvasElement} TBD.
  */
 export function create(parent, width, height, id, skipPool) {
   width = width || 256;
@@ -100,7 +100,7 @@ export function addToDOM(canvas, parent, overflowHidden = true) {
  * @param {HTMLCanvasElement} canvas - TBD.
  */
 export function removeFromDOM(canvas) {
-  if (canvas.parentNode) {
+  if (canvas && canvas.parentNode) {
     canvas.parentNode.removeChild(canvas);
   }
 }

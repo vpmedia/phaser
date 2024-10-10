@@ -1,22 +1,22 @@
 import { CanvasRenderer } from '../display/canvas/renderer.js';
+import { addToDOM, create, removeFromDOM, setTouchAction } from '../display/canvas/util.js';
 import { WebGLRenderer } from '../display/webgl/renderer.js';
-import { Signal } from './signal.js';
-import { Loader } from './loader.js';
 import { Cache } from './cache.js';
-import { Input } from './input.js';
+import { RENDER_AUTO, RENDER_WEBGL } from './const.js';
 import { Device } from './device.js';
+import { checkOS, initialize } from './device_util.js';
 import { GameObjectFactory } from './factory.js';
+import { Input } from './input.js';
+import { Loader } from './loader.js';
 import { RequestAnimationFrame } from './raf.js';
 import { ScaleManager } from './scale_manager.js';
-import { SoundManager } from './sound_manager.js';
 import { SceneManager } from './scene_manager.js';
+import { Signal } from './signal.js';
+import { SoundManager } from './sound_manager.js';
+import { Stage } from './stage.js';
 import { Time } from './time.js';
 import { TweenManager } from './tween_manager.js';
 import { World } from './world.js';
-import { Stage } from './stage.js';
-import { RENDER_AUTO, RENDER_WEBGL } from './const.js';
-import { create, removeFromDOM, addToDOM, setTouchAction } from '../display/canvas/util.js';
-import { initialize, checkOS } from './device_util.js';
 
 export class Game {
   /**
@@ -48,7 +48,9 @@ export class Game {
     this.tweens = null;
     this.world = null;
     this.device = new Device();
+    /** @type {HTMLCanvasElement} */
     this.canvas = null;
+    /** @type {RenderingContext} */
     this.context = null;
     this.onPause = new Signal();
     this.onResume = new Signal();
@@ -110,7 +112,10 @@ export class Game {
   /**
    * TBD.
    */
-  initRenderer() {
+  createRendererCanvas() {
+    if (this.canvas) {
+      removeFromDOM(this.canvas);
+    }
     if (this.config.canvas) {
       this.canvas = this.config.canvas;
     } else {
@@ -121,6 +126,13 @@ export class Game {
     } else {
       this.canvas.style['-webkit-full-screen'] = 'width: 100%; height: 100%';
     }
+  }
+
+  /**
+   * TBD.
+   */
+  initRenderer() {
+    this.createRendererCanvas();
     let isWebGlReady = false;
     if (this.config.renderType === RENDER_AUTO || this.config.renderType === RENDER_WEBGL) {
       try {
@@ -133,7 +145,11 @@ export class Game {
         isWebGlReady = true;
       } catch (e) {
         isWebGlReady = false;
-        const tags = {};
+        const tags = {
+          'document.readyState': document.readyState,
+          'document.hidden': document.hidden,
+          'document.visibilityState': document.visibilityState,
+        };
         if (window.PhaserRegistry?.GL_PROGRAM_INFO_LOG) {
           tags.gl_program_log = window.PhaserRegistry.GL_PROGRAM_INFO_LOG;
         }
@@ -159,9 +175,8 @@ export class Game {
           this.canvas.removeEventListener('webglcontextlost', this.contextRestoredBinded, false);
         }
         this.renderer.destroy();
-        removeFromDOM(this.canvas);
-        this.canvas = create(this, this.width, this.height, this.config.canvasID, true);
       }
+      this.createRendererCanvas();
       this.renderer = new CanvasRenderer(this);
       this.context = this.renderer.context;
     }
