@@ -145,13 +145,7 @@ export class Game {
         isWebGlReady = true;
       } catch (e) {
         isWebGlReady = false;
-        const tags = {
-          'document.readyState': document.readyState,
-          'document.hidden': document.hidden,
-          'document.visibilityState': document.visibilityState,
-          'canvas.width': this.canvas.width,
-          'canvas.height': this.canvas.height,
-        };
+        const tags = {};
         if (window.PhaserRegistry?.GL_PROGRAM_INFO_LOG) {
           tags.gl_program_log = window.PhaserRegistry.GL_PROGRAM_INFO_LOG;
         }

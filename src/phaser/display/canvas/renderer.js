@@ -42,7 +42,7 @@ export class CanvasRenderer {
     this.view = game.canvas;
     this.context = this.view.getContext('2d', { alpha: this.transparent });
     if (!this.context) {
-      throw new Error('Error creating Canvas 2D context.');
+      throw new Error('Error creating Canvas2D context');
     }
     this.refresh = true;
     this.count = 0;

@@ -248,7 +248,7 @@ export function centroid(points, output = null) {
   const result = output || new Point();
   const pointsLen = points.length;
   if (pointsLen < 1) {
-    throw new Error('Point(points) array must not be empty.');
+    throw new Error('Point(points) array must not be empty');
   }
   if (pointsLen === 1) {
     result.copyFrom(points[0]);

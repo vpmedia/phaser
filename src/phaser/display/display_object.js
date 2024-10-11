@@ -111,7 +111,7 @@ export class DisplayObject {
     const index1 = this.getChildIndex(child);
     const index2 = this.getChildIndex(child2);
     if (index1 < 0 || index2 < 0) {
-      throw new Error('swapChildren: Both the supplied DisplayObjects must be a child of the caller.');
+      throw new Error('swapChildren: Both the supplied DisplayObjects must be a child of the caller');
     }
     this.children[index1] = child2;
     this.children[index2] = child;

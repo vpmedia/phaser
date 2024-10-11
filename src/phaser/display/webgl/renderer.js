@@ -128,7 +128,7 @@ export class WebGLRenderer {
     this.gl = gl;
     if (!gl) {
       // fail, not able to get a context
-      throw new Error('This browser does not support WebGL. Try using the Canvas 2D.');
+      throw new Error('Error creating WebGL context');
     }
     this.initRegistry();
     this.glContextId = window.PhaserRegistry.GL_CONTEXT_ID;

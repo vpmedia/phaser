@@ -61,6 +61,7 @@ export class SoundManager {
       this.context === null ||
       (this.context && this.context.createGain === undefined && this.context.createGainNode === undefined)
     ) {
+      this.game.exceptionHandler(new Error('Error creating AudioContext'));
       this.noAudio = true;
       return;
     }
@@ -220,7 +221,7 @@ export class SoundManager {
             this.game.cache.decodedSound(key, buffer);
           })
           .catch((e) => {
-            this.game.exceptionHandler(e, { key });
+            this.game.exceptionHandler(e, { 'asset.key': key });
           });
       }
     }
