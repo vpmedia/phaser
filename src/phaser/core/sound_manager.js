@@ -160,7 +160,7 @@ export class SoundManager {
           error: e,
         });
         this.removeUnlockHandlers();
-        this.game.exceptionHandler(e, { initialState, state: this.context.state });
+        this.game.exceptionHandler(e, { 'audio.initialState': initialState, 'audio.state': this.context.state });
       });
   }
 
