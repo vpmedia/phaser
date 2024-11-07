@@ -91,16 +91,17 @@ export function getFree() {
  * @param {object} parent - TBD.
  * @param {number} width - TBD.
  * @param {number} height - TBD.
+ * @param {boolean} skipPool - TBD.
  * @returns {HTMLCanvasElement} TBD.
  */
-export function create(parent, width, height) {
+export function create(parent, width, height, skipPool = false) {
   if (parent === undefined) {
     console.warn('Created CanvasPool element with undefined parent.');
   }
   const idx = getFirst();
   const pool = getPool();
   let canvas;
-  if (idx === -1) {
+  if (idx === -1 || skipPool === true) {
     const container = {
       parent,
       canvas: document.createElement('canvas'),

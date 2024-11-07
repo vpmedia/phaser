@@ -39,6 +39,11 @@ export class CanvasBuffer {
    * TBD.
    */
   destroy() {
+    try {
+      this.context?.reset();
+    } catch {
+      // pass
+    }
     removeByCanvas(this.canvas);
   }
 }

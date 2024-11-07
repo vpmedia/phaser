@@ -1,6 +1,5 @@
-import { CanvasBuffer } from './buffer.js';
-import { create, removeByCanvas } from './pool.js';
 import { hex2rgb } from '../../util/math.js';
+import { create, removeByCanvas } from './pool.js';
 
 /**
  * TBD.
@@ -9,7 +8,7 @@ import { hex2rgb } from '../../util/math.js';
  * @returns {object} TBD.
  */
 export function getTintedTexture(sprite, color) {
-  const canvas = sprite.tintedTexture || create('CanvasTinter');
+  const canvas = sprite.tintedTexture || create('CanvasTinter', 1, 1);
   window.PhaserRegistry.CANVAS_TINT_METHOD(sprite.texture, color, canvas);
   return canvas;
 }
@@ -75,20 +74,37 @@ export function tintWithPerPixel(texture, color, canvas) {
  * @returns {boolean} TBD.
  */
 export function checkInverseAlpha() {
-  const canvas = new CanvasBuffer(2, 1);
-  canvas.context.fillStyle = 'rgba(10, 20, 30, 0.5)';
-  //  Draw a single pixel
-  canvas.context.fillRect(0, 0, 1, 1);
-  //  Get the color values
-  const s1 = canvas.context.getImageData(0, 0, 1, 1);
+  // Check for DOM
+  if (document === undefined) {
+    return false;
+  }
+  // Create canvas and context
+  const canvas = create('CanvasAlpha', 2, 1, true);
+  const context = canvas.getContext('2d');
+  if (!context) {
+    return false;
+  }
+  // Set canvas fill style
+  context.fillStyle = 'rgba(10, 20, 30, 0.5)';
+  // Draw a single pixel
+  context.fillRect(0, 0, 1, 1);
+  // Get the color values
+  const s1 = context.getImageData(0, 0, 1, 1);
   if (s1 === null) {
     return false;
   }
-  //  Plot them to x2
-  canvas.context.putImageData(s1, 1, 0);
-  //  Get those values
-  const s2 = canvas.context.getImageData(1, 0, 1, 1);
-  //  Compare and return
+  // Plot them to x2
+  context.putImageData(s1, 1, 0);
+  // Get those values
+  const s2 = context.getImageData(1, 0, 1, 1);
+  // Dispose canvas
+  try {
+    context?.reset();
+  } catch {
+    // pass
+  }
+  removeByCanvas(canvas);
+  // Compare and return
   return (
     s2.data[0] === s1.data[0] && s2.data[1] === s1.data[1] && s2.data[2] === s1.data[2] && s2.data[3] === s1.data[3]
   );
@@ -99,17 +115,24 @@ export function checkInverseAlpha() {
  * @returns {boolean} TBD.
  */
 export function canUseNewCanvasBlendModes() {
+  // Check for DOM
   if (document === undefined) {
     return false;
   }
+  // Create test images
   const pngHead = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAABAQMAAADD8p2OAAAAA1BMVEX/';
   const pngEnd = 'AAAACklEQVQI12NgAAAAAgAB4iG8MwAAAABJRU5ErkJggg==';
   const magenta = new Image();
   magenta.src = `${pngHead  }AP804Oa6${  pngEnd}`;
   const yellow = new Image();
   yellow.src = `${pngHead  }/wCKxvRF${  pngEnd}`;
-  const canvas = create('CanvasTinter', 6, 1);
+  // Create canvas and context
+  const canvas = create('CanvasTinter', 6, 1, true);
   const context = canvas.getContext('2d');
+  if (!context) {
+    return false;
+  }
+  // Draw test images to canvas
   context.globalCompositeOperation = 'multiply';
   context.drawImage(magenta, 0, 0);
   context.drawImage(yellow, 2, 0);
@@ -117,7 +140,14 @@ export function canUseNewCanvasBlendModes() {
     return false;
   }
   const data = context.getImageData(2, 0, 1, 1).data;
+  // Dispose canvas
+  try {
+    context?.reset();
+  } catch {
+    // pass
+  }
   removeByCanvas(canvas);
+  // Compare and return
   return data[0] === 255 && data[1] === 0 && data[2] === 0;
 }
 
