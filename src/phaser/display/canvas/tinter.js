@@ -99,7 +99,7 @@ export function checkInverseAlpha() {
   const s2 = context.getImageData(1, 0, 1, 1);
   // Dispose canvas
   try {
-    context?.reset();
+    context.reset();
   } catch {
     // pass
   }
@@ -142,7 +142,7 @@ export function canUseNewCanvasBlendModes() {
   const data = context.getImageData(2, 0, 1, 1).data;
   // Dispose canvas
   try {
-    context?.reset();
+    context.reset();
   } catch {
     // pass
   }
