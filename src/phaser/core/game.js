@@ -149,7 +149,7 @@ export class Game {
         /** @type {WebGLRenderer} */
         // @ts-ignore
         const renderer = this.renderer;
-        if (renderer.gl) {
+        if (renderer?.gl) {
           tags['webgl.error'] = renderer.gl.getError();
           tags['webgl.context_lost'] = renderer.gl.isContextLost();
         }
