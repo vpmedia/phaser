@@ -3,7 +3,7 @@ export class EventManager {
      * TBD.
      * @param {import('../display/display_object.js').DisplayObject} sprite - TBD.
      */
-    constructor(sprite: import('../display/display_object.js').DisplayObject);
+    constructor(sprite: import("../display/display_object.js").DisplayObject);
     parent: import("../display/display_object.js").DisplayObject;
     _onAddedToGroup: Signal;
     _onRemovedFromGroup: Signal;

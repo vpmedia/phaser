@@ -3,7 +3,7 @@ export class Loader {
      * TBD.
      * @param {import('./game.js').Game} game - TBD.
      */
-    constructor(game: import('./game.js').Game);
+    constructor(game: import("./game.js").Game);
     game: import("./game.js").Game;
     cache: import("./cache.js").Cache;
     isLoading: boolean;
@@ -47,7 +47,7 @@ export class Loader {
      * @param {import('../display/image.js').Image} sprite - TBD.
      * @param {number} direction - TBD.
      */
-    setPreloadSprite(sprite: import('../display/image.js').Image, direction?: number): void;
+    setPreloadSprite(sprite: import("../display/image.js").Image, direction?: number): void;
     /**
      * TBD.
      */

@@ -3,7 +3,7 @@ export class WebGLRenderer {
      * TBD.
      * @param {import('../../core/game.js').Game} game - TBD.
      */
-    constructor(game: import('../../core/game.js').Game);
+    constructor(game: import("../../core/game.js").Game);
     type: number;
     resolution: any;
     autoResize: boolean;
@@ -11,7 +11,7 @@ export class WebGLRenderer {
     clearBeforeRender: any;
     width: number;
     height: number;
-    view: any;
+    view: HTMLCanvasElement;
     _contextOptions: {
         alpha: any;
         depth: boolean;
@@ -33,7 +33,9 @@ export class WebGLRenderer {
      * TBD.
      */
     destroy(): void;
-    gl: any;
+    gl: WebGLRenderingContext & {
+        id: number;
+    };
     /**
      * TBD.
      */
@@ -48,7 +50,7 @@ export class WebGLRenderer {
      * TBD.
      * @param {import('../../core/stage.js').Stage} stage - TBD.
      */
-    render(stage: import('../../core/stage.js').Stage): void;
+    render(stage: import("../../core/stage.js").Stage): void;
     /**
      * TBD.
      * @param {import('../../display/display_object.js').DisplayObject} displayObject - TBD.
@@ -56,7 +58,7 @@ export class WebGLRenderer {
      * @param {object} buffer - TBD.
      * @param {import('../../geom/matrix.js').Matrix} matrix - TBD.
      */
-    renderDisplayObject(displayObject: import('../../display/display_object.js').DisplayObject, projection: Point, buffer: object, matrix: import('../../geom/matrix.js').Matrix): void;
+    renderDisplayObject(displayObject: import("../../display/display_object.js").DisplayObject, projection: Point, buffer: object, matrix: import("../../geom/matrix.js").Matrix): void;
     /**
      * TBD.
      * @param {number} width - TBD.
@@ -68,7 +70,7 @@ export class WebGLRenderer {
      * @param {import('./base_texture.js').BaseTexture} texture - TBD.
      * @returns {boolean} TBD.
      */
-    updateTexture(texture: import('./base_texture.js').BaseTexture): boolean;
+    updateTexture(texture: import("./base_texture.js").BaseTexture): boolean;
     /**
      * TBD.
      */

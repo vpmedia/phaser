@@ -3,7 +3,7 @@ export class CanvasRenderer {
      * TBD.
      * @param {import('../../core/game.js').Game} game - TBD.
      */
-    constructor(game: import('../../core/game.js').Game);
+    constructor(game: import("../../core/game.js").Game);
     type: number;
     resolution: any;
     clearBeforeRender: any;
@@ -12,12 +12,13 @@ export class CanvasRenderer {
     contextLost: boolean;
     width: number;
     height: number;
-    view: any;
-    context: any;
+    view: HTMLCanvasElement;
+    /** @type {CanvasRenderingContext2D} */
+    context: CanvasRenderingContext2D;
     refresh: boolean;
     count: number;
     renderSession: {
-        context: any;
+        context: CanvasRenderingContext2D;
         maskManager: typeof CanvasMaskManager;
         scaleMode: number;
         smoothProperty: any;
@@ -27,7 +28,7 @@ export class CanvasRenderer {
      * TBD.
      * @param {import('../../core/stage.js').Stage} root - TBD.
      */
-    render(root: import('../../core/stage.js').Stage): void;
+    render(root: import("../../core/stage.js").Stage): void;
     /**
      * TBD.
      * @param {boolean} removeView - TBD.
@@ -45,7 +46,7 @@ export class CanvasRenderer {
      * @param {CanvasRenderingContext2D} context - TBD.
      * @param {import('../../geom/matrix.js').Matrix} matrix - TBD.
      */
-    renderDisplayObject(displayObject: import('../../display/image.js').Image, context: CanvasRenderingContext2D, matrix: import('../../geom/matrix.js').Matrix): void;
+    renderDisplayObject(displayObject: import("../../display/image.js").Image, context: CanvasRenderingContext2D, matrix: import("../../geom/matrix.js").Matrix): void;
     /**
      * TBD.
      */

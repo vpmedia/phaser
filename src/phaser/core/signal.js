@@ -44,11 +44,9 @@ export class Signal {
       binding = this._bindings[prevIndex];
       if (binding.isOnce() !== isOnce) {
         throw new Error(
-          `You cannot add${ 
-            isOnce ? '' : 'Once' 
-            }() then add${ 
-            !isOnce ? '' : 'Once' 
-            }() the same listener without removing the relationship first.`
+          `You cannot add${isOnce ? '' : 'Once'}() then add${
+            !isOnce ? '' : 'Once'
+          }() the same listener without removing the relationship first.`
         );
       }
     } else {
@@ -243,7 +241,7 @@ export class Signal {
    * @returns {string} TBD.
    */
   toString() {
-    return `[Signal active:${  this.active  } numListeners:${  this.getNumListeners()  }]`;
+    return `[Signal active:${this.active} numListeners:${this.getNumListeners()}]`;
   }
 
   /**

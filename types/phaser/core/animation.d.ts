@@ -9,7 +9,7 @@ export class Animation {
      * @param {number} frameRate - TBD.
      * @param {boolean} loop - TBD.
      */
-    constructor(game: import('./game.js').Game, parent: import('../display/image.js').Image, name: string, frameData: import('./frame_data.js').FrameData, frames: string[] | number[], frameRate: number, loop?: boolean);
+    constructor(game: import("./game.js").Game, parent: import("../display/image.js").Image, name: string, frameData: import("./frame_data.js").FrameData, frames: string[] | number[], frameRate: number, loop?: boolean);
     game: import("./game.js").Game;
     _parent: import("../display/image.js").Image;
     _frameData: import("./frame_data.js").FrameData;
@@ -41,7 +41,7 @@ export class Animation {
     /**
      * TBD.
      */
-    set paused(arg: boolean);
+    set paused(value: boolean);
     /**
      * TBD.
      * @returns {boolean} TBD.
@@ -61,7 +61,7 @@ export class Animation {
     /**
      * TBD.
      */
-    set reversed(arg: boolean);
+    set reversed(value: boolean);
     /**
      * TBD.
      * @returns {boolean} TBD.
@@ -118,7 +118,7 @@ export class Animation {
      * TBD.
      * @param {import('./frame_data.js').FrameData} frameData - TBD.
      */
-    updateFrameData(frameData: import('./frame_data.js').FrameData): void;
+    updateFrameData(frameData: import("./frame_data.js").FrameData): void;
     /**
      * TBD.
      */
@@ -135,7 +135,7 @@ export class Animation {
     /**
      * TBD.
      */
-    set frame(arg: number);
+    set frame(value: number);
     /**
      * TBD.
      * @returns {number} TBD.
@@ -144,7 +144,7 @@ export class Animation {
     /**
      * TBD.
      */
-    set speed(arg: number);
+    set speed(value: number);
     /**
      * TBD.
      * @returns {number} TBD.
@@ -153,7 +153,7 @@ export class Animation {
     /**
      * TBD.
      */
-    set enableUpdate(arg: boolean);
+    set enableUpdate(value: boolean);
     /**
      * TBD.
      * @returns {boolean} TBD.

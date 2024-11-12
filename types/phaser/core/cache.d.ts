@@ -13,7 +13,7 @@ export class Cache {
      * TBD.
      * @param {import('./game.js').Game} game - TBD.
      */
-    constructor(game: import('./game.js').Game);
+    constructor(game: import("./game.js").Game);
     game: import("./game.js").Game;
     autoResolveURL: boolean;
     _cache: {
@@ -274,7 +274,7 @@ export class Cache {
      * @param {string} key - TBD.
      * @returns {import('../display/webgl/render_texture.js').RenderTexture} TBD.
      */
-    getRenderTexture(key: string): import('../display/webgl/render_texture.js').RenderTexture;
+    getRenderTexture(key: string): import("../display/webgl/render_texture.js").RenderTexture;
     /**
      * TBD.
      * @param {string} key - TBD.

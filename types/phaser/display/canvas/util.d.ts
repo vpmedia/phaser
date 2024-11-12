@@ -5,9 +5,9 @@
  * @param {number} height - TBD.
  * @param {string} id - TBD.
  * @param {boolean} skipPool - TBD.
- * @returns {object} TBD.
+ * @returns {HTMLCanvasElement} TBD.
  */
-export function create(parent: object, width: number, height: number, id: string, skipPool: boolean): object;
+export function create(parent: object, width: number, height: number, id: string, skipPool: boolean): HTMLCanvasElement;
 /**
  * TBD.
  * @param {HTMLCanvasElement} canvas - TBD.

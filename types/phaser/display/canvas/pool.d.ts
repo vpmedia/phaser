@@ -33,7 +33,8 @@ export function getFree(): number;
  * @param {object} parent - TBD.
  * @param {number} width - TBD.
  * @param {number} height - TBD.
+ * @param {boolean} skipPool - TBD.
  * @returns {HTMLCanvasElement} TBD.
  */
-export function create(parent: object, width: number, height: number): HTMLCanvasElement;
+export function create(parent: object, width: number, height: number, skipPool?: boolean): HTMLCanvasElement;
 //# sourceMappingURL=pool.d.ts.map

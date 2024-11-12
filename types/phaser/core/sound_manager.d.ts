@@ -3,7 +3,7 @@ export class SoundManager {
      * TBD.
      * @param {import('./game.js').Game} game - TBD.
      */
-    constructor(game: import('./game.js').Game);
+    constructor(game: import("./game.js").Game);
     game: import("./game.js").Game;
     onChange: Signal;
     context: any;
@@ -119,7 +119,7 @@ export class SoundManager {
     /**
      * TBD.
      */
-    set mute(arg: boolean);
+    set mute(value: boolean);
     /**
      * TBD.
      * @returns {boolean} TBD.
@@ -128,7 +128,7 @@ export class SoundManager {
     /**
      * TBD.
      */
-    set volume(arg: number);
+    set volume(value: number);
     /**
      * TBD.
      * @returns {number} TBD.

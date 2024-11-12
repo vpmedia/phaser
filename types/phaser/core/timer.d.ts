@@ -4,7 +4,7 @@ export class Timer {
      * @param {import('./game.js').Game} game - TBD.
      * @param {boolean} autoDestroy - TBD.
      */
-    constructor(game: import('./game.js').Game, autoDestroy?: boolean);
+    constructor(game: import("./game.js").Game, autoDestroy?: boolean);
     game: import("./game.js").Game;
     running: boolean;
     autoDestroy: boolean;

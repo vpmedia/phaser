@@ -2,7 +2,7 @@ export class FrameData {
     /**
      * @type {import('./frame.js').Frame[]}
      */
-    _frames: import('./frame.js').Frame[];
+    _frames: import("./frame.js").Frame[];
     /**
      * @type {string[]}
      */
@@ -12,19 +12,19 @@ export class FrameData {
      * @param {import('./frame.js').Frame} frame - TBD.
      * @returns {import('./frame.js').Frame} TBD.
      */
-    addFrame(frame: import('./frame.js').Frame): import('./frame.js').Frame;
+    addFrame(frame: import("./frame.js").Frame): import("./frame.js").Frame;
     /**
      * TBD.
      * @param {number} index - TBD.
      * @returns {import('./frame.js').Frame} TBD.
      */
-    getFrame(index?: number): import('./frame.js').Frame;
+    getFrame(index?: number): import("./frame.js").Frame;
     /**
      * TBD.
      * @param {string} name - TBD.
      * @returns {import('./frame.js').Frame} TBD.
      */
-    getFrameByName(name: string): import('./frame.js').Frame;
+    getFrameByName(name: string): import("./frame.js").Frame;
     /**
      * TBD.
      * @param {string} name - TBD.
@@ -43,7 +43,7 @@ export class FrameData {
      * @param {import('./frame.js').Frame[]} output - TBD.
      * @returns {import('./frame.js').Frame[]} TBD.
      */
-    getFrameRange(start: number, end: number, output?: import('./frame.js').Frame[]): import('./frame.js').Frame[];
+    getFrameRange(start: number, end: number, output?: import("./frame.js").Frame[]): import("./frame.js").Frame[];
     /**
      * TBD.
      * @param {number[]|string[]} frames - TBD.

@@ -25,8 +25,10 @@ export class Game {
     tweens: TweenManager;
     world: World;
     device: Device;
-    canvas: any;
-    context: any;
+    /** @type {HTMLCanvasElement} */
+    canvas: HTMLCanvasElement;
+    /** @type {RenderingContext} */
+    context: RenderingContext;
     onPause: Signal;
     onResume: Signal;
     onBoot: Signal;
@@ -35,6 +37,10 @@ export class Game {
      * TBD.
      */
     boot(): void;
+    /**
+     * TBD.
+     */
+    createRendererCanvas(): void;
     /**
      * TBD.
      */

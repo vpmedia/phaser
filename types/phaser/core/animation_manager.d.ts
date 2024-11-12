@@ -3,7 +3,7 @@ export class AnimationManager {
      * TBD.
      * @param {import('../display/image.js').Image} sprite - TBD.
      */
-    constructor(sprite: import('../display/image.js').Image);
+    constructor(sprite: import("../display/image.js").Image);
     sprite: import("../display/image.js").Image;
     game: import("./game.js").Game;
     currentFrame: any;
@@ -23,11 +23,11 @@ export class AnimationManager {
      * @param {string|number} frame - TBD.
      * @returns {boolean} TBD.
      */
-    loadFrameData(frameData: import('./frame_data.js').FrameData, frame: string | number): boolean;
+    loadFrameData(frameData: import("./frame_data.js").FrameData, frame: string | number): boolean;
     /**
      * TBD.
      */
-    set frame(arg: number);
+    set frame(value: number);
     /**
      * TBD.
      * @returns {number} TBD.
@@ -36,7 +36,7 @@ export class AnimationManager {
     /**
      * TBD.
      */
-    set frameName(arg: string);
+    set frameName(value: string);
     /**
      * TBD.
      * @returns {string} TBD.
@@ -48,7 +48,7 @@ export class AnimationManager {
      * @param {string|number} frame - TBD.
      * @returns {boolean} TBD.
      */
-    copyFrameData(frameData: import('./frame_data.js').FrameData, frame: string | number): boolean;
+    copyFrameData(frameData: import("./frame_data.js").FrameData, frame: string | number): boolean;
     /**
      * TBD.
      * @param {string} name - TBD.
@@ -118,7 +118,7 @@ export class AnimationManager {
     /**
      * TBD.
      */
-    set paused(arg: boolean);
+    set paused(value: boolean);
     /**
      * TBD.
      * @returns {boolean} TBD.

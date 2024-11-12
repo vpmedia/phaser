@@ -3,7 +3,7 @@ export class Mouse {
      * TBD.
      * @param {import('./game.js').Game} game - TBD.
      */
-    constructor(game: import('./game.js').Game);
+    constructor(game: import("./game.js").Game);
     game: import("./game.js").Game;
     input: import("./input.js").Input;
     callbackContext: import("./game.js").Game;
@@ -19,7 +19,7 @@ export class Mouse {
     enabled: boolean;
     locked: boolean;
     stopOnGameOut: boolean;
-    event: MouseEvent | WheelEvent;
+    event: WheelEvent | MouseEvent;
     _onMouseDown: (event: any) => void;
     _onMouseMove: (event: any) => void;
     _onMouseUp: (event: any) => void;

@@ -47,7 +47,7 @@ export class Polygon {
     /**
      * TBD.
      */
-    set points(arg: any[]);
+    set points(value: any[]);
     /**
      * TBD.
      * @returns {object[]} TBD.

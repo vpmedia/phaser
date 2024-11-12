@@ -6,7 +6,7 @@ export class NormalShader {
     constructor(gl: WebGLRenderingContext);
     gl: WebGLRenderingContext;
     _UID: string;
-    program: any;
+    program: WebGLProgram;
     fragmentSrc: string[];
     textureCount: number;
     firstRun: boolean;

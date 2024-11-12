@@ -5,7 +5,7 @@ export class Pointer {
      * @param {number} id - TBD.
      * @param {number} pointerMode - TBD.
      */
-    constructor(game: import('./game.js').Game, id: number, pointerMode: number);
+    constructor(game: import("./game.js").Game, id: number, pointerMode: number);
     game: import("./game.js").Game;
     id: number;
     type: number;
@@ -87,7 +87,7 @@ export class Pointer {
      * @param {import('./input_handler.js').InputHandler} newTarget - TBD.
      * @param {boolean} silent - TBD.
      */
-    swapTarget(newTarget: import('./input_handler.js').InputHandler, silent?: boolean): void;
+    swapTarget(newTarget: import("./input_handler.js").InputHandler, silent?: boolean): void;
     /**
      * TBD.
      * @param {MouseEvent|PointerEvent} event - TBD.

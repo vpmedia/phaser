@@ -4,7 +4,7 @@
  * @param {object} bitmapFontData - TBD.
  * @returns {object} TBD.
  */
-export function finalizeBitmapFont(baseTexture: import('../display/webgl/base_texture.js').BaseTexture, bitmapFontData: object): object;
+export function finalizeBitmapFont(baseTexture: import("../display/webgl/base_texture.js").BaseTexture, bitmapFontData: object): object;
 /**
  * TBD.
  * @param {object} xml - TBD.
@@ -13,7 +13,7 @@ export function finalizeBitmapFont(baseTexture: import('../display/webgl/base_te
  * @param {number} ySpacing - TBD.
  * @returns {object} TBD.
  */
-export function xmlBitmapFont(xml: object, baseTexture: import('../display/webgl/base_texture.js').BaseTexture, xSpacing: number, ySpacing: number): object;
+export function xmlBitmapFont(xml: object, baseTexture: import("../display/webgl/base_texture.js").BaseTexture, xSpacing: number, ySpacing: number): object;
 /**
  * TBD.
  * @param {object} xml - TBD.
@@ -22,7 +22,7 @@ export function xmlBitmapFont(xml: object, baseTexture: import('../display/webgl
  * @param {number} ySpacing - TBD.
  * @returns {object} TBD.
  */
-export function bitmapFont(xml: object, baseTexture: import('../display/webgl/base_texture.js').BaseTexture, xSpacing: number, ySpacing: number): object;
+export function bitmapFont(xml: object, baseTexture: import("../display/webgl/base_texture.js").BaseTexture, xSpacing: number, ySpacing: number): object;
 /**
  * TBD.
  * @param {object} json - TBD.
@@ -31,5 +31,5 @@ export function bitmapFont(xml: object, baseTexture: import('../display/webgl/ba
  * @param {number} ySpacing - TBD.
  * @returns {object} TBD.
  */
-export function jsonBitmapFont(json: object, baseTexture: import('../display/webgl/base_texture.js').BaseTexture, xSpacing: number, ySpacing: number): object;
+export function jsonBitmapFont(json: object, baseTexture: import("../display/webgl/base_texture.js").BaseTexture, xSpacing: number, ySpacing: number): object;
 //# sourceMappingURL=loader_parser.d.ts.map

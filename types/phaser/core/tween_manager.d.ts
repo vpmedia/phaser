@@ -3,7 +3,7 @@ export class TweenManager {
      * TBD.
      * @param {import('./game.js').Game} game - TBD.
      */
-    constructor(game: import('./game.js').Game);
+    constructor(game: import("./game.js").Game);
     game: import("./game.js").Game;
     _tweens: any[];
     _add: any[];

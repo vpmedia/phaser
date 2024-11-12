@@ -66,9 +66,11 @@ export function buildPoly(graphicsData: object, webGLData: GraphicsData): boolea
 /**
  * TBD.
  * @param {object} graphics - TBD.
- * @param {object} gl - TBD.
+ * @param {WebGLRenderingContext & { id: number }} gl - TBD.
  */
-export function updateGraphics(graphics: object, gl: object): void;
+export function updateGraphics(graphics: object, gl: WebGLRenderingContext & {
+    id: number;
+}): void;
 /**
  * TBD.
  * @param {object} graphics - TBD.

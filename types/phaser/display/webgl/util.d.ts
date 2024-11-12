@@ -4,32 +4,40 @@
 export function initDefaultShaders(): void;
 /**
  * TBD.
- * @param {object} gl - TBD.
+ * @param {WebGLRenderingContext & { id: number }} gl - TBD.
  * @param {string[]|string} shaderSrc - TBD.
  * @param {object} shaderType - TBD.
- * @returns {object} TBD.
+ * @returns {WebGLShader} TBD.
  */
-export function compileShader(gl: object, shaderSrc: string[] | string, shaderType: object): object;
+export function compileShader(gl: WebGLRenderingContext & {
+    id: number;
+}, shaderSrc: string[] | string, shaderType: object): WebGLShader;
 /**
  * TBD.
- * @param {object} gl - TBD.
+ * @param {WebGLRenderingContext & { id: number }} gl - TBD.
  * @param {string[]|string} shaderSrc - TBD.
- * @returns {object} TBD.
+ * @returns {WebGLShader} TBD.
  */
-export function compileVertexShader(gl: object, shaderSrc: string[] | string): object;
+export function compileVertexShader(gl: WebGLRenderingContext & {
+    id: number;
+}, shaderSrc: string[] | string): WebGLShader;
 /**
  * TBD.
- * @param {object} gl - TBD.
+ * @param {WebGLRenderingContext & { id: number }} gl - TBD.
  * @param {string[]|string} shaderSrc - TBD.
- * @returns {object} TBD.
+ * @returns {WebGLShader} TBD.
  */
-export function compileFragmentShader(gl: object, shaderSrc: string[] | string): object;
+export function compileFragmentShader(gl: WebGLRenderingContext & {
+    id: number;
+}, shaderSrc: string[] | string): WebGLShader;
 /**
  * TBD.
- * @param {object} gl - TBD.
+ * @param {WebGLRenderingContext & { id: number }} gl - TBD.
  * @param {string[]|string} vertexSrc - TBD.
  * @param {string[]|string} fragmentSrc - TBD.
- * @returns {object} TBD.
+ * @returns {WebGLProgram} TBD.
  */
-export function compileProgram(gl: object, vertexSrc: string[] | string, fragmentSrc: string[] | string): object;
+export function compileProgram(gl: WebGLRenderingContext & {
+    id: number;
+}, vertexSrc: string[] | string, fragmentSrc: string[] | string): WebGLProgram;
 //# sourceMappingURL=util.d.ts.map

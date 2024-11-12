@@ -1,6 +1,6 @@
 {
   "name": "@vpmedia/phaser",
-  "version": "1.48.0",
+  "version": "1.49.0",
   "description": "@vpmedia/phaser is the modern ECMAScript port of the popular Phaser game engine v2.6.2",
   "author": "Andras Csizmadia <andras@vpmedia.hu> (www.vpmedia.hu)",
   "license": "MIT",

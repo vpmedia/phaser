@@ -40,7 +40,7 @@ export class WebGLSpriteBatch {
      * @param {import('../../display/image.js').Image} sprite - TBD.
      * @param {import('../../geom/matrix.js').Matrix} matrix - TBD.
      */
-    render(sprite: import('../../display/image.js').Image, matrix: import('../../geom/matrix.js').Matrix): void;
+    render(sprite: import("../../display/image.js").Image, matrix: import("../../geom/matrix.js").Matrix): void;
     /**
      * TBD.
      */
@@ -55,7 +55,7 @@ export class WebGLSpriteBatch {
      * @param {number} size - TBD.
      * @param {number} startIndex - TBD.
      */
-    renderBatch(texture: import('./base_texture.js').BaseTexture, size: number, startIndex: number): void;
+    renderBatch(texture: import("./base_texture.js").BaseTexture, size: number, startIndex: number): void;
     /**
      * TBD.
      */

@@ -7,7 +7,7 @@ export class Image extends DisplayObject {
      * @param {string} key - TBD.
      * @param {string|number} frame - TBD.
      */
-    constructor(game: import('../core/game.js').Game, x: number, y: number, key: string, frame: string | number);
+    constructor(game: import("../core/game.js").Game, x: number, y: number, key: string, frame: string | number);
     game: import("../core/game.js").Game;
     type: number;
     key: string;
@@ -35,7 +35,7 @@ export class Image extends DisplayObject {
      * TBD.
      * @param {import('../core/frame.js').Frame} frame - TBD.
      */
-    setFrame(frame: import('../core/frame.js').Frame): void;
+    setFrame(frame: import("../core/frame.js").Frame): void;
     refreshTexture: boolean;
     /**
      * TBD.
@@ -51,7 +51,7 @@ export class Image extends DisplayObject {
     /**
      * TBD.
      */
-    set frame(arg: number);
+    set frame(value: number);
     /**
      * TBD.
      * @returns {number} TBD.
@@ -60,7 +60,7 @@ export class Image extends DisplayObject {
     /**
      * TBD.
      */
-    set frameName(arg: string);
+    set frameName(value: string);
     /**
      * TBD.
      * @returns {string} TBD.
@@ -93,19 +93,19 @@ export class Image extends DisplayObject {
      * @param {import('../geom/matrix.js').Matrix} matrix - TBD.
      * @returns {Rectangle} TBD.
      */
-    getBounds(matrix?: import('../geom/matrix.js').Matrix): Rectangle;
+    getBounds(matrix?: import("../geom/matrix.js").Matrix): Rectangle;
     /**
      * TBD.
      * @param {object} renderSession - TBD.
      * @param {import('../geom/matrix.js').Matrix} matrix - TBD.
      */
-    renderWebGL(renderSession: object, matrix?: import('../geom/matrix.js').Matrix): void;
+    renderWebGL(renderSession: object, matrix?: import("../geom/matrix.js").Matrix): void;
     /**
      * TBD.
      * @param {object} renderSession - TBD.
      * @param {import('../geom/matrix.js').Matrix} matrix - TBD.
      */
-    renderCanvas(renderSession: object, matrix?: import('../geom/matrix.js').Matrix): void;
+    renderCanvas(renderSession: object, matrix?: import("../geom/matrix.js").Matrix): void;
 }
 import { DisplayObject } from './display_object.js';
 import { Rectangle } from '../geom/rectangle.js';

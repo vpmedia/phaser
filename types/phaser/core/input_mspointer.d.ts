@@ -3,7 +3,7 @@ export class MSPointer {
      * TBD.
      * @param {import('./game.js').Game} game - TBD.
      */
-    constructor(game: import('./game.js').Game);
+    constructor(game: import("./game.js").Game);
     game: import("./game.js").Game;
     input: import("./input.js").Input;
     callbackContext: import("./game.js").Game;

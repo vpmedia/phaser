@@ -115,7 +115,7 @@ export class NormalShader {
         }
       } else {
         //  GL function reference
-        uniform.glFunc = gl[`uniform${  type}`];
+        uniform.glFunc = gl[`uniform${type}`];
         if (type === '2f' || type === '2i') {
           uniform.glValueLength = 2;
         } else if (type === '3f' || type === '3i') {
@@ -138,7 +138,7 @@ export class NormalShader {
       return;
     }
     const gl = this.gl;
-    gl.activeTexture(gl[`TEXTURE${  this.textureCount}`]);
+    gl.activeTexture(gl[`TEXTURE${this.textureCount}`]);
     gl.bindTexture(gl.TEXTURE_2D, uniform.value.baseTexture._glTextures[gl.id]);
     //  Extended texture data
     if (uniform.textureData) {
@@ -215,7 +215,7 @@ export class NormalShader {
         );
       } else if (uniform.type === 'sampler2D') {
         if (uniform._init) {
-          gl.activeTexture(gl[`TEXTURE${  this.textureCount}`]);
+          gl.activeTexture(gl[`TEXTURE${this.textureCount}`]);
           if (uniform.value.baseTexture._dirty[gl.id]) {
             window.PhaserRegistry.INSTANCES[gl.id].updateTexture(uniform.value.baseTexture);
           } else {

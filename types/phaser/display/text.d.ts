@@ -7,7 +7,7 @@ export class Text extends Image {
      * @param {string} text - TBD.
      * @param {object} style - TBD.
      */
-    constructor(game: import('../core/game.js').Game, x: number, y: number, text?: string, style?: object);
+    constructor(game: import("../core/game.js").Game, x: number, y: number, text?: string, style?: object);
     canvas: HTMLCanvasElement;
     context: CanvasRenderingContext2D;
     padding: Point;
@@ -163,7 +163,7 @@ export class Text extends Image {
     /**
      * TBD.
      */
-    set text(arg: string);
+    set text(value: string);
     /**
      * TBD.
      * @returns {string} TBD.
@@ -222,7 +222,7 @@ export class Text extends Image {
     /**
      * TBD.
      */
-    set cssFont(arg: string);
+    set cssFont(value: string);
     /**
      * TBD.
      * @returns {string} TBD.
@@ -231,7 +231,7 @@ export class Text extends Image {
     /**
      * TBD.
      */
-    set font(arg: number);
+    set font(value: number);
     /**
      * TBD.
      * @returns {number} TBD.
@@ -240,7 +240,7 @@ export class Text extends Image {
     /**
      * TBD.
      */
-    set fontSize(arg: number);
+    set fontSize(value: number);
     /**
      * TBD.
      * @returns {number} TBD.
@@ -249,7 +249,7 @@ export class Text extends Image {
     /**
      * TBD.
      */
-    set fontWeight(arg: string);
+    set fontWeight(value: string);
     /**
      * TBD.
      * @returns {string} TBD.
@@ -258,7 +258,7 @@ export class Text extends Image {
     /**
      * TBD.
      */
-    set fontStyle(arg: string);
+    set fontStyle(value: string);
     /**
      * TBD.
      * @returns {string} TBD.
@@ -267,7 +267,7 @@ export class Text extends Image {
     /**
      * TBD.
      */
-    set fontVariant(arg: string);
+    set fontVariant(value: string);
     /**
      * TBD.
      * @returns {string} TBD.
@@ -276,7 +276,7 @@ export class Text extends Image {
     /**
      * TBD.
      */
-    set fill(arg: number);
+    set fill(value: number);
     /**
      * TBD.
      * @returns {number} TBD.
@@ -285,7 +285,7 @@ export class Text extends Image {
     /**
      * TBD.
      */
-    set align(arg: string);
+    set align(value: string);
     /**
      * TBD.
      * @returns {string} TBD.
@@ -294,7 +294,7 @@ export class Text extends Image {
     /**
      * TBD.
      */
-    set resolution(arg: number);
+    set resolution(value: number);
     /**
      * TBD.
      * @returns {number} TBD.
@@ -303,7 +303,7 @@ export class Text extends Image {
     /**
      * TBD.
      */
-    set tabs(arg: number);
+    set tabs(value: number);
     /**
      * TBD.
      * @returns {number} TBD.
@@ -312,7 +312,7 @@ export class Text extends Image {
     /**
      * TBD.
      */
-    set boundsAlignH(arg: number);
+    set boundsAlignH(value: number);
     /**
      * TBD.
      * @returns {number} TBD.
@@ -321,7 +321,7 @@ export class Text extends Image {
     /**
      * TBD.
      */
-    set boundsAlignV(arg: number);
+    set boundsAlignV(value: number);
     /**
      * TBD.
      * @returns {number} TBD.
@@ -330,7 +330,7 @@ export class Text extends Image {
     /**
      * TBD.
      */
-    set stroke(arg: number);
+    set stroke(value: number);
     /**
      * TBD.
      * @returns {number} TBD.
@@ -339,7 +339,7 @@ export class Text extends Image {
     /**
      * TBD.
      */
-    set strokeThickness(arg: number);
+    set strokeThickness(value: number);
     /**
      * TBD.
      * @returns {number} TBD.
@@ -348,7 +348,7 @@ export class Text extends Image {
     /**
      * TBD.
      */
-    set wordWrap(arg: number);
+    set wordWrap(value: number);
     /**
      * TBD.
      * @returns {number} TBD.
@@ -357,7 +357,7 @@ export class Text extends Image {
     /**
      * TBD.
      */
-    set wordWrapWidth(arg: number);
+    set wordWrapWidth(value: number);
     /**
      * TBD.
      * @returns {number} TBD.
@@ -366,7 +366,7 @@ export class Text extends Image {
     /**
      * TBD.
      */
-    set lineSpacing(arg: number);
+    set lineSpacing(value: number);
     /**
      * TBD.
      * @returns {number} TBD.
@@ -375,7 +375,7 @@ export class Text extends Image {
     /**
      * TBD.
      */
-    set shadowOffsetX(arg: number);
+    set shadowOffsetX(value: number);
     /**
      * TBD.
      * @returns {number} TBD.
@@ -384,7 +384,7 @@ export class Text extends Image {
     /**
      * TBD.
      */
-    set shadowOffsetY(arg: number);
+    set shadowOffsetY(value: number);
     /**
      * TBD.
      * @returns {number} TBD.
@@ -393,7 +393,7 @@ export class Text extends Image {
     /**
      * TBD.
      */
-    set shadowColor(arg: number);
+    set shadowColor(value: number);
     /**
      * TBD.
      * @returns {number} TBD.
@@ -402,7 +402,7 @@ export class Text extends Image {
     /**
      * TBD.
      */
-    set shadowBlur(arg: number);
+    set shadowBlur(value: number);
     /**
      * TBD.
      * @returns {number} TBD.
@@ -411,7 +411,7 @@ export class Text extends Image {
     /**
      * TBD.
      */
-    set shadowStroke(arg: number);
+    set shadowStroke(value: number);
     /**
      * TBD.
      * @returns {number} TBD.
@@ -420,7 +420,7 @@ export class Text extends Image {
     /**
      * TBD.
      */
-    set shadowFill(arg: number);
+    set shadowFill(value: number);
     /**
      * TBD.
      * @returns {number} TBD.

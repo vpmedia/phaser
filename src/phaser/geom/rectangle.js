@@ -321,19 +321,7 @@ export class Rectangle {
    * @returns {string} TBD.
    */
   toString() {
-    return (
-      `[{Rectangle (x=${ 
-      this.x 
-      } y=${ 
-      this.y 
-      } width=${ 
-      this.width 
-      } height=${ 
-      this.height 
-      } empty=${ 
-      this.empty 
-      })}]`
-    );
+    return `[{Rectangle (x=${this.x} y=${this.y} width=${this.width} height=${this.height} empty=${this.empty})}]`;
   }
 
   /**

@@ -6,7 +6,7 @@ export class ComplexPrimitiveShader {
     constructor(gl: WebGLRenderingContext);
     gl: WebGLRenderingContext;
     _UID: string;
-    program: any;
+    program: WebGLProgram;
     fragmentSrc: string[];
     vertexSrc: string[];
     /**

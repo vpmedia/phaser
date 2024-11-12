@@ -16,7 +16,7 @@ export class Texture {
      * @param {Rectangle} crop - TBD.
      * @param {Rectangle} trim - TBD.
      */
-    constructor(baseTexture: import('./base_texture.js').BaseTexture, frame: Rectangle, crop: Rectangle, trim: Rectangle);
+    constructor(baseTexture: import("./base_texture.js").BaseTexture, frame: Rectangle, crop: Rectangle, trim: Rectangle);
     noFrame: boolean;
     baseTexture: import("./base_texture.js").BaseTexture;
     frame: Rectangle;

@@ -1,8 +1,8 @@
-import { GraphicsData } from './graphics_data.js';
-import { Point } from '../../geom/point.js';
 import { GEOM_CIRCLE, GEOM_ELLIPSE, GEOM_POLYGON, GEOM_RECTANGLE, GEOM_ROUNDED_RECTANGLE } from '../../core/const.js';
+import { Point } from '../../geom/point.js';
 import { hex2rgb } from '../../util/math.js';
 import { triangulate } from './earcut.js';
+import { GraphicsData } from './graphics_data.js';
 
 /**
  * TBD.
@@ -485,7 +485,7 @@ export function buildPoly(graphicsData, webGLData) {
 /**
  * TBD.
  * @param {object} graphics - TBD.
- * @param {object} gl - TBD.
+ * @param {WebGLRenderingContext & { id: number }} gl - TBD.
  */
 export function updateGraphics(graphics, gl) {
   const stencilBufferLimit = getStencilBufferLimit();

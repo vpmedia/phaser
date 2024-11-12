@@ -146,11 +146,18 @@ export class Game {
       } catch (e) {
         isWebGlReady = false;
         const tags = {};
+        /** @type {WebGLRenderer} */
+        // @ts-ignore
+        const renderer = this.renderer;
+        if (renderer.gl) {
+          tags['webgl.error'] = renderer.gl.getError();
+          tags['webgl.context_lost'] = renderer.gl.isContextLost();
+        }
         if (window.PhaserRegistry?.GL_PROGRAM_INFO_LOG) {
-          tags.gl_program_log = window.PhaserRegistry.GL_PROGRAM_INFO_LOG;
+          tags['webgl.program_log'] = window.PhaserRegistry.GL_PROGRAM_INFO_LOG;
         }
         if (window.PhaserRegistry?.GL_SHADER_INFO_LOG) {
-          tags.gl_shader_log = window.PhaserRegistry.GL_SHADER_INFO_LOG;
+          tags['webgl.shader_log'] = window.PhaserRegistry.GL_SHADER_INFO_LOG;
         }
         this.exceptionHandler(e, tags);
       }

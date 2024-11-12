@@ -44,7 +44,7 @@ export class FastSpriteBatch {
      * TBD.
      * @param {import('../../display/image.js').Image} sprite - TBD.
      */
-    renderSprite(sprite: import('../../display/image.js').Image): void;
+    renderSprite(sprite: import("../../display/image.js").Image): void;
     /**
      * TBD.
      */

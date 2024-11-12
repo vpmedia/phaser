@@ -5,7 +5,7 @@ export class ScaleManager {
      * @param {number} width - TBD.
      * @param {number} height - TBD.
      */
-    constructor(game: import('./game.js').Game, width: number, height: number);
+    constructor(game: import("./game.js").Game, width: number, height: number);
     game: import("./game.js").Game;
     dom: DOM;
     width: number;
@@ -91,7 +91,7 @@ export class ScaleManager {
     /**
      * TBD.
      */
-    set scaleMode(arg: number);
+    set scaleMode(value: number);
     /**
      * TBD.
      * @returns {number} TBD.
@@ -105,7 +105,7 @@ export class ScaleManager {
     /**
      * TBD.
      */
-    set fullScreenScaleMode(arg: number);
+    set fullScreenScaleMode(value: number);
     /**
      * TBD.
      * @returns {number} TBD.

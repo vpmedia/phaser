@@ -7,7 +7,7 @@ export class SoundSprite {
   constructor(game, key) {
     this.game = game;
     this.key = key;
-    this.config = this.game.cache.getJSON(`${key  }-audioatlas`);
+    this.config = this.game.cache.getJSON(`${key}-audioatlas`);
     this.autoplayKey = null;
     this.autoplay = false;
     this.sounds = {};

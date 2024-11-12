@@ -39,4 +39,3 @@ export { Graphics } from './phaser/display/graphics.js';
 export { Group } from './phaser/display/group.js';
 export { Image } from './phaser/display/image.js';
 export { Text } from './phaser/display/text.js';
-

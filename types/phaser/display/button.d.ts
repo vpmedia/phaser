@@ -12,7 +12,7 @@ export class Button extends Image {
      * @param {string} downFrame - TBD.
      * @param {string} upFrame - TBD.
      */
-    constructor(game: import('../core/game.js').Game, x?: number, y?: number, key?: string, callback?: Function, callbackContext?: object, overFrame?: string, outFrame?: string, downFrame?: string, upFrame?: string);
+    constructor(game: import("../core/game.js").Game, x?: number, y?: number, key?: string, callback?: Function, callbackContext?: object, overFrame?: string, outFrame?: string, downFrame?: string, upFrame?: string);
     _onOverFrame: any;
     _onOutFrame: any;
     _onDownFrame: any;
@@ -44,7 +44,7 @@ export class Button extends Image {
     /**
      * TBD.
      */
-    set inputEnabled(arg: boolean);
+    set inputEnabled(value: boolean);
     /**
      * TBD.
      * @returns {boolean} TBD.

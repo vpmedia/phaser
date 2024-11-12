@@ -309,6 +309,6 @@ export class Point {
    * @returns {string} TBD.
    */
   toString() {
-    return `[{Point (x=${  this.x  } y=${  this.y  })}]`;
+    return `[{Point (x=${this.x} y=${this.y})}]`;
   }
 }

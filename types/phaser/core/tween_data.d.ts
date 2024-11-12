@@ -3,7 +3,7 @@ export class TweenData {
      * TBD.
      * @param {import('./tween.js').Tween} parent - TBD.
      */
-    constructor(parent: import('./tween.js').Tween);
+    constructor(parent: import("./tween.js").Tween);
     parent: import("./tween.js").Tween;
     game: import("./game.js").Game;
     vStart: {};

@@ -3,7 +3,7 @@ export class Touch {
      * TBD.
      * @param {import('./game.js').Game} game - TBD.
      */
-    constructor(game: import('./game.js').Game);
+    constructor(game: import("./game.js").Game);
     game: import("./game.js").Game;
     enabled: boolean;
     callbackContext: import("./game.js").Game;

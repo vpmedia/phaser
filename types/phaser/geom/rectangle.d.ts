@@ -51,7 +51,7 @@ export class Rectangle {
     /**
      * TBD.
      */
-    set centerX(arg: number);
+    set centerX(value: number);
     /**
      * TBD.
      * @returns {number} TBD.
@@ -60,7 +60,7 @@ export class Rectangle {
     /**
      * TBD.
      */
-    set centerY(arg: number);
+    set centerY(value: number);
     /**
      * TBD.
      * @returns {number} TBD.
@@ -200,7 +200,7 @@ export class Rectangle {
     /**
      * TBD.
      */
-    set top(arg: number);
+    set top(value: number);
     /**
      * TBD.
      * @returns {number} TBD.
@@ -209,7 +209,7 @@ export class Rectangle {
     /**
      * TBD.
      */
-    set topLeft(arg: Point);
+    set topLeft(value: Point);
     /**
      * TBD.
      * @returns {Point} TBD.
@@ -218,7 +218,7 @@ export class Rectangle {
     /**
      * TBD.
      */
-    set topRight(arg: Point);
+    set topRight(value: Point);
     /**
      * TBD.
      * @returns {Point} TBD.
@@ -227,7 +227,7 @@ export class Rectangle {
     /**
      * TBD.
      */
-    set right(arg: number);
+    set right(value: number);
     /**
      * TBD.
      * @returns {number} TBD.
@@ -236,7 +236,7 @@ export class Rectangle {
     /**
      * TBD.
      */
-    set bottom(arg: number);
+    set bottom(value: number);
     /**
      * TBD.
      * @returns {number} TBD.
@@ -245,7 +245,7 @@ export class Rectangle {
     /**
      * TBD.
      */
-    set bottomLeft(arg: Point);
+    set bottomLeft(value: Point);
     /**
      * TBD.
      * @returns {Point} TBD.
@@ -254,7 +254,7 @@ export class Rectangle {
     /**
      * TBD.
      */
-    set bottomRight(arg: Point);
+    set bottomRight(value: Point);
     /**
      * TBD.
      * @returns {Point} TBD.
@@ -263,7 +263,7 @@ export class Rectangle {
     /**
      * TBD.
      */
-    set left(arg: number);
+    set left(value: number);
     /**
      * TBD.
      * @returns {number} TBD.
@@ -292,7 +292,7 @@ export class Rectangle {
     /**
      * TBD.
      */
-    set empty(arg: boolean);
+    set empty(value: boolean);
     /**
      * TBD.
      * @returns {boolean} TBD.

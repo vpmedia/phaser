@@ -168,7 +168,7 @@ export class DisplayObject {
     /**
      * TBD.
      */
-    set width(arg: number);
+    set width(value: number);
     /**
      * TBD.
      * @returns {number} TBD.
@@ -178,7 +178,7 @@ export class DisplayObject {
     /**
      * TBD.
      */
-    set height(arg: number);
+    set height(value: number);
     /**
      * TBD.
      * @returns {number} TBD.
@@ -188,7 +188,7 @@ export class DisplayObject {
     /**
      * TBD.
      */
-    set x(arg: number);
+    set x(value: number);
     /**
      * TBD.
      * @returns {number} TBD.
@@ -197,7 +197,7 @@ export class DisplayObject {
     /**
      * TBD.
      */
-    set y(arg: number);
+    set y(value: number);
     /**
      * TBD.
      * @returns {number} TBD.
@@ -211,7 +211,7 @@ export class DisplayObject {
     /**
      * TBD.
      */
-    set mask(arg: import("./graphics.js").Graphics);
+    set mask(value: import("./graphics.js").Graphics);
     /**
      * TBD.
      * @returns {import('./graphics.js').Graphics} TBD.
@@ -230,7 +230,7 @@ export class DisplayObject {
     /**
      * TBD.
      */
-    set centerX(arg: number);
+    set centerX(value: number);
     /**
      * TBD.
      * @returns {number} TBD.
@@ -239,7 +239,7 @@ export class DisplayObject {
     /**
      * TBD.
      */
-    set centerY(arg: number);
+    set centerY(value: number);
     /**
      * TBD.
      * @returns {number} TBD.
@@ -248,7 +248,7 @@ export class DisplayObject {
     /**
      * TBD.
      */
-    set left(arg: number);
+    set left(value: number);
     /**
      * TBD.
      * @returns {number} TBD.
@@ -257,7 +257,7 @@ export class DisplayObject {
     /**
      * TBD.
      */
-    set right(arg: number);
+    set right(value: number);
     /**
      * TBD.
      * @returns {number} TBD.
@@ -266,7 +266,7 @@ export class DisplayObject {
     /**
      * TBD.
      */
-    set top(arg: number);
+    set top(value: number);
     /**
      * TBD.
      * @returns {number} TBD.
@@ -275,7 +275,7 @@ export class DisplayObject {
     /**
      * TBD.
      */
-    set bottom(arg: number);
+    set bottom(value: number);
     /**
      * TBD.
      * @returns {number} TBD.

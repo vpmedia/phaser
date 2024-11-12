@@ -7,7 +7,7 @@ export class RenderTexture extends Texture {
      * @param {number} scaleMode - TBD.
      * @param {number} resolution - TBD.
      */
-    constructor(width: number, height: number, renderer: import('./renderer.js').WebGLRenderer | import('../canvas/renderer.js').CanvasRenderer, scaleMode: number, resolution?: number);
+    constructor(width: number, height: number, renderer: import("./renderer.js").WebGLRenderer | import("../canvas/renderer.js").CanvasRenderer, scaleMode: number, resolution?: number);
     resolution: number;
     renderer: import("../canvas/renderer.js").CanvasRenderer | import("./renderer.js").WebGLRenderer;
     textureBuffer: CanvasBuffer | FilterTexture;

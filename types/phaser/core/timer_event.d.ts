@@ -10,7 +10,7 @@ export class TimerEvent {
      * @param {object} callbackContext - TBD.
      * @param {...any} args - TBD.
      */
-    constructor(timer: import('./timer.js').Timer, delay: number, tick: number, repeatCount: number, loop: boolean, callback: Function, callbackContext: object, args: any[]);
+    constructor(timer: import("./timer.js").Timer, delay: number, tick: number, repeatCount: number, loop: boolean, callback: Function, callbackContext: object, args: any[]);
     timer: import("./timer.js").Timer;
     delay: number;
     tick: number;

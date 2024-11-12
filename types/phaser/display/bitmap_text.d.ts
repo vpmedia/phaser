@@ -9,7 +9,7 @@ export class BitmapText extends DisplayObject {
      * @param {number} size - TBD.
      * @param {string} align - TBD.
      */
-    constructor(game: import('../core/game.js').Game, x?: number, y?: number, font?: string, text?: string, size?: number, align?: string);
+    constructor(game: import("../core/game.js").Game, x?: number, y?: number, font?: string, text?: string, size?: number, align?: string);
     game: import("../core/game.js").Game;
     type: number;
     textWidth: number;
@@ -33,7 +33,7 @@ export class BitmapText extends DisplayObject {
     /**
      * TBD.
      */
-    set text(arg: string);
+    set text(value: string);
     /**
      * TBD.
      * @returns {string} TBD.
@@ -70,7 +70,7 @@ export class BitmapText extends DisplayObject {
     /**
      * TBD.
      */
-    set align(arg: string);
+    set align(value: string);
     /**
      * TBD.
      * @returns {string} TBD.
@@ -79,7 +79,7 @@ export class BitmapText extends DisplayObject {
     /**
      * TBD.
      */
-    set tint(arg: number);
+    set tint(value: number);
     /**
      * TBD.
      * @returns {number} TBD.
@@ -88,7 +88,7 @@ export class BitmapText extends DisplayObject {
     /**
      * TBD.
      */
-    set fill(arg: string);
+    set fill(value: string);
     /**
      * TBD.
      * @returns {string} TBD.
@@ -97,7 +97,7 @@ export class BitmapText extends DisplayObject {
     /**
      * TBD.
      */
-    set font(arg: string);
+    set font(value: string);
     /**
      * TBD.
      * @returns {string} TBD.
@@ -106,7 +106,7 @@ export class BitmapText extends DisplayObject {
     /**
      * TBD.
      */
-    set fontSize(arg: number);
+    set fontSize(value: number);
     /**
      * TBD.
      * @returns {number} TBD.
@@ -115,7 +115,7 @@ export class BitmapText extends DisplayObject {
     /**
      * TBD.
      */
-    set maxWidth(arg: number);
+    set maxWidth(value: number);
     /**
      * TBD.
      * @returns {number} TBD.
@@ -124,7 +124,7 @@ export class BitmapText extends DisplayObject {
     /**
      * TBD.
      */
-    set smoothed(arg: boolean);
+    set smoothed(value: boolean);
     /**
      * TBD.
      * @returns {boolean} TBD.

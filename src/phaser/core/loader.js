@@ -163,14 +163,14 @@ export class Loader {
    */
   addToFileList(type, key = '', url = null, properties = null, overwrite = false, extension = null) {
     if (key === undefined || key === '') {
-      console.warn(`Loader: Invalid or no key given of type ${  type}`);
+      console.warn(`Loader: Invalid or no key given of type ${type}`);
       return this;
     }
     if (url === undefined || url === null) {
       if (extension) {
         url = key + extension;
       } else {
-        console.warn(`Loader: No URL given for file type: ${  type  } key: ${  key}`);
+        console.warn(`Loader: No URL given for file type: ${type} key: ${key}`);
         return this;
       }
     }
@@ -376,12 +376,12 @@ export class Loader {
     }
     this.audio(key, urls, autoDecode);
     if (jsonURL) {
-      this.json(`${key  }-audioatlas`, jsonURL);
+      this.json(`${key}-audioatlas`, jsonURL);
     } else if (jsonData) {
       if (typeof jsonData === 'string') {
         jsonData = JSON.parse(jsonData);
       }
-      this.cache.addJSON(`${key  }-audioatlas`, '', jsonData);
+      this.cache.addJSON(`${key}-audioatlas`, '', jsonData);
     }
     return this;
   }
@@ -399,10 +399,10 @@ export class Loader {
    */
   bitmapFont(key, textureURL = null, atlasURL = null, atlasData = null, xSpacing = 0, ySpacing = 0) {
     if (textureURL === undefined || textureURL === null) {
-      textureURL = `${key  }.png`;
+      textureURL = `${key}.png`;
     }
     if (atlasURL === null && atlasData === null) {
-      atlasURL = `${key  }.xml`;
+      atlasURL = `${key}.xml`;
     }
     //  A URL to a json/xml atlas has been given
     if (atlasURL) {
@@ -441,10 +441,10 @@ export class Loader {
    */
   atlas(key, textureURL, atlasURL = null, atlasData = null, format = TEXTURE_ATLAS_JSON_HASH) {
     if (textureURL === undefined || textureURL === null) {
-      textureURL = `${key  }.png`;
+      textureURL = `${key}.png`;
     }
     if (!atlasURL && !atlasData) {
-      atlasURL = `${key  }.json`;
+      atlasURL = `${key}.json`;
     }
     //  A URL to a json/xml file has been given
     if (atlasURL) {
@@ -936,7 +936,7 @@ export class Loader {
     if (!reason && xhr) {
       reason = xhr.status;
     }
-    const message = `Error loading asset (${  reason  })`;
+    const message = `Error loading asset (${reason})`;
     this.asyncComplete(file, message);
   }
 
@@ -976,7 +976,7 @@ export class Loader {
           if (file.format === TEXTURE_ATLAS_JSON_HASH) {
             this.xhrLoad(file, this.transformUrl(file.atlasURL, file), 'text', this.jsonLoadComplete);
           } else {
-            throw new Error(`Invalid Texture Atlas format: ${  file.format}`);
+            throw new Error(`Invalid Texture Atlas format: ${file.format}`);
           }
         }
         break;
@@ -1068,7 +1068,7 @@ export class Loader {
     const xml = this.parseXml(data);
     if (!xml) {
       const responseType = xhr.responseType || xhr.contentType; // contentType for MS-XDomainRequest
-      console.warn(`Loader - ${  file.key  }: invalid XML (${  responseType  })`);
+      console.warn(`Loader - ${file.key}: invalid XML (${responseType})`);
       this.asyncComplete(file, 'invalid XML');
       return;
     }

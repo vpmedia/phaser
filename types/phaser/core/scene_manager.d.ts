@@ -4,7 +4,7 @@ export class SceneManager {
      * @param {import('./game.js').Game} game - TBD.
      * @param {string} pendingState - TBD.
      */
-    constructor(game: import('./game.js').Game, pendingState: string);
+    constructor(game: import("./game.js").Game, pendingState: string);
     game: import("./game.js").Game;
     states: {};
     _pendingState: string;

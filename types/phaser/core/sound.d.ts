@@ -7,7 +7,7 @@ export class Sound {
      * @param {boolean} loop - TBD.
      * @param {boolean} connect - TBD.
      */
-    constructor(game: import('./game.js').Game, key: string, volume?: number, loop?: boolean, connect?: boolean);
+    constructor(game: import("./game.js").Game, key: string, volume?: number, loop?: boolean, connect?: boolean);
     game: import("./game.js").Game;
     name: string;
     key: string;
@@ -101,7 +101,7 @@ export class Sound {
     /**
      * TBD.
      */
-    set volume(arg: number);
+    set volume(value: number);
     /**
      * TBD.
      * @returns {number} TBD.
@@ -157,7 +157,7 @@ export class Sound {
     /**
      * TBD.
      */
-    set mute(arg: boolean);
+    set mute(value: boolean);
     /**
      * TBD.
      * @returns {boolean} TBD.

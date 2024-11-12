@@ -3,7 +3,7 @@ export class Input {
      * TBD.
      * @param {import('./game.js').Game} game - TBD.
      */
-    constructor(game: import('./game.js').Game);
+    constructor(game: import("./game.js").Game);
     game: import("./game.js").Game;
     hitCanvas: HTMLCanvasElement;
     hitContext: CanvasRenderingContext2D;
@@ -151,7 +151,7 @@ export class Input {
      * @param {Point} output - TBD.
      * @returns {Point} TBD.
      */
-    getLocalPosition(displayObject: import('../display/display_object.js').DisplayObject, pointer: Pointer, output?: Point): Point;
+    getLocalPosition(displayObject: import("../display/display_object.js").DisplayObject, pointer: Pointer, output?: Point): Point;
     /**
      * TBD.
      * @param {import('../display/display_object.js').DisplayObject} displayObject - TBD.
@@ -159,7 +159,7 @@ export class Input {
      * @param {Point} localPoint - TBD.
      * @returns {boolean} TBD.
      */
-    hitTest(displayObject: import('../display/display_object.js').DisplayObject, pointer: Pointer, localPoint: Point): boolean;
+    hitTest(displayObject: import("../display/display_object.js").DisplayObject, pointer: Pointer, localPoint: Point): boolean;
     /**
      * TBD.
      */
@@ -167,7 +167,7 @@ export class Input {
     /**
      * TBD.
      */
-    set x(arg: number);
+    set x(value: number);
     /**
      * TBD.
      * @returns {number} TBD.
@@ -176,7 +176,7 @@ export class Input {
     /**
      * TBD.
      */
-    set y(arg: number);
+    set y(value: number);
     /**
      * TBD.
      * @returns {number} TBD.

@@ -3,7 +3,7 @@ export class Stage extends DisplayObject {
      * TBD.
      * @param {import('./game.js').Game} game - TBD.
      */
-    constructor(game: import('./game.js').Game);
+    constructor(game: import("./game.js").Game);
     game: import("./game.js").Game;
     name: string;
     currentRenderOrderID: number;
@@ -31,7 +31,7 @@ export class Stage extends DisplayObject {
     /**
      * TBD.
      */
-    set backgroundColor(arg: number);
+    set backgroundColor(value: number);
     /**
      * TBD.
      * @returns {number} TBD.
@@ -40,7 +40,7 @@ export class Stage extends DisplayObject {
     /**
      * TBD.
      */
-    set smoothed(arg: boolean);
+    set smoothed(value: boolean);
     /**
      * TBD.
      * @returns {boolean} TBD.

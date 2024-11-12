@@ -162,13 +162,13 @@ export class Input {
    */
   addPointer() {
     if (this.pointers.length >= MAX_POINTERS) {
-      console.warn(`Input.addPointer: Maximum limit of ${  MAX_POINTERS  } pointers reached.`);
+      console.warn(`Input.addPointer: Maximum limit of ${MAX_POINTERS} pointers reached.`);
       return null;
     }
     const id = this.pointers.length + 1;
     const pointer = new Pointer(this.game, id, POINTER_CONTACT);
     this.pointers.push(pointer);
-    this[`pointer${  id}`] = pointer;
+    this[`pointer${id}`] = pointer;
     return pointer;
   }
 

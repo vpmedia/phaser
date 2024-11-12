@@ -96,6 +96,6 @@ export class Ellipse {
    * @returns {string} TBD.
    */
   toString() {
-    return `[{Ellipse (x=${  this.x  } y=${  this.y  } width=${  this.width  } height=${  this.height  })}]`;
+    return `[{Ellipse (x=${this.x} y=${this.y} width=${this.width} height=${this.height})}]`;
   }
 }

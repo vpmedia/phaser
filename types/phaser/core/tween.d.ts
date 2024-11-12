@@ -5,7 +5,7 @@ export class Tween {
      * @param {import('./game.js').Game} game - TBD.
      * @param {import('./tween_manager.js').TweenManager} manager - TBD.
      */
-    constructor(target: import('../display/display_object.js').DisplayObject, game: import('./game.js').Game, manager: import('./tween_manager.js').TweenManager);
+    constructor(target: import("../display/display_object.js").DisplayObject, game: import("./game.js").Game, manager: import("./tween_manager.js").TweenManager);
     game: import("./game.js").Game;
     target: import("../display/display_object.js").DisplayObject;
     manager: import("./tween_manager.js").TweenManager;

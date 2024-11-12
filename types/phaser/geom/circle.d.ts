@@ -95,7 +95,7 @@ export class Circle {
     /**
      * TBD.
      */
-    set diameter(arg: number);
+    set diameter(value: number);
     /**
      * TBD.
      * @returns {number} TBD.
@@ -104,7 +104,7 @@ export class Circle {
     /**
      * TBD.
      */
-    set radius(arg: number);
+    set radius(value: number);
     /**
      * TBD.
      * @returns {number} TBD.
@@ -113,7 +113,7 @@ export class Circle {
     /**
      * TBD.
      */
-    set left(arg: number);
+    set left(value: number);
     /**
      * TBD.
      * @returns {number} TBD.
@@ -122,7 +122,7 @@ export class Circle {
     /**
      * TBD.
      */
-    set right(arg: number);
+    set right(value: number);
     /**
      * TBD.
      * @returns {number} TBD.
@@ -131,7 +131,7 @@ export class Circle {
     /**
      * TBD.
      */
-    set top(arg: number);
+    set top(value: number);
     /**
      * TBD.
      * @returns {number} TBD.
@@ -140,7 +140,7 @@ export class Circle {
     /**
      * TBD.
      */
-    set bottom(arg: number);
+    set bottom(value: number);
     /**
      * TBD.
      * @returns {number} TBD.
@@ -154,7 +154,7 @@ export class Circle {
     /**
      * TBD.
      */
-    set empty(arg: boolean);
+    set empty(value: boolean);
     /**
      * TBD.
      * @returns {boolean} TBD.

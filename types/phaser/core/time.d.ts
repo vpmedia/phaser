@@ -3,7 +3,7 @@ export class Time {
      * TBD.
      * @param {import('./game.js').Game} game - TBD.
      */
-    constructor(game: import('./game.js').Game);
+    constructor(game: import("./game.js").Game);
     game: import("./game.js").Game;
     time: number;
     prevTime: number;
@@ -104,7 +104,7 @@ export class Time {
     /**
      * TBD.
      */
-    set desiredFps(arg: number);
+    set desiredFps(value: number);
     /**
      * TBD.
      * @returns {number} TBD.

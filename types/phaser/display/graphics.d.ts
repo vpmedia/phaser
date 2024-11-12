@@ -5,7 +5,7 @@ export class Graphics extends DisplayObject {
      * @param {number} x - TBD.
      * @param {number} y - TBD.
      */
-    constructor(game: import('../core/game.js').Game, x?: number, y?: number);
+    constructor(game: import("../core/game.js").Game, x?: number, y?: number);
     game: import("../core/game.js").Game;
     type: number;
     fillAlpha: number;
@@ -157,7 +157,7 @@ export class Graphics extends DisplayObject {
      * @param {import('../geom/matrix.js').Matrix} matrix - TBD.
      * @returns {Rectangle} TBD.
      */
-    getBounds(matrix?: import('../geom/matrix.js').Matrix): Rectangle;
+    getBounds(matrix?: import("../geom/matrix.js").Matrix): Rectangle;
     /**
      * TBD.
      * @param {Point} point - TBD.
