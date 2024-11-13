@@ -150,31 +150,23 @@ export class Game {
         isWebGlReady = true;
       } catch (e) {
         isWebGlReady = false;
-        const tags = {};
-        /** @type {WebGLRenderer} */
-        // @ts-ignore
-        const renderer = this.renderer;
-        if (renderer?.gl) {
-          tags['webgl.error'] = renderer.gl.getError();
-          tags['webgl.context_lost'] = renderer.gl.isContextLost();
-        }
         if (window.PhaserRegistry?.GL_PROGRAM_INFO_LOG) {
-          tags['webgl.program_log'] = window.PhaserRegistry.GL_PROGRAM_INFO_LOG;
+          this.logger.warn('WebGL program info', { log: window.PhaserRegistry.GL_PROGRAM_INFO_LOG });
         }
         if (window.PhaserRegistry?.GL_SHADER_INFO_LOG) {
-          tags['webgl.shader_log'] = window.PhaserRegistry.GL_SHADER_INFO_LOG;
+          this.logger.warn('WebGL shader info', { log: window.PhaserRegistry.GL_SHADER_INFO_LOG });
         }
-        this.exceptionHandler(e, tags);
+        this.exceptionHandler(e);
       }
     }
     if (!isWebGlReady) {
+      if (this.contextLostBinded) {
+        this.canvas.removeEventListener('webglcontextlost', this.contextLostBinded, false);
+      }
+      if (this.contextRestoredBinded) {
+        this.canvas.removeEventListener('webglcontextlost', this.contextRestoredBinded, false);
+      }
       if (this.renderer) {
-        if (this.contextLostBinded) {
-          this.canvas.removeEventListener('webglcontextlost', this.contextLostBinded, false);
-        }
-        if (this.contextRestoredBinded) {
-          this.canvas.removeEventListener('webglcontextlost', this.contextRestoredBinded, false);
-        }
         this.renderer.destroy();
       }
       this.createRendererCanvas();

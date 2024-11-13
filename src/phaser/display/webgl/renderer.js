@@ -132,11 +132,11 @@ export class WebGLRenderer {
     if (!gl) {
       throw new Error('Error creating WebGL context');
     }
-    if (gl?.isContextLost()) {
-      game.logger.warn('WebGL context lost');
-    }
-    if (gl?.getError()) {
+    if (gl?.getError() > 0) {
       game.logger.warn('WebGL context error', { errorCode: gl?.getError() });
+    }
+    if (gl?.isContextLost()) {
+      throw new Error('WebGL context lost');
     }
     // set current context
     this.initRegistry();
