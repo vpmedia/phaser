@@ -136,11 +136,10 @@ export class Game {
    * TBD.
    */
   initRenderer() {
-    this.logger.info('initRenderer');
-    this.createRendererCanvas();
     let isWebGlReady = false;
     if (this.config.renderType === RENDER_AUTO || this.config.renderType === RENDER_WEBGL) {
       try {
+        this.createRendererCanvas();
         this.logger.info('initWebGLRenderer');
         this.renderer = new WebGLRenderer(this);
         this.context = null;
