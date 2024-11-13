@@ -432,7 +432,7 @@ export class Graphics extends DisplayObject {
    */
   generateTexture() {
     // TODO
-    console.warn('graphics.generateTexture() is not implemented');
+    this.game.logger.warn('graphics.generateTexture() is not implemented');
   }
 
   /**

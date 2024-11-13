@@ -685,7 +685,7 @@ export class Text extends Image {
         fontFamily: family,
       };
     }
-    console.warn(`[Text] Error parsing CSS font: ${font}`);
+    this.game.logger.warn(`[Text] Error parsing CSS font: ${font}`);
     return { font };
   }
 

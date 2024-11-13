@@ -508,10 +508,11 @@ export class DisplayObject {
 
   /**
    * TBD.
+   * @throws {Error}
    */
   generateTexture() {
     // TODO
-    console.warn('display_object.generateTexture() is not implemented');
+    throw new Error('display_object.generateTexture() is not implemented');
   }
 
   /**

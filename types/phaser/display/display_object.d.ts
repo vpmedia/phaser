@@ -136,6 +136,7 @@ export class DisplayObject {
     postUpdate(): void;
     /**
      * TBD.
+     * @throws {Error}
      */
     generateTexture(): void;
     /**

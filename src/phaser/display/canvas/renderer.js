@@ -155,4 +155,11 @@ export class CanvasRenderer {
     b[BLEND_LUMINOSITY] = useNew ? 'luminosity' : 'source-over';
     window.PhaserRegistry.blendModesCanvas = b;
   }
+
+  /**
+   * TBD.
+   */
+  initContext() {
+    // stub
+  }
 }

@@ -36,7 +36,7 @@ export function spriteSheet(game, key, frameWidth, frameHeight, frameMax, margin
   }
   //  Zero or smaller than frame sizes?
   if (width === 0 || height === 0 || width < frameWidth || height < frameHeight || total === 0) {
-    console.warn(
+    game.logger.warn(
       `AnimationParser.spriteSheet: '${key}'s width/height zero or width/height < given frameWidth/frameHeight`
     );
     return null;
@@ -64,7 +64,7 @@ export function spriteSheet(game, key, frameWidth, frameHeight, frameMax, margin
  */
 export function JSONDataHash(game, json) {
   if (!json.frames) {
-    console.warn('JSONDataHash: Invalid Texture Atlas JSON given, missing frames object', json);
+    game.logger.warn('JSONDataHash: Invalid Texture Atlas JSON given, missing frames object', json);
     return null;
   }
   // Let's create some frames then

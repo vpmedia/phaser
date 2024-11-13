@@ -48,5 +48,8 @@
     "> 0.5%",
     "not dead",
     "not op_mini all"
-  ]
+  ],
+  "dependencies": {
+    "@vpmedia/simplify": "^1.12.0"
+  }
 }

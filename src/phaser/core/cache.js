@@ -91,7 +91,7 @@ export class Cache {
       this.removeImage(key);
     }
     /* if (!data.complete) {
-      console.warn('Cache addImage %s is incomplete', key);
+      this.game.logger.warn('Cache addImage %s is incomplete', key);
     } */
     const img = {
       key,
@@ -626,7 +626,7 @@ export class Cache {
     if (resolvedURL) {
       return this._urlMap[resolvedURL];
     }
-    console.warn('Cache invalid url', resolvedURL);
+    this.game.logger.warn('Cache invalid url', { resolvedURL });
     return null;
   }
 

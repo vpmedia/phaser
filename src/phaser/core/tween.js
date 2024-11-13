@@ -77,7 +77,7 @@ export class Tween {
       ease = this.manager.easeMap[ease];
     }
     if (this.isRunning) {
-      console.warn('Tween.from cannot be called after Tween.start');
+      this.game.logger.warn('Tween.from cannot be called after Tween.start');
       return this;
     }
     this.timeline.push(new TweenData(this).from(properties, duration, ease, delay, repeat, yoyo));

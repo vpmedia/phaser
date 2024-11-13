@@ -51,6 +51,10 @@ export class CanvasRenderer {
      * TBD.
      */
     mapBlendModes(): void;
+    /**
+     * TBD.
+     */
+    initContext(): void;
 }
 import * as CanvasMaskManager from './masker.js';
 //# sourceMappingURL=renderer.d.ts.map

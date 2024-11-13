@@ -1,10 +1,14 @@
 export class StripShader {
     /**
      * TBD.
-     * @param {WebGLRenderingContext} gl - TBD.
+     * @param {WebGLRenderingContext & { id: number }} gl - TBD.
      */
-    constructor(gl: WebGLRenderingContext);
-    gl: WebGLRenderingContext;
+    constructor(gl: WebGLRenderingContext & {
+        id: number;
+    });
+    gl: WebGLRenderingContext & {
+        id: number;
+    };
     _UID: string;
     program: WebGLProgram;
     fragmentSrc: string[];

@@ -1,7 +1,7 @@
 export class FastSpriteBatch {
   /**
    * TBD.
-   * @param {WebGLRenderingContext} gl - TBD.
+   * @param {WebGLRenderingContext & { id: number }} gl - TBD.
    */
   constructor(gl) {
     this.vertSize = 10;
@@ -36,7 +36,7 @@ export class FastSpriteBatch {
 
   /**
    * TBD.
-   * @param {WebGLRenderingContext} gl - TBD.
+   * @param {WebGLRenderingContext & { id: number }} gl - TBD.
    */
   setContext(gl) {
     this.gl = gl;

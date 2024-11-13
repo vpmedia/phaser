@@ -163,14 +163,14 @@ export class Loader {
    */
   addToFileList(type, key = '', url = null, properties = null, overwrite = false, extension = null) {
     if (key === undefined || key === '') {
-      console.warn(`Loader: Invalid or no key given of type ${type}`);
+      this.game.logger.warn(`Loader: Invalid or no key given of type ${type}`);
       return this;
     }
     if (url === undefined || url === null) {
       if (extension) {
         url = key + extension;
       } else {
-        console.warn(`Loader: No URL given for file type: ${type} key: ${key}`);
+        this.game.logger.warn(`Loader: No URL given for file type: ${type} key: ${key}`);
         return this;
       }
     }
@@ -525,7 +525,7 @@ export class Loader {
    */
   processLoadQueue() {
     if (!this.isLoading) {
-      console.warn('Loader - active loading canceled / reset');
+      this.game.logger.warn('Loader - active loading canceled / reset');
       this.finishedLoading(true);
       return;
     }
@@ -610,7 +610,7 @@ export class Loader {
     } else if (!this._flightQueue.length) {
       // Flight queue is empty but file list is not done being processed.
       // This indicates a critical internal error with no known recovery.
-      console.warn('Loader - aborting: processing queue empty, loading may have stalled');
+      this.game.logger.warn('Loader - aborting: processing queue empty, loading may have stalled');
       const scope = this;
       setTimeout(() => {
         scope.finishedLoading(true);
@@ -651,7 +651,7 @@ export class Loader {
     file.error = !!errorMessage;
     if (file.error) {
       file.errorMessage = errorMessage;
-      console.warn(file, errorMessage);
+      this.game.logger.warn(file, { errorMessage });
     }
     this.log('asyncComplete', file);
     this.processLoadQueue();
@@ -664,7 +664,7 @@ export class Loader {
   processPack(pack) {
     const packData = pack.data[pack.key];
     if (!packData) {
-      console.warn('Missing loader pack key', pack.key);
+      this.game.logger.warn('Missing loader pack key', { key: pack.key });
       return;
     }
     const packDataCompat = Array.isArray(packData) ? packData : packData.files;
@@ -884,7 +884,7 @@ export class Loader {
    */
   xhrLoadWithXDR() {
     // TODO
-    console.warn('loader.xhrLoadWithXDR() is not implemented');
+    this.game.logger.warn('loader.xhrLoadWithXDR() is not implemented');
   }
 
   /**
@@ -1054,7 +1054,7 @@ export class Loader {
    */
   csvLoadComplete() {
     // TODO
-    console.warn('loader.csvLoadComplete() is not implemented');
+    this.game.logger.warn('loader.csvLoadComplete() is not implemented');
   }
 
   /**
@@ -1068,7 +1068,7 @@ export class Loader {
     const xml = this.parseXml(data);
     if (!xml) {
       const responseType = xhr.responseType || xhr.contentType; // contentType for MS-XDomainRequest
-      console.warn(`Loader - ${file.key}: invalid XML (${responseType})`);
+      this.game.logger.warn(`Loader - ${file.key}: invalid XML (${responseType})`);
       this.asyncComplete(file, 'invalid XML');
       return;
     }
@@ -1136,7 +1136,7 @@ export class Loader {
     if (!this.isUseLog) {
       return;
     }
-    console.log(`[Loader] ${message}`, data);
+    this.game.logger.info(`[Loader] ${message}`, data);
   }
 
   /**

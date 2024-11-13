@@ -1,7 +1,7 @@
-import { PrimitiveShader } from './shader/primitive.js';
 import { ComplexPrimitiveShader } from './shader/complex.js';
-import { NormalShader } from './shader/normal.js';
 import { FastShader } from './shader/fast.js';
+import { NormalShader } from './shader/normal.js';
+import { PrimitiveShader } from './shader/primitive.js';
 import { StripShader } from './shader/strip.js';
 
 export class WebGLShaderManager {
@@ -26,7 +26,7 @@ export class WebGLShaderManager {
 
   /**
    * TBD.
-   * @param {WebGLRenderingContext} gl - TBD.
+   * @param {WebGLRenderingContext & { id: number }} gl - TBD.
    */
   setContext(gl) {
     this.gl = gl;

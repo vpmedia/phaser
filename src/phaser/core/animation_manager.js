@@ -239,7 +239,7 @@ export class AnimationManager {
    */
   refreshFrame() {
     // TODO
-    console.warn('animation_manager.refreshFrame() is not implemented');
+    this.game.logger.warn('animation_manager.refreshFrame() is not implemented');
     // this.sprite.setTexture(PIXI.TextureCache[this.currentFrame.uuid]);
   }
 

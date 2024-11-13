@@ -268,7 +268,7 @@ export class Sound {
         this._tempVolume = this.volume;
         this._tempLoop = this.loop;
       } else {
-        console.warn(`Sound.play: audio marker ${marker} does not exist`);
+        this.game.logger.warn(`Sound.play: audio marker ${marker} does not exist`);
         return this;
       }
     } else {

@@ -6,7 +6,7 @@ import { compileProgram } from '../util.js';
 export class StripShader {
   /**
    * TBD.
-   * @param {WebGLRenderingContext} gl - TBD.
+   * @param {WebGLRenderingContext & { id: number }} gl - TBD.
    */
   constructor(gl) {
     this.gl = gl;

@@ -1,3 +1,4 @@
+import { Logger } from '@vpmedia/simplify';
 import { CanvasRenderer } from '../display/canvas/renderer.js';
 import { addToDOM, create, removeFromDOM, setTouchAction } from '../display/canvas/util.js';
 import { WebGLRenderer } from '../display/webgl/renderer.js';
@@ -48,6 +49,8 @@ export class Game {
     this.tweens = null;
     this.world = null;
     this.device = new Device();
+    /** @type {Logger} */
+    this.logger = null;
     /** @type {HTMLCanvasElement} */
     this.canvas = null;
     /** @type {RenderingContext} */
@@ -221,11 +224,12 @@ export class Game {
     this.parseConfigElement(config, 'renderType', RENDER_AUTO);
     this.parseConfigElement(config, 'isForceDisabledAudio', false);
     this.parseConfigElement(config, 'maxParallelDownloads', 16);
+    this.logger = config.logger ?? new Logger('phaser');
     if (config.exceptionHandler) {
       this.exceptionHandler = config.exceptionHandler;
     } else {
       this.exceptionHandler = (e, tags) => {
-        console.error(e, tags);
+        this.logger.error(e, tags);
       };
     }
     if (config.parent) {
@@ -240,9 +244,10 @@ export class Game {
 
   /**
    * TBD.
-   * @param {Event} event - TBD.
+   * @param {WebGLContextEvent | Event} event - TBD.
    */
   contextLost(event) {
+    this.logger.info('contextLost', event);
     event.preventDefault();
     if (this.renderer) {
       this.renderer.contextLost = true;
@@ -251,8 +256,10 @@ export class Game {
 
   /**
    * TBD.
+   * @param {WebGLContextEvent | Event} event - TBD.
    */
-  contextRestored() {
+  contextRestored(event) {
+    this.logger.info('contextRestored', event);
     this.renderer.initContext();
     // this.cache.clearGLTextures();
     if (this.renderer) {

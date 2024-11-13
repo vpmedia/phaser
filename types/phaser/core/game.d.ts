@@ -25,6 +25,8 @@ export class Game {
     tweens: TweenManager;
     world: World;
     device: Device;
+    /** @type {Logger} */
+    logger: Logger;
     /** @type {HTMLCanvasElement} */
     canvas: HTMLCanvasElement;
     /** @type {RenderingContext} */
@@ -45,8 +47,8 @@ export class Game {
      * TBD.
      */
     initRenderer(): void;
-    contextLostBinded: (event: Event) => void;
-    contextRestoredBinded: () => void;
+    contextLostBinded: (event: WebGLContextEvent | Event) => void;
+    contextRestoredBinded: (event: WebGLContextEvent | Event) => void;
     /**
      * TBD.
      * @param {object} config - TBD.
@@ -62,13 +64,14 @@ export class Game {
     exceptionHandler: any;
     /**
      * TBD.
-     * @param {Event} event - TBD.
+     * @param {WebGLContextEvent | Event} event - TBD.
      */
-    contextLost(event: Event): void;
+    contextLost(event: WebGLContextEvent | Event): void;
     /**
      * TBD.
+     * @param {WebGLContextEvent | Event} event - TBD.
      */
-    contextRestored(): void;
+    contextRestored(event: WebGLContextEvent | Event): void;
     /**
      * TBD.
      * @param {number} time - TBD.
@@ -94,5 +97,6 @@ import { Time } from './time.js';
 import { TweenManager } from './tween_manager.js';
 import { World } from './world.js';
 import { Device } from './device.js';
+import { Logger } from '@vpmedia/simplify';
 import { Signal } from './signal.js';
 //# sourceMappingURL=game.d.ts.map

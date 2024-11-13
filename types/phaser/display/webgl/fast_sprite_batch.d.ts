@@ -1,9 +1,11 @@
 export class FastSpriteBatch {
     /**
      * TBD.
-     * @param {WebGLRenderingContext} gl - TBD.
+     * @param {WebGLRenderingContext & { id: number }} gl - TBD.
      */
-    constructor(gl: WebGLRenderingContext);
+    constructor(gl: WebGLRenderingContext & {
+        id: number;
+    });
     vertSize: number;
     maxSize: number;
     size: number;
@@ -21,10 +23,14 @@ export class FastSpriteBatch {
     matrix: any;
     /**
      * TBD.
-     * @param {WebGLRenderingContext} gl - TBD.
+     * @param {WebGLRenderingContext & { id: number }} gl - TBD.
      */
-    setContext(gl: WebGLRenderingContext): void;
-    gl: WebGLRenderingContext;
+    setContext(gl: WebGLRenderingContext & {
+        id: number;
+    }): void;
+    gl: WebGLRenderingContext & {
+        id: number;
+    };
     /**
      * TBD.
      * @param {object} spriteBatch - TBD.
