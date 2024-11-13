@@ -116,6 +116,7 @@ export class Game {
    * TBD.
    */
   createRendererCanvas() {
+    this.logger.info('createRendererCanvas');
     if (this.canvas) {
       removeFromDOM(this.canvas);
     }
@@ -135,10 +136,12 @@ export class Game {
    * TBD.
    */
   initRenderer() {
+    this.logger.info('initRenderer');
     this.createRendererCanvas();
     let isWebGlReady = false;
     if (this.config.renderType === RENDER_AUTO || this.config.renderType === RENDER_WEBGL) {
       try {
+        this.logger.info('initWebGLRenderer');
         this.renderer = new WebGLRenderer(this);
         this.context = null;
         this.contextLostBinded = this.contextLost.bind(this);
@@ -183,6 +186,7 @@ export class Game {
         this.renderer.destroy();
       }
       this.createRendererCanvas();
+      this.logger.info('initCanvasRenderer');
       this.renderer = new CanvasRenderer(this);
       this.context = this.renderer.context;
     }
@@ -210,6 +214,8 @@ export class Game {
    * @param {object} config - TBD.
    */
   parseConfig(config) {
+    this.logger = config.logger ?? new Logger('phaser');
+    this.logger.info('parseConfig');
     this.parseConfigElement(config, 'width', 800);
     this.parseConfigElement(config, 'height', 600);
     this.parseConfigElement(config, 'backgroundColor', 0x000000);
@@ -224,7 +230,6 @@ export class Game {
     this.parseConfigElement(config, 'renderType', RENDER_AUTO);
     this.parseConfigElement(config, 'isForceDisabledAudio', false);
     this.parseConfigElement(config, 'maxParallelDownloads', 16);
-    this.logger = config.logger ?? new Logger('phaser');
     if (config.exceptionHandler) {
       this.exceptionHandler = config.exceptionHandler;
     } else {
@@ -295,6 +300,7 @@ export class Game {
    * TBD.
    */
   destroy() {
+    this.logger.info('destroy');
     this.isPaused = true;
 
     if (!this.cache) {
