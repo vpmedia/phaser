@@ -158,8 +158,9 @@ export class CanvasRenderer {
 
   /**
    * TBD.
+   * @param {import('../../core/game.js').Game} game - TBD.
    */
-  initContext() {
+  initContext(game) {
     // stub
   }
 }

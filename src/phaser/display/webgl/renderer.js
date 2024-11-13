@@ -70,7 +70,7 @@ export class WebGLRenderer {
     this.renderSession.stencilManager = this.stencilManager;
     this.renderSession.renderer = this;
     this.renderSession.resolution = this.resolution;
-    this.initContext();
+    this.initContext(game);
     this.mapBlendModes();
   }
 
@@ -119,9 +119,11 @@ export class WebGLRenderer {
 
   /**
    * TBD.
+   * @param {import('../../core/game.js').Game} game - TBD.
    * @throws Error.
    */
-  initContext() {
+  initContext(game) {
+    game.logger.debug('initContext');
     /** @type {WebGLRenderingContext & { id: number }} */
     const gl =
       this.view.getContext('webgl', this._contextOptions) ||
@@ -129,6 +131,12 @@ export class WebGLRenderer {
     this.gl = gl;
     if (!gl) {
       throw new Error('Error creating WebGL context');
+    }
+    if (gl?.isContextLost()) {
+      game.logger.warn('WebGL context lost');
+    }
+    if (gl?.getError()) {
+      game.logger.warn('WebGL context error', { errorCode: gl?.getError() });
     }
     // set current context
     this.initRegistry();
