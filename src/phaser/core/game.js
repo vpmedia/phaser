@@ -265,9 +265,9 @@ export class Game {
    */
   contextRestored(event) {
     this.logger.info('contextRestored', event);
-    this.renderer.initContext();
-    // this.cache.clearGLTextures();
     if (this.renderer) {
+      this.renderer.initContext();
+      // this.cache.clearGLTextures();
       this.renderer.contextLost = false;
     }
   }

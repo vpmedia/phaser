@@ -21,16 +21,21 @@ export function tintWithMultiply(texture: object, color: object, canvas: HTMLCan
 export function tintWithPerPixel(texture: object, color: object, canvas: HTMLCanvasElement): void;
 /**
  * TBD.
+ * @param {import('../../core/game.js').Game} game - TBD.
  * @returns {boolean} TBD.
+ * @throws {Error} TBD.
  */
-export function checkInverseAlpha(): boolean;
+export function checkInverseAlpha(game: import("../../core/game.js").Game): boolean;
 /**
  * TBD.
+ * @param {import('../../core/game.js').Game} game - TBD.
  * @returns {boolean} TBD.
+ * @throws {Error} TBD.
  */
-export function canUseNewCanvasBlendModes(): boolean;
+export function canUseNewCanvasBlendModes(game: import("../../core/game.js").Game): boolean;
 /**
  * TBD.
+ * @param {import('../../core/game.js').Game} game - TBD.
  */
-export function detectCapabilities(): void;
+export function detectCapabilities(game: import("../../core/game.js").Game): void;
 //# sourceMappingURL=tinter.d.ts.map

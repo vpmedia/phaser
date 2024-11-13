@@ -30,7 +30,7 @@ export class CanvasRenderer {
    * @param {import('../../core/game.js').Game} game - TBD.
    */
   constructor(game) {
-    detectCapabilities();
+    detectCapabilities(game);
     this.type = RENDER_CANVAS;
     this.resolution = game.config.resolution;
     this.clearBeforeRender = game.config.clearBeforeRender;

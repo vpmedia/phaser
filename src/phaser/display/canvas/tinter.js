@@ -71,18 +71,20 @@ export function tintWithPerPixel(texture, color, canvas) {
 
 /**
  * TBD.
+ * @param {import('../../core/game.js').Game} game - TBD.
  * @returns {boolean} TBD.
+ * @throws {Error} TBD.
  */
-export function checkInverseAlpha() {
+export function checkInverseAlpha(game) {
   // Check for DOM
   if (document === undefined) {
-    return false;
+    throw new Error('Error getting Document for checkInverseAlpha()');
   }
   // Create canvas and context
   const canvas = create('CanvasAlpha', 2, 1, true);
   const context = canvas.getContext('2d');
   if (!context) {
-    return false;
+    throw new Error('Error creating Canvas2D context for checkInverseAlpha()');
   }
   // Set canvas fill style
   context.fillStyle = 'rgba(10, 20, 30, 0.5)';
@@ -112,12 +114,14 @@ export function checkInverseAlpha() {
 
 /**
  * TBD.
+ * @param {import('../../core/game.js').Game} game - TBD.
  * @returns {boolean} TBD.
+ * @throws {Error} TBD.
  */
-export function canUseNewCanvasBlendModes() {
+export function canUseNewCanvasBlendModes(game) {
   // Check for DOM
   if (document === undefined) {
-    return false;
+    throw new Error('Error getting Document for canUseNewCanvasBlendModes()');
   }
   // Create test images
   const pngHead = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAABAQMAAADD8p2OAAAAA1BMVEX/';
@@ -130,7 +134,7 @@ export function canUseNewCanvasBlendModes() {
   const canvas = create('CanvasTinter', 6, 1, true);
   const context = canvas.getContext('2d');
   if (!context) {
-    return false;
+    throw new Error('Error creating Canvas2D context for canUseNewCanvasBlendModes()');
   }
   // Draw test images to canvas
   context.globalCompositeOperation = 'multiply';
@@ -153,20 +157,25 @@ export function canUseNewCanvasBlendModes() {
 
 /**
  * TBD.
+ * @param {import('../../core/game.js').Game} game - TBD.
  */
-export function detectCapabilities() {
+export function detectCapabilities(game) {
   if (!window.PhaserRegistry) {
     window.PhaserRegistry = {};
   }
-  if (!window.PhaserRegistry.CAN_CANVAS_HANDLE_ALPHA) {
-    window.PhaserRegistry.CAN_CANVAS_HANDLE_ALPHA = checkInverseAlpha();
+  try {
+    window.PhaserRegistry.CAN_CANVAS_HANDLE_ALPHA = checkInverseAlpha(game);
+  } catch (error) {
+    game.exceptionHandler(error);
+    window.PhaserRegistry.CAN_CANVAS_HANDLE_ALPHA = false;
   }
-  if (!window.PhaserRegistry.CAN_CANVAS_USE_MULTIPLY) {
-    window.PhaserRegistry.CAN_CANVAS_USE_MULTIPLY = canUseNewCanvasBlendModes();
+  try {
+    window.PhaserRegistry.CAN_CANVAS_USE_MULTIPLY = canUseNewCanvasBlendModes(game);
+  } catch (error) {
+    game.exceptionHandler(error);
+    window.PhaserRegistry.CAN_CANVAS_USE_MULTIPLY = false;
   }
-  if (!window.PhaserRegistry.CANVAS_TINT_METHOD) {
-    window.PhaserRegistry.CANVAS_TINT_METHOD = window.PhaserRegistry.CAN_CANVAS_USE_MULTIPLY
-      ? tintWithMultiply
-      : tintWithPerPixel;
-  }
+  window.PhaserRegistry.CANVAS_TINT_METHOD = window.PhaserRegistry.CAN_CANVAS_USE_MULTIPLY
+    ? tintWithMultiply
+    : tintWithPerPixel;
 }
