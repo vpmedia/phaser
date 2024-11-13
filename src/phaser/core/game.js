@@ -166,13 +166,6 @@ export class Game {
         }
         this.exceptionHandler(e, tags);
       }
-      /*
-      this.renderer = new WebGLRenderer(this);
-      this.context = null;
-      this.canvas.addEventListener('webglcontextlost', this.contextLost.bind(this), false);
-      this.canvas.addEventListener('webglcontextrestored', this.contextRestored.bind(this), false);
-      isWebGlReady = true;
-      */
     }
     if (!isWebGlReady) {
       if (this.renderer) {

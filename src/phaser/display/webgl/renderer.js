@@ -128,27 +128,27 @@ export class WebGLRenderer {
       this.view.getContext('experimental-webgl', this._contextOptions);
     this.gl = gl;
     if (!gl) {
-      // fail, not able to get a context
       throw new Error('Error creating WebGL context');
     }
+    // set current context
     this.initRegistry();
     this.glContextId = window.PhaserRegistry.GL_CONTEXT_ID;
     gl.id = window.PhaserRegistry.GL_CONTEXT_ID;
     window.PhaserRegistry.GL_CONTEXTS[this.glContextId] = gl;
     window.PhaserRegistry.INSTANCES[this.glContextId] = this;
     window.PhaserRegistry.GL_CONTEXT_ID += 1;
-    // set up the default pixi settings..
+    // set default settings
     gl.disable(gl.DEPTH_TEST);
     gl.disable(gl.CULL_FACE);
     gl.enable(gl.BLEND);
-    // need to set the context for all the managers...
+    // set context for managers
     this.shaderManager.setContext(gl);
     this.spriteBatch.setContext(gl);
     this.stencilManager.setContext(gl);
     this.filterManager.setContext(gl);
     this.blendModeManager.setContext(gl);
-    this.renderSession.gl = this.gl;
-    // now resize and we are good to go!
+    this.renderSession.gl = gl;
+    // set initial size
     this.resize(this.width, this.height);
   }
 
