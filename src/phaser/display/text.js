@@ -21,7 +21,7 @@ export class Text extends Image {
     this.game = game;
     this.type = TEXT;
     this.canvas = create(this);
-    this.context = this.canvas.getContext('2d');
+    this.context = this.canvas.getContext('2d', { willReadFrequently: false });
     this.padding = new Point();
     this.textBounds = null;
     this.style = null;
@@ -887,9 +887,9 @@ export class Text extends Image {
    */
   getFontPropertiesContext() {
     if (!window.PhaserRegistry.fontPropertiesContext) {
-      window.PhaserRegistry.fontPropertiesContext = this.getFontPropertiesCanvas().getContext('2d', {
-        willReadFrequently: true,
-      });
+      const canvas = this.getFontPropertiesCanvas();
+      const context = canvas.getContext('2d', { willReadFrequently: true });
+      window.PhaserRegistry.fontPropertiesContext = context;
     }
     return window.PhaserRegistry.fontPropertiesContext;
   }

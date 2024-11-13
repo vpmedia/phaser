@@ -20,7 +20,7 @@ export function getTintedTexture(sprite, color) {
  * @param {HTMLCanvasElement} canvas - TBD.
  */
 export function tintWithMultiply(texture, color, canvas) {
-  const context = canvas.getContext('2d');
+  const context = canvas.getContext('2d', { willReadFrequently: false });
   const crop = texture.crop;
   if (canvas.width !== crop.width || canvas.height !== crop.height) {
     canvas.width = crop.width;
@@ -42,7 +42,7 @@ export function tintWithMultiply(texture, color, canvas) {
  * @param {HTMLCanvasElement} canvas - TBD.
  */
 export function tintWithPerPixel(texture, color, canvas) {
-  const context = canvas.getContext('2d');
+  const context = canvas.getContext('2d', { willReadFrequently: false });
   const crop = texture.crop;
   canvas.width = crop.width;
   canvas.height = crop.height;
@@ -82,7 +82,7 @@ export function checkInverseAlpha(game) {
   }
   // Create canvas and context
   const canvas = create('CanvasAlpha', 2, 1, true);
-  const context = canvas.getContext('2d');
+  const context = canvas.getContext('2d', { willReadFrequently: false });
   if (!context) {
     throw new Error('Error creating Canvas2D context for checkInverseAlpha()');
   }
@@ -132,7 +132,7 @@ export function canUseNewCanvasBlendModes(game) {
   yellow.src = `${pngHead}/wCKxvRF${pngEnd}`;
   // Create canvas and context
   const canvas = create('CanvasTinter', 6, 1, true);
-  const context = canvas.getContext('2d');
+  const context = canvas.getContext('2d', { willReadFrequently: false });
   if (!context) {
     throw new Error('Error creating Canvas2D context for canUseNewCanvasBlendModes()');
   }

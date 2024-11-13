@@ -10,7 +10,7 @@ export class CanvasBuffer {
     this.width = width;
     this.height = height;
     this.canvas = create(this, this.width, this.height);
-    this.context = this.canvas.getContext('2d');
+    this.context = this.canvas.getContext('2d', { willReadFrequently: false });
     this.canvas.width = width;
     this.canvas.height = height;
   }

@@ -41,7 +41,8 @@ export class CanvasRenderer {
     this.height = game.height * this.resolution;
     this.view = game.canvas;
     /** @type {CanvasRenderingContext2D} */
-    this.context = this.view.getContext('2d', { alpha: this.transparent });
+    // @ts-ignore
+    this.context = this.view.getContext('2d', { willReadFrequently: false, alpha: this.transparent });
     if (!this.context) {
       throw new Error('Error creating Canvas2D context');
     }
