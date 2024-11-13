@@ -93,7 +93,7 @@ export class Input {
     this.circle = new Circle(0, 0, 44);
     this.activePointer = this.mousePointer;
     this.hitCanvas = create(this, 1, 1);
-    this.hitContext = this.hitCanvas.getContext('2d', { willReadFrequently: true });
+    this.hitContext = this.hitCanvas.getContext('2d', { willReadFrequently: false });
     this.mouse.start();
     if (this.game.device.mspointer) {
       this.mspointer.start();
