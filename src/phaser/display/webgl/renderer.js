@@ -124,10 +124,9 @@ export class WebGLRenderer {
    */
   initContext(game) {
     game.logger.debug('initContext');
-    /** @type {WebGLRenderingContext & { id: number }} */
-    const gl =
-      this.view.getContext('webgl', this._contextOptions) ||
-      this.view.getContext('experimental-webgl', this._contextOptions);
+    // TODO: view.addEventListener('webglcontextcreationerror', this.onWebGLContextCreationError, false);
+    /** @type {WebGLRenderingContext} */
+    const gl = this.view.getContext('webgl', this._contextOptions);
     this.gl = gl;
     if (!gl) {
       throw new Error('Error creating WebGL context');
