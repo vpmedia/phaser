@@ -41,8 +41,10 @@ export function getWebGLContextErrorName(errorCode) {
       return 'INVALID_FRAMEBUFFER_OPERATION';
     case OUT_OF_MEMORY:
       return 'OUT_OF_MEMORY';
+    case CONTEXT_LOST_WEBGL:
+      return 'CONTEXT_LOST_WEBGL';
     default:
-      return `UNKNOWN_ERROR_(${errorCode})`;
+      return `UNKNOWN_ERROR_${errorCode}`;
   }
 }
 
