@@ -28,7 +28,7 @@ import * as WebGLMaskManager from './mask_manager.js';
 import { WebGLShaderManager } from './shader_manager.js';
 import { WebGLSpriteBatch } from './sprite_batch.js';
 import { WebGLStencilManager } from './stencil_manager.js';
-import { getWebGLContextErrorCode } from './util.js';
+import { getWebGLContextErrorCode, getWebGLContextErrorName } from './util.js';
 
 export class WebGLRenderer {
   /**
@@ -135,7 +135,8 @@ export class WebGLRenderer {
     }
     const errorCode = getWebGLContextErrorCode(gl);
     if (errorCode) {
-      game.logger.warn('WebGL context error', { errorCode });
+      const errorName = getWebGLContextErrorName(errorCode);
+      game.logger.warn('WebGL context error', { errorCode, errorName });
     }
     if (gl?.isContextLost()) {
       throw new Error('WebGL context lost');

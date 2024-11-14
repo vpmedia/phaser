@@ -6,6 +6,12 @@
 export function getWebGLContextErrorCode(gl: WebGLRenderingContext): number;
 /**
  * TBD.
+ * @param {number} errorCode - TBD.
+ * @returns {string} TBD.
+ */
+export function getWebGLContextErrorName(errorCode: number): string;
+/**
+ * TBD.
  */
 export function initDefaultShaders(): void;
 /**
@@ -38,4 +44,11 @@ export function compileFragmentShader(gl: WebGLRenderingContext, shaderSrc: stri
  * @returns {WebGLProgram} TBD.
  */
 export function compileProgram(gl: WebGLRenderingContext, vertexSrc: string[] | string, fragmentSrc: string[] | string): WebGLProgram;
+export const NO_ERROR: 0;
+export const INVALID_ENUM: 1280;
+export const INVALID_VALUE: 1281;
+export const INVALID_OPERATION: 1282;
+export const INVALID_FRAMEBUFFER_OPERATION: 1286;
+export const OUT_OF_MEMORY: 1285;
+export const CONTEXT_LOST_WEBGL: 37442;
 //# sourceMappingURL=util.d.ts.map
