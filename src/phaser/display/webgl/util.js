@@ -1,11 +1,21 @@
 /**
  * TBD.
+ * @param {WebGLRenderingContext} gl - TBD.
+ * @returns {number} TBD.
+ */
+export function getWebGLContextErrorCode(gl) {
+  gl.NO_ERROR
+  return gl?.getError() ?? 0;
+}
+
+/**
+ * TBD.
  */
 export function initDefaultShaders() {}
 
 /**
  * TBD.
- * @param {WebGLRenderingContext & { id: number }} gl - TBD.
+ * @param {WebGLRenderingContext} gl - TBD.
  * @param {string[]|string} shaderSrc - TBD.
  * @param {object} shaderType - TBD.
  * @returns {WebGLShader} TBD.
@@ -30,7 +40,7 @@ export function compileShader(gl, shaderSrc, shaderType) {
 
 /**
  * TBD.
- * @param {WebGLRenderingContext & { id: number }} gl - TBD.
+ * @param {WebGLRenderingContext} gl - TBD.
  * @param {string[]|string} shaderSrc - TBD.
  * @returns {WebGLShader} TBD.
  */
@@ -40,7 +50,7 @@ export function compileVertexShader(gl, shaderSrc) {
 
 /**
  * TBD.
- * @param {WebGLRenderingContext & { id: number }} gl - TBD.
+ * @param {WebGLRenderingContext} gl - TBD.
  * @param {string[]|string} shaderSrc - TBD.
  * @returns {WebGLShader} TBD.
  */
@@ -50,7 +60,7 @@ export function compileFragmentShader(gl, shaderSrc) {
 
 /**
  * TBD.
- * @param {WebGLRenderingContext & { id: number }} gl - TBD.
+ * @param {WebGLRenderingContext} gl - TBD.
  * @param {string[]|string} vertexSrc - TBD.
  * @param {string[]|string} fragmentSrc - TBD.
  * @returns {WebGLProgram} TBD.

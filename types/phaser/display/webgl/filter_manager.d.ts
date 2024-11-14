@@ -4,14 +4,10 @@ export class WebGLFilterManager {
     offsetY: number;
     /**
      * TBD.
-     * @param {WebGLRenderingContext & { id: number }} gl - TBD.
+     * @param {WebGLRenderingContext} gl - TBD.
      */
-    setContext(gl: WebGLRenderingContext & {
-        id: number;
-    }): void;
-    gl: WebGLRenderingContext & {
-        id: number;
-    };
+    setContext(gl: WebGLRenderingContext): void;
+    gl: WebGLRenderingContext;
     texturePool: any[];
     /**
      * TBD.

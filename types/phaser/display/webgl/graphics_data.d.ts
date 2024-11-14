@@ -1,14 +1,10 @@
 export class GraphicsData {
     /**
      * TBD.
-     * @param {WebGLRenderingContext & { id: number }} gl - TBD.
+     * @param {WebGLRenderingContext} gl - TBD.
      */
-    constructor(gl: WebGLRenderingContext & {
-        id: number;
-    });
-    gl: WebGLRenderingContext & {
-        id: number;
-    };
+    constructor(gl: WebGLRenderingContext);
+    gl: WebGLRenderingContext;
     color: number[];
     points: any[];
     indices: any[];

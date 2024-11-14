@@ -6,7 +6,7 @@ import { compileProgram } from '../util.js';
 export class PrimitiveShader {
   /**
    * TBD.
-   * @param {WebGLRenderingContext & { id: number }} gl - TBD.
+   * @param {WebGLRenderingContext} gl - TBD.
    */
   constructor(gl) {
     this.gl = gl;

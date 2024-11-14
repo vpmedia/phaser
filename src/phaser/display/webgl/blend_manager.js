@@ -9,7 +9,7 @@ export class WebGLBlendModeManager {
 
   /**
    * TBD.
-   * @param {WebGLRenderingContext & { id: number }} gl - TBD.
+   * @param {WebGLRenderingContext} gl - TBD.
    */
   setContext(gl) {
     this.gl = gl;

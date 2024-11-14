@@ -1,7 +1,7 @@
 export class GraphicsData {
   /**
    * TBD.
-   * @param {WebGLRenderingContext & { id: number }} gl - TBD.
+   * @param {WebGLRenderingContext} gl - TBD.
    */
   constructor(gl) {
     this.gl = gl;
