@@ -109,6 +109,10 @@ export class SoundManager {
    * TBD.
    */
   checkUnlockHandlers = () => {
+    this.game.logger.info('checkUnlockHandlers', {
+      state: this.context.state,
+      isLocked: this.isLocked,
+    });
     if (!this.isLocked && (this.context.state === 'suspended' || this.context.state === 'interrupted')) {
       this.addUnlockHandlers();
     } else if (this.isLocked && this.context.state === 'running') {
