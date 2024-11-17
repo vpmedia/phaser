@@ -31,16 +31,6 @@ export class SoundManager {
 
   /**
    * TBD.
-   * @param {string} eventName - TBD.
-   * @param {object} eventData - TBD.
-   */
-  dispatchOnChangeEvent(eventName, eventData) {
-    this.game.logger.debug(eventName, eventData);
-    this.onChange.dispatch(eventName, eventData);
-  }
-
-  /**
-   * TBD.
    */
   boot() {
     if (this.game.config.isForceDisabledAudio) {
@@ -86,59 +76,82 @@ export class SoundManager {
     this.masterGain.connect(this.context.destination);
     // handle audio state unlock
     // possible states: interrupted, suspended, running, closed
-    this.onUnlockEventBinded = this.onUnlockEvent.bind(this);
     if (this.context.state === 'suspended' || this.context.state === 'interrupted') {
       this.addUnlockHandlers();
     }
-    this.context.addEventListener('statechange', () => {
-      this.dispatchOnChangeEvent('onContextStateChange', {
-        state: this.context.state,
-        isLocked: this.isLocked,
-      });
-      if (!this.isLocked && (this.context.state === 'suspended' || this.context.state === 'interrupted')) {
-        this.addUnlockHandlers();
-      } else if (this.isLocked && this.context.state === 'running') {
-        this.removeUnlockHandlers();
-      }
-    });
+    this.context.addEventListener('statechange', this.onContextStateChange, false);
+    for (const eventType of ['pageshow', 'visibilitychange', 'resume']) {
+      window.addEventListener(eventType, this.onPageLifecycleChange, true);
+    }
   }
 
   /**
    * TBD.
    */
-  addUnlockHandlers() {
+  onPageLifecycleChange = () => {
+    if (!document.hidden) {
+      this.checkUnlockHandlers();
+    }
+  };
+
+  /**
+   * TBD.
+   */
+  onContextStateChange = () => {
+    this.game.logger.info('onContextStateChange', {
+      state: this.context.state,
+      isLocked: this.isLocked,
+    });
+    this.checkUnlockHandlers();
+  };
+
+  /**
+   * TBD.
+   */
+  checkUnlockHandlers = () => {
+    if (!this.isLocked && (this.context.state === 'suspended' || this.context.state === 'interrupted')) {
+      this.addUnlockHandlers();
+    } else if (this.isLocked && this.context.state === 'running') {
+      this.removeUnlockHandlers();
+    }
+  };
+
+  /**
+   * TBD.
+   */
+  addUnlockHandlers = () => {
     this.isLocked = true;
-    this.dispatchOnChangeEvent('addUnlockHandlers', {
+    this.game.logger.info('addUnlockHandlers', {
       state: this.context.state,
       isLocked: this.isLocked,
     });
-    document.body.addEventListener('touchend', this.onUnlockEventBinded, false);
-    document.body.addEventListener('click', this.onUnlockEventBinded, false);
-    document.body.addEventListener('keydown', this.onUnlockEventBinded, false);
-  }
+    document.body.addEventListener('touchend', this.onUnlockEvent, false);
+    document.body.addEventListener('click', this.onUnlockEvent, false);
+    document.body.addEventListener('keydown', this.onUnlockEvent, false);
+  };
 
   /**
    * TBD.
    */
-  removeUnlockHandlers() {
+  removeUnlockHandlers = () => {
     this.isLocked = false;
-    this.dispatchOnChangeEvent('removeUnlockHandlers', {
+    this.game.logger.info('removeUnlockHandlers', {
       state: this.context.state,
       isLocked: this.isLocked,
     });
-    document.body.removeEventListener('touchend', this.onUnlockEventBinded);
-    document.body.removeEventListener('click', this.onUnlockEventBinded);
-    document.body.removeEventListener('keydown', this.onUnlockEventBinded);
-  }
+    document.body.removeEventListener('touchend', this.onUnlockEvent, false);
+    document.body.removeEventListener('click', this.onUnlockEvent, false);
+    document.body.removeEventListener('keydown', this.onUnlockEvent, false);
+  };
 
   /**
    * TBD.
    * @param {Event} event - TBD.
    */
-  onUnlockEvent(event) {
+  onUnlockEvent = (event) => {
     const initialState = this.context.state;
     if (initialState !== 'suspended' && initialState !== 'interrupted') {
-      this.dispatchOnChangeEvent('onUnlockResumeDenied', {
+      this.game.logger.info('onUnlockResumeDenied', {
         state: initialState,
         isLocked: this.isLocked,
         event,
@@ -146,7 +159,7 @@ export class SoundManager {
       this.removeUnlockHandlers();
       return;
     }
-    this.dispatchOnChangeEvent('onContextResumeStart', {
+    this.game.logger.info('onContextResumeStart', {
       state: initialState,
       isLocked: this.isLocked,
       event,
@@ -154,7 +167,7 @@ export class SoundManager {
     this.context
       .resume()
       .then(() => {
-        this.dispatchOnChangeEvent('onContextResumeResult', {
+        this.game.logger.info('onContextResumeResult', {
           initialState,
           state: this.context.state,
           isLocked: this.isLocked,
@@ -162,7 +175,7 @@ export class SoundManager {
         this.removeUnlockHandlers();
       })
       .catch((error) => {
-        this.dispatchOnChangeEvent('onContextResumeReject', {
+        this.game.logger.info('onContextResumeReject', {
           initialState,
           state: this.context.state,
           isLocked: this.isLocked,
@@ -171,7 +184,7 @@ export class SoundManager {
         this.removeUnlockHandlers();
         this.game.exceptionHandler(error, { 'audio.initialState': initialState, 'audio.state': this.context.state });
       });
-  }
+  };
 
   /**
    * TBD.
@@ -258,6 +271,7 @@ export class SoundManager {
     }
     //  All decoded already?
     if (this._watchList.total === 0) {
+      this.game.logger.info('All sounds decoded');
       this._watching = false;
       callback.call(callbackContext);
     } else {
@@ -286,6 +300,7 @@ export class SoundManager {
         key = this._watchList.next;
       }
       if (this._watchList.total === 0) {
+        this.game.logger.info('All sounds decoded');
         this._watching = false;
         this._watchCallback.call(this._watchContext);
       }

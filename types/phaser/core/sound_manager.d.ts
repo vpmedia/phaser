@@ -24,29 +24,34 @@ export class SoundManager {
     _watchContext: any;
     /**
      * TBD.
-     * @param {string} eventName - TBD.
-     * @param {object} eventData - TBD.
-     */
-    dispatchOnChangeEvent(eventName: string, eventData: object): void;
-    /**
-     * TBD.
      */
     boot(): void;
     masterGain: any;
-    onUnlockEventBinded: (event: Event) => void;
     /**
      * TBD.
      */
-    addUnlockHandlers(): void;
+    onPageLifecycleChange: () => void;
     /**
      * TBD.
      */
-    removeUnlockHandlers(): void;
+    onContextStateChange: () => void;
+    /**
+     * TBD.
+     */
+    checkUnlockHandlers: () => void;
+    /**
+     * TBD.
+     */
+    addUnlockHandlers: () => void;
+    /**
+     * TBD.
+     */
+    removeUnlockHandlers: () => void;
     /**
      * TBD.
      * @param {Event} event - TBD.
      */
-    onUnlockEvent(event: Event): void;
+    onUnlockEvent: (event: Event) => void;
     /**
      * TBD.
      */
