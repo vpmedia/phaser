@@ -11,6 +11,7 @@ export class SoundManager {
   constructor(game) {
     this.game = game;
     this.onChange = new Signal();
+    /** @type {AudioContext} */
     this.context = null;
     this.baseLatency = 0; // https://developer.mozilla.org/en-US/docs/Web/API/AudioContext/baseLatency
     this.noAudio = false;
@@ -30,6 +31,16 @@ export class SoundManager {
 
   /**
    * TBD.
+   * @param {string} eventName - TBD.
+   * @param {object} eventData - TBD.
+   */
+  dispatchOnChangeEvent(eventName, eventData) {
+    this.game.logger.debug(eventName, eventData);
+    this.onChange.dispatch(eventName, eventData);
+  }
+
+  /**
+   * TBD.
    */
   boot() {
     if (this.game.config.isForceDisabledAudio) {
@@ -41,20 +52,20 @@ export class SoundManager {
     } else if (window.AudioContext) {
       try {
         this.context = new window.AudioContext();
-      } catch (e) {
+      } catch (error) {
         this.context = null;
         this.noAudio = true;
         this.isLocked = false;
-        this.game.exceptionHandler(e);
+        this.game.exceptionHandler(error);
       }
     } else if (window.webkitAudioContext) {
       try {
         this.context = new window.webkitAudioContext();
-      } catch (e) {
+      } catch (error) {
         this.context = null;
         this.noAudio = true;
         this.isLocked = false;
-        this.game.exceptionHandler(e);
+        this.game.exceptionHandler(error);
       }
     }
     if (
@@ -80,7 +91,7 @@ export class SoundManager {
       this.addUnlockHandlers();
     }
     this.context.addEventListener('statechange', () => {
-      this.onChange.dispatch('onContextStateChange', {
+      this.dispatchOnChangeEvent('onContextStateChange', {
         state: this.context.state,
         isLocked: this.isLocked,
       });
@@ -97,11 +108,10 @@ export class SoundManager {
    */
   addUnlockHandlers() {
     this.isLocked = true;
-    this.onChange.dispatch('addUnlockHandlers', {
+    this.dispatchOnChangeEvent('addUnlockHandlers', {
       state: this.context.state,
       isLocked: this.isLocked,
     });
-    document.body.addEventListener('touchstart', this.onUnlockEventBinded, false);
     document.body.addEventListener('touchend', this.onUnlockEventBinded, false);
     document.body.addEventListener('click', this.onUnlockEventBinded, false);
     document.body.addEventListener('keydown', this.onUnlockEventBinded, false);
@@ -112,11 +122,10 @@ export class SoundManager {
    */
   removeUnlockHandlers() {
     this.isLocked = false;
-    this.onChange.dispatch('removeUnlockHandlers', {
+    this.dispatchOnChangeEvent('removeUnlockHandlers', {
       state: this.context.state,
       isLocked: this.isLocked,
     });
-    document.body.removeEventListener('touchstart', this.onUnlockEventBinded);
     document.body.removeEventListener('touchend', this.onUnlockEventBinded);
     document.body.removeEventListener('click', this.onUnlockEventBinded);
     document.body.removeEventListener('keydown', this.onUnlockEventBinded);
@@ -129,7 +138,7 @@ export class SoundManager {
   onUnlockEvent(event) {
     const initialState = this.context.state;
     if (initialState !== 'suspended' && initialState !== 'interrupted') {
-      this.onChange.dispatch('onUnlockResumeDenied', {
+      this.dispatchOnChangeEvent('onUnlockResumeDenied', {
         state: initialState,
         isLocked: this.isLocked,
         event,
@@ -137,7 +146,7 @@ export class SoundManager {
       this.removeUnlockHandlers();
       return;
     }
-    this.onChange.dispatch('onContextResumeStart', {
+    this.dispatchOnChangeEvent('onContextResumeStart', {
       state: initialState,
       isLocked: this.isLocked,
       event,
@@ -145,22 +154,22 @@ export class SoundManager {
     this.context
       .resume()
       .then(() => {
-        this.onChange.dispatch('onContextResumeResult', {
+        this.dispatchOnChangeEvent('onContextResumeResult', {
           initialState,
           state: this.context.state,
           isLocked: this.isLocked,
         });
         this.removeUnlockHandlers();
       })
-      .catch((e) => {
-        this.onChange.dispatch('onContextResumeReject', {
+      .catch((error) => {
+        this.dispatchOnChangeEvent('onContextResumeReject', {
           initialState,
           state: this.context.state,
           isLocked: this.isLocked,
-          error: e,
+          error,
         });
         this.removeUnlockHandlers();
-        this.game.exceptionHandler(e, { 'audio.initialState': initialState, 'audio.state': this.context.state });
+        this.game.exceptionHandler(error, { 'audio.initialState': initialState, 'audio.state': this.context.state });
       });
   }
 
@@ -220,8 +229,8 @@ export class SoundManager {
           .then((buffer) => {
             this.game.cache.decodedSound(key, buffer);
           })
-          .catch((e) => {
-            this.game.exceptionHandler(e, { 'asset.key': key });
+          .catch((error) => {
+            this.game.exceptionHandler(error, { 'asset.key': key });
           });
       }
     }

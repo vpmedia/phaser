@@ -124,7 +124,7 @@ export class WebGLRenderer {
    * @throws Error.
    */
   initContext(game) {
-    game.logger.debug('initContext');
+    game.logger.info('initContext');
     // TODO: view.addEventListener('webglcontextcreationerror', this.onWebGLContextCreationError, false);
     /** @type {WebGLRenderingContext & { id: number }} */
     // @ts-ignore

@@ -6,7 +6,8 @@ export class SoundManager {
     constructor(game: import("./game.js").Game);
     game: import("./game.js").Game;
     onChange: Signal;
-    context: any;
+    /** @type {AudioContext} */
+    context: AudioContext;
     baseLatency: number;
     noAudio: boolean;
     connectToMaster: boolean;
@@ -21,6 +22,12 @@ export class SoundManager {
     _watching: boolean;
     _watchCallback: Function;
     _watchContext: any;
+    /**
+     * TBD.
+     * @param {string} eventName - TBD.
+     * @param {object} eventData - TBD.
+     */
+    dispatchOnChangeEvent(eventName: string, eventData: object): void;
     /**
      * TBD.
      */

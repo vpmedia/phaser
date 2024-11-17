@@ -13,7 +13,7 @@ export class Sound {
     key: string;
     loop: boolean;
     markers: {};
-    context: any;
+    context: AudioContext;
     autoplay: boolean;
     totalDuration: number;
     startTime: number;

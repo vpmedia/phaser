@@ -413,7 +413,7 @@ export class Loader {
       let xml = null;
       try {
         json = JSON.parse(atlasData);
-      } catch (e) {
+      } catch (error) {
         xml = this.parseXml(atlasData);
       }
       if (!xml && !json) {
@@ -846,13 +846,13 @@ export class Loader {
           }
         }
         return onload.call(scope, file, xhr);
-      } catch (e) {
+      } catch (error) {
         //  If this was the last file in the queue and an error is thrown in the create method
         //  then it's caught here, so be sure we don't carry on processing it
         if (!scope.hasLoaded) {
-          scope.asyncComplete(file, e.message || 'Exception');
+          scope.asyncComplete(file, error.message || 'Exception');
         } else {
-          scope.game.exceptionHandler(e);
+          scope.game.exceptionHandler(error);
         }
       }
       return null;
@@ -866,11 +866,11 @@ export class Loader {
       } else {
         try {
           return onerror.call(scope, file, xhr);
-        } catch (e) {
+        } catch (error) {
           if (!scope.hasLoaded) {
-            scope.asyncComplete(file, e.message || 'Exception');
+            scope.asyncComplete(file, error.message || 'Exception');
           } else {
-            scope.game.exceptionHandler(e);
+            scope.game.exceptionHandler(error);
           }
         }
       }
@@ -1002,7 +1002,7 @@ export class Loader {
             try {
               // Try to parse as JSON, if it fails, then it's hopefully XML
               json = JSON.parse(bitmapFontXhr.responseText);
-            } catch (e) {
+            } catch (error) {
               // pass
             }
             if (json) {
@@ -1102,7 +1102,7 @@ export class Loader {
         xml.async = 'false';
         xml.loadXML(data);
       }
-    } catch (e) {
+    } catch (error) {
       xml = null;
     }
     if (!xml || !xml.documentElement || xml.getElementsByTagName('parsererror').length) {

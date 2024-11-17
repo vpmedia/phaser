@@ -148,7 +148,7 @@ export class Game {
         this.canvas.addEventListener('webglcontextlost', this.contextLostBinded, false);
         this.canvas.addEventListener('webglcontextrestored', this.contextRestoredBinded, false);
         isWebGlReady = true;
-      } catch (e) {
+      } catch (error) {
         isWebGlReady = false;
         if (window.PhaserRegistry?.GL_PROGRAM_INFO_LOG) {
           this.logger.warn('WebGL program info', { log: window.PhaserRegistry.GL_PROGRAM_INFO_LOG });
@@ -156,7 +156,7 @@ export class Game {
         if (window.PhaserRegistry?.GL_SHADER_INFO_LOG) {
           this.logger.warn('WebGL shader info', { log: window.PhaserRegistry.GL_SHADER_INFO_LOG });
         }
-        this.exceptionHandler(e);
+        this.exceptionHandler(error);
       }
     }
     if (!isWebGlReady) {
