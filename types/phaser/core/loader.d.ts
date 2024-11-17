@@ -287,9 +287,9 @@ export class Loader {
      * TBD.
      * @param {object} file - TBD.
      * @param {XMLHttpRequest} xhr - TBD.
-     * @param {number} reason - TBD.
+     * @param {number | string} reason - TBD.
      */
-    fileError(file: object, xhr?: XMLHttpRequest, reason?: number): void;
+    fileError(file: object, xhr?: XMLHttpRequest, reason?: number | string): void;
     /**
      * TBD.
      * @param {object} file - TBD.

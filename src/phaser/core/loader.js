@@ -525,7 +525,7 @@ export class Loader {
    */
   processLoadQueue() {
     if (!this.isLoading) {
-      this.game.logger.warn('Loader - active loading canceled / reset');
+      this.game.logger.warn('Active loading canceled / reset');
       this.finishedLoading(true);
       return;
     }
@@ -610,7 +610,7 @@ export class Loader {
     } else if (!this._flightQueue.length) {
       // Flight queue is empty but file list is not done being processed.
       // This indicates a critical internal error with no known recovery.
-      this.game.logger.warn('Loader - aborting: processing queue empty, loading may have stalled');
+      this.game.logger.warn('Aborting: processing queue empty, loading may have stalled');
       const scope = this;
       setTimeout(() => {
         scope.finishedLoading(true);
@@ -651,7 +651,7 @@ export class Loader {
     file.error = !!errorMessage;
     if (file.error) {
       file.errorMessage = errorMessage;
-      this.game.logger.warn(file, { errorMessage });
+      this.game.logger.warn('Error loading file', file);
     }
     this.log('asyncComplete', file);
     this.processLoadQueue();
@@ -755,8 +755,10 @@ export class Loader {
         file.url = this.getAudioURL(file.url);
         if (file.url) {
           this.xhrLoad(file, this.transformUrl(file.url, file), 'arraybuffer', this.fileComplete);
+        } else if (this.game.sound.noAudio) {
+          this.fileError(file, null, 'Device does not have audio playback support');
         } else {
-          this.fileError(file, null, 'No supported audio URL specified or device does not have audio playback support');
+          this.fileError(file, null, 'No supported audio URL specified');
         }
         break;
       case 'json':
@@ -929,7 +931,7 @@ export class Loader {
    * TBD.
    * @param {object} file - TBD.
    * @param {XMLHttpRequest} xhr - TBD.
-   * @param {number} reason - TBD.
+   * @param {number | string} reason - TBD.
    */
   fileError(file, xhr = null, reason = 0) {
     // const url = file.requestUrl || this.transformUrl(file.url, file);
@@ -1068,7 +1070,7 @@ export class Loader {
     const xml = this.parseXml(data);
     if (!xml) {
       const responseType = xhr.responseType || xhr.contentType; // contentType for MS-XDomainRequest
-      this.game.logger.warn(`Loader - ${file.key}: invalid XML (${responseType})`);
+      this.game.logger.warn(`${file.key}: invalid XML (${responseType})`);
       this.asyncComplete(file, 'invalid XML');
       return;
     }
@@ -1136,7 +1138,7 @@ export class Loader {
     if (!this.isUseLog) {
       return;
     }
-    this.game.logger.info(`[Loader] ${message}`, data);
+    this.game.logger.info(message, data);
   }
 
   /**

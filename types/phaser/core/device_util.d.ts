@@ -28,6 +28,9 @@ export function checkBrowser(device: Device): void;
 /**
  * TBD.
  * @param {Device} device - TBD.
+ * @see https://developer.mozilla.org/en-US/docs/Web/HTTP/MIME_types/Common_types
+ * @see https://developer.mozilla.org/En/Media_formats_supported_by_the_audio_and_video_elements
+ * @see https://bit.ly/iphoneoscodecs
  */
 export function checkAudio(device: Device): void;
 /**
@@ -45,5 +48,6 @@ export function initialize(device: Device): void;
  * @returns {Device} TBD.
  */
 export function createDevice(): Device;
+export function canPlayType(audioElement: HTMLAudioElement, type: string): boolean;
 import { Device } from './device.js';
 //# sourceMappingURL=device_util.d.ts.map

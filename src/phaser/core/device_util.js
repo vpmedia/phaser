@@ -151,46 +151,41 @@ export function checkBrowser(device) {
 }
 
 /**
+ * Check for codec support.
+ * @param {HTMLAudioElement} audioElement - TBD.
+ * @param {string} type - TBD.
+ * @returns {boolean} TBD.
+ */
+export const canPlayType = (audioElement, type) => {
+  try {
+    const canPlayResult = audioElement.canPlayType(type);
+    return canPlayResult === 'maybe' || canPlayResult === 'probably';
+  } catch (error) {
+    console.error(`canPlayType error with type: ${type}`, error);
+    return false;
+  }
+};
+
+/**
  * TBD.
  * @param {Device} device - TBD.
+ * @see https://developer.mozilla.org/en-US/docs/Web/HTTP/MIME_types/Common_types
+ * @see https://developer.mozilla.org/En/Media_formats_supported_by_the_audio_and_video_elements
+ * @see https://bit.ly/iphoneoscodecs
  */
 export function checkAudio(device) {
   const audioElement = document.createElement('audio');
-  try {
-    if (audioElement.canPlayType) {
-      if (audioElement.canPlayType('audio/ogg; codecs="vorbis"').replace(/^no$/, '')) {
-        device.ogg = true;
-      }
-      if (
-        audioElement.canPlayType('audio/ogg; codecs="opus"').replace(/^no$/, '') ||
-        audioElement.canPlayType('audio/opus;').replace(/^no$/, '')
-      ) {
-        device.opus = true;
-      }
-      if (audioElement.canPlayType('audio/mpeg;').replace(/^no$/, '')) {
-        device.mp3 = true;
-      }
-      // Mimetypes accepted:
-      //   developer.mozilla.org/En/Media_formats_supported_by_the_audio_and_video_elements
-      //   bit.ly/iphoneoscodecs
-      if (audioElement.canPlayType('audio/wav; codecs="1"').replace(/^no$/, '')) {
-        device.wav = true;
-      }
-      if (audioElement.canPlayType('audio/x-m4a;') || audioElement.canPlayType('audio/aac;').replace(/^no$/, '')) {
-        device.m4a = true;
-      }
-      if (audioElement.canPlayType('audio/webm; codecs="vorbis"').replace(/^no$/, '')) {
-        device.webm = true;
-      }
-      if (audioElement.canPlayType('audio/mp4;codecs="ec-3"') !== '') {
-        if (device.edge || device.safari) {
-          device.dolby = true;
-        }
-      }
-    }
-  } catch (e) {
-    // pass
+  if (!audioElement.canPlayType) {
+    console.error('checkAudio', new Error('Missing canPlayType method in HTMLAudioElement'));
+    return;
   }
+  device.ogg = canPlayType(audioElement, 'audio/ogg; codecs="vorbis"');
+  device.opus = canPlayType(audioElement, 'audio/ogg; codecs="opus"') || canPlayType(audioElement, 'audio/opus;');
+  device.mp3 = canPlayType(audioElement, 'audio/mpeg;') || canPlayType(audioElement, 'audio/mp3;');
+  device.wav = canPlayType(audioElement, 'audio/wav; codecs="1"');
+  device.m4a = canPlayType(audioElement, 'audio/x-m4a;') || canPlayType(audioElement, 'audio/aac;');
+  device.webm = canPlayType(audioElement, 'audio/webm; codecs="vorbis"');
+  device.dolby = canPlayType(audioElement, 'audio/mp4; codecs="ec-3"');
 }
 
 /**
@@ -207,13 +202,17 @@ export function checkImage(device) {
     avif.onload = function () {
       device.avif = true;
     };
+  } catch (error) {
+    console.error('checkImage error with avif', error);
+  }
+  try {
     const webp = new Image();
     webp.src = 'data:image/webp;base64,UklGRh4AAABXRUJQVlA4TBEAAAAvAAAAAAfQ//73v/+BiOh/AAA=';
     webp.onload = function () {
       device.webp = true;
     };
-  } catch (e) {
-    // pass
+  } catch (error) {
+    console.error('checkImage error with webp', error);
   }
 }
 
