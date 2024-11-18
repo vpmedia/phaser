@@ -50,6 +50,6 @@
     "not op_mini all"
   ],
   "dependencies": {
-    "@vpmedia/simplify": "^1.13.0"
+    "@vpmedia/simplify": "^1.14.0"
   }
 }
