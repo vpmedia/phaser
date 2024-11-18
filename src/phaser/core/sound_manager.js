@@ -1,3 +1,9 @@
+import {
+  addPageLifecycleCallback,
+  getPageLifecycleEventEmitter,
+  PAGE_LIFECYCLE_STATE_ACTIVE,
+  PAGE_LIFECYCLE_STATE_CHANGE_EVENT,
+} from '@vpmedia/simplify';
 import { ArraySet } from './array_set.js';
 import { Signal } from './signal.js';
 import { Sound } from './sound.js';
@@ -80,9 +86,7 @@ export class SoundManager {
       this.addUnlockHandlers();
     }
     this.context.addEventListener('statechange', this.onContextStateChange, false);
-    for (const eventType of ['pageshow', 'visibilitychange', 'resume']) {
-      window.addEventListener(eventType, this.onPageLifecycleChange, true);
-    }
+    getPageLifecycleEventEmitter().on(PAGE_LIFECYCLE_STATE_CHANGE_EVENT, this.onPageLifecycleChange);
   }
 
   /**
@@ -129,9 +133,9 @@ export class SoundManager {
       state: this.context.state,
       isLocked: this.isLocked,
     });
-    document.body.addEventListener('touchend', this.onUnlockEvent, false);
-    document.body.addEventListener('click', this.onUnlockEvent, false);
-    document.body.addEventListener('keydown', this.onUnlockEvent, false);
+    for (const eventType of ['touchend', 'click', 'keydown']) {
+      document.body.addEventListener(eventType, this.onUnlockEvent, false);
+    }
   };
 
   /**
@@ -143,9 +147,9 @@ export class SoundManager {
       state: this.context.state,
       isLocked: this.isLocked,
     });
-    document.body.removeEventListener('touchend', this.onUnlockEvent, false);
-    document.body.removeEventListener('click', this.onUnlockEvent, false);
-    document.body.removeEventListener('keydown', this.onUnlockEvent, false);
+    for (const eventType of ['touchend', 'click', 'keydown']) {
+      document.body.removeEventListener(eventType, this.onUnlockEvent, false);
+    }
   };
 
   /**
@@ -248,6 +252,12 @@ export class SoundManager {
           })
           .catch((error) => {
             this.game.exceptionHandler(error, { 'asset.key': key });
+            const typedError = error instanceof Error ? error : new Error(error);
+            if (typedError.name === 'InvalidStateError') {
+              addPageLifecycleCallback(PAGE_LIFECYCLE_STATE_ACTIVE, () => {
+                this.decode(key);
+              });
+            }
           });
       }
     }
