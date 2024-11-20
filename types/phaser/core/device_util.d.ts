@@ -49,5 +49,6 @@ export function initialize(device: Device): void;
  */
 export function createDevice(): Device;
 export function canPlayType(audioElement: HTMLAudioElement, type: string): boolean;
+export function isMediaSourceTypeSupported(type: string): boolean;
 import { Device } from './device.js';
 //# sourceMappingURL=device_util.d.ts.map

@@ -13,7 +13,7 @@ export const SOUND = 3;
 export const TEXT = 4;
 export const BITMAPDATA = 5;
 export const BITMAPFONT = 6;
-export const JSON = 7;
+export const JSONDATA = 7;
 export const XML = 8;
 export const RENDER_TEXTURE = 9;
 
@@ -49,7 +49,7 @@ export class Cache {
     this._cacheMap[TEXT] = this._cache.text;
     this._cacheMap[BITMAPDATA] = this._cache.bitmapData;
     this._cacheMap[BITMAPFONT] = this._cache.bitmapFont;
-    this._cacheMap[JSON] = this._cache.json;
+    this._cacheMap[JSONDATA] = this._cache.json;
     this._cacheMap[XML] = this._cache.xml;
     this._cacheMap[RENDER_TEXTURE] = this._cache.renderTexture;
     this.addDefaultImage();
@@ -138,7 +138,6 @@ export class Cache {
       data,
       isDecoding: false,
       decoded: false,
-      locked: this.game.sound.isLocked,
     };
     this._resolveURL(url, this._cache.sound[key]);
   }
@@ -207,32 +206,6 @@ export class Cache {
   /**
    * TBD.
    * @param {string} key - TBD.
-   */
-  reloadSound(key) {
-    const scope = this;
-    const sound = this.getSound(key);
-    if (sound) {
-      sound.data.src = sound.url;
-      sound.data.addEventListener('canplaythrough', () => scope.reloadSoundComplete(key), false);
-      sound.data.load();
-    }
-  }
-
-  /**
-   * TBD.
-   * @param {string} key - TBD.
-   */
-  reloadSoundComplete(key) {
-    const sound = this.getSound(key);
-    if (sound) {
-      sound.locked = false;
-      this.onSoundUnlock.dispatch(key);
-    }
-  }
-
-  /**
-   * TBD.
-   * @param {string} key - TBD.
    * @param {string} property - TBD.
    * @param {any} value - TBD.
    */
@@ -246,7 +219,7 @@ export class Cache {
   /**
    * TBD.
    * @param {string} key - TBD.
-   * @param {object} data - TBD.
+   * @param {AudioBuffer} data - TBD.
    */
   decodedSound(key, data) {
     const sound = this.getSound(key);
@@ -377,7 +350,7 @@ export class Cache {
    * @returns {boolean} TBD.
    */
   checkJSONKey(key) {
-    return this.checkKey(JSON, key);
+    return this.checkKey(JSONDATA, key);
   }
 
   /**
@@ -496,7 +469,7 @@ export class Cache {
    * @returns {object} TBD.
    */
   getJSON(key, isClone = false) {
-    const data = this.getItem(key, JSON, 'getJSON', 'data');
+    const data = this.getItem(key, JSONDATA, 'getJSON', 'data');
     return isClone ? JSON.parse(JSON.stringify(data)) : data;
   }
 

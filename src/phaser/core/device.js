@@ -67,46 +67,6 @@ export class Device {
     /**
      * @type {boolean}
      */
-    this.silk = false;
-    /**
-     * @type {boolean}
-     */
-    this.ogg = false;
-    /**
-     * @type {boolean}
-     */
-    this.opus = false;
-    /**
-     * @type {boolean}
-     */
-    this.mp3 = false;
-    /**
-     * @type {boolean}
-     */
-    this.wav = false;
-    /**
-     * @type {boolean}
-     */
-    this.m4a = false;
-    /**
-     * @type {boolean}
-     */
-    this.webm = false;
-    /**
-     * @type {boolean}
-     */
-    this.dolby = false;
-    /**
-     * @type {boolean}
-     */
-    this.avif = false;
-    /**
-     * @type {boolean}
-     */
-    this.webp = false;
-    /**
-     * @type {boolean}
-     */
     this.fullscreen = false;
     /**
      * @type {string}
@@ -120,5 +80,13 @@ export class Device {
      * @type {boolean}
      */
     this.fullscreenKeyboard = false;
+    /**
+     * @type {{[key: string]: boolean}}
+     */
+    this.supportedAudioFormats = {};
+    /**
+     * @type {{[key: string]: boolean}}
+     */
+    this.supportedImageFormats = {};
   }
 }

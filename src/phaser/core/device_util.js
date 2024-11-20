@@ -1,4 +1,7 @@
+import { Logger } from '@vpmedia/simplify';
 import { Device } from './device.js';
+
+const logger = new Logger('device');
 
 /**
  * TBD.
@@ -7,22 +10,7 @@ import { Device } from './device.js';
  * @returns {boolean} TBD.
  */
 export function canPlayAudio(device, type) {
-  if (type === 'mp3' && device.mp3) {
-    return true;
-  } else if (type === 'ogg' && (device.ogg || device.opus)) {
-    return true;
-  } else if (type === 'm4a' && device.m4a) {
-    return true;
-  } else if (type === 'opus' && device.opus) {
-    return true;
-  } else if (type === 'wav' && device.wav) {
-    return true;
-  } else if (type === 'webm' && device.webm) {
-    return true;
-  } else if (type === 'mp4' && device.dolby) {
-    return true;
-  }
-  return false;
+  return device.supportedAudioFormats[type] === true;
 }
 
 /**
@@ -53,8 +41,7 @@ export function checkOS(device) {
     device.windows = true;
     device.windowsPhone = true;
   }
-  const silk = /Silk/.test(ua); // detected in browsers
-  if (device.windows || device.macOS || (device.linux && !silk) || device.chromeOS) {
+  if (device.windows || device.macOS || device.linux || device.chromeOS) {
     device.desktop = true;
   }
   // iOS / Windows Phone / Tablet reset
@@ -144,10 +131,6 @@ export function checkBrowser(device) {
   } else if (/Safari\/(\d+)/.test(ua) && !device.windowsPhone) {
     device.safari = true;
   }
-  //  Silk gets its own if clause because its ua also contains 'Safari'
-  if (/Silk/.test(ua)) {
-    device.silk = true;
-  }
 }
 
 /**
@@ -161,9 +144,28 @@ export const canPlayType = (audioElement, type) => {
     const canPlayResult = audioElement.canPlayType(type);
     return canPlayResult === 'maybe' || canPlayResult === 'probably';
   } catch (error) {
-    console.error(`canPlayType error with type: ${type}`, error);
+    const typedError = error instanceof Error ? error : new Error(String(error));
+    logger.exception(`canPlayType error with type: ${type}`, typedError);
     return false;
   }
+};
+
+/**
+ * Check for codec support.
+ * @param {string} type - TBD.
+ * @returns {boolean} TBD.
+ */
+export const isMediaSourceTypeSupported = (type) => {
+  if ('MediaSource' in window) {
+    try {
+      return MediaSource.isTypeSupported(type);
+    } catch (error) {
+      const typedError = error instanceof Error ? error : new Error(String(error));
+      logger.exception(`MediaSource.isTypeSupported error with type: ${type}`, typedError);
+      return false;
+    }
+  }
+  return false;
 };
 
 /**
@@ -175,17 +177,23 @@ export const canPlayType = (audioElement, type) => {
  */
 export function checkAudio(device) {
   const audioElement = document.createElement('audio');
-  if (!audioElement.canPlayType) {
-    console.error('checkAudio', new Error('Missing canPlayType method in HTMLAudioElement'));
-    return;
+  const formats = [
+    { type: 'ogg', codecs: ['audio/ogg; codecs="vorbis"'] },
+    { type: 'opus', codecs: ['audio/opus', 'audio/ogg; codecs="opus"'] },
+    { type: 'mp3', codecs: ['audio/mpeg', 'audio/mp3', 'audio/x-mp3', 'audio/mpeg3', 'audio/x-mpeg3'] },
+    { type: 'wav', codecs: ['audio/wav', 'audio/x-wav'] },
+    { type: 'm4a', codecs: ['audio/aac', 'audio/x-m4a'] },
+    { type: 'webm', codecs: ['audio/webm'] },
+    { type: 'mp4', codecs: ['audio/mp4'] },
+  ];
+  for (const format of formats) {
+    const { type, codecs } = format;
+    for (const codec of codecs) {
+      if (!device.supportedAudioFormats[type]) {
+        device.supportedAudioFormats[type] = isMediaSourceTypeSupported(codec) || canPlayType(audioElement, codec);
+      }
+    }
   }
-  device.ogg = canPlayType(audioElement, 'audio/ogg; codecs="vorbis"');
-  device.opus = canPlayType(audioElement, 'audio/ogg; codecs="opus"') || canPlayType(audioElement, 'audio/opus;');
-  device.mp3 = canPlayType(audioElement, 'audio/mpeg;') || canPlayType(audioElement, 'audio/mp3;');
-  device.wav = canPlayType(audioElement, 'audio/wav; codecs="1"');
-  device.m4a = canPlayType(audioElement, 'audio/x-m4a;') || canPlayType(audioElement, 'audio/aac;');
-  device.webm = canPlayType(audioElement, 'audio/webm; codecs="vorbis"');
-  device.dolby = canPlayType(audioElement, 'audio/mp4; codecs="ec-3"');
 }
 
 /**
@@ -193,26 +201,26 @@ export function checkAudio(device) {
  * @param {Device} device - TBD.
  */
 export function checkImage(device) {
-  device.avif = false;
-  device.webp = false;
   try {
     const avif = new Image();
     avif.src =
       'data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAAB0AAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAAIAAAACAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQ0MAAAAABNjb2xybmNseAACAAIAAYAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAACVtZGF0EgAKCBgANogQEAwgMg8f8D///8WfhwB8+ErK42A=';
     avif.onload = function () {
-      device.avif = true;
+      device.supportedImageFormats.avif = true;
     };
   } catch (error) {
-    console.error('checkImage error with avif', error);
+    const typedError = error instanceof Error ? error : new Error(String(error));
+    logger.exception('checkImage error with avif', typedError);
   }
   try {
     const webp = new Image();
     webp.src = 'data:image/webp;base64,UklGRh4AAABXRUJQVlA4TBEAAAAvAAAAAAfQ//73v/+BiOh/AAA=';
     webp.onload = function () {
-      device.webp = true;
+      device.supportedImageFormats.webp = true;
     };
   } catch (error) {
-    console.error('checkImage error with webp', error);
+    const typedError = error instanceof Error ? error : new Error(String(error));
+    logger.exception('checkImage error with webp', typedError);
   }
 }
 

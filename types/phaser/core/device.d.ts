@@ -63,46 +63,6 @@ export class Device {
     /**
      * @type {boolean}
      */
-    silk: boolean;
-    /**
-     * @type {boolean}
-     */
-    ogg: boolean;
-    /**
-     * @type {boolean}
-     */
-    opus: boolean;
-    /**
-     * @type {boolean}
-     */
-    mp3: boolean;
-    /**
-     * @type {boolean}
-     */
-    wav: boolean;
-    /**
-     * @type {boolean}
-     */
-    m4a: boolean;
-    /**
-     * @type {boolean}
-     */
-    webm: boolean;
-    /**
-     * @type {boolean}
-     */
-    dolby: boolean;
-    /**
-     * @type {boolean}
-     */
-    avif: boolean;
-    /**
-     * @type {boolean}
-     */
-    webp: boolean;
-    /**
-     * @type {boolean}
-     */
     fullscreen: boolean;
     /**
      * @type {string}
@@ -116,5 +76,17 @@ export class Device {
      * @type {boolean}
      */
     fullscreenKeyboard: boolean;
+    /**
+     * @type {{[key: string]: boolean}}
+     */
+    supportedAudioFormats: {
+        [key: string]: boolean;
+    };
+    /**
+     * @type {{[key: string]: boolean}}
+     */
+    supportedImageFormats: {
+        [key: string]: boolean;
+    };
 }
 //# sourceMappingURL=device.d.ts.map

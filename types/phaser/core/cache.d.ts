@@ -5,7 +5,7 @@ export const SOUND: 3;
 export const TEXT: 4;
 export const BITMAPDATA: 5;
 export const BITMAPFONT: 6;
-export const JSON: 7;
+export const JSONDATA: 7;
 export const XML: 8;
 export const RENDER_TEXTURE: 9;
 export class Cache {
@@ -99,16 +99,6 @@ export class Cache {
     /**
      * TBD.
      * @param {string} key - TBD.
-     */
-    reloadSound(key: string): void;
-    /**
-     * TBD.
-     * @param {string} key - TBD.
-     */
-    reloadSoundComplete(key: string): void;
-    /**
-     * TBD.
-     * @param {string} key - TBD.
      * @param {string} property - TBD.
      * @param {any} value - TBD.
      */
@@ -116,9 +106,9 @@ export class Cache {
     /**
      * TBD.
      * @param {string} key - TBD.
-     * @param {object} data - TBD.
+     * @param {AudioBuffer} data - TBD.
      */
-    decodedSound(key: string, data: object): void;
+    decodedSound(key: string, data: AudioBuffer): void;
     /**
      * TBD.
      * @param {string} key - TBD.

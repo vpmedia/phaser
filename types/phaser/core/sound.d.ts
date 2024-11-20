@@ -31,10 +31,14 @@ export class Sound {
     pendingPlayback: boolean;
     override: boolean;
     allowMultiple: boolean;
-    externalNode: any;
-    masterGainNode: any;
-    gainNode: any;
-    _sound: any;
+    /** @type {GainNode} */
+    externalNode: GainNode;
+    /** @type {GainNode} */
+    masterGainNode: GainNode;
+    /** @type {GainNode} */
+    gainNode: GainNode;
+    /** @type {AudioBufferSourceNode} */
+    _sound: AudioBufferSourceNode;
     _markedToDelete: boolean;
     _removeFromSoundManager: boolean;
     onPlay: Signal;
@@ -46,14 +50,15 @@ export class Sound {
     onMarkerComplete: Signal;
     onFadeComplete: Signal;
     _volume: number;
-    _buffer: any;
+    /** @type {AudioBuffer} */
+    _buffer: AudioBuffer;
     _muted: boolean;
-    _tempMarker: number;
+    _tempMarker: string;
     _tempPosition: number;
     _tempVolume: number;
     _tempPause: number;
     _muteVolume: number;
-    _tempLoop: number;
+    _tempLoop: boolean;
     _paused: boolean;
     /**
      * TBD.

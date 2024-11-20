@@ -41,11 +41,10 @@ export class SoundManager {
   boot() {
     if (this.game.config.isForceDisabledAudio) {
       this.noAudio = true;
+      this.isLocked = false;
       return;
     }
-    if (window.PhaserRegistry && window.PhaserRegistry.audioContext) {
-      this.context = window.PhaserRegistry.audioContext;
-    } else if (window.AudioContext) {
+    if (window.AudioContext) {
       try {
         this.context = new window.AudioContext();
       } catch (error) {
@@ -64,10 +63,7 @@ export class SoundManager {
         this.game.exceptionHandler(error);
       }
     }
-    if (
-      this.context === null ||
-      (this.context && this.context.createGain === undefined && this.context.createGainNode === undefined)
-    ) {
+    if (!this.context) {
       this.game.exceptionHandler(new Error('Error creating AudioContext'));
       this.noAudio = true;
       return;
@@ -251,8 +247,8 @@ export class SoundManager {
             this.game.cache.decodedSound(key, buffer);
           })
           .catch((error) => {
-            this.game.exceptionHandler(error, { 'asset.key': key });
-            const typedError = error instanceof Error ? error : new Error(error);
+            const typedError = error instanceof Error ? error : new Error(String(error));
+            this.game.exceptionHandler(typedError, { 'asset.key': key });
             if (typedError.name === 'InvalidStateError') {
               addPageLifecycleCallback(PAGE_LIFECYCLE_STATE_ACTIVE, () => {
                 this.decode(key);
@@ -438,12 +434,8 @@ export class SoundManager {
     }
     this._sounds = [];
     this.onChange.dispose();
-    if (this.context) {
-      if (window.PhaserRegistry) {
-        window.PhaserRegistry.audioContext = this.context;
-      } else if (this.context.close) {
-        this.context.close();
-      }
+    if (this.context?.close) {
+      this.context.close();
     }
   }
 
