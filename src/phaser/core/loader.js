@@ -924,7 +924,8 @@ export class Loader {
         }
       }
     }
-    this.game.logger.warn('No supported audio format found', { urls });
+    const formats = this.game.device.supportedAudioFormats;
+    this.game.logger.warn('No supported audio format found', { urls, formats });
     return null;
   }
 
