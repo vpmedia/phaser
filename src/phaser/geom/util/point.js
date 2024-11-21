@@ -271,10 +271,10 @@ export const centroid = (points, output = null) => {
 export const parse = (obj, xProp = 'x', yProp = 'y') => {
   const point = new Point();
   if (obj[xProp]) {
-    point.x = parseInt(obj[xProp], 10);
+    point.x = Number.parseInt(obj[xProp], 10);
   }
   if (obj[yProp]) {
-    point.y = parseInt(obj[yProp], 10);
+    point.y = Number.parseInt(obj[yProp], 10);
   }
   return point;
 };

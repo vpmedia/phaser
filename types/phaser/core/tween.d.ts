@@ -33,26 +33,26 @@ export class Tween {
      * TBD.
      * @param {object} properties - TBD.
      * @param {number} duration - TBD.
-     * @param {string} ease - TBD.
+     * @param {string | Function} ease - TBD.
      * @param {boolean} autoStart - TBD.
      * @param {number} delay - TBD.
      * @param {number} repeat - TBD.
      * @param {boolean} yoyo - TBD.
      * @returns {Tween} TBD.
      */
-    to(properties: object, duration?: number, ease?: string, autoStart?: boolean, delay?: number, repeat?: number, yoyo?: boolean): Tween;
+    to(properties: object, duration?: number, ease?: string | Function, autoStart?: boolean, delay?: number, repeat?: number, yoyo?: boolean): Tween;
     /**
      * TBD.
      * @param {object} properties - TBD.
      * @param {number} duration - TBD.
-     * @param {string} ease - TBD.
+     * @param {string | Function} ease - TBD.
      * @param {boolean} autoStart - TBD.
      * @param {number} delay - TBD.
      * @param {number} repeat - TBD.
      * @param {boolean} yoyo - TBD.
      * @returns {Tween} TBD.
      */
-    from(properties: object, duration?: number, ease?: string, autoStart?: boolean, delay?: number, repeat?: number, yoyo?: boolean): Tween;
+    from(properties: object, duration?: number, ease?: string | Function, autoStart?: boolean, delay?: number, repeat?: number, yoyo?: boolean): Tween;
     /**
      * TBD.
      * @param {number} index - TBD.

@@ -197,14 +197,14 @@ export class ScaleManager {
       newWidth = width;
     } else {
       //  Percentage based
-      this.parentScaleFactor.x = parseInt(width, 10) / 100;
+      this.parentScaleFactor.x = Number.parseInt(width, 10) / 100;
       newWidth = rect.width * this.parentScaleFactor.x;
     }
     if (typeof height === 'number') {
       newHeight = height;
     } else {
       //  Percentage based
-      this.parentScaleFactor.y = parseInt(height, 10) / 100;
+      this.parentScaleFactor.y = Number.parseInt(height, 10) / 100;
       newHeight = rect.height * this.parentScaleFactor.y;
     }
     newWidth = Math.floor(newWidth);

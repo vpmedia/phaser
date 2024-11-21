@@ -208,9 +208,9 @@ export const hexToColor = (value, out) => {
   value = value.replace(/^(?:#|0x)?([a-f\d])([a-f\d])([a-f\d])$/i, (m, r, g, b) => r + r + g + g + b + b);
   const result = /^(?:#|0x)?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(value);
   if (result) {
-    out.r = parseInt(result[1], 16);
-    out.g = parseInt(result[2], 16);
-    out.b = parseInt(result[3], 16);
+    out.r = Number.parseInt(result[1], 16);
+    out.g = Number.parseInt(result[2], 16);
+    out.b = Number.parseInt(result[3], 16);
   }
 };
 
@@ -222,10 +222,10 @@ export const hexToColor = (value, out) => {
 export const webToColor = (value, out) => {
   const result = /^rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(?:,\s*(\d+(?:\.\d+)?))?\s*\)$/.exec(value);
   if (result) {
-    out.r = parseInt(result[1], 10);
-    out.g = parseInt(result[2], 10);
-    out.b = parseInt(result[3], 10);
-    out.a = result[4] !== undefined ? parseFloat(result[4]) : 1;
+    out.r = Number.parseInt(result[1], 10);
+    out.g = Number.parseInt(result[2], 10);
+    out.b = Number.parseInt(result[3], 10);
+    out.a = result[4] !== undefined ? Number.parseFloat(result[4]) : 1;
   }
 };
 

@@ -1053,7 +1053,7 @@ export class Text extends Image {
   get fontSize() {
     const size = this._fontComponents.fontSize;
     if (size && /(?:^0$|px$)/.exec(size)) {
-      return parseInt(size, 10);
+      return Number.parseInt(size, 10);
     }
     return size;
   }
@@ -1311,7 +1311,7 @@ export class Text extends Image {
    */
   set lineSpacing(value) {
     if (value !== this._lineSpacing) {
-      this._lineSpacing = parseFloat(value);
+      this._lineSpacing = Number.parseFloat(value);
       this.dirty = true;
       if (this.parent) {
         this.updateTransform();

@@ -26,7 +26,7 @@ export class TweenData {
     this.delay = 0;
     this.dt = 0;
     this.startTime = null;
-    this.easingFunction = 'Linear';
+    this.easingFunction = (k) => k;
     this.interpolationFunction = MathUtils.linearInterpolation;
     this.interpolationContext = MathUtils;
     this.isRunning = false;
@@ -37,7 +37,7 @@ export class TweenData {
    * TBD.
    * @param {object} properties - TBD.
    * @param {number} duration - TBD.
-   * @param {string} ease - TBD.
+   * @param {(number) => number} ease - TBD.
    * @param {number} delay - TBD.
    * @param {number} repeat - TBD.
    * @param {boolean} yoyo - TBD.
@@ -58,7 +58,7 @@ export class TweenData {
    * TBD.
    * @param {object} properties - TBD.
    * @param {number} duration - TBD.
-   * @param {string} ease - TBD.
+   * @param {(number) => number} ease - TBD.
    * @param {number} delay - TBD.
    * @param {number} repeat - TBD.
    * @param {boolean} yoyo - TBD.
@@ -131,7 +131,7 @@ export class TweenData {
       if (typeof this.vEnd[property] !== 'undefined') {
         if (typeof this.vEnd[property] === 'string') {
           //  Parses relative end values with start as base (e.g.: +10, -3)
-          this.vEnd[property] = this.vStart[property] + parseFloat(this.vEnd[property], 10);
+          this.vEnd[property] = this.vStart[property] + Number.parseFloat(this.vEnd[property]);
         }
         this.parent.properties[property] = this.vEnd[property];
       } else {

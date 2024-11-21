@@ -144,7 +144,7 @@ export class TweenManager {
    * @param {Tween} tween - TBD.
    */
   add(tween) {
-    tween._manager = this;
+    tween.manager = this;
     this._add.push(tween);
   }
 

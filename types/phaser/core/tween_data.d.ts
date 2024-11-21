@@ -23,7 +23,7 @@ export class TweenData {
     delay: number;
     dt: number;
     startTime: number;
-    easingFunction: string;
+    easingFunction: (k: any) => any;
     interpolationFunction: (v: number[], k: number) => number;
     interpolationContext: typeof MathUtils;
     isRunning: boolean;
@@ -32,24 +32,24 @@ export class TweenData {
      * TBD.
      * @param {object} properties - TBD.
      * @param {number} duration - TBD.
-     * @param {string} ease - TBD.
+     * @param {(number) => number} ease - TBD.
      * @param {number} delay - TBD.
      * @param {number} repeat - TBD.
      * @param {boolean} yoyo - TBD.
      * @returns {TweenData} TBD.
      */
-    to(properties: object, duration: number, ease: string, delay: number, repeat: number, yoyo: boolean): TweenData;
+    to(properties: object, duration: number, ease: (number: any) => number, delay: number, repeat: number, yoyo: boolean): TweenData;
     /**
      * TBD.
      * @param {object} properties - TBD.
      * @param {number} duration - TBD.
-     * @param {string} ease - TBD.
+     * @param {(number) => number} ease - TBD.
      * @param {number} delay - TBD.
      * @param {number} repeat - TBD.
      * @param {boolean} yoyo - TBD.
      * @returns {TweenData} TBD.
      */
-    from(properties: object, duration: number, ease: string, delay: number, repeat: number, yoyo: boolean): TweenData;
+    from(properties: object, duration: number, ease: (number: any) => number, delay: number, repeat: number, yoyo: boolean): TweenData;
     /**
      * TBD.
      * @returns {TweenData} TBD.

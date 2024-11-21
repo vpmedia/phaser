@@ -40,7 +40,7 @@ export class Tween {
    * TBD.
    * @param {object} properties - TBD.
    * @param {number} duration - TBD.
-   * @param {string} ease - TBD.
+   * @param {string | Function} ease - TBD.
    * @param {boolean} autoStart - TBD.
    * @param {number} delay - TBD.
    * @param {number} repeat - TBD.
@@ -54,6 +54,7 @@ export class Tween {
     if (this.isRunning) {
       return this;
     }
+    // @ts-ignore
     this.timeline.push(new TweenData(this).to(properties, duration, ease, delay, repeat, yoyo));
     if (autoStart) {
       this.start();
@@ -65,7 +66,7 @@ export class Tween {
    * TBD.
    * @param {object} properties - TBD.
    * @param {number} duration - TBD.
-   * @param {string} ease - TBD.
+   * @param {string | Function} ease - TBD.
    * @param {boolean} autoStart - TBD.
    * @param {number} delay - TBD.
    * @param {number} repeat - TBD.
@@ -80,6 +81,7 @@ export class Tween {
       this.game.logger.warn('Tween.from cannot be called after Tween.start');
       return this;
     }
+    // @ts-ignore
     this.timeline.push(new TweenData(this).from(properties, duration, ease, delay, repeat, yoyo));
     if (autoStart) {
       this.start();

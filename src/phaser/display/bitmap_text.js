@@ -329,7 +329,7 @@ export class BitmapText extends DisplayObject {
    * TBD.
    */
   set fill(value) {
-    this.tint = typeof value === 'string' ? parseInt(value.replace('#', ''), 16) : value;
+    this.tint = typeof value === 'string' ? Number.parseInt(value.replace('#', ''), 16) : value;
   }
 
   /**
@@ -364,7 +364,7 @@ export class BitmapText extends DisplayObject {
    * TBD.
    */
   set fontSize(value) {
-    value = parseInt(value, 10);
+    value = Number.parseInt(value, 10);
     if (value !== this._fontSize && value > 0) {
       this._fontSize = value;
       this.updateText();
