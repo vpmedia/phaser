@@ -142,6 +142,18 @@ export const RENDER_WEBGL: number;
 /**
  * @type {number}
  */
+export const AUDIO_DISABLED: number;
+/**
+ * @type {number}
+ */
+export const AUDIO_STANDARD: number;
+/**
+ * @type {number}
+ */
+export const AUDIO_WEBKIT: number;
+/**
+ * @type {number}
+ */
 export const POINTER_CURSOR: number;
 /**
  * @type {number}

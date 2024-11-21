@@ -5,6 +5,7 @@ import {
   PAGE_LIFECYCLE_STATE_CHANGE_EVENT,
 } from '@vpmedia/simplify';
 import { ArraySet } from './array_set.js';
+import { AUDIO_DISABLED, AUDIO_STANDARD, AUDIO_WEBKIT } from './const.js';
 import { Signal } from './signal.js';
 import { Sound } from './sound.js';
 import { SoundSprite } from './sound_sprite.js';
@@ -21,9 +22,10 @@ export class SoundManager {
     this.context = null;
     this.baseLatency = 0; // https://developer.mozilla.org/en-US/docs/Web/API/AudioContext/baseLatency
     this.noAudio = false;
+    this.type = AUDIO_DISABLED;
     this.connectToMaster = true;
     this.isLocked = false;
-    this.muteOnPause = true;
+    // this.muteOnPause = true;
     this._codeMuted = false;
     this._muted = false;
     this._unlockSource = null;
@@ -47,6 +49,7 @@ export class SoundManager {
     if (window.AudioContext) {
       try {
         this.context = new window.AudioContext();
+        this.type = AUDIO_STANDARD;
       } catch (error) {
         this.context = null;
         this.noAudio = true;
@@ -56,6 +59,7 @@ export class SoundManager {
     } else if (window.webkitAudioContext) {
       try {
         this.context = new window.webkitAudioContext();
+        this.type = AUDIO_WEBKIT;
       } catch (error) {
         this.context = null;
         this.noAudio = true;

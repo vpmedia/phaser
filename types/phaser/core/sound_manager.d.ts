@@ -10,6 +10,7 @@ export class SoundManager {
     context: AudioContext;
     baseLatency: number;
     noAudio: boolean;
+    type: number;
     connectToMaster: boolean;
     isLocked: boolean;
     muteOnPause: boolean;

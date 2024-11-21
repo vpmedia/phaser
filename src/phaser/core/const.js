@@ -146,6 +146,19 @@ export const RENDER_CANVAS = 1;
  * @type {number}
  */
 export const RENDER_WEBGL = 2;
+// audio modes
+/**
+ * @type {number}
+ */
+export const AUDIO_DISABLED = 0;
+/**
+ * @type {number}
+ */
+export const AUDIO_STANDARD = 1;
+/**
+ * @type {number}
+ */
+export const AUDIO_WEBKIT = 2;
 // pointer modes
 /**
  * @type {number}
