@@ -190,7 +190,10 @@ export const checkAudio = (device) => {
     const { type, codecs } = format;
     for (const codec of codecs) {
       if (!device.supportedAudioFormats[type]) {
-        device.supportedAudioFormats[type] = isMediaSourceTypeSupported(codec) || canPlayType(audioElement, codec);
+        const isSupported = isMediaSourceTypeSupported(codec) || canPlayType(audioElement, codec);
+        if (isSupported) {
+          device.supportedAudioFormats[type] = isSupported;
+        }
       }
     }
   }

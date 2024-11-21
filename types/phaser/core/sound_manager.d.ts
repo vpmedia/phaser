@@ -13,7 +13,6 @@ export class SoundManager {
     type: number;
     connectToMaster: boolean;
     isLocked: boolean;
-    muteOnPause: boolean;
     _codeMuted: boolean;
     _muted: boolean;
     _unlockSource: any;

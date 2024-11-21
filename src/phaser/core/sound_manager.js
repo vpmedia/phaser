@@ -41,9 +41,13 @@ export class SoundManager {
    * TBD.
    */
   boot() {
-    if (this.game.config.isForceDisabledAudio) {
+    const setAudioDisabledState = () => {
+      this.type = AUDIO_DISABLED;
       this.noAudio = true;
       this.isLocked = false;
+    };
+    if (this.game.config.isForceDisabledAudio) {
+      setAudioDisabledState();
       return;
     }
     if (window.AudioContext) {
@@ -52,8 +56,7 @@ export class SoundManager {
         this.type = AUDIO_STANDARD;
       } catch (error) {
         this.context = null;
-        this.noAudio = true;
-        this.isLocked = false;
+        setAudioDisabledState();
         this.game.exceptionHandler(error);
       }
     } else if (window.webkitAudioContext) {
@@ -62,14 +65,13 @@ export class SoundManager {
         this.type = AUDIO_WEBKIT;
       } catch (error) {
         this.context = null;
-        this.noAudio = true;
-        this.isLocked = false;
+        setAudioDisabledState();
         this.game.exceptionHandler(error);
       }
     }
     if (!this.context) {
       this.game.exceptionHandler(new Error('Error creating AudioContext'));
-      this.noAudio = true;
+      setAudioDisabledState();
       return;
     }
     this.baseLatency = this.context.baseLatency || 256 / (this.context.sampleRate || 44100);
