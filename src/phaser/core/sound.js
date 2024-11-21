@@ -127,27 +127,29 @@ export class Sound {
     this.isPlaying = false;
     this.currentTime = this.durationMS;
     this.stop();
-    if (this._markedToDelete) {
-      if (this.externalNode) {
-        this._sound.disconnect(this.externalNode);
-      } else if (this.gainNode) {
-        this._sound.disconnect(this.gainNode);
-      }
-      if (this._removeFromSoundManager) {
-        this.game.sound.remove(this);
-      } else {
-        this.markers = {};
-        this.context = null;
-        this._buffer = null;
-        this.externalNode = null;
-        this.onPlay.dispose();
-        this.onPause.dispose();
-        this.onResume.dispose();
-        this.onLoop.dispose();
-        this.onStop.dispose();
-        this.onMute.dispose();
-        this.onMarkerComplete.dispose();
-      }
+    if (!this._markedToDelete) {
+      return;
+    }
+    if (this.externalNode) {
+      this._sound.disconnect(this.externalNode);
+    } else if (this.gainNode) {
+      this._sound.disconnect(this.gainNode);
+    }
+    if (this._removeFromSoundManager) {
+      this.game.sound.remove(this);
+    } else {
+      this.markers = {};
+      this.context = null;
+      this._buffer = null;
+      this.externalNode = null;
+      this.onPlay.dispose();
+      this.onPause.dispose();
+      this.onResume.dispose();
+      this.onLoop.dispose();
+      this.onStop.dispose();
+      this.onMute.dispose();
+      this.onMarkerComplete.dispose();
+      this.onFadeComplete.dispose();
     }
   }
 
@@ -440,7 +442,7 @@ export class Sound {
       return;
     }
     this.fadeTween = this.game.tweens.create(this).to({ volume }, duration, 'Linear', true);
-    this.fadeTween.onComplete.add(this.fadeComplete, this);
+    this.fadeTween.onComplete.addOnce(this.fadeComplete, this);
   }
 
   /**
@@ -475,6 +477,7 @@ export class Sound {
       this.onStop.dispose();
       this.onMute.dispose();
       this.onMarkerComplete.dispose();
+      this.onFadeComplete.dispose();
     }
   }
 

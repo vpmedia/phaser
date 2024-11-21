@@ -1,24 +1,23 @@
 export class RequestAnimationFrame {
     /**
-     * TBD.
-     * @param {import('./game.js').Game} game - TBD.
+     * Constructor.
+     * @param {import('./game.js').Game} game - Reference to the game instance.
      */
     constructor(game: import("./game.js").Game);
     game: import("./game.js").Game;
     rafId: number;
-    updateBinded: (rafTime: number) => void;
     /**
-     * TBD.
+     * Starts an animation frame request.
      */
-    start(): void;
+    start: () => void;
     /**
-     * TBD.
+     * Cancels an animation frame request.
      */
-    stop(): void;
+    stop: () => void;
     /**
-     * TBD.
+     * Performs an animation frame request.
      * @param {number} rafTime - TBD.
      */
-    update(rafTime: number): void;
+    update: (rafTime: number) => void;
 }
 //# sourceMappingURL=raf.d.ts.map

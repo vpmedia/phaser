@@ -1,34 +1,33 @@
 export class RequestAnimationFrame {
   /**
-   * TBD.
-   * @param {import('./game.js').Game} game - TBD.
+   * Constructor.
+   * @param {import('./game.js').Game} game - Reference to the game instance.
    */
   constructor(game) {
     this.game = game;
     this.rafId = 0;
-    this.updateBinded = this.update.bind(this);
   }
 
   /**
-   * TBD.
+   * Starts an animation frame request.
    */
-  start() {
-    this.rafId = requestAnimationFrame(this.updateBinded);
-  }
+  start = () => {
+    this.rafId = requestAnimationFrame(this.update);
+  };
 
   /**
-   * TBD.
+   * Cancels an animation frame request.
    */
-  stop() {
+  stop = () => {
     cancelAnimationFrame(this.rafId);
-  }
+  };
 
   /**
-   * TBD.
+   * Performs an animation frame request.
    * @param {number} rafTime - TBD.
    */
-  update(rafTime) {
+  update = (rafTime) => {
     this.game.update(rafTime);
-    this.rafId = requestAnimationFrame(this.updateBinded);
-  }
+    this.rafId = requestAnimationFrame(this.update);
+  };
 }
