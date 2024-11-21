@@ -24,7 +24,7 @@ export class TweenData {
     dt: number;
     startTime: number;
     easingFunction: string;
-    interpolationFunction: typeof MathUtils.linearInterpolation;
+    interpolationFunction: (v: number[], k: number) => number;
     interpolationContext: typeof MathUtils;
     isRunning: boolean;
     isFrom: boolean;

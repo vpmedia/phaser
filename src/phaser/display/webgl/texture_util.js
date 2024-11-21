@@ -7,7 +7,7 @@ import { Texture } from './texture.js';
  * @param {number} scaleMode - TBD.
  * @returns {object} TBD.
  */
-export function baseTextureFromCanvas(canvas, scaleMode) {
+export const baseTextureFromCanvas = (canvas, scaleMode) => {
   if (canvas.width === 0) {
     canvas.width = 1;
   }
@@ -15,7 +15,7 @@ export function baseTextureFromCanvas(canvas, scaleMode) {
     canvas.height = 1;
   }
   return new BaseTexture(canvas, scaleMode);
-}
+};
 
 /**
  * TBD.
@@ -23,6 +23,6 @@ export function baseTextureFromCanvas(canvas, scaleMode) {
  * @param {number} scaleMode - TBD.
  * @returns {object} TBD.
  */
-export function textureFromCanvas(canvas, scaleMode) {
+export const textureFromCanvas = (canvas, scaleMode) => {
   return new Texture(baseTextureFromCanvas(canvas, scaleMode));
-}
+};

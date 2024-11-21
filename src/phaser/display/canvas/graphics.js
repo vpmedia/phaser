@@ -1,10 +1,10 @@
-import { GEOM_POLYGON, GEOM_RECTANGLE, GEOM_CIRCLE, GEOM_ELLIPSE, GEOM_ROUNDED_RECTANGLE } from '../../core/const.js';
+import { GEOM_CIRCLE, GEOM_ELLIPSE, GEOM_POLYGON, GEOM_RECTANGLE, GEOM_ROUNDED_RECTANGLE } from '../../core/const.js';
 
 /**
  * TBD.
  * @param {object} graphics - TBD.
  */
-export function updateGraphicsTint(graphics) {
+export const updateGraphicsTint = (graphics) => {
   if (graphics.tint === 0xffffff) {
     return;
   }
@@ -24,14 +24,14 @@ export function updateGraphicsTint(graphics) {
       (((((lineColor >> 8) & 0xff) / 255) * tintG * 255) << 8) +
       ((lineColor & 0xff) / 255) * tintB * 255;
   }
-}
+};
 
 /**
  * TBD.
  * @param {object} graphics - TBD.
  * @param {object} context - TBD.
  */
-export function renderGraphics(graphics, context) {
+export const renderGraphics = (graphics, context) => {
   const worldAlpha = graphics.worldAlpha;
   if (graphics.dirty) {
     updateGraphicsTint(graphics);
@@ -153,14 +153,14 @@ export function renderGraphics(graphics, context) {
       }
     }
   }
-}
+};
 
 /**
  * TBD.
  * @param {object} graphics - TBD.
  * @param {object} context - TBD.
  */
-export function renderGraphicsMask(graphics, context) {
+export const renderGraphicsMask = (graphics, context) => {
   const len = graphics.graphicsData.length;
   if (len === 0) {
     return;
@@ -224,4 +224,4 @@ export function renderGraphicsMask(graphics, context) {
       context.closePath();
     }
   }
-}
+};

@@ -7,13 +7,13 @@ import { Rectangle } from '../geom/rectangle.js';
  * @param {object} bitmapFontData - TBD.
  * @returns {object} TBD.
  */
-export function finalizeBitmapFont(baseTexture, bitmapFontData) {
+export const finalizeBitmapFont = (baseTexture, bitmapFontData) => {
   Object.keys(bitmapFontData.chars).forEach((charCode) => {
     const letter = bitmapFontData.chars[charCode];
     letter.texture = new Texture(baseTexture, new Rectangle(letter.x, letter.y, letter.width, letter.height));
   });
   return bitmapFontData;
-}
+};
 
 /**
  * TBD.
@@ -23,7 +23,7 @@ export function finalizeBitmapFont(baseTexture, bitmapFontData) {
  * @param {number} ySpacing - TBD.
  * @returns {object} TBD.
  */
-export function xmlBitmapFont(xml, baseTexture, xSpacing, ySpacing) {
+export const xmlBitmapFont = (xml, baseTexture, xSpacing, ySpacing) => {
   const data = {};
   const info = xml.getElementsByTagName('info')[0];
   const common = xml.getElementsByTagName('common')[0];
@@ -53,7 +53,7 @@ export function xmlBitmapFont(xml, baseTexture, xSpacing, ySpacing) {
     data.chars[second].kerning[first] = amount;
   }
   return finalizeBitmapFont(baseTexture, data);
-}
+};
 
 /**
  * TBD.
@@ -63,9 +63,9 @@ export function xmlBitmapFont(xml, baseTexture, xSpacing, ySpacing) {
  * @param {number} ySpacing - TBD.
  * @returns {object} TBD.
  */
-export function bitmapFont(xml, baseTexture, xSpacing, ySpacing) {
+export const bitmapFont = (xml, baseTexture, xSpacing, ySpacing) => {
   return xmlBitmapFont(xml, baseTexture, xSpacing, ySpacing);
-}
+};
 
 /**
  * TBD.
@@ -75,7 +75,7 @@ export function bitmapFont(xml, baseTexture, xSpacing, ySpacing) {
  * @param {number} ySpacing - TBD.
  * @returns {object} TBD.
  */
-export function jsonBitmapFont(json, baseTexture, xSpacing, ySpacing) {
+export const jsonBitmapFont = (json, baseTexture, xSpacing, ySpacing) => {
   const data = {
     font: json.font.info._face,
     size: parseInt(json.font.info._size, 10),
@@ -101,4 +101,4 @@ export function jsonBitmapFont(json, baseTexture, xSpacing, ySpacing) {
     });
   }
   return finalizeBitmapFont(baseTexture, data);
-}
+};

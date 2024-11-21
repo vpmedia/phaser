@@ -1,6 +1,6 @@
+import { degToRad, distance } from '../../util/math.js';
 import { Circle } from '../circle.js';
 import { Point } from '../point.js';
-import { degToRad, distance } from '../../util/math.js';
 
 /**
  * TBD.
@@ -8,13 +8,13 @@ import { degToRad, distance } from '../../util/math.js';
  * @param {Circle} output - TBD.
  * @returns {Circle} TBD.
  */
-export function clone(input, output = null) {
+export const clone = (input, output = null) => {
   const result = output || new Circle();
   result.x = input.x;
   result.y = input.y;
   result.diameter = input.diameter;
   return result;
-}
+};
 
 /**
  * TBD.
@@ -23,14 +23,14 @@ export function clone(input, output = null) {
  * @param {number} y - TBD.
  * @returns {boolean} TBD.
  */
-export function contains(a, x, y) {
+export const contains = (a, x, y) => {
   if (a.radius > 0 && x >= a.left && x <= a.right && y >= a.top && y <= a.bottom) {
     const dx = (a.x - x) * (a.x - x);
     const dy = (a.y - y) * (a.y - y);
     return dx + dy <= a.radius * a.radius;
   }
   return false;
-}
+};
 
 /**
  * TBD.
@@ -38,9 +38,9 @@ export function contains(a, x, y) {
  * @param {Circle} b - TBD.
  * @returns {boolean} TBD.
  */
-export function equals(a, b) {
+export const equals = (a, b) => {
   return a.x === b.x && a.y === b.y && a.diameter === b.diameter;
-}
+};
 
 /**
  * TBD.
@@ -48,9 +48,9 @@ export function equals(a, b) {
  * @param {Circle} b - TBD.
  * @returns {boolean} TBD.
  */
-export function intersects(a, b) {
+export const intersects = (a, b) => {
   return distance(a.x, a.y, b.x, b.y) <= a.radius + b.radius;
-}
+};
 
 /**
  * TBD.
@@ -60,7 +60,7 @@ export function intersects(a, b) {
  * @param {Point} output - TBD.
  * @returns {Point} TBD.
  */
-export function circumferencePoint(a, angle, asDegrees = false, output = null) {
+export const circumferencePoint = (a, angle, asDegrees = false, output = null) => {
   const result = output || new Point();
   if (asDegrees === true) {
     angle = degToRad(angle);
@@ -68,7 +68,7 @@ export function circumferencePoint(a, angle, asDegrees = false, output = null) {
   result.x = a.x + a.radius * Math.cos(angle);
   result.y = a.y + a.radius * Math.sin(angle);
   return result;
-}
+};
 
 /**
  * TBD.
@@ -78,7 +78,7 @@ export function circumferencePoint(a, angle, asDegrees = false, output = null) {
  * @param {Point} output - TBD.
  * @returns {Point} TBD.
  */
-export function intersectsPoint(a, angle, asDegrees = false, output = null) {
+export const intersectsPoint = (a, angle, asDegrees = false, output = null) => {
   const result = output || new Point();
   if (asDegrees === true) {
     angle = degToRad(angle);
@@ -86,7 +86,7 @@ export function intersectsPoint(a, angle, asDegrees = false, output = null) {
   result.x = a.x + a.radius * Math.cos(angle);
   result.y = a.y + a.radius * Math.sin(angle);
   return result;
-}
+};
 
 /**
  * TBD.
@@ -94,7 +94,7 @@ export function intersectsPoint(a, angle, asDegrees = false, output = null) {
  * @param {object} r - TBD.
  * @returns {boolean} TBD.
  */
-export function intersectsRectangle(c, r) {
+export const intersectsRectangle = (c, r) => {
   const cx = Math.abs(c.x - r.x - r.halfWidth);
   const xDist = r.halfWidth + c.radius;
   if (cx > xDist) {
@@ -114,4 +114,4 @@ export function intersectsRectangle(c, r) {
   const yCornerDistSq = yCornerDist * yCornerDist;
   const maxCornerDistSq = c.radius * c.radius;
   return xCornerDistSq + yCornerDistSq <= maxCornerDistSq;
-}
+};

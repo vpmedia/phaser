@@ -8,7 +8,7 @@ import { getTintedTexture } from './canvas/tinter.js';
  * @param {import('./webgl/texture.js').Texture} texture - TBD.
  * @param {boolean} destroyBase - TBD.
  */
-export function setTexture(target, texture, destroyBase = false) {
+export const setTexture = (target, texture, destroyBase = false) => {
   if (destroyBase) {
     target.texture.baseTexture.destroy();
   }
@@ -16,7 +16,7 @@ export function setTexture(target, texture, destroyBase = false) {
   target.texture = texture;
   target.texture.valid = true;
   target.cachedTint = -1;
-}
+};
 
 /**
  * TBD.
@@ -24,7 +24,7 @@ export function setTexture(target, texture, destroyBase = false) {
  * @param {object} matrix - TBD.
  * @returns {import('../geom/rectangle.js').Rectangle} TBD.
  */
-export function getBounds(target, matrix = null) {
+export const getBounds = (target, matrix = null) => {
   // TODO verify
   if (target.currentBounds) {
     return target.currentBounds;
@@ -99,14 +99,14 @@ export function getBounds(target, matrix = null) {
   bounds.height = maxY - minY;
   target.currentBounds = bounds;
   return bounds;
-}
+};
 
 /**
  * TBD.
  * @param {import('./image.js').Image} target - TBD.
  * @returns {import('../geom/rectangle.js').Rectangle} TBD.
  */
-export function getLocalBounds(target) {
+export const getLocalBounds = (target) => {
   const matrixCache = target.worldTransform;
   target.worldTransform = getIdentityMatrix();
   let i;
@@ -119,7 +119,7 @@ export function getLocalBounds(target) {
     target.children[i].updateTransform();
   }
   return bounds;
-}
+};
 
 /**
  * TBD.
@@ -127,7 +127,7 @@ export function getLocalBounds(target) {
  * @param {object} renderSession - TBD.
  * @param {import('../geom/matrix.js').Matrix} matrix - TBD.
  */
-export function renderWebGL(target, renderSession, matrix) {
+export const renderWebGL = (target, renderSession, matrix) => {
   // if the sprite is not visible or the alpha is 0 then no need to render this element
   if (!target.visible || target.alpha <= 0 || !target.renderable) {
     return;
@@ -168,7 +168,7 @@ export function renderWebGL(target, renderSession, matrix) {
       target.children[i].renderWebGL(renderSession, wt);
     }
   }
-}
+};
 
 /**
  * TBD.
@@ -176,7 +176,7 @@ export function renderWebGL(target, renderSession, matrix) {
  * @param {object} renderSession - TBD.
  * @param {import('../geom/matrix.js').Matrix} matrix - TBD.
  */
-export function renderCanvas(target, renderSession, matrix) {
+export const renderCanvas = (target, renderSession, matrix) => {
   // If the sprite is not visible or the alpha is 0 then no need to render this element
   if (
     !target.visible ||
@@ -263,4 +263,4 @@ export function renderCanvas(target, renderSession, matrix) {
   if (target._mask) {
     renderSession.maskManager.popMask(renderSession);
   }
-}
+};

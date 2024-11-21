@@ -1,5 +1,5 @@
-import { Rectangle } from '../rectangle.js';
 import { Point } from '../point.js';
+import { Rectangle } from '../rectangle.js';
 
 /**
  * TBD.
@@ -8,13 +8,13 @@ import { Point } from '../point.js';
  * @param {number} dy - TBD.
  * @returns {Rectangle} TBD.
  */
-export function inflate(a, dx, dy) {
+export const inflate = (a, dx, dy) => {
   a.x -= dx;
   a.width += 2 * dx;
   a.y -= dy;
   a.height += 2 * dy;
   return a;
-}
+};
 
 /**
  * TBD.
@@ -22,9 +22,9 @@ export function inflate(a, dx, dy) {
  * @param {object} point - TBD.
  * @returns {Rectangle} TBD.
  */
-export function inflatePoint(a, point) {
+export const inflatePoint = (a, point) => {
   return inflate(a, point.x, point.y);
-}
+};
 
 /**
  * TBD.
@@ -32,11 +32,11 @@ export function inflatePoint(a, point) {
  * @param {Point} output - TBD.
  * @returns {Point} TBD.
  */
-export function size(a, output = null) {
+export const size = (a, output = null) => {
   const result = output || new Point();
   result.setTo(a.width, a.height);
   return result;
-}
+};
 
 /**
  * TBD.
@@ -44,11 +44,11 @@ export function size(a, output = null) {
  * @param {Rectangle} output - TBD.
  * @returns {Rectangle} TBD.
  */
-export function clone(input, output = null) {
+export const clone = (input, output = null) => {
   const result = output || new Rectangle();
   result.setTo(input.x, input.y, input.width, input.height);
   return result;
-}
+};
 
 /**
  * TBD.
@@ -57,12 +57,12 @@ export function clone(input, output = null) {
  * @param {number} y - TBD.
  * @returns {boolean} TBD.
  */
-export function contains(a, x, y) {
+export const contains = (a, x, y) => {
   if (a.width <= 0 || a.height <= 0) {
     return false;
   }
   return x >= a.x && x < a.right && y >= a.y && y < a.bottom;
-}
+};
 
 /**
  * TBD.
@@ -74,9 +74,9 @@ export function contains(a, x, y) {
  * @param {number} y - TBD.
  * @returns {boolean} TBD.
  */
-export function containsRaw(rx, ry, rw, rh, x, y) {
+export const containsRaw = (rx, ry, rw, rh, x, y) => {
   return x >= rx && x < rx + rw && y >= ry && y < ry + rh;
-}
+};
 
 /**
  * TBD.
@@ -84,9 +84,9 @@ export function containsRaw(rx, ry, rw, rh, x, y) {
  * @param {Point} point - TBD.
  * @returns {boolean} TBD.
  */
-export function containsPoint(a, point) {
+export const containsPoint = (a, point) => {
   return contains(a, point.x, point.y);
-}
+};
 
 /**
  * TBD.
@@ -94,12 +94,12 @@ export function containsPoint(a, point) {
  * @param {Rectangle} b - TBD.
  * @returns {boolean} TBD.
  */
-export function containsRect(a, b) {
+export const containsRect = (a, b) => {
   if (a.volume > b.volume) {
     return false;
   }
   return a.x >= b.x && a.y >= b.y && a.right < b.right && a.bottom < b.bottom;
-}
+};
 
 /**
  * TBD.
@@ -107,9 +107,9 @@ export function containsRect(a, b) {
  * @param {Rectangle} b - TBD.
  * @returns {boolean} TBD.
  */
-export function equals(a, b) {
+export const equals = (a, b) => {
   return a.x === b.x && a.y === b.y && a.width === b.width && a.height === b.height;
-}
+};
 
 /**
  * TBD.
@@ -117,9 +117,9 @@ export function equals(a, b) {
  * @param {Rectangle} b - TBD.
  * @returns {boolean} TBD.
  */
-export function sameDimensions(a, b) {
+export const sameDimensions = (a, b) => {
   return a.width === b.width && a.height === b.height;
-}
+};
 
 /**
  * TBD.
@@ -127,12 +127,12 @@ export function sameDimensions(a, b) {
  * @param {Rectangle} b - TBD.
  * @returns {boolean} TBD.
  */
-export function intersects(a, b) {
+export const intersects = (a, b) => {
   if (a.width <= 0 || a.height <= 0 || b.width <= 0 || b.height <= 0) {
     return false;
   }
   return !(a.right < b.x || a.bottom < b.y || a.x > b.right || a.y > b.bottom);
-}
+};
 
 /**
  * TBD.
@@ -141,7 +141,7 @@ export function intersects(a, b) {
  * @param {Rectangle} output - TBD.
  * @returns {Rectangle} TBD.
  */
-export function intersection(a, b, output = null) {
+export const intersection = (a, b, output = null) => {
   const result = output || new Rectangle();
   if (intersects(a, b)) {
     result.x = Math.max(a.x, b.x);
@@ -150,7 +150,7 @@ export function intersection(a, b, output = null) {
     result.height = Math.min(a.bottom, b.bottom) - result.y;
   }
   return result;
-}
+};
 
 /**
  * TBD.
@@ -162,14 +162,14 @@ export function intersection(a, b, output = null) {
  * @param {number} tolerance - TBD.
  * @returns {boolean} TBD.
  */
-export function intersectsRaw(a, left, right, top, bottom, tolerance = 0) {
+export const intersectsRaw = (a, left, right, top, bottom, tolerance = 0) => {
   return !(
     left > a.right + tolerance ||
     right < a.left - tolerance ||
     top > a.bottom + tolerance ||
     bottom < a.top - tolerance
   );
-}
+};
 
 /**
  * TBD.
@@ -178,7 +178,7 @@ export function intersectsRaw(a, left, right, top, bottom, tolerance = 0) {
  * @param {Rectangle} output - TBD.
  * @returns {Rectangle} TBD.
  */
-export function union(a, b, output = null) {
+export const union = (a, b, output = null) => {
   const result = output || new Rectangle();
   return result.setTo(
     Math.min(a.x, b.x),
@@ -186,7 +186,7 @@ export function union(a, b, output = null) {
     Math.max(a.right, b.right) - Math.min(a.left, b.left),
     Math.max(a.bottom, b.bottom) - Math.min(a.top, b.top)
   );
-}
+};
 
 /**
  * TBD.
@@ -194,7 +194,7 @@ export function union(a, b, output = null) {
  * @param {Rectangle} output - TBD.
  * @returns {Rectangle} TBD.
  */
-export function aabb(points, output = null) {
+export const aabb = (points, output = null) => {
   const result = output || new Rectangle();
   let xMax = Number.NEGATIVE_INFINITY;
   let xMin = Number.POSITIVE_INFINITY;
@@ -216,13 +216,13 @@ export function aabb(points, output = null) {
   });
   result.setTo(xMin, yMin, xMax - xMin, yMax - yMin);
   return result;
-}
+};
 
 /**
  * TBD.
  * @returns {Rectangle} TBD.
  */
-export function getEmptyRectangle() {
+export const getEmptyRectangle = () => {
   if (!window.PhaserRegistry) {
     window.PhaserRegistry = {};
   }
@@ -230,4 +230,4 @@ export function getEmptyRectangle() {
     window.PhaserRegistry.EMPTY_RECTANGLE = new Rectangle();
   }
   return window.PhaserRegistry.EMPTY_RECTANGLE;
-}
+};

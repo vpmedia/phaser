@@ -1,5 +1,5 @@
-import { Point } from '../point.js';
 import { Line } from '../line.js';
+import { Point } from '../point.js';
 import { intersects as intersectsRect } from './rectangle.js';
 
 /**
@@ -8,14 +8,14 @@ import { intersects as intersectsRect } from './rectangle.js';
  * @param {Line} output - TBD.
  * @returns {Line} TBD.
  */
-export function clone(input, output = null) {
+export const clone = (input, output = null) => {
   const result = output || new Line();
   result.start.x = input.start.x;
   result.start.y = input.start.y;
   result.end.x = input.end.x;
   result.end.y = input.end.y;
   return result;
-}
+};
 
 /**
  * TBD.
@@ -27,7 +27,7 @@ export function clone(input, output = null) {
  * @param {Point} output - TBD.
  * @returns {Point} TBD.
  */
-export function intersectsPoints(a, b, e, f, asSegment = true, output = null) {
+export const intersectsPoints = (a, b, e, f, asSegment = true, output = null) => {
   const result = output || new Point();
   const a1 = b.y - a.y;
   const a2 = f.y - e.y;
@@ -51,7 +51,7 @@ export function intersectsPoints(a, b, e, f, asSegment = true, output = null) {
     return null;
   }
   return result;
-}
+};
 
 /**
  * TBD.
@@ -61,9 +61,9 @@ export function intersectsPoints(a, b, e, f, asSegment = true, output = null) {
  * @param {Point} result - TBD.
  * @returns {Point} TBD.
  */
-export function intersects(a, b, asSegment, result) {
+export const intersects = (a, b, asSegment, result) => {
   return intersectsPoints(a.start, a.end, b.start, b.end, asSegment, result);
-}
+};
 
 /**
  * TBD.
@@ -71,7 +71,7 @@ export function intersects(a, b, asSegment, result) {
  * @param {object} rect - TBD.
  * @returns {boolean} TBD.
  */
-export function intersectsRectangle(line, rect) {
+export const intersectsRectangle = (line, rect) => {
   //  Quick bail out of the Line and Rect bounds don't intersect
   if (intersectsRect(line, rect)) {
     return false;
@@ -117,7 +117,7 @@ export function intersectsRectangle(line, rect) {
     }
   }
   return false;
-}
+};
 
 /**
  * TBD.
@@ -125,6 +125,6 @@ export function intersectsRectangle(line, rect) {
  * @param {object} b - TBD.
  * @returns {number} TBD.
  */
-export function reflect(a, b) {
+export const reflect = (a, b) => {
   return 2 * b.normalAngle - 3.141592653589793 - a.angle;
-}
+};

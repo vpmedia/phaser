@@ -18,16 +18,16 @@ export const CONTEXT_LOST_WEBGL = 0x9242;
  * @param {WebGLRenderingContext} gl - TBD.
  * @returns {number} TBD.
  */
-export function getWebGLContextErrorCode(gl) {
+export const getWebGLContextErrorCode = (gl) => {
   return gl?.getError() ?? 0;
-}
+};
 
 /**
  * TBD.
  * @param {number} errorCode - TBD.
  * @returns {string} TBD.
  */
-export function getWebGLContextErrorName(errorCode) {
+export const getWebGLContextErrorName = (errorCode) => {
   switch (errorCode) {
     case NO_ERROR:
       return 'NO_ERROR';
@@ -46,12 +46,12 @@ export function getWebGLContextErrorName(errorCode) {
     default:
       return `UNKNOWN_ERROR_${errorCode}`;
   }
-}
+};
 
 /**
  * TBD.
  */
-export function initDefaultShaders() {}
+export const initDefaultShaders = () => {};
 
 /**
  * TBD.
@@ -60,7 +60,7 @@ export function initDefaultShaders() {}
  * @param {object} shaderType - TBD.
  * @returns {WebGLShader} TBD.
  */
-export function compileShader(gl, shaderSrc, shaderType) {
+export const compileShader = (gl, shaderSrc, shaderType) => {
   let src = shaderSrc;
   if (Array.isArray(shaderSrc)) {
     src = shaderSrc.join('\n');
@@ -76,7 +76,7 @@ export function compileShader(gl, shaderSrc, shaderType) {
     return null;
   }
   return shader;
-}
+};
 
 /**
  * TBD.
@@ -84,9 +84,9 @@ export function compileShader(gl, shaderSrc, shaderType) {
  * @param {string[]|string} shaderSrc - TBD.
  * @returns {WebGLShader} TBD.
  */
-export function compileVertexShader(gl, shaderSrc) {
+export const compileVertexShader = (gl, shaderSrc) => {
   return compileShader(gl, shaderSrc, gl.VERTEX_SHADER);
-}
+};
 
 /**
  * TBD.
@@ -94,9 +94,9 @@ export function compileVertexShader(gl, shaderSrc) {
  * @param {string[]|string} shaderSrc - TBD.
  * @returns {WebGLShader} TBD.
  */
-export function compileFragmentShader(gl, shaderSrc) {
+export const compileFragmentShader = (gl, shaderSrc) => {
   return compileShader(gl, shaderSrc, gl.FRAGMENT_SHADER);
-}
+};
 
 /**
  * TBD.
@@ -105,7 +105,7 @@ export function compileFragmentShader(gl, shaderSrc) {
  * @param {string[]|string} fragmentSrc - TBD.
  * @returns {WebGLProgram} TBD.
  */
-export function compileProgram(gl, vertexSrc, fragmentSrc) {
+export const compileProgram = (gl, vertexSrc, fragmentSrc) => {
   const fragmentShader = compileFragmentShader(gl, fragmentSrc);
   const vertexShader = compileVertexShader(gl, vertexSrc);
 
@@ -122,4 +122,4 @@ export function compileProgram(gl, vertexSrc, fragmentSrc) {
     window.PhaserRegistry.GL_PROGRAM_INFO_LOG = gl.getProgramInfoLog(shaderProgram);
   }
   return shaderProgram;
-}
+};

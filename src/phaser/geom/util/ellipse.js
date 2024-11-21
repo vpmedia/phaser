@@ -5,7 +5,7 @@
  * @param {number} y - TBD.
  * @returns {boolean} TBD.
  */
-export function contains(a, x, y) {
+export const contains = (a, x, y) => {
   if (a.width <= 0 || a.height <= 0) {
     return false;
   }
@@ -15,4 +15,4 @@ export function contains(a, x, y) {
   normx *= normx;
   normy *= normy;
   return normx + normy < 0.25;
-}
+};

@@ -7,11 +7,11 @@ import { create, removeByCanvas } from './pool.js';
  * @param {object} color - TBD.
  * @returns {object} TBD.
  */
-export function getTintedTexture(sprite, color) {
+export const getTintedTexture = (sprite, color) => {
   const canvas = sprite.tintedTexture || create('CanvasTinter', 1, 1);
   window.PhaserRegistry.CANVAS_TINT_METHOD(sprite.texture, color, canvas);
   return canvas;
-}
+};
 
 /**
  * TBD.
@@ -19,7 +19,7 @@ export function getTintedTexture(sprite, color) {
  * @param {object} color - TBD.
  * @param {HTMLCanvasElement} canvas - TBD.
  */
-export function tintWithMultiply(texture, color, canvas) {
+export const tintWithMultiply = (texture, color, canvas) => {
   const context = canvas.getContext('2d', { willReadFrequently: false });
   const crop = texture.crop;
   if (canvas.width !== crop.width || canvas.height !== crop.height) {
@@ -33,7 +33,7 @@ export function tintWithMultiply(texture, color, canvas) {
   context.drawImage(texture.baseTexture.source, crop.x, crop.y, crop.width, crop.height, 0, 0, crop.width, crop.height);
   context.globalCompositeOperation = 'destination-atop';
   context.drawImage(texture.baseTexture.source, crop.x, crop.y, crop.width, crop.height, 0, 0, crop.width, crop.height);
-}
+};
 
 /**
  * TBD.
@@ -41,7 +41,7 @@ export function tintWithMultiply(texture, color, canvas) {
  * @param {object} color - TBD.
  * @param {HTMLCanvasElement} canvas - TBD.
  */
-export function tintWithPerPixel(texture, color, canvas) {
+export const tintWithPerPixel = (texture, color, canvas) => {
   const context = canvas.getContext('2d', { willReadFrequently: false });
   const crop = texture.crop;
   canvas.width = crop.width;
@@ -67,15 +67,14 @@ export function tintWithPerPixel(texture, color, canvas) {
     }
   }
   context.putImageData(pixelData, 0, 0);
-}
+};
 
 /**
  * TBD.
- * @param {import('../../core/game.js').Game} game - TBD.
  * @returns {boolean} TBD.
  * @throws {Error} TBD.
  */
-export function checkInverseAlpha(game) {
+export const checkInverseAlpha = () => {
   // Check for DOM
   if (document === undefined) {
     throw new Error('Error getting Document for checkInverseAlpha()');
@@ -110,15 +109,14 @@ export function checkInverseAlpha(game) {
   return (
     s2.data[0] === s1.data[0] && s2.data[1] === s1.data[1] && s2.data[2] === s1.data[2] && s2.data[3] === s1.data[3]
   );
-}
+};
 
 /**
  * TBD.
- * @param {import('../../core/game.js').Game} game - TBD.
  * @returns {boolean} TBD.
  * @throws {Error} TBD.
  */
-export function canUseNewCanvasBlendModes(game) {
+export const canUseNewCanvasBlendModes = () => {
   // Check for DOM
   if (document === undefined) {
     throw new Error('Error getting Document for canUseNewCanvasBlendModes()');
@@ -153,24 +151,24 @@ export function canUseNewCanvasBlendModes(game) {
   removeByCanvas(canvas);
   // Compare and return
   return data[0] === 255 && data[1] === 0 && data[2] === 0;
-}
+};
 
 /**
  * TBD.
  * @param {import('../../core/game.js').Game} game - TBD.
  */
-export function detectCapabilities(game) {
+export const detectCapabilities = (game) => {
   if (!window.PhaserRegistry) {
     window.PhaserRegistry = {};
   }
   try {
-    window.PhaserRegistry.CAN_CANVAS_HANDLE_ALPHA = checkInverseAlpha(game);
+    window.PhaserRegistry.CAN_CANVAS_HANDLE_ALPHA = checkInverseAlpha();
   } catch (error) {
     game.exceptionHandler(error);
     window.PhaserRegistry.CAN_CANVAS_HANDLE_ALPHA = false;
   }
   try {
-    window.PhaserRegistry.CAN_CANVAS_USE_MULTIPLY = canUseNewCanvasBlendModes(game);
+    window.PhaserRegistry.CAN_CANVAS_USE_MULTIPLY = canUseNewCanvasBlendModes();
   } catch (error) {
     game.exceptionHandler(error);
     window.PhaserRegistry.CAN_CANVAS_USE_MULTIPLY = false;
@@ -178,4 +176,4 @@ export function detectCapabilities(game) {
   window.PhaserRegistry.CANVAS_TINT_METHOD = window.PhaserRegistry.CAN_CANVAS_USE_MULTIPLY
     ? tintWithMultiply
     : tintWithPerPixel;
-}
+};

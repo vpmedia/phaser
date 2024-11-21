@@ -9,15 +9,15 @@ const logger = new Logger('device');
  * @param {string} type - TBD.
  * @returns {boolean} TBD.
  */
-export function canPlayAudio(device, type) {
+export const canPlayAudio = (device, type) => {
   return device.supportedAudioFormats[type] === true;
-}
+};
 
 /**
  * TBD.
  * @param {Device} device - TBD.
  */
-export function checkOS(device) {
+export const checkOS = (device) => {
   const ua = navigator.userAgent;
   if (/Android/.test(ua)) {
     device.android = true;
@@ -48,13 +48,13 @@ export function checkOS(device) {
   if (device.android || device.iOS || device.windowsPhone || (/Windows NT/i.test(ua) && /Touch/i.test(ua))) {
     device.desktop = false;
   }
-}
+};
 
 /**
  * TBD.
  * @param {Device} device - TBD.
  */
-export function checkInput(device) {
+export const checkInput = (device) => {
   if (
     'ontouchstart' in document.documentElement ||
     (window.navigator.maxTouchPoints && window.navigator.maxTouchPoints >= 1)
@@ -68,13 +68,13 @@ export function checkInput(device) {
   if ('onwheel' in window || 'WheelEvent' in window) {
     device.wheelEvent = 'wheel';
   }
-}
+};
 
 /**
  * TBD.
  * @param {Device} device - TBD.
  */
-export function checkFullScreenSupport(device) {
+export const checkFullScreenSupport = (device) => {
   const fs = [
     'requestFullscreen',
     'requestFullScreen',
@@ -114,13 +114,13 @@ export function checkFullScreenSupport(device) {
       device.fullscreenKeyboard = true;
     }
   }
-}
+};
 
 /**
  * TBD.
  * @param {Device} device - TBD.
  */
-export function checkBrowser(device) {
+export const checkBrowser = (device) => {
   const ua = navigator.userAgent;
   if (/Edge\/\d+/.test(ua)) {
     device.edge = true;
@@ -131,7 +131,7 @@ export function checkBrowser(device) {
   } else if (/Safari\/(\d+)/.test(ua) && !device.windowsPhone) {
     device.safari = true;
   }
-}
+};
 
 /**
  * Check for codec support.
@@ -175,7 +175,7 @@ export const isMediaSourceTypeSupported = (type) => {
  * @see https://developer.mozilla.org/En/Media_formats_supported_by_the_audio_and_video_elements
  * @see https://bit.ly/iphoneoscodecs
  */
-export function checkAudio(device) {
+export const checkAudio = (device) => {
   const audioElement = document.createElement('audio');
   const formats = [
     { type: 'ogg', codecs: ['audio/ogg; codecs="vorbis"'] },
@@ -194,13 +194,13 @@ export function checkAudio(device) {
       }
     }
   }
-}
+};
 
 /**
  * TBD.
  * @param {Device} device - TBD.
  */
-export function checkImage(device) {
+export const checkImage = (device) => {
   try {
     const avif = new Image();
     avif.src =
@@ -222,25 +222,25 @@ export function checkImage(device) {
     const typedError = error instanceof Error ? error : new Error(String(error));
     logger.exception('checkImage error with webp', typedError);
   }
-}
+};
 
 /**
  * TBD.
  * @param {Device} device - TBD.
  */
-export function initialize(device) {
+export const initialize = (device) => {
   checkOS(device);
   checkBrowser(device);
   checkAudio(device);
   // checkImage(device);
   checkFullScreenSupport(device);
   checkInput(device);
-}
+};
 
 /**
  * TBD.
  * @returns {Device} TBD.
  */
-export function createDevice() {
+export const createDevice = () => {
   return new Device();
-}
+};

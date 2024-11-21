@@ -1,4 +1,4 @@
-import { generateShaderID } from '../../../util/math.js';
+import { v4 as uuidv4 } from 'uuid';
 import { compileProgram } from '../util.js';
 
 // the next one is used for rendering primitives
@@ -10,7 +10,7 @@ export class PrimitiveShader {
    */
   constructor(gl) {
     this.gl = gl;
-    this._UID = generateShaderID();
+    this._UID = uuidv4();
     this.program = null;
     this.fragmentSrc = [
       'precision mediump float;',

@@ -5,7 +5,7 @@ import { updateGraphics } from './graphics.js';
  * @param {object} maskData - TBD.
  * @param {object} renderSession - TBD.
  */
-export function pushMask(maskData, renderSession) {
+export const pushMask = (maskData, renderSession) => {
   const gl = renderSession.gl;
   if (maskData.dirty) {
     updateGraphics(maskData, gl);
@@ -18,14 +18,14 @@ export function pushMask(maskData, renderSession) {
     return;
   }
   renderSession.stencilManager.pushStencil(maskData, maskData._webGL[gl.id].data[0], renderSession);
-}
+};
 
 /**
  * TBD.
  * @param {object} maskData - TBD.
  * @param {object} renderSession - TBD.
  */
-export function popMask(maskData, renderSession) {
+export const popMask = (maskData, renderSession) => {
   const gl = renderSession.gl;
   if (
     maskData._webGL[gl.id] === undefined ||
@@ -35,4 +35,4 @@ export function popMask(maskData, renderSession) {
     return;
   }
   renderSession.stencilManager.popStencil(maskData, maskData._webGL[gl.id].data[0], renderSession);
-}
+};

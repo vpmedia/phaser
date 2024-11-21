@@ -9,7 +9,7 @@ import { create as createCanvas } from './pool.js';
  * @param {boolean} skipPool - TBD.
  * @returns {HTMLCanvasElement} TBD.
  */
-export function create(parent, width, height, id, skipPool) {
+export const create = (parent, width, height, id, skipPool) => {
   width = width || 256;
   height = height || 256;
   const canvas = skipPool ? document.createElement('canvas') : createCanvas(parent, width, height);
@@ -20,7 +20,7 @@ export function create(parent, width, height, id, skipPool) {
   canvas.height = height;
   canvas.style.display = 'block';
   return canvas;
-}
+};
 
 /**
  * TBD.
@@ -28,11 +28,11 @@ export function create(parent, width, height, id, skipPool) {
  * @param {string} color - TBD.
  * @returns {object} TBD.
  */
-export function setBackgroundColor(canvas, color) {
+export const setBackgroundColor = (canvas, color) => {
   color = color || 'rgb(0,0,0)';
   canvas.style.backgroundColor = color;
   return canvas;
-}
+};
 
 /**
  * TBD.
@@ -40,13 +40,13 @@ export function setBackgroundColor(canvas, color) {
  * @param {string} value - TBD.
  * @returns {object} TBD.
  */
-export function setTouchAction(canvas, value = 'none') {
+export const setTouchAction = (canvas, value = 'none') => {
   value = value || 'none';
   canvas.style.msTouchAction = value;
   canvas.style['ms-touch-action'] = value;
   canvas.style['touch-action'] = value;
   return canvas;
-}
+};
 
 /**
  * TBD.
@@ -54,7 +54,7 @@ export function setTouchAction(canvas, value = 'none') {
  * @param {string} value - TBD.
  * @returns {object} TBD.
  */
-export function setUserSelect(canvas, value = 'none') {
+export const setUserSelect = (canvas, value = 'none') => {
   value = value || 'none';
   canvas.style['-webkit-touch-callout'] = value;
   canvas.style['-webkit-user-select'] = value;
@@ -64,7 +64,7 @@ export function setUserSelect(canvas, value = 'none') {
   canvas.style['user-select'] = value;
   canvas.style['-webkit-tap-highlight-color'] = 'rgba(0, 0, 0, 0)';
   return canvas;
-}
+};
 
 /**
  * TBD.
@@ -73,7 +73,7 @@ export function setUserSelect(canvas, value = 'none') {
  * @param {boolean} overflowHidden - TBD.
  * @returns {object} TBD.
  */
-export function addToDOM(canvas, parent, overflowHidden = true) {
+export const addToDOM = (canvas, parent, overflowHidden = true) => {
   let target;
   if (parent) {
     if (typeof parent === 'string') {
@@ -93,17 +93,17 @@ export function addToDOM(canvas, parent, overflowHidden = true) {
   }
   target.appendChild(canvas);
   return canvas;
-}
+};
 
 /**
  * TBD.
  * @param {HTMLCanvasElement} canvas - TBD.
  */
-export function removeFromDOM(canvas) {
+export const removeFromDOM = (canvas) => {
   if (canvas && canvas.parentNode) {
     canvas.parentNode.removeChild(canvas);
   }
-}
+};
 
 /**
  * TBD.
@@ -116,17 +116,17 @@ export function removeFromDOM(canvas) {
  * @param {number} skewY - TBD.
  * @returns {object} TBD.
  */
-export function setTransform(context, translateX, translateY, scaleX, scaleY, skewX, skewY) {
+export const setTransform = (context, translateX, translateY, scaleX, scaleY, skewX, skewY) => {
   context.setTransform(scaleX, skewX, skewY, scaleY, translateX, translateY);
   return context;
-}
+};
 
 /**
  * TBD.
  * @param {object} context - TBD.
  * @returns {object} TBD.
  */
-export function getSmoothingPrefix(context) {
+export const getSmoothingPrefix = (context) => {
   const VENDORS = ['i', 'webkitI', 'msI', 'mozI', 'oI'];
   for (let i = 0; i < VENDORS.length; i += 1) {
     const s = `${VENDORS[i]}mageSmoothingEnabled`;
@@ -135,7 +135,7 @@ export function getSmoothingPrefix(context) {
     }
   }
   return null;
-}
+};
 
 /**
  * TBD.
@@ -143,10 +143,10 @@ export function getSmoothingPrefix(context) {
  * @param {number} value - TBD.
  * @returns {object} TBD.
  */
-export function setSmoothingEnabled(context, value) {
+export const setSmoothingEnabled = (context, value) => {
   const s = getSmoothingPrefix(context);
   if (s) {
     context[s] = value;
   }
   return context;
-}
+};

@@ -12,7 +12,7 @@ import { FrameData } from './frame_data.js';
  * @param {number} spacing - TBD.
  * @returns {object} TBD.
  */
-export function spriteSheet(game, key, frameWidth, frameHeight, frameMax, margin, spacing) {
+export const spriteSheet = (game, key, frameWidth, frameHeight, frameMax, margin, spacing) => {
   let img = key;
   if (typeof key === 'string') {
     img = game.cache.getImage(key);
@@ -54,7 +54,7 @@ export function spriteSheet(game, key, frameWidth, frameHeight, frameMax, margin
     }
   }
   return data;
-}
+};
 
 /**
  * TBD.
@@ -62,7 +62,7 @@ export function spriteSheet(game, key, frameWidth, frameHeight, frameMax, margin
  * @param {object} json - TBD.
  * @returns {object} TBD.
  */
-export function JSONDataHash(game, json) {
+export const JSONDataHash = (game, json) => {
   if (!json.frames) {
     game.logger.warn('JSONDataHash: Invalid Texture Atlas JSON given, missing frames object', json);
     return null;
@@ -93,4 +93,4 @@ export function JSONDataHash(game, json) {
     i += 1;
   }
   return data;
-}
+};

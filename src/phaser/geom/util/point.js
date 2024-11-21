@@ -7,12 +7,12 @@ import { Point } from '../point.js';
  * @param {Point} output - TBD.
  * @returns {Point} TBD.
  */
-export function add(a, b, output = null) {
+export const add = (a, b, output = null) => {
   const result = output || new Point();
   result.x = a.x + b.x;
   result.y = a.y + b.y;
   return result;
-}
+};
 
 /**
  * TBD.
@@ -21,12 +21,12 @@ export function add(a, b, output = null) {
  * @param {Point} output - TBD.
  * @returns {Point} TBD.
  */
-export function subtract(a, b, output = null) {
+export const subtract = (a, b, output = null) => {
   const result = output || new Point();
   result.x = a.x - b.x;
   result.y = a.y - b.y;
   return result;
-}
+};
 
 /**
  * TBD.
@@ -35,12 +35,12 @@ export function subtract(a, b, output = null) {
  * @param {Point} output - TBD.
  * @returns {Point} TBD.
  */
-export function multiply(a, b, output = null) {
+export const multiply = (a, b, output = null) => {
   const result = output || new Point();
   result.x = a.x * b.x;
   result.y = a.y * b.y;
   return result;
-}
+};
 
 /**
  * TBD.
@@ -49,12 +49,12 @@ export function multiply(a, b, output = null) {
  * @param {Point} output - TBD.
  * @returns {Point} TBD.
  */
-export function divide(a, b, output = null) {
+export const divide = (a, b, output = null) => {
   const result = output || new Point();
   result.x = a.x / b.x;
   result.y = a.y / b.y;
   return result;
-}
+};
 
 /**
  * TBD.
@@ -62,9 +62,9 @@ export function divide(a, b, output = null) {
  * @param {Point} b - TBD.
  * @returns {boolean} TBD.
  */
-export function equals(a, b) {
+export const equals = (a, b) => {
   return a.x === b.x && a.y === b.y;
-}
+};
 
 /**
  * TBD.
@@ -72,9 +72,9 @@ export function equals(a, b) {
  * @param {Point} b - TBD.
  * @returns {number} TBD.
  */
-export function angle(a, b) {
+export const angle = (a, b) => {
   return Math.atan2(a.y - b.y, a.x - b.x);
-}
+};
 
 /**
  * TBD.
@@ -82,10 +82,10 @@ export function angle(a, b) {
  * @param {Point} output - TBD.
  * @returns {Point} TBD.
  */
-export function negative(a, output = null) {
+export const negative = (a, output = null) => {
   const result = output || new Point();
   return result.setTo(-a.x, -a.y);
-}
+};
 
 /**
  * TBD.
@@ -95,10 +95,10 @@ export function negative(a, output = null) {
  * @param {Point} output - TBD.
  * @returns {Point} TBD.
  */
-export function multiplyAdd(a, b, s, output = null) {
+export const multiplyAdd = (a, b, s, output = null) => {
   const result = output || new Point();
   return result.setTo(a.x + b.x * s, a.y + b.y * s);
-}
+};
 
 /**
  * TBD.
@@ -108,10 +108,10 @@ export function multiplyAdd(a, b, s, output = null) {
  * @param {Point} output - TBD.
  * @returns {Point} TBD.
  */
-export function interpolate(a, b, f, output = null) {
+export const interpolate = (a, b, f, output = null) => {
   const result = output || new Point();
   return result.setTo(a.x + (b.x - a.x) * f, a.y + (b.y - a.y) * f);
-}
+};
 
 /**
  * TBD.
@@ -119,10 +119,10 @@ export function interpolate(a, b, f, output = null) {
  * @param {Point} output - TBD.
  * @returns {Point} TBD.
  */
-export function perp(a, output = null) {
+export const perp = (a, output = null) => {
   const result = output || new Point();
   return result.setTo(-a.y, a.x);
-}
+};
 
 /**
  * TBD.
@@ -130,10 +130,10 @@ export function perp(a, output = null) {
  * @param {Point} output - TBD.
  * @returns {Point} TBD.
  */
-export function rperp(a, output = null) {
+export const rperp = (a, output = null) => {
   const result = output || new Point();
   return result.setTo(a.y, -a.x);
-}
+};
 
 /**
  * TBD.
@@ -142,12 +142,12 @@ export function rperp(a, output = null) {
  * @param {boolean} round - TBD.
  * @returns {number} TBD.
  */
-export function distance(a, b, round = false) {
+export const distance = (a, b, round = false) => {
   const dx = a.x - b.x;
   const dy = a.y - b.y;
   const abDistance = Math.sqrt(dx * dx + dy * dy);
   return round ? Math.round(abDistance) : abDistance;
-}
+};
 
 /**
  * TBD.
@@ -156,14 +156,14 @@ export function distance(a, b, round = false) {
  * @param {Point} output - TBD.
  * @returns {Point} TBD.
  */
-export function project(a, b, output = null) {
+export const project = (a, b, output = null) => {
   const result = output || new Point();
   const amt = a.dot(b) / b.getMagnitudeSq();
   if (amt !== 0) {
     result.setTo(amt * b.x, amt * b.y);
   }
   return result;
-}
+};
 
 /**
  * TBD.
@@ -172,14 +172,14 @@ export function project(a, b, output = null) {
  * @param {Point} output - TBD.
  * @returns {Point} TBD.
  */
-export function projectUnit(a, b, output = null) {
+export const projectUnit = (a, b, output = null) => {
   const result = output || new Point();
   const amt = a.dot(b);
   if (amt !== 0) {
     result.setTo(amt * b.x, amt * b.y);
   }
   return result;
-}
+};
 
 /**
  * TBD.
@@ -187,10 +187,10 @@ export function projectUnit(a, b, output = null) {
  * @param {Point} output - TBD.
  * @returns {Point} TBD.
  */
-export function normalRightHand(a, output = null) {
+export const normalRightHand = (a, output = null) => {
   const result = output || new Point();
   return result.setTo(a.y * -1, a.x);
-}
+};
 
 /**
  * TBD.
@@ -198,14 +198,14 @@ export function normalRightHand(a, output = null) {
  * @param {Point} output - TBD.
  * @returns {Point} TBD.
  */
-export function normalize(a, output = null) {
+export const normalize = (a, output = null) => {
   const result = output || new Point();
   const m = a.getMagnitude();
   if (m !== 0) {
     result.setTo(a.x / m, a.y / m);
   }
   return result;
-}
+};
 
 /**
  * TBD.
@@ -217,7 +217,7 @@ export function normalize(a, output = null) {
  * @param {number} dist - TBD.
  * @returns {object} TBD.
  */
-export function rotate(a, x, y, ang, asDegrees, dist) {
+export const rotate = (a, x, y, ang, asDegrees, dist) => {
   if (asDegrees) {
     ang *= Math.PI / 180;
   }
@@ -235,7 +235,7 @@ export function rotate(a, x, y, ang, asDegrees, dist) {
     a.y = y + dist * Math.sin(t);
   }
   return a;
-}
+};
 
 /**
  * TBD.
@@ -244,7 +244,7 @@ export function rotate(a, x, y, ang, asDegrees, dist) {
  * @returns {Point} TBD.
  * @throws Error TBD.
  */
-export function centroid(points, output = null) {
+export const centroid = (points, output = null) => {
   const result = output || new Point();
   const pointsLen = points.length;
   if (pointsLen < 1) {
@@ -259,7 +259,7 @@ export function centroid(points, output = null) {
   }
   result.divide(pointsLen, pointsLen);
   return result;
-}
+};
 
 /**
  * TBD.
@@ -268,7 +268,7 @@ export function centroid(points, output = null) {
  * @param {string} yProp - TBD.
  * @returns {Point} TBD.
  */
-export function parse(obj, xProp = 'x', yProp = 'y') {
+export const parse = (obj, xProp = 'x', yProp = 'y') => {
   const point = new Point();
   if (obj[xProp]) {
     point.x = parseInt(obj[xProp], 10);
@@ -277,7 +277,7 @@ export function parse(obj, xProp = 'x', yProp = 'y') {
     point.y = parseInt(obj[yProp], 10);
   }
   return point;
-}
+};
 
 /**
  * TBD.
@@ -285,8 +285,8 @@ export function parse(obj, xProp = 'x', yProp = 'y') {
  * @param {Point} output - TBD.
  * @returns {Point} TBD.
  */
-export function clone(input, output = null) {
+export const clone = (input, output = null) => {
   const result = output || new Point();
   result.setTo(input.x, input.y);
   return result;
-}
+};

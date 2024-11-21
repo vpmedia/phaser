@@ -8,23 +8,23 @@ import { GraphicsData } from './graphics_data.js';
  * TBD.
  * @returns {number} TBD.
  */
-export function getStencilBufferLimit() {
+export const getStencilBufferLimit = () => {
   if (!window.PhaserRegistry.stencilBufferLimit) {
     window.PhaserRegistry.stencilBufferLimit = 6;
   }
   return window.PhaserRegistry.stencilBufferLimit;
-}
+};
 
 /**
  * TBD.
  * @returns {object[]} TBD.
  */
-export function getGraphicsDataPool() {
+export const getGraphicsDataPool = () => {
   if (!window.PhaserRegistry.graphicsDataPool) {
     window.PhaserRegistry.graphicsDataPool = [];
   }
   return window.PhaserRegistry.graphicsDataPool;
-}
+};
 
 /**
  * TBD.
@@ -32,7 +32,7 @@ export function getGraphicsDataPool() {
  * @param {number} type - TBD.
  * @returns {object} TBD.
  */
-export function switchMode(webGL, type) {
+export const switchMode = (webGL, type) => {
   let webGLData;
   if (!webGL.data.length) {
     webGLData = getGraphicsDataPool().pop() || new GraphicsData(webGL.gl);
@@ -48,14 +48,14 @@ export function switchMode(webGL, type) {
   }
   webGLData.dirty = true;
   return webGLData;
-}
+};
 
 /**
  * TBD.
  * @param {object} graphicsData - TBD.
  * @param {GraphicsData} webGLData - TBD.
  */
-export function buildLine(graphicsData, webGLData) {
+export const buildLine = (graphicsData, webGLData) => {
   // TODO OPTIMISE!
   let i = 0;
   let points = graphicsData.points;
@@ -213,14 +213,14 @@ export function buildLine(graphicsData, webGLData) {
     indexStart += 1;
   }
   indices.push(indexStart - 1);
-}
+};
 
 /**
  * TBD.
  * @param {object} graphicsData - TBD.
  * @param {GraphicsData} webGLData - TBD.
  */
-export function buildRectangle(graphicsData, webGLData) {
+export const buildRectangle = (graphicsData, webGLData) => {
   //
   // need to convert points to a nice regular data
   //
@@ -257,7 +257,7 @@ export function buildRectangle(graphicsData, webGLData) {
     buildLine(graphicsData, webGLData);
     graphicsData.points = tempPoints;
   }
-}
+};
 
 /**
  * TBD.
@@ -269,7 +269,7 @@ export function buildRectangle(graphicsData, webGLData) {
  * @param {number} toY - TBD.
  * @returns {number[]} TBD.
  */
-export function quadraticBezierCurve(fromX, fromY, cpX, cpY, toX, toY) {
+export const quadraticBezierCurve = (fromX, fromY, cpX, cpY, toX, toY) => {
   let xa;
   let ya;
   let xb;
@@ -296,14 +296,14 @@ export function quadraticBezierCurve(fromX, fromY, cpX, cpY, toX, toY) {
     points.push(x, y);
   }
   return points;
-}
+};
 
 /**
  * TBD.
  * @param {object} graphicsData - TBD.
  * @param {GraphicsData} webGLData - TBD.
  */
-export function buildRoundedRectangle(graphicsData, webGLData) {
+export const buildRoundedRectangle = (graphicsData, webGLData) => {
   const rrectData = graphicsData.shape;
   const x = rrectData.x;
   const y = rrectData.y;
@@ -346,14 +346,14 @@ export function buildRoundedRectangle(graphicsData, webGLData) {
     buildLine(graphicsData, webGLData);
     graphicsData.points = tempPoints;
   }
-}
+};
 
 /**
  * TBD.
  * @param {object} graphicsData - TBD.
  * @param {GraphicsData} webGLData - TBD.
  */
-export function buildCircle(graphicsData, webGLData) {
+export const buildCircle = (graphicsData, webGLData) => {
   // need to convert points to a nice regular data
   const circleData = graphicsData.shape;
   const x = circleData.x;
@@ -397,14 +397,14 @@ export function buildCircle(graphicsData, webGLData) {
     buildLine(graphicsData, webGLData);
     graphicsData.points = tempPoints;
   }
-}
+};
 
 /**
  * TBD.
  * @param {object} graphicsData - TBD.
  * @param {GraphicsData} webGLData - TBD.
  */
-export function buildComplexPoly(graphicsData, webGLData) {
+export const buildComplexPoly = (graphicsData, webGLData) => {
   // TODO - no need to copy this as it gets turned into a Float32Array anyways..
   const points = graphicsData.points.slice();
   if (points.length < 6) {
@@ -441,7 +441,7 @@ export function buildComplexPoly(graphicsData, webGLData) {
   for (let i = 0; i < length; i += 1) {
     indices.push(i);
   }
-}
+};
 
 /**
  * TBD.
@@ -449,7 +449,7 @@ export function buildComplexPoly(graphicsData, webGLData) {
  * @param {GraphicsData} webGLData - TBD.
  * @returns {boolean} TBD.
  */
-export function buildPoly(graphicsData, webGLData) {
+export const buildPoly = (graphicsData, webGLData) => {
   const points = graphicsData.points;
   if (points.length < 6) {
     return false;
@@ -480,14 +480,14 @@ export function buildPoly(graphicsData, webGLData) {
     verts.push(points[i * 2], points[i * 2 + 1], r, g, b, alpha);
   }
   return true;
-}
+};
 
 /**
  * TBD.
  * @param {object} graphics - TBD.
  * @param {WebGLRenderingContext & { id: number }} gl - TBD.
  */
-export function updateGraphics(graphics, gl) {
+export const updateGraphics = (graphics, gl) => {
   const stencilBufferLimit = getStencilBufferLimit();
   // get the contexts graphics object
   let webGL = graphics._webGL[gl.id];
@@ -569,14 +569,14 @@ export function updateGraphics(graphics, gl) {
       webGLData.upload();
     }
   }
-}
+};
 
 /**
  * TBD.
  * @param {object} graphics - TBD.
  * @param {object} renderSession - TBD.
  */
-export function renderGraphics(graphics, renderSession) {
+export const renderGraphics = (graphics, renderSession) => {
   const gl = renderSession.gl;
   const projection = renderSession.projection;
   const offset = renderSession.offset;
@@ -616,4 +616,4 @@ export function renderGraphics(graphics, renderSession) {
       gl.drawElements(gl.TRIANGLE_STRIP, webGLData.indices.length, gl.UNSIGNED_SHORT, 0);
     }
   }
-}
+};

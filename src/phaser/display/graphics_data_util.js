@@ -5,7 +5,7 @@ import { GraphicsData } from './graphics_data.js';
  * @param {GraphicsData} source - TBD.
  * @returns {GraphicsData} TBD.
  */
-export function clone(source) {
+export const clone = (source) => {
   return new GraphicsData(
     source.lineWidth,
     source.lineColor,
@@ -15,4 +15,4 @@ export function clone(source) {
     source.fill,
     source.shape
   );
-}
+};

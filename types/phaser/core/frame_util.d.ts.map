@@ -1,1 +1,1 @@
-{"version":3,"file":"frame_util.d.ts","sourceRoot":"","sources":["../../../src/phaser/core/frame_util.js"],"names":[],"mappings":"AAGA;;;;;GAKG;AACH,kCAJW,KAAK,WACL,KAAK,GACH,KAAK,CAMjB;AAED;;;;;GAKG;AACH,0CAJW,SAAS,WACT,SAAS,GACP,SAAS,CAQrB;sBA3BqB,YAAY;0BACR,iBAAiB"}
+{"version":3,"file":"frame_util.d.ts","sourceRoot":"","sources":["../../../src/phaser/core/frame_util.js"],"names":[],"mappings":"AASO,kCAJI,KAAK,WACL,KAAK,GACH,KAAK,CAMjB;AAQM,0CAJI,SAAS,WACT,SAAS,GACP,SAAS,CAQrB;sBA3BqB,YAAY;0BACR,iBAAiB"}

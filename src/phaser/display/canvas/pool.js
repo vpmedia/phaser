@@ -2,7 +2,7 @@
  * TBD.
  * @returns {object[]} TBD.
  */
-export function getPool() {
+export const getPool = () => {
   if (!window.PhaserRegistry) {
     window.PhaserRegistry = {};
   }
@@ -10,13 +10,13 @@ export function getPool() {
     window.PhaserRegistry.CANVAS_POOL = [];
   }
   return window.PhaserRegistry.CANVAS_POOL;
-}
+};
 
 /**
  * TBD.
  * @returns {object} TBD.
  */
-export function getFirst() {
+export const getFirst = () => {
   const pool = getPool();
   for (let i = 0; i < pool.length; i += 1) {
     if (!pool[i].parent) {
@@ -24,13 +24,13 @@ export function getFirst() {
     }
   }
   return -1;
-}
+};
 
 /**
  * TBD.
  * @param {object} parent - TBD.
  */
-export function remove(parent) {
+export const remove = (parent) => {
   const pool = getPool();
   for (let i = 0; i < pool.length; i += 1) {
     if (pool[i].parent === parent) {
@@ -39,13 +39,13 @@ export function remove(parent) {
       pool[i].canvas.height = 1;
     }
   }
-}
+};
 
 /**
  * TBD.
  * @param {HTMLCanvasElement} canvas - TBD.
  */
-export function removeByCanvas(canvas) {
+export const removeByCanvas = (canvas) => {
   const pool = getPool();
   for (let i = 0; i < pool.length; i += 1) {
     if (pool[i].canvas === canvas) {
@@ -54,13 +54,13 @@ export function removeByCanvas(canvas) {
       pool[i].canvas.height = 1;
     }
   }
-}
+};
 
 /**
  * TBD.
  * @returns {number} TBD.
  */
-export function getTotal() {
+export const getTotal = () => {
   const pool = getPool();
   let c = 0;
   for (let i = 0; i < pool.length; i += 1) {
@@ -69,13 +69,13 @@ export function getTotal() {
     }
   }
   return c;
-}
+};
 
 /**
  * TBD.
  * @returns {number} TBD.
  */
-export function getFree() {
+export const getFree = () => {
   const pool = getPool();
   let c = 0;
   for (let i = 0; i < pool.length; i += 1) {
@@ -84,7 +84,7 @@ export function getFree() {
     }
   }
   return c;
-}
+};
 
 /**
  * TBD.
@@ -94,7 +94,7 @@ export function getFree() {
  * @param {boolean} skipPool - TBD.
  * @returns {HTMLCanvasElement} TBD.
  */
-export function create(parent, width, height, skipPool = false) {
+export const create = (parent, width, height, skipPool = false) => {
   if (parent === undefined) {
     console.warn('Created CanvasPool element with undefined parent.');
   }
@@ -117,4 +117,4 @@ export function create(parent, width, height, skipPool = false) {
     canvas.height = height;
   }
   return canvas;
-}
+};

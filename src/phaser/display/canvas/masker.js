@@ -5,7 +5,7 @@ import { renderGraphicsMask } from './graphics.js';
  * @param {object} maskData - TBD.
  * @param {object} renderSession - TBD.
  */
-export function pushMask(maskData, renderSession) {
+export const pushMask = (maskData, renderSession) => {
   const context = renderSession.context;
   context.save();
   const cacheAlpha = maskData.alpha;
@@ -22,12 +22,12 @@ export function pushMask(maskData, renderSession) {
   renderGraphicsMask(maskData, context);
   context.clip();
   maskData.worldAlpha = cacheAlpha;
-}
+};
 
 /**
  * TBD.
  * @param {object} renderSession - TBD.
  */
-export function popMask(renderSession) {
+export const popMask = (renderSession) => {
   renderSession.context.restore();
-}
+};

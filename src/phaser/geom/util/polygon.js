@@ -6,8 +6,8 @@ import { Polygon } from '../polygon.js';
  * @param {Polygon} output - TBD.
  * @returns {Polygon} TBD.
  */
-export function clone(input, output = null) {
+export const clone = (input, output = null) => {
   const result = output || new Polygon();
   result.setTo(input._points.slice());
   return result;
-}
+};
