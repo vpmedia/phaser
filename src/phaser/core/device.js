@@ -81,6 +81,10 @@ export class Device {
      */
     this.fullscreenKeyboard = false;
     /**
+     * @type {boolean}
+     */
+    this.noAudioFormat = false;
+    /**
      * @type {{[key: string]: boolean}}
      */
     this.supportedAudioFormats = {};

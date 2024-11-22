@@ -352,7 +352,7 @@ export class Loader {
    * @returns {Loader} TBD.
    */
   audio(key, urls, autoDecode = true) {
-    if (this.game.sound.noAudio) {
+    if (this.game.sound.noAudio || this.game.device.noAudioFormat) {
       return this;
     }
     if (typeof urls === 'string') {
@@ -371,7 +371,7 @@ export class Loader {
    * @returns {Loader} TBD.
    */
   audioSprite(key, urls, jsonURL, jsonData, autoDecode = true) {
-    if (this.game.sound.noAudio) {
+    if (this.game.sound.noAudio || this.game.device.noAudioFormat) {
       return this;
     }
     this.audio(key, urls, autoDecode);
@@ -757,6 +757,8 @@ export class Loader {
           this.xhrLoad(file, this.transformUrl(file.url, file), 'arraybuffer', this.fileComplete);
         } else if (this.game.sound.noAudio) {
           this.fileError(file, null, 'Device does not have audio playback support');
+        } else if (this.game.device.noAudioFormat) {
+          this.fileError(file, null, 'Device does not have audio format support');
         } else {
           this.fileError(file, null, 'No supported audio URL specified');
         }
@@ -895,7 +897,7 @@ export class Loader {
    * @returns {string} TBD.
    */
   getAudioURL(urls) {
-    if (this.game.sound.noAudio) {
+    if (this.game.sound.noAudio || this.game.device.noAudioFormat) {
       return null;
     }
     for (let i = 0; i < urls.length; i += 1) {

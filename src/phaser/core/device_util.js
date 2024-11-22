@@ -199,7 +199,7 @@ export const checkAudio = (device) => {
   }
   if (Object.keys(device.supportedAudioFormats).length === 0) {
     logger.warn('No audio format support detected');
-    device.supportedAudioFormats['mp3'] = true;
+    device.noAudioFormat = true;
   }
 };
 
