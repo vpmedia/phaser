@@ -52,6 +52,7 @@ export class SoundManager {
     }
     if (window.AudioContext) {
       try {
+        this.game.logger.info('initAudioContext');
         this.context = new window.AudioContext();
         this.type = AUDIO_STANDARD;
       } catch (error) {
@@ -61,6 +62,7 @@ export class SoundManager {
       }
     } else if (window.webkitAudioContext) {
       try {
+        this.game.logger.info('initWebkitAudioContext');
         this.context = new window.webkitAudioContext();
         this.type = AUDIO_WEBKIT;
       } catch (error) {

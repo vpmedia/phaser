@@ -61,10 +61,7 @@ export const initDefaultShaders = () => {};
  * @returns {WebGLShader} TBD.
  */
 export const compileShader = (gl, shaderSrc, shaderType) => {
-  let src = shaderSrc;
-  if (Array.isArray(shaderSrc)) {
-    src = shaderSrc.join('\n');
-  }
+  const src = Array.isArray(shaderSrc) ? shaderSrc.join('\n') : shaderSrc;
   const shader = gl.createShader(shaderType);
   gl.shaderSource(shader, src);
   gl.compileShader(shader);

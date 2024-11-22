@@ -208,7 +208,7 @@ export class Sound {
    * @param {boolean} forceRestart - TBD.
    * @returns {Sound} TBD.
    */
-  play(marker, position, volume, loop, forceRestart) {
+  play(marker, position, volume, loop, forceRestart = true) {
     if (marker === undefined || marker === false || marker === null) {
       marker = '';
     }

@@ -197,6 +197,10 @@ export const checkAudio = (device) => {
       }
     }
   }
+  if (Object.keys(device.supportedAudioFormats).length === 0) {
+    logger.warn('No audio format support detected');
+    device.supportedAudioFormats['mp3'] = true;
+  }
 };
 
 /**
@@ -232,6 +236,7 @@ export const checkImage = (device) => {
  * @param {Device} device - TBD.
  */
 export const initialize = (device) => {
+  logger.info('initialize');
   checkOS(device);
   checkBrowser(device);
   checkAudio(device);

@@ -102,7 +102,7 @@ export class Sound {
      * @param {boolean} forceRestart - TBD.
      * @returns {Sound} TBD.
      */
-    play(marker: string, position: number, volume: number, loop: boolean, forceRestart: boolean): Sound;
+    play(marker: string, position: number, volume: number, loop: boolean, forceRestart?: boolean): Sound;
     /**
      * TBD.
      */
