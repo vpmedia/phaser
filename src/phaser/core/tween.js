@@ -107,7 +107,7 @@ export class Tween {
         this.properties[property] = this.target[property] || 0;
         if (!Array.isArray(this.properties[property])) {
           //  Ensures we're using numbers, not strings
-          this.properties[property] *= 1.0;
+          this.properties[property] *= 1;
         }
       }
     }
@@ -439,7 +439,7 @@ export class Tween {
         this.properties[property] = this.target[property] || 0;
         if (!Array.isArray(this.properties[property])) {
           //  Ensures we're using numbers, not strings
-          this.properties[property] *= 1.0;
+          this.properties[property] *= 1;
         }
       }
     }

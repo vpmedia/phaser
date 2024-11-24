@@ -223,7 +223,7 @@ export class Graphics extends DisplayObject {
     const a2 = y2 - y1;
     const b2 = x2 - x1;
     const mm = Math.abs(a1 * b2 - b1 * a2);
-    if (mm < 1.0e-8 || radius === 0) {
+    if (mm < 1e-8 || radius === 0) {
       if (points[points.length - 2] !== x1 || points[points.length - 1] !== y1) {
         points.push(x1, y1);
       }

@@ -9,8 +9,8 @@ export class FastSpriteBatch {
     vertSize: number;
     maxSize: number;
     size: number;
-    vertices: Float32Array;
-    indices: Uint16Array;
+    vertices: Float32Array<ArrayBuffer>;
+    indices: Uint16Array<ArrayBuffer>;
     vertexBuffer: WebGLBuffer;
     indexBuffer: WebGLBuffer;
     lastIndexCount: number;

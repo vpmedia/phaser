@@ -12,7 +12,7 @@ export class Time {
     this.now = 0;
     this.elapsed = 0;
     this.elapsedMS = 0;
-    this.desiredFpsMult = 1.0 / 60;
+    this.desiredFpsMult = 1 / 60;
     this._desiredFps = 60;
     this.suggestedFps = this.desiredFps;
     this.advancedTiming = false;
@@ -242,6 +242,6 @@ export class Time {
    */
   set desiredFps(value) {
     this._desiredFps = value;
-    this.desiredFpsMult = 1.0 / value;
+    this.desiredFpsMult = 1 / value;
   }
 }

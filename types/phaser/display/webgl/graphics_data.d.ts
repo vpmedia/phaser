@@ -17,8 +17,8 @@ export class GraphicsData {
      * TBD.
      */
     reset(): void;
-    glPoints: Float32Array;
-    glIndicies: Uint16Array;
+    glPoints: Float32Array<ArrayBuffer>;
+    glIndicies: Uint16Array<ArrayBuffer>;
     /**
      * TBD.
      */

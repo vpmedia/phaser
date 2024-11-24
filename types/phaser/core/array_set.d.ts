@@ -67,11 +67,11 @@ export class ArraySet {
      * TBD.
      * @returns {object} TBD.
      */
-    get first(): any;
+    get first(): object;
     /**
      * TBD.
      * @returns {object} TBD.
      */
-    get next(): any;
+    get next(): object;
 }
 //# sourceMappingURL=array_set.d.ts.map

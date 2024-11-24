@@ -299,7 +299,7 @@ export class ScaleManager {
      * TBD.
      * @returns {object} TBD.
      */
-    get boundingParent(): any;
+    get boundingParent(): object;
     /**
      * TBD.
      * @returns {number} TBD.

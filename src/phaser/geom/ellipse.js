@@ -1,7 +1,7 @@
+import { GEOM_ELLIPSE } from '../core/const.js';
 import { Point } from './point.js';
 import { Rectangle } from './rectangle.js';
 import { contains } from './util/ellipse.js';
-import { GEOM_ELLIPSE } from '../core/const.js';
 
 export class Ellipse {
   /**
@@ -86,8 +86,8 @@ export class Ellipse {
     const r = Math.random();
     result.x = Math.sqrt(r) * Math.cos(p);
     result.y = Math.sqrt(r) * Math.sin(p);
-    result.x = this.x + (result.x * this.width) / 2.0;
-    result.y = this.y + (result.y * this.height) / 2.0;
+    result.x = this.x + (result.x * this.width) / 2;
+    result.y = this.y + (result.y * this.height) / 2;
     return result;
   }
 

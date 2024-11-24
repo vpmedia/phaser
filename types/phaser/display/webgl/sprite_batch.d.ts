@@ -2,9 +2,9 @@ export class WebGLSpriteBatch {
     vertSize: number;
     size: number;
     vertices: ArrayBuffer;
-    positions: Float32Array;
-    colors: Uint32Array;
-    indices: Uint16Array;
+    positions: Float32Array<ArrayBuffer>;
+    colors: Uint32Array<ArrayBuffer>;
+    indices: Uint16Array<ArrayBuffer>;
     lastIndexCount: number;
     drawing: boolean;
     currentBatchSize: number;

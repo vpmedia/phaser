@@ -47,11 +47,11 @@ export class Polygon {
     /**
      * TBD.
      */
-    set points(value: any[]);
+    set points(value: object[]);
     /**
      * TBD.
      * @returns {object[]} TBD.
      */
-    get points(): any[];
+    get points(): object[];
 }
 //# sourceMappingURL=polygon.d.ts.map
