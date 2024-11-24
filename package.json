@@ -23,7 +23,7 @@
   "types": "./types/index.d.ts",
   "type": "module",
   "dependencies": {
-    "@vpmedia/simplify": "^1.15.0",
+    "@vpmedia/simplify": "^1.16.0",
     "uuid": "^11.0.3"
   },
   "devDependencies": {
