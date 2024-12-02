@@ -69,7 +69,7 @@ export class ArraySet {
    */
   remove(item) {
     const idx = this.list.indexOf(item);
-    if (idx > -1) {
+    if (idx !== -1) {
       this.list.splice(idx, 1);
       return item;
     }

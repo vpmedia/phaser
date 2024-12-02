@@ -22,6 +22,7 @@ export class Button extends Image {
    * @param {string} outFrame - TBD.
    * @param {string} downFrame - TBD.
    * @param {string} upFrame - TBD.
+   * @param {string} disabledFrame - TBD.
    */
   constructor(
     game,
@@ -33,7 +34,8 @@ export class Button extends Image {
     overFrame = null,
     outFrame = null,
     downFrame = null,
-    upFrame = null
+    upFrame = null,
+    disabledFrame = null
   ) {
     super(game, x, y, key, outFrame);
     this.type = BUTTON;
@@ -53,7 +55,7 @@ export class Button extends Image {
     this.input = new InputHandler(this);
     this.input.start(0, true);
     this.input.useHandCursor = true;
-    this.setFrames(overFrame, outFrame, downFrame, upFrame);
+    this.setFrames(overFrame, outFrame, downFrame, upFrame, disabledFrame);
     if (callback !== null) {
       this.onInputUp.add(callback, callbackContext);
     }
@@ -95,7 +97,7 @@ export class Button extends Image {
    * @param {boolean} isEnabled - TBD.
    * @param {boolean} isImmediate - TBD.
    */
-  setEnabled(isEnabled, isImmediate) {
+  setEnabled(isEnabled, isImmediate = false) {
     this.input.enabled = isEnabled;
     if (isImmediate) {
       this.changeStateFrame(isEnabled ? STATE_UP : STATE_DISABLED);
@@ -110,7 +112,7 @@ export class Button extends Image {
    * TBD.
    */
   clearFrames() {
-    this.setFrames(null, null, null, null);
+    this.setFrames(null, null, null, null, null);
   }
 
   /**

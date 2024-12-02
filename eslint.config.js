@@ -54,7 +54,6 @@ export default [
       'no-unused-vars': 'off',
       'prefer-arrow-callback': 'warn',
       'prefer-template': 'warn',
-      'unicorn/consistent-existence-index-check': 'off',
       'unicorn/consistent-function-scoping': 'off',
       'unicorn/explicit-length-check': 'off',
       'unicorn/filename-case': 'off',

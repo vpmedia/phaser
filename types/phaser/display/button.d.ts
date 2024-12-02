@@ -11,8 +11,9 @@ export class Button extends Image {
      * @param {string} outFrame - TBD.
      * @param {string} downFrame - TBD.
      * @param {string} upFrame - TBD.
+     * @param {string} disabledFrame - TBD.
      */
-    constructor(game: import("../core/game.js").Game, x?: number, y?: number, key?: string, callback?: Function, callbackContext?: object, overFrame?: string, outFrame?: string, downFrame?: string, upFrame?: string);
+    constructor(game: import("../core/game.js").Game, x?: number, y?: number, key?: string, callback?: Function, callbackContext?: object, overFrame?: string, outFrame?: string, downFrame?: string, upFrame?: string, disabledFrame?: string);
     _onOverFrame: any;
     _onOutFrame: any;
     _onDownFrame: any;
@@ -32,7 +33,7 @@ export class Button extends Image {
      * @param {boolean} isEnabled - TBD.
      * @param {boolean} isImmediate - TBD.
      */
-    setEnabled(isEnabled: boolean, isImmediate: boolean): void;
+    setEnabled(isEnabled: boolean, isImmediate?: boolean): void;
     /**
      * TBD.
      */
