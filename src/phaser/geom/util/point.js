@@ -221,7 +221,7 @@ export const rotate = (a, x, y, ang, asDegrees, dist) => {
   if (asDegrees) {
     ang *= Math.PI / 180;
   }
-  if (dist === undefined) {
+  if (dist === undefined || dist === null) {
     a.subtract(x, y);
     const s = Math.sin(ang);
     const c = Math.cos(ang);
