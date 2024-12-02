@@ -22,7 +22,7 @@ export class GameObjectFactory {
      * @param {boolean} addToStage - TBD.
      * @returns {Group} TBD.
      */
-    group(parent: Group, name: string, addToStage: boolean): Group;
+    group(parent?: Group, name?: string, addToStage?: boolean): Group;
     /**
      * TBD.
      * @param {number} x - TBD.

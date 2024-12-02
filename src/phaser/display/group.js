@@ -14,7 +14,7 @@ export class Group extends DisplayObject {
    * @param {string} name - TBD.
    * @param {boolean} addToStage - TBD.
    */
-  constructor(game, parent = null, name = 'group', addToStage = false) {
+  constructor(game, parent = null, name = null, addToStage = false) {
     super();
     this.game = game;
     this.type = GROUP;

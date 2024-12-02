@@ -37,7 +37,7 @@ export class GameObjectFactory {
    * @param {boolean} addToStage - TBD.
    * @returns {Group} TBD.
    */
-  group(parent, name, addToStage) {
+  group(parent = null, name = null, addToStage = false) {
     return new Group(this.game, parent, name, addToStage);
   }
 
