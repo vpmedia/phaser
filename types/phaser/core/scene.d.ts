@@ -19,8 +19,10 @@ export class Scene {
     update(): void;
     /**
      * TBD.
+     * @param {number} width - TBD.
+     * @param {number} height - TBD.
      */
-    resize(): void;
+    resize(width: number, height: number): void;
     /**
      * TBD.
      */

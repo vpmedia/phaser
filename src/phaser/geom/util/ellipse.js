@@ -1,6 +1,6 @@
 /**
  * TBD.
- * @param {object} a - TBD.
+ * @param {import('../ellipse.js').Ellipse} a - TBD.
  * @param {number} x - TBD.
  * @param {number} y - TBD.
  * @returns {boolean} TBD.

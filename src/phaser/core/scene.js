@@ -37,8 +37,10 @@ export class Scene {
 
   /**
    * TBD.
+   * @param {number} width - TBD.
+   * @param {number} height - TBD.
    */
-  resize() {
+  resize(width, height) {
     // inherit
   }
 

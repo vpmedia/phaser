@@ -42,6 +42,7 @@ export const setBackgroundColor = (canvas, color) => {
  */
 export const setTouchAction = (canvas, value = 'none') => {
   value = value || 'none';
+  // @ts-ignore
   canvas.style.msTouchAction = value;
   canvas.style['ms-touch-action'] = value;
   canvas.style['touch-action'] = value;

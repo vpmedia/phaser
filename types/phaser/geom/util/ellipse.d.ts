@@ -1,2 +1,2 @@
-export function contains(a: object, x: number, y: number): boolean;
+export function contains(a: import("../ellipse.js").Ellipse, x: number, y: number): boolean;
 //# sourceMappingURL=ellipse.d.ts.map
