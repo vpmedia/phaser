@@ -96,7 +96,7 @@ export class Timer {
    * TBD.
    * @param {number} delay - TBD.
    */
-  start(delay) {
+  start(delay = 0) {
     if (this.running) {
       return;
     }

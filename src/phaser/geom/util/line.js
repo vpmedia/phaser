@@ -73,7 +73,7 @@ export const intersects = (a, b, asSegment, result) => {
  */
 export const intersectsRectangle = (line, rect) => {
   //  Quick bail out of the Line and Rect bounds don't intersect
-  if (intersectsRect(line, rect)) {
+  if (!intersectsRect(line, rect)) {
     return false;
   }
   const x1 = line.start.x;

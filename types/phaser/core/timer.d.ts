@@ -68,7 +68,7 @@ export class Timer {
      * TBD.
      * @param {number} delay - TBD.
      */
-    start(delay: number): void;
+    start(delay?: number): void;
     /**
      * TBD.
      * @param {boolean} clearEvents - TBD.

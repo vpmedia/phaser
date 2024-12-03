@@ -19,6 +19,8 @@ export class DisplayObject {
     cachedBounds: Rectangle;
     currentBounds: any;
     _mask: import("./graphics.js").Graphics;
+    _filters: any;
+    _filterBlock: any;
     children: any[];
     ignoreChildInput: boolean;
     /**

@@ -257,6 +257,7 @@ export class DOM {
    */
   getScreenOrientation(primaryFallback) {
     const screen = window.screen;
+    // @ts-ignore
     const orientation = screen.orientation || screen.mozOrientation || screen.msOrientation;
     if (orientation && typeof orientation.type === 'string') {
       // Screen Orientation API specification

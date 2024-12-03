@@ -32,6 +32,8 @@ export class DisplayObject {
     this.cachedBounds = new Rectangle(0, 0, 0, 0);
     this.currentBounds = null;
     this._mask = null;
+    this._filters = null;
+    this._filterBlock = null;
     this.children = [];
     this.ignoreChildInput = false;
   }

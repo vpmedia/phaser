@@ -4,7 +4,7 @@ export class Signal {
     memorize: boolean;
     _shouldPropagate: boolean;
     active: boolean;
-    _boundDispatch: boolean;
+    _boundDispatch: (...rest: any[]) => void;
     /**
      * TBD.
      * @param {Function} listener - TBD.

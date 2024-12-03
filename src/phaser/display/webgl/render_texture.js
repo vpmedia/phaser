@@ -1,10 +1,10 @@
-import { Rectangle } from '../../geom/rectangle.js';
+import { RENDER_WEBGL } from '../../core/const.js';
 import { Point } from '../../geom/point.js';
-import { Texture } from './texture.js';
+import { Rectangle } from '../../geom/rectangle.js';
+import { CanvasBuffer } from '../canvas/buffer.js';
 import { BaseTexture } from './base_texture.js';
 import { FilterTexture } from './filter_texture.js';
-import { CanvasBuffer } from '../canvas/buffer.js';
-import { RENDER_WEBGL } from '../../core/const.js';
+import { Texture } from './texture.js';
 
 export class RenderTexture extends Texture {
   /**
@@ -34,6 +34,7 @@ export class RenderTexture extends Texture {
     this.crop = new Rectangle(0, 0, this.width * this.resolution, this.height * this.resolution);
     this.renderer = renderer;
     if (this.renderer.type === RENDER_WEBGL) {
+      // @ts-ignore
       const gl = this.renderer.gl;
       this.baseTexture._dirty[gl.id] = false;
       this.textureBuffer = new FilterTexture(gl, this.width, this.height, this.baseTexture.scaleMode);

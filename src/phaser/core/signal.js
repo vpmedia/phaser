@@ -10,7 +10,7 @@ export class Signal {
     this.memorize = false;
     this._shouldPropagate = true;
     this.active = true;
-    this._boundDispatch = false;
+    this._boundDispatch = null;
   }
 
   /**
