@@ -3,7 +3,7 @@ import { Point } from './point.js';
 import { Rectangle } from './rectangle.js';
 
 describe('Rectangle', () => {
-  describe('#offset()', () => {
+  describe('offset()', () => {
     it('should update x and y properties when dx and dy are provided', () => {
       const rect = new Rectangle(0, 0, 10, 10);
       rect.offset(10, 20);
@@ -12,7 +12,7 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('#offsetPoint()', () => {
+  describe('offsetPoint()', () => {
     it('should call offset() with point.x and point.y as arguments when a Point object is provided', () => {
       const rect = new Rectangle(0, 0, 10, 10);
       const point = new Point(15, 25);
@@ -22,7 +22,7 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('#setTo()', () => {
+  describe('setTo()', () => {
     it('should update x, y, width and height properties when all arguments are provided', () => {
       const rect = new Rectangle(0, 0, 10, 10);
       rect.setTo(100, 200, 300, 400);
@@ -33,7 +33,7 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('#scale()', () => {
+  describe('scale()', () => {
     it('should update width and height properties when x is provided', () => {
       const rect = new Rectangle(0, 0, 10, 10);
       rect.scale(2);
@@ -50,7 +50,7 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('#centerOn()', () => {
+  describe('centerOn()', () => {
     it('should update centerX and centerY properties when both x and y are provided', () => {
       const rect = new Rectangle(0, 0, 10, 10);
       const point = new Point(150, 250);
@@ -60,7 +60,7 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('#floor()', () => {
+  describe('floor()', () => {
     it('should update x and y properties by rounding down', () => {
       const rect = new Rectangle(0, 0, 10, 10);
       rect.floor();
@@ -69,7 +69,7 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('#floorAll()', () => {
+  describe('floorAll()', () => {
     it('should update x, y, width and height properties by rounding down', () => {
       const rect = new Rectangle(0, 0, 10, 10);
       rect.floorAll();
@@ -80,7 +80,7 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('#ceil()', () => {
+  describe('ceil()', () => {
     it('should update x and y properties by rounding up', () => {
       const rect = new Rectangle(0, 0, 10, 10);
       rect.ceil();
@@ -89,7 +89,7 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('#ceilAll()', () => {
+  describe('ceilAll()', () => {
     it('should update x, y, width and height properties by rounding up', () => {
       const rect = new Rectangle(0, 0, 10, 10);
       rect.ceilAll();
@@ -100,7 +100,7 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('#copyFrom()', () => {
+  describe('copyFrom()', () => {
     it('should return a new Rectangle object with the same properties as the provided rectangle', () => {
       const rect = new Rectangle(0, 0, 10, 10);
       const source = new Rectangle();
@@ -113,7 +113,7 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('#copyTo()', () => {
+  describe('copyTo()', () => {
     it('should update the provided rectangle with the same properties as this rectangle', () => {
       const rect = new Rectangle(0, 0, 10, 10);
       const dest = new Rectangle();
@@ -126,7 +126,7 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('#inflate()', () => {
+  describe('inflate()', () => {
     it('should call the inflate() function from another module with this rectangle and dx and dy as arguments', () => {
       const rect = new Rectangle(0, 0, 10, 10);
       const inflated = rect.inflate(10, 20);
@@ -135,7 +135,7 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('#size()', () => {
+  describe('size()', () => {
     it('should call the size() function from another module with this rectangle and an output point as arguments', () => {
       const rect = new Rectangle(0, 0, 10, 10);
       const point = new Point();
@@ -145,7 +145,7 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('#resize()', () => {
+  describe('resize()', () => {
     it('should update width and height properties when both x and y are provided', () => {
       const rect = new Rectangle(0, 0, 10, 10);
       rect.resize(120, 140);
@@ -154,7 +154,7 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('#clone()', () => {
+  describe('clone()', () => {
     it('should return a new Rectangle object with the same properties as this rectangle', () => {
       const rect = new Rectangle(0, 0, 10, 10);
       const clone = rect.clone();
@@ -165,7 +165,7 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('#contains()', () => {
+  describe('contains()', () => {
     it('should return true if the point x, y is within this rectangle', () => {
       const rect = new Rectangle(0, 0, 10, 10);
       rect.setTo(100, 200, 300, 400);
@@ -181,7 +181,7 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('#containsRect()', () => {
+  describe('containsRect()', () => {
     it('should return true if the rectangle b is within this rectangle', () => {
       const rect = new Rectangle(0, 0, 10, 10);
       const source = new Rectangle();
@@ -199,7 +199,7 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('#equals()', () => {
+  describe('equals()', () => {
     it('should return true if the rectangle b has the same properties as this rectangle', () => {
       const rect = new Rectangle(0, 0, 10, 10);
       const source = new Rectangle();
@@ -217,7 +217,7 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('#intersection()', () => {
+  describe('intersection()', () => {
     it('should return a new Rectangle object that represents the intersection of this rectangle and b', () => {
       const rect = new Rectangle(0, 0, 10, 10);
       const source = new Rectangle();
@@ -230,7 +230,7 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('#intersects()', () => {
+  describe('intersects()', () => {
     it('should return true if the rectangle b intersects with this rectangle', () => {
       const rect = new Rectangle(0, 0, 10, 10);
       const source = new Rectangle();
@@ -248,7 +248,7 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('#intersectsRaw()', () => {
+  describe('intersectsRaw()', () => {
     it('should return true if the rectangle b intersects with this rectangle at left, right, top and bottom', () => {
       const rect = new Rectangle(0, 0, 10, 10);
       const source = new Rectangle();
@@ -266,7 +266,7 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('#union()', () => {
+  describe('union()', () => {
     it('should return a new Rectangle object that represents the union of this rectangle and b', () => {
       const rect = new Rectangle(0, 0, 10, 10);
       const source = new Rectangle();
@@ -279,7 +279,7 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('#random()', () => {
+  describe('random()', () => {
     it('should return a new Point object with x and y coordinates within this rectangle', () => {
       const rect = new Rectangle(0, 0, 10, 10);
       const random = rect.random();
@@ -288,7 +288,7 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('#getPoint()', () => {
+  describe('getPoint()', () => {
     it('should return a new Point object at the specified position within this rectangle', () => {
       const rect = new Rectangle(0, 0, 10, 10);
       const point = rect.getPoint(TOP_LEFT);
@@ -297,7 +297,7 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('#toString()', () => {
+  describe('toString()', () => {
     it('should return a string representation of this rectangle', () => {
       const rect = new Rectangle(0, 0, 10, 10);
       const string = rect.toString();
@@ -308,7 +308,7 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('#halfWidth', () => {
+  describe('halfWidth', () => {
     it('should return half the width of this rectangle', () => {
       const rect = new Rectangle(0, 0, 10, 10);
       const half = rect.halfWidth;
@@ -316,7 +316,7 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('#halfHeight', () => {
+  describe('halfHeight', () => {
     it('should return half the height of this rectangle', () => {
       const rect = new Rectangle(0, 0, 10, 10);
       const half = rect.halfHeight;
@@ -324,7 +324,7 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('#top', () => {
+  describe('top', () => {
     it('should get and set the top coordinate of this rectangle', () => {
       const rect = new Rectangle(0, 0, 10, 10);
       const top = rect.top;
@@ -334,7 +334,7 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('#left', () => {
+  describe('left', () => {
     it('should get and set the left coordinate of this rectangle', () => {
       const rect = new Rectangle(0, 0, 10, 10);
       const left = rect.left;
@@ -344,7 +344,7 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('#right', () => {
+  describe('right', () => {
     it('should get and set the right coordinate of this rectangle', () => {
       const rect = new Rectangle(0, 0, 10, 10);
       const right = rect.right;
@@ -354,7 +354,7 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('#bottom', () => {
+  describe('bottom', () => {
     it('should get and set the bottom coordinate of this rectangle', () => {
       const rect = new Rectangle(0, 0, 10, 10);
       const bottom = rect.bottom;
@@ -364,7 +364,7 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('#topLeft', () => {
+  describe('topLeft', () => {
     it('should get and set the top-left coordinates of this rectangle', () => {
       const rect = new Rectangle(0, 0, 10, 10);
       const topLeft = rect.topLeft;
@@ -376,7 +376,7 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('#topRight', () => {
+  describe('topRight', () => {
     it('should get and set the top-right coordinates of this rectangle', () => {
       const rect = new Rectangle(0, 0, 10, 10);
       const topRight = rect.topRight;
@@ -388,7 +388,7 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('#bottomLeft', () => {
+  describe('bottomLeft', () => {
     it('should get and set the bottom-left coordinates of this rectangle', () => {
       const rect = new Rectangle(0, 0, 10, 10);
       const bottomLeft = rect.bottomLeft;
@@ -400,7 +400,7 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('#bottomRight', () => {
+  describe('bottomRight', () => {
     it('should get and set the bottom-right coordinates of this rectangle', () => {
       const rect = new Rectangle(0, 0, 10, 10);
       const bottomRight = rect.bottomRight;
@@ -412,7 +412,7 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('#centerX', () => {
+  describe('centerX', () => {
     it('should get and set the center x coordinate of this rectangle', () => {
       const rect = new Rectangle(0, 0, 10, 10);
       const centerX = rect.centerX;
@@ -422,7 +422,7 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('#centerY', () => {
+  describe('centerY', () => {
     it('should get and set the center y coordinate of this rectangle', () => {
       const rect = new Rectangle(0, 0, 10, 10);
       const centerY = rect.centerY;
@@ -432,7 +432,7 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('#randomX', () => {
+  describe('randomX', () => {
     it('should return a random x coordinate within this rectangle', () => {
       const rect = new Rectangle(0, 0, 10, 10);
       const randomX = rect.randomX;
@@ -440,7 +440,7 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('#randomY', () => {
+  describe('randomY', () => {
     it('should return a random y coordinate within this rectangle', () => {
       const rect = new Rectangle(0, 0, 10, 10);
       const randomY = rect.randomY;
@@ -448,7 +448,7 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('#empty', () => {
+  describe('empty', () => {
     it('should get and set whether this rectangle is empty or not', () => {
       const rect = new Rectangle(0, 0, 10, 10);
       const empty = rect.empty;
