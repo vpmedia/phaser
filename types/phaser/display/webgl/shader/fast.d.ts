@@ -6,6 +6,7 @@ export class FastShader {
     constructor(gl: WebGLRenderingContext);
     gl: WebGLRenderingContext;
     _UID: string;
+    /** @type {WebGLProgram} */
     program: WebGLProgram;
     textureCount: number;
     fragmentSrc: string[];

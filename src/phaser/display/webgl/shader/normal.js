@@ -31,6 +31,7 @@ export class NormalShader {
   constructor(gl) {
     this.gl = gl;
     this._UID = uuidv4();
+    /** @type {WebGLProgram} */
     this.program = null;
     this.fragmentSrc = [
       'precision lowp float;',
@@ -41,6 +42,8 @@ export class NormalShader {
       '   gl_FragColor = texture2D(uSampler, vTextureCoord) * vColor ;',
       '}',
     ];
+    /** @type {string[]} */
+    this.vertexSrc = null;
     this.textureCount = 0;
     this.firstRun = true;
     this.dirty = true;

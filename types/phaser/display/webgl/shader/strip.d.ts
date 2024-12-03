@@ -6,6 +6,7 @@ export class StripShader {
     constructor(gl: WebGLRenderingContext);
     gl: WebGLRenderingContext;
     _UID: string;
+    /** @type {WebGLProgram} */
     program: WebGLProgram;
     fragmentSrc: string[];
     vertexSrc: string[];

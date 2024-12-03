@@ -10,8 +10,11 @@ export class NormalShader {
         id: number;
     };
     _UID: string;
+    /** @type {WebGLProgram} */
     program: WebGLProgram;
     fragmentSrc: string[];
+    /** @type {string[]} */
+    vertexSrc: string[];
     textureCount: number;
     firstRun: boolean;
     dirty: boolean;

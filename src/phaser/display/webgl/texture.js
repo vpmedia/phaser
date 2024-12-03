@@ -30,7 +30,7 @@ export class Texture {
       this.noFrame = true;
       frame = new Rectangle(0, 0, 1, 1);
     }
-    if (baseTexture && baseTexture.baseTexture) {
+    if (baseTexture instanceof Texture) {
       baseTexture = baseTexture.baseTexture;
     }
     this.baseTexture = baseTexture;

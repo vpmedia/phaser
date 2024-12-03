@@ -284,7 +284,7 @@ export class InputHandler {
     if (!this.enabled) {
       return false;
     }
-    if (pointerId === undefined) {
+    if (pointerId === undefined || pointerId === null) {
       for (let i = 0; i < 10; i += 1) {
         if (this._pointerData[i].isOver) {
           return true;
@@ -304,7 +304,7 @@ export class InputHandler {
     if (!this.enabled) {
       return false;
     }
-    if (pointerId === undefined) {
+    if (pointerId === undefined || pointerId === null) {
       for (let i = 0; i < 10; i += 1) {
         if (this._pointerData[i].isOut) {
           return true;

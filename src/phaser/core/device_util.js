@@ -110,6 +110,7 @@ export const checkFullScreenSupport = (device) => {
         break;
       }
     }
+    // @ts-ignore
     if (window.Element && Element.ALLOW_KEYBOARD_INPUT) {
       device.fullscreenKeyboard = true;
     }

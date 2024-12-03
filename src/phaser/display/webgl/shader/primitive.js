@@ -11,6 +11,7 @@ export class PrimitiveShader {
   constructor(gl) {
     this.gl = gl;
     this._UID = uuidv4();
+    /** @type {WebGLProgram} */
     this.program = null;
     this.fragmentSrc = [
       'precision mediump float;',

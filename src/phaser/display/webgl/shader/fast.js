@@ -11,6 +11,7 @@ export class FastShader {
   constructor(gl) {
     this.gl = gl;
     this._UID = uuidv4();
+    /** @type {WebGLProgram} */
     this.program = null;
     this.textureCount = 0;
     this.fragmentSrc = [

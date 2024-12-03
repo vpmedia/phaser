@@ -26,7 +26,7 @@ export class WebGLShaderManager {
 
   /**
    * TBD.
-   * @param {WebGLRenderingContext} gl - TBD.
+   * @param {WebGLRenderingContext & { id: number }} gl - TBD.
    */
   setContext(gl) {
     this.gl = gl;

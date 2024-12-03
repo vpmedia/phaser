@@ -126,7 +126,10 @@ export class Game {
       this.canvas = create(this, this.width, this.height, this.config.canvasID, true);
     }
     if (this.config.canvasStyle) {
-      this.canvas.style = this.config.canvasStyle;
+      const properties = Object.keys(this.config.canvasStyle);
+      for (const property of properties) {
+        this.canvas.style[property] = this.config.canvasStyle[property];
+      }
     } else {
       this.canvas.style['-webkit-full-screen'] = 'width: 100%; height: 100%';
     }

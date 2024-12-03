@@ -1,5 +1,7 @@
 export class WebGLShaderManager {
-    gl: WebGLRenderingContext;
+    gl: WebGLRenderingContext & {
+        id: number;
+    };
     primitiveShader: PrimitiveShader;
     complexPrimitiveShader: ComplexPrimitiveShader;
     defaultShader: NormalShader;
@@ -11,9 +13,11 @@ export class WebGLShaderManager {
     stack: any[];
     /**
      * TBD.
-     * @param {WebGLRenderingContext} gl - TBD.
+     * @param {WebGLRenderingContext & { id: number }} gl - TBD.
      */
-    setContext(gl: WebGLRenderingContext): void;
+    setContext(gl: WebGLRenderingContext & {
+        id: number;
+    }): void;
     /**
      * TBD.
      * @param {number[]} attribs - TBD.
