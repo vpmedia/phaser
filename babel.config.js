@@ -4,7 +4,7 @@
  * @returns {import('@babel/core').TransformOptions} Configuration options.
  */
 const config = (api) => {
-  api.cache(false);
+  api.cache.invalidate(() => process.env.NODE_ENV);
   const presets = ['@babel/preset-env'];
   return {
     presets,
