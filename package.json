@@ -36,7 +36,6 @@
     "globals": "^16.0.0",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
-    "lefthook": "^1.10.11",
     "prettier": "^3.5.2",
     "typescript": "^5.7.3"
   },
@@ -44,13 +43,12 @@
     "test": "NODE_OPTIONS=--experimental-vm-modules jest --passWithNoTests",
     "lint": "eslint \"**/*.{js,jsx}\"",
     "typecheck": "tsc",
-    "format": "prettier --write \"./**/*.{js,jsx,mjs,cjs,ts,tsx,json,md,css}\"",
-    "lefthook:install": "lefthook install",
-    "lefthook:uninstall": "lefthook uninstall"
+    "format": "prettier --write \"./**/*.{js,jsx,mjs,cjs,ts,tsx,json,md,css}\""
   },
   "browserslist": [
     "> 0.5%",
     "not dead",
-    "not op_mini all"
+    "not op_mini all",
+    "iOS >= 14"
   ]
 }
