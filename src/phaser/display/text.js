@@ -153,7 +153,10 @@ export class Text extends Image {
     const lineWidths = [];
     let lineWidth = 0;
     let maxLineWidth = 0;
-    const fontProperties = this.determineFontProperties(this.style.font);
+    let fontProperties = this.determineFontProperties(this.style.font);
+    if (!fontProperties.fontSize) {
+      fontProperties = this.determineFontPropertiesFallback(this.style.font);
+    }
     let drawnLines = lines.length;
     if (this.style.maxLines > 0 && this.style.maxLines < lines.length) {
       drawnLines = this.style.maxLines;
@@ -896,10 +899,35 @@ export class Text extends Image {
 
   /**
    * TBD.
+   * @param {string} font - TBD.
+   * @returns {object} TBD.
+   */
+  determineFontProperties(font) {
+    const fontPropertiesCache = this.getFontPropertiesCache();
+    let properties = fontPropertiesCache[font];
+    if (properties) {
+      return properties;
+    }
+    const METRICS_STRING = '|ÉqÅ';
+    const BASELINE_SYMBOL = 'M';
+    /** @type {CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D} */
+    const context = this.getFontPropertiesContext();
+    context.font = font;
+    const metrics = context.measureText(METRICS_STRING + BASELINE_SYMBOL);
+    properties = {
+      ascent: Math.ceil(metrics.actualBoundingBoxAscent),
+      descent: Math.ceil(metrics.actualBoundingBoxDescent),
+      fontSize: Math.ceil(metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent),
+    };
+    return properties;
+  }
+
+  /**
+   * TBD.
    * @param {string} fontStyle - TBD.
    * @returns {object} TBD.
    */
-  determineFontProperties(fontStyle) {
+  determineFontPropertiesFallback(fontStyle) {
     const fontPropertiesCache = this.getFontPropertiesCache();
     let properties = fontPropertiesCache[fontStyle];
     if (!properties) {
@@ -936,7 +964,8 @@ export class Text extends Image {
       // ascent. scan from top to bottom until we find a non red pixel
       for (i = 0; i < baseline; i += 1) {
         for (j = 0; j < line; j += 4) {
-          if (imagedata[idx + j] !== 255) {
+          // firefox returns 253 for red pixel
+          if (imagedata[idx + j] < 253) {
             stop = true;
             break;
           }
@@ -953,7 +982,8 @@ export class Text extends Image {
       // descent. scan from bottom to top until we find a non red pixel
       for (i = height; i > baseline; i -= 1) {
         for (j = 0; j < line; j += 4) {
-          if (imagedata[idx + j] !== 255) {
+          // firefox returns 253 for red pixel
+          if (imagedata[idx + j] < 253) {
             stop = true;
             break;
           }
