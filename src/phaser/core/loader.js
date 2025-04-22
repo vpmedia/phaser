@@ -1,5 +1,6 @@
 import { Rectangle } from '../geom/rectangle.js';
 import { canPlayAudio } from './device_util.js';
+import { ENGINE_ERROR_INVALID_BITMAP_FONT_ATLAS } from './error_code.js';
 import { Signal } from './signal.js';
 
 const TEXTURE_ATLAS_JSON_HASH = 1;
@@ -417,7 +418,7 @@ export class Loader {
         xml = this.parseXml(atlasData);
       }
       if (!xml && !json) {
-        throw new Error('Loader. Invalid Bitmap Font atlas given');
+        throw new Error(ENGINE_ERROR_INVALID_BITMAP_FONT_ATLAS);
       }
       this.addToFileList('bitmapfont', key, textureURL, {
         atlasURL: null,

@@ -19,6 +19,7 @@ import {
   RENDER_WEBGL,
   SCALE_LINEAR,
 } from '../../core/const.js';
+import { ENGINE_ERROR_CREATING_WEBGL_CONTEXT, ENGINE_ERROR_WEBGL_CONTEXT_LOST } from '../../core/error_code.js';
 import { Point } from '../../geom/point.js';
 import { isPowerOfTwo } from '../../util/math.js';
 import { remove } from '../canvas/pool.js';
@@ -131,7 +132,7 @@ export class WebGLRenderer {
     const gl = this.view.getContext('webgl', this._contextOptions);
     this.gl = gl;
     if (!gl) {
-      throw new Error('Error creating WebGL context');
+      throw new Error(ENGINE_ERROR_CREATING_WEBGL_CONTEXT);
     }
     const errorCode = getWebGLContextErrorCode(gl);
     if (errorCode) {
@@ -139,7 +140,7 @@ export class WebGLRenderer {
       game.logger.warn('WebGL context error', { errorCode, errorName });
     }
     if (gl?.isContextLost()) {
-      throw new Error('WebGL context lost');
+      throw new Error(ENGINE_ERROR_WEBGL_CONTEXT_LOST);
     }
     // set current context
     this.initRegistry();

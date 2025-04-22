@@ -1,3 +1,4 @@
+import { ENGINE_ERROR_CREATING_CANVAS_2D_CONTEXT, ENGINE_ERROR_GETTING_DOCUMENT } from '../../core/error_code.js';
 import { hex2rgb } from '../../util/math.js';
 import { create, removeByCanvas } from './pool.js';
 
@@ -77,13 +78,13 @@ export const tintWithPerPixel = (texture, color, canvas) => {
 export const checkInverseAlpha = () => {
   // Check for DOM
   if (document === undefined) {
-    throw new Error('Error getting Document for checkInverseAlpha()');
+    throw new Error(ENGINE_ERROR_GETTING_DOCUMENT);
   }
   // Create canvas and context
   const canvas = create('CanvasAlpha', 2, 1, true);
   const context = canvas.getContext('2d', { willReadFrequently: false });
   if (!context) {
-    throw new Error('Error creating Canvas2D context for checkInverseAlpha()');
+    throw new Error(ENGINE_ERROR_CREATING_CANVAS_2D_CONTEXT);
   }
   // Set canvas fill style
   context.fillStyle = 'rgba(10, 20, 30, 0.5)';
@@ -119,7 +120,7 @@ export const checkInverseAlpha = () => {
 export const canUseNewCanvasBlendModes = () => {
   // Check for DOM
   if (document === undefined) {
-    throw new Error('Error getting Document for canUseNewCanvasBlendModes()');
+    throw new Error(ENGINE_ERROR_GETTING_DOCUMENT);
   }
   // Create test images
   const pngHead = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAABAQMAAADD8p2OAAAAA1BMVEX/';
@@ -132,7 +133,7 @@ export const canUseNewCanvasBlendModes = () => {
   const canvas = create('CanvasTinter', 6, 1, true);
   const context = canvas.getContext('2d', { willReadFrequently: false });
   if (!context) {
-    throw new Error('Error creating Canvas2D context for canUseNewCanvasBlendModes()');
+    throw new Error(ENGINE_ERROR_CREATING_CANVAS_2D_CONTEXT);
   }
   // Draw test images to canvas
   context.globalCompositeOperation = 'multiply';

@@ -1,4 +1,5 @@
 import { Animation } from './animation.js';
+import { ENGINE_ERROR_CANNOT_SET_FRAME, ENGINE_ERROR_CANNOT_SET_FRAME_NAME } from './error_code.js';
 
 export class AnimationManager {
   /**
@@ -306,7 +307,7 @@ export class AnimationManager {
         this.sprite.setFrame(this.currentFrame);
       }
     } else {
-      this.game.exceptionHandler(new Error('Cannot set frame'), { 'asset.key': value });
+      this.game.exceptionHandler(new Error(ENGINE_ERROR_CANNOT_SET_FRAME), { 'asset.key': value });
     }
   }
 
@@ -332,7 +333,7 @@ export class AnimationManager {
         this.sprite.setFrame(this.currentFrame);
       }
     } else {
-      this.game.exceptionHandler(new Error('Cannot set frameName'), { 'asset.key': value });
+      this.game.exceptionHandler(new Error(ENGINE_ERROR_CANNOT_SET_FRAME_NAME), { 'asset.key': value });
     }
   }
 }

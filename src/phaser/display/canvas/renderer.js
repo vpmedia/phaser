@@ -20,6 +20,7 @@ import {
   SCALE_LINEAR,
   SCALE_NEAREST,
 } from '../../core/const.js';
+import { ENGINE_ERROR_CREATING_CANVAS_2D_CONTEXT } from '../../core/error_code.js';
 import * as CanvasMaskManager from './masker.js';
 import { detectCapabilities } from './tinter.js';
 import { getSmoothingPrefix } from './util.js';
@@ -44,7 +45,7 @@ export class CanvasRenderer {
     // @ts-ignore
     this.context = this.view.getContext('2d', { willReadFrequently: false, alpha: this.transparent });
     if (!this.context) {
-      throw new Error('Error creating Canvas2D context');
+      throw new Error(ENGINE_ERROR_CREATING_CANVAS_2D_CONTEXT);
     }
     this.refresh = true;
     this.count = 0;

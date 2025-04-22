@@ -39,3 +39,14 @@ export { Graphics } from './phaser/display/graphics.js';
 export { Group } from './phaser/display/group.js';
 export { Image } from './phaser/display/image.js';
 export { Text } from './phaser/display/text.js';
+// error code
+export {
+  ENGINE_ERROR_CANNOT_SET_FRAME,
+  ENGINE_ERROR_CANNOT_SET_FRAME_NAME,
+  ENGINE_ERROR_CREATING_AUDIO_CONTEXT,
+  ENGINE_ERROR_CREATING_CANVAS_2D_CONTEXT,
+  ENGINE_ERROR_CREATING_WEBGL_CONTEXT,
+  ENGINE_ERROR_GETTING_DOCUMENT,
+  ENGINE_ERROR_INVALID_BITMAP_FONT_ATLAS,
+  ENGINE_ERROR_WEBGL_CONTEXT_LOST,
+} from './phaser/core/error_code.js';

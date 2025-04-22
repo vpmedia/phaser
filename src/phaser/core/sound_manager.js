@@ -6,6 +6,7 @@ import {
 } from '@vpmedia/simplify';
 import { ArraySet } from './array_set.js';
 import { AUDIO_DISABLED, AUDIO_STANDARD, AUDIO_WEBKIT } from './const.js';
+import { ENGINE_ERROR_CREATING_AUDIO_CONTEXT } from './error_code.js';
 import { Signal } from './signal.js';
 import { Sound } from './sound.js';
 import { SoundSprite } from './sound_sprite.js';
@@ -72,7 +73,7 @@ export class SoundManager {
       }
     }
     if (!this.context) {
-      this.game.exceptionHandler(new Error('Error creating AudioContext'));
+      this.game.exceptionHandler(new Error(ENGINE_ERROR_CREATING_AUDIO_CONTEXT));
       setAudioDisabledState();
       return;
     }
