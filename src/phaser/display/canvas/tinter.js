@@ -19,9 +19,13 @@ export const getTintedTexture = (sprite, color) => {
  * @param {object} texture - TBD.
  * @param {object} color - TBD.
  * @param {HTMLCanvasElement} canvas - TBD.
+ * @throws {Error} TBD.
  */
 export const tintWithMultiply = (texture, color, canvas) => {
   const context = canvas.getContext('2d', { willReadFrequently: false });
+  if (!context) {
+    throw new Error(ENGINE_ERROR_CREATING_CANVAS_2D_CONTEXT);
+  }
   const crop = texture.crop;
   if (canvas.width !== crop.width || canvas.height !== crop.height) {
     canvas.width = crop.width;
@@ -41,9 +45,13 @@ export const tintWithMultiply = (texture, color, canvas) => {
  * @param {object} texture - TBD.
  * @param {object} color - TBD.
  * @param {HTMLCanvasElement} canvas - TBD.
+ * @throws {Error} TBD.
  */
 export const tintWithPerPixel = (texture, color, canvas) => {
   const context = canvas.getContext('2d', { willReadFrequently: false });
+  if (!context) {
+    throw new Error(ENGINE_ERROR_CREATING_CANVAS_2D_CONTEXT);
+  }
   const crop = texture.crop;
   canvas.width = crop.width;
   canvas.height = crop.height;
@@ -163,16 +171,19 @@ export const detectCapabilities = (game) => {
     window.PhaserRegistry = {};
   }
   try {
-    window.PhaserRegistry.CAN_CANVAS_HANDLE_ALPHA = checkInverseAlpha();
-  } catch (error) {
-    game.exceptionHandler(error);
-    window.PhaserRegistry.CAN_CANVAS_HANDLE_ALPHA = false;
-  }
-  try {
     window.PhaserRegistry.CAN_CANVAS_USE_MULTIPLY = canUseNewCanvasBlendModes();
   } catch (error) {
     game.exceptionHandler(error);
     window.PhaserRegistry.CAN_CANVAS_USE_MULTIPLY = false;
+  }
+  if (!window.PhaserRegistry.CAN_CANVAS_USE_MULTIPLY) {
+    // only detect canvas alpha support if tintWithPerPixel will be used
+    try {
+      window.PhaserRegistry.CAN_CANVAS_HANDLE_ALPHA = checkInverseAlpha();
+    } catch (error) {
+      game.exceptionHandler(error);
+      window.PhaserRegistry.CAN_CANVAS_HANDLE_ALPHA = false;
+    }
   }
   window.PhaserRegistry.CANVAS_TINT_METHOD = window.PhaserRegistry.CAN_CANVAS_USE_MULTIPLY
     ? tintWithMultiply

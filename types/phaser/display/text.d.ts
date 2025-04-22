@@ -215,10 +215,16 @@ export class Text extends Image {
     getFontPropertiesContext(): CanvasRenderingContext2D;
     /**
      * TBD.
+     * @param {string} font - TBD.
+     * @returns {object} TBD.
+     */
+    determineFontProperties(font: string): object;
+    /**
+     * TBD.
      * @param {string} fontStyle - TBD.
      * @returns {object} TBD.
      */
-    determineFontProperties(fontStyle: string): object;
+    determineFontPropertiesFallback(fontStyle: string): object;
     /**
      * TBD.
      */

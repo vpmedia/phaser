@@ -1,1 +1,1 @@
-{"version":3,"file":"raf.d.ts","sourceRoot":"","sources":["../../../src/phaser/core/raf.js"],"names":[],"mappings":"AAAA;IACE;;;OAGG;IACH,kBAFW,OAAO,WAAW,EAAE,IAAI,EAKlC;IAFC,+BAAgB;IAChB,cAAc;IAGhB;;OAEG;IACH,kBAEE;IAEF;;OAEG;IACH,iBAEE;IAEF;;;OAGG;IACH,kBAFW,MAAM,UAKf;CACH"}
+{"version":3,"file":"raf.d.ts","sourceRoot":"","sources":["../../../src/phaser/core/raf.js"],"names":[],"mappings":"AAAA;IACE;;;OAGG;IACH,kBAFW,OAAO,WAAW,EAAE,IAAI,EAKlC;IAFC,+BAAgB;IAChB,cAAc;IAGhB;;OAEG;IACH,kBAEE;IAEF;;OAEG;IACH,iBAEE;IAEF;;;OAGG;IACH,SAAU,SAFC,MAEM,UAGf;CACH"}
