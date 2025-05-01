@@ -58,7 +58,7 @@ export default [
       'unicorn/explicit-length-check': 'off',
       'unicorn/filename-case': 'off',
       'unicorn/no-array-for-each': 'off',
-      'unicorn/no-array-push-push': 'off',
+      'unicorn/prefer-single-call': 'off',
       'unicorn/no-for-loop': 'off',
       'unicorn/no-lonely-if': 'off',
       'unicorn/no-negated-condition': 'off',
