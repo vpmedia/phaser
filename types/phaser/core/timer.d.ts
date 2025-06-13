@@ -10,7 +10,8 @@ export class Timer {
     autoDestroy: boolean;
     expired: boolean;
     elapsed: number;
-    events: any[];
+    /** @type {TimerEvent[]} */
+    events: TimerEvent[];
     onComplete: Signal;
     nextTick: number;
     timeCap: number;
@@ -76,10 +77,10 @@ export class Timer {
     stop(clearEvents?: boolean): void;
     /**
      * TBD.
-     * @param {Event} event - TBD.
+     * @param {TimerEvent} event - TBD.
      * @returns {boolean} TBD.
      */
-    remove(event: Event): boolean;
+    remove(event: TimerEvent): boolean;
     /**
      * TBD.
      */
@@ -156,6 +157,6 @@ export class Timer {
      */
     get seconds(): number;
 }
-import { Signal } from './signal.js';
 import { TimerEvent } from './timer_event.js';
+import { Signal } from './signal.js';
 //# sourceMappingURL=timer.d.ts.map

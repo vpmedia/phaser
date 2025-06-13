@@ -13,6 +13,7 @@ export class Timer {
     this.autoDestroy = autoDestroy;
     this.expired = false;
     this.elapsed = 0;
+    /** @type {TimerEvent[]} */
     this.events = [];
     this.onComplete = new Signal();
     this.nextTick = 0;
@@ -120,7 +121,7 @@ export class Timer {
 
   /**
    * TBD.
-   * @param {Event} event - TBD.
+   * @param {TimerEvent} event - TBD.
    * @returns {boolean} TBD.
    */
   remove(event) {
