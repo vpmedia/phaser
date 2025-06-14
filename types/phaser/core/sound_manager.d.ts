@@ -17,7 +17,8 @@ export class SoundManager {
     _muted: boolean;
     _unlockSource: any;
     _volume: number;
-    _sounds: any[];
+    /** @type {Sound[]} */
+    _sounds: Sound[];
     _watchList: ArraySet;
     _watching: boolean;
     _watchCallback: Function;
@@ -148,7 +149,7 @@ export class SoundManager {
     get volume(): number;
 }
 import { Signal } from './signal.js';
-import { ArraySet } from './array_set.js';
 import { Sound } from './sound.js';
+import { ArraySet } from './array_set.js';
 import { SoundSprite } from './sound_sprite.js';
 //# sourceMappingURL=sound_manager.d.ts.map

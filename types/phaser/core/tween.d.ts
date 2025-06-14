@@ -9,7 +9,8 @@ export class Tween {
     game: import("./game.js").Game;
     target: import("../display/display_object.js").DisplayObject;
     manager: import("./tween_manager.js").TweenManager;
-    timeline: any[];
+    /** @type {TweenData[]} */
+    timeline: TweenData[];
     reverse: boolean;
     timeScale: number;
     repeatCounter: number;
@@ -185,5 +186,6 @@ export class Tween {
      */
     get totalDuration(): number;
 }
+import { TweenData } from './tween_data.js';
 import { Signal } from './signal.js';
 //# sourceMappingURL=tween.d.ts.map

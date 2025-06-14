@@ -11,8 +11,12 @@ export class AnimationManager {
     updateIfVisible: boolean;
     isLoaded: boolean;
     _frameData: import("./frame_data.js").FrameData;
-    _anims: {};
-    _outputFrames: any[];
+    /** @type {{[key: string]: Animation}} */
+    _anims: {
+        [key: string]: Animation;
+    };
+    /** @type {number[]} */
+    _outputFrames: number[];
     /**
      * TBD.
      */

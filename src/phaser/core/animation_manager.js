@@ -14,7 +14,9 @@ export class AnimationManager {
     this.updateIfVisible = true;
     this.isLoaded = false;
     this._frameData = null;
+    /** @type {{[key: string]: Animation}} */
     this._anims = {};
+    /** @type {number[]} */
     this._outputFrames = [];
   }
 

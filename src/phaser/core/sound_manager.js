@@ -31,6 +31,7 @@ export class SoundManager {
     this._muted = false;
     this._unlockSource = null;
     this._volume = 1;
+    /** @type {Sound[]} */
     this._sounds = [];
     this._watchList = new ArraySet();
     this._watching = false;

@@ -32,6 +32,7 @@ export class Time {
     this._timeLastSecond = 0;
     this._pauseStarted = 0;
     this._justResumed = false;
+    /** @type {Timer[]} */
     this._timers = [];
   }
 

@@ -10,6 +10,7 @@ export class SoundSprite {
     this.config = this.game.cache.getJSON(`${key}-audioatlas`);
     this.autoplayKey = null;
     this.autoplay = false;
+    /** @type {{[key: string]: import('./sound.js').Sound}} */
     this.sounds = {};
     for (let k in this.config.spritemap) {
       const marker = this.config.spritemap[k];

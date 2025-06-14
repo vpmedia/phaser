@@ -9,8 +9,11 @@ export class SoundSprite {
     key: string;
     config: any;
     autoplayKey: any;
-    autoplay: any;
-    sounds: {};
+    autoplay: boolean | import("./sound.js").Sound;
+    /** @type {{[key: string]: import('./sound.js').Sound}} */
+    sounds: {
+        [key: string]: import("./sound.js").Sound;
+    };
     /**
      * TBD.
      * @param {string} marker - TBD.

@@ -30,7 +30,8 @@ export class Time {
     _timeLastSecond: number;
     _pauseStarted: number;
     _justResumed: boolean;
-    _timers: any[];
+    /** @type {Timer[]} */
+    _timers: Timer[];
     /**
      * TBD.
      */

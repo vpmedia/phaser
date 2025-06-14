@@ -14,6 +14,7 @@ export class Tween {
     this.game = game;
     this.target = target;
     this.manager = manager;
+    /** @type {TweenData[]} */
     this.timeline = [];
     this.reverse = false;
     this.timeScale = 1;
