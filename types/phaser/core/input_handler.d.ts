@@ -142,13 +142,13 @@ export class InputHandler {
      * @param {number} pointerId - TBD.
      * @returns {boolean} TBD.
      */
-    pointerOver(pointerId: number): boolean;
+    pointerOver(pointerId?: number): boolean;
     /**
      * TBD.
      * @param {number} pointerId - TBD.
      * @returns {boolean} TBD.
      */
-    pointerOut(pointerId: number): boolean;
+    pointerOut(pointerId?: number): boolean;
     /**
      * TBD.
      * @param {number} pointerId - TBD.

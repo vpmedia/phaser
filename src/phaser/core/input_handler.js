@@ -280,7 +280,7 @@ export class InputHandler {
    * @param {number} pointerId - TBD.
    * @returns {boolean} TBD.
    */
-  pointerOver(pointerId) {
+  pointerOver(pointerId = null) {
     if (!this.enabled) {
       return false;
     }
@@ -300,7 +300,7 @@ export class InputHandler {
    * @param {number} pointerId - TBD.
    * @returns {boolean} TBD.
    */
-  pointerOut(pointerId) {
+  pointerOut(pointerId = null) {
     if (!this.enabled) {
       return false;
     }
