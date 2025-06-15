@@ -162,8 +162,9 @@ export class Text extends Image {
     setText(text: string, immediate?: boolean): Text;
     /**
      * TBD.
+     * @param {string | number | boolean | Date} value - TBD.
      */
-    set text(value: string);
+    set text(value: string | number | boolean | Date);
     /**
      * TBD.
      * @returns {string} TBD.

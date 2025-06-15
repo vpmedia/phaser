@@ -130,7 +130,7 @@ export class Loader {
      * @param {boolean} overwrite - TBD.
      * @returns {Loader} TBD.
      */
-    text(key: string, url: string, overwrite: boolean): Loader;
+    text(key: string, url: string, overwrite?: boolean): Loader;
     /**
      * TBD.
      * @param {string} key - TBD.
@@ -138,7 +138,7 @@ export class Loader {
      * @param {boolean} overwrite - TBD.
      * @returns {Loader} TBD.
      */
-    json(key: string, url: string, overwrite: boolean): Loader;
+    json(key: string, url: string, overwrite?: boolean): Loader;
     /**
      * TBD.
      * @param {string} key - TBD.
@@ -146,7 +146,7 @@ export class Loader {
      * @param {boolean} overwrite - TBD.
      * @returns {Loader} TBD.
      */
-    xml(key: string, url: string, overwrite: boolean): Loader;
+    xml(key: string, url: string, overwrite?: boolean): Loader;
     /**
      * TBD.
      * @param {string} key - TBD.

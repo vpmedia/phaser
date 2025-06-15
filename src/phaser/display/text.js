@@ -1026,6 +1026,7 @@ export class Text extends Image {
 
   /**
    * TBD.
+   * @param {string | number | boolean | Date} value - TBD.
    */
   set text(value) {
     if (value !== this._text) {

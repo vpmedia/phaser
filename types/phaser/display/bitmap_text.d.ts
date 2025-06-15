@@ -32,8 +32,9 @@ export class BitmapText extends DisplayObject {
     setText(text: string): void;
     /**
      * TBD.
+     * @param {string | number | boolean | Date} value - TBD.
      */
-    set text(value: string);
+    set text(value: string | number | boolean | Date);
     /**
      * TBD.
      * @returns {string} TBD.

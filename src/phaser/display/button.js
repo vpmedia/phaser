@@ -170,7 +170,7 @@ export class Button extends Image {
    * @param {string} upFrame - TBD.
    * @param {string} disabledFrame - TBD.
    */
-  setFrames(overFrame, outFrame, downFrame, upFrame, disabledFrame) {
+  setFrames(overFrame, outFrame, downFrame, upFrame, disabledFrame = null) {
     this.setStateFrame(STATE_OVER, overFrame, this.input.pointerOver());
     this.setStateFrame(STATE_OUT, outFrame, !this.input.pointerOver());
     this.setStateFrame(STATE_DOWN, downFrame, this.input.pointerDown());

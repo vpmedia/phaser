@@ -381,6 +381,7 @@ export class BitmapText extends DisplayObject {
 
   /**
    * TBD.
+   * @param {string | number | boolean | Date} value - TBD.
    */
   set text(value) {
     const typedValue = value.toString();

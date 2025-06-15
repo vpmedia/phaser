@@ -72,7 +72,7 @@ export class Button extends Image {
      * @param {string} upFrame - TBD.
      * @param {string} disabledFrame - TBD.
      */
-    setFrames(overFrame: string, outFrame: string, downFrame: string, upFrame: string, disabledFrame: string): void;
+    setFrames(overFrame: string, outFrame: string, downFrame: string, upFrame: string, disabledFrame?: string): void;
     /**
      * TBD.
      * @param {object} sprite - TBD.
