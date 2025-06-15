@@ -297,7 +297,7 @@ export class Loader {
    * @param {boolean} overwrite - TBD.
    * @returns {Loader} TBD.
    */
-  text(key, url, overwrite) {
+  text(key, url, overwrite = false) {
     return this.addToFileList('text', key, url, undefined, overwrite, '.txt');
   }
 
@@ -308,7 +308,7 @@ export class Loader {
    * @param {boolean} overwrite - TBD.
    * @returns {Loader} TBD.
    */
-  json(key, url, overwrite) {
+  json(key, url, overwrite = false) {
     return this.addToFileList('json', key, url, undefined, overwrite, '.json');
   }
 
@@ -319,7 +319,7 @@ export class Loader {
    * @param {boolean} overwrite - TBD.
    * @returns {Loader} TBD.
    */
-  xml(key, url, overwrite) {
+  xml(key, url, overwrite = false) {
     return this.addToFileList('xml', key, url, undefined, overwrite, '.xml');
   }
 
