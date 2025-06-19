@@ -201,7 +201,7 @@ export const getColor = (r, g, b) => {
 /**
  * TBD.
  * @param {string} value - TBD.
- * @param {object} out - TBD.
+ * @param {{r?: number, g?: number, b?: number}} out - TBD.
  */
 export const hexToColor = (value, out) => {
   // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
@@ -217,7 +217,7 @@ export const hexToColor = (value, out) => {
 /**
  * TBD.
  * @param {string} value - TBD.
- * @param {object} out - TBD.
+ * @param {{r?: number, g?: number, b?: number, a?: number}} out - TBD.
  */
 export const webToColor = (value, out) => {
   const result = /^rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(?:,\s*(\d+(?:\.\d+)?))?\s*\)$/.exec(value);
@@ -232,7 +232,7 @@ export const webToColor = (value, out) => {
 /**
  * TBD.
  * @param {number} color - TBD.
- * @returns {object} TBD.
+ * @returns {{ alpha: number, red: number, green: number, blue: number, a: number, r: number, g: number, b: number}} TBD.
  */
 export const getRGB = (color) => {
   if (color > 16777215) {
@@ -263,8 +263,8 @@ export const getRGB = (color) => {
 /**
  * TBD.
  * @param {string|number} value - TBD.
- * @param {object} out - TBD.
- * @returns {object} TBD.
+ * @param {{a?: number, r?: number, g?: number, b?: number, rgba?: string, color?: number, color32?: number}} out - TBD.
+ * @returns {{a?: number, r?: number, g?: number, b?: number, rgba?: string, color?: number, color32?: number}} TBD.
  */
 export const valueToColor = (value, out) => {
   if (typeof value === 'string') {

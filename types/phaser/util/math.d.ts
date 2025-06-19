@@ -17,8 +17,42 @@ export function distance(x1: number, y1: number, x2: number, y2: number): number
 export function within(a: number, b: number, tolerance: number): boolean;
 export function getColor32(a: number, r: number, g: number, b: number): number;
 export function getColor(r: number, g: number, b: number): number;
-export function hexToColor(value: string, out: object): void;
-export function webToColor(value: string, out: object): void;
-export function getRGB(color: number): object;
-export function valueToColor(value: string | number, out: object): object;
+export function hexToColor(value: string, out: {
+    r?: number;
+    g?: number;
+    b?: number;
+}): void;
+export function webToColor(value: string, out: {
+    r?: number;
+    g?: number;
+    b?: number;
+    a?: number;
+}): void;
+export function getRGB(color: number): {
+    alpha: number;
+    red: number;
+    green: number;
+    blue: number;
+    a: number;
+    r: number;
+    g: number;
+    b: number;
+};
+export function valueToColor(value: string | number, out: {
+    a?: number;
+    r?: number;
+    g?: number;
+    b?: number;
+    rgba?: string;
+    color?: number;
+    color32?: number;
+}): {
+    a?: number;
+    r?: number;
+    g?: number;
+    b?: number;
+    rgba?: string;
+    color?: number;
+    color32?: number;
+};
 //# sourceMappingURL=math.d.ts.map
