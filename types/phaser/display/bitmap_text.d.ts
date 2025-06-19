@@ -15,7 +15,7 @@ export class BitmapText extends DisplayObject {
     textWidth: number;
     textHeight: number;
     _prevAnchor: Point;
-    _glyphs: any[];
+    _glyphs: Image[];
     _maxWidth: number;
     _text: string;
     _data: any;
@@ -68,6 +68,13 @@ export class BitmapText extends DisplayObject {
      * TBD.
      */
     updateTransform(): void;
+    /**
+     * TBD.
+     * @param {string} value - TBD.
+     * @param {number} position - TBD.
+     * @returns {BitmapText} TBD.
+     */
+    addColor(value: string, position: number): BitmapText;
     /**
      * TBD.
      */
@@ -134,4 +141,5 @@ export class BitmapText extends DisplayObject {
 }
 import { DisplayObject } from './display_object.js';
 import { Point } from '../geom/point.js';
+import { Image } from './image.js';
 //# sourceMappingURL=bitmap_text.d.ts.map

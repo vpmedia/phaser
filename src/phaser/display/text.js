@@ -25,9 +25,13 @@ export class Text extends Image {
     this.padding = new Point();
     this.textBounds = null;
     this.style = null;
+    /** @type {string[]} */
     this.colors = [];
+    /** @type {string[]} */
     this.strokeColors = [];
+    /** @type {string[]} */
     this.fontStyles = [];
+    /** @type {number[]} */
     this.fontWeights = [];
     this.autoRound = false;
     this.useAdvancedWrap = false;
@@ -455,7 +459,7 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @param {number} color - TBD.
+   * @param {string} color - TBD.
    * @param {number} position - TBD.
    * @returns {Text} TBD.
    */

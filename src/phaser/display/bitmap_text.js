@@ -256,6 +256,7 @@ export class BitmapText extends DisplayObject {
         kept.push(this._glyphs[i]);
       }
     }
+    /** @type {Image[]} */
     this._glyphs = [];
     this._glyphs = kept;
     this.updateText();
@@ -272,6 +273,21 @@ export class BitmapText extends DisplayObject {
       this._prevAnchor.copyFrom(this.anchor);
     }
     super.updateTransform();
+  }
+
+  /**
+   * TBD.
+   * @param {string} value - TBD.
+   * @param {number} position - TBD.
+   * @returns {BitmapText} TBD.
+   */
+  addColor(value, position) {
+    const color = typeof value === 'string' ? Number.parseInt(value.replace('#', ''), 16) : value;
+    if (color !== this._tint) {
+      this._tint = color;
+      this.updateText();
+    }
+    return this;
   }
 
   /**

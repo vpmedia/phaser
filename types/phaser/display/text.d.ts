@@ -13,10 +13,14 @@ export class Text extends Image {
     padding: Point;
     textBounds: Rectangle;
     style: any;
-    colors: any[];
-    strokeColors: any[];
-    fontStyles: any[];
-    fontWeights: any[];
+    /** @type {string[]} */
+    colors: string[];
+    /** @type {string[]} */
+    strokeColors: string[];
+    /** @type {string[]} */
+    fontStyles: string[];
+    /** @type {number[]} */
+    fontWeights: number[];
     autoRound: boolean;
     useAdvancedWrap: boolean;
     _res: any;
@@ -85,11 +89,11 @@ export class Text extends Image {
     clearFontValues(): Text;
     /**
      * TBD.
-     * @param {number} color - TBD.
+     * @param {string} color - TBD.
      * @param {number} position - TBD.
      * @returns {Text} TBD.
      */
-    addColor(color: number, position: number): Text;
+    addColor(color: string, position: number): Text;
     /**
      * TBD.
      * @param {number} color - TBD.
