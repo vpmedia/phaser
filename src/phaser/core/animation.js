@@ -45,7 +45,7 @@ export class Animation {
    * @param {boolean} loop - TBD.
    * @returns {Animation} TBD.
    */
-  play(frameRate, loop) {
+  play(frameRate = null, loop = null) {
     if (typeof frameRate === 'number') {
       //  If they set a new frame rate then use it, otherwise use the one set on creation
       this.delay = 1000 / frameRate;

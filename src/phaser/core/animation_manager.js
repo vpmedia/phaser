@@ -9,10 +9,13 @@ export class AnimationManager {
   constructor(sprite) {
     this.sprite = sprite;
     this.game = sprite.game;
+    /** @type {import('./frame.js').Frame} */
     this.currentFrame = null;
+    /** @type {Animation} */
     this.currentAnim = null;
     this.updateIfVisible = true;
     this.isLoaded = false;
+    /** @type {import('./frame_data.js').FrameData} */
     this._frameData = null;
     /** @type {{[key: string]: Animation}} */
     this._anims = {};
@@ -157,7 +160,7 @@ export class AnimationManager {
    * @param {boolean} loop - TBD.
    * @returns {Animation} TBD.
    */
-  play(name, frameRate, loop) {
+  play(name, frameRate = null, loop = null) {
     if (this._anims[name]) {
       if (this.currentAnim === this._anims[name]) {
         if (this.currentAnim.isPlaying === false) {

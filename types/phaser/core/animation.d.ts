@@ -37,7 +37,7 @@ export class Animation {
      * @param {boolean} loop - TBD.
      * @returns {Animation} TBD.
      */
-    play(frameRate: number, loop: boolean): Animation;
+    play(frameRate?: number, loop?: boolean): Animation;
     /**
      * TBD.
      */

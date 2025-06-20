@@ -6,10 +6,13 @@ export class AnimationManager {
     constructor(sprite: import("../display/image.js").Image);
     sprite: import("../display/image.js").Image;
     game: import("./game.js").Game;
-    currentFrame: any;
-    currentAnim: any;
+    /** @type {import('./frame.js').Frame} */
+    currentFrame: import("./frame.js").Frame;
+    /** @type {Animation} */
+    currentAnim: Animation;
     updateIfVisible: boolean;
     isLoaded: boolean;
+    /** @type {import('./frame_data.js').FrameData} */
     _frameData: import("./frame_data.js").FrameData;
     /** @type {{[key: string]: Animation}} */
     _anims: {
@@ -77,7 +80,7 @@ export class AnimationManager {
      * @param {boolean} loop - TBD.
      * @returns {Animation} TBD.
      */
-    play(name: string, frameRate: number, loop: boolean): Animation;
+    play(name: string, frameRate?: number, loop?: boolean): Animation;
     /**
      * TBD.
      * @param {string} name - TBD.
@@ -133,7 +136,7 @@ export class AnimationManager {
      * @returns {string} TBD.
      */
     get name(): string;
-    _frameIndex: any;
+    _frameIndex: number;
 }
 import { Animation } from './animation.js';
 //# sourceMappingURL=animation_manager.d.ts.map
