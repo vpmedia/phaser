@@ -185,7 +185,7 @@ export class AnimationManager {
    * @param {string} name - TBD.
    * @param {boolean} resetFrame - TBD.
    */
-  stop(name, resetFrame = false) {
+  stop(name = null, resetFrame = false) {
     if (this.currentAnim && (typeof name !== 'string' || name === this.currentAnim.name)) {
       this.currentAnim.stop(resetFrame);
     }

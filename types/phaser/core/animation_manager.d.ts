@@ -86,7 +86,7 @@ export class AnimationManager {
      * @param {string} name - TBD.
      * @param {boolean} resetFrame - TBD.
      */
-    stop(name: string, resetFrame?: boolean): void;
+    stop(name?: string, resetFrame?: boolean): void;
     /**
      * TBD.
      * @returns {boolean} TBD.

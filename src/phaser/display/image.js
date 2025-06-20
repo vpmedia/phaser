@@ -23,6 +23,7 @@ export class Image extends DisplayObject {
     this.renderable = true;
     this.key = key;
     this.texture = window.PhaserRegistry.CACHE_MISSING_IMAGE;
+    /** @type {object} */
     this.data = {};
     this._width = 0;
     this._height = 0;

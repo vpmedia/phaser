@@ -12,7 +12,8 @@ export class Image extends DisplayObject {
     type: number;
     key: string;
     texture: any;
-    data: {};
+    /** @type {object} */
+    data: object;
     tint: number;
     cachedTint: number;
     tintedTexture: any;
