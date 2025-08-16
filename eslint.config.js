@@ -21,7 +21,7 @@ export default [
   {
     languageOptions: {
       globals: {
-        ...globals.jest,
+        ...globals.vitest,
         ...globals.browser,
         ...globals.node,
         ...globals.es2021,

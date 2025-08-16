@@ -20,6 +20,6 @@ lint-staged.config.js
 .prettierignore
 prettier.config.js
 bitbucket-pipelines.yml
-jest.config.js
+vitest.config.js
 tsconfig.json
 webpack.config.babel.js

@@ -28,19 +28,18 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.33.0",
-    "@jest/globals": "^30.0.5",
-    "@types/jest": "^30.0.0",
+    "@vitest/coverage-v8": "^3.2.4",
     "eslint": "^9.33.0",
     "eslint-plugin-jsdoc": "^54.1.0",
     "eslint-plugin-unicorn": "^60.0.0",
     "globals": "^16.3.0",
-    "jest": "^30.0.5",
-    "jest-environment-jsdom": "^30.0.5",
+    "jsdom": "^26.1.0",
     "prettier": "^3.6.2",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.2",
+    "vitest": "^3.2.4"
   },
   "scripts": {
-    "test": "NODE_OPTIONS=--experimental-vm-modules jest --passWithNoTests",
+    "test": "vitest --coverage --pass-with-no-tests",
     "lint": "eslint \"**/*.{js,jsx}\"",
     "typecheck": "tsc",
     "format": "prettier --write \"./**/*.{js,jsx,mjs,cjs,ts,tsx,json,md,css}\""
