@@ -7,7 +7,7 @@
 
 ## Getting started
 
-    $ npm install --save @vpmedia/phaser
+    $ pnpm add @vpmedia/phaser
 
 ## Example
 
