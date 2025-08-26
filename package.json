@@ -28,9 +28,9 @@
     "uuid": "^11.1.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.33.0",
+    "@eslint/js": "^9.34.0",
     "@vitest/coverage-v8": "^3.2.4",
-    "eslint": "^9.33.0",
+    "eslint": "^9.34.0",
     "eslint-plugin-jsdoc": "^54.1.1",
     "eslint-plugin-unicorn": "^60.0.0",
     "globals": "^16.3.0",
