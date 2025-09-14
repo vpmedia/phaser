@@ -50,7 +50,7 @@ export default [
     rules: {
       ...js.configs.recommended.rules,
       ...jsdocPlugin.configs['flat/recommended'].rules,
-      ...unicornPlugin.configs['flat/recommended'].rules,
+      ...unicornPlugin.configs.recommended.rules,
       'no-unused-vars': 'off',
       'prefer-arrow-callback': 'warn',
       'prefer-template': 'warn',
