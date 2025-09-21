@@ -12,8 +12,8 @@ importers:
         specifier: ^24.5.2
         version: 24.5.2
       '@vpmedia/simplify':
-        specifier: ^1.29.0
-        version: 1.29.0
+        specifier: ^1.30.0
+        version: 1.30.0
       uuid:
         specifier: ^13.0.0
         version: 13.0.0
@@ -525,8 +525,8 @@ packages:
   '@vitest/utils@3.2.4':
     resolution: {integrity: sha512-fB2V0JFrQSMsCo9HiSq3Ezpdv4iYaXRG1Sx8edX3MwxfyNn83mKiGzOcH+Fkxt4MHxr3y42fQi1oeAInqgX2QA==}
 
-  '@vpmedia/simplify@1.29.0':
-    resolution: {integrity: sha512-tiWZhLQoorvuKVzFXR8LWDS9hPu7l6u1iYyNnTWU0muhQoC8GJVKkx60tKtcNN0dZwYbARNE27W0KCEy+v6JZA==}
+  '@vpmedia/simplify@1.30.0':
+    resolution: {integrity: sha512-blffp7QpbDUWhVO/CVaBtI49ypbP74T7FXnZbFSybkX1S6yv2EGeVI3LyPDukNijtvaHEw5eOKCJDg6lgU0zEw==}
 
   acorn-jsx@5.3.2:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
@@ -1794,8 +1794,9 @@ snapshots:
       loupe: 3.2.1
       tinyrainbow: 2.0.0
 
-  '@vpmedia/simplify@1.29.0':
+  '@vpmedia/simplify@1.30.0':
     dependencies:
+      '@types/node': 24.5.2
       eventemitter3: 5.0.1
 
   acorn-jsx@5.3.2(acorn@8.15.0):
