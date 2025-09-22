@@ -2,13 +2,13 @@ import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   test: {
-    globals: true, // allows using describe/test/expect without imports
-    environment: 'jsdom', // 'node' or 'jsdom'
+    globals: true,
+    environment: 'jsdom',
     // setupFiles: ['./src/lib/test/core.js'],
     watch: false,
     coverage: {
-      provider: 'v8', // 'v8' or 'istanbul'
-      reporter: ['text', 'html'],
+      provider: 'v8',
+      reporter: ['text'],
     },
   },
 });
