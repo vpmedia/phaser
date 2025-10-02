@@ -23,7 +23,7 @@
   "types": "./types/index.d.ts",
   "type": "module",
   "dependencies": {
-    "@types/node": "^24.6.1",
+    "@types/node": "^24.6.2",
     "@vpmedia/simplify": "^1.30.0",
     "uuid": "^13.0.0"
   },
