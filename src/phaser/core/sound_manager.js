@@ -60,7 +60,8 @@ export class SoundManager {
       } catch (error) {
         this.context = null;
         setAudioDisabledState();
-        this.game.exceptionHandler(error);
+        const typedError = error instanceof Error ? error : new Error(String(error));
+        this.game.logger.exception('SoundManager', typedError);
       }
     } else if (window.webkitAudioContext) {
       try {
@@ -70,11 +71,12 @@ export class SoundManager {
       } catch (error) {
         this.context = null;
         setAudioDisabledState();
-        this.game.exceptionHandler(error);
+        const typedError = error instanceof Error ? error : new Error(String(error));
+        this.game.logger.exception('SoundManager', typedError);
       }
     }
     if (!this.context) {
-      this.game.exceptionHandler(new Error(ENGINE_ERROR_CREATING_AUDIO_CONTEXT));
+      this.game.logger.exception('SoundManager', new Error(ENGINE_ERROR_CREATING_AUDIO_CONTEXT));
       setAudioDisabledState();
       return;
     }
@@ -196,7 +198,9 @@ export class SoundManager {
           error,
         });
         this.removeUnlockHandlers();
-        this.game.exceptionHandler(error, { 'audio.initialState': initialState, 'audio.state': this.context.state });
+        this.game.logger.exception('', error, {
+          tags: { 'audio.initialState': initialState, 'audio.state': this.context.state },
+        });
       });
   };
 
@@ -258,7 +262,7 @@ export class SoundManager {
           })
           .catch((error) => {
             const typedError = error instanceof Error ? error : new Error(String(error));
-            this.game.exceptionHandler(typedError, { 'asset.key': key });
+            this.game.logger.exception('SoundManager', typedError, { tags: { 'asset.key': key } });
             if (typedError.name === 'InvalidStateError') {
               addPageLifecycleCallback(PAGE_LIFECYCLE_STATE_ACTIVE, () => {
                 this.decode(key);

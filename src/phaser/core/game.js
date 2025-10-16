@@ -159,7 +159,8 @@ export class Game {
         if (window.PhaserRegistry?.GL_SHADER_INFO_LOG) {
           this.logger.warn('WebGL shader info', { log: window.PhaserRegistry.GL_SHADER_INFO_LOG });
         }
-        this.exceptionHandler(error);
+        const typedError = error instanceof Error ? error : new Error(String(error));
+        this.logger.exception('Game', typedError);
       }
     }
     if (!isWebGlReady) {
@@ -217,13 +218,6 @@ export class Game {
     this.parseConfigElement(config, 'renderType', RENDER_AUTO);
     this.parseConfigElement(config, 'isForceDisabledAudio', false);
     this.parseConfigElement(config, 'maxParallelDownloads', 16);
-    if (config.exceptionHandler) {
-      this.exceptionHandler = config.exceptionHandler;
-    } else {
-      this.exceptionHandler = (e, tags) => {
-        this.logger.error(e, tags);
-      };
-    }
     if (config.parent) {
       this.parent = config.parent;
     }

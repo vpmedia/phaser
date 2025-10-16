@@ -312,7 +312,9 @@ export class AnimationManager {
         this.sprite.setFrame(this.currentFrame);
       }
     } else {
-      this.game.exceptionHandler(new Error(ENGINE_ERROR_CANNOT_SET_FRAME), { 'asset.key': value });
+      this.game.logger.exception('AnimationManager', new Error(ENGINE_ERROR_CANNOT_SET_FRAME), {
+        tags: { 'asset.key': value },
+      });
     }
   }
 
@@ -338,7 +340,9 @@ export class AnimationManager {
         this.sprite.setFrame(this.currentFrame);
       }
     } else {
-      this.game.exceptionHandler(new Error(ENGINE_ERROR_CANNOT_SET_FRAME_NAME), { 'asset.key': value });
+      this.game.logger.exception('AnimationManager', new Error(ENGINE_ERROR_CANNOT_SET_FRAME_NAME), {
+        tags: { 'asset.key': value },
+      });
     }
   }
 }

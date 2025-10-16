@@ -850,12 +850,13 @@ export class Loader {
         }
         return onload.call(scope, file, xhr);
       } catch (error) {
+        const typedError = error instanceof Error ? error : new Error(String(error));
         //  If this was the last file in the queue and an error is thrown in the create method
         //  then it's caught here, so be sure we don't carry on processing it
         if (!scope.hasLoaded) {
           scope.asyncComplete(file, error.message || 'Exception');
         } else {
-          scope.game.exceptionHandler(error);
+          scope.game.logger.exception('Loader', typedError);
         }
       }
       return null;
@@ -870,10 +871,11 @@ export class Loader {
         try {
           return onerror.call(scope, file, xhr);
         } catch (error) {
+          const typedError = error instanceof Error ? error : new Error(String(error));
           if (!scope.hasLoaded) {
             scope.asyncComplete(file, error.message || 'Exception');
           } else {
-            scope.game.exceptionHandler(error);
+            scope.game.logger.exception('Loader', typedError);
           }
         }
       }

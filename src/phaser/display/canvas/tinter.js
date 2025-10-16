@@ -173,7 +173,8 @@ export const detectCapabilities = (game) => {
   try {
     window.PhaserRegistry.CAN_CANVAS_USE_MULTIPLY = canUseNewCanvasBlendModes();
   } catch (error) {
-    game.exceptionHandler(error);
+    const typedError = error instanceof Error ? error : new Error(String(error));
+    game.logger.exception('Tinter', typedError);
     window.PhaserRegistry.CAN_CANVAS_USE_MULTIPLY = false;
   }
   if (!window.PhaserRegistry.CAN_CANVAS_USE_MULTIPLY) {
@@ -181,7 +182,8 @@ export const detectCapabilities = (game) => {
     try {
       window.PhaserRegistry.CAN_CANVAS_HANDLE_ALPHA = checkInverseAlpha();
     } catch (error) {
-      game.exceptionHandler(error);
+      const typedError = error instanceof Error ? error : new Error(String(error));
+      game.logger.exception('Tinter', typedError);
       window.PhaserRegistry.CAN_CANVAS_HANDLE_ALPHA = false;
     }
   }

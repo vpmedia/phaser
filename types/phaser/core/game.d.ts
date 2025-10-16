@@ -61,7 +61,6 @@ export class Game {
      * @param {object} config - TBD.
      */
     parseConfig(config: object): void;
-    exceptionHandler: any;
     /**
      * TBD.
      * @param {WebGLContextEvent | Event} event - TBD.
