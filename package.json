@@ -24,7 +24,7 @@
   "type": "module",
   "dependencies": {
     "@types/node": "^24.7.2",
-    "@vpmedia/simplify": "^1.32.0",
+    "@vpmedia/simplify": "^1.37.0",
     "uuid": "^13.0.0"
   },
   "devDependencies": {
