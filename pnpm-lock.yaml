@@ -8,12 +8,9 @@ importers:
 
   .:
     dependencies:
-      '@types/node':
-        specifier: ^24.8.1
-        version: 24.8.1
       '@vpmedia/simplify':
-        specifier: ^1.43.0
-        version: 1.43.0
+        specifier: ^1.44.0
+        version: 1.44.0
       uuid:
         specifier: ^13.0.0
         version: 13.0.0
@@ -21,6 +18,9 @@ importers:
       '@eslint/js':
         specifier: ^9.38.0
         version: 9.38.0
+      '@types/node':
+        specifier: ^24.8.1
+        version: 24.8.1
       '@vitest/coverage-v8':
         specifier: ^3.2.4
         version: 3.2.4(vitest@3.2.4(@types/node@24.8.1)(jsdom@27.0.1(postcss@8.5.6)))
@@ -561,8 +561,8 @@ packages:
   '@vitest/utils@3.2.4':
     resolution: {integrity: sha512-fB2V0JFrQSMsCo9HiSq3Ezpdv4iYaXRG1Sx8edX3MwxfyNn83mKiGzOcH+Fkxt4MHxr3y42fQi1oeAInqgX2QA==}
 
-  '@vpmedia/simplify@1.43.0':
-    resolution: {integrity: sha512-oQTD7Nj7sZneUlSU5d6hsVsV8nT2m5Gqm80j5n56A7Yx/Mn+FVgdM0BnpD6oTFDoNy73mMXKEif9OWp3qIDc7g==}
+  '@vpmedia/simplify@1.44.0':
+    resolution: {integrity: sha512-R0F/i+3WvjL2KTNGq5xi1d7ichxPuE2un17CCL7+vUeaw+BX1zQYXa5Qq9tmNsiZ5Ww07QaC4pYbk4EdwhJu6g==}
 
   acorn-jsx@5.3.2:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
@@ -1889,9 +1889,8 @@ snapshots:
       loupe: 3.2.1
       tinyrainbow: 2.0.0
 
-  '@vpmedia/simplify@1.43.0':
+  '@vpmedia/simplify@1.44.0':
     dependencies:
-      '@types/node': 24.8.1
       eventemitter3: 5.0.1
     optionalDependencies:
       '@sentry/browser': 10.20.0
