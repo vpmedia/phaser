@@ -60,6 +60,7 @@ export default [
       'unicorn/no-array-for-each': 'off',
       'unicorn/no-array-reverse': 'off',
       'unicorn/no-for-loop': 'off',
+      'unicorn/no-immediate-mutation': 'warn',
       'unicorn/no-lonely-if': 'off',
       'unicorn/no-negated-condition': 'off',
       'unicorn/no-nested-ternary': 'off',
