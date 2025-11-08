@@ -24,7 +24,7 @@ export default [
         ...globals.vitest,
         ...globals.browser,
         ...globals.node,
-        ...globals.es2021,
+        ...globals.es2026,
       },
       parserOptions: {
         ecmaVersion: 'latest',
@@ -97,28 +97,6 @@ export default [
       'unicorn/prefer-ternary': 'off',
       'unicorn/prevent-abbreviations': 'off',
       'unicorn/switch-case-braces': 'off',
-      'jsdoc/require-jsdoc': [
-        'warn',
-        {
-          require: {
-            FunctionDeclaration: true,
-            MethodDefinition: true,
-            ClassDeclaration: false,
-            ArrowFunctionExpression: false,
-            FunctionExpression: false,
-          },
-        },
-      ],
-      'jsdoc/check-indentation': 1,
-      'jsdoc/check-line-alignment': 1,
-      'jsdoc/check-syntax': 1,
-      'jsdoc/require-asterisk-prefix': 1,
-      'jsdoc/require-description': 1,
-      'jsdoc/require-description-complete-sentence': 1,
-      'jsdoc/require-hyphen-before-param-description': 1,
-      'jsdoc/require-throws': 1,
-      'jsdoc/sort-tags': 1,
-      'jsdoc/no-undefined-types': 0,
     },
   },
 ];
