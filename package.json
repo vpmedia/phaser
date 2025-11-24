@@ -46,7 +46,7 @@
   "scripts": {
     "build": "exit 0",
     "check": "pnpm lint && pnpm test && pnpm typecheck",
-    "format": "prettier --write \"./**/*.{js,jsx,mjs,cjs,ts,tsx,json,md,css}\"",
+    "format": "prettier --write \"./**/*.{js,jsx,mjs,cjs,ts,tsx,json,css}\"",
     "lint": "eslint \"**/*.{js,jsx}\"",
     "test": "vitest --coverage --pass-with-no-tests",
     "typecheck": "tsc"
