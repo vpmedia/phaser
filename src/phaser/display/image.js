@@ -96,7 +96,7 @@ export class Image extends DisplayObject {
   /**
    * TBD.
    * @param {string | number | Texture} key - TBD.
-   * @param {string | number} frame - TBD.
+   * @param {string | number | null | undefined} frame - TBD.
    * @param {boolean} stopAnimation - TBD.
    */
   loadTexture(key, frame = 0, stopAnimation = true) {

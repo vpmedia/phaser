@@ -277,10 +277,10 @@ export class InputHandler {
      * @param {boolean} bringToTop - TBD.
      * @param {boolean} pixelPerfect - TBD.
      * @param {number} alphaThreshold - TBD.
-     * @param {import('../geom/rectangle.js').Rectangle} boundsRect - TBD.
-     * @param {import('../display/display_object.js').DisplayObject} boundsSprite - TBD.
+     * @param {import('../geom/rectangle.js').Rectangle | null | undefined} boundsRect - TBD.
+     * @param {import('../display/display_object.js').DisplayObject | null | undefined} boundsSprite - TBD.
      */
-    enableDrag(lockCenter?: boolean, bringToTop?: boolean, pixelPerfect?: boolean, alphaThreshold?: number, boundsRect?: import("../geom/rectangle.js").Rectangle, boundsSprite?: import("../display/display_object.js").DisplayObject): void;
+    enableDrag(lockCenter?: boolean, bringToTop?: boolean, pixelPerfect?: boolean, alphaThreshold?: number, boundsRect?: import("../geom/rectangle.js").Rectangle | null | undefined, boundsSprite?: import("../display/display_object.js").DisplayObject | null | undefined): void;
     /**
      * TBD.
      */

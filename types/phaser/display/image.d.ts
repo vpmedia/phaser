@@ -27,10 +27,10 @@ export class Image extends DisplayObject {
     /**
      * TBD.
      * @param {string | number | Texture} key - TBD.
-     * @param {string | number} frame - TBD.
+     * @param {string | number | null | undefined} frame - TBD.
      * @param {boolean} stopAnimation - TBD.
      */
-    loadTexture(key: string | number | Texture, frame?: string | number, stopAnimation?: boolean): void;
+    loadTexture(key: string | number | Texture, frame?: string | number | null | undefined, stopAnimation?: boolean): void;
     customRender: boolean;
     /**
      * TBD.
