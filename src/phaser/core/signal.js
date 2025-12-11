@@ -17,7 +17,7 @@ export class Signal {
    * TBD.
    * @param {Function} listener - TBD.
    * @param {string} fnName - TBD.
-   * @throws Error.
+   * @throws {Error}
    */
   validateListener(listener, fnName) {
     if (typeof listener !== 'function') {
@@ -35,7 +35,7 @@ export class Signal {
    * @param {number} priority - TBD.
    * @param {...any} args - TBD.
    * @returns {SignalBinding} TBD.
-   * @throws Error.
+   * @throws {Error}
    */
   _registerListener(listener, isOnce = false, listenerContext = null, priority = 0, args = null) {
     const prevIndex = this._indexOfListener(listener, listenerContext);

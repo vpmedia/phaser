@@ -43,7 +43,7 @@ export class WebGLRenderer {
     /**
      * TBD.
      * @param {import('../../core/game.js').Game} game - TBD.
-     * @throws Error.
+     * @throws {Error}
      */
     initContext(game: import("../../core/game.js").Game): void;
     glContextId: any;

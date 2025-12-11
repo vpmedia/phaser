@@ -396,7 +396,7 @@ export class Loader {
    * @param {number} xSpacing - TBD.
    * @param {number} ySpacing - TBD.
    * @returns {Loader} TBD.
-   * @throws Error.
+   * @throws {Error}
    */
   bitmapFont(key, textureURL = null, atlasURL = null, atlasData = null, xSpacing = 0, ySpacing = 0) {
     if (textureURL === undefined || textureURL === null) {
@@ -953,7 +953,7 @@ export class Loader {
    * TBD.
    * @param {object} file - TBD.
    * @param {XMLHttpRequest} xhr - TBD.
-   * @throws Error.
+   * @throws {Error}
    */
   fileComplete(file, xhr) {
     let loadNext = true;

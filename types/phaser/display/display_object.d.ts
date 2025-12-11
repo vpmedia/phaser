@@ -1,28 +1,58 @@
 export class DisplayObject {
+    /** @type {boolean} */
     exists: boolean;
+    /** @type {boolean} */
     renderable: boolean;
+    /** @type {boolean} */
     visible: boolean;
+    /** @type {Point} */
     position: Point;
+    /** @type {Point} */
     scale: Point;
+    /** @type {Point} */
     pivot: Point;
+    /** @type {Point} */
     anchor: Point;
+    /** @type {number} */
     rotation: number;
+    /** @type {number} */
     alpha: number;
-    hitArea: any;
-    parent: any;
+    /** @type {Rectangle} */
+    hitArea: Rectangle;
+    /** @type {DisplayObject} */
+    parent: DisplayObject;
+    /** @type {number} */
     worldAlpha: number;
+    /** @type {Matrix} */
     worldTransform: Matrix;
+    /** @type {Point} */
     worldScale: Point;
-    filterArea: any;
+    /** @type {Rectangle} */
+    filterArea: Rectangle;
+    /** @type {number} */
     _sr: number;
+    /** @type {number} */
     _cr: number;
+    /** @type {Rectangle} */
     cachedBounds: Rectangle;
-    currentBounds: any;
+    /** @type {Rectangle} */
+    currentBounds: Rectangle;
+    /** @type {import('./graphics.js').Graphics} */
     _mask: import("./graphics.js").Graphics;
-    _filters: any;
-    _filterBlock: any;
-    children: any[];
+    /** @type {object[]} */
+    _filters: object[];
+    /** @type {object} */
+    _filterBlock: object;
+    /** @type {object[]} */
+    children: object[];
+    /** @type {boolean} */
     ignoreChildInput: boolean;
+    /** @type {string | null } */
+    name: string | null;
+    /** @type {object | null } */
+    data: object | null;
+    /** @type {import('../core/game.js').Game | null } */
+    game: import("../core/game.js").Game | null;
     /**
      * TBD.
      */
@@ -38,35 +68,35 @@ export class DisplayObject {
      * @param {DisplayObject} child - TBD.
      * @param {number} index - TBD.
      * @returns {DisplayObject} TBD.
-     * @throws Error.
+     * @throws {Error}
      */
     addChildAt(child: DisplayObject, index: number): DisplayObject;
     /**
      * TBD.
      * @param {DisplayObject} child - TBD.
      * @param {DisplayObject} child2 - TBD.
-     * @throws Error.
+     * @throws {Error}
      */
     swapChildren(child: DisplayObject, child2: DisplayObject): void;
     /**
      * TBD.
      * @param {DisplayObject} child - TBD.
      * @returns {number} TBD.
-     * @throws Error.
+     * @throws {Error}
      */
     getChildIndex(child: DisplayObject): number;
     /**
      * TBD.
      * @param {DisplayObject} child - TBD.
      * @param {number} index - TBD.
-     * @throws Error.
+     * @throws {Error}
      */
     setChildIndex(child: DisplayObject, index: number): void;
     /**
      * TBD.
      * @param {number} index - TBD.
      * @returns {DisplayObject} TBD.
-     * @throws Error.
+     * @throws {Error}
      */
     getChildAt(index: number): DisplayObject;
     /**
@@ -86,7 +116,7 @@ export class DisplayObject {
      * @param {number} beginIndex - TBD.
      * @param {number} endIndex - TBD.
      * @returns {DisplayObject[]} TBD.
-     * @throws Error.
+     * @throws {Error}
      */
     removeChildren(beginIndex: number, endIndex: number): DisplayObject[];
     /**
@@ -286,6 +316,6 @@ export class DisplayObject {
     get bottom(): number;
 }
 import { Point } from '../geom/point.js';
-import { Matrix } from '../geom/matrix.js';
 import { Rectangle } from '../geom/rectangle.js';
+import { Matrix } from '../geom/matrix.js';
 //# sourceMappingURL=display_object.d.ts.map

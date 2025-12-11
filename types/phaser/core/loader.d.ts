@@ -186,7 +186,7 @@ export class Loader {
      * @param {number} xSpacing - TBD.
      * @param {number} ySpacing - TBD.
      * @returns {Loader} TBD.
-     * @throws Error.
+     * @throws {Error}
      */
     bitmapFont(key: string, textureURL?: string, atlasURL?: string, atlasData?: object, xSpacing?: number, ySpacing?: number): Loader;
     /**
@@ -294,7 +294,7 @@ export class Loader {
      * TBD.
      * @param {object} file - TBD.
      * @param {XMLHttpRequest} xhr - TBD.
-     * @throws Error.
+     * @throws {Error}
      */
     fileComplete(file: object, xhr: XMLHttpRequest): void;
     /**

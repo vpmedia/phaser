@@ -9,7 +9,7 @@ export class Signal {
      * TBD.
      * @param {Function} listener - TBD.
      * @param {string} fnName - TBD.
-     * @throws Error.
+     * @throws {Error}
      */
     validateListener(listener: Function, fnName: string): void;
     /**
@@ -20,7 +20,7 @@ export class Signal {
      * @param {number} priority - TBD.
      * @param {...any} args - TBD.
      * @returns {SignalBinding} TBD.
-     * @throws Error.
+     * @throws {Error}
      */
     _registerListener(listener: Function, isOnce?: boolean, listenerContext?: object, priority?: number, args?: any[]): SignalBinding;
     /**

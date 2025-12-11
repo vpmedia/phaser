@@ -10,7 +10,6 @@ export class BitmapText extends DisplayObject {
      * @param {string} align - TBD.
      */
     constructor(game: import("../core/game.js").Game, x?: number, y?: number, font?: string, text?: string, size?: number, align?: string);
-    game: import("../core/game.js").Game;
     type: number;
     textWidth: number;
     textHeight: number;

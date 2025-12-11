@@ -8,12 +8,9 @@ export class Image extends DisplayObject {
      * @param {string | number} frame - TBD.
      */
     constructor(game: import("../core/game.js").Game, x: number, y: number, key: string, frame?: string | number);
-    game: import("../core/game.js").Game;
     type: number;
     key: string;
     texture: any;
-    /** @type {object} */
-    data: object;
     tint: number;
     cachedTint: number;
     tintedTexture: any;

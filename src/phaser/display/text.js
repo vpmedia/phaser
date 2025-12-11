@@ -533,7 +533,7 @@ export class Text extends Image {
    * TBD.
    * @param {string} text - TBD.
    * @returns {string} TBD.
-   * @throws Error.
+   * @throws {Error}
    */
   advancedWordWrap(text) {
     const context = this.context;

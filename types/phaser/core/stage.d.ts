@@ -4,8 +4,6 @@ export class Stage extends DisplayObject {
      * @param {import('./game.js').Game} game - TBD.
      */
     constructor(game: import("./game.js").Game);
-    game: import("./game.js").Game;
-    name: string;
     currentRenderOrderID: number;
     _bgColor: {
         r: number;

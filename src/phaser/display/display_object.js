@@ -10,32 +10,62 @@ export class DisplayObject {
    * TBD.
    */
   constructor() {
+    /** @type {boolean} */
     this.exists = true;
+    /** @type {boolean} */
     this.renderable = false;
+    /** @type {boolean} */
     this.visible = true;
+    /** @type {Point} */
     this.position = new Point(0, 0);
+    /** @type {Point} */
     this.scale = new Point(1, 1);
+    /** @type {Point} */
     this.pivot = new Point(0, 0);
+    /** @type {Point} */
     this.anchor = new Point(0, 0);
+    /** @type {number} */
     this.rotation = 0;
+    /** @type {number} */
     this.alpha = 1;
+    /** @type {Rectangle} */
     this.hitArea = null;
+    /** @type {DisplayObject} */
     this.parent = null;
+    /** @type {number} */
     this.worldAlpha = 1;
+    /** @type {Matrix} */
     this.worldTransform = new Matrix();
     // this.worldPosition = new Point(0, 0);
+    /** @type {Point} */
     this.worldScale = new Point(1, 1);
     // this.worldRotation = 0;
+    /** @type {Rectangle} */
     this.filterArea = null;
+    /** @type {number} */
     this._sr = 0;
+    /** @type {number} */
     this._cr = 1;
+    /** @type {Rectangle} */
     this.cachedBounds = new Rectangle(0, 0, 0, 0);
+    /** @type {Rectangle} */
     this.currentBounds = null;
+    /** @type {import('./graphics.js').Graphics} */
     this._mask = null;
+    /** @type {object[]} */
     this._filters = null;
+    /** @type {object} */
     this._filterBlock = null;
+    /** @type {object[]} */
     this.children = [];
+    /** @type {boolean} */
     this.ignoreChildInput = false;
+    /** @type {string | null } */
+    this.name = this.name ?? null;
+    /** @type {object | null } */
+    this.data = this.data ?? null;
+    /** @type {import('../core/game.js').Game | null } */
+    this.game = this.game ?? null;
   }
 
   /**
@@ -86,7 +116,7 @@ export class DisplayObject {
    * @param {DisplayObject} child - TBD.
    * @param {number} index - TBD.
    * @returns {DisplayObject} TBD.
-   * @throws Error.
+   * @throws {Error}
    */
   addChildAt(child, index) {
     if (index >= 0 && index <= this.children.length) {
@@ -104,7 +134,7 @@ export class DisplayObject {
    * TBD.
    * @param {DisplayObject} child - TBD.
    * @param {DisplayObject} child2 - TBD.
-   * @throws Error.
+   * @throws {Error}
    */
   swapChildren(child, child2) {
     if (child === child2) {
@@ -123,7 +153,7 @@ export class DisplayObject {
    * TBD.
    * @param {DisplayObject} child - TBD.
    * @returns {number} TBD.
-   * @throws Error.
+   * @throws {Error}
    */
   getChildIndex(child) {
     const index = this.children.indexOf(child);
@@ -137,7 +167,7 @@ export class DisplayObject {
    * TBD.
    * @param {DisplayObject} child - TBD.
    * @param {number} index - TBD.
-   * @throws Error.
+   * @throws {Error}
    */
   setChildIndex(child, index) {
     if (index < 0 || index >= this.children.length) {
@@ -152,7 +182,7 @@ export class DisplayObject {
    * TBD.
    * @param {number} index - TBD.
    * @returns {DisplayObject} TBD.
-   * @throws Error.
+   * @throws {Error}
    */
   getChildAt(index) {
     if (index < 0 || index >= this.children.length) {
@@ -197,7 +227,7 @@ export class DisplayObject {
    * @param {number} beginIndex - TBD.
    * @param {number} endIndex - TBD.
    * @returns {DisplayObject[]} TBD.
-   * @throws Error.
+   * @throws {Error}
    */
   removeChildren(beginIndex, endIndex) {
     if (beginIndex === undefined) {

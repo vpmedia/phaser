@@ -9,9 +9,7 @@ export class Group extends DisplayObject {
      * @param {boolean} addToStage - TBD.
      */
     constructor(game: import("../core/game.js").Game, parent?: DisplayObject, name?: string, addToStage?: boolean);
-    game: import("../core/game.js").Game;
     type: number;
-    name: string;
     z: number;
     ignoreDestroy: boolean;
     pendingDestroy: boolean;

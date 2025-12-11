@@ -6,7 +6,6 @@ export class Graphics extends DisplayObject {
      * @param {number} y - TBD.
      */
     constructor(game: import("../core/game.js").Game, x?: number, y?: number);
-    game: import("../core/game.js").Game;
     type: number;
     fillAlpha: number;
     lineWidth: number;

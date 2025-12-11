@@ -122,7 +122,7 @@ export class WebGLRenderer {
   /**
    * TBD.
    * @param {import('../../core/game.js').Game} game - TBD.
-   * @throws Error.
+   * @throws {Error}
    */
   initContext(game) {
     game.logger.info('initContext');
