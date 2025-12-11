@@ -48,8 +48,7 @@ export class DisplayObject {
     _filters: object[];
     /** @type {object} */
     _filterBlock: object;
-    /** @type {DisplayObject[]} */
-    children: DisplayObject[];
+    children: any[];
     /** @type {boolean} */
     ignoreChildInput: boolean;
     /** @type {string | null } */
