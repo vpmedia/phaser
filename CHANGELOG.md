@@ -1,3 +1,10 @@
+## [1.91.0] - 2025-12-11
+
+### ⚙️ Miscellaneous Tasks
+
+- Release
+- Improve type checking
+- *(release)* V1.91.0
 ## [1.90.0] - 2025-12-11
 
 ### 🚜 Refactor
