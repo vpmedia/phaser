@@ -1,3 +1,11 @@
+## [1.92.0] - 2025-12-11
+
+### ⚙️ Miscellaneous Tasks
+
+- Release
+- Improve type checking
+- Cleanup
+- *(release)* V1.92.0
 ## [1.91.0] - 2025-12-11
 
 ### ⚙️ Miscellaneous Tasks
