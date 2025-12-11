@@ -57,7 +57,6 @@ export class DisplayObject {
     this._filters = null;
     /** @type {object} */
     this._filterBlock = null;
-    /** @type {DisplayObject[]} */
     this.children = [];
     /** @type {boolean} */
     this.ignoreChildInput = false;
