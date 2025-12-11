@@ -77,10 +77,10 @@ export class Timer {
     stop(clearEvents?: boolean): void;
     /**
      * TBD.
-     * @param {TimerEvent} event - TBD.
+     * @param {TimerEvent | null | undefined} event - TBD.
      * @returns {boolean} TBD.
      */
-    remove(event: TimerEvent): boolean;
+    remove(event: TimerEvent | null | undefined): boolean;
     /**
      * TBD.
      */

@@ -121,7 +121,7 @@ export class Timer {
 
   /**
    * TBD.
-   * @param {TimerEvent} event - TBD.
+   * @param {TimerEvent | null | undefined} event - TBD.
    * @returns {boolean} TBD.
    */
   remove(event) {

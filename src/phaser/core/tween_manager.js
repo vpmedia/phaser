@@ -159,7 +159,7 @@ export class TweenManager {
 
   /**
    * TBD.
-   * @param {Tween} tween - TBD.
+   * @param {Tween | null | undefined} tween - TBD.
    */
   remove(tween) {
     let i = this._tweens.indexOf(tween);

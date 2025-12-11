@@ -356,7 +356,7 @@ export class SoundManager {
 
   /**
    * TBD.
-   * @param {Sound} sound - TBD.
+   * @param {Sound | null | undefined} sound - TBD.
    * @returns {boolean} TBD.
    */
   remove(sound) {

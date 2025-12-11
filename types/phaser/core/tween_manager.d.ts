@@ -78,9 +78,9 @@ export class TweenManager {
     create(object: object): Tween;
     /**
      * TBD.
-     * @param {Tween} tween - TBD.
+     * @param {Tween | null | undefined} tween - TBD.
      */
-    remove(tween: Tween): void;
+    remove(tween: Tween | null | undefined): void;
     /**
      * TBD.
      * @returns {boolean} TBD.

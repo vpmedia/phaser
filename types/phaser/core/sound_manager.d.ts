@@ -98,10 +98,10 @@ export class SoundManager {
     addSprite(key: string): SoundSprite;
     /**
      * TBD.
-     * @param {Sound} sound - TBD.
+     * @param {Sound | null | undefined} sound - TBD.
      * @returns {boolean} TBD.
      */
-    remove(sound: Sound): boolean;
+    remove(sound: Sound | null | undefined): boolean;
     /**
      * TBD.
      * @param {string} key - TBD.
