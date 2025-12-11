@@ -1,3 +1,10 @@
+## [1.88.0] - 2025-12-11
+
+### ⚙️ Miscellaneous Tasks
+
+- Release
+- Enable type checking
+- *(release)* V1.88.0
 ## [1.87.0] - 2025-12-11
 
 ### 💼 Other
