@@ -10,7 +10,7 @@ export class Stage extends DisplayObject {
    * @param {import('./game.js').Game} game - TBD.
    */
   constructor(game) {
-    super();
+    super(game);
     this.game = game;
     this.name = '_stage_root';
     this.worldTransform = new Matrix();

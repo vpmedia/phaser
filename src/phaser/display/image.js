@@ -17,7 +17,7 @@ export class Image extends DisplayObject {
    * @param {string | number} frame - TBD.
    */
   constructor(game, x, y, key, frame = 0) {
-    super();
+    super(game);
     this.game = game;
     this.type = IMAGE;
     this.renderable = true;

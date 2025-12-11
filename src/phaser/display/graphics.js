@@ -32,7 +32,7 @@ export class Graphics extends DisplayObject {
    * @param {number} y - TBD.
    */
   constructor(game, x = 0, y = 0) {
-    super();
+    super(game);
     this.game = game;
     this.type = GRAPHICS;
     this.position.setTo(x, y);

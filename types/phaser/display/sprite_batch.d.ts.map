@@ -1,1 +1,1 @@
-{"version":3,"file":"sprite_batch.d.ts","sourceRoot":"","sources":["../../../src/phaser/display/sprite_batch.js"],"names":[],"mappings":"AAEA;IACE;;;OAGG;IACH,kBAFW,OAAO,iBAAiB,EAAE,IAAI,EAKxC;CACF;8BAX6B,qBAAqB"}
+{"version":3,"file":"sprite_batch.d.ts","sourceRoot":"","sources":["../../../src/phaser/display/sprite_batch.js"],"names":[],"mappings":"AAEA;CAQC;8BAV6B,qBAAqB"}

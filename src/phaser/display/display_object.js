@@ -8,8 +8,9 @@ import { renderCanvas, renderWebGL } from './sprite_util.js';
 export class DisplayObject {
   /**
    * TBD.
+   * @param {import('../core/game.js').Game} game - TBD.
    */
-  constructor() {
+  constructor(game) {
     /** @type {boolean} */
     this.exists = true;
     /** @type {boolean} */
@@ -64,8 +65,8 @@ export class DisplayObject {
     this.name = this.name ?? null;
     /** @type {object | null } */
     this.data = this.data ?? null;
-    /** @type {import('../core/game.js').Game | null } */
-    this.game = this.game ?? null;
+    /** @type {import('../core/game.js').Game } */
+    this.game = game;
   }
 
   /**

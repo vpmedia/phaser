@@ -242,7 +242,7 @@ export const rotate = (a, x, y, ang, asDegrees, dist) => {
  * @param {Point[]} points - TBD.
  * @param {Point} output - TBD.
  * @returns {Point} TBD.
- * @throws Error TBD.
+ * @throws {Error}
  */
 export const centroid = (points, output = null) => {
   const result = output || new Point();

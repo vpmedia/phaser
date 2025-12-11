@@ -15,7 +15,7 @@ export class BitmapText extends DisplayObject {
    * @param {string} align - TBD.
    */
   constructor(game, x = 0, y = 0, font = '', text = '', size = 32, align = 'left') {
-    super();
+    super(game);
     this.game = game;
     this.type = BITMAP_TEXT;
     this.position.setTo(x, y);

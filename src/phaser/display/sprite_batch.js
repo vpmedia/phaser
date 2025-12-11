@@ -6,7 +6,6 @@ export class SpriteBatch extends DisplayObject {
    * @param {import('../core/game.js').Game} game - TBD.
    */
   constructor(game) {
-    super();
-    this.game = game;
+    super(game);
   }
 }

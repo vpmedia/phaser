@@ -1,4 +1,9 @@
 export class DisplayObject {
+    /**
+     * TBD.
+     * @param {import('../core/game.js').Game} game - TBD.
+     */
+    constructor(game: import("../core/game.js").Game);
     /** @type {boolean} */
     exists: boolean;
     /** @type {boolean} */
@@ -43,16 +48,16 @@ export class DisplayObject {
     _filters: object[];
     /** @type {object} */
     _filterBlock: object;
-    /** @type {object[]} */
-    children: object[];
+    /** @type {DisplayObject[]} */
+    children: DisplayObject[];
     /** @type {boolean} */
     ignoreChildInput: boolean;
     /** @type {string | null } */
     name: string | null;
     /** @type {object | null } */
     data: object | null;
-    /** @type {import('../core/game.js').Game | null } */
-    game: import("../core/game.js").Game | null;
+    /** @type {import('../core/game.js').Game } */
+    game: import("../core/game.js").Game;
     /**
      * TBD.
      */

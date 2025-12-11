@@ -14,7 +14,7 @@ export class Group extends DisplayObject {
     ignoreDestroy: boolean;
     pendingDestroy: boolean;
     classType: typeof Image;
-    cursor: any;
+    cursor: DisplayObject;
     inputEnableChildren: boolean;
     onChildInputDown: Signal;
     onChildInputUp: Signal;
