@@ -91,10 +91,10 @@ export class DisplayObject {
     removeChildren(beginIndex: number, endIndex: number): DisplayObject[];
     /**
      * TBD.
-     * @param {DisplayObject} parent - TBD.
+     * @param {DisplayObject | null | undefined} parent - TBD.
      * @returns {DisplayObject} TBD.
      */
-    updateTransform(parent: DisplayObject): DisplayObject;
+    updateTransform(parent?: DisplayObject | null | undefined): DisplayObject;
     rotationCache: any;
     worldRotation: number;
     /**

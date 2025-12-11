@@ -182,14 +182,14 @@ export class ScaleManager {
       this.parentIsWindow = true;
       rect.width = this.dom.visualBounds.width;
       rect.height = this.dom.visualBounds.height;
-      this.offset.set(0, 0);
+      this.offset.setTo(0, 0);
     } else {
       this.parentNode = target;
       this.parentIsWindow = false;
       this.getParentBounds(this._parentBounds);
       rect.width = this._parentBounds.width;
       rect.height = this._parentBounds.height;
-      this.offset.set(this._parentBounds.x, this._parentBounds.y);
+      this.offset.setTo(this._parentBounds.x, this._parentBounds.y);
     }
     let newWidth = 0;
     let newHeight = 0;

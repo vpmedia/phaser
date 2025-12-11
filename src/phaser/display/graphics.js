@@ -35,7 +35,7 @@ export class Graphics extends DisplayObject {
     super();
     this.game = game;
     this.type = GRAPHICS;
-    this.position.set(x, y);
+    this.position.setTo(x, y);
     this.renderable = true;
     this.fillAlpha = 1;
     this.lineWidth = 0;

@@ -5,9 +5,9 @@ export class Image extends DisplayObject {
      * @param {number} x - TBD.
      * @param {number} y - TBD.
      * @param {string} key - TBD.
-     * @param {string|number} frame - TBD.
+     * @param {string | number} frame - TBD.
      */
-    constructor(game: import("../core/game.js").Game, x: number, y: number, key: string, frame: string | number);
+    constructor(game: import("../core/game.js").Game, x: number, y: number, key: string, frame?: string | number);
     game: import("../core/game.js").Game;
     type: number;
     key: string;
@@ -26,11 +26,11 @@ export class Image extends DisplayObject {
     renderOrderID: number;
     /**
      * TBD.
-     * @param {string} key - TBD.
-     * @param {string|number} frame - TBD.
+     * @param {string | number | Texture} key - TBD.
+     * @param {string | number} frame - TBD.
      * @param {boolean} stopAnimation - TBD.
      */
-    loadTexture(key: string, frame?: string | number, stopAnimation?: boolean): void;
+    loadTexture(key: string | number | Texture, frame?: string | number, stopAnimation?: boolean): void;
     customRender: boolean;
     /**
      * TBD.

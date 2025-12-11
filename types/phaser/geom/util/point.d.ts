@@ -14,7 +14,7 @@ export function project(a: Point, b: Point, output?: Point): Point;
 export function projectUnit(a: Point, b: Point, output?: Point): Point;
 export function normalRightHand(a: Point, output?: Point): Point;
 export function normalize(a: Point, output?: Point): Point;
-export function rotate(a: Point, x: number, y: number, ang: number, asDegrees: boolean, dist: number): object;
+export function rotate(a: Point, x: number, y: number, ang: number, asDegrees: boolean, dist: number | null | undefined): object;
 export function centroid(points: Point[], output?: Point): Point;
 export function parse(obj: object, xProp?: string, yProp?: string): Point;
 export function clone(input: Point, output?: Point): Point;

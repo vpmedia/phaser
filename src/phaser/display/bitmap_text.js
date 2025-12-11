@@ -18,7 +18,7 @@ export class BitmapText extends DisplayObject {
     super();
     this.game = game;
     this.type = BITMAP_TEXT;
-    this.position.set(x, y);
+    this.position.setTo(x, y);
     this.textWidth = 0;
     this.textHeight = 0;
     this._prevAnchor = new Point();
@@ -226,7 +226,7 @@ export class BitmapText extends DisplayObject {
         }
         g.position.x = currentLine.chars[c] + align - ax;
         g.position.y = currentLine.y + charData.yOffset * scale - ay;
-        g.scale.set(scale);
+        g.scale.setTo(scale, scale);
         g.tint = this.tint;
         g.texture.requiresReTint = true;
         if (!g.parent) {

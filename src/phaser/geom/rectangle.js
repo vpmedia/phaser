@@ -294,25 +294,25 @@ export class Rectangle {
     const result = output || new Point();
     switch (position) {
       case TOP_LEFT:
-        return result.set(this.x, this.y);
+        return result.setTo(this.x, this.y);
       case TOP_CENTER:
-        return result.set(this.centerX, this.y);
+        return result.setTo(this.centerX, this.y);
       case TOP_RIGHT:
-        return result.set(this.right, this.y);
+        return result.setTo(this.right, this.y);
       case LEFT_CENTER:
-        return result.set(this.x, this.centerY);
+        return result.setTo(this.x, this.centerY);
       case CENTER:
-        return result.set(this.centerX, this.centerY);
+        return result.setTo(this.centerX, this.centerY);
       case RIGHT_CENTER:
-        return result.set(this.right, this.centerY);
+        return result.setTo(this.right, this.centerY);
       case BOTTOM_LEFT:
-        return result.set(this.x, this.bottom);
+        return result.setTo(this.x, this.bottom);
       case BOTTOM_CENTER:
-        return result.set(this.centerX, this.bottom);
+        return result.setTo(this.centerX, this.bottom);
       case BOTTOM_RIGHT:
-        return result.set(this.right, this.bottom);
+        return result.setTo(this.right, this.bottom);
       default:
-        return result.set(this.x, this.y);
+        return result.setTo(this.x, this.y);
     }
   }
 

@@ -59,16 +59,16 @@ export class AnimationManager {
     /**
      * TBD.
      * @param {string} name - TBD.
-     * @param {number[]|string[]} frameList - TBD.
+     * @param {number[] | string[] | null | undefined} frameList - TBD.
      * @param {number} frameRate - TBD.
      * @param {boolean} loop - TBD.
-     * @param {boolean} useNumericIndex - TBD.
+     * @param {boolean | undefined} useNumericIndex - TBD.
      * @returns {Animation} TBD.
      */
-    add(name: string, frameList: number[] | string[], frameRate?: number, loop?: boolean, useNumericIndex?: boolean): Animation;
+    add(name: string, frameList: number[] | string[] | null | undefined, frameRate?: number, loop?: boolean, useNumericIndex?: boolean | undefined): Animation;
     /**
      * TBD.
-     * @param {string[]|number[]} frames - TBD.
+     * @param {string[] | number[]} frames - TBD.
      * @param {boolean} useNumericIndex - TBD.
      * @returns {boolean} TBD.
      */

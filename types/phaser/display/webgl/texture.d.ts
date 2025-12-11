@@ -12,22 +12,32 @@ export class Texture {
     /**
      * TBD.
      * @param {import('./base_texture.js').BaseTexture} baseTexture - TBD.
-     * @param {Rectangle} frame - TBD.
-     * @param {Rectangle} crop - TBD.
-     * @param {Rectangle} trim - TBD.
+     * @param {Rectangle | null | undefined} frame - TBD.
+     * @param {Rectangle | null | undefined} crop - TBD.
+     * @param {Rectangle | null | undefined} trim - TBD.
      */
-    constructor(baseTexture: import("./base_texture.js").BaseTexture, frame: Rectangle, crop: Rectangle, trim: Rectangle);
+    constructor(baseTexture: import("./base_texture.js").BaseTexture, frame?: Rectangle | null | undefined, crop?: Rectangle | null | undefined, trim?: Rectangle | null | undefined);
     noFrame: boolean;
     baseTexture: import("./base_texture.js").BaseTexture;
+    /** @type {Rectangle} */
     frame: Rectangle;
-    trim: Rectangle;
+    /** @type {Rectangle | null | undefined} */
+    trim: Rectangle | null | undefined;
+    /** @type {boolean} */
     valid: boolean;
+    /** @type {boolean} */
     isTiling: boolean;
+    /** @type {boolean} */
     requiresUpdate: boolean;
+    /** @type {boolean} */
     requiresReTint: boolean;
+    /** @type {TextureUvs} */
     _uvs: TextureUvs;
+    /** @type {number} */
     width: number;
+    /** @type {number} */
     height: number;
+    /** @type {Rectangle} */
     crop: Rectangle;
     /**
      * TBD.
@@ -41,7 +51,7 @@ export class Texture {
     /**
      * TBD.
      * @param {Rectangle} frame - TBD.
-     * @throws Error.
+     * @throws {Error}.
      */
     setFrame(frame: Rectangle): void;
     /**

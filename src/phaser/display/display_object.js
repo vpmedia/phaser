@@ -223,10 +223,10 @@ export class DisplayObject {
 
   /**
    * TBD.
-   * @param {DisplayObject} parent - TBD.
+   * @param {DisplayObject | null | undefined} parent - TBD.
    * @returns {DisplayObject} TBD.
    */
-  updateTransform(parent) {
+  updateTransform(parent = null) {
     if (!parent && !this.parent) {
       return this;
     }
@@ -291,8 +291,8 @@ export class DisplayObject {
     }
     //  Set the World values
     this.worldAlpha = this.alpha * p.worldAlpha;
-    // this.worldPosition.set(wt.tx, wt.ty);
-    this.worldScale.set(
+    // this.worldPosition.setTo(wt.tx, wt.ty);
+    this.worldScale.setTo(
       this.scale.x * Math.sqrt(wt.a * wt.a + wt.c * wt.c),
       this.scale.y * Math.sqrt(wt.b * wt.b + wt.d * wt.d)
     );

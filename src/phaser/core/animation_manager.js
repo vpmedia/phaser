@@ -100,10 +100,10 @@ export class AnimationManager {
   /**
    * TBD.
    * @param {string} name - TBD.
-   * @param {number[]|string[]} frameList - TBD.
+   * @param {number[] | string[] | null | undefined} frameList - TBD.
    * @param {number} frameRate - TBD.
    * @param {boolean} loop - TBD.
-   * @param {boolean} useNumericIndex - TBD.
+   * @param {boolean | undefined} useNumericIndex - TBD.
    * @returns {Animation} TBD.
    */
   add(name, frameList, frameRate = 60, loop = false, useNumericIndex = undefined) {
@@ -136,7 +136,7 @@ export class AnimationManager {
 
   /**
    * TBD.
-   * @param {string[]|number[]} frames - TBD.
+   * @param {string[] | number[]} frames - TBD.
    * @param {boolean} useNumericIndex - TBD.
    * @returns {boolean} TBD.
    */

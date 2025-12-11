@@ -125,9 +125,9 @@ export const getLocalBounds = (target) => {
  * TBD.
  * @param {import('./image.js').Image} target - TBD.
  * @param {object} renderSession - TBD.
- * @param {import('../geom/matrix.js').Matrix} matrix - TBD.
+ * @param {import('../geom/matrix.js').Matrix | null | undefined} matrix - TBD.
  */
-export const renderWebGL = (target, renderSession, matrix) => {
+export const renderWebGL = (target, renderSession, matrix = null) => {
   // if the sprite is not visible or the alpha is 0 then no need to render this element
   if (!target.visible || target.alpha <= 0 || !target.renderable) {
     return;
@@ -174,9 +174,9 @@ export const renderWebGL = (target, renderSession, matrix) => {
  * TBD.
  * @param {import('./image.js').Image} target - TBD.
  * @param {object} renderSession - TBD.
- * @param {import('../geom/matrix.js').Matrix} matrix - TBD.
+ * @param {import('../geom/matrix.js').Matrix | null | undefined} matrix - TBD.
  */
-export const renderCanvas = (target, renderSession, matrix) => {
+export const renderCanvas = (target, renderSession, matrix = null) => {
   // If the sprite is not visible or the alpha is 0 then no need to render this element
   if (
     !target.visible ||

@@ -31,6 +31,7 @@ export class Point {
      * @param {number} x - TBD.
      * @param {number} y - TBD.
      * @returns {Point} TBD.
+     * @deprecated
      */
     set(x: number, y: number): Point;
     /**
@@ -118,10 +119,10 @@ export class Point {
      * @param {number} y - TBD.
      * @param {number} angle - TBD.
      * @param {boolean} asDegrees - TBD.
-     * @param {number} dist - TBD.
+     * @param {number | null | undefined} dist - TBD.
      * @returns {Point} TBD.
      */
-    rotate(x: number, y: number, angle: number, asDegrees: boolean, dist: number): Point;
+    rotate(x: number, y: number, angle: number, asDegrees: boolean, dist?: number | null | undefined): Point;
     /**
      * TBD.
      * @returns {number} TBD.

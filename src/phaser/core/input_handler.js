@@ -560,7 +560,7 @@ export class InputHandler {
       data.isDown = true;
       data.isUp = false;
       data.timeDown = this.game.time.time;
-      this.downPoint.set(pointer.x, pointer.y);
+      this.downPoint.setTo(pointer.x, pointer.y);
       // It's possible the onInputDown event creates a new Sprite that is on-top of this one, so we ought to force a Pointer update
       pointer.dirty = true;
       if (this.sprite && this.sprite.events) {
@@ -690,7 +690,7 @@ export class InputHandler {
       this.sprite.y =
         Math.round((this.sprite.y - (this.snapOffsetY % this.snapY)) / this.snapY) * this.snapY +
         (this.snapOffsetY % this.snapY);
-      this.snapPoint.set(this.sprite.x, this.sprite.y);
+      this.snapPoint.setTo(this.sprite.x, this.sprite.y);
     }
     this.sprite.events.onDragUpdate.dispatch(this.sprite, pointer, px, py, this.snapPoint, fromStart);
     return true;
@@ -833,7 +833,7 @@ export class InputHandler {
       this._dragPhase = true;
       this.sprite.parent.bringToTop(this.sprite);
     }
-    this.dragStartPoint.set(x, y);
+    this.dragStartPoint.setTo(x, y);
     this.sprite.events.onDragStart$dispatch(this.sprite, pointer, x, y);
     this._pendingDrag = false;
   }

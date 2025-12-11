@@ -14,9 +14,9 @@ export class Image extends DisplayObject {
    * @param {number} x - TBD.
    * @param {number} y - TBD.
    * @param {string} key - TBD.
-   * @param {string|number} frame - TBD.
+   * @param {string | number} frame - TBD.
    */
-  constructor(game, x, y, key, frame) {
+  constructor(game, x, y, key, frame = 0) {
     super();
     this.game = game;
     this.type = IMAGE;
@@ -37,7 +37,7 @@ export class Image extends DisplayObject {
     /* if (this.texture.baseTexture.hasLoaded) {
       this.onTextureUpdate();
     } */
-    this.position.set(x, y);
+    this.position.setTo(x, y);
     this.events = new EventManager(this);
     this.animations = new AnimationManager(this);
     this.loadTexture(key, frame);
@@ -95,8 +95,8 @@ export class Image extends DisplayObject {
 
   /**
    * TBD.
-   * @param {string} key - TBD.
-   * @param {string|number} frame - TBD.
+   * @param {string | number | Texture} key - TBD.
+   * @param {string | number} frame - TBD.
    * @param {boolean} stopAnimation - TBD.
    */
   loadTexture(key, frame = 0, stopAnimation = true) {

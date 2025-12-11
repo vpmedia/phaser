@@ -47,9 +47,9 @@ export class Point {
    * @param {number} x - TBD.
    * @param {number} y - TBD.
    * @returns {Point} TBD.
+   * @deprecated
    */
   set(x, y) {
-    // deprecated, use setTo(x, y)
     this.x = x || 0;
     this.y = y || (y !== 0 ? this.x : 0);
     return this;
@@ -193,10 +193,10 @@ export class Point {
    * @param {number} y - TBD.
    * @param {number} angle - TBD.
    * @param {boolean} asDegrees - TBD.
-   * @param {number} dist - TBD.
+   * @param {number | null | undefined} dist - TBD.
    * @returns {Point} TBD.
    */
-  rotate(x, y, angle, asDegrees, dist) {
+  rotate(x, y, angle, asDegrees, dist = null) {
     return rotate(this, x, y, angle, asDegrees, dist);
   }
 
