@@ -18,7 +18,6 @@ export class Image extends DisplayObject {
    */
   constructor(game, x, y, key, frame = 0) {
     super(game);
-    this.game = game;
     this.type = IMAGE;
     this.renderable = true;
     this.key = key;

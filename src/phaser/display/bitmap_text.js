@@ -16,7 +16,6 @@ export class BitmapText extends DisplayObject {
    */
   constructor(game, x = 0, y = 0, font = '', text = '', size = 32, align = 'left') {
     super(game);
-    this.game = game;
     this.type = BITMAP_TEXT;
     this.position.setTo(x, y);
     this.textWidth = 0;

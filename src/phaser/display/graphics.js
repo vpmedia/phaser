@@ -33,7 +33,6 @@ export class Graphics extends DisplayObject {
    */
   constructor(game, x = 0, y = 0) {
     super(game);
-    this.game = game;
     this.type = GRAPHICS;
     this.position.setTo(x, y);
     this.renderable = true;

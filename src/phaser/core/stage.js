@@ -11,7 +11,6 @@ export class Stage extends DisplayObject {
    */
   constructor(game) {
     super(game);
-    this.game = game;
     this.name = '_stage_root';
     this.worldTransform = new Matrix();
     this.currentRenderOrderID = 0;

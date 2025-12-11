@@ -16,7 +16,6 @@ export class Group extends DisplayObject {
    */
   constructor(game, parent = null, name = null, addToStage = false) {
     super(game);
-    this.game = game;
     this.type = GROUP;
     if (!parent) {
       parent = game.world;
