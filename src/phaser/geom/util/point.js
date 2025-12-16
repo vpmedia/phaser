@@ -215,7 +215,7 @@ export const normalize = (a, output = null) => {
  * @param {number} ang - TBD.
  * @param {boolean} asDegrees - TBD.
  * @param {number | null | undefined} dist - TBD.
- * @returns {object} TBD.
+ * @returns {Point} TBD.
  */
 export const rotate = (a, x, y, ang, asDegrees, dist) => {
   if (asDegrees) {

@@ -484,7 +484,7 @@ export const buildPoly = (graphicsData, webGLData) => {
 
 /**
  * TBD.
- * @param {object} graphics - TBD.
+ * @param {import('../graphics.js').Graphics} graphics - TBD.
  * @param {WebGLRenderingContext & { id: number }} gl - TBD.
  */
 export const updateGraphics = (graphics, gl) => {
@@ -573,7 +573,7 @@ export const updateGraphics = (graphics, gl) => {
 
 /**
  * TBD.
- * @param {object} graphics - TBD.
+ * @param {import('../graphics.js').Graphics} graphics - TBD.
  * @param {object} renderSession - TBD.
  */
 export const renderGraphics = (graphics, renderSession) => {

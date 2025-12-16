@@ -5,30 +5,54 @@ export class Time {
      */
     constructor(game: import("./game.js").Game);
     game: import("./game.js").Game;
+    /** @type {number} */
     time: number;
+    /** @type {number} */
     prevTime: number;
+    /** @type {number} */
     now: number;
+    /** @type {number} */
     elapsed: number;
+    /** @type {number} */
     elapsedMS: number;
+    /** @type {number} */
     desiredFpsMult: number;
+    /** @type {number} */
     _desiredFps: number;
+    /** @type {number} */
     suggestedFps: number;
+    /** @type {boolean} */
     advancedTiming: boolean;
+    /** @type {number} */
     frames: number;
+    /** @type {number} */
     fps: number;
+    /** @type {number} */
     fpsMin: number;
+    /** @type {number} */
     fpsMax: number;
+    /** @type {number} */
     msMin: number;
+    /** @type {number} */
     msMax: number;
+    /** @type {number} */
     pauseDuration: number;
+    /** @type {number} */
     timeToCall: number;
+    /** @type {number} */
     timeExpected: number;
+    /** @type {Timer} */
     events: Timer;
+    /** @type {number} */
     _frameCount: number;
+    /** @type {number} */
     _elapsedAccumulator: number;
     _started: number;
+    /** @type {number} */
     _timeLastSecond: number;
+    /** @type {number} */
     _pauseStarted: number;
+    /** @type {boolean} */
     _justResumed: boolean;
     /** @type {Timer[]} */
     _timers: Timer[];

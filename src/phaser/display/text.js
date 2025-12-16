@@ -19,6 +19,7 @@ export class Text extends Image {
   constructor(game, x, y, text = '', style = {}) {
     super(game, x, y, null);
     this.game = game;
+    /** @type {number} */
     this.type = TEXT;
     this.canvas = create(this);
     this.context = this.canvas.getContext('2d', { willReadFrequently: false });
@@ -38,9 +39,13 @@ export class Text extends Image {
     this._res = game.renderer.resolution;
     this._text = text.toString();
     this._fontComponents = null;
+    /** @type {number} */
     this._lineSpacing = 0;
+    /** @type {number} */
     this._charCount = 0;
+    /** @type {number} */
     this._width = 0;
+    /** @type {number} */
     this._height = 0;
     this.loadTexture(textureFromCanvas(this.canvas));
     this.setStyle(style);
@@ -663,7 +668,7 @@ export class Text extends Image {
   /**
    * TBD.
    * @param {string} font - TBD.
-   * @returns {object} TBD.
+   * @returns {{ font: string, fontStyle?: string, fontVariant?: string, fontWeight?: string, fontSize?: string, fontFamily?: string }} TBD.
    */
   fontToComponents(font) {
     // The format is specified in http://www.w3.org/TR/CSS2/fonts.html#font-shorthand:
@@ -868,7 +873,7 @@ export class Text extends Image {
 
   /**
    * TBD.
-   * @returns {object} TBD.
+   * @returns {{[key: string]: {ascent: number, descent: number, fontSize: number}}} TBD.
    */
   getFontPropertiesCache() {
     if (!window.PhaserRegistry.fontPropertiesCache) {
@@ -929,7 +934,7 @@ export class Text extends Image {
   /**
    * TBD.
    * @param {string} fontStyle - TBD.
-   * @returns {object} TBD.
+   * @returns {{ascent: number, descent: number, fontSize: number}} TBD.
    */
   determineFontPropertiesFallback(fontStyle) {
     const fontPropertiesCache = this.getFontPropertiesCache();

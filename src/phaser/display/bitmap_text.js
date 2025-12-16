@@ -16,20 +16,31 @@ export class BitmapText extends DisplayObject {
    */
   constructor(game, x = 0, y = 0, font = '', text = '', size = 32, align = 'left') {
     super(game);
+    /** @type {number} */
     this.type = BITMAP_TEXT;
     this.position.setTo(x, y);
+    /** @type {number} */
     this.textWidth = 0;
+    /** @type {number} */
     this.textHeight = 0;
+    /** @type {Point} */
     this._prevAnchor = new Point();
     this._glyphs = [];
+    /** @type {number} */
     this._maxWidth = 0;
+    /** @type {string} */
     this._text = text.toString() || '';
     this._data = game.cache.getBitmapFont(font);
+    /** @type {string} */
     this._font = font;
+    /** @type {number} */
     this._fontSize = size;
+    /** @type {string} */
     this._align = align;
+    /** @type {number} */
     this._tint = 0xffffff;
     this.updateText();
+    /** @type {boolean} */
     this.dirty = false;
   }
 
@@ -79,7 +90,7 @@ export class BitmapText extends DisplayObject {
    * @param {object} data - TBD.
    * @param {number} scale - TBD.
    * @param {string} text - TBD.
-   * @returns {object} TBD.
+   * @returns {{width: number, text: string, end: boolean, chars: number[]}} TBD.
    */
   scanLine(data, scale, text) {
     let x = 0;

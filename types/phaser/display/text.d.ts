@@ -25,8 +25,17 @@ export class Text extends Image {
     useAdvancedWrap: boolean;
     _res: any;
     _text: string;
-    _fontComponents: any;
+    _fontComponents: {
+        font: string;
+        fontStyle?: string;
+        fontVariant?: string;
+        fontWeight?: string;
+        fontSize?: string;
+        fontFamily?: string;
+    };
+    /** @type {number} */
     _lineSpacing: number;
+    /** @type {number} */
     _charCount: number;
     /**
      * TBD.
@@ -148,9 +157,16 @@ export class Text extends Image {
     /**
      * TBD.
      * @param {string} font - TBD.
-     * @returns {object} TBD.
+     * @returns {{ font: string, fontStyle?: string, fontVariant?: string, fontWeight?: string, fontSize?: string, fontFamily?: string }} TBD.
      */
-    fontToComponents(font: string): object;
+    fontToComponents(font: string): {
+        font: string;
+        fontStyle?: string;
+        fontVariant?: string;
+        fontWeight?: string;
+        fontSize?: string;
+        fontFamily?: string;
+    };
     /**
      * TBD.
      * @param {object} components - TBD.
@@ -205,9 +221,15 @@ export class Text extends Image {
     renderCanvas(renderSession: object): void;
     /**
      * TBD.
-     * @returns {object} TBD.
+     * @returns {{[key: string]: {ascent: number, descent: number, fontSize: number}}} TBD.
      */
-    getFontPropertiesCache(): object;
+    getFontPropertiesCache(): {
+        [key: string]: {
+            ascent: number;
+            descent: number;
+            fontSize: number;
+        };
+    };
     /**
      * TBD.
      * @returns {HTMLCanvasElement} TBD.
@@ -227,9 +249,13 @@ export class Text extends Image {
     /**
      * TBD.
      * @param {string} fontStyle - TBD.
-     * @returns {object} TBD.
+     * @returns {{ascent: number, descent: number, fontSize: number}} TBD.
      */
-    determineFontPropertiesFallback(fontStyle: string): object;
+    determineFontPropertiesFallback(fontStyle: string): {
+        ascent: number;
+        descent: number;
+        fontSize: number;
+    };
     /**
      * TBD.
      */

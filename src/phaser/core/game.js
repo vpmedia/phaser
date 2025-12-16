@@ -53,7 +53,7 @@ export class Game {
     this.logger = null;
     /** @type {HTMLCanvasElement} */
     this.canvas = null;
-    /** @type {RenderingContext} */
+    /** @type {CanvasRenderingContext2D | ImageBitmapRenderingContext | WebGLRenderingContext | WebGL2RenderingContext} */
     this.context = null;
     this.onPause = new Signal();
     this.onResume = new Signal();

@@ -13,27 +13,43 @@ export class Tween {
   constructor(target, game, manager) {
     this.game = game;
     this.target = target;
+    /** @type {import('./tween_manager.js').TweenManager} */
     this.manager = manager;
     /** @type {TweenData[]} */
     this.timeline = [];
+    /** @type {boolean} */
     this.reverse = false;
+    /** @type {number} */
     this.timeScale = 1;
+    /** @type {number} */
     this.repeatCounter = 0;
+    /** @type {boolean} */
     this.pendingDelete = false;
+    /** @type {Signal} */
     this.onStart = new Signal();
+    /** @type {Signal} */
     this.onLoop = new Signal();
+    /** @type {Signal} */
     this.onRepeat = new Signal();
+    /** @type {Signal} */
     this.onChildComplete = new Signal();
+    /** @type {Signal} */
     this.onComplete = new Signal();
+    /** @type {boolean} */
     this.isRunning = false;
+    /** @type {number} */
     this.current = 0;
     this.properties = {};
     this.chainedTween = null;
+    /** @type {boolean} */
     this.isPaused = false;
     this._onUpdateCallback = null;
     this._onUpdateCallbackContext = null;
+    /** @type {number} */
     this._pausedTime = 0;
+    /** @type {boolean} */
     this._codePaused = false;
+    /** @type {boolean} */
     this._hasStarted = false;
   }
 

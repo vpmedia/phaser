@@ -4,10 +4,15 @@ export class Polygon {
      * @param {object[]} points - TBD.
      */
     constructor(points?: object[]);
+    /** @type {number} */
     area: number;
-    _points: any[];
+    /** @type {Point[]} */
+    _points: Point[];
+    /** @type {boolean} */
     closed: boolean;
+    /** @type {boolean} */
     flattened: boolean;
+    /** @type {number} */
     type: number;
     /**
      * TBD.
@@ -54,4 +59,5 @@ export class Polygon {
      */
     get points(): object[];
 }
+import { Point } from './point.js';
 //# sourceMappingURL=polygon.d.ts.map

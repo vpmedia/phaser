@@ -114,7 +114,7 @@ export class Loader {
    * TBD.
    * @param {string} type - TBD.
    * @param {string} key - TBD.
-   * @returns {object} TBD.
+   * @returns {{index: number, file: object} | null} TBD.
    */
   getAsset(type, key) {
     const fileIndex = this.getAssetIndex(type, key);
@@ -623,7 +623,7 @@ export class Loader {
    * TBD.
    * @param {boolean} abnormal - TBD.
    */
-  finishedLoading(abnormal) {
+  finishedLoading(abnormal = false) {
     if (this.hasLoaded) {
       return;
     }

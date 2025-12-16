@@ -6,10 +6,15 @@ export class Circle {
      * @param {number} diameter - TBD.
      */
     constructor(x?: number, y?: number, diameter?: number);
+    /** @type {number} */
     x: number;
+    /** @type {number} */
     y: number;
+    /** @type {number} */
     _diameter: number;
+    /** @type {number} */
     _radius: number;
+    /** @type {number} */
     type: number;
     /**
      * TBD.

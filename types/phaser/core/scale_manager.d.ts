@@ -43,7 +43,8 @@ export class ScaleManager {
     bounds: Rectangle;
     aspectRatio: number;
     sourceAspectRatio: number;
-    event: Event;
+    /** @type {Event | null | undefined} */
+    event: Event | null | undefined;
     windowConstraints: {
         right: string;
         bottom: string;
@@ -288,18 +289,18 @@ export class ScaleManager {
     fullScreenChange(event: Event): void;
     /**
      * TBD.
-     * @param {Event} event - TBD.
+     * @param {Event} [event] - TBD.
      */
-    fullScreenError(event: Event): void;
+    fullScreenError(event?: Event): void;
     /**
      * TBD.
      */
     destroy(): void;
     /**
      * TBD.
-     * @returns {object} TBD.
+     * @returns {ParentNode | null} TBD.
      */
-    get boundingParent(): object;
+    get boundingParent(): ParentNode | null;
     /**
      * TBD.
      * @returns {number} TBD.

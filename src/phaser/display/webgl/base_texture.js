@@ -4,7 +4,7 @@ export class BaseTexture {
   /**
    * TBD.
    * @param {HTMLCanvasElement} source - TBD.
-   * @param {number} scaleMode - TBD.
+   * @param {number} [scaleMode] - TBD.
    */
   constructor(source, scaleMode) {
     this.resolution = 1;

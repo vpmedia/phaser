@@ -19,8 +19,10 @@ export class Pointer {
   constructor(game, id, pointerMode) {
     this.game = game;
     this.id = id;
+    /** @type {number} */
     this.type = POINTER;
     this.exists = true;
+    /** @type {number} */
     this.identifier = 0;
     this.pointerId = null;
     this.pointerMode = pointerMode || POINTER_CURSOR | POINTER_CONTACT;
@@ -28,27 +30,43 @@ export class Pointer {
     this.button = null;
     this._holdSent = false;
     this._history = [];
+    /** @type {number} */
     this._nextDrop = 0;
     this._stateReset = false;
     this.withinGame = false;
     this.clientX = -1;
+    /** @type {number} */
     this.clientY = -1;
+    /** @type {number} */
     this.pageX = -1;
+    /** @type {number} */
     this.pageY = -1;
+    /** @type {number} */
     this.screenX = -1;
+    /** @type {number} */
     this.screenY = -1;
+    /** @type {number} */
     this.rawMovementX = 0;
+    /** @type {number} */
     this.rawMovementY = 0;
+    /** @type {number} */
     this.movementX = 0;
+    /** @type {number} */
     this.movementY = 0;
+    /** @type {number} */
     this.x = -1;
+    /** @type {number} */
     this.y = -1;
     this.isMouse = id === 0;
     this.isDown = false;
     this.isUp = true;
+    /** @type {number} */
     this.timeDown = 0;
+    /** @type {number} */
     this.timeUp = 0;
+    /** @type {number} */
     this.previousTapTime = 0;
+    /** @type {number} */
     this.totalTouches = 0;
     this.msSinceLastClick = Number.MAX_VALUE;
     this.targetObject = null;

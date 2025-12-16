@@ -4,6 +4,7 @@ export class WebGLRenderer {
      * @param {import('../../core/game.js').Game} game - TBD.
      */
     constructor(game: import("../../core/game.js").Game);
+    /** @type {number} */
     type: number;
     resolution: any;
     autoResize: boolean;

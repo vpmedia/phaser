@@ -13,12 +13,19 @@ export class Matrix {
    * @param {number} ty - TBD.
    */
   constructor(a = 1, b = 0, c = 0, d = 1, tx = 0, ty = 0) {
+    /** @type {number} */
     this.a = a;
+    /** @type {number} */
     this.b = b;
+    /** @type {number} */
     this.c = c;
+    /** @type {number} */
     this.d = d;
+    /** @type {number} */
     this.tx = tx;
+    /** @type {number} */
     this.ty = ty;
+    /** @type {number} */
     this.type = GEOM_MATRIX;
   }
 

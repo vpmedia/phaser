@@ -8,10 +8,15 @@ export class Polygon {
    * @param {object[]} points - TBD.
    */
   constructor(points = null) {
+    /** @type {number} */
     this.area = 0;
+    /** @type {Point[]} */
     this._points = [];
+    /** @type {boolean} */
     this.closed = true;
+    /** @type {boolean} */
     this.flattened = false;
+    /** @type {number} */
     this.type = GEOM_POLYGON;
     if (points) {
       this.setTo(points);

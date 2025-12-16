@@ -33,24 +33,41 @@ export class Graphics extends DisplayObject {
    */
   constructor(game, x = 0, y = 0) {
     super(game);
+    /** @type {number} */
     this.type = GRAPHICS;
     this.position.setTo(x, y);
+    /** @type {boolean} */
     this.renderable = true;
+    /** @type {number} */
     this.fillAlpha = 1;
+    /** @type {number} */
     this.lineWidth = 0;
+    /** @type {number} */
     this.lineColor = 0;
     this.graphicsData = [];
+    /** @type {number} */
     this.tint = 0xffffff;
+    /** @type {number} */
     this.blendMode = BLEND_NORMAL;
+    /** @type {GraphicsData} */
     this.currentPath = null;
+    /** @type {object[]} */
     this._webGL = [];
+    /** @type {boolean} */
     this.isMask = false;
+    /** @type {number} */
     this.boundsPadding = 0;
+    /** @type {Rectangle} */
     this._localBounds = new Rectangle(0, 0, 1, 1);
+    /** @type {boolean} */
     this.dirty = true;
+    /** @type {boolean} */
     this._boundsDirty = false;
+    /** @type {boolean} */
     this._cacheAsBitmap = false;
+    /** @type {boolean} */
     this.webGLDirty = false;
+    /** @type {boolean} */
     this.cachedSpriteDirty = false;
   }
 

@@ -10,26 +10,44 @@ export class Animation {
      * @param {boolean} loop - TBD.
      */
     constructor(game: import("./game.js").Game, parent: import("../display/image.js").Image, name: string, frameData: import("./frame_data.js").FrameData, frames: string[] | number[], frameRate: number, loop?: boolean);
+    /** @type {import('./game.js').Game} */
     game: import("./game.js").Game;
     _parent: import("../display/image.js").Image;
+    /** @type {import('./frame_data.js').FrameData} */
     _frameData: import("./frame_data.js").FrameData;
+    /** @type {string} */
     name: string;
     _frames: any[];
+    /** @type {number} */
     delay: number;
+    /** @type {boolean} */
     loop: boolean;
+    /** @type {number} */
     loopCount: number;
+    /** @type {boolean} */
     isFinished: boolean;
+    /** @type {boolean} */
     isPlaying: boolean;
+    /** @type {boolean} */
     isPaused: boolean;
+    /** @type {number} */
     _pauseStartTime: number;
+    /** @type {number} */
     _frameIndex: number;
+    /** @type {number} */
     _frameDiff: number;
+    /** @type {number} */
     _frameSkip: number;
     currentFrame: import("./frame.js").Frame;
+    /** @type {Signal} */
     onStart: Signal;
+    /** @type {Signal} */
     onUpdate: Signal;
+    /** @type {Signal} */
     onComplete: Signal;
+    /** @type {Signal} */
     onLoop: Signal;
+    /** @type {boolean} */
     isReversed: boolean;
     /**
      * TBD.

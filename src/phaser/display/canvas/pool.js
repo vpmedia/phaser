@@ -1,6 +1,6 @@
 /**
  * TBD.
- * @returns {object[]} TBD.
+ * @returns {{canvas: HTMLCanvasElement, parent: object}[]} TBD.
  */
 export const getPool = () => {
   if (!window.PhaserRegistry) {
@@ -14,7 +14,7 @@ export const getPool = () => {
 
 /**
  * TBD.
- * @returns {object} TBD.
+ * @returns {number} TBD.
  */
 export const getFirst = () => {
   const pool = getPool();
@@ -89,8 +89,8 @@ export const getFree = () => {
 /**
  * TBD.
  * @param {object} parent - TBD.
- * @param {number} width - TBD.
- * @param {number} height - TBD.
+ * @param {number} [width] - TBD.
+ * @param {number} [height] - TBD.
  * @param {boolean} skipPool - TBD.
  * @returns {HTMLCanvasElement} TBD.
  */

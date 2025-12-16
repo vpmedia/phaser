@@ -49,6 +49,7 @@ export class ScaleManager {
     this.bounds = new Rectangle();
     this.aspectRatio = 0;
     this.sourceAspectRatio = 0;
+    /** @type {Event | null | undefined} */
     this.event = null;
     this.windowConstraints = {
       right: 'layout',
@@ -840,7 +841,7 @@ export class ScaleManager {
 
   /**
    * TBD.
-   * @param {Event} event - TBD.
+   * @param {Event} [event] - TBD.
    */
   fullScreenError(event) {
     this.event = event;
@@ -870,7 +871,7 @@ export class ScaleManager {
 
   /**
    * TBD.
-   * @returns {object} TBD.
+   * @returns {ParentNode | null} TBD.
    */
   get boundingParent() {
     if (this.parentIsWindow || (this.isFullScreen && this.hasPhaserSetFullScreen && !this._createdFullScreenTarget)) {

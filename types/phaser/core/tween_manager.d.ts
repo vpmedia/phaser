@@ -5,50 +5,13 @@ export class TweenManager {
      */
     constructor(game: import("./game.js").Game);
     game: import("./game.js").Game;
-    _tweens: any[];
-    _add: any[];
+    /** @type {Tween[]} */
+    _tweens: Tween[];
+    /** @type {Tween[]} */
+    _add: Tween[];
+    /** @type {{[key: string]: (k: number) => number}} */
     easeMap: {
-        Linear: (k: number) => number;
-        Quad: (k: number) => number;
-        Cubic: (k: number) => number;
-        Quart: (k: number) => number;
-        Quint: (k: number) => number;
-        Sine: (k: number) => number;
-        Expo: (k: number) => number;
-        Circ: (k: number) => number;
-        Elastic: (k: number) => number;
-        Back: (k: number) => number;
-        Bounce: (k: number) => number;
-        'Quad.easeIn': (k: number) => number;
-        'Cubic.easeIn': (k: number) => number;
-        'Quart.easeIn': (k: number) => number;
-        'Quint.easeIn': (k: number) => number;
-        'Sine.easeIn': (k: number) => number;
-        'Expo.easeIn': (k: number) => number;
-        'Circ.easeIn': (k: number) => number;
-        'Elastic.easeIn': (k: number) => number;
-        'Back.easeIn': (k: number) => number;
-        'Bounce.easeIn': (k: number) => number;
-        'Quad.easeOut': (k: number) => number;
-        'Cubic.easeOut': (k: number) => number;
-        'Quart.easeOut': (k: number) => number;
-        'Quint.easeOut': (k: number) => number;
-        'Sine.easeOut': (k: number) => number;
-        'Expo.easeOut': (k: number) => number;
-        'Circ.easeOut': (k: number) => number;
-        'Elastic.easeOut': (k: number) => number;
-        'Back.easeOut': (k: number) => number;
-        'Bounce.easeOut': (k: number) => number;
-        'Quad.easeInOut': (k: number) => number;
-        'Cubic.easeInOut': (k: number) => number;
-        'Quart.easeInOut': (k: number) => number;
-        'Quint.easeInOut': (k: number) => number;
-        'Sine.easeInOut': (k: number) => number;
-        'Expo.easeInOut': (k: number) => number;
-        'Circ.easeInOut': (k: number) => number;
-        'Elastic.easeInOut': (k: number) => number;
-        'Back.easeInOut': (k: number) => number;
-        'Bounce.easeInOut': (k: number) => number;
+        [key: string]: (k: number) => number;
     };
     /**
      * TBD.

@@ -10,18 +10,29 @@ export class BitmapText extends DisplayObject {
      * @param {string} align - TBD.
      */
     constructor(game: import("../core/game.js").Game, x?: number, y?: number, font?: string, text?: string, size?: number, align?: string);
+    /** @type {number} */
     type: number;
+    /** @type {number} */
     textWidth: number;
+    /** @type {number} */
     textHeight: number;
+    /** @type {Point} */
     _prevAnchor: Point;
     _glyphs: Image[];
+    /** @type {number} */
     _maxWidth: number;
+    /** @type {string} */
     _text: string;
     _data: any;
+    /** @type {string} */
     _font: string;
+    /** @type {number} */
     _fontSize: number;
+    /** @type {string} */
     _align: string;
+    /** @type {number} */
     _tint: number;
+    /** @type {boolean} */
     dirty: boolean;
     renderOrderID: number;
     /**
@@ -44,9 +55,14 @@ export class BitmapText extends DisplayObject {
      * @param {object} data - TBD.
      * @param {number} scale - TBD.
      * @param {string} text - TBD.
-     * @returns {object} TBD.
+     * @returns {{width: number, text: string, end: boolean, chars: number[]}} TBD.
      */
-    scanLine(data: object, scale: number, text: string): object;
+    scanLine(data: object, scale: number, text: string): {
+        width: number;
+        text: string;
+        end: boolean;
+        chars: number[];
+    };
     /**
      * TBD.
      * @param {string} text - TBD.

@@ -8,8 +8,10 @@ export class Pointer {
     constructor(game: import("./game.js").Game, id: number, pointerMode: number);
     game: import("./game.js").Game;
     id: number;
+    /** @type {number} */
     type: number;
     exists: boolean;
+    /** @type {number} */
     identifier: number;
     pointerId: number;
     pointerMode: number;
@@ -17,27 +19,43 @@ export class Pointer {
     button: any;
     _holdSent: boolean;
     _history: any[];
+    /** @type {number} */
     _nextDrop: number;
     _stateReset: boolean;
     withinGame: boolean;
     clientX: number;
+    /** @type {number} */
     clientY: number;
+    /** @type {number} */
     pageX: number;
+    /** @type {number} */
     pageY: number;
+    /** @type {number} */
     screenX: number;
+    /** @type {number} */
     screenY: number;
+    /** @type {number} */
     rawMovementX: number;
+    /** @type {number} */
     rawMovementY: number;
+    /** @type {number} */
     movementX: number;
+    /** @type {number} */
     movementY: number;
+    /** @type {number} */
     x: number;
+    /** @type {number} */
     y: number;
     isMouse: boolean;
     isDown: boolean;
     isUp: boolean;
+    /** @type {number} */
     timeDown: number;
+    /** @type {number} */
     timeUp: number;
+    /** @type {number} */
     previousTapTime: number;
+    /** @type {number} */
     totalTouches: number;
     msSinceLastClick: number;
     targetObject: any;

@@ -33,10 +33,15 @@ export class Rectangle {
    * @param {number} height - TBD.
    */
   constructor(x = 0, y = 0, width = 0, height = 0) {
+    /** @type {number} */
     this.x = x;
+    /** @type {number} */
     this.y = y;
+    /** @type {number} */
     this.width = width;
+    /** @type {number} */
     this.height = height;
+    /** @type {number} */
     this.type = GEOM_RECTANGLE;
   }
 

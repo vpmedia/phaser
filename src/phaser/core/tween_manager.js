@@ -41,8 +41,11 @@ export class TweenManager {
    */
   constructor(game) {
     this.game = game;
+    /** @type {Tween[]} */
     this._tweens = [];
+    /** @type {Tween[]} */
     this._add = [];
+    /** @type {{[key: string]: (k: number) => number}} */
     this.easeMap = {
       Linear: LinearNone,
       Quad: QuadraticOut,

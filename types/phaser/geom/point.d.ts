@@ -5,8 +5,11 @@ export class Point {
      * @param {number} y - TBD.
      */
     constructor(x?: number, y?: number);
+    /** @type {number} */
     x: number;
+    /** @type {number} */
     y: number;
+    /** @type {number} */
     type: number;
     /**
      * TBD.

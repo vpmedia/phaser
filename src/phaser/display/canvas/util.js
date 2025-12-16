@@ -26,7 +26,7 @@ export const create = (parent, width, height, id, skipPool) => {
  * TBD.
  * @param {HTMLCanvasElement} canvas - TBD.
  * @param {string} color - TBD.
- * @returns {object} TBD.
+ * @returns {HTMLCanvasElement} TBD.
  */
 export const setBackgroundColor = (canvas, color) => {
   color = color || 'rgb(0,0,0)';
@@ -38,7 +38,7 @@ export const setBackgroundColor = (canvas, color) => {
  * TBD.
  * @param {HTMLCanvasElement} canvas - TBD.
  * @param {string} value - TBD.
- * @returns {object} TBD.
+ * @returns {HTMLCanvasElement} TBD.
  */
 export const setTouchAction = (canvas, value = 'none') => {
   value = value || 'none';
@@ -53,7 +53,7 @@ export const setTouchAction = (canvas, value = 'none') => {
  * TBD.
  * @param {HTMLCanvasElement} canvas - TBD.
  * @param {string} value - TBD.
- * @returns {object} TBD.
+ * @returns {HTMLCanvasElement} TBD.
  */
 export const setUserSelect = (canvas, value = 'none') => {
   value = value || 'none';
@@ -72,7 +72,7 @@ export const setUserSelect = (canvas, value = 'none') => {
  * @param {HTMLCanvasElement} canvas - TBD.
  * @param {object} parent - TBD.
  * @param {boolean} overflowHidden - TBD.
- * @returns {object} TBD.
+ * @returns {HTMLCanvasElement} TBD.
  */
 export const addToDOM = (canvas, parent, overflowHidden = true) => {
   let target;
@@ -108,14 +108,14 @@ export const removeFromDOM = (canvas) => {
 
 /**
  * TBD.
- * @param {object} context - TBD.
+ * @param {CanvasRenderingContext2D} context - TBD.
  * @param {number} translateX - TBD.
  * @param {number} translateY - TBD.
  * @param {number} scaleX - TBD.
  * @param {number} scaleY - TBD.
  * @param {number} skewX - TBD.
  * @param {number} skewY - TBD.
- * @returns {object} TBD.
+ * @returns {CanvasRenderingContext2D} TBD.
  */
 export const setTransform = (context, translateX, translateY, scaleX, scaleY, skewX, skewY) => {
   context.setTransform(scaleX, skewX, skewY, scaleY, translateX, translateY);
@@ -124,8 +124,8 @@ export const setTransform = (context, translateX, translateY, scaleX, scaleY, sk
 
 /**
  * TBD.
- * @param {object} context - TBD.
- * @returns {object} TBD.
+ * @param {CanvasRenderingContext2D} context - TBD.
+ * @returns {string | null} TBD.
  */
 export const getSmoothingPrefix = (context) => {
   const VENDORS = ['i', 'webkitI', 'msI', 'mozI', 'oI'];

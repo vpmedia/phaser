@@ -7,10 +7,15 @@ export class Ellipse {
      * @param {number} height - TBD.
      */
     constructor(x?: number, y?: number, width?: number, height?: number);
+    /** @type {number} */
     x: number;
+    /** @type {number} */
     y: number;
+    /** @type {number} */
     width: number;
+    /** @type {number} */
     height: number;
+    /** @type {number} */
     type: number;
     /**
      * TBD.

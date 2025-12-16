@@ -6,25 +6,43 @@ export class Timer {
      */
     constructor(game: import("./game.js").Game, autoDestroy?: boolean);
     game: import("./game.js").Game;
+    /** @type {boolean} */
     running: boolean;
+    /** @type {boolean} */
     autoDestroy: boolean;
+    /** @type {boolean} */
     expired: boolean;
+    /** @type {number} */
     elapsed: number;
     /** @type {TimerEvent[]} */
     events: TimerEvent[];
+    /** @type {Signal} */
     onComplete: Signal;
+    /** @type {number} */
     nextTick: number;
+    /** @type {number} */
     timeCap: number;
+    /** @type {boolean} */
     paused: boolean;
+    /** @type {boolean} */
     _codePaused: boolean;
+    /** @type {number} */
     _started: number;
+    /** @type {number} */
     _pauseStarted: number;
+    /** @type {number} */
     _pauseTotal: number;
+    /** @type {number} */
     _now: number;
+    /** @type {number} */
     _len: number;
+    /** @type {number} */
     _marked: number;
+    /** @type {number} */
     _i: number;
+    /** @type {number} */
     _diff: number;
+    /** @type {number} */
     _newTick: number;
     /**
      * TBD.

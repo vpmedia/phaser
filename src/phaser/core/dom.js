@@ -234,7 +234,7 @@ export class DOM {
    * TBD.
    * @param {DOMRect} coords - TBD.
    * @param {number} cushion - TBD.
-   * @returns {object} TBD.
+   * @returns {{width: number, height: number, left: number, right: number, top: number, bottom: number}} TBD.
    */
   calibrate(coords, cushion = 0) {
     const output = {

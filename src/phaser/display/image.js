@@ -13,31 +13,45 @@ export class Image extends DisplayObject {
    * @param {import('../core/game.js').Game} game - TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
-   * @param {string} key - TBD.
+   * @param {string | number | Texture} key - TBD.
    * @param {string | number} frame - TBD.
    */
   constructor(game, x, y, key, frame = 0) {
     super(game);
+    /** @type {number} */
     this.type = IMAGE;
+    /** @type {boolean} */
     this.renderable = true;
+    /** @type {string | number | Texture} */
     this.key = key;
     this.texture = window.PhaserRegistry.CACHE_MISSING_IMAGE;
     /** @type {object} */
     this.data = {};
+    /** @type {number} */
     this._width = 0;
+    /** @type {number} */
     this._height = 0;
+    /** @type {number} */
     this.tint = 0xffffff;
+    /** @type {number} */
     this.cachedTint = -1;
+    /** @type {Texture | null} */
+    this.tilingTexture = null;
+    /** @type {Texture | null} */
     this.tintedTexture = null;
+    /** @type {number} */
     this.blendMode = BLEND_NORMAL;
     this.shader = null;
     this._frame = null;
+    /** @type {boolean} */
     this.pendingDestroy = false;
     /* if (this.texture.baseTexture.hasLoaded) {
       this.onTextureUpdate();
     } */
     this.position.setTo(x, y);
+    /** @type {EventManager} */
     this.events = new EventManager(this);
+    /** @type {AnimationManager} */
     this.animations = new AnimationManager(this);
     this.loadTexture(key, frame);
   }

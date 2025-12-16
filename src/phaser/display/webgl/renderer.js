@@ -37,6 +37,7 @@ export class WebGLRenderer {
    * @param {import('../../core/game.js').Game} game - TBD.
    */
   constructor(game) {
+    /** @type {number} */
     this.type = RENDER_WEBGL;
     this.resolution = game.config.resolution;
     this.autoResize = false;

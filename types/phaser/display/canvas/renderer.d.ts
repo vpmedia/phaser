@@ -4,6 +4,7 @@ export class CanvasRenderer {
      * @param {import('../../core/game.js').Game} game - TBD.
      */
     constructor(game: import("../../core/game.js").Game);
+    /** @type {number} */
     type: number;
     resolution: any;
     clearBeforeRender: any;
@@ -21,7 +22,7 @@ export class CanvasRenderer {
         context: CanvasRenderingContext2D;
         maskManager: typeof CanvasMaskManager;
         scaleMode: number;
-        smoothProperty: any;
+        smoothProperty: string;
         roundPixels: any;
     };
     /**

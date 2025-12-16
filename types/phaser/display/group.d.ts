@@ -9,19 +9,31 @@ export class Group extends DisplayObject {
      * @param {boolean} addToStage - TBD.
      */
     constructor(game: import("../core/game.js").Game, parent?: DisplayObject, name?: string, addToStage?: boolean);
+    /** @type {number} */
     type: number;
+    /** @type {number} */
     z: number;
+    /** @type {boolean} */
     ignoreDestroy: boolean;
+    /** @type {boolean} */
     pendingDestroy: boolean;
     classType: typeof Image;
     cursor: any;
+    /** @type {boolean} */
     inputEnableChildren: boolean;
+    /** @type {Signal} */
     onChildInputDown: Signal;
+    /** @type {Signal} */
     onChildInputUp: Signal;
+    /** @type {Signal} */
     onChildInputOver: Signal;
+    /** @type {Signal} */
     onChildInputOut: Signal;
+    /** @type {Signal} */
     onDestroy: Signal;
+    /** @type {number} */
     cursorIndex: number;
+    /** @type {string} */
     _sortProperty: string;
     /**
      * TBD.

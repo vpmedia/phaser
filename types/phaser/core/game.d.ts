@@ -29,8 +29,8 @@ export class Game {
     logger: Logger;
     /** @type {HTMLCanvasElement} */
     canvas: HTMLCanvasElement;
-    /** @type {RenderingContext} */
-    context: RenderingContext;
+    /** @type {CanvasRenderingContext2D | ImageBitmapRenderingContext | WebGLRenderingContext | WebGL2RenderingContext} */
+    context: CanvasRenderingContext2D | ImageBitmapRenderingContext | WebGLRenderingContext | WebGL2RenderingContext;
     onPause: Signal;
     onResume: Signal;
     onBoot: Signal;

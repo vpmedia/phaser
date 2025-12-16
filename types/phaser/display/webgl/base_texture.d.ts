@@ -2,9 +2,9 @@ export class BaseTexture {
     /**
      * TBD.
      * @param {HTMLCanvasElement} source - TBD.
-     * @param {number} scaleMode - TBD.
+     * @param {number} [scaleMode] - TBD.
      */
-    constructor(source: HTMLCanvasElement, scaleMode: number);
+    constructor(source: HTMLCanvasElement, scaleMode?: number);
     resolution: number;
     width: any;
     height: any;

@@ -7,30 +7,54 @@ export class Time {
    */
   constructor(game) {
     this.game = game;
+    /** @type {number} */
     this.time = 0;
+    /** @type {number} */
     this.prevTime = 0;
+    /** @type {number} */
     this.now = 0;
+    /** @type {number} */
     this.elapsed = 0;
+    /** @type {number} */
     this.elapsedMS = 0;
+    /** @type {number} */
     this.desiredFpsMult = 1 / 60;
+    /** @type {number} */
     this._desiredFps = 60;
+    /** @type {number} */
     this.suggestedFps = this.desiredFps;
+    /** @type {boolean} */
     this.advancedTiming = false;
+    /** @type {number} */
     this.frames = 0;
+    /** @type {number} */
     this.fps = 0;
+    /** @type {number} */
     this.fpsMin = 1000;
+    /** @type {number} */
     this.fpsMax = 0;
+    /** @type {number} */
     this.msMin = 1000;
+    /** @type {number} */
     this.msMax = 0;
+    /** @type {number} */
     this.pauseDuration = 0;
+    /** @type {number} */
     this.timeToCall = 0;
+    /** @type {number} */
     this.timeExpected = 0;
+    /** @type {Timer} */
     this.events = new Timer(this.game, false);
+    /** @type {number} */
     this._frameCount = 0;
+    /** @type {number} */
     this._elapsedAccumulator = 0;
     this._started = 0;
+    /** @type {number} */
     this._timeLastSecond = 0;
+    /** @type {number} */
     this._pauseStarted = 0;
+    /** @type {boolean} */
     this._justResumed = false;
     /** @type {Timer[]} */
     this._timers = [];

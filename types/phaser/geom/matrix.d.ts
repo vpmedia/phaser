@@ -9,12 +9,19 @@ export class Matrix {
      * @param {number} ty - TBD.
      */
     constructor(a?: number, b?: number, c?: number, d?: number, tx?: number, ty?: number);
+    /** @type {number} */
     a: number;
+    /** @type {number} */
     b: number;
+    /** @type {number} */
     c: number;
+    /** @type {number} */
     d: number;
+    /** @type {number} */
     tx: number;
+    /** @type {number} */
     ty: number;
+    /** @type {number} */
     type: number;
     /**
      * TBD.

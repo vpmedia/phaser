@@ -7,8 +7,11 @@ export class Line {
      * @param {number} y2 - TBD.
      */
     constructor(x1?: number, y1?: number, x2?: number, y2?: number);
+    /** @type {Point} */
     start: Point;
+    /** @type {Point} */
     end: Point;
+    /** @type {number} */
     type: number;
     /**
      * TBD.

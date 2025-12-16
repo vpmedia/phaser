@@ -8,9 +8,9 @@ export function buildRoundedRectangle(graphicsData: object, webGLData: GraphicsD
 export function buildCircle(graphicsData: object, webGLData: GraphicsData): void;
 export function buildComplexPoly(graphicsData: object, webGLData: GraphicsData): void;
 export function buildPoly(graphicsData: object, webGLData: GraphicsData): boolean;
-export function updateGraphics(graphics: object, gl: WebGLRenderingContext & {
+export function updateGraphics(graphics: import("../graphics.js").Graphics, gl: WebGLRenderingContext & {
     id: number;
 }): void;
-export function renderGraphics(graphics: object, renderSession: object): void;
+export function renderGraphics(graphics: import("../graphics.js").Graphics, renderSession: object): void;
 import { GraphicsData } from './graphics_data.js';
 //# sourceMappingURL=graphics.d.ts.map

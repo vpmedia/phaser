@@ -70,9 +70,12 @@ export class Loader {
      * TBD.
      * @param {string} type - TBD.
      * @param {string} key - TBD.
-     * @returns {object} TBD.
+     * @returns {{index: number, file: object} | null} TBD.
      */
-    getAsset(type: string, key: string): object;
+    getAsset(type: string, key: string): {
+        index: number;
+        file: object;
+    } | null;
     /**
      * TBD.
      * @param {boolean} hard - TBD.
@@ -235,7 +238,7 @@ export class Loader {
      * TBD.
      * @param {boolean} abnormal - TBD.
      */
-    finishedLoading(abnormal: boolean): void;
+    finishedLoading(abnormal?: boolean): void;
     /**
      * TBD.
      * @param {object} file - TBD.

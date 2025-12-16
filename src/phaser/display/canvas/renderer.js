@@ -32,6 +32,7 @@ export class CanvasRenderer {
    */
   constructor(game) {
     detectCapabilities(game);
+    /** @type {number} */
     this.type = RENDER_CANVAS;
     this.resolution = game.config.resolution;
     this.clearBeforeRender = game.config.clearBeforeRender;

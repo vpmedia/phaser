@@ -12,13 +12,18 @@ export class Circle {
    * @param {number} diameter - TBD.
    */
   constructor(x = 0, y = 0, diameter = 0) {
+    /** @type {number} */
     this.x = x;
+    /** @type {number} */
     this.y = y;
+    /** @type {number} */
     this._diameter = diameter;
+    /** @type {number} */
     this._radius = 0;
     if (diameter > 0) {
       this._radius = diameter * 0.5;
     }
+    /** @type {number} */
     this.type = GEOM_CIRCLE;
   }
 

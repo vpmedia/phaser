@@ -6,22 +6,38 @@ export class Graphics extends DisplayObject {
      * @param {number} y - TBD.
      */
     constructor(game: import("../core/game.js").Game, x?: number, y?: number);
+    /** @type {number} */
     type: number;
+    /** @type {number} */
     fillAlpha: number;
+    /** @type {number} */
     lineWidth: number;
+    /** @type {number} */
     lineColor: number;
     graphicsData: any[];
+    /** @type {number} */
     tint: number;
+    /** @type {number} */
     blendMode: number;
+    /** @type {GraphicsData} */
     currentPath: GraphicsData;
-    _webGL: any[];
+    /** @type {object[]} */
+    _webGL: object[];
+    /** @type {boolean} */
     isMask: boolean;
+    /** @type {number} */
     boundsPadding: number;
+    /** @type {Rectangle} */
     _localBounds: Rectangle;
+    /** @type {boolean} */
     dirty: boolean;
+    /** @type {boolean} */
     _boundsDirty: boolean;
+    /** @type {boolean} */
     _cacheAsBitmap: boolean;
+    /** @type {boolean} */
     webGLDirty: boolean;
+    /** @type {boolean} */
     cachedSpriteDirty: boolean;
     /**
      * TBD.

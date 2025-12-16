@@ -2,7 +2,7 @@ import { GEOM_CIRCLE, GEOM_ELLIPSE, GEOM_POLYGON, GEOM_RECTANGLE, GEOM_ROUNDED_R
 
 /**
  * TBD.
- * @param {object} graphics - TBD.
+ * @param {import('../graphics.js').Graphics} graphics - TBD.
  */
 export const updateGraphicsTint = (graphics) => {
   if (graphics.tint === 0xffffff) {
@@ -28,7 +28,7 @@ export const updateGraphicsTint = (graphics) => {
 
 /**
  * TBD.
- * @param {object} graphics - TBD.
+ * @param {import('../graphics.js').Graphics} graphics - TBD.
  * @param {object} context - TBD.
  */
 export const renderGraphics = (graphics, context) => {
@@ -157,7 +157,7 @@ export const renderGraphics = (graphics, context) => {
 
 /**
  * TBD.
- * @param {object} graphics - TBD.
+ * @param {import('../graphics.js').Graphics} graphics - TBD.
  * @param {object} context - TBD.
  */
 export const renderGraphicsMask = (graphics, context) => {

@@ -8,8 +8,11 @@ export class Point {
    * @param {number} y - TBD.
    */
   constructor(x = 0, y = 0) {
+    /** @type {number} */
     this.x = x;
+    /** @type {number} */
     this.y = y;
+    /** @type {number} */
     this.type = GEOM_POINT;
   }
 

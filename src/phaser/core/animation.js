@@ -12,27 +12,45 @@ export class Animation {
    * @param {boolean} loop - TBD.
    */
   constructor(game, parent, name, frameData, frames, frameRate, loop = false) {
+    /** @type {import('./game.js').Game} */
     this.game = game;
     this._parent = parent;
+    /** @type {import('./frame_data.js').FrameData} */
     this._frameData = frameData;
+    /** @type {string} */
     this.name = name;
     this._frames = [];
     this._frames = this._frames.concat(frames);
+    /** @type {number} */
     this.delay = 1000 / frameRate;
+    /** @type {boolean} */
     this.loop = loop;
+    /** @type {number} */
     this.loopCount = 0;
+    /** @type {boolean} */
     this.isFinished = false;
+    /** @type {boolean} */
     this.isPlaying = false;
+    /** @type {boolean} */
     this.isPaused = false;
+    /** @type {number} */
     this._pauseStartTime = 0;
+    /** @type {number} */
     this._frameIndex = 0;
+    /** @type {number} */
     this._frameDiff = 0;
+    /** @type {number} */
     this._frameSkip = 1;
     this.currentFrame = this._frameData.getFrame(this._frames[this._frameIndex]);
+    /** @type {Signal} */
     this.onStart = new Signal();
+    /** @type {Signal} */
     this.onUpdate = null;
+    /** @type {Signal} */
     this.onComplete = new Signal();
+    /** @type {Signal} */
     this.onLoop = new Signal();
+    /** @type {boolean} */
     this.isReversed = false;
     //  Set-up some event listeners
     this.game.onPause.add(this.onPause, this);

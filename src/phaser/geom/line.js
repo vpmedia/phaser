@@ -12,8 +12,11 @@ export class Line {
    * @param {number} y2 - TBD.
    */
   constructor(x1 = 0, y1 = 0, x2 = 0, y2 = 0) {
+    /** @type {Point} */
     this.start = new Point(x1, y1);
+    /** @type {Point} */
     this.end = new Point(x2, y2);
+    /** @type {number} */
     this.type = GEOM_LINE;
   }
 

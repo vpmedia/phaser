@@ -16,11 +16,14 @@ export class Group extends DisplayObject {
    */
   constructor(game, parent = null, name = null, addToStage = false) {
     super(game);
+    /** @type {number} */
     this.type = GROUP;
     if (!parent) {
       parent = game.world;
     }
+    /** @type {string} */
     this.name = name || 'group';
+    /** @type {number} */
     this.z = 0;
     if (addToStage) {
       this.game.stage.addChild(this);
@@ -29,17 +32,27 @@ export class Group extends DisplayObject {
       parent.addChild(this);
       this.z = parent.children.length;
     }
+    /** @type {boolean} */
     this.ignoreDestroy = false;
+    /** @type {boolean} */
     this.pendingDestroy = false;
     this.classType = Image;
     this.cursor = null;
+    /** @type {boolean} */
     this.inputEnableChildren = false;
+    /** @type {Signal} */
     this.onChildInputDown = new Signal();
+    /** @type {Signal} */
     this.onChildInputUp = new Signal();
+    /** @type {Signal} */
     this.onChildInputOver = new Signal();
+    /** @type {Signal} */
     this.onChildInputOut = new Signal();
+    /** @type {Signal} */
     this.onDestroy = new Signal();
+    /** @type {number} */
     this.cursorIndex = 0;
+    /** @type {string} */
     this._sortProperty = 'z';
   }
 

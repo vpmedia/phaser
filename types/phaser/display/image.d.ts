@@ -4,21 +4,32 @@ export class Image extends DisplayObject {
      * @param {import('../core/game.js').Game} game - TBD.
      * @param {number} x - TBD.
      * @param {number} y - TBD.
-     * @param {string} key - TBD.
+     * @param {string | number | Texture} key - TBD.
      * @param {string | number} frame - TBD.
      */
-    constructor(game: import("../core/game.js").Game, x: number, y: number, key: string, frame?: string | number);
+    constructor(game: import("../core/game.js").Game, x: number, y: number, key: string | number | Texture, frame?: string | number);
+    /** @type {number} */
     type: number;
-    key: string;
+    /** @type {string | number | Texture} */
+    key: string | number | Texture;
     texture: any;
+    /** @type {number} */
     tint: number;
+    /** @type {number} */
     cachedTint: number;
-    tintedTexture: any;
+    /** @type {Texture | null} */
+    tilingTexture: Texture | null;
+    /** @type {Texture | null} */
+    tintedTexture: Texture | null;
+    /** @type {number} */
     blendMode: number;
     shader: any;
     _frame: Rectangle | import("../core/frame.js").Frame;
+    /** @type {boolean} */
     pendingDestroy: boolean;
+    /** @type {EventManager} */
     events: EventManager;
+    /** @type {AnimationManager} */
     animations: AnimationManager;
     renderOrderID: number;
     /**
@@ -106,8 +117,8 @@ export class Image extends DisplayObject {
     renderCanvas(renderSession: object, matrix?: import("../geom/matrix.js").Matrix): void;
 }
 import { DisplayObject } from './display_object.js';
+import { Texture } from './webgl/texture.js';
 import { Rectangle } from '../geom/rectangle.js';
 import { EventManager } from '../core/event_manager.js';
 import { AnimationManager } from '../core/animation_manager.js';
-import { Texture } from './webgl/texture.js';
 //# sourceMappingURL=image.d.ts.map

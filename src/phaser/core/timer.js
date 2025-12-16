@@ -9,25 +9,43 @@ export class Timer {
    */
   constructor(game, autoDestroy = false) {
     this.game = game;
+    /** @type {boolean} */
     this.running = false;
+    /** @type {boolean} */
     this.autoDestroy = autoDestroy;
+    /** @type {boolean} */
     this.expired = false;
+    /** @type {number} */
     this.elapsed = 0;
     /** @type {TimerEvent[]} */
     this.events = [];
+    /** @type {Signal} */
     this.onComplete = new Signal();
+    /** @type {number} */
     this.nextTick = 0;
+    /** @type {number} */
     this.timeCap = 1000;
+    /** @type {boolean} */
     this.paused = false;
+    /** @type {boolean} */
     this._codePaused = false;
+    /** @type {number} */
     this._started = 0;
+    /** @type {number} */
     this._pauseStarted = 0;
+    /** @type {number} */
     this._pauseTotal = 0;
+    /** @type {number} */
     this._now = Date.now();
+    /** @type {number} */
     this._len = 0;
+    /** @type {number} */
     this._marked = 0;
+    /** @type {number} */
     this._i = 0;
+    /** @type {number} */
     this._diff = 0;
+    /** @type {number} */
     this._newTick = 0;
   }
 

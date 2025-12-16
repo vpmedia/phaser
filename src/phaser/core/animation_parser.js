@@ -10,7 +10,7 @@ import { FrameData } from './frame_data.js';
  * @param {number} frameMax - TBD.
  * @param {number} margin - TBD.
  * @param {number} spacing - TBD.
- * @returns {object} TBD.
+ * @returns {FrameData} TBD.
  */
 export const spriteSheet = (game, key, frameWidth, frameHeight, frameMax, margin, spacing) => {
   let img = key;
@@ -60,7 +60,7 @@ export const spriteSheet = (game, key, frameWidth, frameHeight, frameMax, margin
  * TBD.
  * @param {import('./game.js').Game} game - TBD.
  * @param {object} json - TBD.
- * @returns {object} TBD.
+ * @returns {FrameData} TBD.
  */
 export const JSONDataHash = (game, json) => {
   if (!json.frames) {

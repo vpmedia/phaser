@@ -8,27 +8,43 @@ export class Tween {
     constructor(target: import("../display/display_object.js").DisplayObject, game: import("./game.js").Game, manager: import("./tween_manager.js").TweenManager);
     game: import("./game.js").Game;
     target: import("../display/display_object.js").DisplayObject;
+    /** @type {import('./tween_manager.js').TweenManager} */
     manager: import("./tween_manager.js").TweenManager;
     /** @type {TweenData[]} */
     timeline: TweenData[];
+    /** @type {boolean} */
     reverse: boolean;
+    /** @type {number} */
     timeScale: number;
+    /** @type {number} */
     repeatCounter: number;
+    /** @type {boolean} */
     pendingDelete: boolean;
+    /** @type {Signal} */
     onStart: Signal;
+    /** @type {Signal} */
     onLoop: Signal;
+    /** @type {Signal} */
     onRepeat: Signal;
+    /** @type {Signal} */
     onChildComplete: Signal;
+    /** @type {Signal} */
     onComplete: Signal;
+    /** @type {boolean} */
     isRunning: boolean;
+    /** @type {number} */
     current: number;
     properties: {};
     chainedTween: any;
+    /** @type {boolean} */
     isPaused: boolean;
     _onUpdateCallback: Function;
     _onUpdateCallbackContext: any;
+    /** @type {number} */
     _pausedTime: number;
+    /** @type {boolean} */
     _codePaused: boolean;
+    /** @type {boolean} */
     _hasStarted: boolean;
     /**
      * TBD.
