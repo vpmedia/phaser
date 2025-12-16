@@ -1,3 +1,15 @@
+## [1.95.0] - 2025-12-16
+
+### 💼 Other
+
+- *(deps)* Bump dependency versions
+- *(deps)* Bump dependency versions
+
+### ⚙️ Miscellaneous Tasks
+
+- Release
+- Improve type checking
+- *(release)* V1.95.0
 ## [1.94.0] - 2025-12-11
 
 ### ⚙️ Miscellaneous Tasks
