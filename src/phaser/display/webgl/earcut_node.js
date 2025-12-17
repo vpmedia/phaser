@@ -1,9 +1,9 @@
 export class Node {
   /**
-   * TBD.
-   * @param {number} i - TBD.
-   * @param {number} x - TBD.
-   * @param {number} y - TBD.
+   * Creates a new Node instance.
+   * @param {number} i - The vertice index in coordinates array.
+   * @param {number} x - The x coordinate of the vertex.
+   * @param {number} y - The y coordinate of the vertex.
    */
   constructor(i, x, y) {
     // vertice index in coordinates array
