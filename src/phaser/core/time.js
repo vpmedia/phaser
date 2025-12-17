@@ -2,8 +2,8 @@ import { Timer } from './timer.js';
 
 export class Time {
   /**
-   * TBD.
-   * @param {import('./game.js').Game} game - TBD.
+   * Creates a new Time instance.
+   * @param {import('./game.js').Game} game - Reference to the Phaser Game instance.
    */
   constructor(game) {
     this.game = game;
@@ -61,7 +61,7 @@ export class Time {
   }
 
   /**
-   * TBD.
+   * Initializes the time manager and starts tracking time.
    */
   boot() {
     this._started = Date.now();
@@ -71,9 +71,9 @@ export class Time {
   }
 
   /**
-   * TBD.
-   * @param {Timer} timer - TBD.
-   * @returns {Timer} TBD.
+   * Adds a Timer to the Time manager.
+   * @param {Timer} timer - The Timer to add.
+   * @returns {Timer} The added Timer object.
    */
   add(timer) {
     this._timers.push(timer);
@@ -81,9 +81,9 @@ export class Time {
   }
 
   /**
-   * TBD.
-   * @param {boolean} autoDestroy - TBD.
-   * @returns {Timer} TBD.
+   * Creates a new Timer and adds it to the Time manager.
+   * @param {boolean} autoDestroy - Whether the timer should be automatically destroyed when it completes.
+   * @returns {Timer} The created Timer object.
    */
   create(autoDestroy = true) {
     const timer = new Timer(this.game, autoDestroy);
@@ -92,7 +92,7 @@ export class Time {
   }
 
   /**
-   * TBD.
+   * Removes all timers from the Time manager.
    */
   removeAll() {
     for (let i = 0; i < this._timers.length; i += 1) {
@@ -103,7 +103,7 @@ export class Time {
   }
 
   /**
-   * TBD.
+   * Refreshes the time tracking values.
    */
   refresh() {
     const previousDateNow = this.time;
@@ -114,8 +114,8 @@ export class Time {
   }
 
   /**
-   * TBD.
-   * @param {number} time - TBD.
+   * Updates the Time manager with a new timestamp.
+   * @param {number} time - The new timestamp to use for updating.
    */
   update(time) {
     const previousDateNow = this.time;
@@ -144,7 +144,7 @@ export class Time {
   }
 
   /**
-   * TBD.
+   * Updates all timers managed by the Time manager.
    */
   updateTimers() {
     let i = 0;
@@ -161,7 +161,7 @@ export class Time {
   }
 
   /**
-   * TBD.
+   * Updates the advanced timing values.
    */
   updateAdvancedTiming() {
     // count the number of time.update calls
@@ -187,7 +187,7 @@ export class Time {
   }
 
   /**
-   * TBD.
+   * Handles game pause event.
    */
   gamePaused() {
     this._pauseStarted = Date.now();
@@ -200,7 +200,7 @@ export class Time {
   }
 
   /**
-   * TBD.
+   * Handles game resume event.
    */
   gameResumed() {
     this.time = Date.now();
@@ -214,33 +214,33 @@ export class Time {
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the total elapsed time in seconds since the game started.
+   * @returns {number} The total elapsed time in seconds.
    */
   totalElapsedSeconds() {
     return (this.time - this._started) * 0.001;
   }
 
   /**
-   * TBD.
-   * @param {number} since - TBD.
-   * @returns {number} TBD.
+   * Gets the elapsed time in milliseconds since a given timestamp.
+   * @param {number} since - The timestamp to calculate elapsed time from.
+   * @returns {number} The elapsed time in milliseconds.
    */
   elapsedSince(since) {
     return this.time - since;
   }
 
   /**
-   * TBD.
-   * @param {number} since - TBD.
-   * @returns {number} TBD.
+   * Gets the elapsed time in seconds since a given timestamp.
+   * @param {number} since - The timestamp to calculate elapsed time from.
+   * @returns {number} The elapsed time in seconds.
    */
   elapsedSecondsSince(since) {
     return (this.time - since) * 0.001;
   }
 
   /**
-   * TBD.
+   * Resets the time tracking values.
    */
   reset() {
     this._started = this.time;
@@ -248,22 +248,22 @@ export class Time {
   }
 
   /**
-   * TBD.
+   * Destroys the Time manager and cleans up resources.
    */
   destroy() {
     this.reset();
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the desired frames per second.
+   * @returns {number} The desired frames per second.
    */
   get desiredFps() {
     return this._desiredFps;
   }
 
   /**
-   * TBD.
+   * Sets the desired frames per second.
    */
   set desiredFps(value) {
     this._desiredFps = value;

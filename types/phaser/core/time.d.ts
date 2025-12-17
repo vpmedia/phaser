@@ -1,7 +1,7 @@
 export class Time {
     /**
-     * TBD.
-     * @param {import('./game.js').Game} game - TBD.
+     * Creates a new Time instance.
+     * @param {import('./game.js').Game} game - Reference to the Phaser Game instance.
      */
     constructor(game: import("./game.js").Game);
     game: import("./game.js").Game;
@@ -57,82 +57,82 @@ export class Time {
     /** @type {Timer[]} */
     _timers: Timer[];
     /**
-     * TBD.
+     * Initializes the time manager and starts tracking time.
      */
     boot(): void;
     /**
-     * TBD.
-     * @param {Timer} timer - TBD.
-     * @returns {Timer} TBD.
+     * Adds a Timer to the Time manager.
+     * @param {Timer} timer - The Timer to add.
+     * @returns {Timer} The added Timer object.
      */
     add(timer: Timer): Timer;
     /**
-     * TBD.
-     * @param {boolean} autoDestroy - TBD.
-     * @returns {Timer} TBD.
+     * Creates a new Timer and adds it to the Time manager.
+     * @param {boolean} autoDestroy - Whether the timer should be automatically destroyed when it completes.
+     * @returns {Timer} The created Timer object.
      */
     create(autoDestroy?: boolean): Timer;
     /**
-     * TBD.
+     * Removes all timers from the Time manager.
      */
     removeAll(): void;
     /**
-     * TBD.
+     * Refreshes the time tracking values.
      */
     refresh(): void;
     /**
-     * TBD.
-     * @param {number} time - TBD.
+     * Updates the Time manager with a new timestamp.
+     * @param {number} time - The new timestamp to use for updating.
      */
     update(time: number): void;
     /**
-     * TBD.
+     * Updates all timers managed by the Time manager.
      */
     updateTimers(): void;
     /**
-     * TBD.
+     * Updates the advanced timing values.
      */
     updateAdvancedTiming(): void;
     /**
-     * TBD.
+     * Handles game pause event.
      */
     gamePaused(): void;
     /**
-     * TBD.
+     * Handles game resume event.
      */
     gameResumed(): void;
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the total elapsed time in seconds since the game started.
+     * @returns {number} The total elapsed time in seconds.
      */
     totalElapsedSeconds(): number;
     /**
-     * TBD.
-     * @param {number} since - TBD.
-     * @returns {number} TBD.
+     * Gets the elapsed time in milliseconds since a given timestamp.
+     * @param {number} since - The timestamp to calculate elapsed time from.
+     * @returns {number} The elapsed time in milliseconds.
      */
     elapsedSince(since: number): number;
     /**
-     * TBD.
-     * @param {number} since - TBD.
-     * @returns {number} TBD.
+     * Gets the elapsed time in seconds since a given timestamp.
+     * @param {number} since - The timestamp to calculate elapsed time from.
+     * @returns {number} The elapsed time in seconds.
      */
     elapsedSecondsSince(since: number): number;
     /**
-     * TBD.
+     * Resets the time tracking values.
      */
     reset(): void;
     /**
-     * TBD.
+     * Destroys the Time manager and cleans up resources.
      */
     destroy(): void;
     /**
-     * TBD.
+     * Sets the desired frames per second.
      */
     set desiredFps(value: number);
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the desired frames per second.
+     * @returns {number} The desired frames per second.
      */
     get desiredFps(): number;
 }

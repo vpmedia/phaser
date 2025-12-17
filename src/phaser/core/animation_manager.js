@@ -3,8 +3,8 @@ import { ENGINE_ERROR_CANNOT_SET_FRAME, ENGINE_ERROR_CANNOT_SET_FRAME_NAME } fro
 
 export class AnimationManager {
   /**
-   * TBD.
-   * @param {import('../display/image.js').Image} sprite - TBD.
+   * Creates a new AnimationManager instance.
+   * @param {import('../display/image.js').Image} sprite - Reference to the parent Sprite.
    */
   constructor(sprite) {
     this.sprite = sprite;
@@ -24,7 +24,7 @@ export class AnimationManager {
   }
 
   /**
-   * TBD.
+   * Destroys the AnimationManager and cleans up resources.
    */
   destroy() {
     const keys = Object.keys(this._anims);
@@ -41,10 +41,10 @@ export class AnimationManager {
   }
 
   /**
-   * TBD.
-   * @param {import('./frame_data.js').FrameData} frameData - TBD.
-   * @param {string|number} frame - TBD.
-   * @returns {boolean} TBD.
+   * Loads frame data into the AnimationManager.
+   * @param {import('./frame_data.js').FrameData} frameData - The FrameData to load.
+   * @param {string|number} frame - The frame index or name to set as current.
+   * @returns {boolean} True if the frame data was loaded successfully, false otherwise.
    */
   loadFrameData(frameData, frame) {
     if (!frameData) {
@@ -71,10 +71,10 @@ export class AnimationManager {
   }
 
   /**
-   * TBD.
-   * @param {import('./frame_data.js').FrameData} frameData - TBD.
-   * @param {string|number} frame - TBD.
-   * @returns {boolean} TBD.
+   * Copies frame data into the AnimationManager.
+   * @param {import('./frame_data.js').FrameData} frameData - The FrameData to copy.
+   * @param {string|number} frame - The frame index or name to set as current.
+   * @returns {boolean} True if the frame data was copied successfully, false otherwise.
    */
   copyFrameData(frameData, frame) {
     this._frameData = frameData.clone();
@@ -98,13 +98,13 @@ export class AnimationManager {
   }
 
   /**
-   * TBD.
-   * @param {string} name - TBD.
-   * @param {number[] | string[] | null | undefined} frameList - TBD.
-   * @param {number} frameRate - TBD.
-   * @param {boolean} loop - TBD.
-   * @param {boolean | undefined} useNumericIndex - TBD.
-   * @returns {Animation} TBD.
+   * Adds a new animation to the AnimationManager.
+   * @param {string} name - The name of the animation.
+   * @param {number[] | string[] | null | undefined} frameList - The list of frames to include in the animation.
+   * @param {number} frameRate - The frame rate of the animation (frames per second).
+   * @param {boolean} loop - Whether the animation should loop.
+   * @param {boolean | undefined} useNumericIndex - Whether to treat frameList as numeric indices.
+   * @returns {Animation} The created Animation object.
    */
   add(name, frameList, frameRate = 60, loop = false, useNumericIndex = undefined) {
     const frames = frameList || [];
@@ -135,10 +135,10 @@ export class AnimationManager {
   }
 
   /**
-   * TBD.
-   * @param {string[] | number[]} frames - TBD.
-   * @param {boolean} useNumericIndex - TBD.
-   * @returns {boolean} TBD.
+   * Validates a list of frames against the current frame data.
+   * @param {string[] | number[]} frames - The list of frames to validate.
+   * @param {boolean} useNumericIndex - Whether to treat frameList as numeric indices.
+   * @returns {boolean} True if all frames are valid, false otherwise.
    */
   validateFrames(frames, useNumericIndex = false) {
     for (let i = 0; i < frames.length; i += 1) {
@@ -154,11 +154,11 @@ export class AnimationManager {
   }
 
   /**
-   * TBD.
-   * @param {string} name - TBD.
-   * @param {number} frameRate - TBD.
-   * @param {boolean} loop - TBD.
-   * @returns {Animation} TBD.
+   * Plays an animation by name.
+   * @param {string} name - The name of the animation to play.
+   * @param {number} frameRate - The frame rate (frames per second) to play at, or null to use the animation's default.
+   * @param {boolean} loop - Whether the animation should loop, or null to use the animation's default.
+   * @returns {Animation} The Animation object that was played, or null if not found.
    */
   play(name, frameRate = null, loop = null) {
     if (this._anims[name]) {
@@ -181,9 +181,9 @@ export class AnimationManager {
   }
 
   /**
-   * TBD.
-   * @param {string} name - TBD.
-   * @param {boolean} resetFrame - TBD.
+   * Stops an animation by name.
+   * @param {string} name - The name of the animation to stop, or null to stop the current animation.
+   * @param {boolean} resetFrame - Whether to reset the frame to the first frame of the animation.
    */
   stop(name = null, resetFrame = false) {
     if (this.currentAnim && (typeof name !== 'string' || name === this.currentAnim.name)) {
@@ -192,8 +192,8 @@ export class AnimationManager {
   }
 
   /**
-   * TBD.
-   * @returns {boolean} TBD.
+   * Updates the animation manager state.
+   * @returns {boolean} True if an animation was updated, false otherwise.
    */
   update() {
     if (this.updateIfVisible && !this.sprite.visible) {
@@ -207,8 +207,8 @@ export class AnimationManager {
   }
 
   /**
-   * TBD.
-   * @param {number} quantity - TBD.
+   * Advances the current animation by a specified number of frames.
+   * @param {number} quantity - The number of frames to advance by.
    */
   next(quantity) {
     if (this.currentAnim) {
@@ -218,8 +218,8 @@ export class AnimationManager {
   }
 
   /**
-   * TBD.
-   * @param {number} quantity - TBD.
+   * Moves the current animation back by a specified number of frames.
+   * @param {number} quantity - The number of frames to move back by.
    */
   previous(quantity) {
     if (this.currentAnim) {
@@ -229,9 +229,9 @@ export class AnimationManager {
   }
 
   /**
-   * TBD.
-   * @param {string} name - TBD.
-   * @returns {Animation} TBD.
+   * Gets an animation by name.
+   * @param {string} name - The name of the animation to retrieve.
+   * @returns {Animation} The Animation object, or null if not found.
    */
   getAnimation(name) {
     if (name && this._anims[name]) {
@@ -241,7 +241,7 @@ export class AnimationManager {
   }
 
   /**
-   * TBD.
+   * Refreshes the current frame texture (not implemented).
    */
   refreshFrame() {
     // TODO
@@ -250,39 +250,39 @@ export class AnimationManager {
   }
 
   /**
-   * TBD.
-   * @returns {import('./frame_data.js').FrameData} TBD.
+   * Gets the frame data used by this AnimationManager.
+   * @returns {import('./frame_data.js').FrameData} The FrameData object.
    */
   get frameData() {
     return this._frameData;
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the total number of frames in the frame data.
+   * @returns {number} The total number of frames.
    */
   get frameTotal() {
     return this._frameData.total;
   }
 
   /**
-   * TBD.
-   * @returns {boolean} TBD.
+   * Gets the paused state of the current animation.
+   * @returns {boolean} True if the current animation is paused, false otherwise.
    */
   get paused() {
     return this.currentAnim.isPaused;
   }
 
   /**
-   * TBD.
+   * Sets the paused state of the current animation.
    */
   set paused(value) {
     this.currentAnim.paused = value;
   }
 
   /**
-   * TBD.
-   * @returns {string} TBD.
+   * Gets the name of the current animation.
+   * @returns {string} The name of the current animation, or null if no animation is active.
    */
   get name() {
     if (this.currentAnim) {
@@ -292,8 +292,8 @@ export class AnimationManager {
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the current frame index.
+   * @returns {number} The current frame index.
    */
   get frame() {
     if (this.currentFrame) {
@@ -303,7 +303,7 @@ export class AnimationManager {
   }
 
   /**
-   * TBD.
+   * Sets the current frame index.
    */
   set frame(value) {
     if (typeof value === 'number' && this._frameData && this._frameData.getFrame(value) !== null) {
@@ -319,8 +319,8 @@ export class AnimationManager {
   }
 
   /**
-   * TBD.
-   * @returns {string} TBD.
+   * Gets the current frame name.
+   * @returns {string} The current frame name, or null if no frame is set.
    */
   get frameName() {
     if (this.currentFrame) {
@@ -330,7 +330,7 @@ export class AnimationManager {
   }
 
   /**
-   * TBD.
+   * Sets the current frame by name.
    */
   set frameName(value) {
     if (typeof value === 'string' && this._frameData && this._frameData.getFrameByName(value) !== null) {

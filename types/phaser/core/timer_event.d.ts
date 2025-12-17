@@ -1,14 +1,14 @@
 export class TimerEvent {
     /**
-     * TBD.
-     * @param {import('./timer.js').Timer} timer - TBD.
-     * @param {number} delay - TBD.
-     * @param {number} tick - TBD.
-     * @param {number} repeatCount - TBD.
-     * @param {boolean} loop - TBD.
-     * @param {Function} callback - TBD.
-     * @param {object} callbackContext - TBD.
-     * @param {...any} args - TBD.
+     * Creates a new TimerEvent instance.
+     * @param {import('./timer.js').Timer} timer - Reference to the parent Timer.
+     * @param {number} delay - The delay (in milliseconds) before the event should occur.
+     * @param {number} tick - The tick (in milliseconds) at which the event should occur.
+     * @param {number} repeatCount - The number of times the event should repeat.
+     * @param {boolean} loop - Whether the event should loop.
+     * @param {Function} callback - The function to call when the event occurs.
+     * @param {object} callbackContext - The context in which to call the callback function.
+     * @param {...any} args - Arguments to pass to the callback function.
      */
     constructor(timer: import("./timer.js").Timer, delay: number, tick: number, repeatCount: number, loop: boolean, callback: Function, callbackContext: object, args: any[]);
     timer: import("./timer.js").Timer;

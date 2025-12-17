@@ -2,8 +2,8 @@ import { Signal } from './signal.js';
 
 export class EventManager {
   /**
-   * TBD.
-   * @param {import('../display/display_object.js').DisplayObject} sprite - TBD.
+   * Creates a new EventManager instance.
+   * @param {import('../display/display_object.js').DisplayObject} sprite - Reference to the parent DisplayObject.
    */
   constructor(sprite) {
     this.parent = sprite;
@@ -25,7 +25,7 @@ export class EventManager {
   }
 
   /**
-   * TBD.
+   * Destroys the EventManager and cleans up resources.
    */
   destroy() {
     this._parent = null;
@@ -77,8 +77,8 @@ export class EventManager {
   }
 
   /**
-   * TBD.
-   * @returns {Signal} TBD.
+   * Gets the onAddedToGroup signal.
+   * @returns {Signal} The Signal object for the onAddedToGroup event.
    */
   get onAddedToGroup() {
     if (!this._onAddedToGroup) {
@@ -88,8 +88,8 @@ export class EventManager {
   }
 
   /**
-   * TBD.
-   * @param {...any} args - TBD.
+   * Dispatches the onAddedToGroup event.
+   * @param {...any} args - Arguments to pass to the signal.
    */
   onAddedToGroup$dispatch(...args) {
     if (this._onAddedToGroup) {
@@ -98,8 +98,8 @@ export class EventManager {
   }
 
   /**
-   * TBD.
-   * @returns {Signal} TBD.
+   * Gets the onRemovedFromGroup signal.
+   * @returns {Signal} The Signal object for the onRemovedFromGroup event.
    */
   get onRemovedFromGroup() {
     if (!this._onRemovedFromGroup) {
@@ -109,8 +109,8 @@ export class EventManager {
   }
 
   /**
-   * TBD.
-   * @param {...any} args - TBD.
+   * Dispatches the onRemovedFromGroup event.
+   * @param {...any} args - Arguments to pass to the signal.
    */
   onRemovedFromGroup$dispatch(...args) {
     if (this._onRemovedFromGroup) {
@@ -119,8 +119,8 @@ export class EventManager {
   }
 
   /**
-   * TBD.
-   * @returns {Signal} TBD.
+   * Gets the onDestroy signal.
+   * @returns {Signal} The Signal object for the onDestroy event.
    */
   get onDestroy() {
     if (!this._onDestroy) {
@@ -130,8 +130,8 @@ export class EventManager {
   }
 
   /**
-   * TBD.
-   * @param {...any} args - TBD.
+   * Dispatches the onDestroy event.
+   * @param {...any} args - Arguments to pass to the signal.
    */
   onDestroy$dispatch(...args) {
     if (this._onDestroy) {
@@ -140,8 +140,8 @@ export class EventManager {
   }
 
   /**
-   * TBD.
-   * @returns {Signal} TBD.
+   * Gets the onOutOfBounds signal.
+   * @returns {Signal} The Signal object for the onOutOfBounds event.
    */
   get onOutOfBounds() {
     if (!this._onOutOfBounds) {
@@ -151,8 +151,8 @@ export class EventManager {
   }
 
   /**
-   * TBD.
-   * @param {...any} args - TBD.
+   * Dispatches the onOutOfBounds event.
+   * @param {...any} args - Arguments to pass to the signal.
    */
   onOutOfBounds$dispatch(...args) {
     if (this._onOutOfBounds) {
@@ -161,8 +161,8 @@ export class EventManager {
   }
 
   /**
-   * TBD.
-   * @returns {Signal} TBD.
+   * Gets the onEnterBounds signal.
+   * @returns {Signal} The Signal object for the onEnterBounds event.
    */
   get onEnterBounds() {
     if (!this._onEnterBounds) {
@@ -172,8 +172,8 @@ export class EventManager {
   }
 
   /**
-   * TBD.
-   * @param {...any} args - TBD.
+   * Dispatches the onEnterBounds event.
+   * @param {...any} args - Arguments to pass to the signal.
    */
   onEnterBounds$dispatch(...args) {
     if (this._onEnterBounds) {
@@ -182,8 +182,8 @@ export class EventManager {
   }
 
   /**
-   * TBD.
-   * @returns {Signal} TBD.
+   * Gets the onInputOver signal.
+   * @returns {Signal} The Signal object for the onInputOver event.
    */
   get onInputOver() {
     if (!this._onInputOver) {
@@ -193,8 +193,8 @@ export class EventManager {
   }
 
   /**
-   * TBD.
-   * @param {...any} args - TBD.
+   * Dispatches the onInputOver event.
+   * @param {...any} args - Arguments to pass to the signal.
    */
   onInputOver$dispatch(...args) {
     if (this._onInputOver) {
@@ -203,8 +203,8 @@ export class EventManager {
   }
 
   /**
-   * TBD.
-   * @returns {Signal} TBD.
+   * Gets the onInputOut signal.
+   * @returns {Signal} The Signal object for the onInputOut event.
    */
   get onInputOut() {
     if (!this._onInputOut) {
@@ -214,8 +214,8 @@ export class EventManager {
   }
 
   /**
-   * TBD.
-   * @param {...any} args - TBD.
+   * Dispatches the onInputOut event.
+   * @param {...any} args - Arguments to pass to the signal.
    */
   onInputOut$dispatch(...args) {
     if (this._onInputOut) {
@@ -224,8 +224,8 @@ export class EventManager {
   }
 
   /**
-   * TBD.
-   * @returns {Signal} TBD.
+   * Gets the onInputDown signal.
+   * @returns {Signal} The Signal object for the onInputDown event.
    */
   get onInputDown() {
     if (!this._onInputDown) {
@@ -235,8 +235,8 @@ export class EventManager {
   }
 
   /**
-   * TBD.
-   * @param {...any} args - TBD.
+   * Dispatches the onInputDown event.
+   * @param {...any} args - Arguments to pass to the signal.
    */
   onInputDown$dispatch(...args) {
     if (this._onInputDown) {
@@ -245,8 +245,8 @@ export class EventManager {
   }
 
   /**
-   * TBD.
-   * @returns {Signal} TBD.
+   * Gets the onInputUp signal.
+   * @returns {Signal} The Signal object for the onInputUp event.
    */
   get onInputUp() {
     if (!this._onInputUp) {
@@ -256,8 +256,8 @@ export class EventManager {
   }
 
   /**
-   * TBD.
-   * @param {...any} args - TBD.
+   * Dispatches the onInputUp event.
+   * @param {...any} args - Arguments to pass to the signal.
    */
   onInputUp$dispatch(...args) {
     if (this._onInputUp) {
@@ -266,8 +266,8 @@ export class EventManager {
   }
 
   /**
-   * TBD.
-   * @returns {Signal} TBD.
+   * Gets the onDragStart signal.
+   * @returns {Signal} The Signal object for the onDragStart event.
    */
   get onDragStart() {
     if (!this._onDragStart) {
@@ -277,8 +277,8 @@ export class EventManager {
   }
 
   /**
-   * TBD.
-   * @param {...any} args - TBD.
+   * Dispatches the onDragStart event.
+   * @param {...any} args - Arguments to pass to the signal.
    */
   onDragStart$dispatch(...args) {
     if (this._onDragStart) {
@@ -287,8 +287,8 @@ export class EventManager {
   }
 
   /**
-   * TBD.
-   * @returns {Signal} TBD.
+   * Gets the onDragUpdate signal.
+   * @returns {Signal} The Signal object for the onDragUpdate event.
    */
   get onDragUpdate() {
     if (!this._onDragUpdate) {
@@ -298,8 +298,8 @@ export class EventManager {
   }
 
   /**
-   * TBD.
-   * @param {...any} args - TBD.
+   * Dispatches the onDragUpdate event.
+   * @param {...any} args - Arguments to pass to the signal.
    */
   onDragUpdate$dispatch(...args) {
     if (this._onDragUpdate) {
@@ -308,8 +308,8 @@ export class EventManager {
   }
 
   /**
-   * TBD.
-   * @returns {Signal} TBD.
+   * Gets the onDragStop signal.
+   * @returns {Signal} The Signal object for the onDragStop event.
    */
   get onDragStop() {
     if (!this._onDragStop) {
@@ -319,8 +319,8 @@ export class EventManager {
   }
 
   /**
-   * TBD.
-   * @param {...any} args - TBD.
+   * Dispatches the onDragStop event.
+   * @param {...any} args - Arguments to pass to the signal.
    */
   onDragStop$dispatch(...args) {
     if (this._onDragStop) {
@@ -329,8 +329,8 @@ export class EventManager {
   }
 
   /**
-   * TBD.
-   * @returns {Signal} TBD.
+   * Gets the onAnimationStart signal.
+   * @returns {Signal} The Signal object for the onAnimationStart event.
    */
   get onAnimationStart() {
     if (!this._onAnimationStart) {
@@ -340,8 +340,8 @@ export class EventManager {
   }
 
   /**
-   * TBD.
-   * @param {...any} args - TBD.
+   * Dispatches the onAnimationStart event.
+   * @param {...any} args - Arguments to pass to the signal.
    */
   onAnimationStart$dispatch(...args) {
     if (this._onAnimationStart) {
@@ -350,8 +350,8 @@ export class EventManager {
   }
 
   /**
-   * TBD.
-   * @returns {Signal} TBD.
+   * Gets the onAnimationComplete signal.
+   * @returns {Signal} The Signal object for the onAnimationComplete event.
    */
   get onAnimationComplete() {
     if (!this._onAnimationComplete) {
@@ -361,8 +361,8 @@ export class EventManager {
   }
 
   /**
-   * TBD.
-   * @param {...any} args - TBD.
+   * Dispatches the onAnimationComplete event.
+   * @param {...any} args - Arguments to pass to the signal.
    */
   onAnimationComplete$dispatch(...args) {
     if (this._onAnimationComplete) {
@@ -371,8 +371,8 @@ export class EventManager {
   }
 
   /**
-   * TBD.
-   * @returns {Signal} TBD.
+   * Gets the onAnimationLoop signal.
+   * @returns {Signal} The Signal object for the onAnimationLoop event.
    */
   get onAnimationLoop() {
     if (!this._onAnimationLoop) {
@@ -382,8 +382,8 @@ export class EventManager {
   }
 
   /**
-   * TBD.
-   * @param {...any} args - TBD.
+   * Dispatches the onAnimationLoop event.
+   * @param {...any} args - Arguments to pass to the signal.
    */
   onAnimationLoop$dispatch(...args) {
     if (this._onAnimationLoop) {

@@ -2,12 +2,12 @@ import { Signal } from './signal.js';
 
 export class Sound {
   /**
-   * TBD.
-   * @param {import('./game.js').Game} game - TBD.
-   * @param {string} key - TBD.
-   * @param {number} volume - TBD.
-   * @param {boolean} loop - TBD.
-   * @param {boolean} connect - TBD.
+   * Creates a new Sound instance.
+   * @param {import('./game.js').Game} game - Reference to the Phaser Game instance.
+   * @param {string} key - The key of the sound to play.
+   * @param {number} volume - The initial volume level (0.0 to 1.0).
+   * @param {boolean} loop - Whether the sound should loop.
+   * @param {boolean} connect - Whether to connect to the master gain node.
    */
   constructor(game, key, volume = 1, loop = false, connect = null) {
     // TODO
@@ -81,8 +81,8 @@ export class Sound {
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
+   * Callback when a sound has been unlocked.
+   * @param {string} key - The key of the sound that was unlocked.
    */
   soundHasUnlocked(key) {
     if (key === this.key) {
@@ -92,12 +92,12 @@ export class Sound {
   }
 
   /**
-   * TBD.
-   * @param {string} name - TBD.
-   * @param {number} start - TBD.
-   * @param {number} duration - TBD.
-   * @param {number} volume - TBD.
-   * @param {boolean} loop - TBD.
+   * Adds a marker to the sound.
+   * @param {string} name - The name of the marker.
+   * @param {number} start - The start time (in seconds) of the marker.
+   * @param {number} duration - The duration (in seconds) of the marker.
+   * @param {number} volume - The volume level (0.0 to 1.0) of the marker.
+   * @param {boolean} loop - Whether the marker should loop.
    */
   addMarker(name, start, duration = 1, volume = 1, loop = false) {
     this.markers[name] = {
@@ -112,15 +112,15 @@ export class Sound {
   }
 
   /**
-   * TBD.
-   * @param {string} name - TBD.
+   * Removes a marker from the sound.
+   * @param {string} name - The name of the marker to remove.
    */
   removeMarker(name) {
     delete this.markers[name];
   }
 
   /**
-   * TBD.
+   * Handler for when the sound ends.
    */
   onEndedHandler() {
     this._sound.onended = null;
@@ -154,7 +154,7 @@ export class Sound {
   }
 
   /**
-   * TBD.
+   * Updates the sound state.
    */
   update() {
     if (!this.game.cache.checkSoundKey(this.key)) {
@@ -191,22 +191,22 @@ export class Sound {
   }
 
   /**
-   * TBD.
-   * @param {number} volume - TBD.
-   * @returns {Sound} TBD.
+   * Plays the sound at full volume in a loop.
+   * @param {number} volume - The volume level (0.0 to 1.0) to play at.
+   * @returns {Sound} This Sound instance for chaining.
    */
   loopFull(volume) {
     return this.play(null, 0, volume, true);
   }
 
   /**
-   * TBD.
-   * @param {string} marker - TBD.
-   * @param {number} position - TBD.
-   * @param {number} volume - TBD.
-   * @param {boolean} loop - TBD.
-   * @param {boolean} forceRestart - TBD.
-   * @returns {Sound} TBD.
+   * Plays the sound, optionally using a marker.
+   * @param {string} marker - The name of the marker to play, or null/undefined to play the entire sound.
+   * @param {number} position - The position (in seconds) to start playing from.
+   * @param {number} volume - The volume level (0.0 to 1.0) to play at.
+   * @param {boolean} loop - Whether the sound should loop.
+   * @param {boolean} forceRestart - Whether to force restarting the sound even if it's already playing.
+   * @returns {Sound} This Sound instance for chaining.
    */
   play(marker, position, volume, loop, forceRestart = true) {
     if (marker === undefined || marker === false || marker === null) {
@@ -323,18 +323,18 @@ export class Sound {
   }
 
   /**
-   * TBD.
-   * @param {string} marker - TBD.
-   * @param {number} position - TBD.
-   * @param {number} volume - TBD.
-   * @param {boolean} loop - TBD.
+   * Restarts the sound, optionally using a marker.
+   * @param {string} marker - The name of the marker to play, or empty string to play the entire sound.
+   * @param {number} position - The position (in seconds) to start playing from.
+   * @param {number} volume - The volume level (0.0 to 1.0) to play at.
+   * @param {boolean} loop - Whether the sound should loop.
    */
   restart(marker = '', position = 0, volume = 1, loop = false) {
     this.play(marker, position, volume, loop, true);
   }
 
   /**
-   * TBD.
+   * Pauses the sound.
    */
   pause() {
     if (this.isPlaying && this._sound) {
@@ -348,7 +348,7 @@ export class Sound {
   }
 
   /**
-   * TBD.
+   * Resumes the sound.
    */
   resume() {
     if (this.paused && this._sound) {
@@ -380,7 +380,7 @@ export class Sound {
   }
 
   /**
-   * TBD.
+   * Stops the sound.
    */
   stop() {
     if (this.isPlaying && this._sound) {
@@ -411,10 +411,10 @@ export class Sound {
   }
 
   /**
-   * TBD.
-   * @param {number} duration - TBD.
-   * @param {boolean} loop - TBD.
-   * @param {string} marker - TBD.
+   * Fades in the sound to full volume.
+   * @param {number} duration - The fade-in duration (in milliseconds).
+   * @param {boolean} loop - Whether the sound should loop.
+   * @param {string} marker - The name of the marker to fade in, or empty string to use current marker.
    */
   fadeIn(duration, loop = false, marker = this.currentMarker) {
     if (this.paused) {
@@ -425,17 +425,17 @@ export class Sound {
   }
 
   /**
-   * TBD.
-   * @param {number} duration - TBD.
+   * Fades out the sound to silence.
+   * @param {number} duration - The fade-out duration (in milliseconds).
    */
   fadeOut(duration) {
     this.fadeTo(duration, 0);
   }
 
   /**
-   * TBD.
-   * @param {number} duration - TBD.
-   * @param {number} volume - TBD.
+   * Fades the sound to a specific volume level.
+   * @param {number} duration - The fade duration (in milliseconds).
+   * @param {number} volume - The target volume level (0.0 to 1.0).
    */
   fadeTo(duration = 100, volume = 0) {
     if (!this.isPlaying || this.paused || volume === this.volume) {
@@ -446,7 +446,7 @@ export class Sound {
   }
 
   /**
-   * TBD.
+   * Callback when fade completes.
    */
   fadeComplete() {
     this.onFadeComplete.dispatch(this, this.volume);
@@ -456,8 +456,8 @@ export class Sound {
   }
 
   /**
-   * TBD.
-   * @param {boolean} remove - TBD.
+   * Destroys the sound and cleans up resources.
+   * @param {boolean} remove - Whether to remove the sound from the SoundManager.
    */
   destroy(remove = true) {
     this._markedToDelete = true;
@@ -482,15 +482,15 @@ export class Sound {
   }
 
   /**
-   * TBD.
-   * @returns {boolean} TBD.
+   * Gets the muted state of the sound.
+   * @returns {boolean} True if the sound is muted, false otherwise.
    */
   get mute() {
     return this._muted || this.game.sound.mute;
   }
 
   /**
-   * TBD.
+   * Sets the muted state of the sound.
    */
   set mute(value) {
     value = value || false;
@@ -509,15 +509,15 @@ export class Sound {
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the volume of the sound.
+   * @returns {number} The volume level (0.0 to 1.0).
    */
   get volume() {
     return this._volume;
   }
 
   /**
-   * TBD.
+   * Sets the volume of the sound.
    */
   set volume(value) {
     if (this._muted) {
