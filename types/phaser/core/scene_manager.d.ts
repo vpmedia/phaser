@@ -1,8 +1,8 @@
 export class SceneManager {
     /**
-     * TBD.
-     * @param {import('./game.js').Game} game - TBD.
-     * @param {string} pendingState - TBD.
+     * Creates a new SceneManager instance.
+     * @param {import('./game.js').Game} game - The game instance this manager belongs to.
+     * @param {string} pendingState - The state to load when the game boots.
      */
     constructor(game: import("./game.js").Game, pendingState: string);
     game: import("./game.js").Game;
@@ -21,101 +21,109 @@ export class SceneManager {
     onPauseUpdateCallback: any;
     onShutDownCallback: any;
     /**
-     * TBD.
+     * Initialize the scene manager.
+     * This method is called when the game boots and sets up the initial state.
      */
     boot(): void;
     /**
-     * TBD.
-     * @param {string} key - TBD.
-     * @param {object} state - TBD.
-     * @param {boolean} autoStart - TBD.
-     * @returns {Scene|object} TBD.
+     * Add a new scene state to the manager.
+     * @param {string} key - The unique key for this state.
+     * @param {object} state - The scene state to add.
+     * @param {boolean} autoStart - Whether to start this state immediately.
+     * @returns {Scene|object} The created scene or state object.
      */
     add(key: string, state: object, autoStart?: boolean): Scene | object;
     /**
-     * TBD.
-     * @param {string} key - TBD.
+     * Remove a scene state from the manager.
+     * @param {string} key - The unique key for the state to remove.
      */
     remove(key: string): void;
     callbackContext: any;
     /**
-     * TBD.
-     * @param {string} key - TBD.
-     * @param {boolean} clearWorld - TBD.
-     * @param {boolean} clearCache - TBD.
-     * @param {...any} args - TBD.
+     * Start a scene state.
+     * @param {string} key - The unique key for the state to start.
+     * @param {boolean} clearWorld - Whether to clear the world before starting.
+     * @param {boolean} clearCache - Whether to clear the cache before starting.
+     * @param {...any} args - Additional arguments to pass to the state.
      */
     start(key: string, clearWorld?: boolean, clearCache?: boolean, ...args: any[]): void;
     /**
-     * TBD.
-     * @param {boolean} clearWorld - TBD.
-     * @param {boolean} clearCache - TBD.
-     * @param {...any} args - TBD.
+     * Restart the current scene state.
+     * @param {boolean} clearWorld - Whether to clear the world before restarting.
+     * @param {boolean} clearCache - Whether to clear the cache before restarting.
+     * @param {...any} args - Additional arguments to pass to the state.
      */
     restart(clearWorld?: boolean, clearCache?: boolean, ...args: any[]): void;
     /**
-     * TBD.
+     * Pre-update the scene manager.
+     * This method is called before the game loop updates.
      */
     preUpdate(): void;
     /**
-     * TBD.
+     * Clear the current scene state.
+     * This method is called when switching scenes to clean up the previous scene.
      */
     clearCurrentState(): void;
     /**
-     * TBD.
-     * @param {string} key - TBD.
-     * @returns {boolean} TBD.
+     * Check if a scene state exists.
+     * @param {string} key - The unique key for the state to check.
+     * @returns {boolean} True if the scene exists, false otherwise.
      */
     checkState(key: string): boolean;
     /**
-     * TBD.
-     * @param {string} key - TBD.
+     * Link a scene state to the manager.
+     * @param {string} key - The unique key for the state to link.
      */
     link(key: string): void;
     /**
-     * TBD.
-     * @param {string} key - TBD.
+     * Unlink a scene state from the manager.
+     * @param {string} key - The unique key for the state to unlink.
      */
     unlink(key: string): void;
     /**
-     * TBD.
-     * @param {string} key - TBD.
+     * Set the current scene state.
+     * @param {string} key - The unique key for the state to set as current.
      */
     setCurrentState(key: string): void;
     /**
-     * TBD.
-     * @returns {Scene} TBD.
+     * Get the current scene state.
+     * @returns {Scene} The current scene state.
      */
     getCurrentState(): Scene;
     /**
-     * TBD.
+     * Handle loading completion.
+     * This method is called when scene loading is complete.
      */
     loadComplete(): void;
     /**
-     * TBD.
+     * Update the scene manager.
+     * This method is called every frame while the game is running.
      */
     update(): void;
     /**
-     * TBD.
+     * Pause the scene manager updates.
+     * This method is called when the game is paused.
      */
     pauseUpdate(): void;
     /**
-     * TBD.
-     * @param {number} width - TBD.
-     * @param {number} height - TBD.
+     * Handle scene resize.
+     * @param {number} width - The new width of the scene.
+     * @param {number} height - The new height of the scene.
      */
     resize(width: number, height: number): void;
     /**
-     * TBD.
+     * Destroy the scene manager.
+     * This method is called when the scene manager is about to be destroyed.
      */
     destroy(): void;
     /**
-     * TBD.
+     * Dummy function for callbacks.
+     * This is a placeholder function used when no callback is defined.
      */
     dummy(): void;
     /**
-     * TBD.
-     * @returns {boolean} TBD.
+     * Get whether the scene has been created.
+     * @returns {boolean} True if the scene has been created, false otherwise.
      */
     get created(): boolean;
 }

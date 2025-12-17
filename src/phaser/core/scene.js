@@ -1,6 +1,6 @@
 export class Scene {
   /**
-   * TBD.
+   * Creates a new Scene instance.
    */
   constructor() {
     this.game = null;
@@ -8,51 +8,57 @@ export class Scene {
   }
 
   /**
-   * TBD.
+   * Initialize the scene.
+   * This method is called before preload() and create().
    */
   init() {
     // inherit
   }
 
   /**
-   * TBD.
+   * Load assets for the scene.
+   * This method is called after init() and before create().
    */
   preload() {
     // inherit
   }
 
   /**
-   * TBD.
+   * Create the scene.
+   * This method is called after preload() and is where you create your game objects.
    */
   create() {
     // inherit
   }
 
   /**
-   * TBD.
+   * Update the scene.
+   * This method is called every frame while the scene is active.
    */
   update() {
     // inherit
   }
 
   /**
-   * TBD.
-   * @param {number} width - TBD.
-   * @param {number} height - TBD.
+   * Handle scene resize.
+   * @param {number} width - The new width of the scene.
+   * @param {number} height - The new height of the scene.
    */
   resize(width, height) {
     // inherit
   }
 
   /**
-   * TBD.
+   * Update the scene while paused.
+   * This method is called every frame while the scene is paused.
    */
   pauseUpdate() {
     // inherit
   }
 
   /**
-   * TBD.
+   * Shutdown the scene.
+   * This method is called when the scene is about to be destroyed.
    */
   shutdown() {
     // inherit

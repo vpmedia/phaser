@@ -2,9 +2,9 @@ import { Scene } from './scene.js';
 
 export class SceneManager {
   /**
-   * TBD.
-   * @param {import('./game.js').Game} game - TBD.
-   * @param {string} pendingState - TBD.
+   * Creates a new SceneManager instance.
+   * @param {import('./game.js').Game} game - The game instance this manager belongs to.
+   * @param {string} pendingState - The state to load when the game boots.
    */
   constructor(game, pendingState) {
     this.game = game;
@@ -28,7 +28,8 @@ export class SceneManager {
   }
 
   /**
-   * TBD.
+   * Initialize the scene manager.
+   * This method is called when the game boots and sets up the initial state.
    */
   boot() {
     if (this._pendingState !== null && typeof this._pendingState !== 'string') {
@@ -37,11 +38,11 @@ export class SceneManager {
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
-   * @param {object} state - TBD.
-   * @param {boolean} autoStart - TBD.
-   * @returns {Scene|object} TBD.
+   * Add a new scene state to the manager.
+   * @param {string} key - The unique key for this state.
+   * @param {object} state - The scene state to add.
+   * @param {boolean} autoStart - Whether to start this state immediately.
+   * @returns {Scene|object} The created scene or state object.
    */
   add(key, state, autoStart = false) {
     let newState = null;
@@ -65,8 +66,8 @@ export class SceneManager {
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
+   * Remove a scene state from the manager.
+   * @param {string} key - The unique key for the state to remove.
    */
   remove(key) {
     if (this.current === key) {
@@ -83,11 +84,11 @@ export class SceneManager {
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
-   * @param {boolean} clearWorld - TBD.
-   * @param {boolean} clearCache - TBD.
-   * @param {...any} args - TBD.
+   * Start a scene state.
+   * @param {string} key - The unique key for the state to start.
+   * @param {boolean} clearWorld - Whether to clear the world before starting.
+   * @param {boolean} clearCache - Whether to clear the cache before starting.
+   * @param {...any} args - Additional arguments to pass to the state.
    */
   start(key, clearWorld = true, clearCache = false, ...args) {
     if (this.checkState(key)) {
@@ -102,10 +103,10 @@ export class SceneManager {
   }
 
   /**
-   * TBD.
-   * @param {boolean} clearWorld - TBD.
-   * @param {boolean} clearCache - TBD.
-   * @param {...any} args - TBD.
+   * Restart the current scene state.
+   * @param {boolean} clearWorld - Whether to clear the world before restarting.
+   * @param {boolean} clearCache - Whether to clear the cache before restarting.
+   * @param {...any} args - Additional arguments to pass to the state.
    */
   restart(clearWorld = true, clearCache = false, ...args) {
     this._pendingState = this.current;
@@ -117,7 +118,8 @@ export class SceneManager {
   }
 
   /**
-   * TBD.
+   * Pre-update the scene manager.
+   * This method is called before the game loop updates.
    */
   preUpdate() {
     if (this._pendingState && this.game.isBooted) {
@@ -151,7 +153,8 @@ export class SceneManager {
   }
 
   /**
-   * TBD.
+   * Clear the current scene state.
+   * This method is called when switching scenes to clean up the previous scene.
    */
   clearCurrentState() {
     if (this.current) {
@@ -172,9 +175,9 @@ export class SceneManager {
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
-   * @returns {boolean} TBD.
+   * Check if a scene state exists.
+   * @param {string} key - The unique key for the state to check.
+   * @returns {boolean} True if the scene exists, false otherwise.
    */
   checkState(key) {
     if (this.states[key]) {
@@ -187,8 +190,8 @@ export class SceneManager {
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
+   * Link a scene state to the manager.
+   * @param {string} key - The unique key for the state to link.
    */
   link(key) {
     this.states[key].game = this.game;
@@ -196,8 +199,8 @@ export class SceneManager {
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
+   * Unlink a scene state from the manager.
+   * @param {string} key - The unique key for the state to unlink.
    */
   unlink(key) {
     if (this.states[key]) {
@@ -206,8 +209,8 @@ export class SceneManager {
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
+   * Set the current scene state.
+   * @param {string} key - The unique key for the state to set as current.
    */
   setCurrentState(key) {
     this.callbackContext = this.states[key];
@@ -230,15 +233,16 @@ export class SceneManager {
   }
 
   /**
-   * TBD.
-   * @returns {Scene} TBD.
+   * Get the current scene state.
+   * @returns {Scene} The current scene state.
    */
   getCurrentState() {
     return this.states[this.current];
   }
 
   /**
-   * TBD.
+   * Handle loading completion.
+   * This method is called when scene loading is complete.
    */
   loadComplete() {
     if (this._created === false && this.onCreateCallback) {
@@ -250,7 +254,8 @@ export class SceneManager {
   }
 
   /**
-   * TBD.
+   * Update the scene manager.
+   * This method is called every frame while the game is running.
    */
   update() {
     if (this._created && this.onUpdateCallback) {
@@ -259,7 +264,8 @@ export class SceneManager {
   }
 
   /**
-   * TBD.
+   * Pause the scene manager updates.
+   * This method is called when the game is paused.
    */
   pauseUpdate() {
     if (this._created && this.onPauseUpdateCallback) {
@@ -268,9 +274,9 @@ export class SceneManager {
   }
 
   /**
-   * TBD.
-   * @param {number} width - TBD.
-   * @param {number} height - TBD.
+   * Handle scene resize.
+   * @param {number} width - The new width of the scene.
+   * @param {number} height - The new height of the scene.
    */
   resize(width, height) {
     if (this.onResizeCallback) {
@@ -279,7 +285,8 @@ export class SceneManager {
   }
 
   /**
-   * TBD.
+   * Destroy the scene manager.
+   * This method is called when the scene manager is about to be destroyed.
    */
   destroy() {
     this._clearWorld = true;
@@ -299,15 +306,16 @@ export class SceneManager {
   }
 
   /**
-   * TBD.
+   * Dummy function for callbacks.
+   * This is a placeholder function used when no callback is defined.
    */
   dummy() {
     // pass
   }
 
   /**
-   * TBD.
-   * @returns {boolean} TBD.
+   * Get whether the scene has been created.
+   * @returns {boolean} True if the scene has been created, false otherwise.
    */
   get created() {
     return this._created;

@@ -1,6 +1,7 @@
 export class Device {
   /**
-   * TBD.
+   * Creates a new Device instance.
+   * This class provides information about the current device and browser capabilities.
    */
   constructor() {
     /**

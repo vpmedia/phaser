@@ -3,6 +3,7 @@ import { SignalBinding } from './signal_binding.js';
 export class Signal {
   /**
    * Creates a new Signal instance.
+   * A Signal is a simple event system that allows you to dispatch events and listen for them.
    */
   constructor() {
     this._bindings = null;
@@ -14,10 +15,10 @@ export class Signal {
   }
 
   /**
-   * TBD.
-   * @param {Function} listener - TBD.
-   * @param {string} fnName - TBD.
-   * @throws {Error}
+   * Validates that a listener is a function.
+   * @param {Function} listener - The listener to validate.
+   * @param {string} fnName - The name of the function this validation is for.
+   * @throws {Error} If the listener is not a function.
    */
   validateListener(listener, fnName) {
     if (typeof listener !== 'function') {
@@ -28,14 +29,14 @@ export class Signal {
   }
 
   /**
-   * TBD.
-   * @param {Function} listener - TBD.
-   * @param {boolean} isOnce - TBD.
-   * @param {object} listenerContext - TBD.
-   * @param {number} priority - TBD.
-   * @param {...any} args - TBD.
-   * @returns {SignalBinding} TBD.
-   * @throws {Error}
+   * Register a new listener with the signal.
+   * @param {Function} listener - The function to call when the signal is dispatched.
+   * @param {boolean} isOnce - Whether the listener should only be called once.
+   * @param {object} listenerContext - The context to apply when calling the listener.
+   * @param {number} priority - The priority of this listener (higher numbers execute first).
+   * @param {...any} args - Additional arguments to pass to the listener.
+   * @returns {SignalBinding} The binding for this listener.
+   * @throws {Error} If the listener is already registered with a different once setting.
    */
   _registerListener(listener, isOnce = false, listenerContext = null, priority = 0, args = null) {
     const prevIndex = this._indexOfListener(listener, listenerContext);
@@ -60,8 +61,8 @@ export class Signal {
   }
 
   /**
-   * TBD.
-   * @param {SignalBinding} binding - TBD.
+   * Add a binding to the list of listeners.
+   * @param {SignalBinding} binding - The binding to add.
    */
   _addBinding(binding) {
     if (!this._bindings) {
@@ -76,10 +77,10 @@ export class Signal {
   }
 
   /**
-   * TBD.
-   * @param {Function} listener - TBD.
-   * @param {object} context - TBD.
-   * @returns {number} TBD.
+   * Find the index of a listener in the bindings array.
+   * @param {Function} listener - The listener to find.
+   * @param {object} context - The context of the listener.
+   * @returns {number} The index of the listener in the bindings array, or -1 if not found.
    */
   _indexOfListener(listener, context = null) {
     if (!this._bindings) {
@@ -98,22 +99,22 @@ export class Signal {
   }
 
   /**
-   * TBD.
-   * @param {Function} listener - TBD.
-   * @param {object} context - TBD.
-   * @returns {boolean} TBD.
+   * Check if a listener is registered with the signal.
+   * @param {Function} listener - The listener to check.
+   * @param {object} context - The context of the listener.
+   * @returns {boolean} True if the listener is registered, false otherwise.
    */
   has(listener, context = null) {
     return this._indexOfListener(listener, context) !== -1;
   }
 
   /**
-   * TBD.
-   * @param {Function} listener - TBD.
-   * @param {object} listenerContext - TBD.
-   * @param {number} priority - TBD.
-   * @param {...any} args - TBD.
-   * @returns {SignalBinding} TBD.
+   * Add a listener that will be called every time the signal is dispatched.
+   * @param {Function} listener - The function to call when the signal is dispatched.
+   * @param {object} listenerContext - The context to apply when calling the listener.
+   * @param {number} priority - The priority of this listener (higher numbers execute first).
+   * @param {...any} args - Additional arguments to pass to the listener.
+   * @returns {SignalBinding} The binding for this listener.
    */
   add(listener, listenerContext = null, priority = 0, ...args) {
     this.validateListener(listener, 'add');
@@ -121,12 +122,12 @@ export class Signal {
   }
 
   /**
-   * TBD.
-   * @param {Function} listener - TBD.
-   * @param {object} listenerContext - TBD.
-   * @param {number} priority - TBD.
-   * @param {...any} args - TBD.
-   * @returns {SignalBinding} TBD.
+   * Add a listener that will be called only once when the signal is dispatched.
+   * @param {Function} listener - The function to call when the signal is dispatched.
+   * @param {object} listenerContext - The context to apply when calling the listener.
+   * @param {number} priority - The priority of this listener (higher numbers execute first).
+   * @param {...any} args - Additional arguments to pass to the listener.
+   * @returns {SignalBinding} The binding for this listener.
    */
   addOnce(listener, listenerContext = null, priority = 0, ...args) {
     this.validateListener(listener, 'addOnce');
@@ -134,10 +135,10 @@ export class Signal {
   }
 
   /**
-   * TBD.
-   * @param {Function} listener - TBD.
-   * @param {object} context - TBD.
-   * @returns {Function} TBD.
+   * Remove a listener from the signal.
+   * @param {Function} listener - The listener to remove.
+   * @param {object} context - The context of the listener.
+   * @returns {Function} The removed listener function.
    */
   remove(listener, context = null) {
     this.validateListener(listener, 'remove');
@@ -151,8 +152,8 @@ export class Signal {
   }
 
   /**
-   * TBD.
-   * @param {object} context - TBD.
+   * Remove all listeners from the signal, or only those in a specific context.
+   * @param {object} context - The context to filter listeners by, or null to remove all.
    */
   removeAll(context = null) {
     if (!this._bindings) {
@@ -176,23 +177,24 @@ export class Signal {
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Get the number of listeners registered with the signal.
+   * @returns {number} The number of registered listeners.
    */
   getNumListeners() {
     return this._bindings ? this._bindings.length : 0;
   }
 
   /**
-   * TBD.
+   * Stop the signal from propagating to other listeners.
+   * This method prevents any remaining listeners from being called.
    */
   halt() {
     this._shouldPropagate = false;
   }
 
   /**
-   * TBD.
-   * @param {...any} args - TBD.
+   * Dispatch the signal to all registered listeners.
+   * @param {...any} args - Arguments to pass to the listeners.
    */
   dispatch(...args) {
     if (!this.active || !this._bindings) {
@@ -219,7 +221,8 @@ export class Signal {
   }
 
   /**
-   * TBD.
+   * Clear any previously memorized arguments.
+   * This removes the stored arguments from a previous dispatch.
    */
   forget() {
     if (this._prevParams) {
@@ -228,7 +231,8 @@ export class Signal {
   }
 
   /**
-   * TBD.
+   * Dispose of the signal and clean up all resources.
+   * This method removes all listeners and clears internal state.
    */
   dispose() {
     this.removeAll();
@@ -237,16 +241,16 @@ export class Signal {
   }
 
   /**
-   * TBD.
-   * @returns {string} TBD.
+   * Get a string representation of the signal.
+   * @returns {string} A string representation of the signal.
    */
   toString() {
     return `[Signal active:${this.active} numListeners:${this.getNumListeners()}]`;
   }
 
   /**
-   * TBD.
-   * @returns {Function} TBD.
+   * Get a bound version of the dispatch function.
+   * @returns {Function} A function that will dispatch the signal with the correct context.
    */
   get boundDispatch() {
     const _this = this;
