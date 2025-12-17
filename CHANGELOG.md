@@ -1,3 +1,32 @@
+## [1.96.0] - 2025-12-17
+
+### 💼 Other
+
+- *(deps)* Bump dependency versions
+
+### 📚 Documentation
+
+- Improve jsdocs
+- Improve jsdoc comments
+- Improve jsdoc comments
+- Improve jsdoc comments
+- Improve jsdoc comments
+- Improve jsdoc comments
+- Improve jsdoc comments
+- Improve jsdoc comments
+- Regenerated types
+- Improve jsdoc comments
+- Improve jsdoc comments
+- Improved jsdoc comments
+- Improve jsdoc comments
+- Improve jsdoc comments
+- Improve jsdoc comments
+- Improve jsdoc comments
+
+### ⚙️ Miscellaneous Tasks
+
+- Release
+- *(release)* V1.96.0
 ## [1.95.0] - 2025-12-16
 
 ### 💼 Other
