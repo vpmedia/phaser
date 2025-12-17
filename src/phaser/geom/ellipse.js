@@ -5,11 +5,11 @@ import { contains } from './util/ellipse.js';
 
 export class Ellipse {
   /**
-   * TBD.
-   * @param {number} x - TBD.
-   * @param {number} y - TBD.
-   * @param {number} width - TBD.
-   * @param {number} height - TBD.
+   * Creates a new Ellipse instance.
+   * @param {number} x - The x coordinate of the center point (default: 0).
+   * @param {number} y - The y coordinate of the center point (default: 0).
+   * @param {number} width - The width of the ellipse (default: 0).
+   * @param {number} height - The height of the ellipse (default: 0).
    */
   constructor(x = 0, y = 0, width = 0, height = 0) {
     /** @type {number} */
@@ -25,12 +25,12 @@ export class Ellipse {
   }
 
   /**
-   * TBD.
-   * @param {number} x - TBD.
-   * @param {number} y - TBD.
-   * @param {number} width - TBD.
-   * @param {number} height - TBD.
-   * @returns {Ellipse} TBD.
+   * Sets the position and size of this ellipse to new values.
+   * @param {number} x - The new x coordinate of the center point.
+   * @param {number} y - The new y coordinate of the center point.
+   * @param {number} width - The new width of the ellipse.
+   * @param {number} height - The new height of the ellipse.
+   * @returns {Ellipse} This ellipse instance for chaining.
    */
   setTo(x, y, width, height) {
     this.x = x;
@@ -41,26 +41,26 @@ export class Ellipse {
   }
 
   /**
-   * TBD.
-   * @returns {Rectangle} TBD.
+   * Gets the bounding rectangle of this ellipse.
+   * @returns {Rectangle} The bounding rectangle of this ellipse.
    */
   getBounds() {
     return new Rectangle(this.x - this.width, this.y - this.height, this.width, this.height);
   }
 
   /**
-   * TBD.
-   * @param {Ellipse} source - TBD.
-   * @returns {Ellipse} TBD.
+   * Copies the values from another ellipse to this ellipse.
+   * @param {Ellipse} source - The ellipse to copy values from.
+   * @returns {Ellipse} This ellipse instance for chaining.
    */
   copyFrom(source) {
     return this.setTo(source.x, source.y, source.width, source.height);
   }
 
   /**
-   * TBD.
-   * @param {Ellipse} dest - TBD.
-   * @returns {Ellipse} TBD.
+   * Copies the values of this ellipse to another ellipse.
+   * @param {Ellipse} dest - The ellipse to copy values to.
+   * @returns {Ellipse} The destination ellipse.
    */
   copyTo(dest) {
     dest.x = this.x;
@@ -71,19 +71,19 @@ export class Ellipse {
   }
 
   /**
-   * TBD.
-   * @param {number} x - TBD.
-   * @param {number} y - TBD.
-   * @returns {boolean} TBD.
+   * Checks if the specified point is contained within this ellipse.
+   * @param {number} x - The x coordinate of the point to check.
+   * @param {number} y - The y coordinate of the point to check.
+   * @returns {boolean} True if the point is contained within this ellipse, false otherwise.
    */
   contains(x, y) {
     return contains(this, x, y);
   }
 
   /**
-   * TBD.
-   * @param {Point} output - TBD.
-   * @returns {Point} TBD.
+   * Returns a random point within this ellipse.
+   * @param {Point} output - The point to store the result in (optional).
+   * @returns {Point} A random point within this ellipse.
    */
   random(output = null) {
     const result = output || new Point();
@@ -97,8 +97,8 @@ export class Ellipse {
   }
 
   /**
-   * TBD.
-   * @returns {string} TBD.
+   * Returns a string representation of this ellipse.
+   * @returns {string} A string representation of the ellipse.
    */
   toString() {
     return `[{Ellipse (x=${this.x} y=${this.y} width=${this.width} height=${this.height})}]`;

@@ -35,11 +35,11 @@ export class Line {
   }
 
   /**
-   * TBD.
-   * @param {object} startSprite - TBD.
-   * @param {object} endSprite - TBD.
-   * @param {boolean} useCenter - TBD.
-   * @returns {Line} TBD.
+   * Sets the coordinates of this line to match the positions of two sprites.
+   * @param {object} startSprite - The starting sprite to get the position from.
+   * @param {object} endSprite - The ending sprite to get the position from.
+   * @param {boolean} useCenter - Whether to use the center of the sprites (default: false).
+   * @returns {Line} This line instance for chaining.
    */
   fromSprite(startSprite, endSprite, useCenter = false) {
     if (useCenter) {
@@ -49,12 +49,12 @@ export class Line {
   }
 
   /**
-   * TBD.
-   * @param {number} x - TBD.
-   * @param {number} y - TBD.
-   * @param {number} angle - TBD.
-   * @param {number} length - TBD.
-   * @returns {Line} TBD.
+   * Sets the coordinates of this line to a point at a specific angle and distance.
+   * @param {number} x - The x coordinate of the starting point.
+   * @param {number} y - The y coordinate of the starting point.
+   * @param {number} angle - The angle in radians to set the line at.
+   * @param {number} length - The length of the line.
+   * @returns {Line} This line instance for chaining.
    */
   fromAngle(x, y, angle, length) {
     this.start.setTo(x, y);
@@ -63,10 +63,10 @@ export class Line {
   }
 
   /**
-   * TBD.
-   * @param {number} angle - TBD.
-   * @param {boolean} asDegrees - TBD.
-   * @returns {Line} TBD.
+   * Rotates this line around its center point by the specified angle.
+   * @param {number} angle - The angle in radians (or degrees if asDegrees is true) to rotate by.
+   * @param {boolean} asDegrees - Whether the angle is provided in degrees (default: false).
+   * @returns {Line} This line instance for chaining.
    */
   rotate(angle, asDegrees = false) {
     const cx = (this.start.x + this.end.x) / 2;
@@ -77,12 +77,12 @@ export class Line {
   }
 
   /**
-   * TBD.
-   * @param {number} x - TBD.
-   * @param {number} y - TBD.
-   * @param {number} angle - TBD.
-   * @param {boolean} asDegrees - TBD.
-   * @returns {Line} TBD.
+   * Rotates this line around a specific point by the specified angle.
+   * @param {number} x - The x coordinate of the center point to rotate around.
+   * @param {number} y - The y coordinate of the center point to rotate around.
+   * @param {number} angle - The angle in radians (or degrees if asDegrees is true) to rotate by.
+   * @param {boolean} asDegrees - Whether the angle is provided in degrees (default: false).
+   * @returns {Line} This line instance for chaining.
    */
   rotateAround(x, y, angle, asDegrees = false) {
     this.start.rotate(x, y, angle, asDegrees);
@@ -91,29 +91,29 @@ export class Line {
   }
 
   /**
-   * TBD.
-   * @param {Line} line - TBD.
-   * @param {boolean} asSegment - TBD.
-   * @param {Point} result - TBD.
-   * @returns {Point} TBD.
+   * Checks if this line intersects with another line.
+   * @param {Line} line - The other line to check for intersection with.
+   * @param {boolean} asSegment - Whether to treat the lines as segments (default: false).
+   * @param {Point} result - The point to store the intersection in (optional).
+   * @returns {Point} The intersection point, or null if no intersection occurs.
    */
   intersects(line, asSegment, result) {
     return intersectsPoints(this.start, this.end, line.start, line.end, asSegment, result);
   }
 
   /**
-   * TBD.
-   * @param {Line} line - TBD.
-   * @returns {number} TBD.
+   * Calculates the reflection of this line off another line.
+   * @param {Line} line - The line to reflect off.
+   * @returns {number} The angle of reflection in radians.
    */
   reflect(line) {
     return reflect(this, line);
   }
 
   /**
-   * TBD.
-   * @param {Point} output - TBD.
-   * @returns {Point} TBD.
+   * Returns the midpoint of this line.
+   * @param {Point} output - The point to store the result in (optional).
+   * @returns {Point} The midpoint of this line.
    */
   midPoint(output = null) {
     const result = output || new Point();
@@ -123,9 +123,9 @@ export class Line {
   }
 
   /**
-   * TBD.
-   * @param {number} x - TBD.
-   * @param {number} y - TBD.
+   * Centers this line on the specified point.
+   * @param {number} x - The x coordinate to center the line on.
+   * @param {number} y - The y coordinate to center the line on.
    */
   centerOn(x, y) {
     const cx = (this.start.x + this.end.x) / 2;
@@ -137,20 +137,20 @@ export class Line {
   }
 
   /**
-   * TBD.
-   * @param {number} x - TBD.
-   * @param {number} y - TBD.
-   * @returns {boolean} TBD.
+   * Checks if the specified point lies on this line (not necessarily on the segment).
+   * @param {number} x - The x coordinate of the point to check.
+   * @param {number} y - The y coordinate of the point to check.
+   * @returns {boolean} True if the point lies on this line, false otherwise.
    */
   pointOnLine(x, y) {
     return (x - this.start.x) * (this.end.y - this.start.y) === (this.end.x - this.start.x) * (y - this.start.y);
   }
 
   /**
-   * TBD.
-   * @param {number} x - TBD.
-   * @param {number} y - TBD.
-   * @returns {boolean} TBD.
+   * Checks if the specified point lies on this line segment.
+   * @param {number} x - The x coordinate of the point to check.
+   * @param {number} y - The y coordinate of the point to check.
+   * @returns {boolean} True if the point lies on this line segment, false otherwise.
    */
   pointOnSegment(x, y) {
     const xMin = Math.min(this.start.x, this.end.x);
@@ -161,9 +161,9 @@ export class Line {
   }
 
   /**
-   * TBD.
-   * @param {Point} output - TBD.
-   * @returns {Point} TBD.
+   * Returns a random point on this line.
+   * @param {Point} output - The point to store the result in (optional).
+   * @returns {Point} A random point on this line.
    */
   random(output = null) {
     const result = output || new Point();
@@ -174,10 +174,10 @@ export class Line {
   }
 
   /**
-   * TBD.
-   * @param {number} stepRate - TBD.
-   * @param {number[][]} results - TBD.
-   * @returns {number[][]} TBD.
+   * Gets coordinates of points along this line at regular intervals.
+   * @param {number} stepRate - The interval between points (default: 1).
+   * @param {number[][]} results - The array to store the results in (optional).
+   * @returns {number[][]} An array of coordinate pairs representing points along this line.
    */
   coordinatesOnLine(stepRate = 1, results = []) {
     let x1 = Math.round(this.start.x);
@@ -210,16 +210,16 @@ export class Line {
   }
 
   /**
-   * TBD.
-   * @returns {Line} TBD.
+   * Creates a clone of this line.
+   * @returns {Line} A new line with the same values as this one.
    */
   clone() {
     return clone(this);
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the length of this line.
+   * @returns {number} The length of this line.
    */
   get length() {
     return Math.sqrt(
@@ -229,112 +229,112 @@ export class Line {
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the angle of this line in radians.
+   * @returns {number} The angle of this line in radians.
    */
   get angle() {
     return Math.atan2(this.end.y - this.start.y, this.end.x - this.start.x);
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the slope of this line.
+   * @returns {number} The slope of this line.
    */
   get slope() {
     return (this.end.y - this.start.y) / (this.end.x - this.start.x);
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the perpendicular slope of this line.
+   * @returns {number} The perpendicular slope of this line.
    */
   get perpSlope() {
     return -((this.end.x - this.start.x) / (this.end.y - this.start.y));
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the x coordinate of the leftmost point on this line.
+   * @returns {number} The x coordinate of the leftmost point on this line.
    */
   get x() {
     return Math.min(this.start.x, this.end.x);
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the y coordinate of the topmost point on this line.
+   * @returns {number} The y coordinate of the topmost point on this line.
    */
   get y() {
     return Math.min(this.start.y, this.end.y);
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the x coordinate of the leftmost point on this line.
+   * @returns {number} The x coordinate of the leftmost point on this line.
    */
   get left() {
     return Math.min(this.start.x, this.end.x);
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the x coordinate of the rightmost point on this line.
+   * @returns {number} The x coordinate of the rightmost point on this line.
    */
   get right() {
     return Math.max(this.start.x, this.end.x);
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the y coordinate of the topmost point on this line.
+   * @returns {number} The y coordinate of the topmost point on this line.
    */
   get top() {
     return Math.min(this.start.y, this.end.y);
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the y coordinate of the bottommost point on this line.
+   * @returns {number} The y coordinate of the bottommost point on this line.
    */
   get bottom() {
     return Math.max(this.start.y, this.end.y);
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the width of this line (absolute difference between x coordinates).
+   * @returns {number} The width of this line.
    */
   get width() {
     return Math.abs(this.start.x - this.end.x);
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the height of this line (absolute difference between y coordinates).
+   * @returns {number} The height of this line.
    */
   get height() {
     return Math.abs(this.start.y - this.end.y);
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the normal vector x component of this line (perpendicular to the line).
+   * @returns {number} The normal vector x component of this line.
    */
   get normalX() {
     return Math.cos(this.angle - 1.5707963267948966);
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the normal vector y component of this line (perpendicular to the line).
+   * @returns {number} The normal vector y component of this line.
    */
   get normalY() {
     return Math.sin(this.angle - 1.5707963267948966);
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the angle of the normal vector of this line in radians.
+   * @returns {number} The angle of the normal vector of this line in radians.
    */
   get normalAngle() {
     return wrap(this.angle - 1.5707963267948966, -Math.PI, Math.PI);

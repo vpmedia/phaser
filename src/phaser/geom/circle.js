@@ -6,10 +6,10 @@ import { GEOM_CIRCLE } from '../core/const.js';
 
 export class Circle {
   /**
-   * TBD.
-   * @param {number} x - TBD.
-   * @param {number} y - TBD.
-   * @param {number} diameter - TBD.
+   * Creates a new Circle instance.
+   * @param {number} x - The x coordinate of the center point (default: 0).
+   * @param {number} y - The y coordinate of the center point (default: 0).
+   * @param {number} diameter - The diameter of the circle (default: 0).
    */
   constructor(x = 0, y = 0, diameter = 0) {
     /** @type {number} */
@@ -28,17 +28,17 @@ export class Circle {
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Calculates the circumference of this circle.
+   * @returns {number} The circumference of this circle.
    */
   circumference() {
     return 2 * (Math.PI * this._radius);
   }
 
   /**
-   * TBD.
-   * @param {Point} output - TBD.
-   * @returns {Point} TBD.
+   * Returns a random point within this circle.
+   * @param {Point} output - The point to store the result in (optional).
+   * @returns {Point} A random point within this circle.
    */
   random(output = null) {
     const result = output || new Point();
@@ -53,19 +53,19 @@ export class Circle {
   }
 
   /**
-   * TBD.
-   * @returns {Rectangle} TBD.
+   * Gets the bounding rectangle of this circle.
+   * @returns {Rectangle} The bounding rectangle of this circle.
    */
   getBounds() {
     return new Rectangle(this.x - this.radius, this.y - this.radius, this.diameter, this.diameter);
   }
 
   /**
-   * TBD.
-   * @param {number} x - TBD.
-   * @param {number} y - TBD.
-   * @param {number} diameter - TBD.
-   * @returns {Circle} TBD.
+   * Sets the position and size of this circle to new values.
+   * @param {number} x - The new x coordinate of the center point.
+   * @param {number} y - The new y coordinate of the center point.
+   * @param {number} diameter - The new diameter of the circle.
+   * @returns {Circle} This circle instance for chaining.
    */
   setTo(x, y, diameter) {
     this.x = x;
@@ -76,18 +76,18 @@ export class Circle {
   }
 
   /**
-   * TBD.
-   * @param {Circle} source - TBD.
-   * @returns {Circle} TBD.
+   * Copies the values from another circle to this circle.
+   * @param {Circle} source - The circle to copy values from.
+   * @returns {Circle} This circle instance for chaining.
    */
   copyFrom(source) {
     return this.setTo(source.x, source.y, source.diameter);
   }
 
   /**
-   * TBD.
-   * @param {Circle} dest - TBD.
-   * @returns {Circle} TBD.
+   * Copies the values of this circle to another circle.
+   * @param {Circle} dest - The circle to copy values to.
+   * @returns {Circle} The destination circle.
    */
   copyTo(dest) {
     dest.x = this.x;
@@ -97,10 +97,10 @@ export class Circle {
   }
 
   /**
-   * TBD.
-   * @param {Circle} dest - TBD.
-   * @param {boolean} round - TBD.
-   * @returns {number} TBD.
+   * Calculates the distance between this circle and another circle.
+   * @param {Circle} dest - The other circle to calculate the distance to.
+   * @param {boolean} round - Whether to round the result (default: false).
+   * @returns {number} The distance between the circles.
    */
   distance(dest, round = false) {
     const d = distance(this.x, this.y, dest.x, dest.y);
@@ -108,39 +108,39 @@ export class Circle {
   }
 
   /**
-   * TBD.
-   * @returns {Circle} TBD.
+   * Creates a clone of this circle.
+   * @returns {Circle} A new circle with the same values as this one.
    */
   clone() {
     return clone(this);
   }
 
   /**
-   * TBD.
-   * @param {number} x - TBD.
-   * @param {number} y - TBD.
-   * @returns {boolean} TBD.
+   * Checks if the specified point is contained within this circle.
+   * @param {number} x - The x coordinate of the point to check.
+   * @param {number} y - The y coordinate of the point to check.
+   * @returns {boolean} True if the point is contained within this circle, false otherwise.
    */
   contains(x, y) {
     return contains(this, x, y);
   }
 
   /**
-   * TBD.
-   * @param {number} angle - TBD.
-   * @param {boolean} asDegrees - TBD.
-   * @param {Point} out - TBD.
-   * @returns {Point} TBD.
+   * Gets a point at a specific angle on the circumference of this circle.
+   * @param {number} angle - The angle in radians (or degrees if asDegrees is true) to get the point for.
+   * @param {boolean} asDegrees - Whether the angle is provided in degrees (default: false).
+   * @param {Point} out - The point to store the result in (optional).
+   * @returns {Point} A point at the specified angle on the circumference of this circle.
    */
   circumferencePoint(angle, asDegrees, out) {
     return circumferencePoint(this, angle, asDegrees, out);
   }
 
   /**
-   * TBD.
-   * @param {number} dx - TBD.
-   * @param {number} dy - TBD.
-   * @returns {Circle} TBD.
+   * Offsets the position of this circle by the specified amounts.
+   * @param {number} dx - The amount to offset the x coordinate by.
+   * @param {number} dy - The amount to offset the y coordinate by.
+   * @returns {Circle} This circle instance for chaining.
    */
   offset(dx, dy) {
     this.x += dx;
@@ -149,32 +149,32 @@ export class Circle {
   }
 
   /**
-   * TBD.
-   * @param {Point} point - TBD.
-   * @returns {Circle} TBD.
+   * Offsets the position of this circle by the specified point coordinates.
+   * @param {Point} point - The point to offset the circle by.
+   * @returns {Circle} This circle instance for chaining.
    */
   offsetPoint(point) {
     return this.offset(point.x, point.y);
   }
 
   /**
-   * TBD.
-   * @returns {string} TBD.
+   * Returns a string representation of this circle.
+   * @returns {string} A string representation of the circle.
    */
   toString() {
     return `[{Circle (x=${this.x} y=${this.y} diameter=${this.diameter} radius=${this.radius})}]`;
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the diameter of this circle.
+   * @returns {number} The diameter of this circle.
    */
   get diameter() {
     return this._diameter;
   }
 
   /**
-   * TBD.
+   * Sets the diameter of this circle.
    */
   set diameter(value) {
     if (value > 0) {
@@ -184,15 +184,15 @@ export class Circle {
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the radius of this circle.
+   * @returns {number} The radius of this circle.
    */
   get radius() {
     return this._radius;
   }
 
   /**
-   * TBD.
+   * Sets the radius of this circle.
    */
   set radius(value) {
     if (value > 0) {
@@ -202,15 +202,15 @@ export class Circle {
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the left coordinate of this circle.
+   * @returns {number} The left coordinate of this circle.
    */
   get left() {
     return this.x - this._radius;
   }
 
   /**
-   * TBD.
+   * Sets the left coordinate of this circle.
    */
   set left(value) {
     if (value > this.x) {
@@ -222,15 +222,15 @@ export class Circle {
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the right coordinate of this circle.
+   * @returns {number} The right coordinate of this circle.
    */
   get right() {
     return this.x + this._radius;
   }
 
   /**
-   * TBD.
+   * Sets the right coordinate of this circle.
    */
   set right(value) {
     if (value < this.x) {
@@ -242,15 +242,15 @@ export class Circle {
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the top coordinate of this circle.
+   * @returns {number} The top coordinate of this circle.
    */
   get top() {
     return this.y - this._radius;
   }
 
   /**
-   * TBD.
+   * Sets the top coordinate of this circle.
    */
   set top(value) {
     if (value > this.y) {
@@ -262,15 +262,15 @@ export class Circle {
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the bottom coordinate of this circle.
+   * @returns {number} The bottom coordinate of this circle.
    */
   get bottom() {
     return this.y + this._radius;
   }
 
   /**
-   * TBD.
+   * Sets the bottom coordinate of this circle.
    */
   set bottom(value) {
     if (value < this.y) {
@@ -282,8 +282,8 @@ export class Circle {
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the area of this circle.
+   * @returns {number} The area of this circle.
    */
   get area() {
     if (this._radius > 0) {
@@ -293,15 +293,15 @@ export class Circle {
   }
 
   /**
-   * TBD.
-   * @returns {boolean} TBD.
+   * Checks if this circle is empty (has zero diameter).
+   * @returns {boolean} True if the circle is empty, false otherwise.
    */
   get empty() {
     return this._diameter === 0;
   }
 
   /**
-   * TBD.
+   * Sets whether this circle is empty (zero diameter).
    */
   set empty(value) {
     if (value === true) {

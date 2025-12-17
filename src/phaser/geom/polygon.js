@@ -4,8 +4,8 @@ import { GEOM_POLYGON } from '../core/const.js';
 
 export class Polygon {
   /**
-   * TBD.
-   * @param {object[]} points - TBD.
+   * Creates a new Polygon instance.
+   * @param {object[]} points - The array of points to define the polygon (optional).
    */
   constructor(points = null) {
     /** @type {number} */
@@ -24,9 +24,9 @@ export class Polygon {
   }
 
   /**
-   * TBD.
-   * @param {number[]} output - TBD.
-   * @returns {number[]} TBD.
+   * Converts the polygon's points to a number array.
+   * @param {number[]} output - The array to store the result in (optional).
+   * @returns {number[]} An array of numbers representing the polygon's points.
    */
   toNumberArray(output = []) {
     for (let i = 0; i < this._points.length; i += 1) {
@@ -43,8 +43,8 @@ export class Polygon {
   }
 
   /**
-   * TBD.
-   * @returns {Polygon} TBD.
+   * Flattens the polygon's point array to a simple numeric array.
+   * @returns {Polygon} This polygon instance for chaining.
    */
   flatten() {
     this._points = this.toNumberArray();
@@ -53,18 +53,18 @@ export class Polygon {
   }
 
   /**
-   * TBD.
-   * @returns {Polygon} TBD.
+   * Creates a clone of this polygon.
+   * @returns {Polygon} A new polygon with the same values as this one.
    */
   clone() {
     return clone(this);
   }
 
   /**
-   * TBD.
-   * @param {number} x - TBD.
-   * @param {number} y - TBD.
-   * @returns {boolean} TBD.
+   * Checks if the specified point is contained within this polygon.
+   * @param {number} x - The x coordinate of the point to check.
+   * @param {number} y - The y coordinate of the point to check.
+   * @returns {boolean} True if the point is contained within this polygon, false otherwise.
    */
   contains(x, y) {
     //  Adapted from http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html by Jonas Raoni Soares Silva
@@ -94,9 +94,9 @@ export class Polygon {
   }
 
   /**
-   * TBD.
-   * @param {object[]} points - TBD.
-   * @returns {Polygon} TBD.
+   * Sets the polygon's points to new values.
+   * @param {object[]} points - The array of points to define the polygon.
+   * @returns {Polygon} This polygon instance for chaining.
    */
   setTo(points) {
     this.area = 0;
@@ -133,9 +133,9 @@ export class Polygon {
   }
 
   /**
-   * TBD.
-   * @param {number} y0 - TBD.
-   * @returns {number} TBD.
+   * Calculates the area of this polygon.
+   * @param {number} y0 - The y coordinate of the lowest boundary (internal use).
+   * @returns {number} The area of this polygon.
    */
   calculateArea(y0) {
     let p1;
@@ -157,15 +157,15 @@ export class Polygon {
   }
 
   /**
-   * TBD.
-   * @returns {object[]} TBD.
+   * Gets the points of this polygon.
+   * @returns {object[]} The array of points that define this polygon.
    */
   get points() {
     return this._points;
   }
 
   /**
-   * TBD.
+   * Sets the points of this polygon.
    */
   set points(value) {
     if (value !== null) {
