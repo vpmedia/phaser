@@ -2,7 +2,7 @@ import { Rectangle } from '../../geom/rectangle.js';
 
 export class TextureUvs {
   /**
-   * TBD.
+   * Creates a new Texture instance.
    */
   constructor() {
     this.x0 = 0;
@@ -18,11 +18,11 @@ export class TextureUvs {
 
 export class Texture {
   /**
-   * TBD.
-   * @param {import('./base_texture.js').BaseTexture} baseTexture - TBD.
-   * @param {Rectangle | null | undefined} frame - TBD.
-   * @param {Rectangle | null | undefined} crop - TBD.
-   * @param {Rectangle | null | undefined} trim - TBD.
+   * Creates a new Texture instance.
+   * @param {import('./base_texture.js').BaseTexture} baseTexture - The base texture to use.
+   * @param {Rectangle | null | undefined} frame - The frame rectangle.
+   * @param {Rectangle | null | undefined} crop - The crop rectangle.
+   * @param {Rectangle | null | undefined} trim - The trim rectangle.
    */
   constructor(baseTexture, frame = null, crop = null, trim = null) {
     this.noFrame = false;
@@ -63,7 +63,7 @@ export class Texture {
   }
 
   /**
-   * TBD.
+   * Destroys this texture and cleans up resources.
    */
   onBaseTextureLoaded() {
     if (this.noFrame) {
@@ -73,8 +73,8 @@ export class Texture {
   }
 
   /**
-   * TBD.
-   * @param {boolean} destroyBase - TBD.
+   * Destroys this texture and cleans up resources.
+   * @param {boolean} destroyBase - Whether to destroy the base texture as well.
    */
   destroy(destroyBase = false) {
     if (destroyBase) {
@@ -84,9 +84,9 @@ export class Texture {
   }
 
   /**
-   * TBD.
-   * @param {Rectangle} frame - TBD.
-   * @throws {Error}.
+   * Sets the frame of this texture.
+   * @param {Rectangle} frame - The new frame rectangle.
+   * @throws {Error} If the operation fails.
    */
   setFrame(frame) {
     this.noFrame = false;

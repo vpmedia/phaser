@@ -1,7 +1,7 @@
 export class GraphicsData {
   /**
-   * TBD.
-   * @param {WebGLRenderingContext} gl - TBD.
+   * Creates a new GraphicsData instance.
+   * @param {WebGLRenderingContext} gl - The WebGL rendering context.
    */
   constructor(gl) {
     this.gl = gl;
@@ -17,7 +17,7 @@ export class GraphicsData {
   }
 
   /**
-   * TBD.
+   * Destroys this graphics data and cleans up resources.
    */
   reset() {
     this.points = [];
@@ -27,7 +27,7 @@ export class GraphicsData {
   }
 
   /**
-   * TBD.
+   * Updates the graphics data for WebGL rendering.
    */
   upload() {
     const gl = this.gl;

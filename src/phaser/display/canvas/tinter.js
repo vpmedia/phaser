@@ -3,10 +3,10 @@ import { hex2rgb } from '../../util/math.js';
 import { create, removeByCanvas } from './pool.js';
 
 /**
- * TBD.
- * @param {object} sprite - TBD.
- * @param {object} color - TBD.
- * @returns {object} TBD.
+ * Tints a sprite with the given color.
+ * @param {object} sprite - The sprite to tint.
+ * @param {object} color - The color to tint with.
+ * @returns {object} The tinted sprite.
  */
 export const getTintedTexture = (sprite, color) => {
   const canvas = sprite.tintedTexture || create('CanvasTinter', 1, 1);
@@ -15,11 +15,11 @@ export const getTintedTexture = (sprite, color) => {
 };
 
 /**
- * TBD.
- * @param {object} texture - TBD.
- * @param {object} color - TBD.
- * @param {HTMLCanvasElement} canvas - TBD.
- * @throws {Error} TBD.
+ * Tints a texture with the given color.
+ * @param {object} texture - The texture to tint.
+ * @param {object} color - The color to tint with.
+ * @param {HTMLCanvasElement} canvas - The canvas to render to.
+ * @throws {Error} If the operation fails.
  */
 export const tintWithMultiply = (texture, color, canvas) => {
   const context = canvas.getContext('2d', { willReadFrequently: false });
@@ -41,11 +41,11 @@ export const tintWithMultiply = (texture, color, canvas) => {
 };
 
 /**
- * TBD.
- * @param {object} texture - TBD.
- * @param {object} color - TBD.
- * @param {HTMLCanvasElement} canvas - TBD.
- * @throws {Error} TBD.
+ * Tints a texture with the given color.
+ * @param {object} texture - The texture to tint.
+ * @param {object} color - The color to tint with.
+ * @param {HTMLCanvasElement} canvas - The canvas to render to.
+ * @throws {Error} If the operation fails.
  */
 export const tintWithPerPixel = (texture, color, canvas) => {
   const context = canvas.getContext('2d', { willReadFrequently: false });
@@ -79,9 +79,9 @@ export const tintWithPerPixel = (texture, color, canvas) => {
 };
 
 /**
- * TBD.
- * @returns {boolean} TBD.
- * @throws {Error} TBD.
+ * Checks if the tinter can handle the given texture.
+ * @returns {boolean} True if the tinter can handle the texture, false otherwise.
+ * @throws {Error} If the operation fails.
  */
 export const checkInverseAlpha = () => {
   // Check for DOM
@@ -121,9 +121,9 @@ export const checkInverseAlpha = () => {
 };
 
 /**
- * TBD.
- * @returns {boolean} TBD.
- * @throws {Error} TBD.
+ * Checks if the tinter can handle the given texture.
+ * @returns {boolean} True if the tinter can handle the texture, false otherwise.
+ * @throws {Error} If the operation fails.
  */
 export const canUseNewCanvasBlendModes = () => {
   // Check for DOM
@@ -163,8 +163,8 @@ export const canUseNewCanvasBlendModes = () => {
 };
 
 /**
- * TBD.
- * @param {import('../../core/game.js').Game} game - TBD.
+ * Creates a new Tinter instance.
+ * @param {import('../../core/game.js').Game} game - The game instance.
  */
 export const detectCapabilities = (game) => {
   if (!window.PhaserRegistry) {

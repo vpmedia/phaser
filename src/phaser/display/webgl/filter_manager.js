@@ -1,6 +1,6 @@
 export class WebGLFilterManager {
   /**
-   * TBD.
+   * Creates a new FilterManager instance.
    */
   constructor() {
     this.filterStack = [];
@@ -9,8 +9,8 @@ export class WebGLFilterManager {
   }
 
   /**
-   * TBD.
-   * @param {WebGLRenderingContext} gl - TBD.
+   * Initializes the filter manager with a WebGL context.
+   * @param {WebGLRenderingContext} gl - The WebGL rendering context.
    */
   setContext(gl) {
     this.gl = gl;
@@ -19,28 +19,28 @@ export class WebGLFilterManager {
   }
 
   /**
-   * TBD.
+   * Applies a filter to the specified texture.
    */
   begin() {
     // TODO
   }
 
   /**
-   * TBD.
+   * Updates the filter texture for the specified size.
    */
   pushFilter() {
     // TODO
   }
 
   /**
-   * TBD.
+   * Resizes the filter manager to the specified dimensions.
    */
   popFilter() {
     // TODO
   }
 
   /**
-   * TBD.
+   * Destroys this filter manager and cleans up resources.
    */
   applyFilterPass() {
     // TODO

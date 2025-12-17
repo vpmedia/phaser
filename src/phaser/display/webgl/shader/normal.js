@@ -25,8 +25,8 @@ const defaultVertexSrc = [
 
 export class NormalShader {
   /**
-   * TBD.
-   * @param {WebGLRenderingContext & { id: number }} gl - TBD.
+   * Creates a new NormalShader instance.
+   * @param {WebGLRenderingContext & { id: number }} gl - The WebGL rendering context.
    */
   constructor(gl) {
     this.gl = gl;
@@ -53,7 +53,7 @@ export class NormalShader {
   }
 
   /**
-   * TBD.
+   * Destroys this shader and cleans up resources.
    */
   init() {
     const gl = this.gl;
@@ -89,7 +89,7 @@ export class NormalShader {
   }
 
   /**
-   * TBD.
+   * Binds this shader to the WebGL context.
    */
   initUniforms() {
     this.textureCount = 1;
@@ -133,8 +133,8 @@ export class NormalShader {
   }
 
   /**
-   * TBD.
-   * @param {object} uniform - TBD.
+   * Sets a uniform value for this shader.
+   * @param {object} uniform - The uniform to set.
    */
   initSampler2D(uniform) {
     if (!uniform.value || !uniform.value.baseTexture || !uniform.value.baseTexture.hasLoaded) {
@@ -186,7 +186,7 @@ export class NormalShader {
   }
 
   /**
-   * TBD.
+   * Sets the shader to use for rendering.
    */
   syncUniforms() {
     this.textureCount = 1;

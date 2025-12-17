@@ -309,11 +309,11 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @param {string} line - TBD.
-   * @param {number} x - TBD.
-   * @param {number} y - TBD.
-   * @param {boolean} fill - TBD.
+   * Renders a tabbed line of text to the canvas.
+   * @param {string} line - The line of text to render.
+   * @param {number} x - The x position to start rendering from.
+   * @param {number} y - The y position to start rendering from.
+   * @param {boolean} fill - True to fill the text, false to stroke it.
    */
   renderTabLine(line, x, y, fill) {
     const text = line.split(/(?:\t)/);
@@ -348,8 +348,8 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @param {string} state - TBD.
+   * Updates the shadow properties for this text.
+   * @param {string} state - The shadow state to update ('stroke' or 'fill').
    */
   updateShadow(state) {
     if (state) {
@@ -366,9 +366,9 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @param {string} line - TBD.
-   * @returns {number} TBD.
+   * Measures the width of a line of text.
+   * @param {string} line - The line of text to measure.
+   * @returns {number} The width of the line in pixels.
    */
   measureLine(line) {
     let lineLength = 0;
@@ -403,10 +403,10 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @param {string} line - TBD.
-   * @param {number} x - TBD.
-   * @param {number} y - TBD.
+   * Updates a line of text to the canvas.
+   * @param {string} line - The line of text to update.
+   * @param {number} x - The x position to start updating from.
+   * @param {number} y - The y position to start updating from.
    */
   updateLine(line, x, y) {
     for (let i = 0; i < line.length; i += 1) {
@@ -441,8 +441,8 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @returns {Text} TBD.
+   * Clears all color values from this text object.
+   * @returns {Text} This Text object for chaining.
    */
   clearColors() {
     this.colors = [];
@@ -452,8 +452,8 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @returns {Text} TBD.
+   * Clears all font style values from this text object.
+   * @returns {Text} This Text object for chaining.
    */
   clearFontValues() {
     this.fontStyles = [];
@@ -463,10 +463,10 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @param {string} color - TBD.
-   * @param {number} position - TBD.
-   * @returns {Text} TBD.
+   * Adds a color to this text object at the specified position.
+   * @param {string} color - The color to apply.
+   * @param {number} position - The character position to apply the color at.
+   * @returns {Text} This Text object for chaining.
    */
   addColor(color, position) {
     this.colors[position] = color;
@@ -475,10 +475,10 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @param {number} color - TBD.
-   * @param {number} position - TBD.
-   * @returns {Text} TBD.
+   * Adds a stroke color to this text object at the specified position.
+   * @param {number} color - The stroke color to apply.
+   * @param {number} position - The character position to apply the stroke color at.
+   * @returns {Text} This Text object for chaining.
    */
   addStrokeColor(color, position) {
     this.strokeColors[position] = color;
@@ -487,10 +487,10 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @param {object} style - TBD.
-   * @param {number} position - TBD.
-   * @returns {Text} TBD.
+   * Adds a font style to this text object at the specified position.
+   * @param {object} style - The font style to apply.
+   * @param {number} position - The character position to apply the font style at.
+   * @returns {Text} This Text object for chaining.
    */
   addFontStyle(style, position) {
     this.fontStyles[position] = style;
@@ -499,10 +499,10 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @param {number} weight - TBD.
-   * @param {number} position - TBD.
-   * @returns {Text} TBD.
+   * Adds a font weight to this text object at the specified position.
+   * @param {number} weight - The font weight to apply.
+   * @param {number} position - The character position to apply the font weight at.
+   * @returns {Text} This Text object for chaining.
    */
   addFontWeight(weight, position) {
     this.fontWeights[position] = weight;
@@ -511,9 +511,9 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @param {string} text - TBD.
-   * @returns {string[]} TBD.
+   * Precalculates word wrap for the given text.
+   * @param {string} text - The text to precalculate word wrap for.
+   * @returns {string[]} The wrapped lines of text.
    */
   precalculateWordWrap(text) {
     this.texture.baseTexture.resolution = this._res;
@@ -523,9 +523,9 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @param {string} text - TBD.
-   * @returns {string} TBD.
+   * Runs word wrap on the given text.
+   * @param {string} text - The text to run word wrap on.
+   * @returns {string} The wrapped text.
    */
   runWordWrap(text) {
     if (this.useAdvancedWrap) {
@@ -535,10 +535,10 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @param {string} text - TBD.
-   * @returns {string} TBD.
-   * @throws {Error}
+   * Runs advanced word wrap on the given text.
+   * @param {string} text - The text to run advanced word wrap on.
+   * @returns {string} The wrapped text.
+   * @throws {Error} If the wordWrapWidth setting is less than a single character.
    */
   advancedWordWrap(text) {
     const context = this.context;
@@ -618,9 +618,9 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @param {string} text - TBD.
-   * @returns {string} TBD.
+   * Runs basic word wrap on the given text.
+   * @param {string} text - The text to run basic word wrap on.
+   * @returns {string} The wrapped text.
    */
   basicWordWrap(text) {
     let result = '';
@@ -651,8 +651,8 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @param {object} components - TBD.
+   * Updates the font properties based on the given components.
+   * @param {object} components - The font components to update from.
    */
   updateFont(components) {
     const font = this.componentsToFont(components);
@@ -666,9 +666,9 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @param {string} font - TBD.
-   * @returns {{ font: string, fontStyle?: string, fontVariant?: string, fontWeight?: string, fontSize?: string, fontFamily?: string }} TBD.
+   * Converts a font string to components.
+   * @param {string} font - The font string to convert.
+   * @returns {{ font: string, fontStyle?: string, fontVariant?: string, fontWeight?: string, fontSize?: string, fontFamily?: string }} The font components.
    */
   fontToComponents(font) {
     // The format is specified in http://www.w3.org/TR/CSS2/fonts.html#font-shorthand:
@@ -702,9 +702,9 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @param {object} components - TBD.
-   * @returns {string} TBD.
+   * Converts font components to a font string.
+   * @param {object} components - The font components to convert.
+   * @returns {string} The font string.
    */
   componentsToFont(components) {
     const parts = [];
@@ -737,10 +737,10 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @param {string} text - TBD.
-   * @param {boolean} immediate - TBD.
-   * @returns {Text} TBD.
+   * Sets the text content of this object.
+   * @param {string} text - The new text to set.
+   * @param {boolean} immediate - If true, updates the text immediately.
+   * @returns {Text} This Text object for chaining.
    */
   setText(text, immediate = false) {
     this.text = text.toString() || '';
@@ -753,9 +753,9 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @param {string[]|string[][]} list - TBD.
-   * @returns {Text} TBD.
+   * Parses a list of text into this object.
+   * @param {string[]|string[][]} list - The list of text to parse.
+   * @returns {Text} This Text object for chaining.
    */
   parseList(list) {
     if (!Array.isArray(list)) {
@@ -781,12 +781,12 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @param {number} x - TBD.
-   * @param {number} y - TBD.
-   * @param {number} width - TBD.
-   * @param {number} height - TBD.
-   * @returns {Text} TBD.
+   * Sets the text bounds for this object.
+   * @param {number} x - The x position of the bounds.
+   * @param {number} y - The y position of the bounds.
+   * @param {number} width - The width of the bounds.
+   * @param {number} height - The height of the bounds.
+   * @returns {Text} This Text object for chaining.
    */
   setTextBounds(x, y, width, height) {
     if (x === undefined) {
@@ -806,7 +806,7 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
+   * Updates the texture of this object.
    */
   updateTexture() {
     const base = this.texture.baseTexture;
@@ -848,8 +848,8 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @param {object} renderSession - TBD.
+   * Renders this text object using WebGL.
+   * @param {object} renderSession - The render session to use.
    */
   renderWebGL(renderSession) {
     if (this.dirty) {
@@ -860,8 +860,8 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @param {object} renderSession - TBD.
+   * Renders this text object using Canvas.
+   * @param {object} renderSession - The render session to use.
    */
   renderCanvas(renderSession) {
     if (this.dirty) {
@@ -872,8 +872,8 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @returns {{[key: string]: {ascent: number, descent: number, fontSize: number}}} TBD.
+   * Gets the font properties cache object.
+   * @returns {{[key: string]: {ascent: number, descent: number, fontSize: number}}} The font properties cache.
    */
   getFontPropertiesCache() {
     if (!window.PhaserRegistry.fontPropertiesCache) {
@@ -883,8 +883,8 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @returns {HTMLCanvasElement} TBD.
+   * Gets the font properties canvas element.
+   * @returns {HTMLCanvasElement} The font properties canvas element.
    */
   getFontPropertiesCanvas() {
     if (!window.PhaserRegistry.fontPropertiesCanvas) {
@@ -894,8 +894,8 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @returns {CanvasRenderingContext2D} TBD.
+   * Gets the font properties canvas context.
+   * @returns {CanvasRenderingContext2D} The font properties canvas context.
    */
   getFontPropertiesContext() {
     if (!window.PhaserRegistry.fontPropertiesContext) {
@@ -907,9 +907,9 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @param {string} font - TBD.
-   * @returns {object} TBD.
+   * Determines the font properties for a given font.
+   * @param {string} font - The font to determine properties for.
+   * @returns {object} The font properties.
    */
   determineFontProperties(font) {
     const fontPropertiesCache = this.getFontPropertiesCache();
@@ -932,9 +932,9 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @param {string} fontStyle - TBD.
-   * @returns {{ascent: number, descent: number, fontSize: number}} TBD.
+   * Determines font properties using a fallback method.
+   * @param {string} fontStyle - The font style to determine properties for.
+   * @returns {{ascent: number, descent: number, fontSize: number}} The font properties.
    */
   determineFontPropertiesFallback(fontStyle) {
     const fontPropertiesCache = this.getFontPropertiesCache();
@@ -1013,9 +1013,9 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @param {import('../geom/matrix.js').Matrix} matrix - TBD.
-   * @returns {Rectangle} TBD.
+   * Gets the bounds of this text object.
+   * @param {import('../geom/matrix.js').Matrix} matrix - The transformation matrix to use.
+   * @returns {Rectangle} The bounds of this text object.
    */
   getBounds(matrix = null) {
     if (this.dirty) {
@@ -1026,16 +1026,16 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @returns {string} TBD.
+   * Gets the text content of this object.
+   * @returns {string} The current text content.
    */
   get text() {
     return this._text;
   }
 
   /**
-   * TBD.
-   * @param {string | number | boolean | Date} value - TBD.
+   * Sets the text content of this object.
+   * @param {string | number | boolean | Date} value - The new text content to set.
    */
   set text(value) {
     if (value !== this._text) {
@@ -1048,15 +1048,16 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @returns {string} TBD.
+   * Gets the CSS font string for this object.
+   * @returns {string} The CSS font string.
    */
   get cssFont() {
     return this.componentsToFont(this._fontComponents);
   }
 
   /**
-   * TBD.
+   * Sets the CSS font string for this object.
+   * @param {string} value - The new CSS font string to set.
    */
   set cssFont(value) {
     this._fontComponents = this.fontToComponents(value || 'bold 20pt Arial');
@@ -1064,15 +1065,16 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the font family of this object.
+   * @returns {number} The font family.
    */
   get font() {
     return this._fontComponents.fontFamily;
   }
 
   /**
-   * TBD.
+   * Sets the font family of this object.
+   * @param {string} value - The new font family to set.
    */
   set font(value) {
     let mutatedValue = value || 'Arial';
@@ -1087,8 +1089,8 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the font size of this object.
+   * @returns {number} The font size.
    */
   get fontSize() {
     const size = this._fontComponents.fontSize;
@@ -1099,7 +1101,8 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
+   * Sets the font size of this object.
+   * @param {number} value - The new font size to set.
    */
   set fontSize(value) {
     let mutatedValue = value || '0';
@@ -1111,15 +1114,16 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @returns {string} TBD.
+   * Gets the font weight of this object.
+   * @returns {string} The font weight.
    */
   get fontWeight() {
     return this._fontComponents.fontWeight || 'normal';
   }
 
   /**
-   * TBD.
+   * Sets the font weight of this object.
+   * @param {string} value - The new font weight to set.
    */
   set fontWeight(value) {
     this._fontComponents.fontWeight = value || 'normal';
@@ -1127,15 +1131,16 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @returns {string} TBD.
+   * Gets the font style of this object.
+   * @returns {string} The font style.
    */
   get fontStyle() {
     return this._fontComponents.fontStyle || 'normal';
   }
 
   /**
-   * TBD.
+   * Sets the font style of this object.
+   * @param {string} value - The new font style to set.
    */
   set fontStyle(value) {
     this._fontComponents.fontStyle = value || 'normal';
@@ -1143,15 +1148,16 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @returns {string} TBD.
+   * Gets the font variant of this object.
+   * @returns {string} The font variant.
    */
   get fontVariant() {
     return this._fontComponents.fontVariant || 'normal';
   }
 
   /**
-   * TBD.
+   * Sets the font variant of this object.
+   * @param {string} value - The new font variant to set.
    */
   set fontVariant(value) {
     this._fontComponents.fontVariant = value || 'normal';
@@ -1159,15 +1165,16 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the fill color of this object.
+   * @returns {number} The fill color.
    */
   get fill() {
     return this.style.fill;
   }
 
   /**
-   * TBD.
+   * Sets the fill color of this object.
+   * @param {string} value - The new fill color to set.
    */
   set fill(value) {
     if (value !== this.style.fill) {
@@ -1177,15 +1184,16 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @returns {string} TBD.
+   * Gets the alignment of this object.
+   * @returns {string} The text alignment.
    */
   get align() {
     return this.style.align;
   }
 
   /**
-   * TBD.
+   * Sets the alignment of this object.
+   * @param {string} value - The new text alignment to set.
    */
   set align(value) {
     if (value !== this.style.align) {
@@ -1195,15 +1203,16 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the resolution of this object.
+   * @returns {number} The resolution.
    */
   get resolution() {
     return this._res;
   }
 
   /**
-   * TBD.
+   * Sets the resolution of this object.
+   * @param {number} value - The new resolution to set.
    */
   set resolution(value) {
     if (value !== this._res) {
@@ -1213,15 +1222,16 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the tabs setting of this object.
+   * @returns {number} The tabs setting.
    */
   get tabs() {
     return this.style.tabs;
   }
 
   /**
-   * TBD.
+   * Sets the tabs setting of this object.
+   * @param {number} value - The new tabs setting to set.
    */
   set tabs(value) {
     if (value !== this.style.tabs) {
@@ -1231,15 +1241,16 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the horizontal bounds alignment of this object.
+   * @returns {number} The horizontal bounds alignment.
    */
   get boundsAlignH() {
     return this.style.boundsAlignH;
   }
 
   /**
-   * TBD.
+   * Sets the horizontal bounds alignment of this object.
+   * @param {number} value - The new horizontal bounds alignment to set.
    */
   set boundsAlignH(value) {
     if (value !== this.style.boundsAlignH) {
@@ -1249,15 +1260,16 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the vertical bounds alignment of this object.
+   * @returns {number} The vertical bounds alignment.
    */
   get boundsAlignV() {
     return this.style.boundsAlignV;
   }
 
   /**
-   * TBD.
+   * Sets the vertical bounds alignment of this object.
+   * @param {number} value - The new vertical bounds alignment to set.
    */
   set boundsAlignV(value) {
     if (value !== this.style.boundsAlignV) {
@@ -1267,15 +1279,16 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the stroke color of this object.
+   * @returns {number} The stroke color.
    */
   get stroke() {
     return this.style.stroke;
   }
 
   /**
-   * TBD.
+   * Sets the stroke color of this object.
+   * @param {string} value - The new stroke color to set.
    */
   set stroke(value) {
     if (value !== this.style.stroke) {
@@ -1285,15 +1298,16 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the stroke thickness of this object.
+   * @returns {number} The stroke thickness.
    */
   get strokeThickness() {
     return this.style.strokeThickness;
   }
 
   /**
-   * TBD.
+   * Sets the stroke thickness of this object.
+   * @param {number} value - The new stroke thickness to set.
    */
   set strokeThickness(value) {
     if (value !== this.style.strokeThickness) {
@@ -1303,15 +1317,16 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the word wrap setting of this object.
+   * @returns {number} The word wrap setting.
    */
   get wordWrap() {
     return this.style.wordWrap;
   }
 
   /**
-   * TBD.
+   * Sets the word wrap setting of this object.
+   * @param {boolean} value - The new word wrap setting to set.
    */
   set wordWrap(value) {
     if (value !== this.style.wordWrap) {
@@ -1321,15 +1336,16 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the word wrap width of this object.
+   * @returns {number} The word wrap width.
    */
   get wordWrapWidth() {
     return this.style.wordWrapWidth;
   }
 
   /**
-   * TBD.
+   * Sets the word wrap width of this object.
+   * @param {number} value - The new word wrap width to set.
    */
   set wordWrapWidth(value) {
     if (value !== this.style.wordWrapWidth) {
@@ -1339,15 +1355,16 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the line spacing of this object.
+   * @returns {number} The line spacing.
    */
   get lineSpacing() {
     return this._lineSpacing;
   }
 
   /**
-   * TBD.
+   * Sets the line spacing of this object.
+   * @param {number} value - The new line spacing to set.
    */
   set lineSpacing(value) {
     if (value !== this._lineSpacing) {
@@ -1360,15 +1377,16 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the shadow offset X of this object.
+   * @returns {number} The shadow offset X.
    */
   get shadowOffsetX() {
     return this.style.shadowOffsetX;
   }
 
   /**
-   * TBD.
+   * Sets the shadow offset X of this object.
+   * @param {number} value - The new shadow offset X to set.
    */
   set shadowOffsetX(value) {
     if (value !== this.style.shadowOffsetX) {
@@ -1378,15 +1396,16 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the shadow offset Y of this object.
+   * @returns {number} The shadow offset Y.
    */
   get shadowOffsetY() {
     return this.style.shadowOffsetY;
   }
 
   /**
-   * TBD.
+   * Sets the shadow offset Y of this object.
+   * @param {number} value - The new shadow offset Y to set.
    */
   set shadowOffsetY(value) {
     if (value !== this.style.shadowOffsetY) {
@@ -1396,15 +1415,16 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the shadow color of this object.
+   * @returns {number} The shadow color.
    */
   get shadowColor() {
     return this.style.shadowColor;
   }
 
   /**
-   * TBD.
+   * Sets the shadow color of this object.
+   * @param {string} value - The new shadow color to set.
    */
   set shadowColor(value) {
     if (value !== this.style.shadowColor) {
@@ -1414,15 +1434,16 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the shadow blur of this object.
+   * @returns {number} The shadow blur.
    */
   get shadowBlur() {
     return this.style.shadowBlur;
   }
 
   /**
-   * TBD.
+   * Sets the shadow blur of this object.
+   * @param {number} value - The new shadow blur to set.
    */
   set shadowBlur(value) {
     if (value !== this.style.shadowBlur) {
@@ -1432,15 +1453,16 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the shadow stroke setting of this object.
+   * @returns {number} The shadow stroke setting.
    */
   get shadowStroke() {
     return this.style.shadowStroke;
   }
 
   /**
-   * TBD.
+   * Sets the shadow stroke setting of this object.
+   * @param {boolean} value - The new shadow stroke setting to set.
    */
   set shadowStroke(value) {
     if (value !== this.style.shadowStroke) {
@@ -1450,15 +1472,16 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the shadow fill setting of this object.
+   * @returns {number} The shadow fill setting.
    */
   get shadowFill() {
     return this.style.shadowFill;
   }
 
   /**
-   * TBD.
+   * Sets the shadow fill setting of this object.
+   * @param {boolean} value - The new shadow fill setting to set.
    */
   set shadowFill(value) {
     if (value !== this.style.shadowFill) {
@@ -1468,8 +1491,8 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the width of this object.
+   * @returns {number} The width in pixels.
    */
   get width() {
     if (this.dirty) {
@@ -1480,7 +1503,8 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
+   * Sets the width of this object.
+   * @param {number} value - The new width to set in pixels.
    */
   set width(value) {
     this.scale.x = value / this.texture.frame.width;
@@ -1488,8 +1512,8 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the height of this object.
+   * @returns {number} The height in pixels.
    */
   get height() {
     if (this.dirty) {
@@ -1500,7 +1524,8 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
+   * Sets the height of this object.
+   * @param {number} value - The new height to set in pixels.
    */
   set height(value) {
     this.scale.y = value / this.texture.frame.height;

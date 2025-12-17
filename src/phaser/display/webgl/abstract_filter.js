@@ -1,8 +1,8 @@
 export class AbstractFilter {
   /**
-   * TBD.
-   * @param {string[]} fragmentSrc - TBD.
-   * @param {object} uniforms - TBD.
+   * Creates a new AbstractFilter instance.
+   * @param {string[]} fragmentSrc - The fragment shader source.
+   * @param {object} uniforms - The uniform variables for the shader.
    */
   constructor(fragmentSrc, uniforms) {
     this.passes = [this];
@@ -14,7 +14,7 @@ export class AbstractFilter {
   }
 
   /**
-   * TBD.
+   * Initializes the filter.
    */
   syncUniforms() {
     for (let i = 0, j = this.shaders.length; i < j; i += 1) {

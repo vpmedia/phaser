@@ -3,7 +3,7 @@ import { NormalShader } from './shader/normal.js';
 
 export class WebGLSpriteBatch {
   /**
-   * TBD.
+   * Creates a new SpriteBatch instance.
    */
   constructor() {
     this.vertSize = 5;
@@ -45,8 +45,8 @@ export class WebGLSpriteBatch {
   }
 
   /**
-   * TBD.
-   * @param {WebGLRenderingContext & { id: number }} gl - TBD.
+   * Renders a sprite using WebGL.
+   * @param {WebGLRenderingContext & { id: number }} gl - The WebGL rendering context.
    */
   setContext(gl) {
     this.gl = gl;
@@ -68,8 +68,8 @@ export class WebGLSpriteBatch {
   }
 
   /**
-   * TBD.
-   * @param {object} renderSession - TBD.
+   * Renders the sprite batch using WebGL.
+   * @param {object} renderSession - The render session to use.
    */
   begin(renderSession) {
     this.renderSession = renderSession;
@@ -78,7 +78,7 @@ export class WebGLSpriteBatch {
   }
 
   /**
-   * TBD.
+   * Updates the sprite batch.
    */
   end() {
     this.flush();
@@ -293,10 +293,10 @@ export class WebGLSpriteBatch {
   }
 
   /**
-   * TBD.
-   * @param {import('./base_texture.js').BaseTexture} texture - TBD.
-   * @param {number} size - TBD.
-   * @param {number} startIndex - TBD.
+   * Updates the sprite batch with a new texture.
+   * @param {import('./base_texture.js').BaseTexture} texture - The texture to use.
+   * @param {number} size - The size of the batch.
+   * @param {number} startIndex - The start index in the batch.
    */
   renderBatch(texture, size, startIndex) {
     if (size === 0) {
@@ -320,7 +320,7 @@ export class WebGLSpriteBatch {
   }
 
   /**
-   * TBD.
+   * Destroys this sprite batch and cleans up resources.
    */
   stop() {
     this.flush();
@@ -328,7 +328,7 @@ export class WebGLSpriteBatch {
   }
 
   /**
-   * TBD.
+   * Renders the sprite batch using Canvas.
    */
   start() {
     this.dirty = true;

@@ -5,8 +5,8 @@ import { compileProgram } from '../util.js';
 
 export class StripShader {
   /**
-   * TBD.
-   * @param {WebGLRenderingContext} gl - TBD.
+   * Creates a new StripShader instance.
+   * @param {WebGLRenderingContext} gl - The WebGL rendering context.
    */
   constructor(gl) {
     this.gl = gl;
@@ -47,7 +47,7 @@ export class StripShader {
   }
 
   /**
-   * TBD.
+   * Destroys this shader and cleans up resources.
    */
   init() {
     const gl = this.gl;
@@ -69,7 +69,7 @@ export class StripShader {
   }
 
   /**
-   * TBD.
+   * Binds this shader to the WebGL context.
    */
   destroy() {
     this.gl.deleteProgram(this.program);

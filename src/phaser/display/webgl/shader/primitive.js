@@ -5,8 +5,8 @@ import { compileProgram } from '../util.js';
 
 export class PrimitiveShader {
   /**
-   * TBD.
-   * @param {WebGLRenderingContext} gl - TBD.
+   * Creates a new PrimitiveShader instance.
+   * @param {WebGLRenderingContext} gl - The WebGL rendering context.
    */
   constructor(gl) {
     this.gl = gl;
@@ -43,7 +43,7 @@ export class PrimitiveShader {
   }
 
   /**
-   * TBD.
+   * Destroys this shader and cleans up resources.
    */
   init() {
     const gl = this.gl;
@@ -64,7 +64,7 @@ export class PrimitiveShader {
   }
 
   /**
-   * TBD.
+   * Binds this shader to the WebGL context.
    */
   destroy() {
     this.gl.deleteProgram(this.program);

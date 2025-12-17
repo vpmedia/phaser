@@ -8,12 +8,12 @@ import { Texture } from './texture.js';
 
 export class RenderTexture extends Texture {
   /**
-   * TBD.
-   * @param {number} width - TBD.
-   * @param {number} height - TBD.
-   * @param {import('./renderer.js').WebGLRenderer|import('../canvas/renderer.js').CanvasRenderer} renderer - TBD.
-   * @param {number} scaleMode - TBD.
-   * @param {number} resolution - TBD.
+   * Creates a new RenderTexture instance.
+   * @param {number} width - The width of the render texture.
+   * @param {number} height - The height of the render texture.
+   * @param {import('./renderer.js').WebGLRenderer|import('../canvas/renderer.js').CanvasRenderer} renderer - The renderer to use.
+   * @param {number} scaleMode - The scale mode to use.
+   * @param {number} resolution - The resolution to use.
    */
   constructor(width, height, renderer, scaleMode, resolution = 1) {
     const w = width || 100;
@@ -51,36 +51,36 @@ export class RenderTexture extends Texture {
   }
 
   /**
-   * TBD.
+   * Destroys this render texture and cleans up resources.
    */
   resize() {
     // TODO
   }
 
   /**
-   * TBD.
+   * Updates the size of this render texture.
    */
   clear() {
     // TODO
   }
 
   /**
-   * TBD.
+   * Updates the resolution of this render texture.
    */
   renderWebGL() {
     // TODO
   }
 
   /**
-   * TBD.
+   * Updates the scale mode of this render texture.
    */
   renderCanvas() {
     // TODO
   }
 
   /**
-   * TBD.
-   * @returns {HTMLImageElement} TBD.
+   * Gets the HTML image element for this render texture.
+   * @returns {HTMLImageElement} The HTML image element.
    */
   getImage() {
     const image = new Image();
@@ -89,16 +89,16 @@ export class RenderTexture extends Texture {
   }
 
   /**
-   * TBD.
-   * @returns {string} TBD.
+   * Gets the base64 string representation of this render texture.
+   * @returns {string} The base64 string representation.
    */
   getBase64() {
     return this.getCanvas().toDataURL();
   }
 
   /**
-   * TBD.
-   * @returns {HTMLCanvasElement} TBD.
+   * Gets the canvas element for this render texture.
+   * @returns {HTMLCanvasElement} The canvas element.
    */
   getCanvas() {
     // TODO

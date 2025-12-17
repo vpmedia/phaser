@@ -1,8 +1,8 @@
 import { GEOM_CIRCLE, GEOM_ELLIPSE, GEOM_POLYGON, GEOM_RECTANGLE, GEOM_ROUNDED_RECTANGLE } from '../../core/const.js';
 
 /**
- * TBD.
- * @param {import('../graphics.js').Graphics} graphics - TBD.
+ * Renders a graphics object to canvas.
+ * @param {import('../graphics.js').Graphics} graphics - The graphics object to render.
  */
 export const updateGraphicsTint = (graphics) => {
   if (graphics.tint === 0xffffff) {
@@ -27,9 +27,9 @@ export const updateGraphicsTint = (graphics) => {
 };
 
 /**
- * TBD.
- * @param {import('../graphics.js').Graphics} graphics - TBD.
- * @param {object} context - TBD.
+ * Renders a graphics object to canvas.
+ * @param {import('../graphics.js').Graphics} graphics - The graphics object to render.
+ * @param {object} context - The canvas rendering context.
  */
 export const renderGraphics = (graphics, context) => {
   const worldAlpha = graphics.worldAlpha;
@@ -156,9 +156,9 @@ export const renderGraphics = (graphics, context) => {
 };
 
 /**
- * TBD.
- * @param {import('../graphics.js').Graphics} graphics - TBD.
- * @param {object} context - TBD.
+ * Renders a graphics object to canvas.
+ * @param {import('../graphics.js').Graphics} graphics - The graphics object to render.
+ * @param {object} context - The canvas rendering context.
  */
 export const renderGraphicsMask = (graphics, context) => {
   const len = graphics.graphicsData.length;
