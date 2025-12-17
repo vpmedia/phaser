@@ -1,7 +1,7 @@
 export class CanvasRenderer {
     /**
-     * TBD.
-     * @param {import('../../core/game.js').Game} game - TBD.
+     * Creates a new CanvasRenderer instance.
+     * @param {import('../../core/game.js').Game} game - The game instance.
      */
     constructor(game: import("../../core/game.js").Game);
     /** @type {number} */
@@ -26,26 +26,26 @@ export class CanvasRenderer {
         roundPixels: any;
     };
     /**
-     * TBD.
-     * @param {import('../../core/stage.js').Stage} root - TBD.
+     * Renders the stage to canvas.
+     * @param {import('../../core/stage.js').Stage} root - The root stage to render.
      */
     render(root: import("../../core/stage.js").Stage): void;
     /**
-     * TBD.
-     * @param {boolean} removeView - TBD.
+     * Destroys this renderer and cleans up resources.
+     * @param {boolean} removeView - Whether to remove the view from the DOM.
      */
     destroy(removeView?: boolean): void;
     /**
-     * TBD.
-     * @param {number} width - TBD.
-     * @param {number} height - TBD.
+     * Resizes the canvas to the specified dimensions.
+     * @param {number} width - The new width of the canvas.
+     * @param {number} height - The new height of the canvas.
      */
     resize(width: number, height: number): void;
     /**
-     * TBD.
-     * @param {import('../../display/image.js').Image} displayObject - TBD.
-     * @param {CanvasRenderingContext2D} context - TBD.
-     * @param {import('../../geom/matrix.js').Matrix} matrix - TBD.
+     * Renders a display object to canvas.
+     * @param {import('../../display/image.js').Image} displayObject - The display object to render.
+     * @param {CanvasRenderingContext2D} context - The canvas rendering context.
+     * @param {import('../../geom/matrix.js').Matrix} matrix - The transformation matrix.
      */
     renderDisplayObject(displayObject: import("../../display/image.js").Image, context: CanvasRenderingContext2D, matrix: import("../../geom/matrix.js").Matrix): void;
     /**

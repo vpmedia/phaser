@@ -1,7 +1,7 @@
 export class StripShader {
     /**
-     * TBD.
-     * @param {WebGLRenderingContext} gl - TBD.
+     * Creates a new StripShader instance.
+     * @param {WebGLRenderingContext} gl - The WebGL rendering context.
      */
     constructor(gl: WebGLRenderingContext);
     gl: WebGLRenderingContext;
@@ -11,7 +11,7 @@ export class StripShader {
     fragmentSrc: string[];
     vertexSrc: string[];
     /**
-     * TBD.
+     * Destroys this shader and cleans up resources.
      */
     init(): void;
     uSampler: WebGLUniformLocation;
@@ -24,7 +24,7 @@ export class StripShader {
     translationMatrix: WebGLUniformLocation;
     alpha: WebGLUniformLocation;
     /**
-     * TBD.
+     * Binds this shader to the WebGL context.
      */
     destroy(): void;
     uniforms: any;

@@ -1,7 +1,7 @@
 export class NormalShader {
     /**
-     * TBD.
-     * @param {WebGLRenderingContext & { id: number }} gl - TBD.
+     * Creates a new NormalShader instance.
+     * @param {WebGLRenderingContext & { id: number }} gl - The WebGL rendering context.
      */
     constructor(gl: WebGLRenderingContext & {
         id: number;
@@ -21,7 +21,7 @@ export class NormalShader {
     uniforms: {};
     attributes: any[];
     /**
-     * TBD.
+     * Destroys this shader and cleans up resources.
      */
     init(): void;
     uSampler: WebGLUniformLocation;
@@ -32,16 +32,16 @@ export class NormalShader {
     aTextureCoord: number;
     colorAttribute: number;
     /**
-     * TBD.
+     * Binds this shader to the WebGL context.
      */
     initUniforms(): void;
     /**
-     * TBD.
-     * @param {object} uniform - TBD.
+     * Sets a uniform value for this shader.
+     * @param {object} uniform - The uniform to set.
      */
     initSampler2D(uniform: object): void;
     /**
-     * TBD.
+     * Sets the shader to use for rendering.
      */
     syncUniforms(): void;
     /**

@@ -16,8 +16,8 @@ export class WebGLSpriteBatch {
     sprites: any[];
     defaultShader: AbstractFilter;
     /**
-     * TBD.
-     * @param {WebGLRenderingContext & { id: number }} gl - TBD.
+     * Renders a sprite using WebGL.
+     * @param {WebGLRenderingContext & { id: number }} gl - The WebGL rendering context.
      */
     setContext(gl: WebGLRenderingContext & {
         id: number;
@@ -29,14 +29,14 @@ export class WebGLSpriteBatch {
     indexBuffer: WebGLBuffer;
     currentBlendMode: number;
     /**
-     * TBD.
-     * @param {object} renderSession - TBD.
+     * Renders the sprite batch using WebGL.
+     * @param {object} renderSession - The render session to use.
      */
     begin(renderSession: object): void;
     renderSession: any;
     shader: any;
     /**
-     * TBD.
+     * Updates the sprite batch.
      */
     end(): void;
     /**
@@ -54,18 +54,18 @@ export class WebGLSpriteBatch {
      */
     flush(): void;
     /**
-     * TBD.
-     * @param {import('./base_texture.js').BaseTexture} texture - TBD.
-     * @param {number} size - TBD.
-     * @param {number} startIndex - TBD.
+     * Updates the sprite batch with a new texture.
+     * @param {import('./base_texture.js').BaseTexture} texture - The texture to use.
+     * @param {number} size - The size of the batch.
+     * @param {number} startIndex - The start index in the batch.
      */
     renderBatch(texture: import("./base_texture.js").BaseTexture, size: number, startIndex: number): void;
     /**
-     * TBD.
+     * Destroys this sprite batch and cleans up resources.
      */
     stop(): void;
     /**
-     * TBD.
+     * Renders the sprite batch using Canvas.
      */
     start(): void;
     /**

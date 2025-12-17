@@ -1,10 +1,10 @@
 export class FilterTexture {
     /**
-     * TBD.
-     * @param {WebGLRenderingContext} gl - TBD.
-     * @param {number} width - TBD.
-     * @param {number} height - TBD.
-     * @param {number} scaleMode - TBD.
+     * Creates a new FilterTexture instance.
+     * @param {WebGLRenderingContext} gl - The WebGL rendering context.
+     * @param {number} width - The width of the filter texture.
+     * @param {number} height - The height of the filter texture.
+     * @param {number} scaleMode - The scale mode to use.
      */
     constructor(gl: WebGLRenderingContext, width: number, height: number, scaleMode: number);
     gl: WebGLRenderingContext;
@@ -12,19 +12,19 @@ export class FilterTexture {
     texture: WebGLTexture;
     renderBuffer: WebGLRenderbuffer;
     /**
-     * TBD.
+     * Destroys this filter texture and cleans up resources.
      */
     clear(): void;
     /**
-     * TBD.
-     * @param {number} width - TBD.
-     * @param {number} height - TBD.
+     * Updates the size of this filter texture.
+     * @param {number} width - The new width of the filter texture.
+     * @param {number} height - The new height of the filter texture.
      */
     resize(width: number, height: number): void;
     width: any;
     height: number;
     /**
-     * TBD.
+     * Updates the resolution of this filter texture.
      */
     destroy(): void;
 }

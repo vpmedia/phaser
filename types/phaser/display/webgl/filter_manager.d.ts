@@ -3,26 +3,26 @@ export class WebGLFilterManager {
     offsetX: number;
     offsetY: number;
     /**
-     * TBD.
-     * @param {WebGLRenderingContext} gl - TBD.
+     * Initializes the filter manager with a WebGL context.
+     * @param {WebGLRenderingContext} gl - The WebGL rendering context.
      */
     setContext(gl: WebGLRenderingContext): void;
     gl: WebGLRenderingContext;
     texturePool: any[];
     /**
-     * TBD.
+     * Applies a filter to the specified texture.
      */
     begin(): void;
     /**
-     * TBD.
+     * Updates the filter texture for the specified size.
      */
     pushFilter(): void;
     /**
-     * TBD.
+     * Resizes the filter manager to the specified dimensions.
      */
     popFilter(): void;
     /**
-     * TBD.
+     * Destroys this filter manager and cleans up resources.
      */
     applyFilterPass(): void;
     /**

@@ -61,103 +61,103 @@ export class Text extends Image {
      */
     updateText(): void;
     /**
-     * TBD.
-     * @param {string} line - TBD.
-     * @param {number} x - TBD.
-     * @param {number} y - TBD.
-     * @param {boolean} fill - TBD.
+     * Renders a tabbed line of text to the canvas.
+     * @param {string} line - The line of text to render.
+     * @param {number} x - The x position to start rendering from.
+     * @param {number} y - The y position to start rendering from.
+     * @param {boolean} fill - True to fill the text, false to stroke it.
      */
     renderTabLine(line: string, x: number, y: number, fill: boolean): void;
     /**
-     * TBD.
-     * @param {string} state - TBD.
+     * Updates the shadow properties for this text.
+     * @param {string} state - The shadow state to update ('stroke' or 'fill').
      */
     updateShadow(state: string): void;
     /**
-     * TBD.
-     * @param {string} line - TBD.
-     * @returns {number} TBD.
+     * Measures the width of a line of text.
+     * @param {string} line - The line of text to measure.
+     * @returns {number} The width of the line in pixels.
      */
     measureLine(line: string): number;
     /**
-     * TBD.
-     * @param {string} line - TBD.
-     * @param {number} x - TBD.
-     * @param {number} y - TBD.
+     * Updates a line of text to the canvas.
+     * @param {string} line - The line of text to update.
+     * @param {number} x - The x position to start updating from.
+     * @param {number} y - The y position to start updating from.
      */
     updateLine(line: string, x: number, y: number): void;
     /**
-     * TBD.
-     * @returns {Text} TBD.
+     * Clears all color values from this text object.
+     * @returns {Text} This Text object for chaining.
      */
     clearColors(): Text;
     /**
-     * TBD.
-     * @returns {Text} TBD.
+     * Clears all font style values from this text object.
+     * @returns {Text} This Text object for chaining.
      */
     clearFontValues(): Text;
     /**
-     * TBD.
-     * @param {string} color - TBD.
-     * @param {number} position - TBD.
-     * @returns {Text} TBD.
+     * Adds a color to this text object at the specified position.
+     * @param {string} color - The color to apply.
+     * @param {number} position - The character position to apply the color at.
+     * @returns {Text} This Text object for chaining.
      */
     addColor(color: string, position: number): Text;
     /**
-     * TBD.
-     * @param {number} color - TBD.
-     * @param {number} position - TBD.
-     * @returns {Text} TBD.
+     * Adds a stroke color to this text object at the specified position.
+     * @param {number} color - The stroke color to apply.
+     * @param {number} position - The character position to apply the stroke color at.
+     * @returns {Text} This Text object for chaining.
      */
     addStrokeColor(color: number, position: number): Text;
     /**
-     * TBD.
-     * @param {object} style - TBD.
-     * @param {number} position - TBD.
-     * @returns {Text} TBD.
+     * Adds a font style to this text object at the specified position.
+     * @param {object} style - The font style to apply.
+     * @param {number} position - The character position to apply the font style at.
+     * @returns {Text} This Text object for chaining.
      */
     addFontStyle(style: object, position: number): Text;
     /**
-     * TBD.
-     * @param {number} weight - TBD.
-     * @param {number} position - TBD.
-     * @returns {Text} TBD.
+     * Adds a font weight to this text object at the specified position.
+     * @param {number} weight - The font weight to apply.
+     * @param {number} position - The character position to apply the font weight at.
+     * @returns {Text} This Text object for chaining.
      */
     addFontWeight(weight: number, position: number): Text;
     /**
-     * TBD.
-     * @param {string} text - TBD.
-     * @returns {string[]} TBD.
+     * Precalculates word wrap for the given text.
+     * @param {string} text - The text to precalculate word wrap for.
+     * @returns {string[]} The wrapped lines of text.
      */
     precalculateWordWrap(text: string): string[];
     /**
-     * TBD.
-     * @param {string} text - TBD.
-     * @returns {string} TBD.
+     * Runs word wrap on the given text.
+     * @param {string} text - The text to run word wrap on.
+     * @returns {string} The wrapped text.
      */
     runWordWrap(text: string): string;
     /**
-     * TBD.
-     * @param {string} text - TBD.
-     * @returns {string} TBD.
-     * @throws {Error}
+     * Runs advanced word wrap on the given text.
+     * @param {string} text - The text to run advanced word wrap on.
+     * @returns {string} The wrapped text.
+     * @throws {Error} If the wordWrapWidth setting is less than a single character.
      */
     advancedWordWrap(text: string): string;
     /**
-     * TBD.
-     * @param {string} text - TBD.
-     * @returns {string} TBD.
+     * Runs basic word wrap on the given text.
+     * @param {string} text - The text to run basic word wrap on.
+     * @returns {string} The wrapped text.
      */
     basicWordWrap(text: string): string;
     /**
-     * TBD.
-     * @param {object} components - TBD.
+     * Updates the font properties based on the given components.
+     * @param {object} components - The font components to update from.
      */
     updateFont(components: object): void;
     /**
-     * TBD.
-     * @param {string} font - TBD.
-     * @returns {{ font: string, fontStyle?: string, fontVariant?: string, fontWeight?: string, fontSize?: string, fontFamily?: string }} TBD.
+     * Converts a font string to components.
+     * @param {string} font - The font string to convert.
+     * @returns {{ font: string, fontStyle?: string, fontVariant?: string, fontWeight?: string, fontSize?: string, fontFamily?: string }} The font components.
      */
     fontToComponents(font: string): {
         font: string;
@@ -168,60 +168,60 @@ export class Text extends Image {
         fontFamily?: string;
     };
     /**
-     * TBD.
-     * @param {object} components - TBD.
-     * @returns {string} TBD.
+     * Converts font components to a font string.
+     * @param {object} components - The font components to convert.
+     * @returns {string} The font string.
      */
     componentsToFont(components: object): string;
     /**
-     * TBD.
-     * @param {string} text - TBD.
-     * @param {boolean} immediate - TBD.
-     * @returns {Text} TBD.
+     * Sets the text content of this object.
+     * @param {string} text - The new text to set.
+     * @param {boolean} immediate - If true, updates the text immediately.
+     * @returns {Text} This Text object for chaining.
      */
     setText(text: string, immediate?: boolean): Text;
     /**
-     * TBD.
-     * @param {string | number | boolean | Date} value - TBD.
+     * Sets the text content of this object.
+     * @param {string | number | boolean | Date} value - The new text content to set.
      */
     set text(value: string | number | boolean | Date);
     /**
-     * TBD.
-     * @returns {string} TBD.
+     * Gets the text content of this object.
+     * @returns {string} The current text content.
      */
     get text(): string;
     /**
-     * TBD.
-     * @param {string[]|string[][]} list - TBD.
-     * @returns {Text} TBD.
+     * Parses a list of text into this object.
+     * @param {string[]|string[][]} list - The list of text to parse.
+     * @returns {Text} This Text object for chaining.
      */
     parseList(list: string[] | string[][]): Text;
     /**
-     * TBD.
-     * @param {number} x - TBD.
-     * @param {number} y - TBD.
-     * @param {number} width - TBD.
-     * @param {number} height - TBD.
-     * @returns {Text} TBD.
+     * Sets the text bounds for this object.
+     * @param {number} x - The x position of the bounds.
+     * @param {number} y - The y position of the bounds.
+     * @param {number} width - The width of the bounds.
+     * @param {number} height - The height of the bounds.
+     * @returns {Text} This Text object for chaining.
      */
     setTextBounds(x: number, y: number, width: number, height: number): Text;
     /**
-     * TBD.
+     * Updates the texture of this object.
      */
     updateTexture(): void;
     /**
-     * TBD.
-     * @param {object} renderSession - TBD.
+     * Renders this text object using WebGL.
+     * @param {object} renderSession - The render session to use.
      */
     renderWebGL(renderSession: object): void;
     /**
-     * TBD.
-     * @param {object} renderSession - TBD.
+     * Renders this text object using Canvas.
+     * @param {object} renderSession - The render session to use.
      */
     renderCanvas(renderSession: object): void;
     /**
-     * TBD.
-     * @returns {{[key: string]: {ascent: number, descent: number, fontSize: number}}} TBD.
+     * Gets the font properties cache object.
+     * @returns {{[key: string]: {ascent: number, descent: number, fontSize: number}}} The font properties cache.
      */
     getFontPropertiesCache(): {
         [key: string]: {
@@ -231,25 +231,25 @@ export class Text extends Image {
         };
     };
     /**
-     * TBD.
-     * @returns {HTMLCanvasElement} TBD.
+     * Gets the font properties canvas element.
+     * @returns {HTMLCanvasElement} The font properties canvas element.
      */
     getFontPropertiesCanvas(): HTMLCanvasElement;
     /**
-     * TBD.
-     * @returns {CanvasRenderingContext2D} TBD.
+     * Gets the font properties canvas context.
+     * @returns {CanvasRenderingContext2D} The font properties canvas context.
      */
     getFontPropertiesContext(): CanvasRenderingContext2D;
     /**
-     * TBD.
-     * @param {string} font - TBD.
-     * @returns {object} TBD.
+     * Determines the font properties for a given font.
+     * @param {string} font - The font to determine properties for.
+     * @returns {object} The font properties.
      */
     determineFontProperties(font: string): object;
     /**
-     * TBD.
-     * @param {string} fontStyle - TBD.
-     * @returns {{ascent: number, descent: number, fontSize: number}} TBD.
+     * Determines font properties using a fallback method.
+     * @param {string} fontStyle - The font style to determine properties for.
+     * @returns {{ascent: number, descent: number, fontSize: number}} The font properties.
      */
     determineFontPropertiesFallback(fontStyle: string): {
         ascent: number;
@@ -257,210 +257,233 @@ export class Text extends Image {
         fontSize: number;
     };
     /**
-     * TBD.
+     * Sets the CSS font string for this object.
+     * @param {string} value - The new CSS font string to set.
      */
     set cssFont(value: string);
     /**
-     * TBD.
-     * @returns {string} TBD.
+     * Gets the CSS font string for this object.
+     * @returns {string} The CSS font string.
      */
     get cssFont(): string;
     /**
-     * TBD.
+     * Sets the font family of this object.
+     * @param {string} value - The new font family to set.
      */
-    set font(value: number);
+    set font(value: string);
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the font family of this object.
+     * @returns {number} The font family.
      */
     get font(): number;
     /**
-     * TBD.
+     * Sets the font size of this object.
+     * @param {number} value - The new font size to set.
      */
     set fontSize(value: number);
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the font size of this object.
+     * @returns {number} The font size.
      */
     get fontSize(): number;
     /**
-     * TBD.
+     * Sets the font weight of this object.
+     * @param {string} value - The new font weight to set.
      */
     set fontWeight(value: string);
     /**
-     * TBD.
-     * @returns {string} TBD.
+     * Gets the font weight of this object.
+     * @returns {string} The font weight.
      */
     get fontWeight(): string;
     /**
-     * TBD.
+     * Sets the font style of this object.
+     * @param {string} value - The new font style to set.
      */
     set fontStyle(value: string);
     /**
-     * TBD.
-     * @returns {string} TBD.
+     * Gets the font style of this object.
+     * @returns {string} The font style.
      */
     get fontStyle(): string;
     /**
-     * TBD.
+     * Sets the font variant of this object.
+     * @param {string} value - The new font variant to set.
      */
     set fontVariant(value: string);
     /**
-     * TBD.
-     * @returns {string} TBD.
+     * Gets the font variant of this object.
+     * @returns {string} The font variant.
      */
     get fontVariant(): string;
     /**
-     * TBD.
+     * Sets the fill color of this object.
+     * @param {string} value - The new fill color to set.
      */
-    set fill(value: number);
+    set fill(value: string);
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the fill color of this object.
+     * @returns {number} The fill color.
      */
     get fill(): number;
     /**
-     * TBD.
+     * Sets the alignment of this object.
+     * @param {string} value - The new text alignment to set.
      */
     set align(value: string);
     /**
-     * TBD.
-     * @returns {string} TBD.
+     * Gets the alignment of this object.
+     * @returns {string} The text alignment.
      */
     get align(): string;
     /**
-     * TBD.
+     * Sets the resolution of this object.
+     * @param {number} value - The new resolution to set.
      */
     set resolution(value: number);
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the resolution of this object.
+     * @returns {number} The resolution.
      */
     get resolution(): number;
     /**
-     * TBD.
+     * Sets the tabs setting of this object.
+     * @param {number} value - The new tabs setting to set.
      */
     set tabs(value: number);
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the tabs setting of this object.
+     * @returns {number} The tabs setting.
      */
     get tabs(): number;
     /**
-     * TBD.
+     * Sets the horizontal bounds alignment of this object.
+     * @param {number} value - The new horizontal bounds alignment to set.
      */
     set boundsAlignH(value: number);
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the horizontal bounds alignment of this object.
+     * @returns {number} The horizontal bounds alignment.
      */
     get boundsAlignH(): number;
     /**
-     * TBD.
+     * Sets the vertical bounds alignment of this object.
+     * @param {number} value - The new vertical bounds alignment to set.
      */
     set boundsAlignV(value: number);
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the vertical bounds alignment of this object.
+     * @returns {number} The vertical bounds alignment.
      */
     get boundsAlignV(): number;
     /**
-     * TBD.
+     * Sets the stroke color of this object.
+     * @param {string} value - The new stroke color to set.
      */
-    set stroke(value: number);
+    set stroke(value: string);
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the stroke color of this object.
+     * @returns {number} The stroke color.
      */
     get stroke(): number;
     /**
-     * TBD.
+     * Sets the stroke thickness of this object.
+     * @param {number} value - The new stroke thickness to set.
      */
     set strokeThickness(value: number);
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the stroke thickness of this object.
+     * @returns {number} The stroke thickness.
      */
     get strokeThickness(): number;
     /**
-     * TBD.
+     * Sets the word wrap setting of this object.
+     * @param {boolean} value - The new word wrap setting to set.
      */
-    set wordWrap(value: number);
+    set wordWrap(value: boolean);
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the word wrap setting of this object.
+     * @returns {number} The word wrap setting.
      */
     get wordWrap(): number;
     /**
-     * TBD.
+     * Sets the word wrap width of this object.
+     * @param {number} value - The new word wrap width to set.
      */
     set wordWrapWidth(value: number);
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the word wrap width of this object.
+     * @returns {number} The word wrap width.
      */
     get wordWrapWidth(): number;
     /**
-     * TBD.
+     * Sets the line spacing of this object.
+     * @param {number} value - The new line spacing to set.
      */
     set lineSpacing(value: number);
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the line spacing of this object.
+     * @returns {number} The line spacing.
      */
     get lineSpacing(): number;
     /**
-     * TBD.
+     * Sets the shadow offset X of this object.
+     * @param {number} value - The new shadow offset X to set.
      */
     set shadowOffsetX(value: number);
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the shadow offset X of this object.
+     * @returns {number} The shadow offset X.
      */
     get shadowOffsetX(): number;
     /**
-     * TBD.
+     * Sets the shadow offset Y of this object.
+     * @param {number} value - The new shadow offset Y to set.
      */
     set shadowOffsetY(value: number);
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the shadow offset Y of this object.
+     * @returns {number} The shadow offset Y.
      */
     get shadowOffsetY(): number;
     /**
-     * TBD.
+     * Sets the shadow color of this object.
+     * @param {string} value - The new shadow color to set.
      */
-    set shadowColor(value: number);
+    set shadowColor(value: string);
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the shadow color of this object.
+     * @returns {number} The shadow color.
      */
     get shadowColor(): number;
     /**
-     * TBD.
+     * Sets the shadow blur of this object.
+     * @param {number} value - The new shadow blur to set.
      */
     set shadowBlur(value: number);
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the shadow blur of this object.
+     * @returns {number} The shadow blur.
      */
     get shadowBlur(): number;
     /**
-     * TBD.
+     * Sets the shadow stroke setting of this object.
+     * @param {boolean} value - The new shadow stroke setting to set.
      */
-    set shadowStroke(value: number);
+    set shadowStroke(value: boolean);
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the shadow stroke setting of this object.
+     * @returns {number} The shadow stroke setting.
      */
     get shadowStroke(): number;
     /**
-     * TBD.
+     * Sets the shadow fill setting of this object.
+     * @param {boolean} value - The new shadow fill setting to set.
      */
-    set shadowFill(value: number);
+    set shadowFill(value: boolean);
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the shadow fill setting of this object.
+     * @returns {number} The shadow fill setting.
      */
     get shadowFill(): number;
 }

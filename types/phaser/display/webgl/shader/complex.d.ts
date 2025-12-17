@@ -1,7 +1,7 @@
 export class ComplexPrimitiveShader {
     /**
-     * TBD.
-     * @param {WebGLRenderingContext} gl - TBD.
+     * Creates a new ComplexShader instance.
+     * @param {WebGLRenderingContext} gl - The WebGL rendering context.
      */
     constructor(gl: WebGLRenderingContext);
     gl: WebGLRenderingContext;
@@ -11,7 +11,7 @@ export class ComplexPrimitiveShader {
     fragmentSrc: string[];
     vertexSrc: string[];
     /**
-     * TBD.
+     * Destroys this shader and cleans up resources.
      */
     init(): void;
     projectionVector: WebGLUniformLocation;
@@ -24,7 +24,7 @@ export class ComplexPrimitiveShader {
     translationMatrix: WebGLUniformLocation;
     alpha: WebGLUniformLocation;
     /**
-     * TBD.
+     * Binds this shader to the WebGL context.
      */
     destroy(): void;
     uniforms: any;

@@ -1,7 +1,7 @@
 export class GraphicsData {
     /**
-     * TBD.
-     * @param {WebGLRenderingContext} gl - TBD.
+     * Creates a new GraphicsData instance.
+     * @param {WebGLRenderingContext} gl - The WebGL rendering context.
      */
     constructor(gl: WebGLRenderingContext);
     gl: WebGLRenderingContext;
@@ -14,13 +14,13 @@ export class GraphicsData {
     alpha: number;
     dirty: boolean;
     /**
-     * TBD.
+     * Destroys this graphics data and cleans up resources.
      */
     reset(): void;
     glPoints: Float32Array<ArrayBuffer>;
     glIndicies: Uint16Array<ArrayBuffer>;
     /**
-     * TBD.
+     * Updates the graphics data for WebGL rendering.
      */
     upload(): void;
 }

@@ -1,7 +1,7 @@
 export class FastSpriteBatch {
     /**
-     * TBD.
-     * @param {WebGLRenderingContext & { id: number }} gl - TBD.
+     * Creates a new FastSpriteBatch instance.
+     * @param {WebGLRenderingContext & { id: number }} gl - The WebGL rendering context.
      */
     constructor(gl: WebGLRenderingContext & {
         id: number;
@@ -22,8 +22,8 @@ export class FastSpriteBatch {
     shader: any;
     matrix: any;
     /**
-     * TBD.
-     * @param {WebGLRenderingContext & { id: number }} gl - TBD.
+     * Sets the WebGL context for this batch.
+     * @param {WebGLRenderingContext & { id: number }} gl - The WebGL rendering context.
      */
     setContext(gl: WebGLRenderingContext & {
         id: number;
@@ -32,23 +32,23 @@ export class FastSpriteBatch {
         id: number;
     };
     /**
-     * TBD.
-     * @param {object} spriteBatch - TBD.
-     * @param {object} renderSession - TBD.
+     * Renders a sprite batch using WebGL.
+     * @param {object} spriteBatch - The sprite batch to render.
+     * @param {object} renderSession - The render session to use.
      */
     begin(spriteBatch: object, renderSession: object): void;
     /**
-     * TBD.
+     * Updates the sprite batch.
      */
     end(): void;
     /**
-     * TBD.
-     * @param {object} spriteBatch - TBD.
+     * Flushes the sprite batch to WebGL.
+     * @param {object} spriteBatch - The sprite batch to flush.
      */
     render(spriteBatch: object): void;
     /**
-     * TBD.
-     * @param {import('../../display/image.js').Image} sprite - TBD.
+     * Renders a sprite using WebGL.
+     * @param {import('../../display/image.js').Image} sprite - The sprite to render.
      */
     renderSprite(sprite: import("../../display/image.js").Image): void;
     /**
