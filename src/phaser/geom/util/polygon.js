@@ -1,10 +1,10 @@
 import { Polygon } from '../polygon.js';
 
 /**
- * TBD.
- * @param {Polygon} input - TBD.
- * @param {Polygon} output - TBD.
- * @returns {Polygon} TBD.
+ * Clones a polygon.
+ * @param {Polygon} input - The polygon to clone.
+ * @param {Polygon} output - Optional polygon to store the result in.
+ * @returns {Polygon} The cloned polygon.
  */
 export const clone = (input, output = null) => {
   const result = output || new Polygon();

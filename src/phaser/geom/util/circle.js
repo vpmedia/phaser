@@ -3,10 +3,10 @@ import { Circle } from '../circle.js';
 import { Point } from '../point.js';
 
 /**
- * TBD.
- * @param {Circle} input - TBD.
- * @param {Circle} output - TBD.
- * @returns {Circle} TBD.
+ * Clones a circle.
+ * @param {Circle} input - The circle to clone.
+ * @param {Circle} output - Optional circle to store the result in.
+ * @returns {Circle} The cloned circle.
  */
 export const clone = (input, output = null) => {
   const result = output || new Circle();
@@ -17,11 +17,11 @@ export const clone = (input, output = null) => {
 };
 
 /**
- * TBD.
- * @param {Circle} a - TBD.
- * @param {number} x - TBD.
- * @param {number} y - TBD.
- * @returns {boolean} TBD.
+ * Checks if a point is contained within the circle.
+ * @param {Circle} a - The circle to check.
+ * @param {number} x - The x coordinate of the point.
+ * @param {number} y - The y coordinate of the point.
+ * @returns {boolean} True if the point is contained within the circle, false otherwise.
  */
 export const contains = (a, x, y) => {
   if (a.radius > 0 && x >= a.left && x <= a.right && y >= a.top && y <= a.bottom) {
@@ -33,32 +33,32 @@ export const contains = (a, x, y) => {
 };
 
 /**
- * TBD.
- * @param {Circle} a - TBD.
- * @param {Circle} b - TBD.
- * @returns {boolean} TBD.
+ * Checks if two circles are equal.
+ * @param {Circle} a - The first circle to compare.
+ * @param {Circle} b - The second circle to compare.
+ * @returns {boolean} True if the circles are equal, false otherwise.
  */
 export const equals = (a, b) => {
   return a.x === b.x && a.y === b.y && a.diameter === b.diameter;
 };
 
 /**
- * TBD.
- * @param {Circle} a - TBD.
- * @param {Circle} b - TBD.
- * @returns {boolean} TBD.
+ * Checks if two circles intersect.
+ * @param {Circle} a - The first circle to check.
+ * @param {Circle} b - The second circle to check.
+ * @returns {boolean} True if the circles intersect, false otherwise.
  */
 export const intersects = (a, b) => {
   return distance(a.x, a.y, b.x, b.y) <= a.radius + b.radius;
 };
 
 /**
- * TBD.
- * @param {Circle} a - TBD.
- * @param {number} angle - TBD.
- * @param {boolean} asDegrees - TBD.
- * @param {Point} output - TBD.
- * @returns {Point} TBD.
+ * Gets a point on the circumference of the circle at the specified angle.
+ * @param {Circle} a - The circle to get the point from.
+ * @param {number} angle - The angle in radians or degrees (depending on asDegrees).
+ * @param {boolean} asDegrees - True if the angle is in degrees, false if in radians.
+ * @param {Point} output - Optional point to store the result in.
+ * @returns {Point} The point on the circumference of the circle.
  */
 export const circumferencePoint = (a, angle, asDegrees = false, output = null) => {
   const result = output || new Point();
@@ -71,12 +71,12 @@ export const circumferencePoint = (a, angle, asDegrees = false, output = null) =
 };
 
 /**
- * TBD.
- * @param {Circle} a - TBD.
- * @param {number} angle - TBD.
- * @param {boolean} asDegrees - TBD.
- * @param {Point} output - TBD.
- * @returns {Point} TBD.
+ * Gets a point on the circumference of the circle at the specified angle.
+ * @param {Circle} a - The circle to get the point from.
+ * @param {number} angle - The angle in radians or degrees (depending on asDegrees).
+ * @param {boolean} asDegrees - True if the angle is in degrees, false if in radians.
+ * @param {Point} output - Optional point to store the result in.
+ * @returns {Point} The point on the circumference of the circle.
  */
 export const intersectsPoint = (a, angle, asDegrees = false, output = null) => {
   const result = output || new Point();
@@ -89,10 +89,10 @@ export const intersectsPoint = (a, angle, asDegrees = false, output = null) => {
 };
 
 /**
- * TBD.
- * @param {Circle} c - TBD.
- * @param {object} r - TBD.
- * @returns {boolean} TBD.
+ * Checks if a circle intersects with a rectangle.
+ * @param {Circle} c - The circle to check.
+ * @param {object} r - The rectangle to check.
+ * @returns {boolean} True if the circle intersects with the rectangle, false otherwise.
  */
 export const intersectsRectangle = (c, r) => {
   const cx = Math.abs(c.x - r.x - r.halfWidth);

@@ -4,26 +4,28 @@
 # see: https://docs.npmjs.com/cli/v8/using-npm/developers#keeping-files-out-of-your-package
 #
 
-.browserslistrc
+# folders
+.github/
+build/
+coverage/
+dist/
+logs/
+node_modules/
+out/
+
+# files
 .DS_Store
 .editorconfig
-.eslintignore
-.eslintrc.json
 .gitattributes
-.github/
 .gitignore
 .npmignore
-.npmrc
 .oxlintrc.json
 .prettierignore
-babel.config.js
-bitbucket-pipelines.yml
 commitlint.config.js
 eslint.config.js
 lefthook.yml
-lint-staged.config.js
+pnpm-lock.yaml
+pnpm-workspace.yaml
 prettier.config.js
-test/
 tsconfig.json
 vitest.config.js
-webpack.config.babel.js

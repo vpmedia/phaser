@@ -1,10 +1,10 @@
 import { RoundedRectangle } from '../rounded_rectangle.js';
 
 /**
- * TBD.
- * @param {RoundedRectangle} input - TBD.
- * @param {RoundedRectangle} output - TBD.
- * @returns {RoundedRectangle} TBD.
+ * Clones a rounded rectangle.
+ * @param {RoundedRectangle} input - The rounded rectangle to clone.
+ * @param {RoundedRectangle} output - Optional rounded rectangle to store the result in.
+ * @returns {RoundedRectangle} The cloned rounded rectangle.
  */
 export const clone = (input, output = null) => {
   const result = output || new RoundedRectangle();

@@ -1,10 +1,10 @@
 import { Matrix } from '../matrix.js';
 
 /**
- * TBD.
- * @param {Matrix} input - TBD.
- * @param {Matrix} output - TBD.
- * @returns {Matrix} TBD.
+ * Clones a matrix.
+ * @param {Matrix} input - The matrix to clone.
+ * @param {Matrix} output - Optional matrix to store the result in.
+ * @returns {Matrix} The cloned matrix.
  */
 export const clone = (input, output = null) => {
   const result = output || new Matrix();
@@ -18,8 +18,8 @@ export const clone = (input, output = null) => {
 };
 
 /**
- * TBD.
- * @returns {Matrix} TBD.
+ * Creates a new identity matrix.
+ * @returns {Matrix} A new identity matrix.
  */
 export const getIdentityMatrix = () => {
   if (!window.PhaserRegistry) {
@@ -32,8 +32,8 @@ export const getIdentityMatrix = () => {
 };
 
 /**
- * TBD.
- * @returns {Matrix} TBD.
+ * Creates a new matrix with the specified values.
+ * @returns {Matrix} A new matrix.
  */
 export const getTempMatrix = () => {
   if (!window.PhaserRegistry) {

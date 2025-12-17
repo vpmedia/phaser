@@ -2,11 +2,11 @@ import { Point } from '../point.js';
 import { Rectangle } from '../rectangle.js';
 
 /**
- * TBD.
- * @param {Rectangle} a - TBD.
- * @param {number} dx - TBD.
- * @param {number} dy - TBD.
- * @returns {Rectangle} TBD.
+ * Inflates the rectangle by the specified amounts on each axis.
+ * @param {Rectangle} a - The rectangle to inflate.
+ * @param {number} dx - The amount to inflate the rectangle horizontally.
+ * @param {number} dy - The amount to inflate the rectangle vertically.
+ * @returns {Rectangle} The inflated rectangle.
  */
 export const inflate = (a, dx, dy) => {
   a.x -= dx;
@@ -17,20 +17,20 @@ export const inflate = (a, dx, dy) => {
 };
 
 /**
- * TBD.
- * @param {Rectangle} a - TBD.
- * @param {object} point - TBD.
- * @returns {Rectangle} TBD.
+ * Inflates the rectangle by the specified point values on each axis.
+ * @param {Rectangle} a - The rectangle to inflate.
+ * @param {object} point - The point containing x and y values to inflate the rectangle by.
+ * @returns {Rectangle} The inflated rectangle.
  */
 export const inflatePoint = (a, point) => {
   return inflate(a, point.x, point.y);
 };
 
 /**
- * TBD.
- * @param {Rectangle} a - TBD.
- * @param {Point} output - TBD.
- * @returns {Point} TBD.
+ * Gets the size of the rectangle as a point.
+ * @param {Rectangle} a - The rectangle to get the size of.
+ * @param {Point} output - Optional point to store the result in.
+ * @returns {Point} The size of the rectangle as a point (width, height).
  */
 export const size = (a, output = null) => {
   const result = output || new Point();
@@ -39,10 +39,10 @@ export const size = (a, output = null) => {
 };
 
 /**
- * TBD.
- * @param {Rectangle} input - TBD.
- * @param {Rectangle} output - TBD.
- * @returns {Rectangle} TBD.
+ * Clones a rectangle.
+ * @param {Rectangle} input - The rectangle to clone.
+ * @param {Rectangle} output - Optional rectangle to store the result in.
+ * @returns {Rectangle} The cloned rectangle.
  */
 export const clone = (input, output = null) => {
   const result = output || new Rectangle();
@@ -51,11 +51,11 @@ export const clone = (input, output = null) => {
 };
 
 /**
- * TBD.
- * @param {Rectangle} a - TBD.
- * @param {number} x - TBD.
- * @param {number} y - TBD.
- * @returns {boolean} TBD.
+ * Checks if a point is contained within the rectangle.
+ * @param {Rectangle} a - The rectangle to check.
+ * @param {number} x - The x coordinate of the point.
+ * @param {number} y - The y coordinate of the point.
+ * @returns {boolean} True if the point is contained within the rectangle, false otherwise.
  */
 export const contains = (a, x, y) => {
   if (a.width <= 0 || a.height <= 0) {
@@ -65,34 +65,34 @@ export const contains = (a, x, y) => {
 };
 
 /**
- * TBD.
- * @param {number} rx - TBD.
- * @param {number} ry - TBD.
- * @param {number} rw - TBD.
- * @param {number} rh - TBD.
- * @param {number} x - TBD.
- * @param {number} y - TBD.
- * @returns {boolean} TBD.
+ * Checks if a point is contained within the rectangle (raw version).
+ * @param {number} rx - The x coordinate of the rectangle.
+ * @param {number} ry - The y coordinate of the rectangle.
+ * @param {number} rw - The width of the rectangle.
+ * @param {number} rh - The height of the rectangle.
+ * @param {number} x - The x coordinate of the point.
+ * @param {number} y - The y coordinate of the point.
+ * @returns {boolean} True if the point is contained within the rectangle, false otherwise.
  */
 export const containsRaw = (rx, ry, rw, rh, x, y) => {
   return x >= rx && x < rx + rw && y >= ry && y < ry + rh;
 };
 
 /**
- * TBD.
- * @param {Rectangle} a - TBD.
- * @param {Point} point - TBD.
- * @returns {boolean} TBD.
+ * Checks if a point is contained within the rectangle.
+ * @param {Rectangle} a - The rectangle to check.
+ * @param {Point} point - The point to check.
+ * @returns {boolean} True if the point is contained within the rectangle, false otherwise.
  */
 export const containsPoint = (a, point) => {
   return contains(a, point.x, point.y);
 };
 
 /**
- * TBD.
- * @param {Rectangle} a - TBD.
- * @param {Rectangle} b - TBD.
- * @returns {boolean} TBD.
+ * Checks if rectangle a contains rectangle b.
+ * @param {Rectangle} a - The first rectangle to check.
+ * @param {Rectangle} b - The second rectangle to check.
+ * @returns {boolean} True if rectangle a contains rectangle b, false otherwise.
  */
 export const containsRect = (a, b) => {
   if (a.volume > b.volume) {
@@ -102,30 +102,30 @@ export const containsRect = (a, b) => {
 };
 
 /**
- * TBD.
- * @param {Rectangle} a - TBD.
- * @param {Rectangle} b - TBD.
- * @returns {boolean} TBD.
+ * Checks if two rectangles are equal.
+ * @param {Rectangle} a - The first rectangle to compare.
+ * @param {Rectangle} b - The second rectangle to compare.
+ * @returns {boolean} True if the rectangles are equal, false otherwise.
  */
 export const equals = (a, b) => {
   return a.x === b.x && a.y === b.y && a.width === b.width && a.height === b.height;
 };
 
 /**
- * TBD.
- * @param {Rectangle} a - TBD.
- * @param {Rectangle} b - TBD.
- * @returns {boolean} TBD.
+ * Checks if two rectangles have the same dimensions.
+ * @param {Rectangle} a - The first rectangle to compare.
+ * @param {Rectangle} b - The second rectangle to compare.
+ * @returns {boolean} True if the rectangles have the same dimensions, false otherwise.
  */
 export const sameDimensions = (a, b) => {
   return a.width === b.width && a.height === b.height;
 };
 
 /**
- * TBD.
- * @param {Rectangle} a - TBD.
- * @param {Rectangle} b - TBD.
- * @returns {boolean} TBD.
+ * Checks if two rectangles intersect.
+ * @param {Rectangle} a - The first rectangle to check.
+ * @param {Rectangle} b - The second rectangle to check.
+ * @returns {boolean} True if the rectangles intersect, false otherwise.
  */
 export const intersects = (a, b) => {
   if (a.width <= 0 || a.height <= 0 || b.width <= 0 || b.height <= 0) {
@@ -135,11 +135,11 @@ export const intersects = (a, b) => {
 };
 
 /**
- * TBD.
- * @param {Rectangle} a - TBD.
- * @param {Rectangle} b - TBD.
- * @param {Rectangle} output - TBD.
- * @returns {Rectangle} TBD.
+ * Gets the intersection of two rectangles.
+ * @param {Rectangle} a - The first rectangle.
+ * @param {Rectangle} b - The second rectangle.
+ * @param {Rectangle} output - Optional rectangle to store the result in.
+ * @returns {Rectangle} The intersection of the rectangles, or an empty rectangle if they don't intersect.
  */
 export const intersection = (a, b, output = null) => {
   const result = output || new Rectangle();
@@ -153,14 +153,14 @@ export const intersection = (a, b, output = null) => {
 };
 
 /**
- * TBD.
- * @param {Rectangle} a - TBD.
- * @param {number} left - TBD.
- * @param {number} right - TBD.
- * @param {number} top - TBD.
- * @param {number} bottom - TBD.
- * @param {number} tolerance - TBD.
- * @returns {boolean} TBD.
+ * Checks if a rectangle intersects with a set of raw coordinates.
+ * @param {Rectangle} a - The rectangle to check.
+ * @param {number} left - The left coordinate of the area to check.
+ * @param {number} right - The right coordinate of the area to check.
+ * @param {number} top - The top coordinate of the area to check.
+ * @param {number} bottom - The bottom coordinate of the area to check.
+ * @param {number} tolerance - Optional tolerance value for intersection.
+ * @returns {boolean} True if the rectangle intersects with the area, false otherwise.
  */
 export const intersectsRaw = (a, left, right, top, bottom, tolerance = 0) => {
   return !(
@@ -172,11 +172,11 @@ export const intersectsRaw = (a, left, right, top, bottom, tolerance = 0) => {
 };
 
 /**
- * TBD.
- * @param {Rectangle} a - TBD.
- * @param {Rectangle} b - TBD.
- * @param {Rectangle} output - TBD.
- * @returns {Rectangle} TBD.
+ * Gets the union of two rectangles.
+ * @param {Rectangle} a - The first rectangle.
+ * @param {Rectangle} b - The second rectangle.
+ * @param {Rectangle} output - Optional rectangle to store the result in.
+ * @returns {Rectangle} The union of the rectangles.
  */
 export const union = (a, b, output = null) => {
   const result = output || new Rectangle();
@@ -189,10 +189,10 @@ export const union = (a, b, output = null) => {
 };
 
 /**
- * TBD.
- * @param {Point[]} points - TBD.
- * @param {Rectangle} output - TBD.
- * @returns {Rectangle} TBD.
+ * Gets the axis-aligned bounding box (AABB) of a set of points.
+ * @param {Point[]} points - The array of points to calculate the AABB for.
+ * @param {Rectangle} output - Optional rectangle to store the result in.
+ * @returns {Rectangle} The AABB of the points.
  */
 export const aabb = (points, output = null) => {
   const result = output || new Rectangle();
@@ -219,8 +219,8 @@ export const aabb = (points, output = null) => {
 };
 
 /**
- * TBD.
- * @returns {Rectangle} TBD.
+ * Gets an empty rectangle instance.
+ * @returns {Rectangle} An empty rectangle.
  */
 export const getEmptyRectangle = () => {
   if (!window.PhaserRegistry) {

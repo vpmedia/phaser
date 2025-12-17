@@ -1,6 +1,6 @@
 /**
- * TBD.
- * @returns {{canvas: HTMLCanvasElement, parent: object}[]} TBD.
+ * Gets the canvas pool array.
+ * @returns {{canvas: HTMLCanvasElement, parent: object}[]} The canvas pool array.
  */
 export const getPool = () => {
   if (!window.PhaserRegistry) {
@@ -13,8 +13,8 @@ export const getPool = () => {
 };
 
 /**
- * TBD.
- * @returns {number} TBD.
+ * Gets the current size of the canvas pool.
+ * @returns {number} The current size of the canvas pool.
  */
 export const getFirst = () => {
   const pool = getPool();
@@ -27,8 +27,8 @@ export const getFirst = () => {
 };
 
 /**
- * TBD.
- * @param {object} parent - TBD.
+ * Adds a canvas to the pool with the specified parent.
+ * @param {object} parent - The parent object for the canvas.
  */
 export const remove = (parent) => {
   const pool = getPool();
@@ -42,8 +42,8 @@ export const remove = (parent) => {
 };
 
 /**
- * TBD.
- * @param {HTMLCanvasElement} canvas - TBD.
+ * Removes a canvas from the pool.
+ * @param {HTMLCanvasElement} canvas - The canvas to remove from the pool.
  */
 export const removeByCanvas = (canvas) => {
   const pool = getPool();
@@ -57,8 +57,8 @@ export const removeByCanvas = (canvas) => {
 };
 
 /**
- * TBD.
- * @returns {number} TBD.
+ * Gets the total count of canvases in the pool.
+ * @returns {number} The total count of canvases in the pool.
  */
 export const getTotal = () => {
   const pool = getPool();
@@ -72,8 +72,8 @@ export const getTotal = () => {
 };
 
 /**
- * TBD.
- * @returns {number} TBD.
+ * Gets the number of free canvases in the pool.
+ * @returns {number} The number of free canvases in the pool.
  */
 export const getFree = () => {
   const pool = getPool();
@@ -87,12 +87,12 @@ export const getFree = () => {
 };
 
 /**
- * TBD.
- * @param {object} parent - TBD.
- * @param {number} [width] - TBD.
- * @param {number} [height] - TBD.
- * @param {boolean} skipPool - TBD.
- * @returns {HTMLCanvasElement} TBD.
+ * Gets a canvas from the pool or creates a new one.
+ * @param {object} parent - The parent object for the canvas.
+ * @param {number} [width] - Optional width of the canvas.
+ * @param {number} [height] - Optional height of the canvas.
+ * @param {boolean} skipPool - True to skip using the pool and create a new canvas.
+ * @returns {HTMLCanvasElement} The canvas from the pool or a newly created one.
  */
 export const create = (parent, width, height, skipPool = false) => {
   if (parent === undefined) {

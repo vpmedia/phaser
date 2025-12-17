@@ -3,10 +3,10 @@ import { Point } from '../point.js';
 import { intersects as intersectsRect } from './rectangle.js';
 
 /**
- * TBD.
- * @param {Line} input - TBD.
- * @param {Line} output - TBD.
- * @returns {Line} TBD.
+ * Clones a line.
+ * @param {Line} input - The line to clone.
+ * @param {Line} output - Optional line to store the result in.
+ * @returns {Line} The cloned line.
  */
 export const clone = (input, output = null) => {
   const result = output || new Line();
@@ -18,14 +18,14 @@ export const clone = (input, output = null) => {
 };
 
 /**
- * TBD.
- * @param {object} a - TBD.
- * @param {object} b - TBD.
- * @param {object} e - TBD.
- * @param {object} f - TBD.
- * @param {boolean} asSegment - TBD.
- * @param {Point} output - TBD.
- * @returns {Point} TBD.
+ * Gets the intersection point of two lines.
+ * @param {object} a - The first line (with x1, y1, x2, y2 properties).
+ * @param {object} b - The second line (with x1, y1, x2, y2 properties).
+ * @param {object} e - The first endpoint of the first line (with x, y properties).
+ * @param {object} f - The second endpoint of the second line (with x, y properties).
+ * @param {boolean} asSegment - True if the lines are treated as segments, false if infinite lines.
+ * @param {Point} output - Optional point to store the result in.
+ * @returns {Point} The intersection point, or null if there is no intersection.
  */
 export const intersectsPoints = (a, b, e, f, asSegment = true, output = null) => {
   const result = output || new Point();
@@ -54,22 +54,22 @@ export const intersectsPoints = (a, b, e, f, asSegment = true, output = null) =>
 };
 
 /**
- * TBD.
- * @param {object} a - TBD.
- * @param {object} b - TBD.
- * @param {boolean} asSegment - TBD.
- * @param {Point} result - TBD.
- * @returns {Point} TBD.
+ * Gets the intersection point of two lines (alternative implementation).
+ * @param {object} a - The first line (with x1, y1, x2, y2 properties).
+ * @param {object} b - The second line (with x1, y1, x2, y2 properties).
+ * @param {boolean} asSegment - True if the lines are treated as segments, false if infinite lines.
+ * @param {Point} result - Optional point to store the result in.
+ * @returns {Point} The intersection point, or null if there is no intersection.
  */
 export const intersects = (a, b, asSegment, result) => {
   return intersectsPoints(a.start, a.end, b.start, b.end, asSegment, result);
 };
 
 /**
- * TBD.
- * @param {object} line - TBD.
- * @param {object} rect - TBD.
- * @returns {boolean} TBD.
+ * Checks if a line intersects with a rectangle.
+ * @param {object} line - The line to check (with x1, y1, x2, y2 properties).
+ * @param {object} rect - The rectangle to check (with x, y, width, height properties).
+ * @returns {boolean} True if the line intersects with the rectangle, false otherwise.
  */
 export const intersectsRectangle = (line, rect) => {
   //  Quick bail out of the Line and Rect bounds don't intersect
@@ -120,10 +120,10 @@ export const intersectsRectangle = (line, rect) => {
 };
 
 /**
- * TBD.
- * @param {object} a - TBD.
- * @param {object} b - TBD.
- * @returns {number} TBD.
+ * Calculates the distance between two points (line length).
+ * @param {object} a - The first point (with x, y properties).
+ * @param {object} b - The second point (with x, y properties).
+ * @returns {number} The distance between the points.
  */
 export const reflect = (a, b) => {
   return 2 * b.normalAngle - 3.141592653589793 - a.angle;
