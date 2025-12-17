@@ -1,8 +1,8 @@
 export class CanvasBuffer {
     /**
-     * TBD.
-     * @param {number} width - TBD.
-     * @param {number} height - TBD.
+     * Creates a new CanvasBuffer instance.
+     * @param {number} width - The width of the canvas buffer.
+     * @param {number} height - The height of the canvas buffer.
      */
     constructor(width: number, height: number);
     width: number;
@@ -10,17 +10,17 @@ export class CanvasBuffer {
     canvas: HTMLCanvasElement;
     context: CanvasRenderingContext2D;
     /**
-     * TBD.
+     * Clears the canvas buffer.
      */
     clear(): void;
     /**
-     * TBD.
-     * @param {number} width - TBD.
-     * @param {number} height - TBD.
+     * Resizes the canvas buffer.
+     * @param {number} width - The new width of the canvas buffer.
+     * @param {number} height - The new height of the canvas buffer.
      */
     resize(width: number, height: number): void;
     /**
-     * TBD.
+     * Destroys the canvas buffer and cleans up resources.
      */
     destroy(): void;
 }

@@ -1,13 +1,13 @@
 export class GraphicsData {
     /**
-     * TBD.
-     * @param {number} lineWidth - TBD.
-     * @param {number} lineColor - TBD.
-     * @param {number} lineAlpha - TBD.
-     * @param {number} fillColor - TBD.
-     * @param {number} fillAlpha - TBD.
-     * @param {boolean} fill - TBD.
-     * @param {object} shape - TBD.
+     * Creates a new GraphicsData object.
+     * @param {number} lineWidth - The line width.
+     * @param {number} lineColor - The line color.
+     * @param {number} lineAlpha - The line alpha.
+     * @param {number} fillColor - The fill color.
+     * @param {number} fillAlpha - The fill alpha.
+     * @param {boolean} fill - Whether to fill the shape.
+     * @param {object} shape - The shape to draw.
      */
     constructor(lineWidth: number, lineColor: number, lineAlpha: number, fillColor: number, fillAlpha: number, fill: boolean, shape: object);
     lineWidth: number;
@@ -21,8 +21,8 @@ export class GraphicsData {
     shape: any;
     type: any;
     /**
-     * TBD.
-     * @returns {GraphicsData} TBD.
+     * Clones this GraphicsData object.
+     * @returns {GraphicsData} A new cloned GraphicsData object.
      */
     clone(): GraphicsData;
 }

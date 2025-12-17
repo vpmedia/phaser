@@ -1,11 +1,11 @@
 export class RoundedRectangle {
     /**
-     * TBD.
-     * @param {number} x - TBD.
-     * @param {number} y - TBD.
-     * @param {number} width - TBD.
-     * @param {number} height - TBD.
-     * @param {number} radius - TBD.
+     * Creates a new RoundedRectangle instance.
+     * @param {number} x - The x coordinate of the top-left corner of the rectangle (default: 0).
+     * @param {number} y - The y coordinate of the top-left corner of the rectangle (default: 0).
+     * @param {number} width - The width of the rectangle (default: 0).
+     * @param {number} height - The height of the rectangle (default: 0).
+     * @param {number} radius - The corner radius (default: 20).
      */
     constructor(x?: number, y?: number, width?: number, height?: number, radius?: number);
     x: number;
@@ -15,15 +15,15 @@ export class RoundedRectangle {
     radius: number;
     type: number;
     /**
-     * TBD.
-     * @param {number} x - TBD.
-     * @param {number} y - TBD.
-     * @returns {boolean} TBD.
+     * Checks if the specified point is contained within this rounded rectangle.
+     * @param {number} x - The x coordinate of the point to check.
+     * @param {number} y - The y coordinate of the point to check.
+     * @returns {boolean} True if the point is contained within this rounded rectangle, false otherwise.
      */
     contains(x: number, y: number): boolean;
     /**
-     * TBD.
-     * @returns {RoundedRectangle} TBD.
+     * Creates a clone of this rounded rectangle.
+     * @returns {RoundedRectangle} A new rounded rectangle with the same values as this one.
      */
     clone(): RoundedRectangle;
 }

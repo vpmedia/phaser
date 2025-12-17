@@ -369,8 +369,8 @@ export class Image extends DisplayObject {
   }
 
   /**
-   * TBD.
-   * @returns {Rectangle} TBD.
+   * Gets the local bounds of this image.
+   * @returns {Rectangle} The local bounds rectangle of this image.
    */
   getLocalBounds() {
     return getLocalBounds(this);

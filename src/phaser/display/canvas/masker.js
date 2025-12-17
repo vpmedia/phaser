@@ -1,9 +1,9 @@
 import { renderGraphicsMask } from './graphics.js';
 
 /**
- * TBD.
- * @param {object} maskData - TBD.
- * @param {object} renderSession - TBD.
+ * Pushes a mask onto the rendering stack.
+ * @param {object} maskData - The mask data to apply.
+ * @param {object} renderSession - The rendering session object.
  */
 export const pushMask = (maskData, renderSession) => {
   const context = renderSession.context;
@@ -25,8 +25,8 @@ export const pushMask = (maskData, renderSession) => {
 };
 
 /**
- * TBD.
- * @param {object} renderSession - TBD.
+ * Pops a mask from the rendering stack.
+ * @param {object} renderSession - The rendering session object.
  */
 export const popMask = (renderSession) => {
   renderSession.context.restore();

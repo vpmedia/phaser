@@ -1,9 +1,9 @@
 import { GraphicsData } from './graphics_data.js';
 
 /**
- * TBD.
- * @param {GraphicsData} source - TBD.
- * @returns {GraphicsData} TBD.
+ * Clones a GraphicsData object.
+ * @param {GraphicsData} source - The source GraphicsData to clone.
+ * @returns {GraphicsData} A new cloned GraphicsData object.
  */
 export const clone = (source) => {
   return new GraphicsData(

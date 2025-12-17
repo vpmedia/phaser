@@ -3,10 +3,10 @@ import { getIdentityMatrix } from '../geom/util/matrix.js';
 import { getTintedTexture } from './canvas/tinter.js';
 
 /**
- * TBD.
- * @param {import('./image.js').Image} target - TBD.
- * @param {import('./webgl/texture.js').Texture} texture - TBD.
- * @param {boolean} destroyBase - TBD.
+ * Sets the texture of a sprite.
+ * @param {import('./image.js').Image} target - The target image to set the texture on.
+ * @param {import('./webgl/texture.js').Texture} texture - The new texture to set.
+ * @param {boolean} destroyBase - Whether to destroy the base texture.
  */
 export const setTexture = (target, texture, destroyBase = false) => {
   if (destroyBase) {
@@ -19,10 +19,10 @@ export const setTexture = (target, texture, destroyBase = false) => {
 };
 
 /**
- * TBD.
- * @param {import('./image.js').Image} target - TBD.
- * @param {object} matrix - TBD.
- * @returns {import('../geom/rectangle.js').Rectangle} TBD.
+ * Gets the bounds of a sprite.
+ * @param {import('./image.js').Image} target - The target image to get bounds for.
+ * @param {object} matrix - The transformation matrix.
+ * @returns {import('../geom/rectangle.js').Rectangle} The bounds rectangle.
  */
 export const getBounds = (target, matrix = null) => {
   // TODO verify
@@ -102,9 +102,9 @@ export const getBounds = (target, matrix = null) => {
 };
 
 /**
- * TBD.
- * @param {import('./image.js').Image} target - TBD.
- * @returns {import('../geom/rectangle.js').Rectangle} TBD.
+ * Gets the local bounds of a sprite.
+ * @param {import('./image.js').Image} target - The target image to get local bounds for.
+ * @returns {import('../geom/rectangle.js').Rectangle} The local bounds rectangle.
  */
 export const getLocalBounds = (target) => {
   const matrixCache = target.worldTransform;
@@ -122,10 +122,10 @@ export const getLocalBounds = (target) => {
 };
 
 /**
- * TBD.
- * @param {import('./image.js').Image} target - TBD.
- * @param {object} renderSession - TBD.
- * @param {import('../geom/matrix.js').Matrix | null | undefined} matrix - TBD.
+ * Renders a sprite using WebGL.
+ * @param {import('./image.js').Image} target - The target image to render.
+ * @param {object} renderSession - The render session object.
+ * @param {import('../geom/matrix.js').Matrix | null | undefined} matrix - The transformation matrix.
  */
 export const renderWebGL = (target, renderSession, matrix = null) => {
   // if the sprite is not visible or the alpha is 0 then no need to render this element
@@ -171,10 +171,10 @@ export const renderWebGL = (target, renderSession, matrix = null) => {
 };
 
 /**
- * TBD.
- * @param {import('./image.js').Image} target - TBD.
- * @param {object} renderSession - TBD.
- * @param {import('../geom/matrix.js').Matrix | null | undefined} matrix - TBD.
+ * Renders a sprite using Canvas.
+ * @param {import('./image.js').Image} target - The target image to render.
+ * @param {object} renderSession - The render session object.
+ * @param {import('../geom/matrix.js').Matrix | null | undefined} matrix - The transformation matrix.
  */
 export const renderCanvas = (target, renderSession, matrix = null) => {
   // If the sprite is not visible or the alpha is 0 then no need to render this element

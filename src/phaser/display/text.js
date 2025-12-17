@@ -9,12 +9,12 @@ import { textureFromCanvas } from './webgl/texture_util.js';
 
 export class Text extends Image {
   /**
-   * TBD.
-   * @param {import('../core/game.js').Game} game - TBD.
-   * @param {number} x - TBD.
-   * @param {number} y - TBD.
-   * @param {string} text - TBD.
-   * @param {object} style - TBD.
+   * Creates a new Text object.
+   * @param {import('../core/game.js').Game} game - The game instance this text belongs to.
+   * @param {number} x - The x position of the text.
+   * @param {number} y - The y position of the text.
+   * @param {string} text - The text content to display.
+   * @param {object} style - The style settings for the text.
    */
   constructor(game, x, y, text = '', style = {}) {
     super(game, x, y, null);
@@ -55,7 +55,7 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
+   * Destroys this text object and cleans up resources.
    */
   destroy() {
     this.texture.destroy(true);
@@ -75,14 +75,14 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @param {number} x - TBD.
-   * @param {number} y - TBD.
-   * @param {string} color - TBD.
-   * @param {number} blur - TBD.
-   * @param {boolean} shadowStroke - TBD.
-   * @param {boolean} shadowFill - TBD.
-   * @returns {Text} TBD.
+   * Sets the drop shadow properties for this text.
+   * @param {number} x - The horizontal offset of the shadow.
+   * @param {number} y - The vertical offset of the shadow.
+   * @param {string} color - The color of the shadow.
+   * @param {number} blur - The blur radius of the shadow.
+   * @param {boolean} shadowStroke - Whether to apply the shadow to the stroke.
+   * @param {boolean} shadowFill - Whether to apply the shadow to the fill.
+   * @returns {Text} This Text object for chaining.
    */
   setShadow(x = 0, y = 0, color = 'rgba(0, 0, 0, 1)', blur = 0, shadowStroke = true, shadowFill = true) {
     this.style.shadowOffsetX = x;
@@ -96,10 +96,10 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
-   * @param {object} style - TBD.
-   * @param {boolean} update - TBD.
-   * @returns {Text} TBD.
+   * Sets the style properties for this text.
+   * @param {object} style - The style settings to apply.
+   * @param {boolean} update - Whether to update the text immediately.
+   * @returns {Text} This Text object for chaining.
    */
   setStyle(style = null, update = false) {
     style = JSON.parse(JSON.stringify(style)) || {};
@@ -146,7 +146,7 @@ export class Text extends Image {
   }
 
   /**
-   * TBD.
+   * Updates the text content and renders it to the canvas.
    */
   updateText() {
     this.texture.baseTexture.resolution = this._res;

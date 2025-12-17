@@ -1,9 +1,9 @@
 export class Circle {
     /**
-     * TBD.
-     * @param {number} x - TBD.
-     * @param {number} y - TBD.
-     * @param {number} diameter - TBD.
+     * Creates a new Circle instance.
+     * @param {number} x - The x coordinate of the center point (default: 0).
+     * @param {number} y - The y coordinate of the center point (default: 0).
+     * @param {number} diameter - The diameter of the circle (default: 0).
      */
     constructor(x?: number, y?: number, diameter?: number);
     /** @type {number} */
@@ -17,152 +17,152 @@ export class Circle {
     /** @type {number} */
     type: number;
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Calculates the circumference of this circle.
+     * @returns {number} The circumference of this circle.
      */
     circumference(): number;
     /**
-     * TBD.
-     * @param {Point} output - TBD.
-     * @returns {Point} TBD.
+     * Returns a random point within this circle.
+     * @param {Point} output - The point to store the result in (optional).
+     * @returns {Point} A random point within this circle.
      */
     random(output?: Point): Point;
     /**
-     * TBD.
-     * @returns {Rectangle} TBD.
+     * Gets the bounding rectangle of this circle.
+     * @returns {Rectangle} The bounding rectangle of this circle.
      */
     getBounds(): Rectangle;
     /**
-     * TBD.
-     * @param {number} x - TBD.
-     * @param {number} y - TBD.
-     * @param {number} diameter - TBD.
-     * @returns {Circle} TBD.
+     * Sets the position and size of this circle to new values.
+     * @param {number} x - The new x coordinate of the center point.
+     * @param {number} y - The new y coordinate of the center point.
+     * @param {number} diameter - The new diameter of the circle.
+     * @returns {Circle} This circle instance for chaining.
      */
     setTo(x: number, y: number, diameter: number): Circle;
     /**
-     * TBD.
-     * @param {Circle} source - TBD.
-     * @returns {Circle} TBD.
+     * Copies the values from another circle to this circle.
+     * @param {Circle} source - The circle to copy values from.
+     * @returns {Circle} This circle instance for chaining.
      */
     copyFrom(source: Circle): Circle;
     /**
-     * TBD.
-     * @param {Circle} dest - TBD.
-     * @returns {Circle} TBD.
+     * Copies the values of this circle to another circle.
+     * @param {Circle} dest - The circle to copy values to.
+     * @returns {Circle} The destination circle.
      */
     copyTo(dest: Circle): Circle;
     /**
-     * TBD.
-     * @param {Circle} dest - TBD.
-     * @param {boolean} round - TBD.
-     * @returns {number} TBD.
+     * Calculates the distance between this circle and another circle.
+     * @param {Circle} dest - The other circle to calculate the distance to.
+     * @param {boolean} round - Whether to round the result (default: false).
+     * @returns {number} The distance between the circles.
      */
     distance(dest: Circle, round?: boolean): number;
     /**
-     * TBD.
-     * @returns {Circle} TBD.
+     * Creates a clone of this circle.
+     * @returns {Circle} A new circle with the same values as this one.
      */
     clone(): Circle;
     /**
-     * TBD.
-     * @param {number} x - TBD.
-     * @param {number} y - TBD.
-     * @returns {boolean} TBD.
+     * Checks if the specified point is contained within this circle.
+     * @param {number} x - The x coordinate of the point to check.
+     * @param {number} y - The y coordinate of the point to check.
+     * @returns {boolean} True if the point is contained within this circle, false otherwise.
      */
     contains(x: number, y: number): boolean;
     /**
-     * TBD.
-     * @param {number} angle - TBD.
-     * @param {boolean} asDegrees - TBD.
-     * @param {Point} out - TBD.
-     * @returns {Point} TBD.
+     * Gets a point at a specific angle on the circumference of this circle.
+     * @param {number} angle - The angle in radians (or degrees if asDegrees is true) to get the point for.
+     * @param {boolean} asDegrees - Whether the angle is provided in degrees (default: false).
+     * @param {Point} out - The point to store the result in (optional).
+     * @returns {Point} A point at the specified angle on the circumference of this circle.
      */
     circumferencePoint(angle: number, asDegrees: boolean, out: Point): Point;
     /**
-     * TBD.
-     * @param {number} dx - TBD.
-     * @param {number} dy - TBD.
-     * @returns {Circle} TBD.
+     * Offsets the position of this circle by the specified amounts.
+     * @param {number} dx - The amount to offset the x coordinate by.
+     * @param {number} dy - The amount to offset the y coordinate by.
+     * @returns {Circle} This circle instance for chaining.
      */
     offset(dx: number, dy: number): Circle;
     /**
-     * TBD.
-     * @param {Point} point - TBD.
-     * @returns {Circle} TBD.
+     * Offsets the position of this circle by the specified point coordinates.
+     * @param {Point} point - The point to offset the circle by.
+     * @returns {Circle} This circle instance for chaining.
      */
     offsetPoint(point: Point): Circle;
     /**
-     * TBD.
-     * @returns {string} TBD.
+     * Returns a string representation of this circle.
+     * @returns {string} A string representation of the circle.
      */
     toString(): string;
     /**
-     * TBD.
+     * Sets the diameter of this circle.
      */
     set diameter(value: number);
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the diameter of this circle.
+     * @returns {number} The diameter of this circle.
      */
     get diameter(): number;
     /**
-     * TBD.
+     * Sets the radius of this circle.
      */
     set radius(value: number);
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the radius of this circle.
+     * @returns {number} The radius of this circle.
      */
     get radius(): number;
     /**
-     * TBD.
+     * Sets the left coordinate of this circle.
      */
     set left(value: number);
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the left coordinate of this circle.
+     * @returns {number} The left coordinate of this circle.
      */
     get left(): number;
     /**
-     * TBD.
+     * Sets the right coordinate of this circle.
      */
     set right(value: number);
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the right coordinate of this circle.
+     * @returns {number} The right coordinate of this circle.
      */
     get right(): number;
     /**
-     * TBD.
+     * Sets the top coordinate of this circle.
      */
     set top(value: number);
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the top coordinate of this circle.
+     * @returns {number} The top coordinate of this circle.
      */
     get top(): number;
     /**
-     * TBD.
+     * Sets the bottom coordinate of this circle.
      */
     set bottom(value: number);
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the bottom coordinate of this circle.
+     * @returns {number} The bottom coordinate of this circle.
      */
     get bottom(): number;
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the area of this circle.
+     * @returns {number} The area of this circle.
      */
     get area(): number;
     /**
-     * TBD.
+     * Sets whether this circle is empty (zero diameter).
      */
     set empty(value: boolean);
     /**
-     * TBD.
-     * @returns {boolean} TBD.
+     * Checks if this circle is empty (has zero diameter).
+     * @returns {boolean} True if the circle is empty, false otherwise.
      */
     get empty(): boolean;
 }

@@ -1,13 +1,13 @@
 import { create as createCanvas } from './pool.js';
 
 /**
- * TBD.
- * @param {object} parent - TBD.
- * @param {number} width - TBD.
- * @param {number} height - TBD.
- * @param {string} id - TBD.
- * @param {boolean} skipPool - TBD.
- * @returns {HTMLCanvasElement} TBD.
+ * Creates a new HTML canvas element.
+ * @param {object} parent - The parent element to append the canvas to.
+ * @param {number} width - The width of the canvas.
+ * @param {number} height - The height of the canvas.
+ * @param {string} id - The ID to assign to the canvas.
+ * @param {boolean} skipPool - Whether to skip using the canvas pool.
+ * @returns {HTMLCanvasElement} The created HTML canvas element.
  */
 export const create = (parent, width, height, id, skipPool) => {
   width = width || 256;
@@ -23,10 +23,10 @@ export const create = (parent, width, height, id, skipPool) => {
 };
 
 /**
- * TBD.
- * @param {HTMLCanvasElement} canvas - TBD.
- * @param {string} color - TBD.
- * @returns {HTMLCanvasElement} TBD.
+ * Sets the background color of a canvas element.
+ * @param {HTMLCanvasElement} canvas - The canvas element to modify.
+ * @param {string} color - The background color to set.
+ * @returns {HTMLCanvasElement} The modified canvas element.
  */
 export const setBackgroundColor = (canvas, color) => {
   color = color || 'rgb(0,0,0)';
@@ -35,10 +35,10 @@ export const setBackgroundColor = (canvas, color) => {
 };
 
 /**
- * TBD.
- * @param {HTMLCanvasElement} canvas - TBD.
- * @param {string} value - TBD.
- * @returns {HTMLCanvasElement} TBD.
+ * Sets the touch action property of a canvas element.
+ * @param {HTMLCanvasElement} canvas - The canvas element to modify.
+ * @param {string} value - The touch action value to set.
+ * @returns {HTMLCanvasElement} The modified canvas element.
  */
 export const setTouchAction = (canvas, value = 'none') => {
   value = value || 'none';
@@ -50,10 +50,10 @@ export const setTouchAction = (canvas, value = 'none') => {
 };
 
 /**
- * TBD.
- * @param {HTMLCanvasElement} canvas - TBD.
- * @param {string} value - TBD.
- * @returns {HTMLCanvasElement} TBD.
+ * Sets the user select property of a canvas element.
+ * @param {HTMLCanvasElement} canvas - The canvas element to modify.
+ * @param {string} value - The user select value to set.
+ * @returns {HTMLCanvasElement} The modified canvas element.
  */
 export const setUserSelect = (canvas, value = 'none') => {
   value = value || 'none';
@@ -68,11 +68,11 @@ export const setUserSelect = (canvas, value = 'none') => {
 };
 
 /**
- * TBD.
- * @param {HTMLCanvasElement} canvas - TBD.
- * @param {object} parent - TBD.
- * @param {boolean} overflowHidden - TBD.
- * @returns {HTMLCanvasElement} TBD.
+ * Adds a canvas element to the DOM.
+ * @param {HTMLCanvasElement} canvas - The canvas element to add.
+ * @param {object} parent - The parent element to append the canvas to.
+ * @param {boolean} overflowHidden - Whether to set overflow hidden on the parent.
+ * @returns {HTMLCanvasElement} The added canvas element.
  */
 export const addToDOM = (canvas, parent, overflowHidden = true) => {
   let target;
@@ -97,8 +97,8 @@ export const addToDOM = (canvas, parent, overflowHidden = true) => {
 };
 
 /**
- * TBD.
- * @param {HTMLCanvasElement} canvas - TBD.
+ * Removes a canvas element from the DOM.
+ * @param {HTMLCanvasElement} canvas - The canvas element to remove.
  */
 export const removeFromDOM = (canvas) => {
   if (canvas && canvas.parentNode) {
@@ -107,15 +107,15 @@ export const removeFromDOM = (canvas) => {
 };
 
 /**
- * TBD.
- * @param {CanvasRenderingContext2D} context - TBD.
- * @param {number} translateX - TBD.
- * @param {number} translateY - TBD.
- * @param {number} scaleX - TBD.
- * @param {number} scaleY - TBD.
- * @param {number} skewX - TBD.
- * @param {number} skewY - TBD.
- * @returns {CanvasRenderingContext2D} TBD.
+ * Sets the transformation matrix on a canvas rendering context.
+ * @param {CanvasRenderingContext2D} context - The canvas rendering context.
+ * @param {number} translateX - The X translation value.
+ * @param {number} translateY - The Y translation value.
+ * @param {number} scaleX - The X scale value.
+ * @param {number} scaleY - The Y scale value.
+ * @param {number} skewX - The X skew value.
+ * @param {number} skewY - The Y skew value.
+ * @returns {CanvasRenderingContext2D} The modified rendering context.
  */
 export const setTransform = (context, translateX, translateY, scaleX, scaleY, skewX, skewY) => {
   context.setTransform(scaleX, skewX, skewY, scaleY, translateX, translateY);
@@ -123,9 +123,9 @@ export const setTransform = (context, translateX, translateY, scaleX, scaleY, sk
 };
 
 /**
- * TBD.
- * @param {CanvasRenderingContext2D} context - TBD.
- * @returns {string | null} TBD.
+ * Gets the smoothing prefix for a canvas rendering context.
+ * @param {CanvasRenderingContext2D} context - The canvas rendering context.
+ * @returns {string | null} The smoothing property name or null if not found.
  */
 export const getSmoothingPrefix = (context) => {
   const VENDORS = ['i', 'webkitI', 'msI', 'mozI', 'oI'];
@@ -139,10 +139,10 @@ export const getSmoothingPrefix = (context) => {
 };
 
 /**
- * TBD.
- * @param {object} context - TBD.
- * @param {number} value - TBD.
- * @returns {object} TBD.
+ * Sets the smoothing enabled property on a canvas rendering context.
+ * @param {object} context - The canvas rendering context.
+ * @param {number} value - The smoothing enabled value to set.
+ * @returns {object} The modified rendering context.
  */
 export const setSmoothingEnabled = (context, value) => {
   const s = getSmoothingPrefix(context);

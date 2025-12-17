@@ -1,13 +1,13 @@
 export class BitmapText extends DisplayObject {
     /**
-     * TBD.
-     * @param {import('../core/game.js').Game} game - TBD.
-     * @param {number} x - TBD.
-     * @param {number} y - TBD.
-     * @param {string} font - TBD.
-     * @param {string} text - TBD.
-     * @param {number} size - TBD.
-     * @param {string} align - TBD.
+     * Creates a new BitmapText instance.
+     * @param {import('../core/game.js').Game} game - The game instance this bitmap text belongs to.
+     * @param {number} x - The x position of the bitmap text.
+     * @param {number} y - The y position of the bitmap text.
+     * @param {string} font - The key of the bitmap font to use.
+     * @param {string} text - The text to display.
+     * @param {number} size - The font size.
+     * @param {string} align - The text alignment (left, center, right).
      */
     constructor(game: import("../core/game.js").Game, x?: number, y?: number, font?: string, text?: string, size?: number, align?: string);
     /** @type {number} */
@@ -36,26 +36,26 @@ export class BitmapText extends DisplayObject {
     dirty: boolean;
     renderOrderID: number;
     /**
-     * TBD.
-     * @param {string} text - TBD.
+     * Sets the text to display.
+     * @param {string} text - The new text to display.
      */
     setText(text: string): void;
     /**
-     * TBD.
-     * @param {string | number | boolean | Date} value - TBD.
+     * Sets the text content of this bitmap text.
+     * @param {string | number | boolean | Date} value - The new text content to set.
      */
     set text(value: string | number | boolean | Date);
     /**
-     * TBD.
-     * @returns {string} TBD.
+     * Gets the text content of this bitmap text.
+     * @returns {string} The current text content.
      */
     get text(): string;
     /**
-     * TBD.
-     * @param {object} data - TBD.
-     * @param {number} scale - TBD.
-     * @param {string} text - TBD.
-     * @returns {{width: number, text: string, end: boolean, chars: number[]}} TBD.
+     * Scans a line of text to calculate its width and other properties.
+     * @param {object} data - The font data for this bitmap text.
+     * @param {number} scale - The scaling factor to apply to the font size.
+     * @param {string} text - The text to scan.
+     * @returns {{width: number, text: string, end: boolean, chars: number[]}} An object containing the width, processed text, end status, and character positions.
      */
     scanLine(data: object, scale: number, text: string): {
         width: number;
@@ -64,93 +64,100 @@ export class BitmapText extends DisplayObject {
         chars: number[];
     };
     /**
-     * TBD.
-     * @param {string} text - TBD.
-     * @param {string} replace - TBD.
-     * @returns {string} TBD.
+     * Cleans the provided text by removing invalid characters and replacing them with a specified character.
+     * @param {string} text - The text to clean.
+     * @param {string} replace - The character to use for replacement of invalid characters (default: '').
+     * @returns {string} The cleaned text.
      */
     cleanText(text: string, replace?: string): string;
     /**
-     * TBD.
+     * Updates the internal text rendering based on current properties and content.
      */
     updateText(): void;
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Removes unused glyphs from the pool and returns the number removed.
+     * @returns {number} The number of glyphs that were removed from the pool.
      */
     purgeGlyphs(): number;
     /**
-     * TBD.
+     * Updates the transform of this bitmap text, updating its text if needed.
      */
     updateTransform(): void;
     /**
-     * TBD.
-     * @param {string} value - TBD.
-     * @param {number} position - TBD.
-     * @returns {BitmapText} TBD.
+     * Adds a color to a specific position in the text.
+     * @param {string} value - The color to apply (in hex format or CSS color name).
+     * @param {number} position - The character position to apply the color to.
+     * @returns {BitmapText} This bitmap text instance for chaining.
      */
     addColor(value: string, position: number): BitmapText;
     /**
-     * TBD.
+     * Sets the text alignment property.
+     * @param {string} value - The new text alignment (left, center, right).
      */
     set align(value: string);
     /**
-     * TBD.
-     * @returns {string} TBD.
+     * Gets the text alignment property.
+     * @returns {string} The current text alignment (left, center, right).
      */
     get align(): string;
     /**
-     * TBD.
+     * Sets the tint color of this bitmap text.
+     * @param {number} value - The new tint color in RGB format.
      */
     set tint(value: number);
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the tint color of this bitmap text.
+     * @returns {number} The current tint color in RGB format.
      */
     get tint(): number;
     /**
-     * TBD.
+     * Sets the fill color of this bitmap text.
+     * @param {string} value - The new fill color in hex format or CSS color name.
      */
     set fill(value: string);
     /**
-     * TBD.
-     * @returns {string} TBD.
+     * Gets the fill color of this bitmap text as a hex string.
+     * @returns {string} The current fill color in hex format.
      */
     get fill(): string;
     /**
-     * TBD.
+     * Sets the font key used by this bitmap text.
+     * @param {string} value - The new font key to use.
      */
     set font(value: string);
     /**
-     * TBD.
-     * @returns {string} TBD.
+     * Gets the font key used by this bitmap text.
+     * @returns {string} The current font key.
      */
     get font(): string;
     /**
-     * TBD.
+     * Sets the font size of this bitmap text.
+     * @param {number} value - The new font size to use.
      */
     set fontSize(value: number);
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the font size of this bitmap text.
+     * @returns {number} The current font size.
      */
     get fontSize(): number;
     /**
-     * TBD.
+     * Sets the maximum width of this bitmap text.
+     * @param {number} value - The new maximum width to set.
      */
     set maxWidth(value: number);
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the maximum width of this bitmap text.
+     * @returns {number} The current maximum width.
      */
     get maxWidth(): number;
     /**
-     * TBD.
+     * Sets whether smoothing is enabled for this bitmap text's font.
+     * @param {boolean} value - Whether to enable smoothing (true) or not (false).
      */
     set smoothed(value: boolean);
     /**
-     * TBD.
-     * @returns {boolean} TBD.
+     * Gets whether smoothing is enabled for this bitmap text's font.
+     * @returns {boolean} True if smoothing is enabled, false otherwise.
      */
     get smoothed(): boolean;
 }

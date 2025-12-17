@@ -2,11 +2,11 @@ export const SORT_ASCENDING: -1;
 export const SORT_DESCENDING: 1;
 export class Group extends DisplayObject {
     /**
-     * TBD.
-     * @param {import('../core/game.js').Game} game - TBD.
-     * @param {DisplayObject} parent - TBD.
-     * @param {string} name - TBD.
-     * @param {boolean} addToStage - TBD.
+     * Creates a new Group object.
+     * @param {import('../core/game.js').Game} game - The game instance this group belongs to.
+     * @param {DisplayObject} parent - The parent display object.
+     * @param {string} name - The name of this group.
+     * @param {boolean} addToStage - Whether to add this group to the stage.
      */
     constructor(game: import("../core/game.js").Game, parent?: DisplayObject, name?: string, addToStage?: boolean);
     /** @type {number} */
@@ -36,89 +36,89 @@ export class Group extends DisplayObject {
     /** @type {string} */
     _sortProperty: string;
     /**
-     * TBD.
-     * @param {boolean} destroyChildren - TBD.
-     * @param {boolean} soft - TBD.
+     * Destroys this group and cleans up resources.
+     * @param {boolean} destroyChildren - Whether to destroy children as well.
+     * @param {boolean} soft - Whether to perform a soft destroy (leaving the group in the parent's children list).
      */
     destroy(destroyChildren?: boolean, soft?: boolean): void;
     filters: any;
     /**
-     * TBD.
-     * @param {DisplayObject} child - TBD.
-     * @param {boolean} silent - TBD.
-     * @param {number} index - TBD.
-     * @returns {DisplayObject} TBD.
+     * Adds a child to this group.
+     * @param {DisplayObject} child - The child to add.
+     * @param {boolean} silent - Whether to dispatch events.
+     * @param {number} index - The index to add the child at.
+     * @returns {DisplayObject} The added child.
      */
     add(child: DisplayObject, silent?: boolean, index?: number): DisplayObject;
     /**
-     * TBD.
-     * @param {DisplayObject} child - TBD.
-     * @param {number} index - TBD.
-     * @param {boolean} silent - TBD.
+     * Adds a child to this group at a specific index.
+     * @param {DisplayObject} child - The child to add.
+     * @param {number} index - The index to add the child at.
+     * @param {boolean} silent - Whether to dispatch events.
      */
     addAt(child: DisplayObject, index: number, silent: boolean): void;
     /**
-     * TBD.
-     * @param {number} index - TBD.
-     * @returns {DisplayObject} TBD.
+     * Gets a child at the specified index.
+     * @param {number} index - The index of the child to get.
+     * @returns {DisplayObject} The child at the specified index, or -1 if not found.
      */
     getAt(index: number): DisplayObject;
     /**
-     * TBD.
+     * Updates the Z indices of all children in this group.
      */
     updateZ(): void;
     /**
-     * TBD.
-     * @returns {DisplayObject} TBD.
+     * Gets the next child in this group (with circular wrapping).
+     * @returns {DisplayObject} The next child, or null if no children exist.
      */
     next(): DisplayObject;
     /**
-     * TBD.
-     * @returns {DisplayObject} TBD.
+     * Gets the previous child in this group (with circular wrapping).
+     * @returns {DisplayObject} The previous child, or null if no children exist.
      */
     previous(): DisplayObject;
     /**
-     * TBD.
-     * @param {DisplayObject} child1 - TBD.
-     * @param {DisplayObject} child2 - TBD.
+     * Swaps the positions of two children in this group.
+     * @param {DisplayObject} child1 - The first child to swap.
+     * @param {DisplayObject} child2 - The second child to swap.
      */
     swap(child1: DisplayObject, child2: DisplayObject): void;
     /**
-     * TBD.
-     * @param {DisplayObject} child - TBD.
-     * @returns {DisplayObject} TBD.
+     * Brings a child to the top of this group.
+     * @param {DisplayObject} child - The child to bring to the top.
+     * @returns {DisplayObject} The child that was brought to the top.
      */
     bringToTop(child: DisplayObject): DisplayObject;
     /**
-     * TBD.
-     * @param {DisplayObject} child - TBD.
-     * @returns {DisplayObject} TBD.
+     * Sends a child to the back of this group.
+     * @param {DisplayObject} child - The child to send to the back.
+     * @returns {DisplayObject} The child that was sent to the back.
      */
     sendToBack(child: DisplayObject): DisplayObject;
     /**
-     * TBD.
+     * Reverses the order of children in this group.
      */
     reverse(): void;
     /**
-     * TBD.
-     * @param {DisplayObject} child - TBD.
-     * @returns {number} TBD.
+     * Gets the index of a child in this group.
+     * @param {DisplayObject} child - The child to get the index of.
+     * @returns {number} The index of the child, or -1 if not found.
      */
     getIndex(child: DisplayObject): number;
     renderOrderID: number;
     /**
-     * TBD.
-     * @param {DisplayObject} child - TBD.
-     * @param {boolean} destroy - TBD.
-     * @param {boolean} silent - TBD.
-     * @returns {boolean} TBD.
+     * Removes a child from this group.
+     * @param {DisplayObject} child - The child to remove.
+     * @param {boolean} destroy - Whether to destroy the child after removing it.
+     * @param {boolean} silent - Whether to dispatch events.
+     * @returns {boolean} True if the child was removed, false otherwise.
      */
     remove(child: DisplayObject, destroy?: boolean, silent?: boolean): boolean;
     /**
-     * TBD.
-     * @param {boolean} destroy - TBD.
-     * @param {boolean} silent - TBD.
-     * @param {boolean} destroyTexture - TBD.
+     * Removes all children from this group.
+     * @param {boolean} destroy - Whether to destroy children as well.
+     * @param {boolean} silent - Whether to dispatch events.
+     * @param {boolean} destroyTexture - Whether to destroy textures as well.
      */
     removeAll(destroy?: boolean, silent?: boolean, destroyTexture?: boolean): void;
 }
