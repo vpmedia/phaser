@@ -11,18 +11,18 @@ const STATE_DISABLED = 'Disabled';
 
 export class Button extends Image {
   /**
-   * TBD.
-   * @param {import('../core/game.js').Game} game - TBD.
-   * @param {number} x - TBD.
-   * @param {number} y - TBD.
-   * @param {string} key - TBD.
-   * @param {Function} callback - TBD.
-   * @param {object} callbackContext - TBD.
-   * @param {string} overFrame - TBD.
-   * @param {string} outFrame - TBD.
-   * @param {string} downFrame - TBD.
-   * @param {string} upFrame - TBD.
-   * @param {string} disabledFrame - TBD.
+   * Creates a new Button instance.
+   * @param {import('../core/game.js').Game} game - The game instance this button belongs to.
+   * @param {number} x - The x position of the button.
+   * @param {number} y - The y position of the button.
+   * @param {string} key - The texture key to use for the button.
+   * @param {Function} callback - The function to call when the button is clicked.
+   * @param {object} callbackContext - The context in which to call the callback function.
+   * @param {string} overFrame - The frame identifier to use when the mouse is over the button.
+   * @param {string} outFrame - The frame identifier to use when the mouse is outside the button.
+   * @param {string} downFrame - The frame identifier to use when the button is pressed.
+   * @param {string} upFrame - The frame identifier to use when the button is released.
+   * @param {string} disabledFrame - The frame identifier to use when the button is disabled.
    */
   constructor(
     game,
@@ -67,7 +67,7 @@ export class Button extends Image {
   }
 
   /**
-   * TBD.
+   * Destroys this button and cleans up resources.
    */
   destroy() {
     this._onOverFrame = null;
@@ -93,9 +93,9 @@ export class Button extends Image {
   }
 
   /**
-   * TBD.
-   * @param {boolean} isEnabled - TBD.
-   * @param {boolean} isImmediate - TBD.
+   * Sets whether this button is enabled or disabled.
+   * @param {boolean} isEnabled - Whether the button should be enabled (true) or disabled (false).
+   * @param {boolean} isImmediate - Whether to change the state immediately or with a delay (default: false).
    */
   setEnabled(isEnabled, isImmediate = false) {
     this.input.enabled = isEnabled;
@@ -109,24 +109,24 @@ export class Button extends Image {
   }
 
   /**
-   * TBD.
+   * Clears all the frame settings for this button.
    */
   clearFrames() {
     this.setFrames(null, null, null, null, null);
   }
 
   /**
-   * TBD.
+   * Called when this button is removed from the world.
    */
   removedFromWorld() {
     this.inputEnabled = false;
   }
 
   /**
-   * TBD.
-   * @param {string} state - TBD.
-   * @param {string} frame - TBD.
-   * @param {boolean} switchImmediately - TBD.
+   * Sets a specific frame for a particular state of this button.
+   * @param {string} state - The state name (Over, Out, Down, Up, Disabled).
+   * @param {string} frame - The frame identifier to set for this state.
+   * @param {boolean} switchImmediately - Whether to switch to the new frame immediately (default: false).
    */
   setStateFrame(state, frame, switchImmediately = false) {
     const frameKey = `_on${state}Frame`;
@@ -141,9 +141,9 @@ export class Button extends Image {
   }
 
   /**
-   * TBD.
-   * @param {string} newState - TBD.
-   * @returns {boolean} TBD.
+   * Changes the frame of this button to match the specified state.
+   * @param {string} newState - The new state to change to (Over, Out, Down, Up, Disabled).
+   * @returns {boolean} True if the frame was changed, false otherwise.
    */
   changeStateFrame(newState) {
     if (this.freezeFrames) {
@@ -163,12 +163,12 @@ export class Button extends Image {
   }
 
   /**
-   * TBD.
-   * @param {string} overFrame - TBD.
-   * @param {string} outFrame - TBD.
-   * @param {string} downFrame - TBD.
-   * @param {string} upFrame - TBD.
-   * @param {string} disabledFrame - TBD.
+   * Sets the frame identifiers for all states of this button.
+   * @param {string} overFrame - The frame identifier to use when the mouse is over the button.
+   * @param {string} outFrame - The frame identifier to use when the mouse is outside the button.
+   * @param {string} downFrame - The frame identifier to use when the button is pressed.
+   * @param {string} upFrame - The frame identifier to use when the button is released.
+   * @param {string} disabledFrame - The frame identifier to use when the button is disabled.
    */
   setFrames(overFrame, outFrame, downFrame, upFrame, disabledFrame = null) {
     this.setStateFrame(STATE_OVER, overFrame, this.input.pointerOver());
@@ -181,9 +181,9 @@ export class Button extends Image {
   }
 
   /**
-   * TBD.
-   * @param {object} sprite - TBD.
-   * @param {object} pointer - TBD.
+   * Handles the input over event for this button.
+   * @param {object} sprite - The sprite that triggered the event.
+   * @param {object} pointer - The pointer that triggered the event.
    */
   onInputOverHandler(sprite, pointer) {
     if (pointer.justReleased() && (this.justReleasedPreventsOver & pointer.pointerMode) === pointer.pointerMode) {
@@ -200,9 +200,9 @@ export class Button extends Image {
   }
 
   /**
-   * TBD.
-   * @param {object} sprite - TBD.
-   * @param {object} pointer - TBD.
+   * Handles the input out event for this button.
+   * @param {object} sprite - The sprite that triggered the event.
+   * @param {object} pointer - The pointer that triggered the event.
    */
   onInputOutHandler(sprite, pointer) {
     this.changeStateFrame(STATE_OUT);
@@ -212,9 +212,9 @@ export class Button extends Image {
   }
 
   /**
-   * TBD.
-   * @param {object} sprite - TBD.
-   * @param {object} pointer - TBD.
+   * Handles the input down event for this button.
+   * @param {object} sprite - The sprite that triggered the event.
+   * @param {object} pointer - The pointer that triggered the event.
    */
   onInputDownHandler(sprite, pointer) {
     this.changeStateFrame(STATE_DOWN);
@@ -224,10 +224,10 @@ export class Button extends Image {
   }
 
   /**
-   * TBD.
-   * @param {object} sprite - TBD.
-   * @param {object} pointer - TBD.
-   * @param {boolean} isOver - TBD.
+   * Handles the input up event for this button.
+   * @param {object} sprite - The sprite that triggered the event.
+   * @param {object} pointer - The pointer that triggered the event.
+   * @param {boolean} isOver - Whether the pointer is currently over the button (default: true).
    */
   onInputUpHandler(sprite, pointer, isOver) {
     if (this.onInputUp) {
@@ -252,15 +252,16 @@ export class Button extends Image {
   }
 
   /**
-   * TBD.
-   * @returns {boolean} TBD.
+   * Gets whether input is currently enabled for this button.
+   * @returns {boolean} True if input is enabled, false otherwise.
    */
   get inputEnabled() {
     return this.input && this.input.enabled;
   }
 
   /**
-   * TBD.
+   * Sets whether input is currently enabled for this button.
+   * @param {boolean} value - Whether to enable (true) or disable (false) input.
    */
   set inputEnabled(value) {
     if (value) {
