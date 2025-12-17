@@ -131,7 +131,7 @@ export class CanvasRenderer {
   }
 
   /**
-   * TBD.
+   * Maps blend modes to canvas rendering operations.
    */
   mapBlendModes() {
     if (window.PhaserRegistry.blendModesCanvas) {
@@ -160,8 +160,8 @@ export class CanvasRenderer {
   }
 
   /**
-   * TBD.
-   * @param {import('../../core/game.js').Game} game - TBD.
+   * Initializes the WebGL context for rendering.
+   * @param {import('../../core/game.js').Game} game - The game instance.
    */
   initContext(game) {
     // stub

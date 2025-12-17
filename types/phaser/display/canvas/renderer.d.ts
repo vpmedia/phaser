@@ -49,12 +49,12 @@ export class CanvasRenderer {
      */
     renderDisplayObject(displayObject: import("../../display/image.js").Image, context: CanvasRenderingContext2D, matrix: import("../../geom/matrix.js").Matrix): void;
     /**
-     * TBD.
+     * Maps blend modes to canvas rendering operations.
      */
     mapBlendModes(): void;
     /**
-     * TBD.
-     * @param {import('../../core/game.js').Game} game - TBD.
+     * Initializes the WebGL context for rendering.
+     * @param {import('../../core/game.js').Game} game - The game instance.
      */
     initContext(game: import("../../core/game.js").Game): void;
 }

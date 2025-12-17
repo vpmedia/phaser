@@ -1,8 +1,8 @@
 export class Timer {
     /**
-     * TBD.
-     * @param {import('./game.js').Game} game - TBD.
-     * @param {boolean} autoDestroy - TBD.
+     * Creates a new Timer instance.
+     * @param {import('./game.js').Game} game - The game instance.
+     * @param {boolean} autoDestroy - Whether to automatically destroy the timer when it completes.
      */
     constructor(game: import("./game.js").Game, autoDestroy?: boolean);
     game: import("./game.js").Game;

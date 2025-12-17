@@ -33,8 +33,8 @@ import { getWebGLContextErrorCode, getWebGLContextErrorName } from './util.js';
 
 export class WebGLRenderer {
   /**
-   * TBD.
-   * @param {import('../../core/game.js').Game} game - TBD.
+   * Creates a new WebGLRenderer instance.
+   * @param {import('../../core/game.js').Game} game - The game instance.
    */
   constructor(game) {
     /** @type {number} */
@@ -78,7 +78,7 @@ export class WebGLRenderer {
   }
 
   /**
-   * TBD.
+   * Destroys this renderer and cleans up resources.
    */
   destroy() {
     window.PhaserRegistry.GL_CONTEXTS[this.glContextId] = null;
@@ -106,7 +106,7 @@ export class WebGLRenderer {
   }
 
   /**
-   * TBD.
+   * Initializes the WebGL registry.
    */
   initRegistry() {
     if (!window.PhaserRegistry.GL_CONTEXT_ID) {
@@ -121,8 +121,8 @@ export class WebGLRenderer {
   }
 
   /**
-   * TBD.
-   * @param {import('../../core/game.js').Game} game - TBD.
+   * Initializes the WebGL context for rendering.
+   * @param {import('../../core/game.js').Game} game - The game instance.
    * @throws {Error}
    */
   initContext(game) {
@@ -166,8 +166,8 @@ export class WebGLRenderer {
   }
 
   /**
-   * TBD.
-   * @param {import('../../core/stage.js').Stage} stage - TBD.
+   * Renders the stage to WebGL.
+   * @param {import('../../core/stage.js').Stage} stage - The root stage to render.
    */
   render(stage) {
     if (this.contextLost) {
@@ -188,11 +188,11 @@ export class WebGLRenderer {
   }
 
   /**
-   * TBD.
-   * @param {import('../../display/display_object.js').DisplayObject} displayObject - TBD.
-   * @param {Point} projection - TBD.
-   * @param {object} buffer - TBD.
-   * @param {import('../../geom/matrix.js').Matrix} matrix - TBD.
+   * Renders a display object to WebGL.
+   * @param {import('../../display/display_object.js').DisplayObject} displayObject - The display object to render.
+   * @param {Point} projection - The projection matrix.
+   * @param {object} buffer - The render buffer.
+   * @param {import('../../geom/matrix.js').Matrix} matrix - The transformation matrix.
    */
   renderDisplayObject(displayObject, projection, buffer, matrix) {
     this.renderSession.blendModeManager.setBlendMode(BLEND_NORMAL);
@@ -215,9 +215,9 @@ export class WebGLRenderer {
   }
 
   /**
-   * TBD.
-   * @param {number} width - TBD.
-   * @param {number} height - TBD.
+   * Resizes the WebGL canvas to the specified dimensions.
+   * @param {number} width - The new width of the canvas.
+   * @param {number} height - The new height of the canvas.
    */
   resize(width, height) {
     this.width = width * this.resolution;
@@ -234,9 +234,9 @@ export class WebGLRenderer {
   }
 
   /**
-   * TBD.
-   * @param {import('./base_texture.js').BaseTexture} texture - TBD.
-   * @returns {boolean} TBD.
+   * Updates a texture in the WebGL context.
+   * @param {import('./base_texture.js').BaseTexture} texture - The base texture to update.
+   * @returns {boolean} Whether the update was successful.
    */
   updateTexture(texture) {
     if (!texture.hasLoaded) {
@@ -277,7 +277,7 @@ export class WebGLRenderer {
   }
 
   /**
-   * TBD.
+   * Maps blend modes to WebGL rendering operations.
    */
   mapBlendModes() {
     if (window.PhaserRegistry.blendModesWebGL) {

@@ -2,7 +2,7 @@ import { SignalBinding } from './signal_binding.js';
 
 export class Signal {
   /**
-   * TBD.
+   * Creates a new Signal instance.
    */
   constructor() {
     this._bindings = null;
