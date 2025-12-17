@@ -7,8 +7,8 @@ const TEXTURE_ATLAS_JSON_HASH = 1;
 
 export class Loader {
   /**
-   * TBD.
-   * @param {import('./game.js').Game} game - TBD.
+   * Creates a new Loader instance.
+   * @param {import('./game.js').Game} game - Reference to the Phaser Game instance.
    */
   constructor(game) {
     this.game = game;
@@ -46,9 +46,9 @@ export class Loader {
   }
 
   /**
-   * TBD.
-   * @param {import('../display/image.js').Image} sprite - TBD.
-   * @param {number} direction - TBD.
+   * Sets the preload sprite for displaying loading progress.
+   * @param {import('../display/image.js').Image} sprite - The image to use as the preload sprite.
+   * @param {number} direction - The direction of the progress (0 = horizontal, 1 = vertical).
    */
   setPreloadSprite(sprite, direction = 0) {
     this.preloadSprite = {
@@ -70,7 +70,7 @@ export class Loader {
   }
 
   /**
-   * TBD.
+   * Resizes the preload sprite when the window is resized.
    */
   resize() {
     if (this.preloadSprite && this.preloadSprite.height !== this.preloadSprite.sprite.height) {
@@ -79,20 +79,20 @@ export class Loader {
   }
 
   /**
-   * TBD.
-   * @param {string} type - TBD.
-   * @param {string} key - TBD.
-   * @returns {boolean} TBD.
+   * Checks if a file with the given type and key already exists in the file list.
+   * @param {string} type - The type of file to check for.
+   * @param {string} key - The key of the file to check for.
+   * @returns {boolean} True if the file exists, false otherwise.
    */
   checkKeyExists(type, key) {
     return this.getAssetIndex(type, key) > -1;
   }
 
   /**
-   * TBD.
-   * @param {string} type - TBD.
-   * @param {string} key - TBD.
-   * @returns {number} TBD.
+   * Gets the index of a file in the file list by type and key.
+   * @param {string} type - The type of file to find.
+   * @param {string} key - The key of the file to find.
+   * @returns {number} The index of the file in the list, or -1 if not found.
    */
   getAssetIndex(type, key) {
     let bestFound = -1;
@@ -111,10 +111,10 @@ export class Loader {
   }
 
   /**
-   * TBD.
-   * @param {string} type - TBD.
-   * @param {string} key - TBD.
-   * @returns {{index: number, file: object} | null} TBD.
+   * Gets a file from the file list by type and key.
+   * @param {string} type - The type of file to get.
+   * @param {string} key - The key of the file to get.
+   * @returns {{index: number, file: object} | null} The file and its index, or null if not found.
    */
   getAsset(type, key) {
     const fileIndex = this.getAssetIndex(type, key);
@@ -125,9 +125,9 @@ export class Loader {
   }
 
   /**
-   * TBD.
-   * @param {boolean} hard - TBD.
-   * @param {boolean} clearEvents - TBD.
+   * Resets the loader state, optionally clearing event listeners.
+   * @param {boolean} hard - Whether to perform a hard reset (clears preload sprite).
+   * @param {boolean} clearEvents - Whether to clear event listeners.
    */
   reset(hard = false, clearEvents = false) {
     if (hard) {
@@ -153,14 +153,14 @@ export class Loader {
   }
 
   /**
-   * TBD.
-   * @param {string} type - TBD.
-   * @param {string} key - TBD.
-   * @param {string} url - TBD.
-   * @param {object} properties - TBD.
-   * @param {boolean} overwrite - TBD.
-   * @param {string} extension - TBD.
-   * @returns {Loader} TBD.
+   * Adds a file to the file list for loading.
+   * @param {string} type - The type of file to add.
+   * @param {string} key - The key to identify the file.
+   * @param {string} url - The URL of the file to load.
+   * @param {object} properties - Additional properties for the file.
+   * @param {boolean} overwrite - Whether to overwrite an existing file with the same key.
+   * @param {string} extension - The file extension to use if URL is not provided.
+   * @returns {Loader} This Loader instance for chaining.
    */
   addToFileList(type, key = '', url = null, properties = null, overwrite = false, extension = null) {
     if (key === undefined || key === '') {
@@ -210,24 +210,24 @@ export class Loader {
   }
 
   /**
-   * TBD.
-   * @param {string} type - TBD.
-   * @param {string} key - TBD.
-   * @param {string} url - TBD.
-   * @param {object} properties - TBD.
-   * @returns {Loader} TBD.
+   * Replaces a file in the file list with new properties.
+   * @param {string} type - The type of file to replace.
+   * @param {string} key - The key of the file to replace.
+   * @param {string} url - The new URL for the file.
+   * @param {object} properties - The new properties for the file.
+   * @returns {Loader} This Loader instance for chaining.
    */
   replaceInFileList(type, key, url, properties) {
     return this.addToFileList(type, key, url, properties, true);
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
-   * @param {string} url - TBD.
-   * @param {object} data - TBD.
-   * @param {object} callbackContext - TBD.
-   * @returns {Loader} TBD.
+   * Adds a pack file to the file list.
+   * @param {string} key - The key to identify the pack file.
+   * @param {string} url - The URL of the pack file to load.
+   * @param {object} data - The parsed pack data.
+   * @param {object} callbackContext - The context in which to call the callback.
+   * @returns {Loader} This Loader instance for chaining.
    */
   pack(key, url, data, callbackContext) {
     const pack = {
@@ -261,21 +261,21 @@ export class Loader {
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
-   * @param {string} url - TBD.
-   * @param {boolean} overwrite - TBD.
-   * @returns {Loader} TBD.
+   * Adds an image file to the file list.
+   * @param {string} key - The key to identify the image file.
+   * @param {string} url - The URL of the image file to load.
+   * @param {boolean} overwrite - Whether to overwrite an existing file with the same key.
+   * @returns {Loader} This Loader instance for chaining.
    */
   image(key, url, overwrite = false) {
     return this.addToFileList('image', key, url, undefined, overwrite, '.png');
   }
 
   /**
-   * TBD.
-   * @param {string[]} keys - TBD.
-   * @param {string[]} urls - TBD.
-   * @returns {Loader} TBD.
+   * Adds multiple image files to the file list.
+   * @param {string[]} keys - The keys to identify the image files.
+   * @param {string[]} urls - The URLs of the image files to load.
+   * @returns {Loader} This Loader instance for chaining.
    */
   images(keys, urls) {
     if (Array.isArray(urls)) {
@@ -291,48 +291,48 @@ export class Loader {
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
-   * @param {string} url - TBD.
-   * @param {boolean} overwrite - TBD.
-   * @returns {Loader} TBD.
+   * Adds a text file to the file list.
+   * @param {string} key - The key to identify the text file.
+   * @param {string} url - The URL of the text file to load.
+   * @param {boolean} overwrite - Whether to overwrite an existing file with the same key.
+   * @returns {Loader} This Loader instance for chaining.
    */
   text(key, url, overwrite = false) {
     return this.addToFileList('text', key, url, undefined, overwrite, '.txt');
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
-   * @param {string} url - TBD.
-   * @param {boolean} overwrite - TBD.
-   * @returns {Loader} TBD.
+   * Adds a JSON file to the file list.
+   * @param {string} key - The key to identify the JSON file.
+   * @param {string} url - The URL of the JSON file to load.
+   * @param {boolean} overwrite - Whether to overwrite an existing file with the same key.
+   * @returns {Loader} This Loader instance for chaining.
    */
   json(key, url, overwrite = false) {
     return this.addToFileList('json', key, url, undefined, overwrite, '.json');
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
-   * @param {string} url - TBD.
-   * @param {boolean} overwrite - TBD.
-   * @returns {Loader} TBD.
+   * Adds an XML file to the file list.
+   * @param {string} key - The key to identify the XML file.
+   * @param {string} url - The URL of the XML file to load.
+   * @param {boolean} overwrite - Whether to overwrite an existing file with the same key.
+   * @returns {Loader} This Loader instance for chaining.
    */
   xml(key, url, overwrite = false) {
     return this.addToFileList('xml', key, url, undefined, overwrite, '.xml');
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
-   * @param {string} url - TBD.
-   * @param {number} frameWidth - TBD.
-   * @param {number} frameHeight - TBD.
-   * @param {number} frameMax - TBD.
-   * @param {number} margin - TBD.
-   * @param {number} spacing - TBD.
-   * @returns {Loader} TBD.
+   * Adds a spritesheet file to the file list.
+   * @param {string} key - The key to identify the spritesheet file.
+   * @param {string} url - The URL of the spritesheet file to load.
+   * @param {number} frameWidth - The width of each frame in the spritesheet.
+   * @param {number} frameHeight - The height of each frame in the spritesheet.
+   * @param {number} frameMax - The maximum number of frames to load (-1 for all).
+   * @param {number} margin - The margin around each frame in pixels.
+   * @param {number} spacing - The spacing between frames in pixels.
+   * @returns {Loader} This Loader instance for chaining.
    */
   spritesheet(key, url, frameWidth, frameHeight, frameMax = -1, margin = 0, spacing = 0) {
     return this.addToFileList(
@@ -346,11 +346,11 @@ export class Loader {
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
-   * @param {string[]} urls - TBD.
-   * @param {boolean} autoDecode - TBD.
-   * @returns {Loader} TBD.
+   * Adds an audio file to the file list.
+   * @param {string} key - The key to identify the audio file.
+   * @param {string[]} urls - The URLs of the audio files to load.
+   * @param {boolean} autoDecode - Whether to automatically decode the audio file.
+   * @returns {Loader} This Loader instance for chaining.
    */
   audio(key, urls, autoDecode = true) {
     if (this.game.sound.noAudio || this.game.device.noAudioFormat) {
@@ -363,13 +363,13 @@ export class Loader {
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
-   * @param {string} urls - TBD.
-   * @param {string} jsonURL - TBD.
-   * @param {object} jsonData - TBD.
-   * @param {boolean} autoDecode - TBD.
-   * @returns {Loader} TBD.
+   * Adds an audio sprite file to the file list.
+   * @param {string} key - The key to identify the audio sprite file.
+   * @param {string} urls - The URLs of the audio files to load.
+   * @param {string} jsonURL - The URL of the JSON file containing audio sprite data.
+   * @param {object} jsonData - The parsed JSON data containing audio sprite data.
+   * @param {boolean} autoDecode - Whether to automatically decode the audio file.
+   * @returns {Loader} This Loader instance for chaining.
    */
   audioSprite(key, urls, jsonURL, jsonData, autoDecode = true) {
     if (this.game.sound.noAudio || this.game.device.noAudioFormat) {
@@ -388,15 +388,15 @@ export class Loader {
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
-   * @param {string} textureURL - TBD.
-   * @param {string} atlasURL - TBD.
-   * @param {object} atlasData - TBD.
-   * @param {number} xSpacing - TBD.
-   * @param {number} ySpacing - TBD.
-   * @returns {Loader} TBD.
-   * @throws {Error}
+   * Adds a bitmap font file to the file list.
+   * @param {string} key - The key to identify the bitmap font file.
+   * @param {string} textureURL - The URL of the font texture image.
+   * @param {string} atlasURL - The URL of the XML or JSON file containing font data.
+   * @param {object} atlasData - The parsed data containing font information.
+   * @param {number} xSpacing - The horizontal spacing between characters in pixels.
+   * @param {number} ySpacing - The vertical spacing between characters in pixels.
+   * @returns {Loader} This Loader instance for chaining.
+   * @throws {Error} If the bitmap font atlas data is invalid.
    */
   bitmapFont(key, textureURL = null, atlasURL = null, atlasData = null, xSpacing = 0, ySpacing = 0) {
     if (textureURL === undefined || textureURL === null) {
@@ -432,13 +432,13 @@ export class Loader {
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
-   * @param {string} textureURL - TBD.
-   * @param {string} atlasURL - TBD.
-   * @param {object} atlasData - TBD.
-   * @param {number} format - TBD.
-   * @returns {Loader} TBD.
+   * Adds a texture atlas file to the file list.
+   * @param {string} key - The key to identify the texture atlas file.
+   * @param {string} textureURL - The URL of the texture image file.
+   * @param {string} atlasURL - The URL of the JSON or XML file containing atlas data.
+   * @param {object} atlasData - The parsed data containing atlas information.
+   * @param {number} format - The format of the atlas file (JSON or XML).
+   * @returns {Loader} This Loader instance for chaining.
    */
   atlas(key, textureURL, atlasURL = null, atlasData = null, format = TEXTURE_ATLAS_JSON_HASH) {
     if (textureURL === undefined || textureURL === null) {
@@ -457,10 +457,10 @@ export class Loader {
   }
 
   /**
-   * TBD.
-   * @param {Function} callback - TBD.
-   * @param {object} callbackContext - TBD.
-   * @returns {Loader} TBD.
+   * Creates a sync point for loading files, ensuring all files in the block are loaded before continuing.
+   * @param {Function} callback - The callback function to execute within the sync point.
+   * @param {object} callbackContext - The context in which to call the callback.
+   * @returns {Loader} This Loader instance for chaining.
    */
   withSyncPoint(callback, callbackContext) {
     this._withSyncPointDepth += 1;
@@ -473,10 +473,10 @@ export class Loader {
   }
 
   /**
-   * TBD.
-   * @param {string} type - TBD.
-   * @param {string} key - TBD.
-   * @returns {Loader} TBD.
+   * Adds a sync point to a specific file, preventing other files from loading until this one is processed.
+   * @param {string} type - The type of file to add a sync point to.
+   * @param {string} key - The key of the file to add a sync point to.
+   * @returns {Loader} This Loader instance for chaining.
    */
   addSyncPoint(type, key) {
     const asset = this.getAsset(type, key);
@@ -487,9 +487,9 @@ export class Loader {
   }
 
   /**
-   * TBD.
-   * @param {string} type - TBD.
-   * @param {string} key - TBD.
+   * Removes a file from the file list if it's not currently loading or loaded.
+   * @param {string} type - The type of file to remove.
+   * @param {string} key - The key of the file to remove.
    */
   removeFile(type, key) {
     const asset = this.getAsset(type, key);
@@ -501,7 +501,7 @@ export class Loader {
   }
 
   /**
-   * TBD.
+   * Removes all files from the file list.
    */
   removeAll() {
     this._fileList.length = 0;
@@ -509,7 +509,7 @@ export class Loader {
   }
 
   /**
-   * TBD.
+   * Starts the loading process for all queued files.
    */
   start() {
     if (this.isLoading) {
@@ -522,7 +522,7 @@ export class Loader {
   }
 
   /**
-   * TBD.
+   * Processes the loading queue, loading files as appropriate.
    */
   processLoadQueue() {
     if (!this.isLoading) {
@@ -620,8 +620,8 @@ export class Loader {
   }
 
   /**
-   * TBD.
-   * @param {boolean} abnormal - TBD.
+   * Finishes the loading process, optionally reporting an abnormal termination.
+   * @param {boolean} abnormal - Whether the loading was terminated abnormally.
    */
   finishedLoading(abnormal = false) {
     if (this.hasLoaded) {
@@ -643,9 +643,9 @@ export class Loader {
   }
 
   /**
-   * TBD.
-   * @param {object} file - TBD.
-   * @param {string} errorMessage - TBD.
+   * Marks a file as complete or failed, updating the loading state.
+   * @param {object} file - The file to complete or mark as failed.
+   * @param {string} errorMessage - An error message if the file failed to load.
    */
   asyncComplete(file, errorMessage = '') {
     file.loaded = true;
@@ -659,8 +659,8 @@ export class Loader {
   }
 
   /**
-   * TBD.
-   * @param {object} pack - TBD.
+   * Processes a pack file, adding its contained files to the loader.
+   * @param {object} pack - The pack file object to process.
    */
   processPack(pack) {
     const packData = pack.data[pack.key];
@@ -722,10 +722,10 @@ export class Loader {
   }
 
   /**
-   * TBD.
-   * @param {string} url - TBD.
-   * @param {object} file - TBD.
-   * @returns {string} TBD.
+   * Transforms a URL by adding the base URL and path prefix if needed.
+   * @param {string} url - The original URL to transform.
+   * @param {object} file - The file object containing path information.
+   * @returns {string} The transformed URL.
    */
   transformUrl(url, file) {
     if (!url) {
@@ -738,8 +738,8 @@ export class Loader {
   }
 
   /**
-   * TBD.
-   * @param {object} file - TBD.
+   * Loads a file using XMLHttpRequest, handling image files specially.
+   * @param {object} file - The file object to load.
    */
   loadFile(file) {
     switch (file.type) {
@@ -780,8 +780,8 @@ export class Loader {
   }
 
   /**
-   * TBD.
-   * @param {object} file - TBD.
+   * Loads an image file using the Image DOM element.
+   * @param {object} file - The file object to load.
    */
   loadImageTag(file) {
     this.log('loadImageTag', file);
@@ -814,12 +814,12 @@ export class Loader {
   }
 
   /**
-   * TBD.
-   * @param {object} file - TBD.
-   * @param {string} url - TBD.
-   * @param {string} type - TBD.
-   * @param {Function} onload - TBD.
-   * @param {Function} onerror - TBD.
+   * Loads a file using XMLHttpRequest with the specified parameters.
+   * @param {object} file - The file object to load.
+   * @param {string} url - The URL of the file to load.
+   * @param {string} type - The expected response type (e.g., 'text', 'arraybuffer').
+   * @param {Function} onload - The function to call when the file loads successfully.
+   * @param {Function} onerror - The function to call if the file fails to load.
    */
   xhrLoad(file, url, type, onload, onerror = null) {
     this.log('xhrLoad', file);
@@ -887,7 +887,7 @@ export class Loader {
   }
 
   /**
-   * TBD.
+   * Placeholder for XDomainRequest loading (not implemented).
    */
   xhrLoadWithXDR() {
     // TODO
@@ -895,9 +895,9 @@ export class Loader {
   }
 
   /**
-   * TBD.
-   * @param {object[]} urls - TBD.
-   * @returns {string} TBD.
+   * Gets the first supported audio URL from a list of URLs.
+   * @param {object[]} urls - The array of URLs to check for supported audio formats.
+   * @returns {string} The first URL with a supported audio format, or null if none found.
    */
   getAudioURL(urls) {
     if (this.game.sound.noAudio || this.game.device.noAudioFormat) {
@@ -935,10 +935,10 @@ export class Loader {
   }
 
   /**
-   * TBD.
-   * @param {object} file - TBD.
-   * @param {XMLHttpRequest} xhr - TBD.
-   * @param {number | string} reason - TBD.
+   * Handles file loading errors, optionally retrying or marking the file as failed.
+   * @param {object} file - The file object that failed to load.
+   * @param {XMLHttpRequest} xhr - The XMLHttpRequest object that failed.
+   * @param {number | string} reason - The error code or message explaining the failure.
    */
   fileError(file, xhr = null, reason = 0) {
     // const url = file.requestUrl || this.transformUrl(file.url, file);
@@ -1042,9 +1042,9 @@ export class Loader {
   }
 
   /**
-   * TBD.
-   * @param {object} file - TBD.
-   * @param {XMLHttpRequest} xhr - TBD.
+   * Handles successful file loading, processing the file content appropriately.
+   * @param {object} file - The file object that was loaded successfully.
+   * @param {XMLHttpRequest} xhr - The XMLHttpRequest object containing the file data.
    */
   jsonLoadComplete(file, xhr) {
     const data = JSON.parse(xhr.responseText);
@@ -1067,9 +1067,9 @@ export class Loader {
   }
 
   /**
-   * TBD.
-   * @param {object} file - TBD.
-   * @param {XMLHttpRequest} xhr - TBD.
+   * Processes JSON file data after loading.
+   * @param {object} file - The file object containing the JSON data.
+   * @param {XMLHttpRequest} xhr - The XMLHttpRequest object containing the file data.
    */
   xmlLoadComplete(file, xhr) {
     // Always try parsing the content as XML, regardless of actually response type
@@ -1092,9 +1092,9 @@ export class Loader {
   }
 
   /**
-   * TBD.
-   * @param {object} data - TBD.
-   * @returns {Document} TBD.
+   * Parses XML string data into a DOM Document object.
+   * @param {object} data - The XML string data to parse.
+   * @returns {Document} The parsed DOM Document, or null if parsing failed.
    */
   parseXml(data) {
     let xml = null;
@@ -1118,7 +1118,7 @@ export class Loader {
   }
 
   /**
-   * TBD.
+   * Updates the preload sprite's progress indicator.
    */
   updateProgress() {
     if (this.preloadSprite) {
@@ -1137,9 +1137,9 @@ export class Loader {
   }
 
   /**
-   * TBD.
-   * @param {string} message - TBD.
-   * @param {string|object} data - TBD.
+   * Logs a message to the console if logging is enabled.
+   * @param {string} message - The message to log.
+   * @param {string|object} data - Additional data to log with the message.
    */
   log(message, data = '') {
     if (!this.isUseLog) {
@@ -1149,40 +1149,40 @@ export class Loader {
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the number of files that have been loaded.
+   * @returns {number} The total number of loaded files.
    */
   totalLoadedFiles() {
     return this._loadedFileCount;
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the number of files that are still queued for loading.
+   * @returns {number} The total number of queued files.
    */
   totalQueuedFiles() {
     return this._totalFileCount - this._loadedFileCount;
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the number of pack files that have been loaded.
+   * @returns {number} The total number of loaded pack files.
    */
   totalLoadedPacks() {
     return this._totalPackCount;
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the number of pack files that are still queued for loading.
+   * @returns {number} The total number of queued pack files.
    */
   totalQueuedPacks() {
     return this._totalPackCount - this._loadedPackCount;
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the loading progress as a percentage (0-100).
+   * @returns {number} The current loading progress as a percentage.
    */
   get progressFloat() {
     const progress = (this._loadedFileCount / this._totalFileCount) * 100;
@@ -1190,8 +1190,8 @@ export class Loader {
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the loading progress as a rounded percentage (0-100).
+   * @returns {number} The current loading progress as a rounded percentage.
    */
   get progress() {
     return Math.round(this.progressFloat);

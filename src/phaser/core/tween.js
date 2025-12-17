@@ -5,10 +5,10 @@ import { TweenData } from './tween_data.js';
 
 export class Tween {
   /**
-   * TBD.
-   * @param {import('../display/display_object.js').DisplayObject} target - TBD.
-   * @param {import('./game.js').Game} game - TBD.
-   * @param {import('./tween_manager.js').TweenManager} manager - TBD.
+   * Creates a new Tween instance.
+   * @param {import('../display/display_object.js').DisplayObject} target - The object to tween.
+   * @param {import('./game.js').Game} game - Reference to the Phaser Game instance.
+   * @param {import('./tween_manager.js').TweenManager} manager - Reference to the Tween Manager.
    */
   constructor(target, game, manager) {
     this.game = game;
@@ -54,15 +54,15 @@ export class Tween {
   }
 
   /**
-   * TBD.
-   * @param {object} properties - TBD.
-   * @param {number} duration - TBD.
-   * @param {string | Function} ease - TBD.
-   * @param {boolean} autoStart - TBD.
-   * @param {number} delay - TBD.
-   * @param {number} repeat - TBD.
-   * @param {boolean} yoyo - TBD.
-   * @returns {Tween} TBD.
+   * Adds a tween to the timeline that animates properties to their target values.
+   * @param {object} properties - The properties to tween and their target values.
+   * @param {number} duration - The duration of the tween in milliseconds.
+   * @param {string | Function} ease - The easing function to use.
+   * @param {boolean} autoStart - Whether to start the tween immediately.
+   * @param {number} delay - The delay before starting the tween in milliseconds.
+   * @param {number} repeat - Number of times to repeat the tween.
+   * @param {boolean} yoyo - Whether to reverse the tween on repeat.
+   * @returns {Tween} This Tween object for chaining.
    */
   to(properties, duration = 1000, ease = 'Linear', autoStart = false, delay = 0, repeat = 0, yoyo = false) {
     if (typeof ease === 'string' && this.manager.easeMap[ease]) {
@@ -80,15 +80,15 @@ export class Tween {
   }
 
   /**
-   * TBD.
-   * @param {object} properties - TBD.
-   * @param {number} duration - TBD.
-   * @param {string | Function} ease - TBD.
-   * @param {boolean} autoStart - TBD.
-   * @param {number} delay - TBD.
-   * @param {number} repeat - TBD.
-   * @param {boolean} yoyo - TBD.
-   * @returns {Tween} TBD.
+   * Adds a tween to the timeline that animates properties from their current values.
+   * @param {object} properties - The properties to tween and their target values.
+   * @param {number} duration - The duration of the tween in milliseconds.
+   * @param {string | Function} ease - The easing function to use.
+   * @param {boolean} autoStart - Whether to start the tween immediately.
+   * @param {number} delay - The delay before starting the tween in milliseconds.
+   * @param {number} repeat - Number of times to repeat the tween.
+   * @param {boolean} yoyo - Whether to reverse the tween on repeat.
+   * @returns {Tween} This Tween object for chaining.
    */
   from(properties, duration = 1000, ease = 'Linear', autoStart = false, delay = 0, repeat = 0, yoyo = false) {
     if (typeof ease === 'string' && this.manager.easeMap[ease]) {
@@ -107,9 +107,9 @@ export class Tween {
   }
 
   /**
-   * TBD.
-   * @param {number} index - TBD.
-   * @returns {Tween} TBD.
+   * Starts the tween timeline from a specific index.
+   * @param {number} index - The index to start from in the timeline.
+   * @returns {Tween} This Tween object for chaining.
    */
   start(index = 0) {
     if (this.game === null || this.target === null || this.timeline.length === 0 || this.isRunning) {
@@ -142,9 +142,9 @@ export class Tween {
   }
 
   /**
-   * TBD.
-   * @param {boolean} complete - TBD.
-   * @returns {Tween} TBD.
+   * Stops the tween and optionally completes it.
+   * @param {boolean} complete - Whether to dispatch the complete event.
+   * @returns {Tween} This Tween object for chaining.
    */
   stop(complete = false) {
     this.isRunning = false;
@@ -162,11 +162,11 @@ export class Tween {
   }
 
   /**
-   * TBD.
-   * @param {string} property - TBD.
-   * @param {object} value - TBD.
-   * @param {number} index - TBD.
-   * @returns {Tween} TBD.
+   * Updates a property in the tween data.
+   * @param {string} property - The property name to update.
+   * @param {object} value - The new value for the property.
+   * @param {number} index - The index in the timeline to update.
+   * @returns {Tween} This Tween object for chaining.
    */
   updateTweenData(property, value, index = 0) {
     if (this.timeline.length === 0) {
@@ -183,21 +183,21 @@ export class Tween {
   }
 
   /**
-   * TBD.
-   * @param {number} duration - TBD.
-   * @param {number} index - TBD.
-   * @returns {Tween} TBD.
+   * Sets a delay for a specific timeline entry.
+   * @param {number} duration - The delay in milliseconds.
+   * @param {number} index - The index in the timeline to apply the delay to.
+   * @returns {Tween} This Tween object for chaining.
    */
   delay(duration, index) {
     return this.updateTweenData('delay', duration, index);
   }
 
   /**
-   * TBD.
-   * @param {number} total - TBD.
-   * @param {number} repeatDelay - TBD.
-   * @param {number} index - TBD.
-   * @returns {Tween} TBD.
+   * Sets how many times to repeat the tween.
+   * @param {number} total - The number of times to repeat (-1 for infinite).
+   * @param {number} repeatDelay - Delay between repeats in milliseconds.
+   * @param {number} index - The index in the timeline to apply the repeat to.
+   * @returns {Tween} This Tween object for chaining.
    */
   repeat(total, repeatDelay = 0, index = 0) {
     this.updateTweenData('repeatCounter', total, index);
@@ -205,21 +205,21 @@ export class Tween {
   }
 
   /**
-   * TBD.
-   * @param {number} duration - TBD.
-   * @param {number} index - TBD.
-   * @returns {Tween} TBD.
+   * Sets the repeat delay for a specific timeline entry.
+   * @param {number} duration - The delay between repeats in milliseconds.
+   * @param {number} index - The index in the timeline to apply the delay to.
+   * @returns {Tween} This Tween object for chaining.
    */
   repeatDelay(duration, index) {
     return this.updateTweenData('repeatDelay', duration, index);
   }
 
   /**
-   * TBD.
-   * @param {boolean} enable - TBD.
-   * @param {number} yoyoDelay - TBD.
-   * @param {number} index - TBD.
-   * @returns {Tween} TBD.
+   * Enables or disables yoyo behavior for a timeline entry.
+   * @param {boolean} enable - Whether to enable yoyo behavior.
+   * @param {number} yoyoDelay - Delay between yoyo cycles in milliseconds.
+   * @param {number} index - The index in the timeline to apply yoyo to.
+   * @returns {Tween} This Tween object for chaining.
    */
   yoyo(enable, yoyoDelay = 0, index = 0) {
     this.updateTweenData('yoyo', enable, index);
@@ -227,20 +227,20 @@ export class Tween {
   }
 
   /**
-   * TBD.
-   * @param {number} duration - TBD.
-   * @param {number} index - TBD.
-   * @returns {Tween} TBD.
+   * Sets the yoyo delay for a specific timeline entry.
+   * @param {number} duration - The delay between yoyo cycles in milliseconds.
+   * @param {number} index - The index in the timeline to apply the delay to.
+   * @returns {Tween} This Tween object for chaining.
    */
   yoyoDelay(duration, index) {
     return this.updateTweenData('yoyoDelay', duration, index);
   }
 
   /**
-   * TBD.
-   * @param {string|Function} ease - TBD.
-   * @param {number} index - TBD.
-   * @returns {Tween} TBD.
+   * Sets the easing function for a timeline entry.
+   * @param {string|Function} ease - The easing function to use.
+   * @param {number} index - The index in the timeline to apply easing to.
+   * @returns {Tween} This Tween object for chaining.
    */
   easing(ease, index) {
     if (typeof ease === 'string' && this.manager.easeMap[ease]) {
@@ -250,11 +250,11 @@ export class Tween {
   }
 
   /**
-   * TBD.
-   * @param {Function} interpolation - TBD.
-   * @param {object} context - TBD.
-   * @param {number} index - TBD.
-   * @returns {Tween} TBD.
+   * Sets the interpolation function for a timeline entry.
+   * @param {Function} interpolation - The interpolation function to use.
+   * @param {object} context - The context in which to call the interpolation function.
+   * @param {number} index - The index in the timeline to apply interpolation to.
+   * @returns {Tween} This Tween object for chaining.
    */
   interpolation(interpolation, context = MathUtils, index = 0) {
     this.updateTweenData('interpolationFunction', interpolation, index);
@@ -262,9 +262,9 @@ export class Tween {
   }
 
   /**
-   * TBD.
-   * @param {number} total - TBD.
-   * @returns {Tween} TBD.
+   * Sets how many times to repeat all timeline entries.
+   * @param {number} total - The number of times to repeat (-1 for infinite).
+   * @returns {Tween} This Tween object for chaining.
    */
   repeatAll(total = 0) {
     this.repeatCounter = total;
@@ -272,9 +272,9 @@ export class Tween {
   }
 
   /**
-   * TBD.
-   * @param {...any} args - TBD.
-   * @returns {Tween} TBD.
+   * Chains one or more tweens to this tween.
+   * @param {...any} args - The tweens to chain.
+   * @returns {Tween} This Tween object for chaining.
    */
   chain(...args) {
     let i = args.length;
@@ -290,9 +290,9 @@ export class Tween {
   }
 
   /**
-   * TBD.
-   * @param {boolean} value - TBD.
-   * @returns {Tween} TBD.
+   * Sets whether the tween should loop infinitely.
+   * @param {boolean} value - Whether to loop infinitely.
+   * @returns {Tween} This Tween object for chaining.
    */
   loop(value = true) {
     this.repeatCounter = value ? -1 : 0;
@@ -300,10 +300,10 @@ export class Tween {
   }
 
   /**
-   * TBD.
-   * @param {Function} callback - TBD.
-   * @param {object} callbackContext - TBD.
-   * @returns {Tween} TBD.
+   * Sets a callback to be called when the tween updates.
+   * @param {Function} callback - The callback function to call.
+   * @param {object} callbackContext - The context in which to call the callback.
+   * @returns {Tween} This Tween object for chaining.
    */
   onUpdateCallback(callback, callbackContext) {
     this._onUpdateCallback = callback;
@@ -312,7 +312,7 @@ export class Tween {
   }
 
   /**
-   * TBD.
+   * Pauses the tween.
    */
   pause() {
     this.isPaused = true;
@@ -321,7 +321,7 @@ export class Tween {
   }
 
   /**
-   * TBD.
+   * Internal method to pause the tween.
    */
   _pause() {
     if (!this._codePaused) {
@@ -331,7 +331,7 @@ export class Tween {
   }
 
   /**
-   * TBD.
+   * Resumes the tween.
    */
   resume() {
     if (this.isPaused) {
@@ -346,7 +346,7 @@ export class Tween {
   }
 
   /**
-   * TBD.
+   * Internal method to resume the tween.
    */
   _resume() {
     if (!this._codePaused) {
@@ -355,9 +355,9 @@ export class Tween {
   }
 
   /**
-   * TBD.
-   * @param {number} time - TBD.
-   * @returns {boolean} TBD.
+   * Updates the tween state at a given time.
+   * @param {number} time - The current game time.
+   * @returns {boolean} True if the tween should continue running, false if it's complete.
    */
   update(time) {
     if (this.pendingDelete || !this.target) {
@@ -438,10 +438,10 @@ export class Tween {
   }
 
   /**
-   * TBD.
-   * @param {number} frameRate - TBD.
-   * @param {object[]} data - TBD.
-   * @returns {object[]} TBD.
+   * Generates animation data for a given frame rate.
+   * @param {number} frameRate - The target frame rate.
+   * @param {object[]} data - The array to store the generated data in.
+   * @returns {object[]} The populated data array.
    */
   generateData(frameRate = 60, data = []) {
     if (this.game === null || this.target === null) {
@@ -470,8 +470,8 @@ export class Tween {
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the total duration of all timeline entries.
+   * @returns {number} The total duration in milliseconds.
    */
   get totalDuration() {
     let total = 0;

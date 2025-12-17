@@ -16,7 +16,7 @@ export class RequestAnimationFrame {
     stop: () => void;
     /**
      * Performs an animation frame request.
-     * @param {number} rafTime - TBD.
+     * @param {number} rafTime - The timestamp provided by the browser's animation frame.
      */
     update: (rafTime: number) => void;
 }

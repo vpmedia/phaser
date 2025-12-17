@@ -24,7 +24,7 @@ export class RequestAnimationFrame {
 
   /**
    * Performs an animation frame request.
-   * @param {number} rafTime - TBD.
+   * @param {number} rafTime - The timestamp provided by the browser's animation frame.
    */
   update = (rafTime) => {
     this.game.update(rafTime);
