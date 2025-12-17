@@ -9,34 +9,34 @@ export class Stage extends DisplayObject {
         rgba: string;
     };
     /**
-     * TBD.
-     * @param {number} color - TBD.
+     * Sets the background color of the stage.
+     * @param {number} color - The color to set as the background.
      */
     setBackgroundColor(color: number): void;
     /**
-     * TBD.
+     * Initializes the stage after game creation.
      */
     boot(): void;
     /**
-     * TBD.
+     * Updates the stage's transformation matrix.
      */
     updateTransform(): void;
     /**
-     * TBD.
+     * Sets the background color of the stage.
      */
     set backgroundColor(value: number);
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the background color of the stage.
+     * @returns {number} The background color.
      */
     get backgroundColor(): number;
     /**
-     * TBD.
+     * Sets whether texture smoothing is enabled.
      */
     set smoothed(value: boolean);
     /**
-     * TBD.
-     * @returns {boolean} TBD.
+     * Gets whether texture smoothing is enabled.
+     * @returns {boolean} True if texture smoothing is enabled, false otherwise.
      */
     get smoothed(): boolean;
 }

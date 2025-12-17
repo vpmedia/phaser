@@ -11,24 +11,24 @@ export class DOM {
     scrollXProvider: () => number;
     scrollYProvider: () => number;
     /**
-     * TBD.
-     * @param {HTMLCanvasElement} element - TBD.
-     * @param {Point} point - TBD.
-     * @returns {Point} TBD.
+     * Gets the offset position of an element relative to the document.
+     * @param {HTMLCanvasElement} element - The element to get the offset for.
+     * @param {Point} point - Optional Point object to store the result.
+     * @returns {Point} The offset position of the element.
      */
     getOffset(element: HTMLCanvasElement, point?: Point): Point;
     /**
-     * TBD.
-     * @param {HTMLCanvasElement} element - TBD.
-     * @param {number} cushion - TBD.
-     * @returns {boolean} TBD.
+     * Gets the bounding rectangle of an element with optional cushion.
+     * @param {HTMLCanvasElement} element - The element to get bounds for.
+     * @param {number} cushion - Optional padding to add around the element.
+     * @returns {boolean} True if bounds were successfully retrieved, false otherwise.
      */
     getBounds(element: HTMLCanvasElement, cushion?: number): boolean;
     /**
-     * TBD.
-     * @param {DOMRect} coords - TBD.
-     * @param {number} cushion - TBD.
-     * @returns {{width: number, height: number, left: number, right: number, top: number, bottom: number}} TBD.
+     * Calibrates DOM rectangle coordinates with optional cushion.
+     * @param {DOMRect} coords - The DOM rectangle coordinates to calibrate.
+     * @param {number} cushion - Optional padding to add around the rectangle.
+     * @returns {{width: number, height: number, left: number, right: number, top: number, bottom: number}} The calibrated rectangle.
      */
     calibrate(coords: DOMRect, cushion?: number): {
         width: number;
@@ -39,63 +39,63 @@ export class DOM {
         bottom: number;
     };
     /**
-     * TBD.
-     * @param {string} primaryFallback - TBD.
-     * @returns {string} TBD.
+     * Gets the screen orientation.
+     * @param {string} primaryFallback - The fallback method to use if screen orientation API is not available.
+     * @returns {string} The screen orientation ('portrait-primary', 'landscape-primary', etc.).
      */
     getScreenOrientation(primaryFallback: string): string;
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the horizontal scroll position of the window.
+     * @returns {number} The horizontal scroll position in pixels.
      */
     get scrollX(): number;
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the vertical scroll position of the window.
+     * @returns {number} The vertical scroll position in pixels.
      */
     get scrollY(): number;
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the width of the window's client area.
+     * @returns {number} The width of the client area in pixels.
      */
     get clientWidth(): number;
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the height of the window's client area.
+     * @returns {number} The height of the client area in pixels.
      */
     get clientHeight(): number;
 }
 declare class VisualBoundsDesktopRectangle {
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the horizontal scroll position of the window.
+     * @returns {number} The horizontal scroll position in pixels.
      */
     get x(): number;
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the vertical scroll position of the window.
+     * @returns {number} The vertical scroll position in pixels.
      */
     get y(): number;
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the width of the window.
+     * @returns {number} The width of the window in pixels.
      */
     get width(): number;
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the height of the window.
+     * @returns {number} The height of the window in pixels.
      */
     get height(): number;
 }
 declare class VisualBoundsRectangle {
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the horizontal scroll position of the document.
+     * @returns {number} The horizontal scroll position in pixels.
      */
     get x(): number;
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the vertical scroll position of the document.
+     * @returns {number} The vertical scroll position in pixels.
      */
     get y(): number;
     /**
@@ -111,23 +111,23 @@ declare class VisualBoundsRectangle {
 }
 declare class LayoutBoundsDesktopRectangle {
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the horizontal scroll position of the window.
+     * @returns {number} The horizontal scroll position in pixels.
      */
     get x(): number;
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the vertical scroll position of the window.
+     * @returns {number} The vertical scroll position in pixels.
      */
     get y(): number;
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the width of the window.
+     * @returns {number} The width of the window in pixels.
      */
     get width(): number;
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the height of the window.
+     * @returns {number} The height of the window in pixels.
      */
     get height(): number;
 }

@@ -19,8 +19,8 @@ export const RENDER_TEXTURE = 9;
 
 export class Cache {
   /**
-   * TBD.
-   * @param {import('./game.js').Game} game - TBD.
+   * Creates a new Cache instance.
+   * @param {import('./game.js').Game} game - The game instance.
    */
   constructor(game) {
     this.game = game;
@@ -57,7 +57,7 @@ export class Cache {
   }
 
   /**
-   * TBD.
+   * Adds the default image to the cache.
    */
   addDefaultImage() {
     const img = new Image();
@@ -69,7 +69,7 @@ export class Cache {
   }
 
   /**
-   * TBD.
+   * Adds the missing image to the cache.
    */
   addMissingImage() {
     const img = new Image();
@@ -80,11 +80,11 @@ export class Cache {
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
-   * @param {string} url - TBD.
-   * @param {HTMLImageElement} data - TBD.
-   * @returns {object} TBD.
+   * Adds an image to the cache.
+   * @param {string} key - The unique key for this cache entry.
+   * @param {string} url - The URL the image was loaded from.
+   * @param {HTMLImageElement} data - The image data to cache.
+   * @returns {object} The cached image object.
    */
   addImage(key, url, data) {
     if (this.checkImageKey(key)) {
@@ -108,11 +108,11 @@ export class Cache {
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
-   * @param {string} url - TBD.
-   * @param {HTMLCanvasElement} data - TBD.
-   * @param {object} atlasData - TBD.
+   * Adds a texture atlas to the cache.
+   * @param {string} key - The unique key for this cache entry.
+   * @param {string} url - The URL the atlas was loaded from.
+   * @param {HTMLCanvasElement} data - The canvas data for the atlas.
+   * @param {object} atlasData - The atlas data to cache.
    */
   addTextureAtlas(key, url, data, atlasData) {
     const obj = {
@@ -127,10 +127,10 @@ export class Cache {
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
-   * @param {string} url - TBD.
-   * @param {object} data - TBD.
+   * Adds sound data to the cache.
+   * @param {string} key - The unique key for this cache entry.
+   * @param {string} url - The URL the sound was loaded from.
+   * @param {object} data - The sound data to cache.
    */
   addSound(key, url, data) {
     this._cache.sound[key] = {
@@ -143,10 +143,10 @@ export class Cache {
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
-   * @param {string} url - TBD.
-   * @param {string} data - TBD.
+   * Adds text data to the cache.
+   * @param {string} key - The unique key for this cache entry.
+   * @param {string} url - The URL the text was loaded from.
+   * @param {string} data - The text data to cache.
    */
   addText(key, url, data) {
     this._cache.text[key] = { url, data };
@@ -154,14 +154,14 @@ export class Cache {
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
-   * @param {string} url - TBD.
-   * @param {HTMLCanvasElement} data - TBD.
-   * @param {object} atlasData - TBD.
-   * @param {string} atlasType - TBD.
-   * @param {number} xSpacing - TBD.
-   * @param {number} ySpacing - TBD.
+   * Adds a bitmap font to the cache.
+   * @param {string} key - The unique key for this cache entry.
+   * @param {string} url - The URL the bitmap font was loaded from.
+   * @param {HTMLCanvasElement} data - The canvas data for the font.
+   * @param {object} atlasData - The bitmap font atlas data to cache.
+   * @param {string} atlasType - The type of the atlas data ('json' or 'xml').
+   * @param {number} xSpacing - Horizontal spacing between characters.
+   * @param {number} ySpacing - Vertical spacing between characters.
    */
   addBitmapFont(key, url, data, atlasData, atlasType, xSpacing = 0, ySpacing = 0) {
     const obj = {
@@ -180,10 +180,10 @@ export class Cache {
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
-   * @param {string} url - TBD.
-   * @param {object} data - TBD.
+   * Adds JSON data to the cache.
+   * @param {string} key - The unique key for this cache entry.
+   * @param {string} url - The URL the JSON was loaded from.
+   * @param {object} data - The JSON data to cache.
    */
   addJSON(key, url, data) {
     this._cache.json[key] = { url, data };
@@ -191,10 +191,10 @@ export class Cache {
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
-   * @param {string} url - TBD.
-   * @param {XMLDocument} data - TBD.
+   * Adds XML data to the cache.
+   * @param {string} key - The unique key for this cache entry.
+   * @param {string} url - The URL the XML was loaded from.
+   * @param {XMLDocument} data - The XML data to cache.
    */
   addXML(key, url, data) {
     this._cache.xml[key] = { url, data };
@@ -204,10 +204,10 @@ export class Cache {
   // SOUND
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
-   * @param {string} property - TBD.
-   * @param {any} value - TBD.
+   * Updates a sound property in the cache.
+   * @param {string} key - The unique key for the cached sound.
+   * @param {string} property - The property to update.
+   * @param {any} value - The new value for the property.
    */
   updateSound(key, property, value) {
     const sound = this.getSound(key);
@@ -217,9 +217,9 @@ export class Cache {
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
-   * @param {AudioBuffer} data - TBD.
+   * Marks a sound as decoded in the cache.
+   * @param {string} key - The unique key for the cached sound.
+   * @param {AudioBuffer} data - The decoded audio buffer.
    */
   decodedSound(key, data) {
     const sound = this.getSound(key);
@@ -229,9 +229,9 @@ export class Cache {
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
-   * @returns {boolean} TBD.
+   * Checks if a sound has been decoded in the cache.
+   * @param {string} key - The unique key for the cached sound.
+   * @returns {boolean} True if the sound is decoded, false otherwise.
    */
   isSoundDecoded(key) {
     const sound = this.getItem(key, SOUND, 'isSoundDecoded');
@@ -242,9 +242,9 @@ export class Cache {
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
-   * @returns {boolean} TBD.
+   * Checks if a sound is ready to play (decoded and not locked).
+   * @param {string} key - The unique key for the cached sound.
+   * @returns {boolean} True if the sound is ready, false otherwise.
    */
   isSoundReady(key) {
     const sound = this.getItem(key, SOUND, 'isSoundDecoded');
@@ -257,10 +257,10 @@ export class Cache {
   // CHECK
 
   /**
-   * TBD.
-   * @param {number} cache - TBD.
-   * @param {string} key - TBD.
-   * @returns {boolean} TBD.
+   * Checks if a cache entry exists.
+   * @param {number} cache - The cache type (CANVAS, IMAGE, etc.).
+   * @param {string} key - The unique key for the cache entry.
+   * @returns {boolean} True if the entry exists, false otherwise.
    */
   checkKey(cache, key) {
     if (this._cacheMap[cache][key]) {
@@ -270,9 +270,9 @@ export class Cache {
   }
 
   /**
-   * TBD.
-   * @param {string} url - TBD.
-   * @returns {boolean} TBD.
+   * Checks if a URL has been resolved and cached.
+   * @param {string} url - The URL to check.
+   * @returns {boolean} True if the URL has been resolved and cached, false otherwise.
    */
   checkURL(url) {
     if (this._urlMap[this._resolveURL(url)]) {
@@ -282,81 +282,81 @@ export class Cache {
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
-   * @returns {boolean} TBD.
+   * Checks if a canvas cache entry exists.
+   * @param {string} key - The unique key for the cache entry.
+   * @returns {boolean} True if the entry exists, false otherwise.
    */
   checkCanvasKey(key) {
     return this.checkKey(CANVAS, key);
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
-   * @returns {boolean} TBD.
+   * Checks if an image cache entry exists.
+   * @param {string} key - The unique key for the cache entry.
+   * @returns {boolean} True if the entry exists, false otherwise.
    */
   checkImageKey(key) {
     return this.checkKey(IMAGE, key);
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
-   * @returns {boolean} TBD.
+   * Checks if a texture cache entry exists.
+   * @param {string} key - The unique key for the cache entry.
+   * @returns {boolean} True if the entry exists, false otherwise.
    */
   checkTextureKey(key) {
     return this.checkKey(TEXTURE, key);
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
-   * @returns {boolean} TBD.
+   * Checks if a sound cache entry exists.
+   * @param {string} key - The unique key for the cache entry.
+   * @returns {boolean} True if the entry exists, false otherwise.
    */
   checkSoundKey(key) {
     return this.checkKey(SOUND, key);
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
-   * @returns {boolean} TBD.
+   * Checks if a text cache entry exists.
+   * @param {string} key - The unique key for the cache entry.
+   * @returns {boolean} True if the entry exists, false otherwise.
    */
   checkTextKey(key) {
     return this.checkKey(TEXT, key);
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
-   * @returns {boolean} TBD.
+   * Checks if a bitmap data cache entry exists.
+   * @param {string} key - The unique key for the cache entry.
+   * @returns {boolean} True if the entry exists, false otherwise.
    */
   checkBitmapDataKey(key) {
     return this.checkKey(BITMAPDATA, key);
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
-   * @returns {boolean} TBD.
+   * Checks if a bitmap font cache entry exists.
+   * @param {string} key - The unique key for the cache entry.
+   * @returns {boolean} True if the entry exists, false otherwise.
    */
   checkBitmapFontKey(key) {
     return this.checkKey(BITMAPFONT, key);
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
-   * @returns {boolean} TBD.
+   * Checks if a JSON cache entry exists.
+   * @param {string} key - The unique key for the cache entry.
+   * @returns {boolean} True if the entry exists, false otherwise.
    */
   checkJSONKey(key) {
     return this.checkKey(JSONDATA, key);
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
-   * @returns {boolean} TBD.
+   * Checks if an XML cache entry exists.
+   * @param {string} key - The unique key for the cache entry.
+   * @returns {boolean} True if the entry exists, false otherwise.
    */
   checkXMLKey(key) {
     return this.checkKey(XML, key);
@@ -494,30 +494,30 @@ export class Cache {
   // FRAME
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
-   * @param {number} cache - TBD.
-   * @returns {BaseTexture} TBD.
+   * Gets the base texture of a cache entry.
+   * @param {string} key - The unique key for the cache entry.
+   * @param {number} cache - The cache type (CANVAS, IMAGE, etc.).
+   * @returns {BaseTexture} The base texture.
    */
   getBaseTexture(key, cache = IMAGE) {
     return this.getItem(key, cache, 'getBaseTexture', 'base');
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
-   * @param {number} cache - TBD.
-   * @returns {Frame} TBD.
+   * Gets a frame from the cache.
+   * @param {string} key - The unique key for the cache entry.
+   * @param {number} cache - The cache type (CANVAS, IMAGE, etc.).
+   * @returns {Frame} The frame.
    */
   getFrame(key, cache = IMAGE) {
     return this.getItem(key, cache, 'getFrame', 'frame');
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
-   * @param {number} cache - TBD.
-   * @returns {number} TBD.
+   * Gets the frame count of a cache entry.
+   * @param {string} key - The unique key for the cache entry.
+   * @param {number} cache - The cache type (CANVAS, IMAGE, etc.).
+   * @returns {number} The number of frames.
    */
   getFrameCount(key, cache = IMAGE) {
     const data = this.getFrameData(key, cache);
@@ -528,30 +528,30 @@ export class Cache {
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
-   * @param {number} cache - TBD.
-   * @returns {FrameData} TBD.
+   * Gets the frame data of a cache entry.
+   * @param {string} key - The unique key for the cache entry.
+   * @param {number} cache - The cache type (CANVAS, IMAGE, etc.).
+   * @returns {FrameData} The frame data.
    */
   getFrameData(key, cache = IMAGE) {
     return this.getItem(key, cache, 'getFrameData', 'frameData');
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
-   * @param {number} cache - TBD.
-   * @returns {boolean} TBD.
+   * Checks if a cache entry has frame data.
+   * @param {string} key - The unique key for the cache entry.
+   * @param {number} cache - The cache type (CANVAS, IMAGE, etc.).
+   * @returns {boolean} True if the entry has frame data, false otherwise.
    */
   hasFrameData(key, cache = IMAGE) {
     return this.getItem(key, cache, '', 'frameData') !== null;
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
-   * @param {FrameData} frameData - TBD.
-   * @param {number} cache - TBD.
+   * Updates the frame data of a cache entry.
+   * @param {string} key - The unique key for the cache entry.
+   * @param {FrameData} frameData - The new frame data.
+   * @param {number} cache - The cache type (CANVAS, IMAGE, etc.).
    */
   updateFrameData(key, frameData, cache = IMAGE) {
     if (this._cacheMap[cache][key]) {
@@ -560,11 +560,11 @@ export class Cache {
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
-   * @param {number} index - TBD.
-   * @param {number} cache - TBD.
-   * @returns {Frame} TBD.
+   * Gets a frame by index from the cache.
+   * @param {string} key - The unique key for the cache entry.
+   * @param {number} index - The index of the frame to get.
+   * @param {number} cache - The cache type (CANVAS, IMAGE, etc.).
+   * @returns {Frame} The frame at the specified index.
    */
   getFrameByIndex(key, index, cache = IMAGE) {
     const data = this.getFrameData(key, cache);
@@ -575,11 +575,11 @@ export class Cache {
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
-   * @param {string} name - TBD.
-   * @param {number} cache - TBD.
-   * @returns {Frame} TBD.
+   * Gets a frame by name from the cache.
+   * @param {string} key - The unique key for the cache entry.
+   * @param {string} name - The name of the frame to get.
+   * @param {number} cache - The cache type (CANVAS, IMAGE, etc.).
+   * @returns {Frame} The frame with the specified name.
    */
   getFrameByName(key, name, cache = IMAGE) {
     const data = this.getFrameData(key, cache);
@@ -590,9 +590,9 @@ export class Cache {
   }
 
   /**
-   * TBD.
-   * @param {string} url - TBD.
-   * @returns {string} TBD.
+   * Gets the resolved URL from cache.
+   * @param {string} url - The original URL to resolve.
+   * @returns {string} The resolved URL or null if not found.
    */
   getURL(url) {
     const resolvedURL = this._resolveURL(url);
@@ -604,9 +604,9 @@ export class Cache {
   }
 
   /**
-   * TBD.
-   * @param {object} cache - TBD.
-   * @returns {string[]} TBD.
+   * Gets all keys from a cache type.
+   * @param {object} cache - The cache type (CANVAS, IMAGE, etc.).
+   * @returns {string[]} An array of cache keys.
    */
   getKeys(cache = IMAGE) {
     const result = [];
@@ -625,17 +625,17 @@ export class Cache {
   // REMOVE
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
+   * Removes a canvas cache entry.
+   * @param {string} key - The unique key for the cache entry to remove.
    */
   removeCanvas(key) {
     delete this._cache.canvas[key];
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
-   * @param {boolean} destroyBaseTexture - TBD.
+   * Removes an image cache entry.
+   * @param {string} key - The unique key for the cache entry to remove.
+   * @param {boolean} destroyBaseTexture - Whether to destroy the base texture (default: true).
    */
   removeImage(key, destroyBaseTexture = true) {
     const img = this.getImage(key, true);
@@ -646,79 +646,79 @@ export class Cache {
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
+   * Removes a sound cache entry.
+   * @param {string} key - The unique key for the cache entry to remove.
    */
   removeSound(key) {
     delete this._cache.sound[key];
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
+   * Removes a text cache entry.
+   * @param {string} key - The unique key for the cache entry to remove.
    */
   removeText(key) {
     delete this._cache.text[key];
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
+   * Removes a bitmap data cache entry.
+   * @param {string} key - The unique key for the cache entry to remove.
    */
   removeBitmapData(key) {
     delete this._cache.bitmapData[key];
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
+   * Removes a bitmap font cache entry.
+   * @param {string} key - The unique key for the cache entry to remove.
    */
   removeBitmapFont(key) {
     delete this._cache.bitmapFont[key];
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
+   * Removes a JSON cache entry.
+   * @param {string} key - The unique key for the cache entry to remove.
    */
   removeJSON(key) {
     delete this._cache.json[key];
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
+   * Removes an XML cache entry.
+   * @param {string} key - The unique key for the cache entry to remove.
    */
   removeXML(key) {
     delete this._cache.xml[key];
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
+   * Removes a render texture cache entry.
+   * @param {string} key - The unique key for the cache entry to remove.
    */
   removeRenderTexture(key) {
     delete this._cache.renderTexture[key];
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
+   * Removes a sprite sheet cache entry.
+   * @param {string} key - The unique key for the cache entry to remove.
    */
   removeSpriteSheet(key) {
     delete this._cache.spriteSheet[key];
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
+   * Removes a texture atlas cache entry.
+   * @param {string} key - The unique key for the cache entry to remove.
    */
   removeTextureAtlas(key) {
     delete this._cache.atlas[key];
   }
 
   /**
-   * TBD.
+   * Clears all GL textures from the cache.
    */
   clearGLTextures() {
     const keys = Object.keys(this._cache.image);
@@ -729,10 +729,10 @@ export class Cache {
   }
 
   /**
-   * TBD.
-   * @param {string} url - TBD.
-   * @param {object} data - TBD.
-   * @returns {string} TBD.
+   * Resolves a URL and stores it in the cache.
+   * @param {string} url - The URL to resolve.
+   * @param {object} data - The data to associate with the resolved URL.
+   * @returns {string} The resolved URL or null if not enabled.
    */
   _resolveURL(url, data) {
     if (!this.autoResolveURL) {
@@ -750,7 +750,7 @@ export class Cache {
   }
 
   /**
-   * TBD.
+   * Destroys the cache and cleans up resources.
    */
   destroy() {
     for (let i = 0; i < this._cacheMap.length; i += 1) {

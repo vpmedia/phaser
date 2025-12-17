@@ -50,14 +50,14 @@ export class Timer {
   }
 
   /**
-   * TBD.
-   * @param {number} delay - TBD.
-   * @param {boolean} loop - TBD.
-   * @param {number} repeatCount - TBD.
-   * @param {Function} callback - TBD.
-   * @param {object} callbackContext - TBD.
-   * @param {...any} args - TBD.
-   * @returns {TimerEvent} TBD.
+   * Creates a new TimerEvent.
+   * @param {number} delay - The delay in milliseconds before the event fires.
+   * @param {boolean} loop - Whether the event should loop indefinitely.
+   * @param {number} repeatCount - The number of times to repeat the event (0 = infinite).
+   * @param {Function} callback - The function to call when the event fires.
+   * @param {object} callbackContext - The context in which to call the callback.
+   * @param {...any} args - Arguments to pass to the callback function.
+   * @returns {TimerEvent} The created TimerEvent.
    */
   create(delay, loop, repeatCount, callback, callbackContext = null, args) {
     const roundedDelay = Math.round(delay);
@@ -75,45 +75,45 @@ export class Timer {
   }
 
   /**
-   * TBD.
-   * @param {number} delay - TBD.
-   * @param {Function} callback - TBD.
-   * @param {object} callbackContext - TBD.
-   * @param {...any} args - TBD.
-   * @returns {TimerEvent} TBD.
+   * Creates a new TimerEvent that runs once.
+   * @param {number} delay - The delay in milliseconds before the event fires.
+   * @param {Function} callback - The function to call when the event fires.
+   * @param {object} callbackContext - The context in which to call the callback.
+   * @param {...any} args - Arguments to pass to the callback function.
+   * @returns {TimerEvent} The created TimerEvent.
    */
   add(delay, callback, callbackContext = null, ...args) {
     return this.create(delay, false, 0, callback, callbackContext, args);
   }
 
   /**
-   * TBD.
-   * @param {number} delay - TBD.
-   * @param {number} repeatCount - TBD.
-   * @param {Function} callback - TBD.
-   * @param {object} callbackContext - TBD.
-   * @param {...any} args - TBD.
-   * @returns {TimerEvent} TBD.
+   * Creates a new TimerEvent that repeats a specified number of times.
+   * @param {number} delay - The delay in milliseconds before the event fires.
+   * @param {number} repeatCount - The number of times to repeat the event (0 = infinite).
+   * @param {Function} callback - The function to call when the event fires.
+   * @param {object} callbackContext - The context in which to call the callback.
+   * @param {...any} args - Arguments to pass to the callback function.
+   * @returns {TimerEvent} The created TimerEvent.
    */
   repeat(delay, repeatCount, callback, callbackContext = null, ...args) {
     return this.create(delay, false, repeatCount, callback, callbackContext, args);
   }
 
   /**
-   * TBD.
-   * @param {number} delay - TBD.
-   * @param {Function} callback - TBD.
-   * @param {object} callbackContext - TBD.
-   * @param {...any} args - TBD.
-   * @returns {TimerEvent} TBD.
+   * Creates a new TimerEvent that loops indefinitely.
+   * @param {number} delay - The delay in milliseconds before the event fires.
+   * @param {Function} callback - The function to call when the event fires.
+   * @param {object} callbackContext - The context in which to call the callback.
+   * @param {...any} args - Arguments to pass to the callback function.
+   * @returns {TimerEvent} The created TimerEvent.
    */
   loop(delay, callback, callbackContext = null, ...args) {
     return this.create(delay, true, 0, callback, callbackContext, args);
   }
 
   /**
-   * TBD.
-   * @param {number} delay - TBD.
+   * Starts the timer.
+   * @param {number} delay - The delay in milliseconds before starting (optional).
    */
   start(delay = 0) {
     if (this.running) {
@@ -127,8 +127,8 @@ export class Timer {
   }
 
   /**
-   * TBD.
-   * @param {boolean} clearEvents - TBD.
+   * Stops the timer.
+   * @param {boolean} clearEvents - Whether to clear all events (default: true).
    */
   stop(clearEvents = true) {
     this.running = false;
@@ -138,9 +138,9 @@ export class Timer {
   }
 
   /**
-   * TBD.
-   * @param {TimerEvent | null | undefined} event - TBD.
-   * @returns {boolean} TBD.
+   * Removes a TimerEvent from the timer.
+   * @param {TimerEvent | null | undefined} event - The TimerEvent to remove.
+   * @returns {boolean} True if the event was removed, false otherwise.
    */
   remove(event) {
     for (let i = 0; i < this.events.length; i += 1) {
@@ -153,7 +153,7 @@ export class Timer {
   }
 
   /**
-   * TBD.
+   * Orders the timer events by their next tick time.
    */
   order() {
     if (this.events.length > 0) {
@@ -164,10 +164,10 @@ export class Timer {
   }
 
   /**
-   * TBD.
-   * @param {TimerEvent} a - TBD.
-   * @param {TimerEvent} b - TBD.
-   * @returns {number} TBD.
+   * Sorts TimerEvents by their tick time.
+   * @param {TimerEvent} a - First TimerEvent to compare.
+   * @param {TimerEvent} b - Second TimerEvent to compare.
+   * @returns {number} Comparison result (-1, 0, or 1).
    */
   sortHandler(a, b) {
     if (a.tick < b.tick) {
@@ -179,7 +179,7 @@ export class Timer {
   }
 
   /**
-   * TBD.
+   * Clears pending events from the timer.
    */
   clearPendingEvents() {
     this._i = this.events.length;
@@ -194,9 +194,9 @@ export class Timer {
   }
 
   /**
-   * TBD.
-   * @param {number} time - TBD.
-   * @returns {boolean} TBD.
+   * Updates the timer state at a given time.
+   * @param {number} time - The current time in milliseconds.
+   * @returns {boolean} True if the timer should continue running, false if it should be destroyed.
    */
   update(time) {
     if (this.paused) {
@@ -254,7 +254,7 @@ export class Timer {
   }
 
   /**
-   * TBD.
+   * Pauses the timer.
    */
   pause() {
     if (!this.running) {
@@ -269,7 +269,7 @@ export class Timer {
   }
 
   /**
-   * TBD.
+   * Internal pause method for the timer.
    */
   _pause() {
     if (this.paused || !this.running) {
@@ -280,8 +280,8 @@ export class Timer {
   }
 
   /**
-   * TBD.
-   * @param {number} baseTime - TBD.
+   * Adjusts timer events when time has jumped (e.g., when tab is switched).
+   * @param {number} baseTime - The time to adjust from.
    */
   adjustEvents(baseTime) {
     for (let i = 0; i < this.events.length; i += 1) {
@@ -304,7 +304,7 @@ export class Timer {
   }
 
   /**
-   * TBD.
+   * Resumes the timer.
    */
   resume() {
     if (!this.paused) {
@@ -319,7 +319,7 @@ export class Timer {
   }
 
   /**
-   * TBD.
+   * Internal resume method for the timer.
    */
   _resume() {
     if (this._codePaused) {
@@ -329,7 +329,7 @@ export class Timer {
   }
 
   /**
-   * TBD.
+   * Removes all events from the timer.
    */
   removeAll() {
     this.onComplete.removeAll();
@@ -339,7 +339,7 @@ export class Timer {
   }
 
   /**
-   * TBD.
+   * Destroys the timer and cleans up resources.
    */
   destroy() {
     this.onComplete.removeAll();
@@ -350,16 +350,16 @@ export class Timer {
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the next tick time for the timer.
+   * @returns {number} The next tick time in milliseconds.
    */
   get next() {
     return this.nextTick;
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the duration until the next event.
+   * @returns {number} The duration in milliseconds.
    */
   get duration() {
     if (this.running && this.nextTick > this._now) {
@@ -369,16 +369,16 @@ export class Timer {
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the number of active events in the timer.
+   * @returns {number} The number of events.
    */
   get length() {
     return this.events.length;
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the elapsed time since the timer started.
+   * @returns {number} The elapsed time in milliseconds.
    */
   get ms() {
     if (this.running) {
@@ -388,8 +388,8 @@ export class Timer {
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the elapsed time in seconds since the timer started.
+   * @returns {number} The elapsed time in seconds.
    */
   get seconds() {
     if (this.running) {

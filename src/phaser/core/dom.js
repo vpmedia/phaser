@@ -2,32 +2,32 @@ import { Point } from '../geom/point.js';
 
 class VisualBoundsDesktopRectangle {
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the horizontal scroll position of the window.
+   * @returns {number} The horizontal scroll position in pixels.
    */
   get x() {
     return window && 'pageXOffset' in window ? window.pageXOffset : document.documentElement.scrollLeft;
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the vertical scroll position of the window.
+   * @returns {number} The vertical scroll position in pixels.
    */
   get y() {
     return window && 'pageYOffset' in window ? window.pageYOffset : document.documentElement.scrollTop;
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the width of the window.
+   * @returns {number} The width of the window in pixels.
    */
   get width() {
     return Math.max(window.innerWidth, document.documentElement.clientWidth);
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the height of the window.
+   * @returns {number} The height of the window in pixels.
    */
   get height() {
     return Math.max(window.innerHeight, document.documentElement.clientHeight);
@@ -36,32 +36,32 @@ class VisualBoundsDesktopRectangle {
 
 class LayoutBoundsDesktopRectangle {
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the horizontal scroll position of the window.
+   * @returns {number} The horizontal scroll position in pixels.
    */
   get x() {
     return 0;
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the vertical scroll position of the window.
+   * @returns {number} The vertical scroll position in pixels.
    */
   get y() {
     return 0;
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the width of the window.
+   * @returns {number} The width of the window in pixels.
    */
   get width() {
     return Math.max(window.innerWidth, document.documentElement.clientWidth);
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the height of the window.
+   * @returns {number} The height of the window in pixels.
    */
   get height() {
     return Math.max(window.innerHeight, document.documentElement.clientHeight);
@@ -70,16 +70,16 @@ class LayoutBoundsDesktopRectangle {
 
 class VisualBoundsRectangle {
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the horizontal scroll position of the document.
+   * @returns {number} The horizontal scroll position in pixels.
    */
   get x() {
     return window && 'pageXOffset' in window ? window.pageXOffset : document.documentElement.scrollLeft;
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the vertical scroll position of the document.
+   * @returns {number} The vertical scroll position in pixels.
    */
   get y() {
     return window && 'pageYOffset' in window ? window.pageYOffset : document.documentElement.scrollTop;
@@ -199,10 +199,10 @@ export class DOM {
   }
 
   /**
-   * TBD.
-   * @param {HTMLCanvasElement} element - TBD.
-   * @param {Point} point - TBD.
-   * @returns {Point} TBD.
+   * Gets the offset position of an element relative to the document.
+   * @param {HTMLCanvasElement} element - The element to get the offset for.
+   * @param {Point} point - Optional Point object to store the result.
+   * @returns {Point} The offset position of the element.
    */
   getOffset(element, point = null) {
     point = point || new Point();
@@ -217,10 +217,10 @@ export class DOM {
   }
 
   /**
-   * TBD.
-   * @param {HTMLCanvasElement} element - TBD.
-   * @param {number} cushion - TBD.
-   * @returns {boolean} TBD.
+   * Gets the bounding rectangle of an element with optional cushion.
+   * @param {HTMLCanvasElement} element - The element to get bounds for.
+   * @param {number} cushion - Optional padding to add around the element.
+   * @returns {boolean} True if bounds were successfully retrieved, false otherwise.
    */
   getBounds(element, cushion = 0) {
     element = element && !element.nodeType ? element[0] : element;
@@ -231,10 +231,10 @@ export class DOM {
   }
 
   /**
-   * TBD.
-   * @param {DOMRect} coords - TBD.
-   * @param {number} cushion - TBD.
-   * @returns {{width: number, height: number, left: number, right: number, top: number, bottom: number}} TBD.
+   * Calibrates DOM rectangle coordinates with optional cushion.
+   * @param {DOMRect} coords - The DOM rectangle coordinates to calibrate.
+   * @param {number} cushion - Optional padding to add around the rectangle.
+   * @returns {{width: number, height: number, left: number, right: number, top: number, bottom: number}} The calibrated rectangle.
    */
   calibrate(coords, cushion = 0) {
     const output = {
@@ -251,9 +251,9 @@ export class DOM {
   }
 
   /**
-   * TBD.
-   * @param {string} primaryFallback - TBD.
-   * @returns {string} TBD.
+   * Gets the screen orientation.
+   * @param {string} primaryFallback - The fallback method to use if screen orientation API is not available.
+   * @returns {string} The screen orientation ('portrait-primary', 'landscape-primary', etc.).
    */
   getScreenOrientation(primaryFallback) {
     const screen = window.screen;
@@ -286,32 +286,32 @@ export class DOM {
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the horizontal scroll position of the window.
+   * @returns {number} The horizontal scroll position in pixels.
    */
   get scrollX() {
     return this.scrollXProvider();
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the vertical scroll position of the window.
+   * @returns {number} The vertical scroll position in pixels.
    */
   get scrollY() {
     return this.scrollYProvider();
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the width of the window's client area.
+   * @returns {number} The width of the client area in pixels.
    */
   get clientWidth() {
     return Math.max(window.innerWidth, document.documentElement.clientWidth);
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the height of the window's client area.
+   * @returns {number} The height of the client area in pixels.
    */
   get clientHeight() {
     return Math.max(window.innerHeight, document.documentElement.clientHeight);

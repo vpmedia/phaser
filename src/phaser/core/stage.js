@@ -6,8 +6,8 @@ import { SCALE_LINEAR, SCALE_NEAREST } from './const.js';
 
 export class Stage extends DisplayObject {
   /**
-   * TBD.
-   * @param {import('./game.js').Game} game - TBD.
+   * Creates a new Stage instance.
+   * @param {import('./game.js').Game} game - The game instance.
    */
   constructor(game) {
     super(game);
@@ -32,8 +32,8 @@ export class Stage extends DisplayObject {
   }
 
   /**
-   * TBD.
-   * @param {number} color - TBD.
+   * Sets the background color of the stage.
+   * @param {number} color - The color to set as the background.
    */
   setBackgroundColor(color) {
     if (this.game.config.transparent) {
@@ -48,7 +48,7 @@ export class Stage extends DisplayObject {
   }
 
   /**
-   * TBD.
+   * Initializes the stage after game creation.
    */
   boot() {
     setUserSelect(this.game.canvas, 'none');
@@ -56,7 +56,7 @@ export class Stage extends DisplayObject {
   }
 
   /**
-   * TBD.
+   * Pre-updates the stage and its children.
    */
   preUpdate() {
     this.currentRenderOrderID = 0;
@@ -67,7 +67,7 @@ export class Stage extends DisplayObject {
   }
 
   /**
-   * TBD.
+   * Updates the stage and its children.
    */
   update() {
     let i = this.children.length;
@@ -78,7 +78,7 @@ export class Stage extends DisplayObject {
   }
 
   /**
-   * TBD.
+   * Post-updates the stage and its children.
    */
   postUpdate() {
     for (let i = 0; i < this.children.length; i += 1) {
@@ -88,7 +88,7 @@ export class Stage extends DisplayObject {
   }
 
   /**
-   * TBD.
+   * Updates the stage's transformation matrix.
    */
   updateTransform() {
     this.worldAlpha = 1;
@@ -98,7 +98,7 @@ export class Stage extends DisplayObject {
   }
 
   /**
-   * TBD.
+   * Destroys the stage and cleans up resources.
    */
   destroy() {
     this.exists = false;
@@ -108,30 +108,30 @@ export class Stage extends DisplayObject {
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the background color of the stage.
+   * @returns {number} The background color.
    */
   get backgroundColor() {
     return this._bgColor.color;
   }
 
   /**
-   * TBD.
+   * Sets the background color of the stage.
    */
   set backgroundColor(value) {
     this.setBackgroundColor(value);
   }
 
   /**
-   * TBD.
-   * @returns {boolean} TBD.
+   * Gets whether texture smoothing is enabled.
+   * @returns {boolean} True if texture smoothing is enabled, false otherwise.
    */
   get smoothed() {
     return window.PhaserRegistry.TEXTURE_SCALE_MODE === SCALE_LINEAR;
   }
 
   /**
-   * TBD.
+   * Sets whether texture smoothing is enabled.
    */
   set smoothed(value) {
     window.PhaserRegistry.TEXTURE_SCALE_MODE = value ? SCALE_LINEAR : SCALE_NEAREST;

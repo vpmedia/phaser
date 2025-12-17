@@ -2,10 +2,10 @@ import { Texture } from '../display/webgl/texture.js';
 import { Rectangle } from '../geom/rectangle.js';
 
 /**
- * TBD.
- * @param {import('../display/webgl/base_texture.js').BaseTexture} baseTexture - TBD.
- * @param {object} bitmapFontData - TBD.
- * @returns {object} TBD.
+ * Finalizes bitmap font data by attaching textures to characters.
+ * @param {import('../display/webgl/base_texture.js').BaseTexture} baseTexture - The base texture for the font.
+ * @param {object} bitmapFontData - The bitmap font data to finalize.
+ * @returns {object} The finalized bitmap font data.
  */
 export const finalizeBitmapFont = (baseTexture, bitmapFontData) => {
   Object.keys(bitmapFontData.chars).forEach((charCode) => {
@@ -16,12 +16,12 @@ export const finalizeBitmapFont = (baseTexture, bitmapFontData) => {
 };
 
 /**
- * TBD.
- * @param {object} xml - TBD.
- * @param {import('../display/webgl/base_texture.js').BaseTexture} baseTexture - TBD.
- * @param {number} xSpacing - TBD.
- * @param {number} ySpacing - TBD.
- * @returns {object} TBD.
+ * Parses XML bitmap font data.
+ * @param {object} xml - The XML document containing the bitmap font data.
+ * @param {import('../display/webgl/base_texture.js').BaseTexture} baseTexture - The base texture for the font.
+ * @param {number} xSpacing - Horizontal spacing between characters.
+ * @param {number} ySpacing - Vertical spacing between characters.
+ * @returns {object} The parsed bitmap font data.
  */
 export const xmlBitmapFont = (xml, baseTexture, xSpacing, ySpacing) => {
   const data = {};
@@ -56,24 +56,24 @@ export const xmlBitmapFont = (xml, baseTexture, xSpacing, ySpacing) => {
 };
 
 /**
- * TBD.
- * @param {object} xml - TBD.
- * @param {import('../display/webgl/base_texture.js').BaseTexture} baseTexture - TBD.
- * @param {number} xSpacing - TBD.
- * @param {number} ySpacing - TBD.
- * @returns {object} TBD.
+ * Parses XML bitmap font data (alias for xmlBitmapFont).
+ * @param {object} xml - The XML document containing the bitmap font data.
+ * @param {import('../display/webgl/base_texture.js').BaseTexture} baseTexture - The base texture for the font.
+ * @param {number} xSpacing - Horizontal spacing between characters.
+ * @param {number} ySpacing - Vertical spacing between characters.
+ * @returns {object} The parsed bitmap font data.
  */
 export const bitmapFont = (xml, baseTexture, xSpacing, ySpacing) => {
   return xmlBitmapFont(xml, baseTexture, xSpacing, ySpacing);
 };
 
 /**
- * TBD.
- * @param {object} json - TBD.
- * @param {import('../display/webgl/base_texture.js').BaseTexture} baseTexture - TBD.
- * @param {number} xSpacing - TBD.
- * @param {number} ySpacing - TBD.
- * @returns {object} TBD.
+ * Parses JSON bitmap font data.
+ * @param {object} json - The JSON object containing the bitmap font data.
+ * @param {import('../display/webgl/base_texture.js').BaseTexture} baseTexture - The base texture for the font.
+ * @param {number} xSpacing - Horizontal spacing between characters.
+ * @param {number} ySpacing - Vertical spacing between characters.
+ * @returns {object} The parsed bitmap font data.
  */
 export const jsonBitmapFont = (json, baseTexture, xSpacing, ySpacing) => {
   const data = {
