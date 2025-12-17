@@ -26,11 +26,11 @@ import {
 
 export class Rectangle {
   /**
-   * TBD.
-   * @param {number} x - TBD.
-   * @param {number} y - TBD.
-   * @param {number} width - TBD.
-   * @param {number} height - TBD.
+   * Creates a new Rectangle instance.
+   * @param {number} x - The x coordinate of the top-left corner of the rectangle (default: 0).
+   * @param {number} y - The y coordinate of the top-left corner of the rectangle (default: 0).
+   * @param {number} width - The width of the rectangle (default: 0).
+   * @param {number} height - The height of the rectangle (default: 0).
    */
   constructor(x = 0, y = 0, width = 0, height = 0) {
     /** @type {number} */
@@ -46,10 +46,10 @@ export class Rectangle {
   }
 
   /**
-   * TBD.
-   * @param {number} dx - TBD.
-   * @param {number} dy - TBD.
-   * @returns {Rectangle} TBD.
+   * Offsets the rectangle's position by the specified amounts.
+   * @param {number} dx - The amount to offset the x coordinate by.
+   * @param {number} dy - The amount to offset the y coordinate by.
+   * @returns {Rectangle} This rectangle instance for chaining.
    */
   offset(dx, dy) {
     this.x += dx;
@@ -58,21 +58,21 @@ export class Rectangle {
   }
 
   /**
-   * TBD.
-   * @param {Point} point - TBD.
-   * @returns {Rectangle} TBD.
+   * Offsets the rectangle's position by the specified point coordinates.
+   * @param {Point} point - The point to offset the rectangle by.
+   * @returns {Rectangle} This rectangle instance for chaining.
    */
   offsetPoint(point) {
     return this.offset(point.x, point.y);
   }
 
   /**
-   * TBD.
-   * @param {number} x - TBD.
-   * @param {number} y - TBD.
-   * @param {number} width - TBD.
-   * @param {number} height - TBD.
-   * @returns {Rectangle} TBD.
+   * Sets the rectangle's position and size to new values.
+   * @param {number} x - The new x coordinate of the top-left corner of the rectangle.
+   * @param {number} y - The new y coordinate of the top-left corner of the rectangle.
+   * @param {number} width - The new width of the rectangle.
+   * @param {number} height - The new height of the rectangle.
+   * @returns {Rectangle} This rectangle instance for chaining.
    */
   setTo(x, y, width, height) {
     this.x = x;
@@ -83,10 +83,10 @@ export class Rectangle {
   }
 
   /**
-   * TBD.
-   * @param {number} x - TBD.
-   * @param {number} y - TBD.
-   * @returns {Rectangle} TBD.
+   * Scales the rectangle's size by the specified amounts.
+   * @param {number} x - The amount to scale the width by.
+   * @param {number} y - The amount to scale the height by (default: x).
+   * @returns {Rectangle} This rectangle instance for chaining.
    */
   scale(x, y) {
     if (y === undefined) {
@@ -98,10 +98,10 @@ export class Rectangle {
   }
 
   /**
-   * TBD.
-   * @param {number} x - TBD.
-   * @param {number} y - TBD.
-   * @returns {Rectangle} TBD.
+   * Centers the rectangle on the specified point.
+   * @param {number} x - The x coordinate to center the rectangle on.
+   * @param {number} y - The y coordinate to center the rectangle on.
+   * @returns {Rectangle} This rectangle instance for chaining.
    */
   centerOn(x, y) {
     this.centerX = x;
@@ -110,7 +110,7 @@ export class Rectangle {
   }
 
   /**
-   * TBD.
+   * Floors the x and y coordinates of the rectangle (rounds down to nearest integer).
    */
   floor() {
     this.x = Math.floor(this.x);
@@ -118,7 +118,7 @@ export class Rectangle {
   }
 
   /**
-   * TBD.
+   * Floors all coordinates of the rectangle (rounds down to nearest integer).
    */
   floorAll() {
     this.x = Math.floor(this.x);
@@ -128,7 +128,7 @@ export class Rectangle {
   }
 
   /**
-   * TBD.
+   * Ceils the x and y coordinates of the rectangle (rounds up to nearest integer).
    */
   ceil() {
     this.x = Math.ceil(this.x);
@@ -136,7 +136,7 @@ export class Rectangle {
   }
 
   /**
-   * TBD.
+   * Ceils all coordinates of the rectangle (rounds up to nearest integer).
    */
   ceilAll() {
     this.x = Math.ceil(this.x);
@@ -146,18 +146,18 @@ export class Rectangle {
   }
 
   /**
-   * TBD.
-   * @param {Rectangle} source - TBD.
-   * @returns {Rectangle} TBD.
+   * Copies the values from another rectangle to this rectangle.
+   * @param {Rectangle} source - The rectangle to copy values from.
+   * @returns {Rectangle} This rectangle instance for chaining.
    */
   copyFrom(source) {
     return this.setTo(source.x, source.y, source.width, source.height);
   }
 
   /**
-   * TBD.
-   * @param {Rectangle} dest - TBD.
-   * @returns {Rectangle} TBD.
+   * Copies the values of this rectangle to another rectangle.
+   * @param {Rectangle} dest - The rectangle to copy values to.
+   * @returns {Rectangle} The destination rectangle.
    */
   copyTo(dest) {
     dest.x = this.x;
@@ -168,29 +168,29 @@ export class Rectangle {
   }
 
   /**
-   * TBD.
-   * @param {number} dx - TBD.
-   * @param {number} dy - TBD.
-   * @returns {Rectangle} TBD.
+   * Increases the size of the rectangle by the specified amounts.
+   * @param {number} dx - The amount to increase the width by.
+   * @param {number} dy - The amount to increase the height by.
+   * @returns {Rectangle} This rectangle instance for chaining.
    */
   inflate(dx, dy) {
     return inflate(this, dx, dy);
   }
 
   /**
-   * TBD.
-   * @param {Point} output - TBD.
-   * @returns {Point} TBD.
+   * Gets the size of the rectangle as a point.
+   * @param {Point} output - The point to store the size in (optional).
+   * @returns {Point} The size of the rectangle as a point.
    */
   size(output) {
     return size(this, output);
   }
 
   /**
-   * TBD.
-   * @param {number} width - TBD.
-   * @param {number} height - TBD.
-   * @returns {Rectangle} TBD.
+   * Resizes the rectangle to the specified dimensions.
+   * @param {number} width - The new width of the rectangle.
+   * @param {number} height - The new height of the rectangle.
+   * @returns {Rectangle} This rectangle instance for chaining.
    */
   resize(width, height) {
     this.width = width;
@@ -199,88 +199,88 @@ export class Rectangle {
   }
 
   /**
-   * TBD.
-   * @param {Rectangle} output - TBD.
-   * @returns {Rectangle} TBD.
+   * Creates a clone of this rectangle.
+   * @param {Rectangle} output - The rectangle to store the clone in (optional).
+   * @returns {Rectangle} A new rectangle with the same values as this one.
    */
   clone(output) {
     return clone(this, output);
   }
 
   /**
-   * TBD.
-   * @param {number} x - TBD.
-   * @param {number} y - TBD.
-   * @returns {boolean} TBD.
+   * Checks if the specified point is contained within this rectangle.
+   * @param {number} x - The x coordinate of the point to check.
+   * @param {number} y - The y coordinate of the point to check.
+   * @returns {boolean} True if the point is contained within this rectangle, false otherwise.
    */
   contains(x, y) {
     return contains(this, x, y);
   }
 
   /**
-   * TBD.
-   * @param {Rectangle} b - TBD.
-   * @returns {boolean} TBD.
+   * Checks if the specified rectangle is fully contained within this rectangle.
+   * @param {Rectangle} b - The rectangle to check if it's contained.
+   * @returns {boolean} True if the rectangle is contained within this rectangle, false otherwise.
    */
   containsRect(b) {
     return containsRect(b, this);
   }
 
   /**
-   * TBD.
-   * @param {Rectangle} b - TBD.
-   * @returns {boolean} TBD.
+   * Checks if this rectangle is equal to another rectangle.
+   * @param {Rectangle} b - The rectangle to compare with.
+   * @returns {boolean} True if the rectangles have the same values, false otherwise.
    */
   equals(b) {
     return equals(this, b);
   }
 
   /**
-   * TBD.
-   * @param {Rectangle} b - TBD.
-   * @param {Rectangle} out - TBD.
-   * @returns {Rectangle} TBD.
+   * Gets the intersection of this rectangle and another rectangle.
+   * @param {Rectangle} b - The rectangle to intersect with.
+   * @param {Rectangle} out - The rectangle to store the result in (optional).
+   * @returns {Rectangle} The intersection of the two rectangles.
    */
   intersection(b, out) {
     return intersection(this, b, out);
   }
 
   /**
-   * TBD.
-   * @param {Rectangle} b - TBD.
-   * @returns {boolean} TBD.
+   * Checks if this rectangle intersects with another rectangle.
+   * @param {Rectangle} b - The rectangle to check for intersection with.
+   * @returns {boolean} True if the rectangles intersect, false otherwise.
    */
   intersects(b) {
     return intersects(this, b);
   }
 
   /**
-   * TBD.
-   * @param {number} left - TBD.
-   * @param {number} right - TBD.
-   * @param {number} top - TBD.
-   * @param {number} bottom - TBD.
-   * @param {number} tolerance - TBD.
-   * @returns {boolean} TBD.
+   * Checks if this rectangle intersects with the specified bounds.
+   * @param {number} left - The left boundary of the area to check for intersection.
+   * @param {number} right - The right boundary of the area to check for intersection.
+   * @param {number} top - The top boundary of the area to check for intersection.
+   * @param {number} bottom - The bottom boundary of the area to check for intersection.
+   * @param {number} tolerance - A tolerance value to use when checking (default: 0).
+   * @returns {boolean} True if the rectangle intersects with the bounds, false otherwise.
    */
   intersectsRaw(left, right, top, bottom, tolerance) {
     return intersectsRaw(this, left, right, top, bottom, tolerance);
   }
 
   /**
-   * TBD.
-   * @param {Rectangle} b - TBD.
-   * @param {Rectangle} out - TBD.
-   * @returns {Rectangle} TBD.
+   * Gets the union of this rectangle and another rectangle.
+   * @param {Rectangle} b - The rectangle to union with.
+   * @param {Rectangle} out - The rectangle to store the result in (optional).
+   * @returns {Rectangle} The union of the two rectangles.
    */
   union(b, out) {
     return union(this, b, out);
   }
 
   /**
-   * TBD.
-   * @param {Point} output - TBD.
-   * @returns {Point} TBD.
+   * Gets a random point within this rectangle.
+   * @param {Point} output - The point to store the result in (optional).
+   * @returns {Point} A random point within this rectangle.
    */
   random(output = null) {
     const result = output || new Point();
@@ -290,10 +290,10 @@ export class Rectangle {
   }
 
   /**
-   * TBD.
-   * @param {number} position - TBD.
-   * @param {Point} output - TBD.
-   * @returns {Point} TBD.
+   * Gets a point at a specific position on the rectangle.
+   * @param {number} position - The position to get the point for (TOP_LEFT, TOP_CENTER, etc.).
+   * @param {Point} output - The point to store the result in (optional).
+   * @returns {Point} A point at the specified position on the rectangle.
    */
   getPoint(position, output = null) {
     const result = output || new Point();
@@ -322,39 +322,39 @@ export class Rectangle {
   }
 
   /**
-   * TBD.
-   * @returns {string} TBD.
+   * Returns a string representation of this rectangle.
+   * @returns {string} A string representation of the rectangle.
    */
   toString() {
     return `[{Rectangle (x=${this.x} y=${this.y} width=${this.width} height=${this.height} empty=${this.empty})}]`;
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets half the width of this rectangle.
+   * @returns {number} Half the width of this rectangle.
    */
   get halfWidth() {
     return Math.round(this.width / 2);
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets half the height of this rectangle.
+   * @returns {number} Half the height of this rectangle.
    */
   get halfHeight() {
     return Math.round(this.height / 2);
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the top coordinate of this rectangle.
+   * @returns {number} The top coordinate of this rectangle.
    */
   get top() {
     return this.y;
   }
 
   /**
-   * TBD.
+   * Sets the top coordinate of this rectangle.
    */
   set top(value) {
     if (value >= this.bottom) {
@@ -366,15 +366,15 @@ export class Rectangle {
   }
 
   /**
-   * TBD.
-   * @returns {Point} TBD.
+   * Gets the top-left point of this rectangle.
+   * @returns {Point} The top-left point of this rectangle.
    */
   get topLeft() {
     return new Point(this.x, this.y);
   }
 
   /**
-   * TBD.
+   * Sets the top-left point of this rectangle.
    */
   set topLeft(value) {
     this.x = value.x;
@@ -382,15 +382,15 @@ export class Rectangle {
   }
 
   /**
-   * TBD.
-   * @returns {Point} TBD.
+   * Gets the top-right point of this rectangle.
+   * @returns {Point} The top-right point of this rectangle.
    */
   get topRight() {
     return new Point(this.x + this.width, this.y);
   }
 
   /**
-   * TBD.
+   * Sets the top-right point of this rectangle.
    */
   set topRight(value) {
     this.right = value.x;
@@ -398,15 +398,15 @@ export class Rectangle {
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the bottom coordinate of this rectangle.
+   * @returns {number} The bottom coordinate of this rectangle.
    */
   get bottom() {
     return this.y + this.height;
   }
 
   /**
-   * TBD.
+   * Sets the bottom coordinate of this rectangle.
    */
   set bottom(value) {
     if (value <= this.y) {
@@ -417,15 +417,15 @@ export class Rectangle {
   }
 
   /**
-   * TBD.
-   * @returns {Point} TBD.
+   * Gets the bottom-left point of this rectangle.
+   * @returns {Point} The bottom-left point of this rectangle.
    */
   get bottomLeft() {
     return new Point(this.x, this.bottom);
   }
 
   /**
-   * TBD.
+   * Sets the bottom-left point of this rectangle.
    */
   set bottomLeft(value) {
     this.x = value.x;
@@ -433,15 +433,15 @@ export class Rectangle {
   }
 
   /**
-   * TBD.
-   * @returns {Point} TBD.
+   * Gets the bottom-right point of this rectangle.
+   * @returns {Point} The bottom-right point of this rectangle.
    */
   get bottomRight() {
     return new Point(this.right, this.bottom);
   }
 
   /**
-   * TBD.
+   * Sets the bottom-right point of this rectangle.
    */
   set bottomRight(value) {
     this.right = value.x;
@@ -449,15 +449,15 @@ export class Rectangle {
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the left coordinate of this rectangle.
+   * @returns {number} The left coordinate of this rectangle.
    */
   get left() {
     return this.x;
   }
 
   /**
-   * TBD.
+   * Sets the left coordinate of this rectangle.
    */
   set left(value) {
     if (value >= this.right) {
@@ -469,15 +469,15 @@ export class Rectangle {
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the right coordinate of this rectangle.
+   * @returns {number} The right coordinate of this rectangle.
    */
   get right() {
     return this.x + this.width;
   }
 
   /**
-   * TBD.
+   * Sets the right coordinate of this rectangle.
    */
   set right(value) {
     if (value <= this.x) {
@@ -488,77 +488,77 @@ export class Rectangle {
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the volume (area) of this rectangle.
+   * @returns {number} The volume (area) of this rectangle.
    */
   get volume() {
     return this.width * this.height;
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the perimeter of this rectangle.
+   * @returns {number} The perimeter of this rectangle.
    */
   get perimeter() {
     return this.width * 2 + this.height * 2;
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the x coordinate of the center of this rectangle.
+   * @returns {number} The x coordinate of the center of this rectangle.
    */
   get centerX() {
     return this.x + this.halfWidth;
   }
 
   /**
-   * TBD.
+   * Sets the x coordinate of the center of this rectangle.
    */
   set centerX(value) {
     this.x = value - this.halfWidth;
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the y coordinate of the center of this rectangle.
+   * @returns {number} The y coordinate of the center of this rectangle.
    */
   get centerY() {
     return this.y + this.halfHeight;
   }
 
   /**
-   * TBD.
+   * Sets the y coordinate of the center of this rectangle.
    */
   set centerY(value) {
     this.y = value - this.halfHeight;
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets a random x coordinate within this rectangle.
+   * @returns {number} A random x coordinate within this rectangle.
    */
   get randomX() {
     return this.x + Math.random() * this.width;
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets a random y coordinate within this rectangle.
+   * @returns {number} A random y coordinate within this rectangle.
    */
   get randomY() {
     return this.y + Math.random() * this.height;
   }
 
   /**
-   * TBD.
-   * @returns {boolean} TBD.
+   * Checks if this rectangle is empty (has zero width or height).
+   * @returns {boolean} True if the rectangle is empty, false otherwise.
    */
   get empty() {
     return !this.width || !this.height;
   }
 
   /**
-   * TBD.
+   * Sets whether this rectangle is empty (zero width or height).
    */
   set empty(value) {
     if (value === true) {

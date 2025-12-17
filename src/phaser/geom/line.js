@@ -5,11 +5,11 @@ import { GEOM_LINE } from '../core/const.js';
 
 export class Line {
   /**
-   * TBD.
-   * @param {number} x1 - TBD.
-   * @param {number} y1 - TBD.
-   * @param {number} x2 - TBD.
-   * @param {number} y2 - TBD.
+   * Creates a new Line instance.
+   * @param {number} x1 - The x coordinate of the start point (default: 0).
+   * @param {number} y1 - The y coordinate of the start point (default: 0).
+   * @param {number} x2 - The x coordinate of the end point (default: 0).
+   * @param {number} y2 - The y coordinate of the end point (default: 0).
    */
   constructor(x1 = 0, y1 = 0, x2 = 0, y2 = 0) {
     /** @type {Point} */
@@ -21,12 +21,12 @@ export class Line {
   }
 
   /**
-   * TBD.
-   * @param {number} x1 - TBD.
-   * @param {number} y1 - TBD.
-   * @param {number} x2 - TBD.
-   * @param {number} y2 - TBD.
-   * @returns {Line} TBD.
+   * Sets the coordinates of this line to new values.
+   * @param {number} x1 - The new x coordinate of the start point.
+   * @param {number} y1 - The new y coordinate of the start point.
+   * @param {number} x2 - The new x coordinate of the end point.
+   * @param {number} y2 - The new y coordinate of the end point.
+   * @returns {Line} This line instance for chaining.
    */
   setTo(x1, y1, x2, y2) {
     this.start.setTo(x1, y1);
