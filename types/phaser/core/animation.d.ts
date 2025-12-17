@@ -1,13 +1,13 @@
 export class Animation {
     /**
-     * TBD.
-     * @param {import('./game.js').Game} game - TBD.
-     * @param {import('../display/image.js').Image} parent - TBD.
-     * @param {string} name - TBD.
-     * @param {import('./frame_data.js').FrameData} frameData - TBD.
-     * @param {string[]|number[]} frames - TBD.
-     * @param {number} frameRate - TBD.
-     * @param {boolean} loop - TBD.
+     * Creates a new Animation instance.
+     * @param {import('./game.js').Game} game - The game instance this animation belongs to.
+     * @param {import('../display/image.js').Image} parent - The Image object that owns this animation.
+     * @param {string} name - The unique name of this animation.
+     * @param {import('./frame_data.js').FrameData} frameData - The FrameData object that contains the frames for this animation.
+     * @param {string[]|number[]} frames - An array of frame identifiers (names or indices) to use in this animation.
+     * @param {number} frameRate - The frame rate at which this animation should play (frames per second).
+     * @param {boolean} loop - Whether the animation should loop when it completes.
      */
     constructor(game: import("./game.js").Game, parent: import("../display/image.js").Image, name: string, frameData: import("./frame_data.js").FrameData, frames: string[] | number[], frameRate: number, loop?: boolean);
     /** @type {import('./game.js').Game} */
@@ -50,131 +50,136 @@ export class Animation {
     /** @type {boolean} */
     isReversed: boolean;
     /**
-     * TBD.
-     * @param {number} frameRate - TBD.
-     * @param {boolean} loop - TBD.
-     * @returns {Animation} TBD.
+     * Plays this animation.
+     * @param {number} frameRate - The new frame rate to use for this animation (if null, uses the original frame rate).
+     * @param {boolean} loop - Whether to loop this animation (if null, uses the original loop setting).
+     * @returns {Animation} This Animation instance for chaining.
      */
     play(frameRate?: number, loop?: boolean): Animation;
     /**
-     * TBD.
+     * Sets whether this animation is currently paused.
+     * @param {boolean} value - True to pause the animation, false to resume it.
      */
     set paused(value: boolean);
     /**
-     * TBD.
-     * @returns {boolean} TBD.
+     * Gets whether this animation is currently paused.
+     * @returns {boolean} True if the animation is paused, false otherwise.
      */
     get paused(): boolean;
     _timeLastFrame: number;
     _timeNextFrame: number;
     /**
-     * TBD.
+     * Restarts this animation from the beginning.
      */
     restart(): void;
     /**
-     * TBD.
-     * @returns {Animation} TBD.
+     * Reverses the direction of this animation.
+     * @returns {Animation} This Animation instance for chaining.
      */
     reverse(): Animation;
     /**
-     * TBD.
+     * Sets whether this animation is currently reversed.
+     * @param {boolean} value - True to reverse the animation, false to normal direction.
      */
     set reversed(value: boolean);
     /**
-     * TBD.
-     * @returns {boolean} TBD.
+     * Gets whether this animation is currently reversed.
+     * @returns {boolean} True if the animation is reversed, false otherwise.
      */
     get reversed(): boolean;
     /**
-     * TBD.
-     * @returns {Animation} TBD.
+     * Reverses the animation direction once, then returns to normal direction.
+     * @returns {Animation} This Animation instance for chaining.
      */
     reverseOnce(): Animation;
     /**
-     * TBD.
-     * @param {string|number} frameId - TBD.
-     * @param {boolean} useLocalFrameIndex - TBD.
+     * Sets the current frame of this animation.
+     * @param {string|number} frameId - The identifier (name or index) of the frame to set.
+     * @param {boolean} useLocalFrameIndex - If true, treats frameId as an index into the local frames array.
      */
     setFrame(frameId: string | number, useLocalFrameIndex?: boolean): void;
     /**
-     * TBD.
-     * @param {boolean} resetFrame - TBD.
-     * @param {boolean} dispatchComplete - TBD.
+     * Stops this animation.
+     * @param {boolean} resetFrame - If true, resets to the first frame.
+     * @param {boolean} dispatchComplete - If true, dispatches the onComplete signal.
      */
     stop(resetFrame?: boolean, dispatchComplete?: boolean): void;
     /**
-     * TBD.
+     * Called when the game is paused.
      */
     onPause(): void;
     /**
-     * TBD.
+     * Called when the game is resumed.
      */
     onResume(): void;
     /**
-     * TBD.
-     * @returns {boolean} TBD.
+     * Updates this animation.
+     * @returns {boolean} True if the animation was updated, false otherwise.
      */
     update(): boolean;
     /**
-     * TBD.
-     * @param {boolean} signalUpdate - TBD.
-     * @param {boolean} fromPlay - TBD.
-     * @returns {boolean} TBD.
+     * Updates the current frame of this animation.
+     * @param {boolean} signalUpdate - Whether to signal the update event.
+     * @param {boolean} fromPlay - Whether this call is from play().
+     * @returns {boolean} True if the frame was updated, false otherwise.
      */
     updateCurrentFrame(signalUpdate: boolean, fromPlay?: boolean): boolean;
     /**
-     * TBD.
-     * @param {number} quantity - TBD.
+     * Advances the animation to the next frame(s).
+     * @param {number} quantity - The number of frames to advance by.
      */
     next(quantity?: number): void;
     /**
-     * TBD.
-     * @param {number} quantity - TBD.
+     * Moves the animation to the previous frame(s).
+     * @param {number} quantity - The number of frames to move back by.
      */
     previous(quantity?: number): void;
     /**
-     * TBD.
-     * @param {import('./frame_data.js').FrameData} frameData - TBD.
+     * Updates the frame data used by this animation.
+     * @param {import('./frame_data.js').FrameData} frameData - The new FrameData object to use.
      */
     updateFrameData(frameData: import("./frame_data.js").FrameData): void;
     /**
-     * TBD.
+     * Destroys this animation and cleans up resources.
      */
     destroy(): void;
     /**
-     * TBD.
+     * Completes this animation, setting it to the final frame.
      */
     complete(): void;
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the total number of frames in this animation.
+     * @returns {number} The total number of frames.
      */
     get frameTotal(): number;
     /**
-     * TBD.
+     * Sets the current frame index.
+     * @param {number} value - The new frame index to set.
      */
     set frame(value: number);
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the current frame index.
+     * @returns {number} The current frame index.
      */
     get frame(): number;
     /**
-     * TBD.
+     * Sets the animation speed (frame rate).
+     * @param {number} value - The new frame rate in frames per second.
      */
     set speed(value: number);
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the current animation speed (frame rate).
+     * @returns {number} The frame rate in frames per second.
      */
     get speed(): number;
     /**
-     * TBD.
+     * Sets whether the update signal is enabled.
+     * @param {boolean} value - True to enable the update signal, false to disable it.
      */
     set enableUpdate(value: boolean);
     /**
-     * TBD.
-     * @returns {boolean} TBD.
+     * Gets whether the update signal is enabled.
+     * @returns {boolean} True if the update signal is enabled, false otherwise.
      */
     get enableUpdate(): boolean;
 }

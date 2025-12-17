@@ -1,9 +1,42 @@
 export class Game {
     /**
-     * TBD.
-     * @param {object} gameConfig - TBD.
+     * Creates a new Game instance.
+     * @param {object} gameConfig - The configuration object for the game.
+     * @param {number} gameConfig.width - The width of the game canvas (default: 800).
+     * @param {number} gameConfig.height - The height of the game canvas (default: 600).
+     * @param {string} gameConfig.backgroundColor - The background color of the canvas (default: 0x000000).
+     * @param {string} gameConfig.canvasID - The ID of the canvas element (default: '').
+     * @param {object} gameConfig.canvasStyle - CSS styles to apply to the canvas.
+     * @param {number} gameConfig.resolution - The resolution scale factor (default: 1).
+     * @param {boolean} gameConfig.transparent - Whether the canvas should be transparent (default: false).
+     * @param {boolean} gameConfig.antialias - Whether to enable antialiasing (default: false).
+     * @param {boolean} gameConfig.preserveDrawingBuffer - Whether to preserve the drawing buffer (default: false).
+     * @param {boolean} gameConfig.clearBeforeRender - Whether to clear the canvas before rendering (default: true).
+     * @param {boolean} gameConfig.roundPixels - Whether to round pixel values (default: true).
+     * @param {number} gameConfig.renderType - The rendering type to use (default: RENDER_AUTO).
+     * @param {boolean} gameConfig.isForceDisabledAudio - Whether to force disable audio (default: false).
+     * @param {number} gameConfig.maxParallelDownloads - Maximum parallel downloads (default: 16).
+     * @param {string|HTMLElement} gameConfig.parent - The parent element to append the canvas to.
+     * @param {object} gameConfig.state - The initial state object or class.
      */
-    constructor(gameConfig?: object);
+    constructor(gameConfig?: {
+        width: number;
+        height: number;
+        backgroundColor: string;
+        canvasID: string;
+        canvasStyle: object;
+        resolution: number;
+        transparent: boolean;
+        antialias: boolean;
+        preserveDrawingBuffer: boolean;
+        clearBeforeRender: boolean;
+        roundPixels: boolean;
+        renderType: number;
+        isForceDisabledAudio: boolean;
+        maxParallelDownloads: number;
+        parent: string | HTMLElement;
+        state: object;
+    });
     config: {};
     id: number;
     parent: string;
@@ -36,48 +69,48 @@ export class Game {
     onBoot: Signal;
     isPaused: boolean;
     /**
-     * TBD.
+     * Boots the game and initializes all systems.
      */
     boot(): void;
     /**
-     * TBD.
+     * Creates the renderer canvas element.
      */
     createRendererCanvas(): void;
     /**
-     * TBD.
+     * Initializes the renderer and sets up the rendering context.
      */
     initRenderer(): void;
     contextLostBinded: (event: WebGLContextEvent | Event) => void;
     contextRestoredBinded: (event: WebGLContextEvent | Event) => void;
     /**
-     * TBD.
-     * @param {object} config - TBD.
-     * @param {string} key - TBD.
-     * @param {*} defaultValue - TBD.
+     * Parses a configuration element and sets it on the game config.
+     * @param {object} config - The configuration object to parse from.
+     * @param {string} key - The configuration key to parse.
+     * @param {*} defaultValue - The default value if the key is not found in config.
      */
     parseConfigElement(config: object, key: string, defaultValue: any): void;
     /**
-     * TBD.
-     * @param {object} config - TBD.
+     * Parses the configuration object and sets up game properties.
+     * @param {object} config - The configuration object to parse.
      */
     parseConfig(config: object): void;
     /**
-     * TBD.
-     * @param {WebGLContextEvent | Event} event - TBD.
+     * Called when the WebGL context is lost.
+     * @param {WebGLContextEvent | Event} event - The WebGL context loss event.
      */
     contextLost(event: WebGLContextEvent | Event): void;
     /**
-     * TBD.
-     * @param {WebGLContextEvent | Event} event - TBD.
+     * Called when the WebGL context is restored.
+     * @param {WebGLContextEvent | Event} event - The WebGL context restore event.
      */
     contextRestored(event: WebGLContextEvent | Event): void;
     /**
-     * TBD.
-     * @param {number} time - TBD.
+     * Updates the game state.
+     * @param {number} time - The current timestamp.
      */
     update(time: number): void;
     /**
-     * TBD.
+     * Destroys the game and cleans up all resources.
      */
     destroy(): void;
 }

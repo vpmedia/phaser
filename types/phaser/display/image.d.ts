@@ -1,11 +1,11 @@
 export class Image extends DisplayObject {
     /**
-     * TBD.
-     * @param {import('../core/game.js').Game} game - TBD.
-     * @param {number} x - TBD.
-     * @param {number} y - TBD.
-     * @param {string | number | Texture} key - TBD.
-     * @param {string | number} frame - TBD.
+     * Creates a new Image instance.
+     * @param {import('../core/game.js').Game} game - The game instance this image belongs to.
+     * @param {number} x - The x position of the image.
+     * @param {number} y - The y position of the image.
+     * @param {string | number | Texture} key - The texture key or texture to use.
+     * @param {string | number} frame - The frame identifier (name or index) to use.
      */
     constructor(game: import("../core/game.js").Game, x: number, y: number, key: string | number | Texture, frame?: string | number);
     /** @type {number} */
@@ -33,86 +33,88 @@ export class Image extends DisplayObject {
     animations: AnimationManager;
     renderOrderID: number;
     /**
-     * TBD.
-     * @param {string | number | Texture} key - TBD.
-     * @param {string | number | null | undefined} frame - TBD.
-     * @param {boolean} stopAnimation - TBD.
+     * Loads a texture for this image.
+     * @param {string | number | Texture} key - The texture key or texture to use.
+     * @param {string | number | null | undefined} frame - The frame identifier (name or index) to use.
+     * @param {boolean} stopAnimation - Whether to stop the animation when changing textures.
      */
     loadTexture(key: string | number | Texture, frame?: string | number | null | undefined, stopAnimation?: boolean): void;
     customRender: boolean;
     /**
-     * TBD.
-     * @param {import('../core/frame.js').Frame} frame - TBD.
+     * Sets the current frame of this image.
+     * @param {import('../core/frame.js').Frame} frame - The frame to set.
      */
     setFrame(frame: import("../core/frame.js").Frame): void;
     refreshTexture: boolean;
     /**
-     * TBD.
-     * @param {DisplayObject} parent - TBD.
-     * @param {number} width - TBD.
-     * @param {number} height - TBD.
+     * Resizes the frame of this image.
+     * @param {DisplayObject} parent - The parent display object.
+     * @param {number} width - The new width of the frame.
+     * @param {number} height - The new height of the frame.
      */
     resizeFrame(parent: DisplayObject, width: number, height: number): void;
     /**
-     * TBD.
+     * Resets the frame of this image to its original frame.
      */
     resetFrame(): void;
     /**
-     * TBD.
+     * Sets the current frame index of this image.
+     * @param {number} value - The new frame index to set.
      */
     set frame(value: number);
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the current frame index of this image.
+     * @returns {number} The current frame index.
      */
     get frame(): number;
     /**
-     * TBD.
+     * Sets the current frame name of this image.
+     * @param {string} value - The new frame name to set.
      */
     set frameName(value: string);
     /**
-     * TBD.
-     * @returns {string} TBD.
+     * Gets the current frame name of this image.
+     * @returns {string} The current frame name.
      */
     get frameName(): string;
     /**
-     * TBD.
-     * @param {Rectangle} rect - TBD.
-     * @param {boolean} copy - TBD.
+     * Crops the texture of this image.
+     * @param {Rectangle} rect - The rectangle to crop to.
+     * @param {boolean} copy - Whether to copy the rect or use it directly.
      */
     crop(rect: Rectangle, copy?: boolean): void;
     cropRect: Rectangle;
     _crop: any;
     /**
-     * TBD.
+     * Updates the crop rectangle of this image.
      */
     updateCrop(): void;
     /**
-     * TBD.
+     * Called when the texture of this image is updated.
      */
     onTextureUpdate(): void;
     /**
-     * TBD.
-     * @param {Texture} texture - TBD.
-     * @param {boolean} destroyBase - TBD.
+     * Sets the texture for this image.
+     * @param {Texture} texture - The new texture to set.
+     * @param {boolean} destroyBase - Whether to destroy the base texture.
      */
     setTexture(texture: Texture, destroyBase?: boolean): void;
     /**
-     * TBD.
-     * @param {import('../geom/matrix.js').Matrix} matrix - TBD.
-     * @returns {Rectangle} TBD.
+     * Gets the bounds of this image.
+     * @param {import('../geom/matrix.js').Matrix} matrix - The transformation matrix to use.
+     * @returns {Rectangle} The bounds rectangle of this image.
      */
     getBounds(matrix?: import("../geom/matrix.js").Matrix): Rectangle;
     /**
-     * TBD.
-     * @param {object} renderSession - TBD.
-     * @param {import('../geom/matrix.js').Matrix} matrix - TBD.
+     * Renders this image using WebGL.
+     * @param {object} renderSession - The WebGL rendering session.
+     * @param {import('../geom/matrix.js').Matrix} matrix - The transformation matrix to use.
      */
     renderWebGL(renderSession: object, matrix?: import("../geom/matrix.js").Matrix): void;
     /**
-     * TBD.
-     * @param {object} renderSession - TBD.
-     * @param {import('../geom/matrix.js').Matrix} matrix - TBD.
+     * Renders this image using Canvas.
+     * @param {object} renderSession - The Canvas rendering session.
+     * @param {import('../geom/matrix.js').Matrix} matrix - The transformation matrix to use.
      */
     renderCanvas(renderSession: object, matrix?: import("../geom/matrix.js").Matrix): void;
 }

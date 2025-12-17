@@ -1,7 +1,7 @@
 export class DisplayObject {
     /**
-     * TBD.
-     * @param {import('../core/game.js').Game} game - TBD.
+     * Creates a new DisplayObject instance.
+     * @param {import('../core/game.js').Game} game - The game instance this display object belongs to.
      */
     constructor(game: import("../core/game.js").Game);
     /** @type {boolean} */
@@ -58,264 +58,275 @@ export class DisplayObject {
     /** @type {import('../core/game.js').Game } */
     game: import("../core/game.js").Game;
     /**
-     * TBD.
+     * Destroys this display object and cleans up resources.
      */
     destroy(): void;
     /**
-     * TBD.
-     * @param {DisplayObject} child - TBD.
-     * @returns {DisplayObject} TBD.
+     * Adds a child display object to this container.
+     * @param {DisplayObject} child - The child display object to add.
+     * @returns {DisplayObject} The added child display object.
      */
     addChild(child: DisplayObject): DisplayObject;
     /**
-     * TBD.
-     * @param {DisplayObject} child - TBD.
-     * @param {number} index - TBD.
-     * @returns {DisplayObject} TBD.
-     * @throws {Error}
+     * Adds a child display object at a specific index in the children list.
+     * @param {DisplayObject} child - The child display object to add.
+     * @param {number} index - The index to insert the child at.
+     * @returns {DisplayObject} The added child display object.
+     * @throws {Error} If the index is out of bounds.
      */
     addChildAt(child: DisplayObject, index: number): DisplayObject;
     /**
-     * TBD.
-     * @param {DisplayObject} child - TBD.
-     * @param {DisplayObject} child2 - TBD.
-     * @throws {Error}
+     * Swaps the positions of two child display objects.
+     * @param {DisplayObject} child - The first child display object.
+     * @param {DisplayObject} child2 - The second child display object.
+     * @throws {Error} If either child is not a child of this container.
      */
     swapChildren(child: DisplayObject, child2: DisplayObject): void;
     /**
-     * TBD.
-     * @param {DisplayObject} child - TBD.
-     * @returns {number} TBD.
-     * @throws {Error}
+     * Gets the index of a child display object in the children list.
+     * @param {DisplayObject} child - The child display object to find.
+     * @returns {number} The index of the child in the children list.
+     * @throws {Error} If the child is not a child of this container.
      */
     getChildIndex(child: DisplayObject): number;
     /**
-     * TBD.
-     * @param {DisplayObject} child - TBD.
-     * @param {number} index - TBD.
-     * @throws {Error}
+     * Sets the index of a child display object in the children list.
+     * @param {DisplayObject} child - The child display object to move.
+     * @param {number} index - The new index for the child.
+     * @throws {Error} If the index is out of bounds.
      */
     setChildIndex(child: DisplayObject, index: number): void;
     /**
-     * TBD.
-     * @param {number} index - TBD.
-     * @returns {DisplayObject} TBD.
-     * @throws {Error}
+     * Gets a child display object at a specific index.
+     * @param {number} index - The index of the child to get.
+     * @returns {DisplayObject} The child display object at the specified index.
+     * @throws {Error} If the index is out of bounds.
      */
     getChildAt(index: number): DisplayObject;
     /**
-     * TBD.
-     * @param {DisplayObject} child - TBD.
-     * @returns {DisplayObject} TBD.
+     * Removes a child display object from this container.
+     * @param {DisplayObject} child - The child display object to remove.
+     * @returns {DisplayObject} The removed child display object.
      */
     removeChild(child: DisplayObject): DisplayObject;
     /**
-     * TBD.
-     * @param {number} index - TBD.
-     * @returns {DisplayObject} TBD.
+     * Removes a child display object at a specific index.
+     * @param {number} index - The index of the child to remove.
+     * @returns {DisplayObject} The removed child display object.
      */
     removeChildAt(index: number): DisplayObject;
     /**
-     * TBD.
-     * @param {number} beginIndex - TBD.
-     * @param {number} endIndex - TBD.
-     * @returns {DisplayObject[]} TBD.
-     * @throws {Error}
+     * Removes a range of child display objects from this container.
+     * @param {number} beginIndex - The starting index of the range to remove.
+     * @param {number} endIndex - The ending index (exclusive) of the range to remove.
+     * @returns {DisplayObject[]} The array of removed child display objects.
+     * @throws {Error} If the range is invalid.
      */
     removeChildren(beginIndex: number, endIndex: number): DisplayObject[];
     /**
-     * TBD.
-     * @param {DisplayObject | null | undefined} parent - TBD.
-     * @returns {DisplayObject} TBD.
+     * Updates the world transform of this display object and its children.
+     * @param {DisplayObject | null | undefined} parent - The parent display object to use for the world transform calculation.
+     * @returns {DisplayObject} This DisplayObject instance for chaining.
      */
     updateTransform(parent?: DisplayObject | null | undefined): DisplayObject;
     rotationCache: any;
     worldRotation: number;
     /**
-     * TBD.
-     * @param {DisplayObject} targetCoordinateSpace - TBD.
-     * @returns {Rectangle} TBD.
+     * Gets the bounds of this display object in world coordinates.
+     * @param {DisplayObject} targetCoordinateSpace - The coordinate space to calculate bounds in.
+     * @returns {Rectangle} The bounds rectangle of this display object.
      */
     getBounds(targetCoordinateSpace: DisplayObject): Rectangle;
     /**
-     * TBD.
-     * @returns {Rectangle} TBD.
+     * Gets the bounds of this display object in local coordinates.
+     * @returns {Rectangle} The bounds rectangle of this display object in local space.
      */
     getLocalBounds(): Rectangle;
     /**
-     * TBD.
-     * @param {DisplayObject} child - TBD.
-     * @returns {boolean} TBD.
+     * Checks if a child display object is contained within this container.
+     * @param {DisplayObject} child - The child display object to check.
+     * @returns {boolean} True if the child is contained within this container, false otherwise.
      */
     contains(child: DisplayObject): boolean;
     /**
-     * TBD.
-     * @param {object} renderSession - TBD.
+     * Renders this display object using WebGL.
+     * @param {object} renderSession - The WebGL rendering session.
      */
     renderWebGL(renderSession: object): void;
     /**
-     * TBD.
-     * @param {object} renderSession - TBD.
+     * Renders this display object using Canvas.
+     * @param {object} renderSession - The Canvas rendering session.
      */
     renderCanvas(renderSession: object): void;
     /**
-     * TBD.
+     * Called before the update cycle for this display object.
      */
     preUpdate(): void;
     /**
-     * TBD.
+     * Called during the update cycle for this display object.
      */
     update(): void;
     /**
-     * TBD.
+     * Called after the update cycle for this display object.
      */
     postUpdate(): void;
     /**
-     * TBD.
-     * @throws {Error}
+     * Generates a texture for this display object.
+     * @throws {Error} This method is not implemented yet.
      */
     generateTexture(): void;
     /**
-     * TBD.
-     * @param {Point} position - TBD.
-     * @returns {Point} TBD.
+     * Converts a local position to global (world) coordinates.
+     * @param {Point} position - The local position to convert.
+     * @returns {Point} The converted global position.
      */
     toGlobal(position: Point): Point;
     /**
-     * TBD.
-     * @param {Point} position - TBD.
-     * @param {DisplayObject} from - TBD.
-     * @returns {Point} TBD.
+     * Converts a global (world) position to local coordinates.
+     * @param {Point} position - The global position to convert.
+     * @param {DisplayObject} from - The display object to convert from (defaults to this).
+     * @returns {Point} The converted local position.
      */
     toLocal(position: Point, from: DisplayObject): Point;
     /**
-     * TBD.
-     * @param {object} renderSession - TBD.
+     * Renders a cached sprite for this display object.
+     * @param {object} renderSession - The rendering session.
      */
     renderCachedSprite(renderSession: object): void;
     /**
-     * TBD.
+     * Generates a cached sprite for this display object.
      */
     generateCachedSprite(): void;
     /**
-     * TBD.
+     * Destroys the cached sprite for this display object.
      */
     destroyCachedSprite(): void;
     _cachedSprite: any;
     /**
-     * TBD.
+     * Sets the width of this display object.
+     * @param {number} value - The new width in pixels.
      */
     set width(value: number);
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the width of this display object.
+     * @returns {number} The width in pixels.
      */
     get width(): number;
     _width: number;
     /**
-     * TBD.
+     * Sets the height of this display object.
+     * @param {number} value - The new height in pixels.
      */
     set height(value: number);
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the height of this display object.
+     * @returns {number} The height in pixels.
      */
     get height(): number;
     _height: number;
     /**
-     * TBD.
+     * Sets the x position of this display object.
+     * @param {number} value - The new x position in pixels.
      */
     set x(value: number);
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the x position of this display object.
+     * @returns {number} The x position in pixels.
      */
     get x(): number;
     /**
-     * TBD.
+     * Sets the y position of this display object.
+     * @param {number} value - The new y position in pixels.
      */
     set y(value: number);
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the y position of this display object.
+     * @returns {number} The y position in pixels.
      */
     get y(): number;
     /**
-     * TBD.
-     * @returns {boolean} TBD.
+     * Gets whether this display object is visible in the world.
+     * @returns {boolean} True if the object is visible, false otherwise.
      */
     get worldVisible(): boolean;
     /**
-     * TBD.
+     * Sets the mask for this display object.
+     * @param {import('./graphics.js').Graphics} value - The mask object to set, or null to remove the mask.
      */
     set mask(value: import("./graphics.js").Graphics);
     /**
-     * TBD.
-     * @returns {import('./graphics.js').Graphics} TBD.
+     * Gets the mask for this display object.
+     * @returns {import('./graphics.js').Graphics} The mask object or null if none is set.
      */
     get mask(): import("./graphics.js").Graphics;
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the x offset for this display object (based on anchor point).
+     * @returns {number} The x offset in pixels.
      */
     get offsetX(): number;
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the y offset for this display object (based on anchor point).
+     * @returns {number} The y offset in pixels.
      */
     get offsetY(): number;
     /**
-     * TBD.
+     * Sets the center x position of this display object.
+     * @param {number} value - The new center x position in pixels.
      */
     set centerX(value: number);
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the center x position of this display object.
+     * @returns {number} The center x position in pixels.
      */
     get centerX(): number;
     /**
-     * TBD.
+     * Sets the center y position of this display object.
+     * @param {number} value - The new center y position in pixels.
      */
     set centerY(value: number);
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the center y position of this display object.
+     * @returns {number} The center y position in pixels.
      */
     get centerY(): number;
     /**
-     * TBD.
+     * Sets the left x position of this display object.
+     * @param {number} value - The new left x position in pixels.
      */
     set left(value: number);
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the left x position of this display object.
+     * @returns {number} The left x position in pixels.
      */
     get left(): number;
     /**
-     * TBD.
+     * Sets the right x position of this display object.
+     * @param {number} value - The new right x position in pixels.
      */
     set right(value: number);
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the right x position of this display object.
+     * @returns {number} The right x position in pixels.
      */
     get right(): number;
     /**
-     * TBD.
+     * Sets the top y position of this display object.
+     * @param {number} value - The new top y position in pixels.
      */
     set top(value: number);
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the top y position of this display object.
+     * @returns {number} The top y position in pixels.
      */
     get top(): number;
     /**
-     * TBD.
+     * Sets the bottom y position of this display object.
+     * @param {number} value - The new bottom y position in pixels.
      */
     set bottom(value: number);
     /**
-     * TBD.
-     * @returns {number} TBD.
+     * Gets the bottom y position of this display object.
+     * @returns {number} The bottom y position in pixels.
      */
     get bottom(): number;
 }

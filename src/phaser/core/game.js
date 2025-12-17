@@ -21,8 +21,24 @@ import { World } from './world.js';
 
 export class Game {
   /**
-   * TBD.
-   * @param {object} gameConfig - TBD.
+   * Creates a new Game instance.
+   * @param {object} gameConfig - The configuration object for the game.
+   * @param {number} gameConfig.width - The width of the game canvas (default: 800).
+   * @param {number} gameConfig.height - The height of the game canvas (default: 600).
+   * @param {string} gameConfig.backgroundColor - The background color of the canvas (default: 0x000000).
+   * @param {string} gameConfig.canvasID - The ID of the canvas element (default: '').
+   * @param {object} gameConfig.canvasStyle - CSS styles to apply to the canvas.
+   * @param {number} gameConfig.resolution - The resolution scale factor (default: 1).
+   * @param {boolean} gameConfig.transparent - Whether the canvas should be transparent (default: false).
+   * @param {boolean} gameConfig.antialias - Whether to enable antialiasing (default: false).
+   * @param {boolean} gameConfig.preserveDrawingBuffer - Whether to preserve the drawing buffer (default: false).
+   * @param {boolean} gameConfig.clearBeforeRender - Whether to clear the canvas before rendering (default: true).
+   * @param {boolean} gameConfig.roundPixels - Whether to round pixel values (default: true).
+   * @param {number} gameConfig.renderType - The rendering type to use (default: RENDER_AUTO).
+   * @param {boolean} gameConfig.isForceDisabledAudio - Whether to force disable audio (default: false).
+   * @param {number} gameConfig.maxParallelDownloads - Maximum parallel downloads (default: 16).
+   * @param {string|HTMLElement} gameConfig.parent - The parent element to append the canvas to.
+   * @param {object} gameConfig.state - The initial state object or class.
    */
   constructor(gameConfig = {}) {
     if (!window.PhaserRegistry) {
@@ -77,7 +93,7 @@ export class Game {
   }
 
   /**
-   * TBD.
+   * Boots the game and initializes all systems.
    */
   boot() {
     if (this.isBooted) {
@@ -113,7 +129,7 @@ export class Game {
   }
 
   /**
-   * TBD.
+   * Creates the renderer canvas element.
    */
   createRendererCanvas() {
     this.logger.info('createRendererCanvas');
@@ -136,7 +152,7 @@ export class Game {
   }
 
   /**
-   * TBD.
+   * Initializes the renderer and sets up the rendering context.
    */
   initRenderer() {
     let isWebGlReady = false;
@@ -184,10 +200,10 @@ export class Game {
   }
 
   /**
-   * TBD.
-   * @param {object} config - TBD.
-   * @param {string} key - TBD.
-   * @param {*} defaultValue - TBD.
+   * Parses a configuration element and sets it on the game config.
+   * @param {object} config - The configuration object to parse from.
+   * @param {string} key - The configuration key to parse.
+   * @param {*} defaultValue - The default value if the key is not found in config.
    */
   parseConfigElement(config, key, defaultValue) {
     if (config[key] !== undefined) {
@@ -198,8 +214,8 @@ export class Game {
   }
 
   /**
-   * TBD.
-   * @param {object} config - TBD.
+   * Parses the configuration object and sets up game properties.
+   * @param {object} config - The configuration object to parse.
    */
   parseConfig(config) {
     this.logger = config.logger ?? new Logger('phaser');
@@ -229,8 +245,8 @@ export class Game {
   }
 
   /**
-   * TBD.
-   * @param {WebGLContextEvent | Event} event - TBD.
+   * Called when the WebGL context is lost.
+   * @param {WebGLContextEvent | Event} event - The WebGL context loss event.
    */
   contextLost(event) {
     this.logger.info('contextLost', event);
@@ -241,8 +257,8 @@ export class Game {
   }
 
   /**
-   * TBD.
-   * @param {WebGLContextEvent | Event} event - TBD.
+   * Called when the WebGL context is restored.
+   * @param {WebGLContextEvent | Event} event - The WebGL context restore event.
    */
   contextRestored(event) {
     this.logger.info('contextRestored', event);
@@ -254,8 +270,8 @@ export class Game {
   }
 
   /**
-   * TBD.
-   * @param {number} time - TBD.
+   * Updates the game state.
+   * @param {number} time - The current timestamp.
    */
   update(time) {
     this.time.update(time);
@@ -278,7 +294,7 @@ export class Game {
   }
 
   /**
-   * TBD.
+   * Destroys the game and cleans up all resources.
    */
   destroy() {
     this.logger.info('destroy');

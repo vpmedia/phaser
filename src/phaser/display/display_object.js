@@ -7,8 +7,8 @@ import { renderCanvas, renderWebGL } from './sprite_util.js';
 
 export class DisplayObject {
   /**
-   * TBD.
-   * @param {import('../core/game.js').Game} game - TBD.
+   * Creates a new DisplayObject instance.
+   * @param {import('../core/game.js').Game} game - The game instance this display object belongs to.
    */
   constructor(game) {
     /** @type {boolean} */
@@ -69,7 +69,7 @@ export class DisplayObject {
   }
 
   /**
-   * TBD.
+   * Destroys this display object and cleans up resources.
    */
   destroy() {
     if (this.children) {
@@ -103,20 +103,20 @@ export class DisplayObject {
   }
 
   /**
-   * TBD.
-   * @param {DisplayObject} child - TBD.
-   * @returns {DisplayObject} TBD.
+   * Adds a child display object to this container.
+   * @param {DisplayObject} child - The child display object to add.
+   * @returns {DisplayObject} The added child display object.
    */
   addChild(child) {
     return this.addChildAt(child, this.children.length);
   }
 
   /**
-   * TBD.
-   * @param {DisplayObject} child - TBD.
-   * @param {number} index - TBD.
-   * @returns {DisplayObject} TBD.
-   * @throws {Error}
+   * Adds a child display object at a specific index in the children list.
+   * @param {DisplayObject} child - The child display object to add.
+   * @param {number} index - The index to insert the child at.
+   * @returns {DisplayObject} The added child display object.
+   * @throws {Error} If the index is out of bounds.
    */
   addChildAt(child, index) {
     if (index >= 0 && index <= this.children.length) {
@@ -131,10 +131,10 @@ export class DisplayObject {
   }
 
   /**
-   * TBD.
-   * @param {DisplayObject} child - TBD.
-   * @param {DisplayObject} child2 - TBD.
-   * @throws {Error}
+   * Swaps the positions of two child display objects.
+   * @param {DisplayObject} child - The first child display object.
+   * @param {DisplayObject} child2 - The second child display object.
+   * @throws {Error} If either child is not a child of this container.
    */
   swapChildren(child, child2) {
     if (child === child2) {
@@ -150,10 +150,10 @@ export class DisplayObject {
   }
 
   /**
-   * TBD.
-   * @param {DisplayObject} child - TBD.
-   * @returns {number} TBD.
-   * @throws {Error}
+   * Gets the index of a child display object in the children list.
+   * @param {DisplayObject} child - The child display object to find.
+   * @returns {number} The index of the child in the children list.
+   * @throws {Error} If the child is not a child of this container.
    */
   getChildIndex(child) {
     const index = this.children.indexOf(child);
@@ -164,10 +164,10 @@ export class DisplayObject {
   }
 
   /**
-   * TBD.
-   * @param {DisplayObject} child - TBD.
-   * @param {number} index - TBD.
-   * @throws {Error}
+   * Sets the index of a child display object in the children list.
+   * @param {DisplayObject} child - The child display object to move.
+   * @param {number} index - The new index for the child.
+   * @throws {Error} If the index is out of bounds.
    */
   setChildIndex(child, index) {
     if (index < 0 || index >= this.children.length) {
@@ -179,10 +179,10 @@ export class DisplayObject {
   }
 
   /**
-   * TBD.
-   * @param {number} index - TBD.
-   * @returns {DisplayObject} TBD.
-   * @throws {Error}
+   * Gets a child display object at a specific index.
+   * @param {number} index - The index of the child to get.
+   * @returns {DisplayObject} The child display object at the specified index.
+   * @throws {Error} If the index is out of bounds.
    */
   getChildAt(index) {
     if (index < 0 || index >= this.children.length) {
@@ -196,9 +196,9 @@ export class DisplayObject {
   }
 
   /**
-   * TBD.
-   * @param {DisplayObject} child - TBD.
-   * @returns {DisplayObject} TBD.
+   * Removes a child display object from this container.
+   * @param {DisplayObject} child - The child display object to remove.
+   * @returns {DisplayObject} The removed child display object.
    */
   removeChild(child) {
     const index = this.children.indexOf(child);
@@ -209,9 +209,9 @@ export class DisplayObject {
   }
 
   /**
-   * TBD.
-   * @param {number} index - TBD.
-   * @returns {DisplayObject} TBD.
+   * Removes a child display object at a specific index.
+   * @param {number} index - The index of the child to remove.
+   * @returns {DisplayObject} The removed child display object.
    */
   removeChildAt(index) {
     const child = this.getChildAt(index);
@@ -223,11 +223,11 @@ export class DisplayObject {
   }
 
   /**
-   * TBD.
-   * @param {number} beginIndex - TBD.
-   * @param {number} endIndex - TBD.
-   * @returns {DisplayObject[]} TBD.
-   * @throws {Error}
+   * Removes a range of child display objects from this container.
+   * @param {number} beginIndex - The starting index of the range to remove.
+   * @param {number} endIndex - The ending index (exclusive) of the range to remove.
+   * @returns {DisplayObject[]} The array of removed child display objects.
+   * @throws {Error} If the range is invalid.
    */
   removeChildren(beginIndex, endIndex) {
     if (beginIndex === undefined) {
@@ -252,9 +252,9 @@ export class DisplayObject {
   }
 
   /**
-   * TBD.
-   * @param {DisplayObject | null | undefined} parent - TBD.
-   * @returns {DisplayObject} TBD.
+   * Updates the world transform of this display object and its children.
+   * @param {DisplayObject | null | undefined} parent - The parent display object to use for the world transform calculation.
+   * @returns {DisplayObject} This DisplayObject instance for chaining.
    */
   updateTransform(parent = null) {
     if (!parent && !this.parent) {
@@ -340,9 +340,9 @@ export class DisplayObject {
   }
 
   /**
-   * TBD.
-   * @param {DisplayObject} targetCoordinateSpace - TBD.
-   * @returns {Rectangle} TBD.
+   * Gets the bounds of this display object in world coordinates.
+   * @param {DisplayObject} targetCoordinateSpace - The coordinate space to calculate bounds in.
+   * @returns {Rectangle} The bounds rectangle of this display object.
    */
   getBounds(targetCoordinateSpace) {
     const isTargetCoordinateSpaceDisplayObject = targetCoordinateSpace && targetCoordinateSpace.contains !== undefined;
@@ -442,17 +442,17 @@ export class DisplayObject {
   }
 
   /**
-   * TBD.
-   * @returns {Rectangle} TBD.
+   * Gets the bounds of this display object in local coordinates.
+   * @returns {Rectangle} The bounds rectangle of this display object in local space.
    */
   getLocalBounds() {
     return this.getBounds(this);
   }
 
   /**
-   * TBD.
-   * @param {DisplayObject} child - TBD.
-   * @returns {boolean} TBD.
+   * Checks if a child display object is contained within this container.
+   * @param {DisplayObject} child - The child display object to check.
+   * @returns {boolean} True if the child is contained within this container, false otherwise.
    */
   contains(child) {
     if (!child) {
@@ -465,8 +465,8 @@ export class DisplayObject {
   }
 
   /**
-   * TBD.
-   * @param {object} renderSession - TBD.
+   * Renders this display object using WebGL.
+   * @param {object} renderSession - The WebGL rendering session.
    */
   renderWebGL(renderSession) {
     if (!this.visible || this.alpha <= 0) {
@@ -499,8 +499,8 @@ export class DisplayObject {
   }
 
   /**
-   * TBD.
-   * @param {object} renderSession - TBD.
+   * Renders this display object using Canvas.
+   * @param {object} renderSession - The Canvas rendering session.
    */
   renderCanvas(renderSession) {
     if (!this.visible || this.alpha <= 0) {
@@ -518,29 +518,29 @@ export class DisplayObject {
   }
 
   /**
-   * TBD.
+   * Called before the update cycle for this display object.
    */
   preUpdate() {
     // override
   }
 
   /**
-   * TBD.
+   * Called during the update cycle for this display object.
    */
   update() {
     // override
   }
 
   /**
-   * TBD.
+   * Called after the update cycle for this display object.
    */
   postUpdate() {
     // override
   }
 
   /**
-   * TBD.
-   * @throws {Error}
+   * Generates a texture for this display object.
+   * @throws {Error} This method is not implemented yet.
    */
   generateTexture() {
     // TODO
@@ -548,9 +548,9 @@ export class DisplayObject {
   }
 
   /**
-   * TBD.
-   * @param {Point} position - TBD.
-   * @returns {Point} TBD.
+   * Converts a local position to global (world) coordinates.
+   * @param {Point} position - The local position to convert.
+   * @returns {Point} The converted global position.
    */
   toGlobal(position) {
     this.updateTransform();
@@ -558,10 +558,10 @@ export class DisplayObject {
   }
 
   /**
-   * TBD.
-   * @param {Point} position - TBD.
-   * @param {DisplayObject} from - TBD.
-   * @returns {Point} TBD.
+   * Converts a global (world) position to local coordinates.
+   * @param {Point} position - The global position to convert.
+   * @param {DisplayObject} from - The display object to convert from (defaults to this).
+   * @returns {Point} The converted local position.
    */
   toLocal(position, from) {
     if (from) {
@@ -572,8 +572,8 @@ export class DisplayObject {
   }
 
   /**
-   * TBD.
-   * @param {object} renderSession - TBD.
+   * Renders a cached sprite for this display object.
+   * @param {object} renderSession - The rendering session.
    */
   renderCachedSprite(renderSession) {
     if (!this._cachedSprite) {
@@ -588,14 +588,14 @@ export class DisplayObject {
   }
 
   /**
-   * TBD.
+   * Generates a cached sprite for this display object.
    */
   generateCachedSprite() {
     // TODO
   }
 
   /**
-   * TBD.
+   * Destroys the cached sprite for this display object.
    */
   destroyCachedSprite() {
     if (!this._cachedSprite) {
@@ -608,15 +608,16 @@ export class DisplayObject {
   // GETTER SETTER
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the width of this display object.
+   * @returns {number} The width in pixels.
    */
   get width() {
     return this.getLocalBounds().width * this.scale.x;
   }
 
   /**
-   * TBD.
+   * Sets the width of this display object.
+   * @param {number} value - The new width in pixels.
    */
   set width(value) {
     const width = this.getLocalBounds().width;
@@ -629,15 +630,16 @@ export class DisplayObject {
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the height of this display object.
+   * @returns {number} The height in pixels.
    */
   get height() {
     return this.getLocalBounds().height * this.scale.y;
   }
 
   /**
-   * TBD.
+   * Sets the height of this display object.
+   * @param {number} value - The new height in pixels.
    */
   set height(value) {
     const height = this.getLocalBounds().height;
@@ -650,38 +652,40 @@ export class DisplayObject {
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the x position of this display object.
+   * @returns {number} The x position in pixels.
    */
   get x() {
     return this.position.x;
   }
 
   /**
-   * TBD.
+   * Sets the x position of this display object.
+   * @param {number} value - The new x position in pixels.
    */
   set x(value) {
     this.position.x = value;
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the y position of this display object.
+   * @returns {number} The y position in pixels.
    */
   get y() {
     return this.position.y;
   }
 
   /**
-   * TBD.
+   * Sets the y position of this display object.
+   * @param {number} value - The new y position in pixels.
    */
   set y(value) {
     this.position.y = value;
   }
 
   /**
-   * TBD.
-   * @returns {boolean} TBD.
+   * Gets whether this display object is visible in the world.
+   * @returns {boolean} True if the object is visible, false otherwise.
    */
   get worldVisible() {
     if (!this.visible) {
@@ -703,15 +707,16 @@ export class DisplayObject {
   // MASK
 
   /**
-   * TBD.
-   * @returns {import('./graphics.js').Graphics} TBD.
+   * Gets the mask for this display object.
+   * @returns {import('./graphics.js').Graphics} The mask object or null if none is set.
    */
   get mask() {
     return this._mask;
   }
 
   /**
-   * TBD.
+   * Sets the mask for this display object.
+   * @param {import('./graphics.js').Graphics} value - The mask object to set, or null to remove the mask.
    */
   set mask(value) {
     if (this._mask) {
@@ -726,106 +731,112 @@ export class DisplayObject {
   // BOUNDS
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the x offset for this display object (based on anchor point).
+   * @returns {number} The x offset in pixels.
    */
   get offsetX() {
     return this.anchor.x * this.width;
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the y offset for this display object (based on anchor point).
+   * @returns {number} The y offset in pixels.
    */
   get offsetY() {
     return this.anchor.y * this.height;
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the center x position of this display object.
+   * @returns {number} The center x position in pixels.
    */
   get centerX() {
     return this.x - this.offsetX + this.width * 0.5;
   }
 
   /**
-   * TBD.
+   * Sets the center x position of this display object.
+   * @param {number} value - The new center x position in pixels.
    */
   set centerX(value) {
     this.x = value + this.offsetX - this.width * 0.5;
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the center y position of this display object.
+   * @returns {number} The center y position in pixels.
    */
   get centerY() {
     return this.y - this.offsetY + this.height * 0.5;
   }
 
   /**
-   * TBD.
+   * Sets the center y position of this display object.
+   * @param {number} value - The new center y position in pixels.
    */
   set centerY(value) {
     this.y = value + this.offsetY - this.height * 0.5;
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the left x position of this display object.
+   * @returns {number} The left x position in pixels.
    */
   get left() {
     return this.x - this.offsetX;
   }
 
   /**
-   * TBD.
+   * Sets the left x position of this display object.
+   * @param {number} value - The new left x position in pixels.
    */
   set left(value) {
     this.x = value + this.offsetX;
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the right x position of this display object.
+   * @returns {number} The right x position in pixels.
    */
   get right() {
     return this.x + this.width - this.offsetX;
   }
 
   /**
-   * TBD.
+   * Sets the right x position of this display object.
+   * @param {number} value - The new right x position in pixels.
    */
   set right(value) {
     this.x = value - this.width + this.offsetX;
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the top y position of this display object.
+   * @returns {number} The top y position in pixels.
    */
   get top() {
     return this.y - this.offsetY;
   }
 
   /**
-   * TBD.
+   * Sets the top y position of this display object.
+   * @param {number} value - The new top y position in pixels.
    */
   set top(value) {
     this.y = value + this.offsetY;
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the bottom y position of this display object.
+   * @returns {number} The bottom y position in pixels.
    */
   get bottom() {
     return this.y + this.height - this.offsetY;
   }
 
   /**
-   * TBD.
+   * Sets the bottom y position of this display object.
+   * @param {number} value - The new bottom y position in pixels.
    */
   set bottom(value) {
     this.y = value - this.height + this.offsetY;

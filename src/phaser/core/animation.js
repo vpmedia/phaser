@@ -2,14 +2,14 @@ import { Signal } from './signal.js';
 
 export class Animation {
   /**
-   * TBD.
-   * @param {import('./game.js').Game} game - TBD.
-   * @param {import('../display/image.js').Image} parent - TBD.
-   * @param {string} name - TBD.
-   * @param {import('./frame_data.js').FrameData} frameData - TBD.
-   * @param {string[]|number[]} frames - TBD.
-   * @param {number} frameRate - TBD.
-   * @param {boolean} loop - TBD.
+   * Creates a new Animation instance.
+   * @param {import('./game.js').Game} game - The game instance this animation belongs to.
+   * @param {import('../display/image.js').Image} parent - The Image object that owns this animation.
+   * @param {string} name - The unique name of this animation.
+   * @param {import('./frame_data.js').FrameData} frameData - The FrameData object that contains the frames for this animation.
+   * @param {string[]|number[]} frames - An array of frame identifiers (names or indices) to use in this animation.
+   * @param {number} frameRate - The frame rate at which this animation should play (frames per second).
+   * @param {boolean} loop - Whether the animation should loop when it completes.
    */
   constructor(game, parent, name, frameData, frames, frameRate, loop = false) {
     /** @type {import('./game.js').Game} */
@@ -58,10 +58,10 @@ export class Animation {
   }
 
   /**
-   * TBD.
-   * @param {number} frameRate - TBD.
-   * @param {boolean} loop - TBD.
-   * @returns {Animation} TBD.
+   * Plays this animation.
+   * @param {number} frameRate - The new frame rate to use for this animation (if null, uses the original frame rate).
+   * @param {boolean} loop - Whether to loop this animation (if null, uses the original loop setting).
+   * @returns {Animation} This Animation instance for chaining.
    */
   play(frameRate = null, loop = null) {
     if (typeof frameRate === 'number') {
@@ -88,7 +88,7 @@ export class Animation {
   }
 
   /**
-   * TBD.
+   * Restarts this animation from the beginning.
    */
   restart() {
     this.isPlaying = true;
@@ -106,8 +106,8 @@ export class Animation {
   }
 
   /**
-   * TBD.
-   * @returns {Animation} TBD.
+   * Reverses the direction of this animation.
+   * @returns {Animation} This Animation instance for chaining.
    */
   reverse() {
     this.reversed = !this.reversed;
@@ -115,8 +115,8 @@ export class Animation {
   }
 
   /**
-   * TBD.
-   * @returns {Animation} TBD.
+   * Reverses the animation direction once, then returns to normal direction.
+   * @returns {Animation} This Animation instance for chaining.
    */
   reverseOnce() {
     this.onComplete.addOnce(this.reverse, this);
@@ -124,9 +124,9 @@ export class Animation {
   }
 
   /**
-   * TBD.
-   * @param {string|number} frameId - TBD.
-   * @param {boolean} useLocalFrameIndex - TBD.
+   * Sets the current frame of this animation.
+   * @param {string|number} frameId - The identifier (name or index) of the frame to set.
+   * @param {boolean} useLocalFrameIndex - If true, treats frameId as an index into the local frames array.
    */
   setFrame(frameId, useLocalFrameIndex = false) {
     let frameIndex;
@@ -158,9 +158,9 @@ export class Animation {
   }
 
   /**
-   * TBD.
-   * @param {boolean} resetFrame - TBD.
-   * @param {boolean} dispatchComplete - TBD.
+   * Stops this animation.
+   * @param {boolean} resetFrame - If true, resets to the first frame.
+   * @param {boolean} dispatchComplete - If true, dispatches the onComplete signal.
    */
   stop(resetFrame = false, dispatchComplete = false) {
     this.isPlaying = false;
@@ -179,7 +179,7 @@ export class Animation {
   }
 
   /**
-   * TBD.
+   * Called when the game is paused.
    */
   onPause() {
     if (this.isPlaying) {
@@ -188,7 +188,7 @@ export class Animation {
   }
 
   /**
-   * TBD.
+   * Called when the game is resumed.
    */
   onResume() {
     if (this.isPlaying) {
@@ -197,8 +197,8 @@ export class Animation {
   }
 
   /**
-   * TBD.
-   * @returns {boolean} TBD.
+   * Updates this animation.
+   * @returns {boolean} True if the animation was updated, false otherwise.
    */
   update() {
     if (this.isPaused) {
@@ -256,10 +256,10 @@ export class Animation {
   }
 
   /**
-   * TBD.
-   * @param {boolean} signalUpdate - TBD.
-   * @param {boolean} fromPlay - TBD.
-   * @returns {boolean} TBD.
+   * Updates the current frame of this animation.
+   * @param {boolean} signalUpdate - Whether to signal the update event.
+   * @param {boolean} fromPlay - Whether this call is from play().
+   * @returns {boolean} True if the frame was updated, false otherwise.
    */
   updateCurrentFrame(signalUpdate, fromPlay = false) {
     if (!this._frameData || !this.currentFrame) {
@@ -281,8 +281,8 @@ export class Animation {
   }
 
   /**
-   * TBD.
-   * @param {number} quantity - TBD.
+   * Advances the animation to the next frame(s).
+   * @param {number} quantity - The number of frames to advance by.
    */
   next(quantity = 1) {
     let frame = this._frameIndex + quantity;
@@ -300,8 +300,8 @@ export class Animation {
   }
 
   /**
-   * TBD.
-   * @param {number} quantity - TBD.
+   * Moves the animation to the previous frame(s).
+   * @param {number} quantity - The number of frames to move back by.
    */
   previous(quantity = 1) {
     let frame = this._frameIndex - quantity;
@@ -319,8 +319,8 @@ export class Animation {
   }
 
   /**
-   * TBD.
-   * @param {import('./frame_data.js').FrameData} frameData - TBD.
+   * Updates the frame data used by this animation.
+   * @param {import('./frame_data.js').FrameData} frameData - The new FrameData object to use.
    */
   updateFrameData(frameData) {
     this._frameData = frameData;
@@ -330,7 +330,7 @@ export class Animation {
   }
 
   /**
-   * TBD.
+   * Destroys this animation and cleans up resources.
    */
   destroy() {
     if (!this._frameData) {
@@ -354,7 +354,7 @@ export class Animation {
   }
 
   /**
-   * TBD.
+   * Completes this animation, setting it to the final frame.
    */
   complete() {
     this._frameIndex = this._frames.length - 1;
@@ -367,15 +367,16 @@ export class Animation {
   }
 
   /**
-   * TBD.
-   * @returns {boolean} TBD.
+   * Gets whether this animation is currently paused.
+   * @returns {boolean} True if the animation is paused, false otherwise.
    */
   get paused() {
     return this.isPaused;
   }
 
   /**
-   * TBD.
+   * Sets whether this animation is currently paused.
+   * @param {boolean} value - True to pause the animation, false to resume it.
    */
   set paused(value) {
     this.isPaused = value;
@@ -387,31 +388,32 @@ export class Animation {
   }
 
   /**
-   * TBD.
-   * @returns {boolean} TBD.
+   * Gets whether this animation is currently reversed.
+   * @returns {boolean} True if the animation is reversed, false otherwise.
    */
   get reversed() {
     return this.isReversed;
   }
 
   /**
-   * TBD.
+   * Sets whether this animation is currently reversed.
+   * @param {boolean} value - True to reverse the animation, false to normal direction.
    */
   set reversed(value) {
     this.isReversed = value;
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the total number of frames in this animation.
+   * @returns {number} The total number of frames.
    */
   get frameTotal() {
     return this._frames.length;
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the current frame index.
+   * @returns {number} The current frame index.
    */
   get frame() {
     if (this.currentFrame !== null) {
@@ -421,7 +423,8 @@ export class Animation {
   }
 
   /**
-   * TBD.
+   * Sets the current frame index.
+   * @param {number} value - The new frame index to set.
    */
   set frame(value) {
     this.currentFrame = this._frameData.getFrame(this._frames[value]);
@@ -435,15 +438,16 @@ export class Animation {
   }
 
   /**
-   * TBD.
-   * @returns {number} TBD.
+   * Gets the current animation speed (frame rate).
+   * @returns {number} The frame rate in frames per second.
    */
   get speed() {
     return 1000 / this.delay;
   }
 
   /**
-   * TBD.
+   * Sets the animation speed (frame rate).
+   * @param {number} value - The new frame rate in frames per second.
    */
   set speed(value) {
     if (value > 0) {
@@ -452,15 +456,16 @@ export class Animation {
   }
 
   /**
-   * TBD.
-   * @returns {boolean} TBD.
+   * Gets whether the update signal is enabled.
+   * @returns {boolean} True if the update signal is enabled, false otherwise.
    */
   get enableUpdate() {
     return this.onUpdate !== null;
   }
 
   /**
-   * TBD.
+   * Sets whether the update signal is enabled.
+   * @param {boolean} value - True to enable the update signal, false to disable it.
    */
   set enableUpdate(value) {
     if (value && this.onUpdate === null) {

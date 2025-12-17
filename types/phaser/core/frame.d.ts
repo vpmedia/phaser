@@ -1,22 +1,22 @@
 export class Frame {
     /**
-     * TBD.
-     * @param {number} index - TBD.
-     * @param {number} x - TBD.
-     * @param {number} y - TBD.
-     * @param {number} width - TBD.
-     * @param {number} height - TBD.
-     * @param {string} name - TBD.
+     * Creates a new Frame instance.
+     * @param {number} index - The index of this frame in the animation.
+     * @param {number} x - The x coordinate of this frame's position in the texture.
+     * @param {number} y - The y coordinate of this frame's position in the texture.
+     * @param {number} width - The width of this frame in pixels.
+     * @param {number} height - The height of this frame in pixels.
+     * @param {string} name - The name of this frame.
      */
     constructor(index: number, x: number, y: number, width: number, height: number, name: string);
     /**
-     * TBD.
-     * @param {number} index - TBD.
-     * @param {number} x - TBD.
-     * @param {number} y - TBD.
-     * @param {number} width - TBD.
-     * @param {number} height - TBD.
-     * @param {string} name - TBD.
+     * Initializes this frame with the specified properties.
+     * @param {number} index - The index of this frame in the animation.
+     * @param {number} x - The x coordinate of this frame's position in the texture.
+     * @param {number} y - The y coordinate of this frame's position in the texture.
+     * @param {number} width - The width of this frame in pixels.
+     * @param {number} height - The height of this frame in pixels.
+     * @param {string} name - The name of this frame.
      */
     initialize(index: number, x: number, y: number, width: number, height: number, name: string): void;
     index: number;
@@ -40,31 +40,31 @@ export class Frame {
     right: number;
     bottom: number;
     /**
-     * TBD.
-     * @param {number} width - TBD.
-     * @param {number} height - TBD.
+     * Resizes this frame to the specified dimensions.
+     * @param {number} width - The new width of this frame in pixels.
+     * @param {number} height - The new height of this frame in pixels.
      */
     resize(width: number, height: number): void;
     /**
-     * TBD.
-     * @param {boolean} trimmed - TBD.
-     * @param {number} actualWidth - TBD.
-     * @param {number} actualHeight - TBD.
-     * @param {number} destX - TBD.
-     * @param {number} destY - TBD.
-     * @param {number} destWidth - TBD.
-     * @param {number} destHeight - TBD.
+     * Sets the trim properties for this frame.
+     * @param {boolean} trimmed - Whether this frame is trimmed.
+     * @param {number} actualWidth - The actual width of the trimmed frame.
+     * @param {number} actualHeight - The actual height of the trimmed frame.
+     * @param {number} destX - The destination x coordinate for the trimmed frame.
+     * @param {number} destY - The destination y coordinate for the trimmed frame.
+     * @param {number} destWidth - The destination width of the trimmed frame.
+     * @param {number} destHeight - The destination height of the trimmed frame.
      */
     setTrim(trimmed: boolean, actualWidth: number, actualHeight: number, destX: number, destY: number, destWidth: number, destHeight: number): void;
     /**
-     * TBD.
-     * @returns {Frame} TBD.
+     * Creates a clone of this frame.
+     * @returns {Frame} A new Frame instance with the same properties.
      */
     clone(): Frame;
     /**
-     * TBD.
-     * @param {Rectangle} output - TBD.
-     * @returns {Rectangle} TBD.
+     * Gets the rectangle bounds of this frame.
+     * @param {Rectangle} output - The rectangle to use for the result (optional).
+     * @returns {Rectangle} A Rectangle object representing this frame's bounds.
      */
     getRect(output?: Rectangle): Rectangle;
 }

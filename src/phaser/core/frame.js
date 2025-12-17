@@ -4,26 +4,26 @@ import { cloneFrame } from './frame_util.js';
 
 export class Frame {
   /**
-   * TBD.
-   * @param {number} index - TBD.
-   * @param {number} x - TBD.
-   * @param {number} y - TBD.
-   * @param {number} width - TBD.
-   * @param {number} height - TBD.
-   * @param {string} name - TBD.
+   * Creates a new Frame instance.
+   * @param {number} index - The index of this frame in the animation.
+   * @param {number} x - The x coordinate of this frame's position in the texture.
+   * @param {number} y - The y coordinate of this frame's position in the texture.
+   * @param {number} width - The width of this frame in pixels.
+   * @param {number} height - The height of this frame in pixels.
+   * @param {string} name - The name of this frame.
    */
   constructor(index, x, y, width, height, name) {
     this.initialize(index, x, y, width, height, name);
   }
 
   /**
-   * TBD.
-   * @param {number} index - TBD.
-   * @param {number} x - TBD.
-   * @param {number} y - TBD.
-   * @param {number} width - TBD.
-   * @param {number} height - TBD.
-   * @param {string} name - TBD.
+   * Initializes this frame with the specified properties.
+   * @param {number} index - The index of this frame in the animation.
+   * @param {number} x - The x coordinate of this frame's position in the texture.
+   * @param {number} y - The y coordinate of this frame's position in the texture.
+   * @param {number} width - The width of this frame in pixels.
+   * @param {number} height - The height of this frame in pixels.
+   * @param {string} name - The name of this frame.
    */
   initialize(index, x, y, width, height, name) {
     this.index = index;
@@ -49,9 +49,9 @@ export class Frame {
   }
 
   /**
-   * TBD.
-   * @param {number} width - TBD.
-   * @param {number} height - TBD.
+   * Resizes this frame to the specified dimensions.
+   * @param {number} width - The new width of this frame in pixels.
+   * @param {number} height - The new height of this frame in pixels.
    */
   resize(width, height) {
     this.width = width;
@@ -66,14 +66,14 @@ export class Frame {
   }
 
   /**
-   * TBD.
-   * @param {boolean} trimmed - TBD.
-   * @param {number} actualWidth - TBD.
-   * @param {number} actualHeight - TBD.
-   * @param {number} destX - TBD.
-   * @param {number} destY - TBD.
-   * @param {number} destWidth - TBD.
-   * @param {number} destHeight - TBD.
+   * Sets the trim properties for this frame.
+   * @param {boolean} trimmed - Whether this frame is trimmed.
+   * @param {number} actualWidth - The actual width of the trimmed frame.
+   * @param {number} actualHeight - The actual height of the trimmed frame.
+   * @param {number} destX - The destination x coordinate for the trimmed frame.
+   * @param {number} destY - The destination y coordinate for the trimmed frame.
+   * @param {number} destWidth - The destination width of the trimmed frame.
+   * @param {number} destHeight - The destination height of the trimmed frame.
    */
   setTrim(trimmed, actualWidth, actualHeight, destX, destY, destWidth, destHeight) {
     this.trimmed = trimmed;
@@ -90,17 +90,17 @@ export class Frame {
   }
 
   /**
-   * TBD.
-   * @returns {Frame} TBD.
+   * Creates a clone of this frame.
+   * @returns {Frame} A new Frame instance with the same properties.
    */
   clone() {
     return cloneFrame(this);
   }
 
   /**
-   * TBD.
-   * @param {Rectangle} output - TBD.
-   * @returns {Rectangle} TBD.
+   * Gets the rectangle bounds of this frame.
+   * @param {Rectangle} output - The rectangle to use for the result (optional).
+   * @returns {Rectangle} A Rectangle object representing this frame's bounds.
    */
   getRect(output = null) {
     const result = output || new Rectangle();
