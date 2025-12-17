@@ -55,7 +55,7 @@ export class Texture {
      */
     setFrame(frame: Rectangle): void;
     /**
-     * TBD.
+     * Updates the texture UVs based on the crop frame.
      */
     _updateUvs(): void;
 }

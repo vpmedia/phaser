@@ -2,9 +2,9 @@ import { removeByCanvas } from '../canvas/pool.js';
 
 export class BaseTexture {
   /**
-   * TBD.
-   * @param {HTMLCanvasElement} source - TBD.
-   * @param {number} [scaleMode] - TBD.
+   * Updates the base texture with a new source.
+   * @param {HTMLCanvasElement} source - The new canvas element to use as the texture source.
+   * @param {number} [scaleMode] - The scale mode to use for the texture.
    */
   constructor(source, scaleMode) {
     this.resolution = 1;
@@ -30,9 +30,9 @@ export class BaseTexture {
   }
 
   /**
-   * TBD.
-   * @param {number} width - TBD.
-   * @param {number} height - TBD.
+   * Updates the base texture with new dimensions.
+   * @param {number} width - The new width of the texture.
+   * @param {number} height - The new height of the texture.
    */
   forceLoaded(width, height) {
     this.hasLoaded = true;
@@ -42,7 +42,7 @@ export class BaseTexture {
   }
 
   /**
-   * TBD.
+   * Destroys the texture.
    */
   destroy() {
     if (this.source) {
@@ -53,7 +53,7 @@ export class BaseTexture {
   }
 
   /**
-   * TBD.
+   * Marks the texture as dirty.
    */
   dirty() {
     for (let i = 0; i < this._glTextures.length; i += 1) {
@@ -62,7 +62,7 @@ export class BaseTexture {
   }
 
   /**
-   * TBD.
+   * Unloads the texture from the GPU.
    */
   unloadFromGPU() {
     this.dirty();

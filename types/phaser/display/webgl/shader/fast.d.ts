@@ -1,7 +1,7 @@
 export class FastShader {
     /**
-     * TBD.
-     * @param {WebGLRenderingContext} gl - TBD.
+     * Creates a new FastShader instance.
+     * @param {WebGLRenderingContext} gl - The WebGL rendering context.
      */
     constructor(gl: WebGLRenderingContext);
     gl: WebGLRenderingContext;
@@ -12,7 +12,7 @@ export class FastShader {
     fragmentSrc: string[];
     vertexSrc: string[];
     /**
-     * TBD.
+     * Creates a new FastShader instance.
      */
     init(): void;
     uSampler: WebGLUniformLocation;
@@ -28,7 +28,7 @@ export class FastShader {
     colorAttribute: number;
     attributes: number[];
     /**
-     * TBD.
+     * Destroys this shader and cleans up resources.
      */
     destroy(): void;
     uniforms: any;

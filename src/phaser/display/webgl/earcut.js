@@ -1,9 +1,9 @@
 import { Node } from './earcut_node.js';
 
 /**
- * TBD.
- * @param {object} list - TBD.
- * @returns {object} TBD.
+ * Calculates the area of a triangle defined by three points.
+ * @param {object} list - The list of points to process.
+ * @returns {object} The processed earcut data structure.
  */
 export function sortLinked(list) {
   let i;
@@ -67,23 +67,23 @@ export function sortLinked(list) {
 }
 
 /**
- * TBD.
- * @param {object} a - TBD.
- * @param {object} b - TBD.
- * @returns {number} TBD.
+ * Calculates the area of a triangle defined by three points.
+ * @param {object} a - The first point of the triangle.
+ * @param {object} b - The second point of the triangle.
+ * @returns {number} The calculated area of the triangle.
  */
 export function compareX(a, b) {
   return a.x - b.x;
 }
 
 /**
- * TBD.
- * @param {number} x - TBD.
- * @param {number} y - TBD.
- * @param {number} minX - TBD.
- * @param {number} minY - TBD.
- * @param {number} size - TBD.
- * @returns {number} TBD.
+ * Determines if a point is inside a triangle.
+ * @param {number} x - The x-coordinate of the point to test.
+ * @param {number} y - The y-coordinate of the point to test.
+ * @param {number} minX - The minimum x-coordinate of the bounding box.
+ * @param {number} minY - The minimum y-coordinate of the bounding box.
+ * @param {number} size - The size of the bounding box.
+ * @returns {number} The calculated distance from the point to the triangle edge.
  */
 export function zOrder(x, y, minX, minY, size) {
   // coords are transformed into non-negative 15-bit integer range
@@ -101,11 +101,11 @@ export function zOrder(x, y, minX, minY, size) {
 }
 
 /**
- * TBD.
- * @param {object} start - TBD.
- * @param {number} minX - TBD.
- * @param {number} minY - TBD.
- * @param {number} size - TBD.
+ * Calculates the orientation of three points (clockwise, counterclockwise, or collinear).
+ * @param {object} start - The starting point of the triangle edge.
+ * @param {number} minX - The minimum x-coordinate of the bounding box.
+ * @param {number} minY - The minimum y-coordinate of the bounding box.
+ * @param {number} size - The size of the bounding box.
  */
 export function indexCurve(start, minX, minY, size) {
   let p = start;
@@ -123,7 +123,7 @@ export function indexCurve(start, minX, minY, size) {
 /**
  * TBD.
  * @param {object} start - TBD.
- * @returns {object} TBD.
+ * @returns {object} The calculated point that is the closest to the triangle edge.
  */
 export function getLeftmost(start) {
   let p = start;
@@ -136,7 +136,7 @@ export function getLeftmost(start) {
 }
 
 /**
- * TBD.
+ * Determines if a point is inside the triangle defined by three points.
  * @param {number} ax - TBD.
  * @param {number} ay - TBD.
  * @param {number} bx - TBD.
@@ -168,31 +168,31 @@ export function area(p, q, r) {
 
 /**
  * TBD.
- * @param {object} p1 - TBD.
- * @param {object} p2 - TBD.
- * @returns {boolean} TBD.
+ * @param {object} p1 - The first point of the triangle.
+ * @param {object} p2 - The second point of the triangle.
+ * @returns {boolean} True if the point is inside the triangle, false otherwise.
  */
 export function equals(p1, p2) {
   return p1.x === p2.x && p1.y === p2.y;
 }
 
 /**
- * TBD.
- * @param {object} p1 - TBD.
- * @param {object} q1 - TBD.
- * @param {object} p2 - TBD.
- * @param {object} q2 - TBD.
- * @returns {boolean} TBD.
+ * Determines if two line segments intersect.
+ * @param {object} p1 - The first point of the first line segment.
+ * @param {object} q1 - The second point of the first line segment.
+ * @param {object} p2 - The first point of the second line segment.
+ * @param {object} q2 - The second point of the second line segment.
+ * @returns {boolean} True if the line segments intersect, false otherwise.
  */
 export function intersects(p1, q1, p2, q2) {
   return area(p1, q1, p2) > 0 !== area(p1, q1, q2) > 0 && area(p2, q2, p1) > 0 !== area(p2, q2, q1) > 0;
 }
 
 /**
- * TBD.
- * @param {object} a - TBD.
- * @param {object} b - TBD.
- * @returns {boolean} TBD.
+ * Determines if two line segments intersect.
+ * @param {object} a - The first point of the line segment.
+ * @param {object} b - The second point of the line segment.
+ * @returns {boolean} True if the points are collinear, false otherwise.
  */
 export function intersectsPolygon(a, b) {
   let p = a;
@@ -204,10 +204,10 @@ export function intersectsPolygon(a, b) {
 }
 
 /**
- * TBD.
- * @param {object} a - TBD.
- * @param {object} b - TBD.
- * @returns {object} TBD.
+ * Calculates the cross product of three points.
+ * @param {object} a - The first point of the cross product.
+ * @param {object} b - The second point of the cross product.
+ * @returns {object} The calculated cross product result.
  */
 export function locallyInside(a, b) {
   return area(a.prev, a, a.next) < 0
@@ -216,10 +216,10 @@ export function locallyInside(a, b) {
 }
 
 /**
- * TBD.
- * @param {object} a - TBD.
- * @param {object} b - TBD.
- * @returns {boolean} TBD.
+ * Determines if a point is inside the triangle defined by three points.
+ * @param {object} a - The first point of the triangle.
+ * @param {object} b - The second point of the triangle.
+ * @returns {boolean} True if the point is inside the triangle, false otherwise.
  */
 export function middleInside(a, b) {
   let p = a;
@@ -236,10 +236,10 @@ export function middleInside(a, b) {
 }
 
 /**
- * TBD.
- * @param {object} a - TBD.
- * @param {object} b - TBD.
- * @returns {boolean} TBD.
+ * Determines if a point is inside the triangle defined by three points.
+ * @param {object} a - The first point of the triangle.
+ * @param {object} b - The second point of the triangle.
+ * @returns {boolean} True if the point is inside the triangle, false otherwise.
  */
 export function isValidDiagonal(a, b) {
   return (
@@ -254,7 +254,7 @@ export function isValidDiagonal(a, b) {
 }
 
 /**
- * TBD.
+ * Calculates the distance from a point to a triangle edge.
  * @param {object} a - TBD.
  * @param {object} b - TBD.
  * @returns {object} TBD.
@@ -383,12 +383,12 @@ export function isEarHashed(ear, minX, minY, size) {
 
 /**
  * TBD.
- * @param {object} data - TBD.
- * @param {number} start - TBD.
- * @param {number} end - TBD.
- * @param {number} dim - TBD.
- * @param {boolean} clockwise - TBD.
- * @returns {object} TBD.
+ * @param {object} data - The earcut data structure containing the points.
+ * @param {number} start - The starting index in the data structure.
+ * @param {number} end - The ending index in the data structure.
+ * @param {number} dim - The dimension of the data (2 or 3).
+ * @param {boolean} clockwise - Whether the triangles should be clockwise or counterclockwise.
+ * @returns {object} The processed earcut data structure with triangulation information.
  */
 export function linkedList(data, start, end, dim, clockwise) {
   let sum = 0;
@@ -410,10 +410,10 @@ export function linkedList(data, start, end, dim, clockwise) {
 }
 
 /**
- * TBD.
- * @param {object} start - TBD.
- * @param {object} end - TBD.
- * @returns {object} TBD.
+ * Calculates the minimum and maximum coordinates of a set of points.
+ * @param {object} start - The starting point in the data structure.
+ * @param {object} end - The ending point in the data structure.
+ * @returns {object} The calculated bounding box with min and max coordinates.
  */
 export function filterPoints(start, end) {
   if (!start) return start;
@@ -436,10 +436,10 @@ export function filterPoints(start, end) {
 }
 
 /**
- * TBD.
- * @param {object} hole - TBD.
- * @param {object} outerNode - TBD.
- * @returns {object} TBD.
+ * Calculates the minimum and maximum coordinates of a set of points.
+ * @param {object} hole - The hole to process.
+ * @param {object} outerNode - The outer node that contains the hole.
+ * @returns {object} The processed hole data structure.
  */
 export function findHoleBridge(hole, outerNode) {
   let p = outerNode;
@@ -486,9 +486,9 @@ export function findHoleBridge(hole, outerNode) {
 }
 
 /**
- * TBD.
- * @param {object} hole - TBD.
- * @param {object} outerNode - TBD.
+ * Processes a hole in the triangulation data structure.
+ * @param {object} hole - The hole to process.
+ * @param {object} outerNode - The outer node that contains the hole.
  */
 export function eliminateHole(hole, outerNode) {
   outerNode = findHoleBridge(hole, outerNode);
@@ -499,12 +499,12 @@ export function eliminateHole(hole, outerNode) {
 }
 
 /**
- * TBD.
- * @param {object} data - TBD.
- * @param {object} holeIndices - TBD.
- * @param {object} outerNode - TBD.
- * @param {object} dim - TBD.
- * @returns {object} TBD.
+ * Calculates the centroid of a polygon.
+ * @param {object} data - The earcut data structure containing the points.
+ * @param {object} holeIndices - The indices of the holes in the data structure.
+ * @param {object} outerNode - The outer node that contains the holes.
+ * @param {object} dim - The dimension of the data (2 or 3).
+ * @returns {object} The processed earcut data structure with holes included.
  */
 export function eliminateHoles(data, holeIndices, outerNode, dim) {
   const queue = [];
@@ -530,11 +530,11 @@ export function eliminateHoles(data, holeIndices, outerNode, dim) {
 }
 
 /**
- * TBD.
- * @param {object} start - TBD.
- * @param {object} triangles - TBD.
- * @param {number} dim - TBD.
- * @returns {object} TBD.
+ * Calculates the centroid of a polygon.
+ * @param {object} start - The starting point in the data structure.
+ * @param {object} triangles - The triangles to process.
+ * @param {number} dim - The dimension of the data (2 or 3).
+ * @returns {object} The processed triangulation data structure.
  */
 export function cureLocalIntersections(start, triangles, dim) {
   let p = start;
@@ -558,13 +558,13 @@ export function cureLocalIntersections(start, triangles, dim) {
 }
 
 /**
- * TBD.
- * @param {object} start - TBD.
- * @param {object} triangles - TBD.
- * @param {number} dim - TBD.
- * @param {number} minX - TBD.
- * @param {number} minY - TBD.
- * @param {number} size - TBD.
+ * Calculates the centroid of a polygon.
+ * @param {object} start - The starting point in the data structure.
+ * @param {object} triangles - The triangles to process.
+ * @param {number} dim - The dimension of the data (2 or 3).
+ * @param {number} minX - The minimum x-coordinate of the bounding box.
+ * @param {number} minY - The minimum y-coordinate of the bounding box.
+ * @param {number} size - The size of the bounding box.
  */
 export function splitEarcut(start, triangles, dim, minX, minY, size) {
   // look for a valid diagonal that divides the polygon into two
@@ -590,14 +590,14 @@ export function splitEarcut(start, triangles, dim, minX, minY, size) {
 }
 
 /**
- * TBD.
- * @param {object} ear - TBD.
- * @param {object} triangles - TBD.
- * @param {number} dim - TBD.
- * @param {number} minX - TBD.
- * @param {number} minY - TBD.
- * @param {number} size - TBD.
- * @param {object} pass - TBD.
+ * Calculates the centroid of a polygon.
+ * @param {object} ear - The ear to process.
+ * @param {object} triangles - The triangles to process.
+ * @param {number} dim - The dimension of the data (2 or 3).
+ * @param {number} minX - The minimum x-coordinate of the bounding box.
+ * @param {number} minY - The minimum y-coordinate of the bounding box.
+ * @param {number} size - The size of the bounding box.
+ * @param {object} pass - The pass information for triangulation.
  */
 export function earcutLinked(ear, triangles, dim, minX, minY, size, pass) {
   if (!ear) return;
@@ -641,11 +641,11 @@ export function earcutLinked(ear, triangles, dim, minX, minY, size, pass) {
 }
 
 /**
- * TBD.
- * @param {object} data - TBD.
- * @param {object} holeIndices - TBD.
- * @param {number} dim - TBD.
- * @returns {object} TBD.
+ * Calculates the centroid of a polygon.
+ * @param {object} data - The earcut data structure containing the points.
+ * @param {object} holeIndices - The indices of the holes in the data structure.
+ * @param {number} dim - The dimension of the data (2 or 3).
+ * @returns {object} The processed earcut data structure with triangulation information.
  */
 export function triangulate(data, holeIndices, dim) {
   dim = dim || 2;

@@ -6,7 +6,7 @@ import { StripShader } from './shader/strip.js';
 
 export class WebGLShaderManager {
   /**
-   * TBD.
+   * Initializes the shader manager with a WebGL context.
    */
   constructor() {
     this.gl = null;
@@ -25,8 +25,8 @@ export class WebGLShaderManager {
   }
 
   /**
-   * TBD.
-   * @param {WebGLRenderingContext & { id: number }} gl - TBD.
+   * Initializes the shader manager with a WebGL context.
+   * @param {WebGLRenderingContext & { id: number }} gl - The WebGL rendering context.
    */
   setContext(gl) {
     this.gl = gl;
@@ -39,8 +39,8 @@ export class WebGLShaderManager {
   }
 
   /**
-   * TBD.
-   * @param {number[]} attribs - TBD.
+   * Sets up the shader manager for WebGL rendering.
+   * @param {number[]} attribs - The attribute locations to set up.
    */
   setAttribs(attribs) {
     // reset temp state
@@ -67,9 +67,9 @@ export class WebGLShaderManager {
   }
 
   /**
-   * TBD.
-   * @param {NormalShader} shader - TBD.
-   * @returns {boolean} TBD.
+   * Sets up the shader manager for WebGL rendering.
+   * @param {NormalShader} shader - The shader to set up.
+   * @returns {boolean} Whether the shader setup was successful.
    */
   setShader(shader) {
     if (this._currentId === shader._UID) {
@@ -83,7 +83,7 @@ export class WebGLShaderManager {
   }
 
   /**
-   * TBD.
+   * Destroys the manager.
    */
   destroy() {
     this.attribState = null;

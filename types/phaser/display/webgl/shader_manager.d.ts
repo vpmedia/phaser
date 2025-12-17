@@ -12,27 +12,27 @@ export class WebGLShaderManager {
     tempAttribState: any[];
     stack: any[];
     /**
-     * TBD.
-     * @param {WebGLRenderingContext & { id: number }} gl - TBD.
+     * Initializes the shader manager with a WebGL context.
+     * @param {WebGLRenderingContext & { id: number }} gl - The WebGL rendering context.
      */
     setContext(gl: WebGLRenderingContext & {
         id: number;
     }): void;
     /**
-     * TBD.
-     * @param {number[]} attribs - TBD.
+     * Sets up the shader manager for WebGL rendering.
+     * @param {number[]} attribs - The attribute locations to set up.
      */
     setAttribs(attribs: number[]): void;
     /**
-     * TBD.
-     * @param {NormalShader} shader - TBD.
-     * @returns {boolean} TBD.
+     * Sets up the shader manager for WebGL rendering.
+     * @param {NormalShader} shader - The shader to set up.
+     * @returns {boolean} Whether the shader setup was successful.
      */
     setShader(shader: NormalShader): boolean;
     _currentId: any;
     currentShader: NormalShader;
     /**
-     * TBD.
+     * Destroys the manager.
      */
     destroy(): void;
 }

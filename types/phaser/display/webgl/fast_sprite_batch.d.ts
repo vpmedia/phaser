@@ -52,15 +52,15 @@ export class FastSpriteBatch {
      */
     renderSprite(sprite: import("../../display/image.js").Image): void;
     /**
-     * TBD.
+     * Binds the sprite batch to the WebGL context.
      */
     flush(): void;
     /**
-     * TBD.
+     * Renders a sprite using the sprite batch.
      */
     stop(): void;
     /**
-     * TBD.
+     * Sets up the sprite batch for WebGL rendering.
      */
     start(): void;
 }

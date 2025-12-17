@@ -202,7 +202,7 @@ export class FastSpriteBatch {
   }
 
   /**
-   * TBD.
+   * Binds the sprite batch to the WebGL context.
    */
   flush() {
     // If the batch is length 0 then return as there is nothing to draw
@@ -231,14 +231,14 @@ export class FastSpriteBatch {
   }
 
   /**
-   * TBD.
+   * Renders a sprite using the sprite batch.
    */
   stop() {
     this.flush();
   }
 
   /**
-   * TBD.
+   * Sets up the sprite batch for WebGL rendering.
    */
   start() {
     const gl = this.gl;

@@ -45,7 +45,7 @@ export class NormalShader {
      */
     syncUniforms(): void;
     /**
-     * TBD.
+     * Destroys this shader and cleans up resources.
      */
     destroy(): void;
 }

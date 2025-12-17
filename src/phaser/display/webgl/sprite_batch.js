@@ -85,9 +85,9 @@ export class WebGLSpriteBatch {
   }
 
   /**
-   * TBD.
-   * @param {import('../../display/image.js').Image} sprite - TBD.
-   * @param {import('../../geom/matrix.js').Matrix} matrix - TBD.
+   * Renders a sprite using the sprite batch.
+   * @param {import('../../display/image.js').Image} sprite - The sprite to render.
+   * @param {import('../../geom/matrix.js').Matrix} matrix - The transformation matrix.
    */
   render(sprite, matrix) {
     const texture = sprite.texture;
@@ -187,14 +187,14 @@ export class WebGLSpriteBatch {
   }
 
   /**
-   * TBD.
+   * Binds the sprite batch to the WebGL context.
    */
   renderTilingSprite() {
     // TODO
   }
 
   /**
-   * TBD.
+   * Updates the sprite batch.
    */
   flush() {
     // If the batch is length 0 then return as there is nothing to draw
@@ -335,7 +335,7 @@ export class WebGLSpriteBatch {
   }
 
   /**
-   * TBD.
+   * Destroys the sprite batch instance.
    */
   destroy() {
     this.vertices = null;

@@ -5,8 +5,8 @@ import { compileProgram } from '../util.js';
 
 export class FastShader {
   /**
-   * TBD.
-   * @param {WebGLRenderingContext} gl - TBD.
+   * Creates a new FastShader instance.
+   * @param {WebGLRenderingContext} gl - The WebGL rendering context.
    */
   constructor(gl) {
     this.gl = gl;
@@ -56,7 +56,7 @@ export class FastShader {
   }
 
   /**
-   * TBD.
+   * Creates a new FastShader instance.
    */
   init() {
     const gl = this.gl;
@@ -96,7 +96,7 @@ export class FastShader {
   }
 
   /**
-   * TBD.
+   * Destroys this shader and cleans up resources.
    */
   destroy() {
     this.gl.deleteProgram(this.program);

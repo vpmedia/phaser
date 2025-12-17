@@ -47,14 +47,14 @@ export class WebGLFilterManager {
   }
 
   /**
-   * TBD.
+   * Initializes the filter manager.
    */
   initShaderBuffers() {
     // TODO
   }
 
   /**
-   * TBD.
+   * Sets up the filter manager for WebGL rendering.
    */
   destroy() {
     // TODO

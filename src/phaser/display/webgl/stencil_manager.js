@@ -2,7 +2,7 @@ import { hex2rgb } from '../../util/math.js';
 
 export class WebGLStencilManager {
   /**
-   * TBD.
+   * Initializes the stencil manager.
    */
   constructor() {
     this.stencilStack = [];
@@ -11,15 +11,15 @@ export class WebGLStencilManager {
   }
 
   /**
-   * TBD.
-   * @param {WebGLRenderingContext} gl - TBD.
+   * Binds the stencil buffer for rendering.
+   * @param {WebGLRenderingContext} gl - The WebGL rendering context.
    */
   setContext(gl) {
     this.gl = gl;
   }
 
   /**
-   * TBD.
+   * Sets up the stencil buffer for rendering.
    */
   destroy() {
     this.stencilStack = null;
@@ -27,10 +27,10 @@ export class WebGLStencilManager {
   }
 
   /**
-   * TBD.
-   * @param {import('../graphics.js').Graphics} graphics - TBD.
-   * @param {import('./graphics_data.js').GraphicsData} webGLData - TBD.
-   * @param {object} renderSession - TBD.
+   * Renders the stencil buffer for graphics.
+   * @param {import('../graphics.js').Graphics} graphics - The graphics object to render.
+   * @param {import('./graphics_data.js').GraphicsData} webGLData - The WebGL graphics data.
+   * @param {object} renderSession - The rendering session.
    */
   pushStencil(graphics, webGLData, renderSession) {
     const gl = renderSession.gl;
@@ -85,10 +85,10 @@ export class WebGLStencilManager {
   }
 
   /**
-   * TBD.
-   * @param {import('../graphics.js').Graphics} graphics - TBD.
-   * @param {import('./graphics_data.js').GraphicsData} webGLData - TBD.
-   * @param {object} renderSession - TBD.
+   * Renders the stencil buffer for graphics.
+   * @param {import('../graphics.js').Graphics} graphics - The graphics object to render.
+   * @param {import('./graphics_data.js').GraphicsData} webGLData - The WebGL graphics data.
+   * @param {object} renderSession - The rendering session.
    */
   bindGraphics(graphics, webGLData, renderSession) {
     // if(this._currentGraphics === graphics)return;
@@ -132,10 +132,10 @@ export class WebGLStencilManager {
   }
 
   /**
-   * TBD.
-   * @param {import('../graphics.js').Graphics} graphics - TBD.
-   * @param {import('./graphics_data.js').GraphicsData} webGLData - TBD.
-   * @param {object} renderSession - TBD.
+   * Renders the stencil buffer for graphics.
+   * @param {import('../graphics.js').Graphics} graphics - The graphics object to render.
+   * @param {import('./graphics_data.js').GraphicsData} webGLData - The WebGL graphics data.
+   * @param {object} renderSession - The rendering session.
    */
   popStencil(graphics, webGLData, renderSession) {
     const gl = renderSession.gl;

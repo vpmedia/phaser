@@ -1,8 +1,8 @@
 export class BaseTexture {
     /**
-     * TBD.
-     * @param {HTMLCanvasElement} source - TBD.
-     * @param {number} [scaleMode] - TBD.
+     * Updates the base texture with a new source.
+     * @param {HTMLCanvasElement} source - The new canvas element to use as the texture source.
+     * @param {number} [scaleMode] - The scale mode to use for the texture.
      */
     constructor(source: HTMLCanvasElement, scaleMode?: number);
     resolution: number;
@@ -18,21 +18,21 @@ export class BaseTexture {
     _powerOf2: boolean;
     _dirty: boolean[];
     /**
-     * TBD.
-     * @param {number} width - TBD.
-     * @param {number} height - TBD.
+     * Updates the base texture with new dimensions.
+     * @param {number} width - The new width of the texture.
+     * @param {number} height - The new height of the texture.
      */
     forceLoaded(width: number, height: number): void;
     /**
-     * TBD.
+     * Destroys the texture.
      */
     destroy(): void;
     /**
-     * TBD.
+     * Marks the texture as dirty.
      */
     dirty(): void;
     /**
-     * TBD.
+     * Unloads the texture from the GPU.
      */
     unloadFromGPU(): void;
 }

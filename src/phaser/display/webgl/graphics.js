@@ -5,8 +5,8 @@ import { triangulate } from './earcut.js';
 import { GraphicsData } from './graphics_data.js';
 
 /**
- * TBD.
- * @returns {number} TBD.
+ * Updates the graphics data for WebGL rendering.
+ * @returns {number} The number of vertices in the graphics data.
  */
 export const getStencilBufferLimit = () => {
   if (!window.PhaserRegistry.stencilBufferLimit) {
@@ -16,8 +16,8 @@ export const getStencilBufferLimit = () => {
 };
 
 /**
- * TBD.
- * @returns {object[]} TBD.
+ * Updates the graphics data for WebGL rendering.
+ * @returns {object[]} The graphics data array.
  */
 export const getGraphicsDataPool = () => {
   if (!window.PhaserRegistry.graphicsDataPool) {
@@ -27,10 +27,10 @@ export const getGraphicsDataPool = () => {
 };
 
 /**
- * TBD.
- * @param {object} webGL - TBD.
- * @param {number} type - TBD.
- * @returns {object} TBD.
+ * Updates the graphics data for WebGL rendering.
+ * @param {object} webGL - The WebGL context.
+ * @param {number} type - The type of graphics data to create.
+ * @returns {object} The newly created graphics data object.
  */
 export const switchMode = (webGL, type) => {
   let webGLData;
@@ -51,9 +51,9 @@ export const switchMode = (webGL, type) => {
 };
 
 /**
- * TBD.
- * @param {object} graphicsData - TBD.
- * @param {GraphicsData} webGLData - TBD.
+ * Updates the graphics data for WebGL rendering.
+ * @param {object} graphicsData - The graphics data to update.
+ * @param {GraphicsData} webGLData - The WebGL graphics data object.
  */
 export const buildLine = (graphicsData, webGLData) => {
   // TODO OPTIMISE!
@@ -216,9 +216,9 @@ export const buildLine = (graphicsData, webGLData) => {
 };
 
 /**
- * TBD.
- * @param {object} graphicsData - TBD.
- * @param {GraphicsData} webGLData - TBD.
+ * Updates the graphics data for WebGL rendering.
+ * @param {object} graphicsData - The graphics data to update.
+ * @param {GraphicsData} webGLData - The WebGL graphics data object.
  */
 export const buildRectangle = (graphicsData, webGLData) => {
   //
@@ -260,14 +260,14 @@ export const buildRectangle = (graphicsData, webGLData) => {
 };
 
 /**
- * TBD.
- * @param {number} fromX - TBD.
- * @param {number} fromY - TBD.
- * @param {number} cpX - TBD.
- * @param {number} cpY - TBD.
- * @param {number} toX - TBD.
- * @param {number} toY - TBD.
- * @returns {number[]} TBD.
+ * Updates the graphics data for WebGL rendering.
+ * @param {number} fromX - The starting x-coordinate.
+ * @param {number} fromY - The starting y-coordinate.
+ * @param {number} cpX - The control point x-coordinate.
+ * @param {number} cpY - The control point y-coordinate.
+ * @param {number} toX - The ending x-coordinate.
+ * @param {number} toY - The ending y-coordinate.
+ * @returns {number[]} The calculated points for the quadratic bezier curve.
  */
 export const quadraticBezierCurve = (fromX, fromY, cpX, cpY, toX, toY) => {
   let xa;
@@ -299,9 +299,9 @@ export const quadraticBezierCurve = (fromX, fromY, cpX, cpY, toX, toY) => {
 };
 
 /**
- * TBD.
- * @param {object} graphicsData - TBD.
- * @param {GraphicsData} webGLData - TBD.
+ * Updates the graphics data for WebGL rendering.
+ * @param {object} graphicsData - The graphics data to update.
+ * @param {GraphicsData} webGLData - The WebGL graphics data object.
  */
 export const buildRoundedRectangle = (graphicsData, webGLData) => {
   const rrectData = graphicsData.shape;
@@ -349,9 +349,9 @@ export const buildRoundedRectangle = (graphicsData, webGLData) => {
 };
 
 /**
- * TBD.
- * @param {object} graphicsData - TBD.
- * @param {GraphicsData} webGLData - TBD.
+ * Updates the graphics data for WebGL rendering.
+ * @param {object} graphicsData - The graphics data to update.
+ * @param {GraphicsData} webGLData - The WebGL graphics data object.
  */
 export const buildCircle = (graphicsData, webGLData) => {
   // need to convert points to a nice regular data
@@ -400,9 +400,9 @@ export const buildCircle = (graphicsData, webGLData) => {
 };
 
 /**
- * TBD.
- * @param {object} graphicsData - TBD.
- * @param {GraphicsData} webGLData - TBD.
+ * Updates the graphics data for WebGL rendering.
+ * @param {object} graphicsData - The graphics data to update.
+ * @param {GraphicsData} webGLData - The WebGL graphics data object.
  */
 export const buildComplexPoly = (graphicsData, webGLData) => {
   // TODO - no need to copy this as it gets turned into a Float32Array anyways..
@@ -444,7 +444,7 @@ export const buildComplexPoly = (graphicsData, webGLData) => {
 };
 
 /**
- * TBD.
+ * Updates the graphics data for WebGL rendering.
  * @param {object} graphicsData - TBD.
  * @param {GraphicsData} webGLData - TBD.
  * @returns {boolean} TBD.
@@ -484,8 +484,8 @@ export const buildPoly = (graphicsData, webGLData) => {
 
 /**
  * TBD.
- * @param {import('../graphics.js').Graphics} graphics - TBD.
- * @param {WebGLRenderingContext & { id: number }} gl - TBD.
+ * @param {import('../graphics.js').Graphics} graphics - The graphics object to update.
+ * @param {WebGLRenderingContext & { id: number }} gl - The WebGL rendering context.
  */
 export const updateGraphics = (graphics, gl) => {
   const stencilBufferLimit = getStencilBufferLimit();
@@ -572,9 +572,9 @@ export const updateGraphics = (graphics, gl) => {
 };
 
 /**
- * TBD.
- * @param {import('../graphics.js').Graphics} graphics - TBD.
- * @param {object} renderSession - TBD.
+ * Updates the graphics data for WebGL rendering.
+ * @param {import('../graphics.js').Graphics} graphics - The graphics object to update.
+ * @param {object} renderSession - The rendering session.
  */
 export const renderGraphics = (graphics, renderSession) => {
   const gl = renderSession.gl;

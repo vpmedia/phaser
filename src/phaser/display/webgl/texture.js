@@ -124,7 +124,7 @@ export class Texture {
   }
 
   /**
-   * TBD.
+   * Updates the texture UVs based on the crop frame.
    */
   _updateUvs() {
     if (!this._uvs) {

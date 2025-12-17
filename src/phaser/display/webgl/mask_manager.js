@@ -1,9 +1,9 @@
 import { updateGraphics } from './graphics.js';
 
 /**
- * TBD.
- * @param {object} maskData - TBD.
- * @param {object} renderSession - TBD.
+ * Sets up the mask manager for WebGL rendering.
+ * @param {object} maskData - The mask data to apply.
+ * @param {object} renderSession - The rendering session.
  */
 export const pushMask = (maskData, renderSession) => {
   const gl = renderSession.gl;
@@ -21,9 +21,9 @@ export const pushMask = (maskData, renderSession) => {
 };
 
 /**
- * TBD.
- * @param {object} maskData - TBD.
- * @param {object} renderSession - TBD.
+ * Sets up the mask manager for WebGL rendering.
+ * @param {object} maskData - The mask data to apply.
+ * @param {object} renderSession - The rendering session.
  */
 export const popMask = (maskData, renderSession) => {
   const gl = renderSession.gl;

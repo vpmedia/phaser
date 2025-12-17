@@ -236,7 +236,7 @@ export class NormalShader {
   }
 
   /**
-   * TBD.
+   * Destroys this shader and cleans up resources.
    */
   destroy() {
     this.gl.deleteProgram(this.program);

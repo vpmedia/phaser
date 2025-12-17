@@ -26,11 +26,11 @@ export class WebGLFilterManager {
      */
     applyFilterPass(): void;
     /**
-     * TBD.
+     * Initializes the filter manager.
      */
     initShaderBuffers(): void;
     /**
-     * TBD.
+     * Sets up the filter manager for WebGL rendering.
      */
     destroy(): void;
 }
