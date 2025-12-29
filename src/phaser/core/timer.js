@@ -87,6 +87,20 @@ export class Timer {
   }
 
   /**
+   * Creates a new async TimerEvent that runs once.
+   * @param {number} delay - The delay in milliseconds before the promise resolves.
+   * @param {...any} args - Arguments to pass to the resolve function.
+   * @returns {Promise<any>} The created Promise.
+   */
+  wait(delay, ...args) {
+    return new Promise((resolve) => {
+      this.create(delay, false, 0, () => {
+        resolve(args.length <= 1 ? args[0] : args);
+      });
+    });
+  }
+
+  /**
    * Creates a new TimerEvent that repeats a specified number of times.
    * @param {number} delay - The delay in milliseconds before the event fires.
    * @param {number} repeatCount - The number of times to repeat the event (0 = infinite).
