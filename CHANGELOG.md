@@ -1,3 +1,13 @@
+## [1.98.0] - 2025-12-29
+
+### 💼 Other
+
+- *(deps)* Bumped package versions
+
+### ⚙️ Miscellaneous Tasks
+
+- Release
+- *(release)* V1.98.0
 ## [1.97.0] - 2025-12-29
 
 ### 🚀 Features
