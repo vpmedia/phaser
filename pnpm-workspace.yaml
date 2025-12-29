@@ -1,4 +1,6 @@
 onlyBuiltDependencies:
   - esbuild
 trustPolicy: no-downgrade
+trustPolicyExclude:
+  - ts-api-utils@2.3.0
 minimumReleaseAge: 2880
