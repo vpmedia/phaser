@@ -88,9 +88,10 @@ export class Timer {
 
   /**
    * Creates a new async TimerEvent that runs once.
+   * @template T
    * @param {number} delay - The delay in milliseconds before the promise resolves.
-   * @param {...any} args - Arguments to pass to the resolve function.
-   * @returns {Promise<any>} The created Promise.
+   * @param {...T} args - Arguments to pass to the resolve function.
+   * @returns {Promise<T | T[]>} The created Promise.
    */
   wait(delay, ...args) {
     return new Promise((resolve) => {
