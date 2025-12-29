@@ -1,3 +1,25 @@
+## [1.97.0] - 2025-12-29
+
+### 🚀 Features
+
+- Added signal async support
+- Added async wait to timer
+
+### 💼 Other
+
+- *(deps)* Bump dependency versions
+- *(deps)* Bump dependency versions
+- *(deps)* Bump dependency versions
+- *(deps)* Bump dependency versions
+- *(deps)* Bump dependency versions
+- *(deps)* Bump dependency versions
+- *(deps)* Bump dependency versions
+
+### ⚙️ Miscellaneous Tasks
+
+- Release
+- Improve type checking
+- *(release)* V1.97.0
 ## [1.96.0] - 2025-12-17
 
 ### 💼 Other
