@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@vpmedia/simplify':
-        specifier: ^1.53.0
-        version: 1.53.0
+        specifier: ^1.54.0
+        version: 1.54.0
       uuid:
         specifier: ^13.0.0
         version: 13.0.0
@@ -785,8 +785,8 @@ packages:
   '@vitest/utils@4.0.16':
     resolution: {integrity: sha512-h8z9yYhV3e1LEfaQ3zdypIrnAg/9hguReGZoS7Gl0aBG5xgA410zBqECqmaF/+RkTggRsfnzc1XaAHA6bmUufA==}
 
-  '@vpmedia/simplify@1.53.0':
-    resolution: {integrity: sha512-7VhCtfDk8ndWH21NqQSPK88LD69oV9LjfsnaIPwlKtvoX0VkdDYzaQdDucHug14O7mmYp9qatjkWXLJMOuZefQ==}
+  '@vpmedia/simplify@1.54.0':
+    resolution: {integrity: sha512-si+xDGlg55IbUtOVbPBnq+e6nQUtthhDB0m8E/qICyP8nVB1zfB/6k99P+QTJCyGiiPbsvMESnuz16N44n1EWg==}
 
   JSONStream@1.3.5:
     resolution: {integrity: sha512-E+iruNOY8VV9s4JEbe1aNEm6MiszPRr/UfcHMz0TQh1BXSxHK+ASV1R6W4HpjBhSeS+54PIsAMCBmwD06LLsqQ==}
@@ -2477,7 +2477,7 @@ snapshots:
       '@vitest/pretty-format': 4.0.16
       tinyrainbow: 3.0.3
 
-  '@vpmedia/simplify@1.53.0':
+  '@vpmedia/simplify@1.54.0':
     dependencies:
       eventemitter3: 5.0.1
     optionalDependencies:
