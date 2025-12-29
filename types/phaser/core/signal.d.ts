@@ -107,6 +107,11 @@ export class Signal {
      * @returns {Function} A function that will dispatch the signal with the correct context.
      */
     get boundDispatch(): Function;
+    /**
+     * Promisify the Signal.
+     * @returns {Promise<any>} The resolved result.
+     */
+    toPromise(): Promise<any>;
 }
 import { SignalBinding } from './signal_binding.js';
 //# sourceMappingURL=signal.d.ts.map

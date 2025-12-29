@@ -65,6 +65,14 @@ export class Timer {
      */
     add(delay: number, callback: Function, callbackContext?: object, ...args: any[]): TimerEvent;
     /**
+     * Creates a new async TimerEvent that runs once.
+     * @template T
+     * @param {number} delay - The delay in milliseconds before the promise resolves.
+     * @param {...T} args - Arguments to pass to the resolve function.
+     * @returns {Promise<T | T[]>} The created Promise.
+     */
+    wait<T>(delay: number, ...args: T[]): Promise<T | T[]>;
+    /**
      * Creates a new TimerEvent that repeats a specified number of times.
      * @param {number} delay - The delay in milliseconds before the event fires.
      * @param {number} repeatCount - The number of times to repeat the event (0 = infinite).
