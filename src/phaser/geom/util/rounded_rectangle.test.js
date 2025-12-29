@@ -1,3 +1,4 @@
+import { expect } from 'vitest';
 import { RoundedRectangle } from '../rounded_rectangle.js';
 import { clone } from './rounded_rectangle.js';
 

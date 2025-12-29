@@ -1,3 +1,4 @@
+import { expect } from 'vitest';
 import { Polygon } from '../polygon.js';
 import { clone } from './polygon.js';
 

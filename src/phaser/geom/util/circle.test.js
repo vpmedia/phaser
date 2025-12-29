@@ -1,3 +1,4 @@
+import { expect } from 'vitest';
 import { Circle } from '../circle.js';
 import { clone, contains, equals, intersects } from './circle.js';
 

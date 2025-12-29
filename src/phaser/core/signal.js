@@ -259,4 +259,16 @@ export class Signal {
     }
     return this._boundDispatch;
   }
+
+  /**
+   * Promisify the Signal.
+   * @returns {Promise<any>} The resolved result.
+   */
+  toPromise() {
+    return new Promise((resolve) => {
+      this.addOnce((...args) => {
+        resolve(args.length <= 1 ? args[0] : args);
+      }, this);
+    });
+  }
 }

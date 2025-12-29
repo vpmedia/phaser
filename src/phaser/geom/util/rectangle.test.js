@@ -1,3 +1,4 @@
+import { expect } from 'vitest';
 import { Rectangle } from '../rectangle.js';
 import { clone } from './rectangle.js';
 

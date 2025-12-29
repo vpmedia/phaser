@@ -1,3 +1,4 @@
+import { expect } from 'vitest';
 import { TOP_LEFT } from '../core/const.js';
 import { Point } from './point.js';
 import { Rectangle } from './rectangle.js';

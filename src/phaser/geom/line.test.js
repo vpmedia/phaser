@@ -1,3 +1,4 @@
+import { expect } from 'vitest';
 import { degToRad } from '../util/math.js';
 import { Line } from './line.js';
 

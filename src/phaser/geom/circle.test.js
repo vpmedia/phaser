@@ -1,3 +1,4 @@
+import { expect } from 'vitest';
 import { Circle } from './circle.js';
 import { Point } from './point.js';
 

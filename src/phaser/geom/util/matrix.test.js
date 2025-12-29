@@ -1,3 +1,4 @@
+import { expect } from 'vitest';
 import { Matrix } from '../matrix.js';
 import { clone, getIdentityMatrix, getTempMatrix } from './matrix.js';
 

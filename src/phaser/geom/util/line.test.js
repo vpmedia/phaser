@@ -1,3 +1,4 @@
+import { expect } from 'vitest';
 import { Line } from '../line.js';
 import { clone } from './line.js';
 

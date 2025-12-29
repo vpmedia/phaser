@@ -1,3 +1,4 @@
+import { expect } from 'vitest';
 import { Ellipse } from './ellipse.js';
 
 it('should create an ellipse with default values', () => {

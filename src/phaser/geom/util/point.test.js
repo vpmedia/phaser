@@ -1,3 +1,4 @@
+import { expect } from 'vitest';
 import { Point } from '../point.js';
 import { clone } from './point.js';
 

@@ -1,3 +1,4 @@
+import { expect } from 'vitest';
 import { Matrix } from './matrix.js';
 import { Point } from './point.js';
 

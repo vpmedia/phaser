@@ -1,3 +1,4 @@
+import { expect } from 'vitest';
 import {
   between,
   DEG_TO_RAD,

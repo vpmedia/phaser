@@ -1,3 +1,4 @@
+import { expect } from 'vitest';
 import { Ellipse } from '../ellipse.js';
 import { contains } from './ellipse.js';
 
