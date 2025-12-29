@@ -1,3 +1,14 @@
+## [1.99.0] - 2025-12-29
+
+### 💼 Other
+
+- *(deps)* Bump dependency versions
+
+### ⚙️ Miscellaneous Tasks
+
+- Release
+- Regenerated types
+- *(release)* V1.99.0
 ## [1.98.0] - 2025-12-29
 
 ### 💼 Other
