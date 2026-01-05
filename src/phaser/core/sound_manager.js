@@ -252,25 +252,29 @@ export class SoundManager {
    */
   decode(key) {
     const soundData = this.game.cache.getSoundData(key);
-    if (soundData) {
-      if (this.game.cache.isSoundDecoded(key) === false) {
-        this.game.cache.updateSound(key, 'isDecoding', true);
-        this.context
-          .decodeAudioData(soundData)
-          .then((buffer) => {
-            this.game.cache.decodedSound(key, buffer);
-          })
-          .catch((error) => {
-            const typedError = error instanceof Error ? error : new Error(String(error));
-            this.game.logger.exception('SoundManager', typedError, { tags: { 'asset.key': key } });
-            if (typedError.name === 'InvalidStateError') {
-              addPageLifecycleCallback(PAGE_LIFECYCLE_STATE_ACTIVE, () => {
-                this.decode(key);
-              });
-            }
-          });
-      }
+    if (!soundData) {
+      return;
     }
+    if (this.game.cache.isSoundDecoded(key) === true) {
+      return;
+    }
+    this.game.cache.updateSound(key, 'isDecoding', true);
+    this.context
+      .decodeAudioData(soundData)
+      .then((buffer) => {
+        this.game.cache.decodedSound(key, buffer);
+      })
+      .catch((error) => {
+        const typedError = error instanceof Error ? error : new Error(String(error));
+        this.game.logger.exception('SoundManager', typedError, { tags: { 'asset.key': key } });
+        if (typedError.name === 'InvalidStateError') {
+          addPageLifecycleCallback(PAGE_LIFECYCLE_STATE_ACTIVE, () => {
+            this.decode(key);
+          });
+        } else if (typedError.name === 'EncodingError') {
+          this._watchList.remove(key);
+        }
+      });
   }
 
   /**
@@ -295,7 +299,6 @@ export class SoundManager {
     }
     //  All decoded already?
     if (this._watchList.total === 0) {
-      this.game.logger.info('All sounds decoded');
       this._watching = false;
       callback.call(callbackContext);
     } else {
