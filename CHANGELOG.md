@@ -1,3 +1,19 @@
+## [1.100.0] - 2026-01-05
+
+### 🐛 Bug Fixes
+
+- Remove audio from decode watchlist if decode fails
+
+### 💼 Other
+
+- *(deps)* Bump dependency versions
+- *(deps)* Bump dependency versions
+- *(deps)* Bump dependency versions
+
+### ⚙️ Miscellaneous Tasks
+
+- Release
+- *(release)* V1.100.0
 ## [1.99.0] - 2025-12-29
 
 ### 💼 Other
