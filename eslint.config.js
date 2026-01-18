@@ -49,7 +49,7 @@ export default defineConfig([
     },
     rules: {
       ...js.configs.recommended.rules,
-      ...jsdocPlugin.configs['flat/recommended'].rules,
+      ...jsdocPlugin.configs['flat/recommended-typescript-flavor'].rules,
       ...unicornPlugin.configs.recommended.rules,
       'no-unused-vars': 'off',
       'prefer-arrow-callback': 'warn',
