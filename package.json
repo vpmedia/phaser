@@ -33,7 +33,7 @@
     "@types/node": "^25.0.9",
     "@vitest/coverage-v8": "^4.0.17",
     "eslint": "^9.39.2",
-    "eslint-plugin-jsdoc": "^62.2.0",
+    "eslint-plugin-jsdoc": "^62.3.0",
     "eslint-plugin-oxlint": "^1.41.0",
     "eslint-plugin-unicorn": "^62.0.0",
     "globals": "^17.0.0",
@@ -52,11 +52,5 @@
     "lint": "eslint \"**/*.{js,jsx}\"",
     "test": "vitest --coverage --pass-with-no-tests",
     "typecheck": "tsc"
-  },
-  "browserslist": [
-    "> 0.5%",
-    "not dead",
-    "not op_mini all",
-    "iOS >= 14"
-  ]
+  }
 }
