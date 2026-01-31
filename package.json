@@ -23,12 +23,12 @@
   "types": "./types/index.d.ts",
   "type": "module",
   "dependencies": {
-    "@vpmedia/simplify": "^1.65.0",
+    "@vpmedia/simplify": "^1.66.0",
     "uuid": "^13.0.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^20.3.1",
-    "@commitlint/config-conventional": "^20.3.1",
+    "@commitlint/cli": "^20.4.0",
+    "@commitlint/config-conventional": "^20.4.0",
     "@eslint/js": "^9.39.2",
     "@types/node": "^25.1.0",
     "@vitest/coverage-v8": "^4.0.18",
@@ -39,7 +39,7 @@
     "globals": "^17.2.0",
     "jsdom": "^27.4.0",
     "oxlint": "^1.42.0",
-    "oxlint-tsgolint": "^0.11.3",
+    "oxlint-tsgolint": "^0.11.4",
     "prettier": "^3.8.1",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.54.0",
