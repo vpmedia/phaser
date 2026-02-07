@@ -52,6 +52,7 @@ export default defineConfig([
       ...jsdocPlugin.configs['flat/recommended-typescript-flavor'].rules,
       ...unicornPlugin.configs.recommended.rules,
       'no-unused-vars': 'off',
+      'no-useless-assignment': 'off',
       'prefer-arrow-callback': 'warn',
       'prefer-template': 'warn',
       'unicorn/consistent-function-scoping': 'off',
