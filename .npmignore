@@ -22,7 +22,6 @@ out/
 .oxlintrc.json
 .prettierignore
 commitlint.config.js
-eslint.config.js
 lefthook.yml
 pnpm-lock.yaml
 pnpm-workspace.yaml
