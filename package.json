@@ -34,7 +34,7 @@
     "globals": "^17.3.0",
     "jsdom": "^28.0.0",
     "oxlint": "^1.47.0",
-    "oxlint-tsgolint": "^0.12.1",
+    "oxlint-tsgolint": "^0.12.2",
     "prettier": "^3.8.1",
     "typescript": "^5.9.3",
     "vitest": "^4.0.18"
