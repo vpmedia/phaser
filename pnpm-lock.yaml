@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@vpmedia/simplify':
-        specifier: ^1.71.0
-        version: 1.71.0
+        specifier: ^1.72.0
+        version: 1.72.0
       uuid:
         specifier: ^13.0.0
         version: 13.0.0
@@ -735,8 +735,8 @@ packages:
   '@vitest/utils@4.0.18':
     resolution: {integrity: sha512-msMRKLMVLWygpK3u2Hybgi4MNjcYJvwTb0Ru09+fOyCXIgT5raYP041DRRdiJiI3k/2U6SEbAETB3YtBrUkCFA==}
 
-  '@vpmedia/simplify@1.71.0':
-    resolution: {integrity: sha512-KyuRRGXRbuGA48e/LMNGFhst5XnrrXXLfBb3+PWX+8jPmgl6eKl9kr3FZ8UQBQEW2ojgxLq+Ilc3EJHp8HePlA==}
+  '@vpmedia/simplify@1.72.0':
+    resolution: {integrity: sha512-IUkwIu/s47ODEKuwS3gPPIap1iK7HLFrxYkCXTkAdz+IPMWM3WWl00mBi/HHclqegEa1Fog5MixAAPQ/SqAu0A==}
 
   agent-base@7.1.4:
     resolution: {integrity: sha512-MnA+YT8fwfJPgBx3m60MNqakm30XOkyIoH1y6huTQvC0PwZG7ki8NacLBcrPbNoo8vEZy7Jpuk7+jMO+CUovTQ==}
@@ -1865,7 +1865,7 @@ snapshots:
       '@vitest/pretty-format': 4.0.18
       tinyrainbow: 3.0.3
 
-  '@vpmedia/simplify@1.71.0':
+  '@vpmedia/simplify@1.72.0':
     optionalDependencies:
       '@sentry/browser': 10.40.0
 
