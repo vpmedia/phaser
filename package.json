@@ -35,7 +35,7 @@
     "oxfmt": "^0.41.0",
     "oxlint": "^1.56.0",
     "oxlint-tsgolint": "^0.17.0",
-    "typescript": "6.0.0-dev.20260315",
+    "typescript": "6.0.0-dev.20260319",
     "vitest": "^4.1.0"
   },
   "scripts": {
