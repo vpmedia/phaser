@@ -1,3 +1,17 @@
+## [1.104.0] - 2026-05-11
+
+### 🐛 Bug Fixes
+
+- *(types)* Emit class fields in declarations
+
+### 💼 Other
+
+- *(deps)* Bump dependency versions
+
+### ⚙️ Miscellaneous Tasks
+
+- Release
+- *(release)* V1.104.0
 ## [1.103.0] - 2026-05-11
 
 ### 🐛 Bug Fixes
