@@ -1,4 +1,3 @@
-// @ts-nocheck
 import {
   addPageLifecycleCallback,
   getPageLifecycleEventEmitter,
@@ -13,28 +12,30 @@ import { Sound } from './sound.js';
 import { SoundSprite } from './sound_sprite.js';
 
 export class SoundManager {
-game;
-onChange;
-context;
-baseLatency;
-noAudio;
-type;
-connectToMaster;
-isLocked;
-_codeMuted;
-_muted;
-_unlockSource;
-_volume;
-_sounds;
-_watchList;
-_watching;
-_watchCallback;
-_watchContext;
+  game!: any;
+  onChange!: any;
+  context!: any;
+  baseLatency!: any;
+  noAudio!: any;
+  type!: any;
+  connectToMaster!: any;
+  isLocked!: any;
+  _codeMuted!: any;
+  _muted!: any;
+  _unlockSource!: any;
+  _volume!: any;
+  _sounds!: any;
+  _watchList!: any;
+  _watching!: any;
+  _watchCallback!: any;
+  _watchContext!: any;
+  masterGain!: any;
+  _muteVolume!: any;
   /**
    * Creates a new SoundManager instance.
    * @param {import('./game.js').Game} game - Reference to the Phaser Game instance.
    */
-  constructor(game) {
+  constructor(game: import('./game.js').Game) {
     this.game = game;
     this.onChange = new Signal();
     /** @type {AudioContext} */
@@ -81,10 +82,10 @@ _watchContext;
         const typedError = error instanceof Error ? error : new Error(String(error));
         this.game.logger.exception('SoundManager', typedError);
       }
-    } else if (window.webkitAudioContext) {
+    } else if ((window as any).webkitAudioContext) {
       try {
         this.game.logger.info('initWebkitAudioContext');
-        this.context = new window.webkitAudioContext();
+        this.context = new (window as any).webkitAudioContext();
         this.type = AUDIO_WEBKIT;
       } catch (error) {
         this.context = null;
@@ -182,7 +183,7 @@ _watchContext;
    * Handles unlock events to resume audio context.
    * @param {Event} event - The DOM event that triggered the unlock.
    */
-  onUnlockEvent = (event) => {
+  onUnlockEvent = (event: Event) => {
     const initialState = this.context.state;
     if (initialState !== 'suspended' && initialState !== 'interrupted') {
       this.game.logger.info('onUnlockResumeDenied', {
@@ -268,7 +269,7 @@ _watchContext;
    * Decodes an audio file for playback.
    * @param {string} key - The key of the sound to decode.
    */
-  decode(key) {
+  decode(key: string) {
     const soundData = this.game.cache.getSoundData(key);
     if (!soundData) {
       return;
@@ -301,7 +302,7 @@ _watchContext;
    * @param {Function} callback - The callback function to call when all files are decoded.
    * @param {object} callbackContext - The context in which to call the callback.
    */
-  setDecodedCallback(files, callback, callbackContext) {
+  setDecodedCallback(files: any, callback: Function, callbackContext: any) {
     if (typeof files === 'string') {
       files = [files];
     }
@@ -360,7 +361,7 @@ _watchContext;
    * @param {boolean} connect - Whether to connect to the master gain node.
    * @returns {Sound} The created Sound object.
    */
-  add(key, volume = 1, loop = false, connect = this.connectToMaster) {
+  add(key: string, volume: number = 1, loop: boolean = false, connect: boolean = this.connectToMaster) {
     const sound = new Sound(this.game, key, volume, loop, connect);
     this._sounds.push(sound);
     return sound;
@@ -371,7 +372,7 @@ _watchContext;
    * @param {string} key - The key of the sound sprite to add.
    * @returns {SoundSprite} The created SoundSprite object.
    */
-  addSprite(key) {
+  addSprite(key: string) {
     return new SoundSprite(this.game, key);
   }
 
@@ -380,7 +381,7 @@ _watchContext;
    * @param {Sound | null | undefined} sound - The sound object to remove.
    * @returns {boolean} True if the sound was removed, false otherwise.
    */
-  remove(sound) {
+  remove(sound: Sound | null | undefined) {
     let i = this._sounds.length;
     while (i) {
       i -= 1;
@@ -398,7 +399,7 @@ _watchContext;
    * @param {string} key - The key of sounds to remove.
    * @returns {number} The number of sounds removed.
    */
-  removeByKey(key) {
+  removeByKey(key: string) {
     let i = this._sounds.length;
     let removed = 0;
     while (i) {
@@ -419,7 +420,7 @@ _watchContext;
    * @param {boolean} loop - Whether the sound should loop.
    * @returns {Sound} The created Sound object, or null if audio is disabled.
    */
-  play(key, volume = 1, loop = false) {
+  play(key: string, volume: number = 1, loop: boolean = false) {
     if (this.noAudio) {
       return null;
     }

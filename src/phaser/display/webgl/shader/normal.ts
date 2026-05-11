@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { v4 as uuidv4 } from 'uuid';
 import { compileProgram } from '../util.js';
 
@@ -25,16 +24,17 @@ const defaultVertexSrc = [
 // this shader is used for the default sprite rendering
 
 export class NormalShader {
-gl;
-_UID;
-program;
-fragmentSrc;
-vertexSrc;
-textureCount;
-firstRun;
-dirty;
-uniforms;
-attributes;
+  [key: string]: any;
+gl!: any;
+_UID!: any;
+program!: any;
+fragmentSrc!: any;
+vertexSrc!: any;
+textureCount!: any;
+firstRun!: any;
+dirty!: any;
+uniforms!: any;
+attributes!: any;
   /**
    * Creates a new NormalShader instance.
    * @param {WebGLRenderingContext & { id: number }} gl - The WebGL rendering context.
@@ -147,7 +147,7 @@ attributes;
    * Sets a uniform value for this shader.
    * @param {object} uniform - The uniform to set.
    */
-  initSampler2D(uniform) {
+  initSampler2D(uniform: any) {
     if (!uniform.value || !uniform.value.baseTexture || !uniform.value.baseTexture.hasLoaded) {
       return;
     }

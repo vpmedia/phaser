@@ -1,23 +1,24 @@
-// @ts-nocheck
 import { BITMAP_TEXT, SCALE_LINEAR, SCALE_NEAREST } from '../core/const.js';
 import { Point } from '../geom/point.js';
 import { DisplayObject } from './display_object.js';
 import { Image } from './image.js';
 
 export class BitmapText extends DisplayObject {
-type;
-textWidth;
-textHeight;
-_prevAnchor;
-_glyphs;
-_maxWidth;
-_text;
-_data;
-_font;
-_fontSize;
-_align;
-_tint;
-dirty;
+  declare type: any;
+  pendingDestroy!: any;
+  declare renderOrderID: any;
+  textWidth!: any;
+  textHeight!: any;
+  _prevAnchor!: any;
+  _glyphs!: any;
+  _maxWidth!: any;
+  _text!: any;
+  _data!: any;
+  _font!: any;
+  _fontSize!: any;
+  _align!: any;
+  _tint!: any;
+  dirty!: any;
   /**
    * Creates a new BitmapText instance.
    * @param {import('../core/game.js').Game} game - The game instance this bitmap text belongs to.
@@ -28,7 +29,15 @@ dirty;
    * @param {number} size - The font size.
    * @param {string} align - The text alignment (left, center, right).
    */
-  constructor(game, x = 0, y = 0, font = '', text = '', size = 32, align = 'left') {
+  constructor(
+    game: import('../core/game.js').Game,
+    x: number = 0,
+    y: number = 0,
+    font: string = '',
+    text: string = '',
+    size: number = 32,
+    align: string = 'left'
+  ) {
     super(game);
     /** @type {number} */
     this.type = BITMAP_TEXT;
@@ -95,7 +104,7 @@ dirty;
    * Sets the text to display.
    * @param {string} text - The new text to display.
    */
-  setText(text) {
+  setText(text: string) {
     this.text = text;
   }
 
@@ -106,7 +115,7 @@ dirty;
    * @param {string} text - The text to scan.
    * @returns {{width: number, text: string, end: boolean, chars: number[]}} An object containing the width, processed text, end status, and character positions.
    */
-  scanLine(data, scale, text) {
+  scanLine(data: any, scale: number, text: string) {
     let x = 0;
     let w = 0;
     let lastSpace = -1;
@@ -173,7 +182,7 @@ dirty;
    * @param {string} replace - The character to use for replacement of invalid characters (default: '').
    * @returns {string} The cleaned text.
    */
-  cleanText(text, replace = '') {
+  cleanText(text: string, replace: string = '') {
     const data = this._data.font;
     if (!data) {
       return '';
@@ -203,12 +212,12 @@ dirty;
     if (!data) {
       return;
     }
-    let text = this.text;
+    let text: any = this.text;
     const scale = this._fontSize / data.size;
     const lines = [];
     let y = 0;
     this.textWidth = 0;
-    let line = { end: text.length === 0 };
+    let line: any = { end: text.length === 0 };
     do {
       line = this.scanLine(data, scale, text);
       line.y = y;
@@ -290,13 +299,14 @@ dirty;
   /**
    * Updates the transform of this bitmap text, updating its text if needed.
    */
-  updateTransform() {
+  updateTransform(): this {
     if (this.dirty || !this.anchor.equals(this._prevAnchor)) {
       this.updateText();
       this.dirty = false;
       this._prevAnchor.copyFrom(this.anchor);
     }
     super.updateTransform();
+    return this;
   }
 
   /**
@@ -305,7 +315,7 @@ dirty;
    * @param {number} position - The character position to apply the color to.
    * @returns {BitmapText} This bitmap text instance for chaining.
    */
-  addColor(value, position) {
+  addColor(value: string, position: number) {
     const color = typeof value === 'string' ? Number.parseInt(value.replace('#', ''), 16) : value;
     if (color !== this._tint) {
       this._tint = color;
@@ -326,7 +336,7 @@ dirty;
    * Sets the text alignment property.
    * @param {string} value - The new text alignment (left, center, right).
    */
-  set align(value) {
+  set align(value: string) {
     if (value !== this._align && (value === 'left' || value === 'center' || value === 'right')) {
       this._align = value;
       this.updateText();
@@ -345,7 +355,7 @@ dirty;
    * Sets the tint color of this bitmap text.
    * @param {number} value - The new tint color in RGB format.
    */
-  set tint(value) {
+  set tint(value: number) {
     if (value !== this._tint) {
       this._tint = value;
       this.updateText();
@@ -371,7 +381,7 @@ dirty;
    * Sets the fill color of this bitmap text.
    * @param {string} value - The new fill color in hex format or CSS color name.
    */
-  set fill(value) {
+  set fill(value: string) {
     this.tint = typeof value === 'string' ? Number.parseInt(value.replace('#', ''), 16) : value;
   }
 
@@ -387,7 +397,7 @@ dirty;
    * Sets the font key used by this bitmap text.
    * @param {string} value - The new font key to use.
    */
-  set font(value) {
+  set font(value: string) {
     const trimmedValue = value.trim();
     if (trimmedValue !== this._font) {
       this._font = trimmedValue;
@@ -400,7 +410,7 @@ dirty;
    * Gets the font size of this bitmap text.
    * @returns {number} The current font size.
    */
-  get fontSize() {
+  get fontSize(): number {
     return this._fontSize;
   }
 
@@ -408,7 +418,7 @@ dirty;
    * Sets the font size of this bitmap text.
    * @param {number} value - The new font size to use.
    */
-  set fontSize(value) {
+  set fontSize(value: any) {
     value = Number.parseInt(value, 10);
     if (value !== this._fontSize && value > 0) {
       this._fontSize = value;
@@ -428,7 +438,7 @@ dirty;
    * Sets the text content of this bitmap text.
    * @param {string | number | boolean | Date} value - The new text content to set.
    */
-  set text(value) {
+  set text(value: string | number | boolean | Date) {
     const typedValue = value.toString();
     if (typedValue !== this._text) {
       this._text = typedValue || '';
@@ -448,7 +458,7 @@ dirty;
    * Sets the maximum width of this bitmap text.
    * @param {number} value - The new maximum width to set.
    */
-  set maxWidth(value) {
+  set maxWidth(value: number) {
     if (value !== this._maxWidth) {
       this._maxWidth = value;
       this.updateText();
@@ -467,7 +477,7 @@ dirty;
    * Sets whether smoothing is enabled for this bitmap text's font.
    * @param {boolean} value - Whether to enable smoothing (true) or not (false).
    */
-  set smoothed(value) {
+  set smoothed(value: boolean) {
     if (value) {
       this._data.base.scaleMode = SCALE_LINEAR;
     } else {

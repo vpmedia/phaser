@@ -1,27 +1,26 @@
-// @ts-nocheck
 import { Rectangle } from '../../geom/rectangle.js';
 
 export class TextureUvs {
-noFrame;
-baseTexture;
-frame;
-trim;
-valid;
-isTiling;
-requiresUpdate;
-requiresReTint;
-_uvs;
-width;
-height;
-crop;
-x0;
-y0;
-x1;
-y1;
-x2;
-y2;
-x3;
-y3;
+  noFrame!: any;
+  baseTexture!: any;
+  frame!: any;
+  trim!: any;
+  valid!: any;
+  isTiling!: any;
+  requiresUpdate!: any;
+  requiresReTint!: any;
+  _uvs!: any;
+  width!: any;
+  height!: any;
+  crop!: any;
+  x0!: any;
+  y0!: any;
+  x1!: any;
+  y1!: any;
+  x2!: any;
+  y2!: any;
+  x3!: any;
+  y3!: any;
   /**
    * Creates a new Texture instance.
    */
@@ -38,6 +37,18 @@ y3;
 }
 
 export class Texture {
+  noFrame!: any;
+  baseTexture!: any;
+  frame!: any;
+  trim!: any;
+  valid!: any;
+  isTiling!: any;
+  requiresUpdate!: any;
+  requiresReTint!: any;
+  _uvs!: any;
+  width!: any;
+  height!: any;
+  crop!: any;
   /**
    * Creates a new Texture instance.
    * @param {import('./base_texture.js').BaseTexture} baseTexture - The base texture to use.
@@ -45,7 +56,7 @@ export class Texture {
    * @param {Rectangle | null | undefined} crop - The crop rectangle.
    * @param {Rectangle | null | undefined} trim - The trim rectangle.
    */
-  constructor(baseTexture, frame = null, crop = null, trim = null) {
+  constructor(baseTexture: import('./base_texture.js').BaseTexture, frame: Rectangle | null | undefined = null, crop: Rectangle | null | undefined = null, trim: Rectangle | null | undefined = null) {
     this.noFrame = false;
     if (!frame) {
       this.noFrame = true;
@@ -97,7 +108,7 @@ export class Texture {
    * Destroys this texture and cleans up resources.
    * @param {boolean} destroyBase - Whether to destroy the base texture as well.
    */
-  destroy(destroyBase = false) {
+  destroy(destroyBase: boolean = false) {
     if (destroyBase) {
       this.baseTexture.destroy();
     }
@@ -109,7 +120,7 @@ export class Texture {
    * @param {Rectangle} frame - The new frame rectangle.
    * @throws {Error} If the operation fails.
    */
-  setFrame(frame) {
+  setFrame(frame: Rectangle) {
     this.noFrame = false;
     this.frame = frame;
     this.width = frame.width;

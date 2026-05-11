@@ -1,17 +1,16 @@
-// @ts-nocheck
 export class SoundSprite {
-game;
-key;
-config;
-autoplayKey;
-autoplay;
-sounds;
+game!: any;
+key!: any;
+config!: any;
+autoplayKey!: any;
+autoplay!: any;
+sounds!: any;
   /**
    * TBD.
    * @param {import('./game.js').Game} game - TBD.
    * @param {string} key - TBD.
    */
-  constructor(game, key) {
+  constructor(game: import('./game.js').Game, key: string) {
     this.game = game;
     this.key = key;
     this.config = this.game.cache.getJSON(`${key}-audioatlas`);
@@ -38,7 +37,7 @@ sounds;
    * @param {number} volume - TBD.
    * @returns {import('./sound.js').Sound} TBD.
    */
-  play(marker, volume = 1) {
+  play(marker: string, volume: number = 1) {
     return this.sounds[marker].play(marker, null, volume);
   }
 
@@ -46,7 +45,7 @@ sounds;
    * TBD.
    * @param {string} marker - TBD.
    */
-  stop(marker) {
+  stop(marker: string) {
     if (!marker) {
       for (let key in this.sounds) {
         this.sounds[key].stop();
@@ -61,7 +60,7 @@ sounds;
    * @param {string} marker - TBD.
    * @returns {import('./sound.js').Sound} TBD.
    */
-  get(marker) {
+  get(marker: string) {
     return this.sounds[marker];
   }
 }

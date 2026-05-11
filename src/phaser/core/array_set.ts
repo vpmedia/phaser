@@ -16,7 +16,7 @@ export class ArraySet {
    * @param {object} item - TBD.
    * @returns {object} TBD.
    */
-  add(item) {
+  add(item: any) {
     if (!this.exists(item)) {
       this.list.push(item);
     }
@@ -28,7 +28,7 @@ export class ArraySet {
    * @param {object} item - TBD.
    * @returns {number} TBD.
    */
-  getIndex(item) {
+  getIndex(item: any) {
     return this.list.indexOf(item);
   }
 
@@ -38,7 +38,7 @@ export class ArraySet {
    * @param {object} value - TBD.
    * @returns {object} TBD.
    */
-  getByKey(property, value) {
+  getByKey(property: string, value: any) {
     let i = this.list.length;
     while (i) {
       i -= 1;
@@ -54,7 +54,7 @@ export class ArraySet {
    * @param {object} item - TBD.
    * @returns {boolean} TBD.
    */
-  exists(item) {
+  exists(item: any) {
     return this.list.indexOf(item) > -1;
   }
 
@@ -70,7 +70,7 @@ export class ArraySet {
    * @param {object} item - TBD.
    * @returns {object} TBD.
    */
-  remove(item) {
+  remove(item: any) {
     const idx = this.list.indexOf(item);
     if (idx !== -1) {
       this.list.splice(idx, 1);
@@ -84,7 +84,7 @@ export class ArraySet {
    * @param {string} key - TBD.
    * @param {object} value - TBD.
    */
-  setAll(key, value) {
+  setAll(key: string, value: any) {
     let i = this.list.length;
     while (i) {
       i -= 1;
@@ -99,7 +99,7 @@ export class ArraySet {
    * @param {string} key - TBD.
    * @param {...any} args - TBD.
    */
-  callAll(key, ...args) {
+  callAll(key: string, ...args: any[]) {
     let i = this.list.length;
     while (i) {
       i -= 1;
@@ -113,7 +113,7 @@ export class ArraySet {
    * TBD.
    * @param {boolean} destroy - TBD.
    */
-  removeAll(destroy = false) {
+  removeAll(destroy: boolean = false) {
     let i = this.list.length;
     while (i) {
       i -= 1;

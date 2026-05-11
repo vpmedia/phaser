@@ -18,7 +18,7 @@ export class SignalBinding {
    * @param {number} priority - TBD.
    * @param {...any} args - TBD.
    */
-  constructor(signal, listener, isOnce = false, listenerContext = null, priority = 0, args = null) {
+  constructor(signal: import('./signal.js').Signal, listener: Function, isOnce: boolean = false, listenerContext: any = null, priority: number = 0, args: any = null) {
     this._signal = signal;
     this._listener = listener;
     this._args = args;
@@ -35,7 +35,7 @@ export class SignalBinding {
    * @param {any[]} paramsArr - TBD.
    * @returns {Function} TBD.
    */
-  execute(paramsArr) {
+  execute(paramsArr: any[]) {
     let handlerReturn;
     let params;
     if (this.active && !!this._listener) {

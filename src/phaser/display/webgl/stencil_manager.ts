@@ -1,10 +1,10 @@
-// @ts-nocheck
 import { hex2rgb } from '../../util/math.js';
 
 export class WebGLStencilManager {
-stencilStack;
-reverse;
-count;
+  [key: string]: any;
+stencilStack!: any;
+reverse!: any;
+count!: any;
   /**
    * Initializes the stencil manager.
    */
@@ -18,7 +18,7 @@ count;
    * Binds the stencil buffer for rendering.
    * @param {WebGLRenderingContext} gl - The WebGL rendering context.
    */
-  setContext(gl) {
+  setContext(gl: WebGLRenderingContext) {
     this.gl = gl;
   }
 
@@ -36,7 +36,7 @@ count;
    * @param {import('./graphics_data.js').GraphicsData} webGLData - The WebGL graphics data.
    * @param {object} renderSession - The rendering session.
    */
-  pushStencil(graphics, webGLData, renderSession) {
+  pushStencil(graphics: import('../graphics.js').Graphics, webGLData: import('./graphics_data.js').GraphicsData, renderSession: any) {
     const gl = renderSession.gl;
     this.bindGraphics(graphics, webGLData, renderSession);
     if (this.stencilStack.length === 0) {
@@ -94,7 +94,7 @@ count;
    * @param {import('./graphics_data.js').GraphicsData} webGLData - The WebGL graphics data.
    * @param {object} renderSession - The rendering session.
    */
-  bindGraphics(graphics, webGLData, renderSession) {
+  bindGraphics(graphics: import('../graphics.js').Graphics, webGLData: import('./graphics_data.js').GraphicsData, renderSession: any) {
     // if(this._currentGraphics === graphics)return;
     // this._currentGraphics = graphics;
     const gl = renderSession.gl;
@@ -141,7 +141,7 @@ count;
    * @param {import('./graphics_data.js').GraphicsData} webGLData - The WebGL graphics data.
    * @param {object} renderSession - The rendering session.
    */
-  popStencil(graphics, webGLData, renderSession) {
+  popStencil(graphics: import('../graphics.js').Graphics, webGLData: import('./graphics_data.js').GraphicsData, renderSession: any) {
     const gl = renderSession.gl;
     this.stencilStack.pop();
     this.count -= 1;

@@ -17,7 +17,7 @@ export class Circle {
    * @param {number} y - The y coordinate of the center point (default: 0).
    * @param {number} diameter - The diameter of the circle (default: 0).
    */
-  constructor(x = 0, y = 0, diameter = 0) {
+  constructor(x: number = 0, y: number = 0, diameter: number = 0) {
     /** @type {number} */
     this.x = x;
     /** @type {number} */
@@ -46,7 +46,7 @@ export class Circle {
    * @param {Point} output - The point to store the result in (optional).
    * @returns {Point} A random point within this circle.
    */
-  random(output = null) {
+  random(output: Point = null) {
     const result = output || new Point();
     const t = 2 * Math.PI * Math.random();
     const u = Math.random() + Math.random();
@@ -73,7 +73,7 @@ export class Circle {
    * @param {number} diameter - The new diameter of the circle.
    * @returns {Circle} This circle instance for chaining.
    */
-  setTo(x, y, diameter) {
+  setTo(x: number, y: number, diameter: number) {
     this.x = x;
     this.y = y;
     this._diameter = diameter;
@@ -86,7 +86,7 @@ export class Circle {
    * @param {Circle} source - The circle to copy values from.
    * @returns {Circle} This circle instance for chaining.
    */
-  copyFrom(source) {
+  copyFrom(source: Circle) {
     return this.setTo(source.x, source.y, source.diameter);
   }
 
@@ -95,7 +95,7 @@ export class Circle {
    * @param {Circle} dest - The circle to copy values to.
    * @returns {Circle} The destination circle.
    */
-  copyTo(dest) {
+  copyTo(dest: Circle) {
     dest.x = this.x;
     dest.y = this.y;
     dest.diameter = this._diameter;
@@ -108,7 +108,7 @@ export class Circle {
    * @param {boolean} round - Whether to round the result (default: false).
    * @returns {number} The distance between the circles.
    */
-  distance(dest, round = false) {
+  distance(dest: Circle, round: boolean = false) {
     const d = distance(this.x, this.y, dest.x, dest.y);
     return round ? Math.round(d) : d;
   }
@@ -127,7 +127,7 @@ export class Circle {
    * @param {number} y - The y coordinate of the point to check.
    * @returns {boolean} True if the point is contained within this circle, false otherwise.
    */
-  contains(x, y) {
+  contains(x: number, y: number) {
     return contains(this, x, y);
   }
 
@@ -138,7 +138,7 @@ export class Circle {
    * @param {Point} out - The point to store the result in (optional).
    * @returns {Point} A point at the specified angle on the circumference of this circle.
    */
-  circumferencePoint(angle, asDegrees?, out?) {
+  circumferencePoint(angle: number, asDegrees?: boolean, out?: Point) {
     return circumferencePoint(this, angle, asDegrees, out);
   }
 
@@ -148,7 +148,7 @@ export class Circle {
    * @param {number} dy - The amount to offset the y coordinate by.
    * @returns {Circle} This circle instance for chaining.
    */
-  offset(dx, dy) {
+  offset(dx: number, dy: number) {
     this.x += dx;
     this.y += dy;
     return this;
@@ -159,7 +159,7 @@ export class Circle {
    * @param {Point} point - The point to offset the circle by.
    * @returns {Circle} This circle instance for chaining.
    */
-  offsetPoint(point) {
+  offsetPoint(point: Point) {
     return this.offset(point.x, point.y);
   }
 

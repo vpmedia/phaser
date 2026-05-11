@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { updateGraphics } from './graphics.js';
 
 /**
@@ -6,7 +5,7 @@ import { updateGraphics } from './graphics.js';
  * @param {object} maskData - The mask data to apply.
  * @param {object} renderSession - The rendering session.
  */
-export const pushMask = (maskData, renderSession) => {
+export const pushMask = (maskData: any, renderSession: any) => {
   const gl = renderSession.gl;
   if (maskData.dirty) {
     updateGraphics(maskData, gl);
@@ -26,7 +25,7 @@ export const pushMask = (maskData, renderSession) => {
  * @param {object} maskData - The mask data to apply.
  * @param {object} renderSession - The rendering session.
  */
-export const popMask = (maskData, renderSession) => {
+export const popMask = (maskData: any, renderSession: any) => {
   const gl = renderSession.gl;
   if (
     maskData._webGL[gl.id] === undefined ||

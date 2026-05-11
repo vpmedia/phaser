@@ -1,4 +1,3 @@
-// @ts-nocheck
 import {
   BLEND_NORMAL,
   GEOM_CIRCLE,
@@ -26,31 +25,37 @@ import { renderGraphics as renderWebGLGraphics } from './webgl/graphics.js';
 import { textureFromCanvas } from './webgl/texture_util.js';
 
 export class Graphics extends DisplayObject {
-type;
-renderable;
-fillAlpha;
-lineWidth;
-lineColor;
-graphicsData;
-tint;
-blendMode;
-currentPath;
-_webGL;
-isMask;
-boundsPadding;
-_localBounds;
-dirty;
-_boundsDirty;
-_cacheAsBitmap;
-webGLDirty;
-cachedSpriteDirty;
+  declare type: any;
+  declare renderable: any;
+  fillAlpha!: any;
+  lineWidth!: any;
+  lineColor!: any;
+  lineAlpha!: any;
+  graphicsData!: any;
+  declare tint: any;
+  blendMode!: any;
+  currentPath!: any;
+  _webGL!: any;
+  isMask!: any;
+  boundsPadding!: any;
+  _localBounds!: any;
+  dirty!: any;
+  clearDirty!: any;
+  _boundsDirty!: any;
+  _cacheAsBitmap!: any;
+  webGLDirty!: any;
+  cachedSpriteDirty!: any;
+  declare _cachedSprite: any;
+  filling!: any;
+  fillColor!: any;
+  _prevTint!: any;
   /**
    * Creates a new Graphics object.
    * @param {import('../core/game.js').Game} game - The game instance.
    * @param {number} x - The x coordinate of the graphics object.
    * @param {number} y - The y coordinate of the graphics object.
    */
-  constructor(game, x = 0, y = 0) {
+  constructor(game: import('../core/game.js').Game, x: number = 0, y: number = 0) {
     super(game);
     /** @type {number} */
     this.type = GRAPHICS;
@@ -106,7 +111,7 @@ cachedSpriteDirty;
    * @param {number} alpha - The alpha (transparency) of the line to draw.
    * @returns {Graphics} This Graphics object for chaining.
    */
-  lineStyle(lineWidth = 0, color = 0, alpha = 1) {
+  lineStyle(lineWidth: number = 0, color: number = 0, alpha: number = 1) {
     this.lineWidth = lineWidth || 0;
     this.lineColor = color || 0;
     this.lineAlpha = alpha === undefined ? 1 : alpha;
@@ -130,7 +135,7 @@ cachedSpriteDirty;
    * @param {number} y - The y coordinate to move to.
    * @returns {Graphics} This Graphics object for chaining.
    */
-  moveTo(x, y) {
+  moveTo(x: number, y: number) {
     this.drawShape(new Polygon([x, y]));
     return this;
   }
@@ -141,7 +146,7 @@ cachedSpriteDirty;
    * @param {number} y - The y coordinate to draw to.
    * @returns {Graphics} This Graphics object for chaining.
    */
-  lineTo(x, y) {
+  lineTo(x: number, y: number) {
     if (!this.currentPath) {
       this.moveTo(0, 0);
     }
@@ -159,7 +164,7 @@ cachedSpriteDirty;
    * @param {number} toY - The y coordinate to draw to.
    * @returns {Graphics} This Graphics object for chaining.
    */
-  quadraticCurveTo(cpX, cpY, toX, toY) {
+  quadraticCurveTo(cpX: number, cpY: number, toX: number, toY: number) {
     if (this.currentPath) {
       if (this.currentPath.shape.points.length === 0) {
         this.currentPath.shape.points = [0, 0];
@@ -198,7 +203,7 @@ cachedSpriteDirty;
    * @param {number} toY - The y coordinate to draw to.
    * @returns {Graphics} This Graphics object for chaining.
    */
-  bezierCurveTo(cpX, cpY, cpX2, cpY2, toX, toY) {
+  bezierCurveTo(cpX: number, cpY: number, cpX2: number, cpY2: number, toX: number, toY: number) {
     if (this.currentPath) {
       if (this.currentPath.shape.points.length === 0) {
         this.currentPath.shape.points = [0, 0];
@@ -242,7 +247,7 @@ cachedSpriteDirty;
    * @param {number} radius - The radius of the arc.
    * @returns {Graphics} This Graphics object for chaining.
    */
-  arcTo(x1, y1, x2, y2, radius) {
+  arcTo(x1: number, y1: number, x2: number, y2: number, radius: number) {
     if (this.currentPath) {
       if (this.currentPath.shape.points.length === 0) {
         this.currentPath.shape.points.push(x1, y1);
@@ -296,7 +301,15 @@ cachedSpriteDirty;
    * @param {number} segments - The number of segments to use for drawing the arc.
    * @returns {Graphics} This Graphics object for chaining.
    */
-  arc(cx, cy, radius, startAngle, endAngle, anticlockwise = false, segments = 40) {
+  arc(
+    cx: number,
+    cy: number,
+    radius: number,
+    startAngle: number,
+    endAngle: number,
+    anticlockwise: boolean = false,
+    segments: number = 40
+  ) {
     //  If we do this we can never draw a full circle
     if (startAngle === endAngle) {
       return this;
@@ -345,7 +358,7 @@ cachedSpriteDirty;
    * @param {number} alpha - The fill alpha (transparency) to use.
    * @returns {Graphics} This Graphics object for chaining.
    */
-  beginFill(color = 0, alpha = 1) {
+  beginFill(color: number = 0, alpha: number = 1) {
     this.filling = true;
     this.fillColor = color || 0;
     this.fillAlpha = alpha === undefined ? 1 : alpha;
@@ -378,7 +391,7 @@ cachedSpriteDirty;
    * @param {number} height - The height of the rectangle.
    * @returns {Graphics} This Graphics object for chaining.
    */
-  drawRect(x, y, width, height) {
+  drawRect(x: number, y: number, width: number, height: number) {
     this.drawShape(new Rectangle(x, y, width, height));
     return this;
   }
@@ -392,7 +405,7 @@ cachedSpriteDirty;
    * @param {number} radius - The radius of the rounded corners.
    * @returns {Graphics} This Graphics object for chaining.
    */
-  drawRoundedRect(x, y, width, height, radius) {
+  drawRoundedRect(x: number, y: number, width: number, height: number, radius: number) {
     this.drawShape(new RoundedRectangle(x, y, width, height, radius));
     return this;
   }
@@ -404,7 +417,7 @@ cachedSpriteDirty;
    * @param {number} diameter - The diameter of the circle.
    * @returns {Graphics} This Graphics object for chaining.
    */
-  drawCircle(x, y, diameter) {
+  drawCircle(x: number, y: number, diameter: number) {
     this.drawShape(new Circle(x, y, diameter));
     return this;
   }
@@ -417,7 +430,7 @@ cachedSpriteDirty;
    * @param {number} height - The height of the ellipse.
    * @returns {Graphics} This Graphics object for chaining.
    */
-  drawEllipse(x, y, width, height) {
+  drawEllipse(x: number, y: number, width: number, height: number) {
     this.drawShape(new Ellipse(x, y, width, height));
     return this;
   }
@@ -427,7 +440,7 @@ cachedSpriteDirty;
    * @param {Polygon} path - The polygon to draw.
    * @returns {Graphics} This Graphics object for chaining.
    */
-  drawPolygon(path) {
+  drawPolygon(path: Polygon) {
     let points;
     if (path instanceof Polygon) {
       points = path.points;
@@ -474,7 +487,7 @@ cachedSpriteDirty;
    * Renders the graphics object using WebGL.
    * @param {object} renderSession - The render session to use.
    */
-  renderWebGL(renderSession) {
+  renderWebGL(renderSession: any) {
     // if the sprite is not visible or the alpha is 0 then no need to render this element
     if (this.visible === false || this.alpha === 0 || this.isMask === true) {
       return;
@@ -488,7 +501,7 @@ cachedSpriteDirty;
         this.dirty = false;
       }
       this._cachedSprite.worldAlpha = this.worldAlpha;
-      renderSpriteWebGL.call(this._cachedSprite, renderSession);
+      (renderSpriteWebGL as any).call(this._cachedSprite, renderSession);
     } else {
       renderSession.spriteBatch.stop();
       renderSession.blendModeManager.setBlendMode(this.blendMode);
@@ -534,7 +547,7 @@ cachedSpriteDirty;
    * Renders the graphics object using Canvas.
    * @param {object} renderSession - The render session to use.
    */
-  renderCanvas(renderSession) {
+  renderCanvas(renderSession: any) {
     // if the sprite is not visible or the alpha is 0 then no need to render this element
     if (this.visible === false || this.alpha === 0 || this.isMask === true) {
       return;
@@ -591,7 +604,7 @@ cachedSpriteDirty;
    * @param {import('../geom/matrix.js').Matrix} matrix - The transformation matrix to use.
    * @returns {Rectangle} The bounds rectangle of the graphics object.
    */
-  getBounds(matrix = null) {
+  getBounds(matrix: import('../geom/matrix.js').Matrix = null) {
     if (!this.renderable) {
       return getEmptyRectangle();
     }
@@ -671,7 +684,7 @@ cachedSpriteDirty;
    * @param {Point} tempPoint - A temporary point object to use.
    * @returns {boolean} True if the graphics object contains the point, otherwise false.
    */
-  containsPoint(point, tempPoint) {
+  containsPoint(point: Point, tempPoint: Point) {
     this.worldTransform.applyInverse(point, tempPoint);
     const graphicsData = this.graphicsData;
     for (let i = 0; i < graphicsData.length; i += 0) {
@@ -827,7 +840,7 @@ cachedSpriteDirty;
    * @param {object} shape - The shape to draw.
    * @returns {GraphicsData} The graphics data for the drawn shape.
    */
-  drawShape(shape) {
+  drawShape(shape: any) {
     if (this.currentPath) {
       // check current path!
       if (this.currentPath.shape.points.length <= 2) {
@@ -877,14 +890,14 @@ cachedSpriteDirty;
    * @param {Point[]} points - The points of the triangle.
    * @param {boolean} cull - Whether to perform backface culling.
    */
-  drawTriangle(points, cull = false) {
+  drawTriangle(points: Point[], cull: boolean = false) {
     const triangle = new Polygon(points);
     if (cull) {
       const cameraToFace = new Point(0 - points[0].x, 0 - points[0].y);
       const ab = new Point(points[1].x - points[0].x, points[1].y - points[0].y);
       const cb = new Point(points[1].x - points[2].x, points[1].y - points[2].y);
       const faceNormal = cb.cross(ab);
-      if (cameraToFace.dot(faceNormal) > 0) {
+      if (cameraToFace.dot(faceNormal as any) > 0) {
         this.drawPolygon(triangle);
       }
     } else {
@@ -898,7 +911,7 @@ cachedSpriteDirty;
    * @param {number[]} indices - The indices of the vertices to use.
    * @param {boolean} cull - Whether to perform backface culling.
    */
-  drawTriangles(vertices, indices, cull = false) {
+  drawTriangles(vertices: any, indices: number[], cull: boolean = false) {
     const point1 = new Point();
     const point2 = new Point();
     const point3 = new Point();
@@ -934,7 +947,7 @@ cachedSpriteDirty;
       for (i = 0; i < indices.length; i += 1) {
         point1.x = vertices[indices[i] * 2];
         point1.y = vertices[indices[i] * 2 + 1];
-        points.push(point1.copyTo({}));
+        points.push(point1.copyTo({} as any));
         if (points.length === 3) {
           this.drawTriangle(points, cull);
           points = [];

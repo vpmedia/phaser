@@ -1,37 +1,37 @@
-// @ts-nocheck
 import * as MathUtils from '../util/math.js';
 import { TWEEN_COMPLETE, TWEEN_LOOPED, TWEEN_PENDING, TWEEN_RUNNING } from './const.js';
 
 export class TweenData {
-parent;
-game;
-vStart;
-vStartCache;
-vEnd;
-vEndCache;
-duration;
-percent;
-value;
-repeatCounter;
-repeatDelay;
-repeatTotal;
-interpolate;
-yoyo;
-yoyoDelay;
-inReverse;
-delay;
-dt;
-startTime;
-easingFunction;
-interpolationFunction;
-interpolationContext;
-isRunning;
-isFrom;
+  parent!: any;
+  game!: any;
+  vStart!: any;
+  vStartCache!: any;
+  vEnd!: any;
+  vEndCache!: any;
+  duration!: any;
+  percent!: any;
+  value!: any;
+  repeatCounter!: any;
+  repeatDelay!: any;
+  repeatTotal!: any;
+  interpolate!: any;
+  yoyo!: any;
+  yoyoDelay!: any;
+  inReverse!: any;
+  delay!: any;
+  dt!: any;
+  startTime!: any;
+  easingFunction!: any;
+  interpolationFunction!: any;
+  interpolationContext!: any;
+  isRunning!: any;
+  isFrom!: any;
+  yoyoCounter!: any;
   /**
    * Creates a new TweenData instance.
    * @param {import('./tween.js').Tween} parent - The parent Tween instance.
    */
-  constructor(parent) {
+  constructor(parent: import('./tween.js').Tween) {
     this.parent = parent;
     this.game = parent.game;
     this.vStart = {};
@@ -68,7 +68,7 @@ isFrom;
    * @param {boolean} yoyo - Whether to reverse the tween on each repeat.
    * @returns {TweenData} This TweenData object for chaining.
    */
-  to(properties, duration, ease, delay, repeat, yoyo) {
+  to(properties: any, duration: number, ease: any, delay: number, repeat: number, yoyo: boolean) {
     this.vEnd = properties;
     this.duration = duration;
     this.easingFunction = ease;
@@ -89,7 +89,7 @@ isFrom;
    * @param {boolean} yoyo - Whether to reverse the tween on each repeat.
    * @returns {TweenData} This TweenData object for chaining.
    */
-  from(properties, duration, ease, delay, repeat, yoyo) {
+  from(properties: any, duration: number, ease: any, delay: number, repeat: number, yoyo: boolean) {
     this.vEnd = properties;
     this.duration = duration;
     this.easingFunction = ease;
@@ -174,7 +174,7 @@ isFrom;
    * @param {number} time - The current time in milliseconds.
    * @returns {number} The tween status (TWEEN_PENDING, TWEEN_RUNNING, or TWEEN_COMPLETE).
    */
-  update(time) {
+  update(time: number) {
     if (!this.isRunning) {
       if (time >= this.startTime) {
         this.isRunning = true;
@@ -217,7 +217,7 @@ isFrom;
    * @param {number} frameRate - The frame rate to generate data for.
    * @returns {object[]} An array of tween data points.
    */
-  generateData(frameRate) {
+  generateData(frameRate: number) {
     if (this.parent.reverse) {
       this.dt = this.duration;
     } else {

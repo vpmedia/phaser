@@ -1,7 +1,7 @@
-// @ts-nocheck
 export class WebGLBlendModeManager {
-gl;
-currentBlendMode;
+  [key: string]: any;
+gl!: any;
+currentBlendMode!: any;
   /**
    * Creates a new BlendModeManager instance.
    */
@@ -14,7 +14,7 @@ currentBlendMode;
    * Initializes the blend mode manager with a WebGL context.
    * @param {WebGLRenderingContext} gl - The WebGL rendering context.
    */
-  setContext(gl) {
+  setContext(gl: WebGLRenderingContext) {
     this.gl = gl;
   }
 
@@ -23,7 +23,7 @@ currentBlendMode;
    * @param {number} blendMode - The blend mode to set.
    * @returns {boolean} True if the blend mode was set successfully, false otherwise.
    */
-  setBlendMode(blendMode) {
+  setBlendMode(blendMode: number) {
     if (this.currentBlendMode === blendMode) {
       return false;
     }

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { Rectangle } from '../geom/rectangle.js';
 import { canPlayAudio } from './device_util.js';
 import { ENGINE_ERROR_INVALID_BITMAP_FONT_ATLAS } from './error_code.js';
@@ -7,39 +6,39 @@ import { Signal } from './signal.js';
 const TEXTURE_ATLAS_JSON_HASH = 1;
 
 export class Loader {
-game;
-cache;
-isLoading;
-isUseLog;
-isUseRetry;
-maxRetry;
-hasLoaded;
-preloadSprite;
-crossOrigin;
-baseURL;
-path;
-headers;
-onLoadStart;
-onLoadComplete;
-onPackComplete;
-onFileStart;
-onFileComplete;
-onFileError;
-maxParallelDownloads;
-_withSyncPointDepth;
-_fileList;
-_flightQueue;
-_processingHead;
-_fileLoadStarted;
-_totalPackCount;
-_totalFileCount;
-_loadedPackCount;
-_loadedFileCount;
+  game!: any;
+  cache!: any;
+  isLoading!: any;
+  isUseLog!: any;
+  isUseRetry!: any;
+  maxRetry!: any;
+  hasLoaded!: any;
+  preloadSprite!: any;
+  crossOrigin!: any;
+  baseURL!: any;
+  path!: any;
+  headers!: any;
+  onLoadStart!: any;
+  onLoadComplete!: any;
+  onPackComplete!: any;
+  onFileStart!: any;
+  onFileComplete!: any;
+  onFileError!: any;
+  maxParallelDownloads!: any;
+  _withSyncPointDepth!: any;
+  _fileList!: any;
+  _flightQueue!: any;
+  _processingHead!: any;
+  _fileLoadStarted!: any;
+  _totalPackCount!: any;
+  _totalFileCount!: any;
+  _loadedPackCount!: any;
+  _loadedFileCount!: any;
   /**
    * Creates a new Loader instance.
    * @param {import('./game.js').Game} game - Reference to the Phaser Game instance.
    */
-  constructor(game) {
+  constructor(game: import('./game.js').Game) {
     this.game = game;
     this.cache = game.cache;
     this.isLoading = false;
@@ -79,7 +78,7 @@ _loadedFileCount;
    * @param {import('../display/image.js').Image} sprite - The image to use as the preload sprite.
    * @param {number} direction - The direction of the progress (0 = horizontal, 1 = vertical).
    */
-  setPreloadSprite(sprite, direction = 0) {
+  setPreloadSprite(sprite: import('../display/image.js').Image, direction: number = 0) {
     this.preloadSprite = {
       sprite,
       direction,
@@ -113,7 +112,7 @@ _loadedFileCount;
    * @param {string} key - The key of the file to check for.
    * @returns {boolean} True if the file exists, false otherwise.
    */
-  checkKeyExists(type, key) {
+  checkKeyExists(type: string, key: string) {
     return this.getAssetIndex(type, key) > -1;
   }
 
@@ -123,7 +122,7 @@ _loadedFileCount;
    * @param {string} key - The key of the file to find.
    * @returns {number} The index of the file in the list, or -1 if not found.
    */
-  getAssetIndex(type, key) {
+  getAssetIndex(type: string, key: string) {
     let bestFound = -1;
     for (let i = 0; i < this._fileList.length; i += 1) {
       const file = this._fileList[i];
@@ -145,7 +144,7 @@ _loadedFileCount;
    * @param {string} key - The key of the file to get.
    * @returns {{index: number, file: object} | null} The file and its index, or null if not found.
    */
-  getAsset(type, key) {
+  getAsset(type: string, key: string) {
     const fileIndex = this.getAssetIndex(type, key);
     if (fileIndex > -1) {
       return { index: fileIndex, file: this._fileList[fileIndex] };
@@ -158,7 +157,7 @@ _loadedFileCount;
    * @param {boolean} hard - Whether to perform a hard reset (clears preload sprite).
    * @param {boolean} clearEvents - Whether to clear event listeners.
    */
-  reset(hard = false, clearEvents = false) {
+  reset(hard: boolean = false, clearEvents: boolean = false) {
     if (hard) {
       this.preloadSprite = null;
     }
@@ -191,7 +190,14 @@ _loadedFileCount;
    * @param {string} extension - The file extension to use if URL is not provided.
    * @returns {Loader} This Loader instance for chaining.
    */
-  addToFileList(type, key = '', url = null, properties = null, overwrite = false, extension = null) {
+  addToFileList(
+    type: string,
+    key: string = '',
+    url: string = null,
+    properties: any = null,
+    overwrite: boolean = false,
+    extension: string = null
+  ) {
     if (key === undefined || key === '') {
       this.game.logger.warn(`Loader: Invalid or no key given of type ${type}`);
       return this;
@@ -246,7 +252,7 @@ _loadedFileCount;
    * @param {object} properties - The new properties for the file.
    * @returns {Loader} This Loader instance for chaining.
    */
-  replaceInFileList(type, key, url, properties) {
+  replaceInFileList(type: string, key: string, url: string, properties: any) {
     return this.addToFileList(type, key, url, properties, true);
   }
 
@@ -258,7 +264,7 @@ _loadedFileCount;
    * @param {object} callbackContext - The context in which to call the callback.
    * @returns {Loader} This Loader instance for chaining.
    */
-  pack(key, url, data, callbackContext) {
+  pack(key: string, url: string, data: any, callbackContext: any) {
     const pack = {
       type: 'packfile',
       key: key,
@@ -296,7 +302,7 @@ _loadedFileCount;
    * @param {boolean} overwrite - Whether to overwrite an existing file with the same key.
    * @returns {Loader} This Loader instance for chaining.
    */
-  image(key, url, overwrite = false) {
+  image(key: string, url?: any, overwrite: boolean = false) {
     return this.addToFileList('image', key, url, undefined, overwrite, '.png');
   }
 
@@ -306,7 +312,7 @@ _loadedFileCount;
    * @param {string[]} urls - The URLs of the image files to load.
    * @returns {Loader} This Loader instance for chaining.
    */
-  images(keys, urls) {
+  images(keys: string[], urls: string[]) {
     if (Array.isArray(urls)) {
       for (let i = 0; i < keys.length; i += 1) {
         this.image(keys[i], urls[i]);
@@ -326,7 +332,7 @@ _loadedFileCount;
    * @param {boolean} overwrite - Whether to overwrite an existing file with the same key.
    * @returns {Loader} This Loader instance for chaining.
    */
-  text(key, url, overwrite = false) {
+  text(key: string, url: string, overwrite: boolean = false) {
     return this.addToFileList('text', key, url, undefined, overwrite, '.txt');
   }
 
@@ -337,7 +343,7 @@ _loadedFileCount;
    * @param {boolean} overwrite - Whether to overwrite an existing file with the same key.
    * @returns {Loader} This Loader instance for chaining.
    */
-  json(key, url, overwrite = false) {
+  json(key: string, url: string, overwrite: boolean = false) {
     return this.addToFileList('json', key, url, undefined, overwrite, '.json');
   }
 
@@ -348,7 +354,7 @@ _loadedFileCount;
    * @param {boolean} overwrite - Whether to overwrite an existing file with the same key.
    * @returns {Loader} This Loader instance for chaining.
    */
-  xml(key, url, overwrite = false) {
+  xml(key: string, url: string, overwrite: boolean = false) {
     return this.addToFileList('xml', key, url, undefined, overwrite, '.xml');
   }
 
@@ -363,7 +369,15 @@ _loadedFileCount;
    * @param {number} spacing - The spacing between frames in pixels.
    * @returns {Loader} This Loader instance for chaining.
    */
-  spritesheet(key, url, frameWidth, frameHeight, frameMax = -1, margin = 0, spacing = 0) {
+  spritesheet(
+    key: string,
+    url: string,
+    frameWidth: number,
+    frameHeight: number,
+    frameMax: number = -1,
+    margin: number = 0,
+    spacing: number = 0
+  ) {
     return this.addToFileList(
       'spritesheet',
       key,
@@ -381,7 +395,7 @@ _loadedFileCount;
    * @param {boolean} autoDecode - Whether to automatically decode the audio file.
    * @returns {Loader} This Loader instance for chaining.
    */
-  audio(key, urls, autoDecode = true) {
+  audio(key: string, urls: any, autoDecode: boolean = true) {
     if (this.game.sound.noAudio || this.game.device.noAudioFormat) {
       return this;
     }
@@ -400,7 +414,7 @@ _loadedFileCount;
    * @param {boolean} autoDecode - Whether to automatically decode the audio file.
    * @returns {Loader} This Loader instance for chaining.
    */
-  audioSprite(key, urls, jsonURL, jsonData, autoDecode = true) {
+  audioSprite(key: string, urls: string, jsonURL: string, jsonData: any, autoDecode: boolean = true) {
     if (this.game.sound.noAudio || this.game.device.noAudioFormat) {
       return this;
     }
@@ -427,7 +441,14 @@ _loadedFileCount;
    * @returns {Loader} This Loader instance for chaining.
    * @throws {Error} If the bitmap font atlas data is invalid.
    */
-  bitmapFont(key, textureURL = null, atlasURL = null, atlasData = null, xSpacing = 0, ySpacing = 0) {
+  bitmapFont(
+    key: string,
+    textureURL: string = null,
+    atlasURL: string = null,
+    atlasData: any = null,
+    xSpacing: number = 0,
+    ySpacing: number = 0
+  ) {
     if (textureURL === undefined || textureURL === null) {
       textureURL = `${key}.png`;
     }
@@ -469,7 +490,13 @@ _loadedFileCount;
    * @param {number} format - The format of the atlas file (JSON or XML).
    * @returns {Loader} This Loader instance for chaining.
    */
-  atlas(key, textureURL, atlasURL = null, atlasData = null, format = TEXTURE_ATLAS_JSON_HASH) {
+  atlas(
+    key: string,
+    textureURL: string,
+    atlasURL: string = null,
+    atlasData: any = null,
+    format: number = TEXTURE_ATLAS_JSON_HASH
+  ) {
     if (textureURL === undefined || textureURL === null) {
       textureURL = `${key}.png`;
     }
@@ -491,7 +518,7 @@ _loadedFileCount;
    * @param {object} callbackContext - The context in which to call the callback.
    * @returns {Loader} This Loader instance for chaining.
    */
-  withSyncPoint(callback, callbackContext) {
+  withSyncPoint(callback: Function, callbackContext: any) {
     this._withSyncPointDepth += 1;
     try {
       callback.call(callbackContext || this, this);
@@ -507,7 +534,7 @@ _loadedFileCount;
    * @param {string} key - The key of the file to add a sync point to.
    * @returns {Loader} This Loader instance for chaining.
    */
-  addSyncPoint(type, key) {
+  addSyncPoint(type: string, key: string) {
     const asset = this.getAsset(type, key);
     if (asset) {
       asset.file.syncPoint = true;
@@ -520,10 +547,10 @@ _loadedFileCount;
    * @param {string} type - The type of file to remove.
    * @param {string} key - The key of the file to remove.
    */
-  removeFile(type, key) {
+  removeFile(type: string, key: string) {
     const asset = this.getAsset(type, key);
     if (asset) {
-      if (!asset.loaded && !asset.loading) {
+      if (!asset.file.loaded && !asset.file.loading) {
         this._fileList.splice(asset.index, 1);
       }
     }
@@ -652,7 +679,7 @@ _loadedFileCount;
    * Finishes the loading process, optionally reporting an abnormal termination.
    * @param {boolean} abnormal - Whether the loading was terminated abnormally.
    */
-  finishedLoading(abnormal = false) {
+  finishedLoading(abnormal: boolean = false) {
     if (this.hasLoaded) {
       return;
     }
@@ -676,7 +703,7 @@ _loadedFileCount;
    * @param {object} file - The file to complete or mark as failed.
    * @param {string} errorMessage - An error message if the file failed to load.
    */
-  asyncComplete(file, errorMessage = '') {
+  asyncComplete(file: any, errorMessage: string = '') {
     file.loaded = true;
     file.error = !!errorMessage;
     if (file.error) {
@@ -691,7 +718,7 @@ _loadedFileCount;
    * Processes a pack file, adding its contained files to the loader.
    * @param {object} pack - The pack file object to process.
    */
-  processPack(pack) {
+  processPack(pack: any) {
     const packData = pack.data[pack.key];
     if (!packData) {
       this.game.logger.warn('Missing loader pack key', { key: pack.key });
@@ -756,7 +783,7 @@ _loadedFileCount;
    * @param {object} file - The file object containing path information.
    * @returns {string} The transformed URL.
    */
-  transformUrl(url, file) {
+  transformUrl(url: any, file: any): any {
     if (!url) {
       return false;
     }
@@ -770,7 +797,7 @@ _loadedFileCount;
    * Loads a file using XMLHttpRequest, handling image files specially.
    * @param {object} file - The file object to load.
    */
-  loadFile(file) {
+  loadFile(file: any) {
     switch (file.type) {
       case 'packfile':
         this.xhrLoad(file, this.transformUrl(file.url, file), 'text', this.fileComplete);
@@ -812,7 +839,7 @@ _loadedFileCount;
    * Loads an image file using the Image DOM element.
    * @param {object} file - The file object to load.
    */
-  loadImageTag(file) {
+  loadImageTag(file: any) {
     this.log('loadImageTag', file);
     const scope = this;
     file.data = new Image();
@@ -850,7 +877,7 @@ _loadedFileCount;
    * @param {Function} onload - The function to call when the file loads successfully.
    * @param {Function} onerror - The function to call if the file fails to load.
    */
-  xhrLoad(file, url, type, onload, onerror = null) {
+  xhrLoad(file: any, url: any, type: any, onload: Function, onerror: Function = null) {
     this.log('xhrLoad', file);
     const scope = this;
     const xhr = new XMLHttpRequest();
@@ -883,7 +910,7 @@ _loadedFileCount;
         //  If this was the last file in the queue and an error is thrown in the create method
         //  then it's caught here, so be sure we don't carry on processing it
         if (!scope.hasLoaded) {
-          scope.asyncComplete(file, error.message || 'Exception');
+          scope.asyncComplete(file, typedError.message || 'Exception');
         } else {
           scope.game.logger.exception('Loader', typedError);
         }
@@ -902,7 +929,7 @@ _loadedFileCount;
         } catch (error) {
           const typedError = error instanceof Error ? error : new Error(String(error));
           if (!scope.hasLoaded) {
-            scope.asyncComplete(file, error.message || 'Exception');
+            scope.asyncComplete(file, typedError.message || 'Exception');
           } else {
             scope.game.logger.exception('Loader', typedError);
           }
@@ -928,7 +955,7 @@ _loadedFileCount;
    * @param {object[]} urls - The array of URLs to check for supported audio formats.
    * @returns {string} The first URL with a supported audio format, or null if none found.
    */
-  getAudioURL(urls) {
+  getAudioURL(urls: any[]) {
     if (this.game.sound.noAudio || this.game.device.noAudioFormat) {
       return null;
     }
@@ -969,7 +996,7 @@ _loadedFileCount;
    * @param {XMLHttpRequest} xhr - The XMLHttpRequest object that failed.
    * @param {number | string} reason - The error code or message explaining the failure.
    */
-  fileError(file, xhr = null, reason = 0) {
+  fileError(file: any, xhr: any = null, reason: any = 0) {
     // const url = file.requestUrl || this.transformUrl(file.url, file);
     if (!reason && xhr) {
       reason = xhr.status;
@@ -984,7 +1011,7 @@ _loadedFileCount;
    * @param {XMLHttpRequest} xhr - TBD.
    * @throws {Error}
    */
-  fileComplete(file, xhr) {
+  fileComplete(file: any, xhr?: any) {
     let loadNext = true;
     switch (file.type) {
       case 'packfile':
@@ -1075,7 +1102,7 @@ _loadedFileCount;
    * @param {object} file - The file object that was loaded successfully.
    * @param {XMLHttpRequest} xhr - The XMLHttpRequest object containing the file data.
    */
-  jsonLoadComplete(file, xhr) {
+  jsonLoadComplete(file: any, xhr: XMLHttpRequest) {
     const data = JSON.parse(xhr.responseText);
     if (file.type === 'bitmapfont') {
       this.cache.addBitmapFont(file.key, file.url, file.data, data, file.atlasType, file.xSpacing, file.ySpacing);
@@ -1100,12 +1127,12 @@ _loadedFileCount;
    * @param {object} file - The file object containing the JSON data.
    * @param {XMLHttpRequest} xhr - The XMLHttpRequest object containing the file data.
    */
-  xmlLoadComplete(file, xhr) {
+  xmlLoadComplete(file: any, xhr: XMLHttpRequest) {
     // Always try parsing the content as XML, regardless of actually response type
     const data = xhr.responseText;
     const xml = this.parseXml(data);
     if (!xml) {
-      const responseType = xhr.responseType || xhr.contentType; // contentType for MS-XDomainRequest
+      const responseType = xhr.responseType || (xhr as any).contentType; // contentType for MS-XDomainRequest
       this.game.logger.warn(`${file.key}: invalid XML (${responseType})`);
       this.asyncComplete(file, 'invalid XML');
       return;
@@ -1125,7 +1152,7 @@ _loadedFileCount;
    * @param {object} data - The XML string data to parse.
    * @returns {Document} The parsed DOM Document, or null if parsing failed.
    */
-  parseXml(data) {
+  parseXml(data: any) {
     let xml = null;
     try {
       if (window.DOMParser) {
@@ -1170,7 +1197,7 @@ _loadedFileCount;
    * @param {string} message - The message to log.
    * @param {string|object} data - Additional data to log with the message.
    */
-  log(message, data = '') {
+  log(message: string, data: string | any = '') {
     if (!this.isUseLog) {
       return;
     }

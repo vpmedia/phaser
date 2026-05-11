@@ -1,7 +1,6 @@
-// @ts-nocheck
 export class Scene {
-game;
-key;
+game!: any;
+key!: any;
   /**
    * Creates a new Scene instance.
    */
@@ -47,7 +46,7 @@ key;
    * @param {number} width - The new width of the scene.
    * @param {number} height - The new height of the scene.
    */
-  resize(width, height) {
+  resize(width: number, height: number) {
     // inherit
   }
 

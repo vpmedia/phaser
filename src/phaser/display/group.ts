@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { GROUP } from '../core/const.js';
 import { Signal } from '../core/signal.js';
 import { DisplayObject } from './display_object.js';
@@ -8,34 +7,20 @@ export const SORT_ASCENDING = -1;
 export const SORT_DESCENDING = 1;
 
 export class Group extends DisplayObject {
-  /** @type {number} */
-  z;
-  /** @type {boolean} */
-  ignoreDestroy;
-  /** @type {boolean} */
-  pendingDestroy;
-  /** @type {Function} */
-  classType;
-  /** @type {DisplayObject | null} */
-  cursor;
-  /** @type {boolean} */
-  inputEnableChildren;
-  /** @type {Signal} */
-  onChildInputDown;
-  /** @type {Signal} */
-  onChildInputUp;
-  /** @type {Signal} */
-  onChildInputOver;
-  /** @type {Signal} */
-  onChildInputOut;
-  /** @type {Signal} */
-  onDestroy;
-  /** @type {number} */
-  cursorIndex;
-  /** @type {string} */
-  _sortProperty;
-  /** @type {object[] | null} */
-  filters;
+  declare z: number;
+  ignoreDestroy!: boolean;
+  pendingDestroy!: boolean;
+  classType!: Function;
+  cursor!: DisplayObject | null;
+  inputEnableChildren!: boolean;
+  onChildInputDown!: Signal;
+  onChildInputUp!: Signal;
+  onChildInputOver!: Signal;
+  onChildInputOut!: Signal;
+  onDestroy!: Signal;
+  cursorIndex!: number;
+  _sortProperty!: string;
+  filters!: object[] | null;
   /**
    * Creates a new Group object.
    * @param {import('../core/game.js').Game} game - The game instance this group belongs to.
@@ -43,7 +28,12 @@ export class Group extends DisplayObject {
    * @param {string} name - The name of this group.
    * @param {boolean} addToStage - Whether to add this group to the stage.
    */
-  constructor(game, parent = null, name = null, addToStage = false) {
+  constructor(
+    game: import('../core/game.js').Game,
+    parent: DisplayObject = null,
+    name: string = null,
+    addToStage: boolean = false
+  ) {
     super(game);
     /** @type {number} */
     this.type = GROUP;
@@ -90,7 +80,7 @@ export class Group extends DisplayObject {
    * @param {boolean} destroyChildren - Whether to destroy children as well.
    * @param {boolean} soft - Whether to perform a soft destroy (leaving the group in the parent's children list).
    */
-  destroy(destroyChildren = true, soft = false) {
+  destroy(destroyChildren: boolean = true, soft: boolean = false) {
     if (this.game === null || this.ignoreDestroy) {
       return;
     }
@@ -115,7 +105,7 @@ export class Group extends DisplayObject {
    * @param {number} index - The index to add the child at.
    * @returns {DisplayObject} The added child.
    */
-  add(child, silent = false, index = -1) {
+  add(child: any, silent: boolean = false, index: number = -1) {
     if (child.parent === this) {
       return child;
     }
@@ -144,7 +134,7 @@ export class Group extends DisplayObject {
    * @param {number} index - The index to add the child at.
    * @param {boolean} silent - Whether to dispatch events.
    */
-  addAt(child, index, silent) {
+  addAt(child: DisplayObject, index: number, silent: boolean) {
     this.add(child, silent, index);
   }
 
@@ -153,7 +143,7 @@ export class Group extends DisplayObject {
    * @param {number} index - The index of the child to get.
    * @returns {DisplayObject} The child at the specified index, or -1 if not found.
    */
-  getAt(index) {
+  getAt(index: number) {
     if (index < 0 || index >= this.children.length) {
       return -1;
     }
@@ -212,7 +202,7 @@ export class Group extends DisplayObject {
    * @param {DisplayObject} child1 - The first child to swap.
    * @param {DisplayObject} child2 - The second child to swap.
    */
-  swap(child1, child2) {
+  swap(child1: DisplayObject, child2: DisplayObject) {
     this.swapChildren(child1, child2);
     this.updateZ();
   }
@@ -222,7 +212,7 @@ export class Group extends DisplayObject {
    * @param {DisplayObject} child - The child to bring to the top.
    * @returns {DisplayObject} The child that was brought to the top.
    */
-  bringToTop(child) {
+  bringToTop(child: DisplayObject) {
     if (child.parent === this && this.getIndex(child) < this.children.length) {
       this.remove(child, false, true);
       this.add(child, true);
@@ -235,7 +225,7 @@ export class Group extends DisplayObject {
    * @param {DisplayObject} child - The child to send to the back.
    * @returns {DisplayObject} The child that was sent to the back.
    */
-  sendToBack(child) {
+  sendToBack(child: DisplayObject) {
     if (child.parent === this && this.getIndex(child) > 0) {
       this.remove(child, false, true);
       this.addAt(child, 0, true);
@@ -256,7 +246,7 @@ export class Group extends DisplayObject {
    * @param {DisplayObject} child - The child to get the index of.
    * @returns {number} The index of the child, or -1 if not found.
    */
-  getIndex(child) {
+  getIndex(child: DisplayObject) {
     return this.children.indexOf(child);
   }
 
@@ -304,7 +294,7 @@ export class Group extends DisplayObject {
    * @param {boolean} silent - Whether to dispatch events.
    * @returns {boolean} True if the child was removed, false otherwise.
    */
-  remove(child, destroy = true, silent = false) {
+  remove(child: any, destroy: boolean = true, silent: boolean = false) {
     if (this.children.length === 0 || this.children.indexOf(child) === -1) {
       return false;
     }
@@ -317,7 +307,7 @@ export class Group extends DisplayObject {
       this.next();
     }
     if (destroy && removed) {
-      removed.destroy(true);
+      (removed as any).destroy(true);
     }
     return true;
   }
@@ -328,7 +318,7 @@ export class Group extends DisplayObject {
    * @param {boolean} silent - Whether to dispatch events.
    * @param {boolean} destroyTexture - Whether to destroy textures as well.
    */
-  removeAll(destroy = true, silent = false, destroyTexture = false) {
+  removeAll(destroy: boolean = true, silent: boolean = false, destroyTexture: boolean = false) {
     if (this.children.length === 0) {
       return;
     }
@@ -338,7 +328,7 @@ export class Group extends DisplayObject {
       }
       const removed = this.removeChild(this.children[0]);
       if (destroy && removed) {
-        removed.destroy(true, destroyTexture);
+        (removed as any).destroy(true, destroyTexture);
       }
     } while (this.children.length > 0);
     this.cursor = null;

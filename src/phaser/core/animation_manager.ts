@@ -1,22 +1,22 @@
-// @ts-nocheck
 import { Animation } from './animation.js';
 import { ENGINE_ERROR_CANNOT_SET_FRAME, ENGINE_ERROR_CANNOT_SET_FRAME_NAME } from './error_code.js';
 
 export class AnimationManager {
-sprite;
-game;
-currentFrame;
-currentAnim;
-updateIfVisible;
-isLoaded;
-_frameData;
-_anims;
-_outputFrames;
+  sprite!: any;
+  game!: any;
+  currentFrame!: any;
+  currentAnim!: any;
+  updateIfVisible!: any;
+  isLoaded!: any;
+  _frameData!: any;
+  _anims!: any;
+  _outputFrames!: any;
+  _frameIndex!: any;
   /**
    * Creates a new AnimationManager instance.
    * @param {import('../display/image.js').Image} sprite - Reference to the parent Sprite.
    */
-  constructor(sprite) {
+  constructor(sprite: import('../display/image.js').Image) {
     this.sprite = sprite;
     this.game = sprite.game;
     /** @type {import('./frame.js').Frame} */
@@ -56,7 +56,7 @@ _outputFrames;
    * @param {string|number} frame - The frame index or name to set as current.
    * @returns {boolean} True if the frame data was loaded successfully, false otherwise.
    */
-  loadFrameData(frameData, frame) {
+  loadFrameData(frameData: import('./frame_data.js').FrameData, frame: string|number) {
     if (!frameData) {
       return false;
     }
@@ -86,7 +86,7 @@ _outputFrames;
    * @param {string|number} frame - The frame index or name to set as current.
    * @returns {boolean} True if the frame data was copied successfully, false otherwise.
    */
-  copyFrameData(frameData, frame) {
+  copyFrameData(frameData: import('./frame_data.js').FrameData, frame: string|number) {
     this._frameData = frameData.clone();
     if (this.isLoaded) {
       // We need to update the frameData that the animations are using
@@ -116,7 +116,7 @@ _outputFrames;
    * @param {boolean | undefined} useNumericIndex - Whether to treat frameList as numeric indices.
    * @returns {Animation} The created Animation object.
    */
-  add(name, frameList, frameRate = 60, loop = false, useNumericIndex = undefined) {
+  add(name: string, frameList: number[] | string[] | null | undefined, frameRate: number = 60, loop: boolean = false, useNumericIndex: boolean | undefined = undefined) {
     const frames = frameList || [];
     //  If they didn't set the useNumericIndex then let's at least try and guess it
     if (useNumericIndex === undefined) {
@@ -150,7 +150,7 @@ _outputFrames;
    * @param {boolean} useNumericIndex - Whether to treat frameList as numeric indices.
    * @returns {boolean} True if all frames are valid, false otherwise.
    */
-  validateFrames(frames, useNumericIndex = false) {
+  validateFrames(frames: string[] | number[], useNumericIndex: boolean = false) {
     for (let i = 0; i < frames.length; i += 1) {
       if (useNumericIndex === true) {
         if (frames[i] > this._frameData.total) {
@@ -170,7 +170,7 @@ _outputFrames;
    * @param {boolean} loop - Whether the animation should loop, or null to use the animation's default.
    * @returns {Animation} The Animation object that was played, or null if not found.
    */
-  play(name, frameRate = null, loop = null) {
+  play(name: string, frameRate: number = null, loop: boolean = null) {
     if (this._anims[name]) {
       if (this.currentAnim === this._anims[name]) {
         if (this.currentAnim.isPlaying === false) {
@@ -195,7 +195,7 @@ _outputFrames;
    * @param {string} name - The name of the animation to stop, or null to stop the current animation.
    * @param {boolean} resetFrame - Whether to reset the frame to the first frame of the animation.
    */
-  stop(name = null, resetFrame = false) {
+  stop(name: string = null, resetFrame: boolean = false) {
     if (this.currentAnim && (typeof name !== 'string' || name === this.currentAnim.name)) {
       this.currentAnim.stop(resetFrame);
     }
@@ -220,7 +220,7 @@ _outputFrames;
    * Advances the current animation by a specified number of frames.
    * @param {number} quantity - The number of frames to advance by.
    */
-  next(quantity) {
+  next(quantity: number) {
     if (this.currentAnim) {
       this.currentAnim.next(quantity);
       this.currentFrame = this.currentAnim.currentFrame;
@@ -231,7 +231,7 @@ _outputFrames;
    * Moves the current animation back by a specified number of frames.
    * @param {number} quantity - The number of frames to move back by.
    */
-  previous(quantity) {
+  previous(quantity: number) {
     if (this.currentAnim) {
       this.currentAnim.previous(quantity);
       this.currentFrame = this.currentAnim.currentFrame;
@@ -243,7 +243,7 @@ _outputFrames;
    * @param {string} name - The name of the animation to retrieve.
    * @returns {Animation} The Animation object, or null if not found.
    */
-  getAnimation(name) {
+  getAnimation(name: string) {
     if (name && this._anims[name]) {
       return this._anims[name];
     }

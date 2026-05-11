@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { Logger } from '@vpmedia/simplify';
 import { CanvasRenderer } from '../display/canvas/renderer.js';
 import { addToDOM, create, removeFromDOM, setTouchAction } from '../display/canvas/util.js';
@@ -21,62 +20,36 @@ import { TweenManager } from './tween_manager.js';
 import { World } from './world.js';
 
 export class Game {
-  /** @type {object} */
-  config;
-  /** @type {number} */
-  id;
-  /** @type {string|HTMLElement} */
-  parent;
-  /** @type {number} */
-  width;
-  /** @type {number} */
-  height;
-  /** @type {CanvasRenderer | WebGLRenderer} */
-  renderer;
-  /** @type {SceneManager} */
-  state;
-  /** @type {boolean} */
-  isBooted;
-  /** @type {boolean} */
-  paused;
-  /** @type {RequestAnimationFrame} */
-  raf;
-  /** @type {GameObjectFactory} */
-  add;
-  /** @type {Cache} */
-  cache;
-  /** @type {Input} */
-  input;
-  /** @type {Loader} */
-  load;
-  /** @type {ScaleManager} */
-  scale;
-  /** @type {SoundManager} */
-  sound;
-  /** @type {Stage} */
-  stage;
-  /** @type {Time} */
-  time;
-  /** @type {TweenManager} */
-  tweens;
-  /** @type {World} */
-  world;
-  /** @type {Device} */
-  device;
-  /** @type {Logger} */
-  logger;
-  /** @type {HTMLCanvasElement} */
-  canvas;
-  /** @type {CanvasRenderingContext2D | ImageBitmapRenderingContext | WebGLRenderingContext | WebGL2RenderingContext} */
-  context;
-  /** @type {Signal} */
-  onPause;
-  /** @type {Signal} */
-  onResume;
-  /** @type {Signal} */
-  onBoot;
-  /** @type {boolean} */
-  isPaused;
+  config!: any;
+  id!: number;
+  parent!: string | HTMLElement;
+  width!: number;
+  height!: number;
+  renderer!: CanvasRenderer | WebGLRenderer;
+  state!: SceneManager;
+  isBooted!: boolean;
+  paused!: boolean;
+  raf!: RequestAnimationFrame;
+  add!: GameObjectFactory;
+  cache!: Cache;
+  input!: Input;
+  load!: Loader;
+  scale!: ScaleManager;
+  sound!: SoundManager;
+  stage!: Stage;
+  time!: Time;
+  tweens!: TweenManager;
+  world!: World;
+  device!: Device;
+  logger!: Logger;
+  canvas!: HTMLCanvasElement;
+  context!: CanvasRenderingContext2D | ImageBitmapRenderingContext | WebGLRenderingContext | WebGL2RenderingContext;
+  onPause!: Signal;
+  onResume!: Signal;
+  onBoot!: Signal;
+  isPaused!: boolean;
+  contextLostBinded!: any;
+  contextRestoredBinded!: any;
   /**
    * Creates a new Game instance.
    * @param {object} gameConfig - The configuration object for the game.
@@ -97,7 +70,7 @@ export class Game {
    * @param {string|HTMLElement} gameConfig.parent - The parent element to append the canvas to.
    * @param {object} gameConfig.state - The initial state object or class.
    */
-  constructor(gameConfig = {}) {
+  constructor(gameConfig: any = {}) {
     if (!window.PhaserRegistry) {
       window.PhaserRegistry = {};
     }
@@ -262,7 +235,7 @@ export class Game {
    * @param {string} key - The configuration key to parse.
    * @param {*} defaultValue - The default value if the key is not found in config.
    */
-  parseConfigElement(config, key, defaultValue) {
+  parseConfigElement(config: any, key: string, defaultValue?: any) {
     if (config[key] !== undefined) {
       this.config[key] = config[key];
     } else {
@@ -274,7 +247,7 @@ export class Game {
    * Parses the configuration object and sets up game properties.
    * @param {object} config - The configuration object to parse.
    */
-  parseConfig(config) {
+  parseConfig(config: any) {
     this.logger = config.logger ?? new Logger('phaser');
     this.logger.info('parseConfig');
     this.parseConfigElement(config, 'width', 800);
@@ -305,7 +278,7 @@ export class Game {
    * Called when the WebGL context is lost.
    * @param {WebGLContextEvent | Event} event - The WebGL context loss event.
    */
-  contextLost(event) {
+  contextLost(event: any) {
     this.logger.info('contextLost', event);
     event.preventDefault();
     if (this.renderer) {
@@ -317,7 +290,7 @@ export class Game {
    * Called when the WebGL context is restored.
    * @param {WebGLContextEvent | Event} event - The WebGL context restore event.
    */
-  contextRestored(event) {
+  contextRestored(event: any) {
     this.logger.info('contextRestored', event);
     if (this.renderer) {
       this.renderer.initContext(this);
@@ -330,7 +303,7 @@ export class Game {
    * Updates the game state.
    * @param {number} time - The current timestamp.
    */
-  update(time) {
+  update(time: number) {
     this.time.update(time);
     if (!this.isPaused) {
       this.scale.preUpdate();

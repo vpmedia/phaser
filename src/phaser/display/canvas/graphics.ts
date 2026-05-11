@@ -1,11 +1,10 @@
-// @ts-nocheck
 import { GEOM_CIRCLE, GEOM_ELLIPSE, GEOM_POLYGON, GEOM_RECTANGLE, GEOM_ROUNDED_RECTANGLE } from '../../core/const.js';
 
 /**
  * Renders a graphics object to canvas.
  * @param {import('../graphics.js').Graphics} graphics - The graphics object to render.
  */
-export const updateGraphicsTint = (graphics) => {
+export const updateGraphicsTint = (graphics: import('../graphics.js').Graphics) => {
   if (graphics.tint === 0xffffff) {
     return;
   }
@@ -32,7 +31,7 @@ export const updateGraphicsTint = (graphics) => {
  * @param {import('../graphics.js').Graphics} graphics - The graphics object to render.
  * @param {object} context - The canvas rendering context.
  */
-export const renderGraphics = (graphics, context) => {
+export const renderGraphics = (graphics: import('../graphics.js').Graphics, context: any) => {
   const worldAlpha = graphics.worldAlpha;
   if (graphics.dirty) {
     updateGraphicsTint(graphics);
@@ -161,7 +160,7 @@ export const renderGraphics = (graphics, context) => {
  * @param {import('../graphics.js').Graphics} graphics - The graphics object to render.
  * @param {object} context - The canvas rendering context.
  */
-export const renderGraphicsMask = (graphics, context) => {
+export const renderGraphicsMask = (graphics: import('../graphics.js').Graphics, context: any) => {
   const len = graphics.graphicsData.length;
   if (len === 0) {
     return;

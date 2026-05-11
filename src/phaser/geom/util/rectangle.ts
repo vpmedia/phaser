@@ -8,7 +8,7 @@ import { Rectangle } from '../rectangle.js';
  * @param {number} dy - The amount to inflate the rectangle vertically.
  * @returns {Rectangle} The inflated rectangle.
  */
-export const inflate = (a, dx, dy) => {
+export const inflate = (a: Rectangle, dx: number, dy: number) => {
   a.x -= dx;
   a.width += 2 * dx;
   a.y -= dy;
@@ -22,7 +22,7 @@ export const inflate = (a, dx, dy) => {
  * @param {object} point - The point containing x and y values to inflate the rectangle by.
  * @returns {Rectangle} The inflated rectangle.
  */
-export const inflatePoint = (a, point) => {
+export const inflatePoint = (a: Rectangle, point: any) => {
   return inflate(a, point.x, point.y);
 };
 
@@ -32,7 +32,7 @@ export const inflatePoint = (a, point) => {
  * @param {Point} output - Optional point to store the result in.
  * @returns {Point} The size of the rectangle as a point (width, height).
  */
-export const size = (a, output = null) => {
+export const size = (a: Rectangle, output: Point = null) => {
   const result = output || new Point();
   result.setTo(a.width, a.height);
   return result;
@@ -44,7 +44,7 @@ export const size = (a, output = null) => {
  * @param {Rectangle} output - Optional rectangle to store the result in.
  * @returns {Rectangle} The cloned rectangle.
  */
-export const clone = (input, output = null) => {
+export const clone = (input: Rectangle, output: Rectangle = null) => {
   const result = output || new Rectangle();
   result.setTo(input.x, input.y, input.width, input.height);
   return result;
@@ -57,7 +57,7 @@ export const clone = (input, output = null) => {
  * @param {number} y - The y coordinate of the point.
  * @returns {boolean} True if the point is contained within the rectangle, false otherwise.
  */
-export const contains = (a, x, y) => {
+export const contains = (a: Rectangle, x: number, y: number) => {
   if (a.width <= 0 || a.height <= 0) {
     return false;
   }
@@ -74,7 +74,7 @@ export const contains = (a, x, y) => {
  * @param {number} y - The y coordinate of the point.
  * @returns {boolean} True if the point is contained within the rectangle, false otherwise.
  */
-export const containsRaw = (rx, ry, rw, rh, x, y) => {
+export const containsRaw = (rx: number, ry: number, rw: number, rh: number, x: number, y: number) => {
   return x >= rx && x < rx + rw && y >= ry && y < ry + rh;
 };
 
@@ -84,7 +84,7 @@ export const containsRaw = (rx, ry, rw, rh, x, y) => {
  * @param {Point} point - The point to check.
  * @returns {boolean} True if the point is contained within the rectangle, false otherwise.
  */
-export const containsPoint = (a, point) => {
+export const containsPoint = (a: Rectangle, point: Point) => {
   return contains(a, point.x, point.y);
 };
 
@@ -94,7 +94,7 @@ export const containsPoint = (a, point) => {
  * @param {Rectangle} b - The second rectangle to check.
  * @returns {boolean} True if rectangle a contains rectangle b, false otherwise.
  */
-export const containsRect = (a, b) => {
+export const containsRect = (a: Rectangle, b: Rectangle) => {
   if (a.volume > b.volume) {
     return false;
   }
@@ -107,7 +107,7 @@ export const containsRect = (a, b) => {
  * @param {Rectangle} b - The second rectangle to compare.
  * @returns {boolean} True if the rectangles are equal, false otherwise.
  */
-export const equals = (a, b) => {
+export const equals = (a: Rectangle, b: Rectangle) => {
   return a.x === b.x && a.y === b.y && a.width === b.width && a.height === b.height;
 };
 
@@ -117,7 +117,7 @@ export const equals = (a, b) => {
  * @param {Rectangle} b - The second rectangle to compare.
  * @returns {boolean} True if the rectangles have the same dimensions, false otherwise.
  */
-export const sameDimensions = (a, b) => {
+export const sameDimensions = (a: Rectangle, b: Rectangle) => {
   return a.width === b.width && a.height === b.height;
 };
 
@@ -127,7 +127,7 @@ export const sameDimensions = (a, b) => {
  * @param {Rectangle} b - The second rectangle to check.
  * @returns {boolean} True if the rectangles intersect, false otherwise.
  */
-export const intersects = (a, b) => {
+export const intersects = (a: Rectangle, b: Rectangle) => {
   if (a.width <= 0 || a.height <= 0 || b.width <= 0 || b.height <= 0) {
     return false;
   }
@@ -141,7 +141,7 @@ export const intersects = (a, b) => {
  * @param {Rectangle} output - Optional rectangle to store the result in.
  * @returns {Rectangle} The intersection of the rectangles, or an empty rectangle if they don't intersect.
  */
-export const intersection = (a, b, output = null) => {
+export const intersection = (a: Rectangle, b: Rectangle, output: Rectangle = null) => {
   const result = output || new Rectangle();
   if (intersects(a, b)) {
     result.x = Math.max(a.x, b.x);
@@ -162,7 +162,7 @@ export const intersection = (a, b, output = null) => {
  * @param {number} tolerance - Optional tolerance value for intersection.
  * @returns {boolean} True if the rectangle intersects with the area, false otherwise.
  */
-export const intersectsRaw = (a, left, right, top, bottom, tolerance = 0) => {
+export const intersectsRaw = (a: Rectangle, left: number, right: number, top: number, bottom: number, tolerance: number = 0) => {
   return !(
     left > a.right + tolerance ||
     right < a.left - tolerance ||
@@ -178,7 +178,7 @@ export const intersectsRaw = (a, left, right, top, bottom, tolerance = 0) => {
  * @param {Rectangle} output - Optional rectangle to store the result in.
  * @returns {Rectangle} The union of the rectangles.
  */
-export const union = (a, b, output = null) => {
+export const union = (a: Rectangle, b: Rectangle, output: Rectangle = null) => {
   const result = output || new Rectangle();
   return result.setTo(
     Math.min(a.x, b.x),
@@ -194,7 +194,7 @@ export const union = (a, b, output = null) => {
  * @param {Rectangle} output - Optional rectangle to store the result in.
  * @returns {Rectangle} The AABB of the points.
  */
-export const aabb = (points, output = null) => {
+export const aabb = (points: Point[], output: Rectangle = null) => {
   const result = output || new Rectangle();
   let xMax = Number.NEGATIVE_INFINITY;
   let xMin = Number.POSITIVE_INFINITY;

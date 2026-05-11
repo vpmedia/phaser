@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { SCALE_LINEAR } from '../core/const.js';
 import { getIdentityMatrix } from '../geom/util/matrix.js';
 import { getTintedTexture } from './canvas/tinter.js';
@@ -9,7 +8,7 @@ import { getTintedTexture } from './canvas/tinter.js';
  * @param {import('./webgl/texture.js').Texture} texture - The new texture to set.
  * @param {boolean} destroyBase - Whether to destroy the base texture.
  */
-export const setTexture = (target, texture, destroyBase = false) => {
+export const setTexture = (target: import('./image.js').Image, texture: import('./webgl/texture.js').Texture, destroyBase: boolean = false) => {
   if (destroyBase) {
     target.texture.baseTexture.destroy();
   }
@@ -25,7 +24,7 @@ export const setTexture = (target, texture, destroyBase = false) => {
  * @param {object} matrix - The transformation matrix.
  * @returns {import('../geom/rectangle.js').Rectangle} The bounds rectangle.
  */
-export const getBounds = (target, matrix = null) => {
+export const getBounds = (target: import('./image.js').Image, matrix: any = null) => {
   // TODO verify
   if (target.currentBounds) {
     return target.currentBounds;
@@ -107,7 +106,7 @@ export const getBounds = (target, matrix = null) => {
  * @param {import('./image.js').Image} target - The target image to get local bounds for.
  * @returns {import('../geom/rectangle.js').Rectangle} The local bounds rectangle.
  */
-export const getLocalBounds = (target) => {
+export const getLocalBounds = (target: import('./image.js').Image) => {
   const matrixCache = target.worldTransform;
   target.worldTransform = getIdentityMatrix();
   let i;
@@ -128,7 +127,7 @@ export const getLocalBounds = (target) => {
  * @param {object} renderSession - The render session object.
  * @param {import('../geom/matrix.js').Matrix | null | undefined} matrix - The transformation matrix.
  */
-export const renderWebGL = (target, renderSession, matrix = null) => {
+export const renderWebGL = (target: import('./image.js').Image, renderSession: any, matrix: import('../geom/matrix.js').Matrix | null | undefined = null) => {
   // if the sprite is not visible or the alpha is 0 then no need to render this element
   if (!target.visible || target.alpha <= 0 || !target.renderable) {
     return;
@@ -177,7 +176,7 @@ export const renderWebGL = (target, renderSession, matrix = null) => {
  * @param {object} renderSession - The render session object.
  * @param {import('../geom/matrix.js').Matrix | null | undefined} matrix - The transformation matrix.
  */
-export const renderCanvas = (target, renderSession, matrix = null) => {
+export const renderCanvas = (target: import('./image.js').Image, renderSession: any, matrix: import('../geom/matrix.js').Matrix | null | undefined = null) => {
   // If the sprite is not visible or the alpha is 0 then no need to render this element
   if (
     !target.visible ||

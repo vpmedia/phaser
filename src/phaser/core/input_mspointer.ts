@@ -1,26 +1,25 @@
-// @ts-nocheck
 export class MSPointer {
-game;
-input;
-callbackContext;
-pointerDownCallback;
-pointerMoveCallback;
-pointerUpCallback;
-capture;
-button;
-event;
-enabled;
-_onMSPointerDown;
-_onMSPointerMove;
-_onMSPointerUp;
-_onMSPointerUpGlobal;
-_onMSPointerOut;
-_onMSPointerOver;
+game!: any;
+input!: any;
+callbackContext!: any;
+pointerDownCallback!: any;
+pointerMoveCallback!: any;
+pointerUpCallback!: any;
+capture!: any;
+button!: any;
+event!: any;
+enabled!: any;
+_onMSPointerDown!: any;
+_onMSPointerMove!: any;
+_onMSPointerUp!: any;
+_onMSPointerUpGlobal!: any;
+_onMSPointerOut!: any;
+_onMSPointerOver!: any;
   /**
    * TBD.
    * @param {import('./game.js').Game} game - TBD.
    */
-  constructor(game) {
+  constructor(game: import('./game.js').Game) {
     this.game = game;
     this.input = game.input;
     this.callbackContext = this.game;
@@ -100,7 +99,7 @@ _onMSPointerOver;
    * TBD.
    * @param {PointerEvent} event - TBD.
    */
-  onPointerDown(event) {
+  onPointerDown(event: any) {
     this.event = event;
     this.eventPreventDefault(event);
     if (this.pointerDownCallback) {
@@ -121,7 +120,7 @@ _onMSPointerOver;
    * TBD.
    * @param {PointerEvent} event - TBD.
    */
-  onPointerMove(event) {
+  onPointerMove(event: any) {
     this.event = event;
     this.eventPreventDefault(event);
     if (this.pointerMoveCallback) {
@@ -142,7 +141,7 @@ _onMSPointerOver;
    * TBD.
    * @param {PointerEvent} event - TBD.
    */
-  onPointerUp(event) {
+  onPointerUp(event: any) {
     this.event = event;
     this.eventPreventDefault(event);
     if (this.pointerUpCallback) {
@@ -163,7 +162,7 @@ _onMSPointerOver;
    * TBD.
    * @param {PointerEvent} event - TBD.
    */
-  onPointerUpGlobal(event) {
+  onPointerUpGlobal(event: any) {
     if ((event.pointerType === 'mouse' || event.pointerType === 0x00000004) && !this.input.mousePointer.withinGame) {
       this.onPointerUp(event);
     } else {
@@ -178,7 +177,7 @@ _onMSPointerOver;
    * TBD.
    * @param {PointerEvent} event - TBD.
    */
-  onPointerOut(event) {
+  onPointerOut(event: any) {
     this.event = event;
     this.eventPreventDefault(event);
     let pointer;
@@ -210,7 +209,7 @@ _onMSPointerOver;
    * TBD.
    * @param {PointerEvent} event - TBD.
    */
-  onPointerOver(event) {
+  onPointerOver(event: any) {
     this.event = event;
     this.eventPreventDefault(event);
     if (event.pointerType === 'mouse' || event.pointerType === 0x00000004) {
@@ -230,7 +229,7 @@ _onMSPointerOver;
    * TBD.
    * @param {Event} event - TBD.
    */
-  eventPreventDefault(event) {
+  eventPreventDefault(event: Event) {
     if (this.capture) {
       if (typeof event.cancelable !== 'boolean' || event.cancelable) {
         event.preventDefault();

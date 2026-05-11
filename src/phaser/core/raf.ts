@@ -6,7 +6,7 @@ export class RequestAnimationFrame {
    * Constructor.
    * @param {import('./game.js').Game} game - Reference to the game instance.
    */
-  constructor(game) {
+  constructor(game: import('./game.js').Game) {
     this.game = game;
     this.rafId = 0;
   }
@@ -29,7 +29,7 @@ export class RequestAnimationFrame {
    * Performs an animation frame request.
    * @param {number} rafTime - The timestamp provided by the browser's animation frame.
    */
-  update = (rafTime) => {
+  update = (rafTime: number) => {
     this.game.update(rafTime);
     this.rafId = requestAnimationFrame(this.update);
   };

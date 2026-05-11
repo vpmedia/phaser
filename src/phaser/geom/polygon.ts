@@ -13,7 +13,7 @@ export class Polygon {
    * Creates a new Polygon instance.
    * @param {object[]} points - The array of points to define the polygon (optional).
    */
-  constructor(points = null) {
+  constructor(points: any[] = null) {
     /** @type {number} */
     this.area = 0;
     /** @type {Point[]} */
@@ -34,7 +34,7 @@ export class Polygon {
    * @param {number[]} output - The array to store the result in (optional).
    * @returns {number[]} An array of numbers representing the polygon's points.
    */
-  toNumberArray(output = []) {
+  toNumberArray(output: number[] = []) {
     for (let i = 0; i < this._points.length; i += 1) {
       if (typeof this._points[i] === 'number') {
         output.push(this._points[i]);
@@ -72,7 +72,7 @@ export class Polygon {
    * @param {number} y - The y coordinate of the point to check.
    * @returns {boolean} True if the point is contained within this polygon, false otherwise.
    */
-  contains(x, y) {
+  contains(x: number, y: number) {
     //  Adapted from http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html by Jonas Raoni Soares Silva
     let inside = false;
     if (this.flattened) {
@@ -104,7 +104,7 @@ export class Polygon {
    * @param {object[]} points - The array of points to define the polygon.
    * @returns {Polygon} This polygon instance for chaining.
    */
-  setTo(points) {
+  setTo(points: any[]) {
     this.area = 0;
     this._points = [];
     if (points) {
@@ -143,7 +143,7 @@ export class Polygon {
    * @param {number} y0 - The y coordinate of the lowest boundary (internal use).
    * @returns {number} The area of this polygon.
    */
-  calculateArea(y0) {
+  calculateArea(y0: number) {
     let p1;
     let p2;
     let avgHeight;

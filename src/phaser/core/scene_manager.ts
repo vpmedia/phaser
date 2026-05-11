@@ -1,28 +1,28 @@
-// @ts-nocheck
 import { Scene } from './scene.js';
 
 export class SceneManager {
-game;
-states;
-_pendingState;
-_clearWorld;
-_clearCache;
-_created;
-_args;
-current;
-onInitCallback;
-onPreloadCallback;
-onCreateCallback;
-onUpdateCallback;
-onResizeCallback;
-onPauseUpdateCallback;
-onShutDownCallback;
+  game!: any;
+  states!: any;
+  _pendingState!: any;
+  _clearWorld!: any;
+  _clearCache!: any;
+  _created!: any;
+  _args!: any;
+  current!: any;
+  onInitCallback!: any;
+  onPreloadCallback!: any;
+  onCreateCallback!: any;
+  onUpdateCallback!: any;
+  onResizeCallback!: any;
+  onPauseUpdateCallback!: any;
+  onShutDownCallback!: any;
+  callbackContext!: any;
   /**
    * Creates a new SceneManager instance.
    * @param {import('./game.js').Game} game - The game instance this manager belongs to.
    * @param {string} pendingState - The state to load when the game boots.
    */
-  constructor(game, pendingState) {
+  constructor(game: import('./game.js').Game, pendingState: string) {
     this.game = game;
     this.states = {};
     this._pendingState = null;
@@ -60,7 +60,7 @@ onShutDownCallback;
    * @param {boolean} autoStart - Whether to start this state immediately.
    * @returns {Scene|object} The created scene or state object.
    */
-  add(key, state, autoStart = false) {
+  add(key: string, state: any, autoStart: boolean = false) {
     let newState = null;
     if (state instanceof Scene) {
       newState = state;
@@ -85,7 +85,7 @@ onShutDownCallback;
    * Remove a scene state from the manager.
    * @param {string} key - The unique key for the state to remove.
    */
-  remove(key) {
+  remove(key: string) {
     if (this.current === key) {
       this.callbackContext = null;
       this.onInitCallback = null;
@@ -106,7 +106,7 @@ onShutDownCallback;
    * @param {boolean} clearCache - Whether to clear the cache before starting.
    * @param {...any} args - Additional arguments to pass to the state.
    */
-  start(key, clearWorld = true, clearCache = false, ...args) {
+  start(key: string, clearWorld: boolean = true, clearCache: boolean = false, ...args: any[]) {
     if (this.checkState(key)) {
       //  Place the state in the queue. It will be started the next time the game loop begins.
       this._pendingState = key;
@@ -124,7 +124,7 @@ onShutDownCallback;
    * @param {boolean} clearCache - Whether to clear the cache before restarting.
    * @param {...any} args - Additional arguments to pass to the state.
    */
-  restart(clearWorld = true, clearCache = false, ...args) {
+  restart(clearWorld: boolean = true, clearCache: boolean = false, ...args: any[]) {
     this._pendingState = this.current;
     this._clearWorld = clearWorld;
     this._clearCache = clearCache;
@@ -195,7 +195,7 @@ onShutDownCallback;
    * @param {string} key - The unique key for the state to check.
    * @returns {boolean} True if the scene exists, false otherwise.
    */
-  checkState(key) {
+  checkState(key: string) {
     if (this.states[key]) {
       if (this.states[key].preload || this.states[key].create || this.states[key].update || this.states[key].render) {
         return true;
@@ -209,7 +209,7 @@ onShutDownCallback;
    * Link a scene state to the manager.
    * @param {string} key - The unique key for the state to link.
    */
-  link(key) {
+  link(key: string) {
     this.states[key].game = this.game;
     this.states[key].key = key;
   }
@@ -218,7 +218,7 @@ onShutDownCallback;
    * Unlink a scene state from the manager.
    * @param {string} key - The unique key for the state to unlink.
    */
-  unlink(key) {
+  unlink(key: string) {
     if (this.states[key]) {
       this.states[key].game = null;
     }
@@ -228,7 +228,7 @@ onShutDownCallback;
    * Set the current scene state.
    * @param {string} key - The unique key for the state to set as current.
    */
-  setCurrentState(key) {
+  setCurrentState(key: string) {
     this.callbackContext = this.states[key];
     this.link(key);
     //  Used when the state is set as being the current active state
@@ -294,7 +294,7 @@ onShutDownCallback;
    * @param {number} width - The new width of the scene.
    * @param {number} height - The new height of the scene.
    */
-  resize(width, height) {
+  resize(width: number, height: number) {
     if (this.onResizeCallback) {
       this.onResizeCallback.call(this.callbackContext, width, height);
     }

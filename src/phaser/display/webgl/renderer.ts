@@ -1,4 +1,3 @@
-// @ts-nocheck
 import {
   BLEND_ADD,
   BLEND_COLOR,
@@ -33,28 +32,29 @@ import { WebGLStencilManager } from './stencil_manager.js';
 import { getWebGLContextErrorCode, getWebGLContextErrorName } from './util.js';
 
 export class WebGLRenderer {
-type;
-resolution;
-autoResize;
-contextLost;
-clearBeforeRender;
-width;
-height;
-view;
-_contextOptions;
-projection;
-offset;
-shaderManager;
-spriteBatch;
-filterManager;
-stencilManager;
-blendModeManager;
-renderSession;
+  [key: string]: any;
+  type!: any;
+  resolution!: any;
+  autoResize!: any;
+  contextLost!: any;
+  clearBeforeRender!: any;
+  width!: any;
+  height!: any;
+  view!: any;
+  _contextOptions!: any;
+  projection!: any;
+  offset!: any;
+  shaderManager!: any;
+  spriteBatch!: any;
+  filterManager!: any;
+  stencilManager!: any;
+  blendModeManager!: any;
+  renderSession!: any;
   /**
    * Creates a new WebGLRenderer instance.
    * @param {import('../../core/game.js').Game} game - The game instance.
    */
-  constructor(game) {
+  constructor(game: import('../../core/game.js').Game) {
     /** @type {number} */
     this.type = RENDER_WEBGL;
     this.resolution = game.config.resolution;
@@ -143,7 +143,7 @@ renderSession;
    * @param {import('../../core/game.js').Game} game - The game instance.
    * @throws {Error}
    */
-  initContext(game) {
+  initContext(game: import('../../core/game.js').Game) {
     game.logger.info('initContext');
     // TODO: view.addEventListener('webglcontextcreationerror', this.onWebGLContextCreationError, false);
     /** @type {WebGLRenderingContext & { id: number }} */
@@ -187,7 +187,7 @@ renderSession;
    * Renders the stage to WebGL.
    * @param {import('../../core/stage.js').Stage} stage - The root stage to render.
    */
-  render(stage) {
+  render(stage: import('../../core/stage.js').Stage) {
     if (this.contextLost) {
       return;
     }
@@ -212,7 +212,7 @@ renderSession;
    * @param {object} buffer - The render buffer.
    * @param {import('../../geom/matrix.js').Matrix} matrix - The transformation matrix.
    */
-  renderDisplayObject(displayObject, projection, buffer, matrix) {
+  renderDisplayObject(displayObject: any, projection: Point, buffer?: any, matrix?: any) {
     this.renderSession.blendModeManager.setBlendMode(BLEND_NORMAL);
     // reset the render session data..
     this.renderSession.drawCount = 0;
@@ -237,7 +237,7 @@ renderSession;
    * @param {number} width - The new width of the canvas.
    * @param {number} height - The new height of the canvas.
    */
-  resize(width, height) {
+  resize(width: number, height: number) {
     this.width = width * this.resolution;
     this.height = height * this.resolution;
     this.view.width = this.width;
@@ -256,7 +256,7 @@ renderSession;
    * @param {import('./base_texture.js').BaseTexture} texture - The base texture to update.
    * @returns {boolean} Whether the update was successful.
    */
-  updateTexture(texture) {
+  updateTexture(texture: import('./base_texture.js').BaseTexture) {
     if (!texture.hasLoaded) {
       return false;
     }

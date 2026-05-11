@@ -17,7 +17,7 @@ export class RoundedRectangle {
    * @param {number} height - The height of the rectangle (default: 0).
    * @param {number} radius - The corner radius (default: 20).
    */
-  constructor(x = 0, y = 0, width = 0, height = 0, radius = 20) {
+  constructor(x: number = 0, y: number = 0, width: number = 0, height: number = 0, radius: number = 20) {
     this.x = x;
     this.y = y;
     this.width = width;
@@ -32,7 +32,7 @@ export class RoundedRectangle {
    * @param {number} y - The y coordinate of the point to check.
    * @returns {boolean} True if the point is contained within this rounded rectangle, false otherwise.
    */
-  contains(x, y) {
+  contains(x: number, y: number) {
     if (this.width <= 0 || this.height <= 0) {
       return false;
     }

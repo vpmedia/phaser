@@ -5,7 +5,7 @@
  * @param {number} y - The y coordinate of the point.
  * @returns {boolean} True if the point is contained within the ellipse, false otherwise.
  */
-export const contains = (a, x, y) => {
+export const contains = (a: import('../ellipse.js').Ellipse, x: number, y: number) => {
   if (a.width <= 0 || a.height <= 0) {
     return false;
   }

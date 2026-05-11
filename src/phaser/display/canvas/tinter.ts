@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { ENGINE_ERROR_CREATING_CANVAS_2D_CONTEXT, ENGINE_ERROR_GETTING_DOCUMENT } from '../../core/error_code.js';
 import { hex2rgb } from '../../util/math.js';
 import { create, removeByCanvas } from './pool.js';
@@ -9,7 +8,7 @@ import { create, removeByCanvas } from './pool.js';
  * @param {object} color - The color to tint with.
  * @returns {object} The tinted sprite.
  */
-export const getTintedTexture = (sprite, color) => {
+export const getTintedTexture = (sprite: any, color: any) => {
   const canvas = sprite.tintedTexture || create('CanvasTinter', 1, 1);
   window.PhaserRegistry.CANVAS_TINT_METHOD(sprite.texture, color, canvas);
   return canvas;
@@ -22,7 +21,7 @@ export const getTintedTexture = (sprite, color) => {
  * @param {HTMLCanvasElement} canvas - The canvas to render to.
  * @throws {Error} If the operation fails.
  */
-export const tintWithMultiply = (texture, color, canvas) => {
+export const tintWithMultiply = (texture: any, color: any, canvas: HTMLCanvasElement) => {
   const context = canvas.getContext('2d', { willReadFrequently: false });
   if (!context) {
     throw new Error(ENGINE_ERROR_CREATING_CANVAS_2D_CONTEXT);
@@ -48,7 +47,7 @@ export const tintWithMultiply = (texture, color, canvas) => {
  * @param {HTMLCanvasElement} canvas - The canvas to render to.
  * @throws {Error} If the operation fails.
  */
-export const tintWithPerPixel = (texture, color, canvas) => {
+export const tintWithPerPixel = (texture: any, color: any, canvas: HTMLCanvasElement) => {
   const context = canvas.getContext('2d', { willReadFrequently: false });
   if (!context) {
     throw new Error(ENGINE_ERROR_CREATING_CANVAS_2D_CONTEXT);
@@ -167,7 +166,7 @@ export const canUseNewCanvasBlendModes = () => {
  * Creates a new Tinter instance.
  * @param {import('../../core/game.js').Game} game - The game instance.
  */
-export const detectCapabilities = (game) => {
+export const detectCapabilities = (game: import('../../core/game.js').Game) => {
   if (!window.PhaserRegistry) {
     window.PhaserRegistry = {};
   }

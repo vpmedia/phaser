@@ -1,24 +1,24 @@
-// @ts-nocheck
 import { AbstractFilter } from './abstract_filter.js';
 import { NormalShader } from './shader/normal.js';
 
 export class WebGLSpriteBatch {
-vertSize;
-size;
-vertices;
-positions;
-colors;
-indices;
-lastIndexCount;
-drawing;
-currentBatchSize;
-currentBaseTexture;
-dirty;
-textures;
-blendModes;
-shaders;
-sprites;
-defaultShader;
+  [key: string]: any;
+vertSize!: any;
+size!: any;
+vertices!: any;
+positions!: any;
+colors!: any;
+indices!: any;
+lastIndexCount!: any;
+drawing!: any;
+currentBatchSize!: any;
+currentBaseTexture!: any;
+dirty!: any;
+textures!: any;
+blendModes!: any;
+shaders!: any;
+sprites!: any;
+defaultShader!: any;
   /**
    * Creates a new SpriteBatch instance.
    */
@@ -88,7 +88,7 @@ defaultShader;
    * Renders the sprite batch using WebGL.
    * @param {object} renderSession - The render session to use.
    */
-  begin(renderSession) {
+  begin(renderSession: any) {
     this.renderSession = renderSession;
     this.shader = this.renderSession.shaderManager.defaultShader;
     this.start();
@@ -106,7 +106,7 @@ defaultShader;
    * @param {import('../../display/image.js').Image} sprite - The sprite to render.
    * @param {import('../../geom/matrix.js').Matrix} matrix - The transformation matrix.
    */
-  render(sprite, matrix) {
+  render(sprite: import('../../display/image.js').Image, matrix: import('../../geom/matrix.js').Matrix) {
     const texture = sprite.texture;
     //  They provided an alternative rendering matrix, so use it
     let wt = sprite.worldTransform;
@@ -315,7 +315,7 @@ defaultShader;
    * @param {number} size - The size of the batch.
    * @param {number} startIndex - The start index in the batch.
    */
-  renderBatch(texture, size, startIndex) {
+  renderBatch(texture: import('./base_texture.js').BaseTexture, size: number, startIndex: number) {
     if (size === 0) {
       return;
     }

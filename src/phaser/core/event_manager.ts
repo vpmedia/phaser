@@ -1,28 +1,25 @@
-// @ts-nocheck
+import type { DisplayObject } from '../display/display_object.js';
 import { Signal } from './signal.js';
 
 export class EventManager {
-parent;
-_onAddedToGroup;
-_onRemovedFromGroup;
-_onDestroy;
-_onOutOfBounds;
-_onEnterBounds;
-_onInputOver;
-_onInputOut;
-_onInputDown;
-_onInputUp;
-_onDragStart;
-_onDragUpdate;
-_onDragStop;
-_onAnimationStart;
-_onAnimationComplete;
-_onAnimationLoop;
-  /**
-   * Creates a new EventManager instance.
-   * @param {import('../display/display_object.js').DisplayObject} sprite - Reference to the parent DisplayObject.
-   */
-  constructor(sprite) {
+  parent: DisplayObject | null;
+  _onAddedToGroup: Signal | null;
+  _onRemovedFromGroup: Signal | null;
+  _onDestroy: Signal | null;
+  _onOutOfBounds: Signal | null;
+  _onEnterBounds: Signal | null;
+  _onInputOver: Signal | null;
+  _onInputOut: Signal | null;
+  _onInputDown: Signal | null;
+  _onInputUp: Signal | null;
+  _onDragStart: Signal | null;
+  _onDragUpdate: Signal | null;
+  _onDragStop: Signal | null;
+  _onAnimationStart: Signal | null;
+  _onAnimationComplete: Signal | null;
+  _onAnimationLoop: Signal | null;
+
+  constructor(sprite: DisplayObject) {
     this.parent = sprite;
     this._onAddedToGroup = null;
     this._onRemovedFromGroup = null;
@@ -41,11 +38,8 @@ _onAnimationLoop;
     this._onAnimationLoop = null;
   }
 
-  /**
-   * Destroys the EventManager and cleans up resources.
-   */
-  destroy() {
-    this._parent = null;
+  destroy(): void {
+    this.parent = null;
     if (this._onDestroy) {
       this._onDestroy.dispose();
     }
@@ -93,316 +87,181 @@ _onAnimationLoop;
     }
   }
 
-  /**
-   * Gets the onAddedToGroup signal.
-   * @returns {Signal} The Signal object for the onAddedToGroup event.
-   */
-  get onAddedToGroup() {
+  get onAddedToGroup(): Signal {
     if (!this._onAddedToGroup) {
       this._onAddedToGroup = new Signal();
     }
     return this._onAddedToGroup;
   }
-
-  /**
-   * Dispatches the onAddedToGroup event.
-   * @param {...any} args - Arguments to pass to the signal.
-   */
-  onAddedToGroup$dispatch(...args) {
+  onAddedToGroup$dispatch(...args: unknown[]): void {
     if (this._onAddedToGroup) {
       this._onAddedToGroup.dispatch(...args);
     }
   }
 
-  /**
-   * Gets the onRemovedFromGroup signal.
-   * @returns {Signal} The Signal object for the onRemovedFromGroup event.
-   */
-  get onRemovedFromGroup() {
+  get onRemovedFromGroup(): Signal {
     if (!this._onRemovedFromGroup) {
       this._onRemovedFromGroup = new Signal();
     }
     return this._onRemovedFromGroup;
   }
-
-  /**
-   * Dispatches the onRemovedFromGroup event.
-   * @param {...any} args - Arguments to pass to the signal.
-   */
-  onRemovedFromGroup$dispatch(...args) {
+  onRemovedFromGroup$dispatch(...args: unknown[]): void {
     if (this._onRemovedFromGroup) {
       this._onRemovedFromGroup.dispatch(...args);
     }
   }
 
-  /**
-   * Gets the onDestroy signal.
-   * @returns {Signal} The Signal object for the onDestroy event.
-   */
-  get onDestroy() {
+  get onDestroy(): Signal {
     if (!this._onDestroy) {
       this._onDestroy = new Signal();
     }
     return this._onDestroy;
   }
-
-  /**
-   * Dispatches the onDestroy event.
-   * @param {...any} args - Arguments to pass to the signal.
-   */
-  onDestroy$dispatch(...args) {
+  onDestroy$dispatch(...args: unknown[]): void {
     if (this._onDestroy) {
       this._onDestroy.dispatch(...args);
     }
   }
 
-  /**
-   * Gets the onOutOfBounds signal.
-   * @returns {Signal} The Signal object for the onOutOfBounds event.
-   */
-  get onOutOfBounds() {
+  get onOutOfBounds(): Signal {
     if (!this._onOutOfBounds) {
       this._onOutOfBounds = new Signal();
     }
     return this._onOutOfBounds;
   }
-
-  /**
-   * Dispatches the onOutOfBounds event.
-   * @param {...any} args - Arguments to pass to the signal.
-   */
-  onOutOfBounds$dispatch(...args) {
+  onOutOfBounds$dispatch(...args: unknown[]): void {
     if (this._onOutOfBounds) {
       this._onOutOfBounds.dispatch(...args);
     }
   }
 
-  /**
-   * Gets the onEnterBounds signal.
-   * @returns {Signal} The Signal object for the onEnterBounds event.
-   */
-  get onEnterBounds() {
+  get onEnterBounds(): Signal {
     if (!this._onEnterBounds) {
       this._onEnterBounds = new Signal();
     }
     return this._onEnterBounds;
   }
-
-  /**
-   * Dispatches the onEnterBounds event.
-   * @param {...any} args - Arguments to pass to the signal.
-   */
-  onEnterBounds$dispatch(...args) {
+  onEnterBounds$dispatch(...args: unknown[]): void {
     if (this._onEnterBounds) {
       this._onEnterBounds.dispatch(...args);
     }
   }
 
-  /**
-   * Gets the onInputOver signal.
-   * @returns {Signal} The Signal object for the onInputOver event.
-   */
-  get onInputOver() {
+  get onInputOver(): Signal {
     if (!this._onInputOver) {
       this._onInputOver = new Signal();
     }
     return this._onInputOver;
   }
-
-  /**
-   * Dispatches the onInputOver event.
-   * @param {...any} args - Arguments to pass to the signal.
-   */
-  onInputOver$dispatch(...args) {
+  onInputOver$dispatch(...args: unknown[]): void {
     if (this._onInputOver) {
       this._onInputOver.dispatch(...args);
     }
   }
 
-  /**
-   * Gets the onInputOut signal.
-   * @returns {Signal} The Signal object for the onInputOut event.
-   */
-  get onInputOut() {
+  get onInputOut(): Signal {
     if (!this._onInputOut) {
       this._onInputOut = new Signal();
     }
     return this._onInputOut;
   }
-
-  /**
-   * Dispatches the onInputOut event.
-   * @param {...any} args - Arguments to pass to the signal.
-   */
-  onInputOut$dispatch(...args) {
+  onInputOut$dispatch(...args: unknown[]): void {
     if (this._onInputOut) {
       this._onInputOut.dispatch(...args);
     }
   }
 
-  /**
-   * Gets the onInputDown signal.
-   * @returns {Signal} The Signal object for the onInputDown event.
-   */
-  get onInputDown() {
+  get onInputDown(): Signal {
     if (!this._onInputDown) {
       this._onInputDown = new Signal();
     }
     return this._onInputDown;
   }
-
-  /**
-   * Dispatches the onInputDown event.
-   * @param {...any} args - Arguments to pass to the signal.
-   */
-  onInputDown$dispatch(...args) {
+  onInputDown$dispatch(...args: unknown[]): void {
     if (this._onInputDown) {
       this._onInputDown.dispatch(...args);
     }
   }
 
-  /**
-   * Gets the onInputUp signal.
-   * @returns {Signal} The Signal object for the onInputUp event.
-   */
-  get onInputUp() {
+  get onInputUp(): Signal {
     if (!this._onInputUp) {
       this._onInputUp = new Signal();
     }
     return this._onInputUp;
   }
-
-  /**
-   * Dispatches the onInputUp event.
-   * @param {...any} args - Arguments to pass to the signal.
-   */
-  onInputUp$dispatch(...args) {
+  onInputUp$dispatch(...args: unknown[]): void {
     if (this._onInputUp) {
       this._onInputUp.dispatch(...args);
     }
   }
 
-  /**
-   * Gets the onDragStart signal.
-   * @returns {Signal} The Signal object for the onDragStart event.
-   */
-  get onDragStart() {
+  get onDragStart(): Signal {
     if (!this._onDragStart) {
       this._onDragStart = new Signal();
     }
     return this._onDragStart;
   }
-
-  /**
-   * Dispatches the onDragStart event.
-   * @param {...any} args - Arguments to pass to the signal.
-   */
-  onDragStart$dispatch(...args) {
+  onDragStart$dispatch(...args: unknown[]): void {
     if (this._onDragStart) {
       this._onDragStart.dispatch(...args);
     }
   }
 
-  /**
-   * Gets the onDragUpdate signal.
-   * @returns {Signal} The Signal object for the onDragUpdate event.
-   */
-  get onDragUpdate() {
+  get onDragUpdate(): Signal {
     if (!this._onDragUpdate) {
       this._onDragUpdate = new Signal();
     }
     return this._onDragUpdate;
   }
-
-  /**
-   * Dispatches the onDragUpdate event.
-   * @param {...any} args - Arguments to pass to the signal.
-   */
-  onDragUpdate$dispatch(...args) {
+  onDragUpdate$dispatch(...args: unknown[]): void {
     if (this._onDragUpdate) {
       this._onDragUpdate.dispatch(...args);
     }
   }
 
-  /**
-   * Gets the onDragStop signal.
-   * @returns {Signal} The Signal object for the onDragStop event.
-   */
-  get onDragStop() {
+  get onDragStop(): Signal {
     if (!this._onDragStop) {
       this._onDragStop = new Signal();
     }
     return this._onDragStop;
   }
-
-  /**
-   * Dispatches the onDragStop event.
-   * @param {...any} args - Arguments to pass to the signal.
-   */
-  onDragStop$dispatch(...args) {
+  onDragStop$dispatch(...args: unknown[]): void {
     if (this._onDragStop) {
       this._onDragStop.dispatch(...args);
     }
   }
 
-  /**
-   * Gets the onAnimationStart signal.
-   * @returns {Signal} The Signal object for the onAnimationStart event.
-   */
-  get onAnimationStart() {
+  get onAnimationStart(): Signal {
     if (!this._onAnimationStart) {
       this._onAnimationStart = new Signal();
     }
     return this._onAnimationStart;
   }
-
-  /**
-   * Dispatches the onAnimationStart event.
-   * @param {...any} args - Arguments to pass to the signal.
-   */
-  onAnimationStart$dispatch(...args) {
+  onAnimationStart$dispatch(...args: unknown[]): void {
     if (this._onAnimationStart) {
       this._onAnimationStart.dispatch(...args);
     }
   }
 
-  /**
-   * Gets the onAnimationComplete signal.
-   * @returns {Signal} The Signal object for the onAnimationComplete event.
-   */
-  get onAnimationComplete() {
+  get onAnimationComplete(): Signal {
     if (!this._onAnimationComplete) {
       this._onAnimationComplete = new Signal();
     }
     return this._onAnimationComplete;
   }
-
-  /**
-   * Dispatches the onAnimationComplete event.
-   * @param {...any} args - Arguments to pass to the signal.
-   */
-  onAnimationComplete$dispatch(...args) {
+  onAnimationComplete$dispatch(...args: unknown[]): void {
     if (this._onAnimationComplete) {
       this._onAnimationComplete.dispatch(...args);
     }
   }
 
-  /**
-   * Gets the onAnimationLoop signal.
-   * @returns {Signal} The Signal object for the onAnimationLoop event.
-   */
-  get onAnimationLoop() {
+  get onAnimationLoop(): Signal {
     if (!this._onAnimationLoop) {
       this._onAnimationLoop = new Signal();
     }
     return this._onAnimationLoop;
   }
-
-  /**
-   * Dispatches the onAnimationLoop event.
-   * @param {...any} args - Arguments to pass to the signal.
-   */
-  onAnimationLoop$dispatch(...args) {
+  onAnimationLoop$dispatch(...args: unknown[]): void {
     if (this._onAnimationLoop) {
       this._onAnimationLoop.dispatch(...args);
     }

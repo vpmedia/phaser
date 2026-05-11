@@ -15,7 +15,7 @@ export class Node {
    * @param {number} x - The x coordinate of the vertex.
    * @param {number} y - The y coordinate of the vertex.
    */
-  constructor(i, x, y) {
+  constructor(i: number, x: number, y: number) {
     // vertice index in coordinates array
     this.i = i;
     // vertex coordinates

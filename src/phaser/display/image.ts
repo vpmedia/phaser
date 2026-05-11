@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { AnimationManager } from '../core/animation_manager.js';
 import { BLEND_NORMAL, IMAGE, PENDING_ATLAS, SCALE_NEAREST } from '../core/const.js';
 import { EventManager } from '../core/event_manager.js';
@@ -9,44 +8,25 @@ import { getBounds, getLocalBounds, renderCanvas, renderWebGL, setTexture } from
 import { Texture } from './webgl/texture.js';
 
 export class Image extends DisplayObject {
-  /** @type {string | number | Texture} */
-  key;
-  /** @type {Texture} */
-  texture;
-  /** @type {number} */
-  _width;
-  /** @type {number} */
-  _height;
-  /** @type {number} */
-  tint;
-  /** @type {number} */
-  cachedTint;
-  /** @type {Texture | null} */
-  tilingTexture;
-  /** @type {Texture | null} */
-  tintedTexture;
-  /** @type {number} */
-  blendMode;
-  /** @type {object | null} */
-  shader;
-  /** @type {import('../core/frame.js').Frame | null} */
-  _frame;
-  /** @type {boolean} */
-  pendingDestroy;
-  /** @type {EventManager} */
-  events;
-  /** @type {AnimationManager} */
-  animations;
-  /** @type {boolean} */
-  customRender;
-  /** @type {Rectangle | null} */
-  cropRect;
-  /** @type {Rectangle | null} */
-  _crop;
-  /** @type {boolean} */
-  refreshTexture;
-  /** @type {number} */
-  renderOrderID;
+  key!: any;
+  texture!: Texture;
+  declare _width: number;
+  declare _height: number;
+  tint!: number;
+  cachedTint!: number;
+  tilingTexture!: Texture | null;
+  tintedTexture!: Texture | null;
+  blendMode!: number;
+  shader!: object | null;
+  _frame!: any;
+  pendingDestroy!: boolean;
+  declare events: EventManager;
+  animations!: AnimationManager;
+  customRender!: boolean;
+  cropRect!: Rectangle | null;
+  _crop!: Rectangle | null;
+  refreshTexture!: boolean;
+  declare renderOrderID: number;
   /**
    * Creates a new Image instance.
    * @param {import('../core/game.js').Game} game - The game instance this image belongs to.
@@ -55,7 +35,7 @@ export class Image extends DisplayObject {
    * @param {string | number | Texture} key - The texture key or texture to use.
    * @param {string | number} frame - The frame identifier (name or index) to use.
    */
-  constructor(game, x, y, key, frame = 0) {
+  constructor(game: import('../core/game.js').Game, x: number, y: number, key: string | number | Texture, frame: string | number = 0) {
     super(game);
     /** @type {number} */
     this.type = IMAGE;
@@ -151,7 +131,7 @@ export class Image extends DisplayObject {
    * @param {string | number | null | undefined} frame - The frame identifier (name or index) to use.
    * @param {boolean} stopAnimation - Whether to stop the animation when changing textures.
    */
-  loadTexture(key, frame: string | number | null = 0, stopAnimation = true) {
+  loadTexture(key: string | number | Texture, frame: string | number | null = 0, stopAnimation: boolean = true) {
     if (key === PENDING_ATLAS) {
       key = frame;
       frame = 0;
@@ -193,7 +173,7 @@ export class Image extends DisplayObject {
    * Sets the current frame of this image.
    * @param {import('../core/frame.js').Frame} frame - The frame to set.
    */
-  setFrame(frame) {
+  setFrame(frame: import('../core/frame.js').Frame) {
     this._frame = frame;
     this.texture.frame.x = frame.x;
     this.texture.frame.y = frame.y;
@@ -240,7 +220,7 @@ export class Image extends DisplayObject {
    * @param {number} width - The new width of the frame.
    * @param {number} height - The new height of the frame.
    */
-  resizeFrame(parent, width, height) {
+  resizeFrame(parent: DisplayObject, width: number, height: number) {
     this.texture.frame.resize(width, height);
     this.texture.setFrame(this.texture.frame);
   }
@@ -266,7 +246,7 @@ export class Image extends DisplayObject {
    * Sets the current frame index of this image.
    * @param {number} value - The new frame index to set.
    */
-  set frame(value) {
+  set frame(value: number) {
     this.animations.frame = value;
   }
 
@@ -282,7 +262,7 @@ export class Image extends DisplayObject {
    * Sets the current frame name of this image.
    * @param {string} value - The new frame name to set.
    */
-  set frameName(value) {
+  set frameName(value: string) {
     this.animations.frameName = value;
   }
 
@@ -293,7 +273,7 @@ export class Image extends DisplayObject {
    * @param {Rectangle} rect - The rectangle to crop to.
    * @param {boolean} copy - Whether to copy the rect or use it directly.
    */
-  crop(rect, copy = false) {
+  crop(rect: Rectangle, copy: boolean = false) {
     if (rect) {
       if (copy && this.cropRect !== null) {
         this.cropRect.setTo(rect.x, rect.y, rect.width, rect.height);
@@ -354,7 +334,7 @@ export class Image extends DisplayObject {
    * Sets the width of this image.
    * @param {number} value - The new width in pixels.
    */
-  set width(value) {
+  set width(value: number) {
     this.scale.x = value / this.texture.frame.width;
     this._width = value;
   }
@@ -371,7 +351,7 @@ export class Image extends DisplayObject {
    * Sets the height of this image.
    * @param {number} value - The new height in pixels.
    */
-  set height(value) {
+  set height(value: number) {
     this.scale.y = value / this.texture.frame.height;
     this._height = value;
   }
@@ -394,7 +374,7 @@ export class Image extends DisplayObject {
    * @param {Texture} texture - The new texture to set.
    * @param {boolean} destroyBase - Whether to destroy the base texture.
    */
-  setTexture(texture, destroyBase = false) {
+  setTexture(texture: Texture, destroyBase: boolean = false) {
     setTexture(this, texture, destroyBase);
   }
 
@@ -403,7 +383,7 @@ export class Image extends DisplayObject {
    * @param {import('../geom/matrix.js').Matrix} matrix - The transformation matrix to use.
    * @returns {Rectangle} The bounds rectangle of this image.
    */
-  getBounds(matrix = null) {
+  getBounds(matrix: import('../geom/matrix.js').Matrix = null) {
     return getBounds(this, matrix);
   }
 
@@ -420,7 +400,7 @@ export class Image extends DisplayObject {
    * @param {object} renderSession - The WebGL rendering session.
    * @param {import('../geom/matrix.js').Matrix} matrix - The transformation matrix to use.
    */
-  renderWebGL(renderSession, matrix = null) {
+  renderWebGL(renderSession: any, matrix: import('../geom/matrix.js').Matrix = null) {
     renderWebGL(this, renderSession, matrix);
   }
 
@@ -429,7 +409,7 @@ export class Image extends DisplayObject {
    * @param {object} renderSession - The Canvas rendering session.
    * @param {import('../geom/matrix.js').Matrix} matrix - The transformation matrix to use.
    */
-  renderCanvas(renderSession, matrix = null) {
+  renderCanvas(renderSession: any, matrix: import('../geom/matrix.js').Matrix = null) {
     renderCanvas(this, renderSession, matrix);
   }
 }

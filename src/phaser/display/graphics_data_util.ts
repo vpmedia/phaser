@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { GraphicsData } from './graphics_data.js';
 
 /**
@@ -6,7 +5,7 @@ import { GraphicsData } from './graphics_data.js';
  * @param {GraphicsData} source - The source GraphicsData to clone.
  * @returns {GraphicsData} A new cloned GraphicsData object.
  */
-export const clone = (source) => {
+export const clone = (source: GraphicsData) => {
   return new GraphicsData(
     source.lineWidth,
     source.lineColor,

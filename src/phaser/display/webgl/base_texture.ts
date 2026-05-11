@@ -1,25 +1,24 @@
-// @ts-nocheck
 import { removeByCanvas } from '../canvas/pool.js';
 
 export class BaseTexture {
-resolution;
-width;
-height;
-scaleMode;
-hasLoaded;
-source;
-premultipliedAlpha;
-_glTextures;
-mipmap;
-skipRender;
-_powerOf2;
-_dirty;
+  resolution!: any;
+  width!: any;
+  height!: any;
+  scaleMode!: any;
+  hasLoaded!: any;
+  source!: any;
+  premultipliedAlpha!: any;
+  _glTextures!: any;
+  mipmap!: any;
+  skipRender!: any;
+  _powerOf2!: any;
+  _dirty!: any;
   /**
    * Updates the base texture with a new source.
    * @param {HTMLCanvasElement} source - The new canvas element to use as the texture source.
    * @param {number} [scaleMode] - The scale mode to use for the texture.
    */
-  constructor(source, scaleMode) {
+  constructor(source: any, scaleMode?: any) {
     this.resolution = 1;
     this.width = 100;
     this.height = 100;
@@ -47,7 +46,7 @@ _dirty;
    * @param {number} width - The new width of the texture.
    * @param {number} height - The new height of the texture.
    */
-  forceLoaded(width, height) {
+  forceLoaded(width: number, height: number) {
     this.hasLoaded = true;
     this.width = width;
     this.height = height;

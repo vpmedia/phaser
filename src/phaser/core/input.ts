@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { create, remove } from '../display/canvas/pool.js';
 import { Graphics } from '../display/graphics.js';
 import { Image } from '../display/image.js';
@@ -15,62 +14,63 @@ import { Signal } from './signal.js';
 const MAX_POINTERS = 10;
 
 export class Input {
-game;
-hitCanvas;
-hitContext;
-moveCallbacks;
-lockCallbacks;
-customCandidateHandler;
-customCandidateHandlerContext;
-pollRate;
-enabled;
-multiInputOverride;
-position;
-speed;
-circle;
-scale;
-maxPointers;
-tapRate;
-doubleTapRate;
-holdRate;
-justPressedRate;
-justReleasedRate;
-recordPointerHistory;
-recordRate;
-recordLimit;
-pointer1;
-pointer2;
-pointer3;
-pointer4;
-pointer5;
-pointer6;
-pointer7;
-pointer8;
-pointer9;
-pointer10;
-pointers;
-activePointer;
-mousePointer;
-mouse;
-touch;
-mspointer;
-resetLocked;
-onDown;
-onUp;
-onTap;
-onHold;
-minPriorityID;
-interactiveItems;
-_localPoint;
-_pollCounter;
-_oldPosition;
-_x;
-_y;
+  game!: any;
+  hitCanvas!: any;
+  hitContext!: any;
+  moveCallbacks!: any;
+  lockCallbacks!: any;
+  customCandidateHandler!: any;
+  customCandidateHandlerContext!: any;
+  pollRate!: any;
+  enabled!: any;
+  multiInputOverride!: any;
+  position!: any;
+  speed!: any;
+  circle!: any;
+  scale!: any;
+  maxPointers!: any;
+  tapRate!: any;
+  doubleTapRate!: any;
+  holdRate!: any;
+  justPressedRate!: any;
+  justReleasedRate!: any;
+  recordPointerHistory!: any;
+  recordRate!: any;
+  recordLimit!: any;
+  pointer1!: any;
+  pointer2!: any;
+  pointer3!: any;
+  pointer4!: any;
+  pointer5!: any;
+  pointer6!: any;
+  pointer7!: any;
+  pointer8!: any;
+  pointer9!: any;
+  pointer10!: any;
+  pointers!: any;
+  activePointer!: any;
+  mousePointer!: any;
+  mouse!: any;
+  touch!: any;
+  mspointer!: any;
+  resetLocked!: any;
+  onDown!: any;
+  onUp!: any;
+  onTap!: any;
+  onHold!: any;
+  minPriorityID!: any;
+  interactiveItems!: any;
+  _localPoint!: any;
+  _pollCounter!: any;
+  _oldPosition!: any;
+  _onClickTrampoline!: any;
+  _x!: any;
+  _y!: any;
   /**
    * TBD.
    * @param {import('./game.js').Game} game - TBD.
    */
-  constructor(game) {
+  constructor(game: import('./game.js').Game) {
     this.game = game;
     this.hitCanvas = null;
     this.hitContext = null;
@@ -154,7 +154,7 @@ _y;
     }
     this.mousePointer.active = true;
     const scope = this;
-    this._onClickTrampoline = (event) => scope.onClickTrampoline(event);
+    this._onClickTrampoline = (event: any) => (scope as any).onClickTrampoline(event);
     this.game.canvas.addEventListener('click', this._onClickTrampoline, false);
   }
 
@@ -178,7 +178,7 @@ _y;
    * @param {Function} callback - TBD.
    * @param {object} context - TBD.
    */
-  setInteractiveCandidateHandler(callback, context) {
+  setInteractiveCandidateHandler(callback: Function, context: any) {
     this.customCandidateHandler = callback;
     this.customCandidateHandlerContext = context;
   }
@@ -188,7 +188,7 @@ _y;
    * @param {Function} callback - TBD.
    * @param {object} context - TBD.
    */
-  addMoveCallback(callback, context) {
+  addMoveCallback(callback: Function, context: any) {
     this.moveCallbacks.push({ callback, context });
   }
 
@@ -197,7 +197,7 @@ _y;
    * @param {Function} callback - TBD.
    * @param {object} context - TBD.
    */
-  deleteMoveCallback(callback, context) {
+  deleteMoveCallback(callback: Function, context: any) {
     let i = this.moveCallbacks.length;
     while (i) {
       i -= 1;
@@ -246,7 +246,7 @@ _y;
    * TBD.
    * @param {boolean} hard - TBD.
    */
-  reset(hard = false) {
+  reset(hard: boolean = false) {
     if (!this.game.isBooted || this.resetLocked) {
       return;
     }
@@ -276,7 +276,7 @@ _y;
    * @param {number} x - TBD.
    * @param {number} y - TBD.
    */
-  resetSpeed(x, y) {
+  resetSpeed(x: number, y: number) {
     this._oldPosition.setTo(x, y);
     this.speed.setTo(0, 0);
   }
@@ -286,7 +286,7 @@ _y;
    * @param {MouseEvent|TouchEvent|PointerEvent} event - TBD.
    * @returns {Pointer} TBD.
    */
-  startPointer(event) {
+  startPointer(event: any|TouchEvent|PointerEvent) {
     if (this.maxPointers >= 0 && this.countActivePointers(this.maxPointers) >= this.maxPointers) {
       return null;
     }
@@ -310,7 +310,7 @@ _y;
    * @param {MouseEvent|TouchEvent|PointerEvent} event - TBD.
    * @returns {Pointer} TBD.
    */
-  updatePointer(event) {
+  updatePointer(event: any|TouchEvent|PointerEvent) {
     if (this.pointer1.active && this.pointer1.identifier === event.identifier) {
       return this.pointer1.move(event);
     }
@@ -331,7 +331,7 @@ _y;
    * @param {MouseEvent|TouchEvent|PointerEvent} event - TBD.
    * @returns {Pointer} TBD.
    */
-  stopPointer(event) {
+  stopPointer(event: any|TouchEvent|PointerEvent) {
     if (this.pointer1.active && this.pointer1.identifier === event.identifier) {
       return this.pointer1.stop(event);
     }
@@ -352,7 +352,7 @@ _y;
    * @param {number} limit - TBD.
    * @returns {number} TBD.
    */
-  countActivePointers(limit = this.pointers.length) {
+  countActivePointers(limit: number = this.pointers.length) {
     let count = limit;
     for (let i = 0; i < this.pointers.length && count > 0; i += 1) {
       const pointer = this.pointers[i];
@@ -368,7 +368,7 @@ _y;
    * @param {boolean} isActive - TBD.
    * @returns {Pointer} TBD.
    */
-  getPointer(isActive = false) {
+  getPointer(isActive: boolean = false) {
     for (let i = 0; i < this.pointers.length; i += 1) {
       const pointer = this.pointers[i];
       if (pointer.active === isActive) {
@@ -383,7 +383,7 @@ _y;
    * @param {number} identifier - TBD.
    * @returns {Pointer} TBD.
    */
-  getPointerFromIdentifier(identifier) {
+  getPointerFromIdentifier(identifier: number) {
     for (let i = 0; i < this.pointers.length; i += 1) {
       const pointer = this.pointers[i];
       if (pointer.identifier === identifier) {
@@ -399,7 +399,7 @@ _y;
    * @param {number} pointerId - TBD.
    * @returns {Pointer} TBD.
    */
-  getPointerFromId(pointerId) {
+  getPointerFromId(pointerId: number) {
     for (let i = 0; i < this.pointers.length; i += 1) {
       const pointer = this.pointers[i];
       if (pointer.pointerId === pointerId) {
@@ -417,7 +417,7 @@ _y;
    * @param {Point} output - TBD.
    * @returns {Point} TBD.
    */
-  getLocalPosition(displayObject, pointer, output = null) {
+  getLocalPosition(displayObject: import('../display/display_object.js').DisplayObject, pointer: Pointer, output: Point = null) {
     const result = output || new Point();
     const wt = displayObject.worldTransform;
     const id = 1 / (wt.a * wt.d + wt.c * -wt.b);
@@ -434,7 +434,7 @@ _y;
    * @param {Point} localPoint - TBD.
    * @returns {boolean} TBD.
    */
-  hitTest(displayObject, pointer, localPoint) {
+  hitTest(displayObject: import('../display/display_object.js').DisplayObject, pointer: Pointer, localPoint: Point) {
     if (!displayObject.worldVisible) {
       return false;
     }

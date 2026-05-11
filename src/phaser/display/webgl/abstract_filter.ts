@@ -1,17 +1,17 @@
-// @ts-nocheck
 export class AbstractFilter {
-passes;
-shaders;
-dirty;
-padding;
-uniforms;
-fragmentSrc;
+  [key: string]: any;
+  passes!: any;
+  shaders!: any;
+  dirty!: any;
+  padding!: any;
+  uniforms!: any;
+  fragmentSrc!: any;
   /**
    * Creates a new AbstractFilter instance.
    * @param {string[]} fragmentSrc - The fragment shader source.
    * @param {object} uniforms - The uniform variables for the shader.
    */
-  constructor(fragmentSrc, uniforms) {
+  constructor(fragmentSrc: string[], uniforms?: any) {
     this.passes = [this];
     this.shaders = [];
     this.dirty = true;

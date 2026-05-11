@@ -15,7 +15,7 @@ export class Line {
    * @param {number} x2 - The x coordinate of the end point (default: 0).
    * @param {number} y2 - The y coordinate of the end point (default: 0).
    */
-  constructor(x1 = 0, y1 = 0, x2 = 0, y2 = 0) {
+  constructor(x1: number = 0, y1: number = 0, x2: number = 0, y2: number = 0) {
     /** @type {Point} */
     this.start = new Point(x1, y1);
     /** @type {Point} */
@@ -32,7 +32,7 @@ export class Line {
    * @param {number} y2 - The new y coordinate of the end point.
    * @returns {Line} This line instance for chaining.
    */
-  setTo(x1, y1, x2, y2) {
+  setTo(x1: number, y1: number, x2: number, y2: number) {
     this.start.setTo(x1, y1);
     this.end.setTo(x2, y2);
     return this;
@@ -45,7 +45,7 @@ export class Line {
    * @param {boolean} useCenter - Whether to use the center of the sprites (default: false).
    * @returns {Line} This line instance for chaining.
    */
-  fromSprite(startSprite, endSprite, useCenter = false) {
+  fromSprite(startSprite: any, endSprite: any, useCenter: boolean = false) {
     if (useCenter) {
       return this.setTo(startSprite.center.x, startSprite.center.y, endSprite.center.x, endSprite.center.y);
     }
@@ -60,7 +60,7 @@ export class Line {
    * @param {number} length - The length of the line.
    * @returns {Line} This line instance for chaining.
    */
-  fromAngle(x, y, angle, length) {
+  fromAngle(x: number, y: number, angle: number, length: number) {
     this.start.setTo(x, y);
     this.end.setTo(x + Math.cos(angle) * length, y + Math.sin(angle) * length);
     return this;
@@ -72,7 +72,7 @@ export class Line {
    * @param {boolean} asDegrees - Whether the angle is provided in degrees (default: false).
    * @returns {Line} This line instance for chaining.
    */
-  rotate(angle, asDegrees = false) {
+  rotate(angle: number, asDegrees: boolean = false) {
     const cx = (this.start.x + this.end.x) / 2;
     const cy = (this.start.y + this.end.y) / 2;
     this.start.rotate(cx, cy, angle, asDegrees);
@@ -88,7 +88,7 @@ export class Line {
    * @param {boolean} asDegrees - Whether the angle is provided in degrees (default: false).
    * @returns {Line} This line instance for chaining.
    */
-  rotateAround(x, y, angle, asDegrees = false) {
+  rotateAround(x: number, y: number, angle: number, asDegrees: boolean = false) {
     this.start.rotate(x, y, angle, asDegrees);
     this.end.rotate(x, y, angle, asDegrees);
     return this;
@@ -101,7 +101,7 @@ export class Line {
    * @param {Point} result - The point to store the intersection in (optional).
    * @returns {Point} The intersection point, or null if no intersection occurs.
    */
-  intersects(line, asSegment, result) {
+  intersects(line: Line, asSegment: boolean, result: Point) {
     return intersectsPoints(this.start, this.end, line.start, line.end, asSegment, result);
   }
 
@@ -110,7 +110,7 @@ export class Line {
    * @param {Line} line - The line to reflect off.
    * @returns {number} The angle of reflection in radians.
    */
-  reflect(line) {
+  reflect(line: Line) {
     return reflect(this, line);
   }
 
@@ -119,7 +119,7 @@ export class Line {
    * @param {Point} output - The point to store the result in (optional).
    * @returns {Point} The midpoint of this line.
    */
-  midPoint(output = null) {
+  midPoint(output: Point = null) {
     const result = output || new Point();
     result.x = (this.start.x + this.end.x) / 2;
     result.y = (this.start.y + this.end.y) / 2;
@@ -131,7 +131,7 @@ export class Line {
    * @param {number} x - The x coordinate to center the line on.
    * @param {number} y - The y coordinate to center the line on.
    */
-  centerOn(x, y) {
+  centerOn(x: number, y: number) {
     const cx = (this.start.x + this.end.x) / 2;
     const cy = (this.start.y + this.end.y) / 2;
     const tx = x - cx;
@@ -146,7 +146,7 @@ export class Line {
    * @param {number} y - The y coordinate of the point to check.
    * @returns {boolean} True if the point lies on this line, false otherwise.
    */
-  pointOnLine(x, y) {
+  pointOnLine(x: number, y: number) {
     return (x - this.start.x) * (this.end.y - this.start.y) === (this.end.x - this.start.x) * (y - this.start.y);
   }
 
@@ -156,7 +156,7 @@ export class Line {
    * @param {number} y - The y coordinate of the point to check.
    * @returns {boolean} True if the point lies on this line segment, false otherwise.
    */
-  pointOnSegment(x, y) {
+  pointOnSegment(x: number, y: number) {
     const xMin = Math.min(this.start.x, this.end.x);
     const xMax = Math.max(this.start.x, this.end.x);
     const yMin = Math.min(this.start.y, this.end.y);
@@ -169,7 +169,7 @@ export class Line {
    * @param {Point} output - The point to store the result in (optional).
    * @returns {Point} A random point on this line.
    */
-  random(output = null) {
+  random(output: Point = null) {
     const result = output || new Point();
     const t = Math.random();
     result.x = this.start.x + t * (this.end.x - this.start.x);
@@ -183,7 +183,7 @@ export class Line {
    * @param {number[][]} results - The array to store the results in (optional).
    * @returns {number[][]} An array of coordinate pairs representing points along this line.
    */
-  coordinatesOnLine(stepRate = 1, results = []) {
+  coordinatesOnLine(stepRate: number = 1, results: number[][] = []) {
     let x1 = Math.round(this.start.x);
     let y1 = Math.round(this.start.y);
     const x2 = Math.round(this.end.x);

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { setTouchAction, setUserSelect } from '../display/canvas/util.js';
 import { DisplayObject } from '../display/display_object.js';
 import { Matrix } from '../geom/matrix.js';
@@ -6,15 +5,15 @@ import { valueToColor } from '../util/math.js';
 import { SCALE_LINEAR, SCALE_NEAREST } from './const.js';
 
 export class Stage extends DisplayObject {
-name;
-worldTransform;
-currentRenderOrderID;
-_bgColor;
+  declare name: any;
+  declare worldTransform: any;
+  currentRenderOrderID!: any;
+  _bgColor!: any;
   /**
    * Creates a new Stage instance.
    * @param {import('./game.js').Game} game - The game instance.
    */
-  constructor(game) {
+  constructor(game: import('./game.js').Game) {
     super(game);
     this.name = '_stage_root';
     this.worldTransform = new Matrix();
@@ -40,7 +39,7 @@ _bgColor;
    * Sets the background color of the stage.
    * @param {number} color - The color to set as the background.
    */
-  setBackgroundColor(color) {
+  setBackgroundColor(color: number) {
     if (this.game.config.transparent) {
       return;
     }
@@ -95,11 +94,12 @@ _bgColor;
   /**
    * Updates the stage's transformation matrix.
    */
-  updateTransform() {
+  updateTransform(): this {
     this.worldAlpha = 1;
     for (let i = 0; i < this.children.length; i += 1) {
       this.children[i].updateTransform();
     }
+    return this;
   }
 
   /**

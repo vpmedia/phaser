@@ -1,39 +1,38 @@
-// @ts-nocheck
 import { Timer } from './timer.js';
 
 export class Time {
-game;
-time;
-prevTime;
-now;
-elapsed;
-elapsedMS;
-desiredFpsMult;
-_desiredFps;
-suggestedFps;
-advancedTiming;
-frames;
-fps;
-fpsMin;
-fpsMax;
-msMin;
-msMax;
-pauseDuration;
-timeToCall;
-timeExpected;
-events;
-_frameCount;
-_elapsedAccumulator;
-_started;
-_timeLastSecond;
-_pauseStarted;
-_justResumed;
-_timers;
+game!: any;
+time!: any;
+prevTime!: any;
+now!: any;
+elapsed!: any;
+elapsedMS!: any;
+desiredFpsMult!: any;
+_desiredFps!: any;
+suggestedFps!: any;
+advancedTiming!: any;
+frames!: any;
+fps!: any;
+fpsMin!: any;
+fpsMax!: any;
+msMin!: any;
+msMax!: any;
+pauseDuration!: any;
+timeToCall!: any;
+timeExpected!: any;
+events!: any;
+_frameCount!: any;
+_elapsedAccumulator!: any;
+_started!: any;
+_timeLastSecond!: any;
+_pauseStarted!: any;
+_justResumed!: any;
+_timers!: any;
   /**
    * Creates a new Time instance.
    * @param {import('./game.js').Game} game - Reference to the Phaser Game instance.
    */
-  constructor(game) {
+  constructor(game: import('./game.js').Game) {
     this.game = game;
     /** @type {number} */
     this.time = 0;
@@ -103,7 +102,7 @@ _timers;
    * @param {Timer} timer - The Timer to add.
    * @returns {Timer} The added Timer object.
    */
-  add(timer) {
+  add(timer: Timer) {
     this._timers.push(timer);
     return timer;
   }
@@ -113,7 +112,7 @@ _timers;
    * @param {boolean} autoDestroy - Whether the timer should be automatically destroyed when it completes.
    * @returns {Timer} The created Timer object.
    */
-  create(autoDestroy = true) {
+  create(autoDestroy: boolean = true) {
     const timer = new Timer(this.game, autoDestroy);
     this._timers.push(timer);
     return timer;
@@ -145,7 +144,7 @@ _timers;
    * Updates the Time manager with a new timestamp.
    * @param {number} time - The new timestamp to use for updating.
    */
-  update(time) {
+  update(time: number) {
     const previousDateNow = this.time;
     // this.time always holds a Date.now value
     this.time = Date.now();
@@ -254,7 +253,7 @@ _timers;
    * @param {number} since - The timestamp to calculate elapsed time from.
    * @returns {number} The elapsed time in milliseconds.
    */
-  elapsedSince(since) {
+  elapsedSince(since: number) {
     return this.time - since;
   }
 
@@ -263,7 +262,7 @@ _timers;
    * @param {number} since - The timestamp to calculate elapsed time from.
    * @returns {number} The elapsed time in seconds.
    */
-  elapsedSecondsSince(since) {
+  elapsedSecondsSince(since: number) {
     return (this.time - since) * 0.001;
   }
 

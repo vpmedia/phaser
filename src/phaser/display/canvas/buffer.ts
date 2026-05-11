@@ -1,17 +1,16 @@
-// @ts-nocheck
 import { create, removeByCanvas } from './pool.js';
 
 export class CanvasBuffer {
-width;
-height;
-canvas;
-context;
+width!: any;
+height!: any;
+canvas!: any;
+context!: any;
   /**
    * Creates a new CanvasBuffer instance.
    * @param {number} width - The width of the canvas buffer.
    * @param {number} height - The height of the canvas buffer.
    */
-  constructor(width, height) {
+  constructor(width: number, height: number) {
     this.width = width;
     this.height = height;
     this.canvas = create(this, this.width, this.height);
@@ -33,7 +32,7 @@ context;
    * @param {number} width - The new width of the canvas buffer.
    * @param {number} height - The new height of the canvas buffer.
    */
-  resize(width, height) {
+  resize(width: number, height: number) {
     this.width = width;
     this.height = height;
     this.canvas.width = width;

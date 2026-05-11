@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { TEXT } from '../core/const.js';
 import { Point } from '../geom/point.js';
 import { Rectangle } from '../geom/rectangle.js';
@@ -9,6 +8,26 @@ import { getBounds, renderCanvas, renderWebGL } from './sprite_util.js';
 import { textureFromCanvas } from './webgl/texture_util.js';
 
 export class Text extends Image {
+  declare type: any;
+  canvas!: any;
+  context!: any;
+  padding!: any;
+  textBounds!: any;
+  style!: any;
+  colors!: any;
+  strokeColors!: any;
+  fontStyles!: any;
+  fontWeights!: any;
+  autoRound!: any;
+  useAdvancedWrap!: any;
+  _res!: any;
+  _text!: any;
+  _fontComponents!: any;
+  _lineSpacing!: any;
+  _charCount!: any;
+  declare _width: any;
+  declare _height: any;
+  dirty!: any;
   /**
    * Creates a new Text object.
    * @param {import('../core/game.js').Game} game - The game instance this text belongs to.
@@ -17,7 +36,7 @@ export class Text extends Image {
    * @param {string} text - The text content to display.
    * @param {object} style - The style settings for the text.
    */
-  constructor(game, x, y, text = '', style = {}) {
+  constructor(game: import('../core/game.js').Game, x: number, y: number, text: string = '', style: any = {}) {
     super(game, x, y, null);
     this.game = game;
     /** @type {number} */
@@ -85,7 +104,14 @@ export class Text extends Image {
    * @param {boolean} shadowFill - Whether to apply the shadow to the fill.
    * @returns {Text} This Text object for chaining.
    */
-  setShadow(x = 0, y = 0, color = 'rgba(0, 0, 0, 1)', blur = 0, shadowStroke = true, shadowFill = true) {
+  setShadow(
+    x: number = 0,
+    y: number = 0,
+    color: string = 'rgba(0, 0, 0, 1)',
+    blur: number = 0,
+    shadowStroke: boolean = true,
+    shadowFill: boolean = true
+  ) {
     this.style.shadowOffsetX = x;
     this.style.shadowOffsetY = y;
     this.style.shadowColor = color;
@@ -102,7 +128,7 @@ export class Text extends Image {
    * @param {boolean} update - Whether to update the text immediately.
    * @returns {Text} This Text object for chaining.
    */
-  setStyle(style = null, update = false) {
+  setStyle(style: any = null, update: boolean = false) {
     style = JSON.parse(JSON.stringify(style)) || {};
     style.font = style.font || 'bold 20pt Arial';
     style.backgroundColor = style.backgroundColor || null;
@@ -152,7 +178,7 @@ export class Text extends Image {
   updateText() {
     this.texture.baseTexture.resolution = this._res;
     this.context.font = this.style.font;
-    let outputText = this.text;
+    let outputText: any = this.text;
     if (this.style.wordWrap) {
       outputText = this.runWordWrap(this.text);
     }
@@ -316,7 +342,7 @@ export class Text extends Image {
    * @param {number} y - The y position to start rendering from.
    * @param {boolean} fill - True to fill the text, false to stroke it.
    */
-  renderTabLine(line, x, y, fill) {
+  renderTabLine(line: string, x: number, y: number, fill: boolean) {
     const text = line.split(/(?:\t)/);
     const tabs = this.style.tabs;
     let snap = 0;
@@ -352,7 +378,7 @@ export class Text extends Image {
    * Updates the shadow properties for this text.
    * @param {string} state - The shadow state to update ('stroke' or 'fill').
    */
-  updateShadow(state) {
+  updateShadow(state: string) {
     if (state) {
       this.context.shadowOffsetX = this.style.shadowOffsetX;
       this.context.shadowOffsetY = this.style.shadowOffsetY;
@@ -371,7 +397,7 @@ export class Text extends Image {
    * @param {string} line - The line of text to measure.
    * @returns {number} The width of the line in pixels.
    */
-  measureLine(line) {
+  measureLine(line: string) {
     let lineLength = 0;
     for (let i = 0; i < line.length; i += 1) {
       const letter = line[i];
@@ -409,7 +435,7 @@ export class Text extends Image {
    * @param {number} x - The x position to start updating from.
    * @param {number} y - The y position to start updating from.
    */
-  updateLine(line, x, y) {
+  updateLine(line: string, x: number, y: number) {
     for (let i = 0; i < line.length; i += 1) {
       const letter = line[i];
       if (this.fontWeights.length > 0 || this.fontStyles.length > 0) {
@@ -469,7 +495,7 @@ export class Text extends Image {
    * @param {number} position - The character position to apply the color at.
    * @returns {Text} This Text object for chaining.
    */
-  addColor(color, position) {
+  addColor(color: string, position: number) {
     this.colors[position] = color;
     this.dirty = true;
     return this;
@@ -481,7 +507,7 @@ export class Text extends Image {
    * @param {number} position - The character position to apply the stroke color at.
    * @returns {Text} This Text object for chaining.
    */
-  addStrokeColor(color, position) {
+  addStrokeColor(color: number, position: number) {
     this.strokeColors[position] = color;
     this.dirty = true;
     return this;
@@ -493,7 +519,7 @@ export class Text extends Image {
    * @param {number} position - The character position to apply the font style at.
    * @returns {Text} This Text object for chaining.
    */
-  addFontStyle(style, position) {
+  addFontStyle(style: any, position: number) {
     this.fontStyles[position] = style;
     this.dirty = true;
     return this;
@@ -505,7 +531,7 @@ export class Text extends Image {
    * @param {number} position - The character position to apply the font weight at.
    * @returns {Text} This Text object for chaining.
    */
-  addFontWeight(weight, position) {
+  addFontWeight(weight: number, position: number) {
     this.fontWeights[position] = weight;
     this.dirty = true;
     return this;
@@ -516,7 +542,7 @@ export class Text extends Image {
    * @param {string} text - The text to precalculate word wrap for.
    * @returns {string[]} The wrapped lines of text.
    */
-  precalculateWordWrap(text) {
+  precalculateWordWrap(text: string) {
     this.texture.baseTexture.resolution = this._res;
     this.context.font = this.style.font;
     const wrappedLines = this.runWordWrap(text);
@@ -528,7 +554,7 @@ export class Text extends Image {
    * @param {string} text - The text to run word wrap on.
    * @returns {string} The wrapped text.
    */
-  runWordWrap(text) {
+  runWordWrap(text: any) {
     if (this.useAdvancedWrap) {
       return this.advancedWordWrap(text);
     }
@@ -541,7 +567,7 @@ export class Text extends Image {
    * @returns {string} The wrapped text.
    * @throws {Error} If the wordWrapWidth setting is less than a single character.
    */
-  advancedWordWrap(text) {
+  advancedWordWrap(text: string) {
     const context = this.context;
     const wordWrapWidth = this.style.wordWrapWidth;
     let output = '';
@@ -623,7 +649,7 @@ export class Text extends Image {
    * @param {string} text - The text to run basic word wrap on.
    * @returns {string} The wrapped text.
    */
-  basicWordWrap(text) {
+  basicWordWrap(text: string) {
     let result = '';
     const lines = text.split('\n');
     for (let i = 0; i < lines.length; i += 1) {
@@ -655,7 +681,7 @@ export class Text extends Image {
    * Updates the font properties based on the given components.
    * @param {object} components - The font components to update from.
    */
-  updateFont(components) {
+  updateFont(components: any) {
     const font = this.componentsToFont(components);
     if (this.style.font !== font) {
       this.style.font = font;
@@ -671,7 +697,7 @@ export class Text extends Image {
    * @param {string} font - The font string to convert.
    * @returns {{ font: string, fontStyle?: string, fontVariant?: string, fontWeight?: string, fontSize?: string, fontFamily?: string }} The font components.
    */
-  fontToComponents(font) {
+  fontToComponents(font: string) {
     // The format is specified in http://www.w3.org/TR/CSS2/fonts.html#font-shorthand:
     // style - normal | italic | oblique | inherit
     // variant - normal | small-caps | inherit
@@ -707,7 +733,7 @@ export class Text extends Image {
    * @param {object} components - The font components to convert.
    * @returns {string} The font string.
    */
-  componentsToFont(components) {
+  componentsToFont(components: any) {
     const parts = [];
     let v;
     v = components.fontStyle;
@@ -743,7 +769,7 @@ export class Text extends Image {
    * @param {boolean} immediate - If true, updates the text immediately.
    * @returns {Text} This Text object for chaining.
    */
-  setText(text, immediate = false) {
+  setText(text: any, immediate: boolean = false) {
     this.text = text.toString() || '';
     if (immediate) {
       this.updateText();
@@ -758,7 +784,7 @@ export class Text extends Image {
    * @param {string[]|string[][]} list - The list of text to parse.
    * @returns {Text} This Text object for chaining.
    */
-  parseList(list) {
+  parseList(list: any) {
     if (!Array.isArray(list)) {
       return this;
     }
@@ -789,7 +815,7 @@ export class Text extends Image {
    * @param {number} height - The height of the bounds.
    * @returns {Text} This Text object for chaining.
    */
-  setTextBounds(x, y, width, height) {
+  setTextBounds(x: number, y: number, width: number, height: number) {
     if (x === undefined) {
       this.textBounds = null;
     } else {
@@ -852,7 +878,7 @@ export class Text extends Image {
    * Renders this text object using WebGL.
    * @param {object} renderSession - The render session to use.
    */
-  renderWebGL(renderSession) {
+  renderWebGL(renderSession: any) {
     if (this.dirty) {
       this.updateText();
       this.dirty = false;
@@ -864,7 +890,7 @@ export class Text extends Image {
    * Renders this text object using Canvas.
    * @param {object} renderSession - The render session to use.
    */
-  renderCanvas(renderSession) {
+  renderCanvas(renderSession: any) {
     if (this.dirty) {
       this.updateText();
       this.dirty = false;
@@ -912,7 +938,7 @@ export class Text extends Image {
    * @param {string} font - The font to determine properties for.
    * @returns {object} The font properties.
    */
-  determineFontProperties(font) {
+  determineFontProperties(font: string) {
     const fontPropertiesCache = this.getFontPropertiesCache();
     let properties = fontPropertiesCache[font];
     if (properties) {
@@ -937,7 +963,7 @@ export class Text extends Image {
    * @param {string} fontStyle - The font style to determine properties for.
    * @returns {{ascent: number, descent: number, fontSize: number}} The font properties.
    */
-  determineFontPropertiesFallback(fontStyle) {
+  determineFontPropertiesFallback(fontStyle: string) {
     const fontPropertiesCache = this.getFontPropertiesCache();
     let properties = fontPropertiesCache[fontStyle];
     if (!properties) {
@@ -1018,7 +1044,7 @@ export class Text extends Image {
    * @param {import('../geom/matrix.js').Matrix} matrix - The transformation matrix to use.
    * @returns {Rectangle} The bounds of this text object.
    */
-  getBounds(matrix = null) {
+  getBounds(matrix: import('../geom/matrix.js').Matrix = null) {
     if (this.dirty) {
       this.updateText();
       this.dirty = false;
@@ -1038,7 +1064,7 @@ export class Text extends Image {
    * Sets the text content of this object.
    * @param {string | number | boolean | Date} value - The new text content to set.
    */
-  set text(value) {
+  set text(value: any) {
     if (value !== this._text) {
       this._text = value.toString() || '';
       this.dirty = true;
@@ -1060,7 +1086,7 @@ export class Text extends Image {
    * Sets the CSS font string for this object.
    * @param {string} value - The new CSS font string to set.
    */
-  set cssFont(value) {
+  set cssFont(value: string) {
     this._fontComponents = this.fontToComponents(value || 'bold 20pt Arial');
     this.updateFont(this._fontComponents);
   }
@@ -1077,7 +1103,7 @@ export class Text extends Image {
    * Sets the font family of this object.
    * @param {string} value - The new font family to set.
    */
-  set font(value) {
+  set font(value: string) {
     let mutatedValue = value || 'Arial';
     mutatedValue = mutatedValue.trim();
     // If it looks like the value should be quoted, but isn't, then quote it.
@@ -1105,10 +1131,10 @@ export class Text extends Image {
    * Sets the font size of this object.
    * @param {number} value - The new font size to set.
    */
-  set fontSize(value) {
-    let mutatedValue = value || '0';
+  set fontSize(value: number) {
+    let mutatedValue: any = value || '0';
     if (typeof mutatedValue === 'number') {
-      mutatedValue += 'px';
+      mutatedValue = `${mutatedValue}px`;
     }
     this._fontComponents.fontSize = mutatedValue;
     this.updateFont(this._fontComponents);
@@ -1126,7 +1152,7 @@ export class Text extends Image {
    * Sets the font weight of this object.
    * @param {string} value - The new font weight to set.
    */
-  set fontWeight(value) {
+  set fontWeight(value: string) {
     this._fontComponents.fontWeight = value || 'normal';
     this.updateFont(this._fontComponents);
   }
@@ -1143,7 +1169,7 @@ export class Text extends Image {
    * Sets the font style of this object.
    * @param {string} value - The new font style to set.
    */
-  set fontStyle(value) {
+  set fontStyle(value: string) {
     this._fontComponents.fontStyle = value || 'normal';
     this.updateFont(this._fontComponents);
   }
@@ -1160,7 +1186,7 @@ export class Text extends Image {
    * Sets the font variant of this object.
    * @param {string} value - The new font variant to set.
    */
-  set fontVariant(value) {
+  set fontVariant(value: string) {
     this._fontComponents.fontVariant = value || 'normal';
     this.updateFont(this._fontComponents);
   }
@@ -1177,7 +1203,7 @@ export class Text extends Image {
    * Sets the fill color of this object.
    * @param {string} value - The new fill color to set.
    */
-  set fill(value) {
+  set fill(value: string) {
     if (value !== this.style.fill) {
       this.style.fill = value;
       this.dirty = true;
@@ -1196,7 +1222,7 @@ export class Text extends Image {
    * Sets the alignment of this object.
    * @param {string} value - The new text alignment to set.
    */
-  set align(value) {
+  set align(value: string) {
     if (value !== this.style.align) {
       this.style.align = value;
       this.dirty = true;
@@ -1215,7 +1241,7 @@ export class Text extends Image {
    * Sets the resolution of this object.
    * @param {number} value - The new resolution to set.
    */
-  set resolution(value) {
+  set resolution(value: number) {
     if (value !== this._res) {
       this._res = value;
       this.dirty = true;
@@ -1234,7 +1260,7 @@ export class Text extends Image {
    * Sets the tabs setting of this object.
    * @param {number} value - The new tabs setting to set.
    */
-  set tabs(value) {
+  set tabs(value: number) {
     if (value !== this.style.tabs) {
       this.style.tabs = value;
       this.dirty = true;
@@ -1253,7 +1279,7 @@ export class Text extends Image {
    * Sets the horizontal bounds alignment of this object.
    * @param {number} value - The new horizontal bounds alignment to set.
    */
-  set boundsAlignH(value) {
+  set boundsAlignH(value: number) {
     if (value !== this.style.boundsAlignH) {
       this.style.boundsAlignH = value;
       this.dirty = true;
@@ -1272,7 +1298,7 @@ export class Text extends Image {
    * Sets the vertical bounds alignment of this object.
    * @param {number} value - The new vertical bounds alignment to set.
    */
-  set boundsAlignV(value) {
+  set boundsAlignV(value: number) {
     if (value !== this.style.boundsAlignV) {
       this.style.boundsAlignV = value;
       this.dirty = true;
@@ -1291,7 +1317,7 @@ export class Text extends Image {
    * Sets the stroke color of this object.
    * @param {string} value - The new stroke color to set.
    */
-  set stroke(value) {
+  set stroke(value: string) {
     if (value !== this.style.stroke) {
       this.style.stroke = value;
       this.dirty = true;
@@ -1310,7 +1336,7 @@ export class Text extends Image {
    * Sets the stroke thickness of this object.
    * @param {number} value - The new stroke thickness to set.
    */
-  set strokeThickness(value) {
+  set strokeThickness(value: number) {
     if (value !== this.style.strokeThickness) {
       this.style.strokeThickness = value;
       this.dirty = true;
@@ -1329,7 +1355,7 @@ export class Text extends Image {
    * Sets the word wrap setting of this object.
    * @param {boolean} value - The new word wrap setting to set.
    */
-  set wordWrap(value) {
+  set wordWrap(value: boolean) {
     if (value !== this.style.wordWrap) {
       this.style.wordWrap = value;
       this.dirty = true;
@@ -1348,7 +1374,7 @@ export class Text extends Image {
    * Sets the word wrap width of this object.
    * @param {number} value - The new word wrap width to set.
    */
-  set wordWrapWidth(value) {
+  set wordWrapWidth(value: number) {
     if (value !== this.style.wordWrapWidth) {
       this.style.wordWrapWidth = value;
       this.dirty = true;
@@ -1367,7 +1393,7 @@ export class Text extends Image {
    * Sets the line spacing of this object.
    * @param {number} value - The new line spacing to set.
    */
-  set lineSpacing(value) {
+  set lineSpacing(value: any) {
     if (value !== this._lineSpacing) {
       this._lineSpacing = Number.parseFloat(value);
       this.dirty = true;
@@ -1389,7 +1415,7 @@ export class Text extends Image {
    * Sets the shadow offset X of this object.
    * @param {number} value - The new shadow offset X to set.
    */
-  set shadowOffsetX(value) {
+  set shadowOffsetX(value: number) {
     if (value !== this.style.shadowOffsetX) {
       this.style.shadowOffsetX = value;
       this.dirty = true;
@@ -1408,7 +1434,7 @@ export class Text extends Image {
    * Sets the shadow offset Y of this object.
    * @param {number} value - The new shadow offset Y to set.
    */
-  set shadowOffsetY(value) {
+  set shadowOffsetY(value: number) {
     if (value !== this.style.shadowOffsetY) {
       this.style.shadowOffsetY = value;
       this.dirty = true;
@@ -1427,7 +1453,7 @@ export class Text extends Image {
    * Sets the shadow color of this object.
    * @param {string} value - The new shadow color to set.
    */
-  set shadowColor(value) {
+  set shadowColor(value: string) {
     if (value !== this.style.shadowColor) {
       this.style.shadowColor = value;
       this.dirty = true;
@@ -1446,7 +1472,7 @@ export class Text extends Image {
    * Sets the shadow blur of this object.
    * @param {number} value - The new shadow blur to set.
    */
-  set shadowBlur(value) {
+  set shadowBlur(value: number) {
     if (value !== this.style.shadowBlur) {
       this.style.shadowBlur = value;
       this.dirty = true;
@@ -1465,7 +1491,7 @@ export class Text extends Image {
    * Sets the shadow stroke setting of this object.
    * @param {boolean} value - The new shadow stroke setting to set.
    */
-  set shadowStroke(value) {
+  set shadowStroke(value: boolean) {
     if (value !== this.style.shadowStroke) {
       this.style.shadowStroke = value;
       this.dirty = true;
@@ -1484,7 +1510,7 @@ export class Text extends Image {
    * Sets the shadow fill setting of this object.
    * @param {boolean} value - The new shadow fill setting to set.
    */
-  set shadowFill(value) {
+  set shadowFill(value: boolean) {
     if (value !== this.style.shadowFill) {
       this.style.shadowFill = value;
       this.dirty = true;
@@ -1507,7 +1533,7 @@ export class Text extends Image {
    * Sets the width of this object.
    * @param {number} value - The new width to set in pixels.
    */
-  set width(value) {
+  set width(value: number) {
     this.scale.x = value / this.texture.frame.width;
     this._width = value;
   }
@@ -1528,7 +1554,7 @@ export class Text extends Image {
    * Sets the height of this object.
    * @param {number} value - The new height to set in pixels.
    */
-  set height(value) {
+  set height(value: number) {
     this.scale.y = value / this.texture.frame.height;
     this._height = value;
   }

@@ -8,7 +8,7 @@ import { intersects as intersectsRect } from './rectangle.js';
  * @param {Line} output - Optional line to store the result in.
  * @returns {Line} The cloned line.
  */
-export const clone = (input, output = null) => {
+export const clone = (input: Line, output: Line = null) => {
   const result = output || new Line();
   result.start.x = input.start.x;
   result.start.y = input.start.y;
@@ -27,7 +27,7 @@ export const clone = (input, output = null) => {
  * @param {Point} output - Optional point to store the result in.
  * @returns {Point} The intersection point, or null if there is no intersection.
  */
-export const intersectsPoints = (a, b, e, f, asSegment = true, output = null) => {
+export const intersectsPoints = (a: any, b: any, e: any, f: any, asSegment: boolean = true, output: Point = null) => {
   const result = output || new Point();
   const a1 = b.y - a.y;
   const a2 = f.y - e.y;
@@ -61,7 +61,7 @@ export const intersectsPoints = (a, b, e, f, asSegment = true, output = null) =>
  * @param {Point} result - Optional point to store the result in.
  * @returns {Point} The intersection point, or null if there is no intersection.
  */
-export const intersects = (a, b, asSegment, result) => {
+export const intersects = (a: any, b: any, asSegment: boolean, result: Point) => {
   return intersectsPoints(a.start, a.end, b.start, b.end, asSegment, result);
 };
 
@@ -71,7 +71,7 @@ export const intersects = (a, b, asSegment, result) => {
  * @param {object} rect - The rectangle to check (with x, y, width, height properties).
  * @returns {boolean} True if the line intersects with the rectangle, false otherwise.
  */
-export const intersectsRectangle = (line, rect) => {
+export const intersectsRectangle = (line: any, rect: any) => {
   //  Quick bail out of the Line and Rect bounds don't intersect
   if (!intersectsRect(line, rect)) {
     return false;
@@ -125,6 +125,6 @@ export const intersectsRectangle = (line, rect) => {
  * @param {object} b - The second point (with x, y properties).
  * @returns {number} The distance between the points.
  */
-export const reflect = (a, b) => {
+export const reflect = (a: any, b: any) => {
   return 2 * b.normalAngle - 3.141592653589793 - a.angle;
 };

@@ -9,7 +9,7 @@ const logger = new Logger('device');
  * @param {string} type - The audio format type to check.
  * @returns {boolean} True if the device can play this audio format, false otherwise.
  */
-export const canPlayAudio = (device, type) => {
+export const canPlayAudio = (device: Device, type: string) => {
   return device.supportedAudioFormats[type] === true;
 };
 
@@ -17,7 +17,7 @@ export const canPlayAudio = (device, type) => {
  * Detect the operating system of the device.
  * @param {Device} device - The device instance to update.
  */
-export const checkOS = (device) => {
+export const checkOS = (device: Device) => {
   const ua = navigator.userAgent;
   if (/Android/.test(ua)) {
     device.android = true;
@@ -54,7 +54,7 @@ export const checkOS = (device) => {
  * Detect input capabilities of the device.
  * @param {Device} device - The device instance to update.
  */
-export const checkInput = (device) => {
+export const checkInput = (device: Device) => {
   if (
     'ontouchstart' in document.documentElement ||
     (window.navigator.maxTouchPoints && window.navigator.maxTouchPoints >= 1)
@@ -74,7 +74,7 @@ export const checkInput = (device) => {
  * Check for fullscreen support capabilities.
  * @param {Device} device - The device instance to update.
  */
-export const checkFullScreenSupport = (device) => {
+export const checkFullScreenSupport = (device: Device) => {
   const fs = [
     'requestFullscreen',
     'requestFullScreen',
@@ -121,7 +121,7 @@ export const checkFullScreenSupport = (device) => {
  * Detect the browser type.
  * @param {Device} device - The device instance to update.
  */
-export const checkBrowser = (device) => {
+export const checkBrowser = (device: Device) => {
   const ua = navigator.userAgent;
   if (/Edge\/\d+/.test(ua)) {
     device.edge = true;
@@ -140,7 +140,7 @@ export const checkBrowser = (device) => {
  * @param {string} type - The codec type to check.
  * @returns {boolean} True if the codec is supported, false otherwise.
  */
-export const canPlayType = (audioElement, type) => {
+export const canPlayType = (audioElement: HTMLAudioElement, type: string) => {
   try {
     const canPlayResult = audioElement.canPlayType(type);
     return canPlayResult === 'maybe' || canPlayResult === 'probably';
@@ -156,7 +156,7 @@ export const canPlayType = (audioElement, type) => {
  * @param {string} type - The media source type to check.
  * @returns {boolean} True if the media source type is supported, false otherwise.
  */
-export const isMediaSourceTypeSupported = (type) => {
+export const isMediaSourceTypeSupported = (type: string) => {
   if ('MediaSource' in window) {
     try {
       return MediaSource.isTypeSupported(type);
@@ -176,7 +176,7 @@ export const isMediaSourceTypeSupported = (type) => {
  * @see https://developer.mozilla.org/En/Media_formats_supported_by_the_audio_and_video_elements
  * @see https://bit.ly/iphoneoscodecs
  */
-export const checkAudio = (device) => {
+export const checkAudio = (device: Device) => {
   const audioElement = document.createElement('audio');
   const formats = [
     { type: 'ogg', codecs: ['audio/ogg; codecs="vorbis"'] },
@@ -208,7 +208,7 @@ export const checkAudio = (device) => {
  * Check for supported image formats on the device.
  * @param {Device} device - The device instance to update with image format support.
  */
-export const checkImage = (device) => {
+export const checkImage = (device: Device) => {
   try {
     const avif = new Image();
     avif.src =
@@ -236,7 +236,7 @@ export const checkImage = (device) => {
  * Initialize device capabilities detection.
  * @param {Device} device - The device instance to initialize.
  */
-export const initialize = (device) => {
+export const initialize = (device: Device) => {
   logger.info('initialize');
   checkOS(device);
   checkBrowser(device);

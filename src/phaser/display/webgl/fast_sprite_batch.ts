@@ -1,20 +1,20 @@
-// @ts-nocheck
 export class FastSpriteBatch {
-vertSize;
-maxSize;
-size;
-vertices;
-indices;
-vertexBuffer;
-indexBuffer;
-lastIndexCount;
-drawing;
-currentBatchSize;
-currentBaseTexture;
-currentBlendMode;
-renderSession;
-shader;
-matrix;
+  [key: string]: any;
+vertSize!: any;
+maxSize!: any;
+size!: any;
+vertices!: any;
+indices!: any;
+vertexBuffer!: any;
+indexBuffer!: any;
+lastIndexCount!: any;
+drawing!: any;
+currentBatchSize!: any;
+currentBaseTexture!: any;
+currentBlendMode!: any;
+renderSession!: any;
+shader!: any;
+matrix!: any;
   /**
    * Creates a new FastSpriteBatch instance.
    * @param {WebGLRenderingContext & { id: number }} gl - The WebGL rendering context.
@@ -72,7 +72,7 @@ matrix;
    * @param {object} spriteBatch - The sprite batch to render.
    * @param {object} renderSession - The render session to use.
    */
-  begin(spriteBatch, renderSession) {
+  begin(spriteBatch: any, renderSession: any) {
     this.renderSession = renderSession;
     this.shader = this.renderSession.shaderManager.fastShader;
     this.matrix = spriteBatch.worldTransform.toArray(true);
@@ -90,7 +90,7 @@ matrix;
    * Flushes the sprite batch to WebGL.
    * @param {object} spriteBatch - The sprite batch to flush.
    */
-  render(spriteBatch) {
+  render(spriteBatch: any) {
     const children = spriteBatch.children;
     const sprite = children[0];
     // if the uvs have not updated then no point rendering just yet!
@@ -114,7 +114,7 @@ matrix;
    * Renders a sprite using WebGL.
    * @param {import('../../display/image.js').Image} sprite - The sprite to render.
    */
-  renderSprite(sprite) {
+  renderSprite(sprite: import('../../display/image.js').Image) {
     if (!sprite.visible) {
       return;
     }

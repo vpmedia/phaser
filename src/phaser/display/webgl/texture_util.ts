@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { BaseTexture } from './base_texture.js';
 import { Texture } from './texture.js';
 
@@ -8,7 +7,7 @@ import { Texture } from './texture.js';
  * @param {number} [scaleMode] - The scale mode to use for the texture.
  * @returns {BaseTexture} The newly created BaseTexture instance.
  */
-export const baseTextureFromCanvas = (canvas, scaleMode) => {
+export const baseTextureFromCanvas = (canvas: HTMLCanvasElement, scaleMode: number) => {
   if (canvas.width === 0) {
     canvas.width = 1;
   }
@@ -24,6 +23,6 @@ export const baseTextureFromCanvas = (canvas, scaleMode) => {
  * @param {number} [scaleMode] - The scale mode to use for the texture.
  * @returns {Texture} The newly created Texture instance.
  */
-export const textureFromCanvas = (canvas, scaleMode) => {
+export const textureFromCanvas = (canvas: HTMLCanvasElement, scaleMode?: any) => {
   return new Texture(baseTextureFromCanvas(canvas, scaleMode));
 };

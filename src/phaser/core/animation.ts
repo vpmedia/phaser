@@ -1,53 +1,29 @@
-// @ts-nocheck
 import { Signal } from './signal.js';
 
 export class Animation {
-  /** @type {import('./game.js').Game} */
-  game;
-  /** @type {import('../display/image.js').Image} */
-  _parent;
-  /** @type {import('./frame_data.js').FrameData} */
-  _frameData;
-  /** @type {string} */
-  name;
-  /** @type {Array<string|number>} */
-  _frames;
-  /** @type {number} */
-  delay;
-  /** @type {boolean} */
-  loop;
-  /** @type {number} */
-  loopCount;
-  /** @type {boolean} */
-  isFinished;
-  /** @type {boolean} */
-  isPlaying;
-  /** @type {boolean} */
-  isPaused;
-  /** @type {number} */
-  _pauseStartTime;
-  /** @type {number} */
-  _frameIndex;
-  /** @type {number} */
-  _frameDiff;
-  /** @type {number} */
-  _frameSkip;
-  /** @type {import('./frame.js').Frame} */
-  currentFrame;
-  /** @type {Signal} */
-  onStart;
-  /** @type {Signal | null} */
-  onUpdate;
-  /** @type {Signal} */
-  onComplete;
-  /** @type {Signal} */
-  onLoop;
-  /** @type {boolean} */
-  isReversed;
-  /** @type {number} */
-  _timeLastFrame;
-  /** @type {number} */
-  _timeNextFrame;
+  game!: import('./game.js').Game;
+  _parent!: import('../display/image.js').Image;
+  _frameData!: import('./frame_data.js').FrameData;
+  name!: string;
+  _frames!: any;
+  delay!: number;
+  loop!: boolean;
+  loopCount!: number;
+  isFinished!: boolean;
+  isPlaying!: boolean;
+  isPaused!: boolean;
+  _pauseStartTime!: number;
+  _frameIndex!: number;
+  _frameDiff!: number;
+  _frameSkip!: number;
+  currentFrame!: import('./frame.js').Frame;
+  onStart!: Signal;
+  onUpdate!: Signal | null;
+  onComplete!: Signal;
+  onLoop!: Signal;
+  isReversed!: boolean;
+  _timeLastFrame!: number;
+  _timeNextFrame!: number;
   /**
    * Creates a new Animation instance.
    * @param {import('./game.js').Game} game - The game instance this animation belongs to.
@@ -58,7 +34,7 @@ export class Animation {
    * @param {number} frameRate - The frame rate at which this animation should play (frames per second).
    * @param {boolean} loop - Whether the animation should loop when it completes.
    */
-  constructor(game, parent, name, frameData, frames, frameRate, loop = false) {
+  constructor(game: import('./game.js').Game, parent: import('../display/image.js').Image, name: string, frameData: import('./frame_data.js').FrameData, frames: string[]|number[], frameRate: number, loop: boolean = false) {
     /** @type {import('./game.js').Game} */
     this.game = game;
     this._parent = parent;
@@ -110,7 +86,7 @@ export class Animation {
    * @param {boolean} loop - Whether to loop this animation (if null, uses the original loop setting).
    * @returns {Animation} This Animation instance for chaining.
    */
-  play(frameRate = null, loop = null) {
+  play(frameRate: number = null, loop: boolean = null) {
     if (typeof frameRate === 'number') {
       //  If they set a new frame rate then use it, otherwise use the one set on creation
       this.delay = 1000 / frameRate;
@@ -167,7 +143,8 @@ export class Animation {
    */
   reverseOnce() {
     this.onComplete.addOnce(this.reverse, this);
-    return this.toReversed();
+    this.reverse();
+    return this;
   }
 
   /**
@@ -175,7 +152,7 @@ export class Animation {
    * @param {string|number} frameId - The identifier (name or index) of the frame to set.
    * @param {boolean} useLocalFrameIndex - If true, treats frameId as an index into the local frames array.
    */
-  setFrame(frameId, useLocalFrameIndex = false) {
+  setFrame(frameId: string|number, useLocalFrameIndex: boolean = false) {
     let frameIndex;
     //  Find the index to the desired frame.
     if (typeof frameId === 'string') {
@@ -209,7 +186,7 @@ export class Animation {
    * @param {boolean} resetFrame - If true, resets to the first frame.
    * @param {boolean} dispatchComplete - If true, dispatches the onComplete signal.
    */
-  stop(resetFrame = false, dispatchComplete = false) {
+  stop(resetFrame: boolean = false, dispatchComplete: boolean = false) {
     this.isPlaying = false;
     this.isFinished = true;
     this.paused = false;
@@ -308,7 +285,7 @@ export class Animation {
    * @param {boolean} fromPlay - Whether this call is from play().
    * @returns {boolean} True if the frame was updated, false otherwise.
    */
-  updateCurrentFrame(signalUpdate, fromPlay = false) {
+  updateCurrentFrame(signalUpdate: boolean, fromPlay: boolean = false) {
     if (!this._frameData || !this.currentFrame) {
       // The animation is already destroyed, probably from a callback
       return false;
@@ -331,7 +308,7 @@ export class Animation {
    * Advances the animation to the next frame(s).
    * @param {number} quantity - The number of frames to advance by.
    */
-  next(quantity = 1) {
+  next(quantity: number = 1) {
     let frame = this._frameIndex + quantity;
     if (frame >= this._frames.length) {
       if (this.loop) {
@@ -350,7 +327,7 @@ export class Animation {
    * Moves the animation to the previous frame(s).
    * @param {number} quantity - The number of frames to move back by.
    */
-  previous(quantity = 1) {
+  previous(quantity: number = 1) {
     let frame = this._frameIndex - quantity;
     if (frame < 0) {
       if (this.loop) {
@@ -369,7 +346,7 @@ export class Animation {
    * Updates the frame data used by this animation.
    * @param {import('./frame_data.js').FrameData} frameData - The new FrameData object to use.
    */
-  updateFrameData(frameData) {
+  updateFrameData(frameData: import('./frame_data.js').FrameData) {
     this._frameData = frameData;
     this.currentFrame = this._frameData
       ? this._frameData.getFrame(this._frames[this._frameIndex % this._frames.length])
@@ -425,7 +402,7 @@ export class Animation {
    * Sets whether this animation is currently paused.
    * @param {boolean} value - True to pause the animation, false to resume it.
    */
-  set paused(value) {
+  set paused(value: boolean) {
     this.isPaused = value;
     if (value) {
       this._pauseStartTime = this.game.time.time;
@@ -446,7 +423,7 @@ export class Animation {
    * Sets whether this animation is currently reversed.
    * @param {boolean} value - True to reverse the animation, false to normal direction.
    */
-  set reversed(value) {
+  set reversed(value: boolean) {
     this.isReversed = value;
   }
 
@@ -473,7 +450,7 @@ export class Animation {
    * Sets the current frame index.
    * @param {number} value - The new frame index to set.
    */
-  set frame(value) {
+  set frame(value: number) {
     this.currentFrame = this._frameData.getFrame(this._frames[value]);
     if (this.currentFrame !== null) {
       this._frameIndex = value;
@@ -496,7 +473,7 @@ export class Animation {
    * Sets the animation speed (frame rate).
    * @param {number} value - The new frame rate in frames per second.
    */
-  set speed(value) {
+  set speed(value: number) {
     if (value > 0) {
       this.delay = 1000 / value;
     }
@@ -514,7 +491,7 @@ export class Animation {
    * Sets whether the update signal is enabled.
    * @param {boolean} value - True to enable the update signal, false to disable it.
    */
-  set enableUpdate(value) {
+  set enableUpdate(value: boolean) {
     if (value && this.onUpdate === null) {
       this.onUpdate = new Signal();
     } else if (!value && this.onUpdate !== null) {

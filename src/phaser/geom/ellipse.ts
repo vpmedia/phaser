@@ -17,7 +17,7 @@ export class Ellipse {
    * @param {number} width - The width of the ellipse (default: 0).
    * @param {number} height - The height of the ellipse (default: 0).
    */
-  constructor(x = 0, y = 0, width = 0, height = 0) {
+  constructor(x: number = 0, y: number = 0, width: number = 0, height: number = 0) {
     /** @type {number} */
     this.x = x;
     /** @type {number} */
@@ -38,7 +38,7 @@ export class Ellipse {
    * @param {number} height - The new height of the ellipse.
    * @returns {Ellipse} This ellipse instance for chaining.
    */
-  setTo(x, y, width, height) {
+  setTo(x: number, y: number, width: number, height: number) {
     this.x = x;
     this.y = y;
     this.width = width;
@@ -59,7 +59,7 @@ export class Ellipse {
    * @param {Ellipse} source - The ellipse to copy values from.
    * @returns {Ellipse} This ellipse instance for chaining.
    */
-  copyFrom(source) {
+  copyFrom(source: Ellipse) {
     return this.setTo(source.x, source.y, source.width, source.height);
   }
 
@@ -68,7 +68,7 @@ export class Ellipse {
    * @param {Ellipse} dest - The ellipse to copy values to.
    * @returns {Ellipse} The destination ellipse.
    */
-  copyTo(dest) {
+  copyTo(dest: Ellipse) {
     dest.x = this.x;
     dest.y = this.y;
     dest.width = this.width;
@@ -82,7 +82,7 @@ export class Ellipse {
    * @param {number} y - The y coordinate of the point to check.
    * @returns {boolean} True if the point is contained within this ellipse, false otherwise.
    */
-  contains(x, y) {
+  contains(x: number, y: number) {
     return contains(this, x, y);
   }
 
@@ -91,7 +91,7 @@ export class Ellipse {
    * @param {Point} output - The point to store the result in (optional).
    * @returns {Point} A random point within this ellipse.
    */
-  random(output = null) {
+  random(output: Point = null) {
     const result = output || new Point();
     const p = Math.random() * Math.PI * 2;
     const r = Math.random();

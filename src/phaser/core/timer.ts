@@ -1,34 +1,33 @@
-// @ts-nocheck
 import { Signal } from './signal.js';
 import { TimerEvent } from './timer_event.js';
 
 export class Timer {
-game;
-running;
-autoDestroy;
-expired;
-elapsed;
-events;
-onComplete;
-nextTick;
-timeCap;
-paused;
-_codePaused;
-_started;
-_pauseStarted;
-_pauseTotal;
-_now;
-_len;
-_marked;
-_i;
-_diff;
-_newTick;
+  game!: any;
+  running!: any;
+  autoDestroy!: any;
+  expired!: any;
+  elapsed!: any;
+  events!: any;
+  onComplete!: any;
+  nextTick!: any;
+  timeCap!: any;
+  paused!: any;
+  _codePaused!: any;
+  _started!: any;
+  _pauseStarted!: any;
+  _pauseTotal!: any;
+  _now!: any;
+  _len!: any;
+  _marked!: any;
+  _i!: any;
+  _diff!: any;
+  _newTick!: any;
   /**
    * Creates a new Timer instance.
    * @param {import('./game.js').Game} game - The game instance.
    * @param {boolean} autoDestroy - Whether to automatically destroy the timer when it completes.
    */
-  constructor(game, autoDestroy = false) {
+  constructor(game: import('./game.js').Game, autoDestroy: boolean = false) {
     this.game = game;
     /** @type {boolean} */
     this.running = false;
@@ -80,7 +79,14 @@ _newTick;
    * @param {...any} args - Arguments to pass to the callback function.
    * @returns {TimerEvent} The created TimerEvent.
    */
-  create(delay, loop, repeatCount, callback, callbackContext = null, args) {
+  create(
+    delay: number,
+    loop: boolean,
+    repeatCount: number,
+    callback: Function,
+    callbackContext: any = null,
+    args: any = []
+  ) {
     const roundedDelay = Math.round(delay);
     let tick = roundedDelay;
     if (this._now === 0) {
@@ -103,7 +109,7 @@ _newTick;
    * @param {...any} args - Arguments to pass to the callback function.
    * @returns {TimerEvent} The created TimerEvent.
    */
-  add(delay, callback, callbackContext = null, ...args) {
+  add(delay: number, callback: Function, callbackContext: any = null, ...args: any[]) {
     return this.create(delay, false, 0, callback, callbackContext, args);
   }
 
@@ -114,7 +120,7 @@ _newTick;
    * @param {...T} args - Arguments to pass to the resolve function.
    * @returns {Promise<T | T[]>} The created Promise.
    */
-  wait(delay, ...args) {
+  wait(delay: number, ...args: any[]) {
     return new Promise((resolve) => {
       this.create(delay, false, 0, () => {
         resolve(args.length <= 1 ? args[0] : args);
@@ -131,7 +137,7 @@ _newTick;
    * @param {...any} args - Arguments to pass to the callback function.
    * @returns {TimerEvent} The created TimerEvent.
    */
-  repeat(delay, repeatCount, callback, callbackContext = null, ...args) {
+  repeat(delay: number, repeatCount: number, callback: Function, callbackContext: any = null, ...args: any[]) {
     return this.create(delay, false, repeatCount, callback, callbackContext, args);
   }
 
@@ -143,7 +149,7 @@ _newTick;
    * @param {...any} args - Arguments to pass to the callback function.
    * @returns {TimerEvent} The created TimerEvent.
    */
-  loop(delay, callback, callbackContext = null, ...args) {
+  loop(delay: number, callback: Function, callbackContext: any = null, ...args: any[]) {
     return this.create(delay, true, 0, callback, callbackContext, args);
   }
 
@@ -151,7 +157,7 @@ _newTick;
    * Starts the timer.
    * @param {number} delay - The delay in milliseconds before starting (optional).
    */
-  start(delay = 0) {
+  start(delay: number = 0) {
     if (this.running) {
       return;
     }
@@ -166,7 +172,7 @@ _newTick;
    * Stops the timer.
    * @param {boolean} clearEvents - Whether to clear all events (default: true).
    */
-  stop(clearEvents = true) {
+  stop(clearEvents: boolean = true) {
     this.running = false;
     if (clearEvents) {
       this.events.length = 0;
@@ -178,7 +184,7 @@ _newTick;
    * @param {TimerEvent | null | undefined} event - The TimerEvent to remove.
    * @returns {boolean} True if the event was removed, false otherwise.
    */
-  remove(event) {
+  remove(event: TimerEvent | null | undefined) {
     for (let i = 0; i < this.events.length; i += 1) {
       if (this.events[i] === event) {
         this.events[i].pendingDelete = true;
@@ -205,7 +211,7 @@ _newTick;
    * @param {TimerEvent} b - Second TimerEvent to compare.
    * @returns {number} Comparison result (-1, 0, or 1).
    */
-  sortHandler(a, b) {
+  sortHandler(a: TimerEvent, b: TimerEvent) {
     if (a.tick < b.tick) {
       return -1;
     } else if (a.tick > b.tick) {
@@ -234,7 +240,7 @@ _newTick;
    * @param {number} time - The current time in milliseconds.
    * @returns {boolean} True if the timer should continue running, false if it should be destroyed.
    */
-  update(time) {
+  update(time: number) {
     if (this.paused) {
       return true;
     }
@@ -319,7 +325,7 @@ _newTick;
    * Adjusts timer events when time has jumped (e.g., when tab is switched).
    * @param {number} baseTime - The time to adjust from.
    */
-  adjustEvents(baseTime) {
+  adjustEvents(baseTime: number) {
     for (let i = 0; i < this.events.length; i += 1) {
       if (!this.events[i].pendingDelete) {
         //  Work out how long there would have been from when the game paused until the events next tick

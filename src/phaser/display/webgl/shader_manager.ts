@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { ComplexPrimitiveShader } from './shader/complex.js';
 import { FastShader } from './shader/fast.js';
 import { NormalShader } from './shader/normal.js';
@@ -6,16 +5,17 @@ import { PrimitiveShader } from './shader/primitive.js';
 import { StripShader } from './shader/strip.js';
 
 export class WebGLShaderManager {
-gl;
-primitiveShader;
-complexPrimitiveShader;
-defaultShader;
-fastShader;
-stripShader;
-maxAttibs;
-attribState;
-tempAttribState;
-stack;
+  [key: string]: any;
+gl!: any;
+primitiveShader!: any;
+complexPrimitiveShader!: any;
+defaultShader!: any;
+fastShader!: any;
+stripShader!: any;
+maxAttibs!: any;
+attribState!: any;
+tempAttribState!: any;
+stack!: any;
   /**
    * Initializes the shader manager with a WebGL context.
    */
@@ -53,7 +53,7 @@ stack;
    * Sets up the shader manager for WebGL rendering.
    * @param {number[]} attribs - The attribute locations to set up.
    */
-  setAttribs(attribs) {
+  setAttribs(attribs: number[]) {
     // reset temp state
     let i;
     for (i = 0; i < this.tempAttribState.length; i += 1) {
@@ -82,7 +82,7 @@ stack;
    * @param {NormalShader} shader - The shader to set up.
    * @returns {boolean} Whether the shader setup was successful.
    */
-  setShader(shader) {
+  setShader(shader: NormalShader) {
     if (this._currentId === shader._UID) {
       return false;
     }

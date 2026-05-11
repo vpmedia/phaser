@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { renderGraphicsMask } from './graphics.js';
 
 /**
@@ -6,7 +5,7 @@ import { renderGraphicsMask } from './graphics.js';
  * @param {object} maskData - The mask data to apply.
  * @param {object} renderSession - The rendering session object.
  */
-export const pushMask = (maskData, renderSession) => {
+export const pushMask = (maskData: any, renderSession: any) => {
   const context = renderSession.context;
   context.save();
   const cacheAlpha = maskData.alpha;
@@ -29,6 +28,6 @@ export const pushMask = (maskData, renderSession) => {
  * Pops a mask from the rendering stack.
  * @param {object} renderSession - The rendering session object.
  */
-export const popMask = (renderSession) => {
+export const popMask = (renderSession: any) => {
   renderSession.context.restore();
 };

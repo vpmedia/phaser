@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { Group } from '../display/group.js';
 
 export class World extends Group {
@@ -6,7 +5,7 @@ export class World extends Group {
    * Creates a new World instance.
    * @param {import('./game.js').Game} game - The game instance this world belongs to.
    */
-  constructor(game) {
+  constructor(game: import('./game.js').Game) {
     super(game, null, '__world', false);
   }
 

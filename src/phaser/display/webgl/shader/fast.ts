@@ -1,21 +1,21 @@
-// @ts-nocheck
 import { v4 as uuidv4 } from 'uuid';
 import { compileProgram } from '../util.js';
 
 // this shader is used for the fast sprite rendering
 
 export class FastShader {
-gl;
-_UID;
-program;
-textureCount;
-fragmentSrc;
-vertexSrc;
+  [key: string]: any;
+gl!: any;
+_UID!: any;
+program!: any;
+textureCount!: any;
+fragmentSrc!: any;
+vertexSrc!: any;
   /**
    * Creates a new FastShader instance.
    * @param {WebGLRenderingContext} gl - The WebGL rendering context.
    */
-  constructor(gl) {
+  constructor(gl: WebGLRenderingContext) {
     this.gl = gl;
     this._UID = uuidv4();
     /** @type {WebGLProgram} */

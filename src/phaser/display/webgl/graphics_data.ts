@@ -1,19 +1,19 @@
-// @ts-nocheck
 export class GraphicsData {
-gl;
-color;
-points;
-indices;
-buffer;
-indexBuffer;
-mode;
-alpha;
-dirty;
+  [key: string]: any;
+gl!: any;
+color!: any;
+points!: any;
+indices!: any;
+buffer!: any;
+indexBuffer!: any;
+mode!: any;
+alpha!: any;
+dirty!: any;
   /**
    * Creates a new GraphicsData instance.
    * @param {WebGLRenderingContext} gl - The WebGL rendering context.
    */
-  constructor(gl) {
+  constructor(gl: WebGLRenderingContext) {
     this.gl = gl;
     // TODO does this need to be split before uploading??
     this.color = [0, 0, 0]; // color split!

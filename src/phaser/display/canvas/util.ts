@@ -9,7 +9,7 @@ import { create as createCanvas } from './pool.js';
  * @param {boolean} skipPool - Whether to skip using the canvas pool.
  * @returns {HTMLCanvasElement} The created HTML canvas element.
  */
-export const create = (parent, width, height, id, skipPool) => {
+export const create = (parent: any, width: number, height: number, id: string, skipPool: boolean) => {
   width = width || 256;
   height = height || 256;
   const canvas = skipPool ? document.createElement('canvas') : createCanvas(parent, width, height);
@@ -28,7 +28,7 @@ export const create = (parent, width, height, id, skipPool) => {
  * @param {string} color - The background color to set.
  * @returns {HTMLCanvasElement} The modified canvas element.
  */
-export const setBackgroundColor = (canvas, color) => {
+export const setBackgroundColor = (canvas: HTMLCanvasElement, color: string) => {
   color = color || 'rgb(0,0,0)';
   canvas.style.backgroundColor = color;
   return canvas;
@@ -40,7 +40,7 @@ export const setBackgroundColor = (canvas, color) => {
  * @param {string} value - The touch action value to set.
  * @returns {HTMLCanvasElement} The modified canvas element.
  */
-export const setTouchAction = (canvas, value = 'none') => {
+export const setTouchAction = (canvas: HTMLCanvasElement, value: string = 'none') => {
   value = value || 'none';
   // @ts-ignore
   canvas.style.msTouchAction = value;
@@ -55,7 +55,7 @@ export const setTouchAction = (canvas, value = 'none') => {
  * @param {string} value - The user select value to set.
  * @returns {HTMLCanvasElement} The modified canvas element.
  */
-export const setUserSelect = (canvas, value = 'none') => {
+export const setUserSelect = (canvas: HTMLCanvasElement, value: string = 'none') => {
   value = value || 'none';
   canvas.style['-webkit-touch-callout'] = value;
   canvas.style['-webkit-user-select'] = value;
@@ -74,7 +74,7 @@ export const setUserSelect = (canvas, value = 'none') => {
  * @param {boolean} overflowHidden - Whether to set overflow hidden on the parent.
  * @returns {HTMLCanvasElement} The added canvas element.
  */
-export const addToDOM = (canvas, parent, overflowHidden = true) => {
+export const addToDOM = (canvas: HTMLCanvasElement, parent: any, overflowHidden: boolean = true) => {
   let target;
   if (parent) {
     if (typeof parent === 'string') {
@@ -100,7 +100,7 @@ export const addToDOM = (canvas, parent, overflowHidden = true) => {
  * Removes a canvas element from the DOM.
  * @param {HTMLCanvasElement} canvas - The canvas element to remove.
  */
-export const removeFromDOM = (canvas) => {
+export const removeFromDOM = (canvas: HTMLCanvasElement) => {
   if (canvas && canvas.parentNode) {
     canvas.parentNode.removeChild(canvas);
   }
@@ -117,7 +117,7 @@ export const removeFromDOM = (canvas) => {
  * @param {number} skewY - The Y skew value.
  * @returns {CanvasRenderingContext2D} The modified rendering context.
  */
-export const setTransform = (context, translateX, translateY, scaleX, scaleY, skewX, skewY) => {
+export const setTransform = (context: CanvasRenderingContext2D, translateX: number, translateY: number, scaleX: number, scaleY: number, skewX: number, skewY: number) => {
   context.setTransform(scaleX, skewX, skewY, scaleY, translateX, translateY);
   return context;
 };
@@ -127,7 +127,7 @@ export const setTransform = (context, translateX, translateY, scaleX, scaleY, sk
  * @param {CanvasRenderingContext2D} context - The canvas rendering context.
  * @returns {string | null} The smoothing property name or null if not found.
  */
-export const getSmoothingPrefix = (context) => {
+export const getSmoothingPrefix = (context: CanvasRenderingContext2D) => {
   const VENDORS = ['i', 'webkitI', 'msI', 'mozI', 'oI'];
   for (let i = 0; i < VENDORS.length; i += 1) {
     const s = `${VENDORS[i]}mageSmoothingEnabled`;
@@ -144,7 +144,7 @@ export const getSmoothingPrefix = (context) => {
  * @param {number} value - The smoothing enabled value to set.
  * @returns {object} The modified rendering context.
  */
-export const setSmoothingEnabled = (context, value) => {
+export const setSmoothingEnabled = (context: any, value: number) => {
   const s = getSmoothingPrefix(context);
   if (s) {
     context[s] = value;

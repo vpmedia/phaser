@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { BaseTexture } from '../display/webgl/base_texture.js';
 import { Texture } from '../display/webgl/texture.js';
 import { JSONDataHash } from './animation_parser.js';
@@ -19,19 +18,19 @@ export const XML = 8;
 export const RENDER_TEXTURE = 9;
 
 export class Cache {
-game;
-autoResolveURL;
-_cache;
-_urlMap;
-_urlResolver;
-_urlTemp;
-onSoundUnlock;
-_cacheMap;
+  game!: any;
+  autoResolveURL!: any;
+  _cache!: any;
+  _urlMap!: any;
+  _urlResolver!: any;
+  _urlTemp!: any;
+  onSoundUnlock!: any;
+  _cacheMap!: any;
   /**
    * Creates a new Cache instance.
    * @param {import('./game.js').Game} game - The game instance.
    */
-  constructor(game) {
+  constructor(game: import('./game.js').Game) {
     this.game = game;
     this.autoResolveURL = false;
     this._cache = {
@@ -95,7 +94,7 @@ _cacheMap;
    * @param {HTMLImageElement} data - The image data to cache.
    * @returns {object} The cached image object.
    */
-  addImage(key, url, data) {
+  addImage(key: string, url: string, data: HTMLImageElement) {
     if (this.checkImageKey(key)) {
       this.removeImage(key);
     }
@@ -123,8 +122,8 @@ _cacheMap;
    * @param {HTMLCanvasElement} data - The canvas data for the atlas.
    * @param {object} atlasData - The atlas data to cache.
    */
-  addTextureAtlas(key, url, data, atlasData) {
-    const obj = {
+  addTextureAtlas(key: string, url: string, data: HTMLCanvasElement, atlasData: any) {
+    const obj: any = {
       key,
       url,
       data,
@@ -141,7 +140,7 @@ _cacheMap;
    * @param {string} url - The URL the sound was loaded from.
    * @param {object} data - The sound data to cache.
    */
-  addSound(key, url, data) {
+  addSound(key: string, url: string, data: any) {
     this._cache.sound[key] = {
       url,
       data,
@@ -157,7 +156,7 @@ _cacheMap;
    * @param {string} url - The URL the text was loaded from.
    * @param {string} data - The text data to cache.
    */
-  addText(key, url, data) {
+  addText(key: string, url: string, data: string) {
     this._cache.text[key] = { url, data };
     this._resolveURL(url, this._cache.text[key]);
   }
@@ -172,7 +171,15 @@ _cacheMap;
    * @param {number} xSpacing - Horizontal spacing between characters.
    * @param {number} ySpacing - Vertical spacing between characters.
    */
-  addBitmapFont(key, url, data, atlasData, atlasType, xSpacing = 0, ySpacing = 0) {
+  addBitmapFont(
+    key: string,
+    url: string,
+    data: HTMLCanvasElement,
+    atlasData: any,
+    atlasType: string,
+    xSpacing: number = 0,
+    ySpacing: number = 0
+  ) {
     const obj = {
       url,
       data,
@@ -194,7 +201,7 @@ _cacheMap;
    * @param {string} url - The URL the JSON was loaded from.
    * @param {object} data - The JSON data to cache.
    */
-  addJSON(key, url, data) {
+  addJSON(key: string, url: string, data: any) {
     this._cache.json[key] = { url, data };
     this._resolveURL(url, this._cache.json[key]);
   }
@@ -205,7 +212,7 @@ _cacheMap;
    * @param {string} url - The URL the XML was loaded from.
    * @param {XMLDocument} data - The XML data to cache.
    */
-  addXML(key, url, data) {
+  addXML(key: string, url: string, data: XMLDocument) {
     this._cache.xml[key] = { url, data };
     this._resolveURL(url, this._cache.xml[key]);
   }
@@ -218,7 +225,7 @@ _cacheMap;
    * @param {string} property - The property to update.
    * @param {any} value - The new value for the property.
    */
-  updateSound(key, property, value) {
+  updateSound(key: string, property: string, value: any) {
     const sound = this.getSound(key);
     if (sound) {
       sound[property] = value;
@@ -230,7 +237,7 @@ _cacheMap;
    * @param {string} key - The unique key for the cached sound.
    * @param {AudioBuffer} data - The decoded audio buffer.
    */
-  decodedSound(key, data) {
+  decodedSound(key: string, data: AudioBuffer) {
     const sound = this.getSound(key);
     sound.data = data;
     sound.decoded = true;
@@ -242,7 +249,7 @@ _cacheMap;
    * @param {string} key - The unique key for the cached sound.
    * @returns {boolean} True if the sound is decoded, false otherwise.
    */
-  isSoundDecoded(key) {
+  isSoundDecoded(key: string) {
     const sound = this.getItem(key, SOUND, 'isSoundDecoded');
     if (sound) {
       return sound.decoded;
@@ -255,7 +262,7 @@ _cacheMap;
    * @param {string} key - The unique key for the cached sound.
    * @returns {boolean} True if the sound is ready, false otherwise.
    */
-  isSoundReady(key) {
+  isSoundReady(key: string) {
     const sound = this.getItem(key, SOUND, 'isSoundDecoded');
     if (sound) {
       return sound.decoded && !this.game.sound.isLocked;
@@ -271,7 +278,7 @@ _cacheMap;
    * @param {string} key - The unique key for the cache entry.
    * @returns {boolean} True if the entry exists, false otherwise.
    */
-  checkKey(cache, key) {
+  checkKey(cache: number, key: string) {
     if (this._cacheMap[cache][key]) {
       return true;
     }
@@ -283,7 +290,7 @@ _cacheMap;
    * @param {string} url - The URL to check.
    * @returns {boolean} True if the URL has been resolved and cached, false otherwise.
    */
-  checkURL(url) {
+  checkURL(url: string) {
     if (this._urlMap[this._resolveURL(url)]) {
       return true;
     }
@@ -295,7 +302,7 @@ _cacheMap;
    * @param {string} key - The unique key for the cache entry.
    * @returns {boolean} True if the entry exists, false otherwise.
    */
-  checkCanvasKey(key) {
+  checkCanvasKey(key: string) {
     return this.checkKey(CANVAS, key);
   }
 
@@ -304,7 +311,7 @@ _cacheMap;
    * @param {string} key - The unique key for the cache entry.
    * @returns {boolean} True if the entry exists, false otherwise.
    */
-  checkImageKey(key) {
+  checkImageKey(key: string) {
     return this.checkKey(IMAGE, key);
   }
 
@@ -313,7 +320,7 @@ _cacheMap;
    * @param {string} key - The unique key for the cache entry.
    * @returns {boolean} True if the entry exists, false otherwise.
    */
-  checkTextureKey(key) {
+  checkTextureKey(key: string) {
     return this.checkKey(TEXTURE, key);
   }
 
@@ -322,7 +329,7 @@ _cacheMap;
    * @param {string} key - The unique key for the cache entry.
    * @returns {boolean} True if the entry exists, false otherwise.
    */
-  checkSoundKey(key) {
+  checkSoundKey(key: string) {
     return this.checkKey(SOUND, key);
   }
 
@@ -331,7 +338,7 @@ _cacheMap;
    * @param {string} key - The unique key for the cache entry.
    * @returns {boolean} True if the entry exists, false otherwise.
    */
-  checkTextKey(key) {
+  checkTextKey(key: string) {
     return this.checkKey(TEXT, key);
   }
 
@@ -340,7 +347,7 @@ _cacheMap;
    * @param {string} key - The unique key for the cache entry.
    * @returns {boolean} True if the entry exists, false otherwise.
    */
-  checkBitmapDataKey(key) {
+  checkBitmapDataKey(key: string) {
     return this.checkKey(BITMAPDATA, key);
   }
 
@@ -349,7 +356,7 @@ _cacheMap;
    * @param {string} key - The unique key for the cache entry.
    * @returns {boolean} True if the entry exists, false otherwise.
    */
-  checkBitmapFontKey(key) {
+  checkBitmapFontKey(key: string) {
     return this.checkKey(BITMAPFONT, key);
   }
 
@@ -358,7 +365,7 @@ _cacheMap;
    * @param {string} key - The unique key for the cache entry.
    * @returns {boolean} True if the entry exists, false otherwise.
    */
-  checkJSONKey(key) {
+  checkJSONKey(key: string) {
     return this.checkKey(JSONDATA, key);
   }
 
@@ -367,7 +374,7 @@ _cacheMap;
    * @param {string} key - The unique key for the cache entry.
    * @returns {boolean} True if the entry exists, false otherwise.
    */
-  checkXMLKey(key) {
+  checkXMLKey(key: string) {
     return this.checkKey(XML, key);
   }
 
@@ -381,7 +388,7 @@ _cacheMap;
    * @param {string} property - TBD.
    * @returns {*} TBD.
    */
-  getItem(key, cache, method, property = null) {
+  getItem(key: string, cache: number, method: string, property: string = null) {
     if (this.checkKey(cache, key)) {
       if (!property) {
         return this._cacheMap[cache][key];
@@ -396,7 +403,7 @@ _cacheMap;
    * @param {string} key - TBD.
    * @returns {HTMLCanvasElement} TBD.
    */
-  getCanvas(key) {
+  getCanvas(key: string) {
     return this.getItem(key, CANVAS, 'getCanvas', 'canvas');
   }
 
@@ -406,7 +413,7 @@ _cacheMap;
    * @param {boolean} full - TBD.
    * @returns {HTMLImageElement} TBD.
    */
-  getImage(key = '__default', full = false) {
+  getImage(key: any = '__default', full: boolean = false) {
     let img = this.getItem(key, IMAGE, 'getImage');
     if (img === null) {
       img = this.getItem('__missing', IMAGE, 'getImage');
@@ -422,7 +429,7 @@ _cacheMap;
    * @param {string} key - TBD.
    * @returns {object} TBD.
    */
-  getTextureFrame(key) {
+  getTextureFrame(key: string) {
     return this.getItem(key, TEXTURE, 'getTextureFrame', 'frame');
   }
 
@@ -431,7 +438,7 @@ _cacheMap;
    * @param {string} key - TBD.
    * @returns {object} TBD.
    */
-  getSound(key) {
+  getSound(key: string) {
     return this.getItem(key, SOUND, 'getSound');
   }
 
@@ -440,7 +447,7 @@ _cacheMap;
    * @param {string} key - TBD.
    * @returns {object} TBD.
    */
-  getSoundData(key) {
+  getSoundData(key: string) {
     return this.getItem(key, SOUND, 'getSoundData', 'data');
   }
 
@@ -449,7 +456,7 @@ _cacheMap;
    * @param {string} key - TBD.
    * @returns {object} TBD.
    */
-  getText(key) {
+  getText(key: string) {
     return this.getItem(key, TEXT, 'getText', 'data');
   }
 
@@ -458,7 +465,7 @@ _cacheMap;
    * @param {string} key - TBD.
    * @returns {object} TBD.
    */
-  getBitmapData(key) {
+  getBitmapData(key: string) {
     return this.getItem(key, BITMAPDATA, 'getBitmapData', 'data');
   }
 
@@ -467,7 +474,7 @@ _cacheMap;
    * @param {string} key - TBD.
    * @returns {object} TBD.
    */
-  getBitmapFont(key) {
+  getBitmapFont(key: string) {
     return this.getItem(key, BITMAPFONT, 'getBitmapFont');
   }
 
@@ -477,7 +484,7 @@ _cacheMap;
    * @param {boolean} isClone - TBD.
    * @returns {object} TBD.
    */
-  getJSON(key, isClone = false) {
+  getJSON(key: string, isClone: boolean = false) {
     const data = this.getItem(key, JSONDATA, 'getJSON', 'data');
     return isClone ? JSON.parse(JSON.stringify(data)) : data;
   }
@@ -487,7 +494,7 @@ _cacheMap;
    * @param {string} key - TBD.
    * @returns {XMLDocument} TBD.
    */
-  getXML(key) {
+  getXML(key: string) {
     return this.getItem(key, XML, 'getXML', 'data');
   }
 
@@ -496,7 +503,7 @@ _cacheMap;
    * @param {string} key - TBD.
    * @returns {import('../display/webgl/render_texture.js').RenderTexture} TBD.
    */
-  getRenderTexture(key) {
+  getRenderTexture(key: string) {
     return this.getItem(key, RENDER_TEXTURE, 'getRenderTexture');
   }
 
@@ -508,7 +515,7 @@ _cacheMap;
    * @param {number} cache - The cache type (CANVAS, IMAGE, etc.).
    * @returns {BaseTexture} The base texture.
    */
-  getBaseTexture(key, cache = IMAGE) {
+  getBaseTexture(key: string, cache: number = IMAGE) {
     return this.getItem(key, cache, 'getBaseTexture', 'base');
   }
 
@@ -518,7 +525,7 @@ _cacheMap;
    * @param {number} cache - The cache type (CANVAS, IMAGE, etc.).
    * @returns {Frame} The frame.
    */
-  getFrame(key, cache = IMAGE) {
+  getFrame(key: string, cache: number = IMAGE) {
     return this.getItem(key, cache, 'getFrame', 'frame');
   }
 
@@ -528,7 +535,7 @@ _cacheMap;
    * @param {number} cache - The cache type (CANVAS, IMAGE, etc.).
    * @returns {number} The number of frames.
    */
-  getFrameCount(key, cache = IMAGE) {
+  getFrameCount(key: string, cache: number = IMAGE) {
     const data = this.getFrameData(key, cache);
     if (data) {
       return data.total;
@@ -542,7 +549,7 @@ _cacheMap;
    * @param {number} cache - The cache type (CANVAS, IMAGE, etc.).
    * @returns {FrameData} The frame data.
    */
-  getFrameData(key, cache = IMAGE) {
+  getFrameData(key: string, cache: number = IMAGE) {
     return this.getItem(key, cache, 'getFrameData', 'frameData');
   }
 
@@ -552,7 +559,7 @@ _cacheMap;
    * @param {number} cache - The cache type (CANVAS, IMAGE, etc.).
    * @returns {boolean} True if the entry has frame data, false otherwise.
    */
-  hasFrameData(key, cache = IMAGE) {
+  hasFrameData(key: string, cache: number = IMAGE) {
     return this.getItem(key, cache, '', 'frameData') !== null;
   }
 
@@ -562,7 +569,7 @@ _cacheMap;
    * @param {FrameData} frameData - The new frame data.
    * @param {number} cache - The cache type (CANVAS, IMAGE, etc.).
    */
-  updateFrameData(key, frameData, cache = IMAGE) {
+  updateFrameData(key: string, frameData: FrameData, cache: number = IMAGE) {
     if (this._cacheMap[cache][key]) {
       this._cacheMap[cache][key].frameData = frameData;
     }
@@ -575,7 +582,7 @@ _cacheMap;
    * @param {number} cache - The cache type (CANVAS, IMAGE, etc.).
    * @returns {Frame} The frame at the specified index.
    */
-  getFrameByIndex(key, index, cache = IMAGE) {
+  getFrameByIndex(key: string, index: number, cache: number = IMAGE) {
     const data = this.getFrameData(key, cache);
     if (data) {
       return data.getFrame(index);
@@ -590,7 +597,7 @@ _cacheMap;
    * @param {number} cache - The cache type (CANVAS, IMAGE, etc.).
    * @returns {Frame} The frame with the specified name.
    */
-  getFrameByName(key, name, cache = IMAGE) {
+  getFrameByName(key: string, name: string, cache: number = IMAGE) {
     const data = this.getFrameData(key, cache);
     if (data) {
       return data.getFrameByName(name);
@@ -603,7 +610,7 @@ _cacheMap;
    * @param {string} url - The original URL to resolve.
    * @returns {string} The resolved URL or null if not found.
    */
-  getURL(url) {
+  getURL(url: string) {
     const resolvedURL = this._resolveURL(url);
     if (resolvedURL) {
       return this._urlMap[resolvedURL];
@@ -617,7 +624,7 @@ _cacheMap;
    * @param {object} cache - The cache type (CANVAS, IMAGE, etc.).
    * @returns {string[]} An array of cache keys.
    */
-  getKeys(cache = IMAGE) {
+  getKeys(cache: any = IMAGE) {
     const result = [];
     if (this._cacheMap[cache]) {
       const keys = Object.keys(this._cacheMap[cache]);
@@ -637,7 +644,7 @@ _cacheMap;
    * Removes a canvas cache entry.
    * @param {string} key - The unique key for the cache entry to remove.
    */
-  removeCanvas(key) {
+  removeCanvas(key: string) {
     delete this._cache.canvas[key];
   }
 
@@ -646,7 +653,7 @@ _cacheMap;
    * @param {string} key - The unique key for the cache entry to remove.
    * @param {boolean} destroyBaseTexture - Whether to destroy the base texture (default: true).
    */
-  removeImage(key, destroyBaseTexture = true) {
+  removeImage(key: string, destroyBaseTexture: boolean = true) {
     const img = this.getImage(key, true);
     if (destroyBaseTexture && img.base) {
       img.base.destroy();
@@ -658,7 +665,7 @@ _cacheMap;
    * Removes a sound cache entry.
    * @param {string} key - The unique key for the cache entry to remove.
    */
-  removeSound(key) {
+  removeSound(key: string) {
     delete this._cache.sound[key];
   }
 
@@ -666,7 +673,7 @@ _cacheMap;
    * Removes a text cache entry.
    * @param {string} key - The unique key for the cache entry to remove.
    */
-  removeText(key) {
+  removeText(key: string) {
     delete this._cache.text[key];
   }
 
@@ -674,7 +681,7 @@ _cacheMap;
    * Removes a bitmap data cache entry.
    * @param {string} key - The unique key for the cache entry to remove.
    */
-  removeBitmapData(key) {
+  removeBitmapData(key: string) {
     delete this._cache.bitmapData[key];
   }
 
@@ -682,7 +689,7 @@ _cacheMap;
    * Removes a bitmap font cache entry.
    * @param {string} key - The unique key for the cache entry to remove.
    */
-  removeBitmapFont(key) {
+  removeBitmapFont(key: string) {
     delete this._cache.bitmapFont[key];
   }
 
@@ -690,7 +697,7 @@ _cacheMap;
    * Removes a JSON cache entry.
    * @param {string} key - The unique key for the cache entry to remove.
    */
-  removeJSON(key) {
+  removeJSON(key: string) {
     delete this._cache.json[key];
   }
 
@@ -698,7 +705,7 @@ _cacheMap;
    * Removes an XML cache entry.
    * @param {string} key - The unique key for the cache entry to remove.
    */
-  removeXML(key) {
+  removeXML(key: string) {
     delete this._cache.xml[key];
   }
 
@@ -706,7 +713,7 @@ _cacheMap;
    * Removes a render texture cache entry.
    * @param {string} key - The unique key for the cache entry to remove.
    */
-  removeRenderTexture(key) {
+  removeRenderTexture(key: string) {
     delete this._cache.renderTexture[key];
   }
 
@@ -714,7 +721,7 @@ _cacheMap;
    * Removes a sprite sheet cache entry.
    * @param {string} key - The unique key for the cache entry to remove.
    */
-  removeSpriteSheet(key) {
+  removeSpriteSheet(key: string) {
     delete this._cache.spriteSheet[key];
   }
 
@@ -722,7 +729,7 @@ _cacheMap;
    * Removes a texture atlas cache entry.
    * @param {string} key - The unique key for the cache entry to remove.
    */
-  removeTextureAtlas(key) {
+  removeTextureAtlas(key: string) {
     delete this._cache.atlas[key];
   }
 
@@ -743,7 +750,7 @@ _cacheMap;
    * @param {object} data - The data to associate with the resolved URL.
    * @returns {string} The resolved URL or null if not enabled.
    */
-  _resolveURL(url, data) {
+  _resolveURL(url: string, data: any = null) {
     if (!this.autoResolveURL) {
       return null;
     }

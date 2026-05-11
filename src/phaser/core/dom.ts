@@ -191,7 +191,7 @@ export class DOM {
    * TBD.
    * @param {import('./device.js').Device} device - TBD.
    */
-  constructor(device) {
+  constructor(device: import('./device.js').Device) {
     this.treatAsDesktop =
       device.desktop &&
       document.documentElement.clientWidth <= window.innerWidth &&
@@ -211,7 +211,7 @@ export class DOM {
    * @param {Point} point - Optional Point object to store the result.
    * @returns {Point} The offset position of the element.
    */
-  getOffset(element, point = null) {
+  getOffset(element: HTMLCanvasElement, point: Point = null) {
     point = point || new Point();
     const box = element.getBoundingClientRect();
     const scrollTop = this.scrollY;
@@ -229,7 +229,7 @@ export class DOM {
    * @param {number} cushion - Optional padding to add around the element.
    * @returns {boolean} True if bounds were successfully retrieved, false otherwise.
    */
-  getBounds(element, cushion = 0) {
+  getBounds(element: HTMLCanvasElement, cushion: number = 0) {
     element = element && !element.nodeType ? element[0] : element;
     if (!element || element.nodeType !== 1) {
       return false;
@@ -243,7 +243,7 @@ export class DOM {
    * @param {number} cushion - Optional padding to add around the rectangle.
    * @returns {{width: number, height: number, left: number, right: number, top: number, bottom: number}} The calibrated rectangle.
    */
-  calibrate(coords, cushion = 0) {
+  calibrate(coords: DOMRect, cushion: number = 0) {
     const output = {
       width: 0,
       height: 0,
@@ -262,7 +262,7 @@ export class DOM {
    * @param {string} primaryFallback - The fallback method to use if screen orientation API is not available.
    * @returns {string} The screen orientation ('portrait-primary', 'landscape-primary', etc.).
    */
-  getScreenOrientation(primaryFallback) {
+  getScreenOrientation(primaryFallback: string) {
     const screen = window.screen;
     // @ts-ignore
     const orientation = screen.orientation || screen.mozOrientation || screen.msOrientation;

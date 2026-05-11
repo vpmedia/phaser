@@ -1,27 +1,27 @@
-// @ts-nocheck
 export class Touch {
-game;
-enabled;
-callbackContext;
-touchStartCallback;
-touchMoveCallback;
-touchEndCallback;
-touchEnterCallback;
-touchLeaveCallback;
-touchCancelCallback;
-preventDefault;
-event;
-_onTouchStart;
-_onTouchMove;
-_onTouchEnd;
-_onTouchEnter;
-_onTouchLeave;
-_onTouchCancel;
+  game!: any;
+  enabled!: any;
+  callbackContext!: any;
+  touchStartCallback!: any;
+  touchMoveCallback!: any;
+  touchEndCallback!: any;
+  touchEnterCallback!: any;
+  touchLeaveCallback!: any;
+  touchCancelCallback!: any;
+  preventDefault!: any;
+  event!: any;
+  _onTouchStart!: any;
+  _onTouchMove!: any;
+  _onTouchEnd!: any;
+  _onTouchEnter!: any;
+  _onTouchLeave!: any;
+  _onTouchCancel!: any;
+  _documentTouchMove!: any;
   /**
    * TBD.
    * @param {import('./game.js').Game} game - TBD.
    */
-  constructor(game) {
+  constructor(game: import('./game.js').Game) {
     this.game = game;
     this.enabled = true;
     this.callbackContext = this.game;
@@ -93,7 +93,7 @@ _onTouchCancel;
    * TBD.
    * @param {TouchEvent} event - TBD.
    */
-  onTouchStart(event) {
+  onTouchStart(event: any) {
     this.event = event;
     if (!this.game.input.enabled || !this.enabled) {
       return;
@@ -114,7 +114,7 @@ _onTouchCancel;
    * TBD.
    * @param {TouchEvent} event - TBD.
    */
-  onTouchCancel(event) {
+  onTouchCancel(event: any) {
     this.event = event;
     if (this.touchCancelCallback) {
       this.touchCancelCallback.call(this.callbackContext, event);
@@ -134,7 +134,7 @@ _onTouchCancel;
    * TBD.
    * @param {TouchEvent} event - TBD.
    */
-  onTouchEnter(event) {
+  onTouchEnter(event: any) {
     this.event = event;
     if (this.touchEnterCallback) {
       this.touchEnterCallback.call(this.callbackContext, event);
@@ -149,7 +149,7 @@ _onTouchCancel;
    * TBD.
    * @param {TouchEvent} event - TBD.
    */
-  onTouchLeave(event) {
+  onTouchLeave(event: any) {
     this.event = event;
     if (this.touchLeaveCallback) {
       this.touchLeaveCallback.call(this.callbackContext, event);
@@ -161,7 +161,7 @@ _onTouchCancel;
    * TBD.
    * @param {TouchEvent} event - TBD.
    */
-  onTouchMove(event) {
+  onTouchMove(event: any) {
     this.event = event;
     if (this.touchMoveCallback) {
       this.touchMoveCallback.call(this.callbackContext, event);
@@ -176,7 +176,7 @@ _onTouchCancel;
    * TBD.
    * @param {TouchEvent} event - TBD.
    */
-  onTouchEnd(event) {
+  onTouchEnd(event: any) {
     this.event = event;
     if (this.touchEndCallback) {
       this.touchEndCallback.call(this.callbackContext, event);
@@ -194,7 +194,7 @@ _onTouchCancel;
    * TBD.
    * @param {TouchEvent} event - TBD.
    */
-  eventPreventDefault(event) {
+  eventPreventDefault(event: any) {
     if (this.preventDefault) {
       if (typeof event.cancelable !== 'boolean' || event.cancelable) {
         event.preventDefault();

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { Point } from '../geom/point.js';
 import { Rectangle } from '../geom/rectangle.js';
 import { RENDER_CANVAS, SCALE_EXACT_FIT, SCALE_OFF, SCALE_RESIZE, SCALE_SHOW_ALL, SCALE_USER } from './const.js';
@@ -6,68 +5,72 @@ import { DOM } from './dom.js';
 import { Signal } from './signal.js';
 
 export class ScaleManager {
-game;
-dom;
-width;
-height;
-minWidth;
-maxWidth;
-minHeight;
-maxHeight;
-offset;
-forceLandscape;
-forcePortrait;
-incorrectOrientation;
-_pageAlignHorizontally;
-_pageAlignVertically;
-onOrientationChange;
-enterIncorrectOrientation;
-leaveIncorrectOrientation;
-hasPhaserSetFullScreen;
-fullScreenTarget;
-_createdFullScreenTarget;
-onFullScreenInit;
-onFullScreenChange;
-onFullScreenError;
-screenOrientation;
-scaleFactor;
-scaleFactorInversed;
-margin;
-bounds;
-aspectRatio;
-sourceAspectRatio;
-event;
-windowConstraints;
-compatibility;
-_scaleMode;
-_fullScreenScaleMode;
-parentIsWindow;
-parentNode;
-parentScaleFactor;
-trackParentInterval;
-onSizeChange;
-onResize;
-onResizeContext;
-_pendingScaleMode;
-_fullScreenRestore;
-_gameSize;
-_userScaleFactor;
-_userScaleTrim;
-_lastUpdate;
-_updateThrottle;
-_updateThrottleReset;
-_parentBounds;
-_tempBounds;
-_lastReportedCanvasSize;
-_lastReportedGameSize;
-_booted;
+  game!: any;
+  dom!: any;
+  width!: any;
+  height!: any;
+  minWidth!: any;
+  maxWidth!: any;
+  minHeight!: any;
+  maxHeight!: any;
+  offset!: any;
+  forceLandscape!: any;
+  forcePortrait!: any;
+  incorrectOrientation!: any;
+  _pageAlignHorizontally!: any;
+  _pageAlignVertically!: any;
+  onOrientationChange!: any;
+  enterIncorrectOrientation!: any;
+  leaveIncorrectOrientation!: any;
+  hasPhaserSetFullScreen!: any;
+  fullScreenTarget!: any;
+  _createdFullScreenTarget!: any;
+  onFullScreenInit!: any;
+  onFullScreenChange!: any;
+  onFullScreenError!: any;
+  screenOrientation!: any;
+  scaleFactor!: any;
+  scaleFactorInversed!: any;
+  margin!: any;
+  bounds!: any;
+  aspectRatio!: any;
+  sourceAspectRatio!: any;
+  event!: any;
+  windowConstraints!: any;
+  compatibility!: any;
+  _scaleMode!: any;
+  _fullScreenScaleMode!: any;
+  parentIsWindow!: any;
+  parentNode!: any;
+  parentScaleFactor!: any;
+  trackParentInterval!: any;
+  onSizeChange!: any;
+  onResize!: any;
+  onResizeContext!: any;
+  _pendingScaleMode!: any;
+  _fullScreenRestore!: any;
+  _gameSize!: any;
+  _userScaleFactor!: any;
+  _userScaleTrim!: any;
+  _lastUpdate!: any;
+  _updateThrottle!: any;
+  _updateThrottleReset!: any;
+  _parentBounds!: any;
+  _tempBounds!: any;
+  _lastReportedCanvasSize!: any;
+  _lastReportedGameSize!: any;
+  _booted!: any;
+  _orientationChange!: any;
+  _windowResize!: any;
+  _fullScreenChange!: any;
+  _fullScreenError!: any;
   /**
    * TBD.
    * @param {import('./game.js').Game} game - TBD.
    * @param {number} width - TBD.
    * @param {number} height - TBD.
    */
-  constructor(game, width, height) {
+  constructor(game: import('./game.js').Game, width: number, height: number) {
     this.game = game;
     this.dom = new DOM(game.device);
     this.width = 0;
@@ -197,7 +200,7 @@ _booted;
    * TBD.
    * @param {object} config - TBD.
    */
-  parseConfig(config) {
+  parseConfig(config: any) {
     if (config.scaleMode !== undefined) {
       if (this._booted) {
         this.scaleMode = config.scaleMode;
@@ -220,7 +223,7 @@ _booted;
    * @param {number} width - TBD.
    * @param {number} height - TBD.
    */
-  setupScale(width, height) {
+  setupScale(width: number, height: number) {
     let target;
     const rect = new Rectangle();
     if (this.game.parent !== '') {
@@ -282,7 +285,7 @@ _booted;
    * @param {number} width - TBD.
    * @param {number} height - TBD.
    */
-  setGameSize(width, height) {
+  setGameSize(width: number, height: number) {
     this._gameSize.setTo(0, 0, width, height);
     if (this.currentScaleMode !== SCALE_RESIZE) {
       this.updateDimensions(width, height, true);
@@ -297,7 +300,7 @@ _booted;
    * @param {number} hTrim - TBD.
    * @param {number} vTrim - TBD.
    */
-  setUserScale(hScale, vScale, hTrim, vTrim) {
+  setUserScale(hScale: number, vScale: number, hTrim: number, vTrim: number) {
     this._userScaleFactor.setTo(hScale, vScale);
     this._userScaleTrim.setTo(hTrim | 0, vTrim | 0);
     this.queueUpdate(true);
@@ -308,7 +311,7 @@ _booted;
    * @param {Function} callback - TBD.
    * @param {object} context - TBD.
    */
-  setResizeCallback(callback, context) {
+  setResizeCallback(callback: Function, context: any) {
     this.onResize = callback;
     this.onResizeContext = context;
   }
@@ -343,7 +346,7 @@ _booted;
    * @param {number} maxWidth - TBD.
    * @param {number} maxHeight - TBD.
    */
-  setMinMax(minWidth, minHeight, maxWidth, maxHeight) {
+  setMinMax(minWidth: number, minHeight: number, maxWidth: number, maxHeight: number) {
     this.minWidth = minWidth;
     this.minHeight = minHeight;
     if (typeof maxWidth !== 'undefined') {
@@ -402,7 +405,7 @@ _booted;
    * @param {number} height - TBD.
    * @param {boolean} resize - TBD.
    */
-  updateDimensions(width, height, resize) {
+  updateDimensions(width: number, height: number, resize: boolean) {
     this.width = width * this.parentScaleFactor.x;
     this.height = height * this.parentScaleFactor.y;
     this.game.width = this.width;
@@ -440,7 +443,7 @@ _booted;
    * @param {boolean} forceLandscape - TBD.
    * @param {boolean} forcePortrait - TBD.
    */
-  forceOrientation(forceLandscape = false, forcePortrait = false) {
+  forceOrientation(forceLandscape: boolean = false, forcePortrait: boolean = false) {
     this.forceLandscape = forceLandscape;
     this.forcePortrait = forcePortrait;
     this.queueUpdate(true);
@@ -451,7 +454,7 @@ _booted;
    * @param {string} orientation - TBD.
    * @returns {string} TBD.
    */
-  classifyOrientation(orientation) {
+  classifyOrientation(orientation: string) {
     if (orientation === 'portrait-primary' || orientation === 'portrait-secondary') {
       return 'portrait';
     } else if (orientation === 'landscape-primary' || orientation === 'landscape-secondary') {
@@ -488,7 +491,7 @@ _booted;
    * TBD.
    * @param {Event} event - TBD.
    */
-  orientationChange(event) {
+  orientationChange(event: Event) {
     this.event = event;
     this.queueUpdate(true);
   }
@@ -497,7 +500,7 @@ _booted;
    * TBD.
    * @param {Event} event - TBD.
    */
-  windowResize(event) {
+  windowResize(event: Event) {
     this.event = event;
     this.queueUpdate(true);
   }
@@ -556,7 +559,7 @@ _booted;
    * @param {Rectangle} target - TBD.
    * @returns {Rectangle} TBD.
    */
-  getParentBounds(target) {
+  getParentBounds(target: Rectangle) {
     const bounds = target || new Rectangle();
     const parentNode = this.boundingParent;
     const visualBounds = this.dom.visualBounds;
@@ -594,7 +597,7 @@ _booted;
    * @param {boolean} horizontal - TBD.
    * @param {boolean} vertical - TBD.
    */
-  alignCanvas(horizontal, vertical) {
+  alignCanvas(horizontal: boolean, vertical: boolean) {
     const parentBounds = this.getParentBounds(this._tempBounds);
     const canvas = this.game.canvas;
     const margin = this.margin;
@@ -670,7 +673,7 @@ _booted;
    * @param {string} cssWidth - TBD.
    * @param {string} cssHeight - TBD.
    */
-  resetCanvas(cssWidth = `${this.width}px`, cssHeight = `${this.height}px`) {
+  resetCanvas(cssWidth: string = `${this.width}px`, cssHeight: string = `${this.height}px`) {
     const canvas = this.game.canvas;
     if (!this.compatibility.noMargins) {
       canvas.style.marginLeft = '';
@@ -686,7 +689,7 @@ _booted;
    * TBD.
    * @param {boolean} force - TBD.
    */
-  queueUpdate(force) {
+  queueUpdate(force: boolean) {
     if (force) {
       this._parentBounds.width = 0;
       this._parentBounds.height = 0;
@@ -713,7 +716,7 @@ _booted;
    * TBD.
    * @param {boolean} expanding - TBD.
    */
-  setShowAll(expanding = false) {
+  setShowAll(expanding: boolean = false) {
     const bounds = this.getParentBounds(this._tempBounds);
     const width = bounds.width;
     const height = bounds.height;
@@ -764,7 +767,7 @@ _booted;
    * @param {boolean} allowTrampoline - TBD.
    * @returns {boolean} TBD.
    */
-  startFullScreen(antialias, allowTrampoline) {
+  startFullScreen(antialias: boolean, allowTrampoline: boolean) {
     if (this.isFullScreen) {
       return false;
     }
@@ -772,7 +775,7 @@ _booted;
       // Error is called in timeout to emulate the real fullscreenerror event better
       const scope = this;
       setTimeout(() => {
-        scope.fullScreenError();
+        scope.fullScreenError({} as any);
       }, 10);
       return false;
     }
@@ -807,7 +810,7 @@ _booted;
       fsTarget.appendChild(canvas);
     }
     if (this.game.device.fullscreenKeyboard) {
-      fsTarget[this.game.device.requestFullscreen](Element.ALLOW_KEYBOARD_INPUT);
+      fsTarget[this.game.device.requestFullscreen]((Element as any).ALLOW_KEYBOARD_INPUT);
     } else {
       fsTarget[this.game.device.requestFullscreen]();
     }
@@ -846,7 +849,7 @@ _booted;
    * TBD.
    * @param {boolean} enteringFullscreen - TBD.
    */
-  prepScreenMode(enteringFullscreen) {
+  prepScreenMode(enteringFullscreen: boolean) {
     const fsTarget = this._createdFullScreenTarget || this.fullScreenTarget;
     if (!fsTarget) {
       return;
@@ -880,7 +883,7 @@ _booted;
    * TBD.
    * @param {Event} event - TBD.
    */
-  fullScreenChange(event) {
+  fullScreenChange(event: Event) {
     this.event = event;
     if (this.isFullScreen) {
       this.prepScreenMode(true);
@@ -899,7 +902,7 @@ _booted;
    * TBD.
    * @param {Event} [event] - TBD.
    */
-  fullScreenError(event) {
+  fullScreenError(event: Event) {
     this.event = event;
     this.cleanupCreatedTarget();
     this.onFullScreenError.dispatch(this);
@@ -1016,9 +1019,9 @@ _booted;
   get isFullScreen() {
     return !!(
       document.fullscreenElement ||
-      document.webkitFullscreenElement ||
-      document.mozFullScreenElement ||
-      document.msFullscreenElement
+      (document as any).webkitFullscreenElement ||
+      (document as any).mozFullScreenElement ||
+      (document as any).msFullscreenElement
     );
   }
 

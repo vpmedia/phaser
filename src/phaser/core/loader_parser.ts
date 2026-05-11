@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { Texture } from '../display/webgl/texture.js';
 import { Rectangle } from '../geom/rectangle.js';
 
@@ -8,7 +7,7 @@ import { Rectangle } from '../geom/rectangle.js';
  * @param {object} bitmapFontData - The bitmap font data to finalize.
  * @returns {object} The finalized bitmap font data.
  */
-export const finalizeBitmapFont = (baseTexture, bitmapFontData) => {
+export const finalizeBitmapFont = (baseTexture: import('../display/webgl/base_texture.js').BaseTexture, bitmapFontData: any) => {
   Object.keys(bitmapFontData.chars).forEach((charCode) => {
     const letter = bitmapFontData.chars[charCode];
     letter.texture = new Texture(baseTexture, new Rectangle(letter.x, letter.y, letter.width, letter.height));
@@ -24,8 +23,8 @@ export const finalizeBitmapFont = (baseTexture, bitmapFontData) => {
  * @param {number} ySpacing - Vertical spacing between characters.
  * @returns {object} The parsed bitmap font data.
  */
-export const xmlBitmapFont = (xml, baseTexture, xSpacing, ySpacing) => {
-  const data = {};
+export const xmlBitmapFont = (xml: any, baseTexture: import('../display/webgl/base_texture.js').BaseTexture, xSpacing: number, ySpacing: number) => {
+  const data: any = {};
   const info = xml.getElementsByTagName('info')[0];
   const common = xml.getElementsByTagName('common')[0];
   data.font = info.getAttribute('face');
@@ -64,7 +63,7 @@ export const xmlBitmapFont = (xml, baseTexture, xSpacing, ySpacing) => {
  * @param {number} ySpacing - Vertical spacing between characters.
  * @returns {object} The parsed bitmap font data.
  */
-export const bitmapFont = (xml, baseTexture, xSpacing, ySpacing) => {
+export const bitmapFont = (xml: any, baseTexture: import('../display/webgl/base_texture.js').BaseTexture, xSpacing: number, ySpacing: number) => {
   return xmlBitmapFont(xml, baseTexture, xSpacing, ySpacing);
 };
 
@@ -76,7 +75,7 @@ export const bitmapFont = (xml, baseTexture, xSpacing, ySpacing) => {
  * @param {number} ySpacing - Vertical spacing between characters.
  * @returns {object} The parsed bitmap font data.
  */
-export const jsonBitmapFont = (json, baseTexture, xSpacing, ySpacing) => {
+export const jsonBitmapFont = (json: any, baseTexture: import('../display/webgl/base_texture.js').BaseTexture, xSpacing: number, ySpacing: number) => {
   const data = {
     font: json.font.info._face,
     size: Number.parseInt(json.font.info._size, 10),

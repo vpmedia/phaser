@@ -1,11 +1,11 @@
-// @ts-nocheck
 import { SCALE_LINEAR } from '../../core/const.js';
 
 export class FilterTexture {
-gl;
-frameBuffer;
-texture;
-renderBuffer;
+  [key: string]: any;
+gl!: any;
+frameBuffer!: any;
+texture!: any;
+renderBuffer!: any;
   /**
    * Creates a new FilterTexture instance.
    * @param {WebGLRenderingContext} gl - The WebGL rendering context.
@@ -13,7 +13,7 @@ renderBuffer;
    * @param {number} height - The height of the filter texture.
    * @param {number} scaleMode - The scale mode to use.
    */
-  constructor(gl, width, height, scaleMode) {
+  constructor(gl: WebGLRenderingContext, width: number, height: number, scaleMode: number) {
     this.gl = gl;
     this.frameBuffer = gl.createFramebuffer();
     this.texture = gl.createTexture();
@@ -47,7 +47,7 @@ renderBuffer;
    * @param {number} width - The new width of the filter texture.
    * @param {number} height - The new height of the filter texture.
    */
-  resize(width, height) {
+  resize(width: number, height: number) {
     if (this.width === width && this.height === height) {
       return;
     }

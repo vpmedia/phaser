@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { GROUP } from './const.js';
 import { Tween } from './tween.js';
 import {
@@ -36,15 +35,15 @@ import {
 } from './tween_easing.js';
 
 export class TweenManager {
-game;
-_tweens;
-_add;
-easeMap;
+game!: any;
+_tweens!: any;
+_add!: any;
+easeMap!: any;
   /**
    * Creates a new TweenManager instance.
    * @param {import('./game.js').Game} game - The game instance this manager belongs to.
    */
-  constructor(game) {
+  constructor(game: import('./game.js').Game) {
     this.game = game;
     /** @type {Tween[]} */
     this._tweens = [];
@@ -123,7 +122,7 @@ easeMap;
    * @param {object} obj - The object to remove tweens from.
    * @param {object[]} children - Optional array of child objects to remove tweens from.
    */
-  removeFrom(obj, children = null) {
+  removeFrom(obj: any, children: any[] = null) {
     let i;
     let len;
     if (Array.isArray(obj)) {
@@ -152,7 +151,7 @@ easeMap;
    * Add a tween to the manager.
    * @param {Tween} tween - The tween to add.
    */
-  add(tween) {
+  add(tween: Tween) {
     tween.manager = this;
     this._add.push(tween);
   }
@@ -162,7 +161,7 @@ easeMap;
    * @param {object} object - The object to create a tween for.
    * @returns {Tween} The created Tween object.
    */
-  create(object) {
+  create(object: any) {
     return new Tween(object, this.game, this);
   }
 
@@ -170,7 +169,7 @@ easeMap;
    * Remove a tween from the manager.
    * @param {Tween | null | undefined} tween - The tween to remove.
    */
-  remove(tween) {
+  remove(tween: Tween | null | undefined) {
     let i = this._tweens.indexOf(tween);
     if (i !== -1) {
       this._tweens[i].pendingDelete = true;
@@ -214,7 +213,7 @@ easeMap;
    * @param {object} object - The object to check.
    * @returns {boolean} True if the object is being tweened, false otherwise.
    */
-  isTweening(object) {
+  isTweening(object: any) {
     return this._tweens.some((tween) => tween.target === object);
   }
 

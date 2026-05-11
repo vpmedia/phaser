@@ -11,7 +11,7 @@ export class Point {
    * @param {number} x - The x coordinate of the point (default: 0).
    * @param {number} y - The y coordinate of the point (default: 0).
    */
-  constructor(x = 0, y = 0) {
+  constructor(x: number = 0, y: number = 0) {
     /** @type {number} */
     this.x = x;
     /** @type {number} */
@@ -25,7 +25,7 @@ export class Point {
    * @param {Point} source - The point to copy coordinates from.
    * @returns {Point} This point instance for chaining.
    */
-  copyFrom(source) {
+  copyFrom(source: Point) {
     return this.setTo(source.x, source.y);
   }
 
@@ -43,7 +43,7 @@ export class Point {
    * @param {number} y - The new y coordinate for the point.
    * @returns {Point} This point instance for chaining.
    */
-  setTo(x, y?) {
+  setTo(x: number, y?: number) {
     this.x = x || 0;
     this.y = y || (y !== 0 ? this.x : 0);
     return this;
@@ -56,7 +56,7 @@ export class Point {
    * @returns {Point} This point instance for chaining.
    * @deprecated Use setTo instead.
    */
-  set(x, y) {
+  set(x: number, y: number) {
     this.x = x || 0;
     this.y = y || (y !== 0 ? this.x : 0);
     return this;
@@ -68,7 +68,7 @@ export class Point {
    * @param {number} y - The amount to add to the y coordinate.
    * @returns {Point} This point instance for chaining.
    */
-  add(x, y) {
+  add(x: number, y: number) {
     this.x += x;
     this.y += y;
     return this;
@@ -80,7 +80,7 @@ export class Point {
    * @param {number} y - The amount to subtract from the y coordinate.
    * @returns {Point} This point instance for chaining.
    */
-  subtract(x, y) {
+  subtract(x: number, y: number) {
     this.x -= x;
     this.y -= y;
     return this;
@@ -92,7 +92,7 @@ export class Point {
    * @param {number} y - The amount to multiply the y coordinate by.
    * @returns {Point} This point instance for chaining.
    */
-  multiply(x, y) {
+  multiply(x: number, y: number) {
     this.x *= x;
     this.y *= y;
     return this;
@@ -104,7 +104,7 @@ export class Point {
    * @param {number} y - The amount to divide the y coordinate by.
    * @returns {Point} This point instance for chaining.
    */
-  divide(x, y) {
+  divide(x: number, y: number) {
     this.x /= x;
     this.y /= y;
     return this;
@@ -116,7 +116,7 @@ export class Point {
    * @param {number} max - The maximum value for the x coordinate.
    * @returns {Point} This point instance for chaining.
    */
-  clampX(min, max) {
+  clampX(min: number, max: number) {
     this.x = Math.max(min, Math.min(max, this.x));
     return this;
   }
@@ -127,7 +127,7 @@ export class Point {
    * @param {number} max - The maximum value for the y coordinate.
    * @returns {Point} This point instance for chaining.
    */
-  clampY(min, max) {
+  clampY(min: number, max: number) {
     this.y = Math.max(min, Math.min(max, this.y));
     return this;
   }
@@ -138,7 +138,7 @@ export class Point {
    * @param {number} max - The maximum value for both coordinates.
    * @returns {Point} This point instance for chaining.
    */
-  clamp(min, max) {
+  clamp(min: number, max: number) {
     this.x = Math.max(min, Math.min(max, this.x));
     this.y = Math.max(min, Math.min(max, this.y));
     return this;
@@ -157,7 +157,7 @@ export class Point {
    * @param {Point} dest - The point to copy coordinates to.
    * @returns {Point} The destination point.
    */
-  copyTo(dest) {
+  copyTo(dest: Point) {
     dest.x = this.x;
     dest.y = this.y;
     return dest;
@@ -168,7 +168,7 @@ export class Point {
    * @param {Point} b - The other point to calculate the distance to.
    * @returns {number} The distance between the two points.
    */
-  distance(b) {
+  distance(b: Point) {
     return distance(this, b);
   }
 
@@ -177,7 +177,7 @@ export class Point {
    * @param {Point} a - The other point to compare with.
    * @returns {boolean} True if the points have the same coordinates, false otherwise.
    */
-  equals(a) {
+  equals(a: Point) {
     return a.x === this.x && a.y === this.y;
   }
 
@@ -187,7 +187,7 @@ export class Point {
    * @param {boolean} asDegrees - Whether to return the result in degrees (default: false).
    * @returns {number} The angle between the two points in radians or degrees.
    */
-  angle(a, asDegrees = false) {
+  angle(a: Point, asDegrees: boolean = false) {
     if (asDegrees) {
       return (180 / Math.PI) * Math.atan2(a.y - this.y, a.x - this.x);
     }
@@ -203,7 +203,7 @@ export class Point {
    * @param {number | null | undefined} dist - The distance to rotate from (default: null).
    * @returns {Point} This point instance for chaining.
    */
-  rotate(x, y, angle, asDegrees, dist = null) {
+  rotate(x: number, y: number, angle: number, asDegrees: boolean, dist: number | null | undefined = null) {
     return rotate(this, x, y, angle, asDegrees, dist);
   }
 
@@ -228,7 +228,7 @@ export class Point {
    * @param {number} magnitude - The new magnitude for the point.
    * @returns {Point} This point instance for chaining.
    */
-  setMagnitude(magnitude) {
+  setMagnitude(magnitude: number) {
     return this.normalize().multiply(magnitude, magnitude);
   }
 
@@ -258,7 +258,7 @@ export class Point {
    * @param {Point} a - The other point to calculate the dot product with.
    * @returns {number} The dot product of the two points.
    */
-  dot(a) {
+  dot(a: Point) {
     return this.x * a.x + this.y * a.y;
   }
 
@@ -267,7 +267,7 @@ export class Point {
    * @param {Point} a - The other point to calculate the cross product with.
    * @returns {number} The cross product of the two points.
    */
-  cross(a) {
+  cross(a: Point) {
     return this.x * a.y - this.y * a.x;
   }
 

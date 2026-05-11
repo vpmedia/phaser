@@ -1,4 +1,3 @@
-// @ts-nocheck
 import {
   BLEND_ADD,
   BLEND_COLOR,
@@ -27,24 +26,24 @@ import { detectCapabilities } from './tinter.js';
 import { getSmoothingPrefix } from './util.js';
 
 export class CanvasRenderer {
-type;
-resolution;
-clearBeforeRender;
-transparent;
-autoResize;
-contextLost;
-width;
-height;
-view;
-context;
-refresh;
-count;
-renderSession;
+  type!: any;
+  resolution!: any;
+  clearBeforeRender!: any;
+  transparent!: any;
+  autoResize!: any;
+  contextLost!: any;
+  width!: any;
+  height!: any;
+  view!: any;
+  context!: any;
+  refresh!: any;
+  count!: any;
+  renderSession!: any;
   /**
    * Creates a new CanvasRenderer instance.
    * @param {import('../../core/game.js').Game} game - The game instance.
    */
-  constructor(game) {
+  constructor(game: import('../../core/game.js').Game) {
     detectCapabilities(game);
     /** @type {number} */
     this.type = RENDER_CANVAS;
@@ -79,7 +78,7 @@ renderSession;
    * Renders the stage to canvas.
    * @param {import('../../core/stage.js').Stage} root - The root stage to render.
    */
-  render(root) {
+  render(root: import('../../core/stage.js').Stage) {
     if (!this.context) {
       return;
     }
@@ -104,7 +103,7 @@ renderSession;
    * Destroys this renderer and cleans up resources.
    * @param {boolean} removeView - Whether to remove the view from the DOM.
    */
-  destroy(removeView = true) {
+  destroy(removeView: boolean = true) {
     if (removeView && this.view.parent) {
       this.view.parent.removeChild(this.view);
     }
@@ -118,7 +117,7 @@ renderSession;
    * @param {number} width - The new width of the canvas.
    * @param {number} height - The new height of the canvas.
    */
-  resize(width, height) {
+  resize(width: number, height: number) {
     this.width = width * this.resolution;
     this.height = height * this.resolution;
     this.view.width = this.width;
@@ -138,7 +137,7 @@ renderSession;
    * @param {CanvasRenderingContext2D} context - The canvas rendering context.
    * @param {import('../../geom/matrix.js').Matrix} matrix - The transformation matrix.
    */
-  renderDisplayObject(displayObject, context, matrix) {
+  renderDisplayObject(displayObject: any, context?: any, matrix?: any) {
     this.renderSession.context = context || this.context;
     this.renderSession.resolution = this.resolution;
     displayObject.renderCanvas(this.renderSession, matrix);
@@ -177,7 +176,7 @@ renderSession;
    * Initializes the WebGL context for rendering.
    * @param {import('../../core/game.js').Game} game - The game instance.
    */
-  initContext(game) {
+  initContext(game: import('../../core/game.js').Game) {
     // stub
   }
 }

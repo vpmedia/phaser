@@ -1,20 +1,20 @@
-// @ts-nocheck
 import { v4 as uuidv4 } from 'uuid';
 import { compileProgram } from '../util.js';
 
 // the next one is used for rendering primitives
 
 export class PrimitiveShader {
-gl;
-_UID;
-program;
-fragmentSrc;
-vertexSrc;
+  [key: string]: any;
+gl!: any;
+_UID!: any;
+program!: any;
+fragmentSrc!: any;
+vertexSrc!: any;
   /**
    * Creates a new PrimitiveShader instance.
    * @param {WebGLRenderingContext} gl - The WebGL rendering context.
    */
-  constructor(gl) {
+  constructor(gl: WebGLRenderingContext) {
     this.gl = gl;
     this._UID = uuidv4();
     /** @type {WebGLProgram} */

@@ -38,7 +38,7 @@ export class Rectangle {
    * @param {number} width - The width of the rectangle (default: 0).
    * @param {number} height - The height of the rectangle (default: 0).
    */
-  constructor(x = 0, y = 0, width = 0, height = 0) {
+  constructor(x: number = 0, y: number = 0, width: number = 0, height: number = 0) {
     /** @type {number} */
     this.x = x;
     /** @type {number} */
@@ -57,7 +57,7 @@ export class Rectangle {
    * @param {number} dy - The amount to offset the y coordinate by.
    * @returns {Rectangle} This rectangle instance for chaining.
    */
-  offset(dx, dy) {
+  offset(dx: number, dy: number) {
     this.x += dx;
     this.y += dy;
     return this;
@@ -68,7 +68,7 @@ export class Rectangle {
    * @param {Point} point - The point to offset the rectangle by.
    * @returns {Rectangle} This rectangle instance for chaining.
    */
-  offsetPoint(point) {
+  offsetPoint(point: Point) {
     return this.offset(point.x, point.y);
   }
 
@@ -80,7 +80,7 @@ export class Rectangle {
    * @param {number} height - The new height of the rectangle.
    * @returns {Rectangle} This rectangle instance for chaining.
    */
-  setTo(x, y, width, height) {
+  setTo(x: number, y: number, width: number, height: number) {
     this.x = x;
     this.y = y;
     this.width = width;
@@ -94,7 +94,7 @@ export class Rectangle {
    * @param {number} y - The amount to scale the height by (default: x).
    * @returns {Rectangle} This rectangle instance for chaining.
    */
-  scale(x, y?) {
+  scale(x: number, y?: number) {
     if (y === undefined) {
       y = x;
     }
@@ -109,7 +109,7 @@ export class Rectangle {
    * @param {number} y - The y coordinate to center the rectangle on.
    * @returns {Rectangle} This rectangle instance for chaining.
    */
-  centerOn(x, y) {
+  centerOn(x: number, y: number) {
     this.centerX = x;
     this.centerY = y;
     return this;
@@ -156,7 +156,7 @@ export class Rectangle {
    * @param {Rectangle} source - The rectangle to copy values from.
    * @returns {Rectangle} This rectangle instance for chaining.
    */
-  copyFrom(source) {
+  copyFrom(source: Rectangle) {
     return this.setTo(source.x, source.y, source.width, source.height);
   }
 
@@ -165,7 +165,7 @@ export class Rectangle {
    * @param {Rectangle} dest - The rectangle to copy values to.
    * @returns {Rectangle} The destination rectangle.
    */
-  copyTo(dest) {
+  copyTo(dest: Rectangle) {
     dest.x = this.x;
     dest.y = this.y;
     dest.width = this.width;
@@ -179,7 +179,7 @@ export class Rectangle {
    * @param {number} dy - The amount to increase the height by.
    * @returns {Rectangle} This rectangle instance for chaining.
    */
-  inflate(dx, dy) {
+  inflate(dx: number, dy: number) {
     return inflate(this, dx, dy);
   }
 
@@ -188,7 +188,7 @@ export class Rectangle {
    * @param {Point} output - The point to store the size in (optional).
    * @returns {Point} The size of the rectangle as a point.
    */
-  size(output) {
+  size(output: Point) {
     return size(this, output);
   }
 
@@ -198,7 +198,7 @@ export class Rectangle {
    * @param {number} height - The new height of the rectangle.
    * @returns {Rectangle} This rectangle instance for chaining.
    */
-  resize(width, height) {
+  resize(width: number, height: number) {
     this.width = width;
     this.height = height;
     return this;
@@ -209,7 +209,7 @@ export class Rectangle {
    * @param {Rectangle} output - The rectangle to store the clone in (optional).
    * @returns {Rectangle} A new rectangle with the same values as this one.
    */
-  clone(output?) {
+  clone(output?: Rectangle) {
     return clone(this, output);
   }
 
@@ -219,7 +219,7 @@ export class Rectangle {
    * @param {number} y - The y coordinate of the point to check.
    * @returns {boolean} True if the point is contained within this rectangle, false otherwise.
    */
-  contains(x, y) {
+  contains(x: number, y: number) {
     return contains(this, x, y);
   }
 
@@ -228,7 +228,7 @@ export class Rectangle {
    * @param {Rectangle} b - The rectangle to check if it's contained.
    * @returns {boolean} True if the rectangle is contained within this rectangle, false otherwise.
    */
-  containsRect(b) {
+  containsRect(b: Rectangle) {
     return containsRect(b, this);
   }
 
@@ -237,7 +237,7 @@ export class Rectangle {
    * @param {Rectangle} b - The rectangle to compare with.
    * @returns {boolean} True if the rectangles have the same values, false otherwise.
    */
-  equals(b) {
+  equals(b: Rectangle) {
     return equals(this, b);
   }
 
@@ -247,7 +247,7 @@ export class Rectangle {
    * @param {Rectangle} out - The rectangle to store the result in (optional).
    * @returns {Rectangle} The intersection of the two rectangles.
    */
-  intersection(b, out?) {
+  intersection(b: Rectangle, out?: Rectangle) {
     return intersection(this, b, out);
   }
 
@@ -256,7 +256,7 @@ export class Rectangle {
    * @param {Rectangle} b - The rectangle to check for intersection with.
    * @returns {boolean} True if the rectangles intersect, false otherwise.
    */
-  intersects(b) {
+  intersects(b: Rectangle) {
     return intersects(this, b);
   }
 
@@ -269,7 +269,7 @@ export class Rectangle {
    * @param {number} tolerance - A tolerance value to use when checking (default: 0).
    * @returns {boolean} True if the rectangle intersects with the bounds, false otherwise.
    */
-  intersectsRaw(left, right, top, bottom, tolerance) {
+  intersectsRaw(left: number, right: number, top: number, bottom: number, tolerance: number) {
     return intersectsRaw(this, left, right, top, bottom, tolerance);
   }
 
@@ -279,7 +279,7 @@ export class Rectangle {
    * @param {Rectangle} out - The rectangle to store the result in (optional).
    * @returns {Rectangle} The union of the two rectangles.
    */
-  union(b, out?) {
+  union(b: Rectangle, out?: Rectangle) {
     return union(this, b, out);
   }
 
@@ -288,7 +288,7 @@ export class Rectangle {
    * @param {Point} output - The point to store the result in (optional).
    * @returns {Point} A random point within this rectangle.
    */
-  random(output = null) {
+  random(output: Point = null) {
     const result = output || new Point();
     result.x = this.randomX;
     result.y = this.randomY;
@@ -301,7 +301,7 @@ export class Rectangle {
    * @param {Point} output - The point to store the result in (optional).
    * @returns {Point} A point at the specified position on the rectangle.
    */
-  getPoint(position, output = null) {
+  getPoint(position: number, output: Point = null) {
     const result = output || new Point();
     switch (position) {
       case TOP_LEFT:

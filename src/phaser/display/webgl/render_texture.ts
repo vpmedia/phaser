@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { RENDER_WEBGL } from '../../core/const.js';
 import { Point } from '../../geom/point.js';
 import { Rectangle } from '../../geom/rectangle.js';
@@ -8,16 +7,17 @@ import { FilterTexture } from './filter_texture.js';
 import { Texture } from './texture.js';
 
 export class RenderTexture extends Texture {
-width;
-height;
-resolution;
-frame;
-crop;
-renderer;
-textureBuffer;
-render;
-projection;
-valid;
+  [key: string]: any;
+  declare width: any;
+  declare height: any;
+  resolution!: any;
+  declare frame: any;
+  declare crop: any;
+  renderer!: any;
+  textureBuffer!: any;
+  render!: any;
+  projection!: any;
+  declare valid: any;
   /**
    * Creates a new RenderTexture instance.
    * @param {number} width - The width of the render texture.
@@ -26,7 +26,7 @@ valid;
    * @param {number} scaleMode - The scale mode to use.
    * @param {number} resolution - The resolution to use.
    */
-  constructor(width, height, renderer, scaleMode, resolution = 1) {
+  constructor(width: number, height: number, renderer: import('./renderer.js').WebGLRenderer|import('../canvas/renderer.js').CanvasRenderer, scaleMode: number, resolution: number = 1) {
     const w = width || 100;
     const h = height || 100;
     const res = resolution || 1;

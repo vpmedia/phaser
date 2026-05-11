@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { Circle } from '../geom/circle.js';
 import { Point } from '../geom/point.js';
 import {
@@ -11,57 +10,57 @@ import {
 } from './const.js';
 
 export class Pointer {
-game;
-id;
-type;
-exists;
-identifier;
-pointerId;
-pointerMode;
-target;
-button;
-_holdSent;
-_history;
-_nextDrop;
-_stateReset;
-withinGame;
-clientX;
-clientY;
-pageX;
-pageY;
-screenX;
-screenY;
-rawMovementX;
-rawMovementY;
-movementX;
-movementY;
-x;
-y;
-isMouse;
-isDown;
-isUp;
-timeDown;
-timeUp;
-previousTapTime;
-totalTouches;
-msSinceLastClick;
-targetObject;
-interactiveCandidates;
-active;
-dirty;
-position;
-positionDown;
-positionUp;
-circle;
-_clickTrampolines;
-_trampolineTargetObject;
+game!: any;
+id!: any;
+type!: any;
+exists!: any;
+identifier!: any;
+pointerId!: any;
+pointerMode!: any;
+target!: any;
+button!: any;
+_holdSent!: any;
+_history!: any;
+_nextDrop!: any;
+_stateReset!: any;
+withinGame!: any;
+clientX!: any;
+clientY!: any;
+pageX!: any;
+pageY!: any;
+screenX!: any;
+screenY!: any;
+rawMovementX!: any;
+rawMovementY!: any;
+movementX!: any;
+movementY!: any;
+x!: any;
+y!: any;
+isMouse!: any;
+isDown!: any;
+isUp!: any;
+timeDown!: any;
+timeUp!: any;
+previousTapTime!: any;
+totalTouches!: any;
+msSinceLastClick!: any;
+targetObject!: any;
+interactiveCandidates!: any;
+active!: any;
+dirty!: any;
+position!: any;
+positionDown!: any;
+positionUp!: any;
+circle!: any;
+_clickTrampolines!: any;
+_trampolineTargetObject!: any;
   /**
    * TBD.
    * @param {import('./game.js').Game} game - TBD.
    * @param {number} id - TBD.
    * @param {number} pointerMode - TBD.
    */
-  constructor(game, id, pointerMode) {
+  constructor(game: import('./game.js').Game, id: number, pointerMode: number) {
     this.game = game;
     this.id = id;
     /** @type {number} */
@@ -138,7 +137,7 @@ _trampolineTargetObject;
    * TBD.
    * @param {MouseEvent|PointerEvent} event - TBD.
    */
-  updateButtons(event) {
+  updateButtons(event: any|PointerEvent) {
     if (event.type.toLowerCase().substr(-4) === 'down') {
       this.isUp = false;
       this.isDown = true;
@@ -153,7 +152,7 @@ _trampolineTargetObject;
    * @param {PointerEvent} event - TBD.
    * @returns {Pointer} TBD.
    */
-  start(event) {
+  start(event: any) {
     const input = this.game.input;
     if (event.pointerId) {
       this.pointerId = event.pointerId;
@@ -242,7 +241,7 @@ _trampolineTargetObject;
    * @param {boolean} fromClick - TBD.
    * @returns {Pointer} TBD.
    */
-  move(event, fromClick = false) {
+  move(event: any|PointerEvent, fromClick: boolean = false) {
     const input = this.game.input;
     if (input.pollLocked) {
       return null;
@@ -305,7 +304,7 @@ _trampolineTargetObject;
    * @param {boolean} fromClick - TBD.
    * @returns {boolean} TBD.
    */
-  processInteractiveObjects(fromClick = false) {
+  processInteractiveObjects(fromClick: boolean = false) {
     // Work out which object is on the top
     let highestRenderOrderID = 0;
     let highestInputPriorityID = -1;
@@ -367,7 +366,7 @@ _trampolineTargetObject;
    * @param {import('./input_handler.js').InputHandler} newTarget - TBD.
    * @param {boolean} silent - TBD.
    */
-  swapTarget(newTarget, silent = false) {
+  swapTarget(newTarget: import('./input_handler.js').InputHandler, silent: boolean = false) {
     //  Now we know the top-most item (if any) we can process it
     if (newTarget === null) {
       //  The pointer isn't currently over anything, check if we've got a lingering previous target
@@ -398,7 +397,7 @@ _trampolineTargetObject;
    * TBD.
    * @param {MouseEvent|PointerEvent} event - TBD.
    */
-  leave(event) {
+  leave(event: any|PointerEvent) {
     this.withinGame = false;
     this.move(event, false);
   }
@@ -408,7 +407,7 @@ _trampolineTargetObject;
    * @param {MouseEvent|PointerEvent} event - TBD.
    * @returns {Pointer} TBD.
    */
-  stop(event) {
+  stop(event: any|PointerEvent) {
     const input = this.game.input;
     if (this._stateReset && this.withinGame) {
       event.preventDefault();
@@ -464,7 +463,7 @@ _trampolineTargetObject;
    * @param {number} duration - TBD.
    * @returns {boolean} TBD.
    */
-  justPressed(duration) {
+  justPressed(duration: number) {
     duration = duration || this.game.input.justPressedRate;
     return this.isDown === true && this.timeDown + duration > this.game.time.time;
   }
@@ -474,7 +473,7 @@ _trampolineTargetObject;
    * @param {number} duration - TBD.
    * @returns {boolean} TBD.
    */
-  justReleased(duration) {
+  justReleased(duration: number) {
     duration = duration || this.game.input.justReleasedRate;
     return this.isUp && this.timeUp + duration > this.game.time.time;
   }
@@ -486,7 +485,7 @@ _trampolineTargetObject;
    * @param {object} callbackContext - TBD.
    * @param {...any} callbackArgs - TBD.
    */
-  addClickTrampoline(name, callback, callbackContext, callbackArgs) {
+  addClickTrampoline(name: string, callback: Function, callbackContext: any, callbackArgs: any) {
     if (!this.isDown) {
       return;
     }

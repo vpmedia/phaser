@@ -1,8 +1,8 @@
-// @ts-nocheck
 export class WebGLFilterManager {
-filterStack;
-offsetX;
-offsetY;
+  [key: string]: any;
+filterStack!: any;
+offsetX!: any;
+offsetY!: any;
   /**
    * Creates a new FilterManager instance.
    */
@@ -16,7 +16,7 @@ offsetY;
    * Initializes the filter manager with a WebGL context.
    * @param {WebGLRenderingContext} gl - The WebGL rendering context.
    */
-  setContext(gl) {
+  setContext(gl: WebGLRenderingContext) {
     this.gl = gl;
     this.texturePool = [];
     this.initShaderBuffers();

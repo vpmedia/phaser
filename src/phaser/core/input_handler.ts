@@ -1,55 +1,57 @@
-// @ts-nocheck
 import { Point } from '../geom/point.js';
 import { distance } from '../util/math.js';
 import { GROUP } from './const.js';
 
 export class InputHandler {
-sprite;
-game;
-enabled;
-checked;
-priorityID;
-useHandCursor;
-_setHandCursor;
-isDragged;
-allowHorizontalDrag;
-allowVerticalDrag;
-bringToTop;
-snapOffset;
-snapOnDrag;
-snapOnRelease;
-snapX;
-snapY;
-snapOffsetX;
-snapOffsetY;
-pixelPerfectOver;
-pixelPerfectClick;
-pixelPerfectAlpha;
-draggable;
-boundsRect;
-boundsSprite;
-scaleLayer;
-dragOffset;
-dragFromCenter;
-dragStopBlocksInputUp;
-dragStartPoint;
-dragDistanceThreshold;
-dragTimeThreshold;
-downPoint;
-snapPoint;
-_dragPoint;
-_dragPhase;
-_pendingDrag;
-_dragTimePass;
-_dragDistancePass;
-_wasEnabled;
-_tempPoint;
-_pointerData;
+  sprite!: any;
+  game!: any;
+  enabled!: any;
+  checked!: any;
+  priorityID!: any;
+  useHandCursor!: any;
+  _setHandCursor!: any;
+  isDragged!: any;
+  allowHorizontalDrag!: any;
+  allowVerticalDrag!: any;
+  bringToTop!: any;
+  snapOffset!: any;
+  snapOnDrag!: any;
+  snapOnRelease!: any;
+  snapX!: any;
+  snapY!: any;
+  snapOffsetX!: any;
+  snapOffsetY!: any;
+  pixelPerfectOver!: any;
+  pixelPerfectClick!: any;
+  pixelPerfectAlpha!: any;
+  draggable!: any;
+  boundsRect!: any;
+  boundsSprite!: any;
+  scaleLayer!: any;
+  dragOffset!: any;
+  dragFromCenter!: any;
+  dragStopBlocksInputUp!: any;
+  dragStartPoint!: any;
+  dragDistanceThreshold!: any;
+  dragTimeThreshold!: any;
+  downPoint!: any;
+  snapPoint!: any;
+  _dragPoint!: any;
+  _dragPhase!: any;
+  _pendingDrag!: any;
+  _dragTimePass!: any;
+  _dragDistancePass!: any;
+  _wasEnabled!: any;
+  _tempPoint!: any;
+  _pointerData!: any;
+  _dx!: any;
+  _dy!: any;
+  _draggedPointerID!: any;
   /**
    * TBD.
    * @param {import('../display/image.js').Image} sprite - TBD.
    */
-  constructor(sprite) {
+  constructor(sprite: import('../display/image.js').Image) {
     this.sprite = sprite;
     this.game = sprite.game;
     this.enabled = false;
@@ -116,7 +118,7 @@ _pointerData;
    * @param {boolean} useHandCursor - TBD.
    * @returns {import('../display/display_object.js').DisplayObject} TBD.
    */
-  start(priority = 0, useHandCursor = false) {
+  start(priority: number = 0, useHandCursor: boolean = false) {
     //  Turning on
     if (this.enabled === false) {
       //  Register, etc
@@ -235,7 +237,7 @@ _pointerData;
    * @param {boolean} includePixelPerfect - TBD.
    * @returns {boolean} TBD.
    */
-  validForInput(highestID, highestRenderID, includePixelPerfect = true) {
+  validForInput(highestID: number, highestRenderID: number, includePixelPerfect: boolean = true) {
     if (
       !this.enabled ||
       this.sprite.scale.x === 0 ||
@@ -268,7 +270,7 @@ _pointerData;
    * @param {number} pointerId - TBD.
    * @returns {number} TBD.
    */
-  pointerX(pointerId = 0) {
+  pointerX(pointerId: number = 0) {
     return this._pointerData[pointerId].x;
   }
 
@@ -277,7 +279,7 @@ _pointerData;
    * @param {number} pointerId - TBD.
    * @returns {number} TBD.
    */
-  pointerY(pointerId = 0) {
+  pointerY(pointerId: number = 0) {
     return this._pointerData[pointerId].y;
   }
 
@@ -286,7 +288,7 @@ _pointerData;
    * @param {number} pointerId - TBD.
    * @returns {boolean} TBD.
    */
-  pointerDown(pointerId = 0) {
+  pointerDown(pointerId: number = 0) {
     return this._pointerData[pointerId].isDown;
   }
 
@@ -295,7 +297,7 @@ _pointerData;
    * @param {number} pointerId - TBD.
    * @returns {boolean} TBD.
    */
-  pointerUp(pointerId = 0) {
+  pointerUp(pointerId: number = 0) {
     return this._pointerData[pointerId].isUp;
   }
 
@@ -304,7 +306,7 @@ _pointerData;
    * @param {number} pointerId - TBD.
    * @returns {number} TBD.
    */
-  pointerTimeDown(pointerId = 0) {
+  pointerTimeDown(pointerId: number = 0) {
     return this._pointerData[pointerId].timeDown;
   }
 
@@ -313,7 +315,7 @@ _pointerData;
    * @param {number} pointerId - TBD.
    * @returns {number} TBD.
    */
-  pointerTimeUp(pointerId = 0) {
+  pointerTimeUp(pointerId: number = 0) {
     return this._pointerData[pointerId].timeUp;
   }
 
@@ -322,7 +324,7 @@ _pointerData;
    * @param {number} pointerId - TBD.
    * @returns {boolean} TBD.
    */
-  pointerOver(pointerId = null) {
+  pointerOver(pointerId: number = null) {
     if (!this.enabled) {
       return false;
     }
@@ -342,7 +344,7 @@ _pointerData;
    * @param {number} pointerId - TBD.
    * @returns {boolean} TBD.
    */
-  pointerOut(pointerId = null) {
+  pointerOut(pointerId: number = null) {
     if (!this.enabled) {
       return false;
     }
@@ -361,7 +363,7 @@ _pointerData;
    * @param {number} pointerId - TBD.
    * @returns {number} TBD.
    */
-  pointerTimeOver(pointerId = 0) {
+  pointerTimeOver(pointerId: number = 0) {
     return this._pointerData[pointerId].timeOver;
   }
 
@@ -370,7 +372,7 @@ _pointerData;
    * @param {number} pointerId - TBD.
    * @returns {number} TBD.
    */
-  pointerTimeOut(pointerId = 0) {
+  pointerTimeOut(pointerId: number = 0) {
     return this._pointerData[pointerId].timeOut;
   }
 
@@ -379,7 +381,7 @@ _pointerData;
    * @param {number} pointerId - TBD.
    * @returns {boolean} TBD.
    */
-  pointerDragged(pointerId = 0) {
+  pointerDragged(pointerId: number = 0) {
     return this._pointerData[pointerId].isDragged;
   }
 
@@ -389,7 +391,7 @@ _pointerData;
    * @param {boolean} fastTest - TBD.
    * @returns {boolean} TBD.
    */
-  checkPointerDown(pointer, fastTest = false) {
+  checkPointerDown(pointer: import('./input_pointer.js').Pointer, fastTest: boolean = false) {
     if (
       !pointer.isDown ||
       !this.enabled ||
@@ -418,7 +420,7 @@ _pointerData;
    * @param {boolean} fastTest - TBD.
    * @returns {boolean} TBD.
    */
-  checkPointerOver(pointer, fastTest = false) {
+  checkPointerOver(pointer: import('./input_pointer.js').Pointer, fastTest: boolean = false) {
     if (
       !this.enabled ||
       !this.sprite ||
@@ -447,7 +449,7 @@ _pointerData;
    * @param {import('./input_pointer.js').Pointer} pointer - TBD.
    * @returns {boolean} TBD.
    */
-  checkPixel(x, y, pointer) {
+  checkPixel(x: number, y: number, pointer?: any) {
     //  Grab a pixel from our image into the hitCanvas and then test it
     if (this.sprite.texture.baseTexture.source) {
       if (x === null && y === null) {
@@ -496,7 +498,7 @@ _pointerData;
    * @param {import('./input_pointer.js').Pointer} pointer - TBD.
    * @returns {boolean} TBD.
    */
-  update(pointer) {
+  update(pointer: import('./input_pointer.js').Pointer) {
     if (this.sprite === null || this.sprite.parent === undefined) {
       // Abort. We've been destroyed.
       return false;
@@ -533,7 +535,7 @@ _pointerData;
    * @param {import('./input_pointer.js').Pointer} pointer - TBD.
    * @param {boolean} silent - TBD.
    */
-  _pointerOverHandler(pointer, silent) {
+  _pointerOverHandler(pointer: import('./input_pointer.js').Pointer, silent: boolean) {
     if (this.sprite === null) {
       // Abort. We've been destroyed.
       return;
@@ -564,7 +566,7 @@ _pointerData;
    * @param {import('./input_pointer.js').Pointer} pointer - TBD.
    * @param {boolean} silent - TBD.
    */
-  _pointerOutHandler(pointer, silent = false) {
+  _pointerOutHandler(pointer: import('./input_pointer.js').Pointer, silent: boolean = false) {
     if (this.sprite === null) {
       // Abort. We've been destroyed.
       return;
@@ -589,7 +591,7 @@ _pointerData;
    * TBD.
    * @param {import('./input_pointer.js').Pointer} pointer - TBD.
    */
-  _touchedHandler(pointer) {
+  _touchedHandler(pointer: import('./input_pointer.js').Pointer) {
     if (this.sprite === null) {
       // Abort. We've been destroyed.
       return;
@@ -641,7 +643,7 @@ _pointerData;
    * TBD.
    * @param {import('./input_pointer.js').Pointer} pointer - TBD.
    */
-  dragTimeElapsed(pointer) {
+  dragTimeElapsed(pointer: import('./input_pointer.js').Pointer) {
     this._dragTimePass = true;
     if (this._pendingDrag && this.sprite) {
       if (this._dragDistancePass) {
@@ -654,7 +656,7 @@ _pointerData;
    * TBD.
    * @param {import('./input_pointer.js').Pointer} pointer - TBD.
    */
-  _releasedHandler(pointer) {
+  _releasedHandler(pointer: import('./input_pointer.js').Pointer) {
     if (this.sprite === null) {
       // Abort. We've been destroyed.
       return;
@@ -704,7 +706,7 @@ _pointerData;
    * @param {boolean} fromStart - TBD.
    * @returns {boolean} TBD.
    */
-  updateDrag(pointer, fromStart = false) {
+  updateDrag(pointer: import('./input_pointer.js').Pointer, fromStart: boolean = false) {
     if (pointer.isUp) {
       this.stopDrag(pointer);
       return false;
@@ -744,7 +746,7 @@ _pointerData;
    * @param {number} delay - TBD.
    * @returns {boolean} TBD.
    */
-  justOver(pointerId = 0, delay = 500) {
+  justOver(pointerId: number = 0, delay: number = 500) {
     return this._pointerData[pointerId].isOver && this.overDuration(pointerId) < delay;
   }
 
@@ -754,7 +756,7 @@ _pointerData;
    * @param {number} delay - TBD.
    * @returns {boolean} TBD.
    */
-  justOut(pointerId = 0, delay = 500) {
+  justOut(pointerId: number = 0, delay: number = 500) {
     return this._pointerData[pointerId].isOut && this.game.time.time - this._pointerData[pointerId].timeOut < delay;
   }
 
@@ -764,7 +766,7 @@ _pointerData;
    * @param {number} delay - TBD.
    * @returns {boolean} TBD.
    */
-  justPressed(pointerId = 0, delay = 500) {
+  justPressed(pointerId: number = 0, delay: number = 500) {
     return this._pointerData[pointerId].isDown && this.downDuration(pointerId) < delay;
   }
 
@@ -774,7 +776,7 @@ _pointerData;
    * @param {number} delay - TBD.
    * @returns {boolean} TBD.
    */
-  justReleased(pointerId = 0, delay = 500) {
+  justReleased(pointerId: number = 0, delay: number = 500) {
     return this._pointerData[pointerId].isUp && this.game.time.time - this._pointerData[pointerId].timeUp < delay;
   }
 
@@ -783,7 +785,7 @@ _pointerData;
    * @param {number} pointerId - TBD.
    * @returns {number} TBD.
    */
-  overDuration(pointerId = 0) {
+  overDuration(pointerId: number = 0) {
     if (this._pointerData[pointerId].isOver) {
       return this.game.time.time - this._pointerData[pointerId].timeOver;
     }
@@ -795,7 +797,7 @@ _pointerData;
    * @param {number} pointerId - TBD.
    * @returns {number} TBD.
    */
-  downDuration(pointerId = 0) {
+  downDuration(pointerId: number = 0) {
     if (this._pointerData[pointerId].isDown) {
       return this.game.time.time - this._pointerData[pointerId].timeDown;
     }
@@ -811,14 +813,7 @@ _pointerData;
    * @param {import('../geom/rectangle.js').Rectangle | null | undefined} boundsRect - TBD.
    * @param {import('../display/display_object.js').DisplayObject | null | undefined} boundsSprite - TBD.
    */
-  enableDrag(
-    lockCenter = false,
-    bringToTop = false,
-    pixelPerfect = false,
-    alphaThreshold = 255,
-    boundsRect = null,
-    boundsSprite = null
-  ) {
+  enableDrag(lockCenter: boolean = false, bringToTop: boolean = false, pixelPerfect: boolean = false, alphaThreshold: number = 255, boundsRect: import('../geom/rectangle.js').Rectangle | null | undefined = null, boundsSprite: import('../display/display_object.js').DisplayObject | null | undefined = null) {
     this._dragPoint = new Point();
     this.draggable = true;
     this.bringToTop = bringToTop;
@@ -853,7 +848,7 @@ _pointerData;
    * TBD.
    * @param {import('./input_pointer.js').Pointer} pointer - TBD.
    */
-  startDrag(pointer) {
+  startDrag(pointer: import('./input_pointer.js').Pointer) {
     const x = this.sprite.x;
     const y = this.sprite.y;
     this.isDragged = true;
@@ -885,7 +880,7 @@ _pointerData;
    * @param {number} x - TBD.
    * @returns {number} TBD.
    */
-  globalToLocalX(x) {
+  globalToLocalX(x: number) {
     if (this.scaleLayer) {
       x -= this.game.scale.grid.boundsFluid.x;
       x *= this.game.scale.grid.scaleFluidInversed.x;
@@ -898,7 +893,7 @@ _pointerData;
    * @param {number} y - TBD.
    * @returns {number} TBD.
    */
-  globalToLocalY(y) {
+  globalToLocalY(y: number) {
     if (this.scaleLayer) {
       y -= this.game.scale.grid.boundsFluid.y;
       y *= this.game.scale.grid.scaleFluidInversed.y;
@@ -910,7 +905,7 @@ _pointerData;
    * TBD.
    * @param {import('./input_pointer.js').Pointer} pointer - TBD.
    */
-  stopDrag(pointer) {
+  stopDrag(pointer: import('./input_pointer.js').Pointer) {
     this.isDragged = false;
     this._draggedPointerID = -1;
     this._pointerData[pointer.id].isDragged = false;
@@ -935,7 +930,7 @@ _pointerData;
    * @param {boolean} allowHorizontal - TBD.
    * @param {boolean} allowVertical - TBD.
    */
-  setDragLock(allowHorizontal = true, allowVertical = true) {
+  setDragLock(allowHorizontal: boolean = true, allowVertical: boolean = true) {
     this.allowHorizontalDrag = allowHorizontal;
     this.allowVerticalDrag = allowVertical;
   }
@@ -949,7 +944,7 @@ _pointerData;
    * @param {number} snapOffsetX - TBD.
    * @param {number} snapOffsetY - TBD.
    */
-  enableSnap(snapX, snapY, onDrag = true, onRelease = false, snapOffsetX = 0, snapOffsetY = 0) {
+  enableSnap(snapX: number, snapY: number, onDrag: boolean = true, onRelease: boolean = false, snapOffsetX: number = 0, snapOffsetY: number = 0) {
     this.snapX = snapX;
     this.snapY = snapY;
     this.snapOffsetX = snapOffsetX;

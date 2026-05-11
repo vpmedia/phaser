@@ -1,100 +1,53 @@
-// @ts-nocheck
 import { Signal } from './signal.js';
 
 export class Sound {
-_paused;
-  /** @type {import('./game.js').Game} */
-  game;
-  /** @type {string} */
-  name;
-  /** @type {string} */
-  key;
-  /** @type {boolean} */
-  loop;
-  /** @type {object} */
-  markers;
-  /** @type {AudioContext} */
-  context;
-  /** @type {boolean} */
-  autoplay;
-  /** @type {number} */
-  totalDuration;
-  /** @type {number} */
-  startTime;
-  /** @type {number} */
-  currentTime;
-  /** @type {number} */
-  duration;
-  /** @type {number} */
-  durationMS;
-  /** @type {number} */
-  position;
-  /** @type {number} */
-  stopTime;
-  /** @type {boolean} */
-  paused;
-  /** @type {number} */
-  pausedPosition;
-  /** @type {number} */
-  pausedTime;
-  /** @type {boolean} */
-  isPlaying;
-  /** @type {string} */
-  currentMarker;
-  /** @type {import('./tween.js').Tween | null} */
-  fadeTween;
-  /** @type {boolean} */
-  pendingPlayback;
-  /** @type {boolean} */
-  override;
-  /** @type {boolean} */
-  allowMultiple;
-  /** @type {AudioNode | null} */
-  externalNode;
-  /** @type {GainNode | null} */
-  masterGainNode;
-  /** @type {GainNode | null} */
-  gainNode;
-  /** @type {AudioBufferSourceNode | null} */
-  _sound;
-  /** @type {boolean} */
-  _markedToDelete;
-  /** @type {boolean} */
-  _removeFromSoundManager;
-  /** @type {Signal} */
-  onPlay;
-  /** @type {Signal} */
-  onPause;
-  /** @type {Signal} */
-  onResume;
-  /** @type {Signal} */
-  onLoop;
-  /** @type {Signal} */
-  onStop;
-  /** @type {Signal} */
-  onMute;
-  /** @type {Signal} */
-  onMarkerComplete;
-  /** @type {Signal} */
-  onFadeComplete;
-  /** @type {number} */
-  _volume;
-  /** @type {AudioBuffer | null} */
-  _buffer;
-  /** @type {boolean} */
-  _muted;
-  /** @type {string} */
-  _tempMarker;
-  /** @type {number} */
-  _tempPosition;
-  /** @type {number} */
-  _tempVolume;
-  /** @type {number} */
-  _tempPause;
-  /** @type {number} */
-  _muteVolume;
-  /** @type {boolean} */
-  _tempLoop;
+  _paused!: any;
+  game!: import('./game.js').Game;
+  name!: string;
+  key!: string;
+  loop!: boolean;
+  markers!: any;
+  context!: AudioContext;
+  autoplay!: boolean;
+  totalDuration!: number;
+  startTime!: number;
+  currentTime!: number;
+  duration!: number;
+  durationMS!: number;
+  position!: number;
+  stopTime!: number;
+  paused!: boolean;
+  pausedPosition!: number;
+  pausedTime!: number;
+  isPlaying!: boolean;
+  currentMarker!: string;
+  fadeTween!: import('./tween.js').Tween | null;
+  pendingPlayback!: boolean;
+  override!: boolean;
+  allowMultiple!: boolean;
+  externalNode!: AudioNode | null;
+  masterGainNode!: GainNode | null;
+  gainNode!: GainNode | null;
+  _sound!: AudioBufferSourceNode | null;
+  _markedToDelete!: boolean;
+  _removeFromSoundManager!: boolean;
+  onPlay!: Signal;
+  onPause!: Signal;
+  onResume!: Signal;
+  onLoop!: Signal;
+  onStop!: Signal;
+  onMute!: Signal;
+  onMarkerComplete!: Signal;
+  onFadeComplete!: Signal;
+  _volume!: number;
+  _buffer!: AudioBuffer | null;
+  _muted!: boolean;
+  _tempMarker!: string;
+  _tempPosition!: number;
+  _tempVolume!: number;
+  _tempPause!: number;
+  _muteVolume!: number;
+  _tempLoop!: boolean;
   /**
    * Creates a new Sound instance.
    * @param {import('./game.js').Game} game - Reference to the Phaser Game instance.
@@ -103,7 +56,7 @@ _paused;
    * @param {boolean} loop - Whether the sound should loop.
    * @param {boolean} connect - Whether to connect to the master gain node.
    */
-  constructor(game, key, volume = 1, loop = false, connect = null) {
+  constructor(game: import('./game.js').Game, key: string, volume: number = 1, loop: boolean = false, connect: boolean = null) {
     // TODO
     // https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Migrating_from_webkitAudioContext
     if (!connect) {
@@ -145,7 +98,7 @@ _paused;
     this.context = this.game.sound.context;
     this.masterGainNode = this.game.sound.masterGain;
     if (this.context.createGain === undefined) {
-      this.gainNode = this.context.createGainNode();
+      this.gainNode = (this.context as any).createGainNode();
     } else {
       this.gainNode = this.context.createGain();
     }
@@ -178,10 +131,10 @@ _paused;
    * Callback when a sound has been unlocked.
    * @param {string} key - The key of the sound that was unlocked.
    */
-  soundHasUnlocked(key) {
+  soundHasUnlocked(key: string) {
     if (key === this.key) {
       this._sound = this.game.cache.getSoundData(this.key);
-      this.totalDuration = this._sound.duration;
+      this.totalDuration = (this._sound as any).duration;
     }
   }
 
@@ -193,7 +146,7 @@ _paused;
    * @param {number} volume - The volume level (0.0 to 1.0) of the marker.
    * @param {boolean} loop - Whether the marker should loop.
    */
-  addMarker(name, start, duration = 1, volume = 1, loop = false) {
+  addMarker(name: string, start: number, duration: number = 1, volume: number = 1, loop: boolean = false) {
     this.markers[name] = {
       name,
       start,
@@ -209,7 +162,7 @@ _paused;
    * Removes a marker from the sound.
    * @param {string} name - The name of the marker to remove.
    */
-  removeMarker(name) {
+  removeMarker(name: string) {
     delete this.markers[name];
   }
 
@@ -289,7 +242,7 @@ _paused;
    * @param {number} volume - The volume level (0.0 to 1.0) to play at.
    * @returns {Sound} This Sound instance for chaining.
    */
-  loopFull(volume) {
+  loopFull(volume: number) {
     return this.play(null, 0, volume, true);
   }
 
@@ -302,7 +255,7 @@ _paused;
    * @param {boolean} forceRestart - Whether to force restarting the sound even if it's already playing.
    * @returns {Sound} This Sound instance for chaining.
    */
-  play(marker, position, volume, loop, forceRestart = true) {
+  play(marker: any = '', position: any = 0, volume: any = 1, loop: any = false, forceRestart: boolean = true) {
     if (marker === undefined || marker === false || marker === null) {
       marker = '';
     }
@@ -316,7 +269,7 @@ _paused;
     }
     if (this._sound && this.isPlaying && !this.allowMultiple && (this.override || forceRestart)) {
       if (this._sound.stop === undefined) {
-        this._sound.noteOff(0);
+        (this._sound as any).noteOff(0);
       } else {
         this._sound.stop(0);
       }
@@ -396,7 +349,7 @@ _paused;
       }
       //  Useful to cache this somewhere perhaps?
       if (this._sound.start === undefined) {
-        this._sound.noteGrainOn(0, this.position, this.duration);
+        (this._sound as any).noteGrainOn(0, this.position, this.duration);
       } else if (this.loop && marker === '') {
         this._sound.start(0, 0);
       } else {
@@ -423,7 +376,7 @@ _paused;
    * @param {number} volume - The volume level (0.0 to 1.0) to play at.
    * @param {boolean} loop - Whether the sound should loop.
    */
-  restart(marker = '', position = 0, volume = 1, loop = false) {
+  restart(marker: string = '', position: number = 0, volume: number = 1, loop: boolean = false) {
     this.play(marker, position, volume, loop, true);
   }
 
@@ -435,7 +388,7 @@ _paused;
       this.paused = true;
       this.pausedPosition = this.currentTime;
       this.pausedTime = this.game.time.time;
-      this._tempPause = this._sound.currentTime;
+      this._tempPause = (this._sound as any).currentTime;
       this.onPause.dispatch(this);
       this.stop();
     }
@@ -462,7 +415,7 @@ _paused;
       }
       const duration = this.duration - this.pausedPosition / 1000;
       if (this._sound.start === undefined) {
-        this._sound.noteGrainOn(0, p, duration);
+        (this._sound as any).noteGrainOn(0, p, duration);
       } else {
         this._sound.start(0, p, duration);
       }
@@ -479,7 +432,7 @@ _paused;
   stop() {
     if (this.isPlaying && this._sound) {
       if (this._sound.stop === undefined) {
-        this._sound.noteOff(0);
+        (this._sound as any).noteOff(0);
       } else {
         this._sound.stop(0);
       }
@@ -510,7 +463,7 @@ _paused;
    * @param {boolean} loop - Whether the sound should loop.
    * @param {string} marker - The name of the marker to fade in, or empty string to use current marker.
    */
-  fadeIn(duration, loop = false, marker = this.currentMarker) {
+  fadeIn(duration: number, loop: boolean = false, marker: string = this.currentMarker) {
     if (this.paused) {
       return;
     }
@@ -522,7 +475,7 @@ _paused;
    * Fades out the sound to silence.
    * @param {number} duration - The fade-out duration (in milliseconds).
    */
-  fadeOut(duration) {
+  fadeOut(duration: number) {
     this.fadeTo(duration, 0);
   }
 
@@ -531,7 +484,7 @@ _paused;
    * @param {number} duration - The fade duration (in milliseconds).
    * @param {number} volume - The target volume level (0.0 to 1.0).
    */
-  fadeTo(duration = 100, volume = 0) {
+  fadeTo(duration: number = 100, volume: number = 0) {
     if (!this.isPlaying || this.paused || volume === this.volume) {
       return;
     }
@@ -553,7 +506,7 @@ _paused;
    * Destroys the sound and cleans up resources.
    * @param {boolean} remove - Whether to remove the sound from the SoundManager.
    */
-  destroy(remove = true) {
+  destroy(remove: boolean = true) {
     this._markedToDelete = true;
     this._removeFromSoundManager = remove;
     this.stop();
