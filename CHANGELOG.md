@@ -1,3 +1,30 @@
+## [1.103.0] - 2026-05-11
+
+### 🐛 Bug Fixes
+
+- Fixed ts6 compat issues
+
+### 💼 Other
+
+- *(deps)* Bump dependency versions
+- *(deps)* Bump dependency versions
+- *(deps)* Bump dependency versions
+- *(deps)* Bump dependency versions
+- *(deps)* Bump dependency versions
+
+### 🚜 Refactor
+
+- Migrate source to typescript
+
+### 📚 Documentation
+
+- Expand AGENTS.md with overview, tech stack, and project guide
+
+### ⚙️ Miscellaneous Tasks
+
+- Release
+- *(ai)* Add shared clean-code rules for Claude
+- *(release)* V1.103.0
 ## [1.102.0] - 2026-04-23
 
 ### 💼 Other
