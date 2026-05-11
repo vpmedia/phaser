@@ -3,7 +3,6 @@
   "env": { "browser": true },
   "plugins": [
     "eslint",
-    "jsdoc",
     "jsx-a11y",
     "oxc",
     "promise",
@@ -13,13 +12,13 @@
     "unicorn"
   ],
   "categories": {
-    "correctness": "warn",
-    "nursery": "warn",
-    "pedantic": "warn",
-    "perf": "warn",
-    "restriction": "warn",
-    "style": "warn",
-    "suspicious": "warn"
+    "correctness": "error",
+    "nursery": "off",
+    "pedantic": "error",
+    "perf": "error",
+    "restriction": "error",
+    "style": "error",
+    "suspicious": "error"
   },
   "rules": {
     "no-unused-vars": "off",
@@ -74,7 +73,6 @@
     "prefer-spread": "off",
     "require-unicode-regexp": "off",
     "sort-imports": "off",
-    "jsdoc/require-param": "off",
     "oxc/approx-constant": "off",
     "oxc/branches-sharing-code": "off",
     "oxc/no-async-await": "off",
@@ -86,12 +84,14 @@
     "typescript/ban-ts-comment": "off",
     "typescript/ban-types": "off",
     "typescript/class-literal-property-style": "off",
+    "typescript/consistent-type-imports": "off",
     "typescript/explicit-function-return-type": "off",
     "typescript/explicit-member-accessibility": "off",
     "typescript/explicit-module-boundary-types": "off",
     "typescript/no-dynamic-delete": "off",
     "typescript/no-explicit-any": "off",
     "typescript/no-inferrable-types": "off",
+    "typescript/no-non-null-assertion": "off",
     "typescript/no-this-alias": "off",
     "typescript/no-unsafe-function-type": "off",
     "typescript/prefer-for-of": "off",
