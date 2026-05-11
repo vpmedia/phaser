@@ -22,6 +22,7 @@
     "suspicious": "warn"
   },
   "rules": {
-    "no-unused-vars": "off"
+    "no-unused-vars": "off",
+    "sort-keys": "off"
   }
 }

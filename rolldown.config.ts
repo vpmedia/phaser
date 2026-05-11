@@ -1,0 +1,12 @@
+import { defineConfig } from 'rolldown';
+
+export default defineConfig({
+  input: './src/index.ts',
+  output: {
+    dir: './dist',
+    format: 'esm',
+    entryFileNames: 'index.js',
+    sourcemap: true,
+  },
+  external: ['@vpmedia/simplify', 'uuid'],
+});

@@ -4,12 +4,12 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
     globals: true,
-    include: ['./src/**/*.test.{js,jsx,ts,tsx}'],
+    include: ['./src/**/*.test.{ts,tsx}'],
     isolate: false,
     pool: 'threads',
     watch: false,
     coverage: {
-      include: ['src/**/*.{js,jsx,ts,tsx}'],
+      include: ['src/**/*.{ts,tsx}'],
       provider: 'v8',
       reporter: ['text'],
     },
