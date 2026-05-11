@@ -21,6 +21,62 @@ import { TweenManager } from './tween_manager.js';
 import { World } from './world.js';
 
 export class Game {
+  /** @type {object} */
+  config;
+  /** @type {number} */
+  id;
+  /** @type {string|HTMLElement} */
+  parent;
+  /** @type {number} */
+  width;
+  /** @type {number} */
+  height;
+  /** @type {CanvasRenderer | WebGLRenderer} */
+  renderer;
+  /** @type {SceneManager} */
+  state;
+  /** @type {boolean} */
+  isBooted;
+  /** @type {boolean} */
+  paused;
+  /** @type {RequestAnimationFrame} */
+  raf;
+  /** @type {GameObjectFactory} */
+  add;
+  /** @type {Cache} */
+  cache;
+  /** @type {Input} */
+  input;
+  /** @type {Loader} */
+  load;
+  /** @type {ScaleManager} */
+  scale;
+  /** @type {SoundManager} */
+  sound;
+  /** @type {Stage} */
+  stage;
+  /** @type {Time} */
+  time;
+  /** @type {TweenManager} */
+  tweens;
+  /** @type {World} */
+  world;
+  /** @type {Device} */
+  device;
+  /** @type {Logger} */
+  logger;
+  /** @type {HTMLCanvasElement} */
+  canvas;
+  /** @type {CanvasRenderingContext2D | ImageBitmapRenderingContext | WebGLRenderingContext | WebGL2RenderingContext} */
+  context;
+  /** @type {Signal} */
+  onPause;
+  /** @type {Signal} */
+  onResume;
+  /** @type {Signal} */
+  onBoot;
+  /** @type {boolean} */
+  isPaused;
   /**
    * Creates a new Game instance.
    * @param {object} gameConfig - The configuration object for the game.
@@ -223,9 +279,9 @@ export class Game {
     this.logger.info('parseConfig');
     this.parseConfigElement(config, 'width', 800);
     this.parseConfigElement(config, 'height', 600);
-    this.parseConfigElement(config, 'backgroundColor', 0x000000);
+    this.parseConfigElement(config, 'backgroundColor', 0x00_00_00);
     this.parseConfigElement(config, 'canvasID', '');
-    this.parseConfigElement(config, 'canvasStyle', undefined);
+    this.parseConfigElement(config, 'canvasStyle');
     this.parseConfigElement(config, 'resolution', 1);
     this.parseConfigElement(config, 'transparent', false);
     this.parseConfigElement(config, 'antialias', false);
@@ -240,7 +296,7 @@ export class Game {
     }
     let state = null;
     if (config.state) {
-      state = config.state;
+      ({ state } = config);
     }
     this.state = new SceneManager(this, state);
   }
@@ -265,7 +321,7 @@ export class Game {
     this.logger.info('contextRestored', event);
     if (this.renderer) {
       this.renderer.initContext(this);
-      // this.cache.clearGLTextures();
+      // This.cache.clearGLTextures();
       this.renderer.contextLost = false;
     }
   }

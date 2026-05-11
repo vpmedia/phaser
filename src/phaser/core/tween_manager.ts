@@ -36,6 +36,10 @@ import {
 } from './tween_easing.js';
 
 export class TweenManager {
+game;
+_tweens;
+_add;
+easeMap;
   /**
    * Creates a new TweenManager instance.
    * @param {import('./game.js').Game} game - The game instance this manager belongs to.

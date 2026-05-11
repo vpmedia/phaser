@@ -6,6 +6,16 @@ import { PrimitiveShader } from './shader/primitive.js';
 import { StripShader } from './shader/strip.js';
 
 export class WebGLShaderManager {
+gl;
+primitiveShader;
+complexPrimitiveShader;
+defaultShader;
+fastShader;
+stripShader;
+maxAttibs;
+attribState;
+tempAttribState;
+stack;
   /**
    * Initializes the shader manager with a WebGL context.
    */

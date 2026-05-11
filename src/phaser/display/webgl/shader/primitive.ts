@@ -5,6 +5,11 @@ import { compileProgram } from '../util.js';
 // the next one is used for rendering primitives
 
 export class PrimitiveShader {
+gl;
+_UID;
+program;
+fragmentSrc;
+vertexSrc;
   /**
    * Creates a new PrimitiveShader instance.
    * @param {WebGLRenderingContext} gl - The WebGL rendering context.

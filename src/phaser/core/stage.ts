@@ -6,6 +6,10 @@ import { valueToColor } from '../util/math.js';
 import { SCALE_LINEAR, SCALE_NEAREST } from './const.js';
 
 export class Stage extends DisplayObject {
+name;
+worldTransform;
+currentRenderOrderID;
+_bgColor;
   /**
    * Creates a new Stage instance.
    * @param {import('./game.js').Game} game - The game instance.

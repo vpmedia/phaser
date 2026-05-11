@@ -2,6 +2,18 @@
 import { removeByCanvas } from '../canvas/pool.js';
 
 export class BaseTexture {
+resolution;
+width;
+height;
+scaleMode;
+hasLoaded;
+source;
+premultipliedAlpha;
+_glTextures;
+mipmap;
+skipRender;
+_powerOf2;
+_dirty;
   /**
    * Updates the base texture with a new source.
    * @param {HTMLCanvasElement} source - The new canvas element to use as the texture source.

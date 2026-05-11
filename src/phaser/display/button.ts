@@ -11,6 +11,34 @@ const STATE_UP = 'Up';
 const STATE_DISABLED = 'Disabled';
 
 export class Button extends Image {
+  /** @type {string | null} */
+  _onOverFrame;
+  /** @type {string | null} */
+  _onOutFrame;
+  /** @type {string | null} */
+  _onDownFrame;
+  /** @type {string | null} */
+  _onUpFrame;
+  /** @type {string | null} */
+  _onDisabledFrame;
+  /** @type {Signal} */
+  onInputOver;
+  /** @type {Signal} */
+  onInputOut;
+  /** @type {Signal} */
+  onInputDown;
+  /** @type {Signal} */
+  onInputUp;
+  /** @type {boolean} */
+  onOverMouseOnly;
+  /** @type {number} */
+  justReleasedPreventsOver;
+  /** @type {boolean} */
+  freezeFrames;
+  /** @type {boolean} */
+  forceOut;
+  /** @type {InputHandler} */
+  input;
   /**
    * Creates a new Button instance.
    * @param {import('../core/game.js').Game} game - The game instance this button belongs to.

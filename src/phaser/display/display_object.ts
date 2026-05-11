@@ -7,6 +7,62 @@ import { PI_2 } from '../util/math.js';
 import { renderCanvas, renderWebGL } from './sprite_util.js';
 
 export class DisplayObject {
+  /** @type {boolean} */
+  exists = true;
+  /** @type {boolean} */
+  renderable = false;
+  /** @type {boolean} */
+  visible = true;
+  /** @type {Point} */
+  position;
+  /** @type {Point} */
+  scale;
+  /** @type {Point} */
+  pivot;
+  /** @type {Point} */
+  anchor;
+  /** @type {number} */
+  rotation = 0;
+  /** @type {number} */
+  alpha = 1;
+  /** @type {Rectangle} */
+  hitArea = null;
+  /** @type {DisplayObject} */
+  parent = null;
+  /** @type {number} */
+  worldAlpha = 1;
+  /** @type {Matrix} */
+  worldTransform;
+  /** @type {Point} */
+  worldScale;
+  /** @type {Rectangle} */
+  filterArea = null;
+  /** @type {number} */
+  _sr = 0;
+  /** @type {number} */
+  _cr = 1;
+  /** @type {Rectangle} */
+  cachedBounds;
+  /** @type {Rectangle} */
+  currentBounds = null;
+  /** @type {import('./graphics.js').Graphics} */
+  _mask = null;
+  /** @type {object[]} */
+  _filters = null;
+  /** @type {object} */
+  _filterBlock = null;
+  /** @type {DisplayObject[]} */
+  children;
+  /** @type {boolean} */
+  ignoreChildInput = false;
+  /** @type {string | null} */
+  name = null;
+  /** @type {object | null} */
+  data = null;
+  /** @type {import('../core/game.js').Game} */
+  game;
+  /** @type {number} */
+  type;
   /**
    * Creates a new DisplayObject instance.
    * @param {import('../core/game.js').Game} game - The game instance this display object belongs to.
@@ -38,10 +94,10 @@ export class DisplayObject {
     this.worldAlpha = 1;
     /** @type {Matrix} */
     this.worldTransform = new Matrix();
-    // this.worldPosition = new Point(0, 0);
+    // This.worldPosition = new Point(0, 0);
     /** @type {Point} */
     this.worldScale = new Point(1, 1);
-    // this.worldRotation = 0;
+    // This.worldRotation = 0;
     /** @type {Rectangle} */
     this.filterArea = null;
     /** @type {number} */
@@ -86,7 +142,7 @@ export class DisplayObject {
     this.visible = false;
     // TODO: investigate how to clean up properly object references without breaking delayed tween cleanups.
     /*
-    this.position = null;
+    This.position = null;
     this.scale = null;
     this.pivot = null;
     this.anchor = null;
@@ -94,7 +150,7 @@ export class DisplayObject {
     this.hitArea = null;
     this.parent = null;
     this.worldTransform = null;
-    // this.worldPosition = null;
+    // This.worldPosition = null;
     this.worldScale = null;
     this.filterArea = null;
     this.cachedBounds = null;
@@ -175,8 +231,8 @@ export class DisplayObject {
       throw new Error('The supplied index is out of bounds');
     }
     const currentIndex = this.getChildIndex(child);
-    this.children.splice(currentIndex, 1); // remove from old position
-    this.children.splice(index, 0, child); // add at new position
+    this.children.splice(currentIndex, 1); // Remove from old position
+    this.children.splice(index, 0, child); // Add at new position
   }
 
   /**
@@ -270,37 +326,37 @@ export class DisplayObject {
     } else if (!this.parent) {
       p = this.game.world;
     }
-    // create some matrix refs for easy access
+    // Create some matrix refs for easy access
     const pt = p.worldTransform;
     const wt = this.worldTransform;
-    // temporary matrix variables
+    // Temporary matrix variables
     let a;
     let b;
     let c;
     let d;
     let tx;
     let ty;
-    // so if rotation is between 0 then we can simplify the multiplication process..
+    // So if rotation is between 0 then we can simplify the multiplication process..
     if (this.rotation % PI_2) {
-      // check to see if the rotation is the same as the previous render. This means we only need to use sin and cos when rotation actually changes
+      // Check to see if the rotation is the same as the previous render. This means we only need to use sin and cos when rotation actually changes
       if (this.rotation !== this.rotationCache) {
         this.rotationCache = this.rotation;
         this._sr = Math.sin(this.rotation);
         this._cr = Math.cos(this.rotation);
       }
-      // get the matrix values of the displayobject based on its transform properties..
+      // Get the matrix values of the displayobject based on its transform properties..
       a = this._cr * this.scale.x;
       b = this._sr * this.scale.x;
       c = -this._sr * this.scale.y;
       d = this._cr * this.scale.y;
       tx = this.position.x;
       ty = this.position.y;
-      // check for pivot.. not often used so geared towards that fact!
+      // Check for pivot.. not often used so geared towards that fact!
       if (this.pivot.x || this.pivot.y) {
         tx -= this.pivot.x * a + this.pivot.y * c;
         ty -= this.pivot.x * b + this.pivot.y * d;
       }
-      // concat the parent matrix with the objects transform.
+      // Concat the parent matrix with the objects transform.
       wt.a = a * pt.a + b * pt.c;
       wt.b = a * pt.b + b * pt.d;
       wt.c = c * pt.a + d * pt.c;
@@ -308,7 +364,7 @@ export class DisplayObject {
       wt.tx = tx * pt.a + ty * pt.c + pt.tx;
       wt.ty = tx * pt.b + ty * pt.d + pt.ty;
     } else {
-      // lets do the fast version as we know there is no rotation..
+      // Lets do the fast version as we know there is no rotation..
       a = this.scale.x;
       d = this.scale.y;
       tx = this.position.x - this.pivot.x * a;
@@ -322,13 +378,13 @@ export class DisplayObject {
     }
     //  Set the World values
     this.worldAlpha = this.alpha * p.worldAlpha;
-    // this.worldPosition.setTo(wt.tx, wt.ty);
+    // This.worldPosition.setTo(wt.tx, wt.ty);
     this.worldScale.setTo(
       this.scale.x * Math.sqrt(wt.a * wt.a + wt.c * wt.c),
       this.scale.y * Math.sqrt(wt.b * wt.b + wt.d * wt.d)
     );
     this.worldRotation = Math.atan2(-wt.c, wt.d);
-    // reset the bounds each time this is called!
+    // Reset the bounds each time this is called!
     this.currentBounds = null;
     //  Custom callback?
     if (this.transformCallback) {
@@ -392,13 +448,13 @@ export class DisplayObject {
       const w1 = bounds.width + bounds.x;
       const h0 = bounds.y;
       const h1 = bounds.height + bounds.y;
-      const worldTransform = this.worldTransform;
-      const a = worldTransform.a;
-      const b = worldTransform.b;
-      const c = worldTransform.c;
-      const d = worldTransform.d;
-      const tx = worldTransform.tx;
-      const ty = worldTransform.ty;
+      const { worldTransform } = this;
+      const { a } = worldTransform;
+      const { b } = worldTransform;
+      const { c } = worldTransform;
+      const { d } = worldTransform;
+      const { tx } = worldTransform;
+      const { ty } = worldTransform;
       const x1 = a * w1 + c * h1 + tx;
       const y1 = d * h1 + b * w1 + ty;
       const x2 = a * w0 + c * h1 + tx;
@@ -475,7 +531,7 @@ export class DisplayObject {
     }
     let i;
     if (this._mask || this._filters) {
-      // push filter first as we need to ensure the stencil buffer is correct for any masking
+      // Push filter first as we need to ensure the stencil buffer is correct for any masking
       if (this._filters) {
         renderSession.spriteBatch.flush();
         renderSession.filterManager.pushFilter(this._filterBlock);
@@ -489,8 +545,12 @@ export class DisplayObject {
         this.children[i].renderWebGL(renderSession);
       }
       renderSession.spriteBatch.stop();
-      if (this._mask) renderSession.maskManager.popMask(this._mask, renderSession);
-      if (this._filters) renderSession.filterManager.popFilter();
+      if (this._mask) {
+        renderSession.maskManager.popMask(this._mask, renderSession);
+      }
+      if (this._filters) {
+        renderSession.filterManager.popFilter();
+      }
       renderSession.spriteBatch.start();
     } else {
       for (i = 0; i < this.children.length; i += 1) {
@@ -522,21 +582,21 @@ export class DisplayObject {
    * Called before the update cycle for this display object.
    */
   preUpdate() {
-    // override
+    // Override
   }
 
   /**
    * Called during the update cycle for this display object.
    */
   update() {
-    // override
+    // Override
   }
 
   /**
    * Called after the update cycle for this display object.
    */
   postUpdate() {
-    // override
+    // Override
   }
 
   /**
@@ -621,7 +681,7 @@ export class DisplayObject {
    * @param {number} value - The new width in pixels.
    */
   set width(value) {
-    const width = this.getLocalBounds().width;
+    const { width } = this.getLocalBounds();
     if (width !== 0) {
       this.scale.x = value / width;
     } else {
@@ -643,7 +703,7 @@ export class DisplayObject {
    * @param {number} value - The new height in pixels.
    */
   set height(value) {
-    const height = this.getLocalBounds().height;
+    const { height } = this.getLocalBounds();
     if (height !== 0) {
       this.scale.y = value / height;
     } else {

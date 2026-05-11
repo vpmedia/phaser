@@ -25,6 +25,16 @@ const defaultVertexSrc = [
 // this shader is used for the default sprite rendering
 
 export class NormalShader {
+gl;
+_UID;
+program;
+fragmentSrc;
+vertexSrc;
+textureCount;
+firstRun;
+dirty;
+uniforms;
+attributes;
   /**
    * Creates a new NormalShader instance.
    * @param {WebGLRenderingContext & { id: number }} gl - The WebGL rendering context.

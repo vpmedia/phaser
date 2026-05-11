@@ -3,6 +3,15 @@ import { Animation } from './animation.js';
 import { ENGINE_ERROR_CANNOT_SET_FRAME, ENGINE_ERROR_CANNOT_SET_FRAME_NAME } from './error_code.js';
 
 export class AnimationManager {
+sprite;
+game;
+currentFrame;
+currentAnim;
+updateIfVisible;
+isLoaded;
+_frameData;
+_anims;
+_outputFrames;
   /**
    * Creates a new AnimationManager instance.
    * @param {import('../display/image.js').Image} sprite - Reference to the parent Sprite.

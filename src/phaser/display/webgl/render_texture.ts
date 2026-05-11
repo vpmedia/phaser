@@ -8,6 +8,16 @@ import { FilterTexture } from './filter_texture.js';
 import { Texture } from './texture.js';
 
 export class RenderTexture extends Texture {
+width;
+height;
+resolution;
+frame;
+crop;
+renderer;
+textureBuffer;
+render;
+projection;
+valid;
   /**
    * Creates a new RenderTexture instance.
    * @param {number} width - The width of the render texture.

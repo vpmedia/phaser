@@ -2,6 +2,99 @@
 import { Signal } from './signal.js';
 
 export class Sound {
+_paused;
+  /** @type {import('./game.js').Game} */
+  game;
+  /** @type {string} */
+  name;
+  /** @type {string} */
+  key;
+  /** @type {boolean} */
+  loop;
+  /** @type {object} */
+  markers;
+  /** @type {AudioContext} */
+  context;
+  /** @type {boolean} */
+  autoplay;
+  /** @type {number} */
+  totalDuration;
+  /** @type {number} */
+  startTime;
+  /** @type {number} */
+  currentTime;
+  /** @type {number} */
+  duration;
+  /** @type {number} */
+  durationMS;
+  /** @type {number} */
+  position;
+  /** @type {number} */
+  stopTime;
+  /** @type {boolean} */
+  paused;
+  /** @type {number} */
+  pausedPosition;
+  /** @type {number} */
+  pausedTime;
+  /** @type {boolean} */
+  isPlaying;
+  /** @type {string} */
+  currentMarker;
+  /** @type {import('./tween.js').Tween | null} */
+  fadeTween;
+  /** @type {boolean} */
+  pendingPlayback;
+  /** @type {boolean} */
+  override;
+  /** @type {boolean} */
+  allowMultiple;
+  /** @type {AudioNode | null} */
+  externalNode;
+  /** @type {GainNode | null} */
+  masterGainNode;
+  /** @type {GainNode | null} */
+  gainNode;
+  /** @type {AudioBufferSourceNode | null} */
+  _sound;
+  /** @type {boolean} */
+  _markedToDelete;
+  /** @type {boolean} */
+  _removeFromSoundManager;
+  /** @type {Signal} */
+  onPlay;
+  /** @type {Signal} */
+  onPause;
+  /** @type {Signal} */
+  onResume;
+  /** @type {Signal} */
+  onLoop;
+  /** @type {Signal} */
+  onStop;
+  /** @type {Signal} */
+  onMute;
+  /** @type {Signal} */
+  onMarkerComplete;
+  /** @type {Signal} */
+  onFadeComplete;
+  /** @type {number} */
+  _volume;
+  /** @type {AudioBuffer | null} */
+  _buffer;
+  /** @type {boolean} */
+  _muted;
+  /** @type {string} */
+  _tempMarker;
+  /** @type {number} */
+  _tempPosition;
+  /** @type {number} */
+  _tempVolume;
+  /** @type {number} */
+  _tempPause;
+  /** @type {number} */
+  _muteVolume;
+  /** @type {boolean} */
+  _tempLoop;
   /**
    * Creates a new Sound instance.
    * @param {import('./game.js').Game} game - Reference to the Phaser Game instance.
@@ -172,14 +265,14 @@ export class Sound {
     this.currentTime = this.game.time.time - this.startTime;
     if (this.currentTime >= this.durationMS) {
       if (this.loop) {
-        //  won't work with markers, needs to reset the position
+        //  Won't work with markers, needs to reset the position
         this.onLoop.dispatch(this);
         //  Gets reset by the play function
         this.isPlaying = false;
         if (this.currentMarker === '') {
           this.currentTime = 0;
           this.startTime = this.game.time.time;
-          this.isPlaying = true; // play not called again in this case
+          this.isPlaying = true; // Play not called again in this case
         } else {
           this.onMarkerComplete.dispatch(this.currentMarker, this);
           this.play(this.currentMarker, 0, this.volume, true, true);
@@ -236,7 +329,7 @@ export class Sound {
     }
     if (marker === '' && Object.keys(this.markers).length > 0) {
       //  If they didn't specify a marker but this is an audio sprite,
-      //  we should never play the entire thing
+      //  We should never play the entire thing
       return this;
     }
     if (marker !== '') {
@@ -248,10 +341,10 @@ export class Sound {
         this.loop = this.markers[marker].loop;
         this.duration = this.markers[marker].duration;
         this.durationMS = this.markers[marker].durationMS;
-        if (typeof volume !== 'undefined') {
+        if (volume !== undefined) {
           this.volume = volume;
         }
-        if (typeof loop !== 'undefined') {
+        if (loop !== undefined) {
           this.loop = loop;
         }
         this._tempMarker = marker;
@@ -268,7 +361,7 @@ export class Sound {
         volume = this._volume;
       }
       if (loop === undefined) {
-        loop = this.loop;
+        ({ loop } = this);
       }
       this.position = Math.max(0, position);
       this.volume = volume;

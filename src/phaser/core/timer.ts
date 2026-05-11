@@ -3,6 +3,26 @@ import { Signal } from './signal.js';
 import { TimerEvent } from './timer_event.js';
 
 export class Timer {
+game;
+running;
+autoDestroy;
+expired;
+elapsed;
+events;
+onComplete;
+nextTick;
+timeCap;
+paused;
+_codePaused;
+_started;
+_pauseStarted;
+_pauseTotal;
+_now;
+_len;
+_marked;
+_i;
+_diff;
+_newTick;
   /**
    * Creates a new Timer instance.
    * @param {import('./game.js').Game} game - The game instance.

@@ -1,5 +1,21 @@
 // @ts-nocheck
 export class MSPointer {
+game;
+input;
+callbackContext;
+pointerDownCallback;
+pointerMoveCallback;
+pointerUpCallback;
+capture;
+button;
+event;
+enabled;
+_onMSPointerDown;
+_onMSPointerMove;
+_onMSPointerUp;
+_onMSPointerUpGlobal;
+_onMSPointerOut;
+_onMSPointerOver;
   /**
    * TBD.
    * @param {import('./game.js').Game} game - TBD.

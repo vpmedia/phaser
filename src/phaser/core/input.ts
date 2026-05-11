@@ -15,6 +15,57 @@ import { Signal } from './signal.js';
 const MAX_POINTERS = 10;
 
 export class Input {
+game;
+hitCanvas;
+hitContext;
+moveCallbacks;
+lockCallbacks;
+customCandidateHandler;
+customCandidateHandlerContext;
+pollRate;
+enabled;
+multiInputOverride;
+position;
+speed;
+circle;
+scale;
+maxPointers;
+tapRate;
+doubleTapRate;
+holdRate;
+justPressedRate;
+justReleasedRate;
+recordPointerHistory;
+recordRate;
+recordLimit;
+pointer1;
+pointer2;
+pointer3;
+pointer4;
+pointer5;
+pointer6;
+pointer7;
+pointer8;
+pointer9;
+pointer10;
+pointers;
+activePointer;
+mousePointer;
+mouse;
+touch;
+mspointer;
+resetLocked;
+onDown;
+onUp;
+onTap;
+onHold;
+minPriorityID;
+interactiveItems;
+_localPoint;
+_pollCounter;
+_oldPosition;
+_x;
+_y;
   /**
    * TBD.
    * @param {import('./game.js').Game} game - TBD.

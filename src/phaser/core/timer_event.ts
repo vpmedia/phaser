@@ -1,5 +1,14 @@
 // @ts-nocheck
 export class TimerEvent {
+timer;
+delay;
+tick;
+repeatCount;
+loop;
+callback;
+callbackContext;
+args;
+pendingDelete;
   /**
    * Creates a new TimerEvent instance.
    * @param {import('./timer.js').Timer} timer - Reference to the parent Timer.

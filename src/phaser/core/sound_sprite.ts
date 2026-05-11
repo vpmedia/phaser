@@ -1,5 +1,11 @@
 // @ts-nocheck
 export class SoundSprite {
+game;
+key;
+config;
+autoplayKey;
+autoplay;
+sounds;
   /**
    * TBD.
    * @param {import('./game.js').Game} game - TBD.

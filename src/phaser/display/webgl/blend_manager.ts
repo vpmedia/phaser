@@ -1,5 +1,7 @@
 // @ts-nocheck
 export class WebGLBlendModeManager {
+gl;
+currentBlendMode;
   /**
    * Creates a new BlendModeManager instance.
    */

@@ -1,5 +1,8 @@
 // @ts-nocheck
 export class WebGLFilterManager {
+filterStack;
+offsetX;
+offsetY;
   /**
    * Creates a new FilterManager instance.
    */

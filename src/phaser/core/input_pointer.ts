@@ -11,6 +11,50 @@ import {
 } from './const.js';
 
 export class Pointer {
+game;
+id;
+type;
+exists;
+identifier;
+pointerId;
+pointerMode;
+target;
+button;
+_holdSent;
+_history;
+_nextDrop;
+_stateReset;
+withinGame;
+clientX;
+clientY;
+pageX;
+pageY;
+screenX;
+screenY;
+rawMovementX;
+rawMovementY;
+movementX;
+movementY;
+x;
+y;
+isMouse;
+isDown;
+isUp;
+timeDown;
+timeUp;
+previousTapTime;
+totalTouches;
+msSinceLastClick;
+targetObject;
+interactiveCandidates;
+active;
+dirty;
+position;
+positionDown;
+positionUp;
+circle;
+_clickTrampolines;
+_trampolineTargetObject;
   /**
    * TBD.
    * @param {import('./game.js').Game} game - TBD.

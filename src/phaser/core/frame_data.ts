@@ -2,6 +2,8 @@
 import { cloneFrameData } from './frame_util.js';
 
 export class FrameData {
+_frames;
+_frameNames;
   /**
    * Creates a new FrameData instance.
    * This class holds data about frames in a texture atlas or sprite sheet.

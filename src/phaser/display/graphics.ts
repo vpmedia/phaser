@@ -26,6 +26,24 @@ import { renderGraphics as renderWebGLGraphics } from './webgl/graphics.js';
 import { textureFromCanvas } from './webgl/texture_util.js';
 
 export class Graphics extends DisplayObject {
+type;
+renderable;
+fillAlpha;
+lineWidth;
+lineColor;
+graphicsData;
+tint;
+blendMode;
+currentPath;
+_webGL;
+isMask;
+boundsPadding;
+_localBounds;
+dirty;
+_boundsDirty;
+_cacheAsBitmap;
+webGLDirty;
+cachedSpriteDirty;
   /**
    * Creates a new Graphics object.
    * @param {import('../core/game.js').Game} game - The game instance.

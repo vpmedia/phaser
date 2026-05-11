@@ -2,6 +2,22 @@
 import { Signal } from './signal.js';
 
 export class EventManager {
+parent;
+_onAddedToGroup;
+_onRemovedFromGroup;
+_onDestroy;
+_onOutOfBounds;
+_onEnterBounds;
+_onInputOver;
+_onInputOut;
+_onInputDown;
+_onInputUp;
+_onDragStart;
+_onDragUpdate;
+_onDragStop;
+_onAnimationStart;
+_onAnimationComplete;
+_onAnimationLoop;
   /**
    * Creates a new EventManager instance.
    * @param {import('../display/display_object.js').DisplayObject} sprite - Reference to the parent DisplayObject.

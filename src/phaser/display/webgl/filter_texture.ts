@@ -2,6 +2,10 @@
 import { SCALE_LINEAR } from '../../core/const.js';
 
 export class FilterTexture {
+gl;
+frameBuffer;
+texture;
+renderBuffer;
   /**
    * Creates a new FilterTexture instance.
    * @param {WebGLRenderingContext} gl - The WebGL rendering context.

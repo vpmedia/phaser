@@ -5,6 +5,19 @@ import { DisplayObject } from './display_object.js';
 import { Image } from './image.js';
 
 export class BitmapText extends DisplayObject {
+type;
+textWidth;
+textHeight;
+_prevAnchor;
+_glyphs;
+_maxWidth;
+_text;
+_data;
+_font;
+_fontSize;
+_align;
+_tint;
+dirty;
   /**
    * Creates a new BitmapText instance.
    * @param {import('../core/game.js').Game} game - The game instance this bitmap text belongs to.

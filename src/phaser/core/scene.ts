@@ -1,5 +1,7 @@
 // @ts-nocheck
 export class Scene {
+game;
+key;
   /**
    * Creates a new Scene instance.
    */

@@ -2,6 +2,52 @@
 import { Signal } from './signal.js';
 
 export class Animation {
+  /** @type {import('./game.js').Game} */
+  game;
+  /** @type {import('../display/image.js').Image} */
+  _parent;
+  /** @type {import('./frame_data.js').FrameData} */
+  _frameData;
+  /** @type {string} */
+  name;
+  /** @type {Array<string|number>} */
+  _frames;
+  /** @type {number} */
+  delay;
+  /** @type {boolean} */
+  loop;
+  /** @type {number} */
+  loopCount;
+  /** @type {boolean} */
+  isFinished;
+  /** @type {boolean} */
+  isPlaying;
+  /** @type {boolean} */
+  isPaused;
+  /** @type {number} */
+  _pauseStartTime;
+  /** @type {number} */
+  _frameIndex;
+  /** @type {number} */
+  _frameDiff;
+  /** @type {number} */
+  _frameSkip;
+  /** @type {import('./frame.js').Frame} */
+  currentFrame;
+  /** @type {Signal} */
+  onStart;
+  /** @type {Signal | null} */
+  onUpdate;
+  /** @type {Signal} */
+  onComplete;
+  /** @type {Signal} */
+  onLoop;
+  /** @type {boolean} */
+  isReversed;
+  /** @type {number} */
+  _timeLastFrame;
+  /** @type {number} */
+  _timeNextFrame;
   /**
    * Creates a new Animation instance.
    * @param {import('./game.js').Game} game - The game instance this animation belongs to.
@@ -121,7 +167,7 @@ export class Animation {
    */
   reverseOnce() {
     this.onComplete.addOnce(this.reverse, this);
-    return this.reverse();
+    return this.toReversed();
   }
 
   /**
@@ -243,7 +289,7 @@ export class Animation {
           if (this.onUpdate) {
             this.onUpdate.dispatch(this, this.currentFrame);
             // False if the animation was destroyed from within a callback
-            return !!this._frameData;
+            return Boolean(this._frameData);
           }
           return true;
         }
@@ -276,7 +322,7 @@ export class Animation {
     if (this.onUpdate && signalUpdate) {
       this.onUpdate.dispatch(this, this.currentFrame);
       // False if the animation was destroyed from within a callback
-      return !!this._frameData;
+      return Boolean(this._frameData);
     }
     return true;
   }

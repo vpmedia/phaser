@@ -1,5 +1,11 @@
 // @ts-nocheck
 export class AbstractFilter {
+passes;
+shaders;
+dirty;
+padding;
+uniforms;
+fragmentSrc;
   /**
    * Creates a new AbstractFilter instance.
    * @param {string[]} fragmentSrc - The fragment shader source.

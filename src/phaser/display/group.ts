@@ -8,6 +8,34 @@ export const SORT_ASCENDING = -1;
 export const SORT_DESCENDING = 1;
 
 export class Group extends DisplayObject {
+  /** @type {number} */
+  z;
+  /** @type {boolean} */
+  ignoreDestroy;
+  /** @type {boolean} */
+  pendingDestroy;
+  /** @type {Function} */
+  classType;
+  /** @type {DisplayObject | null} */
+  cursor;
+  /** @type {boolean} */
+  inputEnableChildren;
+  /** @type {Signal} */
+  onChildInputDown;
+  /** @type {Signal} */
+  onChildInputUp;
+  /** @type {Signal} */
+  onChildInputOver;
+  /** @type {Signal} */
+  onChildInputOut;
+  /** @type {Signal} */
+  onDestroy;
+  /** @type {number} */
+  cursorIndex;
+  /** @type {string} */
+  _sortProperty;
+  /** @type {object[] | null} */
+  filters;
   /**
    * Creates a new Group object.
    * @param {import('../core/game.js').Game} game - The game instance this group belongs to.

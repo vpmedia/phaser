@@ -2,6 +2,16 @@
 import { clone } from './graphics_data_util.js';
 
 export class GraphicsData {
+lineWidth;
+lineColor;
+lineAlpha;
+_lineTint;
+fillColor;
+fillAlpha;
+_fillTint;
+fill;
+shape;
+type;
   /**
    * Creates a new GraphicsData object.
    * @param {number} lineWidth - The line width.

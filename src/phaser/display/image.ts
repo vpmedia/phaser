@@ -9,6 +9,44 @@ import { getBounds, getLocalBounds, renderCanvas, renderWebGL, setTexture } from
 import { Texture } from './webgl/texture.js';
 
 export class Image extends DisplayObject {
+  /** @type {string | number | Texture} */
+  key;
+  /** @type {Texture} */
+  texture;
+  /** @type {number} */
+  _width;
+  /** @type {number} */
+  _height;
+  /** @type {number} */
+  tint;
+  /** @type {number} */
+  cachedTint;
+  /** @type {Texture | null} */
+  tilingTexture;
+  /** @type {Texture | null} */
+  tintedTexture;
+  /** @type {number} */
+  blendMode;
+  /** @type {object | null} */
+  shader;
+  /** @type {import('../core/frame.js').Frame | null} */
+  _frame;
+  /** @type {boolean} */
+  pendingDestroy;
+  /** @type {EventManager} */
+  events;
+  /** @type {AnimationManager} */
+  animations;
+  /** @type {boolean} */
+  customRender;
+  /** @type {Rectangle | null} */
+  cropRect;
+  /** @type {Rectangle | null} */
+  _crop;
+  /** @type {boolean} */
+  refreshTexture;
+  /** @type {number} */
+  renderOrderID;
   /**
    * Creates a new Image instance.
    * @param {import('../core/game.js').Game} game - The game instance this image belongs to.
@@ -33,7 +71,7 @@ export class Image extends DisplayObject {
     /** @type {number} */
     this._height = 0;
     /** @type {number} */
-    this.tint = 0xffffff;
+    this.tint = 0xff_ff_ff;
     /** @type {number} */
     this.cachedTint = -1;
     /** @type {Texture | null} */
@@ -46,7 +84,7 @@ export class Image extends DisplayObject {
     this._frame = null;
     /** @type {boolean} */
     this.pendingDestroy = false;
-    /* if (this.texture.baseTexture.hasLoaded) {
+    /* If (this.texture.baseTexture.hasLoaded) {
       this.onTextureUpdate();
     } */
     this.position.setTo(x, y);
@@ -65,7 +103,7 @@ export class Image extends DisplayObject {
     this.key = null;
     this.data = null;
     this.texture = null;
-    this.tint = 0xffffff;
+    this.tint = 0xff_ff_ff;
     this.cachedTint = -1;
     this.tintedTexture = null;
     this.shader = null;
@@ -113,7 +151,7 @@ export class Image extends DisplayObject {
    * @param {string | number | null | undefined} frame - The frame identifier (name or index) to use.
    * @param {boolean} stopAnimation - Whether to stop the animation when changing textures.
    */
-  loadTexture(key, frame = 0, stopAnimation = true) {
+  loadTexture(key, frame: string | number | null = 0, stopAnimation = true) {
     if (key === PENDING_ATLAS) {
       key = frame;
       frame = 0;
@@ -125,7 +163,7 @@ export class Image extends DisplayObject {
     }
     this.key = key;
     this.customRender = false;
-    const cache = this.game.cache;
+    const { cache } = this.game;
     const smoothed = !this.texture.baseTexture.scaleMode;
     let setFrame = true;
     if (key instanceof Texture) {
@@ -342,7 +380,7 @@ export class Image extends DisplayObject {
    * Called when the texture of this image is updated.
    */
   onTextureUpdate() {
-    // so if _width is 0 then width was not set..
+    // So if _width is 0 then width was not set..
     if (this._width) {
       this.scale.x = this._width / this.texture.frame.width;
     }

@@ -13,6 +13,23 @@ import { Sound } from './sound.js';
 import { SoundSprite } from './sound_sprite.js';
 
 export class SoundManager {
+game;
+onChange;
+context;
+baseLatency;
+noAudio;
+type;
+connectToMaster;
+isLocked;
+_codeMuted;
+_muted;
+_unlockSource;
+_volume;
+_sounds;
+_watchList;
+_watching;
+_watchCallback;
+_watchContext;
   /**
    * Creates a new SoundManager instance.
    * @param {import('./game.js').Game} game - Reference to the Phaser Game instance.

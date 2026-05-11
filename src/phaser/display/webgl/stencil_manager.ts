@@ -2,6 +2,9 @@
 import { hex2rgb } from '../../util/math.js';
 
 export class WebGLStencilManager {
+stencilStack;
+reverse;
+count;
   /**
    * Initializes the stencil manager.
    */

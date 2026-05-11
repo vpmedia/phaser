@@ -4,6 +4,47 @@ import { distance } from '../util/math.js';
 import { GROUP } from './const.js';
 
 export class InputHandler {
+sprite;
+game;
+enabled;
+checked;
+priorityID;
+useHandCursor;
+_setHandCursor;
+isDragged;
+allowHorizontalDrag;
+allowVerticalDrag;
+bringToTop;
+snapOffset;
+snapOnDrag;
+snapOnRelease;
+snapX;
+snapY;
+snapOffsetX;
+snapOffsetY;
+pixelPerfectOver;
+pixelPerfectClick;
+pixelPerfectAlpha;
+draggable;
+boundsRect;
+boundsSprite;
+scaleLayer;
+dragOffset;
+dragFromCenter;
+dragStopBlocksInputUp;
+dragStartPoint;
+dragDistanceThreshold;
+dragTimeThreshold;
+downPoint;
+snapPoint;
+_dragPoint;
+_dragPhase;
+_pendingDrag;
+_dragTimePass;
+_dragDistancePass;
+_wasEnabled;
+_tempPoint;
+_pointerData;
   /**
    * TBD.
    * @param {import('../display/image.js').Image} sprite - TBD.

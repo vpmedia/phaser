@@ -5,6 +5,12 @@ import { compileProgram } from '../util.js';
 // this shader is used for the fast sprite rendering
 
 export class FastShader {
+gl;
+_UID;
+program;
+textureCount;
+fragmentSrc;
+vertexSrc;
   /**
    * Creates a new FastShader instance.
    * @param {WebGLRenderingContext} gl - The WebGL rendering context.

@@ -7,6 +7,7 @@ import { Image } from '../display/image.js';
 import { Text } from '../display/text.js';
 
 export class GameObjectFactory {
+game;
   /**
    * Creates a new GameObjectFactory instance.
    * @param {import('./game.js').Game} game - The game instance this factory belongs to.

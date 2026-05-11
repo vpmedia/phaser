@@ -3,6 +3,30 @@ import * as MathUtils from '../util/math.js';
 import { TWEEN_COMPLETE, TWEEN_LOOPED, TWEEN_PENDING, TWEEN_RUNNING } from './const.js';
 
 export class TweenData {
+parent;
+game;
+vStart;
+vStartCache;
+vEnd;
+vEndCache;
+duration;
+percent;
+value;
+repeatCounter;
+repeatDelay;
+repeatTotal;
+interpolate;
+yoyo;
+yoyoDelay;
+inReverse;
+delay;
+dt;
+startTime;
+easingFunction;
+interpolationFunction;
+interpolationContext;
+isRunning;
+isFrom;
   /**
    * Creates a new TweenData instance.
    * @param {import('./tween.js').Tween} parent - The parent Tween instance.

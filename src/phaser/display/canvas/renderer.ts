@@ -27,6 +27,19 @@ import { detectCapabilities } from './tinter.js';
 import { getSmoothingPrefix } from './util.js';
 
 export class CanvasRenderer {
+type;
+resolution;
+clearBeforeRender;
+transparent;
+autoResize;
+contextLost;
+width;
+height;
+view;
+context;
+refresh;
+count;
+renderSession;
   /**
    * Creates a new CanvasRenderer instance.
    * @param {import('../../core/game.js').Game} game - The game instance.

@@ -5,6 +5,11 @@ import { compileProgram } from '../util.js';
 // the next one is used for rendering triangle strips
 
 export class StripShader {
+gl;
+_UID;
+program;
+fragmentSrc;
+vertexSrc;
   /**
    * Creates a new StripShader instance.
    * @param {WebGLRenderingContext} gl - The WebGL rendering context.

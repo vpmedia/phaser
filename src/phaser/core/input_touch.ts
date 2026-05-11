@@ -1,5 +1,22 @@
 // @ts-nocheck
 export class Touch {
+game;
+enabled;
+callbackContext;
+touchStartCallback;
+touchMoveCallback;
+touchEndCallback;
+touchEnterCallback;
+touchLeaveCallback;
+touchCancelCallback;
+preventDefault;
+event;
+_onTouchStart;
+_onTouchMove;
+_onTouchEnd;
+_onTouchEnter;
+_onTouchLeave;
+_onTouchCancel;
   /**
    * TBD.
    * @param {import('./game.js').Game} game - TBD.

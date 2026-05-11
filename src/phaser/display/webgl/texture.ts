@@ -2,6 +2,26 @@
 import { Rectangle } from '../../geom/rectangle.js';
 
 export class TextureUvs {
+noFrame;
+baseTexture;
+frame;
+trim;
+valid;
+isTiling;
+requiresUpdate;
+requiresReTint;
+_uvs;
+width;
+height;
+crop;
+x0;
+y0;
+x1;
+y1;
+x2;
+y2;
+x3;
+y3;
   /**
    * Creates a new Texture instance.
    */

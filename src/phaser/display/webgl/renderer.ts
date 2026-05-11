@@ -33,6 +33,23 @@ import { WebGLStencilManager } from './stencil_manager.js';
 import { getWebGLContextErrorCode, getWebGLContextErrorName } from './util.js';
 
 export class WebGLRenderer {
+type;
+resolution;
+autoResize;
+contextLost;
+clearBeforeRender;
+width;
+height;
+view;
+_contextOptions;
+projection;
+offset;
+shaderManager;
+spriteBatch;
+filterManager;
+stencilManager;
+blendModeManager;
+renderSession;
   /**
    * Creates a new WebGLRenderer instance.
    * @param {import('../../core/game.js').Game} game - The game instance.

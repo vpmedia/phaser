@@ -7,6 +7,34 @@ import { Signal } from './signal.js';
 const TEXTURE_ATLAS_JSON_HASH = 1;
 
 export class Loader {
+game;
+cache;
+isLoading;
+isUseLog;
+isUseRetry;
+maxRetry;
+hasLoaded;
+preloadSprite;
+crossOrigin;
+baseURL;
+path;
+headers;
+onLoadStart;
+onLoadComplete;
+onPackComplete;
+onFileStart;
+onFileComplete;
+onFileError;
+maxParallelDownloads;
+_withSyncPointDepth;
+_fileList;
+_flightQueue;
+_processingHead;
+_fileLoadStarted;
+_totalPackCount;
+_totalFileCount;
+_loadedPackCount;
+_loadedFileCount;
   /**
    * Creates a new Loader instance.
    * @param {import('./game.js').Game} game - Reference to the Phaser Game instance.

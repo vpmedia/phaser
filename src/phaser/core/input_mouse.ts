@@ -9,6 +9,29 @@ const WHEEL_UP = 1;
 const WHEEL_DOWN = -1; */
 
 class WheelEventProxy {
+game;
+input;
+callbackContext;
+mouseDownCallback;
+mouseUpCallback;
+mouseOutCallback;
+mouseOverCallback;
+mouseWheelCallback;
+mouseMoveCallback;
+capture;
+button;
+wheelDelta;
+enabled;
+locked;
+stopOnGameOut;
+event;
+_onMouseDown;
+_onMouseMove;
+_onMouseUp;
+_onMouseOut;
+_onMouseOver;
+_onMouseWheel;
+_wheelEvent;
   /**
    * TBD.
    * @param {number} scaleFactor - TBD.

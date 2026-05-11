@@ -2,6 +2,21 @@
 import { Scene } from './scene.js';
 
 export class SceneManager {
+game;
+states;
+_pendingState;
+_clearWorld;
+_clearCache;
+_created;
+_args;
+current;
+onInitCallback;
+onPreloadCallback;
+onCreateCallback;
+onUpdateCallback;
+onResizeCallback;
+onPauseUpdateCallback;
+onShutDownCallback;
   /**
    * Creates a new SceneManager instance.
    * @param {import('./game.js').Game} game - The game instance this manager belongs to.

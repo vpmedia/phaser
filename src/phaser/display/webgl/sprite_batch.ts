@@ -3,6 +3,22 @@ import { AbstractFilter } from './abstract_filter.js';
 import { NormalShader } from './shader/normal.js';
 
 export class WebGLSpriteBatch {
+vertSize;
+size;
+vertices;
+positions;
+colors;
+indices;
+lastIndexCount;
+drawing;
+currentBatchSize;
+currentBaseTexture;
+dirty;
+textures;
+blendModes;
+shaders;
+sprites;
+defaultShader;
   /**
    * Creates a new SpriteBatch instance.
    */

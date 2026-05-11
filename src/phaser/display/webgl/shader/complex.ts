@@ -5,6 +5,11 @@ import { compileProgram } from '../util.js';
 // the next one is used for rendering triangle strips
 
 export class ComplexPrimitiveShader {
+gl;
+_UID;
+program;
+fragmentSrc;
+vertexSrc;
   /**
    * Creates a new ComplexShader instance.
    * @param {WebGLRenderingContext} gl - The WebGL rendering context.

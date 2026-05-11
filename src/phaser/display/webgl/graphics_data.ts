@@ -1,5 +1,14 @@
 // @ts-nocheck
 export class GraphicsData {
+gl;
+color;
+points;
+indices;
+buffer;
+indexBuffer;
+mode;
+alpha;
+dirty;
   /**
    * Creates a new GraphicsData instance.
    * @param {WebGLRenderingContext} gl - The WebGL rendering context.

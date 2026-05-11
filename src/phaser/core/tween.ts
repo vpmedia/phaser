@@ -5,6 +5,52 @@ import { Signal } from './signal.js';
 import { TweenData } from './tween_data.js';
 
 export class Tween {
+  /** @type {import('./game.js').Game} */
+  game;
+  /** @type {import('../display/display_object.js').DisplayObject} */
+  target;
+  /** @type {import('./tween_manager.js').TweenManager} */
+  manager;
+  /** @type {TweenData[]} */
+  timeline;
+  /** @type {boolean} */
+  reverse;
+  /** @type {number} */
+  timeScale;
+  /** @type {number} */
+  repeatCounter;
+  /** @type {boolean} */
+  pendingDelete;
+  /** @type {Signal} */
+  onStart;
+  /** @type {Signal} */
+  onLoop;
+  /** @type {Signal} */
+  onRepeat;
+  /** @type {Signal} */
+  onChildComplete;
+  /** @type {Signal} */
+  onComplete;
+  /** @type {boolean} */
+  isRunning;
+  /** @type {number} */
+  current;
+  /** @type {object} */
+  properties;
+  /** @type {Tween | null} */
+  chainedTween;
+  /** @type {boolean} */
+  isPaused;
+  /** @type {Function | null} */
+  _onUpdateCallback;
+  /** @type {object | null} */
+  _onUpdateCallbackContext;
+  /** @type {number} */
+  _pausedTime;
+  /** @type {boolean} */
+  _codePaused;
+  /** @type {boolean} */
+  _hasStarted;
   /**
    * Creates a new Tween instance.
    * @param {import('../display/display_object.js').DisplayObject} target - The object to tween.
@@ -72,7 +118,7 @@ export class Tween {
     if (this.isRunning) {
       return this;
     }
-    // @ts-ignore
+    // @ts-expect-error
     this.timeline.push(new TweenData(this).to(properties, duration, ease, delay, repeat, yoyo));
     if (autoStart) {
       this.start();
@@ -99,7 +145,7 @@ export class Tween {
       this.game.logger.warn('Tween.from cannot be called after Tween.start');
       return this;
     }
-    // @ts-ignore
+    // @ts-expect-error
     this.timeline.push(new TweenData(this).from(properties, duration, ease, delay, repeat, yoyo));
     if (autoStart) {
       this.start();

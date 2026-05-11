@@ -19,6 +19,14 @@ export const XML = 8;
 export const RENDER_TEXTURE = 9;
 
 export class Cache {
+game;
+autoResolveURL;
+_cache;
+_urlMap;
+_urlResolver;
+_urlTemp;
+onSoundUnlock;
+_cacheMap;
   /**
    * Creates a new Cache instance.
    * @param {import('./game.js').Game} game - The game instance.

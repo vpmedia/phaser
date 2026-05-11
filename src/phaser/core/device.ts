@@ -1,5 +1,28 @@
 // @ts-nocheck
 export class Device {
+desktop;
+iOS;
+android;
+chromeOS;
+linux;
+macOS;
+windows;
+windowsPhone;
+canvas;
+touch;
+mspointer;
+wheelEvent;
+chrome;
+firefox;
+edge;
+safari;
+fullscreen;
+requestFullscreen;
+cancelFullscreen;
+fullscreenKeyboard;
+noAudioFormat;
+supportedAudioFormats;
+supportedImageFormats;
   /**
    * Creates a new Device instance.
    * This class provides information about the current device and browser capabilities.

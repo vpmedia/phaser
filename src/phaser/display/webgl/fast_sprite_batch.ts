@@ -1,5 +1,20 @@
 // @ts-nocheck
 export class FastSpriteBatch {
+vertSize;
+maxSize;
+size;
+vertices;
+indices;
+vertexBuffer;
+indexBuffer;
+lastIndexCount;
+drawing;
+currentBatchSize;
+currentBaseTexture;
+currentBlendMode;
+renderSession;
+shader;
+matrix;
   /**
    * Creates a new FastSpriteBatch instance.
    * @param {WebGLRenderingContext & { id: number }} gl - The WebGL rendering context.
