@@ -1,3 +1,13 @@
+## [1.105.0] - 2026-05-11
+
+### 🚜 Refactor
+
+- *(types)* Migrate JSDoc to inline TypeScript types
+
+### ⚙️ Miscellaneous Tasks
+
+- Release
+- *(release)* V1.105.0
 ## [1.104.0] - 2026-05-11
 
 ### 🐛 Bug Fixes
