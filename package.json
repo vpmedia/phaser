@@ -34,7 +34,7 @@
     }
   },
   "dependencies": {
-    "@vpmedia/simplify": "^1.74.0",
+    "@vpmedia/simplify": "^1.76.0",
     "uuid": "^14.0.0"
   },
   "devDependencies": {
