@@ -9,7 +9,6 @@ A modern ECMAScript port of the Phaser game engine v2.6.2. Some original feature
 - **Language:** TypeScript (ESM, `"type": "module"`)
 - **Runtime:** Node.js / Browser (WebGL & Canvas)
 - **Package Manager:** pnpm (workspaces)
-- **Domain:** Modern ECMAScript port of Phaser game engine v2.6.2
 - **Runtime Dependencies:** `@vpmedia/simplify`, `uuid`
 - **Build:** Rolldown + `tsc`
 - **Testing:** Vitest, @vitest/coverage-v8, jsdom
@@ -44,9 +43,9 @@ A modern ECMAScript port of the Phaser game engine v2.6.2. Some original feature
 
 ## Conventions
 
-- **Commits:** Conventional Commits with custom rules (header ≤ 100, body line ≤ 100, no sentence/start/pascal/upper-case subjects)
+- **Commits:** Conventional Commits (`@commitlint/config-conventional`)
 - **Modules:** ESM only
-- **Style:** Enforced by oxlint + oxfmt
+- **Style:** Enforced by oxlint + oxfmt — do not hand-format
 
 ## Testing
 
