@@ -11,7 +11,7 @@ A modern ECMAScript port of the Phaser game engine v2.6.2. Some original feature
 - **Package Manager:** pnpm (workspaces)
 - **Runtime Dependencies:** `@vpmedia/simplify`, `uuid`
 - **Build:** Rolldown + `tsc`
-- **Testing:** Vitest, @vitest/coverage-v8, jsdom
+- **Testing:** Vitest, @vitest/coverage-v8, happy-dom
 - **Lint/Format:** oxlint (+ `oxlint-tsgolint`), oxfmt
 - **Type Checking:** TypeScript
 - **Tooling:** lefthook (git hooks), commitlint (conventional commits)
@@ -21,6 +21,7 @@ A modern ECMAScript port of the Phaser game engine v2.6.2. Some original feature
 - Lefthook: https://lefthook.dev/llms.txt
 - OXC (oxlint, oxfmt): https://oxc.rs/llms.txt
 - Rolldown: https://rolldown.rs/llms.txt
+- TypeScript: https://context7.com/websites/typescriptlang/llms.txt
 - Vitest: https://vitest.dev/llms.txt
 
 ## Commands
@@ -50,4 +51,4 @@ A modern ECMAScript port of the Phaser game engine v2.6.2. Some original feature
 
 - Tests are co-located with source as `*.test.ts` under `src/phaser/`
 - Run a single file: `pnpm test src/phaser/util/math.test.ts`
-- DOM APIs available via jsdom environment
+- DOM APIs available via happy-dom environment
