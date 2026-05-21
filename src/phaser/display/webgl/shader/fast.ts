@@ -5,12 +5,12 @@ import { compileProgram } from '../util.js';
 
 export class FastShader {
   [key: string]: any;
-gl!: any;
-_UID!: any;
-program!: any;
-textureCount!: any;
-fragmentSrc!: any;
-vertexSrc!: any;
+  gl!: any;
+  _UID!: any;
+  program!: any;
+  textureCount!: any;
+  fragmentSrc!: any;
+  vertexSrc!: any;
   /**
    * Creates a new FastShader instance.
    * @param {WebGLRenderingContext} gl - The WebGL rendering context.

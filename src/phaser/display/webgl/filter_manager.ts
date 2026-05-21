@@ -1,8 +1,8 @@
 export class WebGLFilterManager {
   [key: string]: any;
-filterStack!: any;
-offsetX!: any;
-offsetY!: any;
+  filterStack!: any;
+  offsetX!: any;
+  offsetY!: any;
   /**
    * Creates a new FilterManager instance.
    */

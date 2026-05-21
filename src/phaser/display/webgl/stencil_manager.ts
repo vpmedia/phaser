@@ -2,9 +2,9 @@ import { hex2rgb } from '../../util/math.js';
 
 export class WebGLStencilManager {
   [key: string]: any;
-stencilStack!: any;
-reverse!: any;
-count!: any;
+  stencilStack!: any;
+  reverse!: any;
+  count!: any;
   /**
    * Initializes the stencil manager.
    */
@@ -36,7 +36,11 @@ count!: any;
    * @param {import('./graphics_data.js').GraphicsData} webGLData - The WebGL graphics data.
    * @param {object} renderSession - The rendering session.
    */
-  pushStencil(graphics: import('../graphics.js').Graphics, webGLData: import('./graphics_data.js').GraphicsData, renderSession: any) {
+  pushStencil(
+    graphics: import('../graphics.js').Graphics,
+    webGLData: import('./graphics_data.js').GraphicsData,
+    renderSession: any
+  ) {
     const gl = renderSession.gl;
     this.bindGraphics(graphics, webGLData, renderSession);
     if (this.stencilStack.length === 0) {
@@ -94,7 +98,11 @@ count!: any;
    * @param {import('./graphics_data.js').GraphicsData} webGLData - The WebGL graphics data.
    * @param {object} renderSession - The rendering session.
    */
-  bindGraphics(graphics: import('../graphics.js').Graphics, webGLData: import('./graphics_data.js').GraphicsData, renderSession: any) {
+  bindGraphics(
+    graphics: import('../graphics.js').Graphics,
+    webGLData: import('./graphics_data.js').GraphicsData,
+    renderSession: any
+  ) {
     // if(this._currentGraphics === graphics)return;
     // this._currentGraphics = graphics;
     const gl = renderSession.gl;
@@ -141,7 +149,11 @@ count!: any;
    * @param {import('./graphics_data.js').GraphicsData} webGLData - The WebGL graphics data.
    * @param {object} renderSession - The rendering session.
    */
-  popStencil(graphics: import('../graphics.js').Graphics, webGLData: import('./graphics_data.js').GraphicsData, renderSession: any) {
+  popStencil(
+    graphics: import('../graphics.js').Graphics,
+    webGLData: import('./graphics_data.js').GraphicsData,
+    renderSession: any
+  ) {
     const gl = renderSession.gl;
     this.stencilStack.pop();
     this.count -= 1;

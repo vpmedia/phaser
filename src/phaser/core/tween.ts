@@ -33,7 +33,11 @@ export class Tween {
    * @param {import('./game.js').Game} game - Reference to the Phaser Game instance.
    * @param {import('./tween_manager.js').TweenManager} manager - Reference to the Tween Manager.
    */
-  constructor(target: import('../display/display_object.js').DisplayObject, game: import('./game.js').Game, manager: import('./tween_manager.js').TweenManager) {
+  constructor(
+    target: import('../display/display_object.js').DisplayObject,
+    game: import('./game.js').Game,
+    manager: import('./tween_manager.js').TweenManager
+  ) {
     this.game = game;
     this.target = target;
     /** @type {import('./tween_manager.js').TweenManager} */
@@ -87,7 +91,15 @@ export class Tween {
    * @param {boolean} yoyo - Whether to reverse the tween on repeat.
    * @returns {Tween} This Tween object for chaining.
    */
-  to(properties: any, duration: number = 1000, ease: string | Function = 'Linear', autoStart: boolean = false, delay: number = 0, repeat: number = 0, yoyo: boolean = false) {
+  to(
+    properties: any,
+    duration: number = 1000,
+    ease: string | Function = 'Linear',
+    autoStart: boolean = false,
+    delay: number = 0,
+    repeat: number = 0,
+    yoyo: boolean = false
+  ) {
     if (typeof ease === 'string' && this.manager.easeMap[ease]) {
       ease = this.manager.easeMap[ease];
     }
@@ -112,7 +124,15 @@ export class Tween {
    * @param {boolean} yoyo - Whether to reverse the tween on repeat.
    * @returns {Tween} This Tween object for chaining.
    */
-  from(properties: any, duration: number = 1000, ease: string | Function = 'Linear', autoStart: boolean = false, delay: number = 0, repeat: number = 0, yoyo: boolean = false) {
+  from(
+    properties: any,
+    duration: number = 1000,
+    ease: string | Function = 'Linear',
+    autoStart: boolean = false,
+    delay: number = 0,
+    repeat: number = 0,
+    yoyo: boolean = false
+  ) {
     if (typeof ease === 'string' && this.manager.easeMap[ease]) {
       ease = this.manager.easeMap[ease];
     }
@@ -263,7 +283,7 @@ export class Tween {
    * @param {number} index - The index in the timeline to apply easing to.
    * @returns {Tween} This Tween object for chaining.
    */
-  easing(ease: string|Function, index: number) {
+  easing(ease: string | Function, index: number) {
     if (typeof ease === 'string' && this.manager.easeMap[ease]) {
       ease = this.manager.easeMap[ease];
     }

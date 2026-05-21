@@ -286,7 +286,7 @@ export class Input {
    * @param {MouseEvent|TouchEvent|PointerEvent} event - TBD.
    * @returns {Pointer} TBD.
    */
-  startPointer(event: any|TouchEvent|PointerEvent) {
+  startPointer(event: any | TouchEvent | PointerEvent) {
     if (this.maxPointers >= 0 && this.countActivePointers(this.maxPointers) >= this.maxPointers) {
       return null;
     }
@@ -310,7 +310,7 @@ export class Input {
    * @param {MouseEvent|TouchEvent|PointerEvent} event - TBD.
    * @returns {Pointer} TBD.
    */
-  updatePointer(event: any|TouchEvent|PointerEvent) {
+  updatePointer(event: any | TouchEvent | PointerEvent) {
     if (this.pointer1.active && this.pointer1.identifier === event.identifier) {
       return this.pointer1.move(event);
     }
@@ -331,7 +331,7 @@ export class Input {
    * @param {MouseEvent|TouchEvent|PointerEvent} event - TBD.
    * @returns {Pointer} TBD.
    */
-  stopPointer(event: any|TouchEvent|PointerEvent) {
+  stopPointer(event: any | TouchEvent | PointerEvent) {
     if (this.pointer1.active && this.pointer1.identifier === event.identifier) {
       return this.pointer1.stop(event);
     }
@@ -417,7 +417,11 @@ export class Input {
    * @param {Point} output - TBD.
    * @returns {Point} TBD.
    */
-  getLocalPosition(displayObject: import('../display/display_object.js').DisplayObject, pointer: Pointer, output: Point = null) {
+  getLocalPosition(
+    displayObject: import('../display/display_object.js').DisplayObject,
+    pointer: Pointer,
+    output: Point = null
+  ) {
     const result = output || new Point();
     const wt = displayObject.worldTransform;
     const id = 1 / (wt.a * wt.d + wt.c * -wt.b);

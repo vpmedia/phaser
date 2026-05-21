@@ -25,16 +25,16 @@ const defaultVertexSrc = [
 
 export class NormalShader {
   [key: string]: any;
-gl!: any;
-_UID!: any;
-program!: any;
-fragmentSrc!: any;
-vertexSrc!: any;
-textureCount!: any;
-firstRun!: any;
-dirty!: any;
-uniforms!: any;
-attributes!: any;
+  gl!: any;
+  _UID!: any;
+  program!: any;
+  fragmentSrc!: any;
+  vertexSrc!: any;
+  textureCount!: any;
+  firstRun!: any;
+  dirty!: any;
+  uniforms!: any;
+  attributes!: any;
   /**
    * Creates a new NormalShader instance.
    * @param {WebGLRenderingContext & { id: number }} gl - The WebGL rendering context.

@@ -45,7 +45,13 @@ export class Signal {
    * @returns {SignalBinding} The binding for this listener.
    * @throws {Error} If the listener is already registered with a different once setting.
    */
-  _registerListener(listener: Function, isOnce: boolean = false, listenerContext: any = null, priority: number = 0, args: any = null) {
+  _registerListener(
+    listener: Function,
+    isOnce: boolean = false,
+    listenerContext: any = null,
+    priority: number = 0,
+    args: any = null
+  ) {
     const prevIndex = this._indexOfListener(listener, listenerContext);
     let binding;
     if (prevIndex !== -1) {

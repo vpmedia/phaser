@@ -3,22 +3,22 @@ import { NormalShader } from './shader/normal.js';
 
 export class WebGLSpriteBatch {
   [key: string]: any;
-vertSize!: any;
-size!: any;
-vertices!: any;
-positions!: any;
-colors!: any;
-indices!: any;
-lastIndexCount!: any;
-drawing!: any;
-currentBatchSize!: any;
-currentBaseTexture!: any;
-dirty!: any;
-textures!: any;
-blendModes!: any;
-shaders!: any;
-sprites!: any;
-defaultShader!: any;
+  vertSize!: any;
+  size!: any;
+  vertices!: any;
+  positions!: any;
+  colors!: any;
+  indices!: any;
+  lastIndexCount!: any;
+  drawing!: any;
+  currentBatchSize!: any;
+  currentBaseTexture!: any;
+  dirty!: any;
+  textures!: any;
+  blendModes!: any;
+  shaders!: any;
+  sprites!: any;
+  defaultShader!: any;
   /**
    * Creates a new SpriteBatch instance.
    */

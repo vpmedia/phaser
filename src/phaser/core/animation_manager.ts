@@ -56,7 +56,7 @@ export class AnimationManager {
    * @param {string|number} frame - The frame index or name to set as current.
    * @returns {boolean} True if the frame data was loaded successfully, false otherwise.
    */
-  loadFrameData(frameData: import('./frame_data.js').FrameData, frame: string|number) {
+  loadFrameData(frameData: import('./frame_data.js').FrameData, frame: string | number) {
     if (!frameData) {
       return false;
     }
@@ -86,7 +86,7 @@ export class AnimationManager {
    * @param {string|number} frame - The frame index or name to set as current.
    * @returns {boolean} True if the frame data was copied successfully, false otherwise.
    */
-  copyFrameData(frameData: import('./frame_data.js').FrameData, frame: string|number) {
+  copyFrameData(frameData: import('./frame_data.js').FrameData, frame: string | number) {
     this._frameData = frameData.clone();
     if (this.isLoaded) {
       // We need to update the frameData that the animations are using
@@ -116,7 +116,13 @@ export class AnimationManager {
    * @param {boolean | undefined} useNumericIndex - Whether to treat frameList as numeric indices.
    * @returns {Animation} The created Animation object.
    */
-  add(name: string, frameList: number[] | string[] | null | undefined, frameRate: number = 60, loop: boolean = false, useNumericIndex: boolean | undefined = undefined) {
+  add(
+    name: string,
+    frameList: number[] | string[] | null | undefined,
+    frameRate: number = 60,
+    loop: boolean = false,
+    useNumericIndex: boolean | undefined = undefined
+  ) {
     const frames = frameList || [];
     //  If they didn't set the useNumericIndex then let's at least try and guess it
     if (useNumericIndex === undefined) {

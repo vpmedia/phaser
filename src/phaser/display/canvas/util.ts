@@ -117,7 +117,15 @@ export const removeFromDOM = (canvas: HTMLCanvasElement) => {
  * @param {number} skewY - The Y skew value.
  * @returns {CanvasRenderingContext2D} The modified rendering context.
  */
-export const setTransform = (context: CanvasRenderingContext2D, translateX: number, translateY: number, scaleX: number, scaleY: number, skewX: number, skewY: number) => {
+export const setTransform = (
+  context: CanvasRenderingContext2D,
+  translateX: number,
+  translateY: number,
+  scaleX: number,
+  scaleY: number,
+  skewX: number,
+  skewY: number
+) => {
   context.setTransform(scaleX, skewX, skewY, scaleY, translateX, translateY);
   return context;
 };

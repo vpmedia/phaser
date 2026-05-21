@@ -1,20 +1,20 @@
 export class FastSpriteBatch {
   [key: string]: any;
-vertSize!: any;
-maxSize!: any;
-size!: any;
-vertices!: any;
-indices!: any;
-vertexBuffer!: any;
-indexBuffer!: any;
-lastIndexCount!: any;
-drawing!: any;
-currentBatchSize!: any;
-currentBaseTexture!: any;
-currentBlendMode!: any;
-renderSession!: any;
-shader!: any;
-matrix!: any;
+  vertSize!: any;
+  maxSize!: any;
+  size!: any;
+  vertices!: any;
+  indices!: any;
+  vertexBuffer!: any;
+  indexBuffer!: any;
+  lastIndexCount!: any;
+  drawing!: any;
+  currentBatchSize!: any;
+  currentBaseTexture!: any;
+  currentBlendMode!: any;
+  renderSession!: any;
+  shader!: any;
+  matrix!: any;
   /**
    * Creates a new FastSpriteBatch instance.
    * @param {WebGLRenderingContext & { id: number }} gl - The WebGL rendering context.

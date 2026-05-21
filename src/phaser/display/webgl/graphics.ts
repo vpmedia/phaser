@@ -269,7 +269,14 @@ export const buildRectangle = (graphicsData: any, webGLData: GraphicsData) => {
  * @param {number} toY - The ending y-coordinate.
  * @returns {number[]} The calculated points for the quadratic bezier curve.
  */
-export const quadraticBezierCurve = (fromX: number, fromY: number, cpX: number, cpY: number, toX: number, toY: number) => {
+export const quadraticBezierCurve = (
+  fromX: number,
+  fromY: number,
+  cpX: number,
+  cpY: number,
+  toX: number,
+  toY: number
+) => {
   let xa;
   let ya;
   let xb;

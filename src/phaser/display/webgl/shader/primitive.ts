@@ -5,11 +5,11 @@ import { compileProgram } from '../util.js';
 
 export class PrimitiveShader {
   [key: string]: any;
-gl!: any;
-_UID!: any;
-program!: any;
-fragmentSrc!: any;
-vertexSrc!: any;
+  gl!: any;
+  _UID!: any;
+  program!: any;
+  fragmentSrc!: any;
+  vertexSrc!: any;
   /**
    * Creates a new PrimitiveShader instance.
    * @param {WebGLRenderingContext} gl - The WebGL rendering context.

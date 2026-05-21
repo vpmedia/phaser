@@ -1,10 +1,10 @@
 export class SoundSprite {
-game!: any;
-key!: any;
-config!: any;
-autoplayKey!: any;
-autoplay!: any;
-sounds!: any;
+  game!: any;
+  key!: any;
+  config!: any;
+  autoplayKey!: any;
+  autoplay!: any;
+  sounds!: any;
   /**
    * TBD.
    * @param {import('./game.js').Game} game - TBD.

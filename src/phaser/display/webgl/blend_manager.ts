@@ -1,7 +1,7 @@
 export class WebGLBlendModeManager {
   [key: string]: any;
-gl!: any;
-currentBlendMode!: any;
+  gl!: any;
+  currentBlendMode!: any;
   /**
    * Creates a new BlendModeManager instance.
    */

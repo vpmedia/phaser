@@ -1,16 +1,16 @@
 import { clone } from './graphics_data_util.js';
 
 export class GraphicsData {
-lineWidth!: any;
-lineColor!: any;
-lineAlpha!: any;
-_lineTint!: any;
-fillColor!: any;
-fillAlpha!: any;
-_fillTint!: any;
-fill!: any;
-shape!: any;
-type!: any;
+  lineWidth!: any;
+  lineColor!: any;
+  lineAlpha!: any;
+  _lineTint!: any;
+  fillColor!: any;
+  fillAlpha!: any;
+  _fillTint!: any;
+  fill!: any;
+  shape!: any;
+  type!: any;
   /**
    * Creates a new GraphicsData object.
    * @param {number} lineWidth - The line width.
@@ -21,7 +21,15 @@ type!: any;
    * @param {boolean} fill - Whether to fill the shape.
    * @param {object} shape - The shape to draw.
    */
-  constructor(lineWidth: number, lineColor: number, lineAlpha: number, fillColor: number, fillAlpha: number, fill: boolean, shape: any) {
+  constructor(
+    lineWidth: number,
+    lineColor: number,
+    lineAlpha: number,
+    fillColor: number,
+    fillAlpha: number,
+    fill: boolean,
+    shape: any
+  ) {
     this.lineWidth = lineWidth;
     this.lineColor = lineColor;
     this.lineAlpha = lineAlpha;

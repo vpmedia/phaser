@@ -38,7 +38,19 @@ export class Button extends Image {
    * @param {string} upFrame - The frame identifier to use when the button is released.
    * @param {string} disabledFrame - The frame identifier to use when the button is disabled.
    */
-  constructor(game: import('../core/game.js').Game, x: number = 0, y: number = 0, key: string = null, callback: Function = null, callbackContext: any = null, overFrame: string = null, outFrame: string = null, downFrame: string = null, upFrame: string = null, disabledFrame: string = null) {
+  constructor(
+    game: import('../core/game.js').Game,
+    x: number = 0,
+    y: number = 0,
+    key: string = null,
+    callback: Function = null,
+    callbackContext: any = null,
+    overFrame: string = null,
+    outFrame: string = null,
+    downFrame: string = null,
+    upFrame: string = null,
+    disabledFrame: string = null
+  ) {
     super(game, x, y, key, outFrame);
     this.type = BUTTON;
     this._onOverFrame = null;

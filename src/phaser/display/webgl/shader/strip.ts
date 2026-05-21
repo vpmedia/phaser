@@ -5,11 +5,11 @@ import { compileProgram } from '../util.js';
 
 export class StripShader {
   [key: string]: any;
-gl!: any;
-_UID!: any;
-program!: any;
-fragmentSrc!: any;
-vertexSrc!: any;
+  gl!: any;
+  _UID!: any;
+  program!: any;
+  fragmentSrc!: any;
+  vertexSrc!: any;
   /**
    * Creates a new StripShader instance.
    * @param {WebGLRenderingContext} gl - The WebGL rendering context.

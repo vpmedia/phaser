@@ -162,7 +162,14 @@ export const intersection = (a: Rectangle, b: Rectangle, output: Rectangle = nul
  * @param {number} tolerance - Optional tolerance value for intersection.
  * @returns {boolean} True if the rectangle intersects with the area, false otherwise.
  */
-export const intersectsRaw = (a: Rectangle, left: number, right: number, top: number, bottom: number, tolerance: number = 0) => {
+export const intersectsRaw = (
+  a: Rectangle,
+  left: number,
+  right: number,
+  top: number,
+  bottom: number,
+  tolerance: number = 0
+) => {
   return !(
     left > a.right + tolerance ||
     right < a.left - tolerance ||

@@ -56,7 +56,13 @@ export class Sound {
    * @param {boolean} loop - Whether the sound should loop.
    * @param {boolean} connect - Whether to connect to the master gain node.
    */
-  constructor(game: import('./game.js').Game, key: string, volume: number = 1, loop: boolean = false, connect: boolean = null) {
+  constructor(
+    game: import('./game.js').Game,
+    key: string,
+    volume: number = 1,
+    loop: boolean = false,
+    connect: boolean = null
+  ) {
     // TODO
     // https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Migrating_from_webkitAudioContext
     if (!connect) {

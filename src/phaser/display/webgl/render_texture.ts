@@ -26,7 +26,13 @@ export class RenderTexture extends Texture {
    * @param {number} scaleMode - The scale mode to use.
    * @param {number} resolution - The resolution to use.
    */
-  constructor(width: number, height: number, renderer: import('./renderer.js').WebGLRenderer|import('../canvas/renderer.js').CanvasRenderer, scaleMode: number, resolution: number = 1) {
+  constructor(
+    width: number,
+    height: number,
+    renderer: import('./renderer.js').WebGLRenderer | import('../canvas/renderer.js').CanvasRenderer,
+    scaleMode: number,
+    resolution: number = 1
+  ) {
     const w = width || 100;
     const h = height || 100;
     const res = resolution || 1;

@@ -34,7 +34,15 @@ export class Animation {
    * @param {number} frameRate - The frame rate at which this animation should play (frames per second).
    * @param {boolean} loop - Whether the animation should loop when it completes.
    */
-  constructor(game: import('./game.js').Game, parent: import('../display/image.js').Image, name: string, frameData: import('./frame_data.js').FrameData, frames: string[]|number[], frameRate: number, loop: boolean = false) {
+  constructor(
+    game: import('./game.js').Game,
+    parent: import('../display/image.js').Image,
+    name: string,
+    frameData: import('./frame_data.js').FrameData,
+    frames: string[] | number[],
+    frameRate: number,
+    loop: boolean = false
+  ) {
     /** @type {import('./game.js').Game} */
     this.game = game;
     this._parent = parent;
@@ -152,7 +160,7 @@ export class Animation {
    * @param {string|number} frameId - The identifier (name or index) of the frame to set.
    * @param {boolean} useLocalFrameIndex - If true, treats frameId as an index into the local frames array.
    */
-  setFrame(frameId: string|number, useLocalFrameIndex: boolean = false) {
+  setFrame(frameId: string | number, useLocalFrameIndex: boolean = false) {
     let frameIndex;
     //  Find the index to the desired frame.
     if (typeof frameId === 'string') {

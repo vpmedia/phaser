@@ -18,7 +18,14 @@ export class SignalBinding {
    * @param {number} priority - TBD.
    * @param {...any} args - TBD.
    */
-  constructor(signal: import('./signal.js').Signal, listener: Function, isOnce: boolean = false, listenerContext: any = null, priority: number = 0, args: any = null) {
+  constructor(
+    signal: import('./signal.js').Signal,
+    listener: Function,
+    isOnce: boolean = false,
+    listenerContext: any = null,
+    priority: number = 0,
+    args: any = null
+  ) {
     this._signal = signal;
     this._listener = listener;
     this._args = args;

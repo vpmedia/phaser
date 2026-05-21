@@ -1,14 +1,14 @@
 export class GraphicsData {
   [key: string]: any;
-gl!: any;
-color!: any;
-points!: any;
-indices!: any;
-buffer!: any;
-indexBuffer!: any;
-mode!: any;
-alpha!: any;
-dirty!: any;
+  gl!: any;
+  color!: any;
+  points!: any;
+  indices!: any;
+  buffer!: any;
+  indexBuffer!: any;
+  mode!: any;
+  alpha!: any;
+  dirty!: any;
   /**
    * Creates a new GraphicsData instance.
    * @param {WebGLRenderingContext} gl - The WebGL rendering context.

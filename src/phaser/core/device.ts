@@ -1,27 +1,27 @@
 export class Device {
-desktop!: any;
-iOS!: any;
-android!: any;
-chromeOS!: any;
-linux!: any;
-macOS!: any;
-windows!: any;
-windowsPhone!: any;
-canvas!: any;
-touch!: any;
-mspointer!: any;
-wheelEvent!: any;
-chrome!: any;
-firefox!: any;
-edge!: any;
-safari!: any;
-fullscreen!: any;
-requestFullscreen!: any;
-cancelFullscreen!: any;
-fullscreenKeyboard!: any;
-noAudioFormat!: any;
-supportedAudioFormats!: any;
-supportedImageFormats!: any;
+  desktop!: any;
+  iOS!: any;
+  android!: any;
+  chromeOS!: any;
+  linux!: any;
+  macOS!: any;
+  windows!: any;
+  windowsPhone!: any;
+  canvas!: any;
+  touch!: any;
+  mspointer!: any;
+  wheelEvent!: any;
+  chrome!: any;
+  firefox!: any;
+  edge!: any;
+  safari!: any;
+  fullscreen!: any;
+  requestFullscreen!: any;
+  cancelFullscreen!: any;
+  fullscreenKeyboard!: any;
+  noAudioFormat!: any;
+  supportedAudioFormats!: any;
+  supportedImageFormats!: any;
   /**
    * Creates a new Device instance.
    * This class provides information about the current device and browser capabilities.

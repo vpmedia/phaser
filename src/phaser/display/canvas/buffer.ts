@@ -1,10 +1,10 @@
 import { create, removeByCanvas } from './pool.js';
 
 export class CanvasBuffer {
-width!: any;
-height!: any;
-canvas!: any;
-context!: any;
+  width!: any;
+  height!: any;
+  canvas!: any;
+  context!: any;
   /**
    * Creates a new CanvasBuffer instance.
    * @param {number} width - The width of the canvas buffer.

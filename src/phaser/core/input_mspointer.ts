@@ -1,20 +1,20 @@
 export class MSPointer {
-game!: any;
-input!: any;
-callbackContext!: any;
-pointerDownCallback!: any;
-pointerMoveCallback!: any;
-pointerUpCallback!: any;
-capture!: any;
-button!: any;
-event!: any;
-enabled!: any;
-_onMSPointerDown!: any;
-_onMSPointerMove!: any;
-_onMSPointerUp!: any;
-_onMSPointerUpGlobal!: any;
-_onMSPointerOut!: any;
-_onMSPointerOver!: any;
+  game!: any;
+  input!: any;
+  callbackContext!: any;
+  pointerDownCallback!: any;
+  pointerMoveCallback!: any;
+  pointerUpCallback!: any;
+  capture!: any;
+  button!: any;
+  event!: any;
+  enabled!: any;
+  _onMSPointerDown!: any;
+  _onMSPointerMove!: any;
+  _onMSPointerUp!: any;
+  _onMSPointerUpGlobal!: any;
+  _onMSPointerOut!: any;
+  _onMSPointerOver!: any;
   /**
    * TBD.
    * @param {import('./game.js').Game} game - TBD.

@@ -147,7 +147,16 @@ export function getLeftmost(start: any) {
  * @param {number} py - TBD.
  * @returns {object} TBD.
  */
-export function pointInTriangle(ax: number, ay: number, bx: number, by: number, cx: number, cy: number, px: number, py: number) {
+export function pointInTriangle(
+  ax: number,
+  ay: number,
+  bx: number,
+  by: number,
+  cx: number,
+  cy: number,
+  px: number,
+  py: number
+) {
   return (
     (cx - px) * (ay - py) - (ax - px) * (cy - py) >= 0 &&
     (ax - px) * (by - py) - (bx - px) * (ay - py) >= 0 &&
@@ -599,7 +608,15 @@ export function splitEarcut(start: any, triangles: any, dim: number, minX: numbe
  * @param {number} size - The size of the bounding box.
  * @param {object} pass - The pass information for triangulation.
  */
-export function earcutLinked(ear: any, triangles: any, dim: number, minX?: number, minY?: number, size?: number, pass?: any) {
+export function earcutLinked(
+  ear: any,
+  triangles: any,
+  dim: number,
+  minX?: number,
+  minY?: number,
+  size?: number,
+  pass?: any
+) {
   if (!ear) return;
   // interlink polygon nodes in z-order
   if (!pass && size) indexCurve(ear, minX, minY, size);

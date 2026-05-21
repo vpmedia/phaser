@@ -1,6 +1,6 @@
 export class Scene {
-game!: any;
-key!: any;
+  game!: any;
+  key!: any;
   /**
    * Creates a new Scene instance.
    */

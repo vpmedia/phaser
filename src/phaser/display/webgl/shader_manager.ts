@@ -6,16 +6,16 @@ import { StripShader } from './shader/strip.js';
 
 export class WebGLShaderManager {
   [key: string]: any;
-gl!: any;
-primitiveShader!: any;
-complexPrimitiveShader!: any;
-defaultShader!: any;
-fastShader!: any;
-stripShader!: any;
-maxAttibs!: any;
-attribState!: any;
-tempAttribState!: any;
-stack!: any;
+  gl!: any;
+  primitiveShader!: any;
+  complexPrimitiveShader!: any;
+  defaultShader!: any;
+  fastShader!: any;
+  stripShader!: any;
+  maxAttibs!: any;
+  attribState!: any;
+  tempAttribState!: any;
+  stack!: any;
   /**
    * Initializes the shader manager with a WebGL context.
    */

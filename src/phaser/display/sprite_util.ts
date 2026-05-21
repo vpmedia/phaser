@@ -8,7 +8,11 @@ import { getTintedTexture } from './canvas/tinter.js';
  * @param {import('./webgl/texture.js').Texture} texture - The new texture to set.
  * @param {boolean} destroyBase - Whether to destroy the base texture.
  */
-export const setTexture = (target: import('./image.js').Image, texture: import('./webgl/texture.js').Texture, destroyBase: boolean = false) => {
+export const setTexture = (
+  target: import('./image.js').Image,
+  texture: import('./webgl/texture.js').Texture,
+  destroyBase: boolean = false
+) => {
   if (destroyBase) {
     target.texture.baseTexture.destroy();
   }
@@ -127,7 +131,11 @@ export const getLocalBounds = (target: import('./image.js').Image) => {
  * @param {object} renderSession - The render session object.
  * @param {import('../geom/matrix.js').Matrix | null | undefined} matrix - The transformation matrix.
  */
-export const renderWebGL = (target: import('./image.js').Image, renderSession: any, matrix: import('../geom/matrix.js').Matrix | null | undefined = null) => {
+export const renderWebGL = (
+  target: import('./image.js').Image,
+  renderSession: any,
+  matrix: import('../geom/matrix.js').Matrix | null | undefined = null
+) => {
   // if the sprite is not visible or the alpha is 0 then no need to render this element
   if (!target.visible || target.alpha <= 0 || !target.renderable) {
     return;
@@ -176,7 +184,11 @@ export const renderWebGL = (target: import('./image.js').Image, renderSession: a
  * @param {object} renderSession - The render session object.
  * @param {import('../geom/matrix.js').Matrix | null | undefined} matrix - The transformation matrix.
  */
-export const renderCanvas = (target: import('./image.js').Image, renderSession: any, matrix: import('../geom/matrix.js').Matrix | null | undefined = null) => {
+export const renderCanvas = (
+  target: import('./image.js').Image,
+  renderSession: any,
+  matrix: import('../geom/matrix.js').Matrix | null | undefined = null
+) => {
   // If the sprite is not visible or the alpha is 0 then no need to render this element
   if (
     !target.visible ||

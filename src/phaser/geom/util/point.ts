@@ -217,7 +217,14 @@ export const normalize = (a: Point, output: Point = null) => {
  * @param {number | null | undefined} dist - The distance to rotate from (default: null).
  * @returns {Point} The rotated point instance for chaining.
  */
-export const rotate = (a: Point, x: number, y: number, ang: number, asDegrees: boolean, dist: number | null | undefined) => {
+export const rotate = (
+  a: Point,
+  x: number,
+  y: number,
+  ang: number,
+  asDegrees: boolean,
+  dist: number | null | undefined
+) => {
   if (asDegrees) {
     ang *= Math.PI / 180;
   }

@@ -813,7 +813,14 @@ export class InputHandler {
    * @param {import('../geom/rectangle.js').Rectangle | null | undefined} boundsRect - TBD.
    * @param {import('../display/display_object.js').DisplayObject | null | undefined} boundsSprite - TBD.
    */
-  enableDrag(lockCenter: boolean = false, bringToTop: boolean = false, pixelPerfect: boolean = false, alphaThreshold: number = 255, boundsRect: import('../geom/rectangle.js').Rectangle | null | undefined = null, boundsSprite: import('../display/display_object.js').DisplayObject | null | undefined = null) {
+  enableDrag(
+    lockCenter: boolean = false,
+    bringToTop: boolean = false,
+    pixelPerfect: boolean = false,
+    alphaThreshold: number = 255,
+    boundsRect: import('../geom/rectangle.js').Rectangle | null | undefined = null,
+    boundsSprite: import('../display/display_object.js').DisplayObject | null | undefined = null
+  ) {
     this._dragPoint = new Point();
     this.draggable = true;
     this.bringToTop = bringToTop;
@@ -944,7 +951,14 @@ export class InputHandler {
    * @param {number} snapOffsetX - TBD.
    * @param {number} snapOffsetY - TBD.
    */
-  enableSnap(snapX: number, snapY: number, onDrag: boolean = true, onRelease: boolean = false, snapOffsetX: number = 0, snapOffsetY: number = 0) {
+  enableSnap(
+    snapX: number,
+    snapY: number,
+    onDrag: boolean = true,
+    onRelease: boolean = false,
+    snapOffsetX: number = 0,
+    snapOffsetY: number = 0
+  ) {
     this.snapX = snapX;
     this.snapY = snapY;
     this.snapOffsetX = snapOffsetX;

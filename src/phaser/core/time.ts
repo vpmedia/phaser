@@ -1,33 +1,33 @@
 import { Timer } from './timer.js';
 
 export class Time {
-game!: any;
-time!: any;
-prevTime!: any;
-now!: any;
-elapsed!: any;
-elapsedMS!: any;
-desiredFpsMult!: any;
-_desiredFps!: any;
-suggestedFps!: any;
-advancedTiming!: any;
-frames!: any;
-fps!: any;
-fpsMin!: any;
-fpsMax!: any;
-msMin!: any;
-msMax!: any;
-pauseDuration!: any;
-timeToCall!: any;
-timeExpected!: any;
-events!: any;
-_frameCount!: any;
-_elapsedAccumulator!: any;
-_started!: any;
-_timeLastSecond!: any;
-_pauseStarted!: any;
-_justResumed!: any;
-_timers!: any;
+  game!: any;
+  time!: any;
+  prevTime!: any;
+  now!: any;
+  elapsed!: any;
+  elapsedMS!: any;
+  desiredFpsMult!: any;
+  _desiredFps!: any;
+  suggestedFps!: any;
+  advancedTiming!: any;
+  frames!: any;
+  fps!: any;
+  fpsMin!: any;
+  fpsMax!: any;
+  msMin!: any;
+  msMax!: any;
+  pauseDuration!: any;
+  timeToCall!: any;
+  timeExpected!: any;
+  events!: any;
+  _frameCount!: any;
+  _elapsedAccumulator!: any;
+  _started!: any;
+  _timeLastSecond!: any;
+  _pauseStarted!: any;
+  _justResumed!: any;
+  _timers!: any;
   /**
    * Creates a new Time instance.
    * @param {import('./game.js').Game} game - Reference to the Phaser Game instance.

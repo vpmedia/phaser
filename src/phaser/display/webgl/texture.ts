@@ -56,7 +56,12 @@ export class Texture {
    * @param {Rectangle | null | undefined} crop - The crop rectangle.
    * @param {Rectangle | null | undefined} trim - The trim rectangle.
    */
-  constructor(baseTexture: import('./base_texture.js').BaseTexture, frame: Rectangle | null | undefined = null, crop: Rectangle | null | undefined = null, trim: Rectangle | null | undefined = null) {
+  constructor(
+    baseTexture: import('./base_texture.js').BaseTexture,
+    frame: Rectangle | null | undefined = null,
+    crop: Rectangle | null | undefined = null,
+    trim: Rectangle | null | undefined = null
+  ) {
     this.noFrame = false;
     if (!frame) {
       this.noFrame = true;

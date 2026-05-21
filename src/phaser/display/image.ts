@@ -35,7 +35,13 @@ export class Image extends DisplayObject {
    * @param {string | number | Texture} key - The texture key or texture to use.
    * @param {string | number} frame - The frame identifier (name or index) to use.
    */
-  constructor(game: import('../core/game.js').Game, x: number, y: number, key: string | number | Texture, frame: string | number = 0) {
+  constructor(
+    game: import('../core/game.js').Game,
+    x: number,
+    y: number,
+    key: string | number | Texture,
+    frame: string | number = 0
+  ) {
     super(game);
     /** @type {number} */
     this.type = IMAGE;
