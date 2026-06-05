@@ -61,6 +61,7 @@
     "prefer-const": "off",
     "prefer-destructuring": "off",
     "prefer-exponentiation-operator": "off",
+    "prefer-named-capture-group": "off",
     "prefer-spread": "off",
     "require-unicode-regexp": "off",
     "sort-imports": "off",
