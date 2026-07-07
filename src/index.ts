@@ -4,6 +4,14 @@ export { GameObjectFactory } from './phaser/core/factory.js';
 export { Game } from './phaser/core/game.js';
 export { Signal } from './phaser/core/signal.js';
 export * as MathUtils from './phaser/util/math.js';
+// cache
+export { Cache } from './phaser/core/cache.js';
+// input
+export { Input } from './phaser/core/input.js';
+export { Pointer } from './phaser/core/input_pointer.js';
+// loader
+export { Loader } from './phaser/core/loader.js';
+export type { LoaderFile } from './phaser/core/loader.js';
 // scale
 export { ScaleManager } from './phaser/core/scale_manager.js';
 // scene

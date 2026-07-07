@@ -5,6 +5,17 @@ import { Signal } from './signal.js';
 
 const TEXTURE_ATLAS_JSON_HASH = 1;
 
+/**
+ * Describes a file entry managed by the Loader.
+ */
+export interface LoaderFile {
+  key: string;
+  type: string;
+  url: string;
+  error: boolean;
+  errorMessage: string;
+}
+
 export class Loader {
   game!: any;
   cache!: any;
