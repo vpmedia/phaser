@@ -1,3 +1,39 @@
+## [1.106.0] - 2026-07-07
+
+### 🚀 Features
+
+- Export cache, input, pointer, loader and loader-file types
+
+### 💼 Other
+
+- *(deps)* Bump dependency versions
+- *(deps)* Bump dependency versions
+- *(deps)* Bump dependency versions
+- *(deps)* Bump dependency versions
+- *(deps)* Bump dependency versions
+- *(deps)* Bump dependency versions
+- *(deps)* Bump dependency versions
+- *(deps)* Bump dependency versions
+- *(deps)* Bump dependency versions
+
+### 📚 Documentation
+
+- *(agents)* Add Documentation section with llms.txt links
+- *(agents)* Standardize structure and commit-config wording
+- *(agents)* Remove non-existent TypeScript llms.txt link
+- Refresh AGENTS.md
+
+### ⚙️ Miscellaneous Tasks
+
+- Release
+- *(lint)* Switch oxlint categories to error and disable current violations
+- Enable blockExoticSubdeps in pnpm workspace
+- Migrate from jsdom to happy-dom
+- Gitignore .claude/settings.local.json
+- Update dependencies
+- Pin GitHub Actions to commit SHAs and upgrade to latest
+- *(lint)* Disable rules newly enforced by oxlint 1.71
+- *(release)* V1.106.0
 ## [1.105.0] - 2026-05-11
 
 ### 🚜 Refactor
