@@ -6,15 +6,7 @@ A modern ECMAScript port of the Phaser game engine v2.6.2. Some original feature
 
 ## Tech Stack
 
-- **Language:** TypeScript (ESM, `"type": "module"`)
-- **Runtime:** Node.js / Browser (WebGL & Canvas)
-- **Package Manager:** pnpm (workspaces)
-- **Runtime Dependencies:** `@vpmedia/simplify`, `uuid`
-- **Build:** Rolldown + `tsc`
-- **Testing:** Vitest, @vitest/coverage-v8, happy-dom
-- **Lint/Format:** oxlint (+ `oxlint-tsgolint`), oxfmt
-- **Type Checking:** TypeScript
-- **Tooling:** lefthook (git hooks), commitlint (conventional commits)
+Read [package.json](package.json) for the language, runtime, dependencies and tooling.
 
 ## Documentation
 
@@ -32,14 +24,6 @@ A modern ECMAScript port of the Phaser game engine v2.6.2. Some original feature
 - **Test:** `pnpm test`
 - **Lint / Format / Typecheck:** `pnpm lint` / `pnpm format` / `pnpm typecheck`
 - **All checks:** `pnpm check`
-
-## Project Structure
-
-- `src/index.ts` — public entry point
-- `src/phaser/` — engine source (core, geom, util, etc.)
-- `typedefs/` — ambient type declarations
-- `docs/` — documentation
-- `dist/` — build output (gitignored)
 
 ## Conventions
 
