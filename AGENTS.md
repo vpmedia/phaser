@@ -36,3 +36,9 @@ Read [package.json](package.json) for the language, runtime, dependencies and to
 - Tests are co-located with source as `*.test.ts` under `src/phaser/`
 - Run a single file: `pnpm test src/phaser/util/math.test.ts`
 - DOM APIs available via happy-dom environment
+
+## Reference Documentation
+
+Read on demand:
+
+- [clean-code.md](docs/agents/clean-code.md) — general clean-code guidelines: naming, functions, comments, error handling, classes, testing, and refactoring.
