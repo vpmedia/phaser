@@ -70,7 +70,7 @@ export class BitmapText extends DisplayObject {
   /**
    * Destroys this bitmap text and cleans up resources.
    */
-  destroy() {
+  override destroy() {
     this._prevAnchor = null;
     this._glyphs = null;
     this._text = null;
@@ -81,7 +81,7 @@ export class BitmapText extends DisplayObject {
   /**
    * Called before the update cycle for this bitmap text.
    */
-  preUpdate() {
+  override preUpdate() {
     if (this.pendingDestroy) {
       this.destroy();
       return;
@@ -299,7 +299,7 @@ export class BitmapText extends DisplayObject {
   /**
    * Updates the transform of this bitmap text, updating its text if needed.
    */
-  updateTransform(): this {
+  override updateTransform(): this {
     if (this.dirty || !this.anchor.equals(this._prevAnchor)) {
       this.updateText();
       this.dirty = false;
@@ -312,10 +312,10 @@ export class BitmapText extends DisplayObject {
   /**
    * Adds a color to a specific position in the text.
    * @param {string} value - The color to apply (in hex format or CSS color name).
-   * @param {number} position - The character position to apply the color to.
+   * @param {number} _position - The character position to apply the color to.
    * @returns {BitmapText} This bitmap text instance for chaining.
    */
-  addColor(value: string, position: number) {
+  addColor(value: string, _position: number) {
     const color = typeof value === 'string' ? Number.parseInt(value.replace('#', ''), 16) : value;
     if (color !== this._tint) {
       this._tint = color;

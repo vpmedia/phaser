@@ -84,7 +84,7 @@ export class Image extends DisplayObject {
   /**
    * Destroys this image and cleans up resources.
    */
-  destroy() {
+  override destroy() {
     this.game = null;
     this.key = null;
     this.data = null;
@@ -108,7 +108,7 @@ export class Image extends DisplayObject {
   /**
    * Called before the update cycle for this image.
    */
-  preUpdate() {
+  override preUpdate() {
     if (this.pendingDestroy) {
       this.destroy();
       return;
@@ -222,11 +222,11 @@ export class Image extends DisplayObject {
 
   /**
    * Resizes the frame of this image.
-   * @param {DisplayObject} parent - The parent display object.
+   * @param {DisplayObject} _parent - The parent display object.
    * @param {number} width - The new width of the frame.
    * @param {number} height - The new height of the frame.
    */
-  resizeFrame(parent: DisplayObject, width: number, height: number) {
+  resizeFrame(_parent: DisplayObject, width: number, height: number) {
     this.texture.frame.resize(width, height);
     this.texture.setFrame(this.texture.frame);
   }
@@ -332,7 +332,7 @@ export class Image extends DisplayObject {
    * Gets the width of this image.
    * @returns {number} The width in pixels.
    */
-  get width() {
+  override get width() {
     return this.scale.x * this.texture.frame.width;
   }
 
@@ -340,7 +340,7 @@ export class Image extends DisplayObject {
    * Sets the width of this image.
    * @param {number} value - The new width in pixels.
    */
-  set width(value: number) {
+  override set width(value: number) {
     this.scale.x = value / this.texture.frame.width;
     this._width = value;
   }
@@ -349,7 +349,7 @@ export class Image extends DisplayObject {
    * Gets the height of this image.
    * @returns {number} The height in pixels.
    */
-  get height() {
+  override get height() {
     return this.scale.y * this.texture.frame.height;
   }
 
@@ -357,7 +357,7 @@ export class Image extends DisplayObject {
    * Sets the height of this image.
    * @param {number} value - The new height in pixels.
    */
-  set height(value: number) {
+  override set height(value: number) {
     this.scale.y = value / this.texture.frame.height;
     this._height = value;
   }
@@ -389,7 +389,7 @@ export class Image extends DisplayObject {
    * @param {import('../geom/matrix.js').Matrix} matrix - The transformation matrix to use.
    * @returns {Rectangle} The bounds rectangle of this image.
    */
-  getBounds(matrix: import('../geom/matrix.js').Matrix = null) {
+  override getBounds(matrix: import('../geom/matrix.js').Matrix = null) {
     return getBounds(this, matrix);
   }
 
@@ -397,7 +397,7 @@ export class Image extends DisplayObject {
    * Gets the local bounds of this image.
    * @returns {Rectangle} The local bounds rectangle of this image.
    */
-  getLocalBounds() {
+  override getLocalBounds() {
     return getLocalBounds(this);
   }
 
@@ -406,7 +406,7 @@ export class Image extends DisplayObject {
    * @param {object} renderSession - The WebGL rendering session.
    * @param {import('../geom/matrix.js').Matrix} matrix - The transformation matrix to use.
    */
-  renderWebGL(renderSession: any, matrix: import('../geom/matrix.js').Matrix = null) {
+  override renderWebGL(renderSession: any, matrix: import('../geom/matrix.js').Matrix = null) {
     renderWebGL(this, renderSession, matrix);
   }
 
@@ -415,7 +415,7 @@ export class Image extends DisplayObject {
    * @param {object} renderSession - The Canvas rendering session.
    * @param {import('../geom/matrix.js').Matrix} matrix - The transformation matrix to use.
    */
-  renderCanvas(renderSession: any, matrix: import('../geom/matrix.js').Matrix = null) {
+  override renderCanvas(renderSession: any, matrix: import('../geom/matrix.js').Matrix = null) {
     renderCanvas(this, renderSession, matrix);
   }
 }

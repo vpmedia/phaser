@@ -43,10 +43,10 @@ export class Scene {
 
   /**
    * Handle scene resize.
-   * @param {number} width - The new width of the scene.
-   * @param {number} height - The new height of the scene.
+   * @param {number} _width - The new width of the scene.
+   * @param {number} _height - The new height of the scene.
    */
-  resize(width: number, height: number) {
+  resize(_width: number, _height: number) {
     // inherit
   }
 

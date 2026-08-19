@@ -80,7 +80,7 @@ export class Group extends DisplayObject {
    * @param {boolean} destroyChildren - Whether to destroy children as well.
    * @param {boolean} soft - Whether to perform a soft destroy (leaving the group in the parent's children list).
    */
-  destroy(destroyChildren: boolean = true, soft: boolean = false) {
+  override destroy(destroyChildren: boolean = true, soft: boolean = false) {
     if (this.game === null || this.ignoreDestroy) {
       return;
     }
@@ -253,7 +253,7 @@ export class Group extends DisplayObject {
   /**
    * Updates the Z indices of all children in this group before the update cycle.
    */
-  preUpdate() {
+  override preUpdate() {
     if (this.pendingDestroy) {
       this.destroy();
       return;
@@ -270,7 +270,7 @@ export class Group extends DisplayObject {
   /**
    * Updates all children in this group during the update cycle.
    */
-  update() {
+  override update() {
     let i = this.children.length;
     while (i) {
       i -= 1;
@@ -281,7 +281,7 @@ export class Group extends DisplayObject {
   /**
    * Updates all children in this group after the update cycle.
    */
-  postUpdate() {
+  override postUpdate() {
     for (let i = 0; i < this.children.length; i += 1) {
       this.children[i].postUpdate();
     }

@@ -77,7 +77,7 @@ export class Text extends Image {
   /**
    * Destroys this text object and cleans up resources.
    */
-  destroy() {
+  override destroy() {
     this.texture.destroy(true);
     remove(this);
     this.canvas = null;
@@ -878,7 +878,7 @@ export class Text extends Image {
    * Renders this text object using WebGL.
    * @param {object} renderSession - The render session to use.
    */
-  renderWebGL(renderSession: any) {
+  override renderWebGL(renderSession: any) {
     if (this.dirty) {
       this.updateText();
       this.dirty = false;
@@ -890,7 +890,7 @@ export class Text extends Image {
    * Renders this text object using Canvas.
    * @param {object} renderSession - The render session to use.
    */
-  renderCanvas(renderSession: any) {
+  override renderCanvas(renderSession: any) {
     if (this.dirty) {
       this.updateText();
       this.dirty = false;
@@ -1044,7 +1044,7 @@ export class Text extends Image {
    * @param {import('../geom/matrix.js').Matrix} matrix - The transformation matrix to use.
    * @returns {Rectangle} The bounds of this text object.
    */
-  getBounds(matrix: import('../geom/matrix.js').Matrix = null) {
+  override getBounds(matrix: import('../geom/matrix.js').Matrix = null) {
     if (this.dirty) {
       this.updateText();
       this.dirty = false;
@@ -1521,7 +1521,7 @@ export class Text extends Image {
    * Gets the width of this object.
    * @returns {number} The width in pixels.
    */
-  get width() {
+  override get width() {
     if (this.dirty) {
       this.updateText();
       this.dirty = false;
@@ -1533,7 +1533,7 @@ export class Text extends Image {
    * Sets the width of this object.
    * @param {number} value - The new width to set in pixels.
    */
-  set width(value: number) {
+  override set width(value: number) {
     this.scale.x = value / this.texture.frame.width;
     this._width = value;
   }
@@ -1542,7 +1542,7 @@ export class Text extends Image {
    * Gets the height of this object.
    * @returns {number} The height in pixels.
    */
-  get height() {
+  override get height() {
     if (this.dirty) {
       this.updateText();
       this.dirty = false;
@@ -1554,7 +1554,7 @@ export class Text extends Image {
    * Sets the height of this object.
    * @param {number} value - The new height to set in pixels.
    */
-  set height(value: number) {
+  override set height(value: number) {
     this.scale.y = value / this.texture.frame.height;
     this._height = value;
   }

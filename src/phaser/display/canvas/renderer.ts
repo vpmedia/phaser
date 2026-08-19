@@ -41,7 +41,7 @@ export class CanvasRenderer {
   renderSession!: any;
   /**
    * Creates a new CanvasRenderer instance.
-   * @param {import('../../core/game.js').Game} game - The game instance.
+   * @param {import('../../core/game.js').Game} _game - The game instance.
    */
   constructor(game: import('../../core/game.js').Game) {
     detectCapabilities(game);
@@ -176,7 +176,7 @@ export class CanvasRenderer {
    * Initializes the WebGL context for rendering.
    * @param {import('../../core/game.js').Game} game - The game instance.
    */
-  initContext(game: import('../../core/game.js').Game) {
+  initContext(_game: import('../../core/game.js').Game) {
     // stub
   }
 }

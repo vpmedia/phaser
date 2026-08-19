@@ -98,7 +98,7 @@ export class Graphics extends DisplayObject {
   /**
    * Destroys the graphics object and clears all data.
    */
-  destroy() {
+  override destroy() {
     // TODO
     this.clear();
     super.destroy();
@@ -478,7 +478,7 @@ export class Graphics extends DisplayObject {
   /**
    * Generates a texture from the graphics object (not implemented).
    */
-  generateTexture() {
+  override generateTexture() {
     // TODO
     this.game.logger.warn('graphics.generateTexture() is not implemented');
   }
@@ -487,7 +487,7 @@ export class Graphics extends DisplayObject {
    * Renders the graphics object using WebGL.
    * @param {object} renderSession - The render session to use.
    */
-  renderWebGL(renderSession: any) {
+  override renderWebGL(renderSession: any) {
     // if the sprite is not visible or the alpha is 0 then no need to render this element
     if (this.visible === false || this.alpha === 0 || this.isMask === true) {
       return;
@@ -547,7 +547,7 @@ export class Graphics extends DisplayObject {
    * Renders the graphics object using Canvas.
    * @param {object} renderSession - The render session to use.
    */
-  renderCanvas(renderSession: any) {
+  override renderCanvas(renderSession: any) {
     // if the sprite is not visible or the alpha is 0 then no need to render this element
     if (this.visible === false || this.alpha === 0 || this.isMask === true) {
       return;
@@ -604,7 +604,7 @@ export class Graphics extends DisplayObject {
    * @param {import('../geom/matrix.js').Matrix} matrix - The transformation matrix to use.
    * @returns {Rectangle} The bounds rectangle of the graphics object.
    */
-  getBounds(matrix: import('../geom/matrix.js').Matrix = null) {
+  override getBounds(matrix: import('../geom/matrix.js').Matrix = null) {
     if (!this.renderable) {
       return getEmptyRectangle();
     }
@@ -664,7 +664,7 @@ export class Graphics extends DisplayObject {
    * Gets the local bounds of the graphics object.
    * @returns {Rectangle} The local bounds rectangle of the graphics object.
    */
-  getLocalBounds() {
+  override getLocalBounds() {
     const matrixCache = this.worldTransform;
     this.worldTransform = getIdentityMatrix();
     for (let i = 0; i < this.children.length; i += 1) {
@@ -782,7 +782,7 @@ export class Graphics extends DisplayObject {
   /**
    * Generates a cached sprite representation of the graphics object.
    */
-  generateCachedSprite() {
+  override generateCachedSprite() {
     const bounds = this.getLocalBounds();
     if (!this._cachedSprite) {
       const canvasBuffer = new CanvasBuffer(bounds.width, bounds.height);
@@ -827,7 +827,7 @@ export class Graphics extends DisplayObject {
   /**
    * Destroys the cached sprite.
    */
-  destroyCachedSprite() {
+  override destroyCachedSprite() {
     if (!this._cachedSprite) {
       return;
     }
@@ -875,7 +875,7 @@ export class Graphics extends DisplayObject {
   /**
    * Performs post-update operations for the graphics object.
    */
-  postUpdate() {
+  override postUpdate() {
     if (this._boundsDirty) {
       this.updateLocalBounds();
       this._boundsDirty = false;

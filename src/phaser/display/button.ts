@@ -84,7 +84,7 @@ export class Button extends Image {
   /**
    * Destroys this button and cleans up resources.
    */
-  destroy() {
+  override destroy() {
     this._onOverFrame = null;
     this._onOutFrame = null;
     this._onDownFrame = null;
@@ -197,10 +197,10 @@ export class Button extends Image {
 
   /**
    * Handles the input over event for this button.
-   * @param {object} sprite - The sprite that triggered the event.
+   * @param {object} _sprite - The sprite that triggered the event.
    * @param {object} pointer - The pointer that triggered the event.
    */
-  onInputOverHandler(sprite: any, pointer: any) {
+  onInputOverHandler(_sprite: any, pointer: any) {
     if (pointer.justReleased() && (this.justReleasedPreventsOver & pointer.pointerMode) === pointer.pointerMode) {
       //  If the Pointer was only just released then we don't fire an over event
       return;
@@ -216,10 +216,10 @@ export class Button extends Image {
 
   /**
    * Handles the input out event for this button.
-   * @param {object} sprite - The sprite that triggered the event.
+   * @param {object} _sprite - The sprite that triggered the event.
    * @param {object} pointer - The pointer that triggered the event.
    */
-  onInputOutHandler(sprite: any, pointer: any) {
+  onInputOutHandler(_sprite: any, pointer: any) {
     this.changeStateFrame(STATE_OUT);
     if (this.onInputOut) {
       this.onInputOut.dispatch(this, pointer);
@@ -228,10 +228,10 @@ export class Button extends Image {
 
   /**
    * Handles the input down event for this button.
-   * @param {object} sprite - The sprite that triggered the event.
+   * @param {object} _sprite - The sprite that triggered the event.
    * @param {object} pointer - The pointer that triggered the event.
    */
-  onInputDownHandler(sprite: any, pointer: any) {
+  onInputDownHandler(_sprite: any, pointer: any) {
     this.changeStateFrame(STATE_DOWN);
     if (this.onInputDown) {
       this.onInputDown.dispatch(this, pointer);
@@ -240,11 +240,11 @@ export class Button extends Image {
 
   /**
    * Handles the input up event for this button.
-   * @param {object} sprite - The sprite that triggered the event.
+   * @param {object} _sprite - The sprite that triggered the event.
    * @param {object} pointer - The pointer that triggered the event.
    * @param {boolean} isOver - Whether the pointer is currently over the button (default: true).
    */
-  onInputUpHandler(sprite: any, pointer: any, isOver: boolean) {
+  onInputUpHandler(_sprite: any, pointer: any, isOver: boolean) {
     if (this.onInputUp) {
       this.onInputUp.dispatch(this, pointer, isOver);
     }

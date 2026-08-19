@@ -62,7 +62,7 @@ export class Stage extends DisplayObject {
   /**
    * Pre-updates the stage and its children.
    */
-  preUpdate() {
+  override preUpdate() {
     this.currentRenderOrderID = 0;
     //  This can't loop in reverse, we need the renderOrderID to be in sequence
     for (let i = 0; i < this.children.length; i += 1) {
@@ -73,7 +73,7 @@ export class Stage extends DisplayObject {
   /**
    * Updates the stage and its children.
    */
-  update() {
+  override update() {
     let i = this.children.length;
     while (i) {
       i -= 1;
@@ -84,7 +84,7 @@ export class Stage extends DisplayObject {
   /**
    * Post-updates the stage and its children.
    */
-  postUpdate() {
+  override postUpdate() {
     for (let i = 0; i < this.children.length; i += 1) {
       this.children[i].postUpdate();
     }
@@ -94,7 +94,7 @@ export class Stage extends DisplayObject {
   /**
    * Updates the stage's transformation matrix.
    */
-  updateTransform(): this {
+  override updateTransform(): this {
     this.worldAlpha = 1;
     for (let i = 0; i < this.children.length; i += 1) {
       this.children[i].updateTransform();
@@ -105,7 +105,7 @@ export class Stage extends DisplayObject {
   /**
    * Destroys the stage and cleans up resources.
    */
-  destroy() {
+  override destroy() {
     this.exists = false;
     this.game = null;
     this.worldTransform = null;

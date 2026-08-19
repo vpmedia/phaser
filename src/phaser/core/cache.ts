@@ -384,11 +384,11 @@ export class Cache {
    * TBD.
    * @param {string} key - TBD.
    * @param {number} cache - TBD.
-   * @param {string} method - TBD.
+   * @param {string} _method - TBD.
    * @param {string} property - TBD.
    * @returns {*} TBD.
    */
-  getItem(key: string, cache: number, method: string, property: string = null) {
+  getItem(key: string, cache: number, _method: string, property: string = null) {
     if (this.checkKey(cache, key)) {
       if (!property) {
         return this._cacheMap[cache][key];
