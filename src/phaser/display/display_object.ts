@@ -40,7 +40,7 @@ export class DisplayObject {
   /** @type {boolean} */
   ignoreChildInput = false;
   name: string | null = null;
-  data: Record<string, any> | null = null;
+  data: any = null;
   game!: import('../core/game.js').Game;
   type!: number;
   _cachedSprite!: any;
