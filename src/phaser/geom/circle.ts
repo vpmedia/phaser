@@ -46,7 +46,7 @@ export class Circle {
    * @param {Point} output - The point to store the result in (optional).
    * @returns {Point} A random point within this circle.
    */
-  random(output: Point = null) {
+  random(output: Point | null = null) {
     const result = output || new Point();
     const t = 2 * Math.PI * Math.random();
     const u = Math.random() + Math.random();

@@ -176,7 +176,7 @@ export class AnimationManager {
    * @param {boolean} loop - Whether the animation should loop, or null to use the animation's default.
    * @returns {Animation} The Animation object that was played, or null if not found.
    */
-  play(name: string, frameRate: number = null, loop: boolean = null) {
+  play(name: string, frameRate: number | null = null, loop: boolean | null = null) {
     if (this._anims[name]) {
       if (this.currentAnim === this._anims[name]) {
         if (this.currentAnim.isPlaying === false) {
@@ -201,7 +201,7 @@ export class AnimationManager {
    * @param {string} name - The name of the animation to stop, or null to stop the current animation.
    * @param {boolean} resetFrame - Whether to reset the frame to the first frame of the animation.
    */
-  stop(name: string = null, resetFrame: boolean = false) {
+  stop(name: string | null = null, resetFrame: boolean = false) {
     if (this.currentAnim && (typeof name !== 'string' || name === this.currentAnim.name)) {
       this.currentAnim.stop(resetFrame);
     }

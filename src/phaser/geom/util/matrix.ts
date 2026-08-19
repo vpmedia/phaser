@@ -6,7 +6,7 @@ import { Matrix } from '../matrix.js';
  * @param {Matrix} output - Optional matrix to store the result in.
  * @returns {Matrix} The cloned matrix.
  */
-export const clone = (input: Matrix, output: Matrix = null) => {
+export const clone = (input: Matrix, output: Matrix | null = null) => {
   const result = output || new Matrix();
   result.a = input.a;
   result.b = input.b;

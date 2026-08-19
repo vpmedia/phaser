@@ -211,7 +211,7 @@ export class DOM {
    * @param {Point} point - Optional Point object to store the result.
    * @returns {Point} The offset position of the element.
    */
-  getOffset(element: HTMLCanvasElement, point: Point = null) {
+  getOffset(element: HTMLCanvasElement, point: Point | null = null) {
     point = point || new Point();
     const box = element.getBoundingClientRect();
     const scrollTop = this.scrollY;

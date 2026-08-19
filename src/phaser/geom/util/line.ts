@@ -8,7 +8,7 @@ import { intersects as intersectsRect } from './rectangle.js';
  * @param {Line} output - Optional line to store the result in.
  * @returns {Line} The cloned line.
  */
-export const clone = (input: Line, output: Line = null) => {
+export const clone = (input: Line, output: Line | null = null) => {
   const result = output || new Line();
   result.start.x = input.start.x;
   result.start.y = input.start.y;
@@ -27,7 +27,14 @@ export const clone = (input: Line, output: Line = null) => {
  * @param {Point} output - Optional point to store the result in.
  * @returns {Point} The intersection point, or null if there is no intersection.
  */
-export const intersectsPoints = (a: any, b: any, e: any, f: any, asSegment: boolean = true, output: Point = null) => {
+export const intersectsPoints = (
+  a: any,
+  b: any,
+  e: any,
+  f: any,
+  asSegment: boolean = true,
+  output: Point | null = null
+) => {
   const result = output || new Point();
   const a1 = b.y - a.y;
   const a2 = f.y - e.y;

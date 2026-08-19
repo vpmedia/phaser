@@ -30,8 +30,8 @@ export class Group extends DisplayObject {
    */
   constructor(
     game: import('../core/game.js').Game,
-    parent: DisplayObject = null,
-    name: string = null,
+    parent: DisplayObject | null = null,
+    name: string | null = null,
     addToStage: boolean = false
   ) {
     super(game);
@@ -93,7 +93,7 @@ export class Group extends DisplayObject {
       if (this.parent) {
         this.parent.removeChild(this);
       }
-      this.game = null;
+      this.game = null!;
       this.exists = false;
     }
   }
@@ -258,7 +258,7 @@ export class Group extends DisplayObject {
       this.destroy();
       return;
     }
-    if (!this.exists || !this.parent.exists) {
+    if (!this.exists || !this.parent?.exists) {
       this.renderOrderID = -1;
       return;
     }

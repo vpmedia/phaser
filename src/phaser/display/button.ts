@@ -43,14 +43,14 @@ export class Button extends Image {
     game: import('../core/game.js').Game,
     x: number = 0,
     y: number = 0,
-    key: string = null,
-    callback: Function = null,
-    callbackContext: any = null,
-    overFrame: string = null,
-    outFrame: string = null,
-    downFrame: string = null,
-    upFrame: string = null,
-    disabledFrame: string = null
+    key: string | null = null,
+    callback: Function | null = null,
+    callbackContext: any | null = null,
+    overFrame: string | null = null,
+    outFrame: string | null = null,
+    downFrame: string | null = null,
+    upFrame: string | null = null,
+    disabledFrame: string | null = null
   ) {
     super(game, x, y, key, outFrame);
     this.type = BUTTON;
@@ -96,14 +96,14 @@ export class Button extends Image {
       this.onInputDown.dispose();
       this.onInputUp.dispose();
     }
-    this.onInputOver = null;
-    this.onInputOut = null;
-    this.onInputDown = null;
-    this.onInputUp = null;
+    this.onInputOver = null!;
+    this.onInputOut = null!;
+    this.onInputDown = null!;
+    this.onInputUp = null!;
     if (this.input) {
       this.input.destroy();
     }
-    this.input = null;
+    this.input = null!;
     super.destroy();
   }
 
@@ -143,7 +143,7 @@ export class Button extends Image {
    * @param {string} frame - The frame identifier to set for this state.
    * @param {boolean} switchImmediately - Whether to switch to the new frame immediately (default: false).
    */
-  setStateFrame(state: string, frame: string, switchImmediately: boolean = false) {
+  setStateFrame(state: string, frame: string | null, switchImmediately: boolean = false) {
     const frameKey: `_on${string}Frame` = `_on${state}Frame`;
     if (frame) {
       this[frameKey] = frame;
@@ -185,7 +185,13 @@ export class Button extends Image {
    * @param {string} upFrame - The frame identifier to use when the button is released.
    * @param {string} disabledFrame - The frame identifier to use when the button is disabled.
    */
-  setFrames(overFrame: string, outFrame: string, downFrame: string, upFrame: string, disabledFrame: string = null) {
+  setFrames(
+    overFrame: string | null,
+    outFrame: string | null,
+    downFrame: string | null,
+    upFrame: string | null,
+    disabledFrame: string | null = null
+  ) {
     this.setStateFrame(STATE_OVER, overFrame, this.input.pointerOver());
     this.setStateFrame(STATE_OUT, outFrame, !this.input.pointerOver());
     this.setStateFrame(STATE_DOWN, downFrame, this.input.pointerDown());

@@ -16,7 +16,7 @@ export class Animation {
   _frameIndex!: number;
   _frameDiff!: number;
   _frameSkip!: number;
-  currentFrame!: import('./frame.js').Frame;
+  currentFrame!: import('./frame.js').Frame | null;
   onStart!: Signal;
   onUpdate!: Signal | null;
   onComplete!: Signal;
@@ -94,7 +94,7 @@ export class Animation {
    * @param {boolean} loop - Whether to loop this animation (if null, uses the original loop setting).
    * @returns {Animation} This Animation instance for chaining.
    */
-  play(frameRate: number = null, loop: boolean = null) {
+  play(frameRate: number | null = null, loop: boolean | null = null) {
     if (typeof frameRate === 'number') {
       //  If they set a new frame rate then use it, otherwise use the one set on creation
       this.delay = 1000 / frameRate;
@@ -371,11 +371,11 @@ export class Animation {
     }
     this.game.onPause.remove(this.onPause, this);
     this.game.onResume.remove(this.onResume, this);
-    this.game = null;
-    this._parent = null;
+    this.game = null!;
+    this._parent = null!;
     this._frames = null;
-    this._frameData = null;
-    this.currentFrame = null;
+    this._frameData = null!;
+    this.currentFrame = null!;
     this.isPlaying = false;
     this.onStart.dispose();
     this.onLoop.dispose();

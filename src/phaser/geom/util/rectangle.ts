@@ -32,7 +32,7 @@ export const inflatePoint = (a: Rectangle, point: any) => {
  * @param {Point} output - Optional point to store the result in.
  * @returns {Point} The size of the rectangle as a point (width, height).
  */
-export const size = (a: Rectangle, output: Point = null) => {
+export const size = (a: Rectangle, output: Point | null = null) => {
   const result = output || new Point();
   result.setTo(a.width, a.height);
   return result;
@@ -44,7 +44,7 @@ export const size = (a: Rectangle, output: Point = null) => {
  * @param {Rectangle} output - Optional rectangle to store the result in.
  * @returns {Rectangle} The cloned rectangle.
  */
-export const clone = (input: Rectangle, output: Rectangle = null) => {
+export const clone = (input: Rectangle, output: Rectangle | null = null) => {
   const result = output || new Rectangle();
   result.setTo(input.x, input.y, input.width, input.height);
   return result;
@@ -141,7 +141,7 @@ export const intersects = (a: Rectangle, b: Rectangle) => {
  * @param {Rectangle} output - Optional rectangle to store the result in.
  * @returns {Rectangle} The intersection of the rectangles, or an empty rectangle if they don't intersect.
  */
-export const intersection = (a: Rectangle, b: Rectangle, output: Rectangle = null) => {
+export const intersection = (a: Rectangle, b: Rectangle, output: Rectangle | null = null) => {
   const result = output || new Rectangle();
   if (intersects(a, b)) {
     result.x = Math.max(a.x, b.x);
@@ -185,7 +185,7 @@ export const intersectsRaw = (
  * @param {Rectangle} output - Optional rectangle to store the result in.
  * @returns {Rectangle} The union of the rectangles.
  */
-export const union = (a: Rectangle, b: Rectangle, output: Rectangle = null) => {
+export const union = (a: Rectangle, b: Rectangle, output: Rectangle | null = null) => {
   const result = output || new Rectangle();
   return result.setTo(
     Math.min(a.x, b.x),
@@ -201,7 +201,7 @@ export const union = (a: Rectangle, b: Rectangle, output: Rectangle = null) => {
  * @param {Rectangle} output - Optional rectangle to store the result in.
  * @returns {Rectangle} The AABB of the points.
  */
-export const aabb = (points: Point[], output: Rectangle = null) => {
+export const aabb = (points: Point[], output: Rectangle | null = null) => {
   const result = output || new Rectangle();
   let xMax = Number.NEGATIVE_INFINITY;
   let xMin = Number.POSITIVE_INFINITY;

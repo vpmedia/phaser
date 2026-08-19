@@ -420,7 +420,7 @@ export class Input {
   getLocalPosition(
     displayObject: import('../display/display_object.js').DisplayObject,
     pointer: Pointer,
-    output: Point = null
+    output: Point | null = null
   ) {
     const result = output || new Point();
     const wt = displayObject.worldTransform;

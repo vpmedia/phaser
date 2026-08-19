@@ -39,8 +39,8 @@ export class Image extends DisplayObject {
     game: import('../core/game.js').Game,
     x: number,
     y: number,
-    key: string | number | Texture,
-    frame: string | number = 0
+    key: string | number | Texture | null,
+    frame: string | number | null = 0
   ) {
     super(game);
     /** @type {number} */
@@ -85,10 +85,10 @@ export class Image extends DisplayObject {
    * Destroys this image and cleans up resources.
    */
   override destroy() {
-    this.game = null;
+    this.game = null!;
     this.key = null;
     this.data = null;
-    this.texture = null;
+    this.texture = null!;
     this.tint = 0xff_ff_ff;
     this.cachedTint = -1;
     this.tintedTexture = null;
@@ -97,11 +97,11 @@ export class Image extends DisplayObject {
     if (this.events) {
       this.events.destroy();
     }
-    this.events = null;
+    this.events = null!;
     if (this.animations) {
       this.animations.destroy();
     }
-    this.animations = null;
+    this.animations = null!;
     super.destroy();
   }
 
@@ -113,7 +113,7 @@ export class Image extends DisplayObject {
       this.destroy();
       return;
     }
-    if (!this.exists || !this.parent.exists) {
+    if (!this.exists || !this.parent?.exists) {
       this.renderOrderID = -1;
       return;
     }
@@ -137,9 +137,9 @@ export class Image extends DisplayObject {
    * @param {string | number | null | undefined} frame - The frame identifier (name or index) to use.
    * @param {boolean} stopAnimation - Whether to stop the animation when changing textures.
    */
-  loadTexture(key: string | number | Texture, frame: string | number | null = 0, stopAnimation: boolean = true) {
+  loadTexture(key: string | number | Texture | null, frame: string | number | null = 0, stopAnimation: boolean = true) {
     if (key === PENDING_ATLAS) {
-      key = frame;
+      key = frame ?? 0;
       frame = 0;
     } else {
       frame = frame || 0;
@@ -389,7 +389,7 @@ export class Image extends DisplayObject {
    * @param {import('../geom/matrix.js').Matrix} matrix - The transformation matrix to use.
    * @returns {Rectangle} The bounds rectangle of this image.
    */
-  override getBounds(matrix: import('../geom/matrix.js').Matrix = null) {
+  override getBounds(matrix: import('../geom/matrix.js').Matrix | null = null) {
     return getBounds(this, matrix);
   }
 
@@ -406,7 +406,7 @@ export class Image extends DisplayObject {
    * @param {object} renderSession - The WebGL rendering session.
    * @param {import('../geom/matrix.js').Matrix} matrix - The transformation matrix to use.
    */
-  override renderWebGL(renderSession: any, matrix: import('../geom/matrix.js').Matrix = null) {
+  override renderWebGL(renderSession: any, matrix: import('../geom/matrix.js').Matrix | null = null) {
     renderWebGL(this, renderSession, matrix);
   }
 
@@ -415,7 +415,7 @@ export class Image extends DisplayObject {
    * @param {object} renderSession - The Canvas rendering session.
    * @param {import('../geom/matrix.js').Matrix} matrix - The transformation matrix to use.
    */
-  override renderCanvas(renderSession: any, matrix: import('../geom/matrix.js').Matrix = null) {
+  override renderCanvas(renderSession: any, matrix: import('../geom/matrix.js').Matrix | null = null) {
     renderCanvas(this, renderSession, matrix);
   }
 }

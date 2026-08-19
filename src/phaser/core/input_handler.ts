@@ -42,7 +42,7 @@ export class InputHandler {
   _dragTimePass!: any;
   _dragDistancePass!: any;
   _wasEnabled!: any;
-  _tempPoint!: any;
+  _tempPoint!: import('../geom/point.js').Point;
   _pointerData!: any;
   _dx!: any;
   _dy!: any;
@@ -324,7 +324,7 @@ export class InputHandler {
    * @param {number} pointerId - TBD.
    * @returns {boolean} TBD.
    */
-  pointerOver(pointerId: number = null) {
+  pointerOver(pointerId: number | null = null) {
     if (!this.enabled) {
       return false;
     }
@@ -344,7 +344,7 @@ export class InputHandler {
    * @param {number} pointerId - TBD.
    * @returns {boolean} TBD.
    */
-  pointerOut(pointerId: number = null) {
+  pointerOut(pointerId: number | null = null) {
     if (!this.enabled) {
       return false;
     }
@@ -354,6 +354,7 @@ export class InputHandler {
           return true;
         }
       }
+      return false;
     }
     return this._pointerData[pointerId].isOut;
   }
@@ -449,10 +450,10 @@ export class InputHandler {
    * @param {import('./input_pointer.js').Pointer} pointer - TBD.
    * @returns {boolean} TBD.
    */
-  checkPixel(x: number, y: number, pointer?: any) {
+  checkPixel(x: number | null, y: number | null, pointer?: any) {
     //  Grab a pixel from our image into the hitCanvas and then test it
     if (this.sprite.texture.baseTexture.source) {
-      if (x === null && y === null) {
+      if (x === null || y === null) {
         //  Use the pointer parameter
         this.game.input.getLocalPosition(this.sprite, pointer, this._tempPoint);
         x = this._tempPoint.x;

@@ -107,7 +107,7 @@ export class Stage extends DisplayObject {
    */
   override destroy() {
     this.exists = false;
-    this.game = null;
+    this.game = null!;
     this.worldTransform = null;
     this._bgColor = null;
   }

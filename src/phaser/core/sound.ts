@@ -27,8 +27,8 @@ export class Sound {
   allowMultiple!: boolean;
   externalNode!: AudioNode | null;
   masterGainNode!: GainNode | null;
-  gainNode!: GainNode | null;
-  _sound!: AudioBufferSourceNode | null;
+  gainNode!: GainNode;
+  _sound!: AudioBufferSourceNode;
   _markedToDelete!: boolean;
   _removeFromSoundManager!: boolean;
   onPlay!: Signal;
@@ -61,7 +61,7 @@ export class Sound {
     key: string,
     volume: number = 1,
     loop: boolean = false,
-    connect: boolean = null
+    connect: boolean | null = null
   ) {
     // TODO
     // https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Migrating_from_webkitAudioContext
@@ -73,7 +73,6 @@ export class Sound {
     this.key = key;
     this.loop = loop;
     this.markers = {};
-    this.context = null;
     this.autoplay = false;
     this.totalDuration = 0;
     this.startTime = 0;
@@ -93,24 +92,16 @@ export class Sound {
     this.allowMultiple = false;
     /** @type {GainNode} */
     this.externalNode = null;
-    /** @type {GainNode} */
-    this.masterGainNode = null;
-    /** @type {GainNode} */
-    this.gainNode = null;
-    /** @type {AudioBufferSourceNode} */
-    this._sound = null;
     this._markedToDelete = false;
     this._removeFromSoundManager = false;
     this.context = this.game.sound.context;
     this.masterGainNode = this.game.sound.masterGain;
-    if (this.context.createGain === undefined) {
-      this.gainNode = (this.context as any).createGainNode();
-    } else {
-      this.gainNode = this.context.createGain();
-    }
-    this.gainNode.gain.value = volume * this.game.sound.volume;
-    if (connect) {
-      this.gainNode.connect(this.masterGainNode);
+    const gainNode: GainNode =
+      this.context.createGain === undefined ? (this.context as any).createGainNode() : this.context.createGain();
+    this.gainNode = gainNode;
+    gainNode.gain.value = volume * this.game.sound.volume;
+    if (connect && this.masterGainNode) {
+      gainNode.connect(this.masterGainNode);
     }
     this.onPlay = new Signal();
     this.onPause = new Signal();
@@ -192,7 +183,7 @@ export class Sound {
       this.game.sound.remove(this);
     } else {
       this.markers = {};
-      this.context = null;
+      this.context = null!;
       this._buffer = null;
       this.externalNode = null;
       this.onPlay.dispose();
@@ -348,7 +339,7 @@ export class Sound {
       if (!this.loop && marker === '') {
         this._sound.onended = this.onEndedHandler.bind(this);
       }
-      this.totalDuration = this._sound.buffer.duration;
+      this.totalDuration = this._sound.buffer?.duration ?? 0;
       if (this.duration === 0) {
         this.duration = this.totalDuration;
         this.durationMS = Math.ceil(this.totalDuration * 1000);
@@ -520,7 +511,7 @@ export class Sound {
       this.game.sound.remove(this);
     } else {
       this.markers = {};
-      this.context = null;
+      this.context = null!;
       this._buffer = null;
       this.externalNode = null;
       this.onPlay.dispose();

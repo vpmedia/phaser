@@ -24,11 +24,9 @@ export class GameObjectFactory {
    * @param {Group} group - The parent group for the image.
    * @returns {Image} The created Image object.
    */
-  image(x: number, y: number, key: string, frame: any, group: Group = null) {
-    if (!group) {
-      group = this.game.world;
-    }
-    return group.add(new Image(this.game, x, y, key, frame));
+  image(x: number, y: number, key: string, frame: any, group: Group | null = null) {
+    const target = group ?? this.game.world;
+    return target.add(new Image(this.game, x, y, key, frame));
   }
 
   /**

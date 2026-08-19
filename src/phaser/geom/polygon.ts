@@ -13,7 +13,7 @@ export class Polygon {
    * Creates a new Polygon instance.
    * @param {object[]} points - The array of points to define the polygon (optional).
    */
-  constructor(points: any[] = null) {
+  constructor(points: any[] | null = null) {
     /** @type {number} */
     this.area = 0;
     /** @type {Point[]} */

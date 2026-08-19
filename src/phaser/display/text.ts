@@ -128,7 +128,7 @@ export class Text extends Image {
    * @param {boolean} update - Whether to update the text immediately.
    * @returns {Text} This Text object for chaining.
    */
-  setStyle(style: any = null, update: boolean = false) {
+  setStyle(style: any | null = null, update: boolean = false) {
     style = JSON.parse(JSON.stringify(style)) || {};
     style.font = style.font || 'bold 20pt Arial';
     style.backgroundColor = style.backgroundColor || null;
@@ -1044,7 +1044,7 @@ export class Text extends Image {
    * @param {import('../geom/matrix.js').Matrix} matrix - The transformation matrix to use.
    * @returns {Rectangle} The bounds of this text object.
    */
-  override getBounds(matrix: import('../geom/matrix.js').Matrix = null) {
+  override getBounds(matrix: import('../geom/matrix.js').Matrix | null = null) {
     if (this.dirty) {
       this.updateText();
       this.dirty = false;

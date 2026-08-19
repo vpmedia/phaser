@@ -15,12 +15,12 @@ export class Mouse {
   locked!: any;
   stopOnGameOut!: any;
   event!: any;
-  _onMouseDown!: (event: MouseEvent) => void;
-  _onMouseMove!: (event: MouseEvent) => void;
-  _onMouseUp!: (event: MouseEvent) => void;
-  _onMouseOut!: (event: MouseEvent) => void;
-  _onMouseOver!: (event: MouseEvent) => void;
-  _onMouseWheel!: (event: WheelEvent) => void;
+  _onMouseDown!: ((event: MouseEvent) => void) | null;
+  _onMouseMove!: ((event: MouseEvent) => void) | null;
+  _onMouseUp!: ((event: MouseEvent) => void) | null;
+  _onMouseOut!: ((event: MouseEvent) => void) | null;
+  _onMouseOver!: ((event: MouseEvent) => void) | null;
+  _onMouseWheel!: ((event: WheelEvent) => void) | null;
   _onMouseUpGlobal!: (event: MouseEvent) => void;
   _onMouseOutGlobal!: (event: MouseEvent) => void;
   _wheelEvent!: any;

@@ -28,7 +28,7 @@ export const setTexture = (
  * @param {object} matrix - The transformation matrix.
  * @returns {import('../geom/rectangle.js').Rectangle} The bounds rectangle.
  */
-export const getBounds = (target: import('./image.js').Image, matrix: any = null) => {
+export const getBounds = (target: import('./image.js').Image, matrix: any | null = null) => {
   // TODO verify
   if (target.currentBounds) {
     return target.currentBounds;

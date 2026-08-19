@@ -110,7 +110,7 @@ export class RenderTexture extends Texture {
    * @returns {string} The base64 string representation.
    */
   getBase64() {
-    return this.getCanvas().toDataURL();
+    return this.getCanvas()?.toDataURL() ?? '';
   }
 
   /**

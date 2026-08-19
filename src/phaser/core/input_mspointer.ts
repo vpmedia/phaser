@@ -9,12 +9,12 @@ export class MSPointer {
   button!: any;
   event!: any;
   enabled!: any;
-  _onMSPointerDown!: (event: PointerEvent) => void;
-  _onMSPointerMove!: (event: PointerEvent) => void;
-  _onMSPointerUp!: (event: PointerEvent) => void;
-  _onMSPointerUpGlobal!: (event: Event) => void;
-  _onMSPointerOut!: (event: PointerEvent) => void;
-  _onMSPointerOver!: (event: PointerEvent) => void;
+  _onMSPointerDown!: ((event: PointerEvent) => void) | null;
+  _onMSPointerMove!: ((event: PointerEvent) => void) | null;
+  _onMSPointerUp!: ((event: PointerEvent) => void) | null;
+  _onMSPointerUpGlobal!: ((event: Event) => void) | null;
+  _onMSPointerOut!: ((event: PointerEvent) => void) | null;
+  _onMSPointerOver!: ((event: PointerEvent) => void) | null;
   /**
    * TBD.
    * @param {import('./game.js').Game} game - TBD.
@@ -86,11 +86,15 @@ export class MSPointer {
     canvas.removeEventListener('pointerdown', this._onMSPointerDown, false);
     canvas.removeEventListener('pointermove', this._onMSPointerMove, false);
     canvas.removeEventListener('pointerup', this._onMSPointerUp, false);
-    window.removeEventListener('MSPointerUp', this._onMSPointerUpGlobal, true);
+    if (this._onMSPointerUpGlobal) {
+      window.removeEventListener('MSPointerUp', this._onMSPointerUpGlobal, true);
+    }
     canvas.removeEventListener('MSPointerOver', this._onMSPointerOver, true);
     canvas.removeEventListener('MSPointerOut', this._onMSPointerOut, true);
     //  IE11+ uses non-prefix events
-    window.removeEventListener('pointerup', this._onMSPointerUpGlobal, true);
+    if (this._onMSPointerUpGlobal) {
+      window.removeEventListener('pointerup', this._onMSPointerUpGlobal, true);
+    }
     canvas.removeEventListener('pointerover', this._onMSPointerOver, true);
     canvas.removeEventListener('pointerout', this._onMSPointerOut, true);
   }

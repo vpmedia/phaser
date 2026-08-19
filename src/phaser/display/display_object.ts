@@ -126,7 +126,7 @@ export class DisplayObject {
         this.children[i].destroy();
       }
     }
-    this.children = null;
+    this.children = null!;
     this.exists = false;
     this.renderable = false;
     this.visible = false;
@@ -139,11 +139,11 @@ export class DisplayObject {
     */
     this.hitArea = null;
     this.parent = null;
-    this.worldTransform = null;
+    this.worldTransform = null!;
     // This.worldPosition = null;
-    this.worldScale = null;
+    this.worldScale = null!;
     this.filterArea = null;
-    this.cachedBounds = null;
+    this.cachedBounds = null!;
     this.currentBounds = null;
     this._mask = null;
     this.destroyCachedSprite();
@@ -310,12 +310,7 @@ export class DisplayObject {
     if (!this.game || !this.visible) {
       return this;
     }
-    let p = this.parent;
-    if (parent) {
-      p = parent;
-    } else if (!this.parent) {
-      p = this.game.world;
-    }
+    const p = parent ?? this.parent ?? this.game.world;
     // Create some matrix refs for easy access
     const pt = p.worldTransform;
     const wt = this.worldTransform;
@@ -501,7 +496,7 @@ export class DisplayObject {
    * @param {DisplayObject} child - The child display object to check.
    * @returns {boolean} True if the child is contained within this container, false otherwise.
    */
-  contains(child: DisplayObject): boolean {
+  contains(child: DisplayObject | null): boolean {
     if (!child) {
       return false;
     }
@@ -769,13 +764,13 @@ export class DisplayObject {
    * Sets the mask for this display object.
    * @param {import('./graphics.js').Graphics} value - The mask object to set, or null to remove the mask.
    */
-  set mask(value: import('./graphics.js').Graphics) {
+  set mask(value: import('./graphics.js').Graphics | null) {
     if (this._mask) {
       this._mask.isMask = false;
     }
     this._mask = value;
     if (value) {
-      this._mask.isMask = true;
+      value.isMask = true;
     }
   }
 

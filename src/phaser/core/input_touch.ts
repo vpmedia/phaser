@@ -10,12 +10,12 @@ export class Touch {
   touchCancelCallback!: any;
   preventDefault!: any;
   event!: any;
-  _onTouchStart!: (event: TouchEvent) => void;
-  _onTouchMove!: (event: TouchEvent) => void;
-  _onTouchEnd!: (event: TouchEvent) => void;
-  _onTouchEnter!: (event: TouchEvent) => void;
-  _onTouchLeave!: (event: TouchEvent) => void;
-  _onTouchCancel!: (event: TouchEvent) => void;
+  _onTouchStart!: ((event: TouchEvent) => void) | null;
+  _onTouchMove!: ((event: TouchEvent) => void) | null;
+  _onTouchEnd!: ((event: TouchEvent) => void) | null;
+  _onTouchEnter!: ((event: TouchEvent) => void) | null;
+  _onTouchLeave!: ((event: TouchEvent) => void) | null;
+  _onTouchCancel!: ((event: TouchEvent) => void) | null;
   _documentTouchMove!: (event: TouchEvent) => void;
   /**
    * TBD.

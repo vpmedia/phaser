@@ -8,7 +8,7 @@ import { Point } from '../point.js';
  * @param {Circle} output - Optional circle to store the result in.
  * @returns {Circle} The cloned circle.
  */
-export const clone = (input: Circle, output: Circle = null) => {
+export const clone = (input: Circle, output: Circle | null = null) => {
   const result = output || new Circle();
   result.x = input.x;
   result.y = input.y;
@@ -60,7 +60,12 @@ export const intersects = (a: Circle, b: Circle) => {
  * @param {Point} output - Optional point to store the result in.
  * @returns {Point} The point on the circumference of the circle.
  */
-export const circumferencePoint = (a: Circle, angle: number, asDegrees: boolean = false, output: Point = null) => {
+export const circumferencePoint = (
+  a: Circle,
+  angle: number,
+  asDegrees: boolean = false,
+  output: Point | null = null
+) => {
   const result = output || new Point();
   if (asDegrees === true) {
     angle = degToRad(angle);
@@ -78,7 +83,7 @@ export const circumferencePoint = (a: Circle, angle: number, asDegrees: boolean 
  * @param {Point} output - Optional point to store the result in.
  * @returns {Point} The point on the circumference of the circle.
  */
-export const intersectsPoint = (a: Circle, angle: number, asDegrees: boolean = false, output: Point = null) => {
+export const intersectsPoint = (a: Circle, angle: number, asDegrees: boolean = false, output: Point | null = null) => {
   const result = output || new Point();
   if (asDegrees === true) {
     angle = degToRad(angle);

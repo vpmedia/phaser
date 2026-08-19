@@ -94,7 +94,8 @@ export class Cache {
    * @param {HTMLImageElement} data - The image data to cache.
    * @returns {object} The cached image object.
    */
-  addImage(key: string, url: string, data: HTMLImageElement) {
+  addImage(key: string, url: string | null, data: HTMLImageElement) {
+    const resolvedUrl = url ?? '';
     if (this.checkImageKey(key)) {
       this.removeImage(key);
     }
@@ -103,15 +104,15 @@ export class Cache {
     } */
     const img = {
       key,
-      url,
+      url: resolvedUrl,
       data,
       base: new BaseTexture(data),
       frame: new Frame(0, 0, 0, data.width, data.height, key),
       frameData: new FrameData(),
     };
-    img.frameData.addFrame(new Frame(0, 0, 0, data.width, data.height, url));
+    img.frameData.addFrame(new Frame(0, 0, 0, data.width, data.height, resolvedUrl));
     this._cache.image[key] = img;
-    this._resolveURL(url, img);
+    this._resolveURL(resolvedUrl, img);
     return img;
   }
 
@@ -388,7 +389,7 @@ export class Cache {
    * @param {string} property - TBD.
    * @returns {*} TBD.
    */
-  getItem(key: string, cache: number, _method: string, property: string = null) {
+  getItem(key: string, cache: number, _method: string, property: string | null = null) {
     if (this.checkKey(cache, key)) {
       if (!property) {
         return this._cacheMap[cache][key];
@@ -750,7 +751,7 @@ export class Cache {
    * @param {object} data - The data to associate with the resolved URL.
    * @returns {string} The resolved URL or null if not enabled.
    */
-  _resolveURL(url: string, data: any = null) {
+  _resolveURL(url: string, data: any | null = null) {
     if (!this.autoResolveURL) {
       return null;
     }

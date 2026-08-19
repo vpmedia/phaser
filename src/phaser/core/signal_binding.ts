@@ -22,7 +22,7 @@ export class SignalBinding {
     signal: import('./signal.js').Signal,
     listener: Function,
     isOnce: boolean = false,
-    listenerContext: any = null,
+    listenerContext: any | null = null,
     priority: number = 0,
     args: any = null
   ) {

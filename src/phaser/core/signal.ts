@@ -48,7 +48,7 @@ export class Signal {
   _registerListener(
     listener: Function,
     isOnce: boolean = false,
-    listenerContext: any = null,
+    listenerContext: any | null = null,
     priority: number = 0,
     args: any = null
   ) {
@@ -95,7 +95,7 @@ export class Signal {
    * @param {object} context - The context of the listener.
    * @returns {number} The index of the listener in the bindings array, or -1 if not found.
    */
-  _indexOfListener(listener: Function, context: any = null) {
+  _indexOfListener(listener: Function, context: any | null = null) {
     if (!this._bindings) {
       return -1;
     }
@@ -117,7 +117,7 @@ export class Signal {
    * @param {object} context - The context of the listener.
    * @returns {boolean} True if the listener is registered, false otherwise.
    */
-  has(listener: Function, context: any = null) {
+  has(listener: Function, context: any | null = null) {
     return this._indexOfListener(listener, context) !== -1;
   }
 
@@ -129,7 +129,7 @@ export class Signal {
    * @param {...any} args - Additional arguments to pass to the listener.
    * @returns {SignalBinding} The binding for this listener.
    */
-  add(listener: Function, listenerContext: any = null, priority: number = 0, ...args: any[]) {
+  add(listener: Function, listenerContext: any | null = null, priority: number = 0, ...args: any[]) {
     this.validateListener(listener, 'add');
     return this._registerListener(listener, false, listenerContext, priority, args);
   }
@@ -142,7 +142,7 @@ export class Signal {
    * @param {...any} args - Additional arguments to pass to the listener.
    * @returns {SignalBinding} The binding for this listener.
    */
-  addOnce(listener: Function, listenerContext: any = null, priority: number = 0, ...args: any[]) {
+  addOnce(listener: Function, listenerContext: any | null = null, priority: number = 0, ...args: any[]) {
     this.validateListener(listener, 'addOnce');
     return this._registerListener(listener, true, listenerContext, priority, args);
   }
@@ -153,7 +153,7 @@ export class Signal {
    * @param {object} context - The context of the listener.
    * @returns {Function} The removed listener function.
    */
-  remove(listener: Function, context: any = null) {
+  remove(listener: Function, context: any | null = null) {
     this.validateListener(listener, 'remove');
     const i = this._indexOfListener(listener, context);
     if (i !== -1) {
@@ -168,7 +168,7 @@ export class Signal {
    * Remove all listeners from the signal, or only those in a specific context.
    * @param {object} context - The context to filter listeners by, or null to remove all.
    */
-  removeAll(context: any = null) {
+  removeAll(context: any | null = null) {
     if (!this._bindings) {
       return;
     }

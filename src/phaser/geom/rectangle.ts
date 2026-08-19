@@ -288,7 +288,7 @@ export class Rectangle {
    * @param {Point} output - The point to store the result in (optional).
    * @returns {Point} A random point within this rectangle.
    */
-  random(output: Point = null) {
+  random(output: Point | null = null) {
     const result = output || new Point();
     result.x = this.randomX;
     result.y = this.randomY;
@@ -301,7 +301,7 @@ export class Rectangle {
    * @param {Point} output - The point to store the result in (optional).
    * @returns {Point} A point at the specified position on the rectangle.
    */
-  getPoint(position: number, output: Point = null) {
+  getPoint(position: number, output: Point | null = null) {
     const result = output || new Point();
     switch (position) {
       case TOP_LEFT:

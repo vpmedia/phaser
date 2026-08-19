@@ -105,7 +105,7 @@ export class Matrix {
    * @param {Float32Array} output - The array to store the result in (optional).
    * @returns {Float32Array} A Float32Array containing the matrix elements.
    */
-  toArray(transpose: boolean = false, output: Float32Array = null) {
+  toArray(transpose: boolean = false, output: Float32Array | null = null) {
     const result = output || new Float32Array(9);
     if (transpose) {
       result[0] = this.a;
@@ -137,7 +137,7 @@ export class Matrix {
    * @param {Point} output - The point to store the result in (optional).
    * @returns {Point} The transformed point.
    */
-  apply(pos: Point, output: Point = null) {
+  apply(pos: Point, output: Point | null = null) {
     const result = output || new Point();
     result.x = this.a * pos.x + this.c * pos.y + this.tx;
     result.y = this.b * pos.x + this.d * pos.y + this.ty;
@@ -150,7 +150,7 @@ export class Matrix {
    * @param {Point} output - The point to store the result in (optional).
    * @returns {Point} The transformed point.
    */
-  applyInverse(pos: Point, output: Point = null) {
+  applyInverse(pos: Point, output: Point | null = null) {
     const result = output || new Point();
     const id = 1 / (this.a * this.d + this.c * -this.b);
     const x = pos.x;

@@ -204,10 +204,10 @@ export class Loader {
   addToFileList(
     type: string,
     key: string = '',
-    url: string = null,
-    properties: any = null,
+    url: string | null = null,
+    properties: any | null = null,
     overwrite: boolean = false,
-    extension: string = null
+    extension: string | null = null
   ) {
     if (key === undefined || key === '') {
       this.game.logger.warn(`Loader: Invalid or no key given of type ${type}`);
@@ -453,9 +453,9 @@ export class Loader {
    */
   bitmapFont(
     key: string,
-    textureURL: string = null,
-    atlasURL: string = null,
-    atlasData: any = null,
+    textureURL: string | null = null,
+    atlasURL: string | null = null,
+    atlasData: any | null = null,
     xSpacing: number = 0,
     ySpacing: number = 0
   ) {
@@ -503,8 +503,8 @@ export class Loader {
   atlas(
     key: string,
     textureURL: string,
-    atlasURL: string = null,
-    atlasData: any = null,
+    atlasURL: string | null = null,
+    atlasData: any | null = null,
     format: number = TEXTURE_ATLAS_JSON_HASH
   ) {
     if (textureURL === undefined || textureURL === null) {
@@ -887,7 +887,7 @@ export class Loader {
    * @param {Function} onload - The function to call when the file loads successfully.
    * @param {Function} onerror - The function to call if the file fails to load.
    */
-  xhrLoad(file: any, url: any, type: any, onload: Function, onerror: Function = null) {
+  xhrLoad(file: any, url: any, type: any, onload: Function, onerror: Function | null = null) {
     this.log('xhrLoad', file);
     const scope = this;
     const xhr = new XMLHttpRequest();
@@ -1006,7 +1006,7 @@ export class Loader {
    * @param {XMLHttpRequest} xhr - The XMLHttpRequest object that failed.
    * @param {number | string} reason - The error code or message explaining the failure.
    */
-  fileError(file: any, xhr: any = null, reason: any = 0) {
+  fileError(file: any, xhr: any | null = null, reason: any = 0) {
     // const url = file.requestUrl || this.transformUrl(file.url, file);
     if (!reason && xhr) {
       reason = xhr.status;

@@ -7,7 +7,7 @@ import { Point } from '../point.js';
  * @param {Point} output - The point to store the result in (optional).
  * @returns {Point} A new point containing the sum of the two points.
  */
-export const add = (a: Point, b: Point, output: Point = null) => {
+export const add = (a: Point, b: Point, output: Point | null = null) => {
   const result = output || new Point();
   result.x = a.x + b.x;
   result.y = a.y + b.y;
@@ -21,7 +21,7 @@ export const add = (a: Point, b: Point, output: Point = null) => {
  * @param {Point} output - The point to store the result in (optional).
  * @returns {Point} A new point containing the difference of the two points.
  */
-export const subtract = (a: Point, b: Point, output: Point = null) => {
+export const subtract = (a: Point, b: Point, output: Point | null = null) => {
   const result = output || new Point();
   result.x = a.x - b.x;
   result.y = a.y - b.y;
@@ -35,7 +35,7 @@ export const subtract = (a: Point, b: Point, output: Point = null) => {
  * @param {Point} output - The point to store the result in (optional).
  * @returns {Point} A new point containing the product of the two points.
  */
-export const multiply = (a: Point, b: Point, output: Point = null) => {
+export const multiply = (a: Point, b: Point, output: Point | null = null) => {
   const result = output || new Point();
   result.x = a.x * b.x;
   result.y = a.y * b.y;
@@ -49,7 +49,7 @@ export const multiply = (a: Point, b: Point, output: Point = null) => {
  * @param {Point} output - The point to store the result in (optional).
  * @returns {Point} A new point containing the quotient of the two points.
  */
-export const divide = (a: Point, b: Point, output: Point = null) => {
+export const divide = (a: Point, b: Point, output: Point | null = null) => {
   const result = output || new Point();
   result.x = a.x / b.x;
   result.y = a.y / b.y;
@@ -82,7 +82,7 @@ export const angle = (a: Point, b: Point) => {
  * @param {Point} output - The point to store the result in (optional).
  * @returns {Point} A new point with negated coordinates.
  */
-export const negative = (a: Point, output: Point = null) => {
+export const negative = (a: Point, output: Point | null = null) => {
   const result = output || new Point();
   return result.setTo(-a.x, -a.y);
 };
@@ -95,7 +95,7 @@ export const negative = (a: Point, output: Point = null) => {
  * @param {Point} output - The point to store the result in (optional).
  * @returns {Point} A new point with the result of the operation.
  */
-export const multiplyAdd = (a: Point, b: Point, s: number, output: Point = null) => {
+export const multiplyAdd = (a: Point, b: Point, s: number, output: Point | null = null) => {
   const result = output || new Point();
   return result.setTo(a.x + b.x * s, a.y + b.y * s);
 };
@@ -108,7 +108,7 @@ export const multiplyAdd = (a: Point, b: Point, s: number, output: Point = null)
  * @param {Point} output - The point to store the result in (optional).
  * @returns {Point} A new point interpolated between the two points.
  */
-export const interpolate = (a: Point, b: Point, f: number, output: Point = null) => {
+export const interpolate = (a: Point, b: Point, f: number, output: Point | null = null) => {
   const result = output || new Point();
   return result.setTo(a.x + (b.x - a.x) * f, a.y + (b.y - a.y) * f);
 };
@@ -119,7 +119,7 @@ export const interpolate = (a: Point, b: Point, f: number, output: Point = null)
  * @param {Point} output - The point to store the result in (optional).
  * @returns {Point} A new point that is perpendicular to the input point.
  */
-export const perp = (a: Point, output: Point = null) => {
+export const perp = (a: Point, output: Point | null = null) => {
   const result = output || new Point();
   return result.setTo(-a.y, a.x);
 };
@@ -130,7 +130,7 @@ export const perp = (a: Point, output: Point = null) => {
  * @param {Point} output - The point to store the result in (optional).
  * @returns {Point} A new point that is perpendicular to the input point (rotated clockwise).
  */
-export const rperp = (a: Point, output: Point = null) => {
+export const rperp = (a: Point, output: Point | null = null) => {
   const result = output || new Point();
   return result.setTo(a.y, -a.x);
 };
@@ -156,7 +156,7 @@ export const distance = (a: Point, b: Point, round: boolean = false) => {
  * @param {Point} output - The point to store the result in (optional).
  * @returns {Point} A new point with the projected result.
  */
-export const project = (a: Point, b: Point, output: Point = null) => {
+export const project = (a: Point, b: Point, output: Point | null = null) => {
   const result = output || new Point();
   const amt = a.dot(b) / b.getMagnitudeSq();
   if (amt !== 0) {
@@ -172,7 +172,7 @@ export const project = (a: Point, b: Point, output: Point = null) => {
  * @param {Point} output - The point to store the result in (optional).
  * @returns {Point} A new point with the projected result.
  */
-export const projectUnit = (a: Point, b: Point, output: Point = null) => {
+export const projectUnit = (a: Point, b: Point, output: Point | null = null) => {
   const result = output || new Point();
   const amt = a.dot(b);
   if (amt !== 0) {
@@ -187,7 +187,7 @@ export const projectUnit = (a: Point, b: Point, output: Point = null) => {
  * @param {Point} output - The point to store the result in (optional).
  * @returns {Point} A new point with the same x coordinate but negated y coordinate.
  */
-export const normalRightHand = (a: Point, output: Point = null) => {
+export const normalRightHand = (a: Point, output: Point | null = null) => {
   const result = output || new Point();
   return result.setTo(a.y * -1, a.x);
 };
@@ -198,7 +198,7 @@ export const normalRightHand = (a: Point, output: Point = null) => {
  * @param {Point} output - The point to store the result in (optional).
  * @returns {Point} A new normalized point.
  */
-export const normalize = (a: Point, output: Point = null) => {
+export const normalize = (a: Point, output: Point | null = null) => {
   const result = output || new Point();
   const m = a.getMagnitude();
   if (m !== 0) {
@@ -251,7 +251,7 @@ export const rotate = (
  * @returns {Point} A new point representing the centroid of the input points.
  * @throws {Error} If the points array is empty.
  */
-export const centroid = (points: Point[], output: Point = null) => {
+export const centroid = (points: Point[], output: Point | null = null) => {
   const result = output || new Point();
   const pointsLen = points.length;
   if (pointsLen < 1) {
@@ -292,7 +292,7 @@ export const parse = (obj: any, xProp: string = 'x', yProp: string = 'y') => {
  * @param {Point} output - The point to store the result in (optional).
  * @returns {Point} A new point with the same coordinates as the input.
  */
-export const clone = (input: Point, output: Point = null) => {
+export const clone = (input: Point, output: Point | null = null) => {
   const result = output || new Point();
   result.setTo(input.x, input.y);
   return result;

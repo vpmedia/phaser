@@ -22,7 +22,6 @@
     "noImplicitOverride": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "strictNullChecks": false,
     "skipLibCheck": true
   },
   "include": ["./src/**/*", "./typedefs/**/*"],

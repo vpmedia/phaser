@@ -43,7 +43,12 @@ export class Game {
   device!: Device;
   logger!: Logger;
   canvas!: HTMLCanvasElement;
-  context!: CanvasRenderingContext2D | ImageBitmapRenderingContext | WebGLRenderingContext | WebGL2RenderingContext;
+  context!:
+    | CanvasRenderingContext2D
+    | ImageBitmapRenderingContext
+    | WebGLRenderingContext
+    | WebGL2RenderingContext
+    | null;
   onPause!: Signal;
   onResume!: Signal;
   onBoot!: Signal;
@@ -79,27 +84,9 @@ export class Game {
     this.parent = '';
     this.width = 800;
     this.height = 600;
-    this.renderer = null;
-    this.state = null;
     this.isBooted = false;
     this.paused = false;
-    this.raf = null;
-    this.add = null;
-    this.cache = null;
-    this.input = null;
-    this.load = null;
-    this.scale = null;
-    this.sound = null;
-    this.stage = null;
-    this.time = null;
-    this.tweens = null;
-    this.world = null;
     this.device = new Device();
-    /** @type {Logger} */
-    this.logger = null;
-    /** @type {HTMLCanvasElement} */
-    this.canvas = null;
-    /** @type {CanvasRenderingContext2D | ImageBitmapRenderingContext | WebGLRenderingContext | WebGL2RenderingContext} */
     this.context = null;
     this.onPause = new Signal();
     this.onResume = new Signal();
@@ -355,16 +342,16 @@ export class Game {
     this.renderer.destroy(false);
     removeFromDOM(this.canvas);
 
-    this.cache = null;
-    this.load = null;
-    this.time = null;
-    this.world = null;
-    this.state = null;
-    this.sound = null;
-    this.scale = null;
-    this.stage = null;
-    this.input = null;
-    this.canvas = null;
-    this.renderer = null;
+    this.cache = null!;
+    this.load = null!;
+    this.time = null!;
+    this.world = null!;
+    this.state = null!;
+    this.sound = null!;
+    this.scale = null!;
+    this.stage = null!;
+    this.input = null!;
+    this.canvas = null!;
+    this.renderer = null!;
   }
 }

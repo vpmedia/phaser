@@ -119,7 +119,7 @@ export class Line {
    * @param {Point} output - The point to store the result in (optional).
    * @returns {Point} The midpoint of this line.
    */
-  midPoint(output: Point = null) {
+  midPoint(output: Point | null = null) {
     const result = output || new Point();
     result.x = (this.start.x + this.end.x) / 2;
     result.y = (this.start.y + this.end.y) / 2;
@@ -169,7 +169,7 @@ export class Line {
    * @param {Point} output - The point to store the result in (optional).
    * @returns {Point} A random point on this line.
    */
-  random(output: Point = null) {
+  random(output: Point | null = null) {
     const result = output || new Point();
     const t = Math.random();
     result.x = this.start.x + t * (this.end.x - this.start.x);

@@ -66,6 +66,9 @@ export const initDefaultShaders = () => {};
 export const compileShader = (gl: WebGLRenderingContext, shaderSrc: string[] | string, shaderType: any) => {
   const src = Array.isArray(shaderSrc) ? shaderSrc.join('\n') : shaderSrc;
   const shader = gl.createShader(shaderType);
+  if (!shader) {
+    return null;
+  }
   gl.shaderSource(shader, src);
   gl.compileShader(shader);
   if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
@@ -115,6 +118,9 @@ export const compileProgram = (
 
   const shaderProgram = gl.createProgram();
 
+  if (!shaderProgram || !vertexShader || !fragmentShader) {
+    return null;
+  }
   gl.attachShader(shaderProgram, vertexShader);
   gl.attachShader(shaderProgram, fragmentShader);
   gl.linkProgram(shaderProgram);

@@ -91,7 +91,7 @@ export class Ellipse {
    * @param {Point} output - The point to store the result in (optional).
    * @returns {Point} A random point within this ellipse.
    */
-  random(output: Point = null) {
+  random(output: Point | null = null) {
     const result = output || new Point();
     const p = Math.random() * Math.PI * 2;
     const r = Math.random();

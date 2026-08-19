@@ -107,7 +107,7 @@ export function zOrder(x: number, y: number, minX: number, minY: number, size: n
  * @param {number} minY - The minimum y-coordinate of the bounding box.
  * @param {number} size - The size of the bounding box.
  */
-export function indexCurve(start: any, minX: number, minY: number, size: number) {
+export function indexCurve(start: any, minX: number = 0, minY: number = 0, size: number = 0) {
   let p = start;
   do {
     if (p.z === null) p.z = zOrder(p.x, p.y, minX, minY, size);
@@ -348,7 +348,7 @@ export function isEar(ear: any) {
  * @param {number} size - TBD.
  * @returns {boolean} TBD.
  */
-export function isEarHashed(ear: any, minX: number, minY: number, size: number) {
+export function isEarHashed(ear: any, minX: number = 0, minY: number = 0, size: number = 0) {
   const a = ear.prev;
   const b = ear;
   const c = ear.next;
@@ -526,6 +526,7 @@ export function eliminateHoles(data: any, holeIndices: any, outerNode: any, dim:
     start = holeIndices[i] * dim;
     end = i < len - 1 ? holeIndices[i + 1] * dim : data.length;
     list = linkedList(data, start, end, dim, false);
+    if (!list) continue;
     if (list === list.next) list.steiner = true;
     queue.push(getLeftmost(list));
   }
@@ -575,7 +576,14 @@ export function cureLocalIntersections(start: any, triangles: any, dim: number) 
  * @param {number} minY - The minimum y-coordinate of the bounding box.
  * @param {number} size - The size of the bounding box.
  */
-export function splitEarcut(start: any, triangles: any, dim: number, minX: number, minY: number, size: number) {
+export function splitEarcut(
+  start: any,
+  triangles: any,
+  dim: number,
+  minX: number = 0,
+  minY: number = 0,
+  size: number = 0
+) {
   // look for a valid diagonal that divides the polygon into two
   let a = start;
   do {

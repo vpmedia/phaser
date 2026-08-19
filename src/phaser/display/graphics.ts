@@ -604,7 +604,7 @@ export class Graphics extends DisplayObject {
    * @param {import('../geom/matrix.js').Matrix} matrix - The transformation matrix to use.
    * @returns {Rectangle} The bounds rectangle of the graphics object.
    */
-  override getBounds(matrix: import('../geom/matrix.js').Matrix = null) {
+  override getBounds(matrix: import('../geom/matrix.js').Matrix | null = null) {
     if (!this.renderable) {
       return getEmptyRectangle();
     }
