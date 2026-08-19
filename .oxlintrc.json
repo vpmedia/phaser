@@ -58,6 +58,7 @@
     "no-useless-constructor": "off",
     "no-warning-comments": "off",
     "object-shorthand": "off",
+    "one-var": "off",
     "operator-assignment": "off",
     "prefer-const": "off",
     "prefer-destructuring": "off",
