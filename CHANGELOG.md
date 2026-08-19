@@ -1,3 +1,37 @@
+## [1.107.0] - 2026-08-19
+
+### 🚀 Features
+
+- *(types)* Enable noImplicitAny and resolve the resulting errors
+- *(types)* Enable the zero-cost strictness flags
+- *(types)* Enable noImplicitOverride, noUnusedLocals and noUnusedParameters
+- *(types)* Enable strictNullChecks and resolve the resulting errors
+- *(types)* Adopt exactOptionalPropertyTypes
+
+### 💼 Other
+
+- *(deps)* Bump dependency versions
+- *(deps)* Bump dependency versions
+- *(deps)* Migrate to typescript 7
+- *(deps)* Bump dependency versions
+- *(deps)* Bump dependency versions
+- *(deps)* Bump oxfmt to 0.59.0 and rolldown to 1.2.0
+- *(deps)* Bump the github-actions group with 3 updates
+- *(deps)* Update dependencies
+- *(deps)* Update non-major dependencies
+- *(deps)* Update non-major dependencies
+- *(deps)* Update non-major dependencies
+
+### 📚 Documentation
+
+- Trim always-loaded agent context
+- Move always-loaded agent docs to on-demand loading
+
+### ⚙️ Miscellaneous Tasks
+
+- Release
+- *(vscode)* Enable claude hooks in the workspace settings
+- *(release)* V1.107.0
 ## [1.106.0] - 2026-07-07
 
 ### 🚀 Features
