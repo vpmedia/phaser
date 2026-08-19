@@ -1,3 +1,13 @@
+## [1.108.0] - 2026-08-19
+
+### 🐛 Bug Fixes
+
+- *(types)* Keep DisplayObject.data a free-form payload
+
+### ⚙️ Miscellaneous Tasks
+
+- Release
+- *(release)* V1.108.0
 ## [1.107.0] - 2026-08-19
 
 ### 🚀 Features
