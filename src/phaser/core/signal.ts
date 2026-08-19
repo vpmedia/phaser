@@ -268,7 +268,7 @@ export class Signal {
   get boundDispatch() {
     const _this = this;
     if (!this._boundDispatch) {
-      this._boundDispatch = (...rest) => _this.dispatch(...rest);
+      this._boundDispatch = (...rest: unknown[]) => _this.dispatch(...rest);
     }
     return this._boundDispatch;
   }
@@ -279,7 +279,7 @@ export class Signal {
    */
   toPromise() {
     return new Promise((resolve) => {
-      this.addOnce((...args) => {
+      this.addOnce((...args: unknown[]) => {
         resolve(args.length <= 1 ? args[0] : args);
       }, this);
     });

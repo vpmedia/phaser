@@ -230,7 +230,7 @@ export class DOM {
    * @returns {boolean} True if bounds were successfully retrieved, false otherwise.
    */
   getBounds(element: HTMLCanvasElement, cushion: number = 0) {
-    element = element && !element.nodeType ? element[0] : element;
+    element = element && !element.nodeType ? (element as unknown as HTMLCanvasElement[])[0] : element;
     if (!element || element.nodeType !== 1) {
       return false;
     }

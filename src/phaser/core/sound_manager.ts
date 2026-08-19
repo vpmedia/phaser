@@ -209,7 +209,7 @@ export class SoundManager {
         });
         this.removeUnlockHandlers();
       })
-      .catch((error) => {
+      .catch((error: unknown) => {
         this.game.logger.info('onContextResumeReject', {
           initialState,
           state: this.context.state,
@@ -280,10 +280,10 @@ export class SoundManager {
     this.game.cache.updateSound(key, 'isDecoding', true);
     this.context
       .decodeAudioData(soundData)
-      .then((buffer) => {
+      .then((buffer: AudioBuffer) => {
         this.game.cache.decodedSound(key, buffer);
       })
-      .catch((error) => {
+      .catch((error: unknown) => {
         const typedError = error instanceof Error ? error : new Error(String(error));
         this.game.logger.exception('SoundManager', typedError, { tags: { 'asset.key': key } });
         if (typedError.name === 'InvalidStateError') {

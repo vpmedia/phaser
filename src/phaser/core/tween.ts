@@ -162,7 +162,8 @@ export class Tween {
       const keys = Object.keys(this.timeline[i].vEnd);
       for (let k = 0; k < keys.length; k += 1) {
         const property = keys[k];
-        this.properties[property] = this.target[property] || 0;
+        const targetProperties = this.target as unknown as Record<string, number>;
+        this.properties[property] = targetProperties[property] || 0;
         if (!Array.isArray(this.properties[property])) {
           //  Ensures we're using numbers, not strings
           this.properties[property] *= 1;
@@ -214,11 +215,11 @@ export class Tween {
       return this;
     }
     if (index === -1) {
-      for (let i = 0; i < this.timeline.length; i += 1) {
-        this.timeline[i][property] = value;
+      for (const timelineEntry of this.timeline) {
+        (timelineEntry as unknown as Record<string, unknown>)[property] = value;
       }
     } else {
-      this.timeline[index][property] = value;
+      (this.timeline[index] as unknown as Record<string, unknown>)[property] = value;
     }
     return this;
   }
@@ -494,7 +495,8 @@ export class Tween {
       const keys = Object.keys(this.timeline[i].vEnd);
       for (let k = 0; k < keys.length; k += 1) {
         const property = keys[k];
-        this.properties[property] = this.target[property] || 0;
+        const targetProperties = this.target as unknown as Record<string, number>;
+        this.properties[property] = targetProperties[property] || 0;
         if (!Array.isArray(this.properties[property])) {
           //  Ensures we're using numbers, not strings
           this.properties[property] *= 1;

@@ -1,3 +1,6 @@
+/** WebGL context tagged with the per-context id the renderer assigns, used to key shader caches. */
+export type IdentifiedWebGLRenderingContext = WebGLRenderingContext & { id: number };
+
 // No error has been recorded. The value of this constant is 0.
 export const NO_ERROR = 0;
 // An unacceptable value has been specified for an enumerated argument. The command is ignored and the error flag is set.

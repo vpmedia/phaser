@@ -94,13 +94,18 @@ export const jsonBitmapFont = (
   xSpacing: number,
   ySpacing: number
 ) => {
-  const data = {
+  const data: {
+    font: string;
+    size: number;
+    lineHeight: number;
+    chars: Record<number, { kerning: Record<number, number>; [key: string]: unknown }>;
+  } = {
     font: json.font.info._face,
     size: Number.parseInt(json.font.info._size, 10),
     lineHeight: Number.parseInt(json.font.common._lineHeight, 10) + ySpacing,
     chars: {},
   };
-  json.font.chars.char.forEach((letter) => {
+  json.font.chars.char.forEach((letter: Record<string, string>) => {
     const charCode = Number.parseInt(letter._id, 10);
     data.chars[charCode] = {
       x: Number.parseInt(letter._x, 10),
@@ -114,8 +119,11 @@ export const jsonBitmapFont = (
     };
   });
   if (json.font.kernings && json.font.kernings.kerning) {
-    json.font.kernings.kerning.forEach((kerning) => {
-      data.chars[kerning._second].kerning[kerning._first] = Number.parseInt(kerning._amount, 10);
+    json.font.kernings.kerning.forEach((kerning: Record<string, string>) => {
+      const char = data.chars[Number.parseInt(kerning._second, 10)];
+      if (char) {
+        char.kerning[Number.parseInt(kerning._first, 10)] = Number.parseInt(kerning._amount, 10);
+      }
     });
   }
   return finalizeBitmapFont(baseTexture, data);

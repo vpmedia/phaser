@@ -220,7 +220,7 @@ export class Input {
     const id = this.pointers.length + 1;
     const pointer = new Pointer(this.game, id, POINTER_CONTACT);
     this.pointers.push(pointer);
-    this[`pointer${id}`] = pointer;
+    (this as unknown as Record<string, Pointer>)[`pointer${id}`] = pointer;
     return pointer;
   }
 

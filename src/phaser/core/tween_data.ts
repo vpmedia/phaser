@@ -51,7 +51,7 @@ export class TweenData {
     this.delay = 0;
     this.dt = 0;
     this.startTime = null;
-    this.easingFunction = (k) => k;
+    this.easingFunction = (k: number) => k;
     this.interpolationFunction = MathUtils.linearInterpolation;
     this.interpolationContext = MathUtils;
     this.isRunning = false;
@@ -236,7 +236,7 @@ export class TweenData {
       }
       this.percent = this.dt / this.duration;
       this.value = this.easingFunction(this.percent);
-      const blob = {};
+      const blob: Record<string, number> = {};
       const keys = Object.keys(this.vEnd);
       for (let k = 0; k < keys.length; k += 1) {
         const property = keys[k];

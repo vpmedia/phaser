@@ -221,7 +221,7 @@ export class Loader {
         return this;
       }
     }
-    const file = {
+    const file: Record<string, unknown> = {
       type,
       key,
       path: this.path,
@@ -233,10 +233,9 @@ export class Loader {
       error: false,
     };
     if (properties) {
-      const keys = Object.keys(properties);
-      for (let i = 0; i < keys.length; i += 1) {
-        const prop = keys[i];
-        file[prop] = properties[prop];
+      const extraProperties = properties as Record<string, unknown>;
+      for (const prop of Object.keys(extraProperties)) {
+        file[prop] = extraProperties[prop];
       }
     }
     const fileIndex = this.getAssetIndex(type, key);
@@ -282,7 +281,7 @@ export class Loader {
       url: url,
       path: this.path,
       syncPoint: true,
-      data: null,
+      data: null as unknown,
       loading: false,
       loaded: false,
       error: false,
@@ -1070,22 +1069,27 @@ export class Loader {
         } else {
           //  Load the XML before carrying on with the next file
           loadNext = false;
-          this.xhrLoad(file, this.transformUrl(file.atlasURL, file), 'text', (bitmapFontFile, bitmapFontXhr) => {
-            let json;
-            try {
-              // Try to parse as JSON, if it fails, then it's hopefully XML
-              json = JSON.parse(bitmapFontXhr.responseText);
-            } catch (error) {
-              // pass
+          this.xhrLoad(
+            file,
+            this.transformUrl(file.atlasURL, file),
+            'text',
+            (bitmapFontFile: Record<string, unknown>, bitmapFontXhr: XMLHttpRequest) => {
+              let json;
+              try {
+                // Try to parse as JSON, if it fails, then it's hopefully XML
+                json = JSON.parse(bitmapFontXhr.responseText);
+              } catch (error) {
+                // pass
+              }
+              if (json) {
+                bitmapFontFile.atlasType = 'json';
+                this.jsonLoadComplete(bitmapFontFile, bitmapFontXhr);
+              } else {
+                bitmapFontFile.atlasType = 'xml';
+                this.xmlLoadComplete(bitmapFontFile, bitmapFontXhr);
+              }
             }
-            if (json) {
-              bitmapFontFile.atlasType = 'json';
-              this.jsonLoadComplete(bitmapFontFile, bitmapFontXhr);
-            } else {
-              bitmapFontFile.atlasType = 'xml';
-              this.xmlLoadComplete(bitmapFontFile, bitmapFontXhr);
-            }
-          });
+          );
         }
         break;
       case 'audio':

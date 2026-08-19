@@ -39,7 +39,7 @@ export class NormalShader {
    * Creates a new NormalShader instance.
    * @param {WebGLRenderingContext & { id: number }} gl - The WebGL rendering context.
    */
-  constructor(gl) {
+  constructor(gl: WebGLRenderingContext) {
     this.gl = gl;
     this._UID = uuidv4();
     /** @type {WebGLProgram} */

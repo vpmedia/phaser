@@ -10,13 +10,13 @@ export class Touch {
   touchCancelCallback!: any;
   preventDefault!: any;
   event!: any;
-  _onTouchStart!: any;
-  _onTouchMove!: any;
-  _onTouchEnd!: any;
-  _onTouchEnter!: any;
-  _onTouchLeave!: any;
-  _onTouchCancel!: any;
-  _documentTouchMove!: any;
+  _onTouchStart!: (event: TouchEvent) => void;
+  _onTouchMove!: (event: TouchEvent) => void;
+  _onTouchEnd!: (event: TouchEvent) => void;
+  _onTouchEnter!: (event: TouchEvent) => void;
+  _onTouchLeave!: (event: TouchEvent) => void;
+  _onTouchCancel!: (event: TouchEvent) => void;
+  _documentTouchMove!: (event: TouchEvent) => void;
   /**
    * TBD.
    * @param {import('./game.js').Game} game - TBD.

@@ -9,12 +9,12 @@ export class MSPointer {
   button!: any;
   event!: any;
   enabled!: any;
-  _onMSPointerDown!: any;
-  _onMSPointerMove!: any;
-  _onMSPointerUp!: any;
-  _onMSPointerUpGlobal!: any;
-  _onMSPointerOut!: any;
-  _onMSPointerOver!: any;
+  _onMSPointerDown!: (event: PointerEvent) => void;
+  _onMSPointerMove!: (event: PointerEvent) => void;
+  _onMSPointerUp!: (event: PointerEvent) => void;
+  _onMSPointerUpGlobal!: (event: Event) => void;
+  _onMSPointerOut!: (event: PointerEvent) => void;
+  _onMSPointerOver!: (event: PointerEvent) => void;
   /**
    * TBD.
    * @param {import('./game.js').Game} game - TBD.

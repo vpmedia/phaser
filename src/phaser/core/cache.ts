@@ -180,7 +180,7 @@ export class Cache {
     xSpacing: number = 0,
     ySpacing: number = 0
   ) {
-    const obj = {
+    const obj: { url: string; data: unknown; font: object | null; base: BaseTexture } = {
       url,
       data,
       font: null,

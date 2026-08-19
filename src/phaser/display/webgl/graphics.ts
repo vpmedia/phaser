@@ -3,6 +3,7 @@ import { Point } from '../../geom/point.js';
 import { hex2rgb } from '../../util/math.js';
 import { triangulate } from './earcut.js';
 import { GraphicsData } from './graphics_data.js';
+import type { IdentifiedWebGLRenderingContext } from './util.js';
 
 /**
  * Updates the graphics data for WebGL rendering.
@@ -285,7 +286,7 @@ export const quadraticBezierCurve = (
   let y;
   const n = 20;
   const points = [];
-  const getPt = (n1, n2, perc) => {
+  const getPt = (n1: number, n2: number, perc: number) => {
     const diff = n2 - n1;
     return n1 + diff * perc;
   };
@@ -494,7 +495,7 @@ export const buildPoly = (graphicsData: any, webGLData: GraphicsData) => {
  * @param {import('../graphics.js').Graphics} graphics - The graphics object to update.
  * @param {WebGLRenderingContext & { id: number }} gl - The WebGL rendering context.
  */
-export const updateGraphics = (graphics: import('../graphics.js').Graphics, gl) => {
+export const updateGraphics = (graphics: import('../graphics.js').Graphics, gl: IdentifiedWebGLRenderingContext) => {
   const stencilBufferLimit = getStencilBufferLimit();
   // get the contexts graphics object
   let webGL = graphics._webGL[gl.id];

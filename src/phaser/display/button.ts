@@ -10,6 +10,7 @@ const STATE_UP = 'Up';
 const STATE_DISABLED = 'Disabled';
 
 export class Button extends Image {
+  [key: `_on${string}Frame`]: string | null;
   _onOverFrame!: string | null;
   _onOutFrame!: string | null;
   _onDownFrame!: string | null;
@@ -143,7 +144,7 @@ export class Button extends Image {
    * @param {boolean} switchImmediately - Whether to switch to the new frame immediately (default: false).
    */
   setStateFrame(state: string, frame: string, switchImmediately: boolean = false) {
-    const frameKey = `_on${state}Frame`;
+    const frameKey: `_on${string}Frame` = `_on${state}Frame`;
     if (frame) {
       this[frameKey] = frame;
       if (switchImmediately) {
@@ -164,7 +165,7 @@ export class Button extends Image {
       return false;
     }
     const state = this.input.enabled || !this._onDisabledFrame ? newState : STATE_DISABLED;
-    const frameKey = `_on${state}Frame`;
+    const frameKey: `_on${string}Frame` = `_on${state}Frame`;
     const frame = this[frameKey];
     if (typeof frame === 'string') {
       this.frameName = frame;

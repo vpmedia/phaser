@@ -60,10 +60,10 @@ export class ScaleManager {
   _lastReportedCanvasSize!: any;
   _lastReportedGameSize!: any;
   _booted!: any;
-  _orientationChange!: any;
-  _windowResize!: any;
-  _fullScreenChange!: any;
-  _fullScreenError!: any;
+  _orientationChange!: (event: Event) => void;
+  _windowResize!: (event: UIEvent) => void;
+  _fullScreenChange!: (event: Event) => void;
+  _fullScreenError!: (event: Event) => void;
   /**
    * TBD.
    * @param {import('./game.js').Game} game - TBD.
@@ -826,7 +826,7 @@ export class ScaleManager {
       return false;
     }
     this.hasPhaserSetFullScreen = false;
-    document[this.game.device.cancelFullscreen]();
+    (document as unknown as Record<string, () => void>)[this.game.device.cancelFullscreen]();
     return true;
   }
 

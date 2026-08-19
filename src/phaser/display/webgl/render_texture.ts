@@ -117,7 +117,7 @@ export class RenderTexture extends Texture {
    * Gets the canvas element for this render texture.
    * @returns {HTMLCanvasElement} The canvas element.
    */
-  getCanvas() {
+  getCanvas(): HTMLCanvasElement | null {
     // TODO
     return null;
   }

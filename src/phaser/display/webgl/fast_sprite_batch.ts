@@ -1,3 +1,5 @@
+import type { IdentifiedWebGLRenderingContext } from './util.js';
+
 export class FastSpriteBatch {
   [key: string]: any;
   vertSize!: any;
@@ -19,7 +21,7 @@ export class FastSpriteBatch {
    * Creates a new FastSpriteBatch instance.
    * @param {WebGLRenderingContext & { id: number }} gl - The WebGL rendering context.
    */
-  constructor(gl) {
+  constructor(gl: IdentifiedWebGLRenderingContext) {
     this.vertSize = 10;
     this.maxSize = 6000; // Math.pow(2, 16) / this.vertSize;
     this.size = this.maxSize;
@@ -54,7 +56,7 @@ export class FastSpriteBatch {
    * Sets the WebGL context for this batch.
    * @param {WebGLRenderingContext & { id: number }} gl - The WebGL rendering context.
    */
-  setContext(gl) {
+  setContext(gl: IdentifiedWebGLRenderingContext) {
     this.gl = gl;
     // create a couple of buffers
     this.vertexBuffer = gl.createBuffer();

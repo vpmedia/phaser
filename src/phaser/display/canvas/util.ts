@@ -42,10 +42,8 @@ export const setBackgroundColor = (canvas: HTMLCanvasElement, color: string) => 
  */
 export const setTouchAction = (canvas: HTMLCanvasElement, value: string = 'none') => {
   value = value || 'none';
-  // @ts-ignore
-  canvas.style.msTouchAction = value;
-  canvas.style['ms-touch-action'] = value;
-  canvas.style['touch-action'] = value;
+  canvas.style.setProperty('-ms-touch-action', value);
+  canvas.style.setProperty('touch-action', value);
   return canvas;
 };
 
@@ -57,13 +55,13 @@ export const setTouchAction = (canvas: HTMLCanvasElement, value: string = 'none'
  */
 export const setUserSelect = (canvas: HTMLCanvasElement, value: string = 'none') => {
   value = value || 'none';
-  canvas.style['-webkit-touch-callout'] = value;
-  canvas.style['-webkit-user-select'] = value;
-  canvas.style['-khtml-user-select'] = value;
-  canvas.style['-moz-user-select'] = value;
-  canvas.style['-ms-user-select'] = value;
-  canvas.style['user-select'] = value;
-  canvas.style['-webkit-tap-highlight-color'] = 'rgba(0, 0, 0, 0)';
+  canvas.style.setProperty('-webkit-touch-callout', value);
+  canvas.style.setProperty('-webkit-user-select', value);
+  canvas.style.setProperty('-khtml-user-select', value);
+  canvas.style.setProperty('-moz-user-select', value);
+  canvas.style.setProperty('-ms-user-select', value);
+  canvas.style.setProperty('user-select', value);
+  canvas.style.setProperty('-webkit-tap-highlight-color', 'rgba(0, 0, 0, 0)');
   return canvas;
 };
 
@@ -137,9 +135,11 @@ export const setTransform = (
  */
 export const getSmoothingPrefix = (context: CanvasRenderingContext2D) => {
   const VENDORS = ['i', 'webkitI', 'msI', 'mozI', 'oI'];
+  // the vendor-prefixed smoothing flags predate the standard property and are absent from lib.dom
+  const smoothingFlags = context as unknown as Record<string, boolean | undefined>;
   for (let i = 0; i < VENDORS.length; i += 1) {
     const s = `${VENDORS[i]}mageSmoothingEnabled`;
-    if (context && context[s]) {
+    if (context && smoothingFlags[s]) {
       return s;
     }
   }

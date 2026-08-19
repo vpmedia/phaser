@@ -669,7 +669,7 @@ export function triangulate(data: any, holeIndices: any, dim: number) {
   const hasHoles = holeIndices && holeIndices.length;
   const outerLen = hasHoles ? holeIndices[0] * dim : data.length;
   let outerNode = linkedList(data, 0, outerLen, dim, true);
-  const triangles = [];
+  const triangles: number[] = [];
   if (!outerNode) return triangles;
   let minX;
   let minY;

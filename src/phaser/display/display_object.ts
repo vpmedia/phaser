@@ -20,36 +20,27 @@ export class DisplayObject {
   rotation = 0;
   /** @type {number} */
   alpha = 1;
-  /** @type {Rectangle} */
-  hitArea = null;
-  /** @type {DisplayObject} */
-  parent = null;
+  hitArea: Rectangle | null = null;
+  parent: DisplayObject | null = null;
   /** @type {number} */
   worldAlpha = 1;
   worldTransform!: Matrix;
   worldScale!: Point;
-  /** @type {Rectangle} */
-  filterArea = null;
+  filterArea: Rectangle | null = null;
   /** @type {number} */
   _sr = 0;
   /** @type {number} */
   _cr = 1;
   cachedBounds!: Rectangle;
-  /** @type {Rectangle} */
-  currentBounds = null;
-  /** @type {import('./graphics.js').Graphics} */
-  _mask = null;
-  /** @type {object[]} */
-  _filters = null;
-  /** @type {object} */
-  _filterBlock = null;
+  currentBounds: Rectangle | null = null;
+  _mask: import('./graphics.js').Graphics | null = null;
+  _filters: object[] | null = null;
+  _filterBlock: object | null = null;
   children!: any[];
   /** @type {boolean} */
   ignoreChildInput = false;
-  /** @type {string | null} */
-  name = null;
-  /** @type {object | null} */
-  data = null;
+  name: string | null = null;
+  data: object | null = null;
   game!: import('../core/game.js').Game;
   type!: number;
   _cachedSprite!: any;
@@ -510,7 +501,7 @@ export class DisplayObject {
    * @param {DisplayObject} child - The child display object to check.
    * @returns {boolean} True if the child is contained within this container, false otherwise.
    */
-  contains(child: DisplayObject) {
+  contains(child: DisplayObject): boolean {
     if (!child) {
       return false;
     }

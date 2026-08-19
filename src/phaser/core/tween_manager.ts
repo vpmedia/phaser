@@ -214,7 +214,7 @@ export class TweenManager {
    * @returns {boolean} True if the object is being tweened, false otherwise.
    */
   isTweening(object: any) {
-    return this._tweens.some((tween) => tween.target === object);
+    return this._tweens.some((tween: Tween) => tween.target === object);
   }
 
   /**

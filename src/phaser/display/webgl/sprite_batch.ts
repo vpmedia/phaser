@@ -1,5 +1,6 @@
 import { AbstractFilter } from './abstract_filter.js';
 import { NormalShader } from './shader/normal.js';
+import type { IdentifiedWebGLRenderingContext } from './util.js';
 
 export class WebGLSpriteBatch {
   [key: string]: any;
@@ -65,7 +66,7 @@ export class WebGLSpriteBatch {
    * Renders a sprite using WebGL.
    * @param {WebGLRenderingContext & { id: number }} gl - The WebGL rendering context.
    */
-  setContext(gl) {
+  setContext(gl: IdentifiedWebGLRenderingContext) {
     this.gl = gl;
     // create a couple of buffers
     this.vertexBuffer = gl.createBuffer();

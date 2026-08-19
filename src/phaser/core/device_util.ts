@@ -96,16 +96,18 @@ export const checkFullScreenSupport = (device: Device) => {
     'mozExitFullscreen',
   ];
   const element = document.createElement('div');
+  const elementApi = element as unknown as Record<string, unknown>;
   for (let i = 0; i < fs.length; i += 1) {
-    if (element[fs[i]]) {
+    if (elementApi[fs[i]]) {
       device.fullscreen = true;
       device.requestFullscreen = fs[i];
       break;
     }
   }
   if (device.fullscreen) {
+    const documentApi = document as unknown as Record<string, unknown>;
     for (let i = 0; i < cfs.length; i += 1) {
-      if (document[cfs[i]]) {
+      if (documentApi[cfs[i]]) {
         device.cancelFullscreen = cfs[i];
         break;
       }
