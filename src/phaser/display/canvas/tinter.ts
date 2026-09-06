@@ -1,3 +1,4 @@
+import type { Texture } from '../webgl/texture.js';
 import { ENGINE_ERROR_CREATING_CANVAS_2D_CONTEXT, ENGINE_ERROR_GETTING_DOCUMENT } from '../../core/error_code.js';
 import { hex2rgb } from '../../util/math.js';
 import { create, removeByCanvas } from './pool.js';
@@ -24,7 +25,7 @@ export const getTintedTexture = (sprite: Image, color: number): HTMLCanvasElemen
  * @param {HTMLCanvasElement} canvas - The canvas to render to.
  * @throws {Error} If the operation fails.
  */
-export const tintWithMultiply = (texture: any, color: any, canvas: HTMLCanvasElement): void => {
+export const tintWithMultiply = (texture: Texture, color: number, canvas: HTMLCanvasElement): void => {
   const context = canvas.getContext('2d', { willReadFrequently: false });
   if (!context) {
     throw new Error(ENGINE_ERROR_CREATING_CANVAS_2D_CONTEXT);
@@ -38,9 +39,29 @@ export const tintWithMultiply = (texture: any, color: any, canvas: HTMLCanvasEle
   context.fillStyle = `#${`00000${Math.trunc(color).toString(16)}`.slice(-6)}`;
   context.fillRect(0, 0, crop.width, crop.height);
   context.globalCompositeOperation = 'multiply';
-  context.drawImage(texture.baseTexture.source, crop.x, crop.y, crop.width, crop.height, 0, 0, crop.width, crop.height);
+  context.drawImage(
+    texture.baseTexture.source!,
+    crop.x,
+    crop.y,
+    crop.width,
+    crop.height,
+    0,
+    0,
+    crop.width,
+    crop.height
+  );
   context.globalCompositeOperation = 'destination-atop';
-  context.drawImage(texture.baseTexture.source, crop.x, crop.y, crop.width, crop.height, 0, 0, crop.width, crop.height);
+  context.drawImage(
+    texture.baseTexture.source!,
+    crop.x,
+    crop.y,
+    crop.width,
+    crop.height,
+    0,
+    0,
+    crop.width,
+    crop.height
+  );
 };
 
 /**
@@ -50,7 +71,7 @@ export const tintWithMultiply = (texture: any, color: any, canvas: HTMLCanvasEle
  * @param {HTMLCanvasElement} canvas - The canvas to render to.
  * @throws {Error} If the operation fails.
  */
-export const tintWithPerPixel = (texture: any, color: any, canvas: HTMLCanvasElement): void => {
+export const tintWithPerPixel = (texture: Texture, color: number, canvas: HTMLCanvasElement): void => {
   const context = canvas.getContext('2d', { willReadFrequently: false });
   if (!context) {
     throw new Error(ENGINE_ERROR_CREATING_CANVAS_2D_CONTEXT);
@@ -59,7 +80,17 @@ export const tintWithPerPixel = (texture: any, color: any, canvas: HTMLCanvasEle
   canvas.width = crop.width;
   canvas.height = crop.height;
   context.globalCompositeOperation = 'copy';
-  context.drawImage(texture.baseTexture.source, crop.x, crop.y, crop.width, crop.height, 0, 0, crop.width, crop.height);
+  context.drawImage(
+    texture.baseTexture.source!,
+    crop.x,
+    crop.y,
+    crop.width,
+    crop.height,
+    0,
+    0,
+    crop.width,
+    crop.height
+  );
   const rgbValues = hex2rgb(color);
   const r = rgbValues[0];
   const g = rgbValues[1];

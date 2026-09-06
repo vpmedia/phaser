@@ -1,3 +1,4 @@
+import type { Rectangle } from '../rectangle.js';
 import { Line } from '../line.js';
 import { Point } from '../point.js';
 import { intersects as intersectsRect } from './rectangle.js';
@@ -28,10 +29,10 @@ export const clone = (input: Line, output: Line | null = null): Line => {
  * @returns {Point} The intersection point, or null if there is no intersection.
  */
 export const intersectsPoints = (
-  a: any,
-  b: any,
-  e: any,
-  f: any,
+  a: Point,
+  b: Point,
+  e: Point,
+  f: Point,
   asSegment = true,
   output: Point | null = null
 ): Point | null => {
@@ -68,7 +69,7 @@ export const intersectsPoints = (
  * @param {Point} result - Optional point to store the result in.
  * @returns {Point} The intersection point, or null if there is no intersection.
  */
-export const intersects = (a: any, b: any, asSegment: boolean, result: Point): Point | null =>
+export const intersects = (a: Line, b: Line, asSegment: boolean, result: Point): Point | null =>
   intersectsPoints(a.start, a.end, b.start, b.end, asSegment, result);
 
 /**
@@ -77,7 +78,7 @@ export const intersects = (a: any, b: any, asSegment: boolean, result: Point): P
  * @param {object} rect - The rectangle to check (with x, y, width, height properties).
  * @returns {boolean} True if the line intersects with the rectangle, false otherwise.
  */
-export const intersectsRectangle = (line: any, rect: any): boolean => {
+export const intersectsRectangle = (line: Line, rect: Rectangle): boolean => {
   //  Quick bail out of the Line and Rect bounds don't intersect
   if (!intersectsRect(line, rect)) {
     return false;
@@ -131,4 +132,4 @@ export const intersectsRectangle = (line: any, rect: any): boolean => {
  * @param {object} b - The second point (with x, y properties).
  * @returns {number} The distance between the points.
  */
-export const reflect = (a: any, b: any): number => 2 * b.normalAngle - Math.PI - a.angle;
+export const reflect = (a: Line, b: Line): number => 2 * b.normalAngle - Math.PI - a.angle;

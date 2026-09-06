@@ -1,3 +1,4 @@
+import type { Frame } from './frame.js';
 import type { Game } from './game.js';
 import { Animation } from './animation.js';
 import { ENGINE_ERROR_CANNOT_SET_FRAME, ENGINE_ERROR_CANNOT_SET_FRAME_NAME } from './error_code.js';
@@ -5,13 +6,13 @@ import type { Image } from '../display/image.js';
 import type { FrameData } from './frame_data.js';
 
 export class AnimationManager {
-  public sprite!: any;
+  public sprite!: Image;
   public game!: Game;
-  public currentFrame!: any;
-  public currentAnim!: any;
+  public currentFrame!: Frame | null;
+  public currentAnim!: Animation | null;
   public updateIfVisible!: boolean;
   public isLoaded!: boolean;
-  public _frameData!: any;
+  public _frameData!: FrameData | null;
   public _anims!: Record<string, Animation>;
   public _outputFrames!: number[];
   public _frameIndex!: number;
@@ -44,7 +45,6 @@ export class AnimationManager {
     this._frameData = null;
     this.currentAnim = null;
     this.currentFrame = null;
-    this.sprite = null;
   }
 
   /**
@@ -126,12 +126,12 @@ export class AnimationManager {
       }
     }
     this._outputFrames = [];
-    this._frameData.getFrameIndexes(frames, useNumericIndex, this._outputFrames);
+    this._frameData!.getFrameIndexes(frames, useNumericIndex, this._outputFrames);
     this._anims[name] = new Animation(
       this.game,
       this.sprite,
       name,
-      this._frameData,
+      this._frameData!,
       this._outputFrames,
       frameRate,
       loop
@@ -151,11 +151,12 @@ export class AnimationManager {
    */
   public validateFrames(frames: string[] | number[], useNumericIndex = false): boolean {
     for (let i = 0; i < frames.length; i += 1) {
+      const frame = frames[i]!;
       if (useNumericIndex) {
-        if (frames[i]! > this._frameData.total) {
+        if (Number(frame) > this._frameData!.total) {
           return false;
         }
-      } else if (this._frameData.checkFrameName(frames[i]) === false) {
+      } else if (!this._frameData!.checkFrameName(String(frame))) {
         return false;
       }
     }
@@ -172,7 +173,7 @@ export class AnimationManager {
   public play(name: string, frameRate: number | null = null, loop: boolean | null = null) {
     if (this._anims[name]) {
       if (this.currentAnim === this._anims[name]) {
-        if (this.currentAnim.isPlaying === false) {
+        if (!this.currentAnim.isPlaying) {
           this.currentAnim.paused = false;
           return this.currentAnim.play(frameRate, loop);
         }
@@ -271,7 +272,7 @@ export class AnimationManager {
    * @returns {number} The total number of frames.
    */
   public get frameTotal() {
-    return this._frameData.total;
+    return this._frameData!.total;
   }
 
   /**
@@ -279,14 +280,16 @@ export class AnimationManager {
    * @returns {boolean} True if the current animation is paused, false otherwise.
    */
   public get paused() {
-    return this.currentAnim.isPaused;
+    return this.currentAnim?.isPaused ?? false;
   }
 
   /**
    * Sets the paused state of the current animation.
    */
   public set paused(value) {
-    this.currentAnim.paused = value;
+    if (this.currentAnim) {
+      this.currentAnim.paused = value;
+    }
   }
 
   /**

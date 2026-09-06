@@ -120,7 +120,17 @@ export const sameDimensions = (a: Rectangle, b: Rectangle): boolean => a.width =
  * @param {Rectangle} b - The second rectangle to check.
  * @returns {boolean} True if the rectangles intersect, false otherwise.
  */
-export const intersects = (a: Rectangle, b: Rectangle): boolean => {
+/** Anything with an axis-aligned extent, which Line exposes as well as Rectangle. */
+export type Bounds = {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  right: number;
+  bottom: number;
+};
+
+export const intersects = (a: Bounds, b: Bounds): boolean => {
   if (a.width <= 0 || a.height <= 0 || b.width <= 0 || b.height <= 0) {
     return false;
   }

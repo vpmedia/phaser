@@ -268,7 +268,7 @@ export class Image extends DisplayObject {
    * Gets the current frame name of this image.
    * @returns {string} The current frame name.
    */
-  public get frameName(): string {
+  public get frameName(): string | null {
     return this.animations.frameName;
   }
 
@@ -276,7 +276,7 @@ export class Image extends DisplayObject {
    * Sets the current frame name of this image.
    * @param {string} value - The new frame name to set.
    */
-  public set frameName(value: string) {
+  public set frameName(value: string | null) {
     this.animations.frameName = value;
   }
 
