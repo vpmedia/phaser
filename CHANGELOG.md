@@ -1,3 +1,14 @@
+## [1.127.0] - 2026-09-06
+
+### 🚀 Features
+
+- *(lifecycle)* Observe the page in the engine instead of through a dependency
+
+### ⚙️ Miscellaneous Tasks
+
+- Release
+- *(lint)* Take the consuming applications' ruleset verbatim
+- *(release)* V1.127.0
 ## [1.126.0] - 2026-09-06
 
 ### 🐛 Bug Fixes
