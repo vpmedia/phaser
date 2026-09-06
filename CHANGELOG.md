@@ -1,3 +1,21 @@
+## [1.125.0] - 2026-09-06
+
+### 🚜 Refactor
+
+- *(lint)* Stop reassigning function parameters
+- *(lint)* Make the truthiness checks explicit in the renderers and parsers
+- *(lint)* Make the truthiness checks explicit in the loader and input
+- *(lint)* Make the truthiness checks explicit in the game and audio
+- *(lint)* Make every truthiness check explicit
+
+### 📚 Documentation
+
+- *(lint)* Record why unbound-method cannot hold for this engine
+
+### ⚙️ Miscellaneous Tasks
+
+- Release
+- *(release)* V1.125.0
 ## [1.124.0] - 2026-09-06
 
 ### 🐛 Bug Fixes
