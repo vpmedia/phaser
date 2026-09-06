@@ -36,16 +36,24 @@ Two engine-wide patterns carry that weight:
   accessor — `InputHandler.pointerData()` is the model — rather than a non-null assertion at each
   call site.
 
-## The one rule this engine cannot satisfy
+## The two rules this engine cannot satisfy
 
-`unicorn/prefer-dom-node-remove` is off, and it is the only rule off for a reason other than a
-pending refactor. It is a syntactic rule: it rewrites any `parent.removeChild(child)` to
-`child.remove()`, without asking what `parent` is. The display tree mirrors the DOM's naming, so it
-fires on `DisplayObject.removeChild` — where the rewrite does not compile, because a display object
-has no `remove()`. Renaming the display-tree method would be a breaking change to the public API for
-a lint rule, so the rule goes instead.
+Every other rule is on. These two are off because the engine's shape defeats them, not because a
+refactor is pending.
 
-Genuine DOM removals in the engine do use `node.remove()`.
+**`unicorn/prefer-dom-node-remove`** is a syntactic rule: it rewrites any `parent.removeChild(child)`
+to `child.remove()`, without asking what `parent` is. The display tree mirrors the DOM's naming, so
+it fires on `DisplayObject.removeChild` — where the rewrite does not compile, because a display
+object has no `remove()`. Renaming the display-tree method would be a breaking change to the public
+API for the sake of a lint rule, so the rule goes instead. Genuine DOM removals do use
+`node.remove()`.
+
+**`typescript/unbound-method`** flags a method referenced without its receiver. Every callback API in
+the engine takes the receiver as its next argument — `signal.add(this.onPause, this)`,
+`timer.add(delay, this.tick, this)`, `xhrLoad(file, url, type, this.fileComplete)` — and invokes the
+handler with `.call(context, …)`. The reference is therefore never unbound, but the rule has no way
+to see the pairing. Binding each of them instead would turn some forty prototype methods into
+per-instance closures, which a scene graph allocates thousands of.
 
 ## Burn-down backlog
 
