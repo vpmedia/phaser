@@ -10,20 +10,20 @@ import { create as createCanvas } from './pool.js';
  * @returns {HTMLCanvasElement} The created HTML canvas element.
  */
 export const create = (
-  parent: any,
+  parent: object | null,
   width: number,
   height: number,
   id: string,
   skipPool: boolean
 ): HTMLCanvasElement => {
-  width = width || 256;
-  height = height || 256;
-  const canvas = skipPool ? document.createElement('canvas') : createCanvas(parent, width, height);
-  if (typeof id === 'string' && id !== '') {
+  const canvasWidth = width || 256;
+  const canvasHeight = height || 256;
+  const canvas = skipPool ? document.createElement('canvas') : createCanvas(parent, canvasWidth, canvasHeight);
+  if (id !== '') {
     canvas.id = id;
   }
-  canvas.width = width;
-  canvas.height = height;
+  canvas.width = canvasWidth;
+  canvas.height = canvasHeight;
   canvas.style.display = 'block';
   return canvas;
 };
@@ -46,9 +46,9 @@ export const setBackgroundColor = (canvas: HTMLCanvasElement, color = 'rgb(0,0,0
  * @returns {HTMLCanvasElement} The modified canvas element.
  */
 export const setTouchAction = (canvas: HTMLCanvasElement, value = 'none'): HTMLCanvasElement => {
-  value = value || 'none';
-  canvas.style.setProperty('-ms-touch-action', value);
-  canvas.style.setProperty('touch-action', value);
+  const touchAction = value || 'none';
+  canvas.style.setProperty('-ms-touch-action', touchAction);
+  canvas.style.setProperty('touch-action', touchAction);
   return canvas;
 };
 
@@ -59,13 +59,13 @@ export const setTouchAction = (canvas: HTMLCanvasElement, value = 'none'): HTMLC
  * @returns {HTMLCanvasElement} The modified canvas element.
  */
 export const setUserSelect = (canvas: HTMLCanvasElement, value = 'none'): HTMLCanvasElement => {
-  value = value || 'none';
-  canvas.style.setProperty('-webkit-touch-callout', value);
-  canvas.style.setProperty('-webkit-user-select', value);
-  canvas.style.setProperty('-khtml-user-select', value);
-  canvas.style.setProperty('-moz-user-select', value);
-  canvas.style.setProperty('-ms-user-select', value);
-  canvas.style.setProperty('user-select', value);
+  const userSelect = value || 'none';
+  canvas.style.setProperty('-webkit-touch-callout', userSelect);
+  canvas.style.setProperty('-webkit-user-select', userSelect);
+  canvas.style.setProperty('-khtml-user-select', userSelect);
+  canvas.style.setProperty('-moz-user-select', userSelect);
+  canvas.style.setProperty('-ms-user-select', userSelect);
+  canvas.style.setProperty('user-select', userSelect);
   canvas.style.setProperty('-webkit-tap-highlight-color', 'rgba(0, 0, 0, 0)');
   return canvas;
 };
@@ -77,20 +77,21 @@ export const setUserSelect = (canvas: HTMLCanvasElement, value = 'none'): HTMLCa
  * @param {boolean} overflowHidden - Whether to set overflow hidden on the parent.
  * @returns {HTMLCanvasElement} The added canvas element.
  */
-export const addToDOM = (canvas: HTMLCanvasElement, parent: any, overflowHidden = true): HTMLCanvasElement => {
-  let target;
-  if (parent) {
-    if (typeof parent === 'string') {
-      // hopefully an element ID
-      target = document.querySelector(`#${parent}`);
-    } else if (typeof parent === 'object' && parent.nodeType === 1) {
-      // quick test for a HTMLelement
-      target = parent;
-    }
+export const addToDOM = (
+  canvas: HTMLCanvasElement,
+  parent: string | HTMLElement | null,
+  overflowHidden = true
+): HTMLCanvasElement => {
+  let target: HTMLElement | null = null;
+  if (typeof parent === 'string') {
+    // hopefully an element ID
+    target = document.querySelector<HTMLElement>(`#${CSS.escape(parent)}`);
+  } else if (parent?.nodeType === 1) {
+    target = parent;
   }
   // Fallback, covers an invalid ID and a non HTMLelement object
   target ??= document.body;
-  if (overflowHidden && target.style) {
+  if (overflowHidden) {
     target.style.overflow = 'hidden';
   }
   target.append(canvas);
@@ -102,9 +103,7 @@ export const addToDOM = (canvas: HTMLCanvasElement, parent: any, overflowHidden 
  * @param {HTMLCanvasElement} canvas - The canvas element to remove.
  */
 export const removeFromDOM = (canvas: HTMLCanvasElement): void => {
-  if (canvas && canvas.parentNode) {
-    canvas.parentNode.removeChild(canvas);
-  }
+  canvas.remove();
 };
 
 /**

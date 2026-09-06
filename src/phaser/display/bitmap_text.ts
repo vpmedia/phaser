@@ -123,12 +123,12 @@ export class BitmapText extends DisplayObject {
       if (/(?:\r\n|\r|\n)/.test(text.charAt(i))) {
         return {
           width: w,
-          text: text.substr(0, i),
+          text: text.slice(0, i),
           end,
           chars,
         };
       }
-      let charCode = text.charCodeAt(i);
+      let charCode = text.codePointAt(i) ?? 32;
       let charData = data.chars[charCode];
       let c = 0;
       //  If the character data isn't found in the data array
@@ -154,7 +154,7 @@ export class BitmapText extends DisplayObject {
         //  The last space was at "lastSpace" which was "i - lastSpace" characters ago
         return {
           width: wrappedWidth || w,
-          text: text.substr(0, i - (i - lastSpace)),
+          text: text.slice(0, lastSpace),
           end,
           chars,
         };
@@ -189,7 +189,7 @@ export class BitmapText extends DisplayObject {
       const line = lines[i]!;
       let output = '';
       for (let c = 0; c < line.length; c += 1) {
-        if (data.chars[line.charCodeAt(c)]) {
+        if (data.chars[line.codePointAt(c) ?? 32]) {
           output = output.concat(line[c]!);
         } else {
           output = output.concat(replace);
@@ -236,7 +236,7 @@ export class BitmapText extends DisplayObject {
         align = (this.textWidth - currentLine.width) / 2;
       }
       for (let c = 0; c < currentLine.text.length; c += 1) {
-        let charCode = currentLine.text.charCodeAt(c);
+        let charCode = currentLine.text.codePointAt(c) ?? 32;
         let charData = data.chars[charCode];
         if (charData === undefined) {
           charCode = 32;

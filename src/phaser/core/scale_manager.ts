@@ -252,7 +252,7 @@ export class ScaleManager {
     if (this.game.parent !== '') {
       if (typeof this.game.parent === 'string') {
         // hopefully an element ID
-        target = document.getElementById(this.game.parent);
+        target = document.querySelector<HTMLElement>(`#${CSS.escape(this.game.parent)}`);
       } else if (this.game.parent && this.game.parent.nodeType === 1) {
         // quick test for a HTMLelement
         target = this.game.parent;
@@ -572,8 +572,8 @@ export class ScaleManager {
       this.height = Math.min(this.height, bounds.height);
     }
     // Always truncate / force to integer
-    this.width |= 0;
-    this.height |= 0;
+    this.width = Math.trunc(this.width);
+    this.height = Math.trunc(this.height);
     this.reflowCanvas();
   }
 
@@ -863,9 +863,8 @@ export class ScaleManager {
     if (fsTarget && fsTarget.parentNode) {
       // Make sure to cleanup synthetic target for sure;
       // swap the canvas back to the parent.
-      const parent = fsTarget.parentNode;
-      parent.insertBefore(this.game.canvas, fsTarget);
-      parent.removeChild(fsTarget);
+      fsTarget.before(this.game.canvas);
+      fsTarget.remove();
     }
     this._createdFullScreenTarget = null;
   }

@@ -102,11 +102,7 @@ export const linearInterpolation = (v: number[], k: number): number => {
 };
 
 /** Calculates the distance between two points. */
-export const distance = (x1: number, y1: number, x2: number, y2: number): number => {
-  const dx = x1 - x2;
-  const dy = y1 - y2;
-  return Math.sqrt(dx * dx + dy * dy);
-};
+export const distance = (x1: number, y1: number, x2: number, y2: number): number => Math.hypot(x1 - x2, y1 - y2);
 
 /** Checks if two numbers are within a tolerance of each other. */
 export const within = (a: number, b: number, tolerance: number): boolean => Math.abs(a - b) <= tolerance;

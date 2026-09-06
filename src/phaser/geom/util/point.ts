@@ -141,7 +141,7 @@ export const rperp = (a: Point, output: Point | null = null): Point => {
 export const distance = (a: Point, b: Point, round = false): number => {
   const dx = a.x - b.x;
   const dy = a.y - b.y;
-  const abDistance = Math.sqrt(dx * dx + dy * dy);
+  const abDistance = Math.hypot(dx, dy);
   return round ? Math.round(abDistance) : abDistance;
 };
 

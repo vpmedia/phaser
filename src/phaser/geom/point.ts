@@ -218,7 +218,7 @@ export class Point {
    * @returns {number} The magnitude of the point.
    */
   public getMagnitude(): number {
-    return Math.sqrt(this.x * this.x + this.y * this.y);
+    return Math.hypot(this.x, this.y);
   }
 
   /**

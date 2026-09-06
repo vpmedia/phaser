@@ -37,7 +37,7 @@ export class CanvasRenderer {
   public contextLost!: any;
   public width!: number;
   public height!: number;
-  public view!: any;
+  public view!: HTMLCanvasElement;
   public context!: CanvasRenderingContext2D;
   public refresh!: any;
   public count!: any;
@@ -59,7 +59,10 @@ export class CanvasRenderer {
     this.height = game.height * this.resolution;
     this.view = game.canvas;
     /** @type {CanvasRenderingContext2D} */
-    this.context = this.view.getContext('2d', { willReadFrequently: false, alpha: this.transparent });
+    this.context = this.view.getContext('2d', {
+      willReadFrequently: false,
+      alpha: this.transparent,
+    }) as CanvasRenderingContext2D;
     if (!this.context) {
       throw new Error(ENGINE_ERROR_CREATING_CANVAS_2D_CONTEXT);
     }
@@ -107,8 +110,8 @@ export class CanvasRenderer {
    * @param {boolean} removeView - Whether to remove the view from the DOM.
    */
   public destroy(removeView = true): void {
-    if (removeView && this.view.parent) {
-      this.view.parent.removeChild(this.view);
+    if (removeView) {
+      this.view.remove();
     }
   }
 

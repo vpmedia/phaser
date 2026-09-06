@@ -364,10 +364,7 @@ export class DisplayObject {
     //  Set the World values
     this.worldAlpha = this.alpha * p.worldAlpha;
     // This.worldPosition.setTo(wt.tx, wt.ty);
-    this.worldScale.setTo(
-      this.scale.x * Math.sqrt(wt.a * wt.a + wt.c * wt.c),
-      this.scale.y * Math.sqrt(wt.b * wt.b + wt.d * wt.d)
-    );
+    this.worldScale.setTo(this.scale.x * Math.hypot(wt.a, wt.c), this.scale.y * Math.hypot(wt.b, wt.d));
     this.worldRotation = Math.atan2(-wt.c, wt.d);
     // Reset the bounds each time this is called!
     this.currentBounds = null;

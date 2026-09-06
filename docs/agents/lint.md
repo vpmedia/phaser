@@ -36,6 +36,17 @@ Two engine-wide patterns carry that weight:
   accessor — `InputHandler.pointerData()` is the model — rather than a non-null assertion at each
   call site.
 
+## The one rule this engine cannot satisfy
+
+`unicorn/prefer-dom-node-remove` is off, and it is the only rule off for a reason other than a
+pending refactor. It is a syntactic rule: it rewrites any `parent.removeChild(child)` to
+`child.remove()`, without asking what `parent` is. The display tree mirrors the DOM's naming, so it
+fires on `DisplayObject.removeChild` — where the rewrite does not compile, because a display object
+has no `remove()`. Renaming the display-tree method would be a breaking change to the public API for
+a lint rule, so the rule goes instead.
+
+Genuine DOM removals in the engine do use `node.remove()`.
+
 ## Burn-down backlog
 
 45 rules are turned off because the engine cannot satisfy them yet, not because we disagree with

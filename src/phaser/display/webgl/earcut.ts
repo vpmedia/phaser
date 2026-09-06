@@ -708,7 +708,7 @@ export function earcutLinked(
  * @returns {object} The processed earcut data structure with triangulation information.
  */
 export function triangulate(data: number[], holeIndices: number[] | null, dim = 2): number[] {
-  const hasHoles = holeIndices && holeIndices.length;
+  const hasHoles = holeIndices !== null && holeIndices.length > 0;
   const outerLen = hasHoles ? holeIndices[0]! * dim : data.length;
   let outerNode = linkedList(data, 0, outerLen, dim, true);
   const triangles: number[] = [];
