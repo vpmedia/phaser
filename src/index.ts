@@ -2,6 +2,7 @@
 export * as Const from './phaser/core/const.js';
 export { GameObjectFactory } from './phaser/core/factory.js';
 export { Game } from './phaser/core/game.js';
+export type { GameConfig } from './phaser/core/game.js';
 export { Signal } from './phaser/core/signal.js';
 export * as MathUtils from './phaser/util/math.js';
 // cache
@@ -17,6 +18,7 @@ export { ScaleManager } from './phaser/core/scale_manager.js';
 // scene
 export { Scene } from './phaser/core/scene.js';
 export { SceneManager } from './phaser/core/scene_manager.js';
+export type { SceneDefinition, SceneHooks, SceneState } from './phaser/core/scene_manager.js';
 // sound
 export { Sound } from './phaser/core/sound.js';
 export { SoundManager } from './phaser/core/sound_manager.js';
