@@ -1,3 +1,17 @@
+## [1.112.0] - 2026-09-06
+
+### 🚀 Features
+
+- *(log)* Move the engine logger to logtape
+
+### 🐛 Bug Fixes
+
+- *(deps)* Match the logtape specifier the lockfile records
+
+### ⚙️ Miscellaneous Tasks
+
+- Release
+- *(release)* V1.112.0
 ## [1.111.0] - 2026-09-06
 
 ### 🐛 Bug Fixes
