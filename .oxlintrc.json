@@ -105,7 +105,7 @@
     "typescript/no-base-to-string": "error",
     "typescript/no-deprecated": "error",
     "typescript/no-dynamic-delete": "off",
-    "typescript/no-explicit-any": "off",
+    "typescript/no-explicit-any": "error",
     "typescript/no-inferrable-types": "error",
     "typescript/no-non-null-assertion": "off",
     "typescript/no-redundant-type-constituents": "error",

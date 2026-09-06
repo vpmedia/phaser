@@ -83,6 +83,15 @@ export type LoaderFile = {
   ySpacing?: number;
 };
 
+/** The sprite the loader crops as a progress bar, with the rectangle it crops to. */
+export type PreloadSprite = {
+  sprite: Image;
+  direction: number;
+  width: number;
+  height: number;
+  rect: Rectangle;
+};
+
 export class Loader {
   public game!: Game;
   public cache!: Cache;
@@ -91,7 +100,7 @@ export class Loader {
   public isUseRetry!: boolean;
   public maxRetry!: number;
   public hasLoaded!: boolean;
-  public preloadSprite!: any;
+  public preloadSprite!: PreloadSprite | null;
   public crossOrigin!: boolean | string;
   public baseURL!: string;
   public path!: string;
@@ -162,10 +171,8 @@ export class Loader {
       direction,
       width: sprite.width,
       height: sprite.height,
-      rect: null,
+      rect: direction === 0 ? new Rectangle(0, 0, 1, sprite.height) : new Rectangle(0, 0, sprite.width, 1),
     };
-    this.preloadSprite.rect =
-      direction === 0 ? new Rectangle(0, 0, 1, sprite.height) : new Rectangle(0, 0, sprite.width, 1);
     sprite.crop(this.preloadSprite.rect);
     sprite.visible = true;
   }
@@ -1254,7 +1261,8 @@ export class Loader {
     const data = xhr.responseText;
     const xml = this.parseXml(data);
     if (!xml) {
-      const responseType = xhr.responseType || (xhr as any).contentType; // contentType for MS-XDomainRequest
+      // contentType is the MS-XDomainRequest name for the same thing
+      const responseType = xhr.responseType || (xhr as unknown as { contentType?: string }).contentType;
       this.game.logger.warn(`${file.key}: invalid XML (${responseType})`);
       this.asyncComplete(file, 'invalid XML');
       return;

@@ -31,4 +31,5 @@ export type InterpolationFunction = (v: number[], k: number) => number;
  * and consumers narrow it by declaring their own display-object subtype — which only holds while
  * the property stays assignable in both directions, so this one bag has no shape.
  */
+// eslint-disable-next-line typescript/no-explicit-any -- the whole point of this bag is that it has no shape
 export type UserData = any;
