@@ -17,15 +17,28 @@ export const JSONDATA = 7;
 export const XML = 8;
 export const RENDER_TEXTURE = 9;
 
+interface CacheBuckets {
+  canvas: Record<string, any>;
+  image: Record<string, any>;
+  texture: Record<string, any>;
+  sound: Record<string, any>;
+  text: Record<string, any>;
+  json: Record<string, any>;
+  xml: Record<string, any>;
+  bitmapData: Record<string, any>;
+  bitmapFont: Record<string, any>;
+  renderTexture: Record<string, any>;
+}
+
 export class Cache {
   game!: any;
   autoResolveURL!: any;
-  _cache!: any;
+  _cache!: CacheBuckets;
   _urlMap!: any;
   _urlResolver!: any;
   _urlTemp!: any;
   onSoundUnlock!: any;
-  _cacheMap!: any;
+  _cacheMap!: Record<string, any>[];
   /**
    * Creates a new Cache instance.
    * @param {import('./game.js').Game} game - The game instance.
@@ -756,7 +769,7 @@ export class Cache {
    * @param {string} key - The unique key for the cache entry to remove.
    */
   removeSpriteSheet(key: string) {
-    delete this._cache.spriteSheet[key];
+    delete this._cache.image[key];
   }
 
   /**
@@ -764,7 +777,7 @@ export class Cache {
    * @param {string} key - The unique key for the cache entry to remove.
    */
   removeTextureAtlas(key: string) {
-    delete this._cache.atlas[key];
+    delete this._cache.image[key];
   }
 
   /**
