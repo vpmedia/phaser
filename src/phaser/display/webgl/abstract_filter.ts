@@ -1,17 +1,24 @@
+import type { NormalShader } from './shader/normal.js';
+
+/** A shader uniform: its GLSL type and the value bound to it. */
+export type ShaderUniform = {
+  type: string;
+  value: unknown;
+};
+
 export class AbstractFilter {
-  [key: string]: any;
-  public passes!: any;
-  public shaders!: any;
-  public dirty!: any;
-  public padding!: any;
-  public uniforms!: any;
-  public fragmentSrc!: any;
+  public passes: AbstractFilter[];
+  public shaders: NormalShader[];
+  public dirty: boolean;
+  public padding: number;
+  public uniforms: Record<string, ShaderUniform>;
+  public fragmentSrc: string[];
   /**
    * Creates a new AbstractFilter instance.
    * @param {string[]} fragmentSrc - The fragment shader source.
    * @param {object} uniforms - The uniform variables for the shader.
    */
-  public constructor(fragmentSrc: string[], uniforms?: any) {
+  public constructor(fragmentSrc: string[], uniforms?: Record<string, ShaderUniform>) {
     this.passes = [this];
     this.shaders = [];
     this.dirty = true;
@@ -24,8 +31,8 @@ export class AbstractFilter {
    * Initializes the filter.
    */
   public syncUniforms(): void {
-    for (let i = 0, j = this.shaders.length; i < j; i += 1) {
-      this.shaders[i].dirty = true;
+    for (const shader of this.shaders) {
+      shader.dirty = true;
     }
   }
 }

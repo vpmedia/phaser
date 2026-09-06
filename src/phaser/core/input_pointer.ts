@@ -456,7 +456,7 @@ export class Pointer {
    * @param {number} duration - TBD.
    * @returns {boolean} TBD.
    */
-  public justPressed(duration: number): boolean {
+  public justPressed(duration = 0): boolean {
     const window = duration || this.game.input.justPressedRate;
     return this.isDown && this.timeDown + window > this.game.time.time;
   }
@@ -466,7 +466,7 @@ export class Pointer {
    * @param {number} duration - TBD.
    * @returns {boolean} TBD.
    */
-  public justReleased(duration: number): boolean {
+  public justReleased(duration = 0): boolean {
     const window = duration || this.game.input.justReleasedRate;
     return this.isUp && this.timeUp + window > this.game.time.time;
   }

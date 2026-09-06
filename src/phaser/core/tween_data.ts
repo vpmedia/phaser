@@ -2,15 +2,18 @@ import type { Game } from './game.js';
 import * as MathUtils from '../util/math.js';
 import { TWEEN_COMPLETE, TWEEN_LOOPED, TWEEN_PENDING, TWEEN_RUNNING } from './const.js';
 import type { Tween } from './tween.js';
-import type { InterpolationFunction } from './callback.js';
+import type { EasingFunction, InterpolationFunction } from './callback.js';
+
+/** The properties a tween drives, each holding either a single target or a list of waypoints. */
+export type TweenValues = Record<string, number | number[] | string>;
 
 export class TweenData {
   public parent!: Tween;
   public game!: Game;
-  public vStart!: Record<string, any>;
-  public vStartCache!: Record<string, any>;
-  public vEnd!: Record<string, any>;
-  public vEndCache!: Record<string, any>;
+  public vStart!: TweenValues;
+  public vStartCache!: TweenValues;
+  public vEnd!: TweenValues;
+  public vEndCache!: TweenValues;
   public duration!: number;
   public percent!: number;
   public value!: number;
@@ -71,7 +74,14 @@ export class TweenData {
    * @param {boolean} yoyo - Whether to reverse the tween on each repeat.
    * @returns {TweenData} This TweenData object for chaining.
    */
-  public to(properties: any, duration: number, ease: any, delay: number, repeat: number, yoyo: boolean): this {
+  public to(
+    properties: TweenValues,
+    duration: number,
+    ease: EasingFunction,
+    delay: number,
+    repeat: number,
+    yoyo: boolean
+  ): this {
     this.vEnd = properties;
     this.duration = duration;
     this.easingFunction = ease;
@@ -92,7 +102,14 @@ export class TweenData {
    * @param {boolean} yoyo - Whether to reverse the tween on each repeat.
    * @returns {TweenData} This TweenData object for chaining.
    */
-  public from(properties: any, duration: number, ease: any, delay: number, repeat: number, yoyo: boolean): this {
+  public from(
+    properties: TweenValues,
+    duration: number,
+    ease: EasingFunction,
+    delay: number,
+    repeat: number,
+    yoyo: boolean
+  ): this {
     this.vEnd = properties;
     this.duration = duration;
     this.easingFunction = ease;
@@ -115,9 +132,9 @@ export class TweenData {
       //  Reverse them all and instant set them
       const keys = Object.keys(this.vStartCache);
       for (const property of keys) {
-        this.vStart[property] = this.vEndCache[property];
-        this.vEnd[property] = this.vStartCache[property];
-        (this.parent.target as unknown as Record<string, any>)[property] = this.vStart[property];
+        this.vStart[property] = this.vEndCache[property]!;
+        this.vEnd[property] = this.vStartCache[property]!;
+        (this.parent.target as unknown as Record<string, unknown>)[property] = this.vStart[property];
       }
     }
     this.value = 0;
@@ -134,29 +151,27 @@ export class TweenData {
     const keys = Object.keys(this.parent.properties);
     for (const property of keys) {
       //  Load the property from the parent object
-      this.vStart[property] = this.parent.properties[property];
+      const start = this.parent.properties[property]!;
+      this.vStart[property] = start;
       //  Check if an Array was provided as property value
-      if (Array.isArray(this.vEnd[property])) {
-        if (this.vEnd[property].length === 0) {
-          // an empty end array leaves the property untouched for this step
-        } else if (this.percent === 0) {
-          //  Put the start value at the beginning of the array
-          //  but we only want to do this once, if the Tween hasn't run before
-          this.vEnd[property] = [this.vStart[property], ...this.vEnd[property]];
-        }
+      const end = this.vEnd[property];
+      if (Array.isArray(end) && end.length > 0 && this.percent === 0) {
+        //  Put the start value at the beginning of the array
+        //  but we only want to do this once, if the Tween hasn't run before
+        this.vEnd[property] = [Number(start), ...end];
       }
-      if (this.vEnd[property] !== undefined) {
-        if (typeof this.vEnd[property] === 'string') {
-          //  Parses relative end values with start as base (e.g.: +10, -3)
-          this.vEnd[property] = this.vStart[property] + Number(this.vEnd[property]);
-        }
-        this.parent.properties[property] = this.vEnd[property];
-      } else {
+      if (end === undefined) {
         //  Null tween
-        this.vEnd[property] = this.vStart[property];
+        this.vEnd[property] = start;
+      } else {
+        if (typeof end === 'string') {
+          //  Parses relative end values with start as base (e.g.: +10, -3)
+          this.vEnd[property] = Number(start) + Number(end);
+        }
+        this.parent.properties[property] = this.vEnd[property]!;
       }
-      this.vStartCache[property] = this.vStart[property];
-      this.vEndCache[property] = this.vEnd[property];
+      this.vStartCache[property] = this.vStart[property]!;
+      this.vEndCache[property] = this.vEnd[property]!;
     }
     return this;
   }
@@ -189,11 +204,11 @@ export class TweenData {
     this.value = this.easingFunction(this.percent);
     const keys = Object.keys(this.vEnd);
     for (const property of keys) {
-      const start = this.vStart[property];
       const end = this.vEnd[property];
-      (this.parent.target as unknown as Record<string, any>)[property] = Array.isArray(end)
+      const start = Number(this.vStart[property]);
+      (this.parent.target as unknown as Record<string, unknown>)[property] = Array.isArray(end)
         ? this.interpolationFunction.call(this.interpolationContext, end, this.value)
-        : start + (end - start) * this.value;
+        : start + (Number(end) - start) * this.value;
     }
     if ((!this.parent.reverse && this.percent === 1) || (this.parent.reverse && this.percent === 0)) {
       return this.repeat();
@@ -224,11 +239,11 @@ export class TweenData {
       const blob: Record<string, number> = {};
       const keys = Object.keys(this.vEnd);
       for (const property of keys) {
-        const start = this.vStart[property];
         const end = this.vEnd[property];
+        const start = Number(this.vStart[property]);
         blob[property] = Array.isArray(end)
           ? this.interpolationFunction(end, this.value)
-          : start + (end - start) * this.value;
+          : start + (Number(end) - start) * this.value;
       }
       data.push(blob);
       if ((!this.parent.reverse && this.percent === 1) || (this.parent.reverse && this.percent === 0)) {
@@ -253,8 +268,8 @@ export class TweenData {
         //  Restore the properties
         const keys = Object.keys(this.vStartCache);
         for (const property of keys) {
-          this.vStart[property] = this.vStartCache[property];
-          this.vEnd[property] = this.vEndCache[property];
+          this.vStart[property] = this.vStartCache[property]!;
+          this.vEnd[property] = this.vEndCache[property]!;
         }
         this.inReverse = false;
         return TWEEN_COMPLETE;
@@ -267,15 +282,15 @@ export class TweenData {
       //  If inReverse we're going from vEnd to vStartCache
       const keys = Object.keys(this.vStartCache);
       for (const property of keys) {
-        this.vStart[property] = this.vEndCache[property];
-        this.vEnd[property] = this.vStartCache[property];
+        this.vStart[property] = this.vEndCache[property]!;
+        this.vEnd[property] = this.vStartCache[property]!;
       }
     } else {
       //  If not inReverse we're just repopulating the cache again
       const keys = Object.keys(this.vStartCache);
       for (const property of keys) {
-        this.vStart[property] = this.vStartCache[property];
-        this.vEnd[property] = this.vEndCache[property];
+        this.vStart[property] = this.vStartCache[property]!;
+        this.vEnd[property] = this.vEndCache[property]!;
       }
       //  -1 means repeat forever, otherwise decrement the repeatCounter
       //  We only decrement this counter if the tween isn't doing a yoyo, as that doesn't count towards the repeat total

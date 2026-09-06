@@ -9,17 +9,16 @@ import type { WebGLRenderer } from './renderer.js';
 import type { CanvasRenderer } from '../canvas/renderer.js';
 
 export class RenderTexture extends Texture {
-  [key: string]: any;
   declare public width: number;
   declare public height: number;
   public resolution!: number;
-  declare public frame: any;
-  declare public crop: any;
-  public renderer!: any;
-  public textureBuffer!: any;
-  public render!: any;
-  public projection!: any;
-  declare public valid: any;
+  declare public frame: Rectangle;
+  declare public crop: Rectangle;
+  public renderer!: WebGLRenderer | CanvasRenderer;
+  public textureBuffer!: FilterTexture | CanvasBuffer;
+  public render!: () => void;
+  public projection: Point | null = null;
+  declare public valid: boolean;
   /**
    * Creates a new RenderTexture instance.
    * @param {number} width - The width of the render texture.
@@ -52,17 +51,19 @@ export class RenderTexture extends Texture {
     this.frame = new Rectangle(0, 0, this.width * this.resolution, this.height * this.resolution);
     this.crop = new Rectangle(0, 0, this.width * this.resolution, this.height * this.resolution);
     this.renderer = renderer;
-    if (this.renderer.type === RENDER_WEBGL) {
-      const { gl } = this.renderer;
+    if (renderer.type === RENDER_WEBGL) {
+      const { gl } = renderer as WebGLRenderer;
       this.baseTexture._dirty[gl.id] = false;
-      this.textureBuffer = new FilterTexture(gl, this.width, this.height, this.baseTexture.scaleMode);
-      this.baseTexture._glTextures[gl.id] = this.textureBuffer.texture;
+      const buffer = new FilterTexture(gl, this.width, this.height, this.baseTexture.scaleMode);
+      this.textureBuffer = buffer;
+      this.baseTexture._glTextures[gl.id] = buffer.texture;
       this.render = this.renderWebGL;
       this.projection = new Point(this.width * 0.5, -this.height * 0.5);
     } else {
       this.render = this.renderCanvas;
-      this.textureBuffer = new CanvasBuffer(this.width * this.resolution, this.height * this.resolution);
-      this.baseTexture.source = this.textureBuffer.canvas;
+      const buffer = new CanvasBuffer(this.width * this.resolution, this.height * this.resolution);
+      this.textureBuffer = buffer;
+      this.baseTexture.source = buffer.canvas;
     }
     this.valid = true;
     this._updateUvs();

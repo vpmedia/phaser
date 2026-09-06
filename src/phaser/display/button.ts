@@ -4,6 +4,7 @@ import { Signal } from '../core/signal.js';
 import { Image } from './image.js';
 import type { Game } from '../core/game.js';
 import type { SignalListener } from '../core/signal.js';
+import type { Pointer } from '../core/input_pointer.js';
 
 const STATE_OVER = 'Over';
 const STATE_OUT = 'Out';
@@ -25,7 +26,7 @@ export class Button extends Image {
   public onOverMouseOnly!: boolean;
   public justReleasedPreventsOver!: number;
   public freezeFrames!: boolean;
-  public forceOut!: any;
+  public forceOut!: boolean | number;
   public input!: InputHandler;
   /**
    * Creates a new Button instance.
@@ -208,7 +209,7 @@ export class Button extends Image {
    * @param {object} _sprite - The sprite that triggered the event.
    * @param {object} pointer - The pointer that triggered the event.
    */
-  public onInputOverHandler(_sprite: any, pointer: any): void {
+  public onInputOverHandler(_sprite: Image, pointer: Pointer): void {
     if (pointer.justReleased() && (this.justReleasedPreventsOver & pointer.pointerMode) === pointer.pointerMode) {
       //  If the Pointer was only just released then we don't fire an over event
       return;
@@ -227,7 +228,7 @@ export class Button extends Image {
    * @param {object} _sprite - The sprite that triggered the event.
    * @param {object} pointer - The pointer that triggered the event.
    */
-  public onInputOutHandler(_sprite: any, pointer: any): void {
+  public onInputOutHandler(_sprite: Image, pointer: Pointer): void {
     this.changeStateFrame(STATE_OUT);
     if (this.onInputOut) {
       this.onInputOut.dispatch(this, pointer);
@@ -239,7 +240,7 @@ export class Button extends Image {
    * @param {object} _sprite - The sprite that triggered the event.
    * @param {object} pointer - The pointer that triggered the event.
    */
-  public onInputDownHandler(_sprite: any, pointer: any): void {
+  public onInputDownHandler(_sprite: Image, pointer: Pointer): void {
     this.changeStateFrame(STATE_DOWN);
     if (this.onInputDown) {
       this.onInputDown.dispatch(this, pointer);
@@ -252,14 +253,15 @@ export class Button extends Image {
    * @param {object} pointer - The pointer that triggered the event.
    * @param {boolean} isOver - Whether the pointer is currently over the button (default: true).
    */
-  public onInputUpHandler(_sprite: any, pointer: any, isOver: boolean): void {
+  public onInputUpHandler(_sprite: Image, pointer: Pointer, isOver: boolean): void {
     if (this.onInputUp) {
       this.onInputUp.dispatch(this, pointer, isOver);
     }
     if (this.freezeFrames) {
       return;
     }
-    if (this.forceOut === true || (this.forceOut & pointer.pointerMode) === pointer.pointerMode) {
+    const forcedOutMode = typeof this.forceOut === 'number' ? this.forceOut : 0;
+    if (this.forceOut === true || (forcedOutMode & pointer.pointerMode) === pointer.pointerMode) {
       this.changeStateFrame(STATE_OUT);
     } else {
       const changedUp = this.changeStateFrame(STATE_UP);

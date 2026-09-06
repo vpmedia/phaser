@@ -6,6 +6,7 @@ import { TweenData } from './tween_data.js';
 import type { Game } from './game.js';
 import type { TweenManager } from './tween_manager.js';
 import type { AppliedCallback, Callback, EasingFunction, InterpolationFunction } from './callback.js';
+import type { TweenValues } from './tween_data.js';
 
 export class Tween {
   public game!: Game;
@@ -92,7 +93,7 @@ export class Tween {
    * @returns {Tween} This Tween object for chaining.
    */
   public to(
-    properties: any,
+    properties: TweenValues,
     duration = 1000,
     ease: string | EasingFunction = 'Linear',
     autoStart = false,
@@ -100,13 +101,11 @@ export class Tween {
     repeat = 0,
     yoyo = false
   ): this {
-    if (typeof ease === 'string' && this.manager.easeMap[ease]) {
-      ease = this.manager.easeMap[ease]!;
-    }
+    const easing = this.resolveEasing(ease);
     if (this.isRunning) {
       return this;
     }
-    this.timeline.push(new TweenData(this).to(properties, duration, ease, delay, repeat, yoyo));
+    this.timeline.push(new TweenData(this).to(properties, duration, easing, delay, repeat, yoyo));
     if (autoStart) {
       this.start();
     }
@@ -125,7 +124,7 @@ export class Tween {
    * @returns {Tween} This Tween object for chaining.
    */
   public from(
-    properties: any,
+    properties: TweenValues,
     duration = 1000,
     ease: string | EasingFunction = 'Linear',
     autoStart = false,
@@ -133,14 +132,11 @@ export class Tween {
     repeat = 0,
     yoyo = false
   ): this {
-    if (typeof ease === 'string' && this.manager.easeMap[ease]) {
-      ease = this.manager.easeMap[ease]!;
-    }
     if (this.isRunning) {
       this.game.logger.warn('Tween.from cannot be called after Tween.start');
       return this;
     }
-    this.timeline.push(new TweenData(this).from(properties, duration, ease, delay, repeat, yoyo));
+    this.timeline.push(new TweenData(this).from(properties, duration, this.resolveEasing(ease), delay, repeat, yoyo));
     if (autoStart) {
       this.start();
     }
@@ -281,6 +277,19 @@ export class Tween {
    * Sets the easing function for a timeline entry.
    * @param {string|Function} ease - The easing function to use.
    * @param {number} index - The index in the timeline to apply easing to.
+   * @returns {Tween} This Tween object for chaining.
+   */
+  public resolveEasing(ease: string | EasingFunction): EasingFunction {
+    if (typeof ease !== 'string') {
+      return ease;
+    }
+    return this.manager.easeMap[ease] ?? this.manager.easeMap['Linear']!;
+  }
+
+  /**
+   * Sets the easing function for a tween in the timeline.
+   * @param {string | Function} ease - The easing function or its name.
+   * @param {number} index - The index of the tween in the timeline.
    * @returns {Tween} This Tween object for chaining.
    */
   public easing(ease: string | EasingFunction, index: number): this {
