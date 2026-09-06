@@ -34,8 +34,8 @@
     }
   },
   "dependencies": {
-    "@logtape/logtape": "^2.3.2",
-    "@vpmedia/simplify": "^1.78.0",
+    "@logtape/logtape": "^2.3.3",
+    "@vpmedia/simplify": "^1.79.0",
     "uuid": "^14.0.2"
   },
   "devDependencies": {
@@ -44,7 +44,7 @@
     "@commitlint/types": "^21.2.0",
     "@types/node": "^26.4.1",
     "@vitest/coverage-v8": "^5.0.0",
-    "happy-dom": "^20.13.2",
+    "happy-dom": "^20.14.0",
     "oxfmt": "^0.66.0",
     "oxlint": "^1.81.0",
     "oxlint-tsgolint": "^7.0.2001",
