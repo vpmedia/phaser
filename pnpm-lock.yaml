@@ -9,7 +9,7 @@ importers:
   .:
     dependencies:
       '@logtape/logtape':
-        specifier: 2.3.2
+        specifier: ^2.3.2
         version: 2.3.2
       '@vpmedia/simplify':
         specifier: ^1.78.0
