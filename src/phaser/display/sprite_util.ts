@@ -261,7 +261,7 @@ export const renderCanvas = (
       cw = Math.floor(cw);
       ch = Math.floor(ch);
       renderSession.context.drawImage(
-        target.texture.baseTexture.source,
+        target.texture.baseTexture.source!,
         cx,
         cy,
         cw,

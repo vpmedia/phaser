@@ -337,7 +337,7 @@ export class WebGLSpriteBatch {
       }
     } else {
       // bind the current texture
-      gl.bindTexture(gl.TEXTURE_2D, texture._glTextures[gl.id]);
+      gl.bindTexture(gl.TEXTURE_2D, texture._glTextures[gl.id] ?? null);
     }
     // now draw those suckas!
     gl.drawElements(gl.TRIANGLES, size * 6, gl.UNSIGNED_SHORT, startIndex * 6 * 2);

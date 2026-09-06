@@ -1,50 +1,31 @@
 import { Rectangle } from '../../geom/rectangle.js';
 import type { BaseTexture } from './base_texture.js';
 
+/** The four corners of a texture frame in normalised texture space. */
 export class TextureUvs {
-  public noFrame!: any;
-  public baseTexture!: any;
-  public frame!: any;
-  public trim!: any;
-  public valid!: boolean;
-  public isTiling!: any;
-  public requiresUpdate!: any;
-  public requiresReTint!: any;
-  public _uvs!: any;
-  public width!: number;
-  public height!: number;
-  public crop!: any;
-  public x0: any = 0;
-  public y0: any = 0;
-  public x1: any = 0;
-  public y1: any = 0;
-  public x2: any = 0;
-  public y2!: any;
-  public x3!: any;
-  public y3!: any;
-  /**
-   * Creates a new Texture instance.
-   */
-  public constructor() {
-    this.y2 = 0;
-    this.x3 = 0;
-    this.y3 = 0;
-  }
+  public x0 = 0;
+  public y0 = 0;
+  public x1 = 0;
+  public y1 = 0;
+  public x2 = 0;
+  public y2 = 0;
+  public x3 = 0;
+  public y3 = 0;
 }
 
 export class Texture {
-  public noFrame: any = false;
-  public baseTexture!: any;
-  public frame!: any;
-  public trim!: any;
+  public noFrame = false;
+  public baseTexture!: BaseTexture;
+  public frame!: Rectangle;
+  public trim!: Rectangle | null;
   public valid!: boolean;
-  public isTiling!: any;
-  public requiresUpdate!: any;
-  public requiresReTint!: any;
-  public _uvs!: any;
+  public isTiling!: boolean;
+  public requiresUpdate!: boolean;
+  public requiresReTint!: boolean;
+  public _uvs!: TextureUvs | null;
   public width!: number;
   public height!: number;
-  public crop!: any;
+  public crop!: Rectangle;
   /**
    * Creates a new Texture instance.
    * @param {BaseTexture} baseTexture - The base texture to use.
@@ -143,7 +124,7 @@ export class Texture {
       this.valid = false;
       return;
     }
-    this.valid = frame && frame.width && frame.height && this.baseTexture.source && this.baseTexture.hasLoaded;
+    this.valid = Boolean(frame && frame.width && frame.height && this.baseTexture.source && this.baseTexture.hasLoaded);
     if (this.trim) {
       this.width = this.trim.width;
       this.height = this.trim.height;

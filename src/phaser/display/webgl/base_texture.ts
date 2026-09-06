@@ -1,24 +1,27 @@
+/** What a base texture is uploaded from: a loaded image or a canvas the engine drew into. */
+export type TextureSource = HTMLImageElement | HTMLCanvasElement;
+
 import { removeByCanvas } from '../canvas/pool.js';
 
 export class BaseTexture {
   public resolution: number = 1;
   public width: number = 100;
   public height: number = 100;
-  public scaleMode!: any;
-  public hasLoaded!: any;
-  public source!: any;
-  public premultipliedAlpha!: any;
-  public _glTextures!: any;
-  public mipmap!: any;
-  public skipRender!: any;
-  public _powerOf2!: any;
-  public _dirty!: any;
+  public scaleMode!: number;
+  public hasLoaded!: boolean;
+  public source!: TextureSource | null;
+  public premultipliedAlpha!: boolean;
+  public _glTextures!: (WebGLTexture | null)[];
+  public mipmap!: boolean;
+  public skipRender!: boolean;
+  public _powerOf2!: boolean;
+  public _dirty!: boolean[];
   /**
    * Updates the base texture with a new source.
    * @param {HTMLCanvasElement} source - The new canvas element to use as the texture source.
    * @param {number} [scaleMode] - The scale mode to use for the texture.
    */
-  public constructor(source: any, scaleMode?: any) {
+  public constructor(source: TextureSource | null, scaleMode?: number) {
     this.scaleMode = scaleMode ?? globalThis.PhaserRegistry.TEXTURE_SCALE_MODE;
     this.hasLoaded = false;
     this.source = source;
@@ -29,10 +32,11 @@ export class BaseTexture {
     this._powerOf2 = false;
     this._dirty = [true, true, true, true];
     if (source) {
-      if ((this.source.complete || this.source.getContext) && this.source.width && this.source.height) {
+      const loaded = source instanceof HTMLImageElement ? source.complete : true;
+      if (loaded && source.width && source.height) {
         this.hasLoaded = true;
-        this.width = this.source.naturalWidth ?? this.source.width;
-        this.height = this.source.naturalHeight ?? this.source.height;
+        this.width = source instanceof HTMLImageElement ? source.naturalWidth : source.width;
+        this.height = source instanceof HTMLImageElement ? source.naturalHeight : source.height;
         this.dirty();
       }
     }
@@ -54,7 +58,7 @@ export class BaseTexture {
    * Destroys the texture.
    */
   public destroy(): void {
-    if (this.source) {
+    if (this.source instanceof HTMLCanvasElement) {
       removeByCanvas(this.source);
     }
     this.source = null;

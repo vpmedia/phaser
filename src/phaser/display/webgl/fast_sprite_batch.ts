@@ -128,7 +128,7 @@ export class FastSpriteBatch {
         return;
       }
     }
-    const uvs = sprite.texture._uvs;
+    const uvs = sprite.texture._uvs!;
     const { vertices } = this;
     // const width = sprite.texture.frame.width;
     // const height = sprite.texture.frame.height;

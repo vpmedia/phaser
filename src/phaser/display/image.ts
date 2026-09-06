@@ -204,12 +204,12 @@ export class Image extends DisplayObject {
         this.texture.trim.width = frame.sourceSizeW;
         this.texture.trim.height = frame.sourceSizeH;
       } else {
-        this.texture.trim = {
-          x: frame.spriteSourceSizeX,
-          y: frame.spriteSourceSizeY,
-          width: frame.sourceSizeW,
-          height: frame.sourceSizeH,
-        };
+        this.texture.trim = new Rectangle(
+          frame.spriteSourceSizeX,
+          frame.spriteSourceSizeY,
+          frame.sourceSizeW,
+          frame.sourceSizeH
+        );
       }
       this.texture.width = frame.sourceSizeW;
       this.texture.height = frame.sourceSizeH;
