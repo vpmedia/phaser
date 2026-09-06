@@ -111,7 +111,10 @@ export const checkFullScreenSupport = (device: Device): void => {
       }
     }
     // ALLOW_KEYBOARD_INPUT is a legacy webkit fullscreen flag, absent from lib.dom
-    if ((Element as unknown as { ALLOW_KEYBOARD_INPUT?: number }).ALLOW_KEYBOARD_INPUT !== undefined) {
+    if (
+      (globalThis.Element as typeof Element | undefined) &&
+      (Element as unknown as { ALLOW_KEYBOARD_INPUT?: number }).ALLOW_KEYBOARD_INPUT !== undefined
+    ) {
       device.fullscreenKeyboard = true;
     }
   }

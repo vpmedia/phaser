@@ -443,8 +443,9 @@ export class Input {
     }
     this.getLocalPosition(displayObject, pointer, this._localPoint);
     localPoint.copyFrom(this._localPoint);
-    if (displayObject.hitArea !== null) {
-      return displayObject.hitArea.contains(this._localPoint.x, this._localPoint.y);
+    const { hitArea } = displayObject;
+    if (hitArea && (hitArea.contains as ((x: number, y: number) => boolean) | undefined)) {
+      return hitArea.contains(this._localPoint.x, this._localPoint.y);
     } else if (displayObject instanceof Image) {
       const { width } = displayObject.texture.frame;
       const { height } = displayObject.texture.frame;

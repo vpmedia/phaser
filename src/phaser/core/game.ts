@@ -278,6 +278,11 @@ export class Game {
     this.parseConfigElement(config, 'renderType', RENDER_AUTO);
     this.parseConfigElement(config, 'isForceDisabledAudio', false);
     this.parseConfigElement(config, 'maxParallelDownloads', 16);
+    this.parseConfigElement(config, 'canvas');
+    this.parseConfigElement(config, 'isSkipTicker');
+    this.parseConfigElement(config, 'scaleMode');
+    this.parseConfigElement(config, 'fullScreenScaleMode');
+    this.parseConfigElement(config, 'fullScreenTarget');
     if (config.parent !== undefined) {
       this.parent = config.parent;
     }

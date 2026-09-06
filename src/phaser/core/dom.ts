@@ -232,7 +232,8 @@ export class DOM {
    */
   public getBounds(element: HTMLCanvasElement, cushion = 0): CalibratedBounds | false {
     // a jQuery-style wrapper was accepted here historically, so unwrap the first entry of one
-    const target = element.nodeType === undefined ? (element as unknown as HTMLCanvasElement[])[0] : element;
+    const wrapped = element as HTMLCanvasElement | undefined;
+    const target = wrapped && !wrapped.nodeType ? (element as unknown as HTMLCanvasElement[])[0] : wrapped;
     if (target?.nodeType !== 1) {
       return false;
     }

@@ -453,7 +453,7 @@ export class ScaleManager {
     }
     this.bounds.setTo(this.offset.x, this.offset.y, this.width, this.height);
     // Can be invoked in boot pre-input
-    if (this.game.input as Input | undefined) {
+    if ((this.game.input as Input | undefined)?.scale) {
       this.game.input.scale.setTo(this.scaleFactor.x, this.scaleFactor.y);
     }
   }

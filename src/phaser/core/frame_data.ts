@@ -56,7 +56,7 @@ export class FrameData {
     output: number[] | null = null
   ): number[] {
     const result = output ?? [];
-    if (frames.length > 0) {
+    if (((frames as (string | number)[] | undefined)?.length ?? 0) > 0) {
       for (const f of frames) {
         if (useNumericIndex && this._frames[f as number]) {
           result.push(this._frames[f as number]!.index);
