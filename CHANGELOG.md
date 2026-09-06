@@ -1,3 +1,13 @@
+## [1.119.0] - 2026-09-06
+
+### 🚜 Refactor
+
+- *(types)* Describe the game config and the scene manager states
+
+### ⚙️ Miscellaneous Tasks
+
+- Release
+- *(release)* V1.119.0
 ## [1.118.0] - 2026-09-06
 
 ### 🚜 Refactor
