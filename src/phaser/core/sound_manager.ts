@@ -73,7 +73,7 @@ export class SoundManager {
       setAudioDisabledState();
       return;
     }
-    if (globalThis.AudioContext) {
+    if (globalThis.AudioContext as typeof AudioContext | undefined) {
       try {
         this.game.logger.info('initAudioContext');
         this.context = new globalThis.AudioContext();
@@ -317,7 +317,7 @@ export class SoundManager {
     this._watchList.reset();
     for (const file of candidates) {
       const key = file instanceof Sound ? file.key : file;
-      if (!this.game.cache.isSoundDecoded(key)) {
+      if (this.game.cache.isSoundDecoded(key) !== true) {
         this._watchList.add(key);
       }
     }
@@ -344,8 +344,8 @@ export class SoundManager {
     }
     if (this._watching) {
       let key = this._watchList.first;
-      while (key) {
-        if (this.game.cache.isSoundDecoded(key)) {
+      while (key !== null) {
+        if (this.game.cache.isSoundDecoded(key) === true) {
           this._watchList.remove(key);
         }
         key = this._watchList.next;

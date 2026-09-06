@@ -116,7 +116,7 @@ export class Sound {
         : this.context!.createGain();
     this.gainNode = gainNode;
     gainNode.gain.value = volume * this.game.sound.volume;
-    if (connectToMaster && this.masterGainNode) {
+    if (connectToMaster && this.masterGainNode !== null) {
       gainNode.connect(this.masterGainNode);
     }
     this.onPlay = new Signal();
@@ -193,7 +193,7 @@ export class Sound {
     }
     if (this.externalNode) {
       this._sound.disconnect(this.externalNode);
-    } else if (this.gainNode) {
+    } else if (this.gainNode as GainNode | undefined) {
       this._sound.disconnect(this.gainNode);
     }
     if (this._removeFromSoundManager) {
@@ -276,7 +276,8 @@ export class Sound {
       //  Use Restart instead
       return this;
     }
-    if (this._sound && this.isPlaying && !this.allowMultiple && (this.override || forceRestart)) {
+    const source = this._sound as AudioBufferSourceNode | undefined;
+    if (source && this.isPlaying && !this.allowMultiple && (this.override || forceRestart)) {
       if (this._sound.stop === undefined) {
         (this._sound as unknown as LegacyBufferSource).noteOff(0);
       } else {
@@ -284,7 +285,7 @@ export class Sound {
       }
       if (this.externalNode) {
         this._sound.disconnect(this.externalNode);
-      } else if (this.gainNode) {
+      } else if (this.gainNode as GainNode | undefined) {
         this._sound.disconnect(this.gainNode);
       }
       this.isPlaying = false;
@@ -330,7 +331,7 @@ export class Sound {
       this._tempLoop = loop;
     }
     //  Does the sound need decoding?
-    if (this.game.cache.isSoundDecoded(this.key)) {
+    if (this.game.cache.isSoundDecoded(this.key) === true) {
       this._sound = this.context!.createBufferSource();
       if (this.externalNode) {
         this._sound.connect(this.externalNode);
@@ -387,7 +388,7 @@ export class Sound {
    * Pauses the sound.
    */
   public pause(): void {
-    if (this.isPlaying && this._sound) {
+    if (this.isPlaying && (this._sound as AudioBufferSourceNode | undefined)) {
       this.paused = true;
       this.pausedPosition = this.currentTime;
       this.pausedTime = this.game.time.time;
@@ -401,7 +402,7 @@ export class Sound {
    * Resumes the sound.
    */
   public resume(): void {
-    if (this.paused && this._sound) {
+    if (this.paused && (this._sound as AudioBufferSourceNode | undefined)) {
       const p = Math.max(0, this.position + this.pausedPosition / 1000);
       this._sound = this.context!.createBufferSource();
       this._sound.buffer = this._buffer;
@@ -433,7 +434,7 @@ export class Sound {
    * Stops the sound.
    */
   public stop(): void {
-    if (this.isPlaying && this._sound) {
+    if (this.isPlaying && (this._sound as AudioBufferSourceNode | undefined)) {
       if (this._sound.stop === undefined) {
         (this._sound as unknown as LegacyBufferSource).noteOff(0);
       } else {
@@ -441,7 +442,7 @@ export class Sound {
       }
       if (this.externalNode) {
         this._sound.disconnect(this.externalNode);
-      } else if (this.gainNode) {
+      } else if (this.gainNode as GainNode | undefined) {
         this._sound.disconnect(this.gainNode);
       }
     }

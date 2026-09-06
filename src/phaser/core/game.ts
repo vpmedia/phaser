@@ -165,10 +165,10 @@ export class Game {
     this.input.boot();
     this.sound.boot();
     this.state.boot();
-    if (window.focus) {
+    if (typeof window.focus === 'function') {
       window.focus();
     }
-    if (!this.config.isSkipTicker) {
+    if (this.config.isSkipTicker !== true) {
       this.raf = new RequestAnimationFrame(this);
       this.raf.start();
     }
@@ -180,7 +180,7 @@ export class Game {
    */
   public createRendererCanvas(): void {
     this.logger.info('createRendererCanvas');
-    if (this.canvas) {
+    if (this.canvas as HTMLCanvasElement | undefined) {
       removeFromDOM(this.canvas);
     }
     this.canvas = this.config.canvas ?? create(this, this.width, this.height, this.config.canvasID, true);
@@ -212,10 +212,10 @@ export class Game {
         isWebGlReady = true;
       } catch (error) {
         isWebGlReady = false;
-        if (globalThis.PhaserRegistry?.GL_PROGRAM_INFO_LOG) {
+        if (globalThis.PhaserRegistry?.GL_PROGRAM_INFO_LOG != null) {
           this.logger.warn('WebGL program info', { log: globalThis.PhaserRegistry.GL_PROGRAM_INFO_LOG });
         }
-        if (globalThis.PhaserRegistry?.GL_SHADER_INFO_LOG) {
+        if (globalThis.PhaserRegistry?.GL_SHADER_INFO_LOG != null) {
           this.logger.warn('WebGL shader info', { log: globalThis.PhaserRegistry.GL_SHADER_INFO_LOG });
         }
         const typedError = error instanceof Error ? error : new Error(String(error));
@@ -229,7 +229,7 @@ export class Game {
       if (this.contextRestoredBinded) {
         this.canvas.removeEventListener('webglcontextlost', this.contextRestoredBinded, false);
       }
-      if (this.renderer) {
+      if (this.renderer as CanvasRenderer | WebGLRenderer | undefined) {
         this.renderer.destroy();
       }
       this.createRendererCanvas();
@@ -278,7 +278,7 @@ export class Game {
     this.parseConfigElement(config, 'renderType', RENDER_AUTO);
     this.parseConfigElement(config, 'isForceDisabledAudio', false);
     this.parseConfigElement(config, 'maxParallelDownloads', 16);
-    if (config.parent) {
+    if (config.parent !== undefined) {
       this.parent = config.parent;
     }
     this.state = new SceneManager(this, config.state ?? null);
@@ -291,7 +291,7 @@ export class Game {
   public contextLost(event: Event): void {
     this.logger.info('contextLost', { type: event.type });
     event.preventDefault();
-    if (this.renderer) {
+    if (this.renderer as CanvasRenderer | WebGLRenderer | undefined) {
       this.renderer.contextLost = true;
     }
   }
@@ -302,7 +302,7 @@ export class Game {
    */
   public contextRestored(event: Event): void {
     this.logger.info('contextRestored', { type: event.type });
-    if (this.renderer) {
+    if (this.renderer as CanvasRenderer | WebGLRenderer | undefined) {
       this.renderer.initContext(this);
       // This.cache.clearGLTextures();
       this.renderer.contextLost = false;
@@ -340,10 +340,10 @@ export class Game {
     this.logger.info('destroy');
     this.isPaused = true;
 
-    if (!this.cache) {
+    if (!(this.cache as Cache | undefined)) {
       return;
     }
-    if (this.raf) {
+    if (this.raf as RequestAnimationFrame | undefined) {
       this.raf.stop();
     }
 
@@ -354,7 +354,7 @@ export class Game {
     this.stage.destroy();
     this.input.destroy();
 
-    if (this.canvas) {
+    if (this.canvas as HTMLCanvasElement | undefined) {
       if (this.contextLostBinded) {
         this.canvas.removeEventListener('webglcontextlost', this.contextLostBinded, false);
       }

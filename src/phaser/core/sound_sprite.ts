@@ -38,7 +38,7 @@ export class SoundSprite {
       sound.addMarker(markerKey, marker.start, marker.end - marker.start, undefined, marker.loop);
       this.sounds[markerKey] = sound;
     }
-    if (this.config.autoplay) {
+    if (this.config.autoplay !== undefined) {
       this.autoplayKey = this.config.autoplay;
       this.play(this.autoplayKey);
       this.autoplay = this.sounds[this.autoplayKey]!;

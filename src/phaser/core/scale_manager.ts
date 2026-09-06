@@ -159,7 +159,7 @@ export class ScaleManager {
     this._lastReportedCanvasSize = new Rectangle();
     this._lastReportedGameSize = new Rectangle();
     this._booted = false;
-    if (game.config) {
+    if (game.config as GameConfig | undefined) {
       this.parseConfig(game.config);
     }
     this.setupScale(width, height);
@@ -249,7 +249,7 @@ export class ScaleManager {
       if (typeof this.game.parent === 'string') {
         // hopefully an element ID
         target = document.querySelector<HTMLElement>(`#${CSS.escape(this.game.parent)}`);
-      } else if (this.game.parent && this.game.parent.nodeType === 1) {
+      } else if (typeof this.game.parent === 'object' && this.game.parent.nodeType === 1) {
         // quick test for a HTMLelement
         target = this.game.parent;
       }
@@ -447,12 +447,12 @@ export class ScaleManager {
     this.scaleFactorInversed.y = this.height / this.game.height;
     this.aspectRatio = this.width / this.height;
     // This can be invoked in boot pre-canvas
-    if (this.game.canvas) {
+    if (this.game.canvas as HTMLCanvasElement | undefined) {
       this.dom.getOffset(this.game.canvas, this.offset);
     }
     this.bounds.setTo(this.offset.x, this.offset.y, this.width, this.height);
     // Can be invoked in boot pre-input
-    if (this.game.input && this.game.input.scale) {
+    if (this.game.input?.scale) {
       this.game.input.scale.setTo(this.scaleFactor.x, this.scaleFactor.y);
     }
   }
@@ -579,7 +579,7 @@ export class ScaleManager {
    * @returns {Rectangle} TBD.
    */
   public getParentBounds(target: Rectangle): Rectangle {
-    const bounds = target || new Rectangle();
+    const bounds = target ?? new Rectangle();
     const parentNode = this.boundingParent;
     const { visualBounds } = this.dom;
     const { layoutBounds } = this.dom;
@@ -757,10 +757,10 @@ export class ScaleManager {
       // Max/min not honored fullscreen
       return;
     }
-    if (this.maxWidth) {
+    if (this.maxWidth !== null) {
       this.width = Math.min(this.width, this.maxWidth);
     }
-    if (this.maxHeight) {
+    if (this.maxHeight !== null) {
       this.height = Math.min(this.height, this.maxHeight);
     }
   }
@@ -796,7 +796,7 @@ export class ScaleManager {
     }
     if (this.compatibility.clickTrampoline === 'when-not-mouse') {
       const { input } = this.game;
-      if (input.activePointer && input.activePointer !== input.mousePointer && allowTrampoline) {
+      if (input.activePointer !== null && input.activePointer !== input.mousePointer && allowTrampoline) {
         input.activePointer.addClickTrampoline('startFullScreen', this.startFullScreen, this, [antialias, false]);
         return false;
       }
@@ -953,7 +953,7 @@ export class ScaleManager {
     if (this.parentIsWindow || (this.isFullScreen && this.hasPhaserSetFullScreen && !this._createdFullScreenTarget)) {
       return null;
     }
-    const parentNode = this.game.canvas ? (this.game.canvas.parentNode as HTMLElement | null) : null;
+    const parentNode = (this.game.canvas.parentNode as HTMLElement | null) ?? null;
     return parentNode ?? null;
   }
 

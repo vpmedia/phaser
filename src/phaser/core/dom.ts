@@ -17,7 +17,7 @@ class VisualBoundsDesktopRectangle {
    * @returns {number} The horizontal scroll position in pixels.
    */
   public get x(): number {
-    return globalThis && 'pageXOffset' in globalThis ? window.pageXOffset : document.documentElement.scrollLeft;
+    return 'pageXOffset' in globalThis ? window.pageXOffset : document.documentElement.scrollLeft;
   }
 
   /**
@@ -25,7 +25,7 @@ class VisualBoundsDesktopRectangle {
    * @returns {number} The vertical scroll position in pixels.
    */
   public get y(): number {
-    return globalThis && 'pageYOffset' in globalThis ? window.pageYOffset : document.documentElement.scrollTop;
+    return 'pageYOffset' in globalThis ? window.pageYOffset : document.documentElement.scrollTop;
   }
 
   /**
@@ -81,7 +81,7 @@ class VisualBoundsRectangle {
    * @returns {number} The horizontal scroll position in pixels.
    */
   public get x(): number {
-    return globalThis && 'pageXOffset' in globalThis ? window.pageXOffset : document.documentElement.scrollLeft;
+    return 'pageXOffset' in globalThis ? window.pageXOffset : document.documentElement.scrollLeft;
   }
 
   /**
@@ -89,7 +89,7 @@ class VisualBoundsRectangle {
    * @returns {number} The vertical scroll position in pixels.
    */
   public get y(): number {
-    return globalThis && 'pageYOffset' in globalThis ? window.pageYOffset : document.documentElement.scrollTop;
+    return 'pageYOffset' in globalThis ? window.pageYOffset : document.documentElement.scrollTop;
   }
 
   /**
@@ -199,11 +199,11 @@ export class DOM {
     this.layoutBounds = this.treatAsDesktop ? new LayoutBoundsDesktopRectangle() : new LayoutBoundsRectangle();
     this.documentBounds = new DocumentBoundsRectangle();
     this.scrollXProvider =
-      globalThis && 'pageXOffset' in globalThis
+      'pageXOffset' in globalThis
         ? (): number => window.pageXOffset
         : (): number => document.documentElement.scrollLeft;
     this.scrollYProvider =
-      globalThis && 'pageYOffset' in globalThis
+      'pageYOffset' in globalThis
         ? (): number => window.pageYOffset
         : (): number => document.documentElement.scrollTop;
   }
@@ -234,7 +234,7 @@ export class DOM {
    */
   public getBounds(element: HTMLCanvasElement, cushion = 0): CalibratedBounds | false {
     // a jQuery-style wrapper was accepted here historically, so unwrap the first entry of one
-    const target = element && !element.nodeType ? (element as unknown as HTMLCanvasElement[])[0] : element;
+    const target = element.nodeType === undefined ? (element as unknown as HTMLCanvasElement[])[0] : element;
     if (target?.nodeType !== 1) {
       return false;
     }
@@ -267,15 +267,20 @@ export class DOM {
    * @returns {string} The screen orientation ('portrait-primary', 'landscape-primary', etc.).
    */
   public getScreenOrientation(primaryFallback: string | null = null): OrientationType {
-    const { screen } = globalThis;
-    // @ts-expect-error the prefixed orientation properties predate the standard one and are absent from lib.dom
-    const orientation = screen.orientation || screen.mozOrientation || screen.msOrientation;
-    if (orientation && typeof orientation.type === 'string') {
+    // the prefixed orientation properties predate the standard one and are absent from lib.dom
+    const screen = globalThis.screen as Screen & {
+      mozOrientation?: string;
+      msOrientation?: string;
+    };
+    const orientation: ScreenOrientation | string | undefined =
+      screen.orientation ?? screen.mozOrientation ?? screen.msOrientation;
+    if (typeof orientation === 'string') {
+      // moz/ms-orientation are strings
+      return orientation as OrientationType;
+    }
+    if (typeof orientation?.type === 'string') {
       // Screen Orientation API specification
       return orientation.type;
-    } else if (typeof orientation === 'string') {
-      // moz/ms-orientation are strings
-      return orientation;
     }
     const PORTRAIT = 'portrait-primary';
     const LANDSCAPE = 'landscape-primary';
@@ -289,7 +294,7 @@ export class DOM {
     if (primaryFallback === 'window.orientation' && typeof legacyOrientation === 'number') {
       // This may change by device based on "natural" orientation.
       return legacyOrientation === 0 || legacyOrientation === 180 ? PORTRAIT : LANDSCAPE;
-    } else if (globalThis.matchMedia) {
+    } else if (typeof globalThis.matchMedia === 'function') {
       if (globalThis.matchMedia('(orientation: portrait)').matches) {
         return PORTRAIT;
       } else if (globalThis.matchMedia('(orientation: landscape)').matches) {
