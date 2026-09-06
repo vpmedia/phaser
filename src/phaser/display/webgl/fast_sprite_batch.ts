@@ -1,20 +1,21 @@
+import type { BaseTexture } from './base_texture.js';
 import type { IdentifiedWebGLRenderingContext } from './util.js';
 import type { Image } from '../../display/image.js';
 import type { RenderSession } from '../render_session.js';
 
 export class FastSpriteBatch {
-  public gl!: any;
-  public vertSize: any = 10;
-  public maxSize: any = 6e3;
-  public size!: any;
-  public vertices!: any;
-  public indices!: any;
-  public vertexBuffer!: any;
-  public indexBuffer!: any;
-  public lastIndexCount!: any;
-  public drawing!: any;
-  public currentBatchSize!: any;
-  public currentBaseTexture!: any;
+  public gl!: IdentifiedWebGLRenderingContext;
+  public vertSize = 10;
+  public maxSize = 6e3;
+  public size!: number;
+  public vertices!: Float32Array;
+  public indices!: Uint16Array;
+  public vertexBuffer!: WebGLBuffer | null;
+  public indexBuffer!: WebGLBuffer | null;
+  public lastIndexCount!: number;
+  public drawing!: boolean;
+  public currentBatchSize!: number;
+  public currentBaseTexture!: BaseTexture | null;
   public currentBlendMode!: any;
   public renderSession!: RenderSession;
   public shader!: any;
@@ -229,10 +230,11 @@ export class FastSpriteBatch {
     }
     const { gl } = this;
     // bind the current texture
-    if (!this.currentBaseTexture._glTextures[gl.id]) {
-      this.renderSession.renderer.updateTexture(this.currentBaseTexture);
+    const baseTexture = this.currentBaseTexture!;
+    if (!baseTexture._glTextures[gl.id]) {
+      this.renderSession.renderer.updateTexture(baseTexture);
     }
-    gl.bindTexture(gl.TEXTURE_2D, this.currentBaseTexture._glTextures[gl.id]);
+    gl.bindTexture(gl.TEXTURE_2D, baseTexture._glTextures[gl.id] ?? null);
     // upload the verts to the buffer
     if (this.currentBatchSize > this.size * 0.5) {
       gl.bufferSubData(gl.ARRAY_BUFFER, 0, this.vertices);

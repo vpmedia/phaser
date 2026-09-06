@@ -1,3 +1,5 @@
+import type { GraphicsData as DisplayGraphicsData } from '../graphics_data.js';
+import type { GraphicsWebGLBucket } from '../graphics.js';
 import { Point } from '../../geom/point.js';
 import { hex2rgb } from '../../util/math.js';
 import { triangulate } from './earcut.js';
@@ -35,14 +37,14 @@ export const getGraphicsDataPool = () => {
  * @param {number} type - The type of graphics data to create.
  * @returns {object} The newly created graphics data object.
  */
-export const switchMode = (webGL: any, type: number) => {
+export const switchMode = (webGL: GraphicsWebGLBucket, type: number) => {
   let webGLData;
   if (webGL.data.length === 0) {
     webGLData = getGraphicsDataPool().pop() ?? new GraphicsData(webGL.gl);
     webGLData.mode = type;
     webGL.data.push(webGLData);
   } else {
-    webGLData = webGL.data.at(-1);
+    webGLData = webGL.data.at(-1)!;
     if (webGLData.mode !== type || type === 1) {
       webGLData = getGraphicsDataPool().pop() ?? new GraphicsData(webGL.gl);
       webGLData.mode = type;
@@ -58,7 +60,7 @@ export const switchMode = (webGL: any, type: number) => {
  * @param {object} graphicsData - The graphics data to update.
  * @param {GraphicsData} webGLData - The WebGL graphics data object.
  */
-export const buildLine = (graphicsData: any, webGLData: GraphicsData): void => {
+export const buildLine = (graphicsData: DisplayGraphicsData, webGLData: GraphicsData): void => {
   // TODO OPTIMISE!
   let i = 0;
   let { points } = graphicsData;
@@ -68,7 +70,7 @@ export const buildLine = (graphicsData: any, webGLData: GraphicsData): void => {
   // if the line width is an odd number add 0.5 to align to a whole pixel
   if (graphicsData.lineWidth % 2) {
     for (i = 0; i < points.length; i += 1) {
-      points[i] += 0.5;
+      points[i]! += 0.5;
     }
   }
   // get first and last point.. figure out the middle!
@@ -122,10 +124,10 @@ export const buildLine = (graphicsData: any, webGLData: GraphicsData): void => {
   let denom;
   let pdist;
   let dist;
-  p1x = points[0];
-  p1y = points[1];
-  p2x = points[2];
-  p2y = points[3];
+  p1x = points[0]!;
+  p1y = points[1]!;
+  p2x = points[2]!;
+  p2y = points[3]!;
   perpx = -(p1y - p2y);
   perpy = p1x - p2x;
   dist = Math.sqrt(perpx * perpx + perpy * perpy);
@@ -137,12 +139,12 @@ export const buildLine = (graphicsData: any, webGLData: GraphicsData): void => {
   verts.push(p1x - perpx, p1y - perpy, r, g, b, alpha);
   verts.push(p1x + perpx, p1y + perpy, r, g, b, alpha);
   for (i = 1; i < length - 1; i += 1) {
-    p1x = points[(i - 1) * 2];
-    p1y = points[(i - 1) * 2 + 1];
-    p2x = points[i * 2];
-    p2y = points[i * 2 + 1];
-    p3x = points[(i + 1) * 2];
-    p3y = points[(i + 1) * 2 + 1];
+    p1x = points[(i - 1) * 2]!;
+    p1y = points[(i - 1) * 2 + 1]!;
+    p2x = points[i * 2]!;
+    p2y = points[i * 2 + 1]!;
+    p3x = points[(i + 1) * 2]!;
+    p3y = points[(i + 1) * 2 + 1]!;
     perpx = -(p1y - p2y);
     perpy = p1x - p2x;
     dist = Math.sqrt(perpx * perpx + perpy * perpy);
@@ -195,10 +197,10 @@ export const buildLine = (graphicsData: any, webGLData: GraphicsData): void => {
       verts.push(r, g, b, alpha);
     }
   }
-  p1x = points[(length - 2) * 2];
-  p1y = points[(length - 2) * 2 + 1];
-  p2x = points[(length - 1) * 2];
-  p2y = points[(length - 1) * 2 + 1];
+  p1x = points[(length - 2) * 2]!;
+  p1y = points[(length - 2) * 2 + 1]!;
+  p2x = points[(length - 1) * 2]!;
+  p2y = points[(length - 1) * 2 + 1]!;
   perpx = -(p1y - p2y);
   perpy = p1x - p2x;
   dist = Math.sqrt(perpx * perpx + perpy * perpy);
@@ -223,18 +225,18 @@ export const buildLine = (graphicsData: any, webGLData: GraphicsData): void => {
  * @param {object} graphicsData - The graphics data to update.
  * @param {GraphicsData} webGLData - The WebGL graphics data object.
  */
-export const buildRectangle = (graphicsData: any, webGLData: GraphicsData): void => {
+export const buildRectangle = (graphicsData: DisplayGraphicsData, webGLData: GraphicsData): void => {
   //
   // need to convert points to a nice regular data
   //
-  const rectData = graphicsData.shape;
+  const rectData = graphicsData.shape as Rectangle;
   const { x } = rectData;
   const { y } = rectData;
   const { width } = rectData;
   const { height } = rectData;
 
   if (graphicsData.fill) {
-    const color = hex2rgb(graphicsData.fillColor);
+    const color = hex2rgb(graphicsData.fillColor ?? 0);
     const alpha = graphicsData.fillAlpha;
     const r = color[0] * alpha;
     const g = color[1] * alpha;
@@ -313,8 +315,8 @@ export const quadraticBezierCurve = (
  * @param {object} graphicsData - The graphics data to update.
  * @param {GraphicsData} webGLData - The WebGL graphics data object.
  */
-export const buildRoundedRectangle = (graphicsData: any, webGLData: GraphicsData): void => {
-  const rrectData = graphicsData.shape;
+export const buildRoundedRectangle = (graphicsData: DisplayGraphicsData, webGLData: GraphicsData): void => {
+  const rrectData = graphicsData.shape as RoundedRectangle;
   const { x } = rrectData;
   const { y } = rrectData;
   const { width } = rrectData;
@@ -329,7 +331,7 @@ export const buildRoundedRectangle = (graphicsData: any, webGLData: GraphicsData
   recPoints = recPoints.concat(quadraticBezierCurve(x + width, y + radius, x + width, y, x + width - radius, y));
   recPoints = recPoints.concat(quadraticBezierCurve(x + radius, y, x, y, x, y + radius));
   if (graphicsData.fill) {
-    const color = hex2rgb(graphicsData.fillColor);
+    const color = hex2rgb(graphicsData.fillColor ?? 0);
     const alpha = graphicsData.fillAlpha;
     const r = color[0] * alpha;
     const g = color[1] * alpha;
@@ -347,7 +349,7 @@ export const buildRoundedRectangle = (graphicsData: any, webGLData: GraphicsData
     }
     for (let i = 0; i < recPoints.length; i += 2) {
       // TODO verify
-      verts.push(recPoints[i], recPoints[i + 1], r, g, b, alpha);
+      verts.push(recPoints[i]!, recPoints[i + 1]!, r, g, b, alpha);
     }
   }
   if (graphicsData.lineWidth) {
@@ -363,15 +365,15 @@ export const buildRoundedRectangle = (graphicsData: any, webGLData: GraphicsData
  * @param {object} graphicsData - The graphics data to update.
  * @param {GraphicsData} webGLData - The WebGL graphics data object.
  */
-export const buildCircle = (graphicsData: any, webGLData: GraphicsData): void => {
+export const buildCircle = (graphicsData: DisplayGraphicsData, webGLData: GraphicsData): void => {
   // need to convert points to a nice regular data
-  const circleData = graphicsData.shape;
+  const circleData = graphicsData.shape as Circle | Ellipse;
   const { x } = circleData;
   const { y } = circleData;
   let width;
   let height;
   // TODO - bit hacky??
-  if (graphicsData.shape instanceof Circle) {
+  if (circleData instanceof Circle) {
     width = circleData.radius;
     height = circleData.radius;
   } else {
@@ -381,7 +383,7 @@ export const buildCircle = (graphicsData: any, webGLData: GraphicsData): void =>
   const totalSegs = 40;
   const seg = (Math.PI * 2) / totalSegs;
   if (graphicsData.fill) {
-    const color = hex2rgb(graphicsData.fillColor);
+    const color = hex2rgb(graphicsData.fillColor ?? 0);
     const alpha = graphicsData.fillAlpha;
     const r = color[0] * alpha;
     const g = color[1] * alpha;
@@ -414,7 +416,7 @@ export const buildCircle = (graphicsData: any, webGLData: GraphicsData): void =>
  * @param {object} graphicsData - The graphics data to update.
  * @param {GraphicsData} webGLData - The WebGL graphics data object.
  */
-export const buildComplexPoly = (graphicsData: any, webGLData: GraphicsData): void => {
+export const buildComplexPoly = (graphicsData: DisplayGraphicsData, webGLData: GraphicsData): void => {
   // TODO - no need to copy this as it gets turned into a Float32Array anyways..
   const points = [...graphicsData.points];
   if (points.length < 6) {
@@ -424,7 +426,7 @@ export const buildComplexPoly = (graphicsData: any, webGLData: GraphicsData): vo
   const { indices } = webGLData;
   webGLData.points = points;
   webGLData.alpha = graphicsData.fillAlpha;
-  webGLData.color = hex2rgb(graphicsData.fillColor);
+  webGLData.color = hex2rgb(graphicsData.fillColor ?? 0);
   /*
    calculate the bounds..
    */
@@ -436,8 +438,8 @@ export const buildComplexPoly = (graphicsData: any, webGLData: GraphicsData): vo
   let y;
   // get size..
   for (let i = 0; i < points.length; i += 2) {
-    x = points[i];
-    y = points[i + 1];
+    x = points[i]!;
+    y = points[i + 1]!;
     minX = x < minX ? x : minX;
     maxX = x > maxX ? x : maxX;
     minY = y < minY ? y : minY;
@@ -459,7 +461,7 @@ export const buildComplexPoly = (graphicsData: any, webGLData: GraphicsData): vo
  * @param {GraphicsData} webGLData - TBD.
  * @returns {boolean} TBD.
  */
-export const buildPoly = (graphicsData: any, webGLData: GraphicsData): boolean => {
+export const buildPoly = (graphicsData: DisplayGraphicsData, webGLData: GraphicsData): boolean => {
   const { points } = graphicsData;
   if (points.length < 6) {
     return false;
@@ -469,7 +471,7 @@ export const buildPoly = (graphicsData: any, webGLData: GraphicsData): boolean =
   const { indices } = webGLData;
   const length = points.length / 2;
   // sort color
-  const color = hex2rgb(graphicsData.fillColor);
+  const color = hex2rgb(graphicsData.fillColor ?? 0);
   const alpha = graphicsData.fillAlpha;
   const r = color[0] * alpha;
   const g = color[1] * alpha;
@@ -487,7 +489,7 @@ export const buildPoly = (graphicsData: any, webGLData: GraphicsData): boolean =
     indices.push(triangles[i + 2]! + vertPos);
   }
   for (let i = 0; i < length; i += 1) {
-    verts.push(points[i * 2], points[i * 2 + 1], r, g, b, alpha);
+    verts.push(points[i * 2]!, points[i * 2 + 1]!, r, g, b, alpha);
   }
   return true;
 };
