@@ -7,13 +7,7 @@
     "reportUnusedDisableDirectives": "error",
     "typeAware": true
   },
-  "plugins": [
-    "eslint",
-    "oxc",
-    "promise",
-    "typescript",
-    "unicorn"
-  ],
+  "plugins": ["eslint", "oxc", "promise", "typescript", "unicorn"],
   "categories": {
     "correctness": "error",
     "nursery": "off",
@@ -185,12 +179,8 @@
   },
   "overrides": [
     {
-      "files": [
-        "**/*.test.ts"
-      ],
-      "plugins": [
-        "vitest"
-      ],
+      "files": ["**/*.test.ts"],
+      "plugins": ["vitest"],
       "rules": {
         "eslint/max-lines": "off",
         "eslint/require-await": "off",

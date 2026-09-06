@@ -135,8 +135,10 @@ export class Sound {
    */
   public soundHasUnlocked(key: string): void {
     if (key === this.key) {
-      this._sound = this.game.cache.getSoundData(this.key);
-      this.totalDuration = (this._sound as any).duration;
+      // Unlocking parks the decoded buffer in _sound; play() replaces it with a real source node.
+      const buffer = this.game.cache.getSoundData(this.key) as AudioBuffer;
+      this._sound = buffer as unknown as AudioBufferSourceNode;
+      this.totalDuration = buffer.duration;
     }
   }
 
@@ -333,7 +335,7 @@ export class Sound {
       } else {
         this._sound.connect(this.gainNode);
       }
-      this._buffer = this.game.cache.getSoundData(this.key);
+      this._buffer = this.game.cache.getSoundData(this.key) as AudioBuffer | null;
       this._sound.buffer = this._buffer;
       if (this.loop && marker === '') {
         this._sound.loop = true;
@@ -361,7 +363,7 @@ export class Sound {
       this.onPlay.dispatch(this);
     } else {
       this.pendingPlayback = true;
-      if (this.game.cache.getSound(this.key) && this.game.cache.getSound(this.key).isDecoding === false) {
+      if (this.game.cache.getSound(this.key)?.isDecoding === false) {
         this.game.sound.decode(this.key);
       }
     }

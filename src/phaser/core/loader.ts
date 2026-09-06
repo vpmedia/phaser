@@ -1197,16 +1197,18 @@ export class Loader {
         break;
       }
       case 'audio': {
-        file.data = response.response;
-        this.cache.addSound(file.key, url, file.data);
+        const audio = response.response as ArrayBuffer;
+        file.data = audio;
+        this.cache.addSound(file.key, url, audio);
         if (file.autoDecode) {
           this.game.sound.decode(file.key);
         }
         break;
       }
       case 'text': {
-        file.data = response.responseText;
-        this.cache.addText(file.key, url, file.data);
+        const { responseText } = response;
+        file.data = responseText;
+        this.cache.addText(file.key, url, responseText);
         break;
       }
       default: {

@@ -383,7 +383,7 @@ export class Input {
    * @param {number} identifier - TBD.
    * @returns {Pointer} TBD.
    */
-  public getPointerFromIdentifier(identifier: number): Pointer | null {
+  public getPointerFromIdentifier(identifier: number | undefined): Pointer | null {
     for (const pointer of this.pointers) {
       if (pointer.identifier === identifier) {
         return pointer;

@@ -53,7 +53,7 @@ export class AnimationManager {
    * @param {string|number} frame - The frame index or name to set as current.
    * @returns {boolean} True if the frame data was loaded successfully, false otherwise.
    */
-  public loadFrameData(frameData: FrameData, frame: string | number): boolean {
+  public loadFrameData(frameData: FrameData | null, frame: string | number): boolean {
     if (!frameData) {
       return false;
     }

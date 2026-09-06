@@ -2,7 +2,18 @@ import { BITMAP_TEXT, SCALE_LINEAR, SCALE_NEAREST } from '../core/const.js';
 import { Point } from '../geom/point.js';
 import { DisplayObject } from './display_object.js';
 import { Image } from './image.js';
+import type { BitmapFontCacheEntry } from '../core/cache.js';
 import type { Game } from '../core/game.js';
+import type { BitmapFontData } from '../core/loader_parser.js';
+
+/** One measured line of bitmap text: its width, its content and where each glyph starts. */
+export type BitmapTextLine = {
+  width: number;
+  text: string;
+  end: boolean;
+  chars: number[];
+  y: number;
+};
 
 export class BitmapText extends DisplayObject {
   declare public type: number;
@@ -14,7 +25,7 @@ export class BitmapText extends DisplayObject {
   public _glyphs!: Image[];
   public _maxWidth!: number;
   public _text!: string;
-  public _data!: any;
+  public _data!: BitmapFontCacheEntry | null;
   public _font!: string;
   public _fontSize!: number;
   public _align!: string;
@@ -97,14 +108,14 @@ export class BitmapText extends DisplayObject {
    * @param {string} text - The text to scan.
    * @returns {{width: number, text: string, end: boolean, chars: number[]}} An object containing the width, processed text, end status, and character positions.
    */
-  public scanLine(data: any, scale: number, text: string) {
+  public scanLine(data: BitmapFontData, scale: number, text: string): Omit<BitmapTextLine, 'y'> {
     let x = 0;
     let w = 0;
     let lastSpace = -1;
     let wrappedWidth = 0;
     let prevCharCode = null;
     const maxWidth = this._maxWidth > 0 ? this._maxWidth : null;
-    const chars = [];
+    const chars: number[] = [];
     //  Let's scan the text and work out if any of the lines are > maxWidth
     let end = true;
     for (let i = 0; i < text.length; i += 1) {
@@ -126,15 +137,18 @@ export class BitmapText extends DisplayObject {
         charCode = 32;
         charData = data.chars[charCode];
       }
+      if (charData === undefined) {
+        continue;
+      }
       //  Adjust for kerning from previous character to this one
-      const kerning = prevCharCode && charData.kerning[prevCharCode] ? charData.kerning[prevCharCode] : 0;
+      const kerning = (prevCharCode === null ? 0 : charData.kerning[prevCharCode]) ?? 0;
       //  Record the last space in the string and the current width
       if (/(\s)/.test(text.charAt(i))) {
         lastSpace = i;
         wrappedWidth = w;
       }
       //  What will the line width be if we add this character to it?
-      c = (kerning + charData.texture.width + charData.xOffset) * scale;
+      c = (kerning + (charData.texture?.width ?? 0) + charData.xOffset) * scale;
       //  Do we need to line-wrap?
       if (maxWidth && w + c >= maxWidth && lastSpace > -1) {
         //  The last space was at "lastSpace" which was "i - lastSpace" characters ago
@@ -165,7 +179,7 @@ export class BitmapText extends DisplayObject {
    * @returns {string} The cleaned text.
    */
   public cleanText(text: string, replace = ''): string {
-    const data = this._data.font;
+    const data = this._data?.font;
     if (!data) {
       return '';
     }
@@ -190,26 +204,26 @@ export class BitmapText extends DisplayObject {
    * Updates the internal text rendering based on current properties and content.
    */
   public updateText(): void {
-    const data = this._data.font;
+    const data = this._data?.font;
     if (!data) {
       return;
     }
-    let text: any = this.text;
+    let text = this.text;
     const scale = this._fontSize / data.size;
-    const lines = [];
+    const lines: BitmapTextLine[] = [];
     let y = 0;
     this.textWidth = 0;
-    let line: any = { end: text.length === 0 };
+    let end = false;
     do {
-      line = this.scanLine(data, scale, text);
-      line.y = y;
+      const line: BitmapTextLine = { ...this.scanLine(data, scale, text), y };
       lines.push(line);
       if (line.width > this.textWidth) {
         this.textWidth = line.width;
       }
       y += data.lineHeight * scale;
       text = text.slice(line.text.length + 1);
-    } while (line.end === false);
+      end = line.end;
+    } while (!end);
     this.textHeight = y;
     let t = 0;
     let align = 0;
@@ -228,6 +242,9 @@ export class BitmapText extends DisplayObject {
           charCode = 32;
           charData = data.chars[charCode];
         }
+        if (charData?.texture === undefined) {
+          continue;
+        }
         let g = this._glyphs[t];
         if (g) {
           // Sprite already exists in the glyphs pool, so we'll reuse it for this letter
@@ -235,10 +252,10 @@ export class BitmapText extends DisplayObject {
         } else {
           // We need a new sprite as the pool is empty or exhausted
           g = new Image(this.game, 0, 0, charData.texture);
-          g.name = currentLine.text[c];
+          g.name = currentLine.text[c] ?? '';
           this._glyphs.push(g);
         }
-        g.position.x = currentLine.chars[c] + align - ax;
+        g.position.x = (currentLine.chars[c] ?? 0) + align - ax;
         g.position.y = currentLine.y + charData.yOffset * scale - ay;
         g.scale.setTo(scale, scale);
         g.tint = this.tint;
@@ -398,10 +415,10 @@ export class BitmapText extends DisplayObject {
    * Sets the font size of this bitmap text.
    * @param {number} value - The new font size to use.
    */
-  public set fontSize(value: any) {
-    value = Math.trunc(Number(value));
-    if (value !== this._fontSize && value > 0) {
-      this._fontSize = value;
+  public set fontSize(value: number | string) {
+    const size = Math.trunc(Number(value));
+    if (size !== this._fontSize && size > 0) {
+      this._fontSize = size;
       this.updateText();
     }
   }
@@ -450,7 +467,7 @@ export class BitmapText extends DisplayObject {
    * @returns {boolean} True if smoothing is enabled, false otherwise.
    */
   public get smoothed(): boolean {
-    return !this._data.base.scaleMode;
+    return !this._data?.base.scaleMode;
   }
 
   /**
@@ -458,10 +475,8 @@ export class BitmapText extends DisplayObject {
    * @param {boolean} value - Whether to enable smoothing (true) or not (false).
    */
   public set smoothed(value: boolean) {
-    if (value) {
-      this._data.base.scaleMode = SCALE_LINEAR;
-    } else {
-      this._data.base.scaleMode = SCALE_NEAREST;
+    if (this._data) {
+      this._data.base.scaleMode = value ? SCALE_LINEAR : SCALE_NEAREST;
     }
   }
 }

@@ -1,16 +1,17 @@
 import type { Game } from './game.js';
 import type { InputEvent } from './input_event.js';
+import type { Input } from './input.js';
 export class MSPointer {
   public game!: Game;
-  public input!: any;
+  public input!: Input;
   public callbackContext!: unknown;
-  public pointerDownCallback!: any;
-  public pointerMoveCallback!: any;
-  public pointerUpCallback!: any;
-  public capture!: any;
-  public button!: any;
+  public pointerDownCallback: EventListener | null;
+  public pointerMoveCallback: EventListener | null;
+  public pointerUpCallback: EventListener | null;
+  public capture!: boolean;
+  public button!: number;
   public event!: InputEvent | null;
-  public enabled!: any;
+  public enabled!: boolean;
   public _onMSPointerDown: EventListener | null;
   public _onMSPointerMove: EventListener | null;
   public _onMSPointerUp: EventListener | null;
@@ -113,9 +114,7 @@ export class MSPointer {
       canvas.removeEventListener('pointerup', this._onMSPointerUp, false);
     }
     if (this._onMSPointerUpGlobal) {
-      if (this._onMSPointerUpGlobal) {
-        globalThis.removeEventListener('MSPointerUp', this._onMSPointerUpGlobal, true);
-      }
+      globalThis.removeEventListener('MSPointerUp', this._onMSPointerUpGlobal, true);
     }
     if (this._onMSPointerOver) {
       canvas.removeEventListener('MSPointerOver', this._onMSPointerOver, true);
@@ -125,9 +124,7 @@ export class MSPointer {
     }
     //  IE11+ uses non-prefix events
     if (this._onMSPointerUpGlobal) {
-      if (this._onMSPointerUpGlobal) {
-        globalThis.removeEventListener('pointerup', this._onMSPointerUpGlobal, true);
-      }
+      globalThis.removeEventListener('pointerup', this._onMSPointerUpGlobal, true);
     }
     if (this._onMSPointerOver) {
       canvas.removeEventListener('pointerover', this._onMSPointerOver, true);

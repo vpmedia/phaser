@@ -6,6 +6,7 @@ import { Frame } from './frame.js';
 import { FrameData } from './frame_data.js';
 import { jsonBitmapFont, xmlBitmapFont } from './loader_parser.js';
 import { Signal } from './signal.js';
+import type { BitmapFontData } from './loader_parser.js';
 import type { Game } from './game.js';
 
 export const CANVAS = 0;
@@ -19,28 +20,66 @@ export const JSONDATA = 7;
 export const XML = 8;
 export const RENDER_TEXTURE = 9;
 
+/** An image, sprite sheet or texture atlas: the source bitmap and the frames cut from it. */
+export type ImageCacheEntry = {
+  key: string;
+  url: string;
+  data: TextureSource;
+  base: BaseTexture;
+  frame?: Frame;
+  frameData: FrameData | null;
+};
+
+/** Audio as the cache holds it: the raw bytes on load, an AudioBuffer once decoded. */
+export type SoundData = ArrayBuffer | AudioBuffer;
+
+/** A sound and how far its decoding has got. */
+export type SoundCacheEntry = {
+  url: string;
+  data: SoundData;
+  isDecoding: boolean;
+  decoded: boolean;
+};
+
+/** A bitmap font: the glyph atlas and the descriptor parsed from it. */
+export type BitmapFontCacheEntry = {
+  url: string;
+  data: TextureSource;
+  font: BitmapFontData;
+  base: BaseTexture;
+};
+
+/** A text, JSON or XML payload under the URL it came from. */
+export type DataCacheEntry<T> = {
+  url: string;
+  data: T;
+};
+
+/** Anything the cache can hold, whichever bucket it lives in. */
+export type CacheEntry = ImageCacheEntry | SoundCacheEntry | BitmapFontCacheEntry | DataCacheEntry<unknown>;
+
 interface CacheBuckets {
-  canvas: Record<string, any>;
-  image: Record<string, any>;
-  texture: Record<string, any>;
-  sound: Record<string, any>;
-  text: Record<string, any>;
-  json: Record<string, any>;
-  xml: Record<string, any>;
-  bitmapData: Record<string, any>;
-  bitmapFont: Record<string, any>;
-  renderTexture: Record<string, any>;
+  canvas: Record<string, CacheEntry>;
+  image: Record<string, ImageCacheEntry>;
+  texture: Record<string, CacheEntry>;
+  sound: Record<string, SoundCacheEntry>;
+  text: Record<string, DataCacheEntry<string>>;
+  json: Record<string, DataCacheEntry<unknown>>;
+  xml: Record<string, DataCacheEntry<XMLDocument>>;
+  bitmapData: Record<string, CacheEntry>;
+  bitmapFont: Record<string, BitmapFontCacheEntry>;
+  renderTexture: Record<string, CacheEntry>;
 }
 
 export class Cache {
   public game!: Game;
   public autoResolveURL!: boolean;
   public _cache!: CacheBuckets;
-  public _urlMap!: Record<string, unknown> | null;
+  public _urlMap!: Record<string, object> | null;
   public _urlResolver!: HTMLImageElement | null;
   public _urlTemp!: string | null;
   public onSoundUnlock!: Signal;
-  public _cacheMap!: Record<string, any>[];
+  public _cacheMap!: Record<string, CacheEntry>[];
   /**
    * Creates a new Cache instance.
    * @param {Game} game - The game instance.
@@ -109,7 +148,7 @@ export class Cache {
    * @param {HTMLImageElement} data - The image data to cache.
    * @returns {object} The cached image object.
    */
-  public addImage(key: string, url: string | null, data: HTMLImageElement) {
+  public addImage(key: string, url: string | null, data: HTMLImageElement): ImageCacheEntry {
     const resolvedUrl = url ?? '';
     if (this.checkImageKey(key)) {
       this.removeImage(key);
@@ -170,14 +209,14 @@ export class Cache {
    * @param {HTMLCanvasElement} data - The canvas data for the atlas.
    * @param {object} atlasData - The atlas data to cache.
    */
-  public addTextureAtlas(key: string, url: string, data: TextureSource, atlasData: any): void {
-    const obj: any = {
+  public addTextureAtlas(key: string, url: string, data: TextureSource, atlasData: unknown): void {
+    const obj: ImageCacheEntry = {
       key,
       url,
       data,
       base: new BaseTexture(data),
+      frameData: JSONDataHash(this.game, atlasData, key),
     };
-    obj.frameData = JSONDataHash(this.game, atlasData, key);
     this._cache.image[key] = obj;
     this._resolveURL(url, obj);
   }
@@ -188,14 +227,15 @@ export class Cache {
    * @param {string} url - The URL the sound was loaded from.
    * @param {object} data - The sound data to cache.
    */
-  public addSound(key: string, url: string, data: any): void {
-    this._cache.sound[key] = {
+  public addSound(key: string, url: string, data: SoundData): void {
+    const obj: SoundCacheEntry = {
       url,
       data,
       isDecoding: false,
       decoded: false,
     };
-    this._resolveURL(url, this._cache.sound[key]);
+    this._cache.sound[key] = obj;
+    this._resolveURL(url, obj);
   }
 
   /**
@@ -205,8 +245,9 @@ export class Cache {
    * @param {string} data - The text data to cache.
    */
   public addText(key: string, url: string, data: string): void {
-    this._cache.text[key] = { url, data };
-    this._resolveURL(url, this._cache.text[key]);
+    const obj: DataCacheEntry<string> = { url, data };
+    this._cache.text[key] = obj;
+    this._resolveURL(url, obj);
   }
 
   /**
@@ -223,22 +264,17 @@ export class Cache {
     key: string,
     url: string,
     data: TextureSource,
-    atlasData: any,
+    atlasData: unknown,
     atlasType: string,
     xSpacing = 0,
     ySpacing = 0
   ): void {
-    const obj: { url: string; data: unknown; font: object | null; base: BaseTexture } = {
-      url,
-      data,
-      font: null,
-      base: new BaseTexture(data),
-    };
-    if (atlasType === 'json') {
-      obj.font = jsonBitmapFont(atlasData, obj.base, xSpacing, ySpacing);
-    } else {
-      obj.font = xmlBitmapFont(atlasData, obj.base, xSpacing, ySpacing);
-    }
+    const base = new BaseTexture(data);
+    const font =
+      atlasType === 'json'
+        ? jsonBitmapFont(atlasData, base, xSpacing, ySpacing)
+        : xmlBitmapFont(atlasData as XMLDocument, base, xSpacing, ySpacing);
+    const obj: BitmapFontCacheEntry = { url, data, font, base };
     this._cache.bitmapFont[key] = obj;
     this._resolveURL(url, obj);
   }
@@ -249,9 +285,10 @@ export class Cache {
    * @param {string} url - The URL the JSON was loaded from.
    * @param {object} data - The JSON data to cache.
    */
-  public addJSON(key: string, url: string, data: any): void {
-    this._cache.json[key] = { url, data };
-    this._resolveURL(url, this._cache.json[key]);
+  public addJSON(key: string, url: string, data: unknown): void {
+    const obj: DataCacheEntry<unknown> = { url, data };
+    this._cache.json[key] = obj;
+    this._resolveURL(url, obj);
   }
 
   /**
@@ -261,8 +298,9 @@ export class Cache {
    * @param {XMLDocument} data - The XML data to cache.
    */
   public addXML(key: string, url: string, data: XMLDocument): void {
-    this._cache.xml[key] = { url, data };
-    this._resolveURL(url, this._cache.xml[key]);
+    const obj: DataCacheEntry<XMLDocument> = { url, data };
+    this._cache.xml[key] = obj;
+    this._resolveURL(url, obj);
   }
 
   // SOUND
@@ -273,7 +311,7 @@ export class Cache {
    * @param {string} property - The property to update.
    * @param {any} value - The new value for the property.
    */
-  public updateSound(key: string, property: string, value: any): void {
+  public updateSound<K extends keyof SoundCacheEntry>(key: string, property: K, value: SoundCacheEntry[K]): void {
     const sound = this.getSound(key);
     if (sound) {
       sound[property] = value;
@@ -287,6 +325,9 @@ export class Cache {
    */
   public decodedSound(key: string, data: AudioBuffer): void {
     const sound = this.getSound(key);
+    if (!sound) {
+      return;
+    }
     sound.data = data;
     sound.decoded = true;
     sound.isDecoding = false;
@@ -297,8 +338,8 @@ export class Cache {
    * @param {string} key - The unique key for the cached sound.
    * @returns {boolean} True if the sound is decoded, false otherwise.
    */
-  public isSoundDecoded(key: string) {
-    const sound = this.getItem(key, SOUND, 'isSoundDecoded');
+  public isSoundDecoded(key: string): boolean | null {
+    const sound = this.getSound(key);
     if (sound) {
       return sound.decoded;
     }
@@ -310,8 +351,8 @@ export class Cache {
    * @param {string} key - The unique key for the cached sound.
    * @returns {boolean} True if the sound is ready, false otherwise.
    */
-  public isSoundReady(key: string) {
-    const sound = this.getItem(key, SOUND, 'isSoundDecoded');
+  public isSoundReady(key: string): boolean {
+    const sound = this.getSound(key);
     if (sound) {
       return sound.decoded && !this.game.sound.isLocked;
     }
@@ -437,13 +478,13 @@ export class Cache {
    * @param {string} property - TBD.
    * @returns {*} TBD.
    */
-  public getItem(key: string, cache: number, _method: string, property: string | null = null) {
+  public getItem(key: string, cache: number, _method: string, property: string | null = null): unknown {
     if (this.checkKey(cache, key)) {
-      const entry = this._cacheMap[cache]![key];
+      const entry = this._cacheMap[cache]![key]!;
       if (!property) {
         return entry;
       }
-      return entry[property];
+      return (entry as Record<string, unknown>)[property];
     }
     return null;
   }
@@ -453,8 +494,8 @@ export class Cache {
    * @param {string} key - TBD.
    * @returns {HTMLCanvasElement} TBD.
    */
-  public getCanvas(key: string) {
-    return this.getItem(key, CANVAS, 'getCanvas', 'canvas');
+  public getCanvas(key: string): HTMLCanvasElement | null {
+    return this.getItem(key, CANVAS, 'getCanvas', 'canvas') as HTMLCanvasElement | null;
   }
 
   /**
@@ -463,11 +504,11 @@ export class Cache {
    * @param {boolean} full - TBD.
    * @returns {HTMLImageElement} TBD.
    */
-  public getImage(key: string | number = '__default', full = false) {
-    let img = this.getItem(String(key), IMAGE, 'getImage');
-    if (img === null) {
-      img = this.getItem('__missing', IMAGE, 'getImage');
-    }
+  public getImage(key?: string | number, full?: false): TextureSource;
+  public getImage(key: string | number | undefined, full: true): ImageCacheEntry;
+  public getImage(key: string | number = '__default', full = false): TextureSource | ImageCacheEntry {
+    const img = (this.getItem(String(key), IMAGE, 'getImage') ??
+      this.getItem('__missing', IMAGE, 'getImage')) as ImageCacheEntry;
     if (full) {
       return img;
     }
@@ -479,8 +520,8 @@ export class Cache {
    * @param {string} key - TBD.
    * @returns {object} TBD.
    */
-  public getTextureFrame(key: string) {
-    return this.getItem(key, TEXTURE, 'getTextureFrame', 'frame');
+  public getTextureFrame(key: string): Frame | null {
+    return this.getItem(key, TEXTURE, 'getTextureFrame', 'frame') as Frame | null;
   }
 
   /**
@@ -488,8 +529,8 @@ export class Cache {
    * @param {string} key - TBD.
    * @returns {object} TBD.
    */
-  public getSound(key: string) {
-    return this.getItem(key, SOUND, 'getSound');
+  public getSound(key: string): SoundCacheEntry | null {
+    return this.getItem(key, SOUND, 'getSound') as SoundCacheEntry | null;
   }
 
   /**
@@ -497,8 +538,8 @@ export class Cache {
    * @param {string} key - TBD.
    * @returns {object} TBD.
    */
-  public getSoundData(key: string) {
-    return this.getItem(key, SOUND, 'getSoundData', 'data');
+  public getSoundData(key: string): SoundData | null {
+    return this.getItem(key, SOUND, 'getSoundData', 'data') as SoundData | null;
   }
 
   /**
@@ -506,8 +547,8 @@ export class Cache {
    * @param {string} key - TBD.
    * @returns {object} TBD.
    */
-  public getText(key: string) {
-    return this.getItem(key, TEXT, 'getText', 'data');
+  public getText(key: string): string | null {
+    return this.getItem(key, TEXT, 'getText', 'data') as string | null;
   }
 
   /**
@@ -515,7 +556,7 @@ export class Cache {
    * @param {string} key - TBD.
    * @returns {object} TBD.
    */
-  public getBitmapData(key: string) {
+  public getBitmapData(key: string): unknown {
     return this.getItem(key, BITMAPDATA, 'getBitmapData', 'data');
   }
 
@@ -524,8 +565,8 @@ export class Cache {
    * @param {string} key - TBD.
    * @returns {object} TBD.
    */
-  public getBitmapFont(key: string) {
-    return this.getItem(key, BITMAPFONT, 'getBitmapFont');
+  public getBitmapFont(key: string): BitmapFontCacheEntry | null {
+    return this.getItem(key, BITMAPFONT, 'getBitmapFont') as BitmapFontCacheEntry | null;
   }
 
   /**
@@ -536,7 +577,7 @@ export class Cache {
    * @returns {T} The cached JSON data.
    */
   public getJSON<T = unknown>(key: string, isClone = false): T {
-    const data = this.getItem(key, JSONDATA, 'getJSON', 'data');
+    const data = this.getItem(key, JSONDATA, 'getJSON', 'data') as T;
     return isClone ? structuredClone(data) : data;
   }
 
@@ -545,8 +586,8 @@ export class Cache {
    * @param {string} key - TBD.
    * @returns {XMLDocument} TBD.
    */
-  public getXML(key: string) {
-    return this.getItem(key, XML, 'getXML', 'data');
+  public getXML(key: string): XMLDocument | null {
+    return this.getItem(key, XML, 'getXML', 'data') as XMLDocument | null;
   }
 
   /**
@@ -554,8 +595,8 @@ export class Cache {
    * @param {string} key - TBD.
    * @returns {RenderTexture} TBD.
    */
-  public getRenderTexture(key: string) {
-    return this.getItem(key, RENDER_TEXTURE, 'getRenderTexture');
+  public getRenderTexture(key: string): CacheEntry | null {
+    return this.getItem(key, RENDER_TEXTURE, 'getRenderTexture') as CacheEntry | null;
   }
 
   // FRAME
@@ -566,8 +607,8 @@ export class Cache {
    * @param {number} cache - The cache type (CANVAS, IMAGE, etc.).
    * @returns {BaseTexture} The base texture.
    */
-  public getBaseTexture(key: string, cache: number = IMAGE) {
-    return this.getItem(key, cache, 'getBaseTexture', 'base');
+  public getBaseTexture(key: string, cache: number = IMAGE): BaseTexture | null {
+    return this.getItem(key, cache, 'getBaseTexture', 'base') as BaseTexture | null;
   }
 
   /**
@@ -576,8 +617,8 @@ export class Cache {
    * @param {number} cache - The cache type (CANVAS, IMAGE, etc.).
    * @returns {Frame} The frame.
    */
-  public getFrame(key: string, cache: number = IMAGE) {
-    return this.getItem(key, cache, 'getFrame', 'frame');
+  public getFrame(key: string, cache: number = IMAGE): Frame | null {
+    return this.getItem(key, cache, 'getFrame', 'frame') as Frame | null;
   }
 
   /**
@@ -601,7 +642,7 @@ export class Cache {
    * @returns {FrameData | null} The frame data, or null when the entry has none.
    */
   public getFrameData(key: string, cache: number = IMAGE): FrameData | null {
-    return this.getItem(key, cache, 'getFrameData', 'frameData');
+    return this.getItem(key, cache, 'getFrameData', 'frameData') as FrameData | null;
   }
 
   /**
@@ -623,7 +664,7 @@ export class Cache {
   public updateFrameData(key: string, frameData: FrameData, cache: number = IMAGE): void {
     const entry = this._cacheMap[cache]?.[key];
     if (entry) {
-      entry.frameData = frameData;
+      (entry as ImageCacheEntry).frameData = frameData;
     }
   }
 
@@ -678,8 +719,9 @@ export class Cache {
    */
   public getKeys(cache: number = IMAGE): string[] {
     const result = [];
-    if (this._cacheMap[cache]) {
-      const keys = Object.keys(this._cacheMap[cache]);
+    const bucket = this._cacheMap[cache];
+    if (bucket) {
+      const keys = Object.keys(bucket);
       for (const key of keys) {
         if (key !== '__default' && key !== '__missing') {
           result.push(key);
@@ -706,7 +748,7 @@ export class Cache {
    */
   public removeImage(key: string, destroyBaseTexture = true): void {
     const img = this.getImage(key, true);
-    if (destroyBaseTexture && img.base) {
+    if (destroyBaseTexture) {
       img.base.destroy();
     }
     delete this._cache.image[key];
@@ -788,9 +830,8 @@ export class Cache {
    * Clears all GL textures from the cache.
    */
   public clearGLTextures(): void {
-    const keys = Object.keys(this._cache.image);
-    for (const key of keys) {
-      this._cache.image[key].base._glTextures = [];
+    for (const entry of Object.values(this._cache.image)) {
+      entry.base._glTextures = [];
     }
   }
 
@@ -800,7 +841,7 @@ export class Cache {
    * @param {object} data - The data to associate with the resolved URL.
    * @returns {string} The resolved URL or null if not enabled.
    */
-  public _resolveURL(url: string, data: any | null = null) {
+  public _resolveURL(url: string, data: object | null = null): string | null {
     if (!this.autoResolveURL) {
       return null;
     }
@@ -826,9 +867,7 @@ export class Cache {
       const keys = cache ? Object.keys(cache) : [];
       for (const key of keys) {
         if (key !== '__default' && key !== '__missing') {
-          if (cache[key].destroy) {
-            cache[key].destroy();
-          }
+          (cache[key] as { destroy?: () => void }).destroy?.();
           delete cache[key];
         }
       }

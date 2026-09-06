@@ -272,7 +272,7 @@ export class SoundManager {
    */
   public decode(key: string): void {
     const soundData = this.game.cache.getSoundData(key);
-    if (!soundData) {
+    if (!(soundData instanceof ArrayBuffer)) {
       return;
     }
     if (this.game.cache.isSoundDecoded(key) === true) {
