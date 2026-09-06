@@ -319,7 +319,7 @@ export class ScaleManager {
    * @param {Function} callback - TBD.
    * @param {object} context - TBD.
    */
-  public setResizeCallback(callback: Function, context: CanvasRenderingContext2D) {
+  public setResizeCallback(callback: Function, context: unknown) {
     this.onResize = callback;
     this.onResizeContext = context;
   }

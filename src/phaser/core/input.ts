@@ -20,7 +20,7 @@ export class Input {
   public game!: Game;
   public hitCanvas!: HTMLCanvasElement;
   public hitContext!: any;
-  public moveCallbacks!: { callback: Function; context: CanvasRenderingContext2D }[];
+  public moveCallbacks!: { callback: Function; context: unknown }[];
   public lockCallbacks!: any;
   public customCandidateHandler!: any;
   public customCandidateHandlerContext!: any;
@@ -181,7 +181,7 @@ export class Input {
    * @param {Function} callback - TBD.
    * @param {object} context - TBD.
    */
-  public setInteractiveCandidateHandler(callback: Function, context: CanvasRenderingContext2D) {
+  public setInteractiveCandidateHandler(callback: Function, context: unknown) {
     this.customCandidateHandler = callback;
     this.customCandidateHandlerContext = context;
   }
@@ -191,7 +191,7 @@ export class Input {
    * @param {Function} callback - TBD.
    * @param {object} context - TBD.
    */
-  public addMoveCallback(callback: Function, context: CanvasRenderingContext2D) {
+  public addMoveCallback(callback: Function, context: unknown) {
     this.moveCallbacks.push({ callback, context });
   }
 
@@ -200,7 +200,7 @@ export class Input {
    * @param {Function} callback - TBD.
    * @param {object} context - TBD.
    */
-  public deleteMoveCallback(callback: Function, context: CanvasRenderingContext2D) {
+  public deleteMoveCallback(callback: Function, context: unknown) {
     let i = this.moveCallbacks.length;
     while (i) {
       i -= 1;
