@@ -6,7 +6,7 @@ import { Frame } from './frame.js';
 import { FrameData } from './frame_data.js';
 import { jsonBitmapFont, xmlBitmapFont } from './loader_parser.js';
 import { Signal } from './signal.js';
-import type { BitmapFontData } from './loader_parser.js';
+import type { BitmapFontData, JsonBitmapFontDescriptor } from './loader_parser.js';
 import type { Game } from './game.js';
 
 export const CANVAS = 0;
@@ -272,7 +272,7 @@ export class Cache {
     const base = new BaseTexture(data);
     const font =
       atlasType === 'json'
-        ? jsonBitmapFont(atlasData, base, xSpacing, ySpacing)
+        ? jsonBitmapFont(atlasData as JsonBitmapFontDescriptor, base, xSpacing, ySpacing)
         : xmlBitmapFont(atlasData as XMLDocument, base, xSpacing, ySpacing);
     const obj: BitmapFontCacheEntry = { url, data, font, base };
     this._cache.bitmapFont[key] = obj;

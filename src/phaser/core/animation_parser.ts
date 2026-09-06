@@ -1,6 +1,18 @@
 import { Frame } from './frame.js';
+
+/** One frame in a texture atlas, in the shape the packers emit. */
+export type AtlasFrame = {
+  frame: { x: number; y: number; w: number; h: number };
+  trimmed?: boolean;
+  sourceSize?: { w: number; h: number };
+  spriteSourceSize?: { x: number; y: number; w: number; h: number };
+};
+
+/** A texture atlas descriptor, keyed by frame name. */
+export type AtlasJson = { frames: Record<string, AtlasFrame> };
 import { FrameData } from './frame_data.js';
 import type { Game } from './game.js';
+import type { TextureSource } from '../display/webgl/base_texture.js';
 
 /**
  * TBD.
@@ -15,17 +27,14 @@ import type { Game } from './game.js';
  */
 export const spriteSheet = (
   game: Game,
-  key: any,
+  key: string | TextureSource,
   frameWidth: number,
   frameHeight: number,
   frameMax: number,
   margin: number,
   spacing: number
 ): FrameData | null => {
-  let img: any = key;
-  if (typeof key === 'string') {
-    img = game.cache.getImage(key);
-  }
+  const img = typeof key === 'string' ? game.cache.getImage(key) : key;
   if (img === null) {
     return null;
   }
@@ -46,7 +55,7 @@ export const spriteSheet = (
   //  Zero or smaller than frame sizes?
   if (width === 0 || height === 0 || width < frameWidth || height < frameHeight || total === 0) {
     game.logger.warn(
-      `AnimationParser.spriteSheet: '${key}'s width/height zero or width/height < given frameWidth/frameHeight`
+      `AnimationParser.spriteSheet: '${typeof key === 'string' ? key : 'image'}'s width/height zero or width/height < given frameWidth/frameHeight`
     );
     return null;
   }
@@ -71,31 +80,28 @@ export const spriteSheet = (
  * @param {object} json - TBD.
  * @returns {FrameData} TBD.
  */
-export const jsonDataHash = (game: Game, json: any, _key?: any): FrameData | null => {
-  if (!json.frames) {
-    game.logger.warn('jsonDataHash: Invalid Texture Atlas JSON given, missing frames object', json);
+export const jsonDataHash = (game: Game, json: unknown, _key?: string): FrameData | null => {
+  const atlas = json as AtlasJson | null;
+  if (!atlas?.frames) {
+    game.logger.warn('jsonDataHash: Invalid Texture Atlas JSON given, missing frames object');
     return null;
   }
   // Let's create some frames then
   const data = new FrameData();
   // By this stage frames is a fully parsed array
-  const { frames } = json;
-  let newFrame;
+  const { frames } = atlas;
   let i = 0;
-  const keys = Object.keys(frames);
-  for (const key of keys) {
-    newFrame = data.addFrame(
-      new Frame(i, frames[key].frame.x, frames[key].frame.y, frames[key].frame.w, frames[key].frame.h, key)
-    );
-    if (frames[key].trimmed) {
+  for (const [key, entry] of Object.entries(frames)) {
+    const newFrame = data.addFrame(new Frame(i, entry.frame.x, entry.frame.y, entry.frame.w, entry.frame.h, key));
+    if (entry.trimmed && entry.sourceSize && entry.spriteSourceSize) {
       newFrame.setTrim(
-        frames[key].trimmed,
-        frames[key].sourceSize.w,
-        frames[key].sourceSize.h,
-        frames[key].spriteSourceSize.x,
-        frames[key].spriteSourceSize.y,
-        frames[key].spriteSourceSize.w,
-        frames[key].spriteSourceSize.h
+        entry.trimmed,
+        entry.sourceSize.w,
+        entry.sourceSize.h,
+        entry.spriteSourceSize.x,
+        entry.spriteSourceSize.y,
+        entry.spriteSourceSize.w,
+        entry.spriteSourceSize.h
       );
     }
     i += 1;

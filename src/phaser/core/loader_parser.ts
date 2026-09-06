@@ -16,6 +16,16 @@ export type BitmapFontChar = {
 };
 
 /** A parsed bitmap font: its metrics and the glyphs it can draw. */
+/** A bitmap font descriptor in the JSON form the packers emit, with attributes prefixed by `_`. */
+export type JsonBitmapFontDescriptor = {
+  font: {
+    info: Record<string, string>;
+    common: Record<string, string>;
+    chars: { char: Record<string, string>[] };
+    kernings?: { kerning?: Record<string, string>[] };
+  };
+};
+
 export type BitmapFontData = {
   font: string;
   size: number;
@@ -104,18 +114,18 @@ export const bitmapFont = (
  * @returns {object} The parsed bitmap font data.
  */
 export const jsonBitmapFont = (
-  json: any,
+  json: JsonBitmapFontDescriptor,
   baseTexture: BaseTexture,
   xSpacing: number,
   ySpacing: number
 ): BitmapFontData => {
   const data: BitmapFontData = {
-    font: json.font.info._face,
-    size: Math.trunc(Number(json.font.info._size)),
-    lineHeight: Math.trunc(Number(json.font.common._lineHeight)) + ySpacing,
+    font: json.font.info['_face'] ?? '',
+    size: Math.trunc(Number(json.font.info['_size'])),
+    lineHeight: Math.trunc(Number(json.font.common['_lineHeight'])) + ySpacing,
     chars: {},
   };
-  for (const letter of json.font.chars.char as Record<string, string>[]) {
+  for (const letter of json.font.chars.char) {
     const charCode = Math.trunc(Number(letter['_id']));
     data.chars[charCode] = {
       x: Math.trunc(Number(letter['_x'])),
@@ -129,7 +139,7 @@ export const jsonBitmapFont = (
     };
   }
   if (json.font.kernings && json.font.kernings.kerning) {
-    for (const kerning of json.font.kernings.kerning as Record<string, string>[]) {
+    for (const kerning of json.font.kernings.kerning) {
       const char = data.chars[Math.trunc(Number(kerning['_second']))];
       if (char) {
         char.kerning[Math.trunc(Number(kerning['_first']))] = Math.trunc(Number(kerning['_amount']));

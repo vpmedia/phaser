@@ -229,10 +229,7 @@ export class Text extends Image {
   public updateText(): void {
     this.texture.baseTexture.resolution = this._res;
     this.context.font = this.style.font;
-    let outputText: any = this.text;
-    if (this.style.wordWrap) {
-      outputText = this.runWordWrap(this.text);
-    }
+    const outputText = this.style.wordWrap ? this.runWordWrap(this.text) : this.text;
     // Split text into lines
     const lines = outputText.split(/(?:\r\n|\r|\n)/);
     // Calculate text width
@@ -250,24 +247,28 @@ export class Text extends Image {
     }
     this._charCount = 0;
     for (let i = 0; i < drawnLines; i += 1) {
+      const currentLine = lines[i]!;
       if (tabs === 0) {
         //  Simple layout (no tabs)
         lineWidth = this.style.strokeThickness + this.padding.x;
-        lineWidth += this.hasCharacterStyles() ? this.measureLine(lines[i]) : this.context.measureText(lines[i]).width;
+        lineWidth += this.hasCharacterStyles()
+          ? this.measureLine(currentLine)
+          : this.context.measureText(currentLine).width;
         // Adjust for wrapped text
         if (this.style.wordWrap) {
           lineWidth -= this.context.measureText(' ').width;
         }
       } else {
         // Complex layout (tabs)
-        const line = lines[i].split(/(?:\t)/);
+        const line = currentLine.split(/(?:\t)/);
         lineWidth = this.padding.x + this.style.strokeThickness;
         if (Array.isArray(tabs)) {
           let tab = 0;
           for (let c = 0; c < line.length; c += 1) {
+            const part = line[c]!;
             const section = this.hasCharacterStyles()
-              ? this.measureLine(line[c])
-              : Math.ceil(this.context.measureText(line[c]).width);
+              ? this.measureLine(part)
+              : Math.ceil(this.context.measureText(part).width);
             if (c > 0) {
               tab += tabs[c - 1]!;
             }
@@ -317,6 +318,7 @@ export class Text extends Image {
     this._charCount = 0;
     // Draw text line by line
     for (let i = 0; i < drawnLines; i += 1) {
+      const line = lines[i]!;
       // Split the line by
       linePositionX = this.style.strokeThickness / 2;
       linePositionY = this.style.strokeThickness / 2 + i * lineHeight + fontProperties.ascent;
@@ -333,22 +335,22 @@ export class Text extends Image {
         linePositionY = Math.round(linePositionY);
       }
       if (this.hasCharacterStyles()) {
-        this.updateLine(lines[i], linePositionX, linePositionY);
+        this.updateLine(line, linePositionX, linePositionY);
       } else {
         if (this.style.stroke && this.style.strokeThickness) {
           this.updateShadow(this.style.shadowStroke ?? false);
           if (tabs === 0) {
-            this.context.strokeText(lines[i], linePositionX, linePositionY);
+            this.context.strokeText(line, linePositionX, linePositionY);
           } else {
-            this.renderTabLine(lines[i], linePositionX, linePositionY, false);
+            this.renderTabLine(line, linePositionX, linePositionY, false);
           }
         }
         if (this.style.fill) {
           this.updateShadow(this.style.shadowFill ?? false);
           if (tabs === 0) {
-            this.context.fillText(lines[i], linePositionX, linePositionY);
+            this.context.fillText(line, linePositionX, linePositionY);
           } else {
-            this.renderTabLine(lines[i], linePositionX, linePositionY, true);
+            this.renderTabLine(line, linePositionX, linePositionY, true);
           }
         }
       }
@@ -826,19 +828,20 @@ export class Text extends Image {
    * @param {string[]|string[][]} list - The list of text to parse.
    * @returns {Text} This Text object for chaining.
    */
-  public parseList(list: any): this {
+  public parseList(list: string[] | string[][]): this {
     if (!Array.isArray(list)) {
       return this;
     }
     let s = '';
     for (let i = 0; i < list.length; i += 1) {
-      if (Array.isArray(list[i])) {
-        s += list[i].join('\t');
+      const row = list[i]!;
+      if (Array.isArray(row)) {
+        s += row.join('\t');
         if (i < list.length - 1) {
           s += '\n';
         }
       } else {
-        s += list[i];
+        s += row;
         if (i < list.length - 1) {
           s += '\t';
         }
