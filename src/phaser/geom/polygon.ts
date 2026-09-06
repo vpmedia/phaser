@@ -27,7 +27,7 @@ export class Polygon {
     this.flattened = false;
     /** @type {number} */
     this.type = GEOM_POLYGON;
-    if (points) {
+    if (points !== null) {
       this.setTo(points);
     }
   }
@@ -111,7 +111,7 @@ export class Polygon {
     this.area = 0;
     const vertices: Point[] = [];
     this._points = vertices;
-    if (points) {
+    if (points.length > 0) {
       //  If points isn't an array, use arguments as the array
       if (!Array.isArray(points)) {
         console.error('[Polygon] setTo() error, input parameter is not an array', points);

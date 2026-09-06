@@ -266,7 +266,7 @@ export class WebGLSpriteBatch {
       nextBlendMode = sprite.blendMode;
       nextShader = sprite.shader ?? this.defaultShader;
       blendSwap = currentBlendMode !== nextBlendMode;
-      shaderSwap = !currentShader || !nextShader || currentShader._UID !== nextShader._UID;
+      shaderSwap = currentShader === null || currentShader._UID !== nextShader._UID;
       let skip = nextTexture.skipRender;
       if (skip && sprite.children.length > 0) {
         skip = false;

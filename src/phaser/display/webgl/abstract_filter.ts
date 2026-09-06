@@ -27,7 +27,7 @@ export class AbstractFilter {
     this.dirty = true;
     this.padding = 0;
     this.uniforms = uniforms ?? {};
-    this.fragmentSrc = fragmentSrc || [];
+    this.fragmentSrc = fragmentSrc;
   }
 
   /**

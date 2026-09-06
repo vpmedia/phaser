@@ -913,10 +913,10 @@ export class Graphics extends DisplayObject {
    * @param {number[]} indices - The indices of the vertices to use.
    * @param {boolean} cull - Whether to perform backface culling.
    */
-  public drawTriangles(vertices: Point[] | number[], indices: number[], cull = false): void {
+  public drawTriangles(vertices: Point[] | number[], indices: number[] | null, cull = false): void {
     let points: Point[] = [];
     let i;
-    if (!indices) {
+    if (indices === null) {
       if (vertices[0] instanceof Point) {
         const corners = vertices as Point[];
         for (i = 0; i < corners.length / 3; i += 1) {

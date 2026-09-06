@@ -471,7 +471,7 @@ export const buildPoly = (graphicsData: DisplayGraphicsData, webGLData: Graphics
   const g = color[1] * alpha;
   const b = color[2] * alpha;
   const triangles = triangulate(points, null, 2);
-  if (!triangles) {
+  if (triangles.length === 0) {
     return false;
   }
   const vertPos = verts.length / 6;

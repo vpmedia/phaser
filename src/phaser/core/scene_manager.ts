@@ -137,7 +137,7 @@ export class SceneManager {
       this._pendingState = key;
       this._clearWorld = clearWorld;
       this._clearCache = clearCache;
-      if (args && args.length > 0) {
+      if (args.length > 0) {
         this._args = [...args];
       }
     }
@@ -153,7 +153,7 @@ export class SceneManager {
     this._pendingState = this.current;
     this._clearWorld = clearWorld;
     this._clearCache = clearCache;
-    if (args && args.length > 0) {
+    if (args.length > 0) {
       this._args = [...args];
     }
   }

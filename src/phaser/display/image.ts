@@ -11,6 +11,7 @@ import { Frame } from '../core/frame.js';
 import type { Matrix } from '../geom/matrix.js';
 import type { RenderSession } from './render_session.js';
 import type { AbstractFilter } from './webgl/abstract_filter.js';
+import type { ImageCacheEntry } from '../core/cache.js';
 
 export class Image extends DisplayObject {
   public key!: string | number | Texture | null;
@@ -99,11 +100,11 @@ export class Image extends DisplayObject {
     this.tintedTexture = null;
     this.shader = null;
     this._frame = null;
-    if (this.events) {
+    if (this.events as EventManager | undefined) {
       this.events.destroy();
     }
     this.events = null!;
-    if (this.animations) {
+    if (this.animations as AnimationManager | undefined) {
       this.animations.destroy();
     }
     this.animations = null!;
@@ -126,7 +127,7 @@ export class Image extends DisplayObject {
       this.game.stage.currentRenderOrderID += 1;
       this.renderOrderID = this.game.stage.currentRenderOrderID;
     }
-    if (this.animations) {
+    if (this.animations as AnimationManager | undefined) {
       this.animations.update();
     }
     for (const child of this.children) {
@@ -162,7 +163,7 @@ export class Image extends DisplayObject {
       this.setTexture(textureKey);
     } else {
       const img = cache.getImage(textureKey ?? undefined, true);
-      if (img) {
+      if (img as ImageCacheEntry | undefined) {
         this.key = img.key;
         this.setTexture(new Texture(img.base));
         this.texture.baseTexture.skipRender = textureKey === '__default';
@@ -283,7 +284,7 @@ export class Image extends DisplayObject {
    * @param {boolean} copy - Whether to copy the rect or use it directly.
    */
   public crop(rect: Rectangle, copy = false): void {
-    if (rect) {
+    if (rect as Rectangle | undefined) {
       if (copy && this.cropRect !== null) {
         this.cropRect.setTo(rect.x, rect.y, rect.width, rect.height);
       } else if (copy && this.cropRect === null) {

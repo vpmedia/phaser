@@ -121,7 +121,8 @@ export class Texture {
       this.valid = false;
       return;
     }
-    this.valid = Boolean(frame && frame.width && frame.height && this.baseTexture.source && this.baseTexture.hasLoaded);
+    this.valid =
+      frame.width !== 0 && frame.height !== 0 && this.baseTexture.source !== null && this.baseTexture.hasLoaded;
     if (this.trim) {
       this.width = this.trim.width;
       this.height = this.trim.height;

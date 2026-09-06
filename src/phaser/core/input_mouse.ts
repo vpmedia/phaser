@@ -106,7 +106,7 @@ export class Mouse {
     canvas.addEventListener('mouseover', this._onMouseOver, true);
     canvas.addEventListener('mouseout', this._onMouseOut, true);
     const { wheelEvent } = this.game.device;
-    if (wheelEvent) {
+    if (wheelEvent !== null) {
       canvas.addEventListener(wheelEvent, this._onMouseWheel, true);
     }
   }
@@ -132,13 +132,13 @@ export class Mouse {
       canvas.removeEventListener('mouseout', this._onMouseOut, true);
     }
     const { wheelEvent } = this.game.device;
-    if (wheelEvent && this._onMouseWheel) {
+    if (wheelEvent !== null && this._onMouseWheel) {
       canvas.removeEventListener(wheelEvent, this._onMouseWheel, true);
     }
-    if (this._onMouseUpGlobal) {
+    if (this._onMouseUpGlobal !== null) {
       globalThis.removeEventListener('mouseup', this._onMouseUpGlobal, true);
     }
-    if (this._onMouseOutGlobal) {
+    if (this._onMouseOutGlobal !== null) {
       globalThis.removeEventListener('mouseout', this._onMouseOutGlobal, true);
     }
   }

@@ -135,13 +135,13 @@ describe('Graphics', (): void => {
   describe('drawTriangles', (): void => {
     it('reads a flat coordinate list as triangles', (): void => {
       const graphics = createGraphics();
-      graphics.drawTriangles([0, 0, 10, 0, 0, 10, 20, 20, 30, 20, 20, 30], null as unknown as number[]);
+      graphics.drawTriangles([0, 0, 10, 0, 0, 10, 20, 20, 30, 20, 20, 30], null);
       expect(graphics.graphicsData).toHaveLength(2);
     });
 
     it('reads a point list as triangles', (): void => {
       const graphics = createGraphics();
-      graphics.drawTriangles([new Point(0, 0), new Point(10, 0), new Point(0, 10)], null as unknown as number[]);
+      graphics.drawTriangles([new Point(0, 0), new Point(10, 0), new Point(0, 10)], null);
       expect(graphics.graphicsData).toHaveLength(1);
     });
 

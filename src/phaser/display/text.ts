@@ -780,31 +780,20 @@ export class Text extends Image {
    * @returns {string} The font string.
    */
   public componentsToFont(components: FontComponents): string {
-    const parts = [];
-    let v;
-    v = components.fontStyle;
-    if (v && v !== 'normal') {
-      parts.push(v);
-    }
-    v = components.fontVariant;
-    if (v && v !== 'normal') {
-      parts.push(v);
-    }
-    v = components.fontWeight;
-    if (v && v !== 'normal') {
-      parts.push(v);
-    }
-    v = components.fontSize;
-    if (v && v !== 'medium') {
-      parts.push(v);
-    }
-    v = components.fontFamily;
-    if (v) {
-      parts.push(v);
-    }
+    const parts: string[] = [];
+    const push = (value: string | number | undefined, skip: string): void => {
+      if (value !== undefined && value !== '' && value !== skip) {
+        parts.push(String(value));
+      }
+    };
+    push(components.fontStyle, 'normal');
+    push(components.fontVariant, 'normal');
+    push(components.fontWeight, 'normal');
+    push(components.fontSize, 'medium');
+    push(components.fontFamily, '');
     if (parts.length === 0) {
       // Fallback to whatever value the 'font' was
-      parts.push(components.font);
+      parts.push(components.font ?? '');
     }
     return parts.join(' ');
   }

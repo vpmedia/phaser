@@ -123,7 +123,7 @@
     "typescript/promise-function-async": "off",
     "typescript/require-await": "off",
     "typescript/restrict-template-expressions": "error",
-    "typescript/strict-boolean-expressions": "off",
+    "typescript/strict-boolean-expressions": "error",
     "typescript/switch-exhaustiveness-check": [
       "error",
       {

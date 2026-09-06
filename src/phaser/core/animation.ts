@@ -203,7 +203,7 @@ export class Animation {
     this.paused = false;
     if (resetFrame) {
       this.currentFrame = this._frameData.getFrame(this._frames[0]);
-      if (this.currentFrame) {
+      if (this.currentFrame !== null) {
         this._parent.setFrame(this.currentFrame);
       }
     }
@@ -268,7 +268,7 @@ export class Animation {
           }
           this.currentFrame = this._frameData.getFrame(this._frames[this._frameIndex]);
           //  Instead of calling updateCurrentFrame we do it here instead
-          if (this.currentFrame) {
+          if (this.currentFrame !== null) {
             this._parent.setFrame(this.currentFrame);
           }
           this.loopCount += 1;
@@ -297,14 +297,14 @@ export class Animation {
    * @returns {boolean} True if the frame was updated, false otherwise.
    */
   public updateCurrentFrame(signalUpdate: boolean, fromPlay = false): boolean {
-    if (!this._frameData || !this.currentFrame) {
+    if (!(this._frameData as FrameData | undefined) || this.currentFrame === null) {
       // The animation is already destroyed, probably from a callback
       return false;
     }
     //  Previous index
     const idx = this.currentFrame.index;
     this.currentFrame = this._frameData.getFrame(this._frames[this._frameIndex]);
-    if (this.currentFrame && (fromPlay || (!fromPlay && idx !== this.currentFrame.index))) {
+    if (this.currentFrame !== null && (fromPlay || idx !== this.currentFrame.index)) {
       this._parent.setFrame(this.currentFrame);
     }
     if (this.onUpdate && signalUpdate) {
@@ -359,7 +359,7 @@ export class Animation {
    */
   public updateFrameData(frameData: FrameData): void {
     this._frameData = frameData;
-    this.currentFrame = this._frameData
+    this.currentFrame = (this._frameData as FrameData | undefined)
       ? this._frameData.getFrame(this._frames[this._frameIndex % this._frames.length])
       : null;
   }
@@ -368,7 +368,7 @@ export class Animation {
    * Destroys this animation and cleans up resources.
    */
   public destroy(): void {
-    if (!this._frameData) {
+    if (!(this._frameData as FrameData | undefined)) {
       // Already destroyed
       return;
     }

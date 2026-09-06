@@ -166,7 +166,7 @@ export const setSmoothing = (context: CanvasRenderingContext2D, property: string
  */
 export const setSmoothingEnabled = (context: CanvasRenderingContext2D, value: boolean): CanvasRenderingContext2D => {
   const s = getSmoothingPrefix(context);
-  if (s) {
+  if (s !== null) {
     setSmoothing(context, s, value);
   }
   return context;

@@ -401,7 +401,7 @@ export class Tween {
    * @returns {boolean} True if the tween should continue running, false if it's complete.
    */
   public update(time: number): boolean {
-    if (this.pendingDelete || !this.target) {
+    if (this.pendingDelete || !(this.target as TweenTarget | undefined)) {
       return false;
     }
     if (this.isPaused) {

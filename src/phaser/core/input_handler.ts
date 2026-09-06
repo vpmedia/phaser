@@ -560,7 +560,7 @@ export class InputHandler {
         this.game.canvas.style.cursor = 'pointer';
         this._setHandCursor = true;
       }
-      if (!silent && sendEvent && this.sprite?.events) {
+      if (!silent && sendEvent && this.sprite !== null) {
         this.sprite.events.onInputOver$dispatch(this.sprite, pointer);
       }
       if (this.sprite.parent && this.sprite.parent.type === GROUP) {
@@ -587,7 +587,7 @@ export class InputHandler {
       this.game.canvas.style.cursor = 'default';
       this._setHandCursor = false;
     }
-    if (!silent && this.sprite?.events) {
+    if (!silent && this.sprite !== null) {
       this.sprite.events.onInputOut$dispatch(this.sprite, pointer);
       if (this.sprite?.parent?.type === GROUP) {
         (this.sprite.parent as Group).onChildInputOut.dispatch(this.sprite, pointer);
@@ -615,7 +615,7 @@ export class InputHandler {
       this.downPoint.setTo(pointer.x, pointer.y);
       // It's possible the onInputDown event creates a new Sprite that is on-top of this one, so we ought to force a Pointer update
       pointer.dirty = true;
-      if (this.sprite?.events) {
+      if (this.sprite !== null) {
         this.sprite.events.onInputDown$dispatch(this.sprite, pointer);
         // The event above might have destroyed this sprite.
         if (this.sprite?.parent?.type === GROUP) {
@@ -673,7 +673,7 @@ export class InputHandler {
       data.downDuration = data.timeUp - data.timeDown;
       // Only release the InputUp signal if the pointer is still over this sprite
       let isOver = this.checkPointerOver(pointer);
-      if (this.sprite?.events) {
+      if (this.sprite !== null) {
         if (
           !this.dragStopBlocksInputUp ||
           (this.dragStopBlocksInputUp && !(this.draggable && this.isDragged && this._draggedPointerID === pointer.id))

@@ -111,7 +111,7 @@ export class WebGLRenderer {
     this.shaderManager.destroy();
     this.spriteBatch.destroy();
     this.filterManager.destroy();
-    if (this.gl) {
+    if (this.gl as IdentifiedWebGLRenderingContext | undefined) {
       this.gl.canvas.width = 1;
       this.gl.canvas.height = 1;
       const loseContextExt = this.gl.getExtension('WEBGL_lose_context');
@@ -289,7 +289,7 @@ export class WebGLRenderer {
    * Maps blend modes to WebGL rendering operations.
    */
   public mapBlendModes(): void {
-    if (globalThis.PhaserRegistry.blendModesWebGL) {
+    if (globalThis.PhaserRegistry.blendModesWebGL as number[][] | undefined) {
       return;
     }
     const { gl } = this;

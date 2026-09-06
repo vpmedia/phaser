@@ -864,7 +864,7 @@ export class Cache {
    */
   public destroy(): void {
     for (const cache of this._cacheMap) {
-      const keys = cache ? Object.keys(cache) : [];
+      const keys = Object.keys(cache);
       for (const key of keys) {
         if (key !== '__default' && key !== '__missing') {
           (cache[key] as { destroy?: () => void }).destroy?.();

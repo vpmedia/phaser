@@ -89,7 +89,7 @@ export const jsonDataHash = (game: Game, json: unknown, _key?: string): FrameDat
   let i = 0;
   for (const [key, entry] of Object.entries(frames)) {
     const newFrame = data.addFrame(new Frame(i, entry.frame.x, entry.frame.y, entry.frame.w, entry.frame.h, key));
-    if (entry.trimmed && entry.sourceSize && entry.spriteSourceSize) {
+    if (entry.trimmed === true && entry.sourceSize !== undefined && entry.spriteSourceSize !== undefined) {
       newFrame.setTrim(
         entry.trimmed,
         entry.sourceSize.w,

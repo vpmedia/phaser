@@ -443,7 +443,7 @@ export class Input {
     }
     this.getLocalPosition(displayObject, pointer, this._localPoint);
     localPoint.copyFrom(this._localPoint);
-    if (displayObject.hitArea && displayObject.hitArea.contains) {
+    if (displayObject.hitArea !== null) {
       return displayObject.hitArea.contains(this._localPoint.x, this._localPoint.y);
     } else if (displayObject instanceof Image) {
       const { width } = displayObject.texture.frame;
@@ -457,7 +457,7 @@ export class Input {
       }
     } else if (displayObject instanceof Graphics) {
       for (const data of displayObject.graphicsData) {
-        if (data.fill && data.shape && data.shape.contains(this._localPoint.x, this._localPoint.y)) {
+        if (data.fill && (data.shape?.contains(this._localPoint.x, this._localPoint.y) ?? false)) {
           // Only deal with fills..
           return true;
         }

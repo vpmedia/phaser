@@ -179,7 +179,7 @@ export const canUseNewCanvasBlendModes = (): boolean => {
   context.globalCompositeOperation = 'multiply';
   context.drawImage(magenta, 0, 0);
   context.drawImage(yellow, 2, 0);
-  if (!context.getImageData(2, 0, 1, 1)) {
+  if (context.getImageData(2, 0, 1, 1) === null) {
     return false;
   }
   const { data } = context.getImageData(2, 0, 1, 1);

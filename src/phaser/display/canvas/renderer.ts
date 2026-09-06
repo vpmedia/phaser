@@ -28,6 +28,7 @@ import { detectCapabilities } from './tinter.js';
 import { getSmoothingPrefix, setSmoothing } from './util.js';
 import type { DisplayObject } from '../display_object.js';
 import type { RenderSession } from '../render_session.js';
+import type { StageBackgroundColor } from '../../core/stage.js';
 
 export class CanvasRenderer {
   public type!: number;
@@ -64,7 +65,7 @@ export class CanvasRenderer {
       willReadFrequently: false,
       alpha: this.transparent,
     })!;
-    if (!this.context) {
+    if (!(this.context as CanvasRenderingContext2D | undefined)) {
       throw new Error(ENGINE_ERROR_CREATING_CANVAS_2D_CONTEXT);
     }
     this.refresh = true;
@@ -86,7 +87,7 @@ export class CanvasRenderer {
    * @param {Stage} root - The root stage to render.
    */
   public render(root: Stage): void {
-    if (!this.context) {
+    if (!(this.context as CanvasRenderingContext2D | undefined)) {
       return;
     }
     this.context.setTransform(1, 0, 0, 1, 0, 0);
@@ -98,7 +99,7 @@ export class CanvasRenderer {
     if (this.clearBeforeRender) {
       if (this.transparent) {
         this.context.clearRect(0, 0, this.width, this.height);
-      } else if (root._bgColor) {
+      } else if (root._bgColor as StageBackgroundColor | undefined) {
         this.context.fillStyle = root._bgColor.rgba;
         this.context.fillRect(0, 0, this.width, this.height);
       }
@@ -151,7 +152,7 @@ export class CanvasRenderer {
    * Maps blend modes to canvas rendering operations.
    */
   public mapBlendModes(): void {
-    if (globalThis.PhaserRegistry.blendModesCanvas) {
+    if (globalThis.PhaserRegistry.blendModesCanvas as GlobalCompositeOperation[] | undefined) {
       return;
     }
     const b: GlobalCompositeOperation[] = [];

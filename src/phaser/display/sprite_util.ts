@@ -222,7 +222,7 @@ export const renderCanvas = (
     renderSession.context.globalAlpha = target.worldAlpha;
 
     //  If smoothingEnabled is supported and we need to change the smoothing property for this texture
-    if (renderSession.smoothProperty && renderSession.scaleMode !== target.texture.baseTexture.scaleMode) {
+    if (renderSession.smoothProperty !== null && renderSession.scaleMode !== target.texture.baseTexture.scaleMode) {
       renderSession.scaleMode = target.texture.baseTexture.scaleMode;
       setSmoothing(renderSession.context, renderSession.smoothProperty, renderSession.scaleMode === SCALE_LINEAR);
     }

@@ -240,7 +240,7 @@ export class SoundManager {
       return;
     }
     for (const sound of this._sounds) {
-      if (sound) {
+      if (sound !== null) {
         sound.stop();
       }
     }
@@ -254,7 +254,7 @@ export class SoundManager {
       return;
     }
     for (const sound of this._sounds) {
-      if (sound) {
+      if (sound !== null) {
         sound.pause();
       }
     }
@@ -268,7 +268,7 @@ export class SoundManager {
       return;
     }
     for (const sound of this._sounds) {
-      if (sound) {
+      if (sound !== null) {
         sound.resume();
       }
     }
@@ -469,7 +469,7 @@ export class SoundManager {
   public destroy(): void {
     this.stopAll();
     for (const sound of this._sounds) {
-      if (sound) {
+      if (sound !== null) {
         sound.destroy();
       }
     }

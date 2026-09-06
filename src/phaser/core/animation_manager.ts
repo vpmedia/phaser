@@ -312,7 +312,7 @@ export class AnimationManager {
   public set frame(value: number) {
     if (typeof value === 'number' && this._frameData && this._frameData.getFrame(value) !== null) {
       this.currentFrame = this._frameData.getFrame(value);
-      if (this.currentFrame) {
+      if (this.currentFrame !== null) {
         this.sprite.setFrame(this.currentFrame);
       }
     } else {
@@ -340,7 +340,7 @@ export class AnimationManager {
   public set frameName(value: string | null) {
     if (typeof value === 'string' && this._frameData && this._frameData.getFrameByName(value) !== null) {
       this.currentFrame = this._frameData.getFrameByName(value);
-      if (this.currentFrame) {
+      if (this.currentFrame !== null) {
         this._frameIndex = this.currentFrame.index;
         this.sprite.setFrame(this.currentFrame);
       }

@@ -149,7 +149,7 @@ export class Pointer {
    */
   public start(event: InputEvent): this {
     const { input } = this.game;
-    if (event.pointerId) {
+    if (event.pointerId !== undefined) {
       this.pointerId = event.pointerId;
     }
     this.identifier = event.identifier ?? null;

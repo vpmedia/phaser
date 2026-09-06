@@ -125,7 +125,7 @@ export const compileProgram = (
 
   const shaderProgram = gl.createProgram();
 
-  if (!shaderProgram || !vertexShader || !fragmentShader) {
+  if (shaderProgram === null || vertexShader === null || fragmentShader === null) {
     return null;
   }
   gl.attachShader(shaderProgram, vertexShader);

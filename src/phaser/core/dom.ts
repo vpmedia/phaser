@@ -203,9 +203,7 @@ export class DOM {
         ? (): number => window.pageXOffset
         : (): number => document.documentElement.scrollLeft;
     this.scrollYProvider =
-      'pageYOffset' in globalThis
-        ? (): number => window.pageYOffset
-        : (): number => document.documentElement.scrollTop;
+      'pageYOffset' in globalThis ? (): number => window.pageYOffset : (): number => document.documentElement.scrollTop;
   }
 
   /**
@@ -276,7 +274,7 @@ export class DOM {
       screen.orientation ?? screen.mozOrientation ?? screen.msOrientation;
     if (typeof orientation === 'string') {
       // moz/ms-orientation are strings
-      return orientation as OrientationType;
+      return orientation;
     }
     if (typeof orientation?.type === 'string') {
       // Screen Orientation API specification

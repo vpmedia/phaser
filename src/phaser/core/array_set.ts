@@ -86,7 +86,7 @@ export class ArraySet<T> {
    */
   public setAll(key: string, value: unknown): void {
     for (const item of this.list) {
-      if (item) {
+      if (item !== undefined) {
         (item as Record<string, unknown>)[key] = value;
       }
     }
@@ -114,7 +114,7 @@ export class ArraySet<T> {
   public removeAll(destroy = false): void {
     for (let i = this.list.length - 1; i >= 0; i -= 1) {
       const entry = this.list[i];
-      if (entry) {
+      if (entry !== undefined) {
         const item = this.remove(entry) as { destroy?: () => void } | null;
         if (destroy) {
           item?.destroy?.();

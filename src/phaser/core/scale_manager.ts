@@ -5,6 +5,7 @@ import type { Game, GameConfig } from './game.js';
 import { DOM } from './dom.js';
 import { Signal } from './signal.js';
 import type { AppliedCallback, Callback } from './callback.js';
+import type { Input } from './input.js';
 
 /** The gap the canvas leaves around itself inside its parent. */
 export type ScaleMargin = { left: number; top: number; right: number; bottom: number; x: number; y: number };
@@ -452,7 +453,7 @@ export class ScaleManager {
     }
     this.bounds.setTo(this.offset.x, this.offset.y, this.width, this.height);
     // Can be invoked in boot pre-input
-    if (this.game.input?.scale) {
+    if (this.game.input as Input | undefined) {
       this.game.input.scale.setTo(this.scaleFactor.x, this.scaleFactor.y);
     }
   }

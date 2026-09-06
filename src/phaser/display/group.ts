@@ -3,6 +3,7 @@ import { Signal } from '../core/signal.js';
 import { DisplayObject } from './display_object.js';
 import { Image } from './image.js';
 import type { Game } from '../core/game.js';
+import type { EventManager } from '../core/event_manager.js';
 
 export const SORT_ASCENDING = -1;
 export const SORT_DESCENDING = 1;
@@ -41,7 +42,7 @@ export class Group extends DisplayObject {
     if (addToStage) {
       this.game.stage.addChild(this);
       this.z = this.game.stage.children.length;
-    } else if (target) {
+    } else if (target as DisplayObject | undefined) {
       target.addChild(this);
       this.z = target.children.length;
     }
@@ -115,7 +116,7 @@ export class Group extends DisplayObject {
     if (this.inputEnableChildren && (inputChild.input === undefined || inputChild.inputEnabled === true)) {
       inputChild.inputEnabled = true;
     }
-    if (!silent && child.events) {
+    if (!silent && (child.events as EventManager | undefined)) {
       child.events.onAddedToGroup$dispatch(child, this);
     }
     this.cursor ??= child;
@@ -292,7 +293,7 @@ export class Group extends DisplayObject {
     if (this.children.length === 0 || !this.children.includes(child)) {
       return false;
     }
-    if (!silent && child.events) {
+    if (!silent && (child.events as EventManager | undefined)) {
       child.events.onRemovedFromGroup$dispatch(child, this);
     }
     const removed = this.removeChild(child);
@@ -318,7 +319,7 @@ export class Group extends DisplayObject {
     }
     do {
       const first = this.children[0]!;
-      if (!silent && first.events) {
+      if (!silent && (first.events as EventManager | undefined)) {
         first.events.onRemovedFromGroup$dispatch(first, this);
       }
       const removed = this.removeChild(first);

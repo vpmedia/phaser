@@ -215,7 +215,7 @@ export class Timer {
     this._i = this.events.length;
     while (this._i) {
       this._i -= 1;
-      if (this.events[this._i]?.pendingDelete) {
+      if (this.events[this._i]?.pendingDelete === true) {
         this.events.splice(this._i, 1);
       }
     }

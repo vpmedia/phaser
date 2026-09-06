@@ -10,6 +10,7 @@ import type { UserData } from '../core/callback.js';
 import type { EventManager } from '../core/event_manager.js';
 import type { Image } from './image.js';
 import type { RenderSession } from './render_session.js';
+import type { IdentifiedWebGLRenderingContext } from './webgl/util.js';
 
 export class DisplayObject {
   /** @type {boolean} */
@@ -127,7 +128,7 @@ export class DisplayObject {
    * @param {boolean} _destroyTexture - Whether the subclass should destroy its texture too.
    */
   public destroy(_destroyChildren = true, _destroyTexture = false): void {
-    if (this.children) {
+    if (this.children as DisplayObject[] | undefined) {
       let i = this.children.length;
       while (i) {
         i -= 1;
@@ -310,7 +311,7 @@ export class DisplayObject {
     if (!parent && !this.parent) {
       return this;
     }
-    if (!this.game || !this.visible) {
+    if (!(this.game as Game | undefined) || !this.visible) {
       return this;
     }
     const p = parent ?? this.parent ?? this.game.world;
@@ -622,7 +623,7 @@ export class DisplayObject {
       return;
     }
     this._cachedSprite.worldAlpha = this.worldAlpha;
-    if (renderSession.gl) {
+    if (renderSession.gl as IdentifiedWebGLRenderingContext | undefined) {
       renderWebGL(this._cachedSprite, renderSession);
     } else {
       renderCanvas(this._cachedSprite, renderSession);
