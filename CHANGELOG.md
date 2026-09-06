@@ -1,3 +1,13 @@
+## [1.122.0] - 2026-09-06
+
+### 🚜 Refactor
+
+- *(types)* Name the pointer callbacks and keep display object data untyped
+
+### ⚙️ Miscellaneous Tasks
+
+- Release
+- *(release)* V1.122.0
 ## [1.121.0] - 2026-09-06
 
 ### 🚜 Refactor
