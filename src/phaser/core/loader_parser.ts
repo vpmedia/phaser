@@ -2,17 +2,37 @@ import { Texture } from '../display/webgl/texture.js';
 import { Rectangle } from '../geom/rectangle.js';
 import type { BaseTexture } from '../display/webgl/base_texture.js';
 
+/** One glyph in a bitmap font, as parsed from the font descriptor. */
+export type BitmapFontChar = {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  xOffset: number;
+  yOffset: number;
+  xAdvance: number;
+  kerning: Record<number, number>;
+  texture?: Texture;
+};
+
+/** A parsed bitmap font: its metrics and the glyphs it can draw. */
+export type BitmapFontData = {
+  font: string;
+  size: number;
+  lineHeight: number;
+  chars: Record<number, BitmapFontChar>;
+};
+
 /**
  * Finalizes bitmap font data by attaching textures to characters.
  * @param {BaseTexture} baseTexture - The base texture for the font.
  * @param {object} bitmapFontData - The bitmap font data to finalize.
  * @returns {object} The finalized bitmap font data.
  */
-export const finalizeBitmapFont = (baseTexture: BaseTexture, bitmapFontData: any) => {
-  Object.keys(bitmapFontData.chars).forEach((charCode): void => {
-    const letter = bitmapFontData.chars[charCode];
+export const finalizeBitmapFont = (baseTexture: BaseTexture, bitmapFontData: BitmapFontData): BitmapFontData => {
+  for (const letter of Object.values(bitmapFontData.chars)) {
     letter.texture = new Texture(baseTexture, new Rectangle(letter.x, letter.y, letter.width, letter.height));
-  });
+  }
   return bitmapFontData;
 };
 
@@ -24,34 +44,38 @@ export const finalizeBitmapFont = (baseTexture: BaseTexture, bitmapFontData: any
  * @param {number} ySpacing - Vertical spacing between characters.
  * @returns {object} The parsed bitmap font data.
  */
-export const xmlBitmapFont = (xml: any, baseTexture: BaseTexture, xSpacing: number, ySpacing: number) => {
-  const data: any = {};
+export const xmlBitmapFont = (
+  xml: XMLDocument,
+  baseTexture: BaseTexture,
+  xSpacing: number,
+  ySpacing: number
+): BitmapFontData => {
   const info = xml.querySelectorAll('info')[0];
   const common = xml.querySelectorAll('common')[0];
-  data.font = info.getAttribute('face');
-  data.size = Math.trunc(Number(info.getAttribute('size')));
-  data.lineHeight = Math.trunc(Number(common.getAttribute('lineHeight'))) + ySpacing;
-  data.chars = {};
-  const letters = xml.querySelectorAll('char');
-  for (let i = 0; i < letters.length; i += 1) {
-    const charCode = Math.trunc(Number(letters[i].getAttribute('id')));
-    data.chars[charCode] = {
-      x: Math.trunc(Number(letters[i].getAttribute('x'))),
-      y: Math.trunc(Number(letters[i].getAttribute('y'))),
-      width: Math.trunc(Number(letters[i].getAttribute('width'))),
-      height: Math.trunc(Number(letters[i].getAttribute('height'))),
-      xOffset: Math.trunc(Number(letters[i].getAttribute('xoffset'))),
-      yOffset: Math.trunc(Number(letters[i].getAttribute('yoffset'))),
-      xAdvance: Math.trunc(Number(letters[i].getAttribute('xadvance'))) + xSpacing,
+  const attr = (element: Element | undefined, name: string): number => Math.trunc(Number(element?.getAttribute(name)));
+  const data: BitmapFontData = {
+    font: info?.getAttribute('face') ?? '',
+    size: attr(info, 'size'),
+    lineHeight: attr(common, 'lineHeight') + ySpacing,
+    chars: {},
+  };
+  for (const letter of xml.querySelectorAll('char')) {
+    data.chars[attr(letter, 'id')] = {
+      x: attr(letter, 'x'),
+      y: attr(letter, 'y'),
+      width: attr(letter, 'width'),
+      height: attr(letter, 'height'),
+      xOffset: attr(letter, 'xoffset'),
+      yOffset: attr(letter, 'yoffset'),
+      xAdvance: attr(letter, 'xadvance') + xSpacing,
       kerning: {},
     };
   }
-  const kernings = xml.querySelectorAll('kerning');
-  for (let i = 0; i < kernings.length; i += 1) {
-    const first = Math.trunc(Number(kernings[i].getAttribute('first')));
-    const second = Math.trunc(Number(kernings[i].getAttribute('second')));
-    const amount = Math.trunc(Number(kernings[i].getAttribute('amount')));
-    data.chars[second].kerning[first] = amount;
+  for (const kerning of xml.querySelectorAll('kerning')) {
+    const char = data.chars[attr(kerning, 'second')];
+    if (char) {
+      char.kerning[attr(kerning, 'first')] = attr(kerning, 'amount');
+    }
   }
   return finalizeBitmapFont(baseTexture, data);
 };
@@ -64,8 +88,12 @@ export const xmlBitmapFont = (xml: any, baseTexture: BaseTexture, xSpacing: numb
  * @param {number} ySpacing - Vertical spacing between characters.
  * @returns {object} The parsed bitmap font data.
  */
-export const bitmapFont = (xml: any, baseTexture: BaseTexture, xSpacing: number, ySpacing: number) =>
-  xmlBitmapFont(xml, baseTexture, xSpacing, ySpacing);
+export const bitmapFont = (
+  xml: XMLDocument,
+  baseTexture: BaseTexture,
+  xSpacing: number,
+  ySpacing: number
+): BitmapFontData => xmlBitmapFont(xml, baseTexture, xSpacing, ySpacing);
 
 /**
  * Parses JSON bitmap font data.
@@ -75,13 +103,13 @@ export const bitmapFont = (xml: any, baseTexture: BaseTexture, xSpacing: number,
  * @param {number} ySpacing - Vertical spacing between characters.
  * @returns {object} The parsed bitmap font data.
  */
-export const jsonBitmapFont = (json: any, baseTexture: BaseTexture, xSpacing: number, ySpacing: number) => {
-  const data: {
-    font: string;
-    size: number;
-    lineHeight: number;
-    chars: Record<number, { kerning: Record<number, number>; [key: string]: unknown }>;
-  } = {
+export const jsonBitmapFont = (
+  json: any,
+  baseTexture: BaseTexture,
+  xSpacing: number,
+  ySpacing: number
+): BitmapFontData => {
+  const data: BitmapFontData = {
     font: json.font.info._face,
     size: Math.trunc(Number(json.font.info._size)),
     lineHeight: Math.trunc(Number(json.font.common._lineHeight)) + ySpacing,
