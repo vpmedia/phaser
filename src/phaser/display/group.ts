@@ -100,12 +100,13 @@ export class Group extends DisplayObject {
 
   /**
    * Adds a child to this group.
-   * @param {DisplayObject} child - The child to add.
+   * @template T
+   * @param {T} child - The child to add.
    * @param {boolean} silent - Whether to dispatch events.
    * @param {number} index - The index to add the child at.
-   * @returns {DisplayObject} The added child.
+   * @returns {T} The added child.
    */
-  add(child: any, silent: boolean = false, index: number = -1) {
+  add<T extends DisplayObject>(child: T, silent: boolean = false, index: number = -1): T {
     if (child.parent === this) {
       return child;
     }
@@ -116,8 +117,9 @@ export class Group extends DisplayObject {
       this.addChildAt(child, index);
       this.updateZ();
     }
-    if (this.inputEnableChildren && (!child.input || child.inputEnabled)) {
-      child.inputEnabled = true;
+    const inputChild = child as T & { input?: unknown; inputEnabled?: boolean };
+    if (this.inputEnableChildren && (!inputChild.input || inputChild.inputEnabled)) {
+      inputChild.inputEnabled = true;
     }
     if (!silent && child.events) {
       child.events.onAddedToGroup$dispatch(child, this);

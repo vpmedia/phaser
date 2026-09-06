@@ -4,21 +4,21 @@ import { DisplayObject } from './display_object.js';
 import { Image } from './image.js';
 
 export class BitmapText extends DisplayObject {
-  declare type: any;
-  pendingDestroy!: any;
-  declare renderOrderID: any;
-  textWidth!: any;
-  textHeight!: any;
-  _prevAnchor!: any;
-  _glyphs!: any;
-  _maxWidth!: any;
-  _text!: any;
+  declare type: number;
+  pendingDestroy!: boolean;
+  declare renderOrderID: number;
+  textWidth!: number;
+  textHeight!: number;
+  _prevAnchor!: Point;
+  _glyphs!: Image[];
+  _maxWidth!: number;
+  _text!: string;
   _data!: any;
-  _font!: any;
-  _fontSize!: any;
-  _align!: any;
-  _tint!: any;
-  dirty!: any;
+  _font!: string;
+  _fontSize!: number;
+  _align!: string;
+  _tint!: number;
+  dirty!: boolean;
   /**
    * Creates a new BitmapText instance.
    * @param {import('../core/game.js').Game} game - The game instance this bitmap text belongs to.
@@ -39,31 +39,20 @@ export class BitmapText extends DisplayObject {
     align: string = 'left'
   ) {
     super(game);
-    /** @type {number} */
     this.type = BITMAP_TEXT;
     this.position.setTo(x, y);
-    /** @type {number} */
     this.textWidth = 0;
-    /** @type {number} */
     this.textHeight = 0;
-    /** @type {Point} */
     this._prevAnchor = new Point();
     this._glyphs = [];
-    /** @type {number} */
     this._maxWidth = 0;
-    /** @type {string} */
     this._text = text.toString() || '';
     this._data = game.cache.getBitmapFont(font);
-    /** @type {string} */
     this._font = font;
-    /** @type {number} */
     this._fontSize = size;
-    /** @type {string} */
     this._align = align;
-    /** @type {number} */
     this._tint = 0xffffff;
     this.updateText();
-    /** @type {boolean} */
     this.dirty = false;
   }
 
@@ -71,9 +60,9 @@ export class BitmapText extends DisplayObject {
    * Destroys this bitmap text and cleans up resources.
    */
   override destroy() {
-    this._prevAnchor = null;
-    this._glyphs = null;
-    this._text = null;
+    this._prevAnchor = null!;
+    this._glyphs = null!;
+    this._text = null!;
     this._data = null;
     super.destroy();
   }
@@ -289,7 +278,6 @@ export class BitmapText extends DisplayObject {
         kept.push(this._glyphs[i]);
       }
     }
-    /** @type {Image[]} */
     this._glyphs = [];
     this._glyphs = kept;
     this.updateText();
@@ -430,7 +418,7 @@ export class BitmapText extends DisplayObject {
    * Gets the text content of this bitmap text.
    * @returns {string} The current text content.
    */
-  get text() {
+  get text(): string {
     return this._text;
   }
 

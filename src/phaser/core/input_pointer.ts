@@ -11,47 +11,47 @@ import {
 
 export class Pointer {
   game!: any;
-  id!: any;
-  type!: any;
-  exists!: any;
-  identifier!: any;
+  id!: number;
+  type!: number;
+  exists!: boolean;
+  identifier!: number | null;
   pointerId!: any;
-  pointerMode!: any;
+  pointerMode!: number;
   target!: any;
   button!: any;
-  _holdSent!: any;
+  _holdSent!: boolean;
   _history!: any;
-  _nextDrop!: any;
-  _stateReset!: any;
-  withinGame!: any;
-  clientX!: any;
-  clientY!: any;
-  pageX!: any;
-  pageY!: any;
-  screenX!: any;
-  screenY!: any;
-  rawMovementX!: any;
-  rawMovementY!: any;
-  movementX!: any;
-  movementY!: any;
-  x!: any;
-  y!: any;
-  isMouse!: any;
-  isDown!: any;
-  isUp!: any;
-  timeDown!: any;
-  timeUp!: any;
-  previousTapTime!: any;
-  totalTouches!: any;
-  msSinceLastClick!: any;
+  _nextDrop!: number;
+  _stateReset!: boolean;
+  withinGame!: boolean;
+  clientX!: number;
+  clientY!: number;
+  pageX!: number;
+  pageY!: number;
+  screenX!: number;
+  screenY!: number;
+  rawMovementX!: number;
+  rawMovementY!: number;
+  movementX!: number;
+  movementY!: number;
+  x!: number;
+  y!: number;
+  isMouse!: boolean;
+  isDown!: boolean;
+  isUp!: boolean;
+  timeDown!: number;
+  timeUp!: number;
+  previousTapTime!: number;
+  totalTouches!: number;
+  msSinceLastClick!: number;
   targetObject!: any;
   interactiveCandidates!: any;
-  active!: any;
-  dirty!: any;
-  position!: any;
-  positionDown!: any;
-  positionUp!: any;
-  circle!: any;
+  active!: boolean;
+  dirty!: boolean;
+  position!: Point;
+  positionDown!: Point;
+  positionUp!: Point;
+  circle!: Circle;
   _clickTrampolines!: any;
   _trampolineTargetObject!: any;
   /**
@@ -63,10 +63,8 @@ export class Pointer {
   constructor(game: import('./game.js').Game, id: number, pointerMode: number) {
     this.game = game;
     this.id = id;
-    /** @type {number} */
     this.type = POINTER;
     this.exists = true;
-    /** @type {number} */
     this.identifier = 0;
     this.pointerId = null;
     this.pointerMode = pointerMode || POINTER_CURSOR | POINTER_CONTACT;
@@ -74,43 +72,27 @@ export class Pointer {
     this.button = null;
     this._holdSent = false;
     this._history = [];
-    /** @type {number} */
     this._nextDrop = 0;
     this._stateReset = false;
     this.withinGame = false;
     this.clientX = -1;
-    /** @type {number} */
     this.clientY = -1;
-    /** @type {number} */
     this.pageX = -1;
-    /** @type {number} */
     this.pageY = -1;
-    /** @type {number} */
     this.screenX = -1;
-    /** @type {number} */
     this.screenY = -1;
-    /** @type {number} */
     this.rawMovementX = 0;
-    /** @type {number} */
     this.rawMovementY = 0;
-    /** @type {number} */
     this.movementX = 0;
-    /** @type {number} */
     this.movementY = 0;
-    /** @type {number} */
     this.x = -1;
-    /** @type {number} */
     this.y = -1;
     this.isMouse = id === 0;
     this.isDown = false;
     this.isUp = true;
-    /** @type {number} */
     this.timeDown = 0;
-    /** @type {number} */
     this.timeUp = 0;
-    /** @type {number} */
     this.previousTapTime = 0;
-    /** @type {number} */
     this.totalTouches = 0;
     this.msSinceLastClick = Number.MAX_VALUE;
     this.targetObject = null;

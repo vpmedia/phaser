@@ -8,26 +8,26 @@ import { getBounds, renderCanvas, renderWebGL } from './sprite_util.js';
 import { textureFromCanvas } from './webgl/texture_util.js';
 
 export class Text extends Image {
-  declare type: any;
+  declare type: number;
   canvas!: any;
   context!: any;
-  padding!: any;
-  textBounds!: any;
+  padding!: Point;
+  textBounds!: Rectangle | null;
   style!: any;
   colors!: any;
   strokeColors!: any;
   fontStyles!: any;
   fontWeights!: any;
-  autoRound!: any;
-  useAdvancedWrap!: any;
-  _res!: any;
-  _text!: any;
+  autoRound!: boolean;
+  useAdvancedWrap!: boolean;
+  _res!: number;
+  _text!: string;
   _fontComponents!: any;
-  _lineSpacing!: any;
-  _charCount!: any;
+  _lineSpacing!: number;
+  _charCount!: number;
   declare _width: any;
   declare _height: any;
-  dirty!: any;
+  dirty!: boolean;
   /**
    * Creates a new Text object.
    * @param {import('../core/game.js').Game} game - The game instance this text belongs to.
@@ -88,8 +88,8 @@ export class Text extends Image {
     this.strokeColors = null;
     this.fontStyles = null;
     this.fontWeights = null;
-    this.padding = null;
-    this._text = null;
+    this.padding = null!;
+    this._text = null!;
     this._fontComponents = null;
     super.destroy();
   }
@@ -1056,7 +1056,7 @@ export class Text extends Image {
    * Gets the text content of this object.
    * @returns {string} The current text content.
    */
-  get text() {
+  get text(): string {
     return this._text;
   }
 
@@ -1064,7 +1064,7 @@ export class Text extends Image {
    * Sets the text content of this object.
    * @param {string | number | boolean | Date} value - The new text content to set.
    */
-  set text(value: any) {
+  set text(value: string | number) {
     if (value !== this._text) {
       this._text = value.toString() || '';
       this.dirty = true;

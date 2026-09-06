@@ -4,14 +4,15 @@ import { Graphics } from '../display/graphics.js';
 import { Group } from '../display/group.js';
 import { Image } from '../display/image.js';
 import { Text } from '../display/text.js';
+import type { Game } from './game.js';
 
 export class GameObjectFactory {
-  game!: any;
+  game!: Game;
   /**
    * Creates a new GameObjectFactory instance.
    * @param {import('./game.js').Game} game - The game instance this factory belongs to.
    */
-  constructor(game: import('./game.js').Game) {
+  constructor(game: Game) {
     this.game = game;
   }
 
