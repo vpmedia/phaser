@@ -89,7 +89,7 @@ export class Texture {
    * Destroys this texture and cleans up resources.
    * @param {boolean} destroyBase - Whether to destroy the base texture as well.
    */
-  public destroy(destroyBase: boolean = false): void {
+  public destroy(destroyBase = false): void {
     if (destroyBase) {
       this.baseTexture.destroy();
     }

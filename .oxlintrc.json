@@ -106,7 +106,7 @@
     "typescript/no-deprecated": "off",
     "typescript/no-dynamic-delete": "off",
     "typescript/no-explicit-any": "off",
-    "typescript/no-inferrable-types": "off",
+    "typescript/no-inferrable-types": "error",
     "typescript/no-non-null-assertion": "off",
     "typescript/no-redundant-type-constituents": "off",
     "typescript/no-this-alias": "off",
@@ -160,7 +160,7 @@
       }
     ],
     "unicorn/prefer-add-event-listener": "off",
-    "unicorn/prefer-class-fields": "off",
+    "unicorn/prefer-class-fields": "error",
     "unicorn/prefer-code-point": "error",
     "unicorn/prefer-dom-node-remove": "off",
     "unicorn/prefer-event-target": "off",

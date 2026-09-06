@@ -4,9 +4,9 @@ export type TextureSource = HTMLImageElement | HTMLCanvasElement;
 import { removeByCanvas } from '../canvas/pool.js';
 
 export class BaseTexture {
-  public resolution: number = 1;
-  public width: number = 100;
-  public height: number = 100;
+  public resolution = 1;
+  public width = 100;
+  public height = 100;
   public scaleMode!: number;
   public hasLoaded!: boolean;
   public source!: TextureSource | null;

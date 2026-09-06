@@ -208,7 +208,7 @@ export class BitmapText extends DisplayObject {
     if (!data) {
       return;
     }
-    let text = this.text;
+    let { text } = this;
     const scale = this._fontSize / data.size;
     const lines: BitmapTextLine[] = [];
     let y = 0;

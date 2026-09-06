@@ -140,12 +140,14 @@ export class TweenManager {
       }
       return;
     }
-    for (const tween of this._tweens.slice()) {
+    const running = [...this._tweens];
+    for (const tween of running) {
       if (obj === tween.target) {
         this.remove(tween);
       }
     }
-    for (const tween of this._add.slice()) {
+    const pending = [...this._add];
+    for (const tween of pending) {
       if (obj === tween.target) {
         this.remove(tween);
       }
