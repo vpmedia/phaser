@@ -1,9 +1,12 @@
+import type { AbstractFilter } from './abstract_filter.js';
+import type { FilterTexture } from './filter_texture.js';
+
 export class WebGLFilterManager {
   public gl!: WebGLRenderingContext;
-  public texturePool!: any[];
-  public filterStack!: any;
-  public offsetX!: any;
-  public offsetY!: any;
+  public texturePool!: FilterTexture[];
+  public filterStack!: AbstractFilter[];
+  public offsetX!: number;
+  public offsetY!: number;
   /**
    * Creates a new FilterManager instance.
    */

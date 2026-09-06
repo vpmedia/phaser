@@ -35,6 +35,7 @@ import { WebGLStencilManager } from './stencil_manager.js';
 import type { IdentifiedWebGLRenderingContext } from './util.js';
 import { getWebGLContextErrorCode, getWebGLContextErrorName } from './util.js';
 import type { RenderSession } from '../render_session.js';
+import type { DisplayObject } from '../display_object.js';
 
 export class WebGLRenderer {
   public gl!: IdentifiedWebGLRenderingContext;
@@ -52,9 +53,9 @@ export class WebGLRenderer {
   public offset!: Point;
   public shaderManager!: WebGLShaderManager;
   public spriteBatch!: WebGLSpriteBatch;
-  public filterManager!: any;
-  public stencilManager!: any;
-  public blendModeManager!: any;
+  public filterManager!: WebGLFilterManager;
+  public stencilManager!: WebGLStencilManager;
+  public blendModeManager!: WebGLBlendModeManager;
   public renderSession!: RenderSession;
   /**
    * Creates a new WebGLRenderer instance.
@@ -204,7 +205,7 @@ export class WebGLRenderer {
    * @param {object} buffer - The render buffer.
    * @param {Matrix} matrix - The transformation matrix.
    */
-  public renderDisplayObject(displayObject: any, projection: Point, buffer?: any, matrix?: any): void {
+  public renderDisplayObject(displayObject: DisplayObject, projection: Point, buffer?: WebGLFramebuffer | null): void {
     this.renderSession.blendModeManager.setBlendMode(BLEND_NORMAL);
     // reset the render session data..
     this.renderSession.drawCount = 0;
@@ -217,9 +218,9 @@ export class WebGLRenderer {
     // start the sprite batch
     this.spriteBatch.begin(this.renderSession);
     // start the filter manager
-    this.filterManager.begin(this.renderSession, buffer);
+    this.filterManager.begin();
     // render the scene!
-    displayObject.renderWebGL(this.renderSession, matrix);
+    displayObject.renderWebGL(this.renderSession);
     // finish the sprite batch
     this.spriteBatch.end();
   }

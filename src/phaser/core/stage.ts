@@ -5,11 +5,21 @@ import { valueToColor } from '../util/math.js';
 import { SCALE_LINEAR, SCALE_NEAREST } from './const.js';
 import type { Game } from './game.js';
 
+/** The stage clear colour, kept in every form the two renderers need. */
+export type StageBackgroundColor = {
+  r: number;
+  g: number;
+  b: number;
+  a: number;
+  color: number;
+  rgba: string;
+};
+
 export class Stage extends DisplayObject {
-  declare public name: any;
-  declare public worldTransform: any;
-  public currentRenderOrderID!: any;
-  public _bgColor!: any;
+  declare public name: string;
+  declare public worldTransform: Matrix;
+  public currentRenderOrderID!: number;
+  public _bgColor!: StageBackgroundColor;
   /**
    * Creates a new Stage instance.
    * @param {Game} game - The game instance.
@@ -109,8 +119,8 @@ export class Stage extends DisplayObject {
   public override destroy(): void {
     this.exists = false;
     this.game = null!;
-    this.worldTransform = null;
-    this._bgColor = null;
+    this.worldTransform = null!;
+    this._bgColor = null!;
   }
 
   /**

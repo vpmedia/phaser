@@ -2,6 +2,11 @@ import type { BaseTexture } from './base_texture.js';
 import type { IdentifiedWebGLRenderingContext } from './util.js';
 import type { Image } from '../../display/image.js';
 import type { RenderSession } from '../render_session.js';
+import type { DisplayObject } from '../display_object.js';
+
+/** What the fast batch draws: a container whose children are plain images sharing one texture. */
+export type FastBatchRoot = DisplayObject & { children: Image[] };
+import type { FastShader } from './shader/fast.js';
 
 export class FastSpriteBatch {
   public gl!: IdentifiedWebGLRenderingContext;
@@ -16,10 +21,10 @@ export class FastSpriteBatch {
   public drawing!: boolean;
   public currentBatchSize!: number;
   public currentBaseTexture!: BaseTexture | null;
-  public currentBlendMode!: any;
+  public currentBlendMode!: number;
   public renderSession!: RenderSession;
-  public shader!: any;
-  public matrix!: any;
+  public shader!: FastShader | null;
+  public matrix!: Float32Array | number[] | null;
   /**
    * Creates a new FastSpriteBatch instance.
    * @param {WebGLRenderingContext & { id: number }} gl - The WebGL rendering context.
@@ -75,7 +80,7 @@ export class FastSpriteBatch {
    * @param {object} spriteBatch - The sprite batch to render.
    * @param {object} renderSession - The render session to use.
    */
-  public begin(spriteBatch: any, renderSession: RenderSession): void {
+  public begin(spriteBatch: FastBatchRoot, renderSession: RenderSession): void {
     this.renderSession = renderSession;
     this.shader = this.renderSession.shaderManager.fastShader;
     this.matrix = spriteBatch.worldTransform.toArray(true);
@@ -93,12 +98,12 @@ export class FastSpriteBatch {
    * Flushes the sprite batch to WebGL.
    * @param {object} spriteBatch - The sprite batch to flush.
    */
-  public render(spriteBatch: any): void {
+  public render(spriteBatch: FastBatchRoot): void {
     const { children } = spriteBatch;
     const [sprite] = children;
     // if the uvs have not updated then no point rendering just yet!
     // check texture.
-    if (!sprite.texture._uvs) {
+    if (!sprite?.texture._uvs) {
       return;
     }
     this.currentBaseTexture = sprite.texture.baseTexture;
@@ -107,8 +112,8 @@ export class FastSpriteBatch {
       this.flush();
       this.renderSession.blendModeManager.setBlendMode(sprite.blendMode);
     }
-    for (let i = 0, j = children.length; i < j; i += 1) {
-      this.renderSprite(children[i]);
+    for (const child of children) {
+      this.renderSprite(child);
     }
     this.flush();
   }
@@ -268,16 +273,16 @@ export class FastSpriteBatch {
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.indexBuffer);
     // set the projection
     const { projection } = this.renderSession;
-    gl.uniform2f(this.shader.projectionVector, projection.x, projection.y);
+    gl.uniform2f(this.shader!.projectionVector, projection.x, projection.y);
     // set the matrix
-    gl.uniformMatrix3fv(this.shader.uMatrix, false, this.matrix);
+    gl.uniformMatrix3fv(this.shader!.uMatrix, false, this.matrix!);
     // set the pointers
     const stride = this.vertSize * 4;
-    gl.vertexAttribPointer(this.shader.aVertexPosition, 2, gl.FLOAT, false, stride, 0);
-    gl.vertexAttribPointer(this.shader.aPositionCoord, 2, gl.FLOAT, false, stride, 2 * 4);
-    gl.vertexAttribPointer(this.shader.aScale, 2, gl.FLOAT, false, stride, 4 * 4);
-    gl.vertexAttribPointer(this.shader.aRotation, 1, gl.FLOAT, false, stride, 6 * 4);
-    gl.vertexAttribPointer(this.shader.aTextureCoord, 2, gl.FLOAT, false, stride, 7 * 4);
-    gl.vertexAttribPointer(this.shader.colorAttribute, 1, gl.FLOAT, false, stride, 9 * 4);
+    gl.vertexAttribPointer(this.shader!.aVertexPosition, 2, gl.FLOAT, false, stride, 0);
+    gl.vertexAttribPointer(this.shader!.aPositionCoord, 2, gl.FLOAT, false, stride, 2 * 4);
+    gl.vertexAttribPointer(this.shader!.aScale, 2, gl.FLOAT, false, stride, 4 * 4);
+    gl.vertexAttribPointer(this.shader!.aRotation, 1, gl.FLOAT, false, stride, 6 * 4);
+    gl.vertexAttribPointer(this.shader!.aTextureCoord, 2, gl.FLOAT, false, stride, 7 * 4);
+    gl.vertexAttribPointer(this.shader!.colorAttribute, 1, gl.FLOAT, false, stride, 9 * 4);
   }
 }

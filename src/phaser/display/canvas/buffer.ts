@@ -3,7 +3,7 @@ import { create, removeByCanvas } from './pool.js';
 export class CanvasBuffer {
   public width!: number;
   public height!: number;
-  public canvas!: any;
+  public canvas!: HTMLCanvasElement;
   public context!: CanvasRenderingContext2D;
   /**
    * Creates a new CanvasBuffer instance.
@@ -14,7 +14,7 @@ export class CanvasBuffer {
     this.width = width;
     this.height = height;
     this.canvas = create(this, this.width, this.height);
-    this.context = this.canvas.getContext('2d', { willReadFrequently: false });
+    this.context = this.canvas.getContext('2d', { willReadFrequently: false })!;
     this.canvas.width = width;
     this.canvas.height = height;
   }

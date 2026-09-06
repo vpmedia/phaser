@@ -1,7 +1,6 @@
 export class WebGLBlendModeManager {
-  [key: string]: any;
-  public gl: any = null;
-  public currentBlendMode: any = 99_999;
+  public gl!: WebGLRenderingContext;
+  public currentBlendMode = 99_999;
   /**
    * Creates a new BlendModeManager instance.
    */
@@ -26,7 +25,7 @@ export class WebGLBlendModeManager {
     this.currentBlendMode = blendMode;
     const blendModeWebGL = globalThis.PhaserRegistry.blendModesWebGL[this.currentBlendMode];
     if (blendModeWebGL) {
-      this.gl.blendFunc(blendModeWebGL[0], blendModeWebGL[1]);
+      this.gl.blendFunc(blendModeWebGL[0]!, blendModeWebGL[1]!);
     }
     return true;
   }
@@ -35,6 +34,6 @@ export class WebGLBlendModeManager {
    * Sets the blend mode for the WebGL context.
    */
   public destroy(): void {
-    this.gl = null;
+    this.gl = null!;
   }
 }

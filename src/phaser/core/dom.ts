@@ -170,9 +170,9 @@ class DocumentBoundsRectangle {
 
 export class DOM {
   public treatAsDesktop: boolean;
-  public visualBounds: any;
-  public layoutBounds: any;
-  public documentBounds: any;
+  public visualBounds: VisualBoundsDesktopRectangle | VisualBoundsRectangle;
+  public layoutBounds: LayoutBoundsDesktopRectangle | LayoutBoundsRectangle;
+  public documentBounds: DocumentBoundsRectangle;
   public scrollXProvider: () => number;
   public scrollYProvider: () => number;
 

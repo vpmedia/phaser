@@ -5,9 +5,9 @@ import type { RenderSession } from '../render_session.js';
 
 export class WebGLStencilManager {
   public gl!: WebGLRenderingContext;
-  public stencilStack!: any;
-  public reverse!: any;
-  public count!: any;
+  public stencilStack!: GraphicsData[];
+  public reverse!: boolean;
+  public count!: number;
   /**
    * Initializes the stencil manager.
    */
@@ -29,7 +29,7 @@ export class WebGLStencilManager {
    * Sets up the stencil buffer for rendering.
    */
   public destroy(): void {
-    this.stencilStack = null;
+    this.stencilStack = [];
   }
 
   /**

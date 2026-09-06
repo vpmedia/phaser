@@ -1,6 +1,6 @@
 import type { Game } from './game.js';
 export class RequestAnimationFrame {
-  public game: any;
+  public game: Game;
   public rafId: number;
 
   /**
