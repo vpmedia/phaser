@@ -1,6 +1,7 @@
 import type { Game } from './game.js';
+import type { InputEvent } from './input_event.js';
 export class Touch {
-  public game!: any;
+  public game!: Game;
   public enabled!: any;
   public callbackContext!: any;
   public touchStartCallback!: any;
@@ -10,14 +11,14 @@ export class Touch {
   public touchLeaveCallback!: any;
   public touchCancelCallback!: any;
   public preventDefault!: any;
-  public event!: any;
-  public _onTouchStart: ((event: TouchEvent) => void) | null;
-  public _onTouchMove: ((event: TouchEvent) => void) | null;
-  public _onTouchEnd: ((event: TouchEvent) => void) | null;
-  public _onTouchEnter: ((event: TouchEvent) => void) | null;
-  public _onTouchLeave: ((event: TouchEvent) => void) | null;
-  public _onTouchCancel: ((event: TouchEvent) => void) | null;
-  public _documentTouchMove!: (event: TouchEvent) => void;
+  public event!: InputEvent | null;
+  public _onTouchStart: EventListener | null;
+  public _onTouchMove: EventListener | null;
+  public _onTouchEnd: EventListener | null;
+  public _onTouchEnter: EventListener | null;
+  public _onTouchLeave: EventListener | null;
+  public _onTouchCancel: EventListener | null;
+  public _documentTouchMove!: EventListener;
   /**
    * TBD.
    * @param {Game} game - TBD.
@@ -84,12 +85,24 @@ export class Touch {
     if (!this.game.device.touch) {
       return;
     }
-    this.game.canvas.removeEventListener('touchstart', this._onTouchStart);
-    this.game.canvas.removeEventListener('touchmove', this._onTouchMove);
-    this.game.canvas.removeEventListener('touchend', this._onTouchEnd);
-    this.game.canvas.removeEventListener('touchenter', this._onTouchEnter);
-    this.game.canvas.removeEventListener('touchleave', this._onTouchLeave);
-    this.game.canvas.removeEventListener('touchcancel', this._onTouchCancel);
+    if (this._onTouchStart) {
+      this.game.canvas.removeEventListener('touchstart', this._onTouchStart);
+    }
+    if (this._onTouchMove) {
+      this.game.canvas.removeEventListener('touchmove', this._onTouchMove);
+    }
+    if (this._onTouchEnd) {
+      this.game.canvas.removeEventListener('touchend', this._onTouchEnd);
+    }
+    if (this._onTouchEnter) {
+      this.game.canvas.removeEventListener('touchenter', this._onTouchEnter);
+    }
+    if (this._onTouchLeave) {
+      this.game.canvas.removeEventListener('touchleave', this._onTouchLeave);
+    }
+    if (this._onTouchCancel) {
+      this.game.canvas.removeEventListener('touchcancel', this._onTouchCancel);
+    }
   }
 
   /**
@@ -106,7 +119,7 @@ export class Touch {
    * TBD.
    * @param {TouchEvent} event - TBD.
    */
-  public onTouchStart(event: any) {
+  public onTouchStart(event: InputEvent) {
     this.event = event;
     if (!this.game.input.enabled || !this.enabled) {
       return;
@@ -118,8 +131,9 @@ export class Touch {
     // event.targetTouches = list of all touches on the TARGET ELEMENT (i.e. game dom element)
     // event.touches = list of all touches on the ENTIRE DOCUMENT, not just the target element
     // event.changedTouches = the touches that CHANGED in this event, not the total number of them
-    for (let i = 0; i < event.changedTouches.length; i += 1) {
-      this.game.input.startPointer(event.changedTouches[i]);
+    const changed = event.changedTouches ?? [];
+    for (let i = 0; i < changed.length; i += 1) {
+      this.game.input.startPointer(changed[i]!);
     }
   }
 
@@ -127,7 +141,7 @@ export class Touch {
    * TBD.
    * @param {TouchEvent} event - TBD.
    */
-  public onTouchCancel(event: any) {
+  public onTouchCancel(event: InputEvent) {
     this.event = event;
     if (this.touchCancelCallback) {
       this.touchCancelCallback.call(this.callbackContext, event);
@@ -138,8 +152,9 @@ export class Touch {
     this.eventPreventDefault(event);
     // Touch cancel - touches that were disrupted (perhaps by moving into a plugin or browser chrome)
     // http://www.w3.org/TR/touch-events/#dfn-touchcancel
-    for (let i = 0; i < event.changedTouches.length; i += 1) {
-      this.game.input.stopPointer(event.changedTouches[i]);
+    const changed = event.changedTouches ?? [];
+    for (let i = 0; i < changed.length; i += 1) {
+      this.game.input.stopPointer(changed[i]!);
     }
   }
 
@@ -147,7 +162,7 @@ export class Touch {
    * TBD.
    * @param {TouchEvent} event - TBD.
    */
-  public onTouchEnter(event: any) {
+  public onTouchEnter(event: InputEvent) {
     this.event = event;
     if (this.touchEnterCallback) {
       this.touchEnterCallback.call(this.callbackContext, event);
@@ -162,7 +177,7 @@ export class Touch {
    * TBD.
    * @param {TouchEvent} event - TBD.
    */
-  public onTouchLeave(event: any) {
+  public onTouchLeave(event: InputEvent) {
     this.event = event;
     if (this.touchLeaveCallback) {
       this.touchLeaveCallback.call(this.callbackContext, event);
@@ -174,14 +189,15 @@ export class Touch {
    * TBD.
    * @param {TouchEvent} event - TBD.
    */
-  public onTouchMove(event: any) {
+  public onTouchMove(event: InputEvent) {
     this.event = event;
     if (this.touchMoveCallback) {
       this.touchMoveCallback.call(this.callbackContext, event);
     }
     this.eventPreventDefault(event);
-    for (let i = 0; i < event.changedTouches.length; i += 1) {
-      this.game.input.updatePointer(event.changedTouches[i]);
+    const changed = event.changedTouches ?? [];
+    for (let i = 0; i < changed.length; i += 1) {
+      this.game.input.updatePointer(changed[i]!);
     }
   }
 
@@ -189,7 +205,7 @@ export class Touch {
    * TBD.
    * @param {TouchEvent} event - TBD.
    */
-  public onTouchEnd(event: any) {
+  public onTouchEnd(event: InputEvent) {
     this.event = event;
     if (this.touchEndCallback) {
       this.touchEndCallback.call(this.callbackContext, event);
@@ -198,8 +214,9 @@ export class Touch {
     // For touch end its a list of the touch points that have been removed from the surface
     // https://developer.mozilla.org/en-US/docs/DOM/TouchList
     // event.changedTouches = the touches that CHANGED in this event, not the total number of them
-    for (let i = 0; i < event.changedTouches.length; i += 1) {
-      this.game.input.stopPointer(event.changedTouches[i]);
+    const changed = event.changedTouches ?? [];
+    for (let i = 0; i < changed.length; i += 1) {
+      this.game.input.stopPointer(changed[i]!);
     }
   }
 
@@ -207,7 +224,7 @@ export class Touch {
    * TBD.
    * @param {TouchEvent} event - TBD.
    */
-  public eventPreventDefault(event: any) {
+  public eventPreventDefault(event: InputEvent) {
     if (this.preventDefault) {
       if (typeof event.cancelable !== 'boolean' || event.cancelable) {
         event.preventDefault();

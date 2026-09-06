@@ -1,3 +1,4 @@
+import type { InputEvent } from './input_event.js';
 import type { Game } from './game.js';
 import type { InputHandler } from './input_handler.js';
 import { Circle } from '../geom/circle.js';
@@ -12,14 +13,14 @@ import {
 } from './const.js';
 
 export class Pointer {
-  public game!: any;
+  public game!: Game;
   public id!: number;
   public type!: number;
   public exists!: boolean;
   public identifier!: number | null;
   public pointerId!: any;
   public pointerMode!: number;
-  public target!: any;
+  public target!: EventTarget | null;
   public button!: any;
   public _holdSent!: boolean;
   public _history!: any;
@@ -121,8 +122,8 @@ export class Pointer {
    * TBD.
    * @param {MouseEvent|PointerEvent} event - TBD.
    */
-  public updateButtons(event: any | PointerEvent) {
-    if (event.type.toLowerCase().slice(-4) === 'down') {
+  public updateButtons(event: InputEvent) {
+    if (event.type.toLowerCase().endsWith('down')) {
       this.isUp = false;
       this.isDown = true;
     } else {
@@ -136,12 +137,12 @@ export class Pointer {
    * @param {PointerEvent} event - TBD.
    * @returns {Pointer} TBD.
    */
-  public start(event: any) {
+  public start(event: InputEvent) {
     const { input } = this.game;
     if (event.pointerId) {
       this.pointerId = event.pointerId;
     }
-    this.identifier = event.identifier;
+    this.identifier = event.identifier ?? null;
     this.target = event.target;
     if (this.isMouse) {
       this.updateButtons(event);
@@ -225,7 +226,7 @@ export class Pointer {
    * @param {boolean} fromClick - TBD.
    * @returns {Pointer} TBD.
    */
-  public move(event: any | PointerEvent, fromClick = false) {
+  public move(event: InputEvent, fromClick = false) {
     const { input } = this.game;
     if (input.pollLocked) {
       return null;
@@ -233,12 +234,12 @@ export class Pointer {
     if (fromClick && this.isMouse) {
       this.updateButtons(event);
     }
-    this.clientX = event.clientX;
-    this.clientY = event.clientY;
-    this.pageX = event.pageX;
-    this.pageY = event.pageY;
-    this.screenX = event.screenX;
-    this.screenY = event.screenY;
+    this.clientX = event.clientX ?? 0;
+    this.clientY = event.clientY ?? 0;
+    this.pageX = event.pageX ?? 0;
+    this.pageY = event.pageY ?? 0;
+    this.screenX = event.screenX ?? 0;
+    this.screenY = event.screenY ?? 0;
     if (this.isMouse && input.mouse.locked && !fromClick) {
       this.rawMovementX = event.movementX ?? event.mozMovementX ?? event.webkitMovementX ?? 0;
       this.rawMovementY = event.movementY ?? event.mozMovementY ?? event.webkitMovementY ?? 0;
@@ -270,7 +271,8 @@ export class Pointer {
     let i = input.moveCallbacks.length;
     while (i) {
       i -= 1;
-      input.moveCallbacks[i].callback.call(input.moveCallbacks[i].context, this, this.x, this.y, fromClick);
+      const moveCallback = input.moveCallbacks[i]!;
+      moveCallback.callback.call(moveCallback.context, this, this.x, this.y, fromClick);
     }
     //  Easy out if we're dragging something and it still exists
     if (this.targetObject !== null && this.targetObject.isDragged === true) {
@@ -381,7 +383,7 @@ export class Pointer {
    * TBD.
    * @param {MouseEvent|PointerEvent} event - TBD.
    */
-  public leave(event: any | PointerEvent) {
+  public leave(event: InputEvent) {
     this.withinGame = false;
     this.move(event, false);
   }
@@ -391,7 +393,7 @@ export class Pointer {
    * @param {MouseEvent|PointerEvent} event - TBD.
    * @returns {Pointer} TBD.
    */
-  public stop(event: any | PointerEvent) {
+  public stop(event: InputEvent) {
     const { input } = this.game;
     if (this._stateReset && this.withinGame) {
       event.preventDefault();
@@ -427,13 +429,10 @@ export class Pointer {
     if (this.id > 0) {
       this.active = false;
     }
-    this.withinGame = this.game.scale.bounds.contains(event.pageX, event.pageY);
+    this.withinGame = this.game.scale.bounds.contains(event.pageX ?? 0, event.pageY ?? 0);
     this.pointerId = null;
     this.identifier = null;
     this.positionUp.setTo(this.x, this.y);
-    if (!this.isMouse) {
-      input.currentPointers -= 1;
-    }
     input.interactiveItems.callAll('_releasedHandler', this);
     if (this._clickTrampolines) {
       this._trampolineTargetObject = this.targetObject;

@@ -1,31 +1,32 @@
+import type { InputEvent } from './input_event.js';
 import type { Input } from './input.js';
 import type { Game } from './game.js';
 
 export class Mouse {
-  public game!: any;
+  public game!: Game;
   public input!: Input;
-  public callbackContext!: any;
-  public mouseDownCallback: ((event: MouseEvent) => void) | null;
-  public mouseUpCallback: ((event: MouseEvent) => void) | null;
-  public mouseOutCallback: ((event: MouseEvent) => void) | null;
-  public mouseOverCallback: ((event: MouseEvent) => void) | null;
-  public mouseWheelCallback: ((event: WheelEvent) => void) | null;
-  public mouseMoveCallback: ((event: MouseEvent) => void) | null;
+  public callbackContext!: unknown;
+  public mouseDownCallback: EventListener | null;
+  public mouseUpCallback: EventListener | null;
+  public mouseOutCallback: EventListener | null;
+  public mouseOverCallback: EventListener | null;
+  public mouseWheelCallback: EventListener | null;
+  public mouseMoveCallback: EventListener | null;
   public capture!: boolean;
   public button!: number;
   public wheelDelta!: number;
   public enabled!: boolean;
   public locked!: boolean;
   public stopOnGameOut!: boolean;
-  public event!: MouseEvent | WheelEvent | null;
-  public _onMouseDown: ((event: MouseEvent) => void) | null;
-  public _onMouseMove: ((event: MouseEvent) => void) | null;
-  public _onMouseUp: ((event: MouseEvent) => void) | null;
-  public _onMouseOut: ((event: MouseEvent) => void) | null;
-  public _onMouseOver: ((event: MouseEvent) => void) | null;
-  public _onMouseWheel: ((event: WheelEvent) => void) | null;
-  public _onMouseUpGlobal!: (event: MouseEvent) => void;
-  public _onMouseOutGlobal!: (event: MouseEvent) => void;
+  public event!: InputEvent | null;
+  public _onMouseDown: EventListener | null;
+  public _onMouseMove: EventListener | null;
+  public _onMouseUp: EventListener | null;
+  public _onMouseOut: EventListener | null;
+  public _onMouseOver: EventListener | null;
+  public _onMouseWheel: EventListener | null;
+  public _onMouseUpGlobal!: EventListener;
+  public _onMouseOutGlobal!: EventListener;
   public _wheelEvent!: any;
   /**
    * TBD.
@@ -61,7 +62,7 @@ export class Mouse {
    * TBD.
    */
   public start() {
-    if (this.game.device.android && this.game.device.chrome === false) {
+    if (this.game.device.android && !this.game.device.chrome) {
       //  Android stock browser fires mouse events even if you preventDefault on the touchStart, so ...
       return;
     }
@@ -113,24 +114,40 @@ export class Mouse {
    */
   public stop() {
     const { canvas } = this.game;
-    canvas.removeEventListener('mousedown', this._onMouseDown, true);
-    canvas.removeEventListener('mousemove', this._onMouseMove, true);
-    canvas.removeEventListener('mouseup', this._onMouseUp, true);
-    canvas.removeEventListener('mouseover', this._onMouseOver, true);
-    canvas.removeEventListener('mouseout', this._onMouseOut, true);
+    if (this._onMouseDown) {
+      canvas.removeEventListener('mousedown', this._onMouseDown, true);
+    }
+    if (this._onMouseMove) {
+      canvas.removeEventListener('mousemove', this._onMouseMove, true);
+    }
+    if (this._onMouseUp) {
+      canvas.removeEventListener('mouseup', this._onMouseUp, true);
+    }
+    if (this._onMouseOver) {
+      canvas.removeEventListener('mouseover', this._onMouseOver, true);
+    }
+    if (this._onMouseOut) {
+      canvas.removeEventListener('mouseout', this._onMouseOut, true);
+    }
     const { wheelEvent } = this.game.device;
     if (wheelEvent) {
-      canvas.removeEventListener(wheelEvent, this._onMouseWheel, true);
+      if (this._onMouseWheel) {
+        canvas.removeEventListener(wheelEvent, this._onMouseWheel, true);
+      }
     }
-    globalThis.removeEventListener('mouseup', this._onMouseUpGlobal, true);
-    globalThis.removeEventListener('mouseout', this._onMouseOutGlobal, true);
+    if (this._onMouseUpGlobal) {
+      globalThis.removeEventListener('mouseup', this._onMouseUpGlobal, true);
+    }
+    if (this._onMouseOutGlobal) {
+      globalThis.removeEventListener('mouseout', this._onMouseOutGlobal, true);
+    }
   }
 
   /**
    * TBD.
    * @param {MouseEvent} event - TBD.
    */
-  public onMouseDown(event: any) {
+  public onMouseDown(event: InputEvent) {
     this.event = event;
     this.eventPreventDefault(event);
     if (this.mouseDownCallback) {
@@ -147,7 +164,7 @@ export class Mouse {
    * TBD.
    * @param {MouseEvent} event - TBD.
    */
-  public onMouseMove(event: any) {
+  public onMouseMove(event: InputEvent) {
     this.event = event;
     this.eventPreventDefault(event);
     if (this.mouseMoveCallback) {
@@ -164,7 +181,7 @@ export class Mouse {
    * TBD.
    * @param {MouseEvent} event - TBD.
    */
-  public onMouseUp(event: any) {
+  public onMouseUp(event: InputEvent) {
     this.event = event;
     this.eventPreventDefault(event);
     if (this.mouseUpCallback) {
@@ -181,7 +198,7 @@ export class Mouse {
    * TBD.
    * @param {MouseEvent} event - TBD.
    */
-  public onMouseUpGlobal(event: any) {
+  public onMouseUpGlobal(event: InputEvent) {
     if (!this.input.mousePointer.withinGame) {
       if (this.mouseUpCallback) {
         this.mouseUpCallback.call(this.callbackContext, event);
@@ -195,7 +212,7 @@ export class Mouse {
    * TBD.
    * @param {MouseEvent} event - TBD.
    */
-  public onMouseOutGlobal(event: any) {
+  public onMouseOutGlobal(event: InputEvent) {
     this.event = event;
     this.eventPreventDefault(event);
     this.input.mousePointer.withinGame = false;
@@ -214,7 +231,7 @@ export class Mouse {
    * TBD.
    * @param {MouseEvent} event - TBD.
    */
-  public onMouseOut(event: any) {
+  public onMouseOut(event: InputEvent) {
     this.event = event;
     this.eventPreventDefault(event);
     this.input.mousePointer.withinGame = false;
@@ -234,7 +251,7 @@ export class Mouse {
    * TBD.
    * @param {MouseEvent} event - TBD.
    */
-  public onMouseOver(event: any) {
+  public onMouseOver(event: InputEvent) {
     this.event = event;
     this.eventPreventDefault(event);
     this.input.mousePointer.withinGame = true;
@@ -247,14 +264,14 @@ export class Mouse {
    * TBD.
    * @param {WheelEvent} event - TBD.
    */
-  public onMouseWheel(event: any) {
+  public onMouseWheel(event: InputEvent) {
     if (this._wheelEvent) {
       event = this._wheelEvent.bindEvent(event);
     }
     this.event = event;
     this.eventPreventDefault(event);
     // reverse detail for firefox
-    this.wheelDelta = Math.max(-1, Math.min(1, -event.deltaY));
+    this.wheelDelta = Math.max(-1, Math.min(1, -(event.deltaY ?? 0)));
     if (this.mouseWheelCallback) {
       this.mouseWheelCallback.call(this.callbackContext, event);
     }
@@ -264,7 +281,7 @@ export class Mouse {
    * TBD.
    * @param {MouseEvent} event - TBD.
    */
-  public eventPreventDefault(event: any) {
+  public eventPreventDefault(event: Event) {
     if (this.capture) {
       if (typeof event.cancelable !== 'boolean' || event.cancelable) {
         event.preventDefault();

@@ -12,11 +12,12 @@ import { Touch } from './input_touch.js';
 import { Signal } from './signal.js';
 import type { Game } from './game.js';
 import type { DisplayObject } from '../display/display_object.js';
+import type { InputEvent } from './input_event.js';
 
 const MAX_POINTERS = 10;
 
 export class Input {
-  public game!: any;
+  public game!: Game;
   public hitCanvas!: HTMLCanvasElement;
   public hitContext!: any;
   public moveCallbacks!: { callback: Function; context: any }[];
@@ -156,7 +157,7 @@ export class Input {
     }
     this.mousePointer.active = true;
     const scope = this;
-    this._onClickTrampoline = (event: any) => (scope as any).onClickTrampoline(event);
+    this._onClickTrampoline = (event: InputEvent) => (scope as any).onClickTrampoline(event);
     this.game.canvas.addEventListener('click', this._onClickTrampoline, false);
   }
 

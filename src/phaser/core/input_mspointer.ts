@@ -1,6 +1,7 @@
 import type { Game } from './game.js';
+import type { InputEvent } from './input_event.js';
 export class MSPointer {
-  public game!: any;
+  public game!: Game;
   public input!: any;
   public callbackContext!: any;
   public pointerDownCallback!: any;
@@ -8,14 +9,14 @@ export class MSPointer {
   public pointerUpCallback!: any;
   public capture!: any;
   public button!: any;
-  public event!: any;
+  public event!: InputEvent | null;
   public enabled!: any;
-  public _onMSPointerDown: ((event: PointerEvent) => void) | null;
-  public _onMSPointerMove: ((event: PointerEvent) => void) | null;
-  public _onMSPointerUp: ((event: PointerEvent) => void) | null;
-  public _onMSPointerUpGlobal: ((event: Event) => void) | null;
-  public _onMSPointerOut: ((event: PointerEvent) => void) | null;
-  public _onMSPointerOver: ((event: PointerEvent) => void) | null;
+  public _onMSPointerDown: EventListener | null;
+  public _onMSPointerMove: EventListener | null;
+  public _onMSPointerUp: EventListener | null;
+  public _onMSPointerUpGlobal: EventListener | null;
+  public _onMSPointerOut: EventListener | null;
+  public _onMSPointerOver: EventListener | null;
   /**
    * TBD.
    * @param {Game} game - TBD.
@@ -73,8 +74,8 @@ export class MSPointer {
     canvas.addEventListener('pointerdown', this._onMSPointerDown, false);
     canvas.addEventListener('pointermove', this._onMSPointerMove, false);
     canvas.addEventListener('pointerup', this._onMSPointerUp, false);
-    canvas.style['-ms-content-zooming'] = 'none';
-    canvas.style['-ms-touch-action'] = 'none';
+    canvas.style.setProperty('-ms-content-zooming', 'none');
+    canvas.style.setProperty('-ms-touch-action', 'none');
     globalThis.addEventListener('MSPointerUp', this._onMSPointerUpGlobal, true);
     canvas.addEventListener('MSPointerOver', this._onMSPointerOver, true);
     canvas.addEventListener('MSPointerOut', this._onMSPointerOut, true);
@@ -92,31 +93,55 @@ export class MSPointer {
       return;
     }
     const { canvas } = this.game;
-    canvas.removeEventListener('MSPointerDown', this._onMSPointerDown, false);
-    canvas.removeEventListener('MSPointerMove', this._onMSPointerMove, false);
-    canvas.removeEventListener('MSPointerUp', this._onMSPointerUp, false);
-    //  IE11+ uses non-prefix events
-    canvas.removeEventListener('pointerdown', this._onMSPointerDown, false);
-    canvas.removeEventListener('pointermove', this._onMSPointerMove, false);
-    canvas.removeEventListener('pointerup', this._onMSPointerUp, false);
-    if (this._onMSPointerUpGlobal) {
-      globalThis.removeEventListener('MSPointerUp', this._onMSPointerUpGlobal, true);
+    if (this._onMSPointerDown) {
+      canvas.removeEventListener('MSPointerDown', this._onMSPointerDown, false);
     }
-    canvas.removeEventListener('MSPointerOver', this._onMSPointerOver, true);
-    canvas.removeEventListener('MSPointerOut', this._onMSPointerOut, true);
+    if (this._onMSPointerMove) {
+      canvas.removeEventListener('MSPointerMove', this._onMSPointerMove, false);
+    }
+    if (this._onMSPointerUp) {
+      canvas.removeEventListener('MSPointerUp', this._onMSPointerUp, false);
+    }
+    //  IE11+ uses non-prefix events
+    if (this._onMSPointerDown) {
+      canvas.removeEventListener('pointerdown', this._onMSPointerDown, false);
+    }
+    if (this._onMSPointerMove) {
+      canvas.removeEventListener('pointermove', this._onMSPointerMove, false);
+    }
+    if (this._onMSPointerUp) {
+      canvas.removeEventListener('pointerup', this._onMSPointerUp, false);
+    }
+    if (this._onMSPointerUpGlobal) {
+      if (this._onMSPointerUpGlobal) {
+        globalThis.removeEventListener('MSPointerUp', this._onMSPointerUpGlobal, true);
+      }
+    }
+    if (this._onMSPointerOver) {
+      canvas.removeEventListener('MSPointerOver', this._onMSPointerOver, true);
+    }
+    if (this._onMSPointerOut) {
+      canvas.removeEventListener('MSPointerOut', this._onMSPointerOut, true);
+    }
     //  IE11+ uses non-prefix events
     if (this._onMSPointerUpGlobal) {
-      globalThis.removeEventListener('pointerup', this._onMSPointerUpGlobal, true);
+      if (this._onMSPointerUpGlobal) {
+        globalThis.removeEventListener('pointerup', this._onMSPointerUpGlobal, true);
+      }
     }
-    canvas.removeEventListener('pointerover', this._onMSPointerOver, true);
-    canvas.removeEventListener('pointerout', this._onMSPointerOut, true);
+    if (this._onMSPointerOver) {
+      canvas.removeEventListener('pointerover', this._onMSPointerOver, true);
+    }
+    if (this._onMSPointerOut) {
+      canvas.removeEventListener('pointerout', this._onMSPointerOut, true);
+    }
   }
 
   /**
    * TBD.
    * @param {PointerEvent} event - TBD.
    */
-  public onPointerDown(event: any) {
+  public onPointerDown(event: InputEvent) {
     this.event = event;
     this.eventPreventDefault(event);
     if (this.pointerDownCallback) {
@@ -137,7 +162,7 @@ export class MSPointer {
    * TBD.
    * @param {PointerEvent} event - TBD.
    */
-  public onPointerMove(event: any) {
+  public onPointerMove(event: InputEvent) {
     this.event = event;
     this.eventPreventDefault(event);
     if (this.pointerMoveCallback) {
@@ -158,7 +183,7 @@ export class MSPointer {
    * TBD.
    * @param {PointerEvent} event - TBD.
    */
-  public onPointerUp(event: any) {
+  public onPointerUp(event: InputEvent) {
     this.event = event;
     this.eventPreventDefault(event);
     if (this.pointerUpCallback) {
@@ -179,7 +204,7 @@ export class MSPointer {
    * TBD.
    * @param {PointerEvent} event - TBD.
    */
-  public onPointerUpGlobal(event: any) {
+  public onPointerUpGlobal(event: InputEvent) {
     if ((event.pointerType === 'mouse' || event.pointerType === 0x00000004) && !this.input.mousePointer.withinGame) {
       this.onPointerUp(event);
     } else {
@@ -194,7 +219,7 @@ export class MSPointer {
    * TBD.
    * @param {PointerEvent} event - TBD.
    */
-  public onPointerOut(event: any) {
+  public onPointerOut(event: InputEvent) {
     this.event = event;
     this.eventPreventDefault(event);
     let pointer;
@@ -226,7 +251,7 @@ export class MSPointer {
    * TBD.
    * @param {PointerEvent} event - TBD.
    */
-  public onPointerOver(event: any) {
+  public onPointerOver(event: InputEvent) {
     this.event = event;
     this.eventPreventDefault(event);
     if (event.pointerType === 'mouse' || event.pointerType === 0x00000004) {

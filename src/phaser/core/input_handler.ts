@@ -5,6 +5,7 @@ import type { Image } from '../display/image.js';
 import type { DisplayObject } from '../display/display_object.js';
 import type { Pointer } from './input_pointer.js';
 import type { Rectangle } from '../geom/rectangle.js';
+import type { Game } from './game.js';
 
 interface PointerData {
   id: number;
@@ -44,7 +45,7 @@ const createPointerData = (id: number): PointerData => ({
 
 export class InputHandler {
   public sprite!: any;
-  public game!: any;
+  public game!: Game;
   public enabled!: boolean;
   public checked!: boolean;
   public priorityID!: number;
@@ -67,7 +68,6 @@ export class InputHandler {
   public draggable!: boolean;
   public boundsRect!: any;
   public boundsSprite!: any;
-  public scaleLayer!: boolean;
   public dragOffset!: Point;
   public dragFromCenter!: boolean;
   public dragStopBlocksInputUp!: boolean;
@@ -116,7 +116,6 @@ export class InputHandler {
     this.draggable = false;
     this.boundsRect = null;
     this.boundsSprite = null;
-    this.scaleLayer = false;
     this.dragOffset = new Point();
     this.dragFromCenter = false;
     this.dragStopBlocksInputUp = false;
@@ -899,10 +898,6 @@ export class InputHandler {
    * @returns {number} TBD.
    */
   public globalToLocalX(x: number) {
-    if (this.scaleLayer) {
-      x -= this.game.scale.grid.boundsFluid.x;
-      x *= this.game.scale.grid.scaleFluidInversed.x;
-    }
     return x;
   }
 
@@ -912,10 +907,6 @@ export class InputHandler {
    * @returns {number} TBD.
    */
   public globalToLocalY(y: number) {
-    if (this.scaleLayer) {
-      y -= this.game.scale.grid.boundsFluid.y;
-      y *= this.game.scale.grid.scaleFluidInversed.y;
-    }
     return y;
   }
 
