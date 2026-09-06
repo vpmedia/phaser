@@ -30,17 +30,20 @@
       }
     ],
     "eslint/func-style": "off",
-    "eslint/guard-for-in": "error",
     "eslint/id-length": "off",
     "eslint/init-declarations": "off",
-    "eslint/logical-assignment-operators": "error",
     "eslint/max-classes-per-file": "off",
     "eslint/max-depth": "off",
     "eslint/max-lines": "off",
     "eslint/max-lines-per-function": "off",
     "eslint/max-params": "off",
     "eslint/max-statements": "off",
-    "eslint/new-cap": "error",
+    "eslint/new-cap": [
+      "error",
+      {
+        "capIsNew": false
+      }
+    ],
     "eslint/no-await-in-loop": "off",
     "eslint/no-bitwise": "off",
     "eslint/no-console": "off",
@@ -58,7 +61,6 @@
     "eslint/no-magic-numbers": "off",
     "eslint/no-negated-condition": "off",
     "eslint/no-nested-ternary": "off",
-    "eslint/no-param-reassign": "error",
     "eslint/no-redeclare": "off",
     "eslint/no-ternary": "off",
     "eslint/no-undefined": "off",
@@ -71,12 +73,15 @@
         "allowAsStatement": true
       }
     ],
-    "eslint/no-warning-comments": "error",
     "eslint/one-var": "off",
-    "eslint/operator-assignment": "error",
-    "eslint/prefer-destructuring": "error",
+    "eslint/prefer-destructuring": [
+      "error",
+      {
+        "array": false,
+        "object": true
+      }
+    ],
     "eslint/prefer-named-capture-group": "off",
-    "eslint/prefer-spread": "error",
     "eslint/require-await": "off",
     "eslint/require-unicode-regexp": "off",
     "eslint/sort-imports": "off",
@@ -86,12 +91,9 @@
     "oxc/no-map-spread": "off",
     "oxc/no-optional-chaining": "off",
     "oxc/no-rest-spread-properties": "off",
-    "promise/always-return": "error",
     "promise/avoid-new": "off",
     "promise/prefer-await-to-callbacks": "off",
-    "promise/prefer-await-to-then": "error",
     "typescript/ban-ts-comment": "error",
-    "typescript/ban-types": "error",
     "typescript/consistent-type-definitions": "off",
     "typescript/dot-notation": [
       "error",
@@ -102,28 +104,20 @@
     "typescript/explicit-function-return-type": "error",
     "typescript/explicit-member-accessibility": "error",
     "typescript/explicit-module-boundary-types": "error",
-    "typescript/no-base-to-string": "error",
-    "typescript/no-deprecated": "error",
     "typescript/no-dynamic-delete": "off",
-    "typescript/no-explicit-any": "error",
-    "typescript/no-inferrable-types": "error",
     "typescript/no-non-null-assertion": "off",
-    "typescript/no-redundant-type-constituents": "error",
-    "typescript/no-this-alias": "error",
     "typescript/no-unnecessary-template-expression": "error",
-    "typescript/no-unsafe-argument": "error",
-    "typescript/no-unsafe-assignment": "error",
-    "typescript/no-unsafe-call": "error",
-    "typescript/no-unsafe-function-type": "error",
-    "typescript/no-unsafe-member-access": "error",
-    "typescript/no-unsafe-return": "error",
     "typescript/no-unsafe-type-assertion": "off",
-    "typescript/prefer-for-of": "error",
     "typescript/prefer-readonly-parameter-types": "off",
     "typescript/promise-function-async": "off",
     "typescript/require-await": "off",
-    "typescript/restrict-template-expressions": "error",
-    "typescript/strict-boolean-expressions": "error",
+    "typescript/strict-boolean-expressions": [
+      "error",
+      {
+        "allowNullableBoolean": true,
+        "allowNullableString": true
+      }
+    ],
     "typescript/switch-exhaustiveness-check": [
       "error",
       {
@@ -133,22 +127,18 @@
     "typescript/unbound-method": "off",
     "unicorn/catch-error-name": "off",
     "unicorn/consistent-function-scoping": "off",
-    "unicorn/explicit-length-check": "error",
     "unicorn/filename-case": "off",
     "unicorn/import-style": "off",
     "unicorn/max-nested-calls": "off",
     "unicorn/no-array-callback-reference": "off",
-    "unicorn/no-array-for-each": "error",
     "unicorn/no-array-reduce": "off",
     "unicorn/no-array-sort": "off",
     "unicorn/no-await-expression-member": "off",
     "unicorn/no-immediate-mutation": "off",
-    "unicorn/no-lonely-if": "error",
     "unicorn/no-negated-condition": "off",
     "unicorn/no-nested-ternary": "off",
     "unicorn/no-null": "off",
     "unicorn/no-process-exit": "off",
-    "unicorn/no-this-assignment": "error",
     "unicorn/no-useless-undefined": "off",
     "unicorn/number-literal-case": "off",
     "unicorn/numeric-separators-style": [
@@ -159,32 +149,22 @@
         }
       }
     ],
-    "unicorn/prefer-add-event-listener": "error",
-    "unicorn/prefer-class-fields": "error",
-    "unicorn/prefer-code-point": "error",
     "unicorn/prefer-dom-node-remove": "off",
     "unicorn/prefer-event-target": "off",
     "unicorn/prefer-export-from": "off",
-    "unicorn/prefer-math-trunc": "error",
-    "unicorn/prefer-modern-dom-apis": "error",
-    "unicorn/prefer-modern-math-apis": "error",
     "unicorn/prefer-number-coercion": "error",
-    "unicorn/prefer-query-selector": "error",
     "unicorn/prefer-single-call": "off",
-    "unicorn/prefer-spread": "error",
     "unicorn/prefer-string-replace-all": "off",
-    "unicorn/prefer-string-slice": "error",
-    "unicorn/prefer-ternary": "error",
+    "unicorn/prefer-ternary": ["error", "only-single-line"],
     "unicorn/prefer-top-level-await": "off"
   },
   "overrides": [
     {
-      "files": ["**/*.test.ts"],
+      "files": ["**/*.test.ts", "**/*.test.tsx"],
       "plugins": ["vitest"],
       "rules": {
         "eslint/max-lines": "off",
         "eslint/require-await": "off",
-        "typescript/await-thenable": "off",
         "typescript/explicit-function-return-type": "off",
         "typescript/explicit-module-boundary-types": "off",
         "typescript/no-non-null-assertion": "off",

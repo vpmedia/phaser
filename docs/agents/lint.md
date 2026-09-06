@@ -3,9 +3,13 @@
 ## Shape of the config
 
 [.oxlintrc.json](../../.oxlintrc.json) enables every oxlint category and then turns rules off
-explicitly, so the file reads as a list of what this engine cannot satisfy rather than a list of what
-it checks. Keep that shape: add a rule to the `rules` block only to turn it off, and only with a
-reason that belongs in the backlog below.
+explicitly, so the file reads as a list of what cannot be satisfied rather than a list of what it
+checks.
+
+Its `env`, `plugins`, `categories`, `rules` and `overrides` are kept **byte-identical** to the
+ruleset the consuming applications lint under, so a change that is clean here is clean there. Only
+`options.typeAware` is this repository's own. A rule that genuinely cannot hold is turned off on both
+sides at once, with the reason written down; nothing is relaxed here alone.
 
 ## Type-aware linting
 
@@ -55,21 +59,18 @@ handler with `.call(context, …)`. The reference is therefore never unbound, bu
 to see the pairing. Binding each of them instead would turn some forty prototype methods into
 per-instance closures, which a scene graph allocates thousands of.
 
-## Burn-down backlog
+## Keeping it green
 
-45 rules are turned off because the engine cannot satisfy them yet, not because we disagree with
-them. They fall into four groups; retiring a group means deleting its entries from `.oxlintrc.json`
-and fixing what then fires.
+`pnpm lint` and `pnpm typecheck` are both at zero and must stay there. Two habits keep them there:
 
-| Group | Rules | Blocked on |
-| --- | --- | --- |
-| `any` elimination | `no-unsafe-*` (5), `no-explicit-any`, `strict-boolean-expressions`, `unbound-method`, `no-redundant-type-constituents` | ~710 `any` annotations left from the JS→TS migration |
-| `Function` types | `ban-types`, `no-unsafe-function-type` | the same annotations, at callback boundaries |
-| Return types | `explicit-function-return-type`, `explicit-module-boundary-types` | ~2,500 signatures; largely mechanical once the `any`s are gone |
-| Engine idioms | the remaining 36, e.g. `no-param-reassign`, `prefer-ternary`, `prefer-for-of` | Phaser 2 style the port inherited; each is a small, self-contained refactor |
-
-The first three groups are one another's prerequisites, in that order. The fourth is independent and
-can be picked off a rule at a time.
+- **The engine's `any` is gone.** The only one left is `UserData`, the free-form bag a display object
+  carries for its owner, which has no shape the engine can know. Everything else has a type; give new
+  code one rather than reaching for `any`.
+- **A guard that looks redundant may not be.** Many fields are declared with `!` and set to `null!`
+  on `destroy()`, so the compiler believes they are always present while the runtime knows better.
+  Where a guard exists because the value really can be absent mid-boot or post-destroy, it is written
+  as `if (this.thing as Thing | undefined)` — keep the assertion, and never collapse a two-part guard
+  (`this.game.input && this.game.input.scale`) into one.
 
 ## Gotcha: `oxlint --fix` on this codebase
 
