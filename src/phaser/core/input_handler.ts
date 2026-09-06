@@ -1,8 +1,8 @@
+import type { Group } from '../display/group.js';
 import { Point } from '../geom/point.js';
 import { distance } from '../util/math.js';
 import { GROUP } from './const.js';
 import type { Image } from '../display/image.js';
-import type { DisplayObject } from '../display/display_object.js';
 import type { Pointer } from './input_pointer.js';
 import type { Rectangle } from '../geom/rectangle.js';
 import type { Game } from './game.js';
@@ -44,7 +44,7 @@ const createPointerData = (id: number): PointerData => ({
 });
 
 export class InputHandler {
-  public sprite!: any;
+  public sprite!: Image;
   public game!: Game;
   public enabled!: boolean;
   public checked!: boolean;
@@ -54,8 +54,7 @@ export class InputHandler {
   public isDragged!: boolean;
   public allowHorizontalDrag!: boolean;
   public allowVerticalDrag!: boolean;
-  public bringToTop!: boolean;
-  public snapOffset!: any;
+  public snapOffset!: Point | null;
   public snapOnDrag!: boolean;
   public snapOnRelease!: boolean;
   public snapX!: number;
@@ -66,8 +65,8 @@ export class InputHandler {
   public pixelPerfectClick!: boolean;
   public pixelPerfectAlpha!: number;
   public draggable!: boolean;
-  public boundsRect!: any;
-  public boundsSprite!: any;
+  public boundsRect!: Rectangle | null;
+  public boundsSprite!: Image | null;
   public dragOffset!: Point;
   public dragFromCenter!: boolean;
   public dragStopBlocksInputUp!: boolean;
@@ -84,9 +83,9 @@ export class InputHandler {
   public _wasEnabled!: boolean;
   public _tempPoint!: Point;
   public _pointerData!: PointerData[];
-  public _dx!: any;
-  public _dy!: any;
-  public _draggedPointerID!: any;
+  public _dx!: number;
+  public _dy!: number;
+  public _draggedPointerID!: number;
   /**
    * TBD.
    * @param {Image} sprite - TBD.
@@ -102,7 +101,6 @@ export class InputHandler {
     this.isDragged = false;
     this.allowHorizontalDrag = true;
     this.allowVerticalDrag = true;
-    this.bringToTop = false;
     this.snapOffset = null;
     this.snapOnDrag = false;
     this.snapOnRelease = false;
@@ -235,7 +233,6 @@ export class InputHandler {
       this._pointerData.length = 0;
       this.boundsRect = null;
       this.boundsSprite = null;
-      this.sprite = null;
     }
   }
 
@@ -459,12 +456,12 @@ export class InputHandler {
    * @param {Pointer} pointer - TBD.
    * @returns {boolean} TBD.
    */
-  public checkPixel(x: number | null, y: number | null, pointer?: any): boolean {
+  public checkPixel(x: number | null, y: number | null, pointer?: Pointer): boolean {
     //  Grab a pixel from our image into the hitCanvas and then test it
     if (this.sprite.texture.baseTexture.source) {
       if (x === null || y === null) {
         //  Use the pointer parameter
-        this.game.input.getLocalPosition(this.sprite, pointer, this._tempPoint);
+        this.game.input.getLocalPosition(this.sprite, pointer!, this._tempPoint);
         x = this._tempPoint.x;
         y = this._tempPoint.y;
       }
@@ -513,7 +510,7 @@ export class InputHandler {
       // Abort. We've been destroyed.
       return false;
     }
-    if (!this.enabled || !this.sprite.visible || !this.sprite.parent.visible) {
+    if (!this.enabled || !this.sprite.visible || !this.sprite.parent?.visible) {
       this._pointerOutHandler(pointer);
       return false;
     }
@@ -566,7 +563,7 @@ export class InputHandler {
         this.sprite.events.onInputOver$dispatch(this.sprite, pointer);
       }
       if (this.sprite.parent && this.sprite.parent.type === GROUP) {
-        this.sprite.parent.onChildInputOver.dispatch(this.sprite, pointer);
+        (this.sprite.parent as Group).onChildInputOver.dispatch(this.sprite, pointer);
       }
     }
   }
@@ -592,7 +589,7 @@ export class InputHandler {
     if (!silent && this.sprite && this.sprite.events) {
       this.sprite.events.onInputOut$dispatch(this.sprite, pointer);
       if (this.sprite && this.sprite.parent && this.sprite.parent.type === GROUP) {
-        this.sprite.parent.onChildInputOut.dispatch(this.sprite, pointer);
+        (this.sprite.parent as Group).onChildInputOut.dispatch(this.sprite, pointer);
       }
     }
   }
@@ -621,7 +618,7 @@ export class InputHandler {
         this.sprite.events.onInputDown$dispatch(this.sprite, pointer);
         // The event above might have destroyed this sprite.
         if (this.sprite && this.sprite.parent && this.sprite.parent.type === GROUP) {
-          this.sprite.parent.onChildInputDown.dispatch(this.sprite, pointer);
+          (this.sprite.parent as Group).onChildInputDown.dispatch(this.sprite, pointer);
         }
         //  The events might have destroyed this sprite.
         if (this.sprite === null) {
@@ -642,9 +639,6 @@ export class InputHandler {
             this._dragTimePass = true;
           }
         }
-      }
-      if (this.bringToTop) {
-        this.sprite.bringToTop();
       }
     }
   }
@@ -688,7 +682,7 @@ export class InputHandler {
           this.sprite.events.onInputUp$dispatch(this.sprite, pointer, isOver);
         }
         if (this.sprite && this.sprite.parent && this.sprite.parent.type === GROUP) {
-          this.sprite.parent.onChildInputUp.dispatch(this.sprite, pointer, isOver);
+          (this.sprite.parent as Group).onChildInputUp.dispatch(this.sprite, pointer, isOver);
         }
         // The onInputUp event may have changed the sprite so that checkPointerOver is no longer true, so update it.
         if (isOver) {
@@ -821,19 +815,19 @@ export class InputHandler {
    * @param {boolean} pixelPerfect - TBD.
    * @param {number} alphaThreshold - TBD.
    * @param {Rectangle | null | undefined} boundsRect - TBD.
-   * @param {DisplayObject | null | undefined} boundsSprite - TBD.
+   * @param {Image | null | undefined} boundsSprite - TBD.
    */
   public enableDrag(
     lockCenter = false,
-    bringToTop = false,
+    // Kept so the positional signature holds; this engine has no bringToTop to raise the sprite.
+    _bringToTop = false,
     pixelPerfect = false,
     alphaThreshold = 255,
     boundsRect: Rectangle | null | undefined = null,
-    boundsSprite: DisplayObject | null | undefined = null
+    boundsSprite: Image | null | undefined = null
   ): void {
     this._dragPoint = new Point();
     this.draggable = true;
-    this.bringToTop = bringToTop;
     this.dragOffset = new Point();
     this.dragFromCenter = lockCenter;
     this.pixelPerfectClick = pixelPerfect;
@@ -883,10 +877,6 @@ export class InputHandler {
       this.sprite.y - this.globalToLocalY(pointer.y)
     );
     this.updateDrag(pointer, true);
-    if (this.bringToTop) {
-      this._dragPhase = true;
-      this.sprite.parent.bringToTop(this.sprite);
-    }
     this.dragStartPoint.setTo(x, y);
     this.sprite.events.onDragStart$dispatch(this.sprite, pointer, x, y);
     this._pendingDrag = false;
@@ -981,15 +971,15 @@ export class InputHandler {
    * TBD.
    */
   public checkBoundsRect(): void {
-    if (this.sprite.left < this.boundsRect.left) {
-      this.sprite.x = this.boundsRect.x + this.sprite.offsetX;
-    } else if (this.sprite.right > this.boundsRect.right) {
-      this.sprite.x = this.boundsRect.right - (this.sprite.width - this.sprite.offsetX);
+    if (this.sprite.left < this.boundsRect!.left) {
+      this.sprite.x = this.boundsRect!.x + this.sprite.offsetX;
+    } else if (this.sprite.right > this.boundsRect!.right) {
+      this.sprite.x = this.boundsRect!.right - (this.sprite.width - this.sprite.offsetX);
     }
-    if (this.sprite.top < this.boundsRect.top) {
-      this.sprite.y = this.boundsRect.top + this.sprite.offsetY;
-    } else if (this.sprite.bottom > this.boundsRect.bottom) {
-      this.sprite.y = this.boundsRect.bottom - (this.sprite.height - this.sprite.offsetY);
+    if (this.sprite.top < this.boundsRect!.top) {
+      this.sprite.y = this.boundsRect!.top + this.sprite.offsetY;
+    } else if (this.sprite.bottom > this.boundsRect!.bottom) {
+      this.sprite.y = this.boundsRect!.bottom - (this.sprite.height - this.sprite.offsetY);
     }
   }
 
@@ -997,15 +987,15 @@ export class InputHandler {
    * TBD.
    */
   public checkBoundsSprite(): void {
-    if (this.sprite.left < this.boundsSprite.left) {
-      this.sprite.x = this.boundsSprite.left + this.sprite.offsetX;
-    } else if (this.sprite.right > this.boundsSprite.right) {
-      this.sprite.x = this.boundsSprite.right - (this.sprite.width - this.sprite.offsetX);
+    if (this.sprite.left < this.boundsSprite!.left) {
+      this.sprite.x = this.boundsSprite!.left + this.sprite.offsetX;
+    } else if (this.sprite.right > this.boundsSprite!.right) {
+      this.sprite.x = this.boundsSprite!.right - (this.sprite.width - this.sprite.offsetX);
     }
-    if (this.sprite.top < this.boundsSprite.top) {
-      this.sprite.y = this.boundsSprite.top + this.sprite.offsetY;
-    } else if (this.sprite.bottom > this.boundsSprite.bottom) {
-      this.sprite.y = this.boundsSprite.bottom - (this.sprite.height - this.sprite.offsetY);
+    if (this.sprite.top < this.boundsSprite!.top) {
+      this.sprite.y = this.boundsSprite!.top + this.sprite.offsetY;
+    } else if (this.sprite.bottom > this.boundsSprite!.bottom) {
+      this.sprite.y = this.boundsSprite!.bottom - (this.sprite.height - this.sprite.offsetY);
     }
   }
 }

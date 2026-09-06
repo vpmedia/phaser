@@ -14,17 +14,17 @@ import { SoundSprite } from './sound_sprite.js';
 
 export class SoundManager {
   public game!: Game;
-  public onChange!: any;
+  public onChange!: Signal;
   public context!: AudioContext | null;
-  public baseLatency!: any;
-  public noAudio!: any;
-  public type!: any;
-  public connectToMaster!: any;
-  public isLocked!: any;
-  public _codeMuted!: any;
-  public _muted!: any;
-  public _unlockSource!: any;
-  public _volume!: any;
+  public baseLatency!: number;
+  public noAudio!: boolean;
+  public type!: number;
+  public connectToMaster!: boolean;
+  public isLocked!: boolean;
+  public _codeMuted!: boolean;
+  public _muted!: boolean;
+  public _unlockSource!: AudioBufferSourceNode | null;
+  public _volume!: number;
   public _sounds!: any;
   public _watchList!: any;
   public _watching!: any;

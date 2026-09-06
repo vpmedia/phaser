@@ -39,19 +39,19 @@ import type { RenderSession } from '../render_session.js';
 export class WebGLRenderer {
   public gl!: IdentifiedWebGLRenderingContext;
   public glContextId!: number;
-  public type!: any;
+  public type!: number;
   public resolution!: number;
-  public autoResize!: any;
-  public contextLost!: any;
-  public clearBeforeRender!: any;
+  public autoResize!: boolean;
+  public contextLost!: boolean;
+  public clearBeforeRender!: boolean;
   public width!: number;
   public height!: number;
-  public view!: any;
-  public _contextOptions!: any;
-  public projection!: any;
-  public offset!: any;
-  public shaderManager!: any;
-  public spriteBatch!: any;
+  public view!: HTMLCanvasElement;
+  public _contextOptions!: WebGLContextAttributes;
+  public projection!: Point;
+  public offset!: Point;
+  public shaderManager!: WebGLShaderManager;
+  public spriteBatch!: WebGLSpriteBatch;
   public filterManager!: any;
   public stencilManager!: any;
   public blendModeManager!: any;
@@ -107,14 +107,9 @@ export class WebGLRenderer {
    */
   public destroy(): void {
     globalThis.PhaserRegistry.GL_CONTEXTS[this.glContextId] = null;
-    this.projection = null;
-    this.offset = null;
     this.shaderManager.destroy();
     this.spriteBatch.destroy();
     this.filterManager.destroy();
-    this.shaderManager = null;
-    this.spriteBatch = null;
-    this.filterManager = null;
     if (this.gl) {
       this.gl.canvas.width = 1;
       this.gl.canvas.height = 1;
