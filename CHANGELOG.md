@@ -1,3 +1,15 @@
+## [1.110.0] - 2026-09-06
+
+### 🚀 Features
+
+- *(types)* Replace any on the engine surfaces the game clients consume
+- *(types)* Type the factory, group, input handler and text surfaces
+- *(types)* Type Device, the pointer data and isTweening
+
+### ⚙️ Miscellaneous Tasks
+
+- Release
+- *(release)* V1.110.0
 ## [1.109.0] - 2026-08-19
 
 ### 🐛 Bug Fixes
