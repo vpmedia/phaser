@@ -36,10 +36,10 @@ export class Text extends Image {
    * @param {Game} game - The game instance this text belongs to.
    * @param {number} x - The x position of the text.
    * @param {number} y - The y position of the text.
-   * @param {string} text - The text content to display.
+   * @param {string | number} text - The text content to display.
    * @param {object} style - The style settings for the text.
    */
-  public constructor(game: Game, x: number, y: number, text = '', style: any = {}) {
+  public constructor(game: Game, x: number, y: number, text: string | number = '', style: any = {}) {
     super(game, x, y, null);
     this.game = game;
     /** @type {number} */
@@ -60,7 +60,7 @@ export class Text extends Image {
     this.autoRound = false;
     this.useAdvancedWrap = false;
     this._res = game.renderer.resolution;
-    this._text = text;
+    this._text = text.toString();
     this._fontComponents = null;
     /** @type {number} */
     this._lineSpacing = 0;
