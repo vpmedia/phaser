@@ -1,112 +1,52 @@
 export class Device {
-  desktop!: any;
-  iOS!: any;
-  android!: any;
-  chromeOS!: any;
-  linux!: any;
-  macOS!: any;
-  windows!: any;
-  windowsPhone!: any;
-  canvas!: any;
-  touch!: any;
-  mspointer!: any;
-  wheelEvent!: any;
-  chrome!: any;
-  firefox!: any;
-  edge!: any;
-  safari!: any;
-  fullscreen!: any;
-  requestFullscreen!: any;
-  cancelFullscreen!: any;
-  fullscreenKeyboard!: any;
-  noAudioFormat!: any;
-  supportedAudioFormats!: any;
-  supportedImageFormats!: any;
+  desktop!: boolean;
+  iOS!: boolean;
+  android!: boolean;
+  chromeOS!: boolean;
+  linux!: boolean;
+  macOS!: boolean;
+  windows!: boolean;
+  windowsPhone!: boolean;
+  canvas!: boolean;
+  touch!: boolean;
+  mspointer!: boolean;
+  wheelEvent!: string | null;
+  chrome!: boolean;
+  firefox!: boolean;
+  edge!: boolean;
+  safari!: boolean;
+  fullscreen!: boolean;
+  requestFullscreen!: string;
+  cancelFullscreen!: string;
+  fullscreenKeyboard!: boolean;
+  noAudioFormat!: boolean;
+  supportedAudioFormats!: Record<string, boolean>;
+  supportedImageFormats!: Record<string, boolean>;
   /**
    * Creates a new Device instance.
    * This class provides information about the current device and browser capabilities.
    */
   constructor() {
-    /**
-     * @type {boolean}
-     */
     this.desktop = false;
-    /**
-     * @type {boolean}
-     */
     this.iOS = false;
-    /**
-     * @type {boolean}
-     */
     this.android = false;
-    /**
-     * @type {boolean}
-     */
     this.chromeOS = false;
-    /**
-     * @type {boolean}
-     */
     this.linux = false;
-    /**
-     * @type {boolean}
-     */
     this.macOS = false;
-    /**
-     * @type {boolean}
-     */
     this.windows = false;
-    /**
-     * @type {boolean}
-     */
     this.windowsPhone = false;
-    /**
-     * @type {boolean}
-     */
     this.canvas = false;
-    /**
-     * @type {boolean}
-     */
     this.touch = false;
-    /**
-     * @type {boolean}
-     */
     this.mspointer = false;
     this.wheelEvent = null;
-    /**
-     * @type {boolean}
-     */
     this.chrome = false;
-    /**
-     * @type {boolean}
-     */
     this.firefox = false;
-    /**
-     * @type {boolean}
-     */
     this.edge = false;
-    /**
-     * @type {boolean}
-     */
     this.safari = false;
-    /**
-     * @type {boolean}
-     */
     this.fullscreen = false;
-    /**
-     * @type {string}
-     */
     this.requestFullscreen = '';
-    /**
-     * @type {string}
-     */
     this.cancelFullscreen = '';
-    /**
-     * @type {boolean}
-     */
     this.fullscreenKeyboard = false;
-    /**
-     * @type {boolean}
-     */
     this.noAudioFormat = false;
     /**
      * @type {{[key: string]: boolean}}

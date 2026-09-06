@@ -2,6 +2,24 @@ import { Point } from '../geom/point.js';
 import { distance } from '../util/math.js';
 import { GROUP } from './const.js';
 
+interface PointerData {
+  id: number;
+  x: number;
+  y: number;
+  camX: number;
+  camY: number;
+  isDown: boolean;
+  isUp: boolean;
+  isOver: boolean;
+  isOut: boolean;
+  timeOver: number;
+  timeOut: number;
+  timeDown: number;
+  timeUp: number;
+  downDuration: number;
+  isDragged: boolean;
+}
+
 export class InputHandler {
   sprite!: any;
   game!: any;
@@ -43,7 +61,7 @@ export class InputHandler {
   _dragDistancePass!: boolean;
   _wasEnabled!: boolean;
   _tempPoint!: import('../geom/point.js').Point;
-  _pointerData!: any;
+  _pointerData!: PointerData[];
   _dx!: any;
   _dy!: any;
   _draggedPointerID!: any;
@@ -130,6 +148,8 @@ export class InputHandler {
           id: i,
           x: 0,
           y: 0,
+          camX: 0,
+          camY: 0,
           isDown: false,
           isUp: false,
           isOver: false,
@@ -188,6 +208,8 @@ export class InputHandler {
         id: i,
         x: 0,
         y: 0,
+        camX: 0,
+        camY: 0,
         isDown: false,
         isUp: false,
         isOver: false,
