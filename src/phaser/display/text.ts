@@ -199,16 +199,16 @@ export class Text extends Image {
       tabs: source.tabs ?? 0,
     };
     const components = this.fontToComponents(resolved.font);
-    if (resolved.fontStyle) {
+    if (resolved.fontStyle !== undefined && resolved.fontStyle !== '') {
       components.fontStyle = resolved.fontStyle;
     }
-    if (resolved.fontVariant) {
+    if (resolved.fontVariant !== undefined && resolved.fontVariant !== '') {
       components.fontVariant = resolved.fontVariant;
     }
-    if (resolved.fontWeight) {
+    if (resolved.fontWeight !== undefined && resolved.fontWeight !== '') {
       components.fontWeight = String(resolved.fontWeight);
     }
-    if (resolved.fontSize) {
+    if (resolved.fontSize !== undefined && resolved.fontSize !== '') {
       const fontSize = typeof resolved.fontSize === 'number' ? `${resolved.fontSize}px` : resolved.fontSize;
       resolved.fontSize = fontSize;
       components.fontSize = fontSize;
@@ -302,7 +302,7 @@ export class Text extends Image {
     }
     this.canvas.height = height * this._res;
     this.context.scale(this._res, this._res);
-    if (this.style.backgroundColor) {
+    if (this.style.backgroundColor !== null && this.style.backgroundColor !== '') {
       this.context.fillStyle = this.style.backgroundColor;
       this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
     }
@@ -442,24 +442,24 @@ export class Text extends Image {
         const components = this.fontToComponents(this.context.font);
         const charFontStyle = this.fontStyles[this._charCount];
         const charFontWeight = this.fontWeights[this._charCount];
-        if (charFontStyle) {
+        if (charFontStyle !== undefined && charFontStyle !== null && charFontStyle !== '') {
           components.fontStyle = charFontStyle;
         }
-        if (charFontWeight) {
+        if (charFontWeight !== undefined && charFontWeight !== null && charFontWeight !== '') {
           components.fontWeight = charFontWeight;
         }
         this.context.font = this.componentsToFont(components);
       }
       if (this.style.stroke && this.style.strokeThickness) {
         const charStrokeColor = this.strokeColors[this._charCount];
-        if (charStrokeColor) {
+        if (charStrokeColor !== undefined && charStrokeColor !== null && charStrokeColor !== '') {
           this.context.strokeStyle = charStrokeColor;
         }
         this.updateShadow(this.style.shadowStroke ?? false);
       }
       if (this.style.fill) {
         const charFillColor = this.colors[this._charCount];
-        if (charFillColor) {
+        if (charFillColor !== undefined && charFillColor !== null && charFillColor !== '') {
           this.context.fillStyle = charFillColor;
         }
         this.updateShadow(this.style.shadowFill ?? false);
@@ -483,17 +483,17 @@ export class Text extends Image {
         const components = this.fontToComponents(this.context.font);
         const charFontStyle = this.fontStyles[this._charCount];
         const charFontWeight = this.fontWeights[this._charCount];
-        if (charFontStyle) {
+        if (charFontStyle !== undefined && charFontStyle !== null && charFontStyle !== '') {
           components.fontStyle = charFontStyle;
         }
-        if (charFontWeight) {
+        if (charFontWeight !== undefined && charFontWeight !== null && charFontWeight !== '') {
           components.fontWeight = charFontWeight;
         }
         this.context.font = this.componentsToFont(components);
       }
       if (this.style.stroke && this.style.strokeThickness) {
         const charStrokeColor = this.strokeColors[this._charCount];
-        if (charStrokeColor) {
+        if (charStrokeColor !== undefined && charStrokeColor !== null && charStrokeColor !== '') {
           this.context.strokeStyle = charStrokeColor;
         }
         this.updateShadow(this.style.shadowStroke ?? false);
@@ -501,7 +501,7 @@ export class Text extends Image {
       }
       if (this.style.fill) {
         const charFillColor = this.colors[this._charCount];
-        if (charFillColor) {
+        if (charFillColor !== undefined && charFillColor !== null && charFillColor !== '') {
           this.context.fillStyle = charFillColor;
         }
         this.updateShadow(this.style.shadowFill ?? false);
@@ -968,7 +968,7 @@ export class Text extends Image {
    * @returns {CanvasRenderingContext2D} The font properties canvas context.
    */
   public getFontPropertiesContext(): CanvasRenderingContext2D {
-    if (!globalThis.PhaserRegistry.fontPropertiesContext) {
+    if (globalThis.PhaserRegistry.fontPropertiesContext === undefined) {
       const canvas = this.getFontPropertiesCanvas();
       const context = canvas.getContext('2d', { willReadFrequently: true });
       if (!context) {
@@ -1028,7 +1028,7 @@ export class Text extends Image {
       context.textBaseline = 'alphabetic';
       context.fillStyle = '#000';
       context.fillText('|MÉq', 0, baseline);
-      if (!context.getImageData(0, 0, width, height)) {
+      if (context.getImageData(0, 0, width, height) === null) {
         const fallback: FontProperties = {
           ascent: baseline,
           descent: baseline + 6,
@@ -1171,7 +1171,7 @@ export class Text extends Image {
     if (typeof size === 'number') {
       return size;
     }
-    if (size && /(?:^0$|px$)/.exec(size)) {
+    if (size !== undefined && size !== '' && /(?:^0$|px$)/.exec(size)) {
       // Number() cannot read the value here: the string carries a px suffix.
       // eslint-disable-next-line unicorn/prefer-number-coercion
       return Number.parseInt(size, 10);

@@ -150,7 +150,7 @@ export class BitmapText extends DisplayObject {
       //  What will the line width be if we add this character to it?
       c = (kerning + (charData.texture?.width ?? 0) + charData.xOffset) * scale;
       //  Do we need to line-wrap?
-      if (maxWidth && w + c >= maxWidth && lastSpace > -1) {
+      if (maxWidth !== null && w + c >= maxWidth && lastSpace > -1) {
         //  The last space was at "lastSpace" which was "i - lastSpace" characters ago
         return {
           width: wrappedWidth || w,
@@ -463,7 +463,7 @@ export class BitmapText extends DisplayObject {
    * @returns {boolean} True if smoothing is enabled, false otherwise.
    */
   public get smoothed(): boolean {
-    return !this._data?.base.scaleMode;
+    return this._data?.base.scaleMode === 0;
   }
 
   /**

@@ -223,7 +223,7 @@ export class InputHandler {
    * TBD.
    */
   public destroy(): void {
-    if (this.sprite) {
+    if (this.sprite !== null) {
       if (this._setHandCursor) {
         this.game.canvas.style.cursor = 'default';
         this._setHandCursor = false;
@@ -402,7 +402,7 @@ export class InputHandler {
     if (
       !pointer.isDown ||
       !this.enabled ||
-      !this.sprite ||
+      this.sprite === null ||
       !this.sprite.parent ||
       !this.sprite.visible ||
       !this.sprite.parent.visible ||
@@ -430,7 +430,7 @@ export class InputHandler {
   public checkPointerOver(pointer: Pointer, fastTest = false): boolean {
     if (
       !this.enabled ||
-      !this.sprite ||
+      this.sprite === null ||
       !this.sprite.parent ||
       !this.sprite.visible ||
       !this.sprite.parent.visible ||
@@ -560,7 +560,7 @@ export class InputHandler {
         this.game.canvas.style.cursor = 'pointer';
         this._setHandCursor = true;
       }
-      if (!silent && sendEvent && this.sprite && this.sprite.events) {
+      if (!silent && sendEvent && this.sprite?.events) {
         this.sprite.events.onInputOver$dispatch(this.sprite, pointer);
       }
       if (this.sprite.parent && this.sprite.parent.type === GROUP) {
@@ -587,9 +587,9 @@ export class InputHandler {
       this.game.canvas.style.cursor = 'default';
       this._setHandCursor = false;
     }
-    if (!silent && this.sprite && this.sprite.events) {
+    if (!silent && this.sprite?.events) {
       this.sprite.events.onInputOut$dispatch(this.sprite, pointer);
-      if (this.sprite && this.sprite.parent && this.sprite.parent.type === GROUP) {
+      if (this.sprite?.parent?.type === GROUP) {
         (this.sprite.parent as Group).onChildInputOut.dispatch(this.sprite, pointer);
       }
     }
@@ -615,10 +615,10 @@ export class InputHandler {
       this.downPoint.setTo(pointer.x, pointer.y);
       // It's possible the onInputDown event creates a new Sprite that is on-top of this one, so we ought to force a Pointer update
       pointer.dirty = true;
-      if (this.sprite && this.sprite.events) {
+      if (this.sprite?.events) {
         this.sprite.events.onInputDown$dispatch(this.sprite, pointer);
         // The event above might have destroyed this sprite.
-        if (this.sprite && this.sprite.parent && this.sprite.parent.type === GROUP) {
+        if (this.sprite?.parent?.type === GROUP) {
           (this.sprite.parent as Group).onChildInputDown.dispatch(this.sprite, pointer);
         }
         //  The events might have destroyed this sprite.
@@ -650,7 +650,7 @@ export class InputHandler {
    */
   public dragTimeElapsed(pointer: Pointer): void {
     this._dragTimePass = true;
-    if (this._pendingDrag && this.sprite && this._dragDistancePass) {
+    if (this._pendingDrag && this.sprite !== null && this._dragDistancePass) {
       this.startDrag(pointer);
     }
   }
@@ -673,14 +673,14 @@ export class InputHandler {
       data.downDuration = data.timeUp - data.timeDown;
       // Only release the InputUp signal if the pointer is still over this sprite
       let isOver = this.checkPointerOver(pointer);
-      if (this.sprite && this.sprite.events) {
+      if (this.sprite?.events) {
         if (
           !this.dragStopBlocksInputUp ||
           (this.dragStopBlocksInputUp && !(this.draggable && this.isDragged && this._draggedPointerID === pointer.id))
         ) {
           this.sprite.events.onInputUp$dispatch(this.sprite, pointer, isOver);
         }
-        if (this.sprite && this.sprite.parent && this.sprite.parent.type === GROUP) {
+        if (this.sprite?.parent?.type === GROUP) {
           (this.sprite.parent as Group).onChildInputUp.dispatch(this.sprite, pointer, isOver);
         }
         // The onInputUp event may have changed the sprite so that checkPointerOver is no longer true, so update it.
@@ -843,7 +843,7 @@ export class InputHandler {
    * TBD.
    */
   public disableDrag(): void {
-    if (this._pointerData) {
+    if (this._pointerData.length > 0) {
       for (let i = 0; i < 10; i += 1) {
         this.pointerData(i).isDragged = false;
       }

@@ -284,7 +284,7 @@ export class Loader {
     }
     let resolvedUrl = url;
     if (resolvedUrl === undefined || resolvedUrl === null) {
-      if (!extension) {
+      if (extension === null) {
         this.game.logger.warn(`Loader: No URL given for file type: ${type} key: ${key}`);
         return this;
       }
@@ -351,7 +351,7 @@ export class Loader {
       error: false,
       callbackContext,
     };
-    if (data) {
+    if (data !== null) {
       const parsed: unknown = typeof data === 'string' ? JSON.parse(data) : data;
       pack.data = (parsed ?? {}) as LoaderFileData;
       pack.loaded = true;
@@ -491,7 +491,7 @@ export class Loader {
     this.audio(key, urls, autoDecode);
     if (jsonURL) {
       this.json(`${key}-audioatlas`, jsonURL);
-    } else if (jsonData) {
+    } else if (jsonData !== null) {
       const parsed: unknown = typeof jsonData === 'string' ? JSON.parse(jsonData) : jsonData;
       this.cache.addJSON(`${key}-audioatlas`, '', parsed);
     }
@@ -520,7 +520,7 @@ export class Loader {
     const texture = textureURL ?? `${key}.png`;
     const atlas = atlasURL === null && atlasData === null ? `${key}.xml` : atlasURL;
     //  A URL to a json/xml atlas has been given
-    if (atlas) {
+    if (atlas !== null) {
       this.addToFileList('bitmapfont', key, texture, { atlasURL: atlas, xSpacing, ySpacing });
     } else if (typeof atlasData === 'string') {
       //  A stringified xml/json atlas has been given
@@ -531,13 +531,13 @@ export class Loader {
       } catch {
         xml = this.parseXml(atlasData);
       }
-      if (!xml && !json) {
+      if (xml === null && json === null) {
         throw new Error(ENGINE_ERROR_INVALID_BITMAP_FONT_ATLAS);
       }
       this.addToFileList('bitmapfont', key, texture, {
         atlasURL: null,
         atlasData: json ?? xml,
-        atlasType: json ? 'json' : 'xml',
+        atlasType: json === null ? 'xml' : 'json',
         xSpacing,
         ySpacing,
       });
@@ -562,9 +562,9 @@ export class Loader {
     format: number = TEXTURE_ATLAS_JSON_HASH
   ): this {
     const texture = textureURL ?? `${key}.png`;
-    const atlas = !atlasURL && !atlasData ? `${key}.json` : atlasURL;
+    const atlas = atlasURL === null && atlasData === null ? `${key}.json` : atlasURL;
     //  A URL to a json/xml file has been given
-    if (atlas) {
+    if (atlas !== null) {
       this.addToFileList('textureatlas', key, texture, { atlasURL: atlas, format });
     } else {
       this.addToFileList('textureatlas', key, texture, { atlasURL: null, atlasData, format });
@@ -691,7 +691,7 @@ export class Loader {
         }
       } else if (!file.loading && this._flightQueue.length < inflightLimit) {
         // -> not loaded/failed, not loading
-        if (file.type === 'packfile' && !file.data) {
+        if (file.type === 'packfile' && file.data === null) {
           // Fetches the pack data: the pack is processed above as it reaches queue-start.
           // (Packs do not trigger onLoadStart or onFileStart.)
           this._flightQueue.push(file);
@@ -882,7 +882,7 @@ export class Loader {
       }
       case 'audio': {
         const resolved = this.getAudioURL(file.url);
-        if (resolved) {
+        if (resolved !== null) {
           file.url = resolved;
           this.xhrLoad(file, this.transformUrl(resolved, file), 'arraybuffer', this.fileComplete);
         } else if (this.game.sound.noAudio) {
@@ -937,9 +937,9 @@ export class Loader {
       { once: true }
     );
     image.addEventListener('error', (): void => {
-      if (this.isUseRetry && (!file.numRetry || file.numRetry < this.maxRetry)) {
+      if (this.isUseRetry && (file.numRetry === undefined || file.numRetry < this.maxRetry)) {
         setTimeout((): void => {
-          file.numRetry = file.numRetry ? file.numRetry + 1 : 1;
+          file.numRetry = file.numRetry === undefined ? 1 : file.numRetry + 1;
           this.loadImageTag(file);
         }, 1000);
       } else if (!settled) {
@@ -983,16 +983,16 @@ export class Loader {
       xhr.setRequestHeader('X-Requested-With', requestedWith);
     }
     const acceptHeader = this.headers[file.type];
-    if (acceptHeader) {
+    if (acceptHeader !== undefined && acceptHeader !== false) {
       xhr.setRequestHeader('Accept', acceptHeader);
     }
     const handleError = onerror ?? this.fileError;
     const retry = (): boolean => {
-      if (!this.isUseRetry || (file.numRetry && file.numRetry >= this.maxRetry)) {
+      if (!this.isUseRetry || (file.numRetry !== undefined && file.numRetry >= this.maxRetry)) {
         return false;
       }
       setTimeout((): void => {
-        file.numRetry = file.numRetry ? file.numRetry + 1 : 1;
+        file.numRetry = file.numRetry === undefined ? 1 : file.numRetry + 1;
         this.xhrLoad(file, url, type, onload, handleError);
       }, 1000);
       return true;
@@ -1091,7 +1091,7 @@ export class Loader {
    */
   public fileError(file: LoaderFile, xhr: XMLHttpRequest | null = null, reason: unknown = 0): void {
     // const url = file.requestUrl || this.transformUrl(file.url, file);
-    const cause = !reason && xhr ? xhr.status : reason;
+    const cause = reason === 0 && xhr !== null ? xhr.status : reason;
     const message = `Error loading asset (${String(cause)})`;
     this.asyncComplete(file, message);
   }
@@ -1144,7 +1144,7 @@ export class Loader {
         break;
       }
       case 'bitmapfont': {
-        if (!file.atlasURL) {
+        if (file.atlasURL === null || file.atlasURL === undefined) {
           this.cache.addBitmapFont(
             file.key,
             url,
@@ -1169,7 +1169,7 @@ export class Loader {
               } catch {
                 // pass
               }
-              if (json) {
+              if (json !== undefined) {
                 bitmapFontFile.atlasType = 'json';
                 this.jsonLoadComplete(bitmapFontFile, bitmapFontXhr);
               } else {
@@ -1185,7 +1185,7 @@ export class Loader {
         const audio = response.response as ArrayBuffer;
         file.data = audio;
         this.cache.addSound(file.key, url, audio);
-        if (file.autoDecode) {
+        if (file.autoDecode === true) {
           void this.game.sound.decode(file.key);
         }
         break;
@@ -1302,7 +1302,7 @@ export class Loader {
       } else {
         this.preloadSprite.rect.height = Math.floor((this.preloadSprite.height / 100) * this.progress);
       }
-      if (this.preloadSprite.sprite) {
+      if (this.preloadSprite.sprite !== null) {
         this.preloadSprite.sprite.updateCrop();
       } else {
         // We seem to have lost our sprite - maybe it was destroyed?
