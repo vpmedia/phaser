@@ -137,8 +137,7 @@ export class TweenData {
       //  Check if an Array was provided as property value
       if (Array.isArray(this.vEnd[property])) {
         if (this.vEnd[property].length === 0) {
-          // pass
-          // TODO: this was continue;
+          // an empty end array leaves the property untouched for this step
         } else if (this.percent === 0) {
           //  Put the start value at the beginning of the array
           //  but we only want to do this once, if the Tween hasn't run before

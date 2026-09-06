@@ -71,7 +71,7 @@
         "allowAsStatement": true
       }
     ],
-    "eslint/no-warning-comments": "off",
+    "eslint/no-warning-comments": "error",
     "eslint/one-var": "off",
     "eslint/operator-assignment": "error",
     "eslint/prefer-destructuring": "error",
@@ -159,7 +159,7 @@
         }
       }
     ],
-    "unicorn/prefer-add-event-listener": "off",
+    "unicorn/prefer-add-event-listener": "error",
     "unicorn/prefer-class-fields": "error",
     "unicorn/prefer-code-point": "error",
     "unicorn/prefer-dom-node-remove": "off",

@@ -113,7 +113,6 @@ export class Graphics extends DisplayObject {
    * Destroys the graphics object and clears all data.
    */
   public override destroy(): void {
-    // TODO
     this.clear();
     super.destroy();
   }
@@ -454,7 +453,6 @@ export class Graphics extends DisplayObject {
    */
   public drawPolygon(path: Polygon): this {
     const points = path instanceof Polygon ? path.points : path;
-    // TODO
     /*
     if (!Array.isArray(points)) {
       points = new Array(arguments.length);
@@ -486,7 +484,6 @@ export class Graphics extends DisplayObject {
    * Generates a texture from the graphics object (not implemented).
    */
   public override generateTexture(): void {
-    // TODO
     this.game.logger.warn('graphics.generateTexture() is not implemented');
   }
 

@@ -927,25 +927,28 @@ export class Loader {
     if (typeof this.crossOrigin === 'string' && this.crossOrigin) {
       image.crossOrigin = this.crossOrigin;
     }
-    image.onload = (): void => {
-      if (image.onload) {
-        image.onload = null;
-        image.onerror = null;
-        this.fileComplete(file);
-      }
-    };
-    image.onerror = (): void => {
+    let settled = false;
+    image.addEventListener(
+      'load',
+      (): void => {
+        if (!settled) {
+          settled = true;
+          this.fileComplete(file);
+        }
+      },
+      { once: true }
+    );
+    image.addEventListener('error', (): void => {
       if (this.isUseRetry && (!file.numRetry || file.numRetry < this.maxRetry)) {
         setTimeout((): void => {
-          file.numRetry = !file.numRetry ? 1 : (file.numRetry += 1);
+          file.numRetry = file.numRetry ? file.numRetry + 1 : 1;
           this.loadImageTag(file);
         }, 1000);
-      } else if (image.onload) {
-        image.onload = null;
-        image.onerror = null;
+      } else if (!settled) {
+        settled = true;
         this.fileError(file);
       }
-    };
+    });
     const src = this.transformUrl(file.url, file);
     if (src === false) {
       this.fileError(file, null, 'Could not resolve the file URL');
@@ -1006,7 +1009,7 @@ export class Loader {
         this.asyncComplete(file, typedError.message || 'Exception');
       }
     };
-    xhr.onload = (): void => {
+    xhr.addEventListener('load', (): void => {
       try {
         // Handle HTTP status codes of 4xx and 5xx as errors, even if xhr.onerror was not called.
         if (xhr.readyState === 4 && xhr.status >= 400 && xhr.status <= 599) {
@@ -1019,8 +1022,8 @@ export class Loader {
       } catch (error) {
         reportException(error);
       }
-    };
-    xhr.onerror = (): void => {
+    });
+    xhr.addEventListener('error', (): void => {
       if (retry()) {
         return;
       }
@@ -1029,7 +1032,7 @@ export class Loader {
       } catch (error) {
         reportException(error);
       }
-    };
+    });
     file.requestObject = xhr;
     file.requestUrl = url;
     xhr.send();
@@ -1039,7 +1042,6 @@ export class Loader {
    * Placeholder for XDomainRequest loading (not implemented).
    */
   public xhrLoadWithXDR(): void {
-    // TODO
     this.game.logger.warn('loader.xhrLoadWithXDR() is not implemented');
   }
 
@@ -1238,7 +1240,6 @@ export class Loader {
    * TBD.
    */
   public csvLoadComplete(): void {
-    // TODO
     this.game.logger.warn('loader.csvLoadComplete() is not implemented');
   }
 

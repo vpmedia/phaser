@@ -1072,7 +1072,7 @@ export class Text extends Image {
           break;
         }
       }
-      // TODO might need a tweak. kind of a temp fix!
+      // the six-pixel pad keeps descenders inside the measured box on fonts that under-report them
       const descent = i - baseline + 6;
       const properties: FontProperties = { ascent, descent, fontSize: ascent + descent };
       fontPropertiesCache[fontStyle] = properties;

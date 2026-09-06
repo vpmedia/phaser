@@ -213,9 +213,9 @@ export const checkImage = (device: Device): void => {
     const avif = new Image();
     avif.src =
       'data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAAB0AAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAAIAAAACAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQ0MAAAAABNjb2xybmNseAACAAIAAYAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAACVtZGF0EgAKCBgANogQEAwgMg8f8D///8WfhwB8+ErK42A=';
-    avif.onload = function onload(): void {
+    avif.addEventListener('load', (): void => {
       device.supportedImageFormats['avif'] = true;
-    };
+    });
   } catch (error) {
     const typedError = error instanceof Error ? error : new Error(String(error));
     logger.fatal('checkImage error with avif', { error: typedError });
@@ -223,9 +223,9 @@ export const checkImage = (device: Device): void => {
   try {
     const webp = new Image();
     webp.src = 'data:image/webp;base64,UklGRh4AAABXRUJQVlA4TBEAAAAvAAAAAAfQ//73v/+BiOh/AAA=';
-    webp.onload = function onload(): void {
+    webp.addEventListener('load', (): void => {
       device.supportedImageFormats['webp'] = true;
-    };
+    });
   } catch (error) {
     const typedError = error instanceof Error ? error : new Error(String(error));
     logger.fatal('checkImage error with webp', { error: typedError });

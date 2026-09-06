@@ -70,7 +70,6 @@ export class Sound {
    * @param {boolean} connect - Whether to connect to the master gain node.
    */
   public constructor(game: Game, key: string, volume = 1, loop = false, connect: boolean | null = null) {
-    // TODO
     // https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Migrating_from_webkitAudioContext
     connect ??= game.sound.connectToMaster;
     this.game = game;
@@ -173,8 +172,7 @@ export class Sound {
   /**
    * Handler for when the sound ends.
    */
-  public onEndedHandler(): void {
-    this._sound.onended = null;
+  public onEndedHandler = (): void => {
     this.isPlaying = false;
     this.currentTime = this.durationMS;
     this.stop();
@@ -202,7 +200,7 @@ export class Sound {
       this.onMarkerComplete.dispose();
       this.onFadeComplete.dispose();
     }
-  }
+  };
 
   /**
    * Updates the sound state.
@@ -341,7 +339,7 @@ export class Sound {
         this._sound.loop = true;
       }
       if (!this.loop && marker === '') {
-        this._sound.onended = this.onEndedHandler.bind(this);
+        this._sound.addEventListener('ended', this.onEndedHandler, { once: true });
       }
       this.totalDuration = this._sound.buffer?.duration ?? 0;
       if (this.duration === 0) {
@@ -412,7 +410,7 @@ export class Sound {
         this._sound.loop = true;
       }
       if (!this.loop && this.currentMarker === '') {
-        this._sound.onended = this.onEndedHandler.bind(this);
+        this._sound.addEventListener('ended', this.onEndedHandler, { once: true });
       }
       const duration = this.duration - this.pausedPosition / 1000;
       if (this._sound.start === undefined) {

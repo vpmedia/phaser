@@ -61,7 +61,6 @@ export const switchMode = (webGL: GraphicsWebGLBucket, type: number) => {
  * @param {GraphicsData} webGLData - The WebGL graphics data object.
  */
 export const buildLine = (graphicsData: DisplayGraphicsData, webGLData: GraphicsData): void => {
-  // TODO OPTIMISE!
   let i = 0;
   let { points } = graphicsData;
   if (points.length === 0) {
@@ -348,7 +347,6 @@ export const buildRoundedRectangle = (graphicsData: DisplayGraphicsData, webGLDa
       indices.push(triangles[i + 2]! + vecPos);
     }
     for (let i = 0; i < recPoints.length; i += 2) {
-      // TODO verify
       verts.push(recPoints[i]!, recPoints[i + 1]!, r, g, b, alpha);
     }
   }
@@ -372,7 +370,6 @@ export const buildCircle = (graphicsData: DisplayGraphicsData, webGLData: Graphi
   const { y } = circleData;
   let width;
   let height;
-  // TODO - bit hacky??
   if (circleData instanceof Circle) {
     width = circleData.radius;
     height = circleData.radius;
@@ -416,7 +413,6 @@ export const buildCircle = (graphicsData: DisplayGraphicsData, webGLData: Graphi
  * @param {GraphicsData} webGLData - The WebGL graphics data object.
  */
 export const buildComplexPoly = (graphicsData: DisplayGraphicsData, webGLData: GraphicsData): void => {
-  // TODO - no need to copy this as it gets turned into a Float32Array anyways..
   const points = [...graphicsData.points];
   if (points.length < 6) {
     return;
@@ -447,7 +443,6 @@ export const buildComplexPoly = (graphicsData: DisplayGraphicsData, webGLData: G
   // add a quad to the end cos there is no point making another buffer!
   points.push(minX, minY, maxX, minY, maxX, maxY, minX, maxY);
   // push a quad onto the end..
-  // TODO - this aint needed!
   const length = points.length / 2;
   for (let i = 0; i < length; i += 1) {
     indices.push(i);

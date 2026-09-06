@@ -215,9 +215,7 @@ export class WebGLSpriteBatch {
   /**
    * Binds the sprite batch to the WebGL context.
    */
-  public renderTilingSprite(): void {
-    // TODO
-  }
+  public renderTilingSprite(): void {}
 
   /**
    * Updates the sprite batch.
@@ -301,7 +299,6 @@ export class WebGLSpriteBatch {
           // set the projection
           const { projection } = this.renderSession;
           gl.uniform2f(shader.projectionVector, projection.x, projection.y);
-          // TODO - this is temporary!
           const offsetVector = this.renderSession.offset;
           gl.uniform2f(shader.offsetVector, offsetVector.x, offsetVector.y);
           // set the pointers

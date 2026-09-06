@@ -112,7 +112,6 @@ export class Texture {
     ) {
       // If `true` then `PIXI.Texture.setFrame` will no longer throw an error if the texture dimensions are incorrect.
       // Instead `Texture.valid` will be set to `false` (#1556)
-      // TODO: make this configurable
       const isTextureSilentFail = true;
       if (!isTextureSilentFail) {
         throw new Error(

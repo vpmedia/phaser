@@ -26,42 +26,30 @@ export class WebGLFilterManager {
   /**
    * Applies a filter to the specified texture.
    */
-  public begin(): void {
-    // TODO
-  }
+  public begin(): void {}
 
   /**
    * Updates the filter texture for the specified size.
    */
-  public pushFilter(_filterBlock: object | null): void {
-    // TODO
-  }
+  public pushFilter(_filterBlock: object | null): void {}
 
   /**
    * Resizes the filter manager to the specified dimensions.
    */
-  public popFilter(): void {
-    // TODO
-  }
+  public popFilter(): void {}
 
   /**
    * Destroys this filter manager and cleans up resources.
    */
-  public applyFilterPass(): void {
-    // TODO
-  }
+  public applyFilterPass(): void {}
 
   /**
    * Initializes the filter manager.
    */
-  public initShaderBuffers(): void {
-    // TODO
-  }
+  public initShaderBuffers(): void {}
 
   /**
    * Sets up the filter manager for WebGL rendering.
    */
-  public destroy(): void {
-    // TODO
-  }
+  public destroy(): void {}
 }

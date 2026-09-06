@@ -16,7 +16,6 @@ export class GraphicsData {
    */
   public constructor(gl: WebGLRenderingContext) {
     this.gl = gl;
-    // TODO does this need to be split before uploading??
     this.color = [0, 0, 0]; // color split!
     this.points = [];
     this.indices = [];

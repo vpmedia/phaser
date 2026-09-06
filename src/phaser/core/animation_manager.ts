@@ -247,7 +247,6 @@ export class AnimationManager {
    * Refreshes the current frame texture (not implemented).
    */
   public refreshFrame(): void {
-    // TODO
     this.game.logger.warn('animation_manager.refreshFrame() is not implemented');
     // this.sprite.setTexture(PIXI.TextureCache[this.currentFrame.uuid]);
   }

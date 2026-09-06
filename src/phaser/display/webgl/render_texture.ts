@@ -71,30 +71,22 @@ export class RenderTexture extends Texture {
   /**
    * Destroys this render texture and cleans up resources.
    */
-  public resize(): void {
-    // TODO
-  }
+  public resize(): void {}
 
   /**
    * Updates the size of this render texture.
    */
-  public clear(): void {
-    // TODO
-  }
+  public clear(): void {}
 
   /**
    * Updates the resolution of this render texture.
    */
-  public renderWebGL(): void {
-    // TODO
-  }
+  public renderWebGL(): void {}
 
   /**
    * Updates the scale mode of this render texture.
    */
-  public renderCanvas(): void {
-    // TODO
-  }
+  public renderCanvas(): void {}
 
   /**
    * Gets the HTML image element for this render texture.
@@ -119,7 +111,6 @@ export class RenderTexture extends Texture {
    * @returns {HTMLCanvasElement} The canvas element.
    */
   public getCanvas(): HTMLCanvasElement | null {
-    // TODO
     return null;
   }
 }

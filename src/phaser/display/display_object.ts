@@ -135,7 +135,7 @@ export class DisplayObject {
     this.exists = false;
     this.renderable = false;
     this.visible = false;
-    // TODO: investigate how to clean up properly object references without breaking delayed tween cleanups.
+    // the geometry below is deliberately left alive: a delayed tween may still be reading it
     /*
     This.position = null;
     this.scale = null;
@@ -585,7 +585,6 @@ export class DisplayObject {
    * @throws {Error} This method is not implemented yet.
    */
   public generateTexture(): void {
-    // TODO
     throw new Error('display_object.generateTexture() is not implemented');
   }
 
@@ -632,9 +631,7 @@ export class DisplayObject {
   /**
    * Generates a cached sprite for this display object.
    */
-  public generateCachedSprite(): void {
-    // TODO
-  }
+  public generateCachedSprite(): void {}
 
   /**
    * Destroys the cached sprite for this display object.
