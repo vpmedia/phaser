@@ -6,6 +6,8 @@ import { PI_2 } from '../util/math.js';
 import { renderCanvas, renderWebGL } from './sprite_util.js';
 import type { Graphics } from './graphics.js';
 import type { Game } from '../core/game.js';
+import type { EventManager } from '../core/event_manager.js';
+import type { Image } from './image.js';
 import type { RenderSession } from './render_session.js';
 
 export class DisplayObject {
@@ -43,18 +45,18 @@ export class DisplayObject {
   /** @type {boolean} */
   public ignoreChildInput = false;
   public name: string | null = null;
-  public data: any = null;
+  public data: object | null = null;
   public game!: Game;
   public type!: number;
-  public _cachedSprite!: any;
+  public _cachedSprite!: Image | null;
   public rotationCache!: number;
   public worldRotation!: number;
-  public transformCallback!: any;
-  public transformCallbackContext!: any;
+  public transformCallback!: ((worldTransform: Matrix, parentTransform: Matrix) => void) | null;
+  public transformCallbackContext!: unknown;
   public _width!: number;
   public _height!: number;
   public z!: number;
-  public events!: any;
+  public events!: EventManager;
   public renderOrderID!: number;
   /**
    * Creates a new DisplayObject instance.
@@ -384,23 +386,22 @@ export class DisplayObject {
    * @param {DisplayObject} targetCoordinateSpace - The coordinate space to calculate bounds in.
    * @returns {Rectangle} The bounds rectangle of this display object.
    */
-  public getBounds(targetCoordinateSpace?: any): Rectangle {
-    const isTargetCoordinateSpaceDisplayObject = targetCoordinateSpace && targetCoordinateSpace.contains !== undefined;
+  public getBounds(targetCoordinateSpace?: unknown): Rectangle {
+    const candidate = targetCoordinateSpace as DisplayObject | undefined;
+    const isTargetCoordinateSpaceDisplayObject = Boolean(candidate?.contains);
+    let target = this as DisplayObject;
     let isTargetCoordinateSpaceThisOrParent = true;
-    if (!isTargetCoordinateSpaceDisplayObject) {
-      targetCoordinateSpace = this;
-    } else if (targetCoordinateSpace.contains !== undefined) {
-      isTargetCoordinateSpaceThisOrParent = targetCoordinateSpace.contains(this);
-    } else {
-      isTargetCoordinateSpaceThisOrParent = false;
+    if (isTargetCoordinateSpaceDisplayObject) {
+      target = candidate!;
+      isTargetCoordinateSpaceThisOrParent = target.contains(this);
     }
     let i;
     let matrixCache;
     if (isTargetCoordinateSpaceDisplayObject) {
-      matrixCache = targetCoordinateSpace.worldTransform;
-      targetCoordinateSpace.worldTransform = getIdentityMatrix();
-      for (i = 0; i < targetCoordinateSpace.children.length; i += 1) {
-        targetCoordinateSpace.children[i].updateTransform();
+      matrixCache = target.worldTransform;
+      target.worldTransform = getIdentityMatrix();
+      for (i = 0; i < target.children.length; i += 1) {
+        target.children[i]!.updateTransform();
       }
     }
     let minX = Infinity;
@@ -468,13 +469,13 @@ export class DisplayObject {
     bounds.width = maxX - minX;
     bounds.height = maxY - minY;
     if (isTargetCoordinateSpaceDisplayObject) {
-      targetCoordinateSpace.worldTransform = matrixCache;
-      for (i = 0; i < targetCoordinateSpace.children.length; i += 1) {
-        targetCoordinateSpace.children[i].updateTransform();
+      target.worldTransform = matrixCache!;
+      for (i = 0; i < target.children.length; i += 1) {
+        target.children[i]!.updateTransform();
       }
     }
     if (!isTargetCoordinateSpaceThisOrParent) {
-      const targetCoordinateSpaceBounds = targetCoordinateSpace.getBounds();
+      const targetCoordinateSpaceBounds = target.getBounds();
       bounds.x -= targetCoordinateSpaceBounds.x;
       bounds.y -= targetCoordinateSpaceBounds.y;
     }

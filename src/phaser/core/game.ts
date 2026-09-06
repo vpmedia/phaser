@@ -42,6 +42,9 @@ export type GameConfig = {
   maxParallelDownloads: number;
   canvas?: HTMLCanvasElement;
   isSkipTicker?: boolean;
+  scaleMode?: number;
+  fullScreenScaleMode?: number;
+  fullScreenTarget?: HTMLElement;
   parent?: string | HTMLElement;
   state?: SceneDefinition | string;
   logger?: Logger;

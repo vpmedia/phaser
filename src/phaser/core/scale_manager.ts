@@ -1,7 +1,7 @@
 import { Point } from '../geom/point.js';
 import { Rectangle } from '../geom/rectangle.js';
 import { RENDER_CANVAS, SCALE_EXACT_FIT, SCALE_OFF, SCALE_RESIZE, SCALE_SHOW_ALL, SCALE_USER } from './const.js';
-import type { Game } from './game.js';
+import type { Game, GameConfig } from './game.js';
 import { DOM } from './dom.js';
 import { Signal } from './signal.js';
 
@@ -223,7 +223,7 @@ export class ScaleManager {
    * TBD.
    * @param {object} config - TBD.
    */
-  public parseConfig(config: any): void {
+  public parseConfig(config: GameConfig): void {
     if (config.scaleMode !== undefined) {
       if (this._booted) {
         this.scaleMode = config.scaleMode;
@@ -798,7 +798,7 @@ export class ScaleManager {
       // Error is called in timeout to emulate the real fullscreenerror event better
       const scope = this;
       setTimeout((): void => {
-        scope.fullScreenError({} as any);
+        scope.fullScreenError(new Event('fullscreenerror'));
       }, 10);
       return false;
     }
@@ -1044,9 +1044,9 @@ export class ScaleManager {
   public get isFullScreen(): boolean {
     return Boolean(
       document.fullscreenElement ??
-      (document as any).webkitFullscreenElement ??
-      (document as any).mozFullScreenElement ??
-      (document as any).msFullscreenElement
+      document.webkitFullscreenElement ??
+      document.mozFullScreenElement ??
+      document.msFullscreenElement
     );
   }
 

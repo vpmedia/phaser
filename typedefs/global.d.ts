@@ -41,6 +41,12 @@ declare global {
     stencilBufferLimit: number;
   }
 
+  interface Document {
+    webkitFullscreenElement?: Element | null;
+    mozFullScreenElement?: Element | null;
+    msFullscreenElement?: Element | null;
+  }
+
   interface Window {
     PhaserRegistry: PhaserRegistryState;
   }
