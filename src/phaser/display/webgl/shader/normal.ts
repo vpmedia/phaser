@@ -23,13 +23,22 @@ const defaultVertexSrc = [
 
 const glMember = (gl: WebGLRenderingContext, name: string): any => (gl as unknown as Record<string, unknown>)[name];
 
+/** Applies one of the gl uniform setters, whose signatures vary by uniform kind. */
+const callUniformSetter = (setter: unknown, gl: WebGLRenderingContext, ...args: unknown[]): void => {
+  if (typeof setter === 'function') {
+    (setter as (...rest: unknown[]) => void).apply(gl, args);
+  }
+};
+
 // this shader is used for the default sprite rendering
 
 export type ShaderUniform = {
   type: string;
   value: any;
   uniformLocation?: WebGLUniformLocation | null;
-  glFunc?: (...args: any[]) => void;
+  /** One of the gl uniform setters. Their arities differ by uniform kind, so the stored value is
+   * opaque and applied through callUniformSetter. */
+  glFunc?: unknown;
   glMatrix?: boolean;
   glValueLength?: number;
   transpose?: boolean;
@@ -224,16 +233,24 @@ export class NormalShader {
     for (const uniform of Object.values(this.uniforms)) {
       if (uniform.glValueLength === 1) {
         if (uniform.glMatrix === true) {
-          uniform.glFunc?.call(gl, uniform.uniformLocation, uniform.transpose, uniform.value);
+          callUniformSetter(uniform.glFunc, gl, uniform.uniformLocation, uniform.transpose, uniform.value);
         } else {
-          uniform.glFunc?.call(gl, uniform.uniformLocation, uniform.value);
+          callUniformSetter(uniform.glFunc, gl, uniform.uniformLocation, uniform.value);
         }
       } else if (uniform.glValueLength === 2) {
-        uniform.glFunc?.call(gl, uniform.uniformLocation, uniform.value.x, uniform.value.y);
+        callUniformSetter(uniform.glFunc, gl, uniform.uniformLocation, uniform.value.x, uniform.value.y);
       } else if (uniform.glValueLength === 3) {
-        uniform.glFunc?.call(gl, uniform.uniformLocation, uniform.value.x, uniform.value.y, uniform.value.z);
+        callUniformSetter(
+          uniform.glFunc,
+          gl,
+          uniform.uniformLocation,
+          uniform.value.x,
+          uniform.value.y,
+          uniform.value.z
+        );
       } else if (uniform.glValueLength === 4) {
-        uniform.glFunc?.call(
+        callUniformSetter(
+          uniform.glFunc,
           gl,
           uniform.uniformLocation,
           uniform.value.x,

@@ -25,20 +25,20 @@ import {
 import { ENGINE_ERROR_CREATING_CANVAS_2D_CONTEXT } from '../../core/error_code.js';
 import * as CanvasMaskManager from './masker.js';
 import { detectCapabilities } from './tinter.js';
-import { getSmoothingPrefix } from './util.js';
+import { getSmoothingPrefix, setSmoothing } from './util.js';
 import type { RenderSession } from '../render_session.js';
 
 export class CanvasRenderer {
   public type!: any;
-  public resolution!: any;
+  public resolution!: number;
   public clearBeforeRender!: any;
   public transparent!: any;
   public autoResize!: any;
   public contextLost!: any;
-  public width!: any;
-  public height!: any;
+  public width!: number;
+  public height!: number;
   public view!: any;
-  public context!: any;
+  public context!: CanvasRenderingContext2D;
   public refresh!: any;
   public count!: any;
   public renderSession!: RenderSession;
@@ -110,8 +110,6 @@ export class CanvasRenderer {
     if (removeView && this.view.parent) {
       this.view.parent.removeChild(this.view);
     }
-    this.view = null;
-    this.context = null;
   }
 
   /**
@@ -129,7 +127,7 @@ export class CanvasRenderer {
       this.view.style.height = `${this.height / this.resolution}px`;
     }
     if (this.renderSession.smoothProperty) {
-      this.context[this.renderSession.smoothProperty] = this.renderSession.scaleMode === SCALE_LINEAR;
+      setSmoothing(this.context, this.renderSession.smoothProperty, this.renderSession.scaleMode === SCALE_LINEAR);
     }
   }
 

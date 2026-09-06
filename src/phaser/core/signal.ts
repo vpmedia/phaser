@@ -40,7 +40,7 @@ export class Signal {
   public _registerListener(
     listener: Function,
     isOnce = false,
-    listenerContext: any | null = null,
+    listenerContext: unknown | null = null,
     priority = 0,
     args: any = null
   ) {
@@ -86,7 +86,7 @@ export class Signal {
    * @param {object} context - The context of the listener.
    * @returns {number} The index of the listener in the bindings array, or -1 if not found.
    */
-  public _indexOfListener(listener: Function, context: any | null = null) {
+  public _indexOfListener(listener: Function, context: unknown = null) {
     if (!this._bindings) {
       return -1;
     }
@@ -108,7 +108,7 @@ export class Signal {
    * @param {object} context - The context of the listener.
    * @returns {boolean} True if the listener is registered, false otherwise.
    */
-  public has(listener: Function, context: any | null = null) {
+  public has(listener: Function, context: unknown = null) {
     return this._indexOfListener(listener, context) !== -1;
   }
 
@@ -120,7 +120,7 @@ export class Signal {
    * @param {...any} args - Additional arguments to pass to the listener.
    * @returns {SignalBinding} The binding for this listener.
    */
-  public add(listener: Function, listenerContext: any | null = null, priority = 0, ...args: any[]) {
+  public add(listener: Function, listenerContext: unknown | null = null, priority = 0, ...args: unknown[]) {
     this.validateListener(listener, 'add');
     return this._registerListener(listener, false, listenerContext, priority, args);
   }
@@ -133,7 +133,7 @@ export class Signal {
    * @param {...any} args - Additional arguments to pass to the listener.
    * @returns {SignalBinding} The binding for this listener.
    */
-  public addOnce(listener: Function, listenerContext: any | null = null, priority = 0, ...args: any[]) {
+  public addOnce(listener: Function, listenerContext: unknown | null = null, priority = 0, ...args: unknown[]) {
     this.validateListener(listener, 'addOnce');
     return this._registerListener(listener, true, listenerContext, priority, args);
   }
@@ -144,7 +144,7 @@ export class Signal {
    * @param {object} context - The context of the listener.
    * @returns {Function} The removed listener function.
    */
-  public remove(listener: Function, context: any | null = null) {
+  public remove(listener: Function, context: unknown = null) {
     this.validateListener(listener, 'remove');
     const i = this._indexOfListener(listener, context);
     if (i !== -1 && this._bindings) {
@@ -159,7 +159,7 @@ export class Signal {
    * Remove all listeners from the signal, or only those in a specific context.
    * @param {object} context - The context to filter listeners by, or null to remove all.
    */
-  public removeAll(context: any | null = null) {
+  public removeAll(context: unknown = null) {
     if (!this._bindings) {
       return;
     }
@@ -200,7 +200,7 @@ export class Signal {
    * Dispatch the signal to all registered listeners.
    * @param {...any} args - Arguments to pass to the listeners.
    */
-  public dispatch(...args: any[]) {
+  public dispatch(...args: unknown[]) {
     if (!this.active || !this._bindings) {
       return;
     }

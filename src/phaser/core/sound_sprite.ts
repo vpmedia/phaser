@@ -1,6 +1,6 @@
 import type { Game } from './game.js';
 export class SoundSprite {
-  public game!: any;
+  public game!: Game;
   public key!: any;
   public config!: any;
   public autoplayKey!: any;
@@ -22,7 +22,7 @@ export class SoundSprite {
     for (const k in this.config.spritemap) {
       const marker = this.config.spritemap[k];
       const sound = this.game.sound.add(this.key);
-      sound.addMarker(k, marker.start, marker.end - marker.start, null, marker.loop);
+      sound.addMarker(k, marker.start, marker.end - marker.start, undefined, marker.loop);
       this.sounds[k] = sound;
     }
     if (this.config.autoplay) {

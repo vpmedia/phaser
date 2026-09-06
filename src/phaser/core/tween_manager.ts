@@ -36,7 +36,7 @@ import {
 } from './tween_easing.js';
 
 export class TweenManager {
-  public game!: any;
+  public game!: Game;
   public _tweens!: any;
   public _add!: any;
   public easeMap!: any;

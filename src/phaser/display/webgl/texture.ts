@@ -6,13 +6,13 @@ export class TextureUvs {
   public baseTexture!: any;
   public frame!: any;
   public trim!: any;
-  public valid!: any;
+  public valid!: boolean;
   public isTiling!: any;
   public requiresUpdate!: any;
   public requiresReTint!: any;
   public _uvs!: any;
-  public width!: any;
-  public height!: any;
+  public width!: number;
+  public height!: number;
   public crop!: any;
   public x0: any = 0;
   public y0: any = 0;
@@ -37,13 +37,13 @@ export class Texture {
   public baseTexture!: any;
   public frame!: any;
   public trim!: any;
-  public valid!: any;
+  public valid!: boolean;
   public isTiling!: any;
   public requiresUpdate!: any;
   public requiresReTint!: any;
   public _uvs!: any;
-  public width!: any;
-  public height!: any;
+  public width!: number;
+  public height!: number;
   public crop!: any;
   /**
    * Creates a new Texture instance.

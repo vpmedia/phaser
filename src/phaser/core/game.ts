@@ -21,6 +21,8 @@ import { World } from './world.js';
 import { getRegistry } from './registry.js';
 
 export class Game {
+  /** Set when the scene manager kick-starts the first scene. */
+  public isKickStart = false;
   public config!: any;
   public id!: number;
   public parent!: string | HTMLElement;

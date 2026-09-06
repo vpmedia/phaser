@@ -66,7 +66,7 @@ export class Timer {
     loop: boolean,
     repeatCount: number,
     callback: Function,
-    callbackContext: any | null = null,
+    callbackContext: unknown | null = null,
     args: any = []
   ) {
     const roundedDelay = Math.round(delay);
@@ -91,7 +91,7 @@ export class Timer {
    * @param {...any} args - Arguments to pass to the callback function.
    * @returns {TimerEvent} The created TimerEvent.
    */
-  public add(delay: number, callback: Function, callbackContext: any | null = null, ...args: any[]) {
+  public add(delay: number, callback: Function, callbackContext: unknown | null = null, ...args: unknown[]) {
     return this.create(delay, false, 0, callback, callbackContext, args);
   }
 
@@ -102,7 +102,7 @@ export class Timer {
    * @param {...T} args - Arguments to pass to the resolve function.
    * @returns {Promise<T | T[]>} The created Promise.
    */
-  public wait(delay: number, ...args: any[]) {
+  public wait(delay: number, ...args: unknown[]) {
     return new Promise((resolve) => {
       this.create(delay, false, 0, () => {
         resolve(args.length <= 1 ? args[0] : args);
@@ -123,8 +123,8 @@ export class Timer {
     delay: number,
     repeatCount: number,
     callback: Function,
-    callbackContext: any | null = null,
-    ...args: any[]
+    callbackContext: unknown | null = null,
+    ...args: unknown[]
   ) {
     return this.create(delay, false, repeatCount, callback, callbackContext, args);
   }
@@ -137,7 +137,7 @@ export class Timer {
    * @param {...any} args - Arguments to pass to the callback function.
    * @returns {TimerEvent} The created TimerEvent.
    */
-  public loop(delay: number, callback: Function, callbackContext: any | null = null, ...args: any[]) {
+  public loop(delay: number, callback: Function, callbackContext: unknown | null = null, ...args: unknown[]) {
     return this.create(delay, true, 0, callback, callbackContext, args);
   }
 

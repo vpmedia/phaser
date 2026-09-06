@@ -7,7 +7,7 @@ export class TimerEvent {
   public repeatCount: number;
   public loop: boolean;
   public callback: Function;
-  public callbackContext: object;
+  public callbackContext: unknown;
   public args: unknown[];
   public pendingDelete: boolean;
 
@@ -18,7 +18,7 @@ export class TimerEvent {
     repeatCount: number,
     loop: boolean,
     callback: Function,
-    callbackContext: object,
+    callbackContext: unknown,
     args: unknown[]
   ) {
     this.timer = timer;

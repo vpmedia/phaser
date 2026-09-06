@@ -5,7 +5,7 @@ export class SignalBinding {
   public _args: any;
   public _priority: number;
   public _isOnce: boolean;
-  public context: any;
+  public context: unknown;
   public callCount: number;
   public active: boolean;
   public params: any;
@@ -23,7 +23,7 @@ export class SignalBinding {
     signal: Signal,
     listener: Function,
     isOnce = false,
-    listenerContext: any | null = null,
+    listenerContext: unknown | null = null,
     priority = 0,
     args: any = null
   ) {

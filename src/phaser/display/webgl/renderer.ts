@@ -40,12 +40,12 @@ export class WebGLRenderer {
   public gl!: IdentifiedWebGLRenderingContext;
   public glContextId!: number;
   public type!: any;
-  public resolution!: any;
+  public resolution!: number;
   public autoResize!: any;
   public contextLost!: any;
   public clearBeforeRender!: any;
-  public width!: any;
-  public height!: any;
+  public width!: number;
+  public height!: number;
   public view!: any;
   public _contextOptions!: any;
   public projection!: any;

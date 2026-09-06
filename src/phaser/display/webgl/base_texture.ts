@@ -1,9 +1,9 @@
 import { removeByCanvas } from '../canvas/pool.js';
 
 export class BaseTexture {
-  public resolution: any = 1;
-  public width: any = 100;
-  public height: any = 100;
+  public resolution: number = 1;
+  public width: number = 100;
+  public height: number = 100;
   public scaleMode!: any;
   public hasLoaded!: any;
   public source!: any;

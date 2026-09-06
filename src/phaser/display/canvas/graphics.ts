@@ -35,7 +35,7 @@ export const updateGraphicsTint = (graphics: Graphics) => {
  * @param {Graphics} graphics - The graphics object to render.
  * @param {object} context - The canvas rendering context.
  */
-export const renderGraphics = (graphics: Graphics, context: any) => {
+export const renderGraphics = (graphics: Graphics, context: CanvasRenderingContext2D) => {
   const { worldAlpha } = graphics;
   if (graphics.dirty) {
     updateGraphicsTint(graphics);
@@ -163,7 +163,7 @@ export const renderGraphics = (graphics: Graphics, context: any) => {
  * @param {Graphics} graphics - The graphics object to render.
  * @param {object} context - The canvas rendering context.
  */
-export const renderGraphicsMask = (graphics: Graphics, context: any) => {
+export const renderGraphicsMask = (graphics: Graphics, context: CanvasRenderingContext2D) => {
   const len = graphics.graphicsData.length;
   if (len === 0) {
     return;

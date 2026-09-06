@@ -1,3 +1,4 @@
+import type { Game } from './game.js';
 import { Animation } from './animation.js';
 import { ENGINE_ERROR_CANNOT_SET_FRAME, ENGINE_ERROR_CANNOT_SET_FRAME_NAME } from './error_code.js';
 import type { Image } from '../display/image.js';
@@ -5,7 +6,7 @@ import type { FrameData } from './frame_data.js';
 
 export class AnimationManager {
   public sprite!: any;
-  public game!: any;
+  public game!: Game;
   public currentFrame!: any;
   public currentAnim!: any;
   public updateIfVisible!: boolean;
@@ -44,7 +45,6 @@ export class AnimationManager {
     this.currentAnim = null;
     this.currentFrame = null;
     this.sprite = null;
-    this.game = null;
   }
 
   /**

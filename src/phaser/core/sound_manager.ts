@@ -13,9 +13,9 @@ import { Sound } from './sound.js';
 import { SoundSprite } from './sound_sprite.js';
 
 export class SoundManager {
-  public game!: any;
+  public game!: Game;
   public onChange!: any;
-  public context!: any;
+  public context!: AudioContext | null;
   public baseLatency!: any;
   public noAudio!: any;
   public type!: any;
@@ -102,7 +102,7 @@ export class SoundManager {
     }
     this.baseLatency = this.context.baseLatency ?? 256 / (this.context.sampleRate ?? 44_100);
     if (this.context.createGain === undefined) {
-      this.masterGain = this.context.createGainNode();
+      this.masterGain = (this.context as unknown as { createGainNode: () => GainNode }).createGainNode();
     } else {
       this.masterGain = this.context.createGain();
     }
@@ -131,7 +131,7 @@ export class SoundManager {
    */
   public onContextStateChange = () => {
     this.game.logger.info('onContextStateChange', {
-      state: this.context.state,
+      state: this.context!.state,
       isLocked: this.isLocked,
     });
     this.checkUnlockHandlers();
@@ -142,12 +142,12 @@ export class SoundManager {
    */
   public checkUnlockHandlers = () => {
     this.game.logger.info('checkUnlockHandlers', {
-      state: this.context.state,
+      state: this.context!.state,
       isLocked: this.isLocked,
     });
-    if (!this.isLocked && (this.context.state === 'suspended' || this.context.state === 'interrupted')) {
+    if (!this.isLocked && (this.context!.state === 'suspended' || this.context!.state === 'interrupted')) {
       this.addUnlockHandlers();
-    } else if (this.isLocked && this.context.state === 'running') {
+    } else if (this.isLocked && this.context!.state === 'running') {
       this.removeUnlockHandlers();
     }
   };
@@ -158,7 +158,7 @@ export class SoundManager {
   public addUnlockHandlers = () => {
     this.isLocked = true;
     this.game.logger.info('addUnlockHandlers', {
-      state: this.context.state,
+      state: this.context!.state,
       isLocked: this.isLocked,
     });
     for (const eventType of ['touchend', 'click', 'keydown']) {
@@ -172,7 +172,7 @@ export class SoundManager {
   public removeUnlockHandlers = () => {
     this.isLocked = false;
     this.game.logger.info('removeUnlockHandlers', {
-      state: this.context.state,
+      state: this.context!.state,
       isLocked: this.isLocked,
     });
     for (const eventType of ['touchend', 'click', 'keydown']) {
@@ -185,7 +185,7 @@ export class SoundManager {
    * @param {Event} event - The DOM event that triggered the unlock.
    */
   public onUnlockEvent = (event: Event) => {
-    const initialState = this.context.state;
+    const initialState = this.context!.state;
     if (initialState !== 'suspended' && initialState !== 'interrupted') {
       this.game.logger.info('onUnlockResumeDenied', {
         state: initialState,
@@ -200,12 +200,11 @@ export class SoundManager {
       isLocked: this.isLocked,
       event,
     });
-    this.context
-      .resume()
+    this.context!.resume()
       .then(() => {
         this.game.logger.info('onContextResumeResult', {
           initialState,
-          state: this.context.state,
+          state: this.context!.state,
           isLocked: this.isLocked,
         });
         this.removeUnlockHandlers();
@@ -213,14 +212,14 @@ export class SoundManager {
       .catch((error: unknown) => {
         this.game.logger.info('onContextResumeReject', {
           initialState,
-          state: this.context.state,
+          state: this.context!.state,
           isLocked: this.isLocked,
           error,
         });
         this.removeUnlockHandlers();
         this.game.logger.fatal('SoundManager', {
           error,
-          tags: { 'audio.initialState': initialState, 'audio.state': this.context.state },
+          tags: { 'audio.initialState': initialState, 'audio.state': this.context!.state },
         });
       });
   };
@@ -280,8 +279,7 @@ export class SoundManager {
       return;
     }
     this.game.cache.updateSound(key, 'isDecoding', true);
-    this.context
-      .decodeAudioData(soundData)
+    this.context!.decodeAudioData(soundData)
       .then((buffer: AudioBuffer) => {
         this.game.cache.decodedSound(key, buffer);
       })
@@ -304,7 +302,7 @@ export class SoundManager {
    * @param {Function} callback - The callback function to call when all files are decoded.
    * @param {object} callbackContext - The context in which to call the callback.
    */
-  public setDecodedCallback(files: any, callback: Function, callbackContext: any) {
+  public setDecodedCallback(files: any, callback: Function, callbackContext: unknown) {
     if (typeof files === 'string') {
       files = [files];
     }
@@ -473,7 +471,7 @@ export class SoundManager {
     this._sounds = [];
     this.onChange.dispose();
     if (this.context?.close) {
-      this.context.close();
+      void this.context.close();
     }
   }
 

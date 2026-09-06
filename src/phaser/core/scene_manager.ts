@@ -1,8 +1,19 @@
 import type { Game } from './game.js';
 import { Scene } from './scene.js';
 
+/** The lifecycle hooks a scene may implement; the manager binds whichever are present. */
+export type SceneHooks = {
+  init?: (...args: unknown[]) => void;
+  preload?: () => void;
+  create?: () => void;
+  update?: () => void;
+  resize?: (width: number, height: number) => void;
+  pauseUpdate?: () => void;
+  shutdown?: () => void;
+};
+
 export class SceneManager {
-  public game!: any;
+  public game!: Game;
   public states!: any;
   public _pendingState!: any;
   public _clearWorld!: any;
@@ -17,7 +28,7 @@ export class SceneManager {
   public onResizeCallback!: any;
   public onPauseUpdateCallback!: any;
   public onShutDownCallback!: any;
-  public callbackContext!: any;
+  public callbackContext!: SceneHooks;
   /**
    * Creates a new SceneManager instance.
    * @param {Game} game - The game instance this manager belongs to.
@@ -88,7 +99,6 @@ export class SceneManager {
    */
   public remove(key: string) {
     if (this.current === key) {
-      this.callbackContext = null;
       this.onInitCallback = null;
       this.onShutDownCallback = null;
       this.onPreloadCallback = null;
@@ -107,7 +117,7 @@ export class SceneManager {
    * @param {boolean} clearCache - Whether to clear the cache before starting.
    * @param {...any} args - Additional arguments to pass to the state.
    */
-  public start(key: string, clearWorld = true, clearCache = false, ...args: any[]) {
+  public start(key: string, clearWorld = true, clearCache = false, ...args: unknown[]) {
     if (this.checkState(key)) {
       //  Place the state in the queue. It will be started the next time the game loop begins.
       this._pendingState = key;
@@ -125,7 +135,7 @@ export class SceneManager {
    * @param {boolean} clearCache - Whether to clear the cache before restarting.
    * @param {...any} args - Additional arguments to pass to the state.
    */
-  public restart(clearWorld = true, clearCache = false, ...args: any[]) {
+  public restart(clearWorld = true, clearCache = false, ...args: unknown[]) {
     this._pendingState = this.current;
     this._clearWorld = clearWorld;
     this._clearCache = clearCache;
@@ -181,7 +191,7 @@ export class SceneManager {
       this.game.tweens.removeAll();
       this.game.input.reset(true);
       this.game.time.removeAll();
-      this.game.scale.reset(this._clearWorld);
+      this.game.scale.reset();
       if (this._clearWorld) {
         this.game.world.destroy(true, true);
         if (this._clearCache) {
@@ -310,14 +320,12 @@ export class SceneManager {
     this._clearWorld = true;
     this._clearCache = true;
     this.clearCurrentState();
-    this.callbackContext = null;
     this.onInitCallback = null;
     this.onShutDownCallback = null;
     this.onPreloadCallback = null;
     this.onCreateCallback = null;
     this.onUpdateCallback = null;
     this.onPauseUpdateCallback = null;
-    this.game = null;
     this.states = {};
     this._pendingState = null;
     this.current = '';

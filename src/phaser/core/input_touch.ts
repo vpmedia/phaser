@@ -3,7 +3,7 @@ import type { InputEvent } from './input_event.js';
 export class Touch {
   public game!: Game;
   public enabled!: any;
-  public callbackContext!: any;
+  public callbackContext!: unknown;
   public touchStartCallback!: any;
   public touchMoveCallback!: any;
   public touchEndCallback!: any;

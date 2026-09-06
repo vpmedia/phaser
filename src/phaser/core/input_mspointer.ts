@@ -3,7 +3,7 @@ import type { InputEvent } from './input_event.js';
 export class MSPointer {
   public game!: Game;
   public input!: any;
-  public callbackContext!: any;
+  public callbackContext!: unknown;
   public pointerDownCallback!: any;
   public pointerMoveCallback!: any;
   public pointerUpCallback!: any;

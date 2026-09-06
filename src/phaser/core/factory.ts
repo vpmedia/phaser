@@ -74,7 +74,7 @@ export class GameObjectFactory {
     y: number,
     key: string,
     callback: Function | null = null,
-    callbackContext: any | null = null,
+    callbackContext: unknown | null = null,
     overFrame: string | null = null,
     outFrame: string | null = null,
     downFrame: string | null = null,

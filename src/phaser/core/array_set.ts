@@ -98,7 +98,7 @@ export class ArraySet {
    * @param {string} key - TBD.
    * @param {...any} args - TBD.
    */
-  public callAll(key: string, ...args: any[]) {
+  public callAll(key: string, ...args: unknown[]) {
     let i = this.list.length;
     while (i) {
       i -= 1;

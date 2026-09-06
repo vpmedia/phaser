@@ -9,7 +9,7 @@ export class Sound {
   public key!: string;
   public loop!: boolean;
   public markers!: any;
-  public context!: AudioContext;
+  public context!: AudioContext | null;
   public autoplay!: boolean;
   public totalDuration!: number;
   public startTime!: number;
@@ -91,7 +91,7 @@ export class Sound {
     this.context = this.game.sound.context;
     this.masterGainNode = this.game.sound.masterGain;
     const gainNode: GainNode =
-      this.context.createGain === undefined ? (this.context as any).createGainNode() : this.context.createGain();
+      this.context!.createGain === undefined ? (this.context as any).createGainNode() : this.context!.createGain();
     this.gainNode = gainNode;
     gainNode.gain.value = volume * this.game.sound.volume;
     if (connect && this.masterGainNode) {
@@ -317,7 +317,7 @@ export class Sound {
     }
     //  Does the sound need decoding?
     if (this.game.cache.isSoundDecoded(this.key)) {
-      this._sound = this.context.createBufferSource();
+      this._sound = this.context!.createBufferSource();
       if (this.externalNode) {
         this._sound.connect(this.externalNode);
       } else {
@@ -389,7 +389,7 @@ export class Sound {
   public resume() {
     if (this.paused && this._sound) {
       const p = Math.max(0, this.position + this.pausedPosition / 1000);
-      this._sound = this.context.createBufferSource();
+      this._sound = this.context!.createBufferSource();
       this._sound.buffer = this._buffer;
       if (this.externalNode) {
         this._sound.connect(this.externalNode);

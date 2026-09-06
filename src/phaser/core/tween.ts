@@ -26,7 +26,7 @@ export class Tween {
   public chainedTween!: Tween | null;
   public isPaused!: boolean;
   public _onUpdateCallback!: Function | null;
-  public _onUpdateCallbackContext!: object | null;
+  public _onUpdateCallbackContext!: unknown;
   public _pausedTime!: number;
   public _codePaused!: boolean;
   public _hasStarted!: boolean;
@@ -296,7 +296,7 @@ export class Tween {
    * @param {number} index - The index in the timeline to apply interpolation to.
    * @returns {Tween} This Tween object for chaining.
    */
-  public interpolation(interpolation: Function, context: any = MathUtils, index = 0) {
+  public interpolation(interpolation: Function, context: unknown = MathUtils, index = 0) {
     this.updateTweenData('interpolationFunction', interpolation, index);
     return this.updateTweenData('interpolationContext', context, index);
   }
@@ -316,14 +316,14 @@ export class Tween {
    * @param {...any} args - The tweens to chain.
    * @returns {Tween} This Tween object for chaining.
    */
-  public chain(...args: any[]) {
+  public chain(...args: Tween[]) {
     let i = args.length;
     while (i) {
       i -= 1;
       if (i > 0) {
-        args[i - 1].chainedTween = args[i];
+        args[i - 1]!.chainedTween = args[i] ?? null;
       } else {
-        this.chainedTween = args[i];
+        this.chainedTween = args[i] ?? null;
       }
     }
     return this;
@@ -345,7 +345,7 @@ export class Tween {
    * @param {object} callbackContext - The context in which to call the callback.
    * @returns {Tween} This Tween object for chaining.
    */
-  public onUpdateCallback(callback: Function, callbackContext: any) {
+  public onUpdateCallback(callback: Function, callbackContext: unknown) {
     this._onUpdateCallback = callback;
     this._onUpdateCallbackContext = callbackContext;
     return this;

@@ -10,9 +10,9 @@ import type { CanvasRenderer } from '../canvas/renderer.js';
 
 export class RenderTexture extends Texture {
   [key: string]: any;
-  declare public width: any;
-  declare public height: any;
-  public resolution!: any;
+  declare public width: number;
+  declare public height: number;
+  public resolution!: number;
   declare public frame: any;
   declare public crop: any;
   public renderer!: any;

@@ -29,7 +29,7 @@ export const setTexture = (target: Image, texture: Texture, destroyBase = false)
  * @param {object} matrix - The transformation matrix.
  * @returns {Rectangle} The bounds rectangle.
  */
-export const getBounds = (target: Image, matrix: any | null = null) => {
+export const getBounds = (target: Image, matrix: Matrix | null = null) => {
   // TODO verify
   if (target.currentBounds) {
     return target.currentBounds;

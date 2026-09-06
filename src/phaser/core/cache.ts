@@ -32,7 +32,7 @@ interface CacheBuckets {
 }
 
 export class Cache {
-  public game!: any;
+  public game!: Game;
   public autoResolveURL!: any;
   public _cache!: CacheBuckets;
   public _urlMap!: any;

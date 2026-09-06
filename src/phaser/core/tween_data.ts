@@ -1,10 +1,11 @@
+import type { Game } from './game.js';
 import * as MathUtils from '../util/math.js';
 import { TWEEN_COMPLETE, TWEEN_LOOPED, TWEEN_PENDING, TWEEN_RUNNING } from './const.js';
 import type { Tween } from './tween.js';
 
 export class TweenData {
   public parent!: any;
-  public game!: any;
+  public game!: Game;
   public vStart!: any;
   public vStartCache!: any;
   public vEnd!: any;
