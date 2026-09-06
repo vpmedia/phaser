@@ -7,12 +7,12 @@ import { DisplayObject } from './display_object.js';
 import { getBounds, getLocalBounds, renderCanvas, renderWebGL, setTexture } from './sprite_util.js';
 import { Texture } from './webgl/texture.js';
 import type { Game } from '../core/game.js';
-import type { Frame } from '../core/frame.js';
+import { Frame } from '../core/frame.js';
 import type { Matrix } from '../geom/matrix.js';
 import type { RenderSession } from './render_session.js';
 
 export class Image extends DisplayObject {
-  public key!: any;
+  public key!: string | number | Texture | null;
   public texture!: Texture;
   declare public _width: number;
   declare public _height: number;
@@ -22,7 +22,7 @@ export class Image extends DisplayObject {
   public tintedTexture!: HTMLCanvasElement | null;
   public blendMode!: number;
   public shader!: object | null;
-  public _frame!: any;
+  public _frame!: Frame | Rectangle | null;
   public pendingDestroy!: boolean;
   declare public events: EventManager;
   public animations!: AnimationManager;
@@ -180,7 +180,7 @@ export class Image extends DisplayObject {
    * Sets the current frame of this image.
    * @param {Frame} frame - The frame to set.
    */
-  public setFrame(frame: Frame): void {
+  public setFrame(frame: Frame | Rectangle): void {
     this._frame = frame;
     this.texture.frame.x = frame.x;
     this.texture.frame.y = frame.y;
@@ -190,25 +190,26 @@ export class Image extends DisplayObject {
     this.texture.crop.y = frame.y;
     this.texture.crop.width = frame.width;
     this.texture.crop.height = frame.height;
-    if (frame.trimmed) {
+    const trimmed = frame instanceof Frame && frame.trimmed ? frame : null;
+    if (trimmed) {
       if (this.texture.trim) {
-        this.texture.trim.x = frame.spriteSourceSizeX;
-        this.texture.trim.y = frame.spriteSourceSizeY;
-        this.texture.trim.width = frame.sourceSizeW;
-        this.texture.trim.height = frame.sourceSizeH;
+        this.texture.trim.x = trimmed.spriteSourceSizeX;
+        this.texture.trim.y = trimmed.spriteSourceSizeY;
+        this.texture.trim.width = trimmed.sourceSizeW;
+        this.texture.trim.height = trimmed.sourceSizeH;
       } else {
         this.texture.trim = new Rectangle(
-          frame.spriteSourceSizeX,
-          frame.spriteSourceSizeY,
-          frame.sourceSizeW,
-          frame.sourceSizeH
+          trimmed.spriteSourceSizeX,
+          trimmed.spriteSourceSizeY,
+          trimmed.sourceSizeW,
+          trimmed.sourceSizeH
         );
       }
-      this.texture.width = frame.sourceSizeW;
-      this.texture.height = frame.sourceSizeH;
-      this.texture.frame.width = frame.sourceSizeW;
-      this.texture.frame.height = frame.sourceSizeH;
-    } else if (!frame.trimmed && this.texture.trim) {
+      this.texture.width = trimmed.sourceSizeW;
+      this.texture.height = trimmed.sourceSizeH;
+      this.texture.frame.width = trimmed.sourceSizeW;
+      this.texture.frame.height = trimmed.sourceSizeH;
+    } else if (this.texture.trim) {
       this.texture.trim = null;
     }
     if (this.cropRect) {
@@ -308,13 +309,14 @@ export class Image extends DisplayObject {
     const oldY = this.texture.crop.y;
     const oldW = this.texture.crop.width;
     const oldH = this.texture.crop.height;
+    const frame = this._frame!;
     this._crop = clone(this.cropRect, this._crop);
-    this._crop.x += this._frame.x;
-    this._crop.y += this._frame.y;
-    const cx = Math.max(this._frame.x, this._crop.x);
-    const cy = Math.max(this._frame.y, this._crop.y);
-    const cw = Math.min(this._frame.right, this._crop.right) - cx;
-    const ch = Math.min(this._frame.bottom, this._crop.bottom) - cy;
+    this._crop.x += frame.x;
+    this._crop.y += frame.y;
+    const cx = Math.max(frame.x, this._crop.x);
+    const cy = Math.max(frame.y, this._crop.y);
+    const cw = Math.min(frame.right, this._crop.right) - cx;
+    const ch = Math.min(frame.bottom, this._crop.bottom) - cy;
     this.texture.crop.x = cx;
     this.texture.crop.y = cy;
     this.texture.crop.width = cw;

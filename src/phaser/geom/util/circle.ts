@@ -1,6 +1,7 @@
 import { degToRad, distance } from '../../util/math.js';
 import { Circle } from '../circle.js';
 import { Point } from '../point.js';
+import type { Rectangle } from '../rectangle.js';
 
 /**
  * Clones a circle.
@@ -90,7 +91,7 @@ export const intersectsPoint = (a: Circle, angle: number, asDegrees = false, out
  * @param {object} r - The rectangle to check.
  * @returns {boolean} True if the circle intersects with the rectangle, false otherwise.
  */
-export const intersectsRectangle = (c: Circle, r: any): boolean => {
+export const intersectsRectangle = (c: Circle, r: Rectangle): boolean => {
   const cx = Math.abs(c.x - r.x - r.halfWidth);
   const xDist = r.halfWidth + c.radius;
   if (cx > xDist) {

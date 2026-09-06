@@ -288,11 +288,11 @@ export class Group extends DisplayObject {
    * @param {boolean} silent - Whether to dispatch events.
    * @returns {boolean} True if the child was removed, false otherwise.
    */
-  public remove(child: any, destroy = true, silent = false): boolean {
+  public remove(child: DisplayObject, destroy = true, silent = false): boolean {
     if (this.children.length === 0 || !this.children.includes(child)) {
       return false;
     }
-    if (!silent && child.events && !child.destroyPhase) {
+    if (!silent && child.events) {
       child.events.onRemovedFromGroup$dispatch(child, this);
     }
     const removed = this.removeChild(child);
@@ -301,7 +301,7 @@ export class Group extends DisplayObject {
       this.next();
     }
     if (destroy && removed) {
-      (removed as any).destroy(true);
+      removed.destroy(true);
     }
     return true;
   }
@@ -323,7 +323,7 @@ export class Group extends DisplayObject {
       }
       const removed = this.removeChild(first);
       if (destroy && removed) {
-        (removed as any).destroy(true, destroyTexture);
+        removed.destroy(true, destroyTexture);
       }
     } while (this.children.length > 0);
     this.cursor = null;

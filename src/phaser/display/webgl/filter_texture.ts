@@ -3,10 +3,10 @@ import { SCALE_LINEAR } from '../../core/const.js';
 export class FilterTexture {
   public width!: number;
   public height!: number;
-  public gl!: any;
-  public frameBuffer!: any;
-  public texture!: any;
-  public renderBuffer!: any;
+  public gl!: WebGLRenderingContext;
+  public frameBuffer!: WebGLFramebuffer | null;
+  public texture!: WebGLTexture | null;
+  public renderBuffer!: WebGLRenderbuffer | null;
   /**
    * Creates a new FilterTexture instance.
    * @param {WebGLRenderingContext} gl - The WebGL rendering context.
@@ -72,6 +72,6 @@ export class FilterTexture {
     this.frameBuffer = null;
     this.texture = null;
     this.renderBuffer = null;
-    this.gl = null;
+    this.gl = null!;
   }
 }

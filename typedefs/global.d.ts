@@ -1,7 +1,10 @@
 declare global {
+  /** Who a pooled canvas is on loan to: the object using it, or a label for a shared scratch one. */
+  type CanvasOwner = object | string | null;
+
   type CanvasPoolEntry = {
     canvas: HTMLCanvasElement;
-    parent: object | null;
+    parent: CanvasOwner;
   };
 
   type CanvasTintMethod = (

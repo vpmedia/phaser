@@ -9,7 +9,7 @@ export class Animation {
   public _parent!: Image;
   public _frameData!: FrameData;
   public name!: string;
-  public _frames!: any;
+  public _frames!: number[];
   public delay!: number;
   public loop!: boolean;
   public loopCount!: number;
@@ -43,7 +43,7 @@ export class Animation {
     parent: Image,
     name: string,
     frameData: FrameData,
-    frames: string[] | number[],
+    frames: number[],
     frameRate: number,
     loop = false
   ) {
@@ -376,7 +376,7 @@ export class Animation {
     this.game.onResume.remove(this.onResume, this);
     this.game = null!;
     this._parent = null!;
-    this._frames = null;
+    this._frames = null!;
     this._frameData = null!;
     this.currentFrame = null!;
     this.isPlaying = false;

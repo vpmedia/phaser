@@ -6,6 +6,7 @@ import { Image } from '../display/image.js';
 import { Text } from '../display/text.js';
 import type { Game } from './game.js';
 import type { SignalListener } from './signal.js';
+import type { TextStyle } from '../display/text.js';
 
 export class GameObjectFactory {
   public game!: Game;
@@ -26,7 +27,13 @@ export class GameObjectFactory {
    * @param {Group} group - The parent group for the image.
    * @returns {Image} The created Image object.
    */
-  public image(x: number, y: number, key: string, frame: any, group: Group | null = null): Image {
+  public image(
+    x: number,
+    y: number,
+    key: string,
+    frame: string | number | null = null,
+    group: Group | null = null
+  ): Image {
     const target = group ?? this.game.world;
     return target.add(new Image(this.game, x, y, key, frame));
   }
@@ -51,7 +58,7 @@ export class GameObjectFactory {
    * @param {Group | null} group - The parent group for the text.
    * @returns {Text} The created Text object.
    */
-  public text(x: number, y: number, text: any, style: any, group: Group | null = null): Text {
+  public text(x: number, y: number, text: string | number, style: TextStyle, group: Group | null = null): Text {
     const parent = group ?? this.game.world;
     return parent.add(new Text(this.game, x, y, text, style));
   }

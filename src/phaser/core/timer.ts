@@ -68,7 +68,7 @@ export class Timer {
     repeatCount: number,
     callback: Callback,
     callbackContext: unknown = null,
-    args: any = []
+    args: unknown[] = []
   ): TimerEvent {
     const roundedDelay = Math.round(delay);
     let tick = roundedDelay;

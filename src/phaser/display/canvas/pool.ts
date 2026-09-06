@@ -27,7 +27,7 @@ export const getFirst = (): number => {
  * Adds a canvas to the pool with the specified parent.
  * @param {object} parent - The parent object for the canvas.
  */
-export const remove = (parent: any): void => {
+export const remove = (parent: CanvasOwner): void => {
   const pool = getPool();
   for (const entry of pool) {
     if (entry.parent === parent) {
@@ -91,7 +91,7 @@ export const getFree = (): number => {
  * @param {boolean} skipPool - True to skip using the pool and create a new canvas.
  * @returns {HTMLCanvasElement} The canvas from the pool or a newly created one.
  */
-export const create = (parent: any, width?: any, height?: any, skipPool = false): HTMLCanvasElement => {
+export const create = (parent: CanvasOwner, width?: number, height?: number, skipPool = false): HTMLCanvasElement => {
   if (parent === undefined) {
     console.warn('Created CanvasPool element with undefined parent.');
   }
@@ -111,7 +111,7 @@ export const create = (parent: any, width?: any, height?: any, skipPool = false)
   const { canvas } = entry;
   if (width !== undefined) {
     canvas.width = width;
-    canvas.height = height;
+    canvas.height = height ?? 0;
   }
   return canvas;
 };

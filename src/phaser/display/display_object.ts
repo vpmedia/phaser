@@ -123,8 +123,10 @@ export class DisplayObject {
 
   /**
    * Destroys this display object and cleans up resources.
+   * @param {boolean} _destroyChildren - Whether the subclass should destroy its children too.
+   * @param {boolean} _destroyTexture - Whether the subclass should destroy its texture too.
    */
-  public destroy(): void {
+  public destroy(_destroyChildren = true, _destroyTexture = false): void {
     if (this.children) {
       let i = this.children.length;
       while (i) {

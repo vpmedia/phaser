@@ -23,7 +23,7 @@ export const inflate = (a: Rectangle, dx: number, dy: number): Rectangle => {
  * @param {object} point - The point containing x and y values to inflate the rectangle by.
  * @returns {Rectangle} The inflated rectangle.
  */
-export const inflatePoint = (a: Rectangle, point: any): Rectangle => inflate(a, point.x, point.y);
+export const inflatePoint = (a: Rectangle, point: Point): Rectangle => inflate(a, point.x, point.y);
 
 /**
  * Gets the size of the rectangle as a point.

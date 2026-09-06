@@ -73,7 +73,7 @@ export const initDefaultShaders = (): void => {};
 export const compileShader = (
   gl: WebGLRenderingContext,
   shaderSrc: string[] | string,
-  shaderType: any
+  shaderType: GLenum
 ): WebGLShader | null => {
   const src = Array.isArray(shaderSrc) ? shaderSrc.join('\n') : shaderSrc;
   const shader = gl.createShader(shaderType);
