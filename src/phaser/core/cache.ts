@@ -1,3 +1,4 @@
+import type { TextureSource } from '../display/webgl/base_texture.js';
 import { BaseTexture } from '../display/webgl/base_texture.js';
 import { Texture } from '../display/webgl/texture.js';
 import { JSONDataHash, spriteSheet } from './animation_parser.js';
@@ -169,7 +170,7 @@ export class Cache {
    * @param {HTMLCanvasElement} data - The canvas data for the atlas.
    * @param {object} atlasData - The atlas data to cache.
    */
-  public addTextureAtlas(key: string, url: string, data: HTMLCanvasElement, atlasData: any): void {
+  public addTextureAtlas(key: string, url: string, data: TextureSource, atlasData: any): void {
     const obj: any = {
       key,
       url,
@@ -221,7 +222,7 @@ export class Cache {
   public addBitmapFont(
     key: string,
     url: string,
-    data: HTMLCanvasElement,
+    data: TextureSource,
     atlasData: any,
     atlasType: string,
     xSpacing = 0,

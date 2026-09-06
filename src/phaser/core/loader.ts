@@ -8,6 +8,37 @@ import { Signal } from './signal.js';
 
 const TEXTURE_ATLAS_JSON_HASH = 1;
 
+/**
+ * What a completed load carries. Which member applies is decided by the file's type, so the
+ * completion handlers narrow before handing it to the cache.
+ */
+/** One entry in a pack manifest: the arguments for the loader call it stands for. */
+export type PackEntry = {
+  type: string;
+  key: string;
+  url?: string;
+  overwrite?: boolean;
+  frameWidth?: number;
+  frameHeight?: number;
+  frameMax?: number;
+  margin?: number;
+  spacing?: number;
+  urls?: string[] | string;
+  autoDecode?: boolean;
+  textureURL?: string;
+  atlasURL?: string;
+  atlasData?: unknown;
+  audioURL?: string;
+  jsonURL?: string;
+  jsonData?: unknown;
+  fontDataURL?: string;
+  xSpacing?: number;
+  ySpacing?: number;
+  format?: unknown;
+};
+
+export type LoaderFileData = HTMLImageElement | XMLDocument | ArrayBuffer | string | Record<string, unknown> | null;
+
 /** An audio source, either a plain URL or a URL paired with its format. */
 export type AudioSource = string | { uri: string; type?: string };
 
@@ -21,7 +52,7 @@ export type LoaderFile = {
   path: string;
   url: string | AudioSource[];
   syncPoint: boolean;
-  data: any;
+  data: LoaderFileData;
   loading: boolean;
   loaded: boolean;
   error: boolean;
@@ -311,7 +342,7 @@ export class Loader {
       url,
       path: this.path,
       syncPoint: true,
-      data: null as unknown,
+      data: null as LoaderFileData,
       loading: false,
       loaded: false,
       error: false,
@@ -321,7 +352,7 @@ export class Loader {
       if (typeof data === 'string') {
         data = JSON.parse(data);
       }
-      pack.data = data ?? {};
+      pack.data = (data ?? {}) as LoaderFileData;
       pack.loaded = true;
     }
     for (let i = 0; i < this._fileList.length + 1; i += 1) {
@@ -755,52 +786,53 @@ export class Loader {
    * @param {object} pack - The pack file object to process.
    */
   public processPack(pack: LoaderFile): void {
-    const packData = pack.data[pack.key];
+    const manifest = (pack.data ?? {}) as Record<string, unknown>;
+    const packData = manifest[pack.key] as { files?: unknown[] } | unknown[] | undefined;
     if (!packData) {
       this.game.logger.warn('Missing loader pack key', { key: pack.key });
       return;
     }
-    const packDataCompat = Array.isArray(packData) ? packData : packData.files;
+    const packDataCompat = (Array.isArray(packData) ? packData : (packData.files ?? [])) as PackEntry[];
     for (const file of packDataCompat) {
       switch (file.type) {
         case 'image': {
-          this.image(file.key, file.url, file.overwrite);
+          this.image(file.key, file.url ?? file.key, file.overwrite);
           break;
         }
         case 'text': {
-          this.text(file.key, file.url, file.overwrite);
+          this.text(file.key, file.url ?? file.key, file.overwrite);
           break;
         }
         case 'json': {
-          this.json(file.key, file.url, file.overwrite);
+          this.json(file.key, file.url ?? file.key, file.overwrite);
           break;
         }
         case 'xml': {
-          this.xml(file.key, file.url, file.overwrite);
+          this.xml(file.key, file.url ?? file.key, file.overwrite);
           break;
         }
         case 'spritesheet': {
           this.spritesheet(
             file.key,
-            file.url,
-            file.frameWidth,
-            file.frameHeight,
-            file.frameMax,
+            file.url ?? file.key,
+            file.frameWidth ?? 0,
+            file.frameHeight ?? 0,
+            file.frameMax ?? -1,
             file.margin,
             file.spacing
           );
           break;
         }
         case 'audio': {
-          this.audio(file.key, file.urls ?? file.url);
+          this.audio(file.key, file.urls ?? file.url ?? file.key);
           break;
         }
         case 'audiosprite': {
-          this.audioSprite(file.key, file.urls ?? file.url, file.jsonURL, file.jsonData);
+          this.audioSprite(file.key, String(file.urls ?? file.url ?? file.key), file.jsonURL ?? '', file.jsonData);
           break;
         }
         case 'audioSprite': {
-          this.audioSprite(file.key, file.audioURL, file.jsonURL, file.jsonData);
+          this.audioSprite(file.key, file.audioURL ?? file.key, file.jsonURL ?? '', file.jsonData);
           break;
         }
         case 'bitmapFont': {
@@ -815,7 +847,7 @@ export class Loader {
           break;
         }
         case 'atlas': {
-          this.atlas(file.key, file.textureURL, file.atlasURL, file.atlasData, TEXTURE_ATLAS_JSON_HASH);
+          this.atlas(file.key, file.textureURL ?? file.key, file.atlasURL, file.atlasData, TEXTURE_ATLAS_JSON_HASH);
           break;
         }
       }
@@ -898,31 +930,37 @@ export class Loader {
   public loadImageTag(file: LoaderFile): void {
     this.log('loadImageTag', file);
     const scope = this;
-    file.data = new globalThis.Image();
-    file.data.name = file.key;
-    if (this.crossOrigin) {
-      file.data.crossOrigin = this.crossOrigin;
+    const image = new globalThis.Image();
+    file.data = image;
+    image.name = file.key;
+    if (typeof this.crossOrigin === 'string' && this.crossOrigin) {
+      image.crossOrigin = this.crossOrigin;
     }
-    file.data.onload = (): void => {
-      if (file.data.onload) {
-        file.data.onload = null;
-        file.data.onerror = null;
+    image.onload = (): void => {
+      if (image.onload) {
+        image.onload = null;
+        image.onerror = null;
         scope.fileComplete(file);
       }
     };
-    file.data.onerror = (): void => {
+    image.onerror = (): void => {
       if (scope.isUseRetry && (!file.numRetry || file.numRetry < scope.maxRetry)) {
         setTimeout((): void => {
           file.numRetry = !file.numRetry ? 1 : (file.numRetry += 1);
           scope.loadImageTag(file);
         }, 1000);
-      } else if (file.data.onload) {
-        file.data.onload = null;
-        file.data.onerror = null;
+      } else if (image.onload) {
+        image.onload = null;
+        image.onerror = null;
         scope.fileError(file);
       }
     };
-    file.data.src = this.transformUrl(file.url, file);
+    const src = this.transformUrl(file.url, file);
+    if (src === false) {
+      this.fileError(file, null, 'Could not resolve the file URL');
+      return;
+    }
+    image.src = src;
   }
 
   /**
@@ -1091,14 +1129,14 @@ export class Loader {
         break;
       }
       case 'image': {
-        this.cache.addImage(file.key, url, file.data);
+        this.cache.addImage(file.key, url, file.data as HTMLImageElement);
         break;
       }
       case 'spritesheet': {
         this.cache.addSpriteSheet(
           file.key,
           url,
-          file.data,
+          file.data as HTMLImageElement,
           file.frameWidth ?? 0,
           file.frameHeight ?? 0,
           file.frameMax ?? -1,
@@ -1109,7 +1147,7 @@ export class Loader {
       }
       case 'textureatlas': {
         if (file.atlasURL == null) {
-          this.cache.addTextureAtlas(file.key, url, file.data, file.atlasData);
+          this.cache.addTextureAtlas(file.key, url, file.data as HTMLImageElement, file.atlasData);
         } else {
           loadNext = false;
           if (file.format === TEXTURE_ATLAS_JSON_HASH) {
@@ -1125,7 +1163,7 @@ export class Loader {
           this.cache.addBitmapFont(
             file.key,
             url,
-            file.data,
+            file.data as HTMLImageElement,
             file.atlasData,
             file.atlasType ?? 'xml',
             file.xSpacing ?? 0,
@@ -1193,7 +1231,7 @@ export class Loader {
       this.cache.addBitmapFont(
         file.key,
         url,
-        file.data,
+        file.data as HTMLImageElement,
         data,
         file.atlasType ?? 'json',
         file.xSpacing ?? 0,
@@ -1202,7 +1240,7 @@ export class Loader {
     } else if (file.type === 'json') {
       this.cache.addJSON(file.key, url, data);
     } else {
-      this.cache.addTextureAtlas(file.key, url, file.data, data);
+      this.cache.addTextureAtlas(file.key, url, file.data as HTMLImageElement, data);
     }
     this.asyncComplete(file);
   }
@@ -1235,14 +1273,14 @@ export class Loader {
       this.cache.addBitmapFont(
         file.key,
         url,
-        file.data,
+        file.data as HTMLImageElement,
         xml,
         file.atlasType ?? 'xml',
         file.xSpacing ?? 0,
         file.ySpacing ?? 0
       );
     } else if (file.type === 'textureatlas') {
-      this.cache.addTextureAtlas(file.key, url, file.data, xml);
+      this.cache.addTextureAtlas(file.key, url, file.data as HTMLImageElement, xml);
     } else if (file.type === 'xml') {
       this.cache.addXML(file.key, url, xml);
     }
