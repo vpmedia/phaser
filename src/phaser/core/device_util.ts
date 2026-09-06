@@ -110,8 +110,8 @@ export const checkFullScreenSupport = (device: Device): void => {
         break;
       }
     }
-    // @ts-expect-error
-    if (globalThis.Element && Element.ALLOW_KEYBOARD_INPUT) {
+    // ALLOW_KEYBOARD_INPUT is a legacy webkit fullscreen flag, absent from lib.dom
+    if (globalThis.Element && (Element as unknown as { ALLOW_KEYBOARD_INPUT?: number }).ALLOW_KEYBOARD_INPUT) {
       device.fullscreenKeyboard = true;
     }
   }

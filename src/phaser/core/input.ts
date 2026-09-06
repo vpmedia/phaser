@@ -66,7 +66,7 @@ export class Input {
   public _localPoint!: Point;
   public _pollCounter!: number;
   public _oldPosition!: Point;
-  public _onClickTrampoline!: any;
+  public _onClickTrampoline!: EventListener | null;
   public _x!: number;
   public _y!: number;
   /**
@@ -154,8 +154,9 @@ export class Input {
       this.touch.start();
     }
     this.mousePointer.active = true;
-    const scope = this;
-    this._onClickTrampoline = (event: InputEvent) => (scope as any).onClickTrampoline(event);
+    this._onClickTrampoline = (): void => {
+      this.onClickTrampoline();
+    };
     this.game.canvas.addEventListener('click', this._onClickTrampoline, false);
   }
 
@@ -171,7 +172,9 @@ export class Input {
     }
     this.moveCallbacks = [];
     remove(this);
-    this.game.canvas.removeEventListener('click', this._onClickTrampoline);
+    if (this._onClickTrampoline) {
+      this.game.canvas.removeEventListener('click', this._onClickTrampoline);
+    }
   }
 
   /**
@@ -287,7 +290,7 @@ export class Input {
    * @param {MouseEvent|TouchEvent|PointerEvent} event - TBD.
    * @returns {Pointer} TBD.
    */
-  public startPointer(event: any | TouchEvent | PointerEvent) {
+  public startPointer(event: InputEvent) {
     if (this.maxPointers >= 0 && this.countActivePointers(this.maxPointers) >= this.maxPointers) {
       return null;
     }
@@ -311,7 +314,7 @@ export class Input {
    * @param {MouseEvent|TouchEvent|PointerEvent} event - TBD.
    * @returns {Pointer} TBD.
    */
-  public updatePointer(event: any | TouchEvent | PointerEvent) {
+  public updatePointer(event: InputEvent) {
     if (this.pointer1.active && this.pointer1.identifier === event.identifier) {
       return this.pointer1.move(event);
     }
@@ -332,7 +335,7 @@ export class Input {
    * @param {MouseEvent|TouchEvent|PointerEvent} event - TBD.
    * @returns {Pointer} TBD.
    */
-  public stopPointer(event: any | TouchEvent | PointerEvent) {
+  public stopPointer(event: InputEvent) {
     if (this.pointer1.active && this.pointer1.identifier === event.identifier) {
       return this.pointer1.stop(event);
     }

@@ -70,30 +70,29 @@ export class Mouse {
       //  Avoid setting multiple listeners
       return;
     }
-    const scope = this;
     this._onMouseDown = (event): void => {
-      scope.onMouseDown(event);
+      this.onMouseDown(event);
     };
     this._onMouseMove = (event): void => {
-      scope.onMouseMove(event);
+      this.onMouseMove(event);
     };
     this._onMouseUp = (event): void => {
-      scope.onMouseUp(event);
+      this.onMouseUp(event);
     };
     this._onMouseUpGlobal = (event): void => {
-      scope.onMouseUpGlobal(event);
+      this.onMouseUpGlobal(event);
     };
     this._onMouseOutGlobal = (event): void => {
-      scope.onMouseOutGlobal(event);
+      this.onMouseOutGlobal(event);
     };
     this._onMouseOut = (event): void => {
-      scope.onMouseOut(event);
+      this.onMouseOut(event);
     };
     this._onMouseOver = (event): void => {
-      scope.onMouseOver(event);
+      this.onMouseOver(event);
     };
     this._onMouseWheel = (event): void => {
-      scope.onMouseWheel(event);
+      this.onMouseWheel(event);
     };
     const { canvas } = this.game;
     canvas.addEventListener('mousedown', this._onMouseDown, true);

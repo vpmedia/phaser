@@ -728,9 +728,8 @@ export class Loader {
       // Flight queue is empty but file list is not done being processed.
       // This indicates a critical internal error with no known recovery.
       this.game.logger.warn('Aborting: processing queue empty, loading may have stalled');
-      const scope = this;
       setTimeout((): void => {
-        scope.finishedLoading(true);
+        this.finishedLoading(true);
       }, 2000);
     }
   }
@@ -922,10 +921,9 @@ export class Loader {
    */
   public loadImageTag(file: LoaderFile): void {
     this.log('loadImageTag', file);
-    const scope = this;
     const image = new globalThis.Image();
     file.data = image;
-    image.name = file.key;
+    image.dataset['key'] = file.key;
     if (typeof this.crossOrigin === 'string' && this.crossOrigin) {
       image.crossOrigin = this.crossOrigin;
     }
@@ -933,19 +931,19 @@ export class Loader {
       if (image.onload) {
         image.onload = null;
         image.onerror = null;
-        scope.fileComplete(file);
+        this.fileComplete(file);
       }
     };
     image.onerror = (): void => {
-      if (scope.isUseRetry && (!file.numRetry || file.numRetry < scope.maxRetry)) {
+      if (this.isUseRetry && (!file.numRetry || file.numRetry < this.maxRetry)) {
         setTimeout((): void => {
           file.numRetry = !file.numRetry ? 1 : (file.numRetry += 1);
-          scope.loadImageTag(file);
+          this.loadImageTag(file);
         }, 1000);
       } else if (image.onload) {
         image.onload = null;
         image.onerror = null;
-        scope.fileError(file);
+        this.fileError(file);
       }
     };
     const src = this.transformUrl(file.url, file);
@@ -976,7 +974,6 @@ export class Loader {
       return;
     }
     this.log('xhrLoad', file);
-    const scope = this;
     const xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
     xhr.responseType = type;
@@ -989,51 +986,49 @@ export class Loader {
       xhr.setRequestHeader('Accept', acceptHeader);
     }
     const handleError = onerror ?? this.fileError;
-    xhr.onload = () => {
-      try {
-        if (xhr.readyState === 4 && xhr.status >= 400 && xhr.status <= 599) {
-          // Handle HTTP status codes of 4xx and 5xx as errors, even if xhr.onerror was not called.
-          if (scope.isUseRetry && (!file.numRetry || file.numRetry < scope.maxRetry)) {
-            setTimeout((): void => {
-              file.numRetry = !file.numRetry ? 1 : (file.numRetry += 1);
-              scope.xhrLoad(file, url, type, onload, handleError);
-            }, 1000);
-            return null;
-          }
-          return handleError.call(scope, file, xhr);
-        }
-        return onload.call(scope, file, xhr);
-      } catch (error) {
-        const typedError = error instanceof Error ? error : new Error(String(error));
-        //  If this was the last file in the queue and an error is thrown in the create method
-        //  then it's caught here, so be sure we don't carry on processing it
-        if (!scope.hasLoaded) {
-          scope.asyncComplete(file, typedError.message || 'Exception');
-        } else {
-          scope.game.logger.fatal('Loader', { error: typedError });
-        }
+    const retry = (): boolean => {
+      if (!this.isUseRetry || (file.numRetry && file.numRetry >= this.maxRetry)) {
+        return false;
       }
-      return null;
+      setTimeout((): void => {
+        file.numRetry = file.numRetry ? file.numRetry + 1 : 1;
+        this.xhrLoad(file, url, type, onload, handleError);
+      }, 1000);
+      return true;
     };
-    xhr.onerror = () => {
-      if (scope.isUseRetry && (!file.numRetry || file.numRetry < scope.maxRetry)) {
-        setTimeout((): void => {
-          file.numRetry = !file.numRetry ? 1 : (file.numRetry += 1);
-          scope.xhrLoad(file, url, type, onload, handleError);
-        }, 1000);
+    const reportException = (error: unknown): void => {
+      const typedError = error instanceof Error ? error : new Error(String(error));
+      //  If this was the last file in the queue and an error is thrown in the create method
+      //  then it's caught here, so be sure we don't carry on processing it
+      if (this.hasLoaded) {
+        this.game.logger.fatal('Loader', { error: typedError });
       } else {
-        try {
-          return handleError.call(scope, file, xhr);
-        } catch (error) {
-          const typedError = error instanceof Error ? error : new Error(String(error));
-          if (!scope.hasLoaded) {
-            scope.asyncComplete(file, typedError.message || 'Exception');
-          } else {
-            scope.game.logger.fatal('Loader', { error: typedError });
-          }
-        }
+        this.asyncComplete(file, typedError.message || 'Exception');
       }
-      return null;
+    };
+    xhr.onload = (): void => {
+      try {
+        // Handle HTTP status codes of 4xx and 5xx as errors, even if xhr.onerror was not called.
+        if (xhr.readyState === 4 && xhr.status >= 400 && xhr.status <= 599) {
+          if (!retry()) {
+            handleError.call(this, file, xhr);
+          }
+          return;
+        }
+        onload.call(this, file, xhr);
+      } catch (error) {
+        reportException(error);
+      }
+    };
+    xhr.onerror = (): void => {
+      if (retry()) {
+        return;
+      }
+      try {
+        handleError.call(this, file, xhr);
+      } catch (error) {
+        reportException(error);
+      }
     };
     file.requestObject = xhr;
     file.requestUrl = url;
@@ -1099,7 +1094,7 @@ export class Loader {
     if (!reason && xhr) {
       reason = xhr.status;
     }
-    const message = `Error loading asset (${reason})`;
+    const message = `Error loading asset (${String(reason)})`;
     this.asyncComplete(file, message);
   }
 
@@ -1145,7 +1140,7 @@ export class Loader {
           if (file.format === TEXTURE_ATLAS_JSON_HASH) {
             this.xhrLoad(file, this.transformUrl(file.atlasURL, file), 'text', this.jsonLoadComplete);
           } else {
-            throw new Error(`Invalid Texture Atlas format: ${file.format}`);
+            throw new Error(`Invalid Texture Atlas format: ${String(file.format)}`);
           }
         }
         break;
@@ -1193,7 +1188,7 @@ export class Loader {
         file.data = audio;
         this.cache.addSound(file.key, url, audio);
         if (file.autoDecode) {
-          this.game.sound.decode(file.key);
+          void this.game.sound.decode(file.key);
         }
         break;
       }
@@ -1329,13 +1324,13 @@ export class Loader {
   /**
    * Logs a message to the console if logging is enabled.
    * @param {string} message - The message to log.
-   * @param {string|object} data - Additional data to log with the message.
+   * @param {object} file - The file the message is about.
    */
-  public log(message: string, data: string | any = ''): void {
+  public log(message: string, file: LoaderFile): void {
     if (!this.isUseLog) {
       return;
     }
-    this.game.logger.info(message, data);
+    this.game.logger.info(message, { key: file.key, type: file.type });
   }
 
   /**

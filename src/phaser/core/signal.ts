@@ -40,7 +40,7 @@ export class Signal {
   public _registerListener(
     listener: Function,
     isOnce = false,
-    listenerContext: unknown | null = null,
+    listenerContext: unknown = null,
     priority = 0,
     args: any = null
   ): SignalBinding {
@@ -120,12 +120,7 @@ export class Signal {
    * @param {...any} args - Additional arguments to pass to the listener.
    * @returns {SignalBinding} The binding for this listener.
    */
-  public add(
-    listener: Function,
-    listenerContext: unknown | null = null,
-    priority = 0,
-    ...args: unknown[]
-  ): SignalBinding {
+  public add(listener: Function, listenerContext: unknown = null, priority = 0, ...args: unknown[]): SignalBinding {
     this.validateListener(listener, 'add');
     return this._registerListener(listener, false, listenerContext, priority, args);
   }
@@ -138,12 +133,7 @@ export class Signal {
    * @param {...any} args - Additional arguments to pass to the listener.
    * @returns {SignalBinding} The binding for this listener.
    */
-  public addOnce(
-    listener: Function,
-    listenerContext: unknown | null = null,
-    priority = 0,
-    ...args: unknown[]
-  ): SignalBinding {
+  public addOnce(listener: Function, listenerContext: unknown = null, priority = 0, ...args: unknown[]): SignalBinding {
     this.validateListener(listener, 'addOnce');
     return this._registerListener(listener, true, listenerContext, priority, args);
   }
@@ -267,9 +257,8 @@ export class Signal {
    * @returns {Function} A function that will dispatch the signal with the correct context.
    */
   public get boundDispatch() {
-    const _this = this;
     this._boundDispatch ??= (...rest: unknown[]): void => {
-      _this.dispatch(...rest);
+      this.dispatch(...rest);
     };
     return this._boundDispatch;
   }

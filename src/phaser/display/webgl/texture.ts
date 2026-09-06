@@ -115,7 +115,9 @@ export class Texture {
       // TODO: make this configurable
       const isTextureSilentFail = true;
       if (!isTextureSilentFail) {
-        throw new Error(`Texture Error: frame does not fit inside the base Texture dimensions ${this}`);
+        throw new Error(
+          `Texture Error: frame ${frame.width}x${frame.height} does not fit inside the base texture ${this.baseTexture.width}x${this.baseTexture.height}`
+        );
       }
       this.valid = false;
       return;

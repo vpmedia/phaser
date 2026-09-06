@@ -48,24 +48,23 @@ export class MSPointer {
     if (!this.game.device.mspointer || this._onMSPointerDown !== null) {
       return;
     }
-    const scope = this;
     this._onMSPointerDown = (event): void => {
-      scope.onPointerDown(event);
+      this.onPointerDown(event);
     };
     this._onMSPointerMove = (event): void => {
-      scope.onPointerMove(event);
+      this.onPointerMove(event);
     };
     this._onMSPointerUp = (event): void => {
-      scope.onPointerUp(event);
+      this.onPointerUp(event);
     };
     this._onMSPointerUpGlobal = (event): void => {
-      scope.onPointerUpGlobal(event);
+      this.onPointerUpGlobal(event);
     };
     this._onMSPointerOut = (event): void => {
-      scope.onPointerOut(event);
+      this.onPointerOut(event);
     };
     this._onMSPointerOver = (event): void => {
-      scope.onPointerOver(event);
+      this.onPointerOver(event);
     };
     const { canvas } = this.game;
     canvas.addEventListener('MSPointerDown', this._onMSPointerDown, false);

@@ -179,7 +179,7 @@ export class DisplayObject {
       this.children.splice(index, 0, child);
       return child;
     }
-    throw new Error(`${child}addChildAt: The index ${index} supplied is out of bounds ${this.children.length}`);
+    throw new Error(`addChildAt: index ${index} is out of bounds for ${this.children.length} children`);
   }
 
   /**

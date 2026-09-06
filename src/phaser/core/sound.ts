@@ -364,7 +364,7 @@ export class Sound {
     } else {
       this.pendingPlayback = true;
       if (this.game.cache.getSound(this.key)?.isDecoding === false) {
-        this.game.sound.decode(this.key);
+        void this.game.sound.decode(this.key);
       }
     }
     return this;

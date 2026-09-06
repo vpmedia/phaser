@@ -185,6 +185,14 @@ export class SoundManager {
    * @param {Event} event - The DOM event that triggered the unlock.
    */
   public onUnlockEvent = (event: Event): void => {
+    void this.resumeContext(event);
+  };
+
+  /**
+   * Resumes the audio context a user gesture has just unlocked.
+   * @param {Event} event - The DOM event that triggered the unlock.
+   */
+  public async resumeContext(event: Event): Promise<void> {
     const initialState = this.context!.state;
     if (initialState !== 'suspended' && initialState !== 'interrupted') {
       this.game.logger.info('onUnlockResumeDenied', {
@@ -200,29 +208,28 @@ export class SoundManager {
       isLocked: this.isLocked,
       event,
     });
-    this.context!.resume()
-      .then((): void => {
-        this.game.logger.info('onContextResumeResult', {
-          initialState,
-          state: this.context!.state,
-          isLocked: this.isLocked,
-        });
-        this.removeUnlockHandlers();
-      })
-      .catch((error: unknown): void => {
-        this.game.logger.info('onContextResumeReject', {
-          initialState,
-          state: this.context!.state,
-          isLocked: this.isLocked,
-          error,
-        });
-        this.removeUnlockHandlers();
-        this.game.logger.fatal('SoundManager', {
-          error,
-          tags: { 'audio.initialState': initialState, 'audio.state': this.context!.state },
-        });
+    try {
+      await this.context!.resume();
+      this.game.logger.info('onContextResumeResult', {
+        initialState,
+        state: this.context!.state,
+        isLocked: this.isLocked,
       });
-  };
+      this.removeUnlockHandlers();
+    } catch (error: unknown) {
+      this.game.logger.info('onContextResumeReject', {
+        initialState,
+        state: this.context!.state,
+        isLocked: this.isLocked,
+        error,
+      });
+      this.removeUnlockHandlers();
+      this.game.logger.fatal('SoundManager', {
+        error,
+        tags: { 'audio.initialState': initialState, 'audio.state': this.context!.state },
+      });
+    }
+  }
 
   /**
    * Stops all sounds in the manager.
@@ -270,7 +277,7 @@ export class SoundManager {
    * Decodes an audio file for playback.
    * @param {string} key - The key of the sound to decode.
    */
-  public decode(key: string): void {
+  public async decode(key: string): Promise<void> {
     const soundData = this.game.cache.getSoundData(key);
     if (!(soundData instanceof ArrayBuffer)) {
       return;
@@ -279,21 +286,19 @@ export class SoundManager {
       return;
     }
     this.game.cache.updateSound(key, 'isDecoding', true);
-    this.context!.decodeAudioData(soundData)
-      .then((buffer: AudioBuffer): void => {
-        this.game.cache.decodedSound(key, buffer);
-      })
-      .catch((error: unknown): void => {
-        const typedError = error instanceof Error ? error : new Error(String(error));
-        this.game.logger.fatal('SoundManager', { error: typedError, tags: { 'asset.key': key } });
-        if (typedError.name === 'InvalidStateError') {
-          addPageLifecycleCallback(PAGE_LIFECYCLE_STATE_ACTIVE, (): void => {
-            this.decode(key);
-          });
-        } else if (typedError.name === 'EncodingError') {
-          this._watchList.remove(key);
-        }
-      });
+    try {
+      this.game.cache.decodedSound(key, await this.context!.decodeAudioData(soundData));
+    } catch (error: unknown) {
+      const typedError = error instanceof Error ? error : new Error(String(error));
+      this.game.logger.fatal('SoundManager', { error: typedError, tags: { 'asset.key': key } });
+      if (typedError.name === 'InvalidStateError') {
+        addPageLifecycleCallback(PAGE_LIFECYCLE_STATE_ACTIVE, (): void => {
+          void this.decode(key);
+        });
+      } else if (typedError.name === 'EncodingError') {
+        this._watchList.remove(key);
+      }
+    }
   }
 
   /**

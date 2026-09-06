@@ -257,7 +257,7 @@ export class DOM {
    */
   public getScreenOrientation(primaryFallback: string | null = null): OrientationType {
     const { screen } = globalThis;
-    // @ts-expect-error
+    // @ts-expect-error the prefixed orientation properties predate the standard one and are absent from lib.dom
     const orientation = screen.orientation || screen.mozOrientation || screen.msOrientation;
     if (orientation && typeof orientation.type === 'string') {
       // Screen Orientation API specification
@@ -272,9 +272,12 @@ export class DOM {
       return screen.height > screen.width ? PORTRAIT : LANDSCAPE;
     } else if (primaryFallback === 'viewport') {
       return this.visualBounds.height > this.visualBounds.width ? PORTRAIT : LANDSCAPE;
-    } else if (primaryFallback === 'window.orientation' && typeof globalThis.orientation === 'number') {
+    }
+    // the legacy angle, kept behind its own fallback because the standard API does not report it
+    const { orientation: legacyOrientation } = globalThis as { orientation?: number };
+    if (primaryFallback === 'window.orientation' && typeof legacyOrientation === 'number') {
       // This may change by device based on "natural" orientation.
-      return globalThis.orientation === 0 || globalThis.orientation === 180 ? PORTRAIT : LANDSCAPE;
+      return legacyOrientation === 0 || legacyOrientation === 180 ? PORTRAIT : LANDSCAPE;
     } else if (globalThis.matchMedia) {
       if (globalThis.matchMedia('(orientation: portrait)').matches) {
         return PORTRAIT;

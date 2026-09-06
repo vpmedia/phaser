@@ -23,7 +23,7 @@ export class SignalBinding {
     signal: Signal,
     listener: Function,
     isOnce = false,
-    listenerContext: unknown | null = null,
+    listenerContext: unknown = null,
     priority = 0,
     args: any = null
   ) {

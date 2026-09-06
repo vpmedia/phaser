@@ -51,24 +51,23 @@ export class Touch {
     if (!this.game.device.touch || this._onTouchStart !== null) {
       return;
     }
-    const scope = this;
     this._onTouchStart = (event): void => {
-      scope.onTouchStart(event);
+      this.onTouchStart(event);
     };
     this._onTouchMove = (event): void => {
-      scope.onTouchMove(event);
+      this.onTouchMove(event);
     };
     this._onTouchEnd = (event): void => {
-      scope.onTouchEnd(event);
+      this.onTouchEnd(event);
     };
     this._onTouchEnter = (event): void => {
-      scope.onTouchEnter(event);
+      this.onTouchEnter(event);
     };
     this._onTouchLeave = (event): void => {
-      scope.onTouchLeave(event);
+      this.onTouchLeave(event);
     };
     this._onTouchCancel = (event): void => {
-      scope.onTouchCancel(event);
+      this.onTouchCancel(event);
     };
     this.game.canvas.addEventListener('touchstart', this._onTouchStart, false);
     this.game.canvas.addEventListener('touchmove', this._onTouchMove, false);

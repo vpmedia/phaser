@@ -46,7 +46,7 @@ export class Button extends Image {
     y = 0,
     key: string | null = null,
     callback: Function | null = null,
-    callbackContext: unknown | null = null,
+    callbackContext: unknown = null,
     overFrame: string | null = null,
     outFrame: string | null = null,
     downFrame: string | null = null,

@@ -179,22 +179,21 @@ export class ScaleManager {
       compat.clickTrampoline = '';
     }
     // Configure event listeners
-    const scope = this;
     this._orientationChange = (event): void => {
-      scope.orientationChange(event);
+      this.orientationChange(event);
     };
     this._windowResize = (event): void => {
-      scope.windowResize(event);
+      this.windowResize(event);
     };
     // This does not appear to be on the standards track
     globalThis.addEventListener('orientationchange', this._orientationChange, false);
     window.addEventListener('resize', this._windowResize, false);
     if (this.compatibility.supportsFullScreen) {
       this._fullScreenChange = (event): void => {
-        scope.fullScreenChange(event);
+        this.fullScreenChange(event);
       };
       this._fullScreenError = (event): void => {
-        scope.fullScreenError(event);
+        this.fullScreenError(event);
       };
       document.addEventListener('webkitfullscreenchange', this._fullScreenChange, false);
       document.addEventListener('mozfullscreenchange', this._fullScreenChange, false);
@@ -789,9 +788,8 @@ export class ScaleManager {
     }
     if (!this.compatibility.supportsFullScreen) {
       // Error is called in timeout to emulate the real fullscreenerror event better
-      const scope = this;
       setTimeout((): void => {
-        scope.fullScreenError(new Event('fullscreenerror'));
+        this.fullScreenError(new Event('fullscreenerror'));
       }, 10);
       return false;
     }
