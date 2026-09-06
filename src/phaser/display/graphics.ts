@@ -500,7 +500,7 @@ export class Graphics extends DisplayObject {
    */
   public override renderWebGL(renderSession: RenderSession) {
     // if the sprite is not visible or the alpha is 0 then no need to render this element
-    if (!this.visible || this.alpha === 0 || this.isMask === true) {
+    if (!this.visible || this.alpha === 0 || this.isMask) {
       return;
     }
     if (this._cacheAsBitmap) {
@@ -547,7 +547,7 @@ export class Graphics extends DisplayObject {
         renderSession.filterManager.popFilter();
       }
       if (this._mask) {
-        renderSession.maskManager.popMask(this.mask!, renderSession);
+        renderSession.maskManager.popMask(this.mask, renderSession);
       }
       renderSession.drawCount += 1;
       renderSession.spriteBatch.start();
@@ -560,7 +560,7 @@ export class Graphics extends DisplayObject {
    */
   public override renderCanvas(renderSession: RenderSession) {
     // if the sprite is not visible or the alpha is 0 then no need to render this element
-    if (!this.visible || this.alpha === 0 || this.isMask === true) {
+    if (!this.visible || this.alpha === 0 || this.isMask) {
       return;
     }
     // if the tint has changed, set the graphics object to dirty.
@@ -606,7 +606,7 @@ export class Graphics extends DisplayObject {
         child.renderCanvas(renderSession);
       }
       if (this._mask) {
-        renderSession.maskManager.popMask(renderSession);
+        renderSession.maskManager.popMask(this._mask, renderSession);
       }
     }
   }

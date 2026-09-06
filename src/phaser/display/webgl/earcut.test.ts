@@ -124,7 +124,7 @@ describe('earcut triangulate', () => {
         ring.push(Math.cos(angle) * radius, Math.sin(angle) * radius);
       }
       const triangles = triangulate(ring, null, 2);
-      expect(triangles.length).toBe((sides - 2) * 3);
+      expect(triangles).toHaveLength((sides - 2) * 3);
       const expected = 0.5 * sides * radius * radius * Math.sin((2 * Math.PI) / sides);
       expect(coveredArea(ring, triangles)).toBeCloseTo(expected, 3);
     });

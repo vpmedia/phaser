@@ -557,7 +557,7 @@ export class DisplayObject {
       child.renderCanvas(renderSession);
     }
     if (this._mask) {
-      renderSession.maskManager.popMask(renderSession);
+      renderSession.maskManager.popMask(this._mask, renderSession);
     }
   }
 

@@ -6,43 +6,45 @@ import { Node } from './earcut_node.js';
  * @returns {object} The processed earcut data structure.
  */
 export function sortLinked(list: Node | null): Node | null {
-  let i;
-  let p;
-  let q;
-  let e;
-  let tail;
   let numMerges;
-  let pSize;
-  let qSize;
   let inSize = 1;
   do {
-    p = list;
+    let p: Node | null = list;
+    let tail: Node | null = null;
     list = null;
-    tail = null;
     numMerges = 0;
     while (p) {
       numMerges += 1;
-      q = p;
-      pSize = 0;
-      for (i = 0; i < inSize; i += 1) {
+      let q: Node | null = p;
+      let pSize = 0;
+      for (let i = 0; i < inSize; i += 1) {
         pSize += 1;
         q = q.nextZ;
         if (!q) {
           break;
         }
       }
-      qSize = inSize;
+      let qSize = inSize;
       while (pSize > 0 || (qSize > 0 && q)) {
+        let e: Node;
+        // The run counters keep p and q in step with the loop condition; the guards below cannot
+        // fire, they only spell that invariant out for the type checker.
         if (pSize === 0) {
-          e = q!;
+          if (!q) {
+            break;
+          }
+          e = q;
           q = e.nextZ;
           qSize -= 1;
         } else if (qSize === 0 || !q) {
-          e = p!;
+          if (!p) {
+            break;
+          }
+          e = p;
           p = e.nextZ;
           pSize -= 1;
-        } else if (p!.z! <= q.z!) {
-          e = p!;
+        } else if (p && (p.z ?? 0) <= (q.z ?? 0)) {
+          e = p;
           p = e.nextZ;
           pSize -= 1;
         } else {
@@ -60,7 +62,9 @@ export function sortLinked(list: Node | null): Node | null {
       }
       p = q;
     }
-    tail!.nextZ = null;
+    if (tail) {
+      tail.nextZ = null;
+    }
     inSize *= 2;
   } while (numMerges > 1);
   return list;
@@ -110,9 +114,7 @@ export function zOrder(x: number, y: number, minX: number, minY: number, size: n
 export function indexCurve(start: Node, minX = 0, minY = 0, size = 0): void {
   let p = start;
   do {
-    if (p.z === null) {
-      p.z = zOrder(p.x, p.y, minX, minY, size);
-    }
+    p.z ??= zOrder(p.x, p.y, minX, minY, size);
     p.prevZ = p.prev;
     p.nextZ = p.next;
     p = p.next;

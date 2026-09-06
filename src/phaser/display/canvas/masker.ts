@@ -1,5 +1,6 @@
 import { renderGraphicsMask } from './graphics.js';
 import type { RenderSession } from '../render_session.js';
+import type { Graphics } from '../graphics.js';
 
 /**
  * Pushes a mask onto the rendering stack.
@@ -27,8 +28,9 @@ export const pushMask = (maskData: any, renderSession: RenderSession) => {
 
 /**
  * Pops a mask from the rendering stack.
+ * @param {object} _maskData - Unused; the canvas path restores whatever was saved.
  * @param {object} renderSession - The rendering session object.
  */
-export const popMask = (renderSession: RenderSession) => {
+export const popMask = (_maskData: Graphics | null, renderSession: RenderSession) => {
   renderSession.context.restore();
 };

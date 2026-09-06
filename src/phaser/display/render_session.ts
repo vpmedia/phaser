@@ -8,13 +8,10 @@ import type { WebGLSpriteBatch } from './webgl/sprite_batch.js';
 import type { WebGLStencilManager } from './webgl/stencil_manager.js';
 import type { IdentifiedWebGLRenderingContext } from './webgl/util.js';
 
-/**
- * The canvas and WebGL mask managers are namespace imports with the same shape but different
- * popMask arity, so the session holds the widest signature both satisfy.
- */
+/** The canvas and WebGL mask managers, which the renderers supply as namespace imports. */
 export type MaskManager = {
-  pushMask(maskData: Graphics, renderSession: RenderSession): void;
-  popMask(maskDataOrSession: Graphics | RenderSession, renderSession?: RenderSession): void;
+  pushMask: (maskData: Graphics, renderSession: RenderSession) => void;
+  popMask: (maskData: Graphics | null, renderSession: RenderSession) => void;
 };
 
 /**

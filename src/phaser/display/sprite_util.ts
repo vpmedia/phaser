@@ -269,6 +269,6 @@ export const renderCanvas = (target: Image, renderSession: RenderSession, matrix
     child.renderCanvas(renderSession);
   }
   if (target._mask) {
-    renderSession.maskManager.popMask(renderSession);
+    renderSession.maskManager.popMask(target._mask, renderSession);
   }
 };
