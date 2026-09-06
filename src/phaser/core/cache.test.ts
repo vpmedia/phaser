@@ -27,36 +27,36 @@ const FONT_XML = `<?xml version="1.0"?>
   </chars>
 </font>`;
 
-describe('Cache', () => {
+describe('Cache', (): void => {
   let cache: Cache;
 
-  beforeEach(() => {
+  beforeEach((): void => {
     getRegistry().TEXTURE_SCALE_MODE = SCALE_LINEAR;
     cache = new Cache(createGame());
   });
 
-  describe('images', () => {
-    it('seeds the default and missing images', () => {
+  describe('images', (): void => {
+    it('seeds the default and missing images', (): void => {
       expect(cache.checkImageKey('__default')).toBe(true);
       expect(cache.checkImageKey('__missing')).toBe(true);
     });
 
-    it('keeps the default image out of the reported keys', () => {
+    it('keeps the default image out of the reported keys', (): void => {
       expect(cache.getKeys(IMAGE)).toStrictEqual([]);
     });
 
-    it('returns the source bitmap by default and the whole entry when asked', () => {
+    it('returns the source bitmap by default and the whole entry when asked', (): void => {
       const source = createImage();
       cache.addImage('logo', 'logo.png', source);
       expect(cache.getImage('logo')).toBe(source);
       expect(cache.getImage('logo', true).key).toBe('logo');
     });
 
-    it('falls back to the missing image for an unknown key', () => {
+    it('falls back to the missing image for an unknown key', (): void => {
       expect(cache.getImage('nope', true).key).toBe('__missing');
     });
 
-    it('gives an image one frame covering the whole bitmap', () => {
+    it('gives an image one frame covering the whole bitmap', (): void => {
       cache.addImage('logo', 'logo.png', createImage(64, 32));
       const frame = cache.getFrameByIndex('logo', 0);
       expect(frame?.width).toBe(64);
@@ -64,26 +64,26 @@ describe('Cache', () => {
       expect(cache.getFrameCount('logo')).toBe(1);
     });
 
-    it('reports no frames for a key it does not hold', () => {
+    it('reports no frames for a key it does not hold', (): void => {
       expect(cache.getFrameData('nope')).toBeNull();
       expect(cache.getFrameCount('nope')).toBe(0);
       expect(cache.hasFrameData('nope')).toBe(false);
     });
 
-    it('drops an image when it is removed', () => {
+    it('drops an image when it is removed', (): void => {
       cache.addImage('logo', 'logo.png', createImage());
       cache.removeImage('logo');
       expect(cache.checkImageKey('logo')).toBe(false);
     });
 
-    it('replaces an image registered twice under the same key', () => {
+    it('replaces an image registered twice under the same key', (): void => {
       cache.addImage('logo', 'a.png', createImage(4, 4));
       const second = createImage(8, 8);
       cache.addImage('logo', 'b.png', second);
       expect(cache.getImage('logo')).toBe(second);
     });
 
-    it('clears the GL textures of every cached image', () => {
+    it('clears the GL textures of every cached image', (): void => {
       cache.addImage('logo', 'logo.png', createImage());
       const entry = cache.getImage('logo', true);
       entry.base._glTextures = [null];
@@ -92,25 +92,25 @@ describe('Cache', () => {
     });
   });
 
-  describe('sounds', () => {
-    it('stores a sound as undecoded', () => {
+  describe('sounds', (): void => {
+    it('stores a sound as undecoded', (): void => {
       cache.addSound('shot', 'shot.ogg', new ArrayBuffer(8));
       expect(cache.isSoundDecoded('shot')).toBe(false);
       expect(cache.isSoundReady('shot')).toBe(false);
     });
 
-    it('reports an unknown sound as neither decoded nor ready', () => {
+    it('reports an unknown sound as neither decoded nor ready', (): void => {
       expect(cache.isSoundDecoded('nope')).toBeNull();
       expect(cache.isSoundReady('nope')).toBe(false);
     });
 
-    it('updates a single property of a cached sound', () => {
+    it('updates a single property of a cached sound', (): void => {
       cache.addSound('shot', 'shot.ogg', new ArrayBuffer(8));
       cache.updateSound('shot', 'isDecoding', true);
       expect(cache.getSound('shot')?.isDecoding).toBe(true);
     });
 
-    it('swaps in the decoded buffer and marks the sound ready', () => {
+    it('swaps in the decoded buffer and marks the sound ready', (): void => {
       cache.addSound('shot', 'shot.ogg', new ArrayBuffer(8));
       const buffer = { duration: 1.5 } as AudioBuffer;
       cache.decodedSound('shot', buffer);
@@ -119,33 +119,33 @@ describe('Cache', () => {
       expect(cache.isSoundReady('shot')).toBe(true);
     });
 
-    it('ignores a decode result for a sound it never held', () => {
-      expect(() => {
+    it('ignores a decode result for a sound it never held', (): void => {
+      expect((): void => {
         cache.decodedSound('nope', {} as AudioBuffer);
       }).not.toThrow();
     });
 
-    it('drops a sound when it is removed', () => {
+    it('drops a sound when it is removed', (): void => {
       cache.addSound('shot', 'shot.ogg', new ArrayBuffer(8));
       cache.removeSound('shot');
       expect(cache.getSound('shot')).toBeNull();
     });
   });
 
-  describe('data', () => {
-    it('round-trips text', () => {
+  describe('data', (): void => {
+    it('round-trips text', (): void => {
       cache.addText('note', 'note.txt', 'hello');
       expect(cache.getText('note')).toBe('hello');
       cache.removeText('note');
       expect(cache.getText('note')).toBeNull();
     });
 
-    it('round-trips JSON', () => {
+    it('round-trips JSON', (): void => {
       cache.addJSON('config', 'config.json', { a: 1 });
       expect(cache.getJSON('config')).toStrictEqual({ a: 1 });
     });
 
-    it('hands back a detached copy when a clone is asked for', () => {
+    it('hands back a detached copy when a clone is asked for', (): void => {
       const data = { a: 1 };
       cache.addJSON('config', 'config.json', data);
       const clone = cache.getJSON<{ a: number }>('config', true);
@@ -153,15 +153,15 @@ describe('Cache', () => {
       expect(clone).not.toBe(data);
     });
 
-    it('round-trips XML', () => {
+    it('round-trips XML', (): void => {
       const xml = new DOMParser().parseFromString('<root/>', 'text/xml');
       cache.addXML('doc', 'doc.xml', xml);
       expect(cache.getXML('doc')).toBe(xml);
     });
   });
 
-  describe('bitmap fonts', () => {
-    it('parses the descriptor and keeps it beside the atlas', () => {
+  describe('bitmap fonts', (): void => {
+    it('parses the descriptor and keeps it beside the atlas', (): void => {
       const xml = new DOMParser().parseFromString(FONT_XML, 'text/xml');
       cache.addBitmapFont('arial', 'arial.png', createImage(256, 256), xml, 'xml');
       const entry = cache.getBitmapFont('arial');
@@ -170,26 +170,26 @@ describe('Cache', () => {
       expect(entry?.base).toBeDefined();
     });
 
-    it('reports a font it does not hold as absent', () => {
+    it('reports a font it does not hold as absent', (): void => {
       expect(cache.checkBitmapFontKey('nope')).toBe(false);
       expect(cache.getBitmapFont('nope')).toBeNull();
     });
   });
 
-  describe('getItem', () => {
-    it('returns the whole entry when no property is named', () => {
+  describe('getItem', (): void => {
+    it('returns the whole entry when no property is named', (): void => {
       cache.addText('note', 'note.txt', 'hello');
       expect(cache.getItem('note', 4, 'test')).toStrictEqual({ url: 'note.txt', data: 'hello' });
     });
 
-    it('returns null for a key the bucket does not hold', () => {
+    it('returns null for a key the bucket does not hold', (): void => {
       expect(cache.getItem('nope', SOUND, 'test')).toBeNull();
       expect(cache.getItem('nope', BITMAPFONT, 'test', 'font')).toBeNull();
     });
   });
 
-  describe('destroy', () => {
-    it('empties every bucket but the built-in images', () => {
+  describe('destroy', (): void => {
+    it('empties every bucket but the built-in images', (): void => {
       cache.addText('note', 'note.txt', 'hello');
       cache.addSound('shot', 'shot.ogg', new ArrayBuffer(8));
       cache.destroy();

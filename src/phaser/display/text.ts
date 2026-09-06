@@ -740,7 +740,7 @@ export class Text extends Image {
    * @param {string} font - The font string to convert.
    * @returns {{ font: string, fontStyle?: string, fontVariant?: string, fontWeight?: string, fontSize?: string, fontFamily?: string }} The font components.
    */
-  public fontToComponents(font: string) {
+  public fontToComponents(font: string): FontComponents {
     // The format is specified in http://www.w3.org/TR/CSS2/fonts.html#font-shorthand:
     // style - normal | italic | oblique | inherit
     // variant - normal | small-caps | inherit

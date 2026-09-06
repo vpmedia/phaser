@@ -1,4 +1,14 @@
 import { Point } from '../geom/point.js';
+
+/** An element rectangle after the cushion has been applied to every edge. */
+export type CalibratedBounds = {
+  width: number;
+  height: number;
+  left: number;
+  right: number;
+  top: number;
+  bottom: number;
+};
 import type { Device } from './device.js';
 
 class VisualBoundsDesktopRectangle {
@@ -222,7 +232,7 @@ export class DOM {
    * @param {number} cushion - Optional padding to add around the element.
    * @returns {boolean} True if bounds were successfully retrieved, false otherwise.
    */
-  public getBounds(element: HTMLCanvasElement, cushion = 0) {
+  public getBounds(element: HTMLCanvasElement, cushion = 0): CalibratedBounds | false {
     element = element && !element.nodeType ? (element as unknown as HTMLCanvasElement[])[0]! : element;
     if (!element || element.nodeType !== 1) {
       return false;
@@ -236,7 +246,7 @@ export class DOM {
    * @param {number} cushion - Optional padding to add around the rectangle.
    * @returns {{width: number, height: number, left: number, right: number, top: number, bottom: number}} The calibrated rectangle.
    */
-  public calibrate(coords: DOMRect, cushion = 0) {
+  public calibrate(coords: DOMRect, cushion = 0): CalibratedBounds {
     const output = {
       width: 0,
       height: 0,

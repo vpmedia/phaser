@@ -10,89 +10,89 @@ const seed = (names: string[]): FrameData => {
   return data;
 };
 
-describe('FrameData', () => {
-  describe('addFrame', () => {
-    it('assigns a sequential index and registers the name', () => {
+describe('FrameData', (): void => {
+  describe('addFrame', (): void => {
+    it('assigns a sequential index and registers the name', (): void => {
       const data = seed(['a', 'b']);
-      expect(data._frames.map((frame) => frame.index)).toStrictEqual([0, 1]);
+      expect(data._frames.map((frame): number => frame.index)).toStrictEqual([0, 1]);
       expect(data._frameNames).toStrictEqual({ a: 0, b: 1 });
     });
 
-    it('does not register an empty name', () => {
+    it('does not register an empty name', (): void => {
       const data = new FrameData();
       data.addFrame(new Frame(0, 0, 0, 10, 10, ''));
       expect(data._frameNames).toStrictEqual({});
     });
   });
 
-  describe('getFrame', () => {
-    it('returns the frame at the index', () => {
+  describe('getFrame', (): void => {
+    it('returns the frame at the index', (): void => {
       const data = seed(['a', 'b', 'c']);
       expect(data.getFrame(1).name).toBe('b');
     });
 
-    it('falls back to the first frame when the index is out of range', () => {
+    it('falls back to the first frame when the index is out of range', (): void => {
       const data = seed(['a', 'b']);
       expect(data.getFrame(9).name).toBe('a');
     });
   });
 
-  describe('getFrameByName', () => {
-    it('finds a registered frame', () => {
+  describe('getFrameByName', (): void => {
+    it('finds a registered frame', (): void => {
       const data = seed(['a', 'b']);
       expect(data.getFrameByName('b')?.index).toBe(1);
     });
 
-    it('returns null for an unknown name', () => {
+    it('returns null for an unknown name', (): void => {
       const data = seed(['a']);
       expect(data.getFrameByName('missing')).toBeNull();
     });
 
-    it('returns null when the name maps to a frame that is gone', () => {
+    it('returns null when the name maps to a frame that is gone', (): void => {
       const data = seed(['a']);
       data._frames.length = 0;
       expect(data.getFrameByName('a')).toBeNull();
     });
   });
 
-  describe('checkFrameName', () => {
-    it('distinguishes known from unknown names', () => {
+  describe('checkFrameName', (): void => {
+    it('distinguishes known from unknown names', (): void => {
       const data = seed(['a']);
       expect(data.checkFrameName('a')).toBe(true);
       expect(data.checkFrameName('b')).toBe(false);
     });
   });
 
-  describe('getFrameRange', () => {
-    it('collects the inclusive range', () => {
+  describe('getFrameRange', (): void => {
+    it('collects the inclusive range', (): void => {
       const data = seed(['a', 'b', 'c', 'd']);
-      expect(data.getFrameRange(1, 2).map((frame) => frame.name)).toStrictEqual(['b', 'c']);
+      expect(data.getFrameRange(1, 2).map((frame): string => frame.name)).toStrictEqual(['b', 'c']);
     });
 
-    it('appends into a supplied output array', () => {
+    it('appends into a supplied output array', (): void => {
       const data = seed(['a', 'b']);
       const output = [data.getFrame(0)];
       expect(data.getFrameRange(1, 1, output)).toHaveLength(2);
     });
   });
 
-  describe('getFrameIndexes', () => {
-    it('maps numeric indexes through', () => {
+  describe('getFrameIndexes', (): void => {
+    it('maps numeric indexes through', (): void => {
       const data = seed(['a', 'b', 'c']);
       expect(data.getFrameIndexes([0, 2])).toStrictEqual([0, 2]);
     });
 
-    it('maps names when numeric indexing is off', () => {
+    it('maps names when numeric indexing is off', (): void => {
       const data = seed(['a', 'b', 'c']);
       expect(data.getFrameIndexes(['c', 'a'], false)).toStrictEqual([2, 0]);
     });
 
-    it('skips names that do not resolve', () => {
+    it('skips names that do not resolve', (): void => {
       const data = seed(['a']);
       expect(data.getFrameIndexes(['a', 'missing'], false)).toStrictEqual([0]);
     });
 
-    it('returns every index when given no frames', () => {
+    it('returns every index when given no frames', (): void => {
       const data = seed(['a', 'b', 'c']);
       expect(data.getFrameIndexes([])).toStrictEqual([0, 1, 2]);
     });

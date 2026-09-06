@@ -2,8 +2,8 @@ import { expect, describe, it } from 'vitest';
 import { Matrix } from './matrix.js';
 import { Point } from './point.js';
 
-describe('Constructor', () => {
-  it('should set default values when no arguments are passed', () => {
+describe('Constructor', (): void => {
+  it('should set default values when no arguments are passed', (): void => {
     const matrix = new Matrix();
     expect(matrix.a).toBe(1);
     expect(matrix.b).toBe(0);
@@ -13,7 +13,7 @@ describe('Constructor', () => {
     expect(matrix.ty).toBe(0);
   });
 
-  it('should set values when arguments are passed', () => {
+  it('should set values when arguments are passed', (): void => {
     const matrix = new Matrix(2, 3, 4, 5, 6, 7);
     expect(matrix.a).toBe(2);
     expect(matrix.b).toBe(3);
@@ -24,8 +24,8 @@ describe('Constructor', () => {
   });
 });
 
-describe('fromArray', () => {
-  it('should set values from an array', () => {
+describe('fromArray', (): void => {
+  it('should set values from an array', (): void => {
     const matrix = new Matrix();
     const array = [2, 3, 4, 5, 6, 7];
     matrix.fromArray(array);
@@ -38,8 +38,8 @@ describe('fromArray', () => {
   });
 });
 
-describe('setTo', () => {
-  it('should set values when arguments are passed', () => {
+describe('setTo', (): void => {
+  it('should set values when arguments are passed', (): void => {
     const matrix = new Matrix();
     const a = 2;
     const b = 3;
@@ -56,7 +56,7 @@ describe('setTo', () => {
     expect(matrix.ty).toBe(ty);
   });
 
-  it('should return the matrix instance', () => {
+  it('should return the matrix instance', (): void => {
     const matrix = new Matrix();
     const a = 2;
     const b = 3;
@@ -68,8 +68,8 @@ describe('setTo', () => {
   });
 });
 
-describe('clone', () => {
-  it('should return a copy of the matrix instance', () => {
+describe('clone', (): void => {
+  it('should return a copy of the matrix instance', (): void => {
     const matrix1 = new Matrix(2, 3, 4, 5, 6, 7);
     const matrix2 = matrix1.clone();
     expect(matrix2.a).toBe(matrix1.a);
@@ -81,8 +81,8 @@ describe('clone', () => {
   });
 });
 
-describe('copyTo', () => {
-  it('should copy values to another matrix instance', () => {
+describe('copyTo', (): void => {
+  it('should copy values to another matrix instance', (): void => {
     const matrix1 = new Matrix(2, 3, 4, 5, 6, 7);
     const matrix2 = new Matrix();
     matrix1.copyTo(matrix2);
@@ -95,8 +95,8 @@ describe('copyTo', () => {
   });
 });
 
-describe('copyFrom', () => {
-  it('should copy values from another matrix instance', () => {
+describe('copyFrom', (): void => {
+  it('should copy values from another matrix instance', (): void => {
     const matrix1 = new Matrix(2, 3, 4, 5, 6, 7);
     const matrix2 = new Matrix();
     matrix2.copyFrom(matrix1);
@@ -109,8 +109,8 @@ describe('copyFrom', () => {
   });
 });
 
-describe('apply', () => {
-  it('should apply the matrix to a point', () => {
+describe('apply', (): void => {
+  it('should apply the matrix to a point', (): void => {
     const matrix = new Matrix(2, 3, 4, 5, 6, 7);
     const point = new Point(1, 2);
     const result = new Point();
@@ -125,8 +125,8 @@ describe('apply', () => {
   });
 });
 
-describe('applyInverse', () => {
-  it('should apply the inverse of the matrix to a point', () => {
+describe('applyInverse', (): void => {
+  it('should apply the inverse of the matrix to a point', (): void => {
     const matrix = new Matrix(2, 3, 4, 5, 6, 7);
     const point = new Point(1, 2);
     const result = new Point();
@@ -136,8 +136,8 @@ describe('applyInverse', () => {
   });
 });
 
-describe('translate', () => {
-  it('should add the translation values to the matrix', () => {
+describe('translate', (): void => {
+  it('should add the translation values to the matrix', (): void => {
     const matrix = new Matrix(2, 3, 4, 5, 6, 7);
     const x = 1;
     const y = 2;
@@ -147,8 +147,8 @@ describe('translate', () => {
   });
 });
 
-describe('scale', () => {
-  it('should multiply the scaling values with the matrix', () => {
+describe('scale', (): void => {
+  it('should multiply the scaling values with the matrix', (): void => {
     const matrix = new Matrix(2, 3, 4, 5, 6, 7);
     const x = 1;
     const y = 2;
@@ -162,8 +162,8 @@ describe('scale', () => {
   });
 });
 
-describe('rotate', () => {
-  it('should multiply the rotation values with the matrix', () => {
+describe('rotate', (): void => {
+  it('should multiply the rotation values with the matrix', (): void => {
     const matrix = new Matrix(2, 3, 4, 5, 6, 7);
     const angle = Math.PI / 2;
     matrix.rotate(angle);
@@ -173,8 +173,8 @@ describe('rotate', () => {
   });
 });
 
-describe('append', () => {
-  it('should add the second matrix to the first one', () => {
+describe('append', (): void => {
+  it('should add the second matrix to the first one', (): void => {
     const matrix1 = new Matrix(2, 3, 4, 5, 6, 7);
     const matrix2 = new Matrix(8, 9, 10, 11, 12, 13);
     matrix1.append(matrix2);
@@ -184,8 +184,8 @@ describe('append', () => {
   });
 });
 
-describe('identity', () => {
-  it('should set the values to the identity matrix', () => {
+describe('identity', (): void => {
+  it('should set the values to the identity matrix', (): void => {
     const matrix = new Matrix();
     matrix.identity();
     expect(matrix.a).toBe(1);
@@ -200,8 +200,8 @@ describe('identity', () => {
   });
 });
 
-describe('toArray', () => {
-  it('should return the values as an array', () => {
+describe('toArray', (): void => {
+  it('should return the values as an array', (): void => {
     const matrix = new Matrix(2, 3, 4, 5, 6, 7);
     const result = matrix.toArray();
     expect(result[0]).toBe(matrix.a);
@@ -221,7 +221,7 @@ describe('toArray', () => {
     expect(result2[5]).toBe(matrix.ty);
   });
 
-  it('should return the values as an array with transposed coordinates', () => {
+  it('should return the values as an array with transposed coordinates', (): void => {
     const matrix = new Matrix(2, 3, 4, 5, 6, 7);
     const result = matrix.toArray(true);
     expect(result[0]).toBe(matrix.a);

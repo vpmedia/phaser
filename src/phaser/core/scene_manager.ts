@@ -359,7 +359,7 @@ export class SceneManager {
    * Get whether the scene has been created.
    * @returns {boolean} True if the scene has been created, false otherwise.
    */
-  public get created() {
+  public get created(): boolean {
     return this._created;
   }
 }

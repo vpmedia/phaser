@@ -3,9 +3,9 @@ import { TOP_LEFT } from '../core/const.js';
 import { Point } from './point.js';
 import { Rectangle } from './rectangle.js';
 
-describe('Rectangle', () => {
-  describe('offset()', () => {
-    it('should update x and y properties when dx and dy are provided', () => {
+describe('Rectangle', (): void => {
+  describe('offset()', (): void => {
+    it('should update x and y properties when dx and dy are provided', (): void => {
       const rect = new Rectangle(0, 0, 10, 10);
       rect.offset(10, 20);
       expect(rect.x).toBe(10);
@@ -13,8 +13,8 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('offsetPoint()', () => {
-    it('should call offset() with point.x and point.y as arguments when a Point object is provided', () => {
+  describe('offsetPoint()', (): void => {
+    it('should call offset() with point.x and point.y as arguments when a Point object is provided', (): void => {
       const rect = new Rectangle(0, 0, 10, 10);
       const point = new Point(15, 25);
       rect.offsetPoint(point);
@@ -23,8 +23,8 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('setTo()', () => {
-    it('should update x, y, width and height properties when all arguments are provided', () => {
+  describe('setTo()', (): void => {
+    it('should update x, y, width and height properties when all arguments are provided', (): void => {
       const rect = new Rectangle(0, 0, 10, 10);
       rect.setTo(100, 200, 300, 400);
       expect(rect.x).toBe(100);
@@ -34,15 +34,15 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('scale()', () => {
-    it('should update width and height properties when x is provided', () => {
+  describe('scale()', (): void => {
+    it('should update width and height properties when x is provided', (): void => {
       const rect = new Rectangle(0, 0, 10, 10);
       rect.scale(2);
       expect(rect.width).toBe(20);
       expect(rect.height).toBe(20);
     });
 
-    it('should update width and height properties when both x and y are provided', () => {
+    it('should update width and height properties when both x and y are provided', (): void => {
       const rect = new Rectangle(0, 0, 10, 10);
       const point = new Point(3, 4);
       rect.scale(point.x, point.y);
@@ -51,8 +51,8 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('centerOn()', () => {
-    it('should update centerX and centerY properties when both x and y are provided', () => {
+  describe('centerOn()', (): void => {
+    it('should update centerX and centerY properties when both x and y are provided', (): void => {
       const rect = new Rectangle(0, 0, 10, 10);
       const point = new Point(150, 250);
       rect.centerOn(point.x, point.y);
@@ -61,8 +61,8 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('floor()', () => {
-    it('should update x and y properties by rounding down', () => {
+  describe('floor()', (): void => {
+    it('should update x and y properties by rounding down', (): void => {
       const rect = new Rectangle(0, 0, 10, 10);
       rect.floor();
       expect(rect.x).toBe(Math.floor(rect.x));
@@ -70,8 +70,8 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('floorAll()', () => {
-    it('should update x, y, width and height properties by rounding down', () => {
+  describe('floorAll()', (): void => {
+    it('should update x, y, width and height properties by rounding down', (): void => {
       const rect = new Rectangle(0, 0, 10, 10);
       rect.floorAll();
       expect(rect.x).toBe(Math.floor(rect.x));
@@ -81,8 +81,8 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('ceil()', () => {
-    it('should update x and y properties by rounding up', () => {
+  describe('ceil()', (): void => {
+    it('should update x and y properties by rounding up', (): void => {
       const rect = new Rectangle(0, 0, 10, 10);
       rect.ceil();
       expect(rect.x).toBe(Math.ceil(rect.x));
@@ -90,8 +90,8 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('ceilAll()', () => {
-    it('should update x, y, width and height properties by rounding up', () => {
+  describe('ceilAll()', (): void => {
+    it('should update x, y, width and height properties by rounding up', (): void => {
       const rect = new Rectangle(0, 0, 10, 10);
       rect.ceilAll();
       expect(rect.x).toBe(Math.ceil(rect.x));
@@ -101,8 +101,8 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('copyFrom()', () => {
-    it('should return a new Rectangle object with the same properties as the provided rectangle', () => {
+  describe('copyFrom()', (): void => {
+    it('should return a new Rectangle object with the same properties as the provided rectangle', (): void => {
       const rect = new Rectangle(0, 0, 10, 10);
       const source = new Rectangle();
       source.setTo(500, 600, 700, 800);
@@ -114,8 +114,8 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('copyTo()', () => {
-    it('should update the provided rectangle with the same properties as this rectangle', () => {
+  describe('copyTo()', (): void => {
+    it('should update the provided rectangle with the same properties as this rectangle', (): void => {
       const rect = new Rectangle(0, 0, 10, 10);
       const dest = new Rectangle();
       rect.setTo(50, 60, 70, 80);
@@ -127,8 +127,8 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('inflate()', () => {
-    it('should call the inflate() function from another module with this rectangle and dx and dy as arguments', () => {
+  describe('inflate()', (): void => {
+    it('should call the inflate() function from another module with this rectangle and dx and dy as arguments', (): void => {
       const rect = new Rectangle(0, 0, 10, 10);
       const inflated = rect.inflate(10, 20);
       expect(inflated.x).toBe(-10);
@@ -136,8 +136,8 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('size()', () => {
-    it('should call the size() function from another module with this rectangle and an output point as arguments', () => {
+  describe('size()', (): void => {
+    it('should call the size() function from another module with this rectangle and an output point as arguments', (): void => {
       const rect = new Rectangle(0, 0, 10, 10);
       const point = new Point();
       const sized = rect.size(point);
@@ -146,8 +146,8 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('resize()', () => {
-    it('should update width and height properties when both x and y are provided', () => {
+  describe('resize()', (): void => {
+    it('should update width and height properties when both x and y are provided', (): void => {
       const rect = new Rectangle(0, 0, 10, 10);
       rect.resize(120, 140);
       expect(rect.width).toBe(120);
@@ -155,8 +155,8 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('clone()', () => {
-    it('should return a new Rectangle object with the same properties as this rectangle', () => {
+  describe('clone()', (): void => {
+    it('should return a new Rectangle object with the same properties as this rectangle', (): void => {
       const rect = new Rectangle(0, 0, 10, 10);
       const clone = rect.clone();
       expect(clone.x).toBe(rect.x);
@@ -166,15 +166,15 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('contains()', () => {
-    it('should return true if the point x, y is within this rectangle', () => {
+  describe('contains()', (): void => {
+    it('should return true if the point x, y is within this rectangle', (): void => {
       const rect = new Rectangle(0, 0, 10, 10);
       rect.setTo(100, 200, 300, 400);
       const contains = rect.contains(150, 250);
       expect(contains).toBe(true);
     });
 
-    it('should return false if the point x, y is outside this rectangle', () => {
+    it('should return false if the point x, y is outside this rectangle', (): void => {
       const rect = new Rectangle(0, 0, 10, 10);
       rect.setTo(100, 200, 300, 400);
       const contains = rect.contains(500, 600);
@@ -182,8 +182,8 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('containsRect()', () => {
-    it('should return true if the rectangle b is within this rectangle', () => {
+  describe('containsRect()', (): void => {
+    it('should return true if the rectangle b is within this rectangle', (): void => {
       const rect = new Rectangle(0, 0, 10, 10);
       const source = new Rectangle();
       source.setTo(100, 200, 300, 400);
@@ -191,7 +191,7 @@ describe('Rectangle', () => {
       expect(contains).toBe(false);
     });
 
-    it('should return false if the rectangle b is outside this rectangle', () => {
+    it('should return false if the rectangle b is outside this rectangle', (): void => {
       const rect = new Rectangle(0, 0, 10, 10);
       const source = new Rectangle();
       source.setTo(-500, -600, 700, 800);
@@ -200,8 +200,8 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('equals()', () => {
-    it('should return true if the rectangle b has the same properties as this rectangle', () => {
+  describe('equals()', (): void => {
+    it('should return true if the rectangle b has the same properties as this rectangle', (): void => {
       const rect = new Rectangle(0, 0, 10, 10);
       const source = new Rectangle();
       source.setTo(100, 200, 300, 400);
@@ -209,7 +209,7 @@ describe('Rectangle', () => {
       expect(equals).toBe(false);
     });
 
-    it('should return false if the rectangle b does not have the same properties as this rectangle', () => {
+    it('should return false if the rectangle b does not have the same properties as this rectangle', (): void => {
       const rect = new Rectangle(0, 0, 10, 10);
       const source = new Rectangle();
       source.setTo(-500, -600, 700, 800);
@@ -218,8 +218,8 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('intersection()', () => {
-    it('should return a new Rectangle object that represents the intersection of this rectangle and b', () => {
+  describe('intersection()', (): void => {
+    it('should return a new Rectangle object that represents the intersection of this rectangle and b', (): void => {
       const rect = new Rectangle(0, 0, 10, 10);
       const source = new Rectangle();
       source.setTo(100, 200, 300, 400);
@@ -231,8 +231,8 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('intersects()', () => {
-    it('should return true if the rectangle b intersects with this rectangle', () => {
+  describe('intersects()', (): void => {
+    it('should return true if the rectangle b intersects with this rectangle', (): void => {
       const rect = new Rectangle(0, 0, 10, 10);
       const source = new Rectangle();
       source.setTo(100, 200, 300, 400);
@@ -240,7 +240,7 @@ describe('Rectangle', () => {
       expect(intersects).toBe(false);
     });
 
-    it('should return false if the rectangle b does not intersect with this rectangle', () => {
+    it('should return false if the rectangle b does not intersect with this rectangle', (): void => {
       const rect = new Rectangle(0, 0, 10, 10);
       const source = new Rectangle();
       source.setTo(-500, -600, 700, 800);
@@ -249,8 +249,8 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('intersectsRaw()', () => {
-    it('should return true if the rectangle b intersects with this rectangle at left, right, top and bottom', () => {
+  describe('intersectsRaw()', (): void => {
+    it('should return true if the rectangle b intersects with this rectangle at left, right, top and bottom', (): void => {
       const rect = new Rectangle(0, 0, 10, 10);
       const source = new Rectangle();
       source.setTo(100, 200, 300, 400);
@@ -258,7 +258,7 @@ describe('Rectangle', () => {
       expect(intersects).toBe(false);
     });
 
-    it('should return false if the rectangle b does not intersect with this rectangle at left, right, top and bottom', () => {
+    it('should return false if the rectangle b does not intersect with this rectangle at left, right, top and bottom', (): void => {
       const rect = new Rectangle(0, 0, 10, 10);
       const source = new Rectangle();
       source.setTo(-500, -600, 700, 800);
@@ -267,8 +267,8 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('union()', () => {
-    it('should return a new Rectangle object that represents the union of this rectangle and b', () => {
+  describe('union()', (): void => {
+    it('should return a new Rectangle object that represents the union of this rectangle and b', (): void => {
       const rect = new Rectangle(0, 0, 10, 10);
       const source = new Rectangle();
       source.setTo(100, 200, 300, 400);
@@ -280,8 +280,8 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('random()', () => {
-    it('should return a new Point object with x and y coordinates within this rectangle', () => {
+  describe('random()', (): void => {
+    it('should return a new Point object with x and y coordinates within this rectangle', (): void => {
       const rect = new Rectangle(0, 0, 10, 10);
       const random = rect.random();
       expect(random.x >= rect.left && random.x <= rect.right).toBe(true);
@@ -289,8 +289,8 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('getPoint()', () => {
-    it('should return a new Point object at the specified position within this rectangle', () => {
+  describe('getPoint()', (): void => {
+    it('should return a new Point object at the specified position within this rectangle', (): void => {
       const rect = new Rectangle(0, 0, 10, 10);
       const point = rect.getPoint(TOP_LEFT);
       expect(point.x).toBe(rect.left);
@@ -298,8 +298,8 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('toString()', () => {
-    it('should return a string representation of this rectangle', () => {
+  describe('toString()', (): void => {
+    it('should return a string representation of this rectangle', (): void => {
       const rect = new Rectangle(0, 0, 10, 10);
       const string = rect.toString();
       expect(string).toContain(`x=${rect.x}`);
@@ -309,24 +309,24 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('halfWidth', () => {
-    it('should return half the width of this rectangle', () => {
+  describe('halfWidth', (): void => {
+    it('should return half the width of this rectangle', (): void => {
       const rect = new Rectangle(0, 0, 10, 10);
       const half = rect.halfWidth;
       expect(half).toBe(Math.round(rect.width / 2));
     });
   });
 
-  describe('halfHeight', () => {
-    it('should return half the height of this rectangle', () => {
+  describe('halfHeight', (): void => {
+    it('should return half the height of this rectangle', (): void => {
       const rect = new Rectangle(0, 0, 10, 10);
       const half = rect.halfHeight;
       expect(half).toBe(Math.round(rect.height / 2));
     });
   });
 
-  describe('top', () => {
-    it('should get and set the top coordinate of this rectangle', () => {
+  describe('top', (): void => {
+    it('should get and set the top coordinate of this rectangle', (): void => {
       const rect = new Rectangle(0, 0, 10, 10);
       const { top } = rect;
       expect(top).toBe(rect.y);
@@ -335,8 +335,8 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('left', () => {
-    it('should get and set the left coordinate of this rectangle', () => {
+  describe('left', (): void => {
+    it('should get and set the left coordinate of this rectangle', (): void => {
       const rect = new Rectangle(0, 0, 10, 10);
       const { left } = rect;
       expect(left).toBe(rect.x);
@@ -345,8 +345,8 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('right', () => {
-    it('should get and set the right coordinate of this rectangle', () => {
+  describe('right', (): void => {
+    it('should get and set the right coordinate of this rectangle', (): void => {
       const rect = new Rectangle(0, 0, 10, 10);
       const { right } = rect;
       expect(right).toBe(rect.x + rect.width);
@@ -355,8 +355,8 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('bottom', () => {
-    it('should get and set the bottom coordinate of this rectangle', () => {
+  describe('bottom', (): void => {
+    it('should get and set the bottom coordinate of this rectangle', (): void => {
       const rect = new Rectangle(0, 0, 10, 10);
       const { bottom } = rect;
       expect(bottom).toBe(rect.y + rect.height);
@@ -365,8 +365,8 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('topLeft', () => {
-    it('should get and set the top-left coordinates of this rectangle', () => {
+  describe('topLeft', (): void => {
+    it('should get and set the top-left coordinates of this rectangle', (): void => {
       const rect = new Rectangle(0, 0, 10, 10);
       const { topLeft } = rect;
       expect(topLeft.x).toBe(rect.left);
@@ -377,8 +377,8 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('topRight', () => {
-    it('should get and set the top-right coordinates of this rectangle', () => {
+  describe('topRight', (): void => {
+    it('should get and set the top-right coordinates of this rectangle', (): void => {
       const rect = new Rectangle(0, 0, 10, 10);
       const { topRight } = rect;
       expect(topRight.x).toBe(rect.right);
@@ -389,8 +389,8 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('bottomLeft', () => {
-    it('should get and set the bottom-left coordinates of this rectangle', () => {
+  describe('bottomLeft', (): void => {
+    it('should get and set the bottom-left coordinates of this rectangle', (): void => {
       const rect = new Rectangle(0, 0, 10, 10);
       const { bottomLeft } = rect;
       expect(bottomLeft.x).toBe(rect.left);
@@ -401,8 +401,8 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('bottomRight', () => {
-    it('should get and set the bottom-right coordinates of this rectangle', () => {
+  describe('bottomRight', (): void => {
+    it('should get and set the bottom-right coordinates of this rectangle', (): void => {
       const rect = new Rectangle(0, 0, 10, 10);
       const { bottomRight } = rect;
       expect(bottomRight.x).toBe(rect.right);
@@ -413,8 +413,8 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('centerX', () => {
-    it('should get and set the center x coordinate of this rectangle', () => {
+  describe('centerX', (): void => {
+    it('should get and set the center x coordinate of this rectangle', (): void => {
       const rect = new Rectangle(0, 0, 10, 10);
       const { centerX } = rect;
       expect(centerX).toBe(rect.x + rect.halfWidth);
@@ -423,8 +423,8 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('centerY', () => {
-    it('should get and set the center y coordinate of this rectangle', () => {
+  describe('centerY', (): void => {
+    it('should get and set the center y coordinate of this rectangle', (): void => {
       const rect = new Rectangle(0, 0, 10, 10);
       const { centerY } = rect;
       expect(centerY).toBe(rect.y + rect.halfHeight);
@@ -433,24 +433,24 @@ describe('Rectangle', () => {
     });
   });
 
-  describe('randomX', () => {
-    it('should return a random x coordinate within this rectangle', () => {
+  describe('randomX', (): void => {
+    it('should return a random x coordinate within this rectangle', (): void => {
       const rect = new Rectangle(0, 0, 10, 10);
       const { randomX } = rect;
       expect(randomX >= rect.left && randomX <= rect.right).toBe(true);
     });
   });
 
-  describe('randomY', () => {
-    it('should return a random y coordinate within this rectangle', () => {
+  describe('randomY', (): void => {
+    it('should return a random y coordinate within this rectangle', (): void => {
       const rect = new Rectangle(0, 0, 10, 10);
       const { randomY } = rect;
       expect(randomY >= rect.top && randomY <= rect.bottom).toBe(true);
     });
   });
 
-  describe('empty', () => {
-    it('should get and set whether this rectangle is empty or not', () => {
+  describe('empty', (): void => {
+    it('should get and set whether this rectangle is empty or not', (): void => {
       const rect = new Rectangle(0, 0, 10, 10);
       const { empty } = rect;
       expect(empty).toBe(!rect.width || !rect.height);

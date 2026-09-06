@@ -127,14 +127,14 @@ export class Stage extends DisplayObject {
    * Gets the background color of the stage.
    * @returns {number} The background color.
    */
-  public get backgroundColor() {
+  public get backgroundColor(): number {
     return this._bgColor.color;
   }
 
   /**
    * Sets the background color of the stage.
    */
-  public set backgroundColor(value) {
+  public set backgroundColor(value: number) {
     this.setBackgroundColor(value);
   }
 
@@ -149,7 +149,7 @@ export class Stage extends DisplayObject {
   /**
    * Sets whether texture smoothing is enabled.
    */
-  public set smoothed(value) {
+  public set smoothed(value: boolean) {
     globalThis.PhaserRegistry.TEXTURE_SCALE_MODE = value ? SCALE_LINEAR : SCALE_NEAREST;
   }
 }

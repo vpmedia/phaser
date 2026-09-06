@@ -31,32 +31,32 @@ const SQUARE_WITH_HOLE = [
   10, 10, 20, 10, 20, 20, 10, 20,
 ];
 
-describe('earcut triangulate', () => {
-  describe('simple polygons', () => {
-    it('cuts a square into two triangles', () => {
+describe('earcut triangulate', (): void => {
+  describe('simple polygons', (): void => {
+    it('cuts a square into two triangles', (): void => {
       const triangles = triangulate(SQUARE, null, 2);
       expect(triangles).toHaveLength(6);
       expect(coveredArea(SQUARE, triangles)).toBeCloseTo(100, 6);
     });
 
-    it('leaves a triangle as one triangle', () => {
+    it('leaves a triangle as one triangle', (): void => {
       const triangles = triangulate(TRIANGLE, null, 2);
       expect(triangles).toHaveLength(3);
       expect(coveredArea(TRIANGLE, triangles)).toBeCloseTo(50, 6);
     });
 
-    it('covers an L shape exactly', () => {
+    it('covers an L shape exactly', (): void => {
       const triangles = triangulate(L_SHAPE, null, 2);
       expect(triangles).toHaveLength(12);
       expect(coveredArea(L_SHAPE, triangles)).toBeCloseTo(300, 6);
     });
 
-    it('covers a concave polygon exactly', () => {
+    it('covers a concave polygon exactly', (): void => {
       const triangles = triangulate(CONCAVE, null, 2);
       expect(coveredArea(CONCAVE, triangles)).toBeCloseTo(300, 6);
     });
 
-    it('emits indices in range and in whole triangles', () => {
+    it('emits indices in range and in whole triangles', (): void => {
       const triangles = triangulate(L_SHAPE, null, 2);
       expect(triangles.length % 3).toBe(0);
       for (const index of triangles) {
@@ -66,21 +66,21 @@ describe('earcut triangulate', () => {
     });
   });
 
-  describe('polygons with holes', () => {
-    it('covers the outer ring minus the hole', () => {
+  describe('polygons with holes', (): void => {
+    it('covers the outer ring minus the hole', (): void => {
       const triangles = triangulate(SQUARE_WITH_HOLE, [4], 2);
       expect(coveredArea(SQUARE_WITH_HOLE, triangles)).toBeCloseTo(900 - 100, 6);
     });
 
-    it('emits whole triangles', () => {
+    it('emits whole triangles', (): void => {
       const triangles = triangulate(SQUARE_WITH_HOLE, [4], 2);
       expect(triangles.length % 3).toBe(0);
       expect(triangles.length).toBeGreaterThan(0);
     });
   });
 
-  describe('winding order', () => {
-    it('gives the same coverage whichever way the ring is wound', () => {
+  describe('winding order', (): void => {
+    it('gives the same coverage whichever way the ring is wound', (): void => {
       const clockwise = [0, 0, 0, 10, 10, 10, 10, 0];
       const counter = [0, 0, 10, 0, 10, 10, 0, 10];
       expect(coveredArea(clockwise, triangulate(clockwise, null, 2))).toBeCloseTo(
@@ -90,32 +90,32 @@ describe('earcut triangulate', () => {
     });
   });
 
-  describe('degenerate input', () => {
-    it('returns nothing for an empty ring', () => {
+  describe('degenerate input', (): void => {
+    it('returns nothing for an empty ring', (): void => {
       expect(triangulate([], null, 2)).toStrictEqual([]);
     });
 
-    it('returns nothing for a single point', () => {
+    it('returns nothing for a single point', (): void => {
       expect(triangulate([1, 1], null, 2)).toStrictEqual([]);
     });
 
-    it('returns nothing for a two point ring', () => {
+    it('returns nothing for a two point ring', (): void => {
       expect(triangulate([0, 0, 10, 10], null, 2)).toStrictEqual([]);
     });
 
-    it('returns nothing for a zero area ring', () => {
+    it('returns nothing for a zero area ring', (): void => {
       expect(triangulate([0, 0, 10, 10, 20, 20], null, 2)).toStrictEqual([]);
     });
 
-    it('drops duplicated consecutive points', () => {
+    it('drops duplicated consecutive points', (): void => {
       const withDuplicate = [0, 0, 0, 0, 10, 0, 10, 10, 0, 10];
       expect(coveredArea(withDuplicate, triangulate(withDuplicate, null, 2))).toBeCloseTo(100, 6);
     });
   });
 
-  describe('large rings', () => {
+  describe('large rings', (): void => {
     // Past 80 vertices earcut switches to the z-order curve hash, a separate code path.
-    it('covers a many sided polygon exactly, exercising the hashed path', () => {
+    it('covers a many sided polygon exactly, exercising the hashed path', (): void => {
       const sides = 200;
       const radius = 100;
       const ring: number[] = [];

@@ -292,7 +292,7 @@ export class Input {
    * @param {MouseEvent|TouchEvent|PointerEvent} event - TBD.
    * @returns {Pointer} TBD.
    */
-  public startPointer(event: InputEvent) {
+  public startPointer(event: InputEvent): Pointer | null {
     if (this.maxPointers >= 0 && this.countActivePointers(this.maxPointers) >= this.maxPointers) {
       return null;
     }
@@ -316,7 +316,7 @@ export class Input {
    * @param {MouseEvent|TouchEvent|PointerEvent} event - TBD.
    * @returns {Pointer} TBD.
    */
-  public updatePointer(event: InputEvent) {
+  public updatePointer(event: InputEvent): Pointer | null {
     if (this.pointer1.active && this.pointer1.identifier === event.identifier) {
       return this.pointer1.move(event);
     }
@@ -337,7 +337,7 @@ export class Input {
    * @param {MouseEvent|TouchEvent|PointerEvent} event - TBD.
    * @returns {Pointer} TBD.
    */
-  public stopPointer(event: InputEvent) {
+  public stopPointer(event: InputEvent): Pointer | null {
     if (this.pointer1.active && this.pointer1.identifier === event.identifier) {
       return this.pointer1.stop(event);
     }
@@ -490,7 +490,7 @@ export class Input {
   /**
    * TBD.
    */
-  public set x(value) {
+  public set x(value: number) {
     this._x = Math.floor(value);
   }
 
@@ -505,7 +505,7 @@ export class Input {
   /**
    * TBD.
    */
-  public set y(value) {
+  public set y(value: number) {
     this._y = Math.floor(value);
   }
 

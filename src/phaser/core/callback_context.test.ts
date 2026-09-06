@@ -15,9 +15,9 @@ class Consumer {
   }
 }
 
-describe('callback contexts', () => {
-  describe('Signal', () => {
-    it('accepts an arbitrary receiver on add', () => {
+describe('callback contexts', (): void => {
+  describe('Signal', (): void => {
+    it('accepts an arbitrary receiver on add', (): void => {
       const signal = new Signal();
       const consumer = new Consumer();
       signal.add(consumer.handler, consumer);
@@ -25,7 +25,7 @@ describe('callback contexts', () => {
       expect(consumer.seen).toBe('payload');
     });
 
-    it('accepts an arbitrary receiver on addOnce', () => {
+    it('accepts an arbitrary receiver on addOnce', (): void => {
       const signal = new Signal();
       const consumer = new Consumer();
       signal.addOnce(consumer.handler, consumer);
@@ -33,7 +33,7 @@ describe('callback contexts', () => {
       expect(consumer.seen).toBe('once');
     });
 
-    it('matches the receiver on remove', () => {
+    it('matches the receiver on remove', (): void => {
       const signal = new Signal();
       const consumer = new Consumer();
       signal.add(consumer.handler, consumer);
@@ -41,7 +41,7 @@ describe('callback contexts', () => {
       expect(signal.getNumListeners()).toBe(0);
     });
 
-    it('matches the receiver on removeAll', () => {
+    it('matches the receiver on removeAll', (): void => {
       const signal = new Signal();
       const consumer = new Consumer();
       signal.add(consumer.handler, consumer);
@@ -50,7 +50,7 @@ describe('callback contexts', () => {
       expect(signal.getNumListeners()).toBe(1);
     });
 
-    it('reports whether a listener is bound to a receiver', () => {
+    it('reports whether a listener is bound to a receiver', (): void => {
       const signal = new Signal();
       const consumer = new Consumer();
       signal.add(consumer.handler, consumer);
@@ -58,7 +58,7 @@ describe('callback contexts', () => {
       expect(signal.has(consumer.handler, new Consumer())).toBe(false);
     });
 
-    it('keeps separate bindings per receiver', () => {
+    it('keeps separate bindings per receiver', (): void => {
       const signal = new Signal();
       const first = new Consumer();
       const second = new Consumer();

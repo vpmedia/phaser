@@ -484,14 +484,14 @@ export class SoundManager {
    * Gets the muted state of the sound manager.
    * @returns {boolean} True if the manager is muted, false otherwise.
    */
-  public get mute() {
+  public get mute(): boolean {
     return this._muted;
   }
 
   /**
    * Sets the muted state of the sound manager.
    */
-  public set mute(value) {
+  public set mute(value: boolean) {
     if (value || false) {
       if (this._muted) {
         return;
@@ -511,14 +511,14 @@ export class SoundManager {
    * Gets the volume level of the sound manager.
    * @returns {number} The volume level (0.0 to 1.0).
    */
-  public get volume() {
+  public get volume(): number {
     return this._volume;
   }
 
   /**
    * Sets the volume level of the sound manager.
    */
-  public set volume(value) {
+  public set volume(value: number) {
     if (value < 0) {
       value = 0;
     } else if (value > 1) {

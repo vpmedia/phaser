@@ -9,11 +9,11 @@ const createGame = (): Game => ({ renderer: { resolution: 1 } }) as unknown as G
 
 const createGraphics = (): Graphics => new Graphics(createGame());
 
-describe('Graphics', () => {
-  describe('containsPoint', () => {
+describe('Graphics', (): void => {
+  describe('containsPoint', (): void => {
     // The index never advanced here, so any filled shape that did not contain the point spun
     // forever. A vitest timeout is the only way a hang shows up as a failure.
-    it('returns false for a point outside a filled shape instead of hanging', { timeout: 2000 }, () => {
+    it('returns false for a point outside a filled shape instead of hanging', { timeout: 2000 }, (): void => {
       const graphics = createGraphics();
       graphics.beginFill(0xff0000);
       graphics.drawRect(0, 0, 10, 10);
@@ -21,7 +21,7 @@ describe('Graphics', () => {
       expect(graphics.containsPoint(new Point(100, 100), new Point())).toBe(false);
     });
 
-    it('returns true for a point inside a filled shape', { timeout: 2000 }, () => {
+    it('returns true for a point inside a filled shape', { timeout: 2000 }, (): void => {
       const graphics = createGraphics();
       graphics.beginFill(0xff0000);
       graphics.drawRect(0, 0, 10, 10);
@@ -29,7 +29,7 @@ describe('Graphics', () => {
       expect(graphics.containsPoint(new Point(5, 5), new Point())).toBe(true);
     });
 
-    it('walks past a non-matching shape to a later matching one', { timeout: 2000 }, () => {
+    it('walks past a non-matching shape to a later matching one', { timeout: 2000 }, (): void => {
       const graphics = createGraphics();
       graphics.beginFill(0xff0000);
       graphics.drawRect(0, 0, 10, 10);
@@ -38,33 +38,33 @@ describe('Graphics', () => {
       expect(graphics.containsPoint(new Point(105, 105), new Point())).toBe(true);
     });
 
-    it('ignores unfilled shapes', { timeout: 2000 }, () => {
+    it('ignores unfilled shapes', { timeout: 2000 }, (): void => {
       const graphics = createGraphics();
       graphics.lineStyle(1, 0x00ff00);
       graphics.drawRect(0, 0, 10, 10);
       expect(graphics.containsPoint(new Point(5, 5), new Point())).toBe(false);
     });
 
-    it('returns false when nothing has been drawn', { timeout: 2000 }, () => {
+    it('returns false when nothing has been drawn', { timeout: 2000 }, (): void => {
       expect(createGraphics().containsPoint(new Point(0, 0), new Point())).toBe(false);
     });
   });
 
-  describe('drawShape', () => {
-    it('records a polygon as the current path', () => {
+  describe('drawShape', (): void => {
+    it('records a polygon as the current path', (): void => {
       const graphics = createGraphics();
       const data = graphics.drawShape(new Polygon([0, 0, 10, 0, 10, 10]));
       expect(graphics.currentPath).toBe(data);
       expect(data.shape).toBeInstanceOf(Polygon);
     });
 
-    it('does not record a rectangle as the current path', () => {
+    it('does not record a rectangle as the current path', (): void => {
       const graphics = createGraphics();
       graphics.drawShape(new Rectangle(0, 0, 10, 10));
       expect(graphics.currentPath).toBeNull();
     });
 
-    it('carries the current fill and line style onto the data', () => {
+    it('carries the current fill and line style onto the data', (): void => {
       const graphics = createGraphics();
       graphics.lineStyle(4, 0x00ff00, 0.5);
       graphics.beginFill(0xff0000, 0.25);
@@ -77,15 +77,15 @@ describe('Graphics', () => {
       expect(data.fill).toBe(true);
     });
 
-    it('flattens a polygon so the builders see numbers', () => {
+    it('flattens a polygon so the builders see numbers', (): void => {
       const graphics = createGraphics();
       const data = graphics.drawShape(new Polygon([new Point(0, 0), new Point(10, 0), new Point(10, 10)]));
-      expect((data.shape as Polygon)._points.every((value) => typeof value === 'number')).toBe(true);
+      expect((data.shape as Polygon)._points.every((value): boolean => typeof value === 'number')).toBe(true);
     });
   });
 
-  describe('path building', () => {
-    it('accumulates points through moveTo and lineTo', () => {
+  describe('path building', (): void => {
+    it('accumulates points through moveTo and lineTo', (): void => {
       const graphics = createGraphics();
       graphics.moveTo(0, 0);
       graphics.lineTo(10, 0);
@@ -93,15 +93,15 @@ describe('Graphics', () => {
       expect(graphics.currentPath?.shape.points).toStrictEqual([0, 0, 10, 0, 10, 10]);
     });
 
-    it('starts a path at the origin when lineTo comes first', () => {
+    it('starts a path at the origin when lineTo comes first', (): void => {
       const graphics = createGraphics();
       graphics.lineTo(10, 10);
       expect(graphics.currentPath?.shape.points).toStrictEqual([0, 0, 10, 10]);
     });
   });
 
-  describe('endFill', () => {
-    it('stops filling subsequent shapes', () => {
+  describe('endFill', (): void => {
+    it('stops filling subsequent shapes', (): void => {
       const graphics = createGraphics();
       graphics.beginFill(0xff0000);
       graphics.endFill();
@@ -109,22 +109,22 @@ describe('Graphics', () => {
     });
   });
 
-  describe('drawTriangle', () => {
-    it('records the triangle as a polygon', () => {
+  describe('drawTriangle', (): void => {
+    it('records the triangle as a polygon', (): void => {
       const graphics = createGraphics();
       graphics.drawTriangle([new Point(0, 0), new Point(10, 0), new Point(0, 10)]);
       expect(graphics.graphicsData).toHaveLength(1);
       expect(graphics.graphicsData[0]?.shape).toBeInstanceOf(Polygon);
     });
 
-    it('keeps a front-facing triangle when culling', () => {
+    it('keeps a front-facing triangle when culling', (): void => {
       const graphics = createGraphics();
       graphics.drawTriangle([new Point(0, 0), new Point(10, 0), new Point(0, 10)], true);
       graphics.drawTriangle([new Point(0, 0), new Point(0, 10), new Point(10, 0)], true);
       expect(graphics.graphicsData).toHaveLength(1);
     });
 
-    it('draws both windings when culling is off', () => {
+    it('draws both windings when culling is off', (): void => {
       const graphics = createGraphics();
       graphics.drawTriangle([new Point(0, 0), new Point(10, 0), new Point(0, 10)]);
       graphics.drawTriangle([new Point(0, 0), new Point(0, 10), new Point(10, 0)]);
@@ -132,35 +132,35 @@ describe('Graphics', () => {
     });
   });
 
-  describe('drawTriangles', () => {
-    it('reads a flat coordinate list as triangles', () => {
+  describe('drawTriangles', (): void => {
+    it('reads a flat coordinate list as triangles', (): void => {
       const graphics = createGraphics();
       graphics.drawTriangles([0, 0, 10, 0, 0, 10, 20, 20, 30, 20, 20, 30], null as unknown as number[]);
       expect(graphics.graphicsData).toHaveLength(2);
     });
 
-    it('reads a point list as triangles', () => {
+    it('reads a point list as triangles', (): void => {
       const graphics = createGraphics();
       graphics.drawTriangles([new Point(0, 0), new Point(10, 0), new Point(0, 10)], null as unknown as number[]);
       expect(graphics.graphicsData).toHaveLength(1);
     });
 
-    it('follows an index list over a flat coordinate list', () => {
+    it('follows an index list over a flat coordinate list', (): void => {
       const graphics = createGraphics();
       graphics.drawTriangles([0, 0, 10, 0, 0, 10], [0, 1, 2]);
       expect(graphics.graphicsData).toHaveLength(1);
       expect((graphics.graphicsData[0]!.shape as Polygon).toNumberArray()).toStrictEqual([0, 0, 10, 0, 0, 10]);
     });
 
-    it('follows an index list over a point list', () => {
+    it('follows an index list over a point list', (): void => {
       const graphics = createGraphics();
       graphics.drawTriangles([new Point(0, 0), new Point(10, 0), new Point(0, 10)], [0, 1, 2]);
       expect(graphics.graphicsData).toHaveLength(1);
     });
   });
 
-  describe('clear', () => {
-    it('drops the recorded graphics data', () => {
+  describe('clear', (): void => {
+    it('drops the recorded graphics data', (): void => {
       const graphics = createGraphics();
       graphics.beginFill(0xff0000);
       graphics.drawRect(0, 0, 10, 10);

@@ -99,9 +99,9 @@
         "allowIndexSignaturePropertyAccess": true
       }
     ],
-    "typescript/explicit-function-return-type": "off",
+    "typescript/explicit-function-return-type": "error",
     "typescript/explicit-member-accessibility": "error",
-    "typescript/explicit-module-boundary-types": "off",
+    "typescript/explicit-module-boundary-types": "error",
     "typescript/no-base-to-string": "error",
     "typescript/no-deprecated": "error",
     "typescript/no-dynamic-delete": "off",

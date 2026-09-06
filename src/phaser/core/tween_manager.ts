@@ -106,7 +106,7 @@ export class TweenManager {
    * Get all tweens managed by this manager.
    * @returns {Tween[]} An array of all active tweens.
    */
-  public getAll() {
+  public getAll(): Tween[] {
     return this._tweens;
   }
 

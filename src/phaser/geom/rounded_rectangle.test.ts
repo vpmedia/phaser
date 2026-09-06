@@ -1,8 +1,8 @@
 import { expect, describe, it } from 'vitest';
 import { RoundedRectangle } from './rounded_rectangle.js';
 
-describe('RoundedRectangle Constructor', () => {
-  it('should create a new instance with correct properties', () => {
+describe('RoundedRectangle Constructor', (): void => {
+  it('should create a new instance with correct properties', (): void => {
     const rectangle = new RoundedRectangle(10, 20, 30, 40, 5);
     expect(rectangle.x).toBe(10);
     expect(rectangle.y).toBe(20);
@@ -12,8 +12,8 @@ describe('RoundedRectangle Constructor', () => {
   });
 });
 
-describe('RoundedRectangle contains Method', () => {
-  it('should return false for zero width or height', () => {
+describe('RoundedRectangle contains Method', (): void => {
+  it('should return false for zero width or height', (): void => {
     const rectangle = new RoundedRectangle(10, 20, 0, 40, 5);
     expect(rectangle.contains(15, 25)).toBe(false);
 
@@ -21,12 +21,12 @@ describe('RoundedRectangle contains Method', () => {
     expect(rectangle2.contains(15, 25)).toBe(false);
   });
 
-  it('should return true for a point inside the rectangle', () => {
+  it('should return true for a point inside the rectangle', (): void => {
     const rectangle = new RoundedRectangle(10, 20, 30, 40, 5);
     expect(rectangle.contains(15, 25)).toBe(true);
   });
 
-  it("should return true for a point on the rectangle's edge", () => {
+  it("should return true for a point on the rectangle's edge", (): void => {
     const rectangle = new RoundedRectangle(10, 20, 30, 40, 5);
     expect(rectangle.contains(0, 25)).toBe(false);
     expect(rectangle.contains(30, 25)).toBe(true);
@@ -34,15 +34,15 @@ describe('RoundedRectangle contains Method', () => {
     expect(rectangle.contains(15, 40)).toBe(true);
   });
 
-  it('should return false for a point outside the rectangle', () => {
+  it('should return false for a point outside the rectangle', (): void => {
     const rectangle = new RoundedRectangle(10, 20, 30, 40, 5);
     expect(rectangle.contains(-1, -1)).toBe(false);
     expect(rectangle.contains(50, 60)).toBe(false);
   });
 });
 
-describe('RoundedRectangle clone Method', () => {
-  it('should create a deep copy of the original rectangle', () => {
+describe('RoundedRectangle clone Method', (): void => {
+  it('should create a deep copy of the original rectangle', (): void => {
     const original = new RoundedRectangle(10, 20, 30, 40, 5);
     const clone = original.clone();
     expect(clone.x).toBe(original.x);

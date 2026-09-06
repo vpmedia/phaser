@@ -275,7 +275,7 @@ export class Signal {
    * Get a bound version of the dispatch function.
    * @returns {Function} A function that will dispatch the signal with the correct context.
    */
-  public get boundDispatch() {
+  public get boundDispatch(): (...args: unknown[]) => void {
     this._boundDispatch ??= (...rest: unknown[]): void => {
       this.dispatch(...rest);
     };

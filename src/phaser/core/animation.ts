@@ -442,7 +442,7 @@ export class Animation {
    * Gets the total number of frames in this animation.
    * @returns {number} The total number of frames.
    */
-  public get frameTotal() {
+  public get frameTotal(): number {
     return this._frames.length;
   }
 

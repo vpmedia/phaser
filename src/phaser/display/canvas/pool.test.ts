@@ -1,20 +1,20 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { create, getFirst, getFree, getPool, getTotal, remove, removeByCanvas } from './pool.js';
 
-describe('canvas pool', () => {
-  beforeEach(() => {
+describe('canvas pool', (): void => {
+  beforeEach((): void => {
     getPool().length = 0;
   });
 
-  describe('getPool', () => {
-    it('lazily creates the backing array and returns the same one thereafter', () => {
+  describe('getPool', (): void => {
+    it('lazily creates the backing array and returns the same one thereafter', (): void => {
       expect(getPool()).toBe(getPool());
       expect(getPool()).toStrictEqual([]);
     });
   });
 
-  describe('create', () => {
-    it('adds a new entry when the pool is empty', () => {
+  describe('create', (): void => {
+    it('adds a new entry when the pool is empty', (): void => {
       const parent = { name: 'owner' };
       const canvas = create(parent);
       expect(getPool()).toHaveLength(1);
@@ -22,7 +22,7 @@ describe('canvas pool', () => {
       expect(getPool()[0]?.canvas).toBe(canvas);
     });
 
-    it('reuses a free entry instead of growing the pool', () => {
+    it('reuses a free entry instead of growing the pool', (): void => {
       const first = { name: 'first' };
       const canvas = create(first);
       remove(first);
@@ -32,7 +32,7 @@ describe('canvas pool', () => {
       expect(getPool()[0]?.parent).toBe(second);
     });
 
-    it('grows the pool when skipPool is set even if an entry is free', () => {
+    it('grows the pool when skipPool is set even if an entry is free', (): void => {
       const first = { name: 'first' };
       create(first);
       remove(first);
@@ -40,20 +40,20 @@ describe('canvas pool', () => {
       expect(getPool()).toHaveLength(2);
     });
 
-    it('applies the requested dimensions', () => {
+    it('applies the requested dimensions', (): void => {
       const canvas = create({ name: 'sized' }, 64, 32);
       expect(canvas.width).toBe(64);
       expect(canvas.height).toBe(32);
     });
   });
 
-  describe('getFirst', () => {
-    it('reports -1 when every entry is claimed', () => {
+  describe('getFirst', (): void => {
+    it('reports -1 when every entry is claimed', (): void => {
       create({ name: 'owner' });
       expect(getFirst()).toBe(-1);
     });
 
-    it('reports the index of the first free entry', () => {
+    it('reports the index of the first free entry', (): void => {
       create({ name: 'a' });
       const b = { name: 'b' };
       create(b);
@@ -63,8 +63,8 @@ describe('canvas pool', () => {
     });
   });
 
-  describe('remove', () => {
-    it('frees the entry and shrinks its canvas to 1x1', () => {
+  describe('remove', (): void => {
+    it('frees the entry and shrinks its canvas to 1x1', (): void => {
       const parent = { name: 'owner' };
       const canvas = create(parent, 100, 50);
       remove(parent);
@@ -73,17 +73,17 @@ describe('canvas pool', () => {
       expect(canvas.height).toBe(1);
     });
 
-    it('ignores a parent that owns nothing', () => {
+    it('ignores a parent that owns nothing', (): void => {
       create({ name: 'owner' });
-      expect(() => {
+      expect((): void => {
         remove({ name: 'stranger' });
       }).not.toThrow();
       expect(getPool()[0]?.parent).not.toBeNull();
     });
   });
 
-  describe('removeByCanvas', () => {
-    it('frees the entry holding that canvas', () => {
+  describe('removeByCanvas', (): void => {
+    it('frees the entry holding that canvas', (): void => {
       const canvas = create({ name: 'owner' }, 100, 50);
       removeByCanvas(canvas);
       expect(getPool()[0]?.parent).toBeNull();
@@ -91,8 +91,8 @@ describe('canvas pool', () => {
     });
   });
 
-  describe('getTotal and getFree', () => {
-    it('count claimed and unclaimed entries', () => {
+  describe('getTotal and getFree', (): void => {
+    it('count claimed and unclaimed entries', (): void => {
       const a = { name: 'a' };
       create(a);
       create({ name: 'b' });

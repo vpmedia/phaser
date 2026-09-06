@@ -182,7 +182,7 @@ export class Circle {
   /**
    * Sets the diameter of this circle.
    */
-  public set diameter(value) {
+  public set diameter(value: number) {
     if (value > 0) {
       this._diameter = value;
       this._radius = value * 0.5;
@@ -200,7 +200,7 @@ export class Circle {
   /**
    * Sets the radius of this circle.
    */
-  public set radius(value) {
+  public set radius(value: number) {
     if (value > 0) {
       this._radius = value;
       this._diameter = value * 2;
@@ -218,7 +218,7 @@ export class Circle {
   /**
    * Sets the left coordinate of this circle.
    */
-  public set left(value) {
+  public set left(value: number) {
     if (value > this.x) {
       this._radius = 0;
       this._diameter = 0;
@@ -238,7 +238,7 @@ export class Circle {
   /**
    * Sets the right coordinate of this circle.
    */
-  public set right(value) {
+  public set right(value: number) {
     if (value < this.x) {
       this._radius = 0;
       this._diameter = 0;
@@ -258,7 +258,7 @@ export class Circle {
   /**
    * Sets the top coordinate of this circle.
    */
-  public set top(value) {
+  public set top(value: number) {
     if (value > this.y) {
       this._radius = 0;
       this._diameter = 0;
@@ -278,7 +278,7 @@ export class Circle {
   /**
    * Sets the bottom coordinate of this circle.
    */
-  public set bottom(value) {
+  public set bottom(value: number) {
     if (value < this.y) {
       this._radius = 0;
       this._diameter = 0;
@@ -309,7 +309,7 @@ export class Circle {
   /**
    * Sets whether this circle is empty (zero diameter).
    */
-  public set empty(value) {
+  public set empty(value: boolean) {
     if (value) {
       this.setTo(0, 0, 0);
     }

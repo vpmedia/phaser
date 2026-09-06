@@ -23,29 +23,29 @@ const createStubGl = (options: StubOptions = {}) => {
     createShader: vi.fn(() => ({})),
     shaderSource: vi.fn(),
     compileShader: vi.fn(),
-    getShaderParameter: vi.fn(() => true),
-    getShaderInfoLog: vi.fn(() => ''),
-    createProgram: vi.fn(() => program),
+    getShaderParameter: vi.fn((): boolean => true),
+    getShaderInfoLog: vi.fn((): string => ''),
+    createProgram: vi.fn((): object | null => program),
     attachShader: vi.fn(),
     linkProgram: vi.fn(),
-    getProgramParameter: vi.fn(() => linkStatus),
-    getProgramInfoLog: vi.fn(() => 'link failed'),
+    getProgramParameter: vi.fn((): boolean => linkStatus),
+    getProgramInfoLog: vi.fn((): string => 'link failed'),
     useProgram,
     deleteProgram,
-    getUniformLocation: vi.fn((_program: unknown, name: string) => {
+    getUniformLocation: vi.fn((_program: unknown, name: string): object | undefined => {
       if (!uniformLocations.has(name)) {
         uniformLocations.set(name, { name });
       }
       return uniformLocations.get(name);
     }),
-    getAttribLocation: vi.fn((_program: unknown, name: string) => attribLocations[name] ?? 0),
+    getAttribLocation: vi.fn((_program: unknown, name: string): number => attribLocations[name] ?? 0),
   } as unknown as WebGLRenderingContext;
   return { gl, deleteProgram, useProgram };
 };
 
-describe('WebGL shaders', () => {
-  describe('PrimitiveShader', () => {
-    it('resolves its uniforms and attributes on construction', () => {
+describe('WebGL shaders', (): void => {
+  describe('PrimitiveShader', (): void => {
+    it('resolves its uniforms and attributes on construction', (): void => {
       const { gl } = createStubGl({ attribLocations: { aVertexPosition: 0, aColor: 1 } });
       const shader = new PrimitiveShader(gl);
       expect(shader.program).not.toBeNull();
@@ -53,7 +53,7 @@ describe('WebGL shaders', () => {
       expect(shader.attributes).toStrictEqual([0, 1]);
     });
 
-    it('releases the program on destroy', () => {
+    it('releases the program on destroy', (): void => {
       const { gl, deleteProgram } = createStubGl();
       const shader = new PrimitiveShader(gl);
       shader.destroy();
@@ -62,24 +62,24 @@ describe('WebGL shaders', () => {
       expect(shader.gl).toBeNull();
     });
 
-    it('leaves the program null when compilation fails', () => {
+    it('leaves the program null when compilation fails', (): void => {
       const { gl, useProgram } = createStubGl({ program: null });
       const shader = new PrimitiveShader(gl);
       expect(shader.program).toBeNull();
       expect(useProgram).not.toHaveBeenCalled();
     });
 
-    it('destroys cleanly after a failed compile', () => {
+    it('destroys cleanly after a failed compile', (): void => {
       const { gl } = createStubGl({ program: null });
       const shader = new PrimitiveShader(gl);
-      expect(() => {
+      expect((): void => {
         shader.destroy();
       }).not.toThrow();
     });
   });
 
-  describe('StripShader', () => {
-    it('resolves its uniforms and attributes on construction', () => {
+  describe('StripShader', (): void => {
+    it('resolves its uniforms and attributes on construction', (): void => {
       const { gl } = createStubGl({
         attribLocations: { aVertexPosition: 0, aTextureCoord: 1, aColor: 2 },
       });
@@ -89,7 +89,7 @@ describe('WebGL shaders', () => {
       expect(shader.translationMatrix).toBeDefined();
     });
 
-    it('clears its attributes on destroy', () => {
+    it('clears its attributes on destroy', (): void => {
       const { gl } = createStubGl();
       const shader = new StripShader(gl);
       shader.destroy();
@@ -97,8 +97,8 @@ describe('WebGL shaders', () => {
     });
   });
 
-  describe('ComplexPrimitiveShader', () => {
-    it('resolves the uniforms it declares', () => {
+  describe('ComplexPrimitiveShader', (): void => {
+    it('resolves the uniforms it declares', (): void => {
       const { gl } = createStubGl();
       const shader = new ComplexPrimitiveShader(gl);
       expect(shader.tintColor).toBeDefined();
@@ -106,7 +106,7 @@ describe('WebGL shaders', () => {
       expect(shader.flipY).toBeDefined();
     });
 
-    it('leaves colorAttribute unresolved, as the shader never reads aColor', () => {
+    it('leaves colorAttribute unresolved, as the shader never reads aColor', (): void => {
       const { gl } = createStubGl();
       const shader = new ComplexPrimitiveShader(gl);
       expect(shader.colorAttribute).toBeUndefined();
@@ -114,8 +114,8 @@ describe('WebGL shaders', () => {
     });
   });
 
-  describe('FastShader', () => {
-    it('resolves the full attribute set in batch order', () => {
+  describe('FastShader', (): void => {
+    it('resolves the full attribute set in batch order', (): void => {
       const { gl } = createStubGl({
         attribLocations: {
           aVertexPosition: 0,
@@ -130,13 +130,13 @@ describe('WebGL shaders', () => {
       expect(shader.attributes).toStrictEqual([0, 1, 2, 3, 4, 5]);
     });
 
-    it('falls back to slot 2 when the driver reports aColor as -1', () => {
+    it('falls back to slot 2 when the driver reports aColor as -1', (): void => {
       const { gl } = createStubGl({ attribLocations: { aColor: -1 } });
       const shader = new FastShader(gl);
       expect(shader.colorAttribute).toBe(2);
     });
 
-    it('releases the program and buffers on destroy', () => {
+    it('releases the program and buffers on destroy', (): void => {
       const { gl, deleteProgram } = createStubGl();
       const shader = new FastShader(gl);
       shader.destroy();

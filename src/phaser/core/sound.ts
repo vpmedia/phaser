@@ -543,7 +543,7 @@ export class Sound {
    * Gets the muted state of the sound.
    * @returns {boolean} True if the sound is muted, false otherwise.
    */
-  public get mute() {
+  public get mute(): boolean | null {
     return this._muted || this.game.sound.mute;
   }
 
@@ -577,7 +577,7 @@ export class Sound {
   /**
    * Sets the volume of the sound.
    */
-  public set volume(value) {
+  public set volume(value: number) {
     if (this._muted) {
       this._muteVolume = value;
       return;

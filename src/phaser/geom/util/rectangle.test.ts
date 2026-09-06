@@ -2,8 +2,8 @@ import { describe, expect, it } from 'vitest';
 import { Rectangle } from '../rectangle.js';
 import { clone } from './rectangle.js';
 
-describe('rectangle utils', () => {
-  it('should clone a rectangle', () => {
+describe('rectangle utils', (): void => {
+  it('should clone a rectangle', (): void => {
     const rectangle1 = new Rectangle(0, 0, 10, 10);
     const rectangle2 = clone(rectangle1);
     expect(rectangle1.x).toBe(rectangle2.x);

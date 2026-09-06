@@ -703,7 +703,7 @@ export class Cache {
    * @param {string} url - The original URL to resolve.
    * @returns {string} The resolved URL or null if not found.
    */
-  public getURL(url: string) {
+  public getURL(url: string): object | null {
     const resolvedURL = this._resolveURL(url);
     if (resolvedURL) {
       return this._urlMap?.[resolvedURL] ?? null;

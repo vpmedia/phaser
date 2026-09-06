@@ -33,64 +33,64 @@ const FONT_JSON = {
   },
 };
 
-describe('bitmap font parsing', () => {
-  describe('xmlBitmapFont', () => {
-    it('reads the font metrics', () => {
+describe('bitmap font parsing', (): void => {
+  describe('xmlBitmapFont', (): void => {
+    it('reads the font metrics', (): void => {
       const data = xmlBitmapFont(parseXml(FONT_XML), baseTexture, 0, 0);
       expect(data.font).toBe('Arial');
       expect(data.size).toBe(32);
       expect(data.lineHeight).toBe(40);
     });
 
-    it('reads every glyph, keyed by character code', () => {
+    it('reads every glyph, keyed by character code', (): void => {
       const data = xmlBitmapFont(parseXml(FONT_XML), baseTexture, 0, 0);
       expect(Object.keys(data.chars)).toStrictEqual(['65', '66']);
       expect(data.chars[65]).toMatchObject({ x: 0, y: 0, width: 20, height: 30, xOffset: 1, yOffset: 2 });
     });
 
-    it('adds the spacing arguments to advance and line height', () => {
+    it('adds the spacing arguments to advance and line height', (): void => {
       const data = xmlBitmapFont(parseXml(FONT_XML), baseTexture, 5, 7);
       expect(data.chars[65]?.xAdvance).toBe(26);
       expect(data.lineHeight).toBe(47);
     });
 
-    it('records kerning against the second character of the pair', () => {
+    it('records kerning against the second character of the pair', (): void => {
       const data = xmlBitmapFont(parseXml(FONT_XML), baseTexture, 0, 0);
       expect(data.chars[66]?.kerning[65]).toBe(-3);
     });
 
-    it('attaches a texture to every glyph', () => {
+    it('attaches a texture to every glyph', (): void => {
       const data = xmlBitmapFont(parseXml(FONT_XML), baseTexture, 0, 0);
       expect(data.chars[65]?.texture).toBeDefined();
       expect(data.chars[66]?.texture).toBeDefined();
     });
 
-    it('survives a font with no kerning table', () => {
+    it('survives a font with no kerning table', (): void => {
       const markup = FONT_XML.replace(/<kernings>[\s\S]*<\/kernings>/, '');
       expect(() => xmlBitmapFont(parseXml(markup), baseTexture, 0, 0)).not.toThrow();
     });
 
-    it('ignores kerning that names a character the font does not have', () => {
+    it('ignores kerning that names a character the font does not have', (): void => {
       const markup = FONT_XML.replace('second="66"', 'second="999"');
       const data = xmlBitmapFont(parseXml(markup), baseTexture, 0, 0);
       expect(data.chars[66]?.kerning).toStrictEqual({});
     });
 
-    it('falls back to an empty face when the info element is missing', () => {
+    it('falls back to an empty face when the info element is missing', (): void => {
       const markup = FONT_XML.replace(/<info[^>]*\/>/, '');
       expect(xmlBitmapFont(parseXml(markup), baseTexture, 0, 0).font).toBe('');
     });
   });
 
-  describe('jsonBitmapFont', () => {
-    it('reads the same metrics as the xml form', () => {
+  describe('jsonBitmapFont', (): void => {
+    it('reads the same metrics as the xml form', (): void => {
       const data = jsonBitmapFont(FONT_JSON, baseTexture, 0, 0);
       expect(data.font).toBe('Arial');
       expect(data.size).toBe(32);
       expect(data.lineHeight).toBe(40);
     });
 
-    it('produces the same glyphs as the xml form', () => {
+    it('produces the same glyphs as the xml form', (): void => {
       const fromJson = jsonBitmapFont(FONT_JSON, baseTexture, 0, 0);
       const fromXml = xmlBitmapFont(parseXml(FONT_XML), baseTexture, 0, 0);
       for (const code of [65, 66]) {
@@ -102,13 +102,13 @@ describe('bitmap font parsing', () => {
       }
     });
 
-    it('records the same kerning as the xml form', () => {
+    it('records the same kerning as the xml form', (): void => {
       expect(jsonBitmapFont(FONT_JSON, baseTexture, 0, 0).chars[66]?.kerning[65]).toBe(-3);
     });
   });
 
-  describe('bitmapFont', () => {
-    it('parses the xml form', () => {
+  describe('bitmapFont', (): void => {
+    it('parses the xml form', (): void => {
       expect(bitmapFont(parseXml(FONT_XML), baseTexture, 0, 0).font).toBe('Arial');
     });
   });

@@ -2,8 +2,8 @@ import { describe, expect, it } from 'vitest';
 import { Polygon } from '../polygon.js';
 import { clone } from './polygon.js';
 
-describe('polygon utils', () => {
-  it('should clone a polygon', () => {
+describe('polygon utils', (): void => {
+  it('should clone a polygon', (): void => {
     const polygon = new Polygon([0, 0, 1, 0, 1, 1]);
     const points = clone(polygon).toNumberArray();
     expect(points[0]).toBe(0);

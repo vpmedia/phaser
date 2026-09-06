@@ -163,7 +163,7 @@ export class AnimationManager {
    * @param {boolean} loop - Whether the animation should loop, or null to use the animation's default.
    * @returns {Animation} The Animation object that was played, or null if not found.
    */
-  public play(name: string, frameRate: number | null = null, loop: boolean | null = null) {
+  public play(name: string, frameRate: number | null = null, loop: boolean | null = null): Animation | null {
     if (this._anims[name]) {
       if (this.currentAnim === this._anims[name]) {
         if (!this.currentAnim.isPlaying) {
@@ -255,7 +255,7 @@ export class AnimationManager {
    * Gets the frame data used by this AnimationManager.
    * @returns {FrameData} The FrameData object.
    */
-  public get frameData() {
+  public get frameData(): FrameData | null {
     return this._frameData;
   }
 
@@ -263,7 +263,7 @@ export class AnimationManager {
    * Gets the total number of frames in the frame data.
    * @returns {number} The total number of frames.
    */
-  public get frameTotal() {
+  public get frameTotal(): number {
     return this._frameData!.total;
   }
 
@@ -271,14 +271,14 @@ export class AnimationManager {
    * Gets the paused state of the current animation.
    * @returns {boolean} True if the current animation is paused, false otherwise.
    */
-  public get paused() {
+  public get paused(): boolean {
     return this.currentAnim?.isPaused ?? false;
   }
 
   /**
    * Sets the paused state of the current animation.
    */
-  public set paused(value) {
+  public set paused(value: boolean) {
     if (this.currentAnim) {
       this.currentAnim.paused = value;
     }
@@ -288,7 +288,7 @@ export class AnimationManager {
    * Gets the name of the current animation.
    * @returns {string} The name of the current animation, or null if no animation is active.
    */
-  public get name() {
+  public get name(): string | null {
     if (this.currentAnim) {
       return this.currentAnim.name;
     }
@@ -299,7 +299,7 @@ export class AnimationManager {
    * Gets the current frame index.
    * @returns {number} The current frame index.
    */
-  public get frame() {
+  public get frame(): number {
     if (this.currentFrame) {
       return this.currentFrame.index;
     }
@@ -309,7 +309,7 @@ export class AnimationManager {
   /**
    * Sets the current frame index.
    */
-  public set frame(value) {
+  public set frame(value: number) {
     if (typeof value === 'number' && this._frameData && this._frameData.getFrame(value) !== null) {
       this.currentFrame = this._frameData.getFrame(value);
       if (this.currentFrame) {
@@ -327,7 +327,7 @@ export class AnimationManager {
    * Gets the current frame name.
    * @returns {string} The current frame name, or null if no frame is set.
    */
-  public get frameName() {
+  public get frameName(): string | null {
     if (this.currentFrame) {
       return this.currentFrame.name;
     }
@@ -337,7 +337,7 @@ export class AnimationManager {
   /**
    * Sets the current frame by name.
    */
-  public set frameName(value) {
+  public set frameName(value: string | null) {
     if (typeof value === 'string' && this._frameData && this._frameData.getFrameByName(value) !== null) {
       this.currentFrame = this._frameData.getFrameByName(value);
       if (this.currentFrame) {

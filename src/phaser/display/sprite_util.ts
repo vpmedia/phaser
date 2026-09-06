@@ -6,6 +6,7 @@ import type { Texture } from './webgl/texture.js';
 import type { Matrix } from '../geom/matrix.js';
 import type { RenderSession } from './render_session.js';
 import { setSmoothing } from './canvas/util.js';
+import type { Rectangle } from '../geom/rectangle.js';
 
 /**
  * Sets the texture of a sprite.
@@ -29,7 +30,7 @@ export const setTexture = (target: Image, texture: Texture, destroyBase = false)
  * @param {object} matrix - The transformation matrix.
  * @returns {Rectangle} The bounds rectangle.
  */
-export const getBounds = (target: Image, matrix: Matrix | null = null) => {
+export const getBounds = (target: Image, matrix: Matrix | null = null): Rectangle => {
   if (target.currentBounds) {
     return target.currentBounds;
   }
@@ -110,7 +111,7 @@ export const getBounds = (target: Image, matrix: Matrix | null = null) => {
  * @param {Image} target - The target image to get local bounds for.
  * @returns {Rectangle} The local bounds rectangle.
  */
-export const getLocalBounds = (target: Image) => {
+export const getLocalBounds = (target: Image): Rectangle => {
   const matrixCache = target.worldTransform;
   target.worldTransform = getIdentityMatrix();
   for (const child of target.children) {

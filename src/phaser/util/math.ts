@@ -117,7 +117,7 @@ export const getColor = (r: number, g: number, b: number): number => (r << 16) |
 export const hexToColor = (value: string, out: ColorTarget): void => {
   const expanded = value.replace(
     /^(?:#|0x)?([a-f\d])([a-f\d])([a-f\d])$/i,
-    (_match: string, r: string, g: string, b: string) => r + r + g + g + b + b
+    (_match: string, r: string, g: string, b: string): string => r + r + g + g + b + b
   );
   const result = /^(?:#|0x)?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(expanded);
   if (result) {

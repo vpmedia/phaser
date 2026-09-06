@@ -224,7 +224,7 @@ export class Loader {
    * @param {string} key - The key of the file to get.
    * @returns {{index: number, file: object} | null} The file and its index, or null if not found.
    */
-  public getAsset(type: string, key: string) {
+  public getAsset(type: string, key: string): { index: number; file: LoaderFile } | null {
     const fileIndex = this.getAssetIndex(type, key);
     if (fileIndex > -1) {
       return { index: fileIndex, file: this._fileList[fileIndex]! };
@@ -1291,7 +1291,7 @@ export class Loader {
    * @param {object} data - The XML string data to parse.
    * @returns {Document} The parsed DOM Document, or null if parsing failed.
    */
-  public parseXml(data: string) {
+  public parseXml(data: string): XMLDocument | null {
     let xml: XMLDocument | null = null;
     try {
       xml = new DOMParser().parseFromString(data, 'text/xml');

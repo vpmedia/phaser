@@ -370,7 +370,7 @@ export class Rectangle {
   /**
    * Sets the top coordinate of this rectangle.
    */
-  public set top(value) {
+  public set top(value: number) {
     if (value >= this.bottom) {
       this.height = 0;
       this.y = value;
@@ -390,7 +390,7 @@ export class Rectangle {
   /**
    * Sets the top-left point of this rectangle.
    */
-  public set topLeft(value) {
+  public set topLeft(value: Point) {
     this.x = value.x;
     this.y = value.y;
   }
@@ -406,7 +406,7 @@ export class Rectangle {
   /**
    * Sets the top-right point of this rectangle.
    */
-  public set topRight(value) {
+  public set topRight(value: Point) {
     this.right = value.x;
     this.y = value.y;
   }
@@ -422,7 +422,7 @@ export class Rectangle {
   /**
    * Sets the bottom coordinate of this rectangle.
    */
-  public set bottom(value) {
+  public set bottom(value: number) {
     this.height = value <= this.y ? 0 : value - this.y;
   }
 
@@ -437,7 +437,7 @@ export class Rectangle {
   /**
    * Sets the bottom-left point of this rectangle.
    */
-  public set bottomLeft(value) {
+  public set bottomLeft(value: Point) {
     this.x = value.x;
     this.bottom = value.y;
   }
@@ -453,7 +453,7 @@ export class Rectangle {
   /**
    * Sets the bottom-right point of this rectangle.
    */
-  public set bottomRight(value) {
+  public set bottomRight(value: Point) {
     this.right = value.x;
     this.bottom = value.y;
   }
@@ -469,7 +469,7 @@ export class Rectangle {
   /**
    * Sets the left coordinate of this rectangle.
    */
-  public set left(value) {
+  public set left(value: number) {
     this.width = value >= this.right ? 0 : this.right - value;
     this.x = value;
   }
@@ -485,7 +485,7 @@ export class Rectangle {
   /**
    * Sets the right coordinate of this rectangle.
    */
-  public set right(value) {
+  public set right(value: number) {
     this.width = value <= this.x ? 0 : value - this.x;
   }
 
@@ -516,7 +516,7 @@ export class Rectangle {
   /**
    * Sets the x coordinate of the center of this rectangle.
    */
-  public set centerX(value) {
+  public set centerX(value: number) {
     this.x = value - this.halfWidth;
   }
 
@@ -531,7 +531,7 @@ export class Rectangle {
   /**
    * Sets the y coordinate of the center of this rectangle.
    */
-  public set centerY(value) {
+  public set centerY(value: number) {
     this.y = value - this.halfHeight;
   }
 
@@ -562,7 +562,7 @@ export class Rectangle {
   /**
    * Sets whether this rectangle is empty (zero width or height).
    */
-  public set empty(value) {
+  public set empty(value: boolean) {
     if (value) {
       this.setTo(0, 0, 0, 0);
     }

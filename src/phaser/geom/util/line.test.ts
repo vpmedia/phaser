@@ -2,8 +2,8 @@ import { describe, expect, it } from 'vitest';
 import { Line } from '../line.js';
 import { clone } from './line.js';
 
-describe('line utils', () => {
-  it('should clone a line', () => {
+describe('line utils', (): void => {
+  it('should clone a line', (): void => {
     const line1 = new Line(0, 0, 10, 0);
     const line2 = clone(line1);
     expect(line1.start.x).toBe(line2.start.x);

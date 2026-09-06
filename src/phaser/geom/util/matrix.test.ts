@@ -2,8 +2,8 @@ import { describe, expect, it } from 'vitest';
 import { Matrix } from '../matrix.js';
 import { clone, getIdentityMatrix, getTempMatrix } from './matrix.js';
 
-describe('matrix utils', () => {
-  it('should clone a matrix', () => {
+describe('matrix utils', (): void => {
+  it('should clone a matrix', (): void => {
     const matrix1 = new Matrix(2, 0, 0, 2, 0, 0);
     const matrix2 = clone(matrix1);
     expect(matrix1.a).toBe(matrix2.a);
@@ -14,12 +14,12 @@ describe('matrix utils', () => {
     expect(matrix1.ty).toBe(matrix2.ty);
   });
 
-  it('should create an identity matrix', () => {
+  it('should create an identity matrix', (): void => {
     const matrix = getIdentityMatrix();
     expect(matrix.a).toBe(1);
   });
 
-  it('should create a temporary matrix', () => {
+  it('should create a temporary matrix', (): void => {
     const matrix = getTempMatrix();
     expect(matrix.a).toBe(1);
   });

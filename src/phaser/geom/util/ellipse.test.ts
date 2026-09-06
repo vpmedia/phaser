@@ -2,8 +2,8 @@ import { describe, expect, it } from 'vitest';
 import { Ellipse } from '../ellipse.js';
 import { contains } from './ellipse.js';
 
-describe('ellipse utils', () => {
-  it('should contain an ellipse the given coordinates', () => {
+describe('ellipse utils', (): void => {
+  it('should contain an ellipse the given coordinates', (): void => {
     const ellipse = new Ellipse(0, 0, 10, 10);
     expect(contains(ellipse, 5, 5)).toBe(true);
     expect(contains(ellipse, 15, 15)).toBe(false);

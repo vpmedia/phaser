@@ -138,7 +138,7 @@ export class InputHandler {
    * @param {boolean} useHandCursor - TBD.
    * @returns {DisplayObject} TBD.
    */
-  public start(priority = 0, useHandCursor = false) {
+  public start(priority = 0, useHandCursor = false): Image {
     //  Turning on
     if (!this.enabled) {
       //  Register, etc

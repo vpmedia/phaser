@@ -2,8 +2,8 @@ import { describe, expect, it } from 'vitest';
 import { Circle } from '../circle.js';
 import { clone, contains, equals, intersects } from './circle.js';
 
-describe('circle utils', () => {
-  it('should clone a circle', () => {
+describe('circle utils', (): void => {
+  it('should clone a circle', (): void => {
     const circle1 = new Circle(0, 0, 10);
     const circle2 = clone(circle1);
     expect(circle1.x).toBe(circle2.x);
@@ -11,12 +11,12 @@ describe('circle utils', () => {
     expect(circle1.radius).toBe(circle2.radius);
   });
 
-  it('should contain a point in a circle', () => {
+  it('should contain a point in a circle', (): void => {
     const circle = new Circle(5, 5, 10);
     expect(contains(circle, 5, 5)).toBe(true);
   });
 
-  it('should match two circles', () => {
+  it('should match two circles', (): void => {
     const circle1 = new Circle(5, 5, 10);
     const circle2 = new Circle(5, 5, 10);
     expect(equals(circle1, circle2)).toBe(true);
@@ -24,7 +24,7 @@ describe('circle utils', () => {
     expect(equals(circle1, circle2)).toBe(false);
   });
 
-  it('should intersects two circles', () => {
+  it('should intersects two circles', (): void => {
     const circle1 = new Circle(5, 5, 10);
     const circle2 = new Circle(5, 5, 5);
     expect(intersects(circle1, circle2)).toBe(true);

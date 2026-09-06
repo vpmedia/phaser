@@ -82,22 +82,22 @@ const EXPECTED: Record<string, number[]> = {
   ],
 };
 
-describe('tween_easing', () => {
-  it.each(Object.keys(EXPECTED))('%s matches its reference curve', (name) => {
+describe('tween_easing', (): void => {
+  it.each(Object.keys(EXPECTED))('%s matches its reference curve', (name): void => {
     const fn = (Easing as unknown as Record<string, (k: number) => number>)[name]!;
-    const actual = SAMPLE_POINTS.map((k) => fn(k));
+    const actual = SAMPLE_POINTS.map((k): number => fn(k));
     for (const [index, value] of actual.entries()) {
       expect(value).toBeCloseTo(EXPECTED[name]![index]!, 12);
     }
   });
 
-  it.each(Object.keys(EXPECTED))('%s is anchored at both ends', (name) => {
+  it.each(Object.keys(EXPECTED))('%s is anchored at both ends', (name): void => {
     const fn = (Easing as unknown as Record<string, (k: number) => number>)[name]!;
     expect(fn(0)).toBeCloseTo(0, 12);
     expect(fn(1)).toBeCloseTo(1, 12);
   });
 
-  it.each(Object.keys(EXPECTED))('%s does not mutate beyond its return value', (name) => {
+  it.each(Object.keys(EXPECTED))('%s does not mutate beyond its return value', (name): void => {
     const fn = (Easing as unknown as Record<string, (k: number) => number>)[name]!;
     for (const k of SAMPLE_POINTS) {
       expect(fn(k)).toBe(fn(k));

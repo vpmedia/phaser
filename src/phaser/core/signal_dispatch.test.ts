@@ -1,9 +1,9 @@
 import { describe, expect, it, vi } from 'vitest';
 import { Signal } from './signal.js';
 
-describe('Signal binding management', () => {
-  describe('add', () => {
-    it('registers a listener and reports it', () => {
+describe('Signal binding management', (): void => {
+  describe('add', (): void => {
+    it('registers a listener and reports it', (): void => {
       const signal = new Signal();
       const listener = vi.fn();
       signal.add(listener);
@@ -11,7 +11,7 @@ describe('Signal binding management', () => {
       expect(signal.has(listener)).toBe(true);
     });
 
-    it('returns the existing binding when the same listener is added twice', () => {
+    it('returns the existing binding when the same listener is added twice', (): void => {
       const signal = new Signal();
       const listener = vi.fn();
       const first = signal.add(listener);
@@ -20,7 +20,7 @@ describe('Signal binding management', () => {
       expect(signal.getNumListeners()).toBe(1);
     });
 
-    it('treats the same listener under a different context as a separate binding', () => {
+    it('treats the same listener under a different context as a separate binding', (): void => {
       const signal = new Signal();
       const listener = vi.fn();
       signal.add(listener, { id: 1 });
@@ -28,7 +28,7 @@ describe('Signal binding management', () => {
       expect(signal.getNumListeners()).toBe(2);
     });
 
-    it('refuses to switch a listener between add and addOnce', () => {
+    it('refuses to switch a listener between add and addOnce', (): void => {
       const signal = new Signal();
       const listener = vi.fn();
       signal.add(listener);
@@ -36,18 +36,18 @@ describe('Signal binding management', () => {
     });
   });
 
-  describe('dispatch', () => {
-    it('calls listeners in priority order, highest first', () => {
+  describe('dispatch', (): void => {
+    it('calls listeners in priority order, highest first', (): void => {
       const signal = new Signal();
       const order: string[] = [];
-      signal.add(() => order.push('low'), null, 0);
-      signal.add(() => order.push('high'), null, 10);
-      signal.add(() => order.push('mid'), null, 5);
+      signal.add((): number => order.push('low'), null, 0);
+      signal.add((): number => order.push('high'), null, 10);
+      signal.add((): number => order.push('mid'), null, 5);
       signal.dispatch();
       expect(order).toStrictEqual(['high', 'mid', 'low']);
     });
 
-    it('forwards its arguments', () => {
+    it('forwards its arguments', (): void => {
       const signal = new Signal();
       const listener = vi.fn();
       signal.add(listener);
@@ -55,7 +55,7 @@ describe('Signal binding management', () => {
       expect(listener).toHaveBeenCalledWith(1, 'two');
     });
 
-    it('removes an addOnce listener after it fires', () => {
+    it('removes an addOnce listener after it fires', (): void => {
       const signal = new Signal();
       const listener = vi.fn();
       signal.addOnce(listener);
@@ -65,20 +65,20 @@ describe('Signal binding management', () => {
       expect(signal.getNumListeners()).toBe(0);
     });
 
-    it('stops propagating once a listener returns false', () => {
+    it('stops propagating once a listener returns false', (): void => {
       const signal = new Signal();
       const later = vi.fn();
-      signal.add(() => false, null, 10);
+      signal.add((): boolean => false, null, 10);
       signal.add(later, null, 0);
       signal.dispatch();
       expect(later).not.toHaveBeenCalled();
     });
 
-    it('stops propagating once halt is called', () => {
+    it('stops propagating once halt is called', (): void => {
       const signal = new Signal();
       const later = vi.fn();
       signal.add(
-        () => {
+        (): void => {
           signal.halt();
         },
         null,
@@ -89,25 +89,25 @@ describe('Signal binding management', () => {
       expect(later).not.toHaveBeenCalled();
     });
 
-    it('survives a listener that removes every listener mid-dispatch', () => {
+    it('survives a listener that removes every listener mid-dispatch', (): void => {
       const signal = new Signal();
       const later = vi.fn();
       signal.add(
-        () => {
+        (): void => {
           signal.removeAll();
         },
         null,
         10
       );
       signal.add(later, null, 0);
-      expect(() => {
+      expect((): void => {
         signal.dispatch();
       }).not.toThrow();
     });
   });
 
-  describe('remove', () => {
-    it('drops the matching binding', () => {
+  describe('remove', (): void => {
+    it('drops the matching binding', (): void => {
       const signal = new Signal();
       const listener = vi.fn();
       const other = vi.fn();
@@ -119,7 +119,7 @@ describe('Signal binding management', () => {
       expect(signal.has(other)).toBe(true);
     });
 
-    it('leaves the list alone for an unregistered listener', () => {
+    it('leaves the list alone for an unregistered listener', (): void => {
       const signal = new Signal();
       signal.add(vi.fn());
       signal.remove(vi.fn());
@@ -127,8 +127,8 @@ describe('Signal binding management', () => {
     });
   });
 
-  describe('removeAll', () => {
-    it('clears every listener when given no context', () => {
+  describe('removeAll', (): void => {
+    it('clears every listener when given no context', (): void => {
       const signal = new Signal();
       signal.add(vi.fn(), { id: 1 });
       signal.add(vi.fn(), { id: 2 });
@@ -136,7 +136,7 @@ describe('Signal binding management', () => {
       expect(signal.getNumListeners()).toBe(0);
     });
 
-    it('clears only the listeners bound to the given context', () => {
+    it('clears only the listeners bound to the given context', (): void => {
       const signal = new Signal();
       const context = { id: 1 };
       signal.add(vi.fn(), context);
@@ -146,8 +146,8 @@ describe('Signal binding management', () => {
     });
   });
 
-  describe('memorize', () => {
-    it('replays the last dispatch to a listener added afterwards', () => {
+  describe('memorize', (): void => {
+    it('replays the last dispatch to a listener added afterwards', (): void => {
       const signal = new Signal();
       signal.memorize = true;
       signal.add(vi.fn());
@@ -157,7 +157,7 @@ describe('Signal binding management', () => {
       expect(listener).toHaveBeenCalledWith('remembered');
     });
 
-    it('records nothing while the signal has never had a binding', () => {
+    it('records nothing while the signal has never had a binding', (): void => {
       const signal = new Signal();
       signal.memorize = true;
       signal.dispatch('dropped');
@@ -166,7 +166,7 @@ describe('Signal binding management', () => {
       expect(listener).not.toHaveBeenCalled();
     });
 
-    it('stops replaying once forgotten', () => {
+    it('stops replaying once forgotten', (): void => {
       const signal = new Signal();
       signal.memorize = true;
       signal.add(vi.fn());

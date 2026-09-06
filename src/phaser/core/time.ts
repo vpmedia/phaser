@@ -268,7 +268,7 @@ export class Time {
   /**
    * Sets the desired frames per second.
    */
-  public set desiredFps(value) {
+  public set desiredFps(value: number) {
     this._desiredFps = value;
     this.desiredFpsMult = 1 / value;
   }

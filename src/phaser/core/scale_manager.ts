@@ -968,7 +968,7 @@ export class ScaleManager {
   /**
    * TBD.
    */
-  public set scaleMode(value) {
+  public set scaleMode(value: number) {
     if (value !== this._scaleMode) {
       if (!this.isFullScreen) {
         this.updateDimensions(this._gameSize.width, this._gameSize.height, true);
@@ -990,7 +990,7 @@ export class ScaleManager {
   /**
    * TBD.
    */
-  public set fullScreenScaleMode(value) {
+  public set fullScreenScaleMode(value: number) {
     if (value !== this._fullScreenScaleMode) {
       // If in fullscreen then need a wee bit more work
       if (this.isFullScreen) {
