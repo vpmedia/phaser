@@ -4,31 +4,31 @@ import { TWEEN_COMPLETE, TWEEN_LOOPED, TWEEN_PENDING, TWEEN_RUNNING } from './co
 import type { Tween } from './tween.js';
 
 export class TweenData {
-  public parent!: any;
+  public parent!: Tween;
   public game!: Game;
-  public vStart!: any;
-  public vStartCache!: any;
-  public vEnd!: any;
-  public vEndCache!: any;
-  public duration!: any;
-  public percent!: any;
-  public value!: any;
-  public repeatCounter!: any;
-  public repeatDelay!: any;
-  public repeatTotal!: any;
-  public interpolate!: any;
-  public yoyo!: any;
-  public yoyoDelay!: any;
-  public inReverse!: any;
-  public delay!: any;
-  public dt!: any;
-  public startTime!: any;
-  public easingFunction!: any;
-  public interpolationFunction!: any;
-  public interpolationContext!: any;
-  public isRunning!: any;
-  public isFrom!: any;
-  public yoyoCounter!: any;
+  public vStart!: Record<string, any>;
+  public vStartCache!: Record<string, any>;
+  public vEnd!: Record<string, any>;
+  public vEndCache!: Record<string, any>;
+  public duration!: number;
+  public percent!: number;
+  public value!: number;
+  public repeatCounter!: number;
+  public repeatDelay!: number;
+  public repeatTotal!: number;
+  public interpolate!: boolean;
+  public yoyo!: boolean;
+  public yoyoDelay!: number;
+  public inReverse!: boolean;
+  public delay!: number;
+  public dt!: number;
+  public startTime!: number | null;
+  public easingFunction!: (k: number) => number;
+  public interpolationFunction!: Function;
+  public interpolationContext!: unknown;
+  public isRunning!: boolean;
+  public isFrom!: boolean;
+  public yoyoCounter!: number;
   /**
    * Creates a new TweenData instance.
    * @param {Tween} parent - The parent Tween instance.
@@ -124,7 +124,7 @@ export class TweenData {
       for (const property of keys) {
         this.vStart[property] = this.vEndCache[property];
         this.vEnd[property] = this.vStartCache[property];
-        this.parent.target[property] = this.vStart[property];
+        (this.parent.target as unknown as Record<string, any>)[property] = this.vStart[property];
       }
     }
     this.value = 0;
@@ -176,12 +176,12 @@ export class TweenData {
    */
   public update(time: number): 1 | 0 | 3 | 2 {
     if (!this.isRunning) {
-      if (time >= this.startTime) {
+      if (time >= (this.startTime ?? 0)) {
         this.isRunning = true;
       } else {
         return TWEEN_PENDING;
       }
-    } else if (time < this.startTime) {
+    } else if (time < (this.startTime ?? 0)) {
       //  Is Running, but is waiting to repeat
       return TWEEN_RUNNING;
     }
@@ -200,9 +200,13 @@ export class TweenData {
       const start = this.vStart[property];
       const end = this.vEnd[property];
       if (Array.isArray(end)) {
-        this.parent.target[property] = this.interpolationFunction.call(this.interpolationContext, end, this.value);
+        (this.parent.target as unknown as Record<string, any>)[property] = this.interpolationFunction.call(
+          this.interpolationContext,
+          end,
+          this.value
+        );
       } else {
-        this.parent.target[property] = start + (end - start) * this.value;
+        (this.parent.target as unknown as Record<string, any>)[property] = start + (end - start) * this.value;
       }
     }
     if ((!this.parent.reverse && this.percent === 1) || (this.parent.reverse && this.percent === 0)) {

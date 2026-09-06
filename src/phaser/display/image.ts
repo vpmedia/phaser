@@ -163,7 +163,7 @@ export class Image extends DisplayObject {
     if (key instanceof Texture) {
       this.setTexture(key);
     } else {
-      const img = cache.getImage(key, true);
+      const img = cache.getImage(key ?? undefined, true);
       if (img) {
         this.key = img.key;
         this.setTexture(new Texture(img.base));

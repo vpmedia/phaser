@@ -33,12 +33,12 @@ interface CacheBuckets {
 
 export class Cache {
   public game!: Game;
-  public autoResolveURL!: any;
+  public autoResolveURL!: boolean;
   public _cache!: CacheBuckets;
-  public _urlMap!: any;
-  public _urlResolver!: any;
-  public _urlTemp!: any;
-  public onSoundUnlock!: any;
+  public _urlMap!: Record<string, unknown> | null;
+  public _urlResolver!: HTMLImageElement | null;
+  public _urlTemp!: string | null;
+  public onSoundUnlock!: Signal;
   public _cacheMap!: Record<string, any>[];
   /**
    * Creates a new Cache instance.
@@ -338,7 +338,8 @@ export class Cache {
    * @returns {boolean} True if the URL has been resolved and cached, false otherwise.
    */
   public checkURL(url: string): boolean {
-    if (this._urlMap[this._resolveURL(url)]) {
+    const resolved = this._resolveURL(url);
+    if (resolved && this._urlMap?.[resolved]) {
       return true;
     }
     return false;
@@ -461,8 +462,8 @@ export class Cache {
    * @param {boolean} full - TBD.
    * @returns {HTMLImageElement} TBD.
    */
-  public getImage(key: any = '__default', full = false) {
-    let img = this.getItem(key, IMAGE, 'getImage');
+  public getImage(key: string | number = '__default', full = false) {
+    let img = this.getItem(String(key), IMAGE, 'getImage');
     if (img === null) {
       img = this.getItem('__missing', IMAGE, 'getImage');
     }
@@ -663,7 +664,7 @@ export class Cache {
   public getURL(url: string) {
     const resolvedURL = this._resolveURL(url);
     if (resolvedURL) {
-      return this._urlMap[resolvedURL];
+      return this._urlMap?.[resolvedURL] ?? null;
     }
     this.game.logger.warn('Cache invalid url', { resolvedURL });
     return null;
@@ -674,7 +675,7 @@ export class Cache {
    * @param {object} cache - The cache type (CANVAS, IMAGE, etc.).
    * @returns {string[]} An array of cache keys.
    */
-  public getKeys(cache: any = IMAGE): string[] {
+  public getKeys(cache: number = IMAGE): string[] {
     const result = [];
     if (this._cacheMap[cache]) {
       const keys = Object.keys(this._cacheMap[cache]);
@@ -802,12 +803,15 @@ export class Cache {
     if (!this.autoResolveURL) {
       return null;
     }
+    if (!this._urlResolver) {
+      return null;
+    }
     this._urlResolver.src = this.game.load.baseURL + url;
     this._urlTemp = this._urlResolver.src;
     //  Ensure no request is actually made
     this._urlResolver.src = '';
     //  Record the URL to the map
-    if (data) {
+    if (data && this._urlMap) {
       this._urlMap[this._urlTemp] = data;
     }
     return this._urlTemp;

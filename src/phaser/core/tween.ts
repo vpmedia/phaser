@@ -379,7 +379,7 @@ export class Tween {
       this._codePaused = false;
       for (const tweenData of this.timeline) {
         if (!tweenData.isRunning) {
-          tweenData.startTime += this.game.time.time - this._pausedTime;
+          tweenData.startTime = (tweenData.startTime ?? 0) + (this.game.time.time - this._pausedTime);
         }
       }
     }
