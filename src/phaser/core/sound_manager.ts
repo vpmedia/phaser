@@ -83,10 +83,11 @@ export class SoundManager {
         const typedError = error instanceof Error ? error : new Error(String(error));
         this.game.logger.fatal('SoundManager', { error: typedError });
       }
-    } else if ((globalThis as any).webkitAudioContext) {
+    } else if (globalThis.webkitAudioContext) {
       try {
         this.game.logger.info('initWebkitAudioContext');
-        this.context = new (globalThis as any).webkitAudioContext();
+        const WebkitAudioContext = globalThis.webkitAudioContext;
+        this.context = new WebkitAudioContext();
         this.type = AUDIO_WEBKIT;
       } catch (error) {
         this.context = null;

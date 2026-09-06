@@ -1,7 +1,7 @@
 import type { TextureSource } from '../display/webgl/base_texture.js';
 import { BaseTexture } from '../display/webgl/base_texture.js';
 import { Texture } from '../display/webgl/texture.js';
-import { JSONDataHash, spriteSheet } from './animation_parser.js';
+import { jsonDataHash, spriteSheet } from './animation_parser.js';
 import { Frame } from './frame.js';
 import { FrameData } from './frame_data.js';
 import { jsonBitmapFont, xmlBitmapFont } from './loader_parser.js';
@@ -215,7 +215,7 @@ export class Cache {
       url,
       data,
       base: new BaseTexture(data),
-      frameData: JSONDataHash(this.game, atlasData, key),
+      frameData: jsonDataHash(this.game, atlasData, key),
     };
     this._cache.image[key] = obj;
     this._resolveURL(url, obj);

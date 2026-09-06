@@ -3,28 +3,28 @@
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
-export const LinearNone = (k: number): number => k;
+export const linearNone = (k: number): number => k;
 
 /**
  * TBD.
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
-export const QuadraticIn = (k: number): number => k * k;
+export const quadraticIn = (k: number): number => k * k;
 
 /**
  * TBD.
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
-export const QuadraticOut = (k: number): number => k * (2 - k);
+export const quadraticOut = (k: number): number => k * (2 - k);
 
 /**
  * TBD.
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
-export const QuadraticInOut = (k: number): number => {
+export const quadraticInOut = (k: number): number => {
   const t = k * 2;
   if (t < 1) {
     return 0.5 * t * t;
@@ -38,14 +38,14 @@ export const QuadraticInOut = (k: number): number => {
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
-export const CubicIn = (k: number): number => k * k * k;
+export const cubicIn = (k: number): number => k * k * k;
 
 /**
  * TBD.
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
-export const CubicOut = (k: number): number => {
+export const cubicOut = (k: number): number => {
   const u = k - 1;
   return u * u * u + 1;
 };
@@ -55,7 +55,7 @@ export const CubicOut = (k: number): number => {
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
-export const CubicInOut = (k: number): number => {
+export const cubicInOut = (k: number): number => {
   const t = k * 2;
   if (t < 1) {
     return 0.5 * t * t * t;
@@ -69,14 +69,14 @@ export const CubicInOut = (k: number): number => {
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
-export const QuarticIn = (k: number): number => k * k * k * k;
+export const quarticIn = (k: number): number => k * k * k * k;
 
 /**
  * TBD.
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
-export const QuarticOut = (k: number): number => {
+export const quarticOut = (k: number): number => {
   const u = k - 1;
   return 1 - u * u * u * u;
 };
@@ -86,7 +86,7 @@ export const QuarticOut = (k: number): number => {
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
-export const QuarticInOut = (k: number): number => {
+export const quarticInOut = (k: number): number => {
   const t = k * 2;
   if (t < 1) {
     return 0.5 * t * t * t * t;
@@ -100,14 +100,14 @@ export const QuarticInOut = (k: number): number => {
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
-export const QuinticIn = (k: number): number => k * k * k * k * k;
+export const quinticIn = (k: number): number => k * k * k * k * k;
 
 /**
  * TBD.
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
-export const QuinticOut = (k: number): number => {
+export const quinticOut = (k: number): number => {
   const u = k - 1;
   return u * u * u * u * u + 1;
 };
@@ -117,7 +117,7 @@ export const QuinticOut = (k: number): number => {
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
-export const QuinticInOut = (k: number): number => {
+export const quinticInOut = (k: number): number => {
   const t = k * 2;
   if (t < 1) {
     return 0.5 * t * t * t * t * t;
@@ -131,7 +131,7 @@ export const QuinticInOut = (k: number): number => {
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
-export const SinusoidalIn = (k: number): number => {
+export const sinusoidalIn = (k: number): number => {
   if (k === 0) {
     return 0;
   }
@@ -146,7 +146,7 @@ export const SinusoidalIn = (k: number): number => {
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
-export const SinusoidalOut = (k: number): number => {
+export const sinusoidalOut = (k: number): number => {
   if (k === 0) {
     return 0;
   }
@@ -161,7 +161,7 @@ export const SinusoidalOut = (k: number): number => {
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
-export const SinusoidalInOut = (k: number): number => {
+export const sinusoidalInOut = (k: number): number => {
   if (k === 0) {
     return 0;
   }
@@ -176,21 +176,21 @@ export const SinusoidalInOut = (k: number): number => {
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
-export const ExponentialIn = (k: number): number => (k === 0 ? 0 : 1024 ** (k - 1));
+export const exponentialIn = (k: number): number => (k === 0 ? 0 : 1024 ** (k - 1));
 
 /**
  * TBD.
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
-export const ExponentialOut = (k: number): number => (k === 1 ? 1 : 1 - 2 ** (-10 * k));
+export const exponentialOut = (k: number): number => (k === 1 ? 1 : 1 - 2 ** (-10 * k));
 
 /**
  * TBD.
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
-export const ExponentialInOut = (k: number): number => {
+export const exponentialInOut = (k: number): number => {
   if (k === 0) {
     return 0;
   }
@@ -209,14 +209,14 @@ export const ExponentialInOut = (k: number): number => {
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
-export const CircularIn = (k: number): number => 1 - Math.sqrt(1 - k * k);
+export const circularIn = (k: number): number => 1 - Math.sqrt(1 - k * k);
 
 /**
  * TBD.
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
-export const CircularOut = (k: number): number => {
+export const circularOut = (k: number): number => {
   const u = k - 1;
   return Math.sqrt(1 - u * u);
 };
@@ -226,7 +226,7 @@ export const CircularOut = (k: number): number => {
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
-export const CircularInOut = (k: number): number => {
+export const circularInOut = (k: number): number => {
   const t = k * 2;
   if (t < 1) {
     return -0.5 * (Math.sqrt(1 - t * t) - 1);
@@ -244,7 +244,7 @@ const ELASTIC_PHASE = ELASTIC_PERIOD / 4;
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
-export const ElasticIn = (k: number): number => {
+export const elasticIn = (k: number): number => {
   if (k === 0) {
     return 0;
   }
@@ -260,7 +260,7 @@ export const ElasticIn = (k: number): number => {
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
-export const ElasticOut = (k: number): number => {
+export const elasticOut = (k: number): number => {
   if (k === 0) {
     return 0;
   }
@@ -275,7 +275,7 @@ export const ElasticOut = (k: number): number => {
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
-export const ElasticInOut = (k: number): number => {
+export const elasticInOut = (k: number): number => {
   if (k === 0) {
     return 0;
   }
@@ -299,14 +299,14 @@ const BACK_OVERSHOOT_IN_OUT = BACK_OVERSHOOT * 1.525;
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
-export const BackIn = (k: number): number => k * k * ((BACK_OVERSHOOT + 1) * k - BACK_OVERSHOOT);
+export const backIn = (k: number): number => k * k * ((BACK_OVERSHOOT + 1) * k - BACK_OVERSHOOT);
 
 /**
  * TBD.
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
-export const BackOut = (k: number): number => {
+export const backOut = (k: number): number => {
   const u = k - 1;
   return u * u * ((BACK_OVERSHOOT + 1) * u + BACK_OVERSHOOT) + 1;
 };
@@ -316,7 +316,7 @@ export const BackOut = (k: number): number => {
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
-export const BackInOut = (k: number): number => {
+export const backInOut = (k: number): number => {
   const t = k * 2;
   if (t < 1) {
     return 0.5 * (t * t * ((BACK_OVERSHOOT_IN_OUT + 1) * t - BACK_OVERSHOOT_IN_OUT));
@@ -330,7 +330,7 @@ export const BackInOut = (k: number): number => {
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
-export const BounceOut = (k: number): number => {
+export const bounceOut = (k: number): number => {
   if (k < 1 / 2.75) {
     return 7.5625 * k * k;
   }
@@ -351,16 +351,16 @@ export const BounceOut = (k: number): number => {
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
-export const BounceIn = (k: number): number => 1 - BounceOut(1 - k);
+export const bounceIn = (k: number): number => 1 - bounceOut(1 - k);
 
 /**
  * TBD.
  * @param {number} k - TBD.
  * @returns {number} TBD.
  */
-export const BounceInOut = (k: number): number => {
+export const bounceInOut = (k: number): number => {
   if (k < 0.5) {
-    return BounceIn(k * 2) * 0.5;
+    return bounceIn(k * 2) * 0.5;
   }
-  return BounceOut(k * 2 - 1) * 0.5 + 0.5;
+  return bounceOut(k * 2 - 1) * 0.5 + 0.5;
 };

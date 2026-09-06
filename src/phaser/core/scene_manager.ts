@@ -88,7 +88,8 @@ export class SceneManager {
   public add(key: string, state: SceneDefinition, autoStart = false): SceneState {
     let newState: SceneState;
     if (typeof state === 'function') {
-      newState = new state(this.game);
+      const SceneClass = state;
+      newState = new SceneClass(this.game);
     } else {
       newState = state;
       if (!(state instanceof Scene)) {

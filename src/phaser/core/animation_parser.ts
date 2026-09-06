@@ -71,9 +71,9 @@ export const spriteSheet = (
  * @param {object} json - TBD.
  * @returns {FrameData} TBD.
  */
-export const JSONDataHash = (game: Game, json: any, _key?: any): FrameData | null => {
+export const jsonDataHash = (game: Game, json: any, _key?: any): FrameData | null => {
   if (!json.frames) {
-    game.logger.warn('JSONDataHash: Invalid Texture Atlas JSON given, missing frames object', json);
+    game.logger.warn('jsonDataHash: Invalid Texture Atlas JSON given, missing frames object', json);
     return null;
   }
   // Let's create some frames then

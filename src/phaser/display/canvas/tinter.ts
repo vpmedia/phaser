@@ -14,7 +14,8 @@ import type { Image } from '../image.js';
  */
 export const getTintedTexture = (sprite: Image, color: number): HTMLCanvasElement => {
   const canvas = sprite.tintedTexture ?? create('CanvasTinter', 1, 1);
-  globalThis.PhaserRegistry.CANVAS_TINT_METHOD(sprite.texture, color, canvas);
+  const tint = globalThis.PhaserRegistry.CANVAS_TINT_METHOD;
+  tint(sprite.texture, color, canvas);
   return canvas;
 };
 
@@ -91,22 +92,19 @@ export const tintWithPerPixel = (texture: Texture, color: number, canvas: HTMLCa
     crop.width,
     crop.height
   );
-  const rgbValues = hex2rgb(color);
-  const r = rgbValues[0];
-  const g = rgbValues[1];
-  const b = rgbValues[2];
+  const [r, g, b] = hex2rgb(color);
   const pixelData = context.getImageData(0, 0, crop.width, crop.height);
   const pixels = pixelData.data;
   for (let i = 0; i < pixels.length; i += 4) {
-    pixels[i + 0] = pixels[i + 0]! * r;
-    pixels[i + 1] = pixels[i + 1]! * g;
-    pixels[i + 2] = pixels[i + 2]! * b;
+    pixels[i + 0]! *= r;
+    pixels[i + 1]! *= g;
+    pixels[i + 2]! *= b;
     const canHandleAlpha = globalThis.PhaserRegistry.CAN_CANVAS_HANDLE_ALPHA;
     if (!canHandleAlpha) {
       const alpha = pixels[i + 3]!;
-      pixels[i + 0] = pixels[i + 0]! / (255 / alpha);
-      pixels[i + 1] = pixels[i + 1]! / (255 / alpha);
-      pixels[i + 2] = pixels[i + 2]! / (255 / alpha);
+      pixels[i + 0]! /= 255 / alpha;
+      pixels[i + 1]! /= 255 / alpha;
+      pixels[i + 2]! /= 255 / alpha;
     }
   }
   context.putImageData(pixelData, 0, 0);

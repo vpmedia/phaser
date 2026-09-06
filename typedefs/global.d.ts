@@ -41,6 +41,9 @@ declare global {
     stencilBufferLimit: number;
   }
 
+  // Safari shipped the prefixed constructor years before the standard one and still exposes it
+  var webkitAudioContext: typeof AudioContext | undefined;
+
   interface Document {
     webkitFullscreenElement?: Element | null;
     mozFullScreenElement?: Element | null;
