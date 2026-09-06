@@ -1,3 +1,30 @@
+## [1.124.0] - 2026-09-06
+
+### 🐛 Bug Fixes
+
+- *(graphics)* Cull triangles by the sign of the 2D cross product
+
+### 🚜 Refactor
+
+- *(types)* Make the array set generic and type the canvas renderer
+- *(types)* Type the tween values, filters and button handlers
+- *(types)* Type the webgl managers, buffers and batch roots
+- *(types)* Type the frames, factory arguments and canvas pool owners
+- *(types)* Type the sprite batch shaders and legacy audio nodes
+- *(types)* Type the shader uniforms, masks and line anchors
+- *(types)* Describe the atlas and bitmap font descriptors
+- *(types)* Retire the last explicit any
+- *(types)* Close the last unsafe reads and drop the ActiveX xml path
+- *(types)* Annotate every return type and setter parameter
+
+### 🧪 Testing
+
+- *(tween)* Cover the tween value handling and easing lookup
+
+### ⚙️ Miscellaneous Tasks
+
+- Release
+- *(release)* V1.124.0
 ## [1.123.0] - 2026-09-06
 
 ### 🐛 Bug Fixes
