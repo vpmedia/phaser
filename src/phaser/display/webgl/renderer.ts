@@ -75,7 +75,7 @@ export class WebGLRenderer {
       alpha: Boolean(game.config.transparent),
       depth: false,
       antialias: game.config.antialias,
-      premultipliedAlpha: game.config.transparent && game.config.transparent !== 'notMultiplied',
+      premultipliedAlpha: game.config.transparent !== false && game.config.transparent !== 'notMultiplied',
       stencil: true,
       failIfMajorPerformanceCaveat: false,
       preserveDrawingBuffer: game.config.preserveDrawingBuffer,

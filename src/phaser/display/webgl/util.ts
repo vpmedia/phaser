@@ -82,7 +82,7 @@ export const compileShader = (
   }
   gl.shaderSource(shader, src);
   gl.compileShader(shader);
-  if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+  if (gl.getShaderParameter(shader, gl.COMPILE_STATUS) !== true) {
     getRegistry();
     globalThis.PhaserRegistry.GL_SHADER_INFO_LOG = gl.getShaderInfoLog(shader);
     return null;
@@ -132,7 +132,7 @@ export const compileProgram = (
   gl.attachShader(shaderProgram, fragmentShader);
   gl.linkProgram(shaderProgram);
 
-  if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
+  if (gl.getProgramParameter(shaderProgram, gl.LINK_STATUS) !== true) {
     getRegistry();
     globalThis.PhaserRegistry.GL_PROGRAM_INFO_LOG = gl.getProgramInfoLog(shaderProgram);
   }

@@ -71,7 +71,7 @@ export class WebGLShaderManager {
     for (i = 0; i < this.attribState.length; i += 1) {
       if (this.attribState[i] !== this.tempAttribState[i]) {
         this.attribState[i] = this.tempAttribState[i];
-        if (this.tempAttribState[i]) {
+        if (this.tempAttribState[i] === true) {
           gl.enableVertexAttribArray(i);
         } else {
           gl.disableVertexAttribArray(i);

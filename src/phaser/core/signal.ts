@@ -185,7 +185,7 @@ export class Signal {
     let n = this._bindings.length;
     while (n) {
       n -= 1;
-      if (context) {
+      if (context !== null) {
         if (this._bindings[n]!.context === context) {
           this._bindings[n]!._destroy();
           this._bindings.splice(n, 1);
@@ -194,7 +194,7 @@ export class Signal {
         this._bindings[n]!._destroy();
       }
     }
-    if (!context) {
+    if (context === null) {
       this._bindings.length = 0;
     }
   }

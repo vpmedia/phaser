@@ -664,7 +664,7 @@ export function earcutLinked(
   }
   let current = ear;
   // interlink polygon nodes in z-order
-  if (!pass && size) {
+  if (pass === undefined && size !== undefined) {
     indexCurve(current, minX, minY, size);
   }
   let stop = current;
@@ -673,7 +673,7 @@ export function earcutLinked(
   // iterate through ears, slicing them one by one
   while (current.prev !== current.next) {
     ({ prev, next } = current);
-    if (size ? isEarHashed(current, minX, minY, size) : isEar(current)) {
+    if (size === undefined ? isEar(current) : isEarHashed(current, minX, minY, size)) {
       // cut off the triangle
       triangles.push(prev.i / dim);
       triangles.push(current.i / dim);
@@ -688,7 +688,7 @@ export function earcutLinked(
     // if we looped through the whole remaining polygon and can't find any more ears
     if (current === stop) {
       // try filtering points and slicing again
-      if (!pass) {
+      if (pass === undefined) {
         earcutLinked(filterPoints(current), triangles, dim, minX, minY, size, 1);
         // if this didn't work, try curing all small self-intersections locally
       } else if (pass === 1) {

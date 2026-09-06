@@ -96,7 +96,7 @@ export const checkFullScreenSupport = (device: Device): void => {
   const element = document.createElement('div');
   const elementApi = element as unknown as Record<string, unknown>;
   for (const name of fs) {
-    if (elementApi[name]) {
+    if (elementApi[name] !== undefined) {
       device.fullscreen = true;
       device.requestFullscreen = name;
       break;
@@ -105,13 +105,13 @@ export const checkFullScreenSupport = (device: Device): void => {
   if (device.fullscreen) {
     const documentApi = document as unknown as Record<string, unknown>;
     for (const name of cfs) {
-      if (documentApi[name]) {
+      if (documentApi[name] !== undefined) {
         device.cancelFullscreen = name;
         break;
       }
     }
     // ALLOW_KEYBOARD_INPUT is a legacy webkit fullscreen flag, absent from lib.dom
-    if (globalThis.Element && (Element as unknown as { ALLOW_KEYBOARD_INPUT?: number }).ALLOW_KEYBOARD_INPUT) {
+    if ((Element as unknown as { ALLOW_KEYBOARD_INPUT?: number }).ALLOW_KEYBOARD_INPUT !== undefined) {
       device.fullscreenKeyboard = true;
     }
   }
@@ -190,7 +190,7 @@ export const checkAudio = (device: Device): void => {
   for (const format of formats) {
     const { type, codecs } = format;
     for (const codec of codecs) {
-      if (!device.supportedAudioFormats[type]) {
+      if (device.supportedAudioFormats[type] !== true) {
         const isSupported = isMediaSourceTypeSupported(codec) || canPlayType(audioElement, codec);
         if (isSupported) {
           device.supportedAudioFormats[type] = isSupported;

@@ -141,7 +141,7 @@ export const getSmoothingPrefix = (context: CanvasRenderingContext2D): string | 
   const smoothingFlags = context as unknown as Record<string, boolean | undefined>;
   for (const vendor of VENDORS) {
     const flag = `${vendor}mageSmoothingEnabled`;
-    if (smoothingFlags[flag]) {
+    if (smoothingFlags[flag] !== undefined) {
       return flag;
     }
   }

@@ -112,7 +112,7 @@ export class Group extends DisplayObject {
       this.updateZ();
     }
     const inputChild = child as T & { input?: unknown; inputEnabled?: boolean };
-    if (this.inputEnableChildren && (!inputChild.input || inputChild.inputEnabled)) {
+    if (this.inputEnableChildren && (inputChild.input === undefined || inputChild.inputEnabled === true)) {
       inputChild.inputEnabled = true;
     }
     if (!silent && child.events) {
@@ -252,7 +252,7 @@ export class Group extends DisplayObject {
       this.destroy();
       return;
     }
-    if (!this.exists || !this.parent?.exists) {
+    if (!this.exists || this.parent?.exists !== true) {
       this.renderOrderID = -1;
       return;
     }

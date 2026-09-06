@@ -323,7 +323,7 @@ export class WebGLSpriteBatch {
     }
     const { gl } = this;
     // check if a texture is dirty..
-    if (texture._dirty[gl.id]) {
+    if (texture._dirty[gl.id] === true) {
       if (!this.renderSession.renderer.updateTexture(texture)) {
         //  If updateTexture returns false then we cannot render it, so bail out now
         return;

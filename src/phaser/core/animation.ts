@@ -183,7 +183,7 @@ export class Animation {
         }
       }
     }
-    if (frameIndex) {
+    if (frameIndex !== undefined && frameIndex !== 0) {
       //  Set the current frame index to the found index. Subtract 1 so that it animates to the desired frame on update.
       this._frameIndex = frameIndex - 1;
       //  Make the animation update at next update

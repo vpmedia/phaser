@@ -80,7 +80,7 @@ export class BitmapText extends DisplayObject {
       return;
     }
 
-    if (!this.exists || !this.parent?.exists) {
+    if (!this.exists || this.parent?.exists !== true) {
       this.renderOrderID = -1;
       return;
     }

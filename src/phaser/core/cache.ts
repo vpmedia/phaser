@@ -381,7 +381,7 @@ export class Cache {
    */
   public checkURL(url: string): boolean {
     const resolved = this._resolveURL(url);
-    if (resolved && this._urlMap?.[resolved]) {
+    if (resolved !== null && this._urlMap?.[resolved] !== undefined) {
       return true;
     }
     return false;
@@ -481,7 +481,7 @@ export class Cache {
   public getItem(key: string, cache: number, _method: string, property: string | null = null): unknown {
     if (this.checkKey(cache, key)) {
       const entry = this._cacheMap[cache]![key]!;
-      if (!property) {
+      if (property === null) {
         return entry;
       }
       return (entry as Record<string, unknown>)[property];
@@ -705,7 +705,7 @@ export class Cache {
    */
   public getURL(url: string): object | null {
     const resolvedURL = this._resolveURL(url);
-    if (resolvedURL) {
+    if (resolvedURL !== null) {
       return this._urlMap?.[resolvedURL] ?? null;
     }
     this.game.logger.warn('Cache invalid url', { resolvedURL });

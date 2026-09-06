@@ -71,7 +71,7 @@ export const renderGraphics = (graphics: Graphics, context: CanvasRenderingConte
         context.stroke();
       }
     } else if (shape instanceof Rectangle) {
-      if (data.fillColor || data.fillColor === 0) {
+      if (data.fillColor !== null) {
         context.globalAlpha = data.fillAlpha * worldAlpha;
         context.fillStyle = `#${`00000${Math.trunc(fillColor ?? 0).toString(16)}`.slice(-6)}`;
         context.fillRect(shape.x, shape.y, shape.width, shape.height);
@@ -144,7 +144,7 @@ export const renderGraphics = (graphics: Graphics, context: CanvasRenderingConte
       context.lineTo(rx + radius, ry);
       context.quadraticCurveTo(rx, ry, rx, ry + radius);
       context.closePath();
-      if (data.fillColor || data.fillColor === 0) {
+      if (data.fillColor !== null) {
         context.globalAlpha = data.fillAlpha * worldAlpha;
         context.fillStyle = `#${`00000${Math.trunc(fillColor ?? 0).toString(16)}`.slice(-6)}`;
         context.fill();

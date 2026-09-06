@@ -130,7 +130,7 @@ export class CanvasRenderer {
       this.view.style.width = `${this.width / this.resolution}px`;
       this.view.style.height = `${this.height / this.resolution}px`;
     }
-    if (this.renderSession.smoothProperty) {
+    if (this.renderSession.smoothProperty !== null) {
       setSmoothing(this.context, this.renderSession.smoothProperty, this.renderSession.scaleMode === SCALE_LINEAR);
     }
   }

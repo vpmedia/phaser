@@ -16,7 +16,7 @@ export const getPool = (): CanvasPoolEntry[] => {
 export const getFirst = (): number => {
   const pool = getPool();
   for (let i = 0; i < pool.length; i += 1) {
-    if (!pool[i]!.parent) {
+    if (pool[i]!.parent === null) {
       return i;
     }
   }
@@ -61,7 +61,7 @@ export const getTotal = (): number => {
   const pool = getPool();
   let c = 0;
   for (const entry of pool) {
-    if (entry.parent) {
+    if (entry.parent !== null) {
       c += 1;
     }
   }
@@ -76,7 +76,7 @@ export const getFree = (): number => {
   const pool = getPool();
   let c = 0;
   for (const entry of pool) {
-    if (!entry.parent) {
+    if (entry.parent === null) {
       c += 1;
     }
   }

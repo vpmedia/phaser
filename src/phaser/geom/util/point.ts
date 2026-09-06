@@ -271,10 +271,10 @@ export const centroid = (points: Point[], output: Point | null = null): Point =>
  */
 export const parse = (obj: Record<string, unknown>, xProp = 'x', yProp = 'y'): Point => {
   const point = new Point();
-  if (obj[xProp]) {
+  if (obj[xProp] !== undefined) {
     point.x = Math.trunc(Number(obj[xProp]));
   }
-  if (obj[yProp]) {
+  if (obj[yProp] !== undefined) {
     point.y = Math.trunc(Number(obj[yProp]));
   }
   return point;

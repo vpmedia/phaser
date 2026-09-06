@@ -511,7 +511,7 @@ export class InputHandler {
       // Abort. We've been destroyed.
       return false;
     }
-    if (!this.enabled || !this.sprite.visible || !this.sprite.parent?.visible) {
+    if (!this.enabled || !this.sprite.visible || this.sprite.parent?.visible !== true) {
       this._pointerOutHandler(pointer);
       return false;
     }

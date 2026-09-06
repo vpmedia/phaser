@@ -37,11 +37,11 @@ export class Stage extends DisplayObject {
       color: 0,
       rgba: '#000000',
     };
-    if (!game.config.transparent) {
+    if (game.config.transparent === false) {
       // transparent = 0,0,0,0 - otherwise r,g,b,1
       this._bgColor.a = 1;
     }
-    if (game.config.backgroundColor && !this.game.config.transparent) {
+    if (game.config.backgroundColor !== 0 && this.game.config.transparent === false) {
       this.setBackgroundColor(game.config.backgroundColor);
     }
   }
@@ -51,7 +51,7 @@ export class Stage extends DisplayObject {
    * @param {number} color - The color to set as the background.
    */
   public setBackgroundColor(color: number): void {
-    if (this.game.config.transparent) {
+    if (this.game.config.transparent !== false) {
       return;
     }
     valueToColor(color, this._bgColor);

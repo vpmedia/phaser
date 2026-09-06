@@ -197,7 +197,7 @@ export class NormalShader {
    */
   public initSampler2D(uniform: SamplerUniform): void {
     const texture = uniform.value;
-    if (!texture?.baseTexture.hasLoaded) {
+    if (texture?.baseTexture.hasLoaded !== true) {
       return;
     }
     const { gl } = this;
@@ -218,13 +218,13 @@ export class NormalShader {
       const minFilter = data.minFilter ?? gl.LINEAR;
       let wrapS = data.wrapS ?? gl.CLAMP_TO_EDGE;
       let wrapT = data.wrapT ?? gl.CLAMP_TO_EDGE;
-      const format = data.luminance ? gl.LUMINANCE : gl.RGBA;
-      if (data.repeat) {
+      const format = data.luminance === true ? gl.LUMINANCE : gl.RGBA;
+      if (data.repeat === true) {
         wrapS = gl.REPEAT;
         wrapT = gl.REPEAT;
       }
       gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, Boolean(data.flipY));
-      if (data.width) {
+      if (data.width !== undefined) {
         const width = data.width ?? 512;
         const height = data.height ?? 2;
         const border = data.border ?? 0;
@@ -268,10 +268,10 @@ export class NormalShader {
       } else if (uniform.glValueLength === 4) {
         callUniformSetter(uniform.glFunc, gl, uniform.uniformLocation, vector.x, vector.y, vector.z, vector.w);
       } else if (uniform.type === 'sampler2D') {
-        if (uniform._init) {
+        if (uniform._init === true) {
           gl.activeTexture(glMember(gl, `TEXTURE${this.textureCount}`));
           const { baseTexture } = sampler.value!;
-          if (baseTexture._dirty[gl.id]) {
+          if (baseTexture._dirty[gl.id] === true) {
             globalThis.PhaserRegistry.INSTANCES[gl.id]?.updateTexture(baseTexture);
           } else {
             // bind the current texture
