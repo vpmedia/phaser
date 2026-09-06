@@ -1,6 +1,8 @@
+import type { Game } from './game.js';
+
 export class Scene {
-  public game: any = null;
-  public key: any = '';
+  public game: Game | null = null;
+  public key = '';
   /**
    * Creates a new Scene instance.
    */

@@ -7,34 +7,47 @@ export type SceneHooks = {
   preload?: () => void;
   create?: () => void;
   update?: () => void;
+  render?: () => void;
   resize?: (width: number, height: number) => void;
   pauseUpdate?: () => void;
   shutdown?: () => void;
 };
 
+/** A scene once the manager holds it: its hooks plus the wiring the manager adds. */
+export type SceneState = SceneHooks & {
+  game?: Game | null;
+  key?: string;
+};
+
+/** What the manager accepts as a scene: an instance, a plain hook object, or a class to build one. */
+export type SceneDefinition = SceneState | (new (game: Game) => SceneState);
+
+/** A hook invoked with the scene as its receiver and the game as its argument. */
+type SceneCallback = (game: Game) => void;
+
 export class SceneManager {
   public game!: Game;
-  public states!: any;
-  public _pendingState!: any;
-  public _clearWorld!: any;
-  public _clearCache!: any;
-  public _created!: any;
-  public _args!: any;
+  public states!: Record<string, SceneState>;
+  public _pendingState!: SceneDefinition | string | null;
+  public _clearWorld!: boolean;
+  public _clearCache!: boolean;
+  public _created!: boolean;
+  public _args!: unknown[];
   public current!: string;
-  public onInitCallback!: any;
-  public onPreloadCallback!: any;
-  public onCreateCallback!: any;
-  public onUpdateCallback!: any;
-  public onResizeCallback!: any;
-  public onPauseUpdateCallback!: any;
-  public onShutDownCallback!: any;
-  public callbackContext!: SceneHooks;
+  public onInitCallback!: ((...args: unknown[]) => void) | null;
+  public onPreloadCallback!: SceneCallback | null;
+  public onCreateCallback!: SceneCallback | null;
+  public onUpdateCallback!: SceneCallback | null;
+  public onResizeCallback!: ((width: number, height: number) => void) | null;
+  public onPauseUpdateCallback!: SceneCallback | null;
+  public onShutDownCallback!: SceneCallback | null;
+  public callbackContext!: SceneState;
   /**
    * Creates a new SceneManager instance.
    * @param {Game} game - The game instance this manager belongs to.
    * @param {string} pendingState - The state to load when the game boots.
    */
-  public constructor(game: Game, pendingState: string) {
+  public constructor(game: Game, pendingState: SceneDefinition | string | null) {
     this.game = game;
     this.states = {};
     this._pendingState = null;
@@ -72,15 +85,15 @@ export class SceneManager {
    * @param {boolean} autoStart - Whether to start this state immediately.
    * @returns {Scene|object} The created scene or state object.
    */
-  public add(key: string, state: any, autoStart = false) {
-    let newState = null;
-    if (state instanceof Scene) {
-      newState = state;
-    } else if (typeof state === 'object') {
-      newState = state;
-      newState.game = this.game;
-    } else if (typeof state === 'function') {
+  public add(key: string, state: SceneDefinition, autoStart = false): SceneState {
+    let newState: SceneState;
+    if (typeof state === 'function') {
       newState = new state(this.game);
+    } else {
+      newState = state;
+      if (!(state instanceof Scene)) {
+        newState.game = this.game;
+      }
     }
     this.states[key] = newState;
     if (autoStart) {
@@ -149,7 +162,7 @@ export class SceneManager {
    * This method is called before the game loop updates.
    */
   public preUpdate(): void {
-    if (this._pendingState && this.game.isBooted) {
+    if (typeof this._pendingState === 'string' && this._pendingState && this.game.isBooted) {
       // var previousStateKey = this.current;
       //  Already got a state running?
       this.clearCurrentState();
@@ -207,11 +220,9 @@ export class SceneManager {
    * @returns {boolean} True if the scene exists, false otherwise.
    */
   public checkState(key: string): boolean {
-    if (this.states[key]) {
-      if (this.states[key].preload || this.states[key].create || this.states[key].update || this.states[key].render) {
-        return true;
-      }
-      return false;
+    const state = this.states[key];
+    if (state) {
+      return Boolean(state.preload ?? state.create ?? state.update ?? state.render);
     }
     return false;
   }
@@ -221,8 +232,11 @@ export class SceneManager {
    * @param {string} key - The unique key for the state to link.
    */
   public link(key: string): void {
-    this.states[key].game = this.game;
-    this.states[key].key = key;
+    const state = this.states[key];
+    if (state) {
+      state.game = this.game;
+      state.key = key;
+    }
   }
 
   /**
@@ -230,8 +244,9 @@ export class SceneManager {
    * @param {string} key - The unique key for the state to unlink.
    */
   public unlink(key: string): void {
-    if (this.states[key]) {
-      this.states[key].game = null;
+    const state = this.states[key];
+    if (state) {
+      state.game = null;
     }
   }
 
@@ -240,7 +255,7 @@ export class SceneManager {
    * @param {string} key - The unique key for the state to set as current.
    */
   public setCurrentState(key: string): void {
-    this.callbackContext = this.states[key];
+    this.callbackContext = this.states[key]!;
     this.link(key);
     //  Used when the state is set as being the current active state
     this.onInitCallback = this.callbackContext.init ?? this.dummy;
@@ -265,7 +280,7 @@ export class SceneManager {
    * @returns {T} The current scene state.
    */
   public getCurrentState<T = Partial<Scene>>(): T {
-    return this.states[this.current];
+    return this.states[this.current] as T;
   }
 
   /**
@@ -273,7 +288,7 @@ export class SceneManager {
    * This method is called when scene loading is complete.
    */
   public loadComplete(): void {
-    if (this._created === false && this.onCreateCallback) {
+    if (!this._created && this.onCreateCallback) {
       this._created = true;
       this.onCreateCallback.call(this.callbackContext, this.game);
     } else {

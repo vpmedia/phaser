@@ -12,6 +12,7 @@ import { Loader } from './loader.js';
 import { RequestAnimationFrame } from './raf.js';
 import { ScaleManager } from './scale_manager.js';
 import { SceneManager } from './scene_manager.js';
+import type { SceneDefinition } from './scene_manager.js';
 import { Signal } from './signal.js';
 import { SoundManager } from './sound_manager.js';
 import { Stage } from './stage.js';
@@ -20,10 +21,36 @@ import { TweenManager } from './tween_manager.js';
 import { World } from './world.js';
 import { getRegistry } from './registry.js';
 
+/**
+ * The options a game is created with. Everything the constructor defaults is always present on
+ * `Game.config`; the rest is only there when the caller supplied it.
+ */
+export type GameConfig = {
+  width: number;
+  height: number;
+  backgroundColor: number;
+  canvasID: string;
+  canvasStyle: Record<string, string> | undefined;
+  resolution: number;
+  transparent: boolean | 'notMultiplied';
+  antialias: boolean;
+  preserveDrawingBuffer: boolean;
+  clearBeforeRender: boolean;
+  roundPixels: boolean;
+  renderType: number;
+  isForceDisabledAudio: boolean;
+  maxParallelDownloads: number;
+  canvas?: HTMLCanvasElement;
+  isSkipTicker?: boolean;
+  parent?: string | HTMLElement;
+  state?: SceneDefinition | string;
+  logger?: Logger;
+};
+
 export class Game {
   /** Set when the scene manager kick-starts the first scene. */
   public isKickStart = false;
-  public config!: any;
+  public config!: GameConfig;
   public id!: number;
   public parent!: string | HTMLElement;
   public width!: number;
@@ -56,8 +83,8 @@ export class Game {
   public onResume!: Signal;
   public onBoot!: Signal;
   public isPaused!: boolean;
-  public contextLostBinded!: any;
-  public contextRestoredBinded!: any;
+  public contextLostBinded!: EventListener | null;
+  public contextRestoredBinded!: EventListener | null;
   /**
    * Creates a new Game instance.
    * @param {object} gameConfig - The configuration object for the game.
@@ -78,9 +105,8 @@ export class Game {
    * @param {string|HTMLElement} gameConfig.parent - The parent element to append the canvas to.
    * @param {object} gameConfig.state - The initial state object or class.
    */
-  public constructor(gameConfig: any = {}) {
+  public constructor(gameConfig: Partial<GameConfig> = {}) {
     getRegistry();
-    this.config = {};
     this.id = 0;
     this.parent = '';
     this.width = 800;
@@ -160,7 +186,7 @@ export class Game {
       this.canvas = create(this, this.width, this.height, this.config.canvasID, true);
     }
     if (this.config.canvasStyle) {
-      const canvasStyle = this.config.canvasStyle as Record<string, string>;
+      const { canvasStyle } = this.config;
       for (const property of Object.keys(canvasStyle)) {
         this.canvas.style.setProperty(property, canvasStyle[property] ?? null);
       }
@@ -223,21 +249,22 @@ export class Game {
    * @param {string} key - The configuration key to parse.
    * @param {*} defaultValue - The default value if the key is not found in config.
    */
-  public parseConfigElement(config: any, key: string, defaultValue?: any): void {
-    if (config[key] !== undefined) {
-      this.config[key] = config[key];
-    } else {
-      this.config[key] = defaultValue;
-    }
+  public parseConfigElement<K extends keyof GameConfig>(
+    config: Partial<GameConfig>,
+    key: K,
+    defaultValue?: GameConfig[K]
+  ): void {
+    this.config[key] = (config[key] ?? defaultValue)!;
   }
 
   /**
    * Parses the configuration object and sets up game properties.
    * @param {object} config - The configuration object to parse.
    */
-  public parseConfig(config: any): void {
+  public parseConfig(config: Partial<GameConfig>): void {
     this.logger = config.logger ?? getLogger(['phaser']);
     this.logger.info('parseConfig');
+    this.config = {} as GameConfig;
     this.parseConfigElement(config, 'width', 800);
     this.parseConfigElement(config, 'height', 600);
     this.parseConfigElement(config, 'backgroundColor', 0x00_00_00);
@@ -255,19 +282,15 @@ export class Game {
     if (config.parent) {
       this.parent = config.parent;
     }
-    let state = null;
-    if (config.state) {
-      ({ state } = config);
-    }
-    this.state = new SceneManager(this, state);
+    this.state = new SceneManager(this, config.state ?? null);
   }
 
   /**
    * Called when the WebGL context is lost.
    * @param {WebGLContextEvent | Event} event - The WebGL context loss event.
    */
-  public contextLost(event: any): void {
-    this.logger.info('contextLost', event);
+  public contextLost(event: Event): void {
+    this.logger.info('contextLost', { type: event.type });
     event.preventDefault();
     if (this.renderer) {
       this.renderer.contextLost = true;
@@ -278,8 +301,8 @@ export class Game {
    * Called when the WebGL context is restored.
    * @param {WebGLContextEvent | Event} event - The WebGL context restore event.
    */
-  public contextRestored(event: any): void {
-    this.logger.info('contextRestored', event);
+  public contextRestored(event: Event): void {
+    this.logger.info('contextRestored', { type: event.type });
     if (this.renderer) {
       this.renderer.initContext(this);
       // This.cache.clearGLTextures();

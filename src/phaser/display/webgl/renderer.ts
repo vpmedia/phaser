@@ -71,7 +71,7 @@ export class WebGLRenderer {
     this.height = game.height;
     this.view = game.canvas;
     this._contextOptions = {
-      alpha: game.config.transparent,
+      alpha: Boolean(game.config.transparent),
       depth: false,
       antialias: game.config.antialias,
       premultipliedAlpha: game.config.transparent && game.config.transparent !== 'notMultiplied',
