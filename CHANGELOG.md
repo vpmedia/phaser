@@ -1,3 +1,13 @@
+## [1.116.0] - 2026-09-06
+
+### 🐛 Bug Fixes
+
+- *(types)* Let callback APIs take any receiver again
+
+### ⚙️ Miscellaneous Tasks
+
+- Release
+- *(release)* V1.116.0
 ## [1.115.0] - 2026-09-06
 
 ### 🐛 Bug Fixes
