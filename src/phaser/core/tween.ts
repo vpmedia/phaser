@@ -167,10 +167,7 @@ export class Tween {
     }
     this.manager.add(this);
     this.isRunning = true;
-    if (index < 0 || index > this.timeline.length - 1) {
-      index = 0;
-    }
-    this.current = index;
+    this.current = index < 0 || index > this.timeline.length - 1 ? 0 : index;
     this.timeline[this.current]!.start();
     return this;
   }
@@ -290,10 +287,7 @@ export class Tween {
    * @returns {Tween} This Tween object for chaining.
    */
   public easing(ease: string | EasingFunction, index: number): this {
-    if (typeof ease === 'string' && this.manager.easeMap[ease]) {
-      ease = this.manager.easeMap[ease]!;
-    }
-    return this.updateTweenData('easingFunction', ease, index);
+    return this.updateTweenData('easingFunction', this.resolveEasing(ease), index);
   }
 
   /**
@@ -507,10 +501,11 @@ export class Tween {
     for (const tweenData of this.timeline) {
       tweenData.loadValues();
     }
+    const frames = [...data];
     for (const tweenData of this.timeline) {
-      data = [...data, ...tweenData.generateData(frameRate)];
+      frames.push(...tweenData.generateData(frameRate));
     }
-    return data;
+    return frames;
   }
 
   /**

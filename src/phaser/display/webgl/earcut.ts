@@ -8,10 +8,11 @@ import { Node } from './earcut_node.js';
 export function sortLinked(list: Node | null): Node | null {
   let numMerges;
   let inSize = 1;
+  let sorted = list;
   do {
-    let p: Node | null = list;
+    let p: Node | null = sorted;
     let tail: Node | null = null;
-    list = null;
+    sorted = null;
     numMerges = 0;
     while (p) {
       numMerges += 1;
@@ -55,7 +56,7 @@ export function sortLinked(list: Node | null): Node | null {
         if (tail) {
           tail.nextZ = e;
         } else {
-          list = e;
+          sorted = e;
         }
         e.prevZ = tail;
         tail = e;
@@ -67,7 +68,7 @@ export function sortLinked(list: Node | null): Node | null {
     }
     inSize *= 2;
   } while (numMerges > 1);
-  return list;
+  return sorted;
 }
 
 /**
@@ -91,17 +92,17 @@ export function compareX(a: Node, b: Node): number {
  */
 export function zOrder(x: number, y: number, minX: number, minY: number, size: number): number {
   // coords are transformed into non-negative 15-bit integer range
-  x = (32_767 * (x - minX)) / size;
-  y = (32_767 * (y - minY)) / size;
-  x = (x | (x << 8)) & 0x00ff00ff;
-  x = (x | (x << 4)) & 0x0f0f0f0f;
-  x = (x | (x << 2)) & 0x33333333;
-  x = (x | (x << 1)) & 0x55555555;
-  y = (y | (y << 8)) & 0x00ff00ff;
-  y = (y | (y << 4)) & 0x0f0f0f0f;
-  y = (y | (y << 2)) & 0x33333333;
-  y = (y | (y << 1)) & 0x55555555;
-  return x | (y << 1);
+  let ix = (32_767 * (x - minX)) / size;
+  let iy = (32_767 * (y - minY)) / size;
+  ix = (ix | (ix << 8)) & 0x00ff00ff;
+  ix = (ix | (ix << 4)) & 0x0f0f0f0f;
+  ix = (ix | (ix << 2)) & 0x33333333;
+  ix = (ix | (ix << 1)) & 0x55555555;
+  iy = (iy | (iy << 8)) & 0x00ff00ff;
+  iy = (iy | (iy << 4)) & 0x0f0f0f0f;
+  iy = (iy | (iy << 2)) & 0x33333333;
+  iy = (iy | (iy << 1)) & 0x55555555;
+  return ix | (iy << 1);
 }
 
 /**
@@ -446,7 +447,7 @@ export function filterPoints(start: Node | null, end?: Node | null): Node | null
   if (!start) {
     return start;
   }
-  end ??= start;
+  let last = end ?? start;
   let p = start;
   let again;
   do {
@@ -454,7 +455,7 @@ export function filterPoints(start: Node | null, end?: Node | null): Node | null
     if (!p.steiner && (equals(p, p.next) || area(p.prev, p, p.next) === 0)) {
       removeNode(p);
       p = p.prev;
-      end = p;
+      last = p;
       if (p === p.next) {
         return null;
       }
@@ -462,8 +463,8 @@ export function filterPoints(start: Node | null, end?: Node | null): Node | null
     } else {
       p = p.next;
     }
-  } while (again || p !== end);
-  return end;
+  } while (again || p !== last);
+  return last;
 }
 
 /**
@@ -567,14 +568,15 @@ export function eliminateHoles(
   }
   queue.sort(compareX);
   // process holes from left to right
+  let outer = outerNode;
   for (i = 0; i < queue.length; i += 1) {
-    if (!outerNode) {
-      return outerNode;
+    if (!outer) {
+      return outer;
     }
-    eliminateHole(queue[i]!, outerNode);
-    outerNode = filterPoints(outerNode, outerNode.next);
+    eliminateHole(queue[i]!, outer);
+    outer = filterPoints(outer, outer.next);
   }
-  return outerNode;
+  return outer;
 }
 
 /**
@@ -586,6 +588,7 @@ export function eliminateHoles(
  */
 export function cureLocalIntersections(start: Node, triangles: number[], dim: number): Node {
   let p = start;
+  let first = start;
   do {
     const a = p.prev;
     const b = p.next.next;
@@ -598,10 +601,10 @@ export function cureLocalIntersections(start: Node, triangles: number[], dim: nu
       removeNode(p);
       removeNode(p.next);
       p = b;
-      start = p;
+      first = p;
     }
     p = p.next;
-  } while (p !== start);
+  } while (p !== first);
   return p;
 }
 
@@ -659,40 +662,41 @@ export function earcutLinked(
   if (!ear) {
     return;
   }
+  let current = ear;
   // interlink polygon nodes in z-order
   if (!pass && size) {
-    indexCurve(ear, minX, minY, size);
+    indexCurve(current, minX, minY, size);
   }
-  let stop = ear;
+  let stop = current;
   let prev;
   let next;
   // iterate through ears, slicing them one by one
-  while (ear.prev !== ear.next) {
-    ({ prev, next } = ear);
-    if (size ? isEarHashed(ear, minX, minY, size) : isEar(ear)) {
+  while (current.prev !== current.next) {
+    ({ prev, next } = current);
+    if (size ? isEarHashed(current, minX, minY, size) : isEar(current)) {
       // cut off the triangle
       triangles.push(prev.i / dim);
-      triangles.push(ear.i / dim);
+      triangles.push(current.i / dim);
       triangles.push(next.i / dim);
-      removeNode(ear);
+      removeNode(current);
       // skipping the next vertice leads to less sliver triangles
-      ear = next.next;
+      current = next.next;
       stop = next.next;
       continue;
     }
-    ear = next;
+    current = next;
     // if we looped through the whole remaining polygon and can't find any more ears
-    if (ear === stop) {
+    if (current === stop) {
       // try filtering points and slicing again
       if (!pass) {
-        earcutLinked(filterPoints(ear), triangles, dim, minX, minY, size, 1);
+        earcutLinked(filterPoints(current), triangles, dim, minX, minY, size, 1);
         // if this didn't work, try curing all small self-intersections locally
       } else if (pass === 1) {
-        ear = cureLocalIntersections(ear, triangles, dim);
-        earcutLinked(ear, triangles, dim, minX, minY, size, 2);
+        current = cureLocalIntersections(current, triangles, dim);
+        earcutLinked(current, triangles, dim, minX, minY, size, 2);
         // as a last resort, try splitting the remaining polygon into two
       } else if (pass === 2) {
-        splitEarcut(ear, triangles, dim, minX, minY, size);
+        splitEarcut(current, triangles, dim, minX, minY, size);
       }
       break;
     }

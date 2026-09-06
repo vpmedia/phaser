@@ -20,10 +20,7 @@ export class FrameData {
   }
 
   public getFrame(index = 0): Frame {
-    if (index >= this._frames.length) {
-      index = 0;
-    }
-    return this._frames[index]!;
+    return this._frames[index >= this._frames.length ? 0 : index]!;
   }
 
   public getFrameByName(name: string): Frame | null {

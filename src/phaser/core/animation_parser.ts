@@ -40,22 +40,18 @@ export const spriteSheet = (
   }
   const { width } = img;
   const { height } = img;
-  if (frameWidth <= 0) {
-    frameWidth = Math.floor(-width / Math.min(-1, frameWidth));
-  }
-  if (frameHeight <= 0) {
-    frameHeight = Math.floor(-height / Math.min(-1, frameHeight));
-  }
-  const row = Math.floor((width - margin) / (frameWidth + spacing));
-  const column = Math.floor((height - margin) / (frameHeight + spacing));
+  const cellWidth = frameWidth <= 0 ? Math.floor(-width / Math.min(-1, frameWidth)) : frameWidth;
+  const cellHeight = frameHeight <= 0 ? Math.floor(-height / Math.min(-1, frameHeight)) : frameHeight;
+  const row = Math.floor((width - margin) / (cellWidth + spacing));
+  const column = Math.floor((height - margin) / (cellHeight + spacing));
   let total = row * column;
   if (frameMax !== -1) {
     total = frameMax;
   }
   //  Zero or smaller than frame sizes?
-  if (width === 0 || height === 0 || width < frameWidth || height < frameHeight || total === 0) {
+  if (width === 0 || height === 0 || width < cellWidth || height < cellHeight || total === 0) {
     game.logger.warn(
-      `AnimationParser.spriteSheet: '${typeof key === 'string' ? key : 'image'}'s width/height zero or width/height < given frameWidth/frameHeight`
+      `AnimationParser.spriteSheet: '${typeof key === 'string' ? key : 'image'}'s width/height zero or width/height < given cellWidth/cellHeight`
     );
     return null;
   }
@@ -64,11 +60,11 @@ export const spriteSheet = (
   let x = margin;
   let y = margin;
   for (let i = 0; i < total; i += 1) {
-    data.addFrame(new Frame(i, x, y, frameWidth, frameHeight, ''));
-    x += frameWidth + spacing;
-    if (x + frameWidth > width) {
+    data.addFrame(new Frame(i, x, y, cellWidth, cellHeight, ''));
+    x += cellWidth + spacing;
+    if (x + cellWidth > width) {
       x = margin;
-      y += frameHeight + spacing;
+      y += cellHeight + spacing;
     }
   }
   return data;

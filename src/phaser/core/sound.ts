@@ -81,7 +81,7 @@ export class Sound {
    */
   public constructor(game: Game, key: string, volume = 1, loop = false, connect: boolean | null = null) {
     // https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Migrating_from_webkitAudioContext
-    connect ??= game.sound.connectToMaster;
+    const connectToMaster = connect ?? game.sound.connectToMaster;
     this.game = game;
     this.name = key;
     this.key = key;
@@ -116,7 +116,7 @@ export class Sound {
         : this.context!.createGain();
     this.gainNode = gainNode;
     gainNode.gain.value = volume * this.game.sound.volume;
-    if (connect && this.masterGainNode) {
+    if (connectToMaster && this.masterGainNode) {
       gainNode.connect(this.masterGainNode);
     }
     this.onPlay = new Signal();
@@ -270,10 +270,7 @@ export class Sound {
    * @returns {Sound} This Sound instance for chaining.
    */
   public play(marker: string | false | null = '', position = 0, volume = 1, loop = false, forceRestart = true): this {
-    if (marker === undefined || marker === false || marker === null) {
-      marker = '';
-    }
-    forceRestart ??= true;
+    const markerName = marker === undefined || marker === false || marker === null ? '' : marker;
 
     if (this.isPlaying && !this.allowMultiple && !forceRestart && !this.override) {
       //  Use Restart instead
@@ -292,15 +289,15 @@ export class Sound {
       }
       this.isPlaying = false;
     }
-    if (marker === '' && Object.keys(this.markers).length > 0) {
+    if (markerName === '' && Object.keys(this.markers).length > 0) {
       //  If they didn't specify a marker but this is an audio sprite,
       //  We should never play the entire thing
       return this;
     }
-    const markerData = marker === '' ? undefined : this.markers[marker];
-    if (marker !== '') {
+    const markerData = markerName === '' ? undefined : this.markers[markerName];
+    if (markerName !== '') {
       if (markerData) {
-        this.currentMarker = marker;
+        this.currentMarker = markerName;
         //  Playing a marker? Then we default to the marker values
         this.position = markerData.start;
         this.volume = markerData.volume;
@@ -313,26 +310,21 @@ export class Sound {
         if (loop !== undefined) {
           this.loop = loop;
         }
-        this._tempMarker = marker;
+        this._tempMarker = markerName;
         this._tempPosition = this.position;
         this._tempVolume = this.volume;
         this._tempLoop = this.loop;
       } else {
-        this.game.logger.warn(`Sound.play: audio marker ${marker} does not exist`);
+        this.game.logger.warn(`Sound.play: audio marker ${markerName} does not exist`);
         return this;
       }
     } else {
-      position ??= 0;
-      volume ??= this._volume;
-      if (loop === undefined) {
-        ({ loop } = this);
-      }
-      this.position = Math.max(0, position);
-      this.volume = volume;
-      this.loop = loop;
+      this.position = Math.max(0, position ?? 0);
+      this.volume = volume ?? this._volume;
+      this.loop = loop ?? this.loop;
       this.duration = 0;
       this.durationMS = 0;
-      this._tempMarker = marker;
+      this._tempMarker = markerName;
       this._tempPosition = position;
       this._tempVolume = volume;
       this._tempLoop = loop;
@@ -347,10 +339,10 @@ export class Sound {
       }
       this._buffer = this.game.cache.getSoundData(this.key) as AudioBuffer | null;
       this._sound.buffer = this._buffer;
-      if (this.loop && marker === '') {
+      if (this.loop && markerName === '') {
         this._sound.loop = true;
       }
-      if (!this.loop && marker === '') {
+      if (!this.loop && markerName === '') {
         this._sound.addEventListener('ended', this.onEndedHandler, { once: true });
       }
       this.totalDuration = this._sound.buffer?.duration ?? 0;
@@ -361,7 +353,7 @@ export class Sound {
       //  Useful to cache this somewhere perhaps?
       if (this._sound.start === undefined) {
         (this._sound as unknown as LegacyBufferSource).noteGrainOn(0, this.position, this.duration);
-      } else if (this.loop && marker === '') {
+      } else if (this.loop && markerName === '') {
         this._sound.start(0, 0);
       } else {
         this._sound.start(0, this.position, this.duration);

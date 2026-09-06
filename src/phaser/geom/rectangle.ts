@@ -95,9 +95,8 @@ export class Rectangle {
    * @returns {Rectangle} This rectangle instance for chaining.
    */
   public scale(x: number, y?: number): this {
-    y ??= x;
     this.width *= x;
-    this.height *= y;
+    this.height *= y ?? x;
     return this;
   }
 

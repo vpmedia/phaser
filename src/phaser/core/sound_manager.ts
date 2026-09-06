@@ -519,15 +519,11 @@ export class SoundManager {
    * Sets the volume level of the sound manager.
    */
   public set volume(value: number) {
-    if (value < 0) {
-      value = 0;
-    } else if (value > 1) {
-      value = 1;
-    }
-    if (this._volume !== value) {
-      this._volume = value;
+    const level = Math.min(1, Math.max(0, value));
+    if (this._volume !== level) {
+      this._volume = level;
       if (!this.noAudio) {
-        this.masterGain.gain.value = value;
+        this.masterGain.gain.value = level;
       }
     }
   }

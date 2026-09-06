@@ -221,13 +221,11 @@ export const rotate = (
   asDegrees: boolean,
   dist: number | null | undefined
 ): Point => {
-  if (asDegrees) {
-    ang *= Math.PI / 180;
-  }
+  const radians = asDegrees ? ang * (Math.PI / 180) : ang;
   if (dist === undefined || dist === null) {
     a.subtract(x, y);
-    const s = Math.sin(ang);
-    const c = Math.cos(ang);
+    const s = Math.sin(radians);
+    const c = Math.cos(radians);
     const tx = c * a.x - s * a.y;
     const ty = s * a.x + c * a.y;
     a.x = tx + x;

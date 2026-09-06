@@ -59,11 +59,9 @@ export const intersects = (a: Circle, b: Circle): boolean => distance(a.x, a.y, 
  */
 export const circumferencePoint = (a: Circle, angle: number, asDegrees = false, output: Point | null = null): Point => {
   const result = output ?? new Point();
-  if (asDegrees) {
-    angle = degToRad(angle);
-  }
-  result.x = a.x + a.radius * Math.cos(angle);
-  result.y = a.y + a.radius * Math.sin(angle);
+  const radians = asDegrees ? degToRad(angle) : angle;
+  result.x = a.x + a.radius * Math.cos(radians);
+  result.y = a.y + a.radius * Math.sin(radians);
   return result;
 };
 
@@ -77,11 +75,9 @@ export const circumferencePoint = (a: Circle, angle: number, asDegrees = false, 
  */
 export const intersectsPoint = (a: Circle, angle: number, asDegrees = false, output: Point | null = null): Point => {
   const result = output ?? new Point();
-  if (asDegrees) {
-    angle = degToRad(angle);
-  }
-  result.x = a.x + a.radius * Math.cos(angle);
-  result.y = a.y + a.radius * Math.sin(angle);
+  const radians = asDegrees ? degToRad(angle) : angle;
+  result.x = a.x + a.radius * Math.cos(radians);
+  result.y = a.y + a.radius * Math.sin(radians);
   return result;
 };
 

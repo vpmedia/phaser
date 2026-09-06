@@ -233,11 +233,12 @@ export class DOM {
    * @returns {boolean} True if bounds were successfully retrieved, false otherwise.
    */
   public getBounds(element: HTMLCanvasElement, cushion = 0): CalibratedBounds | false {
-    element = element && !element.nodeType ? (element as unknown as HTMLCanvasElement[])[0]! : element;
-    if (!element || element.nodeType !== 1) {
+    // a jQuery-style wrapper was accepted here historically, so unwrap the first entry of one
+    const target = element && !element.nodeType ? (element as unknown as HTMLCanvasElement[])[0] : element;
+    if (target?.nodeType !== 1) {
       return false;
     }
-    return this.calibrate(element.getBoundingClientRect(), cushion);
+    return this.calibrate(target.getBoundingClientRect(), cushion);
   }
 
   /**

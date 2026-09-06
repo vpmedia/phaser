@@ -282,19 +282,19 @@ export class Loader {
       this.game.logger.warn(`Loader: Invalid or no key given of type ${type}`);
       return this;
     }
-    if (url === undefined || url === null) {
-      if (extension) {
-        url = key + extension;
-      } else {
+    let resolvedUrl = url;
+    if (resolvedUrl === undefined || resolvedUrl === null) {
+      if (!extension) {
         this.game.logger.warn(`Loader: No URL given for file type: ${type} key: ${key}`);
         return this;
       }
+      resolvedUrl = key + extension;
     }
     const file: LoaderFile = {
       type,
       key,
       path: this.path,
-      url,
+      url: resolvedUrl,
       syncPoint: this._withSyncPointDepth > 0,
       data: null,
       loading: false,
@@ -352,10 +352,8 @@ export class Loader {
       callbackContext,
     };
     if (data) {
-      if (typeof data === 'string') {
-        data = JSON.parse(data);
-      }
-      pack.data = (data ?? {}) as LoaderFileData;
+      const parsed: unknown = typeof data === 'string' ? JSON.parse(data) : data;
+      pack.data = (parsed ?? {}) as LoaderFileData;
       pack.loaded = true;
     }
     for (let i = 0; i < this._fileList.length + 1; i += 1) {
@@ -473,10 +471,8 @@ export class Loader {
     if (this.game.sound.noAudio || this.game.device.noAudioFormat) {
       return this;
     }
-    if (typeof urls === 'string') {
-      urls = [urls];
-    }
-    return this.addToFileList('audio', key, urls, { buffer: null, autoDecode });
+    const sources = typeof urls === 'string' ? [urls] : urls;
+    return this.addToFileList('audio', key, sources, { buffer: null, autoDecode });
   }
 
   /**
@@ -496,10 +492,8 @@ export class Loader {
     if (jsonURL) {
       this.json(`${key}-audioatlas`, jsonURL);
     } else if (jsonData) {
-      if (typeof jsonData === 'string') {
-        jsonData = JSON.parse(jsonData);
-      }
-      this.cache.addJSON(`${key}-audioatlas`, '', jsonData);
+      const parsed: unknown = typeof jsonData === 'string' ? JSON.parse(jsonData) : jsonData;
+      this.cache.addJSON(`${key}-audioatlas`, '', parsed);
     }
     return this;
   }
@@ -523,13 +517,11 @@ export class Loader {
     xSpacing = 0,
     ySpacing = 0
   ): this {
-    textureURL ??= `${key}.png`;
-    if (atlasURL === null && atlasData === null) {
-      atlasURL = `${key}.xml`;
-    }
+    const texture = textureURL ?? `${key}.png`;
+    const atlas = atlasURL === null && atlasData === null ? `${key}.xml` : atlasURL;
     //  A URL to a json/xml atlas has been given
-    if (atlasURL) {
-      this.addToFileList('bitmapfont', key, textureURL, { atlasURL, xSpacing, ySpacing });
+    if (atlas) {
+      this.addToFileList('bitmapfont', key, texture, { atlasURL: atlas, xSpacing, ySpacing });
     } else if (typeof atlasData === 'string') {
       //  A stringified xml/json atlas has been given
       let json: unknown = null;
@@ -542,7 +534,7 @@ export class Loader {
       if (!xml && !json) {
         throw new Error(ENGINE_ERROR_INVALID_BITMAP_FONT_ATLAS);
       }
-      this.addToFileList('bitmapfont', key, textureURL, {
+      this.addToFileList('bitmapfont', key, texture, {
         atlasURL: null,
         atlasData: json ?? xml,
         atlasType: json ? 'json' : 'xml',
@@ -569,15 +561,13 @@ export class Loader {
     atlasData: unknown = null,
     format: number = TEXTURE_ATLAS_JSON_HASH
   ): this {
-    textureURL ??= `${key}.png`;
-    if (!atlasURL && !atlasData) {
-      atlasURL = `${key}.json`;
-    }
+    const texture = textureURL ?? `${key}.png`;
+    const atlas = !atlasURL && !atlasData ? `${key}.json` : atlasURL;
     //  A URL to a json/xml file has been given
-    if (atlasURL) {
-      this.addToFileList('textureatlas', key, textureURL, { atlasURL, format });
+    if (atlas) {
+      this.addToFileList('textureatlas', key, texture, { atlasURL: atlas, format });
     } else {
-      this.addToFileList('textureatlas', key, textureURL, { atlasURL: null, atlasData, format });
+      this.addToFileList('textureatlas', key, texture, { atlasURL: null, atlasData, format });
     }
     return this;
   }
@@ -1101,10 +1091,8 @@ export class Loader {
    */
   public fileError(file: LoaderFile, xhr: XMLHttpRequest | null = null, reason: unknown = 0): void {
     // const url = file.requestUrl || this.transformUrl(file.url, file);
-    if (!reason && xhr) {
-      reason = xhr.status;
-    }
-    const message = `Error loading asset (${String(reason)})`;
+    const cause = !reason && xhr ? xhr.status : reason;
+    const message = `Error loading asset (${String(cause)})`;
     this.asyncComplete(file, message);
   }
 

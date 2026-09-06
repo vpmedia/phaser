@@ -58,7 +58,7 @@
     "eslint/no-magic-numbers": "off",
     "eslint/no-negated-condition": "off",
     "eslint/no-nested-ternary": "off",
-    "eslint/no-param-reassign": "off",
+    "eslint/no-param-reassign": "error",
     "eslint/no-redeclare": "off",
     "eslint/no-ternary": "off",
     "eslint/no-undefined": "off",

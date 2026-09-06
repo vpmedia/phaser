@@ -33,7 +33,7 @@ export class Group extends DisplayObject {
     super(game);
     /** @type {number} */
     this.type = GROUP;
-    parent ??= game.world;
+    const target = parent ?? game.world;
     /** @type {string} */
     this.name = name ?? 'group';
     /** @type {number} */
@@ -41,9 +41,9 @@ export class Group extends DisplayObject {
     if (addToStage) {
       this.game.stage.addChild(this);
       this.z = this.game.stage.children.length;
-    } else if (parent) {
-      parent.addChild(this);
-      this.z = parent.children.length;
+    } else if (target) {
+      target.addChild(this);
+      this.z = target.children.length;
     }
     /** @type {boolean} */
     this.ignoreDestroy = false;

@@ -343,19 +343,17 @@ export class Graphics extends DisplayObject {
     if (startAngle === endAngle) {
       return this;
     }
-    if (!anticlockwise && endAngle <= startAngle) {
-      endAngle += Math.PI * 2;
-    } else if (anticlockwise && startAngle <= endAngle) {
-      startAngle += Math.PI * 2;
-    }
-    const sweep = anticlockwise ? (startAngle - endAngle) * -1 : endAngle - startAngle;
+    const fullTurn = Math.PI * 2;
+    const from = anticlockwise && startAngle <= endAngle ? startAngle + fullTurn : startAngle;
+    const to = !anticlockwise && endAngle <= startAngle ? endAngle + fullTurn : endAngle;
+    const sweep = anticlockwise ? (from - to) * -1 : to - from;
     const segs = Math.ceil(Math.abs(sweep) / (Math.PI * 2)) * segments;
     //  Sweep check - moved here because we don't want to do the moveTo below if the arc fails
     if (sweep === 0) {
       return this;
     }
-    const startX = cx + Math.cos(startAngle) * radius;
-    const startY = cy + Math.sin(startAngle) * radius;
+    const startX = cx + Math.cos(from) * radius;
+    const startY = cy + Math.sin(from) * radius;
     if (anticlockwise && this.filling) {
       this.moveTo(cx, cy);
     } else {
@@ -371,7 +369,7 @@ export class Graphics extends DisplayObject {
     const remainder = (segMinus % 1) / segMinus;
     for (let i = 0; i <= segMinus; i += 1) {
       const real = i + remainder * i;
-      const angle = theta + startAngle + theta2 * real;
+      const angle = theta + from + theta2 * real;
       const c = Math.cos(angle);
       const s = -Math.sin(angle);
       points.push((cTheta * c + sTheta * s) * radius + cx, (cTheta * -s + sTheta * c) * radius + cy);

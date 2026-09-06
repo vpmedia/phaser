@@ -284,12 +284,12 @@ export class DisplayObject {
    * @returns {DisplayObject[]} The array of removed child display objects.
    * @throws {Error} If the range is invalid.
    */
-  public removeChildren(beginIndex: number, endIndex: number): DisplayObject[] {
-    beginIndex ??= 0;
-    endIndex ??= this.children.length;
-    const range = endIndex - beginIndex;
-    if (range > 0 && range <= endIndex) {
-      const removed = this.children.splice(beginIndex, range);
+  public removeChildren(beginIndex?: number, endIndex?: number): DisplayObject[] {
+    const begin = beginIndex ?? 0;
+    const end = endIndex ?? this.children.length;
+    const range = end - begin;
+    if (range > 0 && range <= end) {
+      const removed = this.children.splice(begin, range);
       for (const child of removed) {
         child.parent = null;
       }
@@ -607,12 +607,10 @@ export class DisplayObject {
    * @param {DisplayObject} from - The display object to convert from (defaults to this).
    * @returns {Point} The converted local position.
    */
-  public toLocal(position: Point, from: DisplayObject): Point {
-    if (from) {
-      position = from.toGlobal(position);
-    }
+  public toLocal(position: Point, from: DisplayObject | null): Point {
+    const global = from ? from.toGlobal(position) : position;
     this.updateTransform();
-    return this.worldTransform.applyInverse(position);
+    return this.worldTransform.applyInverse(global);
   }
 
   /**

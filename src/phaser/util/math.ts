@@ -63,9 +63,8 @@ export const snapToCeil = (input: number, gap = 0, start = 0): number => {
   if (gap === 0) {
     return input;
   }
-  input -= start;
-  input = gap * Math.ceil(input / gap);
-  return start + input;
+  const offset = gap * Math.ceil((input - start) / gap);
+  return start + offset;
 };
 
 /** Wraps a value within a range. */

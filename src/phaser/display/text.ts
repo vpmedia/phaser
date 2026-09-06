@@ -384,16 +384,17 @@ export class Text extends Image {
         }
       }
     } else {
+      let cursor = x;
       for (const part of text) {
         const section = Math.ceil(this.context.measureText(part).width);
         //  How far to the next tab?
-        snap = snapToCeil(x, tabs);
+        snap = snapToCeil(cursor, tabs);
         if (fill) {
           this.context.fillText(part, snap, y);
         } else {
           this.context.strokeText(part, snap, y);
         }
-        x = snap + section;
+        cursor = snap + section;
       }
     }
   }
@@ -476,6 +477,7 @@ export class Text extends Image {
    * @param {number} y - The y position to start updating from.
    */
   public updateLine(line: string, x: number, y: number): void {
+    let cursor = x;
     for (const letter of line) {
       if (this.fontWeights.length > 0 || this.fontStyles.length > 0) {
         const components = this.fontToComponents(this.context.font);
@@ -495,7 +497,7 @@ export class Text extends Image {
           this.context.strokeStyle = charStrokeColor;
         }
         this.updateShadow(this.style.shadowStroke ?? false);
-        this.context.strokeText(letter, x, y);
+        this.context.strokeText(letter, cursor, y);
       }
       if (this.style.fill) {
         const charFillColor = this.colors[this._charCount];
@@ -503,9 +505,9 @@ export class Text extends Image {
           this.context.fillStyle = charFillColor;
         }
         this.updateShadow(this.style.shadowFill ?? false);
-        this.context.fillText(letter, x, y);
+        this.context.fillText(letter, cursor, y);
       }
-      x += this.context.measureText(letter).width;
+      cursor += this.context.measureText(letter).width;
       this._charCount += 1;
     }
   }
