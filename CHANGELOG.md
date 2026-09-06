@@ -1,3 +1,13 @@
+## [1.111.0] - 2026-09-06
+
+### 🐛 Bug Fixes
+
+- *(cache)* Delete sprite sheets and texture atlases from the bucket they live in
+
+### ⚙️ Miscellaneous Tasks
+
+- Release
+- *(release)* V1.111.0
 ## [1.110.0] - 2026-09-06
 
 ### 🚀 Features
