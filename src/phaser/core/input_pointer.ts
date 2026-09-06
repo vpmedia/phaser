@@ -12,18 +12,27 @@ import {
   TOUCH_OVERRIDES_MOUSE,
 } from './const.js';
 
+/** A callback deferred until the click that triggered it has finished dispatching. */
+export type ClickTrampoline = {
+  name: string;
+  targetObject: InputHandler | null;
+  callback: Function;
+  callbackContext: unknown;
+  callbackArgs: unknown[];
+};
+
 export class Pointer {
   public game!: Game;
   public id!: number;
   public type!: number;
   public exists!: boolean;
   public identifier!: number | null;
-  public pointerId!: any;
+  public pointerId!: number | null;
   public pointerMode!: number;
   public target!: EventTarget | null;
-  public button!: any;
+  public button!: number | null;
   public _holdSent!: boolean;
-  public _history!: any;
+  public _history!: { x: number; y: number }[];
   public _nextDrop!: number;
   public _stateReset!: boolean;
   public withinGame!: boolean;
@@ -47,16 +56,16 @@ export class Pointer {
   public previousTapTime!: number;
   public totalTouches!: number;
   public msSinceLastClick!: number;
-  public targetObject!: any;
-  public interactiveCandidates!: any;
+  public targetObject!: InputHandler | null;
+  public interactiveCandidates!: InputHandler[];
   public active!: boolean;
   public dirty!: boolean;
   public position!: Point;
   public positionDown!: Point;
   public positionUp!: Point;
   public circle!: Circle;
-  public _clickTrampolines!: any;
-  public _trampolineTargetObject!: any;
+  public _clickTrampolines!: ClickTrampoline[] | null;
+  public _trampolineTargetObject!: InputHandler | null;
   /**
    * TBD.
    * @param {Game} game - TBD.
@@ -275,8 +284,8 @@ export class Pointer {
       moveCallback.callback.call(moveCallback.context, this, this.x, this.y, fromClick);
     }
     //  Easy out if we're dragging something and it still exists
-    if (this.targetObject !== null && this.targetObject.isDragged === true) {
-      if (this.targetObject.update(this) === false) {
+    if (this.targetObject !== null && this.targetObject.isDragged) {
+      if (!this.targetObject.update(this)) {
         this.targetObject = null;
       }
     } else if (input.interactiveItems.total > 0) {
@@ -468,14 +477,14 @@ export class Pointer {
    * @param {object} callbackContext - TBD.
    * @param {...any} callbackArgs - TBD.
    */
-  public addClickTrampoline(name: string, callback: Function, callbackContext: unknown, callbackArgs: any): void {
+  public addClickTrampoline(name: string, callback: Function, callbackContext: unknown, callbackArgs: unknown[]): void {
     if (!this.isDown) {
       return;
     }
     this._clickTrampolines = this._clickTrampolines ?? [];
     const trampolines = this._clickTrampolines;
     for (let i = 0; i < trampolines.length; i += 1) {
-      if (trampolines[i].name === name) {
+      if (trampolines[i]!.name === name) {
         trampolines.splice(i, 1);
         break;
       }

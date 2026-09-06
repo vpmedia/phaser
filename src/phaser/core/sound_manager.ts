@@ -25,13 +25,13 @@ export class SoundManager {
   public _muted!: boolean;
   public _unlockSource!: AudioBufferSourceNode | null;
   public _volume!: number;
-  public _sounds!: any;
-  public _watchList!: any;
-  public _watching!: any;
-  public _watchCallback!: any;
-  public _watchContext!: any;
-  public masterGain!: any;
-  public _muteVolume!: any;
+  public _sounds!: Sound[];
+  public _watchList!: ArraySet;
+  public _watching!: boolean;
+  public _watchCallback!: Function | null;
+  public _watchContext!: unknown;
+  public masterGain!: GainNode;
+  public _muteVolume!: number;
   /**
    * Creates a new SoundManager instance.
    * @param {Game} game - Reference to the Phaser Game instance.
@@ -231,9 +231,9 @@ export class SoundManager {
     if (this.noAudio) {
       return;
     }
-    for (let i = 0; i < this._sounds.length; i += 1) {
-      if (this._sounds[i]) {
-        this._sounds[i].stop();
+    for (const sound of this._sounds) {
+      if (sound) {
+        sound.stop();
       }
     }
   }
@@ -245,9 +245,9 @@ export class SoundManager {
     if (this.noAudio) {
       return;
     }
-    for (let i = 0; i < this._sounds.length; i += 1) {
-      if (this._sounds[i]) {
-        this._sounds[i].pause();
+    for (const sound of this._sounds) {
+      if (sound) {
+        sound.pause();
       }
     }
   }
@@ -259,9 +259,9 @@ export class SoundManager {
     if (this.noAudio) {
       return;
     }
-    for (let i = 0; i < this._sounds.length; i += 1) {
-      if (this._sounds[i]) {
-        this._sounds[i].resume();
+    for (const sound of this._sounds) {
+      if (sound) {
+        sound.resume();
       }
     }
   }
@@ -302,18 +302,17 @@ export class SoundManager {
    * @param {Function} callback - The callback function to call when all files are decoded.
    * @param {object} callbackContext - The context in which to call the callback.
    */
-  public setDecodedCallback(files: any, callback: Function, callbackContext: unknown): void {
-    if (typeof files === 'string') {
-      files = [files];
-    }
+  public setDecodedCallback(
+    files: string | string[] | Sound | Sound[],
+    callback: Function,
+    callbackContext: unknown
+  ): void {
+    const candidates: (string | Sound)[] = typeof files === 'string' ? [files] : Array.isArray(files) ? files : [files];
     this._watchList.reset();
-    for (let i = 0; i < files.length; i += 1) {
-      if (files[i] instanceof Sound) {
-        if (!this.game.cache.isSoundDecoded(files[i].key)) {
-          this._watchList.add(files[i].key);
-        }
-      } else if (!this.game.cache.isSoundDecoded(files[i])) {
-        this._watchList.add(files[i]);
+    for (const file of candidates) {
+      const key = file instanceof Sound ? file.key : file;
+      if (!this.game.cache.isSoundDecoded(key)) {
+        this._watchList.add(key);
       }
     }
     //  All decoded already?
@@ -334,8 +333,8 @@ export class SoundManager {
     if (this.noAudio) {
       return;
     }
-    for (let i = 0; i < this._sounds.length; i += 1) {
-      this._sounds[i].update();
+    for (const sound of this._sounds) {
+      sound.update();
     }
     if (this._watching) {
       let key = this._watchList.first;
@@ -348,7 +347,7 @@ export class SoundManager {
       if (this._watchList.total === 0) {
         this.game.logger.info('All sounds decoded');
         this._watching = false;
-        this._watchCallback.call(this._watchContext);
+        this._watchCallback?.call(this._watchContext);
       }
     }
   }
@@ -386,7 +385,7 @@ export class SoundManager {
     while (i) {
       i -= 1;
       if (this._sounds[i] === sound) {
-        this._sounds[i].destroy(false);
+        this._sounds[i]!.destroy(false);
         this._sounds.splice(i, 1);
         return true;
       }
@@ -404,8 +403,8 @@ export class SoundManager {
     let removed = 0;
     while (i) {
       i -= 1;
-      if (this._sounds[i].key === key) {
-        this._sounds[i].destroy(false);
+      if (this._sounds[i]!.key === key) {
+        this._sounds[i]!.destroy(false);
         this._sounds.splice(i, 1);
         removed += 1;
       }
@@ -463,9 +462,9 @@ export class SoundManager {
    */
   public destroy(): void {
     this.stopAll();
-    for (let i = 0; i < this._sounds.length; i += 1) {
-      if (this._sounds[i]) {
-        this._sounds[i].destroy();
+    for (const sound of this._sounds) {
+      if (sound) {
+        sound.destroy();
       }
     }
     this._sounds = [];

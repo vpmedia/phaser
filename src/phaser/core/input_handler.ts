@@ -490,10 +490,10 @@ export class InputHandler {
       }
       this._dx = x;
       this._dy = y;
-      this.game.input.hitContext.clearRect(0, 0, 1, 1);
-      this.game.input.hitContext.drawImage(this.sprite.texture.baseTexture.source, x, y, 1, 1, 0, 0, 1, 1);
-      const rgb = this.game.input.hitContext.getImageData(0, 0, 1, 1);
-      if (rgb.data[3] >= this.pixelPerfectAlpha) {
+      this.game.input.hitContext!.clearRect(0, 0, 1, 1);
+      this.game.input.hitContext!.drawImage(this.sprite.texture.baseTexture.source, x, y, 1, 1, 0, 0, 1, 1);
+      const rgb = this.game.input.hitContext!.getImageData(0, 0, 1, 1);
+      if (rgb.data[3]! >= this.pixelPerfectAlpha) {
         return true;
       }
     }
