@@ -115,8 +115,11 @@ export const getColor = (r: number, g: number, b: number): number => (r << 16) |
 
 /** Converts a hex color string to RGB components. */
 export const hexToColor = (value: string, out: ColorTarget): void => {
-  value = value.replace(/^(?:#|0x)?([a-f\d])([a-f\d])([a-f\d])$/i, (_m, r, g, b) => r + r + g + g + b + b);
-  const result = /^(?:#|0x)?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(value);
+  const expanded = value.replace(
+    /^(?:#|0x)?([a-f\d])([a-f\d])([a-f\d])$/i,
+    (_match: string, r: string, g: string, b: string) => r + r + g + g + b + b
+  );
+  const result = /^(?:#|0x)?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(expanded);
   if (result) {
     out.r = Number.parseInt(result[1]!, 16);
     out.g = Number.parseInt(result[2]!, 16);

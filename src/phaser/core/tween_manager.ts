@@ -128,7 +128,7 @@ export class TweenManager {
    */
   public removeFrom(obj: TweenTarget, children: object[] | null = null): void {
     if (Array.isArray(obj)) {
-      for (const entry of obj) {
+      for (const entry of obj as object[]) {
         this.removeFrom(entry);
       }
       return;

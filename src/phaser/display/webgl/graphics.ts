@@ -26,7 +26,7 @@ export const getStencilBufferLimit = (): number => {
  * Updates the graphics data for WebGL rendering.
  * @returns {object[]} The graphics data array.
  */
-export const getGraphicsDataPool = () => {
+export const getGraphicsDataPool = (): GraphicsData[] => {
   globalThis.PhaserRegistry.graphicsDataPool ??= [];
   return globalThis.PhaserRegistry.graphicsDataPool;
 };
@@ -37,7 +37,7 @@ export const getGraphicsDataPool = () => {
  * @param {number} type - The type of graphics data to create.
  * @returns {object} The newly created graphics data object.
  */
-export const switchMode = (webGL: GraphicsWebGLBucket, type: number) => {
+export const switchMode = (webGL: GraphicsWebGLBucket, type: number): GraphicsData => {
   let webGLData;
   if (webGL.data.length === 0) {
     webGLData = getGraphicsDataPool().pop() ?? new GraphicsData(webGL.gl);

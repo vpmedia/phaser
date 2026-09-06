@@ -532,10 +532,10 @@ export class Loader {
       this.addToFileList('bitmapfont', key, textureURL, { atlasURL, xSpacing, ySpacing });
     } else if (typeof atlasData === 'string') {
       //  A stringified xml/json atlas has been given
-      let json = null;
-      let xml = null;
+      let json: unknown = null;
+      let xml: XMLDocument | null = null;
       try {
-        json = JSON.parse(atlasData);
+        json = JSON.parse(atlasData) as unknown;
       } catch {
         xml = this.parseXml(atlasData);
       }
@@ -1122,7 +1122,7 @@ export class Loader {
     switch (file.type) {
       case 'packfile': {
         // Pack data must never be false-ish after it is fetched without error
-        file.data = JSON.parse(response.responseText) ?? {};
+        file.data = (JSON.parse(response.responseText) ?? {}) as LoaderFileData;
         break;
       }
       case 'image': {
@@ -1174,10 +1174,10 @@ export class Loader {
             this.transformUrl(file.atlasURL, file),
             'text',
             (bitmapFontFile: LoaderFile, bitmapFontXhr: XMLHttpRequest): void => {
-              let json;
+              let json: unknown;
               try {
                 // Try to parse as JSON, if it fails, then it's hopefully XML
-                json = JSON.parse(bitmapFontXhr.responseText);
+                json = JSON.parse(bitmapFontXhr.responseText) as unknown;
               } catch {
                 // pass
               }
@@ -1224,7 +1224,7 @@ export class Loader {
    * @param {XMLHttpRequest} xhr - The XMLHttpRequest object containing the file data.
    */
   public jsonLoadComplete(file: LoaderFile, xhr: XMLHttpRequest): void {
-    const data = JSON.parse(xhr.responseText);
+    const data = JSON.parse(xhr.responseText) as unknown;
     const url = typeof file.url === 'string' ? file.url : '';
     if (file.type === 'bitmapfont') {
       this.cache.addBitmapFont(
@@ -1292,21 +1292,13 @@ export class Loader {
    * @returns {Document} The parsed DOM Document, or null if parsing failed.
    */
   public parseXml(data: string) {
-    let xml = null;
+    let xml: XMLDocument | null = null;
     try {
-      if (globalThis.DOMParser) {
-        const domparser = new DOMParser();
-        xml = domparser.parseFromString(data, 'text/xml');
-      } else {
-        xml = new globalThis.ActiveXObject('Microsoft.XMLDOM');
-        // Why is this 'false'?
-        xml.async = 'false';
-        xml.loadXML(data);
-      }
+      xml = new DOMParser().parseFromString(data, 'text/xml');
     } catch {
       xml = null;
     }
-    if (!xml || !xml.documentElement || xml.querySelectorAll('parsererror').length > 0) {
+    if (!xml?.documentElement || xml.querySelectorAll('parsererror').length > 0) {
       return null;
     }
     return xml;

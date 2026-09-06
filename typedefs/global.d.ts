@@ -40,7 +40,7 @@ declare global {
     fontPropertiesCache: Record<string, FontProperties>;
     fontPropertiesCanvas: HTMLCanvasElement;
     fontPropertiesContext: CanvasRenderingContext2D;
-    graphicsDataPool: import('../src/phaser/display/webgl/graphics_data.js').WebGLGraphicsData[];
+    graphicsDataPool: import('../src/phaser/display/webgl/graphics_data.js').GraphicsData[];
     stencilBufferLimit: number;
   }
 
