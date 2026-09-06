@@ -1,3 +1,13 @@
+## [1.120.0] - 2026-09-06
+
+### 🚀 Features
+
+- *(types)* Export the game config and scene manager types
+
+### ⚙️ Miscellaneous Tasks
+
+- Release
+- *(release)* V1.120.0
 ## [1.119.0] - 2026-09-06
 
 ### 🚜 Refactor
