@@ -1,3 +1,16 @@
+## [1.118.0] - 2026-09-06
+
+### 🚜 Refactor
+
+- *(types)* Describe the loader payload and pack manifest
+- *(types)* Type the bitmap font parsers
+- *(types)* Type the sound markers and tween manager
+- *(types)* Type the asset cache entries and bitmap text layout
+
+### ⚙️ Miscellaneous Tasks
+
+- Release
+- *(release)* V1.118.0
 ## [1.117.0] - 2026-09-06
 
 ### 🚜 Refactor
