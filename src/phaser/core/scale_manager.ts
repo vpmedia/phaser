@@ -5,6 +5,21 @@ import type { Game } from './game.js';
 import { DOM } from './dom.js';
 import { Signal } from './signal.js';
 
+/** The gap the canvas leaves around itself inside its parent. */
+export type ScaleMargin = { left: number; top: number; right: number; bottom: number; x: number; y: number };
+
+/** Which edges the layout is allowed to expand against. */
+export type WindowConstraints = { right: string; bottom: string };
+
+/** What the host browser supports, probed once at boot. */
+export type ScaleCompatibility = {
+  supportsFullScreen: boolean;
+  orientationFallback: string | null;
+  noMargins: boolean;
+  canExpandParent: boolean;
+  clickTrampoline: string;
+};
+
 export class ScaleManager {
   public game!: Game;
   public dom!: DOM;
@@ -24,32 +39,32 @@ export class ScaleManager {
   public enterIncorrectOrientation!: Signal;
   public leaveIncorrectOrientation!: Signal;
   public hasPhaserSetFullScreen!: boolean;
-  public fullScreenTarget!: any;
-  public _createdFullScreenTarget!: any;
+  public fullScreenTarget!: HTMLElement | null;
+  public _createdFullScreenTarget!: HTMLElement | null;
   public onFullScreenInit!: Signal;
   public onFullScreenChange!: Signal;
   public onFullScreenError!: Signal;
-  public screenOrientation!: any;
+  public screenOrientation!: string;
   public scaleFactor!: Point;
   public scaleFactorInversed!: Point;
-  public margin!: any;
+  public margin!: ScaleMargin;
   public bounds!: Rectangle;
   public aspectRatio!: number;
   public sourceAspectRatio!: number;
   public event!: Event | null | undefined;
-  public windowConstraints!: any;
-  public compatibility!: any;
+  public windowConstraints!: WindowConstraints;
+  public compatibility!: ScaleCompatibility;
   public _scaleMode!: number;
   public _fullScreenScaleMode!: number;
   public parentIsWindow!: boolean;
-  public parentNode!: any;
+  public parentNode!: HTMLElement | null;
   public parentScaleFactor!: Point;
   public trackParentInterval!: number;
   public onSizeChange!: Signal;
-  public onResize!: any;
-  public onResizeContext!: any;
-  public _pendingScaleMode!: any;
-  public _fullScreenRestore!: any;
+  public onResize!: Function | null;
+  public onResizeContext!: unknown;
+  public _pendingScaleMode!: number | null;
+  public _fullScreenRestore!: { targetWidth: string; targetHeight: string } | null;
   public _gameSize!: Rectangle;
   public _userScaleFactor!: Point;
   public _userScaleTrim!: Point;
@@ -815,10 +830,14 @@ export class ScaleManager {
       }
       fsTarget.append(canvas);
     }
+    // The request method is vendor-prefixed, so it is looked up by the name the device reported.
+    const requestFullscreen = (fsTarget as unknown as Record<string, ((flag?: unknown) => void) | undefined>)[
+      this.game.device.requestFullscreen
+    ];
     if (this.game.device.fullscreenKeyboard) {
-      fsTarget[this.game.device.requestFullscreen]((Element as any).ALLOW_KEYBOARD_INPUT);
+      requestFullscreen?.call(fsTarget, (Element as unknown as { ALLOW_KEYBOARD_INPUT: unknown }).ALLOW_KEYBOARD_INPUT);
     } else {
-      fsTarget[this.game.device.requestFullscreen]();
+      requestFullscreen?.call(fsTarget);
     }
     return true;
   }
