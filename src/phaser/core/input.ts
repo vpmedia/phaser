@@ -14,6 +14,7 @@ import type { Game } from './game.js';
 import type { DisplayObject } from '../display/display_object.js';
 import type { InputEvent } from './input_event.js';
 import type { CandidateHandler, PointerMoveCallback } from './callback.js';
+import type { InputHandler } from './input_handler.js';
 
 const MAX_POINTERS = 10;
 
@@ -63,7 +64,7 @@ export class Input {
   public onTap!: Signal;
   public onHold!: Signal;
   public minPriorityID!: number;
-  public interactiveItems!: ArraySet;
+  public interactiveItems!: ArraySet<InputHandler>;
   public _localPoint!: Point;
   public _pollCounter!: number;
   public _oldPosition!: Point;
@@ -118,7 +119,7 @@ export class Input {
     this.onTap = null!;
     this.onHold = null!;
     this.minPriorityID = 0;
-    this.interactiveItems = new ArraySet();
+    this.interactiveItems = new ArraySet<InputHandler>();
     this._localPoint = new Point();
     this._pollCounter = 0;
     this._oldPosition = null!;

@@ -27,7 +27,7 @@ export class SoundManager {
   public _unlockSource!: AudioBufferSourceNode | null;
   public _volume!: number;
   public _sounds!: Sound[];
-  public _watchList!: ArraySet;
+  public _watchList!: ArraySet<string>;
   public _watching!: boolean;
   public _watchCallback!: Callback | null;
   public _watchContext!: unknown;
@@ -54,7 +54,7 @@ export class SoundManager {
     this._volume = 1;
     /** @type {Sound[]} */
     this._sounds = [];
-    this._watchList = new ArraySet();
+    this._watchList = new ArraySet<string>();
     this._watching = false;
     this._watchCallback = null;
     this._watchContext = null;

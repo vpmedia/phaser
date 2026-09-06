@@ -362,7 +362,7 @@ export class Pointer {
    * @param {InputHandler} newTarget - TBD.
    * @param {boolean} silent - TBD.
    */
-  public swapTarget(newTarget: InputHandler, silent = false): void {
+  public swapTarget(newTarget: InputHandler | null, silent = false): void {
     //  Now we know the top-most item (if any) we can process it
     if (newTarget === null) {
       //  The pointer isn't currently over anything, check if we've got a lingering previous target

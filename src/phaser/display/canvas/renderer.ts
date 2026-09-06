@@ -26,21 +26,22 @@ import { ENGINE_ERROR_CREATING_CANVAS_2D_CONTEXT } from '../../core/error_code.j
 import * as CanvasMaskManager from './masker.js';
 import { detectCapabilities } from './tinter.js';
 import { getSmoothingPrefix, setSmoothing } from './util.js';
+import type { DisplayObject } from '../display_object.js';
 import type { RenderSession } from '../render_session.js';
 
 export class CanvasRenderer {
-  public type!: any;
+  public type!: number;
   public resolution!: number;
-  public clearBeforeRender!: any;
-  public transparent!: any;
-  public autoResize!: any;
-  public contextLost!: any;
+  public clearBeforeRender!: boolean;
+  public transparent!: boolean;
+  public autoResize!: boolean;
+  public contextLost!: boolean;
   public width!: number;
   public height!: number;
   public view!: HTMLCanvasElement;
   public context!: CanvasRenderingContext2D;
-  public refresh!: any;
-  public count!: any;
+  public refresh!: boolean;
+  public count!: number;
   public renderSession!: RenderSession;
   /**
    * Creates a new CanvasRenderer instance.
@@ -52,7 +53,7 @@ export class CanvasRenderer {
     this.type = RENDER_CANVAS;
     this.resolution = game.config.resolution;
     this.clearBeforeRender = game.config.clearBeforeRender;
-    this.transparent = game.config.transparent;
+    this.transparent = Boolean(game.config.transparent);
     this.autoResize = false;
     this.contextLost = false;
     this.width = game.width * this.resolution;
@@ -62,7 +63,7 @@ export class CanvasRenderer {
     this.context = this.view.getContext('2d', {
       willReadFrequently: false,
       alpha: this.transparent,
-    }) as CanvasRenderingContext2D;
+    })!;
     if (!this.context) {
       throw new Error(ENGINE_ERROR_CREATING_CANVAS_2D_CONTEXT);
     }
@@ -140,10 +141,10 @@ export class CanvasRenderer {
    * @param {CanvasRenderingContext2D} context - The canvas rendering context.
    * @param {Matrix} matrix - The transformation matrix.
    */
-  public renderDisplayObject(displayObject: any, context?: any, matrix?: any): void {
+  public renderDisplayObject(displayObject: DisplayObject, context?: CanvasRenderingContext2D): void {
     this.renderSession.context = context ?? this.context;
     this.renderSession.resolution = this.resolution;
-    displayObject.renderCanvas(this.renderSession, matrix);
+    displayObject.renderCanvas(this.renderSession);
   }
 
   /**
