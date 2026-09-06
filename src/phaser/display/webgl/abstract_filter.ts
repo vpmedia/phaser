@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import type { NormalShader } from './shader/normal.js';
 
 /** A shader uniform: its GLSL type and the value bound to it. */
@@ -7,6 +8,7 @@ export type ShaderUniform = {
 };
 
 export class AbstractFilter {
+  public _UID: string;
   public passes: AbstractFilter[];
   public shaders: NormalShader[];
   public dirty: boolean;
@@ -19,6 +21,7 @@ export class AbstractFilter {
    * @param {object} uniforms - The uniform variables for the shader.
    */
   public constructor(fragmentSrc: string[], uniforms?: Record<string, ShaderUniform>) {
+    this._UID = uuidv4();
     this.passes = [this];
     this.shaders = [];
     this.dirty = true;

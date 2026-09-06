@@ -24,7 +24,7 @@ export class Tween {
   public onComplete!: Signal;
   public isRunning!: boolean;
   public current!: number;
-  public properties!: any;
+  public properties!: TweenValues;
   public chainedTween!: Tween | null;
   public isPaused!: boolean;
   public _onUpdateCallback!: Callback | null;
@@ -157,12 +157,9 @@ export class Tween {
       //  Build our master property list with the starting values
       const keys = Object.keys(tweenData.vEnd);
       for (const property of keys) {
-        const targetProperties = this.target as unknown as Record<string, number>;
-        this.properties[property] = targetProperties[property] ?? 0;
-        if (!Array.isArray(this.properties[property])) {
-          //  Ensures we're using numbers, not strings
-          this.properties[property] *= 1;
-        }
+        const targetProperties = this.target as unknown as Record<string, number | string | undefined>;
+        //  Ensures we're using numbers, not strings
+        this.properties[property] = Number(targetProperties[property] ?? 0);
       }
     }
     for (const tweenData of this.timeline) {
@@ -205,7 +202,7 @@ export class Tween {
    * @param {number} index - The index in the timeline to update.
    * @returns {Tween} This Tween object for chaining.
    */
-  public updateTweenData(property: string, value: any, index = 0): this {
+  public updateTweenData(property: string, value: unknown, index = 0): this {
     if (this.timeline.length === 0) {
       return this;
     }
@@ -493,7 +490,7 @@ export class Tween {
    * @param {object[]} data - The array to store the generated data in.
    * @returns {object[]} The populated data array.
    */
-  public generateData(frameRate = 60, data: any[] = []) {
+  public generateData(frameRate = 60, data: Record<string, number>[] = []): Record<string, number>[] | null {
     if (this.game === null || this.target === null) {
       return null;
     }
@@ -502,12 +499,9 @@ export class Tween {
       //  Build our master property list with the starting values
       const keys = Object.keys(tweenData.vEnd);
       for (const property of keys) {
-        const targetProperties = this.target as unknown as Record<string, number>;
-        this.properties[property] = targetProperties[property] ?? 0;
-        if (!Array.isArray(this.properties[property])) {
-          //  Ensures we're using numbers, not strings
-          this.properties[property] *= 1;
-        }
+        const targetProperties = this.target as unknown as Record<string, number | string | undefined>;
+        //  Ensures we're using numbers, not strings
+        this.properties[property] = Number(targetProperties[property] ?? 0);
       }
     }
     for (const tweenData of this.timeline) {

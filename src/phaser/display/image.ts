@@ -10,6 +10,7 @@ import type { Game } from '../core/game.js';
 import { Frame } from '../core/frame.js';
 import type { Matrix } from '../geom/matrix.js';
 import type { RenderSession } from './render_session.js';
+import type { AbstractFilter } from './webgl/abstract_filter.js';
 
 export class Image extends DisplayObject {
   public key!: string | number | Texture | null;
@@ -21,7 +22,7 @@ export class Image extends DisplayObject {
   public tilingTexture!: Texture | null;
   public tintedTexture!: HTMLCanvasElement | null;
   public blendMode!: number;
-  public shader!: object | null;
+  public shader!: AbstractFilter | null;
   public _frame!: Frame | Rectangle | null;
   public pendingDestroy!: boolean;
   declare public events: EventManager;

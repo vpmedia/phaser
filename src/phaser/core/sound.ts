@@ -13,6 +13,16 @@ export type SoundMarker = {
   loop: boolean;
 };
 
+/** The pre-standard Web Audio names, still the only ones some older engines expose. */
+type LegacyAudioContext = { createGainNode: () => GainNode };
+
+/** The pre-standard source-node names, alongside the playback position those engines reported. */
+type LegacyBufferSource = {
+  noteOff: (when: number) => void;
+  noteGrainOn: (when: number, offset: number, duration: number) => void;
+  currentTime: number;
+};
+
 export class Sound {
   public _paused!: boolean;
   public game!: Game;
@@ -101,7 +111,9 @@ export class Sound {
     this.context = this.game.sound.context;
     this.masterGainNode = this.game.sound.masterGain;
     const gainNode: GainNode =
-      this.context!.createGain === undefined ? (this.context as any).createGainNode() : this.context!.createGain();
+      this.context!.createGain === undefined
+        ? (this.context as unknown as LegacyAudioContext).createGainNode()
+        : this.context!.createGain();
     this.gainNode = gainNode;
     gainNode.gain.value = volume * this.game.sound.volume;
     if (connect && this.masterGainNode) {
@@ -269,7 +281,7 @@ export class Sound {
     }
     if (this._sound && this.isPlaying && !this.allowMultiple && (this.override || forceRestart)) {
       if (this._sound.stop === undefined) {
-        (this._sound as any).noteOff(0);
+        (this._sound as unknown as LegacyBufferSource).noteOff(0);
       } else {
         this._sound.stop(0);
       }
@@ -348,7 +360,7 @@ export class Sound {
       }
       //  Useful to cache this somewhere perhaps?
       if (this._sound.start === undefined) {
-        (this._sound as any).noteGrainOn(0, this.position, this.duration);
+        (this._sound as unknown as LegacyBufferSource).noteGrainOn(0, this.position, this.duration);
       } else if (this.loop && marker === '') {
         this._sound.start(0, 0);
       } else {
@@ -387,7 +399,7 @@ export class Sound {
       this.paused = true;
       this.pausedPosition = this.currentTime;
       this.pausedTime = this.game.time.time;
-      this._tempPause = (this._sound as any).currentTime;
+      this._tempPause = (this._sound as unknown as LegacyBufferSource).currentTime;
       this.onPause.dispatch(this);
       this.stop();
     }
@@ -414,7 +426,7 @@ export class Sound {
       }
       const duration = this.duration - this.pausedPosition / 1000;
       if (this._sound.start === undefined) {
-        (this._sound as any).noteGrainOn(0, p, duration);
+        (this._sound as unknown as LegacyBufferSource).noteGrainOn(0, p, duration);
       } else {
         this._sound.start(0, p, duration);
       }
@@ -431,7 +443,7 @@ export class Sound {
   public stop(): void {
     if (this.isPlaying && this._sound) {
       if (this._sound.stop === undefined) {
-        (this._sound as any).noteOff(0);
+        (this._sound as unknown as LegacyBufferSource).noteOff(0);
       } else {
         this._sound.stop(0);
       }

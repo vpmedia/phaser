@@ -16,13 +16,13 @@ export class WebGLSpriteBatch {
   public lastIndexCount: number;
   public drawing: boolean;
   public currentBatchSize: number;
-  public currentBaseTexture: any;
+  public currentBaseTexture: BaseTexture | null;
   public dirty: boolean;
-  public textures: any[];
+  public textures: BaseTexture[];
   public blendModes: number[];
   public shaders: NormalShader[];
-  public sprites: any[];
-  public defaultShader: any;
+  public sprites: Image[];
+  public defaultShader: AbstractFilter;
   public gl!: IdentifiedWebGLRenderingContext;
   public vertexBuffer!: WebGLBuffer | null;
   public indexBuffer!: WebGLBuffer | null;
@@ -234,7 +234,7 @@ export class WebGLSpriteBatch {
       // bind the buffers
       gl.bindBuffer(gl.ARRAY_BUFFER, this.vertexBuffer);
       gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.indexBuffer);
-      shader = this.defaultShader.shaders[gl.id];
+      shader = this.defaultShader.shaders[gl.id]!;
       // this is the same for each shader?
       const stride = this.vertSize * 4;
       gl.vertexAttribPointer(shader.aVertexPosition, 2, gl.FLOAT, false, stride, 0);
@@ -261,7 +261,7 @@ export class WebGLSpriteBatch {
     let shaderSwap = false;
     let sprite;
     for (let i = 0, j = this.currentBatchSize; i < j; i += 1) {
-      sprite = this.sprites[i];
+      sprite = this.sprites[i]!;
       nextTexture = sprite.tilingTexture ? sprite.tilingTexture.baseTexture : sprite.texture.baseTexture;
       nextBlendMode = sprite.blendMode;
       nextShader = sprite.shader ?? this.defaultShader;
@@ -317,8 +317,8 @@ export class WebGLSpriteBatch {
    * @param {number} size - The size of the batch.
    * @param {number} startIndex - The start index in the batch.
    */
-  public renderBatch(texture: BaseTexture, size: number, startIndex: number): void {
-    if (size === 0) {
+  public renderBatch(texture: BaseTexture | null, size: number, startIndex: number): void {
+    if (size === 0 || !texture) {
       return;
     }
     const { gl } = this;
