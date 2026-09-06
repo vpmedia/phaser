@@ -28,8 +28,7 @@ export const create = (parent: any, width: number, height: number, id: string, s
  * @param {string} color - The background color to set.
  * @returns {HTMLCanvasElement} The modified canvas element.
  */
-export const setBackgroundColor = (canvas: HTMLCanvasElement, color: string) => {
-  color = color || 'rgb(0,0,0)';
+export const setBackgroundColor = (canvas: HTMLCanvasElement, color = 'rgb(0,0,0)') => {
   canvas.style.backgroundColor = color;
   return canvas;
 };
@@ -40,7 +39,7 @@ export const setBackgroundColor = (canvas: HTMLCanvasElement, color: string) => 
  * @param {string} value - The touch action value to set.
  * @returns {HTMLCanvasElement} The modified canvas element.
  */
-export const setTouchAction = (canvas: HTMLCanvasElement, value: string = 'none') => {
+export const setTouchAction = (canvas: HTMLCanvasElement, value = 'none') => {
   value = value || 'none';
   canvas.style.setProperty('-ms-touch-action', value);
   canvas.style.setProperty('touch-action', value);
@@ -53,7 +52,7 @@ export const setTouchAction = (canvas: HTMLCanvasElement, value: string = 'none'
  * @param {string} value - The user select value to set.
  * @returns {HTMLCanvasElement} The modified canvas element.
  */
-export const setUserSelect = (canvas: HTMLCanvasElement, value: string = 'none') => {
+export const setUserSelect = (canvas: HTMLCanvasElement, value = 'none') => {
   value = value || 'none';
   canvas.style.setProperty('-webkit-touch-callout', value);
   canvas.style.setProperty('-webkit-user-select', value);
@@ -72,25 +71,23 @@ export const setUserSelect = (canvas: HTMLCanvasElement, value: string = 'none')
  * @param {boolean} overflowHidden - Whether to set overflow hidden on the parent.
  * @returns {HTMLCanvasElement} The added canvas element.
  */
-export const addToDOM = (canvas: HTMLCanvasElement, parent: any, overflowHidden: boolean = true) => {
+export const addToDOM = (canvas: HTMLCanvasElement, parent: any, overflowHidden = true) => {
   let target;
   if (parent) {
     if (typeof parent === 'string') {
       // hopefully an element ID
-      target = document.getElementById(parent);
+      target = document.querySelector(`#${parent}`);
     } else if (typeof parent === 'object' && parent.nodeType === 1) {
       // quick test for a HTMLelement
       target = parent;
     }
   }
   // Fallback, covers an invalid ID and a non HTMLelement object
-  if (!target) {
-    target = document.body;
-  }
+  target ??= document.body;
   if (overflowHidden && target.style) {
     target.style.overflow = 'hidden';
   }
-  target.appendChild(canvas);
+  target.append(canvas);
   return canvas;
 };
 

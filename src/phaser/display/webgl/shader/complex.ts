@@ -4,17 +4,27 @@ import { compileProgram } from '../util.js';
 // the next one is used for rendering triangle strips
 
 export class ComplexPrimitiveShader {
-  [key: string]: any;
-  gl!: any;
-  _UID!: any;
-  program!: any;
-  fragmentSrc!: any;
-  vertexSrc!: any;
+  public gl: WebGLRenderingContext | null;
+  public _UID: string;
+  public program: WebGLProgram | null;
+  public fragmentSrc: string[];
+  public vertexSrc: string[];
+  public projectionVector!: WebGLUniformLocation | null;
+  public offsetVector!: WebGLUniformLocation | null;
+  public tintColor!: WebGLUniformLocation | null;
+  public color!: WebGLUniformLocation | null;
+  public flipY!: WebGLUniformLocation | null;
+  public translationMatrix!: WebGLUniformLocation | null;
+  public alpha!: WebGLUniformLocation | null;
+  public aVertexPosition!: number;
+  public colorAttribute: number | undefined;
+  public uniforms: unknown = null;
+  public attributes: (number | undefined)[] | null = null;
   /**
    * Creates a new ComplexShader instance.
    * @param {WebGLRenderingContext} gl - The WebGL rendering context.
    */
-  constructor(gl: WebGLRenderingContext) {
+  public constructor(gl: WebGLRenderingContext) {
     this.gl = gl;
     this._UID = uuidv4();
     /** @type {WebGLProgram} */
@@ -52,9 +62,15 @@ export class ComplexPrimitiveShader {
   /**
    * Destroys this shader and cleans up resources.
    */
-  init() {
-    const gl = this.gl;
+  public init(): void {
+    const { gl } = this;
+    if (!gl) {
+      return;
+    }
     const program = compileProgram(gl, this.vertexSrc, this.fragmentSrc);
+    if (!program) {
+      return;
+    }
     gl.useProgram(program);
     // get and store the uniforms for the shader
     this.projectionVector = gl.getUniformLocation(program, 'projectionVector');
@@ -74,10 +90,10 @@ export class ComplexPrimitiveShader {
   /**
    * Binds this shader to the WebGL context.
    */
-  destroy() {
-    this.gl.deleteProgram(this.program);
+  public destroy(): void {
+    this.gl?.deleteProgram(this.program);
     this.uniforms = null;
     this.gl = null;
-    this.attribute = null;
+    this.attributes = null;
   }
 }

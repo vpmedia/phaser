@@ -3,38 +3,38 @@ import { distance } from '../util/math.js';
 import { cloneFrame } from './frame_util.js';
 
 export class Frame {
-  index!: number;
-  x!: number;
-  y!: number;
-  width!: number;
-  height!: number;
-  name!: string;
-  centerX!: number;
-  centerY!: number;
-  distance!: number;
-  rotated!: boolean;
-  rotationDirection!: 'cw' | 'ccw';
-  trimmed!: boolean;
-  sourceSizeW!: number;
-  sourceSizeH!: number;
-  spriteSourceSizeX!: number;
-  spriteSourceSizeY!: number;
-  spriteSourceSizeW!: number;
-  spriteSourceSizeH!: number;
-  right!: number;
-  bottom!: number;
+  public index!: number;
+  public x!: number;
+  public y!: number;
+  public width!: number;
+  public height!: number;
+  public name!: string;
+  public centerX!: number;
+  public centerY!: number;
+  public distance!: number;
+  public rotated!: boolean;
+  public rotationDirection!: 'cw' | 'ccw';
+  public trimmed!: boolean;
+  public sourceSizeW!: number;
+  public sourceSizeH!: number;
+  public spriteSourceSizeX!: number;
+  public spriteSourceSizeY!: number;
+  public spriteSourceSizeW!: number;
+  public spriteSourceSizeH!: number;
+  public right!: number;
+  public bottom!: number;
 
-  constructor(index: number, x: number, y: number, width: number, height: number, name?: string) {
+  public constructor(index: number, x: number, y: number, width: number, height: number, name?: string) {
     this.initialize(index, x, y, width, height, name);
   }
 
-  initialize(index: number, x: number, y: number, width: number, height: number, name?: string): void {
+  public initialize(index: number, x: number, y: number, width: number, height: number, name?: string): void {
     this.index = index;
     this.x = x;
     this.y = y;
     this.width = width;
     this.height = height;
-    this.name = name as string;
+    this.name = name!;
     this.centerX = Math.floor(width / 2);
     this.centerY = Math.floor(height / 2);
     this.distance = distance(0, 0, width, height);
@@ -51,7 +51,7 @@ export class Frame {
     this.bottom = this.y + this.height;
   }
 
-  resize(width: number, height: number): void {
+  public resize(width: number, height: number): void {
     this.width = width;
     this.height = height;
     this.centerX = Math.floor(width / 2);
@@ -63,7 +63,7 @@ export class Frame {
     this.bottom = this.y + height;
   }
 
-  setTrim(
+  public setTrim(
     trimmed: boolean,
     actualWidth: number,
     actualHeight: number,
@@ -85,12 +85,12 @@ export class Frame {
     }
   }
 
-  clone(): Frame {
+  public clone(): Frame {
     return cloneFrame(this);
   }
 
-  getRect(output: Rectangle | null = null): Rectangle {
-    const result = output || new Rectangle();
+  public getRect(output: Rectangle | null = null): Rectangle {
+    const result = output ?? new Rectangle();
     result.setTo(this.x, this.y, this.width, this.height);
     return result;
   }

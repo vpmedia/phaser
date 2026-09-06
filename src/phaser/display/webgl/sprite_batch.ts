@@ -1,31 +1,38 @@
 import { AbstractFilter } from './abstract_filter.js';
 import { NormalShader } from './shader/normal.js';
 import type { IdentifiedWebGLRenderingContext } from './util.js';
+import type { Image } from '../../display/image.js';
+import type { Matrix } from '../../geom/matrix.js';
+import type { BaseTexture } from './base_texture.js';
 
 export class WebGLSpriteBatch {
-  [key: string]: any;
-  vertSize!: any;
-  size!: any;
-  vertices!: any;
-  positions!: any;
-  colors!: any;
-  indices!: any;
-  lastIndexCount!: any;
-  drawing!: any;
-  currentBatchSize!: any;
-  currentBaseTexture!: any;
-  dirty!: any;
-  textures!: any;
-  blendModes!: any;
-  shaders!: any;
-  sprites!: any;
-  defaultShader!: any;
+  public vertSize = 5;
+  public size = 2e3;
+  public vertices: ArrayBuffer | null;
+  public positions: Float32Array | null;
+  public colors: Uint32Array | null;
+  public indices: Uint16Array | null;
+  public lastIndexCount: number;
+  public drawing: boolean;
+  public currentBatchSize: number;
+  public currentBaseTexture: any;
+  public dirty: boolean;
+  public textures: any[];
+  public blendModes: number[];
+  public shaders: NormalShader[];
+  public sprites: any[];
+  public defaultShader: any;
+  public gl!: IdentifiedWebGLRenderingContext;
+  public vertexBuffer!: WebGLBuffer | null;
+  public indexBuffer!: WebGLBuffer | null;
+  public currentBlendMode!: number;
+  public renderSession!: any;
+  public shader!: NormalShader | null;
   /**
    * Creates a new SpriteBatch instance.
    */
-  constructor() {
-    this.vertSize = 5;
-    this.size = 2000; // Math.pow(2, 16) /  this.vertSize;
+  public constructor() {
+    // Math.pow(2, 16) /  this.vertSize;
     // the total number of bytes in our batch
     const numVerts = this.size * 4 * 4 * this.vertSize;
     // the total number of indices in our batch
@@ -66,7 +73,7 @@ export class WebGLSpriteBatch {
    * Renders a sprite using WebGL.
    * @param {WebGLRenderingContext & { id: number }} gl - The WebGL rendering context.
    */
-  setContext(gl: IdentifiedWebGLRenderingContext) {
+  public setContext(gl: IdentifiedWebGLRenderingContext) {
     this.gl = gl;
     // create a couple of buffers
     this.vertexBuffer = gl.createBuffer();
@@ -77,7 +84,7 @@ export class WebGLSpriteBatch {
     gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, this.indices, gl.STATIC_DRAW);
     gl.bindBuffer(gl.ARRAY_BUFFER, this.vertexBuffer);
     gl.bufferData(gl.ARRAY_BUFFER, this.vertices, gl.DYNAMIC_DRAW);
-    this.currentBlendMode = 99999;
+    this.currentBlendMode = 99_999;
     const shader = new NormalShader(gl);
     shader.fragmentSrc = this.defaultShader.fragmentSrc;
     shader.uniforms = {};
@@ -89,7 +96,7 @@ export class WebGLSpriteBatch {
    * Renders the sprite batch using WebGL.
    * @param {object} renderSession - The render session to use.
    */
-  begin(renderSession: any) {
+  public begin(renderSession: any) {
     this.renderSession = renderSession;
     this.shader = this.renderSession.shaderManager.defaultShader;
     this.start();
@@ -98,17 +105,17 @@ export class WebGLSpriteBatch {
   /**
    * Updates the sprite batch.
    */
-  end() {
+  public end() {
     this.flush();
   }
 
   /**
    * Renders a sprite using the sprite batch.
-   * @param {import('../../display/image.js').Image} sprite - The sprite to render.
-   * @param {import('../../geom/matrix.js').Matrix} matrix - The transformation matrix.
+   * @param {Image} sprite - The sprite to render.
+   * @param {Matrix} matrix - The transformation matrix.
    */
-  render(sprite: import('../../display/image.js').Image, matrix: import('../../geom/matrix.js').Matrix) {
-    const texture = sprite.texture;
+  public render(sprite: Image, matrix: Matrix) {
+    const { texture } = sprite;
     //  They provided an alternative rendering matrix, so use it
     let wt = sprite.worldTransform;
     if (matrix) {
@@ -133,7 +140,7 @@ export class WebGLSpriteBatch {
     let h1;
     if (texture.trim) {
       // if the sprite is trimmed then we need to add the extra space before transforming the sprite coords.
-      const trim = texture.trim;
+      const { trim } = texture;
       w1 = trim.x - aX * trim.width;
       w0 = w1 + texture.crop.width;
       h1 = trim.y - aY * trim.height;
@@ -145,28 +152,28 @@ export class WebGLSpriteBatch {
       h1 = texture.frame.height * -aY;
     }
     const i = this.currentBatchSize * 4 * this.vertSize;
-    const resolution = texture.baseTexture.resolution;
+    const { resolution } = texture.baseTexture;
     const a = wt.a / resolution;
     const b = wt.b / resolution;
     const c = wt.c / resolution;
     const d = wt.d / resolution;
-    const tx = wt.tx;
-    const ty = wt.ty;
-    const colors = this.colors;
-    const positions = this.positions;
+    const { tx } = wt;
+    const { ty } = wt;
+    const colors = this.colors!;
+    const positions = this.positions!;
     if (this.renderSession.roundPixels) {
       // xy
-      positions[i] = (a * w1 + c * h1 + tx) | 0;
-      positions[i + 1] = (d * h1 + b * w1 + ty) | 0;
+      positions[i] = Math.trunc(a * w1 + c * h1 + tx);
+      positions[i + 1] = Math.trunc(d * h1 + b * w1 + ty);
       // xy
-      positions[i + 5] = (a * w0 + c * h1 + tx) | 0;
-      positions[i + 6] = (d * h1 + b * w0 + ty) | 0;
+      positions[i + 5] = Math.trunc(a * w0 + c * h1 + tx);
+      positions[i + 6] = Math.trunc(d * h1 + b * w0 + ty);
       // xy
-      positions[i + 10] = (a * w0 + c * h0 + tx) | 0;
-      positions[i + 11] = (d * h0 + b * w0 + ty) | 0;
+      positions[i + 10] = Math.trunc(a * w0 + c * h0 + tx);
+      positions[i + 11] = Math.trunc(d * h0 + b * w0 + ty);
       // xy
-      positions[i + 15] = (a * w1 + c * h0 + tx) | 0;
-      positions[i + 16] = (d * h0 + b * w1 + ty) | 0;
+      positions[i + 15] = Math.trunc(a * w1 + c * h0 + tx);
+      positions[i + 16] = Math.trunc(d * h0 + b * w1 + ty);
     } else {
       // xy
       positions[i] = a * w1 + c * h1 + tx;
@@ -194,11 +201,11 @@ export class WebGLSpriteBatch {
     positions[i + 17] = uvs.x3;
     positions[i + 18] = uvs.y3;
     // color and alpha
-    const tint = sprite.tint;
+    const { tint } = sprite;
     colors[i + 4] = (tint >> 16) + (tint & 0xff00) + ((tint & 0xff) << 16) + ((sprite.worldAlpha * 255) << 24);
-    colors[i + 9] = colors[i + 4];
-    colors[i + 14] = colors[i + 4];
-    colors[i + 19] = colors[i + 4];
+    colors[i + 9] = colors[i + 4]!;
+    colors[i + 14] = colors[i + 4]!;
+    colors[i + 19] = colors[i + 4]!;
     // increment the batchsize
     this.sprites[this.currentBatchSize] = sprite;
     this.currentBatchSize += 1;
@@ -207,19 +214,19 @@ export class WebGLSpriteBatch {
   /**
    * Binds the sprite batch to the WebGL context.
    */
-  renderTilingSprite() {
+  public renderTilingSprite() {
     // TODO
   }
 
   /**
    * Updates the sprite batch.
    */
-  flush() {
+  public flush() {
     // If the batch is length 0 then return as there is nothing to draw
     if (this.currentBatchSize === 0) {
       return;
     }
-    const gl = this.gl;
+    const { gl } = this;
     let shader;
     if (this.dirty) {
       this.dirty = false;
@@ -238,9 +245,9 @@ export class WebGLSpriteBatch {
     }
     // upload the verts to the buffer
     if (this.currentBatchSize > this.size * 0.5) {
-      gl.bufferSubData(gl.ARRAY_BUFFER, 0, this.vertices);
+      gl.bufferSubData(gl.ARRAY_BUFFER, 0, this.vertices!);
     } else {
-      const view = this.positions.subarray(0, this.currentBatchSize * 4 * this.vertSize);
+      const view = this.positions!.subarray(0, this.currentBatchSize * 4 * this.vertSize);
       gl.bufferSubData(gl.ARRAY_BUFFER, 0, view);
     }
     let nextTexture;
@@ -249,7 +256,7 @@ export class WebGLSpriteBatch {
     let batchSize = 0;
     let start = 0;
     let currentBaseTexture = null;
-    let currentBlendMode = this.renderSession.blendModeManager.currentBlendMode;
+    let { currentBlendMode } = this.renderSession.blendModeManager;
     let currentShader = null;
     let blendSwap = false;
     let shaderSwap = false;
@@ -262,7 +269,7 @@ export class WebGLSpriteBatch {
         nextTexture = sprite.texture.baseTexture;
       }
       nextBlendMode = sprite.blendMode;
-      nextShader = sprite.shader || this.defaultShader;
+      nextShader = sprite.shader ?? this.defaultShader;
       blendSwap = currentBlendMode !== nextBlendMode;
       shaderSwap = !currentShader || !nextShader || currentShader._UID !== nextShader._UID;
       let skip = nextTexture.skipRender;
@@ -295,7 +302,7 @@ export class WebGLSpriteBatch {
           }
           // both these only need to be set if they are changing..
           // set the projection
-          const projection = this.renderSession.projection;
+          const { projection } = this.renderSession;
           gl.uniform2f(shader.projectionVector, projection.x, projection.y);
           // TODO - this is temporary!
           const offsetVector = this.renderSession.offset;
@@ -312,15 +319,15 @@ export class WebGLSpriteBatch {
 
   /**
    * Updates the sprite batch with a new texture.
-   * @param {import('./base_texture.js').BaseTexture} texture - The texture to use.
+   * @param {BaseTexture} texture - The texture to use.
    * @param {number} size - The size of the batch.
    * @param {number} startIndex - The start index in the batch.
    */
-  renderBatch(texture: import('./base_texture.js').BaseTexture, size: number, startIndex: number) {
+  public renderBatch(texture: BaseTexture, size: number, startIndex: number) {
     if (size === 0) {
       return;
     }
-    const gl = this.gl;
+    const { gl } = this;
     // check if a texture is dirty..
     if (texture._dirty[gl.id]) {
       if (!this.renderSession.renderer.updateTexture(texture)) {
@@ -340,7 +347,7 @@ export class WebGLSpriteBatch {
   /**
    * Destroys this sprite batch and cleans up resources.
    */
-  stop() {
+  public stop() {
     this.flush();
     this.dirty = true;
   }
@@ -348,14 +355,14 @@ export class WebGLSpriteBatch {
   /**
    * Renders the sprite batch using Canvas.
    */
-  start() {
+  public start(): void {
     this.dirty = true;
   }
 
   /**
    * Destroys the sprite batch instance.
    */
-  destroy() {
+  public destroy(): void {
     this.vertices = null;
     this.positions = null;
     this.colors = null;
@@ -363,6 +370,5 @@ export class WebGLSpriteBatch {
     this.gl.deleteBuffer(this.vertexBuffer);
     this.gl.deleteBuffer(this.indexBuffer);
     this.currentBaseTexture = null;
-    this.gl = null;
   }
 }

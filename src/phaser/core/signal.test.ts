@@ -1,14 +1,14 @@
-import { expect } from 'vitest';
+import { expect, describe, it } from 'vitest';
 import { Signal } from './signal.js';
 
 describe('Signal', () => {
   describe('core', () => {
-    it('', () => {
+    it('adds, dispatches to and removes listeners', () => {
       const signal = new Signal();
-      const listener = (arg) => {
+      const listener = (arg: number) => {
         expect(arg).toBe(1);
       };
-      const listenerOnce = (arg) => {
+      const listenerOnce = (arg: number) => {
         expect(arg).toBe(1);
       };
       signal.add(listener);

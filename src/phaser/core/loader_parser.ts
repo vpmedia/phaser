@@ -1,16 +1,14 @@
 import { Texture } from '../display/webgl/texture.js';
 import { Rectangle } from '../geom/rectangle.js';
+import type { BaseTexture } from '../display/webgl/base_texture.js';
 
 /**
  * Finalizes bitmap font data by attaching textures to characters.
- * @param {import('../display/webgl/base_texture.js').BaseTexture} baseTexture - The base texture for the font.
+ * @param {BaseTexture} baseTexture - The base texture for the font.
  * @param {object} bitmapFontData - The bitmap font data to finalize.
  * @returns {object} The finalized bitmap font data.
  */
-export const finalizeBitmapFont = (
-  baseTexture: import('../display/webgl/base_texture.js').BaseTexture,
-  bitmapFontData: any
-) => {
+export const finalizeBitmapFont = (baseTexture: BaseTexture, bitmapFontData: any) => {
   Object.keys(bitmapFontData.chars).forEach((charCode) => {
     const letter = bitmapFontData.chars[charCode];
     letter.texture = new Texture(baseTexture, new Rectangle(letter.x, letter.y, letter.width, letter.height));
@@ -21,43 +19,38 @@ export const finalizeBitmapFont = (
 /**
  * Parses XML bitmap font data.
  * @param {object} xml - The XML document containing the bitmap font data.
- * @param {import('../display/webgl/base_texture.js').BaseTexture} baseTexture - The base texture for the font.
+ * @param {BaseTexture} baseTexture - The base texture for the font.
  * @param {number} xSpacing - Horizontal spacing between characters.
  * @param {number} ySpacing - Vertical spacing between characters.
  * @returns {object} The parsed bitmap font data.
  */
-export const xmlBitmapFont = (
-  xml: any,
-  baseTexture: import('../display/webgl/base_texture.js').BaseTexture,
-  xSpacing: number,
-  ySpacing: number
-) => {
+export const xmlBitmapFont = (xml: any, baseTexture: BaseTexture, xSpacing: number, ySpacing: number) => {
   const data: any = {};
-  const info = xml.getElementsByTagName('info')[0];
-  const common = xml.getElementsByTagName('common')[0];
+  const info = xml.querySelectorAll('info')[0];
+  const common = xml.querySelectorAll('common')[0];
   data.font = info.getAttribute('face');
-  data.size = Number.parseInt(info.getAttribute('size'), 10);
-  data.lineHeight = Number.parseInt(common.getAttribute('lineHeight'), 10) + ySpacing;
+  data.size = Math.trunc(Number(info.getAttribute('size')));
+  data.lineHeight = Math.trunc(Number(common.getAttribute('lineHeight'))) + ySpacing;
   data.chars = {};
-  const letters = xml.getElementsByTagName('char');
+  const letters = xml.querySelectorAll('char');
   for (let i = 0; i < letters.length; i += 1) {
-    const charCode = Number.parseInt(letters[i].getAttribute('id'), 10);
+    const charCode = Math.trunc(Number(letters[i].getAttribute('id')));
     data.chars[charCode] = {
-      x: Number.parseInt(letters[i].getAttribute('x'), 10),
-      y: Number.parseInt(letters[i].getAttribute('y'), 10),
-      width: Number.parseInt(letters[i].getAttribute('width'), 10),
-      height: Number.parseInt(letters[i].getAttribute('height'), 10),
-      xOffset: Number.parseInt(letters[i].getAttribute('xoffset'), 10),
-      yOffset: Number.parseInt(letters[i].getAttribute('yoffset'), 10),
-      xAdvance: Number.parseInt(letters[i].getAttribute('xadvance'), 10) + xSpacing,
+      x: Math.trunc(Number(letters[i].getAttribute('x'))),
+      y: Math.trunc(Number(letters[i].getAttribute('y'))),
+      width: Math.trunc(Number(letters[i].getAttribute('width'))),
+      height: Math.trunc(Number(letters[i].getAttribute('height'))),
+      xOffset: Math.trunc(Number(letters[i].getAttribute('xoffset'))),
+      yOffset: Math.trunc(Number(letters[i].getAttribute('yoffset'))),
+      xAdvance: Math.trunc(Number(letters[i].getAttribute('xadvance'))) + xSpacing,
       kerning: {},
     };
   }
-  const kernings = xml.getElementsByTagName('kerning');
+  const kernings = xml.querySelectorAll('kerning');
   for (let i = 0; i < kernings.length; i += 1) {
-    const first = Number.parseInt(kernings[i].getAttribute('first'), 10);
-    const second = Number.parseInt(kernings[i].getAttribute('second'), 10);
-    const amount = Number.parseInt(kernings[i].getAttribute('amount'), 10);
+    const first = Math.trunc(Number(kernings[i].getAttribute('first')));
+    const second = Math.trunc(Number(kernings[i].getAttribute('second')));
+    const amount = Math.trunc(Number(kernings[i].getAttribute('amount')));
     data.chars[second].kerning[first] = amount;
   }
   return finalizeBitmapFont(baseTexture, data);
@@ -66,34 +59,23 @@ export const xmlBitmapFont = (
 /**
  * Parses XML bitmap font data (alias for xmlBitmapFont).
  * @param {object} xml - The XML document containing the bitmap font data.
- * @param {import('../display/webgl/base_texture.js').BaseTexture} baseTexture - The base texture for the font.
+ * @param {BaseTexture} baseTexture - The base texture for the font.
  * @param {number} xSpacing - Horizontal spacing between characters.
  * @param {number} ySpacing - Vertical spacing between characters.
  * @returns {object} The parsed bitmap font data.
  */
-export const bitmapFont = (
-  xml: any,
-  baseTexture: import('../display/webgl/base_texture.js').BaseTexture,
-  xSpacing: number,
-  ySpacing: number
-) => {
-  return xmlBitmapFont(xml, baseTexture, xSpacing, ySpacing);
-};
+export const bitmapFont = (xml: any, baseTexture: BaseTexture, xSpacing: number, ySpacing: number) =>
+  xmlBitmapFont(xml, baseTexture, xSpacing, ySpacing);
 
 /**
  * Parses JSON bitmap font data.
  * @param {object} json - The JSON object containing the bitmap font data.
- * @param {import('../display/webgl/base_texture.js').BaseTexture} baseTexture - The base texture for the font.
+ * @param {BaseTexture} baseTexture - The base texture for the font.
  * @param {number} xSpacing - Horizontal spacing between characters.
  * @param {number} ySpacing - Vertical spacing between characters.
  * @returns {object} The parsed bitmap font data.
  */
-export const jsonBitmapFont = (
-  json: any,
-  baseTexture: import('../display/webgl/base_texture.js').BaseTexture,
-  xSpacing: number,
-  ySpacing: number
-) => {
+export const jsonBitmapFont = (json: any, baseTexture: BaseTexture, xSpacing: number, ySpacing: number) => {
   const data: {
     font: string;
     size: number;
@@ -101,28 +83,28 @@ export const jsonBitmapFont = (
     chars: Record<number, { kerning: Record<number, number>; [key: string]: unknown }>;
   } = {
     font: json.font.info._face,
-    size: Number.parseInt(json.font.info._size, 10),
-    lineHeight: Number.parseInt(json.font.common._lineHeight, 10) + ySpacing,
+    size: Math.trunc(Number(json.font.info._size)),
+    lineHeight: Math.trunc(Number(json.font.common._lineHeight)) + ySpacing,
     chars: {},
   };
   json.font.chars.char.forEach((letter: Record<string, string>) => {
-    const charCode = Number.parseInt(letter._id, 10);
+    const charCode = Math.trunc(Number(letter['_id']));
     data.chars[charCode] = {
-      x: Number.parseInt(letter._x, 10),
-      y: Number.parseInt(letter._y, 10),
-      width: Number.parseInt(letter._width, 10),
-      height: Number.parseInt(letter._height, 10),
-      xOffset: Number.parseInt(letter._xoffset, 10),
-      yOffset: Number.parseInt(letter._yoffset, 10),
-      xAdvance: Number.parseInt(letter._xadvance, 10) + xSpacing,
+      x: Math.trunc(Number(letter['_x'])),
+      y: Math.trunc(Number(letter['_y'])),
+      width: Math.trunc(Number(letter['_width'])),
+      height: Math.trunc(Number(letter['_height'])),
+      xOffset: Math.trunc(Number(letter['_xoffset'])),
+      yOffset: Math.trunc(Number(letter['_yoffset'])),
+      xAdvance: Math.trunc(Number(letter['_xadvance'])) + xSpacing,
       kerning: {},
     };
   });
   if (json.font.kernings && json.font.kernings.kerning) {
     json.font.kernings.kerning.forEach((kerning: Record<string, string>) => {
-      const char = data.chars[Number.parseInt(kerning._second, 10)];
+      const char = data.chars[Math.trunc(Number(kerning['_second']))];
       if (char) {
-        char.kerning[Number.parseInt(kerning._first, 10)] = Number.parseInt(kerning._amount, 10);
+        char.kerning[Math.trunc(Number(kerning['_first']))] = Math.trunc(Number(kerning['_amount']));
       }
     });
   }

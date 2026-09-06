@@ -10,67 +10,69 @@ import { MSPointer } from './input_mspointer.js';
 import { Pointer } from './input_pointer.js';
 import { Touch } from './input_touch.js';
 import { Signal } from './signal.js';
+import type { Game } from './game.js';
+import type { DisplayObject } from '../display/display_object.js';
 
 const MAX_POINTERS = 10;
 
 export class Input {
-  game!: any;
-  hitCanvas!: HTMLCanvasElement;
-  hitContext!: any;
-  moveCallbacks!: { callback: Function; context: any }[];
-  lockCallbacks!: any;
-  customCandidateHandler!: any;
-  customCandidateHandlerContext!: any;
-  pollRate!: number;
-  enabled!: boolean;
-  multiInputOverride!: number;
-  position!: Point;
-  speed!: Point;
-  circle!: Circle;
-  scale!: Point;
-  maxPointers!: number;
-  tapRate!: number;
-  doubleTapRate!: number;
-  holdRate!: number;
-  justPressedRate!: number;
-  justReleasedRate!: number;
-  recordPointerHistory!: boolean;
-  recordRate!: number;
-  recordLimit!: number;
-  pointer1!: any;
-  pointer2!: any;
-  pointer3!: any;
-  pointer4!: any;
-  pointer5!: any;
-  pointer6!: any;
-  pointer7!: any;
-  pointer8!: any;
-  pointer9!: any;
-  pointer10!: any;
-  pointers!: Pointer[];
-  activePointer!: Pointer;
-  mousePointer!: Pointer;
-  mouse!: Mouse;
-  touch!: Touch;
-  mspointer!: MSPointer;
-  resetLocked!: boolean;
-  onDown!: Signal;
-  onUp!: Signal;
-  onTap!: Signal;
-  onHold!: Signal;
-  minPriorityID!: number;
-  interactiveItems!: ArraySet;
-  _localPoint!: Point;
-  _pollCounter!: number;
-  _oldPosition!: Point;
-  _onClickTrampoline!: any;
-  _x!: number;
-  _y!: number;
+  public game!: any;
+  public hitCanvas!: HTMLCanvasElement;
+  public hitContext!: any;
+  public moveCallbacks!: { callback: Function; context: any }[];
+  public lockCallbacks!: any;
+  public customCandidateHandler!: any;
+  public customCandidateHandlerContext!: any;
+  public pollRate!: number;
+  public enabled!: boolean;
+  public multiInputOverride!: number;
+  public position!: Point;
+  public speed!: Point;
+  public circle!: Circle;
+  public scale!: Point;
+  public maxPointers!: number;
+  public tapRate!: number;
+  public doubleTapRate!: number;
+  public holdRate!: number;
+  public justPressedRate!: number;
+  public justReleasedRate!: number;
+  public recordPointerHistory!: boolean;
+  public recordRate!: number;
+  public recordLimit!: number;
+  public pointer1!: any;
+  public pointer2!: any;
+  public pointer3!: any;
+  public pointer4!: any;
+  public pointer5!: any;
+  public pointer6!: any;
+  public pointer7!: any;
+  public pointer8!: any;
+  public pointer9!: any;
+  public pointer10!: any;
+  public pointers!: Pointer[];
+  public activePointer!: Pointer;
+  public mousePointer!: Pointer;
+  public mouse!: Mouse;
+  public touch!: Touch;
+  public mspointer!: MSPointer;
+  public resetLocked!: boolean;
+  public onDown!: Signal;
+  public onUp!: Signal;
+  public onTap!: Signal;
+  public onHold!: Signal;
+  public minPriorityID!: number;
+  public interactiveItems!: ArraySet;
+  public _localPoint!: Point;
+  public _pollCounter!: number;
+  public _oldPosition!: Point;
+  public _onClickTrampoline!: any;
+  public _x!: number;
+  public _y!: number;
   /**
    * TBD.
-   * @param {import('./game.js').Game} game - TBD.
+   * @param {Game} game - TBD.
    */
-  constructor(game: import('./game.js').Game) {
+  public constructor(game: Game) {
     this.game = game;
     this.hitCanvas = null!;
     this.hitContext = null;
@@ -127,7 +129,7 @@ export class Input {
   /**
    * TBD.
    */
-  boot() {
+  public boot() {
     this.mousePointer = new Pointer(this.game, 0, POINTER_CURSOR);
     this.addPointer();
     this.addPointer();
@@ -161,7 +163,7 @@ export class Input {
   /**
    * TBD.
    */
-  destroy() {
+  public destroy() {
     this.mouse.stop();
     if (this.game.device.mspointer) {
       this.mspointer.stop();
@@ -178,7 +180,7 @@ export class Input {
    * @param {Function} callback - TBD.
    * @param {object} context - TBD.
    */
-  setInteractiveCandidateHandler(callback: Function, context: any) {
+  public setInteractiveCandidateHandler(callback: Function, context: any) {
     this.customCandidateHandler = callback;
     this.customCandidateHandlerContext = context;
   }
@@ -188,7 +190,7 @@ export class Input {
    * @param {Function} callback - TBD.
    * @param {object} context - TBD.
    */
-  addMoveCallback(callback: Function, context: any) {
+  public addMoveCallback(callback: Function, context: any) {
     this.moveCallbacks.push({ callback, context });
   }
 
@@ -197,11 +199,11 @@ export class Input {
    * @param {Function} callback - TBD.
    * @param {object} context - TBD.
    */
-  deleteMoveCallback(callback: Function, context: any) {
+  public deleteMoveCallback(callback: Function, context: any) {
     let i = this.moveCallbacks.length;
     while (i) {
       i -= 1;
-      if (this.moveCallbacks[i].callback === callback && this.moveCallbacks[i].context === context) {
+      if (this.moveCallbacks[i]!.callback === callback && this.moveCallbacks[i]!.context === context) {
         this.moveCallbacks.splice(i, 1);
         return;
       }
@@ -212,7 +214,7 @@ export class Input {
    * TBD.
    * @returns {Pointer} TBD.
    */
-  addPointer() {
+  public addPointer() {
     if (this.pointers.length >= MAX_POINTERS) {
       this.game.logger.warn(`Input.addPointer: Maximum limit of ${MAX_POINTERS} pointers reached.`);
       return null;
@@ -227,7 +229,7 @@ export class Input {
   /**
    * TBD.
    */
-  update() {
+  public update() {
     if (this.pollRate > 0 && this._pollCounter < this.pollRate) {
       this._pollCounter += 1;
       return;
@@ -236,8 +238,8 @@ export class Input {
     this.speed.y = this.position.y - this._oldPosition.y;
     this._oldPosition.copyFrom(this.position);
     this.mousePointer.update();
-    for (let i = 0; i < this.pointers.length; i += 1) {
-      this.pointers[i].update();
+    for (const pointer of this.pointers) {
+      pointer.update();
     }
     this._pollCounter = 0;
   }
@@ -246,13 +248,13 @@ export class Input {
    * TBD.
    * @param {boolean} hard - TBD.
    */
-  reset(hard: boolean = false) {
+  public reset(hard = false) {
     if (!this.game.isBooted || this.resetLocked) {
       return;
     }
     this.mousePointer.reset();
-    for (let i = 0; i < this.pointers.length; i += 1) {
-      this.pointers[i].reset();
+    for (const pointer of this.pointers) {
+      pointer.reset();
     }
     if (this.game.canvas.style.cursor !== 'none') {
       this.game.canvas.style.cursor = 'inherit';
@@ -276,7 +278,7 @@ export class Input {
    * @param {number} x - TBD.
    * @param {number} y - TBD.
    */
-  resetSpeed(x: number, y: number) {
+  public resetSpeed(x: number, y: number) {
     this._oldPosition.setTo(x, y);
     this.speed.setTo(0, 0);
   }
@@ -286,7 +288,7 @@ export class Input {
    * @param {MouseEvent|TouchEvent|PointerEvent} event - TBD.
    * @returns {Pointer} TBD.
    */
-  startPointer(event: any | TouchEvent | PointerEvent) {
+  public startPointer(event: any | TouchEvent | PointerEvent) {
     if (this.maxPointers >= 0 && this.countActivePointers(this.maxPointers) >= this.maxPointers) {
       return null;
     }
@@ -297,7 +299,7 @@ export class Input {
       return this.pointer2.start(event);
     }
     for (let i = 2; i < this.pointers.length; i += 1) {
-      const pointer = this.pointers[i];
+      const pointer = this.pointers[i]!;
       if (!pointer.active) {
         return pointer.start(event);
       }
@@ -310,7 +312,7 @@ export class Input {
    * @param {MouseEvent|TouchEvent|PointerEvent} event - TBD.
    * @returns {Pointer} TBD.
    */
-  updatePointer(event: any | TouchEvent | PointerEvent) {
+  public updatePointer(event: any | TouchEvent | PointerEvent) {
     if (this.pointer1.active && this.pointer1.identifier === event.identifier) {
       return this.pointer1.move(event);
     }
@@ -318,7 +320,7 @@ export class Input {
       return this.pointer2.move(event);
     }
     for (let i = 2; i < this.pointers.length; i += 1) {
-      const pointer = this.pointers[i];
+      const pointer = this.pointers[i]!;
       if (pointer.active && pointer.identifier === event.identifier) {
         return pointer.move(event);
       }
@@ -331,7 +333,7 @@ export class Input {
    * @param {MouseEvent|TouchEvent|PointerEvent} event - TBD.
    * @returns {Pointer} TBD.
    */
-  stopPointer(event: any | TouchEvent | PointerEvent) {
+  public stopPointer(event: any | TouchEvent | PointerEvent) {
     if (this.pointer1.active && this.pointer1.identifier === event.identifier) {
       return this.pointer1.stop(event);
     }
@@ -339,7 +341,7 @@ export class Input {
       return this.pointer2.stop(event);
     }
     for (let i = 2; i < this.pointers.length; i += 1) {
-      const pointer = this.pointers[i];
+      const pointer = this.pointers[i]!;
       if (pointer.active && pointer.identifier === event.identifier) {
         return pointer.stop(event);
       }
@@ -352,10 +354,10 @@ export class Input {
    * @param {number} limit - TBD.
    * @returns {number} TBD.
    */
-  countActivePointers(limit: number = this.pointers.length) {
+  public countActivePointers(limit: number = this.pointers.length) {
     let count = limit;
     for (let i = 0; i < this.pointers.length && count > 0; i += 1) {
-      const pointer = this.pointers[i];
+      const pointer = this.pointers[i]!;
       if (pointer.active) {
         count -= 1;
       }
@@ -368,9 +370,8 @@ export class Input {
    * @param {boolean} isActive - TBD.
    * @returns {Pointer} TBD.
    */
-  getPointer(isActive: boolean = false) {
-    for (let i = 0; i < this.pointers.length; i += 1) {
-      const pointer = this.pointers[i];
+  public getPointer(isActive = false) {
+    for (const pointer of this.pointers) {
       if (pointer.active === isActive) {
         return pointer;
       }
@@ -383,9 +384,8 @@ export class Input {
    * @param {number} identifier - TBD.
    * @returns {Pointer} TBD.
    */
-  getPointerFromIdentifier(identifier: number) {
-    for (let i = 0; i < this.pointers.length; i += 1) {
-      const pointer = this.pointers[i];
+  public getPointerFromIdentifier(identifier: number) {
+    for (const pointer of this.pointers) {
       if (pointer.identifier === identifier) {
         return pointer;
       }
@@ -399,9 +399,8 @@ export class Input {
    * @param {number} pointerId - TBD.
    * @returns {Pointer} TBD.
    */
-  getPointerFromId(pointerId: number) {
-    for (let i = 0; i < this.pointers.length; i += 1) {
-      const pointer = this.pointers[i];
+  public getPointerFromId(pointerId: number) {
+    for (const pointer of this.pointers) {
       if (pointer.pointerId === pointerId) {
         return pointer;
       }
@@ -412,17 +411,13 @@ export class Input {
 
   /**
    * TBD.
-   * @param {import('../display/display_object.js').DisplayObject} displayObject - TBD.
+   * @param {DisplayObject} displayObject - TBD.
    * @param {Pointer} pointer - TBD.
    * @param {Point} output - TBD.
    * @returns {Point} TBD.
    */
-  getLocalPosition(
-    displayObject: import('../display/display_object.js').DisplayObject,
-    pointer: Pointer,
-    output: Point | null = null
-  ) {
-    const result = output || new Point();
+  public getLocalPosition(displayObject: DisplayObject, pointer: Pointer, output: Point | null = null) {
+    const result = output ?? new Point();
     const wt = displayObject.worldTransform;
     const id = 1 / (wt.a * wt.d + wt.c * -wt.b);
     return result.setTo(
@@ -433,12 +428,12 @@ export class Input {
 
   /**
    * TBD.
-   * @param {import('../display/display_object.js').DisplayObject} displayObject - TBD.
+   * @param {DisplayObject} displayObject - TBD.
    * @param {Pointer} pointer - TBD.
    * @param {Point} localPoint - TBD.
    * @returns {boolean} TBD.
    */
-  hitTest(displayObject: import('../display/display_object.js').DisplayObject, pointer: Pointer, localPoint: Point) {
+  public hitTest(displayObject: DisplayObject, pointer: Pointer, localPoint: Point) {
     if (!displayObject.worldVisible) {
       return false;
     }
@@ -447,8 +442,8 @@ export class Input {
     if (displayObject.hitArea && displayObject.hitArea.contains) {
       return displayObject.hitArea.contains(this._localPoint.x, this._localPoint.y);
     } else if (displayObject instanceof Image) {
-      const width = displayObject.texture.frame.width;
-      const height = displayObject.texture.frame.height;
+      const { width } = displayObject.texture.frame;
+      const { height } = displayObject.texture.frame;
       const x1 = -width * displayObject.anchor.x;
       if (this._localPoint.x >= x1 && this._localPoint.x < x1 + width) {
         const y1 = -height * displayObject.anchor.y;
@@ -457,8 +452,7 @@ export class Input {
         }
       }
     } else if (displayObject instanceof Graphics) {
-      for (let i = 0; i < displayObject.graphicsData.length; i += 1) {
-        const data = displayObject.graphicsData[i];
+      for (const data of displayObject.graphicsData) {
         if (data.fill && data.shape && data.shape.contains(this._localPoint.x, this._localPoint.y)) {
           // Only deal with fills..
           return true;
@@ -466,8 +460,8 @@ export class Input {
       }
     }
     // Didn't hit the parent, does it have any children?
-    for (let i = 0; i < displayObject.children.length; i += 1) {
-      if (this.hitTest(displayObject.children[i], pointer, localPoint)) {
+    for (const child of displayObject.children) {
+      if (this.hitTest(child, pointer, localPoint)) {
         return true;
       }
     }
@@ -477,7 +471,7 @@ export class Input {
   /**
    * TBD.
    */
-  onClickTrampoline() {
+  public onClickTrampoline() {
     this.activePointer.processClickTrampolines();
   }
 
@@ -485,14 +479,14 @@ export class Input {
    * TBD.
    * @returns {number} TBD.
    */
-  get x() {
+  public get x() {
     return this._x;
   }
 
   /**
    * TBD.
    */
-  set x(value) {
+  public set x(value) {
     this._x = Math.floor(value);
   }
 
@@ -500,14 +494,14 @@ export class Input {
    * TBD.
    * @returns {number} TBD.
    */
-  get y() {
+  public get y() {
     return this._y;
   }
 
   /**
    * TBD.
    */
-  set y(value) {
+  public set y(value) {
     this._y = Math.floor(value);
   }
 
@@ -515,7 +509,7 @@ export class Input {
    * TBD.
    * @returns {boolean} TBD.
    */
-  get pollLocked() {
+  public get pollLocked() {
     return this.pollRate > 0 && this._pollCounter < this.pollRate;
   }
 
@@ -523,7 +517,7 @@ export class Input {
    * TBD.
    * @returns {number} TBD.
    */
-  get totalInactivePointers() {
+  public get totalInactivePointers() {
     return this.pointers.length - this.countActivePointers();
   }
 
@@ -531,7 +525,7 @@ export class Input {
    * TBD.
    * @returns {number} TBD.
    */
-  get totalActivePointers() {
+  public get totalActivePointers() {
     return this.countActivePointers();
   }
 
@@ -539,7 +533,7 @@ export class Input {
    * TBD.
    * @returns {number} TBD.
    */
-  get worldX() {
+  public get worldX() {
     return this.x;
   }
 
@@ -547,7 +541,7 @@ export class Input {
    * TBD.
    * @returns {number} TBD.
    */
-  get worldY() {
+  public get worldY() {
     return this.y;
   }
 }

@@ -1,27 +1,28 @@
+import type { Game } from './game.js';
 export class Touch {
-  game!: any;
-  enabled!: any;
-  callbackContext!: any;
-  touchStartCallback!: any;
-  touchMoveCallback!: any;
-  touchEndCallback!: any;
-  touchEnterCallback!: any;
-  touchLeaveCallback!: any;
-  touchCancelCallback!: any;
-  preventDefault!: any;
-  event!: any;
-  _onTouchStart!: ((event: TouchEvent) => void) | null;
-  _onTouchMove!: ((event: TouchEvent) => void) | null;
-  _onTouchEnd!: ((event: TouchEvent) => void) | null;
-  _onTouchEnter!: ((event: TouchEvent) => void) | null;
-  _onTouchLeave!: ((event: TouchEvent) => void) | null;
-  _onTouchCancel!: ((event: TouchEvent) => void) | null;
-  _documentTouchMove!: (event: TouchEvent) => void;
+  public game!: any;
+  public enabled!: any;
+  public callbackContext!: any;
+  public touchStartCallback!: any;
+  public touchMoveCallback!: any;
+  public touchEndCallback!: any;
+  public touchEnterCallback!: any;
+  public touchLeaveCallback!: any;
+  public touchCancelCallback!: any;
+  public preventDefault!: any;
+  public event!: any;
+  public _onTouchStart: ((event: TouchEvent) => void) | null;
+  public _onTouchMove: ((event: TouchEvent) => void) | null;
+  public _onTouchEnd: ((event: TouchEvent) => void) | null;
+  public _onTouchEnter: ((event: TouchEvent) => void) | null;
+  public _onTouchLeave: ((event: TouchEvent) => void) | null;
+  public _onTouchCancel: ((event: TouchEvent) => void) | null;
+  public _documentTouchMove!: (event: TouchEvent) => void;
   /**
    * TBD.
-   * @param {import('./game.js').Game} game - TBD.
+   * @param {Game} game - TBD.
    */
-  constructor(game: import('./game.js').Game) {
+  public constructor(game: Game) {
     this.game = game;
     this.enabled = true;
     this.callbackContext = this.game;
@@ -45,17 +46,29 @@ export class Touch {
   /**
    * TBD.
    */
-  start() {
+  public start() {
     if (!this.game.device.touch || this._onTouchStart !== null) {
       return;
     }
     const scope = this;
-    this._onTouchStart = (event) => scope.onTouchStart(event);
-    this._onTouchMove = (event) => scope.onTouchMove(event);
-    this._onTouchEnd = (event) => scope.onTouchEnd(event);
-    this._onTouchEnter = (event) => scope.onTouchEnter(event);
-    this._onTouchLeave = (event) => scope.onTouchLeave(event);
-    this._onTouchCancel = (event) => scope.onTouchCancel(event);
+    this._onTouchStart = (event) => {
+      scope.onTouchStart(event);
+    };
+    this._onTouchMove = (event) => {
+      scope.onTouchMove(event);
+    };
+    this._onTouchEnd = (event) => {
+      scope.onTouchEnd(event);
+    };
+    this._onTouchEnter = (event) => {
+      scope.onTouchEnter(event);
+    };
+    this._onTouchLeave = (event) => {
+      scope.onTouchLeave(event);
+    };
+    this._onTouchCancel = (event) => {
+      scope.onTouchCancel(event);
+    };
     this.game.canvas.addEventListener('touchstart', this._onTouchStart, false);
     this.game.canvas.addEventListener('touchmove', this._onTouchMove, false);
     this.game.canvas.addEventListener('touchend', this._onTouchEnd, false);
@@ -67,7 +80,7 @@ export class Touch {
   /**
    * TBD.
    */
-  stop() {
+  public stop() {
     if (!this.game.device.touch) {
       return;
     }
@@ -82,7 +95,7 @@ export class Touch {
   /**
    * TBD.
    */
-  consumeDocumentTouches() {
+  public consumeDocumentTouches() {
     this._documentTouchMove = (event) => {
       event.preventDefault();
     };
@@ -93,7 +106,7 @@ export class Touch {
    * TBD.
    * @param {TouchEvent} event - TBD.
    */
-  onTouchStart(event: any) {
+  public onTouchStart(event: any) {
     this.event = event;
     if (!this.game.input.enabled || !this.enabled) {
       return;
@@ -114,7 +127,7 @@ export class Touch {
    * TBD.
    * @param {TouchEvent} event - TBD.
    */
-  onTouchCancel(event: any) {
+  public onTouchCancel(event: any) {
     this.event = event;
     if (this.touchCancelCallback) {
       this.touchCancelCallback.call(this.callbackContext, event);
@@ -134,7 +147,7 @@ export class Touch {
    * TBD.
    * @param {TouchEvent} event - TBD.
    */
-  onTouchEnter(event: any) {
+  public onTouchEnter(event: any) {
     this.event = event;
     if (this.touchEnterCallback) {
       this.touchEnterCallback.call(this.callbackContext, event);
@@ -149,7 +162,7 @@ export class Touch {
    * TBD.
    * @param {TouchEvent} event - TBD.
    */
-  onTouchLeave(event: any) {
+  public onTouchLeave(event: any) {
     this.event = event;
     if (this.touchLeaveCallback) {
       this.touchLeaveCallback.call(this.callbackContext, event);
@@ -161,7 +174,7 @@ export class Touch {
    * TBD.
    * @param {TouchEvent} event - TBD.
    */
-  onTouchMove(event: any) {
+  public onTouchMove(event: any) {
     this.event = event;
     if (this.touchMoveCallback) {
       this.touchMoveCallback.call(this.callbackContext, event);
@@ -176,7 +189,7 @@ export class Touch {
    * TBD.
    * @param {TouchEvent} event - TBD.
    */
-  onTouchEnd(event: any) {
+  public onTouchEnd(event: any) {
     this.event = event;
     if (this.touchEndCallback) {
       this.touchEndCallback.call(this.callbackContext, event);
@@ -194,7 +207,7 @@ export class Touch {
    * TBD.
    * @param {TouchEvent} event - TBD.
    */
-  eventPreventDefault(event: any) {
+  public eventPreventDefault(event: any) {
     if (this.preventDefault) {
       if (typeof event.cancelable !== 'boolean' || event.cancelable) {
         event.preventDefault();

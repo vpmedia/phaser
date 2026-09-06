@@ -1,6 +1,8 @@
 import { ENGINE_ERROR_CREATING_CANVAS_2D_CONTEXT, ENGINE_ERROR_GETTING_DOCUMENT } from '../../core/error_code.js';
 import { hex2rgb } from '../../util/math.js';
 import { create, removeByCanvas } from './pool.js';
+import { getRegistry } from '../../core/registry.js';
+import type { Game } from '../../core/game.js';
 
 /**
  * Tints a sprite with the given color.
@@ -9,8 +11,8 @@ import { create, removeByCanvas } from './pool.js';
  * @returns {object} The tinted sprite.
  */
 export const getTintedTexture = (sprite: any, color: any) => {
-  const canvas = sprite.tintedTexture || create('CanvasTinter', 1, 1);
-  window.PhaserRegistry.CANVAS_TINT_METHOD(sprite.texture, color, canvas);
+  const canvas = sprite.tintedTexture ?? create('CanvasTinter', 1, 1);
+  globalThis.PhaserRegistry.CANVAS_TINT_METHOD(sprite.texture, color, canvas);
   return canvas;
 };
 
@@ -26,13 +28,13 @@ export const tintWithMultiply = (texture: any, color: any, canvas: HTMLCanvasEle
   if (!context) {
     throw new Error(ENGINE_ERROR_CREATING_CANVAS_2D_CONTEXT);
   }
-  const crop = texture.crop;
+  const { crop } = texture;
   if (canvas.width !== crop.width || canvas.height !== crop.height) {
     canvas.width = crop.width;
     canvas.height = crop.height;
   }
   context.clearRect(0, 0, crop.width, crop.height);
-  context.fillStyle = `#${`00000${(color | 0).toString(16)}`.substr(-6)}`;
+  context.fillStyle = `#${`00000${Math.trunc(color).toString(16)}`.slice(-6)}`;
   context.fillRect(0, 0, crop.width, crop.height);
   context.globalCompositeOperation = 'multiply';
   context.drawImage(texture.baseTexture.source, crop.x, crop.y, crop.width, crop.height, 0, 0, crop.width, crop.height);
@@ -52,7 +54,7 @@ export const tintWithPerPixel = (texture: any, color: any, canvas: HTMLCanvasEle
   if (!context) {
     throw new Error(ENGINE_ERROR_CREATING_CANVAS_2D_CONTEXT);
   }
-  const crop = texture.crop;
+  const { crop } = texture;
   canvas.width = crop.width;
   canvas.height = crop.height;
   context.globalCompositeOperation = 'copy';
@@ -64,15 +66,15 @@ export const tintWithPerPixel = (texture: any, color: any, canvas: HTMLCanvasEle
   const pixelData = context.getImageData(0, 0, crop.width, crop.height);
   const pixels = pixelData.data;
   for (let i = 0; i < pixels.length; i += 4) {
-    pixels[i + 0] *= r;
-    pixels[i + 1] *= g;
-    pixels[i + 2] *= b;
-    const canHandleAlpha = window.PhaserRegistry.CAN_CANVAS_HANDLE_ALPHA;
+    pixels[i + 0] = pixels[i + 0]! * r;
+    pixels[i + 1] = pixels[i + 1]! * g;
+    pixels[i + 2] = pixels[i + 2]! * b;
+    const canHandleAlpha = globalThis.PhaserRegistry.CAN_CANVAS_HANDLE_ALPHA;
     if (!canHandleAlpha) {
-      const alpha = pixels[i + 3];
-      pixels[i + 0] /= 255 / alpha;
-      pixels[i + 1] /= 255 / alpha;
-      pixels[i + 2] /= 255 / alpha;
+      const alpha = pixels[i + 3]!;
+      pixels[i + 0] = pixels[i + 0]! / (255 / alpha);
+      pixels[i + 1] = pixels[i + 1]! / (255 / alpha);
+      pixels[i + 2] = pixels[i + 2]! / (255 / alpha);
     }
   }
   context.putImageData(pixelData, 0, 0);
@@ -150,7 +152,7 @@ export const canUseNewCanvasBlendModes = () => {
   if (!context.getImageData(2, 0, 1, 1)) {
     return false;
   }
-  const data = context.getImageData(2, 0, 1, 1).data;
+  const { data } = context.getImageData(2, 0, 1, 1);
   // Dispose canvas
   try {
     context.reset();
@@ -164,30 +166,28 @@ export const canUseNewCanvasBlendModes = () => {
 
 /**
  * Creates a new Tinter instance.
- * @param {import('../../core/game.js').Game} game - The game instance.
+ * @param {Game} game - The game instance.
  */
-export const detectCapabilities = (game: import('../../core/game.js').Game) => {
-  if (!window.PhaserRegistry) {
-    window.PhaserRegistry = {};
-  }
+export const detectCapabilities = (game: Game) => {
+  getRegistry();
   try {
-    window.PhaserRegistry.CAN_CANVAS_USE_MULTIPLY = canUseNewCanvasBlendModes();
+    globalThis.PhaserRegistry.CAN_CANVAS_USE_MULTIPLY = canUseNewCanvasBlendModes();
   } catch (error) {
     const typedError = error instanceof Error ? error : new Error(String(error));
     game.logger.fatal('Tinter', { error: typedError });
-    window.PhaserRegistry.CAN_CANVAS_USE_MULTIPLY = false;
+    globalThis.PhaserRegistry.CAN_CANVAS_USE_MULTIPLY = false;
   }
-  if (!window.PhaserRegistry.CAN_CANVAS_USE_MULTIPLY) {
+  if (!globalThis.PhaserRegistry.CAN_CANVAS_USE_MULTIPLY) {
     // only detect canvas alpha support if tintWithPerPixel will be used
     try {
-      window.PhaserRegistry.CAN_CANVAS_HANDLE_ALPHA = checkInverseAlpha();
+      globalThis.PhaserRegistry.CAN_CANVAS_HANDLE_ALPHA = checkInverseAlpha();
     } catch (error) {
       const typedError = error instanceof Error ? error : new Error(String(error));
       game.logger.fatal('Tinter', { error: typedError });
-      window.PhaserRegistry.CAN_CANVAS_HANDLE_ALPHA = false;
+      globalThis.PhaserRegistry.CAN_CANVAS_HANDLE_ALPHA = false;
     }
   }
-  window.PhaserRegistry.CANVAS_TINT_METHOD = window.PhaserRegistry.CAN_CANVAS_USE_MULTIPLY
+  globalThis.PhaserRegistry.CANVAS_TINT_METHOD = globalThis.PhaserRegistry.CAN_CANVAS_USE_MULTIPLY
     ? tintWithMultiply
     : tintWithPerPixel;
 };

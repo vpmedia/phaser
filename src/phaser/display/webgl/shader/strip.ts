@@ -4,17 +4,26 @@ import { compileProgram } from '../util.js';
 // the next one is used for rendering triangle strips
 
 export class StripShader {
-  [key: string]: any;
-  gl!: any;
-  _UID!: any;
-  program!: any;
-  fragmentSrc!: any;
-  vertexSrc!: any;
+  public gl: WebGLRenderingContext | null;
+  public _UID: string;
+  public program: WebGLProgram | null;
+  public fragmentSrc: string[];
+  public vertexSrc: string[];
+  public uSampler!: WebGLUniformLocation | null;
+  public projectionVector!: WebGLUniformLocation | null;
+  public offsetVector!: WebGLUniformLocation | null;
+  public translationMatrix!: WebGLUniformLocation | null;
+  public alpha!: WebGLUniformLocation | null;
+  public colorAttribute!: number;
+  public aVertexPosition!: number;
+  public aTextureCoord!: number;
+  public uniforms: unknown = null;
+  public attributes: number[] | null = null;
   /**
    * Creates a new StripShader instance.
    * @param {WebGLRenderingContext} gl - The WebGL rendering context.
    */
-  constructor(gl: WebGLRenderingContext) {
+  public constructor(gl: WebGLRenderingContext) {
     this.gl = gl;
     this._UID = uuidv4();
     /** @type {WebGLProgram} */
@@ -55,9 +64,15 @@ export class StripShader {
   /**
    * Destroys this shader and cleans up resources.
    */
-  init() {
-    const gl = this.gl;
+  public init(): void {
+    const { gl } = this;
+    if (!gl) {
+      return;
+    }
     const program = compileProgram(gl, this.vertexSrc, this.fragmentSrc);
+    if (!program) {
+      return;
+    }
     gl.useProgram(program);
     // get and store the uniforms for the shader
     this.uSampler = gl.getUniformLocation(program, 'uSampler');
@@ -77,10 +92,10 @@ export class StripShader {
   /**
    * Binds this shader to the WebGL context.
    */
-  destroy() {
-    this.gl.deleteProgram(this.program);
+  public destroy(): void {
+    this.gl?.deleteProgram(this.program);
     this.uniforms = null;
     this.gl = null;
-    this.attribute = null;
+    this.attributes = null;
   }
 }

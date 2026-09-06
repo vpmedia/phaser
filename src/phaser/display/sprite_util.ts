@@ -1,18 +1,17 @@
 import { SCALE_LINEAR } from '../core/const.js';
 import { getIdentityMatrix } from '../geom/util/matrix.js';
 import { getTintedTexture } from './canvas/tinter.js';
+import type { Image } from './image.js';
+import type { Texture } from './webgl/texture.js';
+import type { Matrix } from '../geom/matrix.js';
 
 /**
  * Sets the texture of a sprite.
- * @param {import('./image.js').Image} target - The target image to set the texture on.
- * @param {import('./webgl/texture.js').Texture} texture - The new texture to set.
+ * @param {Image} target - The target image to set the texture on.
+ * @param {Texture} texture - The new texture to set.
  * @param {boolean} destroyBase - Whether to destroy the base texture.
  */
-export const setTexture = (
-  target: import('./image.js').Image,
-  texture: import('./webgl/texture.js').Texture,
-  destroyBase: boolean = false
-) => {
+export const setTexture = (target: Image, texture: Texture, destroyBase = false) => {
   if (destroyBase) {
     target.texture.baseTexture.destroy();
   }
@@ -24,28 +23,28 @@ export const setTexture = (
 
 /**
  * Gets the bounds of a sprite.
- * @param {import('./image.js').Image} target - The target image to get bounds for.
+ * @param {Image} target - The target image to get bounds for.
  * @param {object} matrix - The transformation matrix.
- * @returns {import('../geom/rectangle.js').Rectangle} The bounds rectangle.
+ * @returns {Rectangle} The bounds rectangle.
  */
-export const getBounds = (target: import('./image.js').Image, matrix: any | null = null) => {
+export const getBounds = (target: Image, matrix: any | null = null) => {
   // TODO verify
   if (target.currentBounds) {
     return target.currentBounds;
   }
-  const width = target.texture.frame.width;
-  const height = target.texture.frame.height;
+  const { width } = target.texture.frame;
+  const { height } = target.texture.frame;
   let w0 = width * (1 - target.anchor.x);
   let w1 = width * -target.anchor.x;
   let h0 = height * (1 - target.anchor.y);
   let h1 = height * -target.anchor.y;
-  const worldTransform = matrix || target.worldTransform;
-  let a = worldTransform.a;
-  const b = worldTransform.b;
-  const c = worldTransform.c;
-  let d = worldTransform.d;
-  const tx = worldTransform.tx;
-  const ty = worldTransform.ty;
+  const worldTransform = matrix ?? target.worldTransform;
+  let { a } = worldTransform;
+  const { b } = worldTransform;
+  const { c } = worldTransform;
+  let { d } = worldTransform;
+  const { tx } = worldTransform;
+  const { ty } = worldTransform;
   let maxX = -Infinity;
   let maxY = -Infinity;
   let minX = Infinity;
@@ -107,35 +106,30 @@ export const getBounds = (target: import('./image.js').Image, matrix: any | null
 
 /**
  * Gets the local bounds of a sprite.
- * @param {import('./image.js').Image} target - The target image to get local bounds for.
- * @returns {import('../geom/rectangle.js').Rectangle} The local bounds rectangle.
+ * @param {Image} target - The target image to get local bounds for.
+ * @returns {Rectangle} The local bounds rectangle.
  */
-export const getLocalBounds = (target: import('./image.js').Image) => {
+export const getLocalBounds = (target: Image) => {
   const matrixCache = target.worldTransform;
   target.worldTransform = getIdentityMatrix();
-  let i;
-  for (i = 0; i < target.children.length; i += 1) {
-    target.children[i].updateTransform();
+  for (const child of target.children) {
+    child.updateTransform();
   }
   const bounds = target.getBounds();
   target.worldTransform = matrixCache;
-  for (i = 0; i < target.children.length; i += 1) {
-    target.children[i].updateTransform();
+  for (const child of target.children) {
+    child.updateTransform();
   }
   return bounds;
 };
 
 /**
  * Renders a sprite using WebGL.
- * @param {import('./image.js').Image} target - The target image to render.
+ * @param {Image} target - The target image to render.
  * @param {object} renderSession - The render session object.
- * @param {import('../geom/matrix.js').Matrix | null | undefined} matrix - The transformation matrix.
+ * @param {Matrix | null | undefined} matrix - The transformation matrix.
  */
-export const renderWebGL = (
-  target: import('./image.js').Image,
-  renderSession: any,
-  matrix: import('../geom/matrix.js').Matrix | null | undefined = null
-) => {
+export const renderWebGL = (target: Image, renderSession: any, matrix: Matrix | null | undefined = null) => {
   // if the sprite is not visible or the alpha is 0 then no need to render this element
   if (!target.visible || target.alpha <= 0 || !target.renderable) {
     return;
@@ -147,7 +141,7 @@ export const renderWebGL = (
   }
   //  A quick check to see if this element has a mask or a filter.
   if (target._mask || target._filters) {
-    const spriteBatch = renderSession.spriteBatch;
+    const { spriteBatch } = renderSession;
     // push filter first as we need to ensure the stencil buffer is correct for any masking
     if (target._filters) {
       spriteBatch.flush();
@@ -161,34 +155,34 @@ export const renderWebGL = (
     // add this sprite to the batch
     spriteBatch.render(target);
     // now loop through the children and make sure they get rendered
-    for (let i = 0; i < target.children.length; i += 1) {
-      target.children[i].renderWebGL(renderSession);
+    for (const child of target.children) {
+      child.renderWebGL(renderSession);
     }
     // time to stop the sprite batch as either a mask element or a filter draw will happen next
     spriteBatch.stop();
-    if (target._mask) renderSession.maskManager.popMask(target._mask, renderSession);
-    if (target._filters) renderSession.filterManager.popFilter();
+    if (target._mask) {
+      renderSession.maskManager.popMask(target._mask, renderSession);
+    }
+    if (target._filters) {
+      renderSession.filterManager.popFilter();
+    }
     spriteBatch.start();
   } else {
     renderSession.spriteBatch.render(target);
     //  Render children!
-    for (let i = 0; i < target.children.length; i += 1) {
-      target.children[i].renderWebGL(renderSession, wt);
+    for (const child of target.children) {
+      child.renderWebGL(renderSession, wt);
     }
   }
 };
 
 /**
  * Renders a sprite using Canvas.
- * @param {import('./image.js').Image} target - The target image to render.
+ * @param {Image} target - The target image to render.
  * @param {object} renderSession - The render session object.
- * @param {import('../geom/matrix.js').Matrix | null | undefined} matrix - The transformation matrix.
+ * @param {Matrix | null | undefined} matrix - The transformation matrix.
  */
-export const renderCanvas = (
-  target: import('./image.js').Image,
-  renderSession: any,
-  matrix: import('../geom/matrix.js').Matrix | null | undefined = null
-) => {
+export const renderCanvas = (target: Image, renderSession: any, matrix: Matrix | null | undefined = null) => {
   // If the sprite is not visible or the alpha is 0 then no need to render this element
   if (
     !target.visible ||
@@ -207,7 +201,7 @@ export const renderCanvas = (
   if (target.blendMode !== renderSession.currentBlendMode) {
     renderSession.currentBlendMode = target.blendMode;
     renderSession.context.globalCompositeOperation =
-      window.PhaserRegistry.blendModesCanvas[renderSession.currentBlendMode];
+      globalThis.PhaserRegistry.blendModesCanvas[renderSession.currentBlendMode];
   }
   if (target._mask) {
     renderSession.maskManager.pushMask(target._mask, renderSession);
@@ -233,9 +227,9 @@ export const renderCanvas = (
     const ty = wt.ty * renderSession.resolution + renderSession.shakeY;
     //  Allow for pixel rounding
     if (renderSession.roundPixels) {
-      renderSession.context.setTransform(wt.a, wt.b, wt.c, wt.d, tx | 0, ty | 0);
-      dx |= 0;
-      dy |= 0;
+      renderSession.context.setTransform(wt.a, wt.b, wt.c, wt.d, Math.trunc(tx), Math.trunc(ty));
+      dx = Math.trunc(dx);
+      dy = Math.trunc(dy);
     } else {
       renderSession.context.setTransform(wt.a, wt.b, wt.c, wt.d, tx, ty);
     }
@@ -269,8 +263,8 @@ export const renderCanvas = (
       );
     }
   }
-  for (let i = 0; i < target.children.length; i += 1) {
-    target.children[i].renderCanvas(renderSession);
+  for (const child of target.children) {
+    child.renderCanvas(renderSession);
   }
   if (target._mask) {
     renderSession.maskManager.popMask(renderSession);

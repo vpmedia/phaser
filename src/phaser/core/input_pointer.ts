@@ -1,3 +1,5 @@
+import type { Game } from './game.js';
+import type { InputHandler } from './input_handler.js';
 import { Circle } from '../geom/circle.js';
 import { Point } from '../geom/point.js';
 import {
@@ -10,57 +12,57 @@ import {
 } from './const.js';
 
 export class Pointer {
-  game!: any;
-  id!: number;
-  type!: number;
-  exists!: boolean;
-  identifier!: number | null;
-  pointerId!: any;
-  pointerMode!: number;
-  target!: any;
-  button!: any;
-  _holdSent!: boolean;
-  _history!: any;
-  _nextDrop!: number;
-  _stateReset!: boolean;
-  withinGame!: boolean;
-  clientX!: number;
-  clientY!: number;
-  pageX!: number;
-  pageY!: number;
-  screenX!: number;
-  screenY!: number;
-  rawMovementX!: number;
-  rawMovementY!: number;
-  movementX!: number;
-  movementY!: number;
-  x!: number;
-  y!: number;
-  isMouse!: boolean;
-  isDown!: boolean;
-  isUp!: boolean;
-  timeDown!: number;
-  timeUp!: number;
-  previousTapTime!: number;
-  totalTouches!: number;
-  msSinceLastClick!: number;
-  targetObject!: any;
-  interactiveCandidates!: any;
-  active!: boolean;
-  dirty!: boolean;
-  position!: Point;
-  positionDown!: Point;
-  positionUp!: Point;
-  circle!: Circle;
-  _clickTrampolines!: any;
-  _trampolineTargetObject!: any;
+  public game!: any;
+  public id!: number;
+  public type!: number;
+  public exists!: boolean;
+  public identifier!: number | null;
+  public pointerId!: any;
+  public pointerMode!: number;
+  public target!: any;
+  public button!: any;
+  public _holdSent!: boolean;
+  public _history!: any;
+  public _nextDrop!: number;
+  public _stateReset!: boolean;
+  public withinGame!: boolean;
+  public clientX!: number;
+  public clientY!: number;
+  public pageX!: number;
+  public pageY!: number;
+  public screenX!: number;
+  public screenY!: number;
+  public rawMovementX!: number;
+  public rawMovementY!: number;
+  public movementX!: number;
+  public movementY!: number;
+  public x!: number;
+  public y!: number;
+  public isMouse!: boolean;
+  public isDown!: boolean;
+  public isUp!: boolean;
+  public timeDown!: number;
+  public timeUp!: number;
+  public previousTapTime!: number;
+  public totalTouches!: number;
+  public msSinceLastClick!: number;
+  public targetObject!: any;
+  public interactiveCandidates!: any;
+  public active!: boolean;
+  public dirty!: boolean;
+  public position!: Point;
+  public positionDown!: Point;
+  public positionUp!: Point;
+  public circle!: Circle;
+  public _clickTrampolines!: any;
+  public _trampolineTargetObject!: any;
   /**
    * TBD.
-   * @param {import('./game.js').Game} game - TBD.
+   * @param {Game} game - TBD.
    * @param {number} id - TBD.
    * @param {number} pointerMode - TBD.
    */
-  constructor(game: import('./game.js').Game, id: number, pointerMode: number) {
+  public constructor(game: Game, id: number, pointerMode: number) {
     this.game = game;
     this.id = id;
     this.type = POINTER;
@@ -110,7 +112,7 @@ export class Pointer {
   /**
    * TBD.
    */
-  resetButtons() {
+  public resetButtons() {
     this.isDown = false;
     this.isUp = true;
   }
@@ -119,8 +121,8 @@ export class Pointer {
    * TBD.
    * @param {MouseEvent|PointerEvent} event - TBD.
    */
-  updateButtons(event: any | PointerEvent) {
-    if (event.type.toLowerCase().substr(-4) === 'down') {
+  public updateButtons(event: any | PointerEvent) {
+    if (event.type.toLowerCase().slice(-4) === 'down') {
       this.isUp = false;
       this.isDown = true;
     } else {
@@ -134,8 +136,8 @@ export class Pointer {
    * @param {PointerEvent} event - TBD.
    * @returns {Pointer} TBD.
    */
-  start(event: any) {
-    const input = this.game.input;
+  public start(event: any) {
+    const { input } = this.game;
     if (event.pointerId) {
       this.pointerId = event.pointerId;
     }
@@ -183,8 +185,8 @@ export class Pointer {
   /**
    * TBD.
    */
-  update() {
-    const input = this.game.input;
+  public update() {
+    const { input } = this.game;
     if (this.active) {
       // Force a check?
       if (this.dirty) {
@@ -193,7 +195,7 @@ export class Pointer {
         }
         this.dirty = false;
       }
-      if (this._holdSent === false && this.duration >= input.holdRate) {
+      if (!this._holdSent && this.duration >= input.holdRate) {
         if (
           input.multiInputOverride === MOUSE_OVERRIDES_TOUCH ||
           input.multiInputOverride === MOUSE_TOUCH_COMBINE ||
@@ -223,8 +225,8 @@ export class Pointer {
    * @param {boolean} fromClick - TBD.
    * @returns {Pointer} TBD.
    */
-  move(event: any | PointerEvent, fromClick: boolean = false) {
-    const input = this.game.input;
+  public move(event: any | PointerEvent, fromClick = false) {
+    const { input } = this.game;
     if (input.pollLocked) {
       return null;
     }
@@ -238,8 +240,8 @@ export class Pointer {
     this.screenX = event.screenX;
     this.screenY = event.screenY;
     if (this.isMouse && input.mouse.locked && !fromClick) {
-      this.rawMovementX = event.movementX || event.mozMovementX || event.webkitMovementX || 0;
-      this.rawMovementY = event.movementY || event.mozMovementY || event.webkitMovementY || 0;
+      this.rawMovementX = event.movementX ?? event.mozMovementX ?? event.webkitMovementX ?? 0;
+      this.rawMovementY = event.movementY ?? event.mozMovementY ?? event.webkitMovementY ?? 0;
       this.movementX += this.rawMovementX;
       this.movementY += this.rawMovementY;
     }
@@ -286,7 +288,7 @@ export class Pointer {
    * @param {boolean} fromClick - TBD.
    * @returns {boolean} TBD.
    */
-  processInteractiveObjects(fromClick: boolean = false) {
+  public processInteractiveObjects(fromClick = false) {
     // Work out which object is on the top
     let highestRenderOrderID = 0;
     let highestInputPriorityID = -1;
@@ -345,10 +347,10 @@ export class Pointer {
 
   /**
    * TBD.
-   * @param {import('./input_handler.js').InputHandler} newTarget - TBD.
+   * @param {InputHandler} newTarget - TBD.
    * @param {boolean} silent - TBD.
    */
-  swapTarget(newTarget: import('./input_handler.js').InputHandler, silent: boolean = false) {
+  public swapTarget(newTarget: InputHandler, silent = false) {
     //  Now we know the top-most item (if any) we can process it
     if (newTarget === null) {
       //  The pointer isn't currently over anything, check if we've got a lingering previous target
@@ -363,7 +365,7 @@ export class Pointer {
     } else if (this.targetObject === newTarget) {
       //  We've got a target from the last update
       //  Same target as before, so update it
-      if (newTarget.update(this) === false) {
+      if (!newTarget.update(this)) {
         this.targetObject = null;
       }
     } else {
@@ -379,7 +381,7 @@ export class Pointer {
    * TBD.
    * @param {MouseEvent|PointerEvent} event - TBD.
    */
-  leave(event: any | PointerEvent) {
+  public leave(event: any | PointerEvent) {
     this.withinGame = false;
     this.move(event, false);
   }
@@ -389,8 +391,8 @@ export class Pointer {
    * @param {MouseEvent|PointerEvent} event - TBD.
    * @returns {Pointer} TBD.
    */
-  stop(event: any | PointerEvent) {
-    const input = this.game.input;
+  public stop(event: any | PointerEvent) {
+    const { input } = this.game;
     if (this._stateReset && this.withinGame) {
       event.preventDefault();
       return null;
@@ -429,7 +431,7 @@ export class Pointer {
     this.pointerId = null;
     this.identifier = null;
     this.positionUp.setTo(this.x, this.y);
-    if (this.isMouse === false) {
+    if (!this.isMouse) {
       input.currentPointers -= 1;
     }
     input.interactiveItems.callAll('_releasedHandler', this);
@@ -445,9 +447,9 @@ export class Pointer {
    * @param {number} duration - TBD.
    * @returns {boolean} TBD.
    */
-  justPressed(duration: number) {
+  public justPressed(duration: number) {
     duration = duration || this.game.input.justPressedRate;
-    return this.isDown === true && this.timeDown + duration > this.game.time.time;
+    return this.isDown && this.timeDown + duration > this.game.time.time;
   }
 
   /**
@@ -455,7 +457,7 @@ export class Pointer {
    * @param {number} duration - TBD.
    * @returns {boolean} TBD.
    */
-  justReleased(duration: number) {
+  public justReleased(duration: number) {
     duration = duration || this.game.input.justReleasedRate;
     return this.isUp && this.timeUp + duration > this.game.time.time;
   }
@@ -467,11 +469,11 @@ export class Pointer {
    * @param {object} callbackContext - TBD.
    * @param {...any} callbackArgs - TBD.
    */
-  addClickTrampoline(name: string, callback: Function, callbackContext: any, callbackArgs: any) {
+  public addClickTrampoline(name: string, callback: Function, callbackContext: any, callbackArgs: any) {
     if (!this.isDown) {
       return;
     }
-    this._clickTrampolines = this._clickTrampolines || [];
+    this._clickTrampolines = this._clickTrampolines ?? [];
     const trampolines = this._clickTrampolines;
     for (let i = 0; i < trampolines.length; i += 1) {
       if (trampolines[i].name === name) {
@@ -491,13 +493,12 @@ export class Pointer {
   /**
    * TBD.
    */
-  processClickTrampolines() {
+  public processClickTrampolines() {
     const trampolines = this._clickTrampolines;
     if (!trampolines) {
       return;
     }
-    for (let i = 0; i < trampolines.length; i += 1) {
-      const trampoline = trampolines[i];
+    for (const trampoline of trampolines) {
       if (trampoline.targetObject === this._trampolineTargetObject) {
         trampoline.callback.apply(trampoline.callbackContext, trampoline.callbackArgs);
       }
@@ -509,8 +510,8 @@ export class Pointer {
   /**
    * TBD.
    */
-  reset() {
-    if (this.isMouse === false) {
+  public reset() {
+    if (!this.isMouse) {
       this.active = false;
     }
     this.pointerId = null;
@@ -530,7 +531,7 @@ export class Pointer {
   /**
    * TBD.
    */
-  resetMovement() {
+  public resetMovement() {
     this.movementX = 0;
     this.movementY = 0;
   }
@@ -539,7 +540,7 @@ export class Pointer {
    * TBD.
    * @returns {number} TBD.
    */
-  get duration() {
+  public get duration() {
     if (this.isUp) {
       return -1;
     }
@@ -550,7 +551,7 @@ export class Pointer {
    * TBD.
    * @returns {number} TBD.
    */
-  get worldX() {
+  public get worldX() {
     return this.x;
   }
 
@@ -558,7 +559,7 @@ export class Pointer {
    * TBD.
    * @returns {number} TBD.
    */
-  get worldY() {
+  public get worldY() {
     return this.y;
   }
 }

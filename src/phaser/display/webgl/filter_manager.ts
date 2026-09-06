@@ -1,12 +1,13 @@
 export class WebGLFilterManager {
-  [key: string]: any;
-  filterStack!: any;
-  offsetX!: any;
-  offsetY!: any;
+  public gl!: WebGLRenderingContext;
+  public texturePool!: any[];
+  public filterStack!: any;
+  public offsetX!: any;
+  public offsetY!: any;
   /**
    * Creates a new FilterManager instance.
    */
-  constructor() {
+  public constructor() {
     this.filterStack = [];
     this.offsetX = 0;
     this.offsetY = 0;
@@ -16,7 +17,7 @@ export class WebGLFilterManager {
    * Initializes the filter manager with a WebGL context.
    * @param {WebGLRenderingContext} gl - The WebGL rendering context.
    */
-  setContext(gl: WebGLRenderingContext) {
+  public setContext(gl: WebGLRenderingContext) {
     this.gl = gl;
     this.texturePool = [];
     this.initShaderBuffers();
@@ -25,42 +26,42 @@ export class WebGLFilterManager {
   /**
    * Applies a filter to the specified texture.
    */
-  begin() {
+  public begin() {
     // TODO
   }
 
   /**
    * Updates the filter texture for the specified size.
    */
-  pushFilter() {
+  public pushFilter() {
     // TODO
   }
 
   /**
    * Resizes the filter manager to the specified dimensions.
    */
-  popFilter() {
+  public popFilter() {
     // TODO
   }
 
   /**
    * Destroys this filter manager and cleans up resources.
    */
-  applyFilterPass() {
+  public applyFilterPass() {
     // TODO
   }
 
   /**
    * Initializes the filter manager.
    */
-  initShaderBuffers() {
+  public initShaderBuffers() {
     // TODO
   }
 
   /**
    * Sets up the filter manager for WebGL rendering.
    */
-  destroy() {
+  public destroy() {
     // TODO
   }
 }

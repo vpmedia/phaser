@@ -24,14 +24,14 @@ export interface ColorComponents {
 }
 
 /** Converts a hexadecimal color value to RGB components. */
-export const hex2rgb = (hex: number): [number, number, number] => {
-  return [((hex >> 16) & 0xff) / 255, ((hex >> 8) & 0xff) / 255, (hex & 0xff) / 255];
-};
+export const hex2rgb = (hex: number): [number, number, number] => [
+  ((hex >> 16) & 0xff) / 255,
+  ((hex >> 8) & 0xff) / 255,
+  (hex & 0xff) / 255,
+];
 
 /** Converts RGB components to a hexadecimal color value. */
-export const rgb2hex = (rgb: number[]): number => {
-  return ((rgb[0] * 255) << 16) + ((rgb[1] * 255) << 8) + rgb[2] * 255;
-};
+export const rgb2hex = (rgb: number[]): number => ((rgb[0]! * 255) << 16) + ((rgb[1]! * 255) << 8) + rgb[2]! * 255;
 
 /** Gets the next power of two greater than or equal to a value. */
 export const getNextPowerOfTwo = (value: number): number => {
@@ -46,27 +46,20 @@ export const getNextPowerOfTwo = (value: number): number => {
 };
 
 /** Checks if both width and height are powers of two. */
-export const isPowerOfTwo = (width: number, height: number): boolean => {
-  return width > 0 && (width & (width - 1)) === 0 && height > 0 && (height & (height - 1)) === 0;
-};
+export const isPowerOfTwo = (width: number, height: number): boolean =>
+  width > 0 && (width & (width - 1)) === 0 && height > 0 && (height & (height - 1)) === 0;
 
 /** Converts degrees to radians. */
-export const degToRad = (degrees: number): number => {
-  return degrees * DEG_TO_RAD;
-};
+export const degToRad = (degrees: number): number => degrees * DEG_TO_RAD;
 
 /** Converts radians to degrees. */
-export const radToDeg = (radians: number): number => {
-  return radians * RAD_TO_DEG;
-};
+export const radToDeg = (radians: number): number => radians * RAD_TO_DEG;
 
 /** Gets a random integer between min and max (inclusive). */
-export const between = (min: number, max: number): number => {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-};
+export const between = (min: number, max: number): number => Math.floor(Math.random() * (max - min + 1) + min);
 
 /** Snaps a value to the nearest multiple of gap, starting from start. */
-export const snapToCeil = (input: number, gap: number = 0, start: number = 0): number => {
+export const snapToCeil = (input: number, gap = 0, start = 0): number => {
   if (gap === 0) {
     return input;
   }
@@ -89,14 +82,10 @@ export const wrap = (value: number, min: number, max: number): number => {
 };
 
 /** Performs linear interpolation between two values. */
-export const linear = (p0: number, p1: number, t: number): number => {
-  return (p1 - p0) * t + p0;
-};
+export const linear = (p0: number, p1: number, t: number): number => (p1 - p0) * t + p0;
 
 /** Calculates the absolute difference between two numbers. */
-export const difference = (a: number, b: number): number => {
-  return Math.abs(a - b);
-};
+export const difference = (a: number, b: number): number => Math.abs(a - b);
 
 /** Performs linear interpolation on an array of values. */
 export const linearInterpolation = (v: number[], k: number): number => {
@@ -104,12 +93,12 @@ export const linearInterpolation = (v: number[], k: number): number => {
   const f = m * k;
   const i = Math.floor(f);
   if (k < 0) {
-    return linear(v[0], v[1], f);
+    return linear(v[0]!, v[1]!, f);
   }
   if (k > 1) {
-    return linear(v[m], v[m - 1], m - f);
+    return linear(v[m]!, v[m - 1]!, m - f);
   }
-  return linear(v[i], v[i + 1 > m ? m : i + 1], f - i);
+  return linear(v[i]!, v[i + 1 > m ? m : i + 1]!, f - i);
 };
 
 /** Calculates the distance between two points. */
@@ -120,28 +109,22 @@ export const distance = (x1: number, y1: number, x2: number, y2: number): number
 };
 
 /** Checks if two numbers are within a tolerance of each other. */
-export const within = (a: number, b: number, tolerance: number): boolean => {
-  return Math.abs(a - b) <= tolerance;
-};
+export const within = (a: number, b: number, tolerance: number): boolean => Math.abs(a - b) <= tolerance;
 
 /** Creates a 32-bit color value from alpha, red, green, and blue components. */
-export const getColor32 = (a: number, r: number, g: number, b: number): number => {
-  return (a << 24) | (r << 16) | (g << 8) | b;
-};
+export const getColor32 = (a: number, r: number, g: number, b: number): number => (a << 24) | (r << 16) | (g << 8) | b;
 
 /** Creates a 24-bit color value from red, green, and blue components. */
-export const getColor = (r: number, g: number, b: number): number => {
-  return (r << 16) | (g << 8) | b;
-};
+export const getColor = (r: number, g: number, b: number): number => (r << 16) | (g << 8) | b;
 
 /** Converts a hex color string to RGB components. */
 export const hexToColor = (value: string, out: ColorTarget): void => {
   value = value.replace(/^(?:#|0x)?([a-f\d])([a-f\d])([a-f\d])$/i, (_m, r, g, b) => r + r + g + g + b + b);
   const result = /^(?:#|0x)?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(value);
   if (result) {
-    out.r = Number.parseInt(result[1], 16);
-    out.g = Number.parseInt(result[2], 16);
-    out.b = Number.parseInt(result[3], 16);
+    out.r = Number.parseInt(result[1]!, 16);
+    out.g = Number.parseInt(result[2]!, 16);
+    out.b = Number.parseInt(result[3]!, 16);
   }
 };
 
@@ -149,16 +132,16 @@ export const hexToColor = (value: string, out: ColorTarget): void => {
 export const webToColor = (value: string, out: ColorTarget): void => {
   const result = /^rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(?:,\s*(\d+(?:\.\d+)?))?\s*\)$/.exec(value);
   if (result) {
-    out.r = Number.parseInt(result[1], 10);
-    out.g = Number.parseInt(result[2], 10);
-    out.b = Number.parseInt(result[3], 10);
-    out.a = result[4] !== undefined ? Number.parseFloat(result[4]) : 1;
+    out.r = Math.trunc(Number(result[1]));
+    out.g = Math.trunc(Number(result[2]));
+    out.b = Math.trunc(Number(result[3]));
+    out.a = result[4] !== undefined ? Number(result[4]) : 1;
   }
 };
 
 /** Extracts RGB components from a 32-bit color value. */
 export const getRGB = (color: number): ColorComponents => {
-  if (color > 16777215) {
+  if (color > 16_777_215) {
     return {
       alpha: color >>> 24,
       red: (color >> 16) & 0xff,
@@ -185,7 +168,7 @@ export const getRGB = (color: number): ColorComponents => {
 /** Converts a color value (string or number) to an object with various color formats. */
 export const valueToColor = (value: string | number, out: ColorTarget): ColorTarget => {
   if (typeof value === 'string') {
-    if (value.indexOf('rgb') === 0) {
+    if (value.startsWith('rgb')) {
       webToColor(value, out);
     } else {
       out.a = 1;

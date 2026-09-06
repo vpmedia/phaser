@@ -1,6 +1,10 @@
 import { Point } from '../geom/point.js';
 import { distance } from '../util/math.js';
 import { GROUP } from './const.js';
+import type { Image } from '../display/image.js';
+import type { DisplayObject } from '../display/display_object.js';
+import type { Pointer } from './input_pointer.js';
+import type { Rectangle } from '../geom/rectangle.js';
 
 interface PointerData {
   id: number;
@@ -20,56 +24,74 @@ interface PointerData {
   isDragged: boolean;
 }
 
+const createPointerData = (id: number): PointerData => ({
+  id,
+  x: 0,
+  y: 0,
+  camX: 0,
+  camY: 0,
+  isDown: false,
+  isUp: false,
+  isOver: false,
+  isOut: false,
+  timeOver: 0,
+  timeOut: 0,
+  timeDown: 0,
+  timeUp: 0,
+  downDuration: 0,
+  isDragged: false,
+});
+
 export class InputHandler {
-  sprite!: any;
-  game!: any;
-  enabled!: boolean;
-  checked!: boolean;
-  priorityID!: number;
-  useHandCursor!: boolean;
-  _setHandCursor!: boolean;
-  isDragged!: boolean;
-  allowHorizontalDrag!: boolean;
-  allowVerticalDrag!: boolean;
-  bringToTop!: boolean;
-  snapOffset!: any;
-  snapOnDrag!: boolean;
-  snapOnRelease!: boolean;
-  snapX!: number;
-  snapY!: number;
-  snapOffsetX!: number;
-  snapOffsetY!: number;
-  pixelPerfectOver!: boolean;
-  pixelPerfectClick!: boolean;
-  pixelPerfectAlpha!: number;
-  draggable!: boolean;
-  boundsRect!: any;
-  boundsSprite!: any;
-  scaleLayer!: boolean;
-  dragOffset!: Point;
-  dragFromCenter!: boolean;
-  dragStopBlocksInputUp!: boolean;
-  dragStartPoint!: Point;
-  dragDistanceThreshold!: number;
-  dragTimeThreshold!: number;
-  downPoint!: Point;
-  snapPoint!: Point;
-  _dragPoint!: Point;
-  _dragPhase!: boolean;
-  _pendingDrag!: boolean;
-  _dragTimePass!: boolean;
-  _dragDistancePass!: boolean;
-  _wasEnabled!: boolean;
-  _tempPoint!: import('../geom/point.js').Point;
-  _pointerData!: PointerData[];
-  _dx!: any;
-  _dy!: any;
-  _draggedPointerID!: any;
+  public sprite!: any;
+  public game!: any;
+  public enabled!: boolean;
+  public checked!: boolean;
+  public priorityID!: number;
+  public useHandCursor!: boolean;
+  public _setHandCursor!: boolean;
+  public isDragged!: boolean;
+  public allowHorizontalDrag!: boolean;
+  public allowVerticalDrag!: boolean;
+  public bringToTop!: boolean;
+  public snapOffset!: any;
+  public snapOnDrag!: boolean;
+  public snapOnRelease!: boolean;
+  public snapX!: number;
+  public snapY!: number;
+  public snapOffsetX!: number;
+  public snapOffsetY!: number;
+  public pixelPerfectOver!: boolean;
+  public pixelPerfectClick!: boolean;
+  public pixelPerfectAlpha!: number;
+  public draggable!: boolean;
+  public boundsRect!: any;
+  public boundsSprite!: any;
+  public scaleLayer!: boolean;
+  public dragOffset!: Point;
+  public dragFromCenter!: boolean;
+  public dragStopBlocksInputUp!: boolean;
+  public dragStartPoint!: Point;
+  public dragDistanceThreshold!: number;
+  public dragTimeThreshold!: number;
+  public downPoint!: Point;
+  public snapPoint!: Point;
+  public _dragPoint!: Point;
+  public _dragPhase!: boolean;
+  public _pendingDrag!: boolean;
+  public _dragTimePass!: boolean;
+  public _dragDistancePass!: boolean;
+  public _wasEnabled!: boolean;
+  public _tempPoint!: Point;
+  public _pointerData!: PointerData[];
+  public _dx!: any;
+  public _dy!: any;
+  public _draggedPointerID!: any;
   /**
    * TBD.
-   * @param {import('../display/image.js').Image} sprite - TBD.
+   * @param {Image} sprite - TBD.
    */
-  constructor(sprite: import('../display/image.js').Image) {
+  public constructor(sprite: Image) {
     this.sprite = sprite;
     this.game = sprite.game;
     this.enabled = false;
@@ -110,57 +132,24 @@ export class InputHandler {
     this._dragDistancePass = false;
     this._wasEnabled = false;
     this._tempPoint = new Point();
-    this._pointerData = [];
-    this._pointerData.push({
-      id: 0,
-      x: 0,
-      y: 0,
-      camX: 0,
-      camY: 0,
-      isDown: false,
-      isUp: false,
-      isOver: false,
-      isOut: false,
-      timeOver: 0,
-      timeOut: 0,
-      timeDown: 0,
-      timeUp: 0,
-      downDuration: 0,
-      isDragged: false,
-    });
+    this._pointerData = [createPointerData(0)];
   }
 
   /**
    * TBD.
    * @param {number} priority - TBD.
    * @param {boolean} useHandCursor - TBD.
-   * @returns {import('../display/display_object.js').DisplayObject} TBD.
+   * @returns {DisplayObject} TBD.
    */
-  start(priority: number = 0, useHandCursor: boolean = false) {
+  public start(priority = 0, useHandCursor = false) {
     //  Turning on
-    if (this.enabled === false) {
+    if (!this.enabled) {
       //  Register, etc
       this.game.input.interactiveItems.add(this);
       this.useHandCursor = useHandCursor;
       this.priorityID = priority;
       for (let i = 0; i < 10; i += 1) {
-        this._pointerData[i] = {
-          id: i,
-          x: 0,
-          y: 0,
-          camX: 0,
-          camY: 0,
-          isDown: false,
-          isUp: false,
-          isOver: false,
-          isOut: false,
-          timeOver: 0,
-          timeOut: 0,
-          timeDown: 0,
-          timeUp: 0,
-          downDuration: 0,
-          isDragged: false,
-        };
+        this._pointerData[i] = createPointerData(i);
       }
       this.snapOffset = new Point();
       this.enabled = true;
@@ -174,7 +163,7 @@ export class InputHandler {
   /**
    * TBD.
    */
-  addedToGroup() {
+  public addedToGroup() {
     if (this._dragPhase) {
       return;
     }
@@ -186,7 +175,7 @@ export class InputHandler {
   /**
    * TBD.
    */
-  removedFromGroup() {
+  public removedFromGroup() {
     if (this._dragPhase) {
       return;
     }
@@ -201,33 +190,32 @@ export class InputHandler {
   /**
    * TBD.
    */
-  reset() {
+  public reset() {
     this.enabled = false;
     for (let i = 0; i < 10; i += 1) {
-      this._pointerData[i] = {
-        id: i,
-        x: 0,
-        y: 0,
-        camX: 0,
-        camY: 0,
-        isDown: false,
-        isUp: false,
-        isOver: false,
-        isOut: false,
-        timeOver: 0,
-        timeOut: 0,
-        timeDown: 0,
-        timeUp: 0,
-        downDuration: 0,
-        isDragged: false,
-      };
+      this._pointerData[i] = createPointerData(i);
     }
+  }
+
+  /**
+   * Returns the tracking record for a pointer, creating it on first use.
+   * @param {number} pointerId - TBD.
+   * @returns {PointerData} TBD.
+   */
+  public pointerData(pointerId: number): PointerData {
+    const existing = this._pointerData[pointerId];
+    if (existing) {
+      return existing;
+    }
+    const created = createPointerData(pointerId);
+    this._pointerData[pointerId] = created;
+    return created;
   }
 
   /**
    * TBD.
    */
-  stop() {
+  public stop() {
     if (this.enabled) {
       this.enabled = false;
       this.game.input.interactiveItems.remove(this);
@@ -237,7 +225,7 @@ export class InputHandler {
   /**
    * TBD.
    */
-  destroy() {
+  public destroy() {
     if (this.sprite) {
       if (this._setHandCursor) {
         this.game.canvas.style.cursor = 'default';
@@ -259,7 +247,7 @@ export class InputHandler {
    * @param {boolean} includePixelPerfect - TBD.
    * @returns {boolean} TBD.
    */
-  validForInput(highestID: number, highestRenderID: number, includePixelPerfect: boolean = true) {
+  public validForInput(highestID: number, highestRenderID: number, includePixelPerfect = true) {
     if (
       !this.enabled ||
       this.sprite.scale.x === 0 ||
@@ -283,7 +271,7 @@ export class InputHandler {
    * TBD.
    * @returns {boolean} TBD.
    */
-  isPixelPerfect() {
+  public isPixelPerfect() {
     return this.pixelPerfectClick || this.pixelPerfectOver;
   }
 
@@ -292,8 +280,8 @@ export class InputHandler {
    * @param {number} pointerId - TBD.
    * @returns {number} TBD.
    */
-  pointerX(pointerId: number = 0) {
-    return this._pointerData[pointerId].x;
+  public pointerX(pointerId = 0) {
+    return this.pointerData(pointerId).x;
   }
 
   /**
@@ -301,8 +289,8 @@ export class InputHandler {
    * @param {number} pointerId - TBD.
    * @returns {number} TBD.
    */
-  pointerY(pointerId: number = 0) {
-    return this._pointerData[pointerId].y;
+  public pointerY(pointerId = 0) {
+    return this.pointerData(pointerId).y;
   }
 
   /**
@@ -310,8 +298,8 @@ export class InputHandler {
    * @param {number} pointerId - TBD.
    * @returns {boolean} TBD.
    */
-  pointerDown(pointerId: number = 0) {
-    return this._pointerData[pointerId].isDown;
+  public pointerDown(pointerId = 0) {
+    return this.pointerData(pointerId).isDown;
   }
 
   /**
@@ -319,8 +307,8 @@ export class InputHandler {
    * @param {number} pointerId - TBD.
    * @returns {boolean} TBD.
    */
-  pointerUp(pointerId: number = 0) {
-    return this._pointerData[pointerId].isUp;
+  public pointerUp(pointerId = 0) {
+    return this.pointerData(pointerId).isUp;
   }
 
   /**
@@ -328,8 +316,8 @@ export class InputHandler {
    * @param {number} pointerId - TBD.
    * @returns {number} TBD.
    */
-  pointerTimeDown(pointerId: number = 0) {
-    return this._pointerData[pointerId].timeDown;
+  public pointerTimeDown(pointerId = 0) {
+    return this.pointerData(pointerId).timeDown;
   }
 
   /**
@@ -337,8 +325,8 @@ export class InputHandler {
    * @param {number} pointerId - TBD.
    * @returns {number} TBD.
    */
-  pointerTimeUp(pointerId: number = 0) {
-    return this._pointerData[pointerId].timeUp;
+  public pointerTimeUp(pointerId = 0) {
+    return this.pointerData(pointerId).timeUp;
   }
 
   /**
@@ -346,19 +334,19 @@ export class InputHandler {
    * @param {number} pointerId - TBD.
    * @returns {boolean} TBD.
    */
-  pointerOver(pointerId: number | null = null) {
+  public pointerOver(pointerId: number | null = null) {
     if (!this.enabled) {
       return false;
     }
     if (pointerId === undefined || pointerId === null) {
       for (let i = 0; i < 10; i += 1) {
-        if (this._pointerData[i].isOver) {
+        if (this.pointerData(i).isOver) {
           return true;
         }
       }
       return false;
     }
-    return this._pointerData[pointerId].isOver;
+    return this.pointerData(pointerId).isOver;
   }
 
   /**
@@ -366,19 +354,19 @@ export class InputHandler {
    * @param {number} pointerId - TBD.
    * @returns {boolean} TBD.
    */
-  pointerOut(pointerId: number | null = null) {
+  public pointerOut(pointerId: number | null = null) {
     if (!this.enabled) {
       return false;
     }
     if (pointerId === undefined || pointerId === null) {
       for (let i = 0; i < 10; i += 1) {
-        if (this._pointerData[i].isOut) {
+        if (this.pointerData(i).isOut) {
           return true;
         }
       }
       return false;
     }
-    return this._pointerData[pointerId].isOut;
+    return this.pointerData(pointerId).isOut;
   }
 
   /**
@@ -386,8 +374,8 @@ export class InputHandler {
    * @param {number} pointerId - TBD.
    * @returns {number} TBD.
    */
-  pointerTimeOver(pointerId: number = 0) {
-    return this._pointerData[pointerId].timeOver;
+  public pointerTimeOver(pointerId = 0) {
+    return this.pointerData(pointerId).timeOver;
   }
 
   /**
@@ -395,8 +383,8 @@ export class InputHandler {
    * @param {number} pointerId - TBD.
    * @returns {number} TBD.
    */
-  pointerTimeOut(pointerId: number = 0) {
-    return this._pointerData[pointerId].timeOut;
+  public pointerTimeOut(pointerId = 0) {
+    return this.pointerData(pointerId).timeOut;
   }
 
   /**
@@ -404,17 +392,17 @@ export class InputHandler {
    * @param {number} pointerId - TBD.
    * @returns {boolean} TBD.
    */
-  pointerDragged(pointerId: number = 0) {
-    return this._pointerData[pointerId].isDragged;
+  public pointerDragged(pointerId = 0) {
+    return this.pointerData(pointerId).isDragged;
   }
 
   /**
    * TBD.
-   * @param {import('./input_pointer.js').Pointer} pointer - TBD.
+   * @param {Pointer} pointer - TBD.
    * @param {boolean} fastTest - TBD.
    * @returns {boolean} TBD.
    */
-  checkPointerDown(pointer: import('./input_pointer.js').Pointer, fastTest: boolean = false) {
+  public checkPointerDown(pointer: Pointer, fastTest = false) {
     if (
       !pointer.isDown ||
       !this.enabled ||
@@ -439,11 +427,11 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param {import('./input_pointer.js').Pointer} pointer - TBD.
+   * @param {Pointer} pointer - TBD.
    * @param {boolean} fastTest - TBD.
    * @returns {boolean} TBD.
    */
-  checkPointerOver(pointer: import('./input_pointer.js').Pointer, fastTest: boolean = false) {
+  public checkPointerOver(pointer: Pointer, fastTest = false) {
     if (
       !this.enabled ||
       !this.sprite ||
@@ -469,10 +457,10 @@ export class InputHandler {
    * TBD.
    * @param {number} x - TBD.
    * @param {number} y - TBD.
-   * @param {import('./input_pointer.js').Pointer} pointer - TBD.
+   * @param {Pointer} pointer - TBD.
    * @returns {boolean} TBD.
    */
-  checkPixel(x: number | null, y: number | null, pointer?: any) {
+  public checkPixel(x: number | null, y: number | null, pointer?: any) {
     //  Grab a pixel from our image into the hitCanvas and then test it
     if (this.sprite.texture.baseTexture.source) {
       if (x === null || y === null) {
@@ -518,10 +506,10 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param {import('./input_pointer.js').Pointer} pointer - TBD.
+   * @param {Pointer} pointer - TBD.
    * @returns {boolean} TBD.
    */
-  update(pointer: import('./input_pointer.js').Pointer) {
+  public update(pointer: Pointer) {
     if (this.sprite === null || this.sprite.parent === undefined) {
       // Abort. We've been destroyed.
       return false;
@@ -541,10 +529,10 @@ export class InputHandler {
       return true;
     } else if (this.draggable && this._draggedPointerID === pointer.id) {
       return this.updateDrag(pointer, false);
-    } else if (this._pointerData[pointer.id].isOver) {
+    } else if (this.pointerData(pointer.id).isOver) {
       if (this.checkPointerOver(pointer)) {
-        this._pointerData[pointer.id].x = pointer.x - this.sprite.x;
-        this._pointerData[pointer.id].y = pointer.y - this.sprite.y;
+        this.pointerData(pointer.id).x = pointer.x - this.sprite.x;
+        this.pointerData(pointer.id).y = pointer.y - this.sprite.y;
         return true;
       }
       this._pointerOutHandler(pointer);
@@ -555,23 +543,23 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param {import('./input_pointer.js').Pointer} pointer - TBD.
+   * @param {Pointer} pointer - TBD.
    * @param {boolean} silent - TBD.
    */
-  _pointerOverHandler(pointer: import('./input_pointer.js').Pointer, silent: boolean) {
+  public _pointerOverHandler(pointer: Pointer, silent: boolean) {
     if (this.sprite === null) {
       // Abort. We've been destroyed.
       return;
     }
-    const data = this._pointerData[pointer.id];
-    if (data.isOver === false || pointer.dirty) {
-      const sendEvent = data.isOver === false;
+    const data = this.pointerData(pointer.id);
+    if (!data.isOver || pointer.dirty) {
+      const sendEvent = !data.isOver;
       data.isOver = true;
       data.isOut = false;
       data.timeOver = this.game.time.time;
       data.x = pointer.x - this.sprite.x;
       data.y = pointer.y - this.sprite.y;
-      if (this.useHandCursor && data.isDragged === false) {
+      if (this.useHandCursor && !data.isDragged) {
         this.game.canvas.style.cursor = 'pointer';
         this._setHandCursor = true;
       }
@@ -586,19 +574,19 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param {import('./input_pointer.js').Pointer} pointer - TBD.
+   * @param {Pointer} pointer - TBD.
    * @param {boolean} silent - TBD.
    */
-  _pointerOutHandler(pointer: import('./input_pointer.js').Pointer, silent: boolean = false) {
+  public _pointerOutHandler(pointer: Pointer, silent = false) {
     if (this.sprite === null) {
       // Abort. We've been destroyed.
       return;
     }
-    const data = this._pointerData[pointer.id];
+    const data = this.pointerData(pointer.id);
     data.isOver = false;
     data.isOut = true;
     data.timeOut = this.game.time.time;
-    if (this.useHandCursor && data.isDragged === false) {
+    if (this.useHandCursor && !data.isDragged) {
       this.game.canvas.style.cursor = 'default';
       this._setHandCursor = false;
     }
@@ -612,14 +600,14 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param {import('./input_pointer.js').Pointer} pointer - TBD.
+   * @param {Pointer} pointer - TBD.
    */
-  _touchedHandler(pointer: import('./input_pointer.js').Pointer) {
+  public _touchedHandler(pointer: Pointer) {
     if (this.sprite === null) {
       // Abort. We've been destroyed.
       return;
     }
-    const data = this._pointerData[pointer.id];
+    const data = this.pointerData(pointer.id);
     if (!data.isDown && data.isOver) {
       if (this.pixelPerfectClick && !this.checkPixel(null, null, pointer)) {
         return;
@@ -642,7 +630,7 @@ export class InputHandler {
         }
       }
       //  Start drag
-      if (this.draggable && this.isDragged === false) {
+      if (this.draggable && !this.isDragged) {
         if (this.dragTimeThreshold === 0 && this.dragDistanceThreshold === 0) {
           this.startDrag(pointer);
         } else {
@@ -664,9 +652,9 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param {import('./input_pointer.js').Pointer} pointer - TBD.
+   * @param {Pointer} pointer - TBD.
    */
-  dragTimeElapsed(pointer: import('./input_pointer.js').Pointer) {
+  public dragTimeElapsed(pointer: Pointer) {
     this._dragTimePass = true;
     if (this._pendingDrag && this.sprite) {
       if (this._dragDistancePass) {
@@ -677,14 +665,14 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param {import('./input_pointer.js').Pointer} pointer - TBD.
+   * @param {Pointer} pointer - TBD.
    */
-  _releasedHandler(pointer: import('./input_pointer.js').Pointer) {
+  public _releasedHandler(pointer: Pointer) {
     if (this.sprite === null) {
       // Abort. We've been destroyed.
       return;
     }
-    const data = this._pointerData[pointer.id];
+    const data = this.pointerData(pointer.id);
     // If was previously touched by this Pointer, check if still is AND still over this item
     if (data.isDown && pointer.isUp) {
       data.isDown = false;
@@ -725,11 +713,11 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param {import('./input_pointer.js').Pointer} pointer - TBD.
+   * @param {Pointer} pointer - TBD.
    * @param {boolean} fromStart - TBD.
    * @returns {boolean} TBD.
    */
-  updateDrag(pointer: import('./input_pointer.js').Pointer, fromStart: boolean = false) {
+  public updateDrag(pointer: Pointer, fromStart = false) {
     if (pointer.isUp) {
       this.stopDrag(pointer);
       return false;
@@ -769,8 +757,8 @@ export class InputHandler {
    * @param {number} delay - TBD.
    * @returns {boolean} TBD.
    */
-  justOver(pointerId: number = 0, delay: number = 500) {
-    return this._pointerData[pointerId].isOver && this.overDuration(pointerId) < delay;
+  public justOver(pointerId = 0, delay = 500) {
+    return this.pointerData(pointerId).isOver && this.overDuration(pointerId) < delay;
   }
 
   /**
@@ -779,8 +767,8 @@ export class InputHandler {
    * @param {number} delay - TBD.
    * @returns {boolean} TBD.
    */
-  justOut(pointerId: number = 0, delay: number = 500) {
-    return this._pointerData[pointerId].isOut && this.game.time.time - this._pointerData[pointerId].timeOut < delay;
+  public justOut(pointerId = 0, delay = 500) {
+    return this.pointerData(pointerId).isOut && this.game.time.time - this.pointerData(pointerId).timeOut < delay;
   }
 
   /**
@@ -789,8 +777,8 @@ export class InputHandler {
    * @param {number} delay - TBD.
    * @returns {boolean} TBD.
    */
-  justPressed(pointerId: number = 0, delay: number = 500) {
-    return this._pointerData[pointerId].isDown && this.downDuration(pointerId) < delay;
+  public justPressed(pointerId = 0, delay = 500) {
+    return this.pointerData(pointerId).isDown && this.downDuration(pointerId) < delay;
   }
 
   /**
@@ -799,8 +787,8 @@ export class InputHandler {
    * @param {number} delay - TBD.
    * @returns {boolean} TBD.
    */
-  justReleased(pointerId: number = 0, delay: number = 500) {
-    return this._pointerData[pointerId].isUp && this.game.time.time - this._pointerData[pointerId].timeUp < delay;
+  public justReleased(pointerId = 0, delay = 500) {
+    return this.pointerData(pointerId).isUp && this.game.time.time - this.pointerData(pointerId).timeUp < delay;
   }
 
   /**
@@ -808,9 +796,9 @@ export class InputHandler {
    * @param {number} pointerId - TBD.
    * @returns {number} TBD.
    */
-  overDuration(pointerId: number = 0) {
-    if (this._pointerData[pointerId].isOver) {
-      return this.game.time.time - this._pointerData[pointerId].timeOver;
+  public overDuration(pointerId = 0) {
+    if (this.pointerData(pointerId).isOver) {
+      return this.game.time.time - this.pointerData(pointerId).timeOver;
     }
     return -1;
   }
@@ -820,9 +808,9 @@ export class InputHandler {
    * @param {number} pointerId - TBD.
    * @returns {number} TBD.
    */
-  downDuration(pointerId: number = 0) {
-    if (this._pointerData[pointerId].isDown) {
-      return this.game.time.time - this._pointerData[pointerId].timeDown;
+  public downDuration(pointerId = 0) {
+    if (this.pointerData(pointerId).isDown) {
+      return this.game.time.time - this.pointerData(pointerId).timeDown;
     }
     return -1;
   }
@@ -833,16 +821,16 @@ export class InputHandler {
    * @param {boolean} bringToTop - TBD.
    * @param {boolean} pixelPerfect - TBD.
    * @param {number} alphaThreshold - TBD.
-   * @param {import('../geom/rectangle.js').Rectangle | null | undefined} boundsRect - TBD.
-   * @param {import('../display/display_object.js').DisplayObject | null | undefined} boundsSprite - TBD.
+   * @param {Rectangle | null | undefined} boundsRect - TBD.
+   * @param {DisplayObject | null | undefined} boundsSprite - TBD.
    */
-  enableDrag(
-    lockCenter: boolean = false,
-    bringToTop: boolean = false,
-    pixelPerfect: boolean = false,
-    alphaThreshold: number = 255,
-    boundsRect: import('../geom/rectangle.js').Rectangle | null | undefined = null,
-    boundsSprite: import('../display/display_object.js').DisplayObject | null | undefined = null
+  public enableDrag(
+    lockCenter = false,
+    bringToTop = false,
+    pixelPerfect = false,
+    alphaThreshold = 255,
+    boundsRect: Rectangle | null | undefined = null,
+    boundsSprite: DisplayObject | null | undefined = null
   ) {
     this._dragPoint = new Point();
     this.draggable = true;
@@ -862,10 +850,10 @@ export class InputHandler {
   /**
    * TBD.
    */
-  disableDrag() {
+  public disableDrag() {
     if (this._pointerData) {
       for (let i = 0; i < 10; i += 1) {
-        this._pointerData[i].isDragged = false;
+        this.pointerData(i).isDragged = false;
       }
     }
     this.draggable = false;
@@ -876,16 +864,16 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param {import('./input_pointer.js').Pointer} pointer - TBD.
+   * @param {Pointer} pointer - TBD.
    */
-  startDrag(pointer: import('./input_pointer.js').Pointer) {
-    const x = this.sprite.x;
-    const y = this.sprite.y;
+  public startDrag(pointer: Pointer) {
+    const { x } = this.sprite;
+    const { y } = this.sprite;
     this.isDragged = true;
     this._draggedPointerID = pointer.id;
-    this._pointerData[pointer.id].camX = 0;
-    this._pointerData[pointer.id].camY = 0;
-    this._pointerData[pointer.id].isDragged = true;
+    this.pointerData(pointer.id).camX = 0;
+    this.pointerData(pointer.id).camY = 0;
+    this.pointerData(pointer.id).isDragged = true;
     if (this.dragFromCenter) {
       const bounds = this.sprite.getBounds();
       this.sprite.x = this.globalToLocalX(pointer.x) + (this.sprite.x - bounds.centerX);
@@ -910,7 +898,7 @@ export class InputHandler {
    * @param {number} x - TBD.
    * @returns {number} TBD.
    */
-  globalToLocalX(x: number) {
+  public globalToLocalX(x: number) {
     if (this.scaleLayer) {
       x -= this.game.scale.grid.boundsFluid.x;
       x *= this.game.scale.grid.scaleFluidInversed.x;
@@ -923,7 +911,7 @@ export class InputHandler {
    * @param {number} y - TBD.
    * @returns {number} TBD.
    */
-  globalToLocalY(y: number) {
+  public globalToLocalY(y: number) {
     if (this.scaleLayer) {
       y -= this.game.scale.grid.boundsFluid.y;
       y *= this.game.scale.grid.scaleFluidInversed.y;
@@ -933,12 +921,12 @@ export class InputHandler {
 
   /**
    * TBD.
-   * @param {import('./input_pointer.js').Pointer} pointer - TBD.
+   * @param {Pointer} pointer - TBD.
    */
-  stopDrag(pointer: import('./input_pointer.js').Pointer) {
+  public stopDrag(pointer: Pointer) {
     this.isDragged = false;
     this._draggedPointerID = -1;
-    this._pointerData[pointer.id].isDragged = false;
+    this.pointerData(pointer.id).isDragged = false;
     this._dragPhase = false;
     this._pendingDrag = false;
     if (this.snapOnRelease) {
@@ -950,7 +938,7 @@ export class InputHandler {
         (this.snapOffsetY % this.snapY);
     }
     this.sprite.events.onDragStop$dispatch(this.sprite, pointer);
-    if (this.checkPointerOver(pointer) === false) {
+    if (!this.checkPointerOver(pointer)) {
       this._pointerOutHandler(pointer);
     }
   }
@@ -960,7 +948,7 @@ export class InputHandler {
    * @param {boolean} allowHorizontal - TBD.
    * @param {boolean} allowVertical - TBD.
    */
-  setDragLock(allowHorizontal: boolean = true, allowVertical: boolean = true) {
+  public setDragLock(allowHorizontal = true, allowVertical = true) {
     this.allowHorizontalDrag = allowHorizontal;
     this.allowVerticalDrag = allowVertical;
   }
@@ -974,14 +962,7 @@ export class InputHandler {
    * @param {number} snapOffsetX - TBD.
    * @param {number} snapOffsetY - TBD.
    */
-  enableSnap(
-    snapX: number,
-    snapY: number,
-    onDrag: boolean = true,
-    onRelease: boolean = false,
-    snapOffsetX: number = 0,
-    snapOffsetY: number = 0
-  ) {
+  public enableSnap(snapX: number, snapY: number, onDrag = true, onRelease = false, snapOffsetX = 0, snapOffsetY = 0) {
     this.snapX = snapX;
     this.snapY = snapY;
     this.snapOffsetX = snapOffsetX;
@@ -993,7 +974,7 @@ export class InputHandler {
   /**
    * TBD.
    */
-  disableSnap() {
+  public disableSnap() {
     this.snapOnDrag = false;
     this.snapOnRelease = false;
   }
@@ -1001,7 +982,7 @@ export class InputHandler {
   /**
    * TBD.
    */
-  checkBoundsRect() {
+  public checkBoundsRect() {
     if (this.sprite.left < this.boundsRect.left) {
       this.sprite.x = this.boundsRect.x + this.sprite.offsetX;
     } else if (this.sprite.right > this.boundsRect.right) {
@@ -1017,7 +998,7 @@ export class InputHandler {
   /**
    * TBD.
    */
-  checkBoundsSprite() {
+  public checkBoundsSprite() {
     if (this.sprite.left < this.boundsSprite.left) {
       this.sprite.x = this.boundsSprite.left + this.sprite.offsetX;
     } else if (this.sprite.right > this.boundsSprite.right) {

@@ -1,73 +1,67 @@
 import { Signal } from './signal.js';
+import type { Game } from './game.js';
+import type { Tween } from './tween.js';
 
 export class Sound {
-  _paused!: any;
-  game!: import('./game.js').Game;
-  name!: string;
-  key!: string;
-  loop!: boolean;
-  markers!: any;
-  context!: AudioContext;
-  autoplay!: boolean;
-  totalDuration!: number;
-  startTime!: number;
-  currentTime!: number;
-  duration!: number;
-  durationMS!: number;
-  position!: number;
-  stopTime!: number;
-  paused!: boolean;
-  pausedPosition!: number;
-  pausedTime!: number;
-  isPlaying!: boolean;
-  currentMarker!: string;
-  fadeTween!: import('./tween.js').Tween | null;
-  pendingPlayback!: boolean;
-  override!: boolean;
-  allowMultiple!: boolean;
-  externalNode!: AudioNode | null;
-  masterGainNode!: GainNode | null;
-  gainNode!: GainNode;
-  _sound!: AudioBufferSourceNode;
-  _markedToDelete!: boolean;
-  _removeFromSoundManager!: boolean;
-  onPlay!: Signal;
-  onPause!: Signal;
-  onResume!: Signal;
-  onLoop!: Signal;
-  onStop!: Signal;
-  onMute!: Signal;
-  onMarkerComplete!: Signal;
-  onFadeComplete!: Signal;
-  _volume!: number;
-  _buffer!: AudioBuffer | null;
-  _muted!: boolean;
-  _tempMarker!: string;
-  _tempPosition!: number;
-  _tempVolume!: number;
-  _tempPause!: number;
-  _muteVolume!: number;
-  _tempLoop!: boolean;
+  public _paused!: any;
+  public game!: Game;
+  public name!: string;
+  public key!: string;
+  public loop!: boolean;
+  public markers!: any;
+  public context!: AudioContext;
+  public autoplay!: boolean;
+  public totalDuration!: number;
+  public startTime!: number;
+  public currentTime!: number;
+  public duration!: number;
+  public durationMS!: number;
+  public position!: number;
+  public stopTime!: number;
+  public paused!: boolean;
+  public pausedPosition!: number;
+  public pausedTime!: number;
+  public isPlaying!: boolean;
+  public currentMarker!: string;
+  public fadeTween!: Tween | null;
+  public pendingPlayback!: boolean;
+  public override!: boolean;
+  public allowMultiple!: boolean;
+  public externalNode!: AudioNode | null;
+  public masterGainNode!: GainNode | null;
+  public gainNode!: GainNode;
+  public _sound!: AudioBufferSourceNode;
+  public _markedToDelete!: boolean;
+  public _removeFromSoundManager!: boolean;
+  public onPlay!: Signal;
+  public onPause!: Signal;
+  public onResume!: Signal;
+  public onLoop!: Signal;
+  public onStop!: Signal;
+  public onMute!: Signal;
+  public onMarkerComplete!: Signal;
+  public onFadeComplete!: Signal;
+  public _volume!: number;
+  public _buffer!: AudioBuffer | null;
+  public _muted!: boolean;
+  public _tempMarker!: string;
+  public _tempPosition!: number;
+  public _tempVolume!: number;
+  public _tempPause!: number;
+  public _muteVolume!: number;
+  public _tempLoop!: boolean;
   /**
    * Creates a new Sound instance.
-   * @param {import('./game.js').Game} game - Reference to the Phaser Game instance.
+   * @param {Game} game - Reference to the Phaser Game instance.
    * @param {string} key - The key of the sound to play.
    * @param {number} volume - The initial volume level (0.0 to 1.0).
    * @param {boolean} loop - Whether the sound should loop.
    * @param {boolean} connect - Whether to connect to the master gain node.
    */
-  constructor(
-    game: import('./game.js').Game,
-    key: string,
-    volume: number = 1,
-    loop: boolean = false,
-    connect: boolean | null = null
-  ) {
+  public constructor(game: Game, key: string, volume = 1, loop = false, connect: boolean | null = null) {
     // TODO
     // https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Migrating_from_webkitAudioContext
-    if (!connect) {
-      connect = game.sound.connectToMaster;
-    }
+    connect ??= game.sound.connectToMaster;
     this.game = game;
     this.name = key;
     this.key = key;
@@ -128,7 +122,7 @@ export class Sound {
    * Callback when a sound has been unlocked.
    * @param {string} key - The key of the sound that was unlocked.
    */
-  soundHasUnlocked(key: string) {
+  public soundHasUnlocked(key: string) {
     if (key === this.key) {
       this._sound = this.game.cache.getSoundData(this.key);
       this.totalDuration = (this._sound as any).duration;
@@ -143,7 +137,7 @@ export class Sound {
    * @param {number} volume - The volume level (0.0 to 1.0) of the marker.
    * @param {boolean} loop - Whether the marker should loop.
    */
-  addMarker(name: string, start: number, duration: number = 1, volume: number = 1, loop: boolean = false) {
+  public addMarker(name: string, start: number, duration = 1, volume = 1, loop = false) {
     this.markers[name] = {
       name,
       start,
@@ -159,14 +153,14 @@ export class Sound {
    * Removes a marker from the sound.
    * @param {string} name - The name of the marker to remove.
    */
-  removeMarker(name: string) {
+  public removeMarker(name: string) {
     delete this.markers[name];
   }
 
   /**
    * Handler for when the sound ends.
    */
-  onEndedHandler() {
+  public onEndedHandler() {
     this._sound.onended = null;
     this.isPlaying = false;
     this.currentTime = this.durationMS;
@@ -200,7 +194,7 @@ export class Sound {
   /**
    * Updates the sound state.
    */
-  update() {
+  public update() {
     if (!this.game.cache.checkSoundKey(this.key)) {
       this.destroy();
       return;
@@ -239,7 +233,7 @@ export class Sound {
    * @param {number} volume - The volume level (0.0 to 1.0) to play at.
    * @returns {Sound} This Sound instance for chaining.
    */
-  loopFull(volume: number) {
+  public loopFull(volume: number) {
     return this.play(null, 0, volume, true);
   }
 
@@ -252,13 +246,11 @@ export class Sound {
    * @param {boolean} forceRestart - Whether to force restarting the sound even if it's already playing.
    * @returns {Sound} This Sound instance for chaining.
    */
-  play(marker: any = '', position: any = 0, volume: any = 1, loop: any = false, forceRestart: boolean = true) {
+  public play(marker: any = '', position: any = 0, volume: any = 1, loop: any = false, forceRestart = true) {
     if (marker === undefined || marker === false || marker === null) {
       marker = '';
     }
-    if (forceRestart === undefined) {
-      forceRestart = true;
-    }
+    forceRestart ??= true;
 
     if (this.isPlaying && !this.allowMultiple && !forceRestart && !this.override) {
       //  Use Restart instead
@@ -306,7 +298,7 @@ export class Sound {
         return this;
       }
     } else {
-      position = position || 0;
+      position = position ?? 0;
       if (volume === undefined) {
         volume = this._volume;
       }
@@ -373,14 +365,14 @@ export class Sound {
    * @param {number} volume - The volume level (0.0 to 1.0) to play at.
    * @param {boolean} loop - Whether the sound should loop.
    */
-  restart(marker: string = '', position: number = 0, volume: number = 1, loop: boolean = false) {
+  public restart(marker = '', position = 0, volume = 1, loop = false) {
     this.play(marker, position, volume, loop, true);
   }
 
   /**
    * Pauses the sound.
    */
-  pause() {
+  public pause() {
     if (this.isPlaying && this._sound) {
       this.paused = true;
       this.pausedPosition = this.currentTime;
@@ -394,7 +386,7 @@ export class Sound {
   /**
    * Resumes the sound.
    */
-  resume() {
+  public resume() {
     if (this.paused && this._sound) {
       const p = Math.max(0, this.position + this.pausedPosition / 1000);
       this._sound = this.context.createBufferSource();
@@ -426,7 +418,7 @@ export class Sound {
   /**
    * Stops the sound.
    */
-  stop() {
+  public stop() {
     if (this.isPlaying && this._sound) {
       if (this._sound.stop === undefined) {
         (this._sound as any).noteOff(0);
@@ -460,7 +452,7 @@ export class Sound {
    * @param {boolean} loop - Whether the sound should loop.
    * @param {string} marker - The name of the marker to fade in, or empty string to use current marker.
    */
-  fadeIn(duration: number, loop: boolean = false, marker: string = this.currentMarker) {
+  public fadeIn(duration: number, loop = false, marker: string = this.currentMarker) {
     if (this.paused) {
       return;
     }
@@ -472,7 +464,7 @@ export class Sound {
    * Fades out the sound to silence.
    * @param {number} duration - The fade-out duration (in milliseconds).
    */
-  fadeOut(duration: number) {
+  public fadeOut(duration: number) {
     this.fadeTo(duration, 0);
   }
 
@@ -481,7 +473,7 @@ export class Sound {
    * @param {number} duration - The fade duration (in milliseconds).
    * @param {number} volume - The target volume level (0.0 to 1.0).
    */
-  fadeTo(duration: number = 100, volume: number = 0) {
+  public fadeTo(duration = 100, volume = 0) {
     if (!this.isPlaying || this.paused || volume === this.volume) {
       return;
     }
@@ -492,7 +484,7 @@ export class Sound {
   /**
    * Callback when fade completes.
    */
-  fadeComplete() {
+  public fadeComplete() {
     this.onFadeComplete.dispatch(this, this.volume);
     if (this.volume === 0) {
       this.stop();
@@ -503,7 +495,7 @@ export class Sound {
    * Destroys the sound and cleans up resources.
    * @param {boolean} remove - Whether to remove the sound from the SoundManager.
    */
-  destroy(remove: boolean = true) {
+  public destroy(remove = true) {
     this._markedToDelete = true;
     this._removeFromSoundManager = remove;
     this.stop();
@@ -529,15 +521,15 @@ export class Sound {
    * Gets the muted state of the sound.
    * @returns {boolean} True if the sound is muted, false otherwise.
    */
-  get mute() {
+  public get mute() {
     return this._muted || this.game.sound.mute;
   }
 
   /**
    * Sets the muted state of the sound.
    */
-  set mute(value) {
-    value = value || false;
+  public set mute(value) {
+    value = value ?? false;
     if (value === this._muted) {
       return;
     }
@@ -556,14 +548,14 @@ export class Sound {
    * Gets the volume of the sound.
    * @returns {number} The volume level (0.0 to 1.0).
    */
-  get volume() {
+  public get volume() {
     return this._volume;
   }
 
   /**
    * Sets the volume of the sound.
    */
-  set volume(value) {
+  public set volume(value) {
     if (this._muted) {
       this._muteVolume = value;
       return;

@@ -85,7 +85,7 @@ export const SCALE_USER = 4;
 /**
  * @type {number}
  */
-export const TIME_MINUTE = 60000;
+export const TIME_MINUTE = 60_000;
 /**
  * @type {number}
  */

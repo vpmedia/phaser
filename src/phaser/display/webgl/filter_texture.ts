@@ -1,11 +1,12 @@
 import { SCALE_LINEAR } from '../../core/const.js';
 
 export class FilterTexture {
-  [key: string]: any;
-  gl!: any;
-  frameBuffer!: any;
-  texture!: any;
-  renderBuffer!: any;
+  public width!: number;
+  public height!: number;
+  public gl!: any;
+  public frameBuffer!: any;
+  public texture!: any;
+  public renderBuffer!: any;
   /**
    * Creates a new FilterTexture instance.
    * @param {WebGLRenderingContext} gl - The WebGL rendering context.
@@ -13,11 +14,11 @@ export class FilterTexture {
    * @param {number} height - The height of the filter texture.
    * @param {number} scaleMode - The scale mode to use.
    */
-  constructor(gl: WebGLRenderingContext, width: number, height: number, scaleMode: number) {
+  public constructor(gl: WebGLRenderingContext, width: number, height: number, scaleMode: number) {
     this.gl = gl;
     this.frameBuffer = gl.createFramebuffer();
     this.texture = gl.createTexture();
-    scaleMode = scaleMode || window.PhaserRegistry.TEXTURE_SCALE_MODE;
+    scaleMode = scaleMode || globalThis.PhaserRegistry.TEXTURE_SCALE_MODE;
     gl.bindTexture(gl.TEXTURE_2D, this.texture);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, scaleMode === SCALE_LINEAR ? gl.LINEAR : gl.NEAREST);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, scaleMode === SCALE_LINEAR ? gl.LINEAR : gl.NEAREST);
@@ -36,8 +37,8 @@ export class FilterTexture {
   /**
    * Destroys this filter texture and cleans up resources.
    */
-  clear() {
-    const gl = this.gl;
+  public clear() {
+    const { gl } = this;
     gl.clearColor(0, 0, 0, 0);
     gl.clear(gl.COLOR_BUFFER_BIT);
   }
@@ -47,13 +48,13 @@ export class FilterTexture {
    * @param {number} width - The new width of the filter texture.
    * @param {number} height - The new height of the filter texture.
    */
-  resize(width: number, height: number) {
+  public resize(width: number, height: number) {
     if (this.width === width && this.height === height) {
       return;
     }
     this.width = width;
     this.height = height;
-    const gl = this.gl;
+    const { gl } = this;
     gl.bindTexture(gl.TEXTURE_2D, this.texture);
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, width, height, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
     // update the stencil buffer width and height
@@ -64,8 +65,8 @@ export class FilterTexture {
   /**
    * Updates the resolution of this filter texture.
    */
-  destroy() {
-    const gl = this.gl;
+  public destroy() {
+    const { gl } = this;
     gl.deleteFramebuffer(this.frameBuffer);
     gl.deleteTexture(this.texture);
     this.frameBuffer = null;

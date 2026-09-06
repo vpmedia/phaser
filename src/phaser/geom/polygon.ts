@@ -3,19 +3,19 @@ import { clone } from './util/polygon.js';
 import { GEOM_POLYGON } from '../core/const.js';
 
 export class Polygon {
-  area: number;
-  _points: any[];
-  closed: boolean;
-  flattened: boolean;
-  type: number;
+  public area = 0;
+  public _points: any[];
+  public closed: boolean;
+  public flattened: boolean;
+  public type: number;
 
   /**
    * Creates a new Polygon instance.
    * @param {object[]} points - The array of points to define the polygon (optional).
    */
-  constructor(points: any[] | null = null) {
+  public constructor(points: any[] | null = null) {
     /** @type {number} */
-    this.area = 0;
+
     /** @type {Point[]} */
     this._points = [];
     /** @type {boolean} */
@@ -34,7 +34,7 @@ export class Polygon {
    * @param {number[]} output - The array to store the result in (optional).
    * @returns {number[]} An array of numbers representing the polygon's points.
    */
-  toNumberArray(output: number[] = []) {
+  public toNumberArray(output: number[] = []) {
     for (let i = 0; i < this._points.length; i += 1) {
       if (typeof this._points[i] === 'number') {
         output.push(this._points[i]);
@@ -52,7 +52,7 @@ export class Polygon {
    * Flattens the polygon's point array to a simple numeric array.
    * @returns {Polygon} This polygon instance for chaining.
    */
-  flatten() {
+  public flatten() {
     this._points = this.toNumberArray();
     this.flattened = true;
     return this;
@@ -62,7 +62,7 @@ export class Polygon {
    * Creates a clone of this polygon.
    * @returns {Polygon} A new polygon with the same values as this one.
    */
-  clone() {
+  public clone() {
     return clone(this);
   }
 
@@ -72,7 +72,7 @@ export class Polygon {
    * @param {number} y - The y coordinate of the point to check.
    * @returns {boolean} True if the point is contained within this polygon, false otherwise.
    */
-  contains(x: number, y: number) {
+  public contains(x: number, y: number) {
     //  Adapted from http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html by Jonas Raoni Soares Silva
     let inside = false;
     if (this.flattened) {
@@ -86,7 +86,7 @@ export class Polygon {
         }
       }
     } else {
-      for (let i = -1, j = this._points.length - 1; ++i < this._points.length; j = i) {
+      for (let i = 0, j = this._points.length - 1; i < this._points.length; j = i, i += 1) {
         const ix = this._points[i].x;
         const iy = this._points[i].y;
         const jx = this._points[j].x;
@@ -104,7 +104,7 @@ export class Polygon {
    * @param {object[]} points - The array of points to define the polygon.
    * @returns {Polygon} This polygon instance for chaining.
    */
-  setTo(points: any[]) {
+  public setTo(points: any[]) {
     this.area = 0;
     this._points = [];
     if (points) {
@@ -143,7 +143,7 @@ export class Polygon {
    * @param {number} y0 - The y coordinate of the lowest boundary (internal use).
    * @returns {number} The area of this polygon.
    */
-  calculateArea(y0: number) {
+  public calculateArea(y0: number) {
     let p1;
     let p2;
     let avgHeight;
@@ -166,14 +166,14 @@ export class Polygon {
    * Gets the points of this polygon.
    * @returns {object[]} The array of points that define this polygon.
    */
-  get points() {
+  public get points() {
     return this._points;
   }
 
   /**
    * Sets the points of this polygon.
    */
-  set points(value) {
+  public set points(value) {
     if (value !== null) {
       this.setTo(value);
     } else {

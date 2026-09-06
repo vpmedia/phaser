@@ -1,29 +1,30 @@
+import type { Signal } from './signal.js';
 export class SignalBinding {
-  _signal: any;
-  _listener: any;
-  _args: any;
-  _priority: number;
-  _isOnce: boolean;
-  context: any;
-  callCount: number;
-  active: boolean;
-  params: any;
+  public _signal: any;
+  public _listener: any;
+  public _args: any;
+  public _priority: number;
+  public _isOnce: boolean;
+  public context: any;
+  public callCount: number;
+  public active: boolean;
+  public params: any;
 
   /**
    * TBD.
-   * @param {import('./signal.js').Signal} signal - TBD.
+   * @param {Signal} signal - TBD.
    * @param {Function} listener - TBD.
    * @param {boolean} isOnce - TBD.
    * @param {object} listenerContext - TBD.
    * @param {number} priority - TBD.
    * @param {...any} args - TBD.
    */
-  constructor(
-    signal: import('./signal.js').Signal,
+  public constructor(
+    signal: Signal,
     listener: Function,
-    isOnce: boolean = false,
+    isOnce = false,
     listenerContext: any | null = null,
-    priority: number = 0,
+    priority = 0,
     args: any = null
   ) {
     this._signal = signal;
@@ -42,10 +43,10 @@ export class SignalBinding {
    * @param {any[]} paramsArr - TBD.
    * @returns {Function} TBD.
    */
-  execute(paramsArr: any[]) {
+  public execute(paramsArr: any[]) {
     let handlerReturn;
     let params;
-    if (this.active && !!this._listener) {
+    if (this.active && Boolean(this._listener)) {
       params = this.params ? this.params.concat(paramsArr) : paramsArr;
       if (this._args) {
         params = params.concat(this._args);
@@ -63,7 +64,7 @@ export class SignalBinding {
    * TBD.
    * @returns {Function} TBD.
    */
-  detach() {
+  public detach() {
     return this.isBound() ? this._signal.remove(this._listener, this.context) : null;
   }
 
@@ -71,15 +72,15 @@ export class SignalBinding {
    * TBD.
    * @returns {boolean} TBD.
    */
-  isBound() {
-    return !!this._signal && !!this._listener;
+  public isBound() {
+    return Boolean(this._signal) && Boolean(this._listener);
   }
 
   /**
    * TBD.
    * @returns {boolean} TBD.
    */
-  isOnce() {
+  public isOnce() {
     return this._isOnce;
   }
 
@@ -87,22 +88,22 @@ export class SignalBinding {
    * TBD.
    * @returns {Function} TBD.
    */
-  getListener() {
+  public getListener() {
     return this._listener;
   }
 
   /**
    * TBD.
-   * @returns {import('./signal.js').Signal} TBD.
+   * @returns {Signal} TBD.
    */
-  getSignal() {
+  public getSignal() {
     return this._signal;
   }
 
   /**
    * TBD.
    */
-  _destroy() {
+  public _destroy() {
     delete this._signal;
     delete this._listener;
     delete this.context;
@@ -112,7 +113,7 @@ export class SignalBinding {
    * TBD.
    * @returns {string} TBD.
    */
-  toString() {
+  public toString() {
     return `[SignalBinding isOnce:${this._isOnce}, isBound:${this.isBound()}, active:${this.active}]`;
   }
 }

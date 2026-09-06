@@ -7,12 +7,12 @@ import { Text } from '../display/text.js';
 import type { Game } from './game.js';
 
 export class GameObjectFactory {
-  game!: Game;
+  public game!: Game;
   /**
    * Creates a new GameObjectFactory instance.
-   * @param {import('./game.js').Game} game - The game instance this factory belongs to.
+   * @param {Game} game - The game instance this factory belongs to.
    */
-  constructor(game: Game) {
+  public constructor(game: Game) {
     this.game = game;
   }
 
@@ -25,7 +25,7 @@ export class GameObjectFactory {
    * @param {Group} group - The parent group for the image.
    * @returns {Image} The created Image object.
    */
-  image(x: number, y: number, key: string, frame: any, group: Group | null = null) {
+  public image(x: number, y: number, key: string, frame: any, group: Group | null = null) {
     const target = group ?? this.game.world;
     return target.add(new Image(this.game, x, y, key, frame));
   }
@@ -37,7 +37,7 @@ export class GameObjectFactory {
    * @param {boolean} addToStage - Whether to add the group to the stage.
    * @returns {Group} The created Group object.
    */
-  group(parent: Group | null = null, name: string | null = null, addToStage: boolean = false) {
+  public group(parent: Group | null = null, name: string | null = null, addToStage = false) {
     return new Group(this.game, parent, name, addToStage);
   }
 
@@ -50,8 +50,8 @@ export class GameObjectFactory {
    * @param {Group | null} group - The parent group for the text.
    * @returns {Text} The created Text object.
    */
-  text(x: number, y: number, text: any, style: any, group: Group | null = null) {
-    const parent = group || this.game.world;
+  public text(x: number, y: number, text: any, style: any, group: Group | null = null) {
+    const parent = group ?? this.game.world;
     return parent.add(new Text(this.game, x, y, text, style));
   }
 
@@ -69,7 +69,7 @@ export class GameObjectFactory {
    * @param {Group | null} group - The parent group for the button.
    * @returns {Button} The created Button object.
    */
-  button(
+  public button(
     x: number,
     y: number,
     key: string,
@@ -81,7 +81,7 @@ export class GameObjectFactory {
     upFrame: string | null = null,
     group: Group | null = null
   ) {
-    const parent = group || this.game.world;
+    const parent = group ?? this.game.world;
     return parent.add(
       new Button(this.game, x, y, key, callback, callbackContext, overFrame, outFrame, downFrame, upFrame)
     );
@@ -94,8 +94,8 @@ export class GameObjectFactory {
    * @param {Group | null} group - The parent group for the graphics object.
    * @returns {Graphics} The created Graphics object.
    */
-  graphics(x: number = 0, y: number = 0, group: Group | null = null) {
-    const parent = group || this.game.world;
+  public graphics(x = 0, y = 0, group: Group | null = null) {
+    const parent = group ?? this.game.world;
     return parent.add(new Graphics(this.game, x, y));
   }
 
@@ -110,16 +110,16 @@ export class GameObjectFactory {
    * @param {string} align - The alignment of the text.
    * @returns {BitmapText} The created BitmapText object.
    */
-  bitmapText(
+  public bitmapText(
     x: number,
     y: number,
     font: string,
     text: string,
     size: number,
     group: Group | null = null,
-    align: string = 'left'
+    align = 'left'
   ) {
-    const parent = group || this.game.world;
+    const parent = group ?? this.game.world;
     return parent.add(new BitmapText(this.game, x, y, font, text, size, align));
   }
 }

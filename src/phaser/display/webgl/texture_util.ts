@@ -23,6 +23,5 @@ export const baseTextureFromCanvas = (canvas: HTMLCanvasElement, scaleMode: numb
  * @param {number} [scaleMode] - The scale mode to use for the texture.
  * @returns {Texture} The newly created Texture instance.
  */
-export const textureFromCanvas = (canvas: HTMLCanvasElement, scaleMode?: any) => {
-  return new Texture(baseTextureFromCanvas(canvas, scaleMode));
-};
+export const textureFromCanvas = (canvas: HTMLCanvasElement, scaleMode?: any) =>
+  new Texture(baseTextureFromCanvas(canvas, scaleMode));

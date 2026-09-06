@@ -6,7 +6,7 @@ import { updateGraphics } from './graphics.js';
  * @param {object} renderSession - The rendering session.
  */
 export const pushMask = (maskData: any, renderSession: any) => {
-  const gl = renderSession.gl;
+  const { gl } = renderSession;
   if (maskData.dirty) {
     updateGraphics(maskData, gl);
   }
@@ -26,7 +26,7 @@ export const pushMask = (maskData: any, renderSession: any) => {
  * @param {object} renderSession - The rendering session.
  */
 export const popMask = (maskData: any, renderSession: any) => {
-  const gl = renderSession.gl;
+  const { gl } = renderSession;
   if (
     maskData._webGL[gl.id] === undefined ||
     maskData._webGL[gl.id].data === undefined ||

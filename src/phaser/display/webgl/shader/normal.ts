@@ -21,25 +21,45 @@ const defaultVertexSrc = [
   '}',
 ];
 
+const glMember = (gl: WebGLRenderingContext, name: string): any => (gl as unknown as Record<string, unknown>)[name];
+
 // this shader is used for the default sprite rendering
 
+export type ShaderUniform = {
+  type: string;
+  value: any;
+  uniformLocation?: WebGLUniformLocation | null;
+  glFunc?: (...args: any[]) => void;
+  glMatrix?: boolean;
+  glValueLength?: number;
+  transpose?: boolean;
+  textureData?: Record<string, any>;
+  _init?: boolean;
+};
+
 export class NormalShader {
-  [key: string]: any;
-  gl!: any;
-  _UID!: any;
-  program!: any;
-  fragmentSrc!: any;
-  vertexSrc!: any;
-  textureCount!: any;
-  firstRun!: any;
-  dirty!: any;
-  uniforms!: any;
-  attributes!: any;
+  public gl: WebGLRenderingContext & { id: number };
+  public _UID: string;
+  public program: WebGLProgram | null;
+  public fragmentSrc: string[];
+  public vertexSrc: string[] | null;
+  public textureCount: number;
+  public firstRun: boolean;
+  public dirty: boolean;
+  public uniforms: Record<string, ShaderUniform>;
+  public attributes: number[];
+  public uSampler!: WebGLUniformLocation | null;
+  public projectionVector!: WebGLUniformLocation | null;
+  public offsetVector!: WebGLUniformLocation | null;
+  public dimensions!: WebGLUniformLocation | null;
+  public aVertexPosition!: number;
+  public aTextureCoord!: number;
+  public colorAttribute!: number;
   /**
    * Creates a new NormalShader instance.
    * @param {WebGLRenderingContext & { id: number }} gl - The WebGL rendering context.
    */
-  constructor(gl: WebGLRenderingContext) {
+  public constructor(gl: WebGLRenderingContext & { id: number }) {
     this.gl = gl;
     this._UID = uuidv4();
     /** @type {WebGLProgram} */
@@ -66,9 +86,12 @@ export class NormalShader {
   /**
    * Destroys this shader and cleans up resources.
    */
-  init() {
-    const gl = this.gl;
-    const program = compileProgram(gl, this.vertexSrc || defaultVertexSrc, this.fragmentSrc);
+  public init(): void {
+    const { gl } = this;
+    const program = compileProgram(gl, this.vertexSrc ?? defaultVertexSrc, this.fragmentSrc);
+    if (!program) {
+      return;
+    }
     gl.useProgram(program);
     // get and store the uniforms for the shader
     this.uSampler = gl.getUniformLocation(program, 'uSampler');
@@ -90,10 +113,9 @@ export class NormalShader {
     this.attributes = [this.aVertexPosition, this.aTextureCoord, this.colorAttribute];
     // End worst hack eva //
     // add those custom shaders!
-    const keys = Object.keys(this.uniforms);
-    for (let i = 0; i < keys.length; i += 1) {
+    for (const [key, uniform] of Object.entries(this.uniforms)) {
       // get the uniform locations..
-      this.uniforms[keys[i]].uniformLocation = gl.getUniformLocation(program, keys[i]);
+      uniform.uniformLocation = gl.getUniformLocation(program, key);
     }
     this.initUniforms();
     this.program = program;
@@ -102,15 +124,11 @@ export class NormalShader {
   /**
    * Binds this shader to the WebGL context.
    */
-  initUniforms() {
+  public initUniforms() {
     this.textureCount = 1;
-    const gl = this.gl;
-    let uniform;
-    const keys = Object.keys(this.uniforms);
-    for (let i = 0; i < keys.length; i += 1) {
-      const key = keys[i];
-      uniform = this.uniforms[key];
-      const type = uniform.type;
+    const { gl } = this;
+    for (const uniform of Object.values(this.uniforms)) {
+      const { type } = uniform;
       if (type === 'sampler2D') {
         uniform._init = false;
         if (uniform.value !== null) {
@@ -129,7 +147,7 @@ export class NormalShader {
         }
       } else {
         //  GL function reference
-        uniform.glFunc = gl[`uniform${type}`];
+        uniform.glFunc = glMember(gl, `uniform${type}`);
         if (type === '2f' || type === '2i') {
           uniform.glValueLength = 2;
         } else if (type === '3f' || type === '3i') {
@@ -147,12 +165,12 @@ export class NormalShader {
    * Sets a uniform value for this shader.
    * @param {object} uniform - The uniform to set.
    */
-  initSampler2D(uniform: any) {
+  public initSampler2D(uniform: any) {
     if (!uniform.value || !uniform.value.baseTexture || !uniform.value.baseTexture.hasLoaded) {
       return;
     }
-    const gl = this.gl;
-    gl.activeTexture(gl[`TEXTURE${this.textureCount}`]);
+    const { gl } = this;
+    gl.activeTexture(glMember(gl, `TEXTURE${this.textureCount}`));
     gl.bindTexture(gl.TEXTURE_2D, uniform.value.baseTexture._glTextures[gl.id]);
     //  Extended texture data
     if (uniform.textureData) {
@@ -165,20 +183,20 @@ export class NormalShader {
       // KeyTexture = whatever + luminance + width 256, height 2, border 0
       //  magFilter can be: gl.LINEAR, gl.LINEAR_MIPMAP_LINEAR or gl.NEAREST
       //  wrapS/T can be: gl.CLAMP_TO_EDGE or gl.REPEAT
-      const magFilter = data.magFilter ? data.magFilter : gl.LINEAR;
-      const minFilter = data.minFilter ? data.minFilter : gl.LINEAR;
-      let wrapS = data.wrapS ? data.wrapS : gl.CLAMP_TO_EDGE;
-      let wrapT = data.wrapT ? data.wrapT : gl.CLAMP_TO_EDGE;
+      const magFilter = data.magFilter ?? gl.LINEAR;
+      const minFilter = data.minFilter ?? gl.LINEAR;
+      let wrapS = data.wrapS ?? gl.CLAMP_TO_EDGE;
+      let wrapT = data.wrapT ?? gl.CLAMP_TO_EDGE;
       const format = data.luminance ? gl.LUMINANCE : gl.RGBA;
       if (data.repeat) {
         wrapS = gl.REPEAT;
         wrapT = gl.REPEAT;
       }
-      gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, !!data.flipY);
+      gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, Boolean(data.flipY));
       if (data.width) {
-        const width = data.width ? data.width : 512;
-        const height = data.height ? data.height : 2;
-        const border = data.border ? data.border : 0;
+        const width = data.width ?? 512;
+        const height = data.height ?? 2;
+        const border = data.border ?? 0;
 
         // void texImage2D(GLenum target, GLint level, GLenum internalformat, GLsizei width, GLsizei height, GLint border, GLenum format, GLenum type, ArrayBufferView? pixels);
         gl.texImage2D(gl.TEXTURE_2D, 0, format, width, height, border, format, gl.UNSIGNED_BYTE, null);
@@ -199,27 +217,23 @@ export class NormalShader {
   /**
    * Sets the shader to use for rendering.
    */
-  syncUniforms() {
+  public syncUniforms() {
     this.textureCount = 1;
-    let uniform;
-    const gl = this.gl;
+    const { gl } = this;
     //  This would probably be faster in an array and it would guarantee key order
-    const keys = Object.keys(this.uniforms);
-    for (let i = 0; i < keys.length; i += 1) {
-      const key = keys[i];
-      uniform = this.uniforms[key];
+    for (const uniform of Object.values(this.uniforms)) {
       if (uniform.glValueLength === 1) {
         if (uniform.glMatrix === true) {
-          uniform.glFunc.call(gl, uniform.uniformLocation, uniform.transpose, uniform.value);
+          uniform.glFunc?.call(gl, uniform.uniformLocation, uniform.transpose, uniform.value);
         } else {
-          uniform.glFunc.call(gl, uniform.uniformLocation, uniform.value);
+          uniform.glFunc?.call(gl, uniform.uniformLocation, uniform.value);
         }
       } else if (uniform.glValueLength === 2) {
-        uniform.glFunc.call(gl, uniform.uniformLocation, uniform.value.x, uniform.value.y);
+        uniform.glFunc?.call(gl, uniform.uniformLocation, uniform.value.x, uniform.value.y);
       } else if (uniform.glValueLength === 3) {
-        uniform.glFunc.call(gl, uniform.uniformLocation, uniform.value.x, uniform.value.y, uniform.value.z);
+        uniform.glFunc?.call(gl, uniform.uniformLocation, uniform.value.x, uniform.value.y, uniform.value.z);
       } else if (uniform.glValueLength === 4) {
-        uniform.glFunc.call(
+        uniform.glFunc?.call(
           gl,
           uniform.uniformLocation,
           uniform.value.x,
@@ -229,15 +243,15 @@ export class NormalShader {
         );
       } else if (uniform.type === 'sampler2D') {
         if (uniform._init) {
-          gl.activeTexture(gl[`TEXTURE${this.textureCount}`]);
+          gl.activeTexture(glMember(gl, `TEXTURE${this.textureCount}`));
           if (uniform.value.baseTexture._dirty[gl.id]) {
-            window.PhaserRegistry.INSTANCES[gl.id].updateTexture(uniform.value.baseTexture);
+            globalThis.PhaserRegistry.INSTANCES[gl.id]?.updateTexture(uniform.value.baseTexture);
           } else {
             // bind the current texture
             gl.bindTexture(gl.TEXTURE_2D, uniform.value.baseTexture._glTextures[gl.id]);
           }
           //  gl.bindTexture(gl.TEXTURE_2D, uniform.value.baseTexture._glTextures[gl.id] || PIXI.createWebGLTexture( uniform.value.baseTexture, gl));
-          gl.uniform1i(uniform.uniformLocation, this.textureCount);
+          gl.uniform1i(uniform.uniformLocation ?? null, this.textureCount);
           this.textureCount += 1;
         } else {
           this.initSampler2D(uniform);
@@ -249,10 +263,9 @@ export class NormalShader {
   /**
    * Destroys this shader and cleans up resources.
    */
-  destroy() {
+  public destroy(): void {
     this.gl.deleteProgram(this.program);
-    this.uniforms = null;
-    this.gl = null;
-    this.attributes = null;
+    this.uniforms = {};
+    this.attributes = [];
   }
 }

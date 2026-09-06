@@ -1,19 +1,15 @@
 export class Scene {
-  game!: any;
-  key!: any;
+  public game: any = null;
+  public key: any = '';
   /**
    * Creates a new Scene instance.
    */
-  constructor() {
-    this.game = null;
-    this.key = '';
-  }
 
   /**
    * Initialize the scene.
    * This method is called before preload() and create().
    */
-  init() {
+  public init() {
     // inherit
   }
 
@@ -21,7 +17,7 @@ export class Scene {
    * Load assets for the scene.
    * This method is called after init() and before create().
    */
-  preload() {
+  public preload() {
     // inherit
   }
 
@@ -29,7 +25,7 @@ export class Scene {
    * Create the scene.
    * This method is called after preload() and is where you create your game objects.
    */
-  create() {
+  public create() {
     // inherit
   }
 
@@ -37,7 +33,7 @@ export class Scene {
    * Update the scene.
    * This method is called every frame while the scene is active.
    */
-  update() {
+  public update() {
     // inherit
   }
 
@@ -46,7 +42,7 @@ export class Scene {
    * @param {number} _width - The new width of the scene.
    * @param {number} _height - The new height of the scene.
    */
-  resize(_width: number, _height: number) {
+  public resize(_width: number, _height: number) {
     // inherit
   }
 
@@ -54,7 +50,7 @@ export class Scene {
    * Update the scene while paused.
    * This method is called every frame while the scene is paused.
    */
-  pauseUpdate() {
+  public pauseUpdate() {
     // inherit
   }
 
@@ -62,7 +58,7 @@ export class Scene {
    * Shutdown the scene.
    * This method is called when the scene is about to be destroyed.
    */
-  shutdown() {
+  public shutdown() {
     // inherit
   }
 }

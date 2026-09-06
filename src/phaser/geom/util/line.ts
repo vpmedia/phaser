@@ -9,7 +9,7 @@ import { intersects as intersectsRect } from './rectangle.js';
  * @returns {Line} The cloned line.
  */
 export const clone = (input: Line, output: Line | null = null) => {
-  const result = output || new Line();
+  const result = output ?? new Line();
   result.start.x = input.start.x;
   result.start.y = input.start.y;
   result.end.x = input.end.x;
@@ -27,15 +27,8 @@ export const clone = (input: Line, output: Line | null = null) => {
  * @param {Point} output - Optional point to store the result in.
  * @returns {Point} The intersection point, or null if there is no intersection.
  */
-export const intersectsPoints = (
-  a: any,
-  b: any,
-  e: any,
-  f: any,
-  asSegment: boolean = true,
-  output: Point | null = null
-) => {
-  const result = output || new Point();
+export const intersectsPoints = (a: any, b: any, e: any, f: any, asSegment = true, output: Point | null = null) => {
+  const result = output ?? new Point();
   const a1 = b.y - a.y;
   const a2 = f.y - e.y;
   const b1 = a.x - b.x;
@@ -68,9 +61,8 @@ export const intersectsPoints = (
  * @param {Point} result - Optional point to store the result in.
  * @returns {Point} The intersection point, or null if there is no intersection.
  */
-export const intersects = (a: any, b: any, asSegment: boolean, result: Point) => {
-  return intersectsPoints(a.start, a.end, b.start, b.end, asSegment, result);
-};
+export const intersects = (a: any, b: any, asSegment: boolean, result: Point) =>
+  intersectsPoints(a.start, a.end, b.start, b.end, asSegment, result);
 
 /**
  * Checks if a line intersects with a rectangle.
@@ -132,6 +124,4 @@ export const intersectsRectangle = (line: any, rect: any) => {
  * @param {object} b - The second point (with x, y properties).
  * @returns {number} The distance between the points.
  */
-export const reflect = (a: any, b: any) => {
-  return 2 * b.normalAngle - 3.141592653589793 - a.angle;
-};
+export const reflect = (a: any, b: any) => 2 * b.normalAngle - Math.PI - a.angle;

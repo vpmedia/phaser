@@ -1,16 +1,16 @@
 import { clone } from './graphics_data_util.js';
 
 export class GraphicsData {
-  lineWidth!: any;
-  lineColor!: any;
-  lineAlpha!: any;
-  _lineTint!: any;
-  fillColor!: any;
-  fillAlpha!: any;
-  _fillTint!: any;
-  fill!: any;
-  shape!: any;
-  type!: any;
+  public lineWidth!: any;
+  public lineColor!: any;
+  public lineAlpha!: any;
+  public _lineTint!: any;
+  public fillColor!: any;
+  public fillAlpha!: any;
+  public _fillTint!: any;
+  public fill!: any;
+  public shape!: any;
+  public type!: any;
   /**
    * Creates a new GraphicsData object.
    * @param {number} lineWidth - The line width.
@@ -21,7 +21,7 @@ export class GraphicsData {
    * @param {boolean} fill - Whether to fill the shape.
    * @param {object} shape - The shape to draw.
    */
-  constructor(
+  public constructor(
     lineWidth: number,
     lineColor: number,
     lineAlpha: number,
@@ -46,7 +46,7 @@ export class GraphicsData {
    * Clones this GraphicsData object.
    * @returns {GraphicsData} A new cloned GraphicsData object.
    */
-  clone() {
+  public clone() {
     return clone(this);
   }
 }

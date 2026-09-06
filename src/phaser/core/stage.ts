@@ -3,17 +3,18 @@ import { DisplayObject } from '../display/display_object.js';
 import { Matrix } from '../geom/matrix.js';
 import { valueToColor } from '../util/math.js';
 import { SCALE_LINEAR, SCALE_NEAREST } from './const.js';
+import type { Game } from './game.js';
 
 export class Stage extends DisplayObject {
-  declare name: any;
-  declare worldTransform: any;
-  currentRenderOrderID!: any;
-  _bgColor!: any;
+  declare public name: any;
+  declare public worldTransform: any;
+  public currentRenderOrderID!: any;
+  public _bgColor!: any;
   /**
    * Creates a new Stage instance.
-   * @param {import('./game.js').Game} game - The game instance.
+   * @param {Game} game - The game instance.
    */
-  constructor(game: import('./game.js').Game) {
+  public constructor(game: Game) {
     super(game);
     this.name = '_stage_root';
     this.worldTransform = new Matrix();
@@ -39,7 +40,7 @@ export class Stage extends DisplayObject {
    * Sets the background color of the stage.
    * @param {number} color - The color to set as the background.
    */
-  setBackgroundColor(color: number) {
+  public setBackgroundColor(color: number) {
     if (this.game.config.transparent) {
       return;
     }
@@ -54,7 +55,7 @@ export class Stage extends DisplayObject {
   /**
    * Initializes the stage after game creation.
    */
-  boot() {
+  public boot() {
     setUserSelect(this.game.canvas, 'none');
     setTouchAction(this.game.canvas, 'none');
   }
@@ -62,31 +63,31 @@ export class Stage extends DisplayObject {
   /**
    * Pre-updates the stage and its children.
    */
-  override preUpdate() {
+  public override preUpdate() {
     this.currentRenderOrderID = 0;
     //  This can't loop in reverse, we need the renderOrderID to be in sequence
     for (let i = 0; i < this.children.length; i += 1) {
-      this.children[i].preUpdate();
+      this.children[i]!.preUpdate();
     }
   }
 
   /**
    * Updates the stage and its children.
    */
-  override update() {
+  public override update() {
     let i = this.children.length;
     while (i) {
       i -= 1;
-      this.children[i].update();
+      this.children[i]!.update();
     }
   }
 
   /**
    * Post-updates the stage and its children.
    */
-  override postUpdate() {
+  public override postUpdate() {
     for (let i = 0; i < this.children.length; i += 1) {
-      this.children[i].postUpdate();
+      this.children[i]!.postUpdate();
     }
     this.updateTransform();
   }
@@ -94,10 +95,10 @@ export class Stage extends DisplayObject {
   /**
    * Updates the stage's transformation matrix.
    */
-  override updateTransform(): this {
+  public override updateTransform(): this {
     this.worldAlpha = 1;
-    for (let i = 0; i < this.children.length; i += 1) {
-      this.children[i].updateTransform();
+    for (const child of this.children) {
+      child.updateTransform();
     }
     return this;
   }
@@ -105,7 +106,7 @@ export class Stage extends DisplayObject {
   /**
    * Destroys the stage and cleans up resources.
    */
-  override destroy() {
+  public override destroy() {
     this.exists = false;
     this.game = null!;
     this.worldTransform = null;
@@ -116,14 +117,14 @@ export class Stage extends DisplayObject {
    * Gets the background color of the stage.
    * @returns {number} The background color.
    */
-  get backgroundColor() {
+  public get backgroundColor() {
     return this._bgColor.color;
   }
 
   /**
    * Sets the background color of the stage.
    */
-  set backgroundColor(value) {
+  public set backgroundColor(value) {
     this.setBackgroundColor(value);
   }
 
@@ -131,14 +132,14 @@ export class Stage extends DisplayObject {
    * Gets whether texture smoothing is enabled.
    * @returns {boolean} True if texture smoothing is enabled, false otherwise.
    */
-  get smoothed() {
-    return window.PhaserRegistry.TEXTURE_SCALE_MODE === SCALE_LINEAR;
+  public get smoothed() {
+    return globalThis.PhaserRegistry.TEXTURE_SCALE_MODE === SCALE_LINEAR;
   }
 
   /**
    * Sets whether texture smoothing is enabled.
    */
-  set smoothed(value) {
-    window.PhaserRegistry.TEXTURE_SCALE_MODE = value ? SCALE_LINEAR : SCALE_NEAREST;
+  public set smoothed(value) {
+    globalThis.PhaserRegistry.TEXTURE_SCALE_MODE = value ? SCALE_LINEAR : SCALE_NEAREST;
   }
 }

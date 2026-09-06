@@ -4,18 +4,30 @@ import { compileProgram } from '../util.js';
 // this shader is used for the fast sprite rendering
 
 export class FastShader {
-  [key: string]: any;
-  gl!: any;
-  _UID!: any;
-  program!: any;
-  textureCount!: any;
-  fragmentSrc!: any;
-  vertexSrc!: any;
+  public gl: WebGLRenderingContext | null;
+  public _UID: string;
+  public program: WebGLProgram | null;
+  public textureCount: number;
+  public fragmentSrc: string[];
+  public vertexSrc: string[];
+  public uSampler!: WebGLUniformLocation | null;
+  public projectionVector!: WebGLUniformLocation | null;
+  public offsetVector!: WebGLUniformLocation | null;
+  public dimensions!: WebGLUniformLocation | null;
+  public uMatrix!: WebGLUniformLocation | null;
+  public uniforms: unknown = null;
+  public aVertexPosition!: number;
+  public aPositionCoord!: number;
+  public aScale!: number;
+  public aRotation!: number;
+  public aTextureCoord!: number;
+  public colorAttribute!: number;
+  public attributes: number[] | null = null;
   /**
    * Creates a new FastShader instance.
    * @param {WebGLRenderingContext} gl - The WebGL rendering context.
    */
-  constructor(gl: WebGLRenderingContext) {
+  public constructor(gl: WebGLRenderingContext) {
     this.gl = gl;
     this._UID = uuidv4();
     /** @type {WebGLProgram} */
@@ -65,9 +77,15 @@ export class FastShader {
   /**
    * Creates a new FastShader instance.
    */
-  init() {
-    const gl = this.gl;
+  public init(): void {
+    const { gl } = this;
+    if (!gl) {
+      return;
+    }
     const program = compileProgram(gl, this.vertexSrc, this.fragmentSrc);
+    if (!program) {
+      return;
+    }
     gl.useProgram(program);
     // get and store the uniforms for the shader
     this.uSampler = gl.getUniformLocation(program, 'uSampler');
@@ -105,8 +123,8 @@ export class FastShader {
   /**
    * Destroys this shader and cleans up resources.
    */
-  destroy() {
-    this.gl.deleteProgram(this.program);
+  public destroy(): void {
+    this.gl?.deleteProgram(this.program);
     this.uniforms = null;
     this.gl = null;
     this.attributes = null;

@@ -1,3 +1,4 @@
+import type { Game } from './game.js';
 import { GROUP } from './const.js';
 import { Tween } from './tween.js';
 import {
@@ -35,15 +36,15 @@ import {
 } from './tween_easing.js';
 
 export class TweenManager {
-  game!: any;
-  _tweens!: any;
-  _add!: any;
-  easeMap!: any;
+  public game!: any;
+  public _tweens!: any;
+  public _add!: any;
+  public easeMap!: any;
   /**
    * Creates a new TweenManager instance.
-   * @param {import('./game.js').Game} game - The game instance this manager belongs to.
+   * @param {Game} game - The game instance this manager belongs to.
    */
-  constructor(game: import('./game.js').Game) {
+  public constructor(game: Game) {
     this.game = game;
     /** @type {Tween[]} */
     this._tweens = [];
@@ -102,7 +103,7 @@ export class TweenManager {
    * Get all tweens managed by this manager.
    * @returns {Tween[]} An array of all active tweens.
    */
-  getAll() {
+  public getAll() {
     return this._tweens;
   }
 
@@ -110,7 +111,7 @@ export class TweenManager {
    * Remove all tweens from the manager.
    * This method removes all active and pending tweens.
    */
-  removeAll() {
+  public removeAll() {
     for (let i = 0; i < this._tweens.length; i += 1) {
       this._tweens[i].pendingDelete = true;
     }
@@ -122,7 +123,7 @@ export class TweenManager {
    * @param {object} obj - The object to remove tweens from.
    * @param {object[]} children - Optional array of child objects to remove tweens from.
    */
-  removeFrom(obj: any, children: any[] | null = null) {
+  public removeFrom(obj: any, children: any[] | null = null) {
     let i;
     let len;
     if (Array.isArray(obj)) {
@@ -151,7 +152,7 @@ export class TweenManager {
    * Add a tween to the manager.
    * @param {Tween} tween - The tween to add.
    */
-  add(tween: Tween) {
+  public add(tween: Tween) {
     tween.manager = this;
     this._add.push(tween);
   }
@@ -161,7 +162,7 @@ export class TweenManager {
    * @param {object} object - The object to create a tween for.
    * @returns {Tween} The created Tween object.
    */
-  create(object: any) {
+  public create(object: any) {
     return new Tween(object, this.game, this);
   }
 
@@ -169,7 +170,7 @@ export class TweenManager {
    * Remove a tween from the manager.
    * @param {Tween | null | undefined} tween - The tween to remove.
    */
-  remove(tween: Tween | null | undefined) {
+  public remove(tween: Tween | null | undefined) {
     let i = this._tweens.indexOf(tween);
     if (i !== -1) {
       this._tweens[i].pendingDelete = true;
@@ -185,7 +186,7 @@ export class TweenManager {
    * Update all tweens managed by this manager.
    * @returns {boolean} True if any tweens were updated, false otherwise.
    */
-  update() {
+  public update() {
     const addTweens = this._add.length;
     let numTweens = this._tweens.length;
     if (numTweens === 0 && addTweens === 0) {
@@ -213,7 +214,7 @@ export class TweenManager {
    * @param {object} object - The object to check.
    * @returns {boolean} True if the object is being tweened, false otherwise.
    */
-  isTweening(object: unknown): boolean {
+  public isTweening(object: unknown): boolean {
     return (this._tweens as Tween[]).some((tween: Tween) => tween.target === object);
   }
 
@@ -221,7 +222,7 @@ export class TweenManager {
    * Pause all tweens managed by this manager.
    * This method pauses all active tweens.
    */
-  _pauseAll() {
+  public _pauseAll() {
     for (let i = this._tweens.length - 1; i >= 0; i -= 1) {
       this._tweens[i]._pause();
     }
@@ -231,7 +232,7 @@ export class TweenManager {
    * Resume all tweens managed by this manager.
    * This method resumes all paused tweens.
    */
-  _resumeAll() {
+  public _resumeAll() {
     for (let i = this._tweens.length - 1; i >= 0; i -= 1) {
       this._tweens[i]._resume();
     }
@@ -241,7 +242,7 @@ export class TweenManager {
    * Pause all tweens managed by this manager.
    * This method pauses all active tweens.
    */
-  pauseAll() {
+  public pauseAll() {
     for (let i = this._tweens.length - 1; i >= 0; i -= 1) {
       this._tweens[i].pause();
     }
@@ -251,7 +252,7 @@ export class TweenManager {
    * Resume all tweens managed by this manager.
    * This method resumes all paused tweens.
    */
-  resumeAll() {
+  public resumeAll() {
     for (let i = this._tweens.length - 1; i >= 0; i -= 1) {
       this._tweens[i].resume(true);
     }

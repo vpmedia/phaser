@@ -1,29 +1,29 @@
 export class AbstractFilter {
   [key: string]: any;
-  passes!: any;
-  shaders!: any;
-  dirty!: any;
-  padding!: any;
-  uniforms!: any;
-  fragmentSrc!: any;
+  public passes!: any;
+  public shaders!: any;
+  public dirty!: any;
+  public padding!: any;
+  public uniforms!: any;
+  public fragmentSrc!: any;
   /**
    * Creates a new AbstractFilter instance.
    * @param {string[]} fragmentSrc - The fragment shader source.
    * @param {object} uniforms - The uniform variables for the shader.
    */
-  constructor(fragmentSrc: string[], uniforms?: any) {
+  public constructor(fragmentSrc: string[], uniforms?: any) {
     this.passes = [this];
     this.shaders = [];
     this.dirty = true;
     this.padding = 0;
-    this.uniforms = uniforms || {};
+    this.uniforms = uniforms ?? {};
     this.fragmentSrc = fragmentSrc || [];
   }
 
   /**
    * Initializes the filter.
    */
-  syncUniforms() {
+  public syncUniforms() {
     for (let i = 0, j = this.shaders.length; i < j; i += 1) {
       this.shaders[i].dirty = true;
     }

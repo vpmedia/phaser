@@ -1,4 +1,4 @@
-import { expect } from 'vitest';
+import { expect, describe, it } from 'vitest';
 import { RoundedRectangle } from './rounded_rectangle.js';
 
 describe('RoundedRectangle Constructor', () => {
@@ -20,16 +20,12 @@ describe('RoundedRectangle contains Method', () => {
     const rectangle2 = new RoundedRectangle(10, 20, 30, 0, 5);
     expect(rectangle2.contains(15, 25)).toBe(false);
   });
-});
 
-describe('RoundedRectangle contains Method', () => {
   it('should return true for a point inside the rectangle', () => {
     const rectangle = new RoundedRectangle(10, 20, 30, 40, 5);
     expect(rectangle.contains(15, 25)).toBe(true);
   });
-});
 
-describe('RoundedRectangle contains Method', () => {
   it("should return true for a point on the rectangle's edge", () => {
     const rectangle = new RoundedRectangle(10, 20, 30, 40, 5);
     expect(rectangle.contains(0, 25)).toBe(false);
@@ -37,9 +33,7 @@ describe('RoundedRectangle contains Method', () => {
     expect(rectangle.contains(15, 0)).toBe(false);
     expect(rectangle.contains(15, 40)).toBe(true);
   });
-});
 
-describe('RoundedRectangle contains Method', () => {
   it('should return false for a point outside the rectangle', () => {
     const rectangle = new RoundedRectangle(10, 20, 30, 40, 5);
     expect(rectangle.contains(-1, -1)).toBe(false);

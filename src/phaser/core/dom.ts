@@ -1,27 +1,28 @@
 import { Point } from '../geom/point.js';
+import type { Device } from './device.js';
 
 class VisualBoundsDesktopRectangle {
   /**
    * Gets the horizontal scroll position of the window.
    * @returns {number} The horizontal scroll position in pixels.
    */
-  get x() {
-    return window && 'pageXOffset' in window ? window.pageXOffset : document.documentElement.scrollLeft;
+  public get x() {
+    return globalThis && 'pageXOffset' in globalThis ? window.pageXOffset : document.documentElement.scrollLeft;
   }
 
   /**
    * Gets the vertical scroll position of the window.
    * @returns {number} The vertical scroll position in pixels.
    */
-  get y() {
-    return window && 'pageYOffset' in window ? window.pageYOffset : document.documentElement.scrollTop;
+  public get y() {
+    return globalThis && 'pageYOffset' in globalThis ? window.pageYOffset : document.documentElement.scrollTop;
   }
 
   /**
    * Gets the width of the window.
    * @returns {number} The width of the window in pixels.
    */
-  get width() {
+  public get width() {
     return Math.max(window.innerWidth, document.documentElement.clientWidth);
   }
 
@@ -29,7 +30,7 @@ class VisualBoundsDesktopRectangle {
    * Gets the height of the window.
    * @returns {number} The height of the window in pixels.
    */
-  get height() {
+  public get height() {
     return Math.max(window.innerHeight, document.documentElement.clientHeight);
   }
 }
@@ -39,23 +40,19 @@ class LayoutBoundsDesktopRectangle {
    * Gets the horizontal scroll position of the window.
    * @returns {number} The horizontal scroll position in pixels.
    */
-  get x() {
-    return 0;
-  }
+  public readonly x = 0;
 
   /**
    * Gets the vertical scroll position of the window.
    * @returns {number} The vertical scroll position in pixels.
    */
-  get y() {
-    return 0;
-  }
+  public readonly y = 0;
 
   /**
    * Gets the width of the window.
    * @returns {number} The width of the window in pixels.
    */
-  get width() {
+  public get width() {
     return Math.max(window.innerWidth, document.documentElement.clientWidth);
   }
 
@@ -63,7 +60,7 @@ class LayoutBoundsDesktopRectangle {
    * Gets the height of the window.
    * @returns {number} The height of the window in pixels.
    */
-  get height() {
+  public get height() {
     return Math.max(window.innerHeight, document.documentElement.clientHeight);
   }
 }
@@ -73,23 +70,23 @@ class VisualBoundsRectangle {
    * Gets the horizontal scroll position of the document.
    * @returns {number} The horizontal scroll position in pixels.
    */
-  get x() {
-    return window && 'pageXOffset' in window ? window.pageXOffset : document.documentElement.scrollLeft;
+  public get x() {
+    return globalThis && 'pageXOffset' in globalThis ? window.pageXOffset : document.documentElement.scrollLeft;
   }
 
   /**
    * Gets the vertical scroll position of the document.
    * @returns {number} The vertical scroll position in pixels.
    */
-  get y() {
-    return window && 'pageYOffset' in window ? window.pageYOffset : document.documentElement.scrollTop;
+  public get y() {
+    return globalThis && 'pageYOffset' in globalThis ? window.pageYOffset : document.documentElement.scrollTop;
   }
 
   /**
    * TBD.
    * @returns {number} TBD.
    */
-  get width() {
+  public get width() {
     return window.innerWidth;
   }
 
@@ -97,7 +94,7 @@ class VisualBoundsRectangle {
    * TBD.
    * @returns {number} TBD.
    */
-  get height() {
+  public get height() {
     return window.innerHeight;
   }
 }
@@ -107,23 +104,19 @@ class LayoutBoundsRectangle {
    * TBD.
    * @returns {number} TBD.
    */
-  get x() {
-    return 0;
-  }
+  public readonly x = 0;
 
   /**
    * TBD.
    * @returns {number} TBD.
    */
-  get y() {
-    return 0;
-  }
+  public readonly y = 0;
 
   /**
    * TBD.
    * @returns {number} TBD.
    */
-  get width() {
+  public get width() {
     const a = document.documentElement.clientWidth;
     const b = window.innerWidth;
     return a < b ? b : a; // max
@@ -133,7 +126,7 @@ class LayoutBoundsRectangle {
    * TBD.
    * @returns {number} TBD.
    */
-  get height() {
+  public get height() {
     const a = document.documentElement.clientHeight;
     const b = window.innerHeight;
     return a < b ? b : a; // max
@@ -148,23 +141,19 @@ class DocumentBoundsRectangle {
    * TBD.
    * @returns {number} TBD.
    */
-  get x() {
-    return 0;
-  }
+  public readonly x = 0;
 
   /**
    * TBD.
    * @returns {number} TBD.
    */
-  get y() {
-    return 0;
-  }
+  public readonly y = 0;
 
   /**
    * TBD.
    * @returns {number} TBD.
    */
-  get width() {
+  public get width() {
     const d = document.documentElement;
     return Math.max(d.clientWidth, d.offsetWidth, d.scrollWidth);
   }
@@ -173,25 +162,25 @@ class DocumentBoundsRectangle {
    * TBD.
    * @returns {number} TBD.
    */
-  get height() {
+  public get height() {
     const d = document.documentElement;
     return Math.max(d.clientHeight, d.offsetHeight, d.scrollHeight);
   }
 }
 
 export class DOM {
-  treatAsDesktop: boolean;
-  visualBounds: any;
-  layoutBounds: any;
-  documentBounds: any;
-  scrollXProvider: () => number;
-  scrollYProvider: () => number;
+  public treatAsDesktop: boolean;
+  public visualBounds: any;
+  public layoutBounds: any;
+  public documentBounds: any;
+  public scrollXProvider: () => number;
+  public scrollYProvider: () => number;
 
   /**
    * TBD.
-   * @param {import('./device.js').Device} device - TBD.
+   * @param {Device} device - TBD.
    */
-  constructor(device: import('./device.js').Device) {
+  public constructor(device: Device) {
     this.treatAsDesktop =
       device.desktop &&
       document.documentElement.clientWidth <= window.innerWidth &&
@@ -200,9 +189,9 @@ export class DOM {
     this.layoutBounds = this.treatAsDesktop ? new LayoutBoundsDesktopRectangle() : new LayoutBoundsRectangle();
     this.documentBounds = new DocumentBoundsRectangle();
     this.scrollXProvider =
-      window && 'pageXOffset' in window ? () => window.pageXOffset : () => document.documentElement.scrollLeft;
+      globalThis && 'pageXOffset' in globalThis ? () => window.pageXOffset : () => document.documentElement.scrollLeft;
     this.scrollYProvider =
-      window && 'pageYOffset' in window ? () => window.pageYOffset : () => document.documentElement.scrollTop;
+      globalThis && 'pageYOffset' in globalThis ? () => window.pageYOffset : () => document.documentElement.scrollTop;
   }
 
   /**
@@ -211,13 +200,13 @@ export class DOM {
    * @param {Point} point - Optional Point object to store the result.
    * @returns {Point} The offset position of the element.
    */
-  getOffset(element: HTMLCanvasElement, point: Point | null = null) {
-    point = point || new Point();
+  public getOffset(element: HTMLCanvasElement, point: Point | null = null) {
+    point = point ?? new Point();
     const box = element.getBoundingClientRect();
     const scrollTop = this.scrollY;
     const scrollLeft = this.scrollX;
-    const clientTop = document.documentElement.clientTop;
-    const clientLeft = document.documentElement.clientLeft;
+    const { clientTop } = document.documentElement;
+    const { clientLeft } = document.documentElement;
     point.x = box.left + scrollLeft - clientLeft;
     point.y = box.top + scrollTop - clientTop;
     return point;
@@ -229,8 +218,8 @@ export class DOM {
    * @param {number} cushion - Optional padding to add around the element.
    * @returns {boolean} True if bounds were successfully retrieved, false otherwise.
    */
-  getBounds(element: HTMLCanvasElement, cushion: number = 0) {
-    element = element && !element.nodeType ? (element as unknown as HTMLCanvasElement[])[0] : element;
+  public getBounds(element: HTMLCanvasElement, cushion = 0) {
+    element = element && !element.nodeType ? (element as unknown as HTMLCanvasElement[])[0]! : element;
     if (!element || element.nodeType !== 1) {
       return false;
     }
@@ -243,7 +232,7 @@ export class DOM {
    * @param {number} cushion - Optional padding to add around the rectangle.
    * @returns {{width: number, height: number, left: number, right: number, top: number, bottom: number}} The calibrated rectangle.
    */
-  calibrate(coords: DOMRect, cushion: number = 0) {
+  public calibrate(coords: DOMRect, cushion = 0) {
     const output = {
       width: 0,
       height: 0,
@@ -262,9 +251,9 @@ export class DOM {
    * @param {string} primaryFallback - The fallback method to use if screen orientation API is not available.
    * @returns {string} The screen orientation ('portrait-primary', 'landscape-primary', etc.).
    */
-  getScreenOrientation(primaryFallback: string | null = null) {
-    const screen = window.screen;
-    // @ts-ignore
+  public getScreenOrientation(primaryFallback: string | null = null) {
+    const { screen } = globalThis;
+    // @ts-expect-error
     const orientation = screen.orientation || screen.mozOrientation || screen.msOrientation;
     if (orientation && typeof orientation.type === 'string') {
       // Screen Orientation API specification
@@ -279,13 +268,13 @@ export class DOM {
       return screen.height > screen.width ? PORTRAIT : LANDSCAPE;
     } else if (primaryFallback === 'viewport') {
       return this.visualBounds.height > this.visualBounds.width ? PORTRAIT : LANDSCAPE;
-    } else if (primaryFallback === 'window.orientation' && typeof window.orientation === 'number') {
+    } else if (primaryFallback === 'window.orientation' && typeof globalThis.orientation === 'number') {
       // This may change by device based on "natural" orientation.
-      return window.orientation === 0 || window.orientation === 180 ? PORTRAIT : LANDSCAPE;
-    } else if (window.matchMedia) {
-      if (window.matchMedia('(orientation: portrait)').matches) {
+      return globalThis.orientation === 0 || globalThis.orientation === 180 ? PORTRAIT : LANDSCAPE;
+    } else if (globalThis.matchMedia) {
+      if (globalThis.matchMedia('(orientation: portrait)').matches) {
         return PORTRAIT;
-      } else if (window.matchMedia('(orientation: landscape)').matches) {
+      } else if (globalThis.matchMedia('(orientation: landscape)').matches) {
         return LANDSCAPE;
       }
     }
@@ -296,7 +285,7 @@ export class DOM {
    * Gets the horizontal scroll position of the window.
    * @returns {number} The horizontal scroll position in pixels.
    */
-  get scrollX() {
+  public get scrollX() {
     return this.scrollXProvider();
   }
 
@@ -304,7 +293,7 @@ export class DOM {
    * Gets the vertical scroll position of the window.
    * @returns {number} The vertical scroll position in pixels.
    */
-  get scrollY() {
+  public get scrollY() {
     return this.scrollYProvider();
   }
 
@@ -312,7 +301,7 @@ export class DOM {
    * Gets the width of the window's client area.
    * @returns {number} The width of the client area in pixels.
    */
-  get clientWidth() {
+  public get clientWidth() {
     return Math.max(window.innerWidth, document.documentElement.clientWidth);
   }
 
@@ -320,7 +309,7 @@ export class DOM {
    * Gets the height of the window's client area.
    * @returns {number} The height of the client area in pixels.
    */
-  get clientHeight() {
+  public get clientHeight() {
     return Math.max(window.innerHeight, document.documentElement.clientHeight);
   }
 }

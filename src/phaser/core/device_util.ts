@@ -9,9 +9,7 @@ const logger = getLogger(['phaser', 'device']);
  * @param {string} type - The audio format type to check.
  * @returns {boolean} True if the device can play this audio format, false otherwise.
  */
-export const canPlayAudio = (device: Device, type: string) => {
-  return device.supportedAudioFormats[type] === true;
-};
+export const canPlayAudio = (device: Device, type: string) => device.supportedAudioFormats[type] === true;
 
 /**
  * Detect the operating system of the device.
@@ -19,19 +17,19 @@ export const canPlayAudio = (device: Device, type: string) => {
  */
 export const checkOS = (device: Device) => {
   const ua = navigator.userAgent;
-  if (/Android/.test(ua)) {
+  if (ua.includes('Android')) {
     device.android = true;
-  } else if (/CrOS/.test(ua)) {
+  } else if (ua.includes('CrOS')) {
     device.chromeOS = true;
   } else if (/iP[ao]d|iPhone/i.test(ua)) {
     device.iOS = true;
   } else if (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1) {
     device.iOS = true;
-  } else if (/Mac OS/.test(ua)) {
+  } else if (ua.includes('Mac OS')) {
     device.macOS = true;
-  } else if (/Linux/.test(ua)) {
+  } else if (ua.includes('Linux')) {
     device.linux = true;
-  } else if (/Windows/.test(ua)) {
+  } else if (ua.includes('Windows')) {
     device.windows = true;
   }
   if (/Windows Phone/i.test(ua) || /IEMobile/i.test(ua)) {
@@ -57,7 +55,7 @@ export const checkOS = (device: Device) => {
 export const checkInput = (device: Device) => {
   if (
     'ontouchstart' in document.documentElement ||
-    (window.navigator.maxTouchPoints && window.navigator.maxTouchPoints >= 1)
+    (globalThis.navigator.maxTouchPoints && globalThis.navigator.maxTouchPoints >= 1)
   ) {
     device.touch = true;
   }
@@ -65,7 +63,7 @@ export const checkInput = (device: Device) => {
   //   device.mspointer = true;
   // }
   // See https://developer.mozilla.org/en-US/docs/Web/Events/wheel
-  if ('onwheel' in window || 'WheelEvent' in window) {
+  if ('onwheel' in globalThis || 'WheelEvent' in globalThis) {
     device.wheelEvent = 'wheel';
   }
 };
@@ -97,23 +95,23 @@ export const checkFullScreenSupport = (device: Device) => {
   ];
   const element = document.createElement('div');
   const elementApi = element as unknown as Record<string, unknown>;
-  for (let i = 0; i < fs.length; i += 1) {
-    if (elementApi[fs[i]]) {
+  for (const name of fs) {
+    if (elementApi[name]) {
       device.fullscreen = true;
-      device.requestFullscreen = fs[i];
+      device.requestFullscreen = name;
       break;
     }
   }
   if (device.fullscreen) {
     const documentApi = document as unknown as Record<string, unknown>;
-    for (let i = 0; i < cfs.length; i += 1) {
-      if (documentApi[cfs[i]]) {
-        device.cancelFullscreen = cfs[i];
+    for (const name of cfs) {
+      if (documentApi[name]) {
+        device.cancelFullscreen = name;
         break;
       }
     }
-    // @ts-ignore
-    if (window.Element && Element.ALLOW_KEYBOARD_INPUT) {
+    // @ts-expect-error
+    if (globalThis.Element && Element.ALLOW_KEYBOARD_INPUT) {
       device.fullscreenKeyboard = true;
     }
   }
@@ -159,7 +157,7 @@ export const canPlayType = (audioElement: HTMLAudioElement, type: string) => {
  * @returns {boolean} True if the media source type is supported, false otherwise.
  */
 export const isMediaSourceTypeSupported = (type: string) => {
-  if ('MediaSource' in window) {
+  if ('MediaSource' in globalThis) {
     try {
       return MediaSource.isTypeSupported(type);
     } catch (error) {
@@ -215,8 +213,8 @@ export const checkImage = (device: Device) => {
     const avif = new Image();
     avif.src =
       'data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAAB0AAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAAIAAAACAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQ0MAAAAABNjb2xybmNseAACAAIAAYAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAACVtZGF0EgAKCBgANogQEAwgMg8f8D///8WfhwB8+ErK42A=';
-    avif.onload = function () {
-      device.supportedImageFormats.avif = true;
+    avif.onload = function onload() {
+      device.supportedImageFormats['avif'] = true;
     };
   } catch (error) {
     const typedError = error instanceof Error ? error : new Error(String(error));
@@ -225,8 +223,8 @@ export const checkImage = (device: Device) => {
   try {
     const webp = new Image();
     webp.src = 'data:image/webp;base64,UklGRh4AAABXRUJQVlA4TBEAAAAvAAAAAAfQ//73v/+BiOh/AAA=';
-    webp.onload = function () {
-      device.supportedImageFormats.webp = true;
+    webp.onload = function onload() {
+      device.supportedImageFormats['webp'] = true;
     };
   } catch (error) {
     const typedError = error instanceof Error ? error : new Error(String(error));
@@ -252,6 +250,4 @@ export const initialize = (device: Device) => {
  * Create a new Device instance.
  * @returns {Device} A new Device instance.
  */
-export const createDevice = () => {
-  return new Device();
-};
+export const createDevice = () => new Device();

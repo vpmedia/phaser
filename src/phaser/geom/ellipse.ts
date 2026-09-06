@@ -4,11 +4,11 @@ import { Rectangle } from './rectangle.js';
 import { contains } from './util/ellipse.js';
 
 export class Ellipse {
-  x: number;
-  y: number;
-  width: number;
-  height: number;
-  type: number;
+  public x: number;
+  public y: number;
+  public width: number;
+  public height: number;
+  public type: number;
 
   /**
    * Creates a new Ellipse instance.
@@ -17,7 +17,7 @@ export class Ellipse {
    * @param {number} width - The width of the ellipse (default: 0).
    * @param {number} height - The height of the ellipse (default: 0).
    */
-  constructor(x: number = 0, y: number = 0, width: number = 0, height: number = 0) {
+  public constructor(x = 0, y = 0, width = 0, height = 0) {
     /** @type {number} */
     this.x = x;
     /** @type {number} */
@@ -38,7 +38,7 @@ export class Ellipse {
    * @param {number} height - The new height of the ellipse.
    * @returns {Ellipse} This ellipse instance for chaining.
    */
-  setTo(x: number, y: number, width: number, height: number) {
+  public setTo(x: number, y: number, width: number, height: number) {
     this.x = x;
     this.y = y;
     this.width = width;
@@ -50,7 +50,7 @@ export class Ellipse {
    * Gets the bounding rectangle of this ellipse.
    * @returns {Rectangle} The bounding rectangle of this ellipse.
    */
-  getBounds() {
+  public getBounds() {
     return new Rectangle(this.x - this.width, this.y - this.height, this.width, this.height);
   }
 
@@ -59,7 +59,7 @@ export class Ellipse {
    * @param {Ellipse} source - The ellipse to copy values from.
    * @returns {Ellipse} This ellipse instance for chaining.
    */
-  copyFrom(source: Ellipse) {
+  public copyFrom(source: Ellipse) {
     return this.setTo(source.x, source.y, source.width, source.height);
   }
 
@@ -68,7 +68,7 @@ export class Ellipse {
    * @param {Ellipse} dest - The ellipse to copy values to.
    * @returns {Ellipse} The destination ellipse.
    */
-  copyTo(dest: Ellipse) {
+  public copyTo(dest: Ellipse) {
     dest.x = this.x;
     dest.y = this.y;
     dest.width = this.width;
@@ -82,7 +82,7 @@ export class Ellipse {
    * @param {number} y - The y coordinate of the point to check.
    * @returns {boolean} True if the point is contained within this ellipse, false otherwise.
    */
-  contains(x: number, y: number) {
+  public contains(x: number, y: number) {
     return contains(this, x, y);
   }
 
@@ -91,8 +91,8 @@ export class Ellipse {
    * @param {Point} output - The point to store the result in (optional).
    * @returns {Point} A random point within this ellipse.
    */
-  random(output: Point | null = null) {
-    const result = output || new Point();
+  public random(output: Point | null = null) {
+    const result = output ?? new Point();
     const p = Math.random() * Math.PI * 2;
     const r = Math.random();
     result.x = Math.sqrt(r) * Math.cos(p);
@@ -106,7 +106,7 @@ export class Ellipse {
    * Returns a string representation of this ellipse.
    * @returns {string} A string representation of the ellipse.
    */
-  toString() {
+  public toString() {
     return `[{Ellipse (x=${this.x} y=${this.y} width=${this.width} height=${this.height})}]`;
   }
 }

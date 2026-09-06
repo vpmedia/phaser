@@ -4,66 +4,68 @@ import { Rectangle } from '../geom/rectangle.js';
 import { getIdentityMatrix } from '../geom/util/matrix.js';
 import { PI_2 } from '../util/math.js';
 import { renderCanvas, renderWebGL } from './sprite_util.js';
+import type { Graphics } from './graphics.js';
+import type { Game } from '../core/game.js';
 
 export class DisplayObject {
   /** @type {boolean} */
-  exists = true;
+  public exists = true;
   /** @type {boolean} */
-  renderable = false;
+  public renderable = false;
   /** @type {boolean} */
-  visible = true;
-  position!: Point;
-  scale!: Point;
-  pivot!: Point;
-  anchor!: Point;
+  public visible = true;
+  public position!: Point;
+  public scale!: Point;
+  public pivot!: Point;
+  public anchor!: Point;
   /** @type {number} */
-  rotation = 0;
+  public rotation = 0;
   /** @type {number} */
-  alpha = 1;
-  hitArea: Rectangle | null = null;
-  parent: DisplayObject | null = null;
+  public alpha = 1;
+  public hitArea: Rectangle | null = null;
+  public parent: DisplayObject | null = null;
   /** @type {number} */
-  worldAlpha = 1;
-  worldTransform!: Matrix;
-  worldScale!: Point;
-  filterArea: Rectangle | null = null;
+  public worldAlpha = 1;
+  public worldTransform!: Matrix;
+  public worldScale!: Point;
+  public filterArea: Rectangle | null = null;
   /** @type {number} */
-  _sr = 0;
+  public _sr = 0;
   /** @type {number} */
-  _cr = 1;
-  cachedBounds!: Rectangle;
-  currentBounds: Rectangle | null = null;
-  _mask: import('./graphics.js').Graphics | null = null;
-  _filters: object[] | null = null;
-  _filterBlock: object | null = null;
-  children!: DisplayObject[];
+  public _cr = 1;
+  public cachedBounds!: Rectangle;
+  public currentBounds: Rectangle | null = null;
+  public _mask: Graphics | null = null;
+  public _filters: object[] | null = null;
+  public _filterBlock: object | null = null;
+  public children!: DisplayObject[];
   /** @type {boolean} */
-  ignoreChildInput = false;
-  name: string | null = null;
-  data: any = null;
-  game!: import('../core/game.js').Game;
-  type!: number;
-  _cachedSprite!: any;
-  rotationCache!: number;
-  worldRotation!: number;
-  transformCallback!: any;
-  transformCallbackContext!: any;
-  _width!: number;
-  _height!: number;
-  z!: number;
-  events!: any;
-  renderOrderID!: number;
+  public ignoreChildInput = false;
+  public name: string | null = null;
+  public data: any = null;
+  public game!: Game;
+  public type!: number;
+  public _cachedSprite!: any;
+  public rotationCache!: number;
+  public worldRotation!: number;
+  public transformCallback!: any;
+  public transformCallbackContext!: any;
+  public _width!: number;
+  public _height!: number;
+  public z!: number;
+  public events!: any;
+  public renderOrderID!: number;
   /**
    * Creates a new DisplayObject instance.
-   * @param {import('../core/game.js').Game} game - The game instance this display object belongs to.
+   * @param {Game} game - The game instance this display object belongs to.
    */
-  constructor(game: import('../core/game.js').Game) {
+  public constructor(game: Game) {
     /** @type {boolean} */
-    this.exists = true;
+
     /** @type {boolean} */
-    this.renderable = false;
+
     /** @type {boolean} */
-    this.visible = true;
+
     /** @type {Point} */
     this.position = new Point(0, 0);
     /** @type {Point} */
@@ -98,7 +100,7 @@ export class DisplayObject {
     this.cachedBounds = new Rectangle(0, 0, 0, 0);
     /** @type {Rectangle} */
     this.currentBounds = null;
-    /** @type {import('./graphics.js').Graphics} */
+    /** @type {Graphics} */
     this._mask = null;
     /** @type {object[]} */
     this._filters = null;
@@ -111,19 +113,19 @@ export class DisplayObject {
     this.name = this.name ?? null;
     /** @type {object | null } */
     this.data = this.data ?? null;
-    /** @type {import('../core/game.js').Game } */
+    /** @type {Game } */
     this.game = game;
   }
 
   /**
    * Destroys this display object and cleans up resources.
    */
-  destroy() {
+  public destroy() {
     if (this.children) {
       let i = this.children.length;
       while (i) {
         i -= 1;
-        this.children[i].destroy();
+        this.children[i]!.destroy();
       }
     }
     this.children = null!;
@@ -154,7 +156,7 @@ export class DisplayObject {
    * @param {DisplayObject} child - The child display object to add.
    * @returns {DisplayObject} The added child display object.
    */
-  addChild(child: DisplayObject) {
+  public addChild(child: DisplayObject) {
     return this.addChildAt(child, this.children.length);
   }
 
@@ -165,7 +167,7 @@ export class DisplayObject {
    * @returns {DisplayObject} The added child display object.
    * @throws {Error} If the index is out of bounds.
    */
-  addChildAt(child: DisplayObject, index: number) {
+  public addChildAt(child: DisplayObject, index: number) {
     if (index >= 0 && index <= this.children.length) {
       if (child.parent) {
         child.parent.removeChild(child);
@@ -183,7 +185,7 @@ export class DisplayObject {
    * @param {DisplayObject} child2 - The second child display object.
    * @throws {Error} If either child is not a child of this container.
    */
-  swapChildren(child: DisplayObject, child2: DisplayObject) {
+  public swapChildren(child: DisplayObject, child2: DisplayObject) {
     if (child === child2) {
       return;
     }
@@ -202,7 +204,7 @@ export class DisplayObject {
    * @returns {number} The index of the child in the children list.
    * @throws {Error} If the child is not a child of this container.
    */
-  getChildIndex(child: DisplayObject) {
+  public getChildIndex(child: DisplayObject) {
     const index = this.children.indexOf(child);
     if (index === -1) {
       throw new Error('The supplied DisplayObject must be a child of the caller');
@@ -216,7 +218,7 @@ export class DisplayObject {
    * @param {number} index - The new index for the child.
    * @throws {Error} If the index is out of bounds.
    */
-  setChildIndex(child: DisplayObject, index: number) {
+  public setChildIndex(child: DisplayObject, index: number) {
     if (index < 0 || index >= this.children.length) {
       throw new Error('The supplied index is out of bounds');
     }
@@ -231,7 +233,7 @@ export class DisplayObject {
    * @returns {DisplayObject} The child display object at the specified index.
    * @throws {Error} If the index is out of bounds.
    */
-  getChildAt(index: number) {
+  public getChildAt(index: number) {
     if (index < 0 || index >= this.children.length) {
       throw new Error(
         `getChildAt: Supplied index ${
@@ -247,7 +249,7 @@ export class DisplayObject {
    * @param {DisplayObject} child - The child display object to remove.
    * @returns {DisplayObject} The removed child display object.
    */
-  removeChild(child: DisplayObject) {
+  public removeChild(child: DisplayObject) {
     const index = this.children.indexOf(child);
     if (index === -1) {
       return null;
@@ -260,7 +262,7 @@ export class DisplayObject {
    * @param {number} index - The index of the child to remove.
    * @returns {DisplayObject} The removed child display object.
    */
-  removeChildAt(index: number) {
+  public removeChildAt(index: number) {
     const child = this.getChildAt(index);
     if (child) {
       child.parent = null;
@@ -276,18 +278,13 @@ export class DisplayObject {
    * @returns {DisplayObject[]} The array of removed child display objects.
    * @throws {Error} If the range is invalid.
    */
-  removeChildren(beginIndex: number, endIndex: number) {
-    if (beginIndex === undefined) {
-      beginIndex = 0;
-    }
-    if (endIndex === undefined) {
-      endIndex = this.children.length;
-    }
+  public removeChildren(beginIndex: number, endIndex: number) {
+    beginIndex ??= 0;
+    endIndex ??= this.children.length;
     const range = endIndex - beginIndex;
     if (range > 0 && range <= endIndex) {
       const removed = this.children.splice(beginIndex, range);
-      for (let i = 0; i < removed.length; i += 1) {
-        const child = removed[i];
+      for (const child of removed) {
         child.parent = null;
       }
       return removed;
@@ -303,7 +300,7 @@ export class DisplayObject {
    * @param {DisplayObject | null | undefined} parent - The parent display object to use for the world transform calculation.
    * @returns {DisplayObject} This DisplayObject instance for chaining.
    */
-  updateTransform(parent: DisplayObject | null | undefined = null) {
+  public updateTransform(parent: DisplayObject | null | undefined = null) {
     if (!parent && !this.parent) {
       return this;
     }
@@ -375,8 +372,8 @@ export class DisplayObject {
     if (this.transformCallback) {
       this.transformCallback.call(this.transformCallbackContext, wt, pt);
     }
-    for (let i = 0; i < this.children.length; i += 1) {
-      this.children[i].updateTransform();
+    for (const child of this.children) {
+      child.updateTransform();
     }
     return this;
   }
@@ -386,7 +383,7 @@ export class DisplayObject {
    * @param {DisplayObject} targetCoordinateSpace - The coordinate space to calculate bounds in.
    * @returns {Rectangle} The bounds rectangle of this display object.
    */
-  getBounds(targetCoordinateSpace?: any) {
+  public getBounds(targetCoordinateSpace?: any) {
     const isTargetCoordinateSpaceDisplayObject = targetCoordinateSpace && targetCoordinateSpace.contains !== undefined;
     let isTargetCoordinateSpaceThisOrParent = true;
     if (!isTargetCoordinateSpaceDisplayObject) {
@@ -414,10 +411,10 @@ export class DisplayObject {
     let childMaxY;
     let childVisible = false;
     for (i = 0; i < this.children.length; i += 1) {
-      const child = this.children[i];
+      const child = this.children[i]!;
       if (child.visible) {
         childVisible = true;
-        childBounds = this.children[i].getBounds();
+        childBounds = child.getBounds();
         minX = minX < childBounds.x ? minX : childBounds.x;
         minY = minY < childBounds.y ? minY : childBounds.y;
         childMaxX = childBounds.width + childBounds.x;
@@ -487,7 +484,7 @@ export class DisplayObject {
    * Gets the bounds of this display object in local coordinates.
    * @returns {Rectangle} The bounds rectangle of this display object in local space.
    */
-  getLocalBounds() {
+  public getLocalBounds() {
     return this.getBounds(this);
   }
 
@@ -496,7 +493,7 @@ export class DisplayObject {
    * @param {DisplayObject} child - The child display object to check.
    * @returns {boolean} True if the child is contained within this container, false otherwise.
    */
-  contains(child: DisplayObject | null): boolean {
+  public contains(child: DisplayObject | null): boolean {
     if (!child) {
       return false;
     }
@@ -509,13 +506,12 @@ export class DisplayObject {
   /**
    * Renders this display object using WebGL.
    * @param {object} renderSession - The WebGL rendering session.
-   * @param {import('../geom/matrix.js').Matrix | null} _matrix - The transform matrix to render with.
+   * @param {Matrix | null} _matrix - The transform matrix to render with.
    */
-  renderWebGL(renderSession: any, _matrix: Matrix | null = null) {
+  public renderWebGL(renderSession: any, _matrix: Matrix | null = null) {
     if (!this.visible || this.alpha <= 0) {
       return;
     }
-    let i;
     if (this._mask || this._filters) {
       // Push filter first as we need to ensure the stencil buffer is correct for any masking
       if (this._filters) {
@@ -527,8 +523,8 @@ export class DisplayObject {
         renderSession.maskManager.pushMask(this.mask, renderSession);
         renderSession.spriteBatch.start();
       }
-      for (i = 0; i < this.children.length; i += 1) {
-        this.children[i].renderWebGL(renderSession);
+      for (const child of this.children) {
+        child.renderWebGL(renderSession);
       }
       renderSession.spriteBatch.stop();
       if (this._mask) {
@@ -539,8 +535,8 @@ export class DisplayObject {
       }
       renderSession.spriteBatch.start();
     } else {
-      for (i = 0; i < this.children.length; i += 1) {
-        this.children[i].renderWebGL(renderSession);
+      for (const child of this.children) {
+        child.renderWebGL(renderSession);
       }
     }
   }
@@ -549,15 +545,15 @@ export class DisplayObject {
    * Renders this display object using Canvas.
    * @param {object} renderSession - The Canvas rendering session.
    */
-  renderCanvas(renderSession: any) {
+  public renderCanvas(renderSession: any) {
     if (!this.visible || this.alpha <= 0) {
       return;
     }
     if (this._mask) {
       renderSession.maskManager.pushMask(this._mask, renderSession);
     }
-    for (let i = 0; i < this.children.length; i += 1) {
-      this.children[i].renderCanvas(renderSession);
+    for (const child of this.children) {
+      child.renderCanvas(renderSession);
     }
     if (this._mask) {
       renderSession.maskManager.popMask(renderSession);
@@ -567,21 +563,21 @@ export class DisplayObject {
   /**
    * Called before the update cycle for this display object.
    */
-  preUpdate() {
+  public preUpdate() {
     // Override
   }
 
   /**
    * Called during the update cycle for this display object.
    */
-  update() {
+  public update() {
     // Override
   }
 
   /**
    * Called after the update cycle for this display object.
    */
-  postUpdate() {
+  public postUpdate() {
     // Override
   }
 
@@ -589,7 +585,7 @@ export class DisplayObject {
    * Generates a texture for this display object.
    * @throws {Error} This method is not implemented yet.
    */
-  generateTexture() {
+  public generateTexture() {
     // TODO
     throw new Error('display_object.generateTexture() is not implemented');
   }
@@ -599,7 +595,7 @@ export class DisplayObject {
    * @param {Point} position - The local position to convert.
    * @returns {Point} The converted global position.
    */
-  toGlobal(position: Point) {
+  public toGlobal(position: Point) {
     this.updateTransform();
     return this.worldTransform.apply(position);
   }
@@ -610,7 +606,7 @@ export class DisplayObject {
    * @param {DisplayObject} from - The display object to convert from (defaults to this).
    * @returns {Point} The converted local position.
    */
-  toLocal(position: Point, from: DisplayObject) {
+  public toLocal(position: Point, from: DisplayObject) {
     if (from) {
       position = from.toGlobal(position);
     }
@@ -622,7 +618,7 @@ export class DisplayObject {
    * Renders a cached sprite for this display object.
    * @param {object} renderSession - The rendering session.
    */
-  renderCachedSprite(renderSession: any) {
+  public renderCachedSprite(renderSession: any) {
     if (!this._cachedSprite) {
       return;
     }
@@ -637,14 +633,14 @@ export class DisplayObject {
   /**
    * Generates a cached sprite for this display object.
    */
-  generateCachedSprite() {
+  public generateCachedSprite() {
     // TODO
   }
 
   /**
    * Destroys the cached sprite for this display object.
    */
-  destroyCachedSprite() {
+  public destroyCachedSprite() {
     if (!this._cachedSprite) {
       return;
     }
@@ -658,7 +654,7 @@ export class DisplayObject {
    * Gets the width of this display object.
    * @returns {number} The width in pixels.
    */
-  get width() {
+  public get width() {
     return this.getLocalBounds().width * this.scale.x;
   }
 
@@ -666,7 +662,7 @@ export class DisplayObject {
    * Sets the width of this display object.
    * @param {number} value - The new width in pixels.
    */
-  set width(value: number) {
+  public set width(value: number) {
     const { width } = this.getLocalBounds();
     if (width !== 0) {
       this.scale.x = value / width;
@@ -680,7 +676,7 @@ export class DisplayObject {
    * Gets the height of this display object.
    * @returns {number} The height in pixels.
    */
-  get height() {
+  public get height() {
     return this.getLocalBounds().height * this.scale.y;
   }
 
@@ -688,7 +684,7 @@ export class DisplayObject {
    * Sets the height of this display object.
    * @param {number} value - The new height in pixels.
    */
-  set height(value: number) {
+  public set height(value: number) {
     const { height } = this.getLocalBounds();
     if (height !== 0) {
       this.scale.y = value / height;
@@ -702,7 +698,7 @@ export class DisplayObject {
    * Gets the x position of this display object.
    * @returns {number} The x position in pixels.
    */
-  get x() {
+  public get x() {
     return this.position.x;
   }
 
@@ -710,7 +706,7 @@ export class DisplayObject {
    * Sets the x position of this display object.
    * @param {number} value - The new x position in pixels.
    */
-  set x(value: number) {
+  public set x(value: number) {
     this.position.x = value;
   }
 
@@ -718,7 +714,7 @@ export class DisplayObject {
    * Gets the y position of this display object.
    * @returns {number} The y position in pixels.
    */
-  get y() {
+  public get y() {
     return this.position.y;
   }
 
@@ -726,7 +722,7 @@ export class DisplayObject {
    * Sets the y position of this display object.
    * @param {number} value - The new y position in pixels.
    */
-  set y(value: number) {
+  public set y(value: number) {
     this.position.y = value;
   }
 
@@ -734,7 +730,7 @@ export class DisplayObject {
    * Gets whether this display object is visible in the world.
    * @returns {boolean} True if the object is visible, false otherwise.
    */
-  get worldVisible() {
+  public get worldVisible() {
     if (!this.visible) {
       return false;
     }
@@ -755,17 +751,17 @@ export class DisplayObject {
 
   /**
    * Gets the mask for this display object.
-   * @returns {import('./graphics.js').Graphics} The mask object or null if none is set.
+   * @returns {Graphics} The mask object or null if none is set.
    */
-  get mask() {
+  public get mask() {
     return this._mask;
   }
 
   /**
    * Sets the mask for this display object.
-   * @param {import('./graphics.js').Graphics} value - The mask object to set, or null to remove the mask.
+   * @param {Graphics} value - The mask object to set, or null to remove the mask.
    */
-  set mask(value: import('./graphics.js').Graphics | null) {
+  public set mask(value: Graphics | null) {
     if (this._mask) {
       this._mask.isMask = false;
     }
@@ -781,7 +777,7 @@ export class DisplayObject {
    * Gets the x offset for this display object (based on anchor point).
    * @returns {number} The x offset in pixels.
    */
-  get offsetX() {
+  public get offsetX() {
     return this.anchor.x * this.width;
   }
 
@@ -789,7 +785,7 @@ export class DisplayObject {
    * Gets the y offset for this display object (based on anchor point).
    * @returns {number} The y offset in pixels.
    */
-  get offsetY() {
+  public get offsetY() {
     return this.anchor.y * this.height;
   }
 
@@ -797,7 +793,7 @@ export class DisplayObject {
    * Gets the center x position of this display object.
    * @returns {number} The center x position in pixels.
    */
-  get centerX() {
+  public get centerX() {
     return this.x - this.offsetX + this.width * 0.5;
   }
 
@@ -805,7 +801,7 @@ export class DisplayObject {
    * Sets the center x position of this display object.
    * @param {number} value - The new center x position in pixels.
    */
-  set centerX(value: number) {
+  public set centerX(value: number) {
     this.x = value + this.offsetX - this.width * 0.5;
   }
 
@@ -813,7 +809,7 @@ export class DisplayObject {
    * Gets the center y position of this display object.
    * @returns {number} The center y position in pixels.
    */
-  get centerY() {
+  public get centerY() {
     return this.y - this.offsetY + this.height * 0.5;
   }
 
@@ -821,7 +817,7 @@ export class DisplayObject {
    * Sets the center y position of this display object.
    * @param {number} value - The new center y position in pixels.
    */
-  set centerY(value: number) {
+  public set centerY(value: number) {
     this.y = value + this.offsetY - this.height * 0.5;
   }
 
@@ -829,7 +825,7 @@ export class DisplayObject {
    * Gets the left x position of this display object.
    * @returns {number} The left x position in pixels.
    */
-  get left() {
+  public get left() {
     return this.x - this.offsetX;
   }
 
@@ -837,7 +833,7 @@ export class DisplayObject {
    * Sets the left x position of this display object.
    * @param {number} value - The new left x position in pixels.
    */
-  set left(value: number) {
+  public set left(value: number) {
     this.x = value + this.offsetX;
   }
 
@@ -845,7 +841,7 @@ export class DisplayObject {
    * Gets the right x position of this display object.
    * @returns {number} The right x position in pixels.
    */
-  get right() {
+  public get right() {
     return this.x + this.width - this.offsetX;
   }
 
@@ -853,7 +849,7 @@ export class DisplayObject {
    * Sets the right x position of this display object.
    * @param {number} value - The new right x position in pixels.
    */
-  set right(value: number) {
+  public set right(value: number) {
     this.x = value - this.width + this.offsetX;
   }
 
@@ -861,7 +857,7 @@ export class DisplayObject {
    * Gets the top y position of this display object.
    * @returns {number} The top y position in pixels.
    */
-  get top() {
+  public get top() {
     return this.y - this.offsetY;
   }
 
@@ -869,7 +865,7 @@ export class DisplayObject {
    * Sets the top y position of this display object.
    * @param {number} value - The new top y position in pixels.
    */
-  set top(value: number) {
+  public set top(value: number) {
     this.y = value + this.offsetY;
   }
 
@@ -877,7 +873,7 @@ export class DisplayObject {
    * Gets the bottom y position of this display object.
    * @returns {number} The bottom y position in pixels.
    */
-  get bottom() {
+  public get bottom() {
     return this.y + this.height - this.offsetY;
   }
 
@@ -885,7 +881,7 @@ export class DisplayObject {
    * Sets the bottom y position of this display object.
    * @param {number} value - The new bottom y position in pixels.
    */
-  set bottom(value: number) {
+  public set bottom(value: number) {
     this.y = value - this.height + this.offsetY;
   }
 }

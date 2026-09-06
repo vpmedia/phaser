@@ -42,3 +42,4 @@ Read [package.json](package.json) for the language, runtime, dependencies and to
 Read on demand:
 
 - [clean-code.md](docs/agents/clean-code.md) — general clean-code guidelines: naming, functions, comments, error handling, classes, testing, and refactoring.
+- [lint.md](docs/agents/lint.md) — the oxlint and tsconfig setup, why the tsconfig is split, the staged-rule backlog, and which `oxlint --fix` modes are unsafe here.

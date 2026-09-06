@@ -1,4 +1,5 @@
 import { Matrix } from '../matrix.js';
+import { getRegistry } from '../../core/registry.js';
 
 /**
  * Clones a matrix.
@@ -7,7 +8,7 @@ import { Matrix } from '../matrix.js';
  * @returns {Matrix} The cloned matrix.
  */
 export const clone = (input: Matrix, output: Matrix | null = null) => {
-  const result = output || new Matrix();
+  const result = output ?? new Matrix();
   result.a = input.a;
   result.b = input.b;
   result.c = input.c;
@@ -22,13 +23,9 @@ export const clone = (input: Matrix, output: Matrix | null = null) => {
  * @returns {Matrix} A new identity matrix.
  */
 export const getIdentityMatrix = () => {
-  if (!window.PhaserRegistry) {
-    window.PhaserRegistry = {};
-  }
-  if (!window.PhaserRegistry.IDENTITY_MATRIX) {
-    window.PhaserRegistry.IDENTITY_MATRIX = new Matrix();
-  }
-  return window.PhaserRegistry.IDENTITY_MATRIX;
+  getRegistry();
+  globalThis.PhaserRegistry.IDENTITY_MATRIX ??= new Matrix();
+  return globalThis.PhaserRegistry.IDENTITY_MATRIX;
 };
 
 /**
@@ -36,11 +33,7 @@ export const getIdentityMatrix = () => {
  * @returns {Matrix} A new matrix.
  */
 export const getTempMatrix = () => {
-  if (!window.PhaserRegistry) {
-    window.PhaserRegistry = {};
-  }
-  if (!window.PhaserRegistry.TEMP_MATRIX) {
-    window.PhaserRegistry.TEMP_MATRIX = new Matrix();
-  }
-  return window.PhaserRegistry.TEMP_MATRIX;
+  getRegistry();
+  globalThis.PhaserRegistry.TEMP_MATRIX ??= new Matrix();
+  return globalThis.PhaserRegistry.TEMP_MATRIX;
 };

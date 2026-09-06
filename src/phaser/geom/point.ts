@@ -2,16 +2,16 @@ import { GEOM_POINT } from '../core/const.js';
 import { clone, distance, rotate } from './util/point.js';
 
 export class Point {
-  x: number;
-  y: number;
-  type: number;
+  public x: number;
+  public y: number;
+  public type: number;
 
   /**
    * Creates a new Point instance.
    * @param {number} x - The x coordinate of the point (default: 0).
    * @param {number} y - The y coordinate of the point (default: 0).
    */
-  constructor(x: number = 0, y: number = 0) {
+  public constructor(x = 0, y = 0) {
     /** @type {number} */
     this.x = x;
     /** @type {number} */
@@ -25,7 +25,7 @@ export class Point {
    * @param {Point} source - The point to copy coordinates from.
    * @returns {Point} This point instance for chaining.
    */
-  copyFrom(source: Point) {
+  public copyFrom(source: Point) {
     return this.setTo(source.x, source.y);
   }
 
@@ -33,7 +33,7 @@ export class Point {
    * Returns a new point with the x and y coordinates swapped.
    * @returns {Point} A new point instance with swapped coordinates.
    */
-  invert() {
+  public invert() {
     return this.setTo(this.y, this.x);
   }
 
@@ -43,9 +43,9 @@ export class Point {
    * @param {number} y - The new y coordinate for the point.
    * @returns {Point} This point instance for chaining.
    */
-  setTo(x: number, y?: number) {
+  public setTo(x: number, y?: number) {
     this.x = x || 0;
-    this.y = y || (y !== 0 ? this.x : 0);
+    this.y = y ?? (y !== 0 ? this.x : 0);
     return this;
   }
 
@@ -56,7 +56,7 @@ export class Point {
    * @returns {Point} This point instance for chaining.
    * @deprecated Use setTo instead.
    */
-  set(x: number, y: number) {
+  public set(x: number, y: number) {
     this.x = x || 0;
     this.y = y || (y !== 0 ? this.x : 0);
     return this;
@@ -68,7 +68,7 @@ export class Point {
    * @param {number} y - The amount to add to the y coordinate.
    * @returns {Point} This point instance for chaining.
    */
-  add(x: number, y: number) {
+  public add(x: number, y: number) {
     this.x += x;
     this.y += y;
     return this;
@@ -80,7 +80,7 @@ export class Point {
    * @param {number} y - The amount to subtract from the y coordinate.
    * @returns {Point} This point instance for chaining.
    */
-  subtract(x: number, y: number) {
+  public subtract(x: number, y: number) {
     this.x -= x;
     this.y -= y;
     return this;
@@ -92,7 +92,7 @@ export class Point {
    * @param {number} y - The amount to multiply the y coordinate by.
    * @returns {Point} This point instance for chaining.
    */
-  multiply(x: number, y: number) {
+  public multiply(x: number, y: number) {
     this.x *= x;
     this.y *= y;
     return this;
@@ -104,7 +104,7 @@ export class Point {
    * @param {number} y - The amount to divide the y coordinate by.
    * @returns {Point} This point instance for chaining.
    */
-  divide(x: number, y: number) {
+  public divide(x: number, y: number) {
     this.x /= x;
     this.y /= y;
     return this;
@@ -116,7 +116,7 @@ export class Point {
    * @param {number} max - The maximum value for the x coordinate.
    * @returns {Point} This point instance for chaining.
    */
-  clampX(min: number, max: number) {
+  public clampX(min: number, max: number) {
     this.x = Math.max(min, Math.min(max, this.x));
     return this;
   }
@@ -127,7 +127,7 @@ export class Point {
    * @param {number} max - The maximum value for the y coordinate.
    * @returns {Point} This point instance for chaining.
    */
-  clampY(min: number, max: number) {
+  public clampY(min: number, max: number) {
     this.y = Math.max(min, Math.min(max, this.y));
     return this;
   }
@@ -138,7 +138,7 @@ export class Point {
    * @param {number} max - The maximum value for both coordinates.
    * @returns {Point} This point instance for chaining.
    */
-  clamp(min: number, max: number) {
+  public clamp(min: number, max: number) {
     this.x = Math.max(min, Math.min(max, this.x));
     this.y = Math.max(min, Math.min(max, this.y));
     return this;
@@ -148,7 +148,7 @@ export class Point {
    * Creates a clone of this point.
    * @returns {Point} A new point with the same coordinates as this one.
    */
-  clone() {
+  public clone() {
     return clone(this);
   }
 
@@ -157,7 +157,7 @@ export class Point {
    * @param {Point} dest - The point to copy coordinates to.
    * @returns {Point} The destination point.
    */
-  copyTo(dest: Point) {
+  public copyTo(dest: Point) {
     dest.x = this.x;
     dest.y = this.y;
     return dest;
@@ -168,7 +168,7 @@ export class Point {
    * @param {Point} b - The other point to calculate the distance to.
    * @returns {number} The distance between the two points.
    */
-  distance(b: Point) {
+  public distance(b: Point) {
     return distance(this, b);
   }
 
@@ -177,7 +177,7 @@ export class Point {
    * @param {Point} a - The other point to compare with.
    * @returns {boolean} True if the points have the same coordinates, false otherwise.
    */
-  equals(a: Point) {
+  public equals(a: Point) {
     return a.x === this.x && a.y === this.y;
   }
 
@@ -187,7 +187,7 @@ export class Point {
    * @param {boolean} asDegrees - Whether to return the result in degrees (default: false).
    * @returns {number} The angle between the two points in radians or degrees.
    */
-  angle(a: Point, asDegrees: boolean = false) {
+  public angle(a: Point, asDegrees = false) {
     if (asDegrees) {
       return (180 / Math.PI) * Math.atan2(a.y - this.y, a.x - this.x);
     }
@@ -203,7 +203,7 @@ export class Point {
    * @param {number | null | undefined} dist - The distance to rotate from (default: null).
    * @returns {Point} This point instance for chaining.
    */
-  rotate(x: number, y: number, angle: number, asDegrees: boolean, dist: number | null | undefined = null) {
+  public rotate(x: number, y: number, angle: number, asDegrees: boolean, dist: number | null | undefined = null) {
     return rotate(this, x, y, angle, asDegrees, dist);
   }
 
@@ -211,7 +211,7 @@ export class Point {
    * Calculates the magnitude (length) of this point from the origin.
    * @returns {number} The magnitude of the point.
    */
-  getMagnitude() {
+  public getMagnitude() {
     return Math.sqrt(this.x * this.x + this.y * this.y);
   }
 
@@ -219,7 +219,7 @@ export class Point {
    * Calculates the square of the magnitude (length) of this point from the origin.
    * @returns {number} The square of the magnitude of the point.
    */
-  getMagnitudeSq() {
+  public getMagnitudeSq() {
     return this.x * this.x + this.y * this.y;
   }
 
@@ -228,7 +228,7 @@ export class Point {
    * @param {number} magnitude - The new magnitude for the point.
    * @returns {Point} This point instance for chaining.
    */
-  setMagnitude(magnitude: number) {
+  public setMagnitude(magnitude: number) {
     return this.normalize().multiply(magnitude, magnitude);
   }
 
@@ -236,7 +236,7 @@ export class Point {
    * Normalizes this point to have a magnitude of 1 while preserving its direction.
    * @returns {Point} This point instance for chaining.
    */
-  normalize() {
+  public normalize() {
     if (!this.isZero()) {
       const m = this.getMagnitude();
       this.x /= m;
@@ -249,7 +249,7 @@ export class Point {
    * Checks if this point has zero magnitude (is at the origin).
    * @returns {boolean} True if both x and y coordinates are zero, false otherwise.
    */
-  isZero() {
+  public isZero() {
     return this.x === 0 && this.y === 0;
   }
 
@@ -258,7 +258,7 @@ export class Point {
    * @param {Point} a - The other point to calculate the dot product with.
    * @returns {number} The dot product of the two points.
    */
-  dot(a: Point) {
+  public dot(a: Point) {
     return this.x * a.x + this.y * a.y;
   }
 
@@ -267,7 +267,7 @@ export class Point {
    * @param {Point} a - The other point to calculate the cross product with.
    * @returns {number} The cross product of the two points.
    */
-  cross(a: Point) {
+  public cross(a: Point) {
     return this.x * a.y - this.y * a.x;
   }
 
@@ -275,7 +275,7 @@ export class Point {
    * Returns a perpendicular point (rotated 90 degrees counter-clockwise).
    * @returns {Point} A new point that is perpendicular to this one.
    */
-  perp() {
+  public perp() {
     return this.setTo(-this.y, this.x);
   }
 
@@ -283,7 +283,7 @@ export class Point {
    * Returns a perpendicular point (rotated 90 degrees clockwise).
    * @returns {Point} A new point that is perpendicular to this one (rotated clockwise).
    */
-  rperp() {
+  public rperp() {
     return this.setTo(this.y, -this.x);
   }
 
@@ -291,7 +291,7 @@ export class Point {
    * Returns a point with the same direction as this one but with y coordinate negated.
    * @returns {Point} A new point with the same x coordinate but negated y coordinate.
    */
-  normalRightHand() {
+  public normalRightHand() {
     return this.setTo(this.y * -1, this.x);
   }
 
@@ -299,7 +299,7 @@ export class Point {
    * Returns a new point with the x and y coordinates rounded down to the nearest integer.
    * @returns {Point} A new point with floored coordinates.
    */
-  floor() {
+  public floor() {
     return this.setTo(Math.floor(this.x), Math.floor(this.y));
   }
 
@@ -307,7 +307,7 @@ export class Point {
    * Returns a new point with the x and y coordinates rounded up to the nearest integer.
    * @returns {Point} A new point with ceiled coordinates.
    */
-  ceil() {
+  public ceil() {
     return this.setTo(Math.ceil(this.x), Math.ceil(this.y));
   }
 
@@ -315,7 +315,7 @@ export class Point {
    * Returns a string representation of this point.
    * @returns {string} A string representation of the point in the format "[Point (x=value y=value)]".
    */
-  toString() {
+  public toString() {
     return `[{Point (x=${this.x} y=${this.y})}]`;
   }
 }

@@ -100,18 +100,34 @@ Renamed with `// @ts-nocheck` as a transitional pragma. Strict typing deferred t
 - [ ] `typedefs/global.d.ts` review (no changes needed — current declaration is minimal)
 
 ### Phase 10 — Cleanup (post-rename, follow-up)
-- [ ] Remove `// @ts-nocheck` pragmas from Phase 4–8 files, one module at a time, adding class field declarations and tightening types as you go
-- [ ] Replace residual `any`s with concrete types
-- [ ] Enable `strictNullChecks` and `noImplicitAny`
+- [x] Remove `// @ts-nocheck` pragmas from Phase 4–8 files, one module at a time, adding class field declarations and tightening types as you go
+- [x] Enable `strictNullChecks` and `noImplicitAny`
+- [x] Enable the remaining strict flags — `noUncheckedIndexedAccess`, `noPropertyAccessFromIndexSignature`, `noUncheckedSideEffectImports`
+- [x] Enable type-aware linting (`options.typeAware`), with the rules the engine cannot satisfy yet staged off
+- [ ] Replace residual `any`s with concrete types — ~710 annotations; unblocks the largest group in [agents/lint.md](agents/lint.md)
 - [ ] Address remaining latent issues (e.g., `webgl/base_texture` `naturalHeight` on canvas, `webgl/renderer` arity mismatches, `complex` shader `colorAttribute`)
+
+### Phase 11 — Strict types and type-aware lint (done)
+
+Enabling the strict flags surfaced 563 errors; all are fixed. The changes worth knowing about:
+
+- `tsconfig.json` now includes the test files and is `noEmit`; `tsconfig.build.json` emits the
+  declarations. Type-aware lint needs the tests in the program or they resolve as `error` type.
+- `globalThis.PhaserRegistry` is typed in `typedefs/global.d.ts` and seeded in one place,
+  `core/registry.ts`, instead of eight open-coded `??= {}` sites.
+- The 16 classes carrying a `[key: string]: any` catch-all index signature now declare their fields.
+- Dense arrays reached by a known-valid index go through a total accessor
+  (`InputHandler.pointerData()`, `Timer` locals) rather than an assertion per call site.
+- `tween_easing.ts` was rewritten as pure functions, pinned by 93 golden-value tests captured from
+  the previous implementation before the rewrite.
 
 ## Final state
 
 - 119 source files renamed `.js` → `.ts`.
-- 17 test files renamed `.test.js` → `.test.ts`; all 188 tests pass.
-- `pnpm typecheck`: **0 errors** (down from 212 baseline).
-- `pnpm lint`: 0 errors.
-- 50 files in `core/`, `display/`, `display/canvas/`, `display/webgl/` carry `// @ts-nocheck`. Their strict re-enabling is the deliverable of Phase 10.
+- 27 test files; all 384 tests pass (188 at the end of Phase 9).
+- `pnpm typecheck`: **0 errors** under the full strict flag set.
+- `pnpm lint`: 0 errors, type-aware, with 45 rules staged off — see [agents/lint.md](agents/lint.md).
+- No `// @ts-nocheck` pragmas remain.
 
 ## Verification per file
 

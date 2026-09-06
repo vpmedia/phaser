@@ -1,29 +1,29 @@
 import type { IdentifiedWebGLRenderingContext } from './util.js';
+import type { Image } from '../../display/image.js';
 
 export class FastSpriteBatch {
-  [key: string]: any;
-  vertSize!: any;
-  maxSize!: any;
-  size!: any;
-  vertices!: any;
-  indices!: any;
-  vertexBuffer!: any;
-  indexBuffer!: any;
-  lastIndexCount!: any;
-  drawing!: any;
-  currentBatchSize!: any;
-  currentBaseTexture!: any;
-  currentBlendMode!: any;
-  renderSession!: any;
-  shader!: any;
-  matrix!: any;
+  public gl!: any;
+  public vertSize: any = 10;
+  public maxSize: any = 6e3;
+  public size!: any;
+  public vertices!: any;
+  public indices!: any;
+  public vertexBuffer!: any;
+  public indexBuffer!: any;
+  public lastIndexCount!: any;
+  public drawing!: any;
+  public currentBatchSize!: any;
+  public currentBaseTexture!: any;
+  public currentBlendMode!: any;
+  public renderSession!: any;
+  public shader!: any;
+  public matrix!: any;
   /**
    * Creates a new FastSpriteBatch instance.
    * @param {WebGLRenderingContext & { id: number }} gl - The WebGL rendering context.
    */
-  constructor(gl: IdentifiedWebGLRenderingContext) {
-    this.vertSize = 10;
-    this.maxSize = 6000; // Math.pow(2, 16) / this.vertSize;
+  public constructor(gl: IdentifiedWebGLRenderingContext) {
+    // Math.pow(2, 16) / this.vertSize;
     this.size = this.maxSize;
     // the total number of floats in our batch
     const numVerts = this.size * 4 * this.vertSize;
@@ -56,7 +56,7 @@ export class FastSpriteBatch {
    * Sets the WebGL context for this batch.
    * @param {WebGLRenderingContext & { id: number }} gl - The WebGL rendering context.
    */
-  setContext(gl: IdentifiedWebGLRenderingContext) {
+  public setContext(gl: IdentifiedWebGLRenderingContext) {
     this.gl = gl;
     // create a couple of buffers
     this.vertexBuffer = gl.createBuffer();
@@ -74,7 +74,7 @@ export class FastSpriteBatch {
    * @param {object} spriteBatch - The sprite batch to render.
    * @param {object} renderSession - The render session to use.
    */
-  begin(spriteBatch: any, renderSession: any) {
+  public begin(spriteBatch: any, renderSession: any) {
     this.renderSession = renderSession;
     this.shader = this.renderSession.shaderManager.fastShader;
     this.matrix = spriteBatch.worldTransform.toArray(true);
@@ -84,7 +84,7 @@ export class FastSpriteBatch {
   /**
    * Updates the sprite batch.
    */
-  end() {
+  public end() {
     this.flush();
   }
 
@@ -92,8 +92,8 @@ export class FastSpriteBatch {
    * Flushes the sprite batch to WebGL.
    * @param {object} spriteBatch - The sprite batch to flush.
    */
-  render(spriteBatch: any) {
-    const children = spriteBatch.children;
+  public render(spriteBatch: any) {
+    const { children } = spriteBatch;
     const sprite = children[0];
     // if the uvs have not updated then no point rendering just yet!
     // check texture.
@@ -114,9 +114,9 @@ export class FastSpriteBatch {
 
   /**
    * Renders a sprite using WebGL.
-   * @param {import('../../display/image.js').Image} sprite - The sprite to render.
+   * @param {Image} sprite - The sprite to render.
    */
-  renderSprite(sprite: import('../../display/image.js').Image) {
+  public renderSprite(sprite: Image) {
     if (!sprite.visible) {
       return;
     }
@@ -129,7 +129,7 @@ export class FastSpriteBatch {
       }
     }
     const uvs = sprite.texture._uvs;
-    const vertices = this.vertices;
+    const { vertices } = this;
     // const width = sprite.texture.frame.width;
     // const height = sprite.texture.frame.height;
     let w0;
@@ -139,7 +139,7 @@ export class FastSpriteBatch {
     let index;
     if (sprite.texture.trim) {
       // if the sprite is trimmed then we need to add the extra space before transforming the sprite coords..
-      const trim = sprite.texture.trim;
+      const { trim } = sprite.texture;
       w1 = trim.x - sprite.anchor.x * trim.width;
       w0 = w1 + sprite.texture.crop.width;
       h1 = trim.y - sprite.anchor.y * trim.height;
@@ -222,12 +222,12 @@ export class FastSpriteBatch {
   /**
    * Binds the sprite batch to the WebGL context.
    */
-  flush() {
+  public flush() {
     // If the batch is length 0 then return as there is nothing to draw
     if (this.currentBatchSize === 0) {
       return;
     }
-    const gl = this.gl;
+    const { gl } = this;
     // bind the current texture
     if (!this.currentBaseTexture._glTextures[gl.id]) {
       this.renderSession.renderer.updateTexture(this.currentBaseTexture, gl);
@@ -251,22 +251,22 @@ export class FastSpriteBatch {
   /**
    * Renders a sprite using the sprite batch.
    */
-  stop() {
+  public stop() {
     this.flush();
   }
 
   /**
    * Sets up the sprite batch for WebGL rendering.
    */
-  start() {
-    const gl = this.gl;
+  public start() {
+    const { gl } = this;
     // bind the main texture
     gl.activeTexture(gl.TEXTURE0);
     // bind the buffers
     gl.bindBuffer(gl.ARRAY_BUFFER, this.vertexBuffer);
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.indexBuffer);
     // set the projection
-    const projection = this.renderSession.projection;
+    const { projection } = this.renderSession;
     gl.uniform2f(this.shader.projectionVector, projection.x, projection.y);
     // set the matrix
     gl.uniformMatrix3fv(this.shader.uMatrix, false, this.matrix);

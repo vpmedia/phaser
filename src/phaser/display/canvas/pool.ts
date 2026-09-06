@@ -1,15 +1,12 @@
+import { getRegistry } from '../../core/registry.js';
 /**
  * Gets the canvas pool array.
  * @returns {{canvas: HTMLCanvasElement, parent: object}[]} The canvas pool array.
  */
-export const getPool = () => {
-  if (!window.PhaserRegistry) {
-    window.PhaserRegistry = {};
-  }
-  if (!window.PhaserRegistry.CANVAS_POOL) {
-    window.PhaserRegistry.CANVAS_POOL = [];
-  }
-  return window.PhaserRegistry.CANVAS_POOL;
+export const getPool = (): CanvasPoolEntry[] => {
+  const registry = getRegistry();
+  registry.CANVAS_POOL ??= [];
+  return registry.CANVAS_POOL;
 };
 
 /**
@@ -19,7 +16,7 @@ export const getPool = () => {
 export const getFirst = () => {
   const pool = getPool();
   for (let i = 0; i < pool.length; i += 1) {
-    if (!pool[i].parent) {
+    if (!pool[i]!.parent) {
       return i;
     }
   }
@@ -32,11 +29,11 @@ export const getFirst = () => {
  */
 export const remove = (parent: any) => {
   const pool = getPool();
-  for (let i = 0; i < pool.length; i += 1) {
-    if (pool[i].parent === parent) {
-      pool[i].parent = null;
-      pool[i].canvas.width = 1;
-      pool[i].canvas.height = 1;
+  for (const entry of pool) {
+    if (entry.parent === parent) {
+      entry.parent = null;
+      entry.canvas.width = 1;
+      entry.canvas.height = 1;
     }
   }
 };
@@ -47,11 +44,11 @@ export const remove = (parent: any) => {
  */
 export const removeByCanvas = (canvas: HTMLCanvasElement) => {
   const pool = getPool();
-  for (let i = 0; i < pool.length; i += 1) {
-    if (pool[i].canvas === canvas) {
-      pool[i].parent = null;
-      pool[i].canvas.width = 1;
-      pool[i].canvas.height = 1;
+  for (const entry of pool) {
+    if (entry.canvas === canvas) {
+      entry.parent = null;
+      entry.canvas.width = 1;
+      entry.canvas.height = 1;
     }
   }
 };
@@ -63,8 +60,8 @@ export const removeByCanvas = (canvas: HTMLCanvasElement) => {
 export const getTotal = () => {
   const pool = getPool();
   let c = 0;
-  for (let i = 0; i < pool.length; i += 1) {
-    if (pool[i].parent) {
+  for (const entry of pool) {
+    if (entry.parent) {
       c += 1;
     }
   }
@@ -78,8 +75,8 @@ export const getTotal = () => {
 export const getFree = () => {
   const pool = getPool();
   let c = 0;
-  for (let i = 0; i < pool.length; i += 1) {
-    if (!pool[i].parent) {
+  for (const entry of pool) {
+    if (!entry.parent) {
       c += 1;
     }
   }
@@ -94,14 +91,14 @@ export const getFree = () => {
  * @param {boolean} skipPool - True to skip using the pool and create a new canvas.
  * @returns {HTMLCanvasElement} The canvas from the pool or a newly created one.
  */
-export const create = (parent: any, width?: any, height?: any, skipPool: boolean = false) => {
+export const create = (parent: any, width?: any, height?: any, skipPool = false) => {
   if (parent === undefined) {
     console.warn('Created CanvasPool element with undefined parent.');
   }
   const idx = getFirst();
   const pool = getPool();
   let canvas;
-  if (idx === -1 || skipPool === true) {
+  if (idx === -1 || skipPool) {
     const container = {
       parent,
       canvas: document.createElement('canvas'),
@@ -109,8 +106,9 @@ export const create = (parent: any, width?: any, height?: any, skipPool: boolean
     pool.push(container);
     canvas = container.canvas;
   } else {
-    pool[idx].parent = parent;
-    canvas = pool[idx].canvas;
+    const entry = pool[idx]!;
+    entry.parent = parent;
+    canvas = entry.canvas;
   }
   if (width !== undefined) {
     canvas.width = width;

@@ -1,3 +1,5 @@
+import type { Game } from '../../core/game.js';
+import type { Stage } from '../../core/stage.js';
 import {
   BLEND_ADD,
   BLEND_COLOR,
@@ -26,24 +28,24 @@ import { detectCapabilities } from './tinter.js';
 import { getSmoothingPrefix } from './util.js';
 
 export class CanvasRenderer {
-  type!: any;
-  resolution!: any;
-  clearBeforeRender!: any;
-  transparent!: any;
-  autoResize!: any;
-  contextLost!: any;
-  width!: any;
-  height!: any;
-  view!: any;
-  context!: any;
-  refresh!: any;
-  count!: any;
-  renderSession!: any;
+  public type!: any;
+  public resolution!: any;
+  public clearBeforeRender!: any;
+  public transparent!: any;
+  public autoResize!: any;
+  public contextLost!: any;
+  public width!: any;
+  public height!: any;
+  public view!: any;
+  public context!: any;
+  public refresh!: any;
+  public count!: any;
+  public renderSession!: any;
   /**
    * Creates a new CanvasRenderer instance.
-   * @param {import('../../core/game.js').Game} _game - The game instance.
+   * @param {Game} _game - The game instance.
    */
-  constructor(game: import('../../core/game.js').Game) {
+  public constructor(game: Game) {
     detectCapabilities(game);
     /** @type {number} */
     this.type = RENDER_CANVAS;
@@ -56,7 +58,6 @@ export class CanvasRenderer {
     this.height = game.height * this.resolution;
     this.view = game.canvas;
     /** @type {CanvasRenderingContext2D} */
-    // @ts-ignore
     this.context = this.view.getContext('2d', { willReadFrequently: false, alpha: this.transparent });
     if (!this.context) {
       throw new Error(ENGINE_ERROR_CREATING_CANVAS_2D_CONTEXT);
@@ -76,9 +77,9 @@ export class CanvasRenderer {
 
   /**
    * Renders the stage to canvas.
-   * @param {import('../../core/stage.js').Stage} root - The root stage to render.
+   * @param {Stage} root - The root stage to render.
    */
-  render(root: import('../../core/stage.js').Stage) {
+  public render(root: Stage) {
     if (!this.context) {
       return;
     }
@@ -103,7 +104,7 @@ export class CanvasRenderer {
    * Destroys this renderer and cleans up resources.
    * @param {boolean} removeView - Whether to remove the view from the DOM.
    */
-  destroy(removeView: boolean = true) {
+  public destroy(removeView = true) {
     if (removeView && this.view.parent) {
       this.view.parent.removeChild(this.view);
     }
@@ -117,7 +118,7 @@ export class CanvasRenderer {
    * @param {number} width - The new width of the canvas.
    * @param {number} height - The new height of the canvas.
    */
-  resize(width: number, height: number) {
+  public resize(width: number, height: number) {
     this.width = width * this.resolution;
     this.height = height * this.resolution;
     this.view.width = this.width;
@@ -133,12 +134,12 @@ export class CanvasRenderer {
 
   /**
    * Renders a display object to canvas.
-   * @param {import('../../display/image.js').Image} displayObject - The display object to render.
+   * @param {Image} displayObject - The display object to render.
    * @param {CanvasRenderingContext2D} context - The canvas rendering context.
-   * @param {import('../../geom/matrix.js').Matrix} matrix - The transformation matrix.
+   * @param {Matrix} matrix - The transformation matrix.
    */
-  renderDisplayObject(displayObject: any, context?: any, matrix?: any) {
-    this.renderSession.context = context || this.context;
+  public renderDisplayObject(displayObject: any, context?: any, matrix?: any) {
+    this.renderSession.context = context ?? this.context;
     this.renderSession.resolution = this.resolution;
     displayObject.renderCanvas(this.renderSession, matrix);
   }
@@ -146,12 +147,12 @@ export class CanvasRenderer {
   /**
    * Maps blend modes to canvas rendering operations.
    */
-  mapBlendModes() {
-    if (window.PhaserRegistry.blendModesCanvas) {
+  public mapBlendModes() {
+    if (globalThis.PhaserRegistry.blendModesCanvas) {
       return;
     }
-    const b = [];
-    const useNew = window.PhaserRegistry.CAN_CANVAS_USE_MULTIPLY;
+    const b: GlobalCompositeOperation[] = [];
+    const useNew = globalThis.PhaserRegistry.CAN_CANVAS_USE_MULTIPLY;
     b[BLEND_NORMAL] = 'source-over';
     b[BLEND_ADD] = 'lighter';
     b[BLEND_MULTIPLY] = useNew ? 'multiply' : 'source-over';
@@ -169,14 +170,14 @@ export class CanvasRenderer {
     b[BLEND_SATURATION] = useNew ? 'saturation' : 'source-over';
     b[BLEND_COLOR] = useNew ? 'color' : 'source-over';
     b[BLEND_LUMINOSITY] = useNew ? 'luminosity' : 'source-over';
-    window.PhaserRegistry.blendModesCanvas = b;
+    globalThis.PhaserRegistry.blendModesCanvas = b;
   }
 
   /**
    * Initializes the WebGL context for rendering.
-   * @param {import('../../core/game.js').Game} game - The game instance.
+   * @param {Game} game - The game instance.
    */
-  initContext(_game: import('../../core/game.js').Game) {
+  public initContext(_game: Game) {
     // stub
   }
 }

@@ -1,24 +1,25 @@
+import type { Game } from './game.js';
 export class SoundSprite {
-  game!: any;
-  key!: any;
-  config!: any;
-  autoplayKey!: any;
-  autoplay!: any;
-  sounds!: any;
+  public game!: any;
+  public key!: any;
+  public config!: any;
+  public autoplayKey!: any;
+  public autoplay!: any;
+  public sounds!: any;
   /**
    * TBD.
-   * @param {import('./game.js').Game} game - TBD.
+   * @param {Game} game - TBD.
    * @param {string} key - TBD.
    */
-  constructor(game: import('./game.js').Game, key: string) {
+  public constructor(game: Game, key: string) {
     this.game = game;
     this.key = key;
     this.config = this.game.cache.getJSON(`${key}-audioatlas`);
     this.autoplayKey = null;
     this.autoplay = false;
-    /** @type {{[key: string]: import('./sound.js').Sound}} */
+    /** @type {{[key: string]: Sound}} */
     this.sounds = {};
-    for (let k in this.config.spritemap) {
+    for (const k in this.config.spritemap) {
       const marker = this.config.spritemap[k];
       const sound = this.game.sound.add(this.key);
       sound.addMarker(k, marker.start, marker.end - marker.start, null, marker.loop);
@@ -35,9 +36,9 @@ export class SoundSprite {
    * TBD.
    * @param {string} marker - TBD.
    * @param {number} volume - TBD.
-   * @returns {import('./sound.js').Sound} TBD.
+   * @returns {Sound} TBD.
    */
-  play(marker: string, volume: number = 1) {
+  public play(marker: string, volume = 1) {
     return this.sounds[marker].play(marker, null, volume);
   }
 
@@ -45,9 +46,9 @@ export class SoundSprite {
    * TBD.
    * @param {string} marker - TBD.
    */
-  stop(marker: string) {
+  public stop(marker: string) {
     if (!marker) {
-      for (let key in this.sounds) {
+      for (const key in this.sounds) {
         this.sounds[key].stop();
       }
     } else {
@@ -58,9 +59,9 @@ export class SoundSprite {
   /**
    * TBD.
    * @param {string} marker - TBD.
-   * @returns {import('./sound.js').Sound} TBD.
+   * @returns {Sound} TBD.
    */
-  get(marker: string) {
+  public get(marker: string) {
     return this.sounds[marker];
   }
 }

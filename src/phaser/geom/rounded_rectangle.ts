@@ -2,12 +2,12 @@ import { clone } from './util/rounded_rectangle.js';
 import { GEOM_ROUNDED_RECTANGLE } from '../core/const.js';
 
 export class RoundedRectangle {
-  x: number;
-  y: number;
-  width: number;
-  height: number;
-  radius: number;
-  type: number;
+  public x: number;
+  public y: number;
+  public width: number;
+  public height: number;
+  public radius: number;
+  public type: number;
 
   /**
    * Creates a new RoundedRectangle instance.
@@ -17,7 +17,7 @@ export class RoundedRectangle {
    * @param {number} height - The height of the rectangle (default: 0).
    * @param {number} radius - The corner radius (default: 20).
    */
-  constructor(x: number = 0, y: number = 0, width: number = 0, height: number = 0, radius: number = 20) {
+  public constructor(x = 0, y = 0, width = 0, height = 0, radius = 20) {
     this.x = x;
     this.y = y;
     this.width = width;
@@ -32,7 +32,7 @@ export class RoundedRectangle {
    * @param {number} y - The y coordinate of the point to check.
    * @returns {boolean} True if the point is contained within this rounded rectangle, false otherwise.
    */
-  contains(x: number, y: number) {
+  public contains(x: number, y: number) {
     if (this.width <= 0 || this.height <= 0) {
       return false;
     }
@@ -48,7 +48,7 @@ export class RoundedRectangle {
    * Creates a clone of this rounded rectangle.
    * @returns {RoundedRectangle} A new rounded rectangle with the same values as this one.
    */
-  clone() {
+  public clone() {
     return clone(this);
   }
 }

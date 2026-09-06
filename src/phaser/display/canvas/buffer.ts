@@ -1,16 +1,16 @@
 import { create, removeByCanvas } from './pool.js';
 
 export class CanvasBuffer {
-  width!: any;
-  height!: any;
-  canvas!: any;
-  context!: any;
+  public width!: any;
+  public height!: any;
+  public canvas!: any;
+  public context!: any;
   /**
    * Creates a new CanvasBuffer instance.
    * @param {number} width - The width of the canvas buffer.
    * @param {number} height - The height of the canvas buffer.
    */
-  constructor(width: number, height: number) {
+  public constructor(width: number, height: number) {
     this.width = width;
     this.height = height;
     this.canvas = create(this, this.width, this.height);
@@ -22,7 +22,7 @@ export class CanvasBuffer {
   /**
    * Clears the canvas buffer.
    */
-  clear() {
+  public clear() {
     this.context.setTransform(1, 0, 0, 1, 0, 0);
     this.context.clearRect(0, 0, this.width, this.height);
   }
@@ -32,7 +32,7 @@ export class CanvasBuffer {
    * @param {number} width - The new width of the canvas buffer.
    * @param {number} height - The new height of the canvas buffer.
    */
-  resize(width: number, height: number) {
+  public resize(width: number, height: number) {
     this.width = width;
     this.height = height;
     this.canvas.width = width;
@@ -42,7 +42,7 @@ export class CanvasBuffer {
   /**
    * Destroys the canvas buffer and cleans up resources.
    */
-  destroy() {
+  public destroy() {
     try {
       this.context?.reset();
     } catch {

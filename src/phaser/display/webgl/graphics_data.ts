@@ -1,19 +1,20 @@
 export class GraphicsData {
-  [key: string]: any;
-  gl!: any;
-  color!: any;
-  points!: any;
-  indices!: any;
-  buffer!: any;
-  indexBuffer!: any;
-  mode!: any;
-  alpha!: any;
-  dirty!: any;
+  public glPoints!: Float32Array | null;
+  public glIndicies!: Uint16Array | null;
+  public gl!: any;
+  public color!: any;
+  public points!: any;
+  public indices!: any;
+  public buffer!: any;
+  public indexBuffer!: any;
+  public mode!: any;
+  public alpha!: any;
+  public dirty!: any;
   /**
    * Creates a new GraphicsData instance.
    * @param {WebGLRenderingContext} gl - The WebGL rendering context.
    */
-  constructor(gl: WebGLRenderingContext) {
+  public constructor(gl: WebGLRenderingContext) {
     this.gl = gl;
     // TODO does this need to be split before uploading??
     this.color = [0, 0, 0]; // color split!
@@ -29,7 +30,7 @@ export class GraphicsData {
   /**
    * Destroys this graphics data and cleans up resources.
    */
-  reset() {
+  public reset() {
     this.points = [];
     this.indices = [];
     this.glPoints = null;
@@ -39,8 +40,8 @@ export class GraphicsData {
   /**
    * Updates the graphics data for WebGL rendering.
    */
-  upload() {
-    const gl = this.gl;
+  public upload() {
+    const { gl } = this;
     // this.lastIndex = graphics.graphicsData.length;
     this.glPoints = new Float32Array(this.points);
     gl.bindBuffer(gl.ARRAY_BUFFER, this.buffer);

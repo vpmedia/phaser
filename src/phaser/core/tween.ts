@@ -2,45 +2,44 @@ import * as MathUtils from '../util/math.js';
 import { TWEEN_COMPLETE, TWEEN_LOOPED, TWEEN_PENDING, TWEEN_RUNNING } from './const.js';
 import { Signal } from './signal.js';
 import { TweenData } from './tween_data.js';
+import type { Game } from './game.js';
+import type { DisplayObject } from '../display/display_object.js';
+import type { TweenManager } from './tween_manager.js';
 
 export class Tween {
-  game!: import('./game.js').Game;
-  target!: import('../display/display_object.js').DisplayObject;
-  manager!: import('./tween_manager.js').TweenManager;
-  timeline!: TweenData[];
-  reverse!: boolean;
-  timeScale!: number;
-  repeatCounter!: number;
-  pendingDelete!: boolean;
-  onStart!: Signal;
-  onLoop!: Signal;
-  onRepeat!: Signal;
-  onChildComplete!: Signal;
-  onComplete!: Signal;
-  isRunning!: boolean;
-  current!: number;
-  properties!: any;
-  chainedTween!: Tween | null;
-  isPaused!: boolean;
-  _onUpdateCallback!: Function | null;
-  _onUpdateCallbackContext!: object | null;
-  _pausedTime!: number;
-  _codePaused!: boolean;
-  _hasStarted!: boolean;
+  public game!: Game;
+  public target!: DisplayObject;
+  public manager!: TweenManager;
+  public timeline!: TweenData[];
+  public reverse!: boolean;
+  public timeScale!: number;
+  public repeatCounter!: number;
+  public pendingDelete!: boolean;
+  public onStart!: Signal;
+  public onLoop!: Signal;
+  public onRepeat!: Signal;
+  public onChildComplete!: Signal;
+  public onComplete!: Signal;
+  public isRunning!: boolean;
+  public current!: number;
+  public properties!: any;
+  public chainedTween!: Tween | null;
+  public isPaused!: boolean;
+  public _onUpdateCallback!: Function | null;
+  public _onUpdateCallbackContext!: object | null;
+  public _pausedTime!: number;
+  public _codePaused!: boolean;
+  public _hasStarted!: boolean;
   /**
    * Creates a new Tween instance.
-   * @param {import('../display/display_object.js').DisplayObject} target - The object to tween.
-   * @param {import('./game.js').Game} game - Reference to the Phaser Game instance.
-   * @param {import('./tween_manager.js').TweenManager} manager - Reference to the Tween Manager.
+   * @param {DisplayObject} target - The object to tween.
+   * @param {Game} game - Reference to the Phaser Game instance.
+   * @param {TweenManager} manager - Reference to the Tween Manager.
    */
-  constructor(
-    target: import('../display/display_object.js').DisplayObject,
-    game: import('./game.js').Game,
-    manager: import('./tween_manager.js').TweenManager
-  ) {
+  public constructor(target: DisplayObject, game: Game, manager: TweenManager) {
     this.game = game;
     this.target = target;
-    /** @type {import('./tween_manager.js').TweenManager} */
+    /** @type {TweenManager} */
     this.manager = manager;
     /** @type {TweenData[]} */
     this.timeline = [];
@@ -91,14 +90,14 @@ export class Tween {
    * @param {boolean} yoyo - Whether to reverse the tween on repeat.
    * @returns {Tween} This Tween object for chaining.
    */
-  to(
+  public to(
     properties: any,
-    duration: number = 1000,
+    duration = 1000,
     ease: string | Function = 'Linear',
-    autoStart: boolean = false,
-    delay: number = 0,
-    repeat: number = 0,
-    yoyo: boolean = false
+    autoStart = false,
+    delay = 0,
+    repeat = 0,
+    yoyo = false
   ) {
     if (typeof ease === 'string' && this.manager.easeMap[ease]) {
       ease = this.manager.easeMap[ease];
@@ -124,14 +123,14 @@ export class Tween {
    * @param {boolean} yoyo - Whether to reverse the tween on repeat.
    * @returns {Tween} This Tween object for chaining.
    */
-  from(
+  public from(
     properties: any,
-    duration: number = 1000,
+    duration = 1000,
     ease: string | Function = 'Linear',
-    autoStart: boolean = false,
-    delay: number = 0,
-    repeat: number = 0,
-    yoyo: boolean = false
+    autoStart = false,
+    delay = 0,
+    repeat = 0,
+    yoyo = false
   ) {
     if (typeof ease === 'string' && this.manager.easeMap[ease]) {
       ease = this.manager.easeMap[ease];
@@ -152,26 +151,25 @@ export class Tween {
    * @param {number} index - The index to start from in the timeline.
    * @returns {Tween} This Tween object for chaining.
    */
-  start(index: number = 0) {
+  public start(index = 0) {
     if (this.game === null || this.target === null || this.timeline.length === 0 || this.isRunning) {
       return this;
     }
     //  Populate the tween data
-    for (let i = 0; i < this.timeline.length; i += 1) {
+    for (const tweenData of this.timeline) {
       //  Build our master property list with the starting values
-      const keys = Object.keys(this.timeline[i].vEnd);
-      for (let k = 0; k < keys.length; k += 1) {
-        const property = keys[k];
+      const keys = Object.keys(tweenData.vEnd);
+      for (const property of keys) {
         const targetProperties = this.target as unknown as Record<string, number>;
-        this.properties[property] = targetProperties[property] || 0;
+        this.properties[property] = targetProperties[property] ?? 0;
         if (!Array.isArray(this.properties[property])) {
           //  Ensures we're using numbers, not strings
           this.properties[property] *= 1;
         }
       }
     }
-    for (let i = 0; i < this.timeline.length; i += 1) {
-      this.timeline[i].loadValues();
+    for (const tweenData of this.timeline) {
+      tweenData.loadValues();
     }
     this.manager.add(this);
     this.isRunning = true;
@@ -179,7 +177,7 @@ export class Tween {
       index = 0;
     }
     this.current = index;
-    this.timeline[this.current].start();
+    this.timeline[this.current]!.start();
     return this;
   }
 
@@ -188,7 +186,7 @@ export class Tween {
    * @param {boolean} complete - Whether to dispatch the complete event.
    * @returns {Tween} This Tween object for chaining.
    */
-  stop(complete: boolean = false) {
+  public stop(complete = false) {
     this.isRunning = false;
     this._onUpdateCallback = null;
     this._onUpdateCallbackContext = null;
@@ -210,7 +208,7 @@ export class Tween {
    * @param {number} index - The index in the timeline to update.
    * @returns {Tween} This Tween object for chaining.
    */
-  updateTweenData(property: string, value: any, index: number = 0) {
+  public updateTweenData(property: string, value: any, index = 0) {
     if (this.timeline.length === 0) {
       return this;
     }
@@ -230,7 +228,7 @@ export class Tween {
    * @param {number} index - The index in the timeline to apply the delay to.
    * @returns {Tween} This Tween object for chaining.
    */
-  delay(duration: number, index: number) {
+  public delay(duration: number, index: number) {
     return this.updateTweenData('delay', duration, index);
   }
 
@@ -241,7 +239,7 @@ export class Tween {
    * @param {number} index - The index in the timeline to apply the repeat to.
    * @returns {Tween} This Tween object for chaining.
    */
-  repeat(total: number, repeatDelay: number = 0, index: number = 0) {
+  public repeat(total: number, repeatDelay = 0, index = 0) {
     this.updateTweenData('repeatCounter', total, index);
     return this.updateTweenData('repeatDelay', repeatDelay, index);
   }
@@ -252,7 +250,7 @@ export class Tween {
    * @param {number} index - The index in the timeline to apply the delay to.
    * @returns {Tween} This Tween object for chaining.
    */
-  repeatDelay(duration: number, index: number) {
+  public repeatDelay(duration: number, index: number) {
     return this.updateTweenData('repeatDelay', duration, index);
   }
 
@@ -263,7 +261,7 @@ export class Tween {
    * @param {number} index - The index in the timeline to apply yoyo to.
    * @returns {Tween} This Tween object for chaining.
    */
-  yoyo(enable: boolean, yoyoDelay: number = 0, index: number = 0) {
+  public yoyo(enable: boolean, yoyoDelay = 0, index = 0) {
     this.updateTweenData('yoyo', enable, index);
     return this.updateTweenData('yoyoDelay', yoyoDelay, index);
   }
@@ -274,7 +272,7 @@ export class Tween {
    * @param {number} index - The index in the timeline to apply the delay to.
    * @returns {Tween} This Tween object for chaining.
    */
-  yoyoDelay(duration: number, index: number) {
+  public yoyoDelay(duration: number, index: number) {
     return this.updateTweenData('yoyoDelay', duration, index);
   }
 
@@ -284,7 +282,7 @@ export class Tween {
    * @param {number} index - The index in the timeline to apply easing to.
    * @returns {Tween} This Tween object for chaining.
    */
-  easing(ease: string | Function, index: number) {
+  public easing(ease: string | Function, index: number) {
     if (typeof ease === 'string' && this.manager.easeMap[ease]) {
       ease = this.manager.easeMap[ease];
     }
@@ -298,7 +296,7 @@ export class Tween {
    * @param {number} index - The index in the timeline to apply interpolation to.
    * @returns {Tween} This Tween object for chaining.
    */
-  interpolation(interpolation: Function, context: any = MathUtils, index: number = 0) {
+  public interpolation(interpolation: Function, context: any = MathUtils, index = 0) {
     this.updateTweenData('interpolationFunction', interpolation, index);
     return this.updateTweenData('interpolationContext', context, index);
   }
@@ -308,7 +306,7 @@ export class Tween {
    * @param {number} total - The number of times to repeat (-1 for infinite).
    * @returns {Tween} This Tween object for chaining.
    */
-  repeatAll(total: number = 0) {
+  public repeatAll(total = 0) {
     this.repeatCounter = total;
     return this;
   }
@@ -318,7 +316,7 @@ export class Tween {
    * @param {...any} args - The tweens to chain.
    * @returns {Tween} This Tween object for chaining.
    */
-  chain(...args: any[]) {
+  public chain(...args: any[]) {
     let i = args.length;
     while (i) {
       i -= 1;
@@ -336,7 +334,7 @@ export class Tween {
    * @param {boolean} value - Whether to loop infinitely.
    * @returns {Tween} This Tween object for chaining.
    */
-  loop(value: boolean = true) {
+  public loop(value = true) {
     this.repeatCounter = value ? -1 : 0;
     return this;
   }
@@ -347,7 +345,7 @@ export class Tween {
    * @param {object} callbackContext - The context in which to call the callback.
    * @returns {Tween} This Tween object for chaining.
    */
-  onUpdateCallback(callback: Function, callbackContext: any) {
+  public onUpdateCallback(callback: Function, callbackContext: any) {
     this._onUpdateCallback = callback;
     this._onUpdateCallbackContext = callbackContext;
     return this;
@@ -356,7 +354,7 @@ export class Tween {
   /**
    * Pauses the tween.
    */
-  pause() {
+  public pause() {
     this.isPaused = true;
     this._codePaused = true;
     this._pausedTime = this.game.time.time;
@@ -365,7 +363,7 @@ export class Tween {
   /**
    * Internal method to pause the tween.
    */
-  _pause() {
+  public _pause() {
     if (!this._codePaused) {
       this.isPaused = true;
       this._pausedTime = this.game.time.time;
@@ -375,13 +373,13 @@ export class Tween {
   /**
    * Resumes the tween.
    */
-  resume() {
+  public resume() {
     if (this.isPaused) {
       this.isPaused = false;
       this._codePaused = false;
-      for (let i = 0; i < this.timeline.length; i += 1) {
-        if (!this.timeline[i].isRunning) {
-          this.timeline[i].startTime += this.game.time.time - this._pausedTime;
+      for (const tweenData of this.timeline) {
+        if (!tweenData.isRunning) {
+          tweenData.startTime += this.game.time.time - this._pausedTime;
         }
       }
     }
@@ -390,7 +388,7 @@ export class Tween {
   /**
    * Internal method to resume the tween.
    */
-  _resume() {
+  public _resume() {
     if (!this._codePaused) {
       this.resume();
     }
@@ -401,14 +399,14 @@ export class Tween {
    * @param {number} time - The current game time.
    * @returns {boolean} True if the tween should continue running, false if it's complete.
    */
-  update(time: number) {
+  public update(time: number) {
     if (this.pendingDelete || !this.target) {
       return false;
     }
     if (this.isPaused) {
       return true;
     }
-    const status = this.timeline[this.current].update(time);
+    const status = this.timeline[this.current]!.update(time);
     if (status === TWEEN_PENDING) {
       return true;
     } else if (status === TWEEN_RUNNING) {
@@ -420,14 +418,14 @@ export class Tween {
         this._onUpdateCallback.call(
           this._onUpdateCallbackContext,
           this,
-          this.timeline[this.current].value,
+          this.timeline[this.current]!.value,
           this.timeline[this.current]
         );
       }
       //  In case the update callback modifies this tween
       return this.isRunning;
     } else if (status === TWEEN_LOOPED) {
-      if (this.timeline[this.current].repeatCounter === -1) {
+      if (this.timeline[this.current]!.repeatCounter === -1) {
         this.onLoop.dispatch(this.target, this);
       } else {
         this.onRepeat.dispatch(this.target, this);
@@ -452,13 +450,13 @@ export class Tween {
       if (complete) {
         //  We've reached the start or end of the child tweens (depending on Tween.reverse), should we repeat it?
         if (this.repeatCounter === -1) {
-          this.timeline[this.current].start();
+          this.timeline[this.current]!.start();
           this.onLoop.dispatch(this.target, this);
           return true;
         } else if (this.repeatCounter > 0) {
           this.repeatCounter -= 1;
 
-          this.timeline[this.current].start();
+          this.timeline[this.current]!.start();
           this.onRepeat.dispatch(this.target, this);
           return true;
         }
@@ -473,7 +471,7 @@ export class Tween {
       }
       //  We've still got some children to go
       this.onChildComplete.dispatch(this.target, this);
-      this.timeline[this.current].start();
+      this.timeline[this.current]!.start();
       return true;
     }
     return false;
@@ -485,29 +483,28 @@ export class Tween {
    * @param {object[]} data - The array to store the generated data in.
    * @returns {object[]} The populated data array.
    */
-  generateData(frameRate: number = 60, data: any[] = []) {
+  public generateData(frameRate = 60, data: any[] = []) {
     if (this.game === null || this.target === null) {
       return null;
     }
     //  Populate the tween data
-    for (let i = 0; i < this.timeline.length; i += 1) {
+    for (const tweenData of this.timeline) {
       //  Build our master property list with the starting values
-      const keys = Object.keys(this.timeline[i].vEnd);
-      for (let k = 0; k < keys.length; k += 1) {
-        const property = keys[k];
+      const keys = Object.keys(tweenData.vEnd);
+      for (const property of keys) {
         const targetProperties = this.target as unknown as Record<string, number>;
-        this.properties[property] = targetProperties[property] || 0;
+        this.properties[property] = targetProperties[property] ?? 0;
         if (!Array.isArray(this.properties[property])) {
           //  Ensures we're using numbers, not strings
           this.properties[property] *= 1;
         }
       }
     }
-    for (let i = 0; i < this.timeline.length; i += 1) {
-      this.timeline[i].loadValues();
+    for (const tweenData of this.timeline) {
+      tweenData.loadValues();
     }
-    for (let i = 0; i < this.timeline.length; i += 1) {
-      data = data.concat(this.timeline[i].generateData(frameRate));
+    for (const tweenData of this.timeline) {
+      data = data.concat(tweenData.generateData(frameRate));
     }
     return data;
   }
@@ -516,10 +513,10 @@ export class Tween {
    * Gets the total duration of all timeline entries.
    * @returns {number} The total duration in milliseconds.
    */
-  get totalDuration() {
+  public get totalDuration() {
     let total = 0;
-    for (let i = 0; i < this.timeline.length; i += 1) {
-      total += this.timeline[i].duration;
+    for (const tweenData of this.timeline) {
+      total += tweenData.duration;
     }
     return total;
   }

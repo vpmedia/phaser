@@ -2,24 +2,24 @@ import type { DisplayObject } from '../display/display_object.js';
 import { Signal } from './signal.js';
 
 export class EventManager {
-  parent: DisplayObject | null;
-  _onAddedToGroup: Signal | null;
-  _onRemovedFromGroup: Signal | null;
-  _onDestroy: Signal | null;
-  _onOutOfBounds: Signal | null;
-  _onEnterBounds: Signal | null;
-  _onInputOver: Signal | null;
-  _onInputOut: Signal | null;
-  _onInputDown: Signal | null;
-  _onInputUp: Signal | null;
-  _onDragStart: Signal | null;
-  _onDragUpdate: Signal | null;
-  _onDragStop: Signal | null;
-  _onAnimationStart: Signal | null;
-  _onAnimationComplete: Signal | null;
-  _onAnimationLoop: Signal | null;
+  public parent: DisplayObject | null;
+  public _onAddedToGroup: Signal | null;
+  public _onRemovedFromGroup: Signal | null;
+  public _onDestroy: Signal | null;
+  public _onOutOfBounds: Signal | null;
+  public _onEnterBounds: Signal | null;
+  public _onInputOver: Signal | null;
+  public _onInputOut: Signal | null;
+  public _onInputDown: Signal | null;
+  public _onInputUp: Signal | null;
+  public _onDragStart: Signal | null;
+  public _onDragUpdate: Signal | null;
+  public _onDragStop: Signal | null;
+  public _onAnimationStart: Signal | null;
+  public _onAnimationComplete: Signal | null;
+  public _onAnimationLoop: Signal | null;
 
-  constructor(sprite: DisplayObject) {
+  public constructor(sprite: DisplayObject) {
     this.parent = sprite;
     this._onAddedToGroup = null;
     this._onRemovedFromGroup = null;
@@ -38,7 +38,7 @@ export class EventManager {
     this._onAnimationLoop = null;
   }
 
-  destroy(): void {
+  public destroy(): void {
     this.parent = null;
     if (this._onDestroy) {
       this._onDestroy.dispose();
@@ -87,181 +87,151 @@ export class EventManager {
     }
   }
 
-  get onAddedToGroup(): Signal {
-    if (!this._onAddedToGroup) {
-      this._onAddedToGroup = new Signal();
-    }
+  public get onAddedToGroup(): Signal {
+    this._onAddedToGroup ??= new Signal();
     return this._onAddedToGroup;
   }
-  onAddedToGroup$dispatch(...args: unknown[]): void {
+  public onAddedToGroup$dispatch(...args: unknown[]): void {
     if (this._onAddedToGroup) {
       this._onAddedToGroup.dispatch(...args);
     }
   }
 
-  get onRemovedFromGroup(): Signal {
-    if (!this._onRemovedFromGroup) {
-      this._onRemovedFromGroup = new Signal();
-    }
+  public get onRemovedFromGroup(): Signal {
+    this._onRemovedFromGroup ??= new Signal();
     return this._onRemovedFromGroup;
   }
-  onRemovedFromGroup$dispatch(...args: unknown[]): void {
+  public onRemovedFromGroup$dispatch(...args: unknown[]): void {
     if (this._onRemovedFromGroup) {
       this._onRemovedFromGroup.dispatch(...args);
     }
   }
 
-  get onDestroy(): Signal {
-    if (!this._onDestroy) {
-      this._onDestroy = new Signal();
-    }
+  public get onDestroy(): Signal {
+    this._onDestroy ??= new Signal();
     return this._onDestroy;
   }
-  onDestroy$dispatch(...args: unknown[]): void {
+  public onDestroy$dispatch(...args: unknown[]): void {
     if (this._onDestroy) {
       this._onDestroy.dispatch(...args);
     }
   }
 
-  get onOutOfBounds(): Signal {
-    if (!this._onOutOfBounds) {
-      this._onOutOfBounds = new Signal();
-    }
+  public get onOutOfBounds(): Signal {
+    this._onOutOfBounds ??= new Signal();
     return this._onOutOfBounds;
   }
-  onOutOfBounds$dispatch(...args: unknown[]): void {
+  public onOutOfBounds$dispatch(...args: unknown[]): void {
     if (this._onOutOfBounds) {
       this._onOutOfBounds.dispatch(...args);
     }
   }
 
-  get onEnterBounds(): Signal {
-    if (!this._onEnterBounds) {
-      this._onEnterBounds = new Signal();
-    }
+  public get onEnterBounds(): Signal {
+    this._onEnterBounds ??= new Signal();
     return this._onEnterBounds;
   }
-  onEnterBounds$dispatch(...args: unknown[]): void {
+  public onEnterBounds$dispatch(...args: unknown[]): void {
     if (this._onEnterBounds) {
       this._onEnterBounds.dispatch(...args);
     }
   }
 
-  get onInputOver(): Signal {
-    if (!this._onInputOver) {
-      this._onInputOver = new Signal();
-    }
+  public get onInputOver(): Signal {
+    this._onInputOver ??= new Signal();
     return this._onInputOver;
   }
-  onInputOver$dispatch(...args: unknown[]): void {
+  public onInputOver$dispatch(...args: unknown[]): void {
     if (this._onInputOver) {
       this._onInputOver.dispatch(...args);
     }
   }
 
-  get onInputOut(): Signal {
-    if (!this._onInputOut) {
-      this._onInputOut = new Signal();
-    }
+  public get onInputOut(): Signal {
+    this._onInputOut ??= new Signal();
     return this._onInputOut;
   }
-  onInputOut$dispatch(...args: unknown[]): void {
+  public onInputOut$dispatch(...args: unknown[]): void {
     if (this._onInputOut) {
       this._onInputOut.dispatch(...args);
     }
   }
 
-  get onInputDown(): Signal {
-    if (!this._onInputDown) {
-      this._onInputDown = new Signal();
-    }
+  public get onInputDown(): Signal {
+    this._onInputDown ??= new Signal();
     return this._onInputDown;
   }
-  onInputDown$dispatch(...args: unknown[]): void {
+  public onInputDown$dispatch(...args: unknown[]): void {
     if (this._onInputDown) {
       this._onInputDown.dispatch(...args);
     }
   }
 
-  get onInputUp(): Signal {
-    if (!this._onInputUp) {
-      this._onInputUp = new Signal();
-    }
+  public get onInputUp(): Signal {
+    this._onInputUp ??= new Signal();
     return this._onInputUp;
   }
-  onInputUp$dispatch(...args: unknown[]): void {
+  public onInputUp$dispatch(...args: unknown[]): void {
     if (this._onInputUp) {
       this._onInputUp.dispatch(...args);
     }
   }
 
-  get onDragStart(): Signal {
-    if (!this._onDragStart) {
-      this._onDragStart = new Signal();
-    }
+  public get onDragStart(): Signal {
+    this._onDragStart ??= new Signal();
     return this._onDragStart;
   }
-  onDragStart$dispatch(...args: unknown[]): void {
+  public onDragStart$dispatch(...args: unknown[]): void {
     if (this._onDragStart) {
       this._onDragStart.dispatch(...args);
     }
   }
 
-  get onDragUpdate(): Signal {
-    if (!this._onDragUpdate) {
-      this._onDragUpdate = new Signal();
-    }
+  public get onDragUpdate(): Signal {
+    this._onDragUpdate ??= new Signal();
     return this._onDragUpdate;
   }
-  onDragUpdate$dispatch(...args: unknown[]): void {
+  public onDragUpdate$dispatch(...args: unknown[]): void {
     if (this._onDragUpdate) {
       this._onDragUpdate.dispatch(...args);
     }
   }
 
-  get onDragStop(): Signal {
-    if (!this._onDragStop) {
-      this._onDragStop = new Signal();
-    }
+  public get onDragStop(): Signal {
+    this._onDragStop ??= new Signal();
     return this._onDragStop;
   }
-  onDragStop$dispatch(...args: unknown[]): void {
+  public onDragStop$dispatch(...args: unknown[]): void {
     if (this._onDragStop) {
       this._onDragStop.dispatch(...args);
     }
   }
 
-  get onAnimationStart(): Signal {
-    if (!this._onAnimationStart) {
-      this._onAnimationStart = new Signal();
-    }
+  public get onAnimationStart(): Signal {
+    this._onAnimationStart ??= new Signal();
     return this._onAnimationStart;
   }
-  onAnimationStart$dispatch(...args: unknown[]): void {
+  public onAnimationStart$dispatch(...args: unknown[]): void {
     if (this._onAnimationStart) {
       this._onAnimationStart.dispatch(...args);
     }
   }
 
-  get onAnimationComplete(): Signal {
-    if (!this._onAnimationComplete) {
-      this._onAnimationComplete = new Signal();
-    }
+  public get onAnimationComplete(): Signal {
+    this._onAnimationComplete ??= new Signal();
     return this._onAnimationComplete;
   }
-  onAnimationComplete$dispatch(...args: unknown[]): void {
+  public onAnimationComplete$dispatch(...args: unknown[]): void {
     if (this._onAnimationComplete) {
       this._onAnimationComplete.dispatch(...args);
     }
   }
 
-  get onAnimationLoop(): Signal {
-    if (!this._onAnimationLoop) {
-      this._onAnimationLoop = new Signal();
-    }
+  public get onAnimationLoop(): Signal {
+    this._onAnimationLoop ??= new Signal();
     return this._onAnimationLoop;
   }
-  onAnimationLoop$dispatch(...args: unknown[]): void {
+  public onAnimationLoop$dispatch(...args: unknown[]): void {
     if (this._onAnimationLoop) {
       this._onAnimationLoop.dispatch(...args);
     }

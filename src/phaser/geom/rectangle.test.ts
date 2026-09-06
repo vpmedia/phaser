@@ -1,4 +1,4 @@
-import { expect } from 'vitest';
+import { expect, describe, it } from 'vitest';
 import { TOP_LEFT } from '../core/const.js';
 import { Point } from './point.js';
 import { Rectangle } from './rectangle.js';
@@ -328,7 +328,7 @@ describe('Rectangle', () => {
   describe('top', () => {
     it('should get and set the top coordinate of this rectangle', () => {
       const rect = new Rectangle(0, 0, 10, 10);
-      const top = rect.top;
+      const { top } = rect;
       expect(top).toBe(rect.y);
       rect.top = 1000;
       expect(rect.top).toBe(1000);
@@ -338,7 +338,7 @@ describe('Rectangle', () => {
   describe('left', () => {
     it('should get and set the left coordinate of this rectangle', () => {
       const rect = new Rectangle(0, 0, 10, 10);
-      const left = rect.left;
+      const { left } = rect;
       expect(left).toBe(rect.x);
       rect.left = 1500;
       expect(rect.left).toBe(1500);
@@ -348,7 +348,7 @@ describe('Rectangle', () => {
   describe('right', () => {
     it('should get and set the right coordinate of this rectangle', () => {
       const rect = new Rectangle(0, 0, 10, 10);
-      const right = rect.right;
+      const { right } = rect;
       expect(right).toBe(rect.x + rect.width);
       rect.right = 1600;
       expect(rect.right).toBe(1600);
@@ -358,7 +358,7 @@ describe('Rectangle', () => {
   describe('bottom', () => {
     it('should get and set the bottom coordinate of this rectangle', () => {
       const rect = new Rectangle(0, 0, 10, 10);
-      const bottom = rect.bottom;
+      const { bottom } = rect;
       expect(bottom).toBe(rect.y + rect.height);
       rect.bottom = 1700;
       expect(rect.bottom).toBe(1700);
@@ -368,7 +368,7 @@ describe('Rectangle', () => {
   describe('topLeft', () => {
     it('should get and set the top-left coordinates of this rectangle', () => {
       const rect = new Rectangle(0, 0, 10, 10);
-      const topLeft = rect.topLeft;
+      const { topLeft } = rect;
       expect(topLeft.x).toBe(rect.left);
       expect(topLeft.y).toBe(rect.top);
       rect.topLeft = new Point(1800, 1900);
@@ -380,7 +380,7 @@ describe('Rectangle', () => {
   describe('topRight', () => {
     it('should get and set the top-right coordinates of this rectangle', () => {
       const rect = new Rectangle(0, 0, 10, 10);
-      const topRight = rect.topRight;
+      const { topRight } = rect;
       expect(topRight.x).toBe(rect.right);
       expect(topRight.y).toBe(rect.top);
       rect.topRight = new Point(2000, 2100);
@@ -392,7 +392,7 @@ describe('Rectangle', () => {
   describe('bottomLeft', () => {
     it('should get and set the bottom-left coordinates of this rectangle', () => {
       const rect = new Rectangle(0, 0, 10, 10);
-      const bottomLeft = rect.bottomLeft;
+      const { bottomLeft } = rect;
       expect(bottomLeft.x).toBe(rect.left);
       expect(bottomLeft.y).toBe(rect.bottom);
       rect.bottomLeft = new Point(2200, 2300);
@@ -404,7 +404,7 @@ describe('Rectangle', () => {
   describe('bottomRight', () => {
     it('should get and set the bottom-right coordinates of this rectangle', () => {
       const rect = new Rectangle(0, 0, 10, 10);
-      const bottomRight = rect.bottomRight;
+      const { bottomRight } = rect;
       expect(bottomRight.x).toBe(rect.right);
       expect(bottomRight.y).toBe(rect.bottom);
       rect.bottomRight = new Point(2400, 2500);
@@ -416,7 +416,7 @@ describe('Rectangle', () => {
   describe('centerX', () => {
     it('should get and set the center x coordinate of this rectangle', () => {
       const rect = new Rectangle(0, 0, 10, 10);
-      const centerX = rect.centerX;
+      const { centerX } = rect;
       expect(centerX).toBe(rect.x + rect.halfWidth);
       rect.centerX = 2600;
       expect(rect.centerX).toBe(2600);
@@ -426,7 +426,7 @@ describe('Rectangle', () => {
   describe('centerY', () => {
     it('should get and set the center y coordinate of this rectangle', () => {
       const rect = new Rectangle(0, 0, 10, 10);
-      const centerY = rect.centerY;
+      const { centerY } = rect;
       expect(centerY).toBe(rect.y + rect.halfHeight);
       rect.centerY = 2700;
       expect(rect.centerY).toBe(2700);
@@ -436,7 +436,7 @@ describe('Rectangle', () => {
   describe('randomX', () => {
     it('should return a random x coordinate within this rectangle', () => {
       const rect = new Rectangle(0, 0, 10, 10);
-      const randomX = rect.randomX;
+      const { randomX } = rect;
       expect(randomX >= rect.left && randomX <= rect.right).toBe(true);
     });
   });
@@ -444,7 +444,7 @@ describe('Rectangle', () => {
   describe('randomY', () => {
     it('should return a random y coordinate within this rectangle', () => {
       const rect = new Rectangle(0, 0, 10, 10);
-      const randomY = rect.randomY;
+      const { randomY } = rect;
       expect(randomY >= rect.top && randomY <= rect.bottom).toBe(true);
     });
   });
@@ -452,7 +452,7 @@ describe('Rectangle', () => {
   describe('empty', () => {
     it('should get and set whether this rectangle is empty or not', () => {
       const rect = new Rectangle(0, 0, 10, 10);
-      const empty = rect.empty;
+      const { empty } = rect;
       expect(empty).toBe(!rect.width || !rect.height);
       rect.empty = true;
       expect(rect.empty).toBe(true);

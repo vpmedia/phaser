@@ -1,3 +1,6 @@
+import type { Game } from '../../core/game.js';
+import type { Stage } from '../../core/stage.js';
+import type { BaseTexture } from './base_texture.js';
 import {
   BLEND_ADD,
   BLEND_COLOR,
@@ -29,32 +32,34 @@ import * as WebGLMaskManager from './mask_manager.js';
 import { WebGLShaderManager } from './shader_manager.js';
 import { WebGLSpriteBatch } from './sprite_batch.js';
 import { WebGLStencilManager } from './stencil_manager.js';
+import type { IdentifiedWebGLRenderingContext } from './util.js';
 import { getWebGLContextErrorCode, getWebGLContextErrorName } from './util.js';
 
 export class WebGLRenderer {
-  [key: string]: any;
-  type!: any;
-  resolution!: any;
-  autoResize!: any;
-  contextLost!: any;
-  clearBeforeRender!: any;
-  width!: any;
-  height!: any;
-  view!: any;
-  _contextOptions!: any;
-  projection!: any;
-  offset!: any;
-  shaderManager!: any;
-  spriteBatch!: any;
-  filterManager!: any;
-  stencilManager!: any;
-  blendModeManager!: any;
-  renderSession!: any;
+  public gl!: IdentifiedWebGLRenderingContext;
+  public glContextId!: number;
+  public type!: any;
+  public resolution!: any;
+  public autoResize!: any;
+  public contextLost!: any;
+  public clearBeforeRender!: any;
+  public width!: any;
+  public height!: any;
+  public view!: any;
+  public _contextOptions!: any;
+  public projection!: any;
+  public offset!: any;
+  public shaderManager!: any;
+  public spriteBatch!: any;
+  public filterManager!: any;
+  public stencilManager!: any;
+  public blendModeManager!: any;
+  public renderSession!: any;
   /**
    * Creates a new WebGLRenderer instance.
-   * @param {import('../../core/game.js').Game} game - The game instance.
+   * @param {Game} game - The game instance.
    */
-  constructor(game: import('../../core/game.js').Game) {
+  public constructor(game: Game) {
     /** @type {number} */
     this.type = RENDER_WEBGL;
     this.resolution = game.config.resolution;
@@ -98,8 +103,8 @@ export class WebGLRenderer {
   /**
    * Destroys this renderer and cleans up resources.
    */
-  destroy() {
-    window.PhaserRegistry.GL_CONTEXTS[this.glContextId] = null;
+  public destroy() {
+    globalThis.PhaserRegistry.GL_CONTEXTS[this.glContextId] = null;
     this.projection = null;
     this.offset = null;
     this.shaderManager.destroy();
@@ -116,43 +121,35 @@ export class WebGLRenderer {
         loseContextExt.loseContext();
       }
     }
-    this.gl = null;
     this.renderSession = null;
     remove(this);
-    window.PhaserRegistry.INSTANCES[this.glContextId] = null;
-    window.PhaserRegistry.GL_CONTEXT_ID -= 1;
+    globalThis.PhaserRegistry.INSTANCES[this.glContextId] = null;
+    globalThis.PhaserRegistry.GL_CONTEXT_ID -= 1;
   }
 
   /**
    * Initializes the WebGL registry.
    */
-  initRegistry() {
-    if (!window.PhaserRegistry.GL_CONTEXT_ID) {
-      window.PhaserRegistry.GL_CONTEXT_ID = 0;
-    }
-    if (!window.PhaserRegistry.GL_CONTEXTS) {
-      window.PhaserRegistry.GL_CONTEXTS = [];
-    }
-    if (!window.PhaserRegistry.INSTANCES) {
-      window.PhaserRegistry.INSTANCES = [];
-    }
+  public initRegistry() {
+    globalThis.PhaserRegistry.GL_CONTEXT_ID ??= 0;
+    globalThis.PhaserRegistry.GL_CONTEXTS ??= [];
+    globalThis.PhaserRegistry.INSTANCES ??= [];
   }
 
   /**
    * Initializes the WebGL context for rendering.
-   * @param {import('../../core/game.js').Game} game - The game instance.
+   * @param {Game} game - The game instance.
    * @throws {Error}
    */
-  initContext(game: import('../../core/game.js').Game) {
+  public initContext(game: Game) {
     game.logger.info('initContext');
     // TODO: view.addEventListener('webglcontextcreationerror', this.onWebGLContextCreationError, false);
     /** @type {WebGLRenderingContext & { id: number }} */
-    // @ts-ignore
-    const gl = this.view.getContext('webgl', this._contextOptions);
-    this.gl = gl;
+    const gl = this.view.getContext('webgl', this._contextOptions) as IdentifiedWebGLRenderingContext | null;
     if (!gl) {
       throw new Error(ENGINE_ERROR_CREATING_WEBGL_CONTEXT);
     }
+    this.gl = gl;
     const errorCode = getWebGLContextErrorCode(gl);
     if (errorCode) {
       const errorName = getWebGLContextErrorName(errorCode);
@@ -163,11 +160,11 @@ export class WebGLRenderer {
     }
     // set current context
     this.initRegistry();
-    this.glContextId = window.PhaserRegistry.GL_CONTEXT_ID;
-    gl.id = window.PhaserRegistry.GL_CONTEXT_ID;
-    window.PhaserRegistry.GL_CONTEXTS[this.glContextId] = gl;
-    window.PhaserRegistry.INSTANCES[this.glContextId] = this;
-    window.PhaserRegistry.GL_CONTEXT_ID += 1;
+    this.glContextId = globalThis.PhaserRegistry.GL_CONTEXT_ID;
+    gl.id = globalThis.PhaserRegistry.GL_CONTEXT_ID;
+    globalThis.PhaserRegistry.GL_CONTEXTS[this.glContextId] = gl;
+    globalThis.PhaserRegistry.INSTANCES[this.glContextId] = this;
+    globalThis.PhaserRegistry.GL_CONTEXT_ID += 1;
     // set default settings
     gl.disable(gl.DEPTH_TEST);
     gl.disable(gl.CULL_FACE);
@@ -185,13 +182,13 @@ export class WebGLRenderer {
 
   /**
    * Renders the stage to WebGL.
-   * @param {import('../../core/stage.js').Stage} stage - The root stage to render.
+   * @param {Stage} stage - The root stage to render.
    */
-  render(stage: import('../../core/stage.js').Stage) {
+  public render(stage: Stage) {
     if (this.contextLost) {
       return;
     }
-    const gl = this.gl;
+    const { gl } = this;
     // -- Does this need to be set every frame? -- //
     // gl.viewport(0, 0, this.width, this.height);
     // make sure we are bound to the main frame buffer
@@ -207,12 +204,12 @@ export class WebGLRenderer {
 
   /**
    * Renders a display object to WebGL.
-   * @param {import('../../display/display_object.js').DisplayObject} displayObject - The display object to render.
+   * @param {DisplayObject} displayObject - The display object to render.
    * @param {Point} projection - The projection matrix.
    * @param {object} buffer - The render buffer.
-   * @param {import('../../geom/matrix.js').Matrix} matrix - The transformation matrix.
+   * @param {Matrix} matrix - The transformation matrix.
    */
-  renderDisplayObject(displayObject: any, projection: Point, buffer?: any, matrix?: any) {
+  public renderDisplayObject(displayObject: any, projection: Point, buffer?: any, matrix?: any) {
     this.renderSession.blendModeManager.setBlendMode(BLEND_NORMAL);
     // reset the render session data..
     this.renderSession.drawCount = 0;
@@ -237,7 +234,7 @@ export class WebGLRenderer {
    * @param {number} width - The new width of the canvas.
    * @param {number} height - The new height of the canvas.
    */
-  resize(width: number, height: number) {
+  public resize(width: number, height: number) {
     this.width = width * this.resolution;
     this.height = height * this.resolution;
     this.view.width = this.width;
@@ -253,17 +250,15 @@ export class WebGLRenderer {
 
   /**
    * Updates a texture in the WebGL context.
-   * @param {import('./base_texture.js').BaseTexture} texture - The base texture to update.
+   * @param {BaseTexture} texture - The base texture to update.
    * @returns {boolean} Whether the update was successful.
    */
-  updateTexture(texture: import('./base_texture.js').BaseTexture) {
+  public updateTexture(texture: BaseTexture) {
     if (!texture.hasLoaded) {
       return false;
     }
-    const gl = this.gl;
-    if (!texture._glTextures[gl.id]) {
-      texture._glTextures[gl.id] = gl.createTexture();
-    }
+    const { gl } = this;
+    texture._glTextures[gl.id] ??= gl.createTexture();
     gl.bindTexture(gl.TEXTURE_2D, texture._glTextures[gl.id]);
     gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, texture.premultipliedAlpha);
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, texture.source);
@@ -297,11 +292,11 @@ export class WebGLRenderer {
   /**
    * Maps blend modes to WebGL rendering operations.
    */
-  mapBlendModes() {
-    if (window.PhaserRegistry.blendModesWebGL) {
+  public mapBlendModes() {
+    if (globalThis.PhaserRegistry.blendModesWebGL) {
       return;
     }
-    const gl = this.gl;
+    const { gl } = this;
     const b = [];
     b[BLEND_NORMAL] = [gl.ONE, gl.ONE_MINUS_SRC_ALPHA];
     b[BLEND_ADD] = [gl.SRC_ALPHA, gl.DST_ALPHA];
@@ -320,6 +315,6 @@ export class WebGLRenderer {
     b[BLEND_SATURATION] = [gl.ONE, gl.ONE_MINUS_SRC_ALPHA];
     b[BLEND_COLOR] = [gl.ONE, gl.ONE_MINUS_SRC_ALPHA];
     b[BLEND_LUMINOSITY] = [gl.ONE, gl.ONE_MINUS_SRC_ALPHA];
-    window.PhaserRegistry.blendModesWebGL = b;
+    globalThis.PhaserRegistry.blendModesWebGL = b;
   }
 }

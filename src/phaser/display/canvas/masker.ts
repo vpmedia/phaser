@@ -6,11 +6,11 @@ import { renderGraphicsMask } from './graphics.js';
  * @param {object} renderSession - The rendering session object.
  */
 export const pushMask = (maskData: any, renderSession: any) => {
-  const context = renderSession.context;
+  const { context } = renderSession;
   context.save();
   const cacheAlpha = maskData.alpha;
   const transform = maskData.worldTransform;
-  const resolution = renderSession.resolution;
+  const { resolution } = renderSession;
   context.setTransform(
     transform.a * resolution,
     transform.b * resolution,

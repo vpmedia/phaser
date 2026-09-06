@@ -5,11 +5,11 @@ import { clone, contains, circumferencePoint } from './util/circle.js';
 import { GEOM_CIRCLE } from '../core/const.js';
 
 export class Circle {
-  x: number;
-  y: number;
-  _diameter: number;
-  _radius: number;
-  type: number;
+  public x: number;
+  public y: number;
+  public _diameter: number;
+  public _radius: number;
+  public type: number;
 
   /**
    * Creates a new Circle instance.
@@ -17,7 +17,7 @@ export class Circle {
    * @param {number} y - The y coordinate of the center point (default: 0).
    * @param {number} diameter - The diameter of the circle (default: 0).
    */
-  constructor(x: number = 0, y: number = 0, diameter: number = 0) {
+  public constructor(x = 0, y = 0, diameter = 0) {
     /** @type {number} */
     this.x = x;
     /** @type {number} */
@@ -37,7 +37,7 @@ export class Circle {
    * Calculates the circumference of this circle.
    * @returns {number} The circumference of this circle.
    */
-  circumference() {
+  public circumference() {
     return 2 * (Math.PI * this._radius);
   }
 
@@ -46,8 +46,8 @@ export class Circle {
    * @param {Point} output - The point to store the result in (optional).
    * @returns {Point} A random point within this circle.
    */
-  random(output: Point | null = null) {
-    const result = output || new Point();
+  public random(output: Point | null = null) {
+    const result = output ?? new Point();
     const t = 2 * Math.PI * Math.random();
     const u = Math.random() + Math.random();
     const r = u > 1 ? 2 - u : u;
@@ -62,7 +62,7 @@ export class Circle {
    * Gets the bounding rectangle of this circle.
    * @returns {Rectangle} The bounding rectangle of this circle.
    */
-  getBounds() {
+  public getBounds() {
     return new Rectangle(this.x - this.radius, this.y - this.radius, this.diameter, this.diameter);
   }
 
@@ -73,7 +73,7 @@ export class Circle {
    * @param {number} diameter - The new diameter of the circle.
    * @returns {Circle} This circle instance for chaining.
    */
-  setTo(x: number, y: number, diameter: number) {
+  public setTo(x: number, y: number, diameter: number) {
     this.x = x;
     this.y = y;
     this._diameter = diameter;
@@ -86,7 +86,7 @@ export class Circle {
    * @param {Circle} source - The circle to copy values from.
    * @returns {Circle} This circle instance for chaining.
    */
-  copyFrom(source: Circle) {
+  public copyFrom(source: Circle) {
     return this.setTo(source.x, source.y, source.diameter);
   }
 
@@ -95,7 +95,7 @@ export class Circle {
    * @param {Circle} dest - The circle to copy values to.
    * @returns {Circle} The destination circle.
    */
-  copyTo(dest: Circle) {
+  public copyTo(dest: Circle) {
     dest.x = this.x;
     dest.y = this.y;
     dest.diameter = this._diameter;
@@ -108,7 +108,7 @@ export class Circle {
    * @param {boolean} round - Whether to round the result (default: false).
    * @returns {number} The distance between the circles.
    */
-  distance(dest: Circle, round: boolean = false) {
+  public distance(dest: { x: number; y: number }, round = false) {
     const d = distance(this.x, this.y, dest.x, dest.y);
     return round ? Math.round(d) : d;
   }
@@ -117,7 +117,7 @@ export class Circle {
    * Creates a clone of this circle.
    * @returns {Circle} A new circle with the same values as this one.
    */
-  clone() {
+  public clone() {
     return clone(this);
   }
 
@@ -127,7 +127,7 @@ export class Circle {
    * @param {number} y - The y coordinate of the point to check.
    * @returns {boolean} True if the point is contained within this circle, false otherwise.
    */
-  contains(x: number, y: number) {
+  public contains(x: number, y: number) {
     return contains(this, x, y);
   }
 
@@ -138,7 +138,7 @@ export class Circle {
    * @param {Point} out - The point to store the result in (optional).
    * @returns {Point} A point at the specified angle on the circumference of this circle.
    */
-  circumferencePoint(angle: number, asDegrees?: boolean, out?: Point) {
+  public circumferencePoint(angle: number, asDegrees?: boolean, out?: Point) {
     return circumferencePoint(this, angle, asDegrees, out);
   }
 
@@ -148,7 +148,7 @@ export class Circle {
    * @param {number} dy - The amount to offset the y coordinate by.
    * @returns {Circle} This circle instance for chaining.
    */
-  offset(dx: number, dy: number) {
+  public offset(dx: number, dy: number) {
     this.x += dx;
     this.y += dy;
     return this;
@@ -159,7 +159,7 @@ export class Circle {
    * @param {Point} point - The point to offset the circle by.
    * @returns {Circle} This circle instance for chaining.
    */
-  offsetPoint(point: Point) {
+  public offsetPoint(point: Point) {
     return this.offset(point.x, point.y);
   }
 
@@ -167,7 +167,7 @@ export class Circle {
    * Returns a string representation of this circle.
    * @returns {string} A string representation of the circle.
    */
-  toString() {
+  public toString() {
     return `[{Circle (x=${this.x} y=${this.y} diameter=${this.diameter} radius=${this.radius})}]`;
   }
 
@@ -175,14 +175,14 @@ export class Circle {
    * Gets the diameter of this circle.
    * @returns {number} The diameter of this circle.
    */
-  get diameter() {
+  public get diameter() {
     return this._diameter;
   }
 
   /**
    * Sets the diameter of this circle.
    */
-  set diameter(value) {
+  public set diameter(value) {
     if (value > 0) {
       this._diameter = value;
       this._radius = value * 0.5;
@@ -193,14 +193,14 @@ export class Circle {
    * Gets the radius of this circle.
    * @returns {number} The radius of this circle.
    */
-  get radius() {
+  public get radius() {
     return this._radius;
   }
 
   /**
    * Sets the radius of this circle.
    */
-  set radius(value) {
+  public set radius(value) {
     if (value > 0) {
       this._radius = value;
       this._diameter = value * 2;
@@ -211,14 +211,14 @@ export class Circle {
    * Gets the left coordinate of this circle.
    * @returns {number} The left coordinate of this circle.
    */
-  get left() {
+  public get left() {
     return this.x - this._radius;
   }
 
   /**
    * Sets the left coordinate of this circle.
    */
-  set left(value) {
+  public set left(value) {
     if (value > this.x) {
       this._radius = 0;
       this._diameter = 0;
@@ -231,14 +231,14 @@ export class Circle {
    * Gets the right coordinate of this circle.
    * @returns {number} The right coordinate of this circle.
    */
-  get right() {
+  public get right() {
     return this.x + this._radius;
   }
 
   /**
    * Sets the right coordinate of this circle.
    */
-  set right(value) {
+  public set right(value) {
     if (value < this.x) {
       this._radius = 0;
       this._diameter = 0;
@@ -251,14 +251,14 @@ export class Circle {
    * Gets the top coordinate of this circle.
    * @returns {number} The top coordinate of this circle.
    */
-  get top() {
+  public get top() {
     return this.y - this._radius;
   }
 
   /**
    * Sets the top coordinate of this circle.
    */
-  set top(value) {
+  public set top(value) {
     if (value > this.y) {
       this._radius = 0;
       this._diameter = 0;
@@ -271,14 +271,14 @@ export class Circle {
    * Gets the bottom coordinate of this circle.
    * @returns {number} The bottom coordinate of this circle.
    */
-  get bottom() {
+  public get bottom() {
     return this.y + this._radius;
   }
 
   /**
    * Sets the bottom coordinate of this circle.
    */
-  set bottom(value) {
+  public set bottom(value) {
     if (value < this.y) {
       this._radius = 0;
       this._diameter = 0;
@@ -291,7 +291,7 @@ export class Circle {
    * Gets the area of this circle.
    * @returns {number} The area of this circle.
    */
-  get area() {
+  public get area() {
     if (this._radius > 0) {
       return Math.PI * this._radius * this._radius;
     }
@@ -302,15 +302,15 @@ export class Circle {
    * Checks if this circle is empty (has zero diameter).
    * @returns {boolean} True if the circle is empty, false otherwise.
    */
-  get empty() {
+  public get empty() {
     return this._diameter === 0;
   }
 
   /**
    * Sets whether this circle is empty (zero diameter).
    */
-  set empty(value) {
-    if (value === true) {
+  public set empty(value) {
+    if (value) {
       this.setTo(0, 0, 0);
     }
   }

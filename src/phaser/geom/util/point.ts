@@ -8,7 +8,7 @@ import { Point } from '../point.js';
  * @returns {Point} A new point containing the sum of the two points.
  */
 export const add = (a: Point, b: Point, output: Point | null = null) => {
-  const result = output || new Point();
+  const result = output ?? new Point();
   result.x = a.x + b.x;
   result.y = a.y + b.y;
   return result;
@@ -22,7 +22,7 @@ export const add = (a: Point, b: Point, output: Point | null = null) => {
  * @returns {Point} A new point containing the difference of the two points.
  */
 export const subtract = (a: Point, b: Point, output: Point | null = null) => {
-  const result = output || new Point();
+  const result = output ?? new Point();
   result.x = a.x - b.x;
   result.y = a.y - b.y;
   return result;
@@ -36,7 +36,7 @@ export const subtract = (a: Point, b: Point, output: Point | null = null) => {
  * @returns {Point} A new point containing the product of the two points.
  */
 export const multiply = (a: Point, b: Point, output: Point | null = null) => {
-  const result = output || new Point();
+  const result = output ?? new Point();
   result.x = a.x * b.x;
   result.y = a.y * b.y;
   return result;
@@ -50,7 +50,7 @@ export const multiply = (a: Point, b: Point, output: Point | null = null) => {
  * @returns {Point} A new point containing the quotient of the two points.
  */
 export const divide = (a: Point, b: Point, output: Point | null = null) => {
-  const result = output || new Point();
+  const result = output ?? new Point();
   result.x = a.x / b.x;
   result.y = a.y / b.y;
   return result;
@@ -62,9 +62,7 @@ export const divide = (a: Point, b: Point, output: Point | null = null) => {
  * @param {Point} b - The second point to compare.
  * @returns {boolean} True if the points are equal, false otherwise.
  */
-export const equals = (a: Point, b: Point) => {
-  return a.x === b.x && a.y === b.y;
-};
+export const equals = (a: Point, b: Point) => a.x === b.x && a.y === b.y;
 
 /**
  * Calculates the angle between two points.
@@ -72,9 +70,7 @@ export const equals = (a: Point, b: Point) => {
  * @param {Point} b - The second point to calculate the angle to.
  * @returns {number} The angle between the two points in radians.
  */
-export const angle = (a: Point, b: Point) => {
-  return Math.atan2(a.y - b.y, a.x - b.x);
-};
+export const angle = (a: Point, b: Point) => Math.atan2(a.y - b.y, a.x - b.x);
 
 /**
  * Creates a new point with the same coordinates as the input point but with inverted signs.
@@ -83,7 +79,7 @@ export const angle = (a: Point, b: Point) => {
  * @returns {Point} A new point with negated coordinates.
  */
 export const negative = (a: Point, output: Point | null = null) => {
-  const result = output || new Point();
+  const result = output ?? new Point();
   return result.setTo(-a.x, -a.y);
 };
 
@@ -96,7 +92,7 @@ export const negative = (a: Point, output: Point | null = null) => {
  * @returns {Point} A new point with the result of the operation.
  */
 export const multiplyAdd = (a: Point, b: Point, s: number, output: Point | null = null) => {
-  const result = output || new Point();
+  const result = output ?? new Point();
   return result.setTo(a.x + b.x * s, a.y + b.y * s);
 };
 
@@ -109,7 +105,7 @@ export const multiplyAdd = (a: Point, b: Point, s: number, output: Point | null 
  * @returns {Point} A new point interpolated between the two points.
  */
 export const interpolate = (a: Point, b: Point, f: number, output: Point | null = null) => {
-  const result = output || new Point();
+  const result = output ?? new Point();
   return result.setTo(a.x + (b.x - a.x) * f, a.y + (b.y - a.y) * f);
 };
 
@@ -120,7 +116,7 @@ export const interpolate = (a: Point, b: Point, f: number, output: Point | null 
  * @returns {Point} A new point that is perpendicular to the input point.
  */
 export const perp = (a: Point, output: Point | null = null) => {
-  const result = output || new Point();
+  const result = output ?? new Point();
   return result.setTo(-a.y, a.x);
 };
 
@@ -131,7 +127,7 @@ export const perp = (a: Point, output: Point | null = null) => {
  * @returns {Point} A new point that is perpendicular to the input point (rotated clockwise).
  */
 export const rperp = (a: Point, output: Point | null = null) => {
-  const result = output || new Point();
+  const result = output ?? new Point();
   return result.setTo(a.y, -a.x);
 };
 
@@ -142,7 +138,7 @@ export const rperp = (a: Point, output: Point | null = null) => {
  * @param {boolean} round - Whether to round the result (default: false).
  * @returns {number} The distance between the two points.
  */
-export const distance = (a: Point, b: Point, round: boolean = false) => {
+export const distance = (a: Point, b: Point, round = false) => {
   const dx = a.x - b.x;
   const dy = a.y - b.y;
   const abDistance = Math.sqrt(dx * dx + dy * dy);
@@ -157,7 +153,7 @@ export const distance = (a: Point, b: Point, round: boolean = false) => {
  * @returns {Point} A new point with the projected result.
  */
 export const project = (a: Point, b: Point, output: Point | null = null) => {
-  const result = output || new Point();
+  const result = output ?? new Point();
   const amt = a.dot(b) / b.getMagnitudeSq();
   if (amt !== 0) {
     result.setTo(amt * b.x, amt * b.y);
@@ -173,7 +169,7 @@ export const project = (a: Point, b: Point, output: Point | null = null) => {
  * @returns {Point} A new point with the projected result.
  */
 export const projectUnit = (a: Point, b: Point, output: Point | null = null) => {
-  const result = output || new Point();
+  const result = output ?? new Point();
   const amt = a.dot(b);
   if (amt !== 0) {
     result.setTo(amt * b.x, amt * b.y);
@@ -188,7 +184,7 @@ export const projectUnit = (a: Point, b: Point, output: Point | null = null) => 
  * @returns {Point} A new point with the same x coordinate but negated y coordinate.
  */
 export const normalRightHand = (a: Point, output: Point | null = null) => {
-  const result = output || new Point();
+  const result = output ?? new Point();
   return result.setTo(a.y * -1, a.x);
 };
 
@@ -199,7 +195,7 @@ export const normalRightHand = (a: Point, output: Point | null = null) => {
  * @returns {Point} A new normalized point.
  */
 export const normalize = (a: Point, output: Point | null = null) => {
-  const result = output || new Point();
+  const result = output ?? new Point();
   const m = a.getMagnitude();
   if (m !== 0) {
     result.setTo(a.x / m, a.y / m);
@@ -252,17 +248,17 @@ export const rotate = (
  * @throws {Error} If the points array is empty.
  */
 export const centroid = (points: Point[], output: Point | null = null) => {
-  const result = output || new Point();
+  const result = output ?? new Point();
   const pointsLen = points.length;
   if (pointsLen < 1) {
     throw new Error('Point(points) array must not be empty');
   }
   if (pointsLen === 1) {
-    result.copyFrom(points[0]);
+    result.copyFrom(points[0]!);
     return result;
   }
-  for (let i = 0; i < pointsLen; i += 1) {
-    add(result, points[i], result);
+  for (const point of points) {
+    add(result, point, result);
   }
   result.divide(pointsLen, pointsLen);
   return result;
@@ -275,13 +271,13 @@ export const centroid = (points: Point[], output: Point | null = null) => {
  * @param {string} yProp - The name of the property containing the y value (default: 'y').
  * @returns {Point} A new point with parsed x and y values.
  */
-export const parse = (obj: any, xProp: string = 'x', yProp: string = 'y') => {
+export const parse = (obj: any, xProp = 'x', yProp = 'y') => {
   const point = new Point();
   if (obj[xProp]) {
-    point.x = Number.parseInt(obj[xProp], 10);
+    point.x = Math.trunc(Number(obj[xProp]));
   }
   if (obj[yProp]) {
-    point.y = Number.parseInt(obj[yProp], 10);
+    point.y = Math.trunc(Number(obj[yProp]));
   }
   return point;
 };
@@ -293,7 +289,7 @@ export const parse = (obj: any, xProp: string = 'x', yProp: string = 'y') => {
  * @returns {Point} A new point with the same coordinates as the input.
  */
 export const clone = (input: Point, output: Point | null = null) => {
-  const result = output || new Point();
+  const result = output ?? new Point();
   result.setTo(input.x, input.y);
   return result;
 };

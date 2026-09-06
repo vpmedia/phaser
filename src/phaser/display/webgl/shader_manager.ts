@@ -6,28 +6,22 @@ import { StripShader } from './shader/strip.js';
 import type { IdentifiedWebGLRenderingContext } from './util.js';
 
 export class WebGLShaderManager {
-  [key: string]: any;
-  gl!: any;
-  primitiveShader!: any;
-  complexPrimitiveShader!: any;
-  defaultShader!: any;
-  fastShader!: any;
-  stripShader!: any;
-  maxAttibs!: any;
-  attribState!: any;
-  tempAttribState!: any;
-  stack!: any;
+  public gl!: IdentifiedWebGLRenderingContext;
+  public primitiveShader: PrimitiveShader | null = null;
+  public complexPrimitiveShader: ComplexPrimitiveShader | null = null;
+  public defaultShader: NormalShader | null = null;
+  public fastShader: FastShader | null = null;
+  public stripShader: StripShader | null = null;
+  public maxAttibs = 10;
+  public attribState: (boolean | undefined)[];
+  public tempAttribState: (boolean | undefined)[];
+  public stack: NormalShader[];
+  public currentShader: NormalShader | null = null;
+  public _currentId: string | null = null;
   /**
    * Initializes the shader manager with a WebGL context.
    */
-  constructor() {
-    this.gl = null;
-    this.primitiveShader = null;
-    this.complexPrimitiveShader = null;
-    this.defaultShader = null;
-    this.fastShader = null;
-    this.stripShader = null;
-    this.maxAttibs = 10;
+  public constructor() {
     this.attribState = [];
     this.tempAttribState = [];
     for (let i = 0; i < this.maxAttibs; i += 1) {
@@ -40,7 +34,7 @@ export class WebGLShaderManager {
    * Initializes the shader manager with a WebGL context.
    * @param {WebGLRenderingContext & { id: number }} gl - The WebGL rendering context.
    */
-  setContext(gl: IdentifiedWebGLRenderingContext) {
+  public setContext(gl: IdentifiedWebGLRenderingContext) {
     this.gl = gl;
     this.primitiveShader = new PrimitiveShader(gl);
     this.complexPrimitiveShader = new ComplexPrimitiveShader(gl);
@@ -54,18 +48,17 @@ export class WebGLShaderManager {
    * Sets up the shader manager for WebGL rendering.
    * @param {number[]} attribs - The attribute locations to set up.
    */
-  setAttribs(attribs: number[]) {
+  public setAttribs(attribs: number[]) {
     // reset temp state
     let i;
     for (i = 0; i < this.tempAttribState.length; i += 1) {
       this.tempAttribState[i] = false;
     }
     // set the new attribs
-    for (i = 0; i < attribs.length; i += 1) {
-      const attribId = attribs[i];
+    for (const attribId of attribs) {
       this.tempAttribState[attribId] = true;
     }
-    const gl = this.gl;
+    const { gl } = this;
     for (i = 0; i < this.attribState.length; i += 1) {
       if (this.attribState[i] !== this.tempAttribState[i]) {
         this.attribState[i] = this.tempAttribState[i];
@@ -83,7 +76,7 @@ export class WebGLShaderManager {
    * @param {NormalShader} shader - The shader to set up.
    * @returns {boolean} Whether the shader setup was successful.
    */
-  setShader(shader: NormalShader) {
+  public setShader(shader: NormalShader): boolean {
     if (this._currentId === shader._UID) {
       return false;
     }
@@ -97,16 +90,15 @@ export class WebGLShaderManager {
   /**
    * Destroys the manager.
    */
-  destroy() {
-    this.attribState = null;
-    this.tempAttribState = null;
+  public destroy(): void {
+    this.attribState = [];
+    this.tempAttribState = [];
     this.currentShader = null;
     this._currentId = null;
-    this.primitiveShader.destroy();
-    this.complexPrimitiveShader.destroy();
-    this.defaultShader.destroy();
-    this.fastShader.destroy();
-    this.stripShader.destroy();
-    this.gl = null;
+    this.primitiveShader?.destroy();
+    this.complexPrimitiveShader?.destroy();
+    this.defaultShader?.destroy();
+    this.fastShader?.destroy();
+    this.stripShader?.destroy();
   }
 }

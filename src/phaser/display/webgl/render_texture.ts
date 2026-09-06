@@ -5,43 +5,45 @@ import { CanvasBuffer } from '../canvas/buffer.js';
 import { BaseTexture } from './base_texture.js';
 import { FilterTexture } from './filter_texture.js';
 import { Texture } from './texture.js';
+import type { WebGLRenderer } from './renderer.js';
+import type { CanvasRenderer } from '../canvas/renderer.js';
 
 export class RenderTexture extends Texture {
   [key: string]: any;
-  declare width: any;
-  declare height: any;
-  resolution!: any;
-  declare frame: any;
-  declare crop: any;
-  renderer!: any;
-  textureBuffer!: any;
-  render!: any;
-  projection!: any;
-  declare valid: any;
+  declare public width: any;
+  declare public height: any;
+  public resolution!: any;
+  declare public frame: any;
+  declare public crop: any;
+  public renderer!: any;
+  public textureBuffer!: any;
+  public render!: any;
+  public projection!: any;
+  declare public valid: any;
   /**
    * Creates a new RenderTexture instance.
    * @param {number} width - The width of the render texture.
    * @param {number} height - The height of the render texture.
-   * @param {import('./renderer.js').WebGLRenderer|import('../canvas/renderer.js').CanvasRenderer} renderer - The renderer to use.
+   * @param {WebGLRenderer|CanvasRenderer} renderer - The renderer to use.
    * @param {number} scaleMode - The scale mode to use.
    * @param {number} resolution - The resolution to use.
    */
-  constructor(
+  public constructor(
     width: number,
     height: number,
-    renderer: import('./renderer.js').WebGLRenderer | import('../canvas/renderer.js').CanvasRenderer,
+    renderer: WebGLRenderer | CanvasRenderer,
     scaleMode: number,
-    resolution: number = 1
+    resolution = 1
   ) {
     const w = width || 100;
     const h = height || 100;
     const res = resolution || 1;
-    const baseTexture = new BaseTexture(null, scaleMode || window.PhaserRegistry.TEXTURE_SCALE_MODE);
+    const baseTexture = new BaseTexture(null, scaleMode || globalThis.PhaserRegistry.TEXTURE_SCALE_MODE);
     baseTexture.width = width * res;
     baseTexture.height = height * res;
     baseTexture._glTextures = [];
     baseTexture.resolution = res;
-    baseTexture.scaleMode = scaleMode || window.PhaserRegistry.TEXTURE_SCALE_MODE;
+    baseTexture.scaleMode = scaleMode || globalThis.PhaserRegistry.TEXTURE_SCALE_MODE;
     baseTexture.hasLoaded = true;
     super(baseTexture, new Rectangle(0, 0, w * res, h * res));
     this.width = w;
@@ -51,8 +53,7 @@ export class RenderTexture extends Texture {
     this.crop = new Rectangle(0, 0, this.width * this.resolution, this.height * this.resolution);
     this.renderer = renderer;
     if (this.renderer.type === RENDER_WEBGL) {
-      // @ts-ignore
-      const gl = this.renderer.gl;
+      const { gl } = this.renderer;
       this.baseTexture._dirty[gl.id] = false;
       this.textureBuffer = new FilterTexture(gl, this.width, this.height, this.baseTexture.scaleMode);
       this.baseTexture._glTextures[gl.id] = this.textureBuffer.texture;
@@ -70,28 +71,28 @@ export class RenderTexture extends Texture {
   /**
    * Destroys this render texture and cleans up resources.
    */
-  resize() {
+  public resize() {
     // TODO
   }
 
   /**
    * Updates the size of this render texture.
    */
-  clear() {
+  public clear() {
     // TODO
   }
 
   /**
    * Updates the resolution of this render texture.
    */
-  renderWebGL() {
+  public renderWebGL() {
     // TODO
   }
 
   /**
    * Updates the scale mode of this render texture.
    */
-  renderCanvas() {
+  public renderCanvas() {
     // TODO
   }
 
@@ -99,7 +100,7 @@ export class RenderTexture extends Texture {
    * Gets the HTML image element for this render texture.
    * @returns {HTMLImageElement} The HTML image element.
    */
-  getImage() {
+  public getImage() {
     const image = new Image();
     image.src = this.getBase64();
     return image;
@@ -109,7 +110,7 @@ export class RenderTexture extends Texture {
    * Gets the base64 string representation of this render texture.
    * @returns {string} The base64 string representation.
    */
-  getBase64() {
+  public getBase64() {
     return this.getCanvas()?.toDataURL() ?? '';
   }
 
@@ -117,7 +118,7 @@ export class RenderTexture extends Texture {
    * Gets the canvas element for this render texture.
    * @returns {HTMLCanvasElement} The canvas element.
    */
-  getCanvas(): HTMLCanvasElement | null {
+  public getCanvas(): HTMLCanvasElement | null {
     // TODO
     return null;
   }

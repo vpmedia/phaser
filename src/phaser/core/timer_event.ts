@@ -1,17 +1,17 @@
 import type { Timer } from './timer.js';
 
 export class TimerEvent {
-  timer: Timer;
-  delay: number;
-  tick: number;
-  repeatCount: number;
-  loop: boolean;
-  callback: Function;
-  callbackContext: object;
-  args: unknown[];
-  pendingDelete: boolean;
+  public timer: Timer;
+  public delay: number;
+  public tick: number;
+  public repeatCount: number;
+  public loop: boolean;
+  public callback: Function;
+  public callbackContext: object;
+  public args: unknown[];
+  public pendingDelete: boolean;
 
-  constructor(
+  public constructor(
     timer: Timer,
     delay: number,
     tick: number,

@@ -2,46 +2,40 @@ import { GROUP } from '../core/const.js';
 import { Signal } from '../core/signal.js';
 import { DisplayObject } from './display_object.js';
 import { Image } from './image.js';
+import type { Game } from '../core/game.js';
 
 export const SORT_ASCENDING = -1;
 export const SORT_DESCENDING = 1;
 
 export class Group extends DisplayObject {
-  declare z: number;
-  ignoreDestroy!: boolean;
-  pendingDestroy!: boolean;
-  classType!: Function;
-  cursor!: DisplayObject | null;
-  inputEnableChildren!: boolean;
-  onChildInputDown!: Signal;
-  onChildInputUp!: Signal;
-  onChildInputOver!: Signal;
-  onChildInputOut!: Signal;
-  onDestroy!: Signal;
-  cursorIndex!: number;
-  _sortProperty!: string;
-  filters!: object[] | null;
+  declare public z: number;
+  public ignoreDestroy!: boolean;
+  public pendingDestroy!: boolean;
+  public classType!: Function;
+  public cursor!: DisplayObject | null;
+  public inputEnableChildren!: boolean;
+  public onChildInputDown!: Signal;
+  public onChildInputUp!: Signal;
+  public onChildInputOver!: Signal;
+  public onChildInputOut!: Signal;
+  public onDestroy!: Signal;
+  public cursorIndex!: number;
+  public _sortProperty!: string;
+  public filters!: object[] | null;
   /**
    * Creates a new Group object.
-   * @param {import('../core/game.js').Game} game - The game instance this group belongs to.
+   * @param {Game} game - The game instance this group belongs to.
    * @param {DisplayObject} parent - The parent display object.
    * @param {string} name - The name of this group.
    * @param {boolean} addToStage - Whether to add this group to the stage.
    */
-  constructor(
-    game: import('../core/game.js').Game,
-    parent: DisplayObject | null = null,
-    name: string | null = null,
-    addToStage: boolean = false
-  ) {
+  public constructor(game: Game, parent: DisplayObject | null = null, name: string | null = null, addToStage = false) {
     super(game);
     /** @type {number} */
     this.type = GROUP;
-    if (!parent) {
-      parent = game.world;
-    }
+    parent ??= game.world;
     /** @type {string} */
-    this.name = name || 'group';
+    this.name = name ?? 'group';
     /** @type {number} */
     this.z = 0;
     if (addToStage) {
@@ -80,7 +74,7 @@ export class Group extends DisplayObject {
    * @param {boolean} destroyChildren - Whether to destroy children as well.
    * @param {boolean} soft - Whether to perform a soft destroy (leaving the group in the parent's children list).
    */
-  override destroy(destroyChildren: boolean = true, soft: boolean = false) {
+  public override destroy(destroyChildren = true, soft = false) {
     if (this.game === null || this.ignoreDestroy) {
       return;
     }
@@ -106,7 +100,7 @@ export class Group extends DisplayObject {
    * @param {number} index - The index to add the child at.
    * @returns {T} The added child.
    */
-  add<T extends DisplayObject>(child: T, silent: boolean = false, index: number = -1): T {
+  public add<T extends DisplayObject>(child: T, silent = false, index = -1): T {
     if (child.parent === this) {
       return child;
     }
@@ -124,9 +118,7 @@ export class Group extends DisplayObject {
     if (!silent && child.events) {
       child.events.onAddedToGroup$dispatch(child, this);
     }
-    if (this.cursor === null) {
-      this.cursor = child;
-    }
+    this.cursor ??= child;
     return child;
   }
 
@@ -136,7 +128,7 @@ export class Group extends DisplayObject {
    * @param {number} index - The index to add the child at.
    * @param {boolean} silent - Whether to dispatch events.
    */
-  addAt(child: DisplayObject, index: number, silent: boolean) {
+  public addAt(child: DisplayObject, index: number, silent: boolean) {
     this.add(child, silent, index);
   }
 
@@ -145,7 +137,7 @@ export class Group extends DisplayObject {
    * @param {number} index - The index of the child to get.
    * @returns {DisplayObject} The child at the specified index, or -1 if not found.
    */
-  getAt(index: number) {
+  public getAt(index: number) {
     if (index < 0 || index >= this.children.length) {
       return -1;
     }
@@ -155,11 +147,11 @@ export class Group extends DisplayObject {
   /**
    * Updates the Z indices of all children in this group.
    */
-  updateZ() {
+  public updateZ() {
     let i = this.children.length;
     while (i) {
       i -= 1;
-      this.children[i].z = i;
+      this.children[i]!.z = i;
     }
   }
 
@@ -167,7 +159,7 @@ export class Group extends DisplayObject {
    * Gets the next child in this group (with circular wrapping).
    * @returns {DisplayObject} The next child, or null if no children exist.
    */
-  next() {
+  public next() {
     if (this.cursor) {
       //  Wrap the cursor?
       if (this.cursorIndex >= this.children.length - 1) {
@@ -175,7 +167,7 @@ export class Group extends DisplayObject {
       } else {
         this.cursorIndex += 1;
       }
-      this.cursor = this.children[this.cursorIndex];
+      this.cursor = this.children[this.cursorIndex] ?? null;
       return this.cursor;
     }
     return null;
@@ -185,7 +177,7 @@ export class Group extends DisplayObject {
    * Gets the previous child in this group (with circular wrapping).
    * @returns {DisplayObject} The previous child, or null if no children exist.
    */
-  previous() {
+  public previous() {
     if (this.cursor) {
       //  Wrap the cursor?
       if (this.cursorIndex === 0) {
@@ -193,7 +185,7 @@ export class Group extends DisplayObject {
       } else {
         this.cursorIndex -= 1;
       }
-      this.cursor = this.children[this.cursorIndex];
+      this.cursor = this.children[this.cursorIndex] ?? null;
       return this.cursor;
     }
     return null;
@@ -204,7 +196,7 @@ export class Group extends DisplayObject {
    * @param {DisplayObject} child1 - The first child to swap.
    * @param {DisplayObject} child2 - The second child to swap.
    */
-  swap(child1: DisplayObject, child2: DisplayObject) {
+  public swap(child1: DisplayObject, child2: DisplayObject) {
     this.swapChildren(child1, child2);
     this.updateZ();
   }
@@ -214,7 +206,7 @@ export class Group extends DisplayObject {
    * @param {DisplayObject} child - The child to bring to the top.
    * @returns {DisplayObject} The child that was brought to the top.
    */
-  bringToTop(child: DisplayObject) {
+  public bringToTop(child: DisplayObject) {
     if (child.parent === this && this.getIndex(child) < this.children.length) {
       this.remove(child, false, true);
       this.add(child, true);
@@ -227,7 +219,7 @@ export class Group extends DisplayObject {
    * @param {DisplayObject} child - The child to send to the back.
    * @returns {DisplayObject} The child that was sent to the back.
    */
-  sendToBack(child: DisplayObject) {
+  public sendToBack(child: DisplayObject) {
     if (child.parent === this && this.getIndex(child) > 0) {
       this.remove(child, false, true);
       this.addAt(child, 0, true);
@@ -238,7 +230,7 @@ export class Group extends DisplayObject {
   /**
    * Reverses the order of children in this group.
    */
-  reverse() {
+  public reverse() {
     this.children.reverse();
     this.updateZ();
   }
@@ -248,14 +240,14 @@ export class Group extends DisplayObject {
    * @param {DisplayObject} child - The child to get the index of.
    * @returns {number} The index of the child, or -1 if not found.
    */
-  getIndex(child: DisplayObject) {
+  public getIndex(child: DisplayObject) {
     return this.children.indexOf(child);
   }
 
   /**
    * Updates the Z indices of all children in this group before the update cycle.
    */
-  override preUpdate() {
+  public override preUpdate() {
     if (this.pendingDestroy) {
       this.destroy();
       return;
@@ -264,28 +256,28 @@ export class Group extends DisplayObject {
       this.renderOrderID = -1;
       return;
     }
-    for (let i = 0; i < this.children.length; i += 1) {
-      this.children[i].preUpdate();
+    for (const child of this.children) {
+      child.preUpdate();
     }
   }
 
   /**
    * Updates all children in this group during the update cycle.
    */
-  override update() {
+  public override update() {
     let i = this.children.length;
     while (i) {
       i -= 1;
-      this.children[i].update();
+      this.children[i]!.update();
     }
   }
 
   /**
    * Updates all children in this group after the update cycle.
    */
-  override postUpdate() {
-    for (let i = 0; i < this.children.length; i += 1) {
-      this.children[i].postUpdate();
+  public override postUpdate() {
+    for (const child of this.children) {
+      child.postUpdate();
     }
   }
 
@@ -296,8 +288,8 @@ export class Group extends DisplayObject {
    * @param {boolean} silent - Whether to dispatch events.
    * @returns {boolean} True if the child was removed, false otherwise.
    */
-  remove(child: any, destroy: boolean = true, silent: boolean = false) {
-    if (this.children.length === 0 || this.children.indexOf(child) === -1) {
+  public remove(child: any, destroy = true, silent = false) {
+    if (this.children.length === 0 || !this.children.includes(child)) {
       return false;
     }
     if (!silent && child.events && !child.destroyPhase) {
@@ -320,15 +312,16 @@ export class Group extends DisplayObject {
    * @param {boolean} silent - Whether to dispatch events.
    * @param {boolean} destroyTexture - Whether to destroy textures as well.
    */
-  removeAll(destroy: boolean = true, silent: boolean = false, destroyTexture: boolean = false) {
+  public removeAll(destroy = true, silent = false, destroyTexture = false) {
     if (this.children.length === 0) {
       return;
     }
     do {
-      if (!silent && this.children[0].events) {
-        this.children[0].events.onRemovedFromGroup$dispatch(this.children[0], this);
+      const first = this.children[0]!;
+      if (!silent && first.events) {
+        first.events.onRemovedFromGroup$dispatch(first, this);
       }
-      const removed = this.removeChild(this.children[0]);
+      const removed = this.removeChild(first);
       if (destroy && removed) {
         (removed as any).destroy(true, destroyTexture);
       }

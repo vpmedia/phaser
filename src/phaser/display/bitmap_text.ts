@@ -2,26 +2,27 @@ import { BITMAP_TEXT, SCALE_LINEAR, SCALE_NEAREST } from '../core/const.js';
 import { Point } from '../geom/point.js';
 import { DisplayObject } from './display_object.js';
 import { Image } from './image.js';
+import type { Game } from '../core/game.js';
 
 export class BitmapText extends DisplayObject {
-  declare type: number;
-  pendingDestroy!: boolean;
-  declare renderOrderID: number;
-  textWidth!: number;
-  textHeight!: number;
-  _prevAnchor!: Point;
-  _glyphs!: Image[];
-  _maxWidth!: number;
-  _text!: string;
-  _data!: any;
-  _font!: string;
-  _fontSize!: number;
-  _align!: string;
-  _tint!: number;
-  dirty!: boolean;
+  declare public type: number;
+  public pendingDestroy!: boolean;
+  declare public renderOrderID: number;
+  public textWidth!: number;
+  public textHeight!: number;
+  public _prevAnchor!: Point;
+  public _glyphs!: Image[];
+  public _maxWidth!: number;
+  public _text!: string;
+  public _data!: any;
+  public _font!: string;
+  public _fontSize!: number;
+  public _align!: string;
+  public _tint!: number;
+  public dirty!: boolean;
   /**
    * Creates a new BitmapText instance.
-   * @param {import('../core/game.js').Game} game - The game instance this bitmap text belongs to.
+   * @param {Game} game - The game instance this bitmap text belongs to.
    * @param {number} x - The x position of the bitmap text.
    * @param {number} y - The y position of the bitmap text.
    * @param {string} font - The key of the bitmap font to use.
@@ -29,15 +30,7 @@ export class BitmapText extends DisplayObject {
    * @param {number} size - The font size.
    * @param {string} align - The text alignment (left, center, right).
    */
-  constructor(
-    game: import('../core/game.js').Game,
-    x: number = 0,
-    y: number = 0,
-    font: string = '',
-    text: string = '',
-    size: number = 32,
-    align: string = 'left'
-  ) {
+  public constructor(game: Game, x = 0, y = 0, font = '', text = '', size = 32, align = 'left') {
     super(game);
     this.type = BITMAP_TEXT;
     this.position.setTo(x, y);
@@ -46,7 +39,7 @@ export class BitmapText extends DisplayObject {
     this._prevAnchor = new Point();
     this._glyphs = [];
     this._maxWidth = 0;
-    this._text = text.toString() || '';
+    this._text = text || '';
     this._data = game.cache.getBitmapFont(font);
     this._font = font;
     this._fontSize = size;
@@ -59,7 +52,7 @@ export class BitmapText extends DisplayObject {
   /**
    * Destroys this bitmap text and cleans up resources.
    */
-  override destroy() {
+  public override destroy() {
     this._prevAnchor = null!;
     this._glyphs = null!;
     this._text = null!;
@@ -70,7 +63,7 @@ export class BitmapText extends DisplayObject {
   /**
    * Called before the update cycle for this bitmap text.
    */
-  override preUpdate() {
+  public override preUpdate() {
     if (this.pendingDestroy) {
       this.destroy();
       return;
@@ -84,8 +77,8 @@ export class BitmapText extends DisplayObject {
       this.game.stage.currentRenderOrderID += 1;
       this.renderOrderID = this.game.stage.currentRenderOrderID;
     }
-    for (let i = 0; i < this.children.length; i += 1) {
-      this.children[i].preUpdate();
+    for (const child of this.children) {
+      child.preUpdate();
     }
   }
 
@@ -93,7 +86,7 @@ export class BitmapText extends DisplayObject {
    * Sets the text to display.
    * @param {string} text - The new text to display.
    */
-  setText(text: string) {
+  public setText(text: string) {
     this.text = text;
   }
 
@@ -104,7 +97,7 @@ export class BitmapText extends DisplayObject {
    * @param {string} text - The text to scan.
    * @returns {{width: number, text: string, end: boolean, chars: number[]}} An object containing the width, processed text, end status, and character positions.
    */
-  scanLine(data: any, scale: number, text: string) {
+  public scanLine(data: any, scale: number, text: string) {
     let x = 0;
     let w = 0;
     let lastSpace = -1;
@@ -171,7 +164,7 @@ export class BitmapText extends DisplayObject {
    * @param {string} replace - The character to use for replacement of invalid characters (default: '').
    * @returns {string} The cleaned text.
    */
-  cleanText(text: string, replace: string = '') {
+  public cleanText(text: string, replace = '') {
     const data = this._data.font;
     if (!data) {
       return '';
@@ -179,11 +172,11 @@ export class BitmapText extends DisplayObject {
     const re = /\r\n|\n\r|\n|\r/g;
     const lines = text.replace(re, '\n').split('\n');
     for (let i = 0; i < lines.length; i += 1) {
+      const line = lines[i]!;
       let output = '';
-      const line = lines[i];
       for (let c = 0; c < line.length; c += 1) {
         if (data.chars[line.charCodeAt(c)]) {
-          output = output.concat(line[c]);
+          output = output.concat(line[c]!);
         } else {
           output = output.concat(replace);
         }
@@ -196,7 +189,7 @@ export class BitmapText extends DisplayObject {
   /**
    * Updates the internal text rendering based on current properties and content.
    */
-  updateText() {
+  public updateText() {
     const data = this._data.font;
     if (!data) {
       return;
@@ -215,15 +208,14 @@ export class BitmapText extends DisplayObject {
         this.textWidth = line.width;
       }
       y += data.lineHeight * scale;
-      text = text.substr(line.text.length + 1);
+      text = text.slice(line.text.length + 1);
     } while (line.end === false);
     this.textHeight = y;
     let t = 0;
     let align = 0;
     const ax = this.textWidth * this.anchor.x;
     const ay = this.textHeight * this.anchor.y;
-    for (let i = 0; i < lines.length; i += 1) {
-      const currentLine = lines[i];
+    for (const currentLine of lines) {
       if (this._align === 'right') {
         align = this.textWidth - currentLine.width;
       } else if (this._align === 'center') {
@@ -260,7 +252,7 @@ export class BitmapText extends DisplayObject {
     //  Remove unnecessary children
     //  This moves them from the display list (children array) but retains them in the _glyphs pool
     for (let i = t; i < this._glyphs.length; i += 1) {
-      this.removeChild(this._glyphs[i]);
+      this.removeChild(this._glyphs[i]!);
     }
   }
 
@@ -268,14 +260,14 @@ export class BitmapText extends DisplayObject {
    * Removes unused glyphs from the pool and returns the number removed.
    * @returns {number} The number of glyphs that were removed from the pool.
    */
-  purgeGlyphs() {
+  public purgeGlyphs() {
     const len = this._glyphs.length;
     const kept = [];
-    for (let i = 0; i < this._glyphs.length; i += 1) {
-      if (this._glyphs[i].parent !== this) {
-        this._glyphs[i].destroy();
+    for (const glyph of this._glyphs) {
+      if (glyph.parent !== this) {
+        glyph.destroy();
       } else {
-        kept.push(this._glyphs[i]);
+        kept.push(glyph);
       }
     }
     this._glyphs = [];
@@ -287,7 +279,7 @@ export class BitmapText extends DisplayObject {
   /**
    * Updates the transform of this bitmap text, updating its text if needed.
    */
-  override updateTransform(): this {
+  public override updateTransform(): this {
     if (this.dirty || !this.anchor.equals(this._prevAnchor)) {
       this.updateText();
       this.dirty = false;
@@ -303,7 +295,7 @@ export class BitmapText extends DisplayObject {
    * @param {number} _position - The character position to apply the color to.
    * @returns {BitmapText} This bitmap text instance for chaining.
    */
-  addColor(value: string, _position: number) {
+  public addColor(value: string, _position: number) {
     const color = typeof value === 'string' ? Number.parseInt(value.replace('#', ''), 16) : value;
     if (color !== this._tint) {
       this._tint = color;
@@ -316,7 +308,7 @@ export class BitmapText extends DisplayObject {
    * Gets the text alignment property.
    * @returns {string} The current text alignment (left, center, right).
    */
-  get align() {
+  public get align() {
     return this._align;
   }
 
@@ -324,7 +316,7 @@ export class BitmapText extends DisplayObject {
    * Sets the text alignment property.
    * @param {string} value - The new text alignment (left, center, right).
    */
-  set align(value: string) {
+  public set align(value: string) {
     if (value !== this._align && (value === 'left' || value === 'center' || value === 'right')) {
       this._align = value;
       this.updateText();
@@ -335,7 +327,7 @@ export class BitmapText extends DisplayObject {
    * Gets the tint color of this bitmap text.
    * @returns {number} The current tint color in RGB format.
    */
-  get tint() {
+  public get tint() {
     return this._tint;
   }
 
@@ -343,7 +335,7 @@ export class BitmapText extends DisplayObject {
    * Sets the tint color of this bitmap text.
    * @param {number} value - The new tint color in RGB format.
    */
-  set tint(value: number) {
+  public set tint(value: number) {
     if (value !== this._tint) {
       this._tint = value;
       this.updateText();
@@ -354,7 +346,7 @@ export class BitmapText extends DisplayObject {
    * Gets the fill color of this bitmap text as a hex string.
    * @returns {string} The current fill color in hex format.
    */
-  get fill() {
+  public get fill() {
     if (typeof this.tint === 'number') {
       let colorStr = this.tint.toString(16);
       while (colorStr.length < 6) {
@@ -369,7 +361,7 @@ export class BitmapText extends DisplayObject {
    * Sets the fill color of this bitmap text.
    * @param {string} value - The new fill color in hex format or CSS color name.
    */
-  set fill(value: string) {
+  public set fill(value: string) {
     this.tint = typeof value === 'string' ? Number.parseInt(value.replace('#', ''), 16) : value;
   }
 
@@ -377,7 +369,7 @@ export class BitmapText extends DisplayObject {
    * Gets the font key used by this bitmap text.
    * @returns {string} The current font key.
    */
-  get font() {
+  public get font() {
     return this._font;
   }
 
@@ -385,7 +377,7 @@ export class BitmapText extends DisplayObject {
    * Sets the font key used by this bitmap text.
    * @param {string} value - The new font key to use.
    */
-  set font(value: string) {
+  public set font(value: string) {
     const trimmedValue = value.trim();
     if (trimmedValue !== this._font) {
       this._font = trimmedValue;
@@ -398,7 +390,7 @@ export class BitmapText extends DisplayObject {
    * Gets the font size of this bitmap text.
    * @returns {number} The current font size.
    */
-  get fontSize(): number {
+  public get fontSize(): number {
     return this._fontSize;
   }
 
@@ -406,8 +398,8 @@ export class BitmapText extends DisplayObject {
    * Sets the font size of this bitmap text.
    * @param {number} value - The new font size to use.
    */
-  set fontSize(value: any) {
-    value = Number.parseInt(value, 10);
+  public set fontSize(value: any) {
+    value = Math.trunc(Number(value));
     if (value !== this._fontSize && value > 0) {
       this._fontSize = value;
       this.updateText();
@@ -418,7 +410,7 @@ export class BitmapText extends DisplayObject {
    * Gets the text content of this bitmap text.
    * @returns {string} The current text content.
    */
-  get text(): string {
+  public get text(): string {
     return this._text;
   }
 
@@ -426,7 +418,7 @@ export class BitmapText extends DisplayObject {
    * Sets the text content of this bitmap text.
    * @param {string | number | boolean | Date} value - The new text content to set.
    */
-  set text(value: string | number | boolean | Date) {
+  public set text(value: string | number | boolean | Date) {
     const typedValue = value.toString();
     if (typedValue !== this._text) {
       this._text = typedValue || '';
@@ -438,7 +430,7 @@ export class BitmapText extends DisplayObject {
    * Gets the maximum width of this bitmap text.
    * @returns {number} The current maximum width.
    */
-  get maxWidth() {
+  public get maxWidth() {
     return this._maxWidth;
   }
 
@@ -446,7 +438,7 @@ export class BitmapText extends DisplayObject {
    * Sets the maximum width of this bitmap text.
    * @param {number} value - The new maximum width to set.
    */
-  set maxWidth(value: number) {
+  public set maxWidth(value: number) {
     if (value !== this._maxWidth) {
       this._maxWidth = value;
       this.updateText();
@@ -457,7 +449,7 @@ export class BitmapText extends DisplayObject {
    * Gets whether smoothing is enabled for this bitmap text's font.
    * @returns {boolean} True if smoothing is enabled, false otherwise.
    */
-  get smoothed() {
+  public get smoothed() {
     return !this._data.base.scaleMode;
   }
 
@@ -465,7 +457,7 @@ export class BitmapText extends DisplayObject {
    * Sets whether smoothing is enabled for this bitmap text's font.
    * @param {boolean} value - Whether to enable smoothing (true) or not (false).
    */
-  set smoothed(value: boolean) {
+  public set smoothed(value: boolean) {
     if (value) {
       this._data.base.scaleMode = SCALE_LINEAR;
     } else {

@@ -1,4 +1,4 @@
-import { expect } from 'vitest';
+import { expect, describe, it } from 'vitest';
 import { degToRad } from '../util/math.js';
 import { Line } from './line.js';
 
@@ -62,7 +62,7 @@ describe('Line', () => {
     const line = new Line(0, 0, 10, 10);
     const line2 = new Line(5, 5, 15, 15);
     const result = line.intersects(line2, true, null);
-    expect(result).toBe(null);
+    expect(result).toBeNull();
   });
 
   it('should reflect the line across another line correctly', () => {
@@ -81,7 +81,7 @@ describe('Line', () => {
 
   it('should center the line on a point correctly', () => {
     const line = new Line(0, 0, 10, 10);
-    const result = line.centerOn(10, 10);
+    line.centerOn(10, 10);
     expect(line.start.x).toBe(10 - (line.end.x - line.start.x) / 2);
     expect(line.start.y).toBe(10 - (line.end.y - line.start.y) / 2);
   });
@@ -101,8 +101,8 @@ describe('Line', () => {
   it('should get the random point on the line correctly', () => {
     const line = new Line(0, 0, 10, 10);
     const result = line.random(null);
-    expect(result.x > 0).toBe(true);
-    expect(result.y > 0).toBe(true);
+    expect(result.x).toBeGreaterThan(0);
+    expect(result.y).toBeGreaterThan(0);
   });
 
   it('should get the coordinates on the line correctly', () => {

@@ -1,13 +1,13 @@
 export class Node {
-  i: number;
-  x: number;
-  y: number;
-  prev: Node | null;
-  next: Node | null;
-  z: number | null;
-  prevZ: Node | null;
-  nextZ: Node | null;
-  steiner: boolean;
+  public i: number;
+  public x: number;
+  public y: number;
+  public prev: Node | null;
+  public next: Node | null;
+  public z: number | null;
+  public prevZ: Node | null;
+  public nextZ: Node | null;
+  public steiner: boolean;
 
   /**
    * Creates a new Node instance.
@@ -15,7 +15,7 @@ export class Node {
    * @param {number} x - The x coordinate of the vertex.
    * @param {number} y - The y coordinate of the vertex.
    */
-  constructor(i: number, x: number, y: number) {
+  public constructor(i: number, x: number, y: number) {
     // vertice index in coordinates array
     this.i = i;
     // vertex coordinates

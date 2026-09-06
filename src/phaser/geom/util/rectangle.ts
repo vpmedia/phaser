@@ -1,5 +1,6 @@
 import { Point } from '../point.js';
 import { Rectangle } from '../rectangle.js';
+import { getRegistry } from '../../core/registry.js';
 
 /**
  * Inflates the rectangle by the specified amounts on each axis.
@@ -22,9 +23,7 @@ export const inflate = (a: Rectangle, dx: number, dy: number) => {
  * @param {object} point - The point containing x and y values to inflate the rectangle by.
  * @returns {Rectangle} The inflated rectangle.
  */
-export const inflatePoint = (a: Rectangle, point: any) => {
-  return inflate(a, point.x, point.y);
-};
+export const inflatePoint = (a: Rectangle, point: any) => inflate(a, point.x, point.y);
 
 /**
  * Gets the size of the rectangle as a point.
@@ -33,7 +32,7 @@ export const inflatePoint = (a: Rectangle, point: any) => {
  * @returns {Point} The size of the rectangle as a point (width, height).
  */
 export const size = (a: Rectangle, output: Point | null = null) => {
-  const result = output || new Point();
+  const result = output ?? new Point();
   result.setTo(a.width, a.height);
   return result;
 };
@@ -45,7 +44,7 @@ export const size = (a: Rectangle, output: Point | null = null) => {
  * @returns {Rectangle} The cloned rectangle.
  */
 export const clone = (input: Rectangle, output: Rectangle | null = null) => {
-  const result = output || new Rectangle();
+  const result = output ?? new Rectangle();
   result.setTo(input.x, input.y, input.width, input.height);
   return result;
 };
@@ -74,9 +73,8 @@ export const contains = (a: Rectangle, x: number, y: number) => {
  * @param {number} y - The y coordinate of the point.
  * @returns {boolean} True if the point is contained within the rectangle, false otherwise.
  */
-export const containsRaw = (rx: number, ry: number, rw: number, rh: number, x: number, y: number) => {
-  return x >= rx && x < rx + rw && y >= ry && y < ry + rh;
-};
+export const containsRaw = (rx: number, ry: number, rw: number, rh: number, x: number, y: number) =>
+  x >= rx && x < rx + rw && y >= ry && y < ry + rh;
 
 /**
  * Checks if a point is contained within the rectangle.
@@ -84,9 +82,7 @@ export const containsRaw = (rx: number, ry: number, rw: number, rh: number, x: n
  * @param {Point} point - The point to check.
  * @returns {boolean} True if the point is contained within the rectangle, false otherwise.
  */
-export const containsPoint = (a: Rectangle, point: Point) => {
-  return contains(a, point.x, point.y);
-};
+export const containsPoint = (a: Rectangle, point: Point) => contains(a, point.x, point.y);
 
 /**
  * Checks if rectangle a contains rectangle b.
@@ -107,9 +103,8 @@ export const containsRect = (a: Rectangle, b: Rectangle) => {
  * @param {Rectangle} b - The second rectangle to compare.
  * @returns {boolean} True if the rectangles are equal, false otherwise.
  */
-export const equals = (a: Rectangle, b: Rectangle) => {
-  return a.x === b.x && a.y === b.y && a.width === b.width && a.height === b.height;
-};
+export const equals = (a: Rectangle, b: Rectangle) =>
+  a.x === b.x && a.y === b.y && a.width === b.width && a.height === b.height;
 
 /**
  * Checks if two rectangles have the same dimensions.
@@ -117,9 +112,7 @@ export const equals = (a: Rectangle, b: Rectangle) => {
  * @param {Rectangle} b - The second rectangle to compare.
  * @returns {boolean} True if the rectangles have the same dimensions, false otherwise.
  */
-export const sameDimensions = (a: Rectangle, b: Rectangle) => {
-  return a.width === b.width && a.height === b.height;
-};
+export const sameDimensions = (a: Rectangle, b: Rectangle) => a.width === b.width && a.height === b.height;
 
 /**
  * Checks if two rectangles intersect.
@@ -142,7 +135,7 @@ export const intersects = (a: Rectangle, b: Rectangle) => {
  * @returns {Rectangle} The intersection of the rectangles, or an empty rectangle if they don't intersect.
  */
 export const intersection = (a: Rectangle, b: Rectangle, output: Rectangle | null = null) => {
-  const result = output || new Rectangle();
+  const result = output ?? new Rectangle();
   if (intersects(a, b)) {
     result.x = Math.max(a.x, b.x);
     result.y = Math.max(a.y, b.y);
@@ -162,21 +155,13 @@ export const intersection = (a: Rectangle, b: Rectangle, output: Rectangle | nul
  * @param {number} tolerance - Optional tolerance value for intersection.
  * @returns {boolean} True if the rectangle intersects with the area, false otherwise.
  */
-export const intersectsRaw = (
-  a: Rectangle,
-  left: number,
-  right: number,
-  top: number,
-  bottom: number,
-  tolerance: number = 0
-) => {
-  return !(
+export const intersectsRaw = (a: Rectangle, left: number, right: number, top: number, bottom: number, tolerance = 0) =>
+  !(
     left > a.right + tolerance ||
     right < a.left - tolerance ||
     top > a.bottom + tolerance ||
     bottom < a.top - tolerance
   );
-};
 
 /**
  * Gets the union of two rectangles.
@@ -186,7 +171,7 @@ export const intersectsRaw = (
  * @returns {Rectangle} The union of the rectangles.
  */
 export const union = (a: Rectangle, b: Rectangle, output: Rectangle | null = null) => {
-  const result = output || new Rectangle();
+  const result = output ?? new Rectangle();
   return result.setTo(
     Math.min(a.x, b.x),
     Math.min(a.y, b.y),
@@ -202,7 +187,7 @@ export const union = (a: Rectangle, b: Rectangle, output: Rectangle | null = nul
  * @returns {Rectangle} The AABB of the points.
  */
 export const aabb = (points: Point[], output: Rectangle | null = null) => {
-  const result = output || new Rectangle();
+  const result = output ?? new Rectangle();
   let xMax = Number.NEGATIVE_INFINITY;
   let xMin = Number.POSITIVE_INFINITY;
   let yMax = Number.NEGATIVE_INFINITY;
@@ -230,11 +215,7 @@ export const aabb = (points: Point[], output: Rectangle | null = null) => {
  * @returns {Rectangle} An empty rectangle.
  */
 export const getEmptyRectangle = () => {
-  if (!window.PhaserRegistry) {
-    window.PhaserRegistry = {};
-  }
-  if (!window.PhaserRegistry.EMPTY_RECTANGLE) {
-    window.PhaserRegistry.EMPTY_RECTANGLE = new Rectangle();
-  }
-  return window.PhaserRegistry.EMPTY_RECTANGLE;
+  getRegistry();
+  globalThis.PhaserRegistry.EMPTY_RECTANGLE ??= new Rectangle();
+  return globalThis.PhaserRegistry.EMPTY_RECTANGLE;
 };

@@ -18,43 +18,44 @@ import { Stage } from './stage.js';
 import { Time } from './time.js';
 import { TweenManager } from './tween_manager.js';
 import { World } from './world.js';
+import { getRegistry } from './registry.js';
 
 export class Game {
-  config!: any;
-  id!: number;
-  parent!: string | HTMLElement;
-  width!: number;
-  height!: number;
-  renderer!: CanvasRenderer | WebGLRenderer;
-  state!: SceneManager;
-  isBooted!: boolean;
-  paused!: boolean;
-  raf!: RequestAnimationFrame;
-  add!: GameObjectFactory;
-  cache!: Cache;
-  input!: Input;
-  load!: Loader;
-  scale!: ScaleManager;
-  sound!: SoundManager;
-  stage!: Stage;
-  time!: Time;
-  tweens!: TweenManager;
-  world!: World;
-  device!: Device;
-  logger!: Logger;
-  canvas!: HTMLCanvasElement;
-  context!:
+  public config!: any;
+  public id!: number;
+  public parent!: string | HTMLElement;
+  public width!: number;
+  public height!: number;
+  public renderer!: CanvasRenderer | WebGLRenderer;
+  public state!: SceneManager;
+  public isBooted!: boolean;
+  public paused!: boolean;
+  public raf!: RequestAnimationFrame;
+  public add!: GameObjectFactory;
+  public cache!: Cache;
+  public input!: Input;
+  public load!: Loader;
+  public scale!: ScaleManager;
+  public sound!: SoundManager;
+  public stage!: Stage;
+  public time!: Time;
+  public tweens!: TweenManager;
+  public world!: World;
+  public device!: Device;
+  public logger!: Logger;
+  public canvas!: HTMLCanvasElement;
+  public context!:
     | CanvasRenderingContext2D
     | ImageBitmapRenderingContext
     | WebGLRenderingContext
     | WebGL2RenderingContext
     | null;
-  onPause!: Signal;
-  onResume!: Signal;
-  onBoot!: Signal;
-  isPaused!: boolean;
-  contextLostBinded!: any;
-  contextRestoredBinded!: any;
+  public onPause!: Signal;
+  public onResume!: Signal;
+  public onBoot!: Signal;
+  public isPaused!: boolean;
+  public contextLostBinded!: any;
+  public contextRestoredBinded!: any;
   /**
    * Creates a new Game instance.
    * @param {object} gameConfig - The configuration object for the game.
@@ -75,10 +76,8 @@ export class Game {
    * @param {string|HTMLElement} gameConfig.parent - The parent element to append the canvas to.
    * @param {object} gameConfig.state - The initial state object or class.
    */
-  constructor(gameConfig: any = {}) {
-    if (!window.PhaserRegistry) {
-      window.PhaserRegistry = {};
-    }
+  public constructor(gameConfig: any = {}) {
+    getRegistry();
     this.config = {};
     this.id = 0;
     this.parent = '';
@@ -112,7 +111,7 @@ export class Game {
   /**
    * Boots the game and initializes all systems.
    */
-  boot() {
+  public boot() {
     if (this.isBooted) {
       return;
     }
@@ -148,7 +147,7 @@ export class Game {
   /**
    * Creates the renderer canvas element.
    */
-  createRendererCanvas() {
+  public createRendererCanvas() {
     this.logger.info('createRendererCanvas');
     if (this.canvas) {
       removeFromDOM(this.canvas);
@@ -161,7 +160,7 @@ export class Game {
     if (this.config.canvasStyle) {
       const canvasStyle = this.config.canvasStyle as Record<string, string>;
       for (const property of Object.keys(canvasStyle)) {
-        this.canvas.style.setProperty(property, canvasStyle[property]);
+        this.canvas.style.setProperty(property, canvasStyle[property] ?? null);
       }
     } else {
       this.canvas.style.setProperty('-webkit-full-screen', 'width: 100%; height: 100%');
@@ -171,7 +170,7 @@ export class Game {
   /**
    * Initializes the renderer and sets up the rendering context.
    */
-  initRenderer() {
+  public initRenderer() {
     let isWebGlReady = false;
     if (this.config.renderType === RENDER_AUTO || this.config.renderType === RENDER_WEBGL) {
       try {
@@ -186,11 +185,11 @@ export class Game {
         isWebGlReady = true;
       } catch (error) {
         isWebGlReady = false;
-        if (window.PhaserRegistry?.GL_PROGRAM_INFO_LOG) {
-          this.logger.warn('WebGL program info', { log: window.PhaserRegistry.GL_PROGRAM_INFO_LOG });
+        if (globalThis.PhaserRegistry?.GL_PROGRAM_INFO_LOG) {
+          this.logger.warn('WebGL program info', { log: globalThis.PhaserRegistry.GL_PROGRAM_INFO_LOG });
         }
-        if (window.PhaserRegistry?.GL_SHADER_INFO_LOG) {
-          this.logger.warn('WebGL shader info', { log: window.PhaserRegistry.GL_SHADER_INFO_LOG });
+        if (globalThis.PhaserRegistry?.GL_SHADER_INFO_LOG) {
+          this.logger.warn('WebGL shader info', { log: globalThis.PhaserRegistry.GL_SHADER_INFO_LOG });
         }
         const typedError = error instanceof Error ? error : new Error(String(error));
         this.logger.fatal('Game', { error: typedError });
@@ -222,7 +221,7 @@ export class Game {
    * @param {string} key - The configuration key to parse.
    * @param {*} defaultValue - The default value if the key is not found in config.
    */
-  parseConfigElement(config: any, key: string, defaultValue?: any) {
+  public parseConfigElement(config: any, key: string, defaultValue?: any) {
     if (config[key] !== undefined) {
       this.config[key] = config[key];
     } else {
@@ -234,7 +233,7 @@ export class Game {
    * Parses the configuration object and sets up game properties.
    * @param {object} config - The configuration object to parse.
    */
-  parseConfig(config: any) {
+  public parseConfig(config: any) {
     this.logger = config.logger ?? getLogger(['phaser']);
     this.logger.info('parseConfig');
     this.parseConfigElement(config, 'width', 800);
@@ -265,7 +264,7 @@ export class Game {
    * Called when the WebGL context is lost.
    * @param {WebGLContextEvent | Event} event - The WebGL context loss event.
    */
-  contextLost(event: any) {
+  public contextLost(event: any) {
     this.logger.info('contextLost', event);
     event.preventDefault();
     if (this.renderer) {
@@ -277,7 +276,7 @@ export class Game {
    * Called when the WebGL context is restored.
    * @param {WebGLContextEvent | Event} event - The WebGL context restore event.
    */
-  contextRestored(event: any) {
+  public contextRestored(event: any) {
     this.logger.info('contextRestored', event);
     if (this.renderer) {
       this.renderer.initContext(this);
@@ -290,7 +289,7 @@ export class Game {
    * Updates the game state.
    * @param {number} time - The current timestamp.
    */
-  update(time: number) {
+  public update(time: number) {
     this.time.update(time);
     if (!this.isPaused) {
       this.scale.preUpdate();
@@ -313,7 +312,7 @@ export class Game {
   /**
    * Destroys the game and cleans up all resources.
    */
-  destroy() {
+  public destroy() {
     this.logger.info('destroy');
     this.isPaused = true;
 

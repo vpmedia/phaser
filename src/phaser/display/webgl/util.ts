@@ -1,3 +1,4 @@
+import { getRegistry } from '../../core/registry.js';
 /** WebGL context tagged with the per-context id the renderer assigns, used to key shader caches. */
 export type IdentifiedWebGLRenderingContext = WebGLRenderingContext & { id: number };
 
@@ -21,9 +22,7 @@ export const CONTEXT_LOST_WEBGL = 0x9242;
  * @param {WebGLRenderingContext} gl - The WebGL rendering context.
  * @returns {number} The error code from the WebGL context.
  */
-export const getWebGLContextErrorCode = (gl: WebGLRenderingContext) => {
-  return gl?.getError() ?? 0;
-};
+export const getWebGLContextErrorCode = (gl: WebGLRenderingContext) => gl?.getError() ?? 0;
 
 /**
  * Gets the WebGL context error name from an error code.
@@ -32,22 +31,30 @@ export const getWebGLContextErrorCode = (gl: WebGLRenderingContext) => {
  */
 export const getWebGLContextErrorName = (errorCode: number) => {
   switch (errorCode) {
-    case NO_ERROR:
+    case NO_ERROR: {
       return 'NO_ERROR';
-    case INVALID_ENUM:
+    }
+    case INVALID_ENUM: {
       return 'INVALID_ENUM';
-    case INVALID_VALUE:
+    }
+    case INVALID_VALUE: {
       return 'INVALID_VALUE';
-    case INVALID_OPERATION:
+    }
+    case INVALID_OPERATION: {
       return 'INVALID_OPERATION';
-    case INVALID_FRAMEBUFFER_OPERATION:
+    }
+    case INVALID_FRAMEBUFFER_OPERATION: {
       return 'INVALID_FRAMEBUFFER_OPERATION';
-    case OUT_OF_MEMORY:
+    }
+    case OUT_OF_MEMORY: {
       return 'OUT_OF_MEMORY';
-    case CONTEXT_LOST_WEBGL:
+    }
+    case CONTEXT_LOST_WEBGL: {
       return 'CONTEXT_LOST_WEBGL';
-    default:
+    }
+    default: {
       return `UNKNOWN_ERROR_${errorCode}`;
+    }
   }
 };
 
@@ -72,10 +79,8 @@ export const compileShader = (gl: WebGLRenderingContext, shaderSrc: string[] | s
   gl.shaderSource(shader, src);
   gl.compileShader(shader);
   if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-    if (!window.PhaserRegistry) {
-      window.PhaserRegistry = {};
-    }
-    window.PhaserRegistry.GL_SHADER_INFO_LOG = gl.getShaderInfoLog(shader);
+    getRegistry();
+    globalThis.PhaserRegistry.GL_SHADER_INFO_LOG = gl.getShaderInfoLog(shader);
     return null;
   }
   return shader;
@@ -87,9 +92,8 @@ export const compileShader = (gl: WebGLRenderingContext, shaderSrc: string[] | s
  * @param {string[]|string} shaderSrc - The vertex shader source code.
  * @returns {WebGLShader} The compiled WebGL vertex shader or null if compilation failed.
  */
-export const compileVertexShader = (gl: WebGLRenderingContext, shaderSrc: string[] | string) => {
-  return compileShader(gl, shaderSrc, gl.VERTEX_SHADER);
-};
+export const compileVertexShader = (gl: WebGLRenderingContext, shaderSrc: string[] | string) =>
+  compileShader(gl, shaderSrc, gl.VERTEX_SHADER);
 
 /**
  * Compiles a WebGL fragment shader.
@@ -97,9 +101,8 @@ export const compileVertexShader = (gl: WebGLRenderingContext, shaderSrc: string
  * @param {string[]|string} shaderSrc - The fragment shader source code.
  * @returns {WebGLShader} The compiled WebGL fragment shader or null if compilation failed.
  */
-export const compileFragmentShader = (gl: WebGLRenderingContext, shaderSrc: string[] | string) => {
-  return compileShader(gl, shaderSrc, gl.FRAGMENT_SHADER);
-};
+export const compileFragmentShader = (gl: WebGLRenderingContext, shaderSrc: string[] | string) =>
+  compileShader(gl, shaderSrc, gl.FRAGMENT_SHADER);
 
 /**
  * Compiles a WebGL shader program.
@@ -126,10 +129,8 @@ export const compileProgram = (
   gl.linkProgram(shaderProgram);
 
   if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
-    if (!window.PhaserRegistry) {
-      window.PhaserRegistry = {};
-    }
-    window.PhaserRegistry.GL_PROGRAM_INFO_LOG = gl.getProgramInfoLog(shaderProgram);
+    getRegistry();
+    globalThis.PhaserRegistry.GL_PROGRAM_INFO_LOG = gl.getProgramInfoLog(shaderProgram);
   }
   return shaderProgram;
 };

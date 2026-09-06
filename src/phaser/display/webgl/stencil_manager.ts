@@ -1,14 +1,16 @@
 import { hex2rgb } from '../../util/math.js';
+import type { Graphics } from '../graphics.js';
+import type { GraphicsData } from './graphics_data.js';
 
 export class WebGLStencilManager {
-  [key: string]: any;
-  stencilStack!: any;
-  reverse!: any;
-  count!: any;
+  public gl!: WebGLRenderingContext;
+  public stencilStack!: any;
+  public reverse!: any;
+  public count!: any;
   /**
    * Initializes the stencil manager.
    */
-  constructor() {
+  public constructor() {
     this.stencilStack = [];
     this.reverse = true;
     this.count = 0;
@@ -18,30 +20,25 @@ export class WebGLStencilManager {
    * Binds the stencil buffer for rendering.
    * @param {WebGLRenderingContext} gl - The WebGL rendering context.
    */
-  setContext(gl: WebGLRenderingContext) {
+  public setContext(gl: WebGLRenderingContext) {
     this.gl = gl;
   }
 
   /**
    * Sets up the stencil buffer for rendering.
    */
-  destroy() {
+  public destroy(): void {
     this.stencilStack = null;
-    this.gl = null;
   }
 
   /**
    * Renders the stencil buffer for graphics.
-   * @param {import('../graphics.js').Graphics} graphics - The graphics object to render.
-   * @param {import('./graphics_data.js').GraphicsData} webGLData - The WebGL graphics data.
+   * @param {Graphics} graphics - The graphics object to render.
+   * @param {GraphicsData} webGLData - The WebGL graphics data.
    * @param {object} renderSession - The rendering session.
    */
-  pushStencil(
-    graphics: import('../graphics.js').Graphics,
-    webGLData: import('./graphics_data.js').GraphicsData,
-    renderSession: any
-  ) {
-    const gl = renderSession.gl;
+  public pushStencil(graphics: Graphics, webGLData: GraphicsData, renderSession: any) {
+    const { gl } = renderSession;
     this.bindGraphics(graphics, webGLData, renderSession);
     if (this.stencilStack.length === 0) {
       gl.enable(gl.STENCIL_TEST);
@@ -94,21 +91,17 @@ export class WebGLStencilManager {
 
   /**
    * Renders the stencil buffer for graphics.
-   * @param {import('../graphics.js').Graphics} graphics - The graphics object to render.
-   * @param {import('./graphics_data.js').GraphicsData} webGLData - The WebGL graphics data.
+   * @param {Graphics} graphics - The graphics object to render.
+   * @param {GraphicsData} webGLData - The WebGL graphics data.
    * @param {object} renderSession - The rendering session.
    */
-  bindGraphics(
-    graphics: import('../graphics.js').Graphics,
-    webGLData: import('./graphics_data.js').GraphicsData,
-    renderSession: any
-  ) {
+  public bindGraphics(graphics: Graphics, webGLData: GraphicsData, renderSession: any) {
     // if(this._currentGraphics === graphics)return;
     // this._currentGraphics = graphics;
-    const gl = renderSession.gl;
+    const { gl } = renderSession;
     // bind the graphics object..
-    const projection = renderSession.projection;
-    const offset = renderSession.offset;
+    const { projection } = renderSession;
+    const { offset } = renderSession;
     let shader; // = renderSession.shaderManager.primitiveShader;
     if (webGLData.mode === 1) {
       shader = renderSession.shaderManager.complexPrimitiveShader;
@@ -145,16 +138,12 @@ export class WebGLStencilManager {
 
   /**
    * Renders the stencil buffer for graphics.
-   * @param {import('../graphics.js').Graphics} graphics - The graphics object to render.
-   * @param {import('./graphics_data.js').GraphicsData} webGLData - The WebGL graphics data.
+   * @param {Graphics} graphics - The graphics object to render.
+   * @param {GraphicsData} webGLData - The WebGL graphics data.
    * @param {object} renderSession - The rendering session.
    */
-  popStencil(
-    graphics: import('../graphics.js').Graphics,
-    webGLData: import('./graphics_data.js').GraphicsData,
-    renderSession: any
-  ) {
-    const gl = renderSession.gl;
+  public popStencil(graphics: Graphics, webGLData: GraphicsData, renderSession: any) {
+    const { gl } = renderSession;
     this.stencilStack.pop();
     this.count -= 1;
     if (this.stencilStack.length === 0) {

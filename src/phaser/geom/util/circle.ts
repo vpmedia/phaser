@@ -9,7 +9,7 @@ import { Point } from '../point.js';
  * @returns {Circle} The cloned circle.
  */
 export const clone = (input: Circle, output: Circle | null = null) => {
-  const result = output || new Circle();
+  const result = output ?? new Circle();
   result.x = input.x;
   result.y = input.y;
   result.diameter = input.diameter;
@@ -38,9 +38,7 @@ export const contains = (a: Circle, x: number, y: number) => {
  * @param {Circle} b - The second circle to compare.
  * @returns {boolean} True if the circles are equal, false otherwise.
  */
-export const equals = (a: Circle, b: Circle) => {
-  return a.x === b.x && a.y === b.y && a.diameter === b.diameter;
-};
+export const equals = (a: Circle, b: Circle) => a.x === b.x && a.y === b.y && a.diameter === b.diameter;
 
 /**
  * Checks if two circles intersect.
@@ -48,9 +46,7 @@ export const equals = (a: Circle, b: Circle) => {
  * @param {Circle} b - The second circle to check.
  * @returns {boolean} True if the circles intersect, false otherwise.
  */
-export const intersects = (a: Circle, b: Circle) => {
-  return distance(a.x, a.y, b.x, b.y) <= a.radius + b.radius;
-};
+export const intersects = (a: Circle, b: Circle) => distance(a.x, a.y, b.x, b.y) <= a.radius + b.radius;
 
 /**
  * Gets a point on the circumference of the circle at the specified angle.
@@ -60,14 +56,9 @@ export const intersects = (a: Circle, b: Circle) => {
  * @param {Point} output - Optional point to store the result in.
  * @returns {Point} The point on the circumference of the circle.
  */
-export const circumferencePoint = (
-  a: Circle,
-  angle: number,
-  asDegrees: boolean = false,
-  output: Point | null = null
-) => {
-  const result = output || new Point();
-  if (asDegrees === true) {
+export const circumferencePoint = (a: Circle, angle: number, asDegrees = false, output: Point | null = null) => {
+  const result = output ?? new Point();
+  if (asDegrees) {
     angle = degToRad(angle);
   }
   result.x = a.x + a.radius * Math.cos(angle);
@@ -83,9 +74,9 @@ export const circumferencePoint = (
  * @param {Point} output - Optional point to store the result in.
  * @returns {Point} The point on the circumference of the circle.
  */
-export const intersectsPoint = (a: Circle, angle: number, asDegrees: boolean = false, output: Point | null = null) => {
-  const result = output || new Point();
-  if (asDegrees === true) {
+export const intersectsPoint = (a: Circle, angle: number, asDegrees = false, output: Point | null = null) => {
+  const result = output ?? new Point();
+  if (asDegrees) {
     angle = degToRad(angle);
   }
   result.x = a.x + a.radius * Math.cos(angle);

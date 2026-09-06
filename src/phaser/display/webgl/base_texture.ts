@@ -1,28 +1,25 @@
 import { removeByCanvas } from '../canvas/pool.js';
 
 export class BaseTexture {
-  resolution!: any;
-  width!: any;
-  height!: any;
-  scaleMode!: any;
-  hasLoaded!: any;
-  source!: any;
-  premultipliedAlpha!: any;
-  _glTextures!: any;
-  mipmap!: any;
-  skipRender!: any;
-  _powerOf2!: any;
-  _dirty!: any;
+  public resolution: any = 1;
+  public width: any = 100;
+  public height: any = 100;
+  public scaleMode!: any;
+  public hasLoaded!: any;
+  public source!: any;
+  public premultipliedAlpha!: any;
+  public _glTextures!: any;
+  public mipmap!: any;
+  public skipRender!: any;
+  public _powerOf2!: any;
+  public _dirty!: any;
   /**
    * Updates the base texture with a new source.
    * @param {HTMLCanvasElement} source - The new canvas element to use as the texture source.
    * @param {number} [scaleMode] - The scale mode to use for the texture.
    */
-  constructor(source: any, scaleMode?: any) {
-    this.resolution = 1;
-    this.width = 100;
-    this.height = 100;
-    this.scaleMode = scaleMode || window.PhaserRegistry.TEXTURE_SCALE_MODE;
+  public constructor(source: any, scaleMode?: any) {
+    this.scaleMode = scaleMode ?? globalThis.PhaserRegistry.TEXTURE_SCALE_MODE;
     this.hasLoaded = false;
     this.source = source;
     this.premultipliedAlpha = true;
@@ -34,8 +31,8 @@ export class BaseTexture {
     if (source) {
       if ((this.source.complete || this.source.getContext) && this.source.width && this.source.height) {
         this.hasLoaded = true;
-        this.width = this.source.naturalWidth || this.source.width;
-        this.height = this.source.naturalHeight || this.source.height;
+        this.width = this.source.naturalWidth ?? this.source.width;
+        this.height = this.source.naturalHeight ?? this.source.height;
         this.dirty();
       }
     }
@@ -46,7 +43,7 @@ export class BaseTexture {
    * @param {number} width - The new width of the texture.
    * @param {number} height - The new height of the texture.
    */
-  forceLoaded(width: number, height: number) {
+  public forceLoaded(width: number, height: number) {
     this.hasLoaded = true;
     this.width = width;
     this.height = height;
@@ -56,7 +53,7 @@ export class BaseTexture {
   /**
    * Destroys the texture.
    */
-  destroy() {
+  public destroy() {
     if (this.source) {
       removeByCanvas(this.source);
     }
@@ -67,7 +64,7 @@ export class BaseTexture {
   /**
    * Marks the texture as dirty.
    */
-  dirty() {
+  public dirty() {
     for (let i = 0; i < this._glTextures.length; i += 1) {
       this._dirty[i] = true;
     }
@@ -76,11 +73,11 @@ export class BaseTexture {
   /**
    * Unloads the texture from the GPU.
    */
-  unloadFromGPU() {
+  public unloadFromGPU() {
     this.dirty();
     for (let i = this._glTextures.length - 1; i >= 0; i -= 1) {
       const glTexture = this._glTextures[i];
-      const gl = window.PhaserRegistry.GL_CONTEXTS[i];
+      const gl = globalThis.PhaserRegistry.GL_CONTEXTS[i];
       if (gl && glTexture) {
         gl.deleteTexture(glTexture);
       }

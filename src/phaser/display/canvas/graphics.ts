@@ -1,20 +1,20 @@
 import { GEOM_CIRCLE, GEOM_ELLIPSE, GEOM_POLYGON, GEOM_RECTANGLE, GEOM_ROUNDED_RECTANGLE } from '../../core/const.js';
+import type { Graphics } from '../graphics.js';
 
 /**
  * Renders a graphics object to canvas.
- * @param {import('../graphics.js').Graphics} graphics - The graphics object to render.
+ * @param {Graphics} graphics - The graphics object to render.
  */
-export const updateGraphicsTint = (graphics: import('../graphics.js').Graphics) => {
+export const updateGraphicsTint = (graphics: Graphics) => {
   if (graphics.tint === 0xffffff) {
     return;
   }
   const tintR = ((graphics.tint >> 16) & 0xff) / 255;
   const tintG = ((graphics.tint >> 8) & 0xff) / 255;
   const tintB = (graphics.tint & 0xff) / 255;
-  for (let i = 0; i < graphics.graphicsData.length; i += 1) {
-    const data = graphics.graphicsData[i];
-    const fillColor = data.fillColor | 0;
-    const lineColor = data.lineColor | 0;
+  for (const data of graphics.graphicsData) {
+    const fillColor = Math.trunc(data.fillColor);
+    const lineColor = Math.trunc(data.lineColor);
     data._fillTint =
       (((((fillColor >> 16) & 0xff) / 255) * tintR * 255) << 16) +
       (((((fillColor >> 8) & 0xff) / 255) * tintG * 255) << 8) +
@@ -28,24 +28,23 @@ export const updateGraphicsTint = (graphics: import('../graphics.js').Graphics) 
 
 /**
  * Renders a graphics object to canvas.
- * @param {import('../graphics.js').Graphics} graphics - The graphics object to render.
+ * @param {Graphics} graphics - The graphics object to render.
  * @param {object} context - The canvas rendering context.
  */
-export const renderGraphics = (graphics: import('../graphics.js').Graphics, context: any) => {
-  const worldAlpha = graphics.worldAlpha;
+export const renderGraphics = (graphics: Graphics, context: any) => {
+  const { worldAlpha } = graphics;
   if (graphics.dirty) {
     updateGraphicsTint(graphics);
     graphics.dirty = false;
   }
-  for (let i = 0; i < graphics.graphicsData.length; i += 1) {
-    const data = graphics.graphicsData[i];
-    const shape = data.shape;
+  for (const data of graphics.graphicsData) {
+    const { shape } = data;
     const fillColor = data._fillTint;
     const lineColor = data._lineTint;
     context.lineWidth = data.lineWidth;
     if (data.type === GEOM_POLYGON) {
       context.beginPath();
-      const points = shape.points;
+      const { points } = shape;
       context.moveTo(points[0], points[1]);
       for (let j = 1; j < points.length / 2; j += 1) {
         context.lineTo(points[j * 2], points[j * 2 + 1]);
@@ -54,28 +53,28 @@ export const renderGraphics = (graphics: import('../graphics.js').Graphics, cont
         context.lineTo(points[0], points[1]);
       }
       // if the first and last point are the same close the path - much neater :)
-      if (points[0] === points[points.length - 2] && points[1] === points[points.length - 1]) {
+      if (points[0] === points.at(-2) && points[1] === points.at(-1)) {
         context.closePath();
       }
       if (data.fill) {
         context.globalAlpha = data.fillAlpha * worldAlpha;
-        context.fillStyle = `#${`00000${(fillColor | 0).toString(16)}`.substr(-6)}`;
+        context.fillStyle = `#${`00000${Math.trunc(fillColor).toString(16)}`.slice(-6)}`;
         context.fill();
       }
       if (data.lineWidth) {
         context.globalAlpha = data.lineAlpha * worldAlpha;
-        context.strokeStyle = `#${`00000${(lineColor | 0).toString(16)}`.substr(-6)}`;
+        context.strokeStyle = `#${`00000${Math.trunc(lineColor).toString(16)}`.slice(-6)}`;
         context.stroke();
       }
     } else if (data.type === GEOM_RECTANGLE) {
       if (data.fillColor || data.fillColor === 0) {
         context.globalAlpha = data.fillAlpha * worldAlpha;
-        context.fillStyle = `#${`00000${(fillColor | 0).toString(16)}`.substr(-6)}`;
+        context.fillStyle = `#${`00000${Math.trunc(fillColor).toString(16)}`.slice(-6)}`;
         context.fillRect(shape.x, shape.y, shape.width, shape.height);
       }
       if (data.lineWidth) {
         context.globalAlpha = data.lineAlpha * worldAlpha;
-        context.strokeStyle = `#${`00000${(lineColor | 0).toString(16)}`.substr(-6)}`;
+        context.strokeStyle = `#${`00000${Math.trunc(lineColor).toString(16)}`.slice(-6)}`;
         context.strokeRect(shape.x, shape.y, shape.width, shape.height);
       }
     } else if (data.type === GEOM_CIRCLE) {
@@ -84,12 +83,12 @@ export const renderGraphics = (graphics: import('../graphics.js').Graphics, cont
       context.closePath();
       if (data.fill) {
         context.globalAlpha = data.fillAlpha * worldAlpha;
-        context.fillStyle = `#${`00000${(fillColor | 0).toString(16)}`.substr(-6)}`;
+        context.fillStyle = `#${`00000${Math.trunc(fillColor).toString(16)}`.slice(-6)}`;
         context.fill();
       }
       if (data.lineWidth) {
         context.globalAlpha = data.lineAlpha * worldAlpha;
-        context.strokeStyle = `#${`00000${(lineColor | 0).toString(16)}`.substr(-6)}`;
+        context.strokeStyle = `#${`00000${Math.trunc(lineColor).toString(16)}`.slice(-6)}`;
         context.stroke();
       }
     } else if (data.type === GEOM_ELLIPSE) {
@@ -114,21 +113,21 @@ export const renderGraphics = (graphics: import('../graphics.js').Graphics, cont
       context.closePath();
       if (data.fill) {
         context.globalAlpha = data.fillAlpha * worldAlpha;
-        context.fillStyle = `#${`00000${(fillColor | 0).toString(16)}`.substr(-6)}`;
+        context.fillStyle = `#${`00000${Math.trunc(fillColor).toString(16)}`.slice(-6)}`;
         context.fill();
       }
       if (data.lineWidth) {
         context.globalAlpha = data.lineAlpha * worldAlpha;
-        context.strokeStyle = `#${`00000${(lineColor | 0).toString(16)}`.substr(-6)}`;
+        context.strokeStyle = `#${`00000${Math.trunc(lineColor).toString(16)}`.slice(-6)}`;
         context.stroke();
       }
     } else if (data.type === GEOM_ROUNDED_RECTANGLE) {
       const rx = shape.x;
       const ry = shape.y;
-      const width = shape.width;
-      const height = shape.height;
-      let radius = shape.radius;
-      const maxRadius = (Math.min(width, height) / 2) | 0;
+      const { width } = shape;
+      const { height } = shape;
+      let { radius } = shape;
+      const maxRadius = Math.trunc(Math.min(width, height) / 2);
       radius = radius > maxRadius ? maxRadius : radius;
       context.beginPath();
       context.moveTo(rx, ry + radius);
@@ -143,12 +142,12 @@ export const renderGraphics = (graphics: import('../graphics.js').Graphics, cont
       context.closePath();
       if (data.fillColor || data.fillColor === 0) {
         context.globalAlpha = data.fillAlpha * worldAlpha;
-        context.fillStyle = `#${`00000${(fillColor | 0).toString(16)}`.substr(-6)}`;
+        context.fillStyle = `#${`00000${Math.trunc(fillColor).toString(16)}`.slice(-6)}`;
         context.fill();
       }
       if (data.lineWidth) {
         context.globalAlpha = data.lineAlpha * worldAlpha;
-        context.strokeStyle = `#${`00000${(lineColor | 0).toString(16)}`.substr(-6)}`;
+        context.strokeStyle = `#${`00000${Math.trunc(lineColor).toString(16)}`.slice(-6)}`;
         context.stroke();
       }
     }
@@ -157,10 +156,10 @@ export const renderGraphics = (graphics: import('../graphics.js').Graphics, cont
 
 /**
  * Renders a graphics object to canvas.
- * @param {import('../graphics.js').Graphics} graphics - The graphics object to render.
+ * @param {Graphics} graphics - The graphics object to render.
  * @param {object} context - The canvas rendering context.
  */
-export const renderGraphicsMask = (graphics: import('../graphics.js').Graphics, context: any) => {
+export const renderGraphicsMask = (graphics: Graphics, context: any) => {
   const len = graphics.graphicsData.length;
   if (len === 0) {
     return;
@@ -168,15 +167,15 @@ export const renderGraphicsMask = (graphics: import('../graphics.js').Graphics, 
   context.beginPath();
   for (let i = 0; i < len; i += 1) {
     const data = graphics.graphicsData[i];
-    const shape = data.shape;
+    const { shape } = data;
     if (data.type === GEOM_POLYGON) {
-      const points = shape.points;
+      const { points } = shape;
       context.moveTo(points[0], points[1]);
       for (let j = 1; j < points.length / 2; j += 1) {
         context.lineTo(points[j * 2], points[j * 2 + 1]);
       }
       // if the first and last point are the same close the path - much neater :)
-      if (points[0] === points[points.length - 2] && points[1] === points[points.length - 1]) {
+      if (points[0] === points.at(-2) && points[1] === points.at(-1)) {
         context.closePath();
       }
     } else if (data.type === GEOM_RECTANGLE) {
@@ -207,10 +206,10 @@ export const renderGraphicsMask = (graphics: import('../graphics.js').Graphics, 
     } else if (data.type === GEOM_ROUNDED_RECTANGLE) {
       const rx = shape.x;
       const ry = shape.y;
-      const width = shape.width;
-      const height = shape.height;
-      let radius = shape.radius;
-      const maxRadius = (Math.min(width, height) / 2) | 0;
+      const { width } = shape;
+      const { height } = shape;
+      let { radius } = shape;
+      const maxRadius = Math.trunc(Math.min(width, height) / 2);
       radius = radius > maxRadius ? maxRadius : radius;
       context.moveTo(rx, ry + radius);
       context.lineTo(rx, ry + height - radius);

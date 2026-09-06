@@ -1,9 +1,10 @@
 import { Frame } from './frame.js';
 import { FrameData } from './frame_data.js';
+import type { Game } from './game.js';
 
 /**
  * TBD.
- * @param {import('./game.js').Game} game - TBD.
+ * @param {Game} game - TBD.
  * @param {string} key - TBD.
  * @param {number} frameWidth - TBD.
  * @param {number} frameHeight - TBD.
@@ -13,7 +14,7 @@ import { FrameData } from './frame_data.js';
  * @returns {FrameData} TBD.
  */
 export const spriteSheet = (
-  game: import('./game.js').Game,
+  game: Game,
   key: any,
   frameWidth: number,
   frameHeight: number,
@@ -28,8 +29,8 @@ export const spriteSheet = (
   if (img === null) {
     return null;
   }
-  const width = img.width;
-  const height = img.height;
+  const { width } = img;
+  const { height } = img;
   if (frameWidth <= 0) {
     frameWidth = Math.floor(-width / Math.min(-1, frameWidth));
   }
@@ -66,11 +67,11 @@ export const spriteSheet = (
 
 /**
  * TBD.
- * @param {import('./game.js').Game} game - TBD.
+ * @param {Game} game - TBD.
  * @param {object} json - TBD.
  * @returns {FrameData} TBD.
  */
-export const JSONDataHash = (game: import('./game.js').Game, json: any, _key?: any) => {
+export const JSONDataHash = (game: Game, json: any, _key?: any) => {
   if (!json.frames) {
     game.logger.warn('JSONDataHash: Invalid Texture Atlas JSON given, missing frames object', json);
     return null;
@@ -78,12 +79,11 @@ export const JSONDataHash = (game: import('./game.js').Game, json: any, _key?: a
   // Let's create some frames then
   const data = new FrameData();
   // By this stage frames is a fully parsed array
-  const frames = json.frames;
+  const { frames } = json;
   let newFrame;
   let i = 0;
   const keys = Object.keys(frames);
-  for (let k = 0; k < keys.length; k += 1) {
-    const key = keys[k];
+  for (const key of keys) {
     newFrame = data.addFrame(
       new Frame(i, frames[key].frame.x, frames[key].frame.y, frames[key].frame.w, frames[key].frame.h, key)
     );

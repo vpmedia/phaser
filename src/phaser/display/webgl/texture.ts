@@ -1,35 +1,31 @@
 import { Rectangle } from '../../geom/rectangle.js';
+import type { BaseTexture } from './base_texture.js';
 
 export class TextureUvs {
-  noFrame!: any;
-  baseTexture!: any;
-  frame!: any;
-  trim!: any;
-  valid!: any;
-  isTiling!: any;
-  requiresUpdate!: any;
-  requiresReTint!: any;
-  _uvs!: any;
-  width!: any;
-  height!: any;
-  crop!: any;
-  x0!: any;
-  y0!: any;
-  x1!: any;
-  y1!: any;
-  x2!: any;
-  y2!: any;
-  x3!: any;
-  y3!: any;
+  public noFrame!: any;
+  public baseTexture!: any;
+  public frame!: any;
+  public trim!: any;
+  public valid!: any;
+  public isTiling!: any;
+  public requiresUpdate!: any;
+  public requiresReTint!: any;
+  public _uvs!: any;
+  public width!: any;
+  public height!: any;
+  public crop!: any;
+  public x0: any = 0;
+  public y0: any = 0;
+  public x1: any = 0;
+  public y1: any = 0;
+  public x2: any = 0;
+  public y2!: any;
+  public x3!: any;
+  public y3!: any;
   /**
    * Creates a new Texture instance.
    */
-  constructor() {
-    this.x0 = 0;
-    this.y0 = 0;
-    this.x1 = 0;
-    this.y1 = 0;
-    this.x2 = 0;
+  public constructor() {
     this.y2 = 0;
     this.x3 = 0;
     this.y3 = 0;
@@ -37,32 +33,31 @@ export class TextureUvs {
 }
 
 export class Texture {
-  noFrame!: any;
-  baseTexture!: any;
-  frame!: any;
-  trim!: any;
-  valid!: any;
-  isTiling!: any;
-  requiresUpdate!: any;
-  requiresReTint!: any;
-  _uvs!: any;
-  width!: any;
-  height!: any;
-  crop!: any;
+  public noFrame: any = false;
+  public baseTexture!: any;
+  public frame!: any;
+  public trim!: any;
+  public valid!: any;
+  public isTiling!: any;
+  public requiresUpdate!: any;
+  public requiresReTint!: any;
+  public _uvs!: any;
+  public width!: any;
+  public height!: any;
+  public crop!: any;
   /**
    * Creates a new Texture instance.
-   * @param {import('./base_texture.js').BaseTexture} baseTexture - The base texture to use.
+   * @param {BaseTexture} baseTexture - The base texture to use.
    * @param {Rectangle | null | undefined} frame - The frame rectangle.
    * @param {Rectangle | null | undefined} crop - The crop rectangle.
    * @param {Rectangle | null | undefined} trim - The trim rectangle.
    */
-  constructor(
-    baseTexture: import('./base_texture.js').BaseTexture,
+  public constructor(
+    baseTexture: BaseTexture,
     frame: Rectangle | null | undefined = null,
     crop: Rectangle | null | undefined = null,
     trim: Rectangle | null | undefined = null
   ) {
-    this.noFrame = false;
     if (!frame) {
       this.noFrame = true;
       frame = new Rectangle(0, 0, 1, 1);
@@ -90,7 +85,7 @@ export class Texture {
     /** @type {number} */
     this.height = 0;
     /** @type {Rectangle} */
-    this.crop = crop || new Rectangle(0, 0, 1, 1);
+    this.crop = crop ?? new Rectangle(0, 0, 1, 1);
     if (baseTexture.hasLoaded) {
       if (this.noFrame) {
         frame = new Rectangle(0, 0, baseTexture.width, baseTexture.height);
@@ -102,7 +97,7 @@ export class Texture {
   /**
    * Destroys this texture and cleans up resources.
    */
-  onBaseTextureLoaded() {
+  public onBaseTextureLoaded() {
     if (this.noFrame) {
       this.frame = new Rectangle(0, 0, this.baseTexture.width, this.baseTexture.height);
     }
@@ -113,7 +108,7 @@ export class Texture {
    * Destroys this texture and cleans up resources.
    * @param {boolean} destroyBase - Whether to destroy the base texture as well.
    */
-  destroy(destroyBase: boolean = false) {
+  public destroy(destroyBase: boolean = false) {
     if (destroyBase) {
       this.baseTexture.destroy();
     }
@@ -125,7 +120,7 @@ export class Texture {
    * @param {Rectangle} frame - The new frame rectangle.
    * @throws {Error} If the operation fails.
    */
-  setFrame(frame: Rectangle) {
+  public setFrame(frame: Rectangle) {
     this.noFrame = false;
     this.frame = frame;
     this.width = frame.width;
@@ -163,10 +158,8 @@ export class Texture {
   /**
    * Updates the texture UVs based on the crop frame.
    */
-  _updateUvs() {
-    if (!this._uvs) {
-      this._uvs = new TextureUvs();
-    }
+  public _updateUvs() {
+    this._uvs ??= new TextureUvs();
     const frame = this.crop;
     const tw = this.baseTexture.width;
     const th = this.baseTexture.height;

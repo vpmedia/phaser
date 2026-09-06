@@ -1,12 +1,13 @@
+import type { Game } from './game.js';
 export class RequestAnimationFrame {
-  game: any;
-  rafId: number;
+  public game: any;
+  public rafId: number;
 
   /**
    * Constructor.
-   * @param {import('./game.js').Game} game - Reference to the game instance.
+   * @param {Game} game - Reference to the game instance.
    */
-  constructor(game: import('./game.js').Game) {
+  public constructor(game: Game) {
     this.game = game;
     this.rafId = 0;
   }
@@ -14,14 +15,14 @@ export class RequestAnimationFrame {
   /**
    * Starts an animation frame request.
    */
-  start = () => {
+  public start = () => {
     this.rafId = requestAnimationFrame(this.update);
   };
 
   /**
    * Cancels an animation frame request.
    */
-  stop = () => {
+  public stop = () => {
     cancelAnimationFrame(this.rafId);
   };
 
@@ -29,7 +30,7 @@ export class RequestAnimationFrame {
    * Performs an animation frame request.
    * @param {number} rafTime - The timestamp provided by the browser's animation frame.
    */
-  update = (rafTime: number) => {
+  public update = (rafTime: number) => {
     this.game.update(rafTime);
     this.rafId = requestAnimationFrame(this.update);
   };

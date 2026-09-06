@@ -1,4 +1,4 @@
-import { expect } from 'vitest';
+import { expect, describe, it } from 'vitest';
 import { Circle } from './circle.js';
 import { Point } from './point.js';
 
@@ -121,7 +121,7 @@ describe('Circle', () => {
     it('should return Infinity when diameter is 0', () => {
       const circle = new Circle();
       circle.diameter = 0;
-      expect(circle.distance(new Point(1, 1))).toBeCloseTo(1.4142);
+      expect(circle.distance(new Point(1, 1))).toBeCloseTo(Math.SQRT2);
     });
   });
 
@@ -152,7 +152,6 @@ describe('Circle', () => {
   describe('circumferencePoint', () => {
     it('should generate a point on the circumference correctly', () => {
       const circle = new Circle();
-      const output = new Point();
       expect(circle.circumferencePoint(Math.PI / 2).x).toBeCloseTo(0.5 * circle.radius);
     });
 

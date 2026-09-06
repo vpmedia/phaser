@@ -87,8 +87,8 @@ export function compareX(a: any, b: any) {
  */
 export function zOrder(x: number, y: number, minX: number, minY: number, size: number) {
   // coords are transformed into non-negative 15-bit integer range
-  x = (32767 * (x - minX)) / size;
-  y = (32767 * (y - minY)) / size;
+  x = (32_767 * (x - minX)) / size;
+  y = (32_767 * (y - minY)) / size;
   x = (x | (x << 8)) & 0x00ff00ff;
   x = (x | (x << 4)) & 0x0f0f0f0f;
   x = (x | (x << 2)) & 0x33333333;
@@ -107,10 +107,12 @@ export function zOrder(x: number, y: number, minX: number, minY: number, size: n
  * @param {number} minY - The minimum y-coordinate of the bounding box.
  * @param {number} size - The size of the bounding box.
  */
-export function indexCurve(start: any, minX: number = 0, minY: number = 0, size: number = 0) {
+export function indexCurve(start: any, minX = 0, minY = 0, size = 0) {
   let p = start;
   do {
-    if (p.z === null) p.z = zOrder(p.x, p.y, minX, minY, size);
+    if (p.z === null) {
+      p.z = zOrder(p.x, p.y, minX, minY, size);
+    }
     p.prevZ = p.prev;
     p.nextZ = p.next;
     p = p.next;
@@ -129,7 +131,9 @@ export function getLeftmost(start: any) {
   let p = start;
   let leftmost = start;
   do {
-    if (p.x < leftmost.x) leftmost = p;
+    if (p.x < leftmost.x) {
+      leftmost = p;
+    }
     p = p.next;
   } while (p !== start);
   return leftmost;
@@ -206,7 +210,9 @@ export function intersects(p1: any, q1: any, p2: any, q2: any) {
 export function intersectsPolygon(a: any, b: any) {
   let p = a;
   do {
-    if (p.i !== a.i && p.next.i !== a.i && p.i !== b.i && p.next.i !== b.i && intersects(p, p.next, a, b)) return true;
+    if (p.i !== a.i && p.next.i !== a.i && p.i !== b.i && p.next.i !== b.i && intersects(p, p.next, a, b)) {
+      return true;
+    }
     p = p.next;
   } while (p !== a);
   return false;
@@ -330,11 +336,15 @@ export function isEar(ear: any) {
   const a = ear.prev;
   const b = ear;
   const c = ear.next;
-  if (area(a, b, c) >= 0) return false; // reflex, can't be an ear
+  if (area(a, b, c) >= 0) {
+    return false;
+  } // reflex, can't be an ear
   // now make sure we don't have other points inside the potential ear
   let p = ear.next.next;
   while (p !== ear.prev) {
-    if (pointInTriangle(a.x, a.y, b.x, b.y, c.x, c.y, p.x, p.y) && area(p.prev, p, p.next) >= 0) return false;
+    if (pointInTriangle(a.x, a.y, b.x, b.y, c.x, c.y, p.x, p.y) && area(p.prev, p, p.next) >= 0) {
+      return false;
+    }
     p = p.next;
   }
   return true;
@@ -348,11 +358,13 @@ export function isEar(ear: any) {
  * @param {number} size - TBD.
  * @returns {boolean} TBD.
  */
-export function isEarHashed(ear: any, minX: number = 0, minY: number = 0, size: number = 0) {
+export function isEarHashed(ear: any, minX = 0, minY = 0, size = 0) {
   const a = ear.prev;
   const b = ear;
   const c = ear.next;
-  if (area(a, b, c) >= 0) return false; // reflex, can't be an ear
+  if (area(a, b, c) >= 0) {
+    return false;
+  } // reflex, can't be an ear
   // triangle bbox; min & max are calculated like this for speed
   const minTX = a.x < b.x ? (a.x < c.x ? a.x : c.x) : b.x < c.x ? b.x : c.x;
   const minTY = a.y < b.y ? (a.y < c.y ? a.y : c.y) : b.y < c.y ? b.y : c.y;
@@ -411,9 +423,13 @@ export function linkedList(data: any, start: number, end: number, dim: number, c
   }
   // link points into circular doubly-linked list in the specified winding order
   if (clockwise === sum > 0) {
-    for (i = start; i < end; i += dim) last = insertNode(i, data[i], data[i + 1], last);
+    for (i = start; i < end; i += dim) {
+      last = insertNode(i, data[i], data[i + 1], last);
+    }
   } else {
-    for (i = end - dim; i >= start; i -= dim) last = insertNode(i, data[i], data[i + 1], last);
+    for (i = end - dim; i >= start; i -= dim) {
+      last = insertNode(i, data[i], data[i + 1], last);
+    }
   }
   return last;
 }
@@ -425,8 +441,10 @@ export function linkedList(data: any, start: number, end: number, dim: number, c
  * @returns {object} The calculated bounding box with min and max coordinates.
  */
 export function filterPoints(start: any, end?: any) {
-  if (!start) return start;
-  if (!end) end = start;
+  if (!start) {
+    return start;
+  }
+  end ??= start;
   let p = start;
   let again;
   do {
@@ -435,7 +453,9 @@ export function filterPoints(start: any, end?: any) {
       removeNode(p);
       p = p.prev;
       end = p;
-      if (p === p.next) return null;
+      if (p === p.next) {
+        return null;
+      }
       again = true;
     } else {
       p = p.next;
@@ -468,8 +488,12 @@ export function findHoleBridge(hole: any, outerNode: any) {
     }
     p = p.next;
   } while (p !== outerNode);
-  if (!m) return null;
-  if (hole.x === m.x) return m.prev; // hole touches outer segment; pick lower endpoint
+  if (!m) {
+    return null;
+  }
+  if (hole.x === m.x) {
+    return m.prev;
+  } // hole touches outer segment; pick lower endpoint
   // look for points inside the triangle of hole point, segment intersection and endpoint;
   // if there are no points found, we have a valid connection;
   // otherwise choose the point of the minimum angle with the ray as connection point
@@ -526,8 +550,12 @@ export function eliminateHoles(data: any, holeIndices: any, outerNode: any, dim:
     start = holeIndices[i] * dim;
     end = i < len - 1 ? holeIndices[i + 1] * dim : data.length;
     list = linkedList(data, start, end, dim, false);
-    if (!list) continue;
-    if (list === list.next) list.steiner = true;
+    if (!list) {
+      continue;
+    }
+    if (list === list.next) {
+      list.steiner = true;
+    }
     queue.push(getLeftmost(list));
   }
   queue.sort(compareX);
@@ -576,14 +604,7 @@ export function cureLocalIntersections(start: any, triangles: any, dim: number) 
  * @param {number} minY - The minimum y-coordinate of the bounding box.
  * @param {number} size - The size of the bounding box.
  */
-export function splitEarcut(
-  start: any,
-  triangles: any,
-  dim: number,
-  minX: number = 0,
-  minY: number = 0,
-  size: number = 0
-) {
+export function splitEarcut(start: any, triangles: any, dim: number, minX = 0, minY = 0, size = 0) {
   // look for a valid diagonal that divides the polygon into two
   let a = start;
   do {
@@ -625,9 +646,13 @@ export function earcutLinked(
   size?: number,
   pass?: any
 ) {
-  if (!ear) return;
+  if (!ear) {
+    return;
+  }
   // interlink polygon nodes in z-order
-  if (!pass && size) indexCurve(ear, minX, minY, size);
+  if (!pass && size) {
+    indexCurve(ear, minX, minY, size);
+  }
   let stop = ear;
   let prev;
   let next;
@@ -672,13 +697,14 @@ export function earcutLinked(
  * @param {number} dim - The dimension of the data (2 or 3).
  * @returns {object} The processed earcut data structure with triangulation information.
  */
-export function triangulate(data: any, holeIndices: any, dim: number) {
-  dim = dim || 2;
+export function triangulate(data: any, holeIndices: any, dim = 2) {
   const hasHoles = holeIndices && holeIndices.length;
   const outerLen = hasHoles ? holeIndices[0] * dim : data.length;
   let outerNode = linkedList(data, 0, outerLen, dim, true);
   const triangles: number[] = [];
-  if (!outerNode) return triangles;
+  if (!outerNode) {
+    return triangles;
+  }
   let minX;
   let minY;
   let maxX;
@@ -686,7 +712,9 @@ export function triangulate(data: any, holeIndices: any, dim: number) {
   let x;
   let y;
   let size;
-  if (hasHoles) outerNode = eliminateHoles(data, holeIndices, outerNode, dim);
+  if (hasHoles) {
+    outerNode = eliminateHoles(data, holeIndices, outerNode, dim);
+  }
   // if the shape is not too simple, we'll use z-order curve hash later; calculate polygon bbox
   if (data.length > 80 * dim) {
     minX = data[0];
@@ -696,10 +724,18 @@ export function triangulate(data: any, holeIndices: any, dim: number) {
     for (let i = dim; i < outerLen; i += dim) {
       x = data[i];
       y = data[i + 1];
-      if (x < minX) minX = x;
-      if (y < minY) minY = y;
-      if (x > maxX) maxX = x;
-      if (y > maxY) maxY = y;
+      if (x < minX) {
+        minX = x;
+      }
+      if (y < minY) {
+        minY = y;
+      }
+      if (x > maxX) {
+        maxX = x;
+      }
+      if (y > maxY) {
+        maxY = y;
+      }
     }
     // minX, minY and size are later used to transform coords into integers for z-order calculation
     size = Math.max(maxX - minX, maxY - minY);

@@ -1,4 +1,4 @@
-import { expect } from 'vitest';
+import { expect, describe, it } from 'vitest';
 import {
   between,
   DEG_TO_RAD,
@@ -80,8 +80,8 @@ describe('between', () => {
     const min = 1;
     const max = 100;
     const result = between(min, max);
-    expect(result >= min).toBe(true);
-    expect(result <= max).toBe(true);
+    expect(result).toBeGreaterThanOrEqual(min);
+    expect(result).toBeLessThanOrEqual(max);
   });
 });
 
@@ -100,16 +100,16 @@ describe('wrap', () => {
     const min = 0;
     const max = 100;
     const result = wrap(150, min, max);
-    expect(result >= min).toBe(true);
-    expect(result <= max).toBe(true);
+    expect(result).toBeGreaterThanOrEqual(min);
+    expect(result).toBeLessThanOrEqual(max);
   });
 
   it('returns the correct wrapped value for an invalid input', () => {
     const min = -1;
     const max = 10;
     const result = wrap(-20, min, max);
-    expect(result >= min).toBe(true);
-    expect(result <= max).toBe(true);
+    expect(result).toBeGreaterThanOrEqual(min);
+    expect(result).toBeLessThanOrEqual(max);
   });
 });
 
@@ -118,14 +118,14 @@ describe('linear', () => {
     const p0 = 1;
     const p1 = 2;
     const t = 0.5;
-    expect(linear(p0, p1, t)).toEqual(1.5);
+    expect(linear(p0, p1, t)).toStrictEqual(1.5);
   });
 
   it('returns the correct interpolated value for an invalid input', () => {
     const p0 = 1;
     const p1 = 2;
     const t = 2;
-    expect(linear(p0, p1, t)).toEqual(3);
+    expect(linear(p0, p1, t)).toBe(3);
   });
 });
 
@@ -143,13 +143,13 @@ describe('linearInterpolation', () => {
   it('returns the correct interpolated value for a valid input', () => {
     const v = [1, 2, 3];
     const k = 0.5;
-    expect(linearInterpolation(v, k)).toEqual(2);
+    expect(linearInterpolation(v, k)).toBe(2);
   });
 
   it('returns the correct interpolated value for an invalid input', () => {
     const v = [-10, -20, -30];
     const k = -1;
-    expect(linearInterpolation(v, k)).toEqual(10);
+    expect(linearInterpolation(v, k)).toBe(10);
   });
 });
 

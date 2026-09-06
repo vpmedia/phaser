@@ -1,4 +1,4 @@
-import { expect } from 'vitest';
+import { expect, describe, it } from 'vitest';
 import { Point } from './point.js';
 
 describe('Point', () => {
@@ -68,7 +68,6 @@ describe('Point', () => {
 
   it('should divide points', () => {
     const point1 = new Point(10, 20);
-    const point2 = new Point(2, 3);
     const quotient = point1.divide(2, 3);
     expect(quotient.x).toBe(5);
     expect(quotient.y).toBeCloseTo(6.67);

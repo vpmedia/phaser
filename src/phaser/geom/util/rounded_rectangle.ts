@@ -7,7 +7,7 @@ import { RoundedRectangle } from '../rounded_rectangle.js';
  * @returns {RoundedRectangle} The cloned rounded rectangle.
  */
 export const clone = (input: RoundedRectangle, output: RoundedRectangle | null = null) => {
-  const result = output || new RoundedRectangle();
+  const result = output ?? new RoundedRectangle();
   result.x = input.x;
   result.y = input.y;
   result.width = input.width;

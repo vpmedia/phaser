@@ -1,37 +1,32 @@
 export class Device {
-  desktop!: boolean;
-  iOS!: boolean;
-  android!: boolean;
-  chromeOS!: boolean;
-  linux!: boolean;
-  macOS!: boolean;
-  windows!: boolean;
-  windowsPhone!: boolean;
-  canvas!: boolean;
-  touch!: boolean;
-  mspointer!: boolean;
-  wheelEvent!: string | null;
-  chrome!: boolean;
-  firefox!: boolean;
-  edge!: boolean;
-  safari!: boolean;
-  fullscreen!: boolean;
-  requestFullscreen!: string;
-  cancelFullscreen!: string;
-  fullscreenKeyboard!: boolean;
-  noAudioFormat!: boolean;
-  supportedAudioFormats!: Record<string, boolean>;
-  supportedImageFormats!: Record<string, boolean>;
+  public desktop: boolean = false;
+  public iOS: boolean = false;
+  public android: boolean = false;
+  public chromeOS: boolean = false;
+  public linux: boolean = false;
+  public macOS!: boolean;
+  public windows!: boolean;
+  public windowsPhone!: boolean;
+  public canvas!: boolean;
+  public touch!: boolean;
+  public mspointer!: boolean;
+  public wheelEvent!: string | null;
+  public chrome!: boolean;
+  public firefox!: boolean;
+  public edge!: boolean;
+  public safari!: boolean;
+  public fullscreen!: boolean;
+  public requestFullscreen!: string;
+  public cancelFullscreen!: string;
+  public fullscreenKeyboard!: boolean;
+  public noAudioFormat!: boolean;
+  public supportedAudioFormats!: Record<string, boolean>;
+  public supportedImageFormats!: Record<string, boolean>;
   /**
    * Creates a new Device instance.
    * This class provides information about the current device and browser capabilities.
    */
-  constructor() {
-    this.desktop = false;
-    this.iOS = false;
-    this.android = false;
-    this.chromeOS = false;
-    this.linux = false;
+  public constructor() {
     this.macOS = false;
     this.windows = false;
     this.windowsPhone = false;

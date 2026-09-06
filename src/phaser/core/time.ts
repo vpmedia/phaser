@@ -2,38 +2,38 @@ import type { Game } from './game.js';
 import { Timer } from './timer.js';
 
 export class Time {
-  game!: Game;
-  time!: number;
-  prevTime!: number;
-  now!: number;
-  elapsed!: number;
-  elapsedMS!: number;
-  desiredFpsMult!: number;
-  _desiredFps!: number;
-  suggestedFps!: number;
-  advancedTiming!: boolean;
-  frames!: number;
-  fps!: number;
-  fpsMin!: number;
-  fpsMax!: number;
-  msMin!: number;
-  msMax!: number;
-  pauseDuration!: number;
-  timeToCall!: number;
-  timeExpected!: number;
-  events!: Timer;
-  _frameCount!: number;
-  _elapsedAccumulator!: number;
-  _started!: number;
-  _timeLastSecond!: number;
-  _pauseStarted!: number;
-  _justResumed!: boolean;
-  _timers!: Timer[];
+  public game!: Game;
+  public time!: number;
+  public prevTime!: number;
+  public now!: number;
+  public elapsed!: number;
+  public elapsedMS!: number;
+  public desiredFpsMult!: number;
+  public _desiredFps!: number;
+  public suggestedFps!: number;
+  public advancedTiming!: boolean;
+  public frames!: number;
+  public fps!: number;
+  public fpsMin!: number;
+  public fpsMax!: number;
+  public msMin!: number;
+  public msMax!: number;
+  public pauseDuration!: number;
+  public timeToCall!: number;
+  public timeExpected!: number;
+  public events!: Timer;
+  public _frameCount!: number;
+  public _elapsedAccumulator!: number;
+  public _started!: number;
+  public _timeLastSecond!: number;
+  public _pauseStarted!: number;
+  public _justResumed!: boolean;
+  public _timers!: Timer[];
   /**
    * Creates a new Time instance.
-   * @param {import('./game.js').Game} game - Reference to the Phaser Game instance.
+   * @param {Game} game - Reference to the Phaser Game instance.
    */
-  constructor(game: Game) {
+  public constructor(game: Game) {
     this.game = game;
     this.time = 0;
     this.prevTime = 0;
@@ -66,7 +66,7 @@ export class Time {
   /**
    * Initializes the time manager and starts tracking time.
    */
-  boot() {
+  public boot() {
     this._started = Date.now();
     this.time = Date.now();
     this.events.start();
@@ -78,7 +78,7 @@ export class Time {
    * @param {Timer} timer - The Timer to add.
    * @returns {Timer} The added Timer object.
    */
-  add(timer: Timer) {
+  public add(timer: Timer) {
     this._timers.push(timer);
     return timer;
   }
@@ -88,7 +88,7 @@ export class Time {
    * @param {boolean} autoDestroy - Whether the timer should be automatically destroyed when it completes.
    * @returns {Timer} The created Timer object.
    */
-  create(autoDestroy: boolean = true) {
+  public create(autoDestroy = true) {
     const timer = new Timer(this.game, autoDestroy);
     this._timers.push(timer);
     return timer;
@@ -97,9 +97,9 @@ export class Time {
   /**
    * Removes all timers from the Time manager.
    */
-  removeAll() {
-    for (let i = 0; i < this._timers.length; i += 1) {
-      this._timers[i].destroy();
+  public removeAll() {
+    for (const timer of this._timers) {
+      timer.destroy();
     }
     this._timers = [];
     this.events.removeAll();
@@ -108,7 +108,7 @@ export class Time {
   /**
    * Refreshes the time tracking values.
    */
-  refresh() {
+  public refresh() {
     const previousDateNow = this.time;
     // this.time always holds a Date.now value
     this.time = Date.now();
@@ -120,7 +120,7 @@ export class Time {
    * Updates the Time manager with a new timestamp.
    * @param {number} time - The new timestamp to use for updating.
    */
-  update(time: number) {
+  public update(time: number) {
     const previousDateNow = this.time;
     // this.time always holds a Date.now value
     this.time = Date.now();
@@ -140,7 +140,7 @@ export class Time {
     if (!this.game.paused) {
       //  Our internal Phaser.Timer
       this.events.update(this.time);
-      if (this._timers.length) {
+      if (this._timers.length > 0) {
         this.updateTimers();
       }
     }
@@ -149,11 +149,11 @@ export class Time {
   /**
    * Updates all timers managed by the Time manager.
    */
-  updateTimers() {
+  public updateTimers() {
     let i = 0;
     let len = this._timers.length;
     while (i < len) {
-      if (this._timers[i].update(this.time)) {
+      if (this._timers[i]!.update(this.time)) {
         i += 1;
       } else {
         //  Timer requests to be removed
@@ -166,7 +166,7 @@ export class Time {
   /**
    * Updates the advanced timing values.
    */
-  updateAdvancedTiming() {
+  public updateAdvancedTiming() {
     // count the number of time.update calls
     this._frameCount += 1;
     this._elapsedAccumulator += this.elapsed;
@@ -192,27 +192,27 @@ export class Time {
   /**
    * Handles game pause event.
    */
-  gamePaused() {
+  public gamePaused() {
     this._pauseStarted = Date.now();
     this.events.pause();
     let i = this._timers.length;
     while (i) {
       i -= 1;
-      this._timers[i]._pause();
+      this._timers[i]!._pause();
     }
   }
 
   /**
    * Handles game resume event.
    */
-  gameResumed() {
+  public gameResumed() {
     this.time = Date.now();
     this.pauseDuration = this.time - this._pauseStarted;
     this.events.resume();
     let i = this._timers.length;
     while (i) {
       i -= 1;
-      this._timers[i]._resume();
+      this._timers[i]!._resume();
     }
   }
 
@@ -220,7 +220,7 @@ export class Time {
    * Gets the total elapsed time in seconds since the game started.
    * @returns {number} The total elapsed time in seconds.
    */
-  totalElapsedSeconds() {
+  public totalElapsedSeconds() {
     return (this.time - this._started) * 0.001;
   }
 
@@ -229,7 +229,7 @@ export class Time {
    * @param {number} since - The timestamp to calculate elapsed time from.
    * @returns {number} The elapsed time in milliseconds.
    */
-  elapsedSince(since: number) {
+  public elapsedSince(since: number) {
     return this.time - since;
   }
 
@@ -238,14 +238,14 @@ export class Time {
    * @param {number} since - The timestamp to calculate elapsed time from.
    * @returns {number} The elapsed time in seconds.
    */
-  elapsedSecondsSince(since: number) {
+  public elapsedSecondsSince(since: number) {
     return (this.time - since) * 0.001;
   }
 
   /**
    * Resets the time tracking values.
    */
-  reset() {
+  public reset() {
     this._started = this.time;
     this.removeAll();
   }
@@ -253,7 +253,7 @@ export class Time {
   /**
    * Destroys the Time manager and cleans up resources.
    */
-  destroy() {
+  public destroy() {
     this.reset();
   }
 
@@ -261,14 +261,14 @@ export class Time {
    * Gets the desired frames per second.
    * @returns {number} The desired frames per second.
    */
-  get desiredFps() {
+  public get desiredFps() {
     return this._desiredFps;
   }
 
   /**
    * Sets the desired frames per second.
    */
-  set desiredFps(value) {
+  public set desiredFps(value) {
     this._desiredFps = value;
     this.desiredFpsMult = 1 / value;
   }

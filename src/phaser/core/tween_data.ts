@@ -1,37 +1,38 @@
 import * as MathUtils from '../util/math.js';
 import { TWEEN_COMPLETE, TWEEN_LOOPED, TWEEN_PENDING, TWEEN_RUNNING } from './const.js';
+import type { Tween } from './tween.js';
 
 export class TweenData {
-  parent!: any;
-  game!: any;
-  vStart!: any;
-  vStartCache!: any;
-  vEnd!: any;
-  vEndCache!: any;
-  duration!: any;
-  percent!: any;
-  value!: any;
-  repeatCounter!: any;
-  repeatDelay!: any;
-  repeatTotal!: any;
-  interpolate!: any;
-  yoyo!: any;
-  yoyoDelay!: any;
-  inReverse!: any;
-  delay!: any;
-  dt!: any;
-  startTime!: any;
-  easingFunction!: any;
-  interpolationFunction!: any;
-  interpolationContext!: any;
-  isRunning!: any;
-  isFrom!: any;
-  yoyoCounter!: any;
+  public parent!: any;
+  public game!: any;
+  public vStart!: any;
+  public vStartCache!: any;
+  public vEnd!: any;
+  public vEndCache!: any;
+  public duration!: any;
+  public percent!: any;
+  public value!: any;
+  public repeatCounter!: any;
+  public repeatDelay!: any;
+  public repeatTotal!: any;
+  public interpolate!: any;
+  public yoyo!: any;
+  public yoyoDelay!: any;
+  public inReverse!: any;
+  public delay!: any;
+  public dt!: any;
+  public startTime!: any;
+  public easingFunction!: any;
+  public interpolationFunction!: any;
+  public interpolationContext!: any;
+  public isRunning!: any;
+  public isFrom!: any;
+  public yoyoCounter!: any;
   /**
    * Creates a new TweenData instance.
-   * @param {import('./tween.js').Tween} parent - The parent Tween instance.
+   * @param {Tween} parent - The parent Tween instance.
    */
-  constructor(parent: import('./tween.js').Tween) {
+  public constructor(parent: Tween) {
     this.parent = parent;
     this.game = parent.game;
     this.vStart = {};
@@ -68,7 +69,7 @@ export class TweenData {
    * @param {boolean} yoyo - Whether to reverse the tween on each repeat.
    * @returns {TweenData} This TweenData object for chaining.
    */
-  to(properties: any, duration: number, ease: any, delay: number, repeat: number, yoyo: boolean) {
+  public to(properties: any, duration: number, ease: any, delay: number, repeat: number, yoyo: boolean) {
     this.vEnd = properties;
     this.duration = duration;
     this.easingFunction = ease;
@@ -89,7 +90,7 @@ export class TweenData {
    * @param {boolean} yoyo - Whether to reverse the tween on each repeat.
    * @returns {TweenData} This TweenData object for chaining.
    */
-  from(properties: any, duration: number, ease: any, delay: number, repeat: number, yoyo: boolean) {
+  public from(properties: any, duration: number, ease: any, delay: number, repeat: number, yoyo: boolean) {
     this.vEnd = properties;
     this.duration = duration;
     this.easingFunction = ease;
@@ -104,7 +105,7 @@ export class TweenData {
    * Starts the tween.
    * @returns {TweenData} This TweenData object for chaining.
    */
-  start() {
+  public start() {
     this.startTime = this.game.time.time + this.delay;
     if (this.parent.reverse) {
       this.dt = this.duration;
@@ -119,8 +120,7 @@ export class TweenData {
     if (this.isFrom) {
       //  Reverse them all and instant set them
       const keys = Object.keys(this.vStartCache);
-      for (let k = 0; k < keys.length; k += 1) {
-        const property = keys[k];
+      for (const property of keys) {
         this.vStart[property] = this.vEndCache[property];
         this.vEnd[property] = this.vStartCache[property];
         this.parent.target[property] = this.vStart[property];
@@ -136,10 +136,9 @@ export class TweenData {
    * Loads the tween values from the parent object.
    * @returns {TweenData} This TweenData object for chaining.
    */
-  loadValues() {
+  public loadValues() {
     const keys = Object.keys(this.parent.properties);
-    for (let k = 0; k < keys.length; k += 1) {
-      const property = keys[k];
+    for (const property of keys) {
       //  Load the property from the parent object
       this.vStart[property] = this.parent.properties[property];
       //  Check if an Array was provided as property value
@@ -153,10 +152,10 @@ export class TweenData {
           this.vEnd[property] = [this.vStart[property]].concat(this.vEnd[property]);
         }
       }
-      if (typeof this.vEnd[property] !== 'undefined') {
+      if (this.vEnd[property] !== undefined) {
         if (typeof this.vEnd[property] === 'string') {
           //  Parses relative end values with start as base (e.g.: +10, -3)
-          this.vEnd[property] = this.vStart[property] + Number.parseFloat(this.vEnd[property]);
+          this.vEnd[property] = this.vStart[property] + Number(this.vEnd[property]);
         }
         this.parent.properties[property] = this.vEnd[property];
       } else {
@@ -174,7 +173,7 @@ export class TweenData {
    * @param {number} time - The current time in milliseconds.
    * @returns {number} The tween status (TWEEN_PENDING, TWEEN_RUNNING, or TWEEN_COMPLETE).
    */
-  update(time: number) {
+  public update(time: number) {
     if (!this.isRunning) {
       if (time >= this.startTime) {
         this.isRunning = true;
@@ -196,8 +195,7 @@ export class TweenData {
     this.percent = this.dt / this.duration;
     this.value = this.easingFunction(this.percent);
     const keys = Object.keys(this.vEnd);
-    for (let k = 0; k < keys.length; k += 1) {
-      const property = keys[k];
+    for (const property of keys) {
       const start = this.vStart[property];
       const end = this.vEnd[property];
       if (Array.isArray(end)) {
@@ -217,7 +215,7 @@ export class TweenData {
    * @param {number} frameRate - The frame rate to generate data for.
    * @returns {object[]} An array of tween data points.
    */
-  generateData(frameRate: number) {
+  public generateData(frameRate: number) {
     if (this.parent.reverse) {
       this.dt = this.duration;
     } else {
@@ -238,8 +236,7 @@ export class TweenData {
       this.value = this.easingFunction(this.percent);
       const blob: Record<string, number> = {};
       const keys = Object.keys(this.vEnd);
-      for (let k = 0; k < keys.length; k += 1) {
-        const property = keys[k];
+      for (const property of keys) {
         const start = this.vStart[property];
         const end = this.vEnd[property];
         if (Array.isArray(end)) {
@@ -254,7 +251,7 @@ export class TweenData {
       }
     } while (!complete);
     if (this.yoyo) {
-      const reversed = data.slice();
+      const reversed = [...data];
       reversed.reverse();
       data = data.concat(reversed);
     }
@@ -265,15 +262,14 @@ export class TweenData {
    * Handles tween repetition logic.
    * @returns {number} The tween status (TWEEN_LOOPED or TWEEN_COMPLETE).
    */
-  repeat() {
+  public repeat() {
     //  If not a yoyo and repeatCounter = 0 then we're done
     if (this.yoyo) {
       //  We're already in reverse mode, which means the yoyo has finished and there's no repeats, so end
       if (this.inReverse && this.repeatCounter === 0) {
         //  Restore the properties
         const keys = Object.keys(this.vStartCache);
-        for (let k = 0; k < keys.length; k += 1) {
-          const property = keys[k];
+        for (const property of keys) {
           this.vStart[property] = this.vStartCache[property];
           this.vEnd[property] = this.vEndCache[property];
         }
@@ -287,16 +283,14 @@ export class TweenData {
     if (this.inReverse) {
       //  If inReverse we're going from vEnd to vStartCache
       const keys = Object.keys(this.vStartCache);
-      for (let k = 0; k < keys.length; k += 1) {
-        const property = keys[k];
+      for (const property of keys) {
         this.vStart[property] = this.vEndCache[property];
         this.vEnd[property] = this.vStartCache[property];
       }
     } else {
       //  If not inReverse we're just repopulating the cache again
       const keys = Object.keys(this.vStartCache);
-      for (let k = 0; k < keys.length; k += 1) {
-        const property = keys[k];
+      for (const property of keys) {
         this.vStart[property] = this.vStartCache[property];
         this.vEnd[property] = this.vEndCache[property];
       }
