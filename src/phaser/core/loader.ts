@@ -995,7 +995,7 @@ export class Loader {
     if (acceptHeader) {
       xhr.setRequestHeader('Accept', acceptHeader);
     }
-    onerror = onerror ?? this.fileError;
+    const handleError = onerror ?? this.fileError;
     xhr.onload = () => {
       try {
         if (xhr.readyState === 4 && xhr.status >= 400 && xhr.status <= 599) {
@@ -1003,11 +1003,11 @@ export class Loader {
           if (scope.isUseRetry && (!file.numRetry || file.numRetry < scope.maxRetry)) {
             setTimeout((): void => {
               file.numRetry = !file.numRetry ? 1 : (file.numRetry += 1);
-              scope.xhrLoad(file, url, type, onload, onerror);
+              scope.xhrLoad(file, url, type, onload, handleError);
             }, 1000);
             return null;
           }
-          return onerror.call(scope, file, xhr);
+          return handleError.call(scope, file, xhr);
         }
         return onload.call(scope, file, xhr);
       } catch (error) {
@@ -1026,11 +1026,11 @@ export class Loader {
       if (scope.isUseRetry && (!file.numRetry || file.numRetry < scope.maxRetry)) {
         setTimeout((): void => {
           file.numRetry = !file.numRetry ? 1 : (file.numRetry += 1);
-          scope.xhrLoad(file, url, type, onload, onerror);
+          scope.xhrLoad(file, url, type, onload, handleError);
         }, 1000);
       } else {
         try {
-          return onerror.call(scope, file, xhr);
+          return handleError.call(scope, file, xhr);
         } catch (error) {
           const typedError = error instanceof Error ? error : new Error(String(error));
           if (!scope.hasLoaded) {

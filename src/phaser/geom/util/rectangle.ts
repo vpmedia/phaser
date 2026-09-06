@@ -209,7 +209,7 @@ export const aabb = (points: Point[], output: Rectangle | null = null): Rectangl
   let xMin = Number.POSITIVE_INFINITY;
   let yMax = Number.NEGATIVE_INFINITY;
   let yMin = Number.POSITIVE_INFINITY;
-  points.forEach((point): void => {
+  for (const point of points) {
     if (point.x > xMax) {
       xMax = point.x;
     }
@@ -222,7 +222,7 @@ export const aabb = (points: Point[], output: Rectangle | null = null): Rectangl
     if (point.y < yMin) {
       yMin = point.y;
     }
-  });
+  }
   result.setTo(xMin, yMin, xMax - xMin, yMax - yMin);
   return result;
 };

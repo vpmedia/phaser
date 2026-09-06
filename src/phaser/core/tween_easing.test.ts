@@ -86,9 +86,9 @@ describe('tween_easing', () => {
   it.each(Object.keys(EXPECTED))('%s matches its reference curve', (name) => {
     const fn = (Easing as unknown as Record<string, (k: number) => number>)[name]!;
     const actual = SAMPLE_POINTS.map((k) => fn(k));
-    actual.forEach((value, index) => {
+    for (const [index, value] of actual.entries()) {
       expect(value).toBeCloseTo(EXPECTED[name]![index]!, 12);
-    });
+    }
   });
 
   it.each(Object.keys(EXPECTED))('%s is anchored at both ends', (name) => {
@@ -99,8 +99,8 @@ describe('tween_easing', () => {
 
   it.each(Object.keys(EXPECTED))('%s does not mutate beyond its return value', (name) => {
     const fn = (Easing as unknown as Record<string, (k: number) => number>)[name]!;
-    SAMPLE_POINTS.forEach((k) => {
+    for (const k of SAMPLE_POINTS) {
       expect(fn(k)).toBe(fn(k));
-    });
+    }
   });
 });

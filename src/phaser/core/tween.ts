@@ -504,7 +504,7 @@ export class Tween {
       tweenData.loadValues();
     }
     for (const tweenData of this.timeline) {
-      data = data.concat(tweenData.generateData(frameRate));
+      data = [...data, ...tweenData.generateData(frameRate)];
     }
     return data;
   }

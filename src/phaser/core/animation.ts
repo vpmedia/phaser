@@ -54,8 +54,7 @@ export class Animation {
     this._frameData = frameData;
     /** @type {string} */
     this.name = name;
-    this._frames = [];
-    this._frames = this._frames.concat(frames);
+    this._frames = [...frames];
     /** @type {number} */
     this.delay = 1000 / frameRate;
     /** @type {boolean} */

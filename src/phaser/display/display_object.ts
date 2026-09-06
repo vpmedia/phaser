@@ -113,9 +113,9 @@ export class DisplayObject {
     /** @type {boolean} */
     this.ignoreChildInput = false;
     /** @type {string | null } */
-    this.name = this.name ?? null;
+    this.name ??= null;
     /** @type {object | null } */
-    this.data = this.data ?? null;
+    this.data ??= null;
     /** @type {Game } */
     this.game = game;
   }

@@ -540,12 +540,12 @@ export class Sound {
   /**
    * Sets the muted state of the sound.
    */
-  public set mute(value) {
-    value = value ?? false;
-    if (value === this._muted) {
+  public set mute(value: boolean | null) {
+    const muted = value ?? false;
+    if (muted === this._muted) {
       return;
     }
-    if (value) {
+    if (muted) {
       this._muted = true;
       this._muteVolume = this._tempVolume;
       this.gainNode.gain.value = 0;

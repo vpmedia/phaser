@@ -84,11 +84,9 @@ export class ArraySet {
    * @param {object} value - TBD.
    */
   public setAll(key: string, value: any): void {
-    let i = this.list.length;
-    while (i) {
-      i -= 1;
-      if (this.list[i]) {
-        this.list[i][key] = value;
+    for (const item of this.list) {
+      if (item) {
+        item[key] = value;
       }
     }
   }
@@ -99,11 +97,11 @@ export class ArraySet {
    * @param {...any} args - TBD.
    */
   public callAll(key: string, ...args: unknown[]): void {
-    let i = this.list.length;
-    while (i) {
-      i -= 1;
-      if (this.list[i] && this.list[i][key]) {
-        this.list[i][key].apply(this.list[i], args);
+    // walked backwards so a callback that removes its own entry does not skip the next one
+    for (let i = this.list.length - 1; i >= 0; i -= 1) {
+      const item = this.list[i];
+      if (item && item[key]) {
+        item[key](...args);
       }
     }
   }

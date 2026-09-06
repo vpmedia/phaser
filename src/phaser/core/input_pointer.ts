@@ -456,8 +456,8 @@ export class Pointer {
    * @returns {boolean} TBD.
    */
   public justPressed(duration: number): boolean {
-    duration = duration || this.game.input.justPressedRate;
-    return this.isDown && this.timeDown + duration > this.game.time.time;
+    const window = duration || this.game.input.justPressedRate;
+    return this.isDown && this.timeDown + window > this.game.time.time;
   }
 
   /**
@@ -466,8 +466,8 @@ export class Pointer {
    * @returns {boolean} TBD.
    */
   public justReleased(duration: number): boolean {
-    duration = duration || this.game.input.justReleasedRate;
-    return this.isUp && this.timeUp + duration > this.game.time.time;
+    const window = duration || this.game.input.justReleasedRate;
+    return this.isUp && this.timeUp + window > this.game.time.time;
   }
 
   /**
@@ -481,7 +481,7 @@ export class Pointer {
     if (!this.isDown) {
       return;
     }
-    this._clickTrampolines = this._clickTrampolines ?? [];
+    this._clickTrampolines ??= [];
     const trampolines = this._clickTrampolines;
     for (let i = 0; i < trampolines.length; i += 1) {
       if (trampolines[i]!.name === name) {

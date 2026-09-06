@@ -115,7 +115,7 @@ export const jsonBitmapFont = (
     lineHeight: Math.trunc(Number(json.font.common._lineHeight)) + ySpacing,
     chars: {},
   };
-  json.font.chars.char.forEach((letter: Record<string, string>): void => {
+  for (const letter of json.font.chars.char as Record<string, string>[]) {
     const charCode = Math.trunc(Number(letter['_id']));
     data.chars[charCode] = {
       x: Math.trunc(Number(letter['_x'])),
@@ -127,14 +127,14 @@ export const jsonBitmapFont = (
       xAdvance: Math.trunc(Number(letter['_xadvance'])) + xSpacing,
       kerning: {},
     };
-  });
+  }
   if (json.font.kernings && json.font.kernings.kerning) {
-    json.font.kernings.kerning.forEach((kerning: Record<string, string>): void => {
+    for (const kerning of json.font.kernings.kerning as Record<string, string>[]) {
       const char = data.chars[Math.trunc(Number(kerning['_second']))];
       if (char) {
         char.kerning[Math.trunc(Number(kerning['_first']))] = Math.trunc(Number(kerning['_amount']));
       }
-    });
+    }
   }
   return finalizeBitmapFont(baseTexture, data);
 };

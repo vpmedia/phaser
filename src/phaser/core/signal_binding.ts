@@ -47,9 +47,9 @@ export class SignalBinding {
     let handlerReturn;
     let params;
     if (this.active && Boolean(this._listener)) {
-      params = this.params ? this.params.concat(paramsArr) : paramsArr;
+      params = this.params ? [...this.params, ...paramsArr] : paramsArr;
       if (this._args) {
-        params = params.concat(this._args);
+        params = [...params, ...this._args];
       }
       handlerReturn = this._listener.apply(this.context, params);
       this.callCount += 1;

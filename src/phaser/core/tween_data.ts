@@ -150,7 +150,7 @@ export class TweenData {
         } else if (this.percent === 0) {
           //  Put the start value at the beginning of the array
           //  but we only want to do this once, if the Tween hasn't run before
-          this.vEnd[property] = [this.vStart[property]].concat(this.vEnd[property]);
+          this.vEnd[property] = [this.vStart[property], ...this.vEnd[property]];
         }
       }
       if (this.vEnd[property] !== undefined) {
@@ -256,9 +256,7 @@ export class TweenData {
       }
     } while (!complete);
     if (this.yoyo) {
-      const reversed = [...data];
-      reversed.reverse();
-      data = data.concat(reversed);
+      data = [...data, ...data.toReversed()];
     }
     return data;
   }

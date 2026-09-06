@@ -146,33 +146,26 @@ export class Image extends DisplayObject {
     frame: string | number | null = 0,
     stopAnimation = true
   ): void {
-    if (key === PENDING_ATLAS) {
-      key = frame ?? 0;
-      frame = 0;
-    } else {
-      frame = frame ?? 0;
-    }
+    const isPendingAtlas = key === PENDING_ATLAS;
+    const textureKey = isPendingAtlas ? (frame ?? 0) : key;
+    const textureFrame = isPendingAtlas ? 0 : (frame ?? 0);
     if (stopAnimation) {
       this.animations.stop();
     }
-    this.key = key;
+    this.key = textureKey;
     this.customRender = false;
     const { cache } = this.game;
     const smoothed = !this.texture.baseTexture.scaleMode;
     let setFrame = true;
-    if (key instanceof Texture) {
-      this.setTexture(key);
+    if (textureKey instanceof Texture) {
+      this.setTexture(textureKey);
     } else {
-      const img = cache.getImage(key ?? undefined, true);
+      const img = cache.getImage(textureKey ?? undefined, true);
       if (img) {
         this.key = img.key;
         this.setTexture(new Texture(img.base));
-        if (key === '__default') {
-          this.texture.baseTexture.skipRender = true;
-        } else {
-          this.texture.baseTexture.skipRender = false;
-        }
-        setFrame = !this.animations.loadFrameData(img.frameData, frame);
+        this.texture.baseTexture.skipRender = textureKey === '__default';
+        setFrame = !this.animations.loadFrameData(img.frameData, textureFrame);
       }
     }
     if (setFrame) {

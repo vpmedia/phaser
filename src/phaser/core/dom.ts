@@ -205,15 +205,15 @@ export class DOM {
    * @returns {Point} The offset position of the element.
    */
   public getOffset(element: HTMLCanvasElement, point: Point | null = null): Point {
-    point = point ?? new Point();
+    const offset = point ?? new Point();
     const box = element.getBoundingClientRect();
     const scrollTop = this.scrollY;
     const scrollLeft = this.scrollX;
     const { clientTop } = document.documentElement;
     const { clientLeft } = document.documentElement;
-    point.x = box.left + scrollLeft - clientLeft;
-    point.y = box.top + scrollTop - clientTop;
-    return point;
+    offset.x = box.left + scrollLeft - clientLeft;
+    offset.y = box.top + scrollTop - clientTop;
+    return offset;
   }
 
   /**

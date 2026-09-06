@@ -212,7 +212,7 @@ export class TweenManager {
     }
     //  If there are any new tweens to be added, do so now - otherwise they can be spliced out of the array before ever running
     if (addTweens > 0) {
-      this._tweens = this._tweens.concat(this._add);
+      this._tweens = [...this._tweens, ...this._add];
       this._add.length = 0;
     }
     return true;
