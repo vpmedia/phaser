@@ -38,6 +38,22 @@ export type GraphicsWebGLBucket = {
   gl: IdentifiedWebGLRenderingContext;
 };
 
+/**
+ * Reports whether a triangle winds towards the viewer. In two dimensions the cross product is a
+ * scalar, so its sign alone says which way the face points.
+ * @param {Point[]} points - The three corners of the triangle, in order.
+ * @returns {boolean} True when the triangle faces the viewer.
+ */
+const isFrontFacing = (points: Point[]): boolean => {
+  const [a, b, c] = points;
+  if (!a || !b || !c) {
+    return true;
+  }
+  const ab = new Point(b.x - a.x, b.y - a.y);
+  const cb = new Point(b.x - c.x, b.y - c.y);
+  return cb.cross(ab) > 0;
+};
+
 export class Graphics extends DisplayObject {
   declare public type: number;
   declare public renderable: boolean;
@@ -887,18 +903,10 @@ export class Graphics extends DisplayObject {
    */
   public drawTriangle(points: Point[], cull = false): void {
     const triangle = new Polygon(points);
-    if (cull) {
-      const [a, b, c] = points as [Point, Point, Point];
-      const cameraToFace = new Point(0 - a.x, 0 - a.y);
-      const ab = new Point(b.x - a.x, b.y - a.y);
-      const cb = new Point(b.x - c.x, b.y - c.y);
-      const faceNormal = cb.cross(ab);
-      if (cameraToFace.dot(faceNormal as any) > 0) {
-        this.drawPolygon(triangle);
-      }
-    } else {
-      this.drawPolygon(triangle);
+    if (cull && !isFrontFacing(points)) {
+      return;
     }
+    this.drawPolygon(triangle);
   }
 
   /**
@@ -907,43 +915,41 @@ export class Graphics extends DisplayObject {
    * @param {number[]} indices - The indices of the vertices to use.
    * @param {boolean} cull - Whether to perform backface culling.
    */
-  public drawTriangles(vertices: any, indices: number[], cull = false): void {
-    const point1 = new Point();
-    const point2 = new Point();
-    const point3 = new Point();
-    let points = [];
+  public drawTriangles(vertices: Point[] | number[], indices: number[], cull = false): void {
+    let points: Point[] = [];
     let i;
     if (!indices) {
       if (vertices[0] instanceof Point) {
-        for (i = 0; i < vertices.length / 3; i += 1) {
-          this.drawTriangle([vertices[i * 3], vertices[i * 3 + 1], vertices[i * 3 + 2]], cull);
+        const corners = vertices as Point[];
+        for (i = 0; i < corners.length / 3; i += 1) {
+          this.drawTriangle([corners[i * 3]!, corners[i * 3 + 1]!, corners[i * 3 + 2]!], cull);
         }
       } else {
-        for (i = 0; i < vertices.length / 6; i += 1) {
-          point1.x = vertices[i * 6 + 0]!;
-          point1.y = vertices[i * 6 + 1]!;
-          point2.x = vertices[i * 6 + 2]!;
-          point2.y = vertices[i * 6 + 3]!;
-          point3.x = vertices[i * 6 + 4]!;
-          point3.y = vertices[i * 6 + 5]!;
-          this.drawTriangle([point1, point2, point3], cull);
+        const coordinates = vertices as number[];
+        for (i = 0; i < coordinates.length / 6; i += 1) {
+          this.drawTriangle(
+            [
+              new Point(coordinates[i * 6 + 0], coordinates[i * 6 + 1]),
+              new Point(coordinates[i * 6 + 2], coordinates[i * 6 + 3]),
+              new Point(coordinates[i * 6 + 4], coordinates[i * 6 + 5]),
+            ],
+            cull
+          );
         }
       }
     } else if (vertices[0] instanceof Point) {
+      const corners = vertices as Point[];
       for (i = 0; i < indices.length / 3; i += 1) {
-        points.push(vertices[indices[i * 3]!]);
-        points.push(vertices[indices[i * 3 + 1]!]);
-        points.push(vertices[indices[i * 3 + 2]!]);
+        points.push(corners[indices[i * 3]!]!, corners[indices[i * 3 + 1]!]!, corners[indices[i * 3 + 2]!]!);
         if (points.length === 3) {
           this.drawTriangle(points, cull);
           points = [];
         }
       }
     } else {
+      const coordinates = vertices as number[];
       for (i = 0; i < indices.length; i += 1) {
-        point1.x = vertices[indices[i]! * 2]!;
-        point1.y = vertices[indices[i]! * 2 + 1]!;
-        points.push(point1.copyTo({} as any));
+        points.push(new Point(coordinates[indices[i]! * 2], coordinates[indices[i]! * 2 + 1]));
         if (points.length === 3) {
           this.drawTriangle(points, cull);
           points = [];

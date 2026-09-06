@@ -109,6 +109,56 @@ describe('Graphics', () => {
     });
   });
 
+  describe('drawTriangle', () => {
+    it('records the triangle as a polygon', () => {
+      const graphics = createGraphics();
+      graphics.drawTriangle([new Point(0, 0), new Point(10, 0), new Point(0, 10)]);
+      expect(graphics.graphicsData).toHaveLength(1);
+      expect(graphics.graphicsData[0]?.shape).toBeInstanceOf(Polygon);
+    });
+
+    it('keeps a front-facing triangle when culling', () => {
+      const graphics = createGraphics();
+      graphics.drawTriangle([new Point(0, 0), new Point(10, 0), new Point(0, 10)], true);
+      graphics.drawTriangle([new Point(0, 0), new Point(0, 10), new Point(10, 0)], true);
+      expect(graphics.graphicsData).toHaveLength(1);
+    });
+
+    it('draws both windings when culling is off', () => {
+      const graphics = createGraphics();
+      graphics.drawTriangle([new Point(0, 0), new Point(10, 0), new Point(0, 10)]);
+      graphics.drawTriangle([new Point(0, 0), new Point(0, 10), new Point(10, 0)]);
+      expect(graphics.graphicsData).toHaveLength(2);
+    });
+  });
+
+  describe('drawTriangles', () => {
+    it('reads a flat coordinate list as triangles', () => {
+      const graphics = createGraphics();
+      graphics.drawTriangles([0, 0, 10, 0, 0, 10, 20, 20, 30, 20, 20, 30], null as unknown as number[]);
+      expect(graphics.graphicsData).toHaveLength(2);
+    });
+
+    it('reads a point list as triangles', () => {
+      const graphics = createGraphics();
+      graphics.drawTriangles([new Point(0, 0), new Point(10, 0), new Point(0, 10)], null as unknown as number[]);
+      expect(graphics.graphicsData).toHaveLength(1);
+    });
+
+    it('follows an index list over a flat coordinate list', () => {
+      const graphics = createGraphics();
+      graphics.drawTriangles([0, 0, 10, 0, 0, 10], [0, 1, 2]);
+      expect(graphics.graphicsData).toHaveLength(1);
+      expect((graphics.graphicsData[0]!.shape as Polygon).toNumberArray()).toStrictEqual([0, 0, 10, 0, 0, 10]);
+    });
+
+    it('follows an index list over a point list', () => {
+      const graphics = createGraphics();
+      graphics.drawTriangles([new Point(0, 0), new Point(10, 0), new Point(0, 10)], [0, 1, 2]);
+      expect(graphics.graphicsData).toHaveLength(1);
+    });
+  });
+
   describe('clear', () => {
     it('drops the recorded graphics data', () => {
       const graphics = createGraphics();
