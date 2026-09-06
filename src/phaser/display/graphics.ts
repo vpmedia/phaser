@@ -376,12 +376,10 @@ export class Graphics extends DisplayObject {
     this.filling = true;
     this.fillColor = color || 0;
     this.fillAlpha = alpha ?? 1;
-    if (this.currentPath) {
-      if (this.currentPath.shape.points.length <= 2) {
-        this.currentPath.fill = this.filling;
-        this.currentPath.fillColor = this.fillColor;
-        this.currentPath.fillAlpha = this.fillAlpha;
-      }
+    if (this.currentPath && this.currentPath.shape.points.length <= 2) {
+      this.currentPath.fill = this.filling;
+      this.currentPath.fillColor = this.fillColor;
+      this.currentPath.fillAlpha = this.fillAlpha;
     }
     return this;
   }
@@ -703,10 +701,8 @@ export class Graphics extends DisplayObject {
     this.worldTransform.applyInverse(point, tempPoint);
     const { graphicsData } = this;
     for (const data of graphicsData) {
-      if (data.fill && data.shape) {
-        if (data.shape.contains(tempPoint.x, tempPoint.y)) {
-          return true;
-        }
+      if (data.fill && data.shape?.contains(tempPoint.x, tempPoint.y)) {
+        return true;
       }
     }
     return false;
@@ -854,11 +850,9 @@ export class Graphics extends DisplayObject {
    * @returns {GraphicsData} The graphics data for the drawn shape.
    */
   public drawShape(shape: GraphicsShape): GraphicsData {
-    if (this.currentPath) {
-      // check current path!
-      if (this.currentPath.shape.points.length <= 2) {
-        this.graphicsData.pop();
-      }
+    // check current path!
+    if (this.currentPath && this.currentPath.shape.points.length <= 2) {
+      this.graphicsData.pop();
     }
     this.currentPath = null;
     //  Handle mixed-type polygons

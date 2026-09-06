@@ -533,26 +533,22 @@ export const updateGraphics = (graphics: Graphics, gl: IdentifiedWebGLRenderingC
     if (data.shape instanceof Polygon) {
       // need to add the points the the graphics object..
       data.points = [...(data.shape.points as number[])];
-      if (data.shape.closed) {
-        // close the poly if the value is true!
-        if (data.points[0] !== data.points.at(-2) || data.points[1] !== data.points.at(-1)) {
-          data.points.push(data.points[0]!, data.points[1]!);
-        }
+      // close the poly if the value is true!
+      if (data.shape.closed && (data.points[0] !== data.points.at(-2) || data.points[1] !== data.points.at(-1))) {
+        data.points.push(data.points[0]!, data.points[1]!);
       }
       // MAKE SURE WE HAVE THE CORRECT TYPE..
-      if (data.fill) {
-        if (data.points.length >= stencilBufferLimit) {
-          if (data.points.length < stencilBufferLimit * 2) {
-            webGLData = switchMode(webGL, 0);
-            const canDrawUsingSimple = buildPoly(data, webGLData);
-            if (!canDrawUsingSimple) {
-              webGLData = switchMode(webGL, 1);
-              buildComplexPoly(data, webGLData);
-            }
-          } else {
+      if (data.fill && data.points.length >= stencilBufferLimit) {
+        if (data.points.length < stencilBufferLimit * 2) {
+          webGLData = switchMode(webGL, 0);
+          const canDrawUsingSimple = buildPoly(data, webGLData);
+          if (!canDrawUsingSimple) {
             webGLData = switchMode(webGL, 1);
             buildComplexPoly(data, webGLData);
           }
+        } else {
+          webGLData = switchMode(webGL, 1);
+          buildComplexPoly(data, webGLData);
         }
       }
       if (data.lineWidth > 0) {
@@ -602,8 +598,8 @@ export const renderGraphics = (graphics: Graphics, renderSession: RenderSession)
     return;
   }
   // This could be speeded up for sure!
-  for (let i = 0; i < webGL.data.length; i += 1) {
-    webGLData = webGL.data[i]!;
+  for (const data of webGL.data) {
+    webGLData = data;
     if (webGLData.mode === 1) {
       renderSession.stencilManager.pushStencil(graphics, webGLData, renderSession);
       // render quad..

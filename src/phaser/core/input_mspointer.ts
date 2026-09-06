@@ -269,10 +269,8 @@ export class MSPointer {
    * @param {Event} event - TBD.
    */
   public eventPreventDefault(event: Event): void {
-    if (this.capture) {
-      if (typeof event.cancelable !== 'boolean' || event.cancelable) {
-        event.preventDefault();
-      }
+    if (this.capture && (typeof event.cancelable !== 'boolean' || event.cancelable)) {
+      event.preventDefault();
     }
   }
 }

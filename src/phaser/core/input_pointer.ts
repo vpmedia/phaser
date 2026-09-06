@@ -331,16 +331,16 @@ export class Pointer {
     // (A node that was previously checked did not request a pixel-perfect check.)
     currentNode = this.game.input.interactiveItems.first;
     while (currentNode) {
-      if (!currentNode.checked && currentNode.validForInput(highestInputPriorityID, highestRenderOrderID, true)) {
-        if (
-          (fromClick && currentNode.checkPointerDown(this, false)) ||
-          (!fromClick && currentNode.checkPointerOver(this, false))
-        ) {
-          highestRenderOrderID = currentNode.sprite.renderOrderID;
-          highestInputPriorityID = currentNode.priorityID;
-          candidateTarget = currentNode;
-          this.interactiveCandidates.push(currentNode);
-        }
+      if (
+        !currentNode.checked &&
+        currentNode.validForInput(highestInputPriorityID, highestRenderOrderID, true) &&
+        ((fromClick && currentNode.checkPointerDown(this, false)) ||
+          (!fromClick && currentNode.checkPointerOver(this, false)))
+      ) {
+        highestRenderOrderID = currentNode.sprite.renderOrderID;
+        highestInputPriorityID = currentNode.priorityID;
+        candidateTarget = currentNode;
+        this.interactiveCandidates.push(currentNode);
       }
       currentNode = this.game.input.interactiveItems.next;
     }

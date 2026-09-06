@@ -879,16 +879,17 @@ export class ScaleManager {
       return;
     }
     if (enteringFullscreen) {
-      if (this._createdFullScreenTarget || this.fullScreenScaleMode === SCALE_EXACT_FIT) {
-        // Resize target, as long as it's not the canvas
-        if (fsTarget !== this.game.canvas) {
-          this._fullScreenRestore = {
-            targetWidth: fsTarget.style.width,
-            targetHeight: fsTarget.style.height,
-          };
-          fsTarget.style.width = '100%';
-          fsTarget.style.height = '100%';
-        }
+      // Resize target, as long as it's not the canvas
+      if (
+        (this._createdFullScreenTarget || this.fullScreenScaleMode === SCALE_EXACT_FIT) &&
+        fsTarget !== this.game.canvas
+      ) {
+        this._fullScreenRestore = {
+          targetWidth: fsTarget.style.width,
+          targetHeight: fsTarget.style.height,
+        };
+        fsTarget.style.width = '100%';
+        fsTarget.style.height = '100%';
       }
     } else {
       // Have restore information

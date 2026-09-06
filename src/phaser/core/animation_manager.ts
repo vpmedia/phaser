@@ -150,8 +150,7 @@ export class AnimationManager {
    * @returns {boolean} True if all frames are valid, false otherwise.
    */
   public validateFrames(frames: string[] | number[], useNumericIndex = false): boolean {
-    for (let i = 0; i < frames.length; i += 1) {
-      const frame = frames[i]!;
+    for (const frame of frames) {
       if (useNumericIndex) {
         if (Number(frame) > this._frameData!.total) {
           return false;

@@ -132,8 +132,8 @@ export class Touch {
     // event.touches = list of all touches on the ENTIRE DOCUMENT, not just the target element
     // event.changedTouches = the touches that CHANGED in this event, not the total number of them
     const changed = event.changedTouches ?? [];
-    for (let i = 0; i < changed.length; i += 1) {
-      this.game.input.startPointer(changed[i]!);
+    for (const touch of changed) {
+      this.game.input.startPointer(touch);
     }
   }
 
@@ -153,8 +153,8 @@ export class Touch {
     // Touch cancel - touches that were disrupted (perhaps by moving into a plugin or browser chrome)
     // http://www.w3.org/TR/touch-events/#dfn-touchcancel
     const changed = event.changedTouches ?? [];
-    for (let i = 0; i < changed.length; i += 1) {
-      this.game.input.stopPointer(changed[i]!);
+    for (const touch of changed) {
+      this.game.input.stopPointer(touch);
     }
   }
 
@@ -196,8 +196,8 @@ export class Touch {
     }
     this.eventPreventDefault(event);
     const changed = event.changedTouches ?? [];
-    for (let i = 0; i < changed.length; i += 1) {
-      this.game.input.updatePointer(changed[i]!);
+    for (const touch of changed) {
+      this.game.input.updatePointer(touch);
     }
   }
 
@@ -215,8 +215,8 @@ export class Touch {
     // https://developer.mozilla.org/en-US/docs/DOM/TouchList
     // event.changedTouches = the touches that CHANGED in this event, not the total number of them
     const changed = event.changedTouches ?? [];
-    for (let i = 0; i < changed.length; i += 1) {
-      this.game.input.stopPointer(changed[i]!);
+    for (const touch of changed) {
+      this.game.input.stopPointer(touch);
     }
   }
 
@@ -225,10 +225,8 @@ export class Touch {
    * @param {TouchEvent} event - TBD.
    */
   public eventPreventDefault(event: InputEvent): void {
-    if (this.preventDefault) {
-      if (typeof event.cancelable !== 'boolean' || event.cancelable) {
-        event.preventDefault();
-      }
+    if (this.preventDefault && (typeof event.cancelable !== 'boolean' || event.cancelable)) {
+      event.preventDefault();
     }
   }
 }

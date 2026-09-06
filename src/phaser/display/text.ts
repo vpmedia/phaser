@@ -291,7 +291,7 @@ export class Text extends Image {
             lineWidth = tab + section;
           }
         } else {
-          for (let c = 0; c < line.length; c += 1) {
+          for (const section of line) {
             //  How far to the next tab?
             if (
               this.colors.length > 0 ||
@@ -299,9 +299,9 @@ export class Text extends Image {
               this.fontWeights.length > 0 ||
               this.fontStyles.length > 0
             ) {
-              lineWidth += this.measureLine(line[c]);
+              lineWidth += this.measureLine(section);
             } else {
-              lineWidth += Math.ceil(this.context.measureText(line[c]).width);
+              lineWidth += Math.ceil(this.context.measureText(section).width);
             }
             const diff = snapToCeil(lineWidth, tabs) - lineWidth;
             lineWidth += diff;
@@ -411,14 +411,14 @@ export class Text extends Image {
         }
       }
     } else {
-      for (let c = 0; c < text.length; c += 1) {
-        const section = Math.ceil(this.context.measureText(text[c]!).width);
+      for (const part of text) {
+        const section = Math.ceil(this.context.measureText(part).width);
         //  How far to the next tab?
         snap = snapToCeil(x, tabs);
         if (fill) {
-          this.context.fillText(text[c]!, snap, y);
+          this.context.fillText(part, snap, y);
         } else {
-          this.context.strokeText(text[c]!, snap, y);
+          this.context.strokeText(part, snap, y);
         }
         x = snap + section;
       }

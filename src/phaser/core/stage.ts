@@ -66,8 +66,8 @@ export class Stage extends DisplayObject {
   public override preUpdate(): void {
     this.currentRenderOrderID = 0;
     //  This can't loop in reverse, we need the renderOrderID to be in sequence
-    for (let i = 0; i < this.children.length; i += 1) {
-      this.children[i]!.preUpdate();
+    for (const child of this.children) {
+      child.preUpdate();
     }
   }
 
@@ -86,8 +86,8 @@ export class Stage extends DisplayObject {
    * Post-updates the stage and its children.
    */
   public override postUpdate(): void {
-    for (let i = 0; i < this.children.length; i += 1) {
-      this.children[i]!.postUpdate();
+    for (const child of this.children) {
+      child.postUpdate();
     }
     this.updateTransform();
   }

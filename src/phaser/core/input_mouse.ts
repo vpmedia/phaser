@@ -130,10 +130,8 @@ export class Mouse {
       canvas.removeEventListener('mouseout', this._onMouseOut, true);
     }
     const { wheelEvent } = this.game.device;
-    if (wheelEvent) {
-      if (this._onMouseWheel) {
-        canvas.removeEventListener(wheelEvent, this._onMouseWheel, true);
-      }
+    if (wheelEvent && this._onMouseWheel) {
+      canvas.removeEventListener(wheelEvent, this._onMouseWheel, true);
     }
     if (this._onMouseUpGlobal) {
       globalThis.removeEventListener('mouseup', this._onMouseUpGlobal, true);
@@ -282,10 +280,8 @@ export class Mouse {
    * @param {MouseEvent} event - TBD.
    */
   public eventPreventDefault(event: Event): void {
-    if (this.capture) {
-      if (typeof event.cancelable !== 'boolean' || event.cancelable) {
-        event.preventDefault();
-      }
+    if (this.capture && (typeof event.cancelable !== 'boolean' || event.cancelable)) {
+      event.preventDefault();
     }
   }
 }

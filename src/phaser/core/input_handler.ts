@@ -649,10 +649,8 @@ export class InputHandler {
    */
   public dragTimeElapsed(pointer: Pointer): void {
     this._dragTimePass = true;
-    if (this._pendingDrag && this.sprite) {
-      if (this._dragDistancePass) {
-        this.startDrag(pointer);
-      }
+    if (this._pendingDrag && this.sprite && this._dragDistancePass) {
+      this.startDrag(pointer);
     }
   }
 

@@ -139,10 +139,10 @@ export const getSmoothingPrefix = (context: CanvasRenderingContext2D): string | 
   const VENDORS = ['i', 'webkitI', 'msI', 'mozI', 'oI'];
   // the vendor-prefixed smoothing flags predate the standard property and are absent from lib.dom
   const smoothingFlags = context as unknown as Record<string, boolean | undefined>;
-  for (let i = 0; i < VENDORS.length; i += 1) {
-    const s = `${VENDORS[i]}mageSmoothingEnabled`;
-    if (context && smoothingFlags[s]) {
-      return s;
+  for (const vendor of VENDORS) {
+    const flag = `${vendor}mageSmoothingEnabled`;
+    if (smoothingFlags[flag]) {
+      return flag;
     }
   }
   return null;

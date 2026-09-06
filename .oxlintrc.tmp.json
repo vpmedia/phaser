@@ -74,7 +74,7 @@
     "eslint/no-warning-comments": "off",
     "eslint/one-var": "off",
     "eslint/operator-assignment": "error",
-    "eslint/prefer-destructuring": "off",
+    "eslint/prefer-destructuring": "error",
     "eslint/prefer-named-capture-group": "off",
     "eslint/prefer-spread": "error",
     "eslint/require-await": "off",
@@ -174,7 +174,7 @@
     "unicorn/prefer-spread": "error",
     "unicorn/prefer-string-replace-all": "off",
     "unicorn/prefer-string-slice": "error",
-    "unicorn/prefer-ternary": "off",
+    "unicorn/prefer-ternary": "error",
     "unicorn/prefer-top-level-await": "off"
   },
   "overrides": [

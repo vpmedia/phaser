@@ -26,7 +26,7 @@ export type InputEvent = Event & {
   mozMovementY?: number;
   webkitMovementX?: number;
   webkitMovementY?: number;
-  changedTouches?: ArrayLike<InputEvent>;
+  changedTouches?: ArrayLike<InputEvent> & Iterable<InputEvent>;
   targetTouches?: ArrayLike<InputEvent>;
   touches?: ArrayLike<InputEvent>;
   buttons?: number;

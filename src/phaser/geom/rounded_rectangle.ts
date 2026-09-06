@@ -36,10 +36,8 @@ export class RoundedRectangle {
     if (this.width <= 0 || this.height <= 0) {
       return false;
     }
-    if (x >= this.x && x <= this.x + this.width) {
-      if (y >= this.y && y <= this.y + this.height) {
-        return true;
-      }
+    if (x >= this.x && x <= this.x + this.width && y >= this.y && y <= this.y + this.height) {
+      return true;
     }
     return false;
   }

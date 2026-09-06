@@ -616,10 +616,8 @@ export class Loader {
    */
   public removeFile(type: string, key: string): void {
     const asset = this.getAsset(type, key);
-    if (asset) {
-      if (!asset.file.loaded && !asset.file.loading) {
-        this._fileList.splice(asset.index, 1);
-      }
+    if (asset && !asset.file.loaded && !asset.file.loading) {
+      this._fileList.splice(asset.index, 1);
     }
   }
 
@@ -1065,8 +1063,7 @@ export class Loader {
       return null;
     }
     const candidates = typeof urls === 'string' ? [urls] : urls;
-    for (let i = 0; i < candidates.length; i += 1) {
-      const candidate = candidates[i]!;
+    for (const candidate of candidates) {
       let url: string;
       let audioType = null;
       if (typeof candidate !== 'string') {
