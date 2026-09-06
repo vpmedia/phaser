@@ -5,6 +5,7 @@ import { Group } from '../display/group.js';
 import { Image } from '../display/image.js';
 import { Text } from '../display/text.js';
 import type { Game } from './game.js';
+import type { SignalListener } from './signal.js';
 
 export class GameObjectFactory {
   public game!: Game;
@@ -73,7 +74,7 @@ export class GameObjectFactory {
     x: number,
     y: number,
     key: string,
-    callback: Function | null = null,
+    callback: SignalListener | null = null,
     callbackContext: unknown = null,
     overFrame: string | null = null,
     outFrame: string | null = null,

@@ -5,6 +5,7 @@ import type { Cache } from './cache.js';
 import type { Game } from './game.js';
 import type { Image } from '../display/image.js';
 import { Signal } from './signal.js';
+import type { AppliedCallback, Callback } from './callback.js';
 
 const TEXTURE_ATLAS_JSON_HASH = 1;
 
@@ -580,10 +581,10 @@ export class Loader {
    * @param {object} callbackContext - The context in which to call the callback.
    * @returns {Loader} This Loader instance for chaining.
    */
-  public withSyncPoint(callback: Function, callbackContext: unknown): this {
+  public withSyncPoint(callback: Callback, callbackContext: unknown): this {
     this._withSyncPointDepth += 1;
     try {
-      callback.call(callbackContext ?? this, this);
+      (callback as AppliedCallback).call(callbackContext ?? this, this);
     } finally {
       this._withSyncPointDepth -= 1;
     }
@@ -969,8 +970,8 @@ export class Loader {
     file: LoaderFile,
     url: string | false,
     type: XMLHttpRequestResponseType,
-    onload: Function,
-    onerror: Function | null = null
+    onload: Callback,
+    onerror: Callback | null = null
   ): void {
     if (url === false) {
       this.fileError(file, null, 'Could not resolve the file URL');
@@ -1014,11 +1015,11 @@ export class Loader {
         // Handle HTTP status codes of 4xx and 5xx as errors, even if xhr.onerror was not called.
         if (xhr.readyState === 4 && xhr.status >= 400 && xhr.status <= 599) {
           if (!retry()) {
-            handleError.call(this, file, xhr);
+            (handleError as AppliedCallback).call(this, file, xhr);
           }
           return;
         }
-        onload.call(this, file, xhr);
+        (onload as AppliedCallback).call(this, file, xhr);
       } catch (error) {
         reportException(error);
       }
@@ -1028,7 +1029,7 @@ export class Loader {
         return;
       }
       try {
-        handleError.call(this, file, xhr);
+        (handleError as AppliedCallback).call(this, file, xhr);
       } catch (error) {
         reportException(error);
       }

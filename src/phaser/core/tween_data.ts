@@ -2,6 +2,7 @@ import type { Game } from './game.js';
 import * as MathUtils from '../util/math.js';
 import { TWEEN_COMPLETE, TWEEN_LOOPED, TWEEN_PENDING, TWEEN_RUNNING } from './const.js';
 import type { Tween } from './tween.js';
+import type { InterpolationFunction } from './callback.js';
 
 export class TweenData {
   public parent!: Tween;
@@ -24,7 +25,7 @@ export class TweenData {
   public dt!: number;
   public startTime!: number | null;
   public easingFunction!: (k: number) => number;
-  public interpolationFunction!: Function;
+  public interpolationFunction!: InterpolationFunction;
   public interpolationContext!: unknown;
   public isRunning!: boolean;
   public isFrom!: boolean;

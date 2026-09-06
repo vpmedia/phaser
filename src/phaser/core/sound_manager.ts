@@ -11,6 +11,7 @@ import { ENGINE_ERROR_CREATING_AUDIO_CONTEXT } from './error_code.js';
 import { Signal } from './signal.js';
 import { Sound } from './sound.js';
 import { SoundSprite } from './sound_sprite.js';
+import type { Callback } from './callback.js';
 
 export class SoundManager {
   public game!: Game;
@@ -28,7 +29,7 @@ export class SoundManager {
   public _sounds!: Sound[];
   public _watchList!: ArraySet;
   public _watching!: boolean;
-  public _watchCallback!: Function | null;
+  public _watchCallback!: Callback | null;
   public _watchContext!: unknown;
   public masterGain!: GainNode;
   public _muteVolume!: number;
@@ -309,7 +310,7 @@ export class SoundManager {
    */
   public setDecodedCallback(
     files: string | string[] | Sound | Sound[],
-    callback: Function,
+    callback: Callback,
     callbackContext: unknown
   ): void {
     const candidates: (string | Sound)[] = typeof files === 'string' ? [files] : Array.isArray(files) ? files : [files];

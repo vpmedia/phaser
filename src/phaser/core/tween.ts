@@ -5,6 +5,7 @@ import { Signal } from './signal.js';
 import { TweenData } from './tween_data.js';
 import type { Game } from './game.js';
 import type { TweenManager } from './tween_manager.js';
+import type { AppliedCallback, Callback, EasingFunction, InterpolationFunction } from './callback.js';
 
 export class Tween {
   public game!: Game;
@@ -25,7 +26,7 @@ export class Tween {
   public properties!: any;
   public chainedTween!: Tween | null;
   public isPaused!: boolean;
-  public _onUpdateCallback!: Function | null;
+  public _onUpdateCallback!: Callback | null;
   public _onUpdateCallbackContext!: unknown;
   public _pausedTime!: number;
   public _codePaused!: boolean;
@@ -93,7 +94,7 @@ export class Tween {
   public to(
     properties: any,
     duration = 1000,
-    ease: string | Function = 'Linear',
+    ease: string | EasingFunction = 'Linear',
     autoStart = false,
     delay = 0,
     repeat = 0,
@@ -126,7 +127,7 @@ export class Tween {
   public from(
     properties: any,
     duration = 1000,
-    ease: string | Function = 'Linear',
+    ease: string | EasingFunction = 'Linear',
     autoStart = false,
     delay = 0,
     repeat = 0,
@@ -282,7 +283,7 @@ export class Tween {
    * @param {number} index - The index in the timeline to apply easing to.
    * @returns {Tween} This Tween object for chaining.
    */
-  public easing(ease: string | Function, index: number): this {
+  public easing(ease: string | EasingFunction, index: number): this {
     if (typeof ease === 'string' && this.manager.easeMap[ease]) {
       ease = this.manager.easeMap[ease]!;
     }
@@ -296,7 +297,7 @@ export class Tween {
    * @param {number} index - The index in the timeline to apply interpolation to.
    * @returns {Tween} This Tween object for chaining.
    */
-  public interpolation(interpolation: Function, context: unknown = MathUtils, index = 0): this {
+  public interpolation(interpolation: InterpolationFunction, context: unknown = MathUtils, index = 0): this {
     this.updateTweenData('interpolationFunction', interpolation, index);
     return this.updateTweenData('interpolationContext', context, index);
   }
@@ -345,7 +346,7 @@ export class Tween {
    * @param {object} callbackContext - The context in which to call the callback.
    * @returns {Tween} This Tween object for chaining.
    */
-  public onUpdateCallback(callback: Function, callbackContext: unknown): this {
+  public onUpdateCallback(callback: Callback, callbackContext: unknown): this {
     this._onUpdateCallback = callback;
     this._onUpdateCallbackContext = callbackContext;
     return this;
@@ -415,7 +416,7 @@ export class Tween {
         this._hasStarted = true;
       }
       if (this._onUpdateCallback !== null) {
-        this._onUpdateCallback.call(
+        (this._onUpdateCallback as AppliedCallback).call(
           this._onUpdateCallbackContext,
           this,
           this.timeline[this.current]!.value,

@@ -11,12 +11,13 @@ import {
   POINTER_CURSOR,
   TOUCH_OVERRIDES_MOUSE,
 } from './const.js';
+import type { AppliedCallback, Callback } from './callback.js';
 
 /** A callback deferred until the click that triggered it has finished dispatching. */
 export type ClickTrampoline = {
   name: string;
   targetObject: InputHandler | null;
-  callback: Function;
+  callback: Callback;
   callbackContext: unknown;
   callbackArgs: unknown[];
 };
@@ -281,7 +282,7 @@ export class Pointer {
     while (i) {
       i -= 1;
       const moveCallback = input.moveCallbacks[i]!;
-      moveCallback.callback.call(moveCallback.context, this, this.x, this.y, fromClick);
+      (moveCallback.callback as AppliedCallback).call(moveCallback.context, this, this.x, this.y, fromClick);
     }
     //  Easy out if we're dragging something and it still exists
     if (this.targetObject !== null && this.targetObject.isDragged) {
@@ -345,12 +346,12 @@ export class Pointer {
       currentNode = this.game.input.interactiveItems.next;
     }
     if (this.game.input.customCandidateHandler) {
-      candidateTarget = this.game.input.customCandidateHandler.call(
+      candidateTarget = (this.game.input.customCandidateHandler as AppliedCallback).call(
         this.game.input.customCandidateHandlerContext,
         this,
         this.interactiveCandidates,
         candidateTarget
-      );
+      ) as InputHandler | null;
     }
     this.swapTarget(candidateTarget, false);
     return this.targetObject !== null;
@@ -477,7 +478,7 @@ export class Pointer {
    * @param {object} callbackContext - TBD.
    * @param {...any} callbackArgs - TBD.
    */
-  public addClickTrampoline(name: string, callback: Function, callbackContext: unknown, callbackArgs: unknown[]): void {
+  public addClickTrampoline(name: string, callback: Callback, callbackContext: unknown, callbackArgs: unknown[]): void {
     if (!this.isDown) {
       return;
     }
@@ -508,7 +509,7 @@ export class Pointer {
     }
     for (const trampoline of trampolines) {
       if (trampoline.targetObject === this._trampolineTargetObject) {
-        trampoline.callback.apply(trampoline.callbackContext, trampoline.callbackArgs);
+        (trampoline.callback as AppliedCallback).apply(trampoline.callbackContext, trampoline.callbackArgs);
       }
     }
     this._clickTrampolines = null;

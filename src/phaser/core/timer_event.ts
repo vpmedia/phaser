@@ -1,4 +1,5 @@
 import type { Timer } from './timer.js';
+import type { Callback } from './callback.js';
 
 export class TimerEvent {
   public timer: Timer;
@@ -6,7 +7,7 @@ export class TimerEvent {
   public tick: number;
   public repeatCount: number;
   public loop: boolean;
-  public callback: Function;
+  public callback: Callback;
   public callbackContext: unknown;
   public args: unknown[];
   public pendingDelete: boolean;
@@ -17,7 +18,7 @@ export class TimerEvent {
     tick: number,
     repeatCount: number,
     loop: boolean,
-    callback: Function,
+    callback: Callback,
     callbackContext: unknown,
     args: unknown[]
   ) {

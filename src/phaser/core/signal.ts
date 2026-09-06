@@ -1,5 +1,14 @@
 import { SignalBinding } from './signal_binding.js';
 
+/**
+ * A signal listener. The rest parameter is `never[]` so a handler with concrete parameters is
+ * assignable; the dispatcher widens it before applying the arguments.
+ */
+export type SignalListener = (...args: never[]) => unknown;
+
+/** The listener as the dispatcher calls it, once the concrete parameter types are behind us. */
+export type DispatchedListener = (...args: unknown[]) => unknown;
+
 export class Signal {
   public _bindings: SignalBinding[] | null = null;
   public _prevParams: unknown[] | null = null;
@@ -19,7 +28,7 @@ export class Signal {
    * @param {string} fnName - The name of the function this validation is for.
    * @throws {Error} If the listener is not a function.
    */
-  public validateListener(listener: Function, fnName: string): void {
+  public validateListener(listener: SignalListener, fnName: string): void {
     if (typeof listener !== 'function') {
       throw new TypeError(
         'Signal: listener is a required param of {fn}() and should be a Function.'.replace('{fn}', fnName)
@@ -38,11 +47,11 @@ export class Signal {
    * @throws {Error} If the listener is already registered with a different once setting.
    */
   public _registerListener(
-    listener: Function,
+    listener: SignalListener,
     isOnce = false,
     listenerContext: unknown = null,
     priority = 0,
-    args: any = null
+    args: unknown[] | null = null
   ): SignalBinding {
     const prevIndex = this._indexOfListener(listener, listenerContext);
     let binding;
@@ -86,7 +95,7 @@ export class Signal {
    * @param {object} context - The context of the listener.
    * @returns {number} The index of the listener in the bindings array, or -1 if not found.
    */
-  public _indexOfListener(listener: Function, context: unknown = null): number {
+  public _indexOfListener(listener: SignalListener, context: unknown = null): number {
     if (!this._bindings) {
       return -1;
     }
@@ -108,7 +117,7 @@ export class Signal {
    * @param {object} context - The context of the listener.
    * @returns {boolean} True if the listener is registered, false otherwise.
    */
-  public has(listener: Function, context: unknown = null): boolean {
+  public has(listener: SignalListener, context: unknown = null): boolean {
     return this._indexOfListener(listener, context) !== -1;
   }
 
@@ -120,7 +129,12 @@ export class Signal {
    * @param {...any} args - Additional arguments to pass to the listener.
    * @returns {SignalBinding} The binding for this listener.
    */
-  public add(listener: Function, listenerContext: unknown = null, priority = 0, ...args: unknown[]): SignalBinding {
+  public add(
+    listener: SignalListener,
+    listenerContext: unknown = null,
+    priority = 0,
+    ...args: unknown[]
+  ): SignalBinding {
     this.validateListener(listener, 'add');
     return this._registerListener(listener, false, listenerContext, priority, args);
   }
@@ -133,7 +147,12 @@ export class Signal {
    * @param {...any} args - Additional arguments to pass to the listener.
    * @returns {SignalBinding} The binding for this listener.
    */
-  public addOnce(listener: Function, listenerContext: unknown = null, priority = 0, ...args: unknown[]): SignalBinding {
+  public addOnce(
+    listener: SignalListener,
+    listenerContext: unknown = null,
+    priority = 0,
+    ...args: unknown[]
+  ): SignalBinding {
     this.validateListener(listener, 'addOnce');
     return this._registerListener(listener, true, listenerContext, priority, args);
   }
@@ -144,7 +163,7 @@ export class Signal {
    * @param {object} context - The context of the listener.
    * @returns {Function} The removed listener function.
    */
-  public remove(listener: Function, context: unknown = null): Function {
+  public remove(listener: SignalListener, context: unknown = null): SignalListener {
     this.validateListener(listener, 'remove');
     const i = this._indexOfListener(listener, context);
     if (i !== -1 && this._bindings) {

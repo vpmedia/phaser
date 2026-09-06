@@ -11,7 +11,7 @@ export class Group extends DisplayObject {
   declare public z: number;
   public ignoreDestroy!: boolean;
   public pendingDestroy!: boolean;
-  public classType!: Function;
+  public classType!: new (game: Game, ...args: never[]) => DisplayObject;
   public cursor!: DisplayObject | null;
   public inputEnableChildren!: boolean;
   public onChildInputDown!: Signal;

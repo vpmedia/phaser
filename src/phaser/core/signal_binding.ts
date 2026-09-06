@@ -1,14 +1,14 @@
-import type { Signal } from './signal.js';
+import type { DispatchedListener, Signal, SignalListener } from './signal.js';
 export class SignalBinding {
-  public _signal: any;
-  public _listener: any;
-  public _args: any;
+  public _signal: Signal | null;
+  public _listener: SignalListener | null;
+  public _args: unknown[] | null;
   public _priority: number;
   public _isOnce: boolean;
   public context: unknown;
   public callCount: number;
   public active: boolean;
-  public params: any;
+  public params: unknown[] | null;
 
   /**
    * TBD.
@@ -21,11 +21,11 @@ export class SignalBinding {
    */
   public constructor(
     signal: Signal,
-    listener: Function,
+    listener: SignalListener,
     isOnce = false,
     listenerContext: unknown = null,
     priority = 0,
-    args: any = null
+    args: unknown[] | null = null
   ) {
     this._signal = signal;
     this._listener = listener;
@@ -43,15 +43,14 @@ export class SignalBinding {
    * @param {any[]} paramsArr - TBD.
    * @returns {Function} TBD.
    */
-  public execute(paramsArr: any[]) {
+  public execute(paramsArr: unknown[]): unknown {
     let handlerReturn;
-    let params;
-    if (this.active && Boolean(this._listener)) {
-      params = this.params ? [...this.params, ...paramsArr] : paramsArr;
+    if (this.active && this._listener) {
+      let params = this.params ? [...this.params, ...paramsArr] : paramsArr;
       if (this._args) {
         params = [...params, ...this._args];
       }
-      handlerReturn = this._listener.apply(this.context, params);
+      handlerReturn = (this._listener as DispatchedListener).apply(this.context, params);
       this.callCount += 1;
       if (this._isOnce) {
         this.detach();
@@ -64,8 +63,8 @@ export class SignalBinding {
    * TBD.
    * @returns {Function} TBD.
    */
-  public detach() {
-    return this.isBound() ? this._signal.remove(this._listener, this.context) : null;
+  public detach(): SignalListener | null {
+    return this.isBound() ? this._signal!.remove(this._listener!, this.context) : null;
   }
 
   /**
@@ -88,7 +87,7 @@ export class SignalBinding {
    * TBD.
    * @returns {Function} TBD.
    */
-  public getListener() {
+  public getListener(): SignalListener | null {
     return this._listener;
   }
 
@@ -96,7 +95,7 @@ export class SignalBinding {
    * TBD.
    * @returns {Signal} TBD.
    */
-  public getSignal() {
+  public getSignal(): Signal | null {
     return this._signal;
   }
 
@@ -104,9 +103,9 @@ export class SignalBinding {
    * TBD.
    */
   public _destroy(): void {
-    delete this._signal;
-    delete this._listener;
-    delete this.context;
+    this._signal = null;
+    this._listener = null;
+    this.context = null;
   }
 
   /**

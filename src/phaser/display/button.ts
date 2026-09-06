@@ -3,6 +3,7 @@ import { InputHandler } from '../core/input_handler.js';
 import { Signal } from '../core/signal.js';
 import { Image } from './image.js';
 import type { Game } from '../core/game.js';
+import type { SignalListener } from '../core/signal.js';
 
 const STATE_OVER = 'Over';
 const STATE_OUT = 'Out';
@@ -45,7 +46,7 @@ export class Button extends Image {
     x = 0,
     y = 0,
     key: string | null = null,
-    callback: Function | null = null,
+    callback: SignalListener | null = null,
     callbackContext: unknown = null,
     overFrame: string | null = null,
     outFrame: string | null = null,

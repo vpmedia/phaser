@@ -4,6 +4,7 @@ import { RENDER_CANVAS, SCALE_EXACT_FIT, SCALE_OFF, SCALE_RESIZE, SCALE_SHOW_ALL
 import type { Game, GameConfig } from './game.js';
 import { DOM } from './dom.js';
 import { Signal } from './signal.js';
+import type { AppliedCallback, Callback } from './callback.js';
 
 /** The gap the canvas leaves around itself inside its parent. */
 export type ScaleMargin = { left: number; top: number; right: number; bottom: number; x: number; y: number };
@@ -61,7 +62,7 @@ export class ScaleManager {
   public parentScaleFactor!: Point;
   public trackParentInterval!: number;
   public onSizeChange!: Signal;
-  public onResize!: Function | null;
+  public onResize!: Callback | null;
   public onResizeContext!: unknown;
   public _pendingScaleMode!: number | null;
   public _fullScreenRestore!: { targetWidth: string; targetHeight: string } | null;
@@ -329,7 +330,7 @@ export class ScaleManager {
    * @param {Function} callback - TBD.
    * @param {object} context - TBD.
    */
-  public setResizeCallback(callback: Function, context: unknown): void {
+  public setResizeCallback(callback: Callback, context: unknown): void {
     this.onResize = callback;
     this.onResizeContext = context;
   }
@@ -393,7 +394,7 @@ export class ScaleManager {
     const orientationChanged = this.updateOrientationState();
     if (boundsChanged || orientationChanged) {
       if (this.onResize) {
-        this.onResize.call(this.onResizeContext, this, bounds);
+        (this.onResize as AppliedCallback).call(this.onResizeContext, this, bounds);
       }
       this.updateLayout();
       this.signalSizeChange();

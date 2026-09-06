@@ -1,6 +1,7 @@
 import type { Game } from './game.js';
 import { Signal } from './signal.js';
 import { TimerEvent } from './timer_event.js';
+import type { AppliedCallback, Callback } from './callback.js';
 
 export class Timer {
   public game!: Game;
@@ -65,7 +66,7 @@ export class Timer {
     delay: number,
     loop: boolean,
     repeatCount: number,
-    callback: Function,
+    callback: Callback,
     callbackContext: unknown = null,
     args: any = []
   ): TimerEvent {
@@ -87,7 +88,7 @@ export class Timer {
    * @param {...any} args - Arguments to pass to the callback function.
    * @returns {TimerEvent} The created TimerEvent.
    */
-  public add(delay: number, callback: Function, callbackContext: unknown = null, ...args: unknown[]): TimerEvent {
+  public add(delay: number, callback: Callback, callbackContext: unknown = null, ...args: unknown[]): TimerEvent {
     return this.create(delay, false, 0, callback, callbackContext, args);
   }
 
@@ -118,7 +119,7 @@ export class Timer {
   public repeat(
     delay: number,
     repeatCount: number,
-    callback: Function,
+    callback: Callback,
     callbackContext: unknown = null,
     ...args: unknown[]
   ): TimerEvent {
@@ -133,7 +134,7 @@ export class Timer {
    * @param {...any} args - Arguments to pass to the callback function.
    * @returns {TimerEvent} The created TimerEvent.
    */
-  public loop(delay: number, callback: Function, callbackContext: unknown = null, ...args: unknown[]): TimerEvent {
+  public loop(delay: number, callback: Callback, callbackContext: unknown = null, ...args: unknown[]): TimerEvent {
     return this.create(delay, true, 0, callback, callbackContext, args);
   }
 
@@ -257,15 +258,15 @@ export class Timer {
           }
           if (event.loop) {
             event.tick = this._newTick;
-            event.callback.apply(event.callbackContext, event.args);
+            (event.callback as AppliedCallback).apply(event.callbackContext, event.args);
           } else if (event.repeatCount > 0) {
             event.repeatCount -= 1;
             event.tick = this._newTick;
-            event.callback.apply(event.callbackContext, event.args);
+            (event.callback as AppliedCallback).apply(event.callbackContext, event.args);
           } else {
             this._marked += 1;
             event.pendingDelete = true;
-            event.callback.apply(event.callbackContext, event.args);
+            (event.callback as AppliedCallback).apply(event.callbackContext, event.args);
           }
           this._i += 1;
         } else {
