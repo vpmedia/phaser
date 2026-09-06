@@ -1,3 +1,13 @@
+## [1.126.0] - 2026-09-06
+
+### 🐛 Bug Fixes
+
+- *(game)* Restore the guards that only hold while the game is half-built
+
+### ⚙️ Miscellaneous Tasks
+
+- Release
+- *(release)* V1.126.0
 ## [1.125.0] - 2026-09-06
 
 ### 🚜 Refactor
