@@ -1,3 +1,13 @@
+## [1.123.0] - 2026-09-06
+
+### 🐛 Bug Fixes
+
+- *(canvas)* Fall back to the body when the parent id is empty
+
+### ⚙️ Miscellaneous Tasks
+
+- Release
+- *(release)* V1.123.0
 ## [1.122.0] - 2026-09-06
 
 ### 🚜 Refactor
