@@ -9,7 +9,7 @@ import { getRegistry } from '../../core/registry.js';
  * @param {number} dy - The amount to inflate the rectangle vertically.
  * @returns {Rectangle} The inflated rectangle.
  */
-export const inflate = (a: Rectangle, dx: number, dy: number) => {
+export const inflate = (a: Rectangle, dx: number, dy: number): Rectangle => {
   a.x -= dx;
   a.width += 2 * dx;
   a.y -= dy;
@@ -23,7 +23,7 @@ export const inflate = (a: Rectangle, dx: number, dy: number) => {
  * @param {object} point - The point containing x and y values to inflate the rectangle by.
  * @returns {Rectangle} The inflated rectangle.
  */
-export const inflatePoint = (a: Rectangle, point: any) => inflate(a, point.x, point.y);
+export const inflatePoint = (a: Rectangle, point: any): Rectangle => inflate(a, point.x, point.y);
 
 /**
  * Gets the size of the rectangle as a point.
@@ -31,7 +31,7 @@ export const inflatePoint = (a: Rectangle, point: any) => inflate(a, point.x, po
  * @param {Point} output - Optional point to store the result in.
  * @returns {Point} The size of the rectangle as a point (width, height).
  */
-export const size = (a: Rectangle, output: Point | null = null) => {
+export const size = (a: Rectangle, output: Point | null = null): Point => {
   const result = output ?? new Point();
   result.setTo(a.width, a.height);
   return result;
@@ -43,7 +43,7 @@ export const size = (a: Rectangle, output: Point | null = null) => {
  * @param {Rectangle} output - Optional rectangle to store the result in.
  * @returns {Rectangle} The cloned rectangle.
  */
-export const clone = (input: Rectangle, output: Rectangle | null = null) => {
+export const clone = (input: Rectangle, output: Rectangle | null = null): Rectangle => {
   const result = output ?? new Rectangle();
   result.setTo(input.x, input.y, input.width, input.height);
   return result;
@@ -56,7 +56,7 @@ export const clone = (input: Rectangle, output: Rectangle | null = null) => {
  * @param {number} y - The y coordinate of the point.
  * @returns {boolean} True if the point is contained within the rectangle, false otherwise.
  */
-export const contains = (a: Rectangle, x: number, y: number) => {
+export const contains = (a: Rectangle, x: number, y: number): boolean => {
   if (a.width <= 0 || a.height <= 0) {
     return false;
   }
@@ -73,7 +73,7 @@ export const contains = (a: Rectangle, x: number, y: number) => {
  * @param {number} y - The y coordinate of the point.
  * @returns {boolean} True if the point is contained within the rectangle, false otherwise.
  */
-export const containsRaw = (rx: number, ry: number, rw: number, rh: number, x: number, y: number) =>
+export const containsRaw = (rx: number, ry: number, rw: number, rh: number, x: number, y: number): boolean =>
   x >= rx && x < rx + rw && y >= ry && y < ry + rh;
 
 /**
@@ -82,7 +82,7 @@ export const containsRaw = (rx: number, ry: number, rw: number, rh: number, x: n
  * @param {Point} point - The point to check.
  * @returns {boolean} True if the point is contained within the rectangle, false otherwise.
  */
-export const containsPoint = (a: Rectangle, point: Point) => contains(a, point.x, point.y);
+export const containsPoint = (a: Rectangle, point: Point): boolean => contains(a, point.x, point.y);
 
 /**
  * Checks if rectangle a contains rectangle b.
@@ -90,7 +90,7 @@ export const containsPoint = (a: Rectangle, point: Point) => contains(a, point.x
  * @param {Rectangle} b - The second rectangle to check.
  * @returns {boolean} True if rectangle a contains rectangle b, false otherwise.
  */
-export const containsRect = (a: Rectangle, b: Rectangle) => {
+export const containsRect = (a: Rectangle, b: Rectangle): boolean => {
   if (a.volume > b.volume) {
     return false;
   }
@@ -103,7 +103,7 @@ export const containsRect = (a: Rectangle, b: Rectangle) => {
  * @param {Rectangle} b - The second rectangle to compare.
  * @returns {boolean} True if the rectangles are equal, false otherwise.
  */
-export const equals = (a: Rectangle, b: Rectangle) =>
+export const equals = (a: Rectangle, b: Rectangle): boolean =>
   a.x === b.x && a.y === b.y && a.width === b.width && a.height === b.height;
 
 /**
@@ -112,7 +112,7 @@ export const equals = (a: Rectangle, b: Rectangle) =>
  * @param {Rectangle} b - The second rectangle to compare.
  * @returns {boolean} True if the rectangles have the same dimensions, false otherwise.
  */
-export const sameDimensions = (a: Rectangle, b: Rectangle) => a.width === b.width && a.height === b.height;
+export const sameDimensions = (a: Rectangle, b: Rectangle): boolean => a.width === b.width && a.height === b.height;
 
 /**
  * Checks if two rectangles intersect.
@@ -120,7 +120,7 @@ export const sameDimensions = (a: Rectangle, b: Rectangle) => a.width === b.widt
  * @param {Rectangle} b - The second rectangle to check.
  * @returns {boolean} True if the rectangles intersect, false otherwise.
  */
-export const intersects = (a: Rectangle, b: Rectangle) => {
+export const intersects = (a: Rectangle, b: Rectangle): boolean => {
   if (a.width <= 0 || a.height <= 0 || b.width <= 0 || b.height <= 0) {
     return false;
   }
@@ -134,7 +134,7 @@ export const intersects = (a: Rectangle, b: Rectangle) => {
  * @param {Rectangle} output - Optional rectangle to store the result in.
  * @returns {Rectangle} The intersection of the rectangles, or an empty rectangle if they don't intersect.
  */
-export const intersection = (a: Rectangle, b: Rectangle, output: Rectangle | null = null) => {
+export const intersection = (a: Rectangle, b: Rectangle, output: Rectangle | null = null): Rectangle => {
   const result = output ?? new Rectangle();
   if (intersects(a, b)) {
     result.x = Math.max(a.x, b.x);
@@ -155,7 +155,14 @@ export const intersection = (a: Rectangle, b: Rectangle, output: Rectangle | nul
  * @param {number} tolerance - Optional tolerance value for intersection.
  * @returns {boolean} True if the rectangle intersects with the area, false otherwise.
  */
-export const intersectsRaw = (a: Rectangle, left: number, right: number, top: number, bottom: number, tolerance = 0) =>
+export const intersectsRaw = (
+  a: Rectangle,
+  left: number,
+  right: number,
+  top: number,
+  bottom: number,
+  tolerance = 0
+): boolean =>
   !(
     left > a.right + tolerance ||
     right < a.left - tolerance ||
@@ -170,7 +177,7 @@ export const intersectsRaw = (a: Rectangle, left: number, right: number, top: nu
  * @param {Rectangle} output - Optional rectangle to store the result in.
  * @returns {Rectangle} The union of the rectangles.
  */
-export const union = (a: Rectangle, b: Rectangle, output: Rectangle | null = null) => {
+export const union = (a: Rectangle, b: Rectangle, output: Rectangle | null = null): Rectangle => {
   const result = output ?? new Rectangle();
   return result.setTo(
     Math.min(a.x, b.x),
@@ -186,13 +193,13 @@ export const union = (a: Rectangle, b: Rectangle, output: Rectangle | null = nul
  * @param {Rectangle} output - Optional rectangle to store the result in.
  * @returns {Rectangle} The AABB of the points.
  */
-export const aabb = (points: Point[], output: Rectangle | null = null) => {
+export const aabb = (points: Point[], output: Rectangle | null = null): Rectangle => {
   const result = output ?? new Rectangle();
   let xMax = Number.NEGATIVE_INFINITY;
   let xMin = Number.POSITIVE_INFINITY;
   let yMax = Number.NEGATIVE_INFINITY;
   let yMin = Number.POSITIVE_INFINITY;
-  points.forEach((point) => {
+  points.forEach((point): void => {
     if (point.x > xMax) {
       xMax = point.x;
     }
@@ -214,7 +221,7 @@ export const aabb = (points: Point[], output: Rectangle | null = null) => {
  * Gets an empty rectangle instance.
  * @returns {Rectangle} An empty rectangle.
  */
-export const getEmptyRectangle = () => {
+export const getEmptyRectangle = (): Rectangle => {
   getRegistry();
   globalThis.PhaserRegistry.EMPTY_RECTANGLE ??= new Rectangle();
   return globalThis.PhaserRegistry.EMPTY_RECTANGLE;

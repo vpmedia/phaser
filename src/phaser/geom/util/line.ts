@@ -8,7 +8,7 @@ import { intersects as intersectsRect } from './rectangle.js';
  * @param {Line} output - Optional line to store the result in.
  * @returns {Line} The cloned line.
  */
-export const clone = (input: Line, output: Line | null = null) => {
+export const clone = (input: Line, output: Line | null = null): Line => {
   const result = output ?? new Line();
   result.start.x = input.start.x;
   result.start.y = input.start.y;
@@ -27,7 +27,14 @@ export const clone = (input: Line, output: Line | null = null) => {
  * @param {Point} output - Optional point to store the result in.
  * @returns {Point} The intersection point, or null if there is no intersection.
  */
-export const intersectsPoints = (a: any, b: any, e: any, f: any, asSegment = true, output: Point | null = null) => {
+export const intersectsPoints = (
+  a: any,
+  b: any,
+  e: any,
+  f: any,
+  asSegment = true,
+  output: Point | null = null
+): Point | null => {
   const result = output ?? new Point();
   const a1 = b.y - a.y;
   const a2 = f.y - e.y;
@@ -61,7 +68,7 @@ export const intersectsPoints = (a: any, b: any, e: any, f: any, asSegment = tru
  * @param {Point} result - Optional point to store the result in.
  * @returns {Point} The intersection point, or null if there is no intersection.
  */
-export const intersects = (a: any, b: any, asSegment: boolean, result: Point) =>
+export const intersects = (a: any, b: any, asSegment: boolean, result: Point): Point | null =>
   intersectsPoints(a.start, a.end, b.start, b.end, asSegment, result);
 
 /**
@@ -70,7 +77,7 @@ export const intersects = (a: any, b: any, asSegment: boolean, result: Point) =>
  * @param {object} rect - The rectangle to check (with x, y, width, height properties).
  * @returns {boolean} True if the line intersects with the rectangle, false otherwise.
  */
-export const intersectsRectangle = (line: any, rect: any) => {
+export const intersectsRectangle = (line: any, rect: any): boolean => {
   //  Quick bail out of the Line and Rect bounds don't intersect
   if (!intersectsRect(line, rect)) {
     return false;
@@ -124,4 +131,4 @@ export const intersectsRectangle = (line: any, rect: any) => {
  * @param {object} b - The second point (with x, y properties).
  * @returns {number} The distance between the points.
  */
-export const reflect = (a: any, b: any) => 2 * b.normalAngle - Math.PI - a.angle;
+export const reflect = (a: any, b: any): number => 2 * b.normalAngle - Math.PI - a.angle;

@@ -105,7 +105,7 @@ export class WebGLRenderer {
   /**
    * Destroys this renderer and cleans up resources.
    */
-  public destroy() {
+  public destroy(): void {
     globalThis.PhaserRegistry.GL_CONTEXTS[this.glContextId] = null;
     this.projection = null;
     this.offset = null;
@@ -131,7 +131,7 @@ export class WebGLRenderer {
   /**
    * Initializes the WebGL registry.
    */
-  public initRegistry() {
+  public initRegistry(): void {
     globalThis.PhaserRegistry.GL_CONTEXT_ID ??= 0;
     globalThis.PhaserRegistry.GL_CONTEXTS ??= [];
     globalThis.PhaserRegistry.INSTANCES ??= [];
@@ -142,7 +142,7 @@ export class WebGLRenderer {
    * @param {Game} game - The game instance.
    * @throws {Error}
    */
-  public initContext(game: Game) {
+  public initContext(game: Game): void {
     game.logger.info('initContext');
     // TODO: view.addEventListener('webglcontextcreationerror', this.onWebGLContextCreationError, false);
     /** @type {WebGLRenderingContext & { id: number }} */
@@ -185,7 +185,7 @@ export class WebGLRenderer {
    * Renders the stage to WebGL.
    * @param {Stage} stage - The root stage to render.
    */
-  public render(stage: Stage) {
+  public render(stage: Stage): void {
     if (this.contextLost) {
       return;
     }
@@ -210,7 +210,7 @@ export class WebGLRenderer {
    * @param {object} buffer - The render buffer.
    * @param {Matrix} matrix - The transformation matrix.
    */
-  public renderDisplayObject(displayObject: any, projection: Point, buffer?: any, matrix?: any) {
+  public renderDisplayObject(displayObject: any, projection: Point, buffer?: any, matrix?: any): void {
     this.renderSession.blendModeManager.setBlendMode(BLEND_NORMAL);
     // reset the render session data..
     this.renderSession.drawCount = 0;
@@ -235,7 +235,7 @@ export class WebGLRenderer {
    * @param {number} width - The new width of the canvas.
    * @param {number} height - The new height of the canvas.
    */
-  public resize(width: number, height: number) {
+  public resize(width: number, height: number): void {
     this.width = width * this.resolution;
     this.height = height * this.resolution;
     this.view.width = this.width;
@@ -254,7 +254,7 @@ export class WebGLRenderer {
    * @param {BaseTexture} texture - The base texture to update.
    * @returns {boolean} Whether the update was successful.
    */
-  public updateTexture(texture: BaseTexture) {
+  public updateTexture(texture: BaseTexture): boolean {
     if (!texture.hasLoaded) {
       return false;
     }
@@ -293,7 +293,7 @@ export class WebGLRenderer {
   /**
    * Maps blend modes to WebGL rendering operations.
    */
-  public mapBlendModes() {
+  public mapBlendModes(): void {
     if (globalThis.PhaserRegistry.blendModesWebGL) {
       return;
     }

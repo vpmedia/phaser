@@ -124,7 +124,7 @@ export class Loader {
    * @param {Image} sprite - The image to use as the preload sprite.
    * @param {number} direction - The direction of the progress (0 = horizontal, 1 = vertical).
    */
-  public setPreloadSprite(sprite: Image, direction = 0) {
+  public setPreloadSprite(sprite: Image, direction = 0): void {
     this.preloadSprite = {
       sprite,
       direction,
@@ -146,7 +146,7 @@ export class Loader {
   /**
    * Resizes the preload sprite when the window is resized.
    */
-  public resize() {
+  public resize(): void {
     if (this.preloadSprite && this.preloadSprite.height !== this.preloadSprite.sprite.height) {
       this.preloadSprite.rect.height = this.preloadSprite.sprite.height;
     }
@@ -158,7 +158,7 @@ export class Loader {
    * @param {string} key - The key of the file to check for.
    * @returns {boolean} True if the file exists, false otherwise.
    */
-  public checkKeyExists(type: string, key: string) {
+  public checkKeyExists(type: string, key: string): boolean {
     return this.getAssetIndex(type, key) > -1;
   }
 
@@ -168,7 +168,7 @@ export class Loader {
    * @param {string} key - The key of the file to find.
    * @returns {number} The index of the file in the list, or -1 if not found.
    */
-  public getAssetIndex(type: string, key: string) {
+  public getAssetIndex(type: string, key: string): number {
     let bestFound = -1;
     for (let i = 0; i < this._fileList.length; i += 1) {
       const file = this._fileList[i]!;
@@ -203,7 +203,7 @@ export class Loader {
    * @param {boolean} hard - Whether to perform a hard reset (clears preload sprite).
    * @param {boolean} clearEvents - Whether to clear event listeners.
    */
-  public reset(hard = false, clearEvents = false) {
+  public reset(hard = false, clearEvents = false): void {
     if (hard) {
       this.preloadSprite = null;
     }
@@ -243,7 +243,7 @@ export class Loader {
     properties: Partial<LoaderFile> | null = null,
     overwrite = false,
     extension: string | null = null
-  ) {
+  ): this {
     if (key === undefined || key === '') {
       this.game.logger.warn(`Loader: Invalid or no key given of type ${type}`);
       return this;
@@ -292,7 +292,7 @@ export class Loader {
    * @param {object} properties - The new properties for the file.
    * @returns {Loader} This Loader instance for chaining.
    */
-  public replaceInFileList(type: string, key: string, url: string, properties: Partial<LoaderFile>) {
+  public replaceInFileList(type: string, key: string, url: string, properties: Partial<LoaderFile>): this {
     return this.addToFileList(type, key, url, properties, true);
   }
 
@@ -304,7 +304,7 @@ export class Loader {
    * @param {object} callbackContext - The context in which to call the callback.
    * @returns {Loader} This Loader instance for chaining.
    */
-  public pack(key: string, url: string, data: unknown, callbackContext: unknown) {
+  public pack(key: string, url: string, data: unknown, callbackContext: unknown): this {
     const pack = {
       type: 'packfile',
       key,
@@ -342,7 +342,7 @@ export class Loader {
    * @param {boolean} overwrite - Whether to overwrite an existing file with the same key.
    * @returns {Loader} This Loader instance for chaining.
    */
-  public image(key: string, url?: string, overwrite = false) {
+  public image(key: string, url?: string, overwrite = false): this {
     return this.addToFileList('image', key, url, undefined, overwrite, '.png');
   }
 
@@ -352,7 +352,7 @@ export class Loader {
    * @param {string[]} urls - The URLs of the image files to load.
    * @returns {Loader} This Loader instance for chaining.
    */
-  public images(keys: string[], urls: string[]) {
+  public images(keys: string[], urls: string[]): this {
     if (Array.isArray(urls)) {
       for (let i = 0; i < keys.length; i += 1) {
         this.image(keys[i]!, urls[i]);
@@ -372,7 +372,7 @@ export class Loader {
    * @param {boolean} overwrite - Whether to overwrite an existing file with the same key.
    * @returns {Loader} This Loader instance for chaining.
    */
-  public text(key: string, url: string, overwrite = false) {
+  public text(key: string, url: string, overwrite = false): this {
     return this.addToFileList('text', key, url, undefined, overwrite, '.txt');
   }
 
@@ -383,7 +383,7 @@ export class Loader {
    * @param {boolean} overwrite - Whether to overwrite an existing file with the same key.
    * @returns {Loader} This Loader instance for chaining.
    */
-  public json(key: string, url: string, overwrite = false) {
+  public json(key: string, url: string, overwrite = false): this {
     return this.addToFileList('json', key, url, undefined, overwrite, '.json');
   }
 
@@ -394,7 +394,7 @@ export class Loader {
    * @param {boolean} overwrite - Whether to overwrite an existing file with the same key.
    * @returns {Loader} This Loader instance for chaining.
    */
-  public xml(key: string, url: string, overwrite = false) {
+  public xml(key: string, url: string, overwrite = false): this {
     return this.addToFileList('xml', key, url, undefined, overwrite, '.xml');
   }
 
@@ -417,7 +417,7 @@ export class Loader {
     frameMax = -1,
     margin = 0,
     spacing = 0
-  ) {
+  ): this {
     return this.addToFileList(
       'spritesheet',
       key,
@@ -435,7 +435,7 @@ export class Loader {
    * @param {boolean} autoDecode - Whether to automatically decode the audio file.
    * @returns {Loader} This Loader instance for chaining.
    */
-  public audio(key: string, urls: string | string[], autoDecode = true) {
+  public audio(key: string, urls: string | string[], autoDecode = true): this {
     if (this.game.sound.noAudio || this.game.device.noAudioFormat) {
       return this;
     }
@@ -454,7 +454,7 @@ export class Loader {
    * @param {boolean} autoDecode - Whether to automatically decode the audio file.
    * @returns {Loader} This Loader instance for chaining.
    */
-  public audioSprite(key: string, urls: string, jsonURL: string, jsonData: unknown, autoDecode = true) {
+  public audioSprite(key: string, urls: string, jsonURL: string, jsonData: unknown, autoDecode = true): this {
     if (this.game.sound.noAudio || this.game.device.noAudioFormat) {
       return this;
     }
@@ -488,7 +488,7 @@ export class Loader {
     atlasData: unknown = null,
     xSpacing = 0,
     ySpacing = 0
-  ) {
+  ): this {
     textureURL ??= `${key}.png`;
     if (atlasURL === null && atlasData === null) {
       atlasURL = `${key}.xml`;
@@ -534,7 +534,7 @@ export class Loader {
     atlasURL: string | null = null,
     atlasData: unknown = null,
     format: number = TEXTURE_ATLAS_JSON_HASH
-  ) {
+  ): this {
     textureURL ??= `${key}.png`;
     if (!atlasURL && !atlasData) {
       atlasURL = `${key}.json`;
@@ -554,7 +554,7 @@ export class Loader {
    * @param {object} callbackContext - The context in which to call the callback.
    * @returns {Loader} This Loader instance for chaining.
    */
-  public withSyncPoint(callback: Function, callbackContext: unknown) {
+  public withSyncPoint(callback: Function, callbackContext: unknown): this {
     this._withSyncPointDepth += 1;
     try {
       callback.call(callbackContext ?? this, this);
@@ -570,7 +570,7 @@ export class Loader {
    * @param {string} key - The key of the file to add a sync point to.
    * @returns {Loader} This Loader instance for chaining.
    */
-  public addSyncPoint(type: string, key: string) {
+  public addSyncPoint(type: string, key: string): this {
     const asset = this.getAsset(type, key);
     if (asset) {
       asset.file.syncPoint = true;
@@ -583,7 +583,7 @@ export class Loader {
    * @param {string} type - The type of file to remove.
    * @param {string} key - The key of the file to remove.
    */
-  public removeFile(type: string, key: string) {
+  public removeFile(type: string, key: string): void {
     const asset = this.getAsset(type, key);
     if (asset) {
       if (!asset.file.loaded && !asset.file.loading) {
@@ -595,7 +595,7 @@ export class Loader {
   /**
    * Removes all files from the file list.
    */
-  public removeAll() {
+  public removeAll(): void {
     this._fileList.length = 0;
     this._flightQueue.length = 0;
   }
@@ -603,7 +603,7 @@ export class Loader {
   /**
    * Starts the loading process for all queued files.
    */
-  public start() {
+  public start(): void {
     if (this.isLoading) {
       return;
     }
@@ -616,7 +616,7 @@ export class Loader {
   /**
    * Processes the loading queue, loading files as appropriate.
    */
-  public processLoadQueue() {
+  public processLoadQueue(): void {
     if (!this.isLoading) {
       this.game.logger.warn('Active loading canceled / reset');
       this.finishedLoading(true);
@@ -705,7 +705,7 @@ export class Loader {
       // This indicates a critical internal error with no known recovery.
       this.game.logger.warn('Aborting: processing queue empty, loading may have stalled');
       const scope = this;
-      setTimeout(() => {
+      setTimeout((): void => {
         scope.finishedLoading(true);
       }, 2000);
     }
@@ -715,7 +715,7 @@ export class Loader {
    * Finishes the loading process, optionally reporting an abnormal termination.
    * @param {boolean} abnormal - Whether the loading was terminated abnormally.
    */
-  public finishedLoading(abnormal = false) {
+  public finishedLoading(abnormal = false): void {
     if (this.hasLoaded) {
       return;
     }
@@ -739,7 +739,7 @@ export class Loader {
    * @param {object} file - The file to complete or mark as failed.
    * @param {string} errorMessage - An error message if the file failed to load.
    */
-  public asyncComplete(file: LoaderFile, errorMessage = '') {
+  public asyncComplete(file: LoaderFile, errorMessage = ''): void {
     file.loaded = true;
     file.error = Boolean(errorMessage);
     if (file.error) {
@@ -754,7 +754,7 @@ export class Loader {
    * Processes a pack file, adding its contained files to the loader.
    * @param {object} pack - The pack file object to process.
    */
-  public processPack(pack: LoaderFile) {
+  public processPack(pack: LoaderFile): void {
     const packData = pack.data[pack.key];
     if (!packData) {
       this.game.logger.warn('Missing loader pack key', { key: pack.key });
@@ -845,7 +845,7 @@ export class Loader {
    * Loads a file using XMLHttpRequest, handling image files specially.
    * @param {object} file - The file object to load.
    */
-  public loadFile(file: LoaderFile) {
+  public loadFile(file: LoaderFile): void {
     switch (file.type) {
       case 'packfile': {
         this.xhrLoad(file, this.transformUrl(file.url, file), 'text', this.fileComplete);
@@ -895,7 +895,7 @@ export class Loader {
    * Loads an image file using the Image DOM element.
    * @param {object} file - The file object to load.
    */
-  public loadImageTag(file: LoaderFile) {
+  public loadImageTag(file: LoaderFile): void {
     this.log('loadImageTag', file);
     const scope = this;
     file.data = new globalThis.Image();
@@ -903,16 +903,16 @@ export class Loader {
     if (this.crossOrigin) {
       file.data.crossOrigin = this.crossOrigin;
     }
-    file.data.onload = () => {
+    file.data.onload = (): void => {
       if (file.data.onload) {
         file.data.onload = null;
         file.data.onerror = null;
         scope.fileComplete(file);
       }
     };
-    file.data.onerror = () => {
+    file.data.onerror = (): void => {
       if (scope.isUseRetry && (!file.numRetry || file.numRetry < scope.maxRetry)) {
-        setTimeout(() => {
+        setTimeout((): void => {
           file.numRetry = !file.numRetry ? 1 : (file.numRetry += 1);
           scope.loadImageTag(file);
         }, 1000);
@@ -939,7 +939,7 @@ export class Loader {
     type: XMLHttpRequestResponseType,
     onload: Function,
     onerror: Function | null = null
-  ) {
+  ): void {
     if (url === false) {
       this.fileError(file, null, 'Could not resolve the file URL');
       return;
@@ -963,7 +963,7 @@ export class Loader {
         if (xhr.readyState === 4 && xhr.status >= 400 && xhr.status <= 599) {
           // Handle HTTP status codes of 4xx and 5xx as errors, even if xhr.onerror was not called.
           if (scope.isUseRetry && (!file.numRetry || file.numRetry < scope.maxRetry)) {
-            setTimeout(() => {
+            setTimeout((): void => {
               file.numRetry = !file.numRetry ? 1 : (file.numRetry += 1);
               scope.xhrLoad(file, url, type, onload, onerror);
             }, 1000);
@@ -986,7 +986,7 @@ export class Loader {
     };
     xhr.onerror = () => {
       if (scope.isUseRetry && (!file.numRetry || file.numRetry < scope.maxRetry)) {
-        setTimeout(() => {
+        setTimeout((): void => {
           file.numRetry = !file.numRetry ? 1 : (file.numRetry += 1);
           scope.xhrLoad(file, url, type, onload, onerror);
         }, 1000);
@@ -1012,7 +1012,7 @@ export class Loader {
   /**
    * Placeholder for XDomainRequest loading (not implemented).
    */
-  public xhrLoadWithXDR() {
+  public xhrLoadWithXDR(): void {
     // TODO
     this.game.logger.warn('loader.xhrLoadWithXDR() is not implemented');
   }
@@ -1022,7 +1022,7 @@ export class Loader {
    * @param {object[]} urls - The array of URLs to check for supported audio formats.
    * @returns {string} The first URL with a supported audio format, or null if none found.
    */
-  public getAudioURL(urls: string | AudioSource[]) {
+  public getAudioURL(urls: string | AudioSource[]): string | null {
     if (this.game.sound.noAudio || this.game.device.noAudioFormat) {
       return null;
     }
@@ -1064,7 +1064,7 @@ export class Loader {
    * @param {XMLHttpRequest} xhr - The XMLHttpRequest object that failed.
    * @param {number | string} reason - The error code or message explaining the failure.
    */
-  public fileError(file: LoaderFile, xhr: XMLHttpRequest | null = null, reason: unknown = 0) {
+  public fileError(file: LoaderFile, xhr: XMLHttpRequest | null = null, reason: unknown = 0): void {
     // const url = file.requestUrl || this.transformUrl(file.url, file);
     if (!reason && xhr) {
       reason = xhr.status;
@@ -1079,7 +1079,7 @@ export class Loader {
    * @param {XMLHttpRequest} xhr - TBD.
    * @throws {Error}
    */
-  public fileComplete(file: LoaderFile, xhr?: XMLHttpRequest) {
+  public fileComplete(file: LoaderFile, xhr?: XMLHttpRequest): void {
     let loadNext = true;
     // By this point the audio candidate list has been resolved to a single URL.
     const url = typeof file.url === 'string' ? file.url : '';
@@ -1138,7 +1138,7 @@ export class Loader {
             file,
             this.transformUrl(file.atlasURL, file),
             'text',
-            (bitmapFontFile: LoaderFile, bitmapFontXhr: XMLHttpRequest) => {
+            (bitmapFontFile: LoaderFile, bitmapFontXhr: XMLHttpRequest): void => {
               let json;
               try {
                 // Try to parse as JSON, if it fails, then it's hopefully XML
@@ -1186,7 +1186,7 @@ export class Loader {
    * @param {object} file - The file object that was loaded successfully.
    * @param {XMLHttpRequest} xhr - The XMLHttpRequest object containing the file data.
    */
-  public jsonLoadComplete(file: LoaderFile, xhr: XMLHttpRequest) {
+  public jsonLoadComplete(file: LoaderFile, xhr: XMLHttpRequest): void {
     const data = JSON.parse(xhr.responseText);
     const url = typeof file.url === 'string' ? file.url : '';
     if (file.type === 'bitmapfont') {
@@ -1210,7 +1210,7 @@ export class Loader {
   /**
    * TBD.
    */
-  public csvLoadComplete() {
+  public csvLoadComplete(): void {
     // TODO
     this.game.logger.warn('loader.csvLoadComplete() is not implemented');
   }
@@ -1220,7 +1220,7 @@ export class Loader {
    * @param {object} file - The file object containing the JSON data.
    * @param {XMLHttpRequest} xhr - The XMLHttpRequest object containing the file data.
    */
-  public xmlLoadComplete(file: LoaderFile, xhr: XMLHttpRequest) {
+  public xmlLoadComplete(file: LoaderFile, xhr: XMLHttpRequest): void {
     // Always try parsing the content as XML, regardless of actually response type
     const data = xhr.responseText;
     const xml = this.parseXml(data);
@@ -1278,7 +1278,7 @@ export class Loader {
   /**
    * Updates the preload sprite's progress indicator.
    */
-  public updateProgress() {
+  public updateProgress(): void {
     if (this.preloadSprite) {
       if (this.preloadSprite.direction === 0) {
         this.preloadSprite.rect.width = Math.floor((this.preloadSprite.width / 100) * this.progress);
@@ -1299,7 +1299,7 @@ export class Loader {
    * @param {string} message - The message to log.
    * @param {string|object} data - Additional data to log with the message.
    */
-  public log(message: string, data: string | any = '') {
+  public log(message: string, data: string | any = ''): void {
     if (!this.isUseLog) {
       return;
     }
@@ -1310,7 +1310,7 @@ export class Loader {
    * Gets the number of files that have been loaded.
    * @returns {number} The total number of loaded files.
    */
-  public totalLoadedFiles() {
+  public totalLoadedFiles(): number {
     return this._loadedFileCount;
   }
 
@@ -1318,7 +1318,7 @@ export class Loader {
    * Gets the number of files that are still queued for loading.
    * @returns {number} The total number of queued files.
    */
-  public totalQueuedFiles() {
+  public totalQueuedFiles(): number {
     return this._totalFileCount - this._loadedFileCount;
   }
 
@@ -1326,7 +1326,7 @@ export class Loader {
    * Gets the number of pack files that have been loaded.
    * @returns {number} The total number of loaded pack files.
    */
-  public totalLoadedPacks() {
+  public totalLoadedPacks(): number {
     return this._totalPackCount;
   }
 
@@ -1334,7 +1334,7 @@ export class Loader {
    * Gets the number of pack files that are still queued for loading.
    * @returns {number} The total number of queued pack files.
    */
-  public totalQueuedPacks() {
+  public totalQueuedPacks(): number {
     return this._totalPackCount - this._loadedPackCount;
   }
 
@@ -1342,7 +1342,7 @@ export class Loader {
    * Gets the loading progress as a percentage (0-100).
    * @returns {number} The current loading progress as a percentage.
    */
-  public get progressFloat() {
+  public get progressFloat(): number {
     const progress = (this._loadedFileCount / this._totalFileCount) * 100;
     return Math.max(0, Math.min(100, progress || 0));
   }
@@ -1351,7 +1351,7 @@ export class Loader {
    * Gets the loading progress as a rounded percentage (0-100).
    * @returns {number} The current loading progress as a rounded percentage.
    */
-  public get progress() {
+  public get progress(): number {
     return Math.round(this.progressFloat);
   }
 }

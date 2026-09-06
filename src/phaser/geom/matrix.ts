@@ -42,7 +42,7 @@ export class Matrix {
    * @param {number[]} array - The array to read the matrix components from (should have 6 elements).
    * @returns {Matrix} This matrix instance for chaining.
    */
-  public fromArray(array: number[]) {
+  public fromArray(array: number[]): this {
     return this.setTo(array[0]!, array[1]!, array[3]!, array[4]!, array[2]!, array[5]!);
   }
 
@@ -56,7 +56,7 @@ export class Matrix {
    * @param {number} ty - The new ty component of the matrix.
    * @returns {Matrix} This matrix instance for chaining.
    */
-  public setTo(a: number, b: number, c: number, d: number, tx: number, ty: number) {
+  public setTo(a: number, b: number, c: number, d: number, tx: number, ty: number): this {
     this.a = a;
     this.b = b;
     this.c = c;
@@ -70,7 +70,7 @@ export class Matrix {
    * Creates a clone of this matrix.
    * @returns {Matrix} A new matrix with the same values as this one.
    */
-  public clone() {
+  public clone(): Matrix {
     return clone(this);
   }
 
@@ -79,7 +79,7 @@ export class Matrix {
    * @param {Matrix} matrix - The matrix to copy values to.
    * @returns {Matrix} The destination matrix.
    */
-  public copyTo(matrix: Matrix) {
+  public copyTo(matrix: Matrix): Matrix {
     matrix.copyFrom(this);
     return matrix;
   }
@@ -89,7 +89,7 @@ export class Matrix {
    * @param {Matrix} matrix - The matrix to copy values from.
    * @returns {Matrix} This matrix instance for chaining.
    */
-  public copyFrom(matrix: Matrix) {
+  public copyFrom(matrix: Matrix): this {
     this.a = matrix.a;
     this.b = matrix.b;
     this.c = matrix.c;
@@ -105,7 +105,7 @@ export class Matrix {
    * @param {Float32Array} output - The array to store the result in (optional).
    * @returns {Float32Array} A Float32Array containing the matrix elements.
    */
-  public toArray(transpose = false, output: Float32Array | null = null) {
+  public toArray(transpose = false, output: Float32Array | null = null): Float32Array {
     const result = output ?? new Float32Array(9);
     if (transpose) {
       result[0] = this.a;
@@ -137,7 +137,7 @@ export class Matrix {
    * @param {Point} output - The point to store the result in (optional).
    * @returns {Point} The transformed point.
    */
-  public apply(pos: Point, output: Point | null = null) {
+  public apply(pos: Point, output: Point | null = null): Point {
     const result = output ?? new Point();
     result.x = this.a * pos.x + this.c * pos.y + this.tx;
     result.y = this.b * pos.x + this.d * pos.y + this.ty;
@@ -150,7 +150,7 @@ export class Matrix {
    * @param {Point} output - The point to store the result in (optional).
    * @returns {Point} The transformed point.
    */
-  public applyInverse(pos: Point, output: Point | null = null) {
+  public applyInverse(pos: Point, output: Point | null = null): Point {
     const result = output ?? new Point();
     const id = 1 / (this.a * this.d + this.c * -this.b);
     const { x } = pos;
@@ -166,7 +166,7 @@ export class Matrix {
    * @param {number} y - The amount to translate in the y direction.
    * @returns {Matrix} This matrix instance for chaining.
    */
-  public translate(x: number, y: number) {
+  public translate(x: number, y: number): this {
     this.tx += x;
     this.ty += y;
     return this;
@@ -178,7 +178,7 @@ export class Matrix {
    * @param {number} y - The amount to scale in the y direction.
    * @returns {Matrix} This matrix instance for chaining.
    */
-  public scale(x: number, y: number) {
+  public scale(x: number, y: number): this {
     this.a *= x;
     this.d *= y;
     this.c *= x;
@@ -193,7 +193,7 @@ export class Matrix {
    * @param {number} angle - The angle in radians to rotate by.
    * @returns {Matrix} This matrix instance for chaining.
    */
-  public rotate(angle: number) {
+  public rotate(angle: number): this {
     const cos = Math.cos(angle);
     const sin = Math.sin(angle);
     const a1 = this.a;
@@ -213,7 +213,7 @@ export class Matrix {
    * @param {Matrix} matrix - The matrix to append.
    * @returns {Matrix} This matrix instance for chaining.
    */
-  public append(matrix: Matrix) {
+  public append(matrix: Matrix): this {
     const a1 = this.a;
     const b1 = this.b;
     const c1 = this.c;
@@ -231,7 +231,7 @@ export class Matrix {
    * Sets this matrix to an identity matrix (no transformation).
    * @returns {Matrix} This matrix instance for chaining.
    */
-  public identity() {
+  public identity(): this {
     return this.setTo(1, 0, 0, 1, 0, 0);
   }
 }

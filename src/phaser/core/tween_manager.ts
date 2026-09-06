@@ -111,7 +111,7 @@ export class TweenManager {
    * Remove all tweens from the manager.
    * This method removes all active and pending tweens.
    */
-  public removeAll() {
+  public removeAll(): void {
     for (let i = 0; i < this._tweens.length; i += 1) {
       this._tweens[i].pendingDelete = true;
     }
@@ -123,7 +123,7 @@ export class TweenManager {
    * @param {object} obj - The object to remove tweens from.
    * @param {object[]} children - Optional array of child objects to remove tweens from.
    */
-  public removeFrom(obj: any, children: any[] | null = null) {
+  public removeFrom(obj: any, children: any[] | null = null): void {
     let i;
     let len;
     if (Array.isArray(obj)) {
@@ -152,7 +152,7 @@ export class TweenManager {
    * Add a tween to the manager.
    * @param {Tween} tween - The tween to add.
    */
-  public add(tween: Tween) {
+  public add(tween: Tween): void {
     tween.manager = this;
     this._add.push(tween);
   }
@@ -162,7 +162,7 @@ export class TweenManager {
    * @param {object} object - The object to create a tween for.
    * @returns {Tween} The created Tween object.
    */
-  public create(object: any) {
+  public create(object: any): Tween {
     return new Tween(object, this.game, this);
   }
 
@@ -170,7 +170,7 @@ export class TweenManager {
    * Remove a tween from the manager.
    * @param {Tween | null | undefined} tween - The tween to remove.
    */
-  public remove(tween: Tween | null | undefined) {
+  public remove(tween: Tween | null | undefined): void {
     let i = this._tweens.indexOf(tween);
     if (i !== -1) {
       this._tweens[i].pendingDelete = true;
@@ -186,7 +186,7 @@ export class TweenManager {
    * Update all tweens managed by this manager.
    * @returns {boolean} True if any tweens were updated, false otherwise.
    */
-  public update() {
+  public update(): boolean {
     const addTweens = this._add.length;
     let numTweens = this._tweens.length;
     if (numTweens === 0 && addTweens === 0) {
@@ -215,14 +215,14 @@ export class TweenManager {
    * @returns {boolean} True if the object is being tweened, false otherwise.
    */
   public isTweening(object: unknown): boolean {
-    return (this._tweens as Tween[]).some((tween: Tween) => tween.target === object);
+    return (this._tweens as Tween[]).some((tween: Tween): boolean => tween.target === object);
   }
 
   /**
    * Pause all tweens managed by this manager.
    * This method pauses all active tweens.
    */
-  public _pauseAll() {
+  public _pauseAll(): void {
     for (let i = this._tweens.length - 1; i >= 0; i -= 1) {
       this._tweens[i]._pause();
     }
@@ -232,7 +232,7 @@ export class TweenManager {
    * Resume all tweens managed by this manager.
    * This method resumes all paused tweens.
    */
-  public _resumeAll() {
+  public _resumeAll(): void {
     for (let i = this._tweens.length - 1; i >= 0; i -= 1) {
       this._tweens[i]._resume();
     }
@@ -242,7 +242,7 @@ export class TweenManager {
    * Pause all tweens managed by this manager.
    * This method pauses all active tweens.
    */
-  public pauseAll() {
+  public pauseAll(): void {
     for (let i = this._tweens.length - 1; i >= 0; i -= 1) {
       this._tweens[i].pause();
     }
@@ -252,7 +252,7 @@ export class TweenManager {
    * Resume all tweens managed by this manager.
    * This method resumes all paused tweens.
    */
-  public resumeAll() {
+  public resumeAll(): void {
     for (let i = this._tweens.length - 1; i >= 0; i -= 1) {
       this._tweens[i].resume(true);
     }

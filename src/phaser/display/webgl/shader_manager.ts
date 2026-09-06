@@ -41,7 +41,7 @@ export class WebGLShaderManager {
    * Initializes the shader manager with a WebGL context.
    * @param {WebGLRenderingContext & { id: number }} gl - The WebGL rendering context.
    */
-  public setContext(gl: IdentifiedWebGLRenderingContext) {
+  public setContext(gl: IdentifiedWebGLRenderingContext): void {
     this.gl = gl;
     this.primitiveShader = new PrimitiveShader(gl);
     this.complexPrimitiveShader = new ComplexPrimitiveShader(gl);
@@ -55,7 +55,7 @@ export class WebGLShaderManager {
    * Sets up the shader manager for WebGL rendering.
    * @param {number[]} attribs - The attribute locations to set up.
    */
-  public setAttribs(attribs: (number | undefined)[]) {
+  public setAttribs(attribs: (number | undefined)[]): void {
     // reset temp state
     let i;
     for (i = 0; i < this.tempAttribState.length; i += 1) {

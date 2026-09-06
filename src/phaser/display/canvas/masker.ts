@@ -7,7 +7,7 @@ import type { Graphics } from '../graphics.js';
  * @param {object} maskData - The mask data to apply.
  * @param {object} renderSession - The rendering session object.
  */
-export const pushMask = (maskData: any, renderSession: RenderSession) => {
+export const pushMask = (maskData: any, renderSession: RenderSession): void => {
   const { context } = renderSession;
   context.save();
   const cacheAlpha = maskData.alpha;
@@ -31,6 +31,6 @@ export const pushMask = (maskData: any, renderSession: RenderSession) => {
  * @param {object} _maskData - Unused; the canvas path restores whatever was saved.
  * @param {object} renderSession - The rendering session object.
  */
-export const popMask = (_maskData: Graphics | null, renderSession: RenderSession) => {
+export const popMask = (_maskData: Graphics | null, renderSession: RenderSession): void => {
   renderSession.context.restore();
 };

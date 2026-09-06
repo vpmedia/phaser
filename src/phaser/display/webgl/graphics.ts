@@ -15,7 +15,7 @@ import { RoundedRectangle } from '../../geom/rounded_rectangle.js';
  * Updates the graphics data for WebGL rendering.
  * @returns {number} The number of vertices in the graphics data.
  */
-export const getStencilBufferLimit = () => {
+export const getStencilBufferLimit = (): number => {
   globalThis.PhaserRegistry.stencilBufferLimit ??= 6;
   return globalThis.PhaserRegistry.stencilBufferLimit;
 };
@@ -58,7 +58,7 @@ export const switchMode = (webGL: any, type: number) => {
  * @param {object} graphicsData - The graphics data to update.
  * @param {GraphicsData} webGLData - The WebGL graphics data object.
  */
-export const buildLine = (graphicsData: any, webGLData: GraphicsData) => {
+export const buildLine = (graphicsData: any, webGLData: GraphicsData): void => {
   // TODO OPTIMISE!
   let i = 0;
   let { points } = graphicsData;
@@ -223,7 +223,7 @@ export const buildLine = (graphicsData: any, webGLData: GraphicsData) => {
  * @param {object} graphicsData - The graphics data to update.
  * @param {GraphicsData} webGLData - The WebGL graphics data object.
  */
-export const buildRectangle = (graphicsData: any, webGLData: GraphicsData) => {
+export const buildRectangle = (graphicsData: any, webGLData: GraphicsData): void => {
   //
   // need to convert points to a nice regular data
   //
@@ -279,7 +279,7 @@ export const quadraticBezierCurve = (
   cpY: number,
   toX: number,
   toY: number
-) => {
+): number[] => {
   let xa;
   let ya;
   let xb;
@@ -288,7 +288,7 @@ export const quadraticBezierCurve = (
   let y;
   const n = 20;
   const points = [];
-  const getPt = (n1: number, n2: number, perc: number) => {
+  const getPt = (n1: number, n2: number, perc: number): number => {
     const diff = n2 - n1;
     return n1 + diff * perc;
   };
@@ -313,7 +313,7 @@ export const quadraticBezierCurve = (
  * @param {object} graphicsData - The graphics data to update.
  * @param {GraphicsData} webGLData - The WebGL graphics data object.
  */
-export const buildRoundedRectangle = (graphicsData: any, webGLData: GraphicsData) => {
+export const buildRoundedRectangle = (graphicsData: any, webGLData: GraphicsData): void => {
   const rrectData = graphicsData.shape;
   const { x } = rrectData;
   const { y } = rrectData;
@@ -363,7 +363,7 @@ export const buildRoundedRectangle = (graphicsData: any, webGLData: GraphicsData
  * @param {object} graphicsData - The graphics data to update.
  * @param {GraphicsData} webGLData - The WebGL graphics data object.
  */
-export const buildCircle = (graphicsData: any, webGLData: GraphicsData) => {
+export const buildCircle = (graphicsData: any, webGLData: GraphicsData): void => {
   // need to convert points to a nice regular data
   const circleData = graphicsData.shape;
   const { x } = circleData;
@@ -414,7 +414,7 @@ export const buildCircle = (graphicsData: any, webGLData: GraphicsData) => {
  * @param {object} graphicsData - The graphics data to update.
  * @param {GraphicsData} webGLData - The WebGL graphics data object.
  */
-export const buildComplexPoly = (graphicsData: any, webGLData: GraphicsData) => {
+export const buildComplexPoly = (graphicsData: any, webGLData: GraphicsData): void => {
   // TODO - no need to copy this as it gets turned into a Float32Array anyways..
   const points = [...graphicsData.points];
   if (points.length < 6) {
@@ -459,7 +459,7 @@ export const buildComplexPoly = (graphicsData: any, webGLData: GraphicsData) => 
  * @param {GraphicsData} webGLData - TBD.
  * @returns {boolean} TBD.
  */
-export const buildPoly = (graphicsData: any, webGLData: GraphicsData) => {
+export const buildPoly = (graphicsData: any, webGLData: GraphicsData): boolean => {
   const { points } = graphicsData;
   if (points.length < 6) {
     return false;
@@ -497,7 +497,7 @@ export const buildPoly = (graphicsData: any, webGLData: GraphicsData) => {
  * @param {Graphics} graphics - The graphics object to update.
  * @param {WebGLRenderingContext & { id: number }} gl - The WebGL rendering context.
  */
-export const updateGraphics = (graphics: Graphics, gl: IdentifiedWebGLRenderingContext) => {
+export const updateGraphics = (graphics: Graphics, gl: IdentifiedWebGLRenderingContext): void => {
   const stencilBufferLimit = getStencilBufferLimit();
   // get the contexts graphics object
   let webGL = graphics._webGL[gl.id];
@@ -582,7 +582,7 @@ export const updateGraphics = (graphics: Graphics, gl: IdentifiedWebGLRenderingC
  * @param {Graphics} graphics - The graphics object to update.
  * @param {object} renderSession - The rendering session.
  */
-export const renderGraphics = (graphics: Graphics, renderSession: RenderSession) => {
+export const renderGraphics = (graphics: Graphics, renderSession: RenderSession): void => {
   const { gl } = renderSession;
   const { projection } = renderSession;
   const { offset } = renderSession;

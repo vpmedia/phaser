@@ -74,7 +74,7 @@ export class WebGLSpriteBatch {
    * Renders a sprite using WebGL.
    * @param {WebGLRenderingContext & { id: number }} gl - The WebGL rendering context.
    */
-  public setContext(gl: IdentifiedWebGLRenderingContext) {
+  public setContext(gl: IdentifiedWebGLRenderingContext): void {
     this.gl = gl;
     // create a couple of buffers
     this.vertexBuffer = gl.createBuffer();
@@ -97,7 +97,7 @@ export class WebGLSpriteBatch {
    * Renders the sprite batch using WebGL.
    * @param {object} renderSession - The render session to use.
    */
-  public begin(renderSession: RenderSession) {
+  public begin(renderSession: RenderSession): void {
     this.renderSession = renderSession;
     this.shader = this.renderSession.shaderManager.defaultShader;
     this.start();
@@ -106,7 +106,7 @@ export class WebGLSpriteBatch {
   /**
    * Updates the sprite batch.
    */
-  public end() {
+  public end(): void {
     this.flush();
   }
 
@@ -115,7 +115,7 @@ export class WebGLSpriteBatch {
    * @param {Image} sprite - The sprite to render.
    * @param {Matrix} matrix - The transformation matrix.
    */
-  public render(sprite: Image, matrix: Matrix | null = null) {
+  public render(sprite: Image, matrix: Matrix | null = null): void {
     const { texture } = sprite;
     //  They provided an alternative rendering matrix, so use it
     let wt = sprite.worldTransform;
@@ -215,14 +215,14 @@ export class WebGLSpriteBatch {
   /**
    * Binds the sprite batch to the WebGL context.
    */
-  public renderTilingSprite() {
+  public renderTilingSprite(): void {
     // TODO
   }
 
   /**
    * Updates the sprite batch.
    */
-  public flush() {
+  public flush(): void {
     // If the batch is length 0 then return as there is nothing to draw
     if (this.currentBatchSize === 0) {
       return;
@@ -324,7 +324,7 @@ export class WebGLSpriteBatch {
    * @param {number} size - The size of the batch.
    * @param {number} startIndex - The start index in the batch.
    */
-  public renderBatch(texture: BaseTexture, size: number, startIndex: number) {
+  public renderBatch(texture: BaseTexture, size: number, startIndex: number): void {
     if (size === 0) {
       return;
     }
@@ -348,7 +348,7 @@ export class WebGLSpriteBatch {
   /**
    * Destroys this sprite batch and cleans up resources.
    */
-  public stop() {
+  public stop(): void {
     this.flush();
     this.dirty = true;
   }

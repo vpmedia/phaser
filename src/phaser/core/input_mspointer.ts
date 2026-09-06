@@ -43,27 +43,27 @@ export class MSPointer {
   /**
    * TBD.
    */
-  public start() {
+  public start(): void {
     if (!this.game.device.mspointer || this._onMSPointerDown !== null) {
       return;
     }
     const scope = this;
-    this._onMSPointerDown = (event) => {
+    this._onMSPointerDown = (event): void => {
       scope.onPointerDown(event);
     };
-    this._onMSPointerMove = (event) => {
+    this._onMSPointerMove = (event): void => {
       scope.onPointerMove(event);
     };
-    this._onMSPointerUp = (event) => {
+    this._onMSPointerUp = (event): void => {
       scope.onPointerUp(event);
     };
-    this._onMSPointerUpGlobal = (event) => {
+    this._onMSPointerUpGlobal = (event): void => {
       scope.onPointerUpGlobal(event);
     };
-    this._onMSPointerOut = (event) => {
+    this._onMSPointerOut = (event): void => {
       scope.onPointerOut(event);
     };
-    this._onMSPointerOver = (event) => {
+    this._onMSPointerOver = (event): void => {
       scope.onPointerOver(event);
     };
     const { canvas } = this.game;
@@ -88,7 +88,7 @@ export class MSPointer {
   /**
    * TBD.
    */
-  public stop() {
+  public stop(): void {
     if (!this.game.device.mspointer) {
       return;
     }
@@ -141,7 +141,7 @@ export class MSPointer {
    * TBD.
    * @param {PointerEvent} event - TBD.
    */
-  public onPointerDown(event: InputEvent) {
+  public onPointerDown(event: InputEvent): void {
     this.event = event;
     this.eventPreventDefault(event);
     if (this.pointerDownCallback) {
@@ -162,7 +162,7 @@ export class MSPointer {
    * TBD.
    * @param {PointerEvent} event - TBD.
    */
-  public onPointerMove(event: InputEvent) {
+  public onPointerMove(event: InputEvent): void {
     this.event = event;
     this.eventPreventDefault(event);
     if (this.pointerMoveCallback) {
@@ -183,7 +183,7 @@ export class MSPointer {
    * TBD.
    * @param {PointerEvent} event - TBD.
    */
-  public onPointerUp(event: InputEvent) {
+  public onPointerUp(event: InputEvent): void {
     this.event = event;
     this.eventPreventDefault(event);
     if (this.pointerUpCallback) {
@@ -204,7 +204,7 @@ export class MSPointer {
    * TBD.
    * @param {PointerEvent} event - TBD.
    */
-  public onPointerUpGlobal(event: InputEvent) {
+  public onPointerUpGlobal(event: InputEvent): void {
     if ((event.pointerType === 'mouse' || event.pointerType === 0x00000004) && !this.input.mousePointer.withinGame) {
       this.onPointerUp(event);
     } else {
@@ -219,7 +219,7 @@ export class MSPointer {
    * TBD.
    * @param {PointerEvent} event - TBD.
    */
-  public onPointerOut(event: InputEvent) {
+  public onPointerOut(event: InputEvent): void {
     this.event = event;
     this.eventPreventDefault(event);
     let pointer;
@@ -251,7 +251,7 @@ export class MSPointer {
    * TBD.
    * @param {PointerEvent} event - TBD.
    */
-  public onPointerOver(event: InputEvent) {
+  public onPointerOver(event: InputEvent): void {
     this.event = event;
     this.eventPreventDefault(event);
     if (event.pointerType === 'mouse' || event.pointerType === 0x00000004) {
@@ -271,7 +271,7 @@ export class MSPointer {
    * TBD.
    * @param {Event} event - TBD.
    */
-  public eventPreventDefault(event: Event) {
+  public eventPreventDefault(event: Event): void {
     if (this.capture) {
       if (typeof event.cancelable !== 'boolean' || event.cancelable) {
         event.preventDefault();

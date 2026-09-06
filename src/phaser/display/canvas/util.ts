@@ -9,7 +9,13 @@ import { create as createCanvas } from './pool.js';
  * @param {boolean} skipPool - Whether to skip using the canvas pool.
  * @returns {HTMLCanvasElement} The created HTML canvas element.
  */
-export const create = (parent: any, width: number, height: number, id: string, skipPool: boolean) => {
+export const create = (
+  parent: any,
+  width: number,
+  height: number,
+  id: string,
+  skipPool: boolean
+): HTMLCanvasElement => {
   width = width || 256;
   height = height || 256;
   const canvas = skipPool ? document.createElement('canvas') : createCanvas(parent, width, height);
@@ -28,7 +34,7 @@ export const create = (parent: any, width: number, height: number, id: string, s
  * @param {string} color - The background color to set.
  * @returns {HTMLCanvasElement} The modified canvas element.
  */
-export const setBackgroundColor = (canvas: HTMLCanvasElement, color = 'rgb(0,0,0)') => {
+export const setBackgroundColor = (canvas: HTMLCanvasElement, color = 'rgb(0,0,0)'): HTMLCanvasElement => {
   canvas.style.backgroundColor = color;
   return canvas;
 };
@@ -39,7 +45,7 @@ export const setBackgroundColor = (canvas: HTMLCanvasElement, color = 'rgb(0,0,0
  * @param {string} value - The touch action value to set.
  * @returns {HTMLCanvasElement} The modified canvas element.
  */
-export const setTouchAction = (canvas: HTMLCanvasElement, value = 'none') => {
+export const setTouchAction = (canvas: HTMLCanvasElement, value = 'none'): HTMLCanvasElement => {
   value = value || 'none';
   canvas.style.setProperty('-ms-touch-action', value);
   canvas.style.setProperty('touch-action', value);
@@ -52,7 +58,7 @@ export const setTouchAction = (canvas: HTMLCanvasElement, value = 'none') => {
  * @param {string} value - The user select value to set.
  * @returns {HTMLCanvasElement} The modified canvas element.
  */
-export const setUserSelect = (canvas: HTMLCanvasElement, value = 'none') => {
+export const setUserSelect = (canvas: HTMLCanvasElement, value = 'none'): HTMLCanvasElement => {
   value = value || 'none';
   canvas.style.setProperty('-webkit-touch-callout', value);
   canvas.style.setProperty('-webkit-user-select', value);
@@ -71,7 +77,7 @@ export const setUserSelect = (canvas: HTMLCanvasElement, value = 'none') => {
  * @param {boolean} overflowHidden - Whether to set overflow hidden on the parent.
  * @returns {HTMLCanvasElement} The added canvas element.
  */
-export const addToDOM = (canvas: HTMLCanvasElement, parent: any, overflowHidden = true) => {
+export const addToDOM = (canvas: HTMLCanvasElement, parent: any, overflowHidden = true): HTMLCanvasElement => {
   let target;
   if (parent) {
     if (typeof parent === 'string') {
@@ -95,7 +101,7 @@ export const addToDOM = (canvas: HTMLCanvasElement, parent: any, overflowHidden 
  * Removes a canvas element from the DOM.
  * @param {HTMLCanvasElement} canvas - The canvas element to remove.
  */
-export const removeFromDOM = (canvas: HTMLCanvasElement) => {
+export const removeFromDOM = (canvas: HTMLCanvasElement): void => {
   if (canvas && canvas.parentNode) {
     canvas.parentNode.removeChild(canvas);
   }
@@ -120,7 +126,7 @@ export const setTransform = (
   scaleY: number,
   skewX: number,
   skewY: number
-) => {
+): CanvasRenderingContext2D => {
   context.setTransform(scaleX, skewX, skewY, scaleY, translateX, translateY);
   return context;
 };
@@ -130,7 +136,7 @@ export const setTransform = (
  * @param {CanvasRenderingContext2D} context - The canvas rendering context.
  * @returns {string | null} The smoothing property name or null if not found.
  */
-export const getSmoothingPrefix = (context: CanvasRenderingContext2D) => {
+export const getSmoothingPrefix = (context: CanvasRenderingContext2D): string | null => {
   const VENDORS = ['i', 'webkitI', 'msI', 'mozI', 'oI'];
   // the vendor-prefixed smoothing flags predate the standard property and are absent from lib.dom
   const smoothingFlags = context as unknown as Record<string, boolean | undefined>;
@@ -159,7 +165,7 @@ export const setSmoothing = (context: CanvasRenderingContext2D, property: string
  * @param {boolean} value - The smoothing enabled value to set.
  * @returns {CanvasRenderingContext2D} The modified rendering context.
  */
-export const setSmoothingEnabled = (context: CanvasRenderingContext2D, value: boolean) => {
+export const setSmoothingEnabled = (context: CanvasRenderingContext2D, value: boolean): CanvasRenderingContext2D => {
   const s = getSmoothingPrefix(context);
   if (s) {
     setSmoothing(context, s, value);

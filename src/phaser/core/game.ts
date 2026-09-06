@@ -101,7 +101,7 @@ export class Game {
     } else {
       window.addEventListener(
         'load',
-        () => {
+        (): void => {
           initialize(this.device);
           this.boot();
         },
@@ -113,7 +113,7 @@ export class Game {
   /**
    * Boots the game and initializes all systems.
    */
-  public boot() {
+  public boot(): void {
     if (this.isBooted) {
       return;
     }
@@ -149,7 +149,7 @@ export class Game {
   /**
    * Creates the renderer canvas element.
    */
-  public createRendererCanvas() {
+  public createRendererCanvas(): void {
     this.logger.info('createRendererCanvas');
     if (this.canvas) {
       removeFromDOM(this.canvas);
@@ -172,7 +172,7 @@ export class Game {
   /**
    * Initializes the renderer and sets up the rendering context.
    */
-  public initRenderer() {
+  public initRenderer(): void {
     let isWebGlReady = false;
     if (this.config.renderType === RENDER_AUTO || this.config.renderType === RENDER_WEBGL) {
       try {
@@ -223,7 +223,7 @@ export class Game {
    * @param {string} key - The configuration key to parse.
    * @param {*} defaultValue - The default value if the key is not found in config.
    */
-  public parseConfigElement(config: any, key: string, defaultValue?: any) {
+  public parseConfigElement(config: any, key: string, defaultValue?: any): void {
     if (config[key] !== undefined) {
       this.config[key] = config[key];
     } else {
@@ -235,7 +235,7 @@ export class Game {
    * Parses the configuration object and sets up game properties.
    * @param {object} config - The configuration object to parse.
    */
-  public parseConfig(config: any) {
+  public parseConfig(config: any): void {
     this.logger = config.logger ?? getLogger(['phaser']);
     this.logger.info('parseConfig');
     this.parseConfigElement(config, 'width', 800);
@@ -266,7 +266,7 @@ export class Game {
    * Called when the WebGL context is lost.
    * @param {WebGLContextEvent | Event} event - The WebGL context loss event.
    */
-  public contextLost(event: any) {
+  public contextLost(event: any): void {
     this.logger.info('contextLost', event);
     event.preventDefault();
     if (this.renderer) {
@@ -278,7 +278,7 @@ export class Game {
    * Called when the WebGL context is restored.
    * @param {WebGLContextEvent | Event} event - The WebGL context restore event.
    */
-  public contextRestored(event: any) {
+  public contextRestored(event: any): void {
     this.logger.info('contextRestored', event);
     if (this.renderer) {
       this.renderer.initContext(this);
@@ -291,7 +291,7 @@ export class Game {
    * Updates the game state.
    * @param {number} time - The current timestamp.
    */
-  public update(time: number) {
+  public update(time: number): void {
     this.time.update(time);
     if (!this.isPaused) {
       this.scale.preUpdate();
@@ -314,7 +314,7 @@ export class Game {
   /**
    * Destroys the game and cleans up all resources.
    */
-  public destroy() {
+  public destroy(): void {
     this.logger.info('destroy');
     this.isPaused = true;
 

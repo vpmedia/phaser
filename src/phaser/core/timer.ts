@@ -68,7 +68,7 @@ export class Timer {
     callback: Function,
     callbackContext: unknown | null = null,
     args: any = []
-  ) {
+  ): TimerEvent {
     const roundedDelay = Math.round(delay);
     let tick = roundedDelay;
     if (this._now === 0) {
@@ -91,7 +91,12 @@ export class Timer {
    * @param {...any} args - Arguments to pass to the callback function.
    * @returns {TimerEvent} The created TimerEvent.
    */
-  public add(delay: number, callback: Function, callbackContext: unknown | null = null, ...args: unknown[]) {
+  public add(
+    delay: number,
+    callback: Function,
+    callbackContext: unknown | null = null,
+    ...args: unknown[]
+  ): TimerEvent {
     return this.create(delay, false, 0, callback, callbackContext, args);
   }
 
@@ -102,9 +107,9 @@ export class Timer {
    * @param {...T} args - Arguments to pass to the resolve function.
    * @returns {Promise<T | T[]>} The created Promise.
    */
-  public wait(delay: number, ...args: unknown[]) {
-    return new Promise((resolve) => {
-      this.create(delay, false, 0, () => {
+  public wait(delay: number, ...args: unknown[]): Promise<unknown> {
+    return new Promise((resolve): void => {
+      this.create(delay, false, 0, (): void => {
         resolve(args.length <= 1 ? args[0] : args);
       });
     });
@@ -125,7 +130,7 @@ export class Timer {
     callback: Function,
     callbackContext: unknown | null = null,
     ...args: unknown[]
-  ) {
+  ): TimerEvent {
     return this.create(delay, false, repeatCount, callback, callbackContext, args);
   }
 
@@ -137,7 +142,12 @@ export class Timer {
    * @param {...any} args - Arguments to pass to the callback function.
    * @returns {TimerEvent} The created TimerEvent.
    */
-  public loop(delay: number, callback: Function, callbackContext: unknown | null = null, ...args: unknown[]) {
+  public loop(
+    delay: number,
+    callback: Function,
+    callbackContext: unknown | null = null,
+    ...args: unknown[]
+  ): TimerEvent {
     return this.create(delay, true, 0, callback, callbackContext, args);
   }
 
@@ -145,7 +155,7 @@ export class Timer {
    * Starts the timer.
    * @param {number} delay - The delay in milliseconds before starting (optional).
    */
-  public start(delay = 0) {
+  public start(delay = 0): void {
     if (this.running) {
       return;
     }
@@ -160,7 +170,7 @@ export class Timer {
    * Stops the timer.
    * @param {boolean} clearEvents - Whether to clear all events (default: true).
    */
-  public stop(clearEvents = true) {
+  public stop(clearEvents = true): void {
     this.running = false;
     if (clearEvents) {
       this.events.length = 0;
@@ -172,7 +182,7 @@ export class Timer {
    * @param {TimerEvent | null | undefined} event - The TimerEvent to remove.
    * @returns {boolean} True if the event was removed, false otherwise.
    */
-  public remove(event: TimerEvent | null | undefined) {
+  public remove(event: TimerEvent | null | undefined): boolean {
     for (const candidate of this.events) {
       if (candidate === event) {
         candidate.pendingDelete = true;
@@ -185,7 +195,7 @@ export class Timer {
   /**
    * Orders the timer events by their next tick time.
    */
-  public order() {
+  public order(): void {
     if (this.events.length > 0) {
       //  Sort the events so the one with the lowest tick is first
       this.events.sort(this.sortHandler);
@@ -202,7 +212,7 @@ export class Timer {
    * @param {TimerEvent} b - Second TimerEvent to compare.
    * @returns {number} Comparison result (-1, 0, or 1).
    */
-  public sortHandler(a: TimerEvent, b: TimerEvent) {
+  public sortHandler(a: TimerEvent, b: TimerEvent): 1 | -1 | 0 {
     if (a.tick < b.tick) {
       return -1;
     } else if (a.tick > b.tick) {
@@ -214,7 +224,7 @@ export class Timer {
   /**
    * Clears pending events from the timer.
    */
-  public clearPendingEvents() {
+  public clearPendingEvents(): void {
     this._i = this.events.length;
     while (this._i) {
       this._i -= 1;
@@ -231,7 +241,7 @@ export class Timer {
    * @param {number} time - The current time in milliseconds.
    * @returns {boolean} True if the timer should continue running, false if it should be destroyed.
    */
-  public update(time: number) {
+  public update(time: number): boolean {
     if (this.paused) {
       return true;
     }
@@ -293,7 +303,7 @@ export class Timer {
   /**
    * Pauses the timer.
    */
-  public pause() {
+  public pause(): void {
     if (!this.running) {
       return;
     }
@@ -308,7 +318,7 @@ export class Timer {
   /**
    * Internal pause method for the timer.
    */
-  public _pause() {
+  public _pause(): void {
     if (this.paused || !this.running) {
       return;
     }
@@ -320,7 +330,7 @@ export class Timer {
    * Adjusts timer events when time has jumped (e.g., when tab is switched).
    * @param {number} baseTime - The time to adjust from.
    */
-  public adjustEvents(baseTime: number) {
+  public adjustEvents(baseTime: number): void {
     for (const event of this.events) {
       if (!event.pendingDelete) {
         //  Work out how long there would have been from when the game paused until the events next tick
@@ -343,7 +353,7 @@ export class Timer {
   /**
    * Resumes the timer.
    */
-  public resume() {
+  public resume(): void {
     if (!this.paused) {
       return;
     }
@@ -358,7 +368,7 @@ export class Timer {
   /**
    * Internal resume method for the timer.
    */
-  public _resume() {
+  public _resume(): void {
     if (this._codePaused) {
       return;
     }
@@ -368,7 +378,7 @@ export class Timer {
   /**
    * Removes all events from the timer.
    */
-  public removeAll() {
+  public removeAll(): void {
     this.onComplete.removeAll();
     this.events.length = 0;
     this._len = 0;
@@ -378,7 +388,7 @@ export class Timer {
   /**
    * Destroys the timer and cleans up resources.
    */
-  public destroy() {
+  public destroy(): void {
     this.onComplete.removeAll();
     this.running = false;
     this.events = [];
@@ -390,7 +400,7 @@ export class Timer {
    * Gets the next tick time for the timer.
    * @returns {number} The next tick time in milliseconds.
    */
-  public get next() {
+  public get next(): number {
     return this.nextTick;
   }
 
@@ -398,7 +408,7 @@ export class Timer {
    * Gets the duration until the next event.
    * @returns {number} The duration in milliseconds.
    */
-  public get duration() {
+  public get duration(): number {
     if (this.running && this.nextTick > this._now) {
       return this.nextTick - this._now;
     }
@@ -409,7 +419,7 @@ export class Timer {
    * Gets the number of active events in the timer.
    * @returns {number} The number of events.
    */
-  public get length() {
+  public get length(): number {
     return this.events.length;
   }
 
@@ -417,7 +427,7 @@ export class Timer {
    * Gets the elapsed time since the timer started.
    * @returns {number} The elapsed time in milliseconds.
    */
-  public get ms() {
+  public get ms(): number {
     if (this.running) {
       return this._now - this._started - this._pauseTotal;
     }
@@ -428,7 +438,7 @@ export class Timer {
    * Gets the elapsed time in seconds since the timer started.
    * @returns {number} The elapsed time in seconds.
    */
-  public get seconds() {
+  public get seconds(): number {
     if (this.running) {
       return this.ms * 0.001;
     }

@@ -72,7 +72,7 @@ export class SignalBinding {
    * TBD.
    * @returns {boolean} TBD.
    */
-  public isBound() {
+  public isBound(): boolean {
     return Boolean(this._signal) && Boolean(this._listener);
   }
 
@@ -80,7 +80,7 @@ export class SignalBinding {
    * TBD.
    * @returns {boolean} TBD.
    */
-  public isOnce() {
+  public isOnce(): boolean {
     return this._isOnce;
   }
 
@@ -103,7 +103,7 @@ export class SignalBinding {
   /**
    * TBD.
    */
-  public _destroy() {
+  public _destroy(): void {
     delete this._signal;
     delete this._listener;
     delete this.context;
@@ -113,7 +113,7 @@ export class SignalBinding {
    * TBD.
    * @returns {string} TBD.
    */
-  public toString() {
+  public toString(): string {
     return `[SignalBinding isOnce:${this._isOnce}, isBound:${this.isBound()}, active:${this.active}]`;
   }
 }

@@ -130,7 +130,7 @@ export class Input {
   /**
    * TBD.
    */
-  public boot() {
+  public boot(): void {
     this.mousePointer = new Pointer(this.game, 0, POINTER_CURSOR);
     this.addPointer();
     this.addPointer();
@@ -164,7 +164,7 @@ export class Input {
   /**
    * TBD.
    */
-  public destroy() {
+  public destroy(): void {
     this.mouse.stop();
     if (this.game.device.mspointer) {
       this.mspointer.stop();
@@ -181,7 +181,7 @@ export class Input {
    * @param {Function} callback - TBD.
    * @param {object} context - TBD.
    */
-  public setInteractiveCandidateHandler(callback: Function, context: unknown) {
+  public setInteractiveCandidateHandler(callback: Function, context: unknown): void {
     this.customCandidateHandler = callback;
     this.customCandidateHandlerContext = context;
   }
@@ -191,7 +191,7 @@ export class Input {
    * @param {Function} callback - TBD.
    * @param {object} context - TBD.
    */
-  public addMoveCallback(callback: Function, context: unknown) {
+  public addMoveCallback(callback: Function, context: unknown): void {
     this.moveCallbacks.push({ callback, context });
   }
 
@@ -200,7 +200,7 @@ export class Input {
    * @param {Function} callback - TBD.
    * @param {object} context - TBD.
    */
-  public deleteMoveCallback(callback: Function, context: unknown) {
+  public deleteMoveCallback(callback: Function, context: unknown): void {
     let i = this.moveCallbacks.length;
     while (i) {
       i -= 1;
@@ -215,7 +215,7 @@ export class Input {
    * TBD.
    * @returns {Pointer} TBD.
    */
-  public addPointer() {
+  public addPointer(): Pointer | null {
     if (this.pointers.length >= MAX_POINTERS) {
       this.game.logger.warn(`Input.addPointer: Maximum limit of ${MAX_POINTERS} pointers reached.`);
       return null;
@@ -230,7 +230,7 @@ export class Input {
   /**
    * TBD.
    */
-  public update() {
+  public update(): void {
     if (this.pollRate > 0 && this._pollCounter < this.pollRate) {
       this._pollCounter += 1;
       return;
@@ -249,7 +249,7 @@ export class Input {
    * TBD.
    * @param {boolean} hard - TBD.
    */
-  public reset(hard = false) {
+  public reset(hard = false): void {
     if (!this.game.isBooted || this.resetLocked) {
       return;
     }
@@ -279,7 +279,7 @@ export class Input {
    * @param {number} x - TBD.
    * @param {number} y - TBD.
    */
-  public resetSpeed(x: number, y: number) {
+  public resetSpeed(x: number, y: number): void {
     this._oldPosition.setTo(x, y);
     this.speed.setTo(0, 0);
   }
@@ -355,7 +355,7 @@ export class Input {
    * @param {number} limit - TBD.
    * @returns {number} TBD.
    */
-  public countActivePointers(limit: number = this.pointers.length) {
+  public countActivePointers(limit: number = this.pointers.length): number {
     let count = limit;
     for (let i = 0; i < this.pointers.length && count > 0; i += 1) {
       const pointer = this.pointers[i]!;
@@ -371,7 +371,7 @@ export class Input {
    * @param {boolean} isActive - TBD.
    * @returns {Pointer} TBD.
    */
-  public getPointer(isActive = false) {
+  public getPointer(isActive = false): Pointer | null {
     for (const pointer of this.pointers) {
       if (pointer.active === isActive) {
         return pointer;
@@ -385,7 +385,7 @@ export class Input {
    * @param {number} identifier - TBD.
    * @returns {Pointer} TBD.
    */
-  public getPointerFromIdentifier(identifier: number) {
+  public getPointerFromIdentifier(identifier: number): Pointer | null {
     for (const pointer of this.pointers) {
       if (pointer.identifier === identifier) {
         return pointer;
@@ -400,7 +400,7 @@ export class Input {
    * @param {number} pointerId - TBD.
    * @returns {Pointer} TBD.
    */
-  public getPointerFromId(pointerId: number) {
+  public getPointerFromId(pointerId: number): Pointer | null {
     for (const pointer of this.pointers) {
       if (pointer.pointerId === pointerId) {
         return pointer;
@@ -417,7 +417,7 @@ export class Input {
    * @param {Point} output - TBD.
    * @returns {Point} TBD.
    */
-  public getLocalPosition(displayObject: DisplayObject, pointer: Pointer, output: Point | null = null) {
+  public getLocalPosition(displayObject: DisplayObject, pointer: Pointer, output: Point | null = null): Point {
     const result = output ?? new Point();
     const wt = displayObject.worldTransform;
     const id = 1 / (wt.a * wt.d + wt.c * -wt.b);
@@ -434,7 +434,7 @@ export class Input {
    * @param {Point} localPoint - TBD.
    * @returns {boolean} TBD.
    */
-  public hitTest(displayObject: DisplayObject, pointer: Pointer, localPoint: Point) {
+  public hitTest(displayObject: DisplayObject, pointer: Pointer, localPoint: Point): boolean {
     if (!displayObject.worldVisible) {
       return false;
     }
@@ -472,7 +472,7 @@ export class Input {
   /**
    * TBD.
    */
-  public onClickTrampoline() {
+  public onClickTrampoline(): void {
     this.activePointer.processClickTrampolines();
   }
 
@@ -480,7 +480,7 @@ export class Input {
    * TBD.
    * @returns {number} TBD.
    */
-  public get x() {
+  public get x(): number {
     return this._x;
   }
 
@@ -495,7 +495,7 @@ export class Input {
    * TBD.
    * @returns {number} TBD.
    */
-  public get y() {
+  public get y(): number {
     return this._y;
   }
 
@@ -510,7 +510,7 @@ export class Input {
    * TBD.
    * @returns {boolean} TBD.
    */
-  public get pollLocked() {
+  public get pollLocked(): boolean {
     return this.pollRate > 0 && this._pollCounter < this.pollRate;
   }
 
@@ -518,7 +518,7 @@ export class Input {
    * TBD.
    * @returns {number} TBD.
    */
-  public get totalInactivePointers() {
+  public get totalInactivePointers(): number {
     return this.pointers.length - this.countActivePointers();
   }
 
@@ -526,7 +526,7 @@ export class Input {
    * TBD.
    * @returns {number} TBD.
    */
-  public get totalActivePointers() {
+  public get totalActivePointers(): number {
     return this.countActivePointers();
   }
 
@@ -534,7 +534,7 @@ export class Input {
    * TBD.
    * @returns {number} TBD.
    */
-  public get worldX() {
+  public get worldX(): number {
     return this.x;
   }
 
@@ -542,7 +542,7 @@ export class Input {
    * TBD.
    * @returns {number} TBD.
    */
-  public get worldY() {
+  public get worldY(): number {
     return this.y;
   }
 }

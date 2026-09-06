@@ -81,7 +81,7 @@ export class CanvasRenderer {
    * Renders the stage to canvas.
    * @param {Stage} root - The root stage to render.
    */
-  public render(root: Stage) {
+  public render(root: Stage): void {
     if (!this.context) {
       return;
     }
@@ -106,7 +106,7 @@ export class CanvasRenderer {
    * Destroys this renderer and cleans up resources.
    * @param {boolean} removeView - Whether to remove the view from the DOM.
    */
-  public destroy(removeView = true) {
+  public destroy(removeView = true): void {
     if (removeView && this.view.parent) {
       this.view.parent.removeChild(this.view);
     }
@@ -117,7 +117,7 @@ export class CanvasRenderer {
    * @param {number} width - The new width of the canvas.
    * @param {number} height - The new height of the canvas.
    */
-  public resize(width: number, height: number) {
+  public resize(width: number, height: number): void {
     this.width = width * this.resolution;
     this.height = height * this.resolution;
     this.view.width = this.width;
@@ -137,7 +137,7 @@ export class CanvasRenderer {
    * @param {CanvasRenderingContext2D} context - The canvas rendering context.
    * @param {Matrix} matrix - The transformation matrix.
    */
-  public renderDisplayObject(displayObject: any, context?: any, matrix?: any) {
+  public renderDisplayObject(displayObject: any, context?: any, matrix?: any): void {
     this.renderSession.context = context ?? this.context;
     this.renderSession.resolution = this.resolution;
     displayObject.renderCanvas(this.renderSession, matrix);
@@ -146,7 +146,7 @@ export class CanvasRenderer {
   /**
    * Maps blend modes to canvas rendering operations.
    */
-  public mapBlendModes() {
+  public mapBlendModes(): void {
     if (globalThis.PhaserRegistry.blendModesCanvas) {
       return;
     }
@@ -176,7 +176,7 @@ export class CanvasRenderer {
    * Initializes the WebGL context for rendering.
    * @param {Game} game - The game instance.
    */
-  public initContext(_game: Game) {
+  public initContext(_game: Game): void {
     // stub
   }
 }

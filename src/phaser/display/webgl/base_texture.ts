@@ -43,7 +43,7 @@ export class BaseTexture {
    * @param {number} width - The new width of the texture.
    * @param {number} height - The new height of the texture.
    */
-  public forceLoaded(width: number, height: number) {
+  public forceLoaded(width: number, height: number): void {
     this.hasLoaded = true;
     this.width = width;
     this.height = height;
@@ -53,7 +53,7 @@ export class BaseTexture {
   /**
    * Destroys the texture.
    */
-  public destroy() {
+  public destroy(): void {
     if (this.source) {
       removeByCanvas(this.source);
     }
@@ -64,7 +64,7 @@ export class BaseTexture {
   /**
    * Marks the texture as dirty.
    */
-  public dirty() {
+  public dirty(): void {
     for (let i = 0; i < this._glTextures.length; i += 1) {
       this._dirty[i] = true;
     }
@@ -73,7 +73,7 @@ export class BaseTexture {
   /**
    * Unloads the texture from the GPU.
    */
-  public unloadFromGPU() {
+  public unloadFromGPU(): void {
     this.dirty();
     for (let i = this._glTextures.length - 1; i >= 0; i -= 1) {
       const glTexture = this._glTextures[i];

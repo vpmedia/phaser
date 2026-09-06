@@ -38,7 +38,7 @@ export class Ellipse {
    * @param {number} height - The new height of the ellipse.
    * @returns {Ellipse} This ellipse instance for chaining.
    */
-  public setTo(x: number, y: number, width: number, height: number) {
+  public setTo(x: number, y: number, width: number, height: number): this {
     this.x = x;
     this.y = y;
     this.width = width;
@@ -50,7 +50,7 @@ export class Ellipse {
    * Gets the bounding rectangle of this ellipse.
    * @returns {Rectangle} The bounding rectangle of this ellipse.
    */
-  public getBounds() {
+  public getBounds(): Rectangle {
     return new Rectangle(this.x - this.width, this.y - this.height, this.width, this.height);
   }
 
@@ -59,7 +59,7 @@ export class Ellipse {
    * @param {Ellipse} source - The ellipse to copy values from.
    * @returns {Ellipse} This ellipse instance for chaining.
    */
-  public copyFrom(source: Ellipse) {
+  public copyFrom(source: Ellipse): this {
     return this.setTo(source.x, source.y, source.width, source.height);
   }
 
@@ -68,7 +68,7 @@ export class Ellipse {
    * @param {Ellipse} dest - The ellipse to copy values to.
    * @returns {Ellipse} The destination ellipse.
    */
-  public copyTo(dest: Ellipse) {
+  public copyTo(dest: Ellipse): Ellipse {
     dest.x = this.x;
     dest.y = this.y;
     dest.width = this.width;
@@ -82,7 +82,7 @@ export class Ellipse {
    * @param {number} y - The y coordinate of the point to check.
    * @returns {boolean} True if the point is contained within this ellipse, false otherwise.
    */
-  public contains(x: number, y: number) {
+  public contains(x: number, y: number): boolean {
     return contains(this, x, y);
   }
 
@@ -91,7 +91,7 @@ export class Ellipse {
    * @param {Point} output - The point to store the result in (optional).
    * @returns {Point} A random point within this ellipse.
    */
-  public random(output: Point | null = null) {
+  public random(output: Point | null = null): Point {
     const result = output ?? new Point();
     const p = Math.random() * Math.PI * 2;
     const r = Math.random();
@@ -106,7 +106,7 @@ export class Ellipse {
    * Returns a string representation of this ellipse.
    * @returns {string} A string representation of the ellipse.
    */
-  public toString() {
+  public toString(): string {
     return `[{Ellipse (x=${this.x} y=${this.y} width=${this.width} height=${this.height})}]`;
   }
 }

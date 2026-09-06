@@ -8,7 +8,7 @@ import { Point } from '../point.js';
  * @param {Circle} output - Optional circle to store the result in.
  * @returns {Circle} The cloned circle.
  */
-export const clone = (input: Circle, output: Circle | null = null) => {
+export const clone = (input: Circle, output: Circle | null = null): Circle => {
   const result = output ?? new Circle();
   result.x = input.x;
   result.y = input.y;
@@ -23,7 +23,7 @@ export const clone = (input: Circle, output: Circle | null = null) => {
  * @param {number} y - The y coordinate of the point.
  * @returns {boolean} True if the point is contained within the circle, false otherwise.
  */
-export const contains = (a: Circle, x: number, y: number) => {
+export const contains = (a: Circle, x: number, y: number): boolean => {
   if (a.radius > 0 && x >= a.left && x <= a.right && y >= a.top && y <= a.bottom) {
     const dx = (a.x - x) * (a.x - x);
     const dy = (a.y - y) * (a.y - y);
@@ -38,7 +38,7 @@ export const contains = (a: Circle, x: number, y: number) => {
  * @param {Circle} b - The second circle to compare.
  * @returns {boolean} True if the circles are equal, false otherwise.
  */
-export const equals = (a: Circle, b: Circle) => a.x === b.x && a.y === b.y && a.diameter === b.diameter;
+export const equals = (a: Circle, b: Circle): boolean => a.x === b.x && a.y === b.y && a.diameter === b.diameter;
 
 /**
  * Checks if two circles intersect.
@@ -46,7 +46,7 @@ export const equals = (a: Circle, b: Circle) => a.x === b.x && a.y === b.y && a.
  * @param {Circle} b - The second circle to check.
  * @returns {boolean} True if the circles intersect, false otherwise.
  */
-export const intersects = (a: Circle, b: Circle) => distance(a.x, a.y, b.x, b.y) <= a.radius + b.radius;
+export const intersects = (a: Circle, b: Circle): boolean => distance(a.x, a.y, b.x, b.y) <= a.radius + b.radius;
 
 /**
  * Gets a point on the circumference of the circle at the specified angle.
@@ -56,7 +56,7 @@ export const intersects = (a: Circle, b: Circle) => distance(a.x, a.y, b.x, b.y)
  * @param {Point} output - Optional point to store the result in.
  * @returns {Point} The point on the circumference of the circle.
  */
-export const circumferencePoint = (a: Circle, angle: number, asDegrees = false, output: Point | null = null) => {
+export const circumferencePoint = (a: Circle, angle: number, asDegrees = false, output: Point | null = null): Point => {
   const result = output ?? new Point();
   if (asDegrees) {
     angle = degToRad(angle);
@@ -74,7 +74,7 @@ export const circumferencePoint = (a: Circle, angle: number, asDegrees = false, 
  * @param {Point} output - Optional point to store the result in.
  * @returns {Point} The point on the circumference of the circle.
  */
-export const intersectsPoint = (a: Circle, angle: number, asDegrees = false, output: Point | null = null) => {
+export const intersectsPoint = (a: Circle, angle: number, asDegrees = false, output: Point | null = null): Point => {
   const result = output ?? new Point();
   if (asDegrees) {
     angle = degToRad(angle);
@@ -90,7 +90,7 @@ export const intersectsPoint = (a: Circle, angle: number, asDegrees = false, out
  * @param {object} r - The rectangle to check.
  * @returns {boolean} True if the circle intersects with the rectangle, false otherwise.
  */
-export const intersectsRectangle = (c: Circle, r: any) => {
+export const intersectsRectangle = (c: Circle, r: any): boolean => {
   const cx = Math.abs(c.x - r.x - r.halfWidth);
   const xDist = r.halfWidth + c.radius;
   if (cx > xDist) {

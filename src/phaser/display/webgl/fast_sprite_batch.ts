@@ -56,7 +56,7 @@ export class FastSpriteBatch {
    * Sets the WebGL context for this batch.
    * @param {WebGLRenderingContext & { id: number }} gl - The WebGL rendering context.
    */
-  public setContext(gl: IdentifiedWebGLRenderingContext) {
+  public setContext(gl: IdentifiedWebGLRenderingContext): void {
     this.gl = gl;
     // create a couple of buffers
     this.vertexBuffer = gl.createBuffer();
@@ -74,7 +74,7 @@ export class FastSpriteBatch {
    * @param {object} spriteBatch - The sprite batch to render.
    * @param {object} renderSession - The render session to use.
    */
-  public begin(spriteBatch: any, renderSession: RenderSession) {
+  public begin(spriteBatch: any, renderSession: RenderSession): void {
     this.renderSession = renderSession;
     this.shader = this.renderSession.shaderManager.fastShader;
     this.matrix = spriteBatch.worldTransform.toArray(true);
@@ -84,7 +84,7 @@ export class FastSpriteBatch {
   /**
    * Updates the sprite batch.
    */
-  public end() {
+  public end(): void {
     this.flush();
   }
 
@@ -92,7 +92,7 @@ export class FastSpriteBatch {
    * Flushes the sprite batch to WebGL.
    * @param {object} spriteBatch - The sprite batch to flush.
    */
-  public render(spriteBatch: any) {
+  public render(spriteBatch: any): void {
     const { children } = spriteBatch;
     const sprite = children[0];
     // if the uvs have not updated then no point rendering just yet!
@@ -116,7 +116,7 @@ export class FastSpriteBatch {
    * Renders a sprite using WebGL.
    * @param {Image} sprite - The sprite to render.
    */
-  public renderSprite(sprite: Image) {
+  public renderSprite(sprite: Image): void {
     if (!sprite.visible) {
       return;
     }
@@ -222,7 +222,7 @@ export class FastSpriteBatch {
   /**
    * Binds the sprite batch to the WebGL context.
    */
-  public flush() {
+  public flush(): void {
     // If the batch is length 0 then return as there is nothing to draw
     if (this.currentBatchSize === 0) {
       return;
@@ -251,14 +251,14 @@ export class FastSpriteBatch {
   /**
    * Renders a sprite using the sprite batch.
    */
-  public stop() {
+  public stop(): void {
     this.flush();
   }
 
   /**
    * Sets up the sprite batch for WebGL rendering.
    */
-  public start() {
+  public start(): void {
     const { gl } = this;
     // bind the main texture
     gl.activeTexture(gl.TEXTURE0);

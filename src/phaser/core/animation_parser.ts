@@ -21,7 +21,7 @@ export const spriteSheet = (
   frameMax: number,
   margin: number,
   spacing: number
-) => {
+): FrameData | null => {
   let img: any = key;
   if (typeof key === 'string') {
     img = game.cache.getImage(key);
@@ -71,7 +71,7 @@ export const spriteSheet = (
  * @param {object} json - TBD.
  * @returns {FrameData} TBD.
  */
-export const JSONDataHash = (game: Game, json: any, _key?: any) => {
+export const JSONDataHash = (game: Game, json: any, _key?: any): FrameData | null => {
   if (!json.frames) {
     game.logger.warn('JSONDataHash: Invalid Texture Atlas JSON given, missing frames object', json);
     return null;

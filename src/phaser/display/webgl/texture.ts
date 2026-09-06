@@ -97,7 +97,7 @@ export class Texture {
   /**
    * Destroys this texture and cleans up resources.
    */
-  public onBaseTextureLoaded() {
+  public onBaseTextureLoaded(): void {
     if (this.noFrame) {
       this.frame = new Rectangle(0, 0, this.baseTexture.width, this.baseTexture.height);
     }
@@ -108,7 +108,7 @@ export class Texture {
    * Destroys this texture and cleans up resources.
    * @param {boolean} destroyBase - Whether to destroy the base texture as well.
    */
-  public destroy(destroyBase: boolean = false) {
+  public destroy(destroyBase: boolean = false): void {
     if (destroyBase) {
       this.baseTexture.destroy();
     }
@@ -120,7 +120,7 @@ export class Texture {
    * @param {Rectangle} frame - The new frame rectangle.
    * @throws {Error} If the operation fails.
    */
-  public setFrame(frame: Rectangle) {
+  public setFrame(frame: Rectangle): void {
     this.noFrame = false;
     this.frame = frame;
     this.width = frame.width;
@@ -158,7 +158,7 @@ export class Texture {
   /**
    * Updates the texture UVs based on the crop frame.
    */
-  public _updateUvs() {
+  public _updateUvs(): void {
     this._uvs ??= new TextureUvs();
     const frame = this.crop;
     const tw = this.baseTexture.width;

@@ -133,7 +133,7 @@ export class NormalShader {
   /**
    * Binds this shader to the WebGL context.
    */
-  public initUniforms() {
+  public initUniforms(): void {
     this.textureCount = 1;
     const { gl } = this;
     for (const uniform of Object.values(this.uniforms)) {
@@ -174,7 +174,7 @@ export class NormalShader {
    * Sets a uniform value for this shader.
    * @param {object} uniform - The uniform to set.
    */
-  public initSampler2D(uniform: any) {
+  public initSampler2D(uniform: any): void {
     if (!uniform.value || !uniform.value.baseTexture || !uniform.value.baseTexture.hasLoaded) {
       return;
     }
@@ -226,7 +226,7 @@ export class NormalShader {
   /**
    * Sets the shader to use for rendering.
    */
-  public syncUniforms() {
+  public syncUniforms(): void {
     this.textureCount = 1;
     const { gl } = this;
     //  This would probably be faster in an array and it would guarantee key order

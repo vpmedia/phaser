@@ -9,13 +9,13 @@ const logger = getLogger(['phaser', 'device']);
  * @param {string} type - The audio format type to check.
  * @returns {boolean} True if the device can play this audio format, false otherwise.
  */
-export const canPlayAudio = (device: Device, type: string) => device.supportedAudioFormats[type] === true;
+export const canPlayAudio = (device: Device, type: string): boolean => device.supportedAudioFormats[type] === true;
 
 /**
  * Detect the operating system of the device.
  * @param {Device} device - The device instance to update.
  */
-export const checkOS = (device: Device) => {
+export const checkOS = (device: Device): void => {
   const ua = navigator.userAgent;
   if (ua.includes('Android')) {
     device.android = true;
@@ -52,7 +52,7 @@ export const checkOS = (device: Device) => {
  * Detect input capabilities of the device.
  * @param {Device} device - The device instance to update.
  */
-export const checkInput = (device: Device) => {
+export const checkInput = (device: Device): void => {
   if (
     'ontouchstart' in document.documentElement ||
     (globalThis.navigator.maxTouchPoints && globalThis.navigator.maxTouchPoints >= 1)
@@ -72,7 +72,7 @@ export const checkInput = (device: Device) => {
  * Check for fullscreen support capabilities.
  * @param {Device} device - The device instance to update.
  */
-export const checkFullScreenSupport = (device: Device) => {
+export const checkFullScreenSupport = (device: Device): void => {
   const fs = [
     'requestFullscreen',
     'requestFullScreen',
@@ -121,7 +121,7 @@ export const checkFullScreenSupport = (device: Device) => {
  * Detect the browser type.
  * @param {Device} device - The device instance to update.
  */
-export const checkBrowser = (device: Device) => {
+export const checkBrowser = (device: Device): void => {
   const ua = navigator.userAgent;
   if (/Edge\/\d+/.test(ua)) {
     device.edge = true;
@@ -140,7 +140,7 @@ export const checkBrowser = (device: Device) => {
  * @param {string} type - The codec type to check.
  * @returns {boolean} True if the codec is supported, false otherwise.
  */
-export const canPlayType = (audioElement: HTMLAudioElement, type: string) => {
+export const canPlayType = (audioElement: HTMLAudioElement, type: string): boolean => {
   try {
     const canPlayResult = audioElement.canPlayType(type);
     return canPlayResult === 'maybe' || canPlayResult === 'probably';
@@ -156,7 +156,7 @@ export const canPlayType = (audioElement: HTMLAudioElement, type: string) => {
  * @param {string} type - The media source type to check.
  * @returns {boolean} True if the media source type is supported, false otherwise.
  */
-export const isMediaSourceTypeSupported = (type: string) => {
+export const isMediaSourceTypeSupported = (type: string): boolean => {
   if ('MediaSource' in globalThis) {
     try {
       return MediaSource.isTypeSupported(type);
@@ -176,7 +176,7 @@ export const isMediaSourceTypeSupported = (type: string) => {
  * @see https://developer.mozilla.org/En/Media_formats_supported_by_the_audio_and_video_elements
  * @see https://bit.ly/iphoneoscodecs
  */
-export const checkAudio = (device: Device) => {
+export const checkAudio = (device: Device): void => {
   const audioElement = document.createElement('audio');
   const formats = [
     { type: 'ogg', codecs: ['audio/ogg; codecs="vorbis"'] },
@@ -208,12 +208,12 @@ export const checkAudio = (device: Device) => {
  * Check for supported image formats on the device.
  * @param {Device} device - The device instance to update with image format support.
  */
-export const checkImage = (device: Device) => {
+export const checkImage = (device: Device): void => {
   try {
     const avif = new Image();
     avif.src =
       'data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAAB0AAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAAIAAAACAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQ0MAAAAABNjb2xybmNseAACAAIAAYAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAACVtZGF0EgAKCBgANogQEAwgMg8f8D///8WfhwB8+ErK42A=';
-    avif.onload = function onload() {
+    avif.onload = function onload(): void {
       device.supportedImageFormats['avif'] = true;
     };
   } catch (error) {
@@ -223,7 +223,7 @@ export const checkImage = (device: Device) => {
   try {
     const webp = new Image();
     webp.src = 'data:image/webp;base64,UklGRh4AAABXRUJQVlA4TBEAAAAvAAAAAAfQ//73v/+BiOh/AAA=';
-    webp.onload = function onload() {
+    webp.onload = function onload(): void {
       device.supportedImageFormats['webp'] = true;
     };
   } catch (error) {
@@ -236,7 +236,7 @@ export const checkImage = (device: Device) => {
  * Initialize device capabilities detection.
  * @param {Device} device - The device instance to initialize.
  */
-export const initialize = (device: Device) => {
+export const initialize = (device: Device): void => {
   logger.info('initialize');
   checkOS(device);
   checkBrowser(device);
@@ -250,4 +250,4 @@ export const initialize = (device: Device) => {
  * Create a new Device instance.
  * @returns {Device} A new Device instance.
  */
-export const createDevice = () => new Device();
+export const createDevice = (): Device => new Device();

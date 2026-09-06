@@ -57,7 +57,7 @@ export class Rectangle {
    * @param {number} dy - The amount to offset the y coordinate by.
    * @returns {Rectangle} This rectangle instance for chaining.
    */
-  public offset(dx: number, dy: number) {
+  public offset(dx: number, dy: number): this {
     this.x += dx;
     this.y += dy;
     return this;
@@ -68,7 +68,7 @@ export class Rectangle {
    * @param {Point} point - The point to offset the rectangle by.
    * @returns {Rectangle} This rectangle instance for chaining.
    */
-  public offsetPoint(point: Point) {
+  public offsetPoint(point: Point): this {
     return this.offset(point.x, point.y);
   }
 
@@ -80,7 +80,7 @@ export class Rectangle {
    * @param {number} height - The new height of the rectangle.
    * @returns {Rectangle} This rectangle instance for chaining.
    */
-  public setTo(x: number, y: number, width: number, height: number) {
+  public setTo(x: number, y: number, width: number, height: number): this {
     this.x = x;
     this.y = y;
     this.width = width;
@@ -94,7 +94,7 @@ export class Rectangle {
    * @param {number} y - The amount to scale the height by (default: x).
    * @returns {Rectangle} This rectangle instance for chaining.
    */
-  public scale(x: number, y?: number) {
+  public scale(x: number, y?: number): this {
     y ??= x;
     this.width *= x;
     this.height *= y;
@@ -107,7 +107,7 @@ export class Rectangle {
    * @param {number} y - The y coordinate to center the rectangle on.
    * @returns {Rectangle} This rectangle instance for chaining.
    */
-  public centerOn(x: number, y: number) {
+  public centerOn(x: number, y: number): this {
     this.centerX = x;
     this.centerY = y;
     return this;
@@ -116,7 +116,7 @@ export class Rectangle {
   /**
    * Floors the x and y coordinates of the rectangle (rounds down to nearest integer).
    */
-  public floor() {
+  public floor(): void {
     this.x = Math.floor(this.x);
     this.y = Math.floor(this.y);
   }
@@ -124,7 +124,7 @@ export class Rectangle {
   /**
    * Floors all coordinates of the rectangle (rounds down to nearest integer).
    */
-  public floorAll() {
+  public floorAll(): void {
     this.x = Math.floor(this.x);
     this.y = Math.floor(this.y);
     this.width = Math.floor(this.width);
@@ -134,7 +134,7 @@ export class Rectangle {
   /**
    * Ceils the x and y coordinates of the rectangle (rounds up to nearest integer).
    */
-  public ceil() {
+  public ceil(): void {
     this.x = Math.ceil(this.x);
     this.y = Math.ceil(this.y);
   }
@@ -142,7 +142,7 @@ export class Rectangle {
   /**
    * Ceils all coordinates of the rectangle (rounds up to nearest integer).
    */
-  public ceilAll() {
+  public ceilAll(): void {
     this.x = Math.ceil(this.x);
     this.y = Math.ceil(this.y);
     this.width = Math.ceil(this.width);
@@ -154,7 +154,7 @@ export class Rectangle {
    * @param {Rectangle} source - The rectangle to copy values from.
    * @returns {Rectangle} This rectangle instance for chaining.
    */
-  public copyFrom(source: Rectangle) {
+  public copyFrom(source: Rectangle): this {
     return this.setTo(source.x, source.y, source.width, source.height);
   }
 
@@ -163,7 +163,7 @@ export class Rectangle {
    * @param {Rectangle} dest - The rectangle to copy values to.
    * @returns {Rectangle} The destination rectangle.
    */
-  public copyTo(dest: Rectangle) {
+  public copyTo(dest: Rectangle): Rectangle {
     dest.x = this.x;
     dest.y = this.y;
     dest.width = this.width;
@@ -177,7 +177,7 @@ export class Rectangle {
    * @param {number} dy - The amount to increase the height by.
    * @returns {Rectangle} This rectangle instance for chaining.
    */
-  public inflate(dx: number, dy: number) {
+  public inflate(dx: number, dy: number): Rectangle {
     return inflate(this, dx, dy);
   }
 
@@ -186,7 +186,7 @@ export class Rectangle {
    * @param {Point} output - The point to store the size in (optional).
    * @returns {Point} The size of the rectangle as a point.
    */
-  public size(output: Point) {
+  public size(output: Point): Point {
     return size(this, output);
   }
 
@@ -196,7 +196,7 @@ export class Rectangle {
    * @param {number} height - The new height of the rectangle.
    * @returns {Rectangle} This rectangle instance for chaining.
    */
-  public resize(width: number, height: number) {
+  public resize(width: number, height: number): this {
     this.width = width;
     this.height = height;
     return this;
@@ -207,7 +207,7 @@ export class Rectangle {
    * @param {Rectangle} output - The rectangle to store the clone in (optional).
    * @returns {Rectangle} A new rectangle with the same values as this one.
    */
-  public clone(output?: Rectangle) {
+  public clone(output?: Rectangle): Rectangle {
     return clone(this, output);
   }
 
@@ -217,7 +217,7 @@ export class Rectangle {
    * @param {number} y - The y coordinate of the point to check.
    * @returns {boolean} True if the point is contained within this rectangle, false otherwise.
    */
-  public contains(x: number, y: number) {
+  public contains(x: number, y: number): boolean {
     return contains(this, x, y);
   }
 
@@ -226,7 +226,7 @@ export class Rectangle {
    * @param {Rectangle} b - The rectangle to check if it's contained.
    * @returns {boolean} True if the rectangle is contained within this rectangle, false otherwise.
    */
-  public containsRect(b: Rectangle) {
+  public containsRect(b: Rectangle): boolean {
     return containsRect(b, this);
   }
 
@@ -235,7 +235,7 @@ export class Rectangle {
    * @param {Rectangle} b - The rectangle to compare with.
    * @returns {boolean} True if the rectangles have the same values, false otherwise.
    */
-  public equals(b: Rectangle) {
+  public equals(b: Rectangle): boolean {
     return equals(this, b);
   }
 
@@ -245,7 +245,7 @@ export class Rectangle {
    * @param {Rectangle} out - The rectangle to store the result in (optional).
    * @returns {Rectangle} The intersection of the two rectangles.
    */
-  public intersection(b: Rectangle, out?: Rectangle) {
+  public intersection(b: Rectangle, out?: Rectangle): Rectangle {
     return intersection(this, b, out);
   }
 
@@ -254,7 +254,7 @@ export class Rectangle {
    * @param {Rectangle} b - The rectangle to check for intersection with.
    * @returns {boolean} True if the rectangles intersect, false otherwise.
    */
-  public intersects(b: Rectangle) {
+  public intersects(b: Rectangle): boolean {
     return intersects(this, b);
   }
 
@@ -267,7 +267,7 @@ export class Rectangle {
    * @param {number} tolerance - A tolerance value to use when checking (default: 0).
    * @returns {boolean} True if the rectangle intersects with the bounds, false otherwise.
    */
-  public intersectsRaw(left: number, right: number, top: number, bottom: number, tolerance: number) {
+  public intersectsRaw(left: number, right: number, top: number, bottom: number, tolerance: number): boolean {
     return intersectsRaw(this, left, right, top, bottom, tolerance);
   }
 
@@ -277,7 +277,7 @@ export class Rectangle {
    * @param {Rectangle} out - The rectangle to store the result in (optional).
    * @returns {Rectangle} The union of the two rectangles.
    */
-  public union(b: Rectangle, out?: Rectangle) {
+  public union(b: Rectangle, out?: Rectangle): Rectangle {
     return union(this, b, out);
   }
 
@@ -286,7 +286,7 @@ export class Rectangle {
    * @param {Point} output - The point to store the result in (optional).
    * @returns {Point} A random point within this rectangle.
    */
-  public random(output: Point | null = null) {
+  public random(output: Point | null = null): Point {
     const result = output ?? new Point();
     result.x = this.randomX;
     result.y = this.randomY;
@@ -299,7 +299,7 @@ export class Rectangle {
    * @param {Point} output - The point to store the result in (optional).
    * @returns {Point} A point at the specified position on the rectangle.
    */
-  public getPoint(position: number, output: Point | null = null) {
+  public getPoint(position: number, output: Point | null = null): Point {
     const result = output ?? new Point();
     switch (position) {
       case TOP_LEFT: {
@@ -339,7 +339,7 @@ export class Rectangle {
    * Returns a string representation of this rectangle.
    * @returns {string} A string representation of the rectangle.
    */
-  public toString() {
+  public toString(): string {
     return `[{Rectangle (x=${this.x} y=${this.y} width=${this.width} height=${this.height} empty=${this.empty})}]`;
   }
 
@@ -347,7 +347,7 @@ export class Rectangle {
    * Gets half the width of this rectangle.
    * @returns {number} Half the width of this rectangle.
    */
-  public get halfWidth() {
+  public get halfWidth(): number {
     return Math.round(this.width / 2);
   }
 
@@ -355,7 +355,7 @@ export class Rectangle {
    * Gets half the height of this rectangle.
    * @returns {number} Half the height of this rectangle.
    */
-  public get halfHeight() {
+  public get halfHeight(): number {
     return Math.round(this.height / 2);
   }
 
@@ -363,7 +363,7 @@ export class Rectangle {
    * Gets the top coordinate of this rectangle.
    * @returns {number} The top coordinate of this rectangle.
    */
-  public get top() {
+  public get top(): number {
     return this.y;
   }
 
@@ -383,7 +383,7 @@ export class Rectangle {
    * Gets the top-left point of this rectangle.
    * @returns {Point} The top-left point of this rectangle.
    */
-  public get topLeft() {
+  public get topLeft(): Point {
     return new Point(this.x, this.y);
   }
 
@@ -399,7 +399,7 @@ export class Rectangle {
    * Gets the top-right point of this rectangle.
    * @returns {Point} The top-right point of this rectangle.
    */
-  public get topRight() {
+  public get topRight(): Point {
     return new Point(this.x + this.width, this.y);
   }
 
@@ -415,7 +415,7 @@ export class Rectangle {
    * Gets the bottom coordinate of this rectangle.
    * @returns {number} The bottom coordinate of this rectangle.
    */
-  public get bottom() {
+  public get bottom(): number {
     return this.y + this.height;
   }
 
@@ -434,7 +434,7 @@ export class Rectangle {
    * Gets the bottom-left point of this rectangle.
    * @returns {Point} The bottom-left point of this rectangle.
    */
-  public get bottomLeft() {
+  public get bottomLeft(): Point {
     return new Point(this.x, this.bottom);
   }
 
@@ -450,7 +450,7 @@ export class Rectangle {
    * Gets the bottom-right point of this rectangle.
    * @returns {Point} The bottom-right point of this rectangle.
    */
-  public get bottomRight() {
+  public get bottomRight(): Point {
     return new Point(this.right, this.bottom);
   }
 
@@ -466,7 +466,7 @@ export class Rectangle {
    * Gets the left coordinate of this rectangle.
    * @returns {number} The left coordinate of this rectangle.
    */
-  public get left() {
+  public get left(): number {
     return this.x;
   }
 
@@ -486,7 +486,7 @@ export class Rectangle {
    * Gets the right coordinate of this rectangle.
    * @returns {number} The right coordinate of this rectangle.
    */
-  public get right() {
+  public get right(): number {
     return this.x + this.width;
   }
 
@@ -505,7 +505,7 @@ export class Rectangle {
    * Gets the volume (area) of this rectangle.
    * @returns {number} The volume (area) of this rectangle.
    */
-  public get volume() {
+  public get volume(): number {
     return this.width * this.height;
   }
 
@@ -513,7 +513,7 @@ export class Rectangle {
    * Gets the perimeter of this rectangle.
    * @returns {number} The perimeter of this rectangle.
    */
-  public get perimeter() {
+  public get perimeter(): number {
     return this.width * 2 + this.height * 2;
   }
 
@@ -521,7 +521,7 @@ export class Rectangle {
    * Gets the x coordinate of the center of this rectangle.
    * @returns {number} The x coordinate of the center of this rectangle.
    */
-  public get centerX() {
+  public get centerX(): number {
     return this.x + this.halfWidth;
   }
 
@@ -536,7 +536,7 @@ export class Rectangle {
    * Gets the y coordinate of the center of this rectangle.
    * @returns {number} The y coordinate of the center of this rectangle.
    */
-  public get centerY() {
+  public get centerY(): number {
     return this.y + this.halfHeight;
   }
 
@@ -551,7 +551,7 @@ export class Rectangle {
    * Gets a random x coordinate within this rectangle.
    * @returns {number} A random x coordinate within this rectangle.
    */
-  public get randomX() {
+  public get randomX(): number {
     return this.x + Math.random() * this.width;
   }
 
@@ -559,7 +559,7 @@ export class Rectangle {
    * Gets a random y coordinate within this rectangle.
    * @returns {number} A random y coordinate within this rectangle.
    */
-  public get randomY() {
+  public get randomY(): number {
     return this.y + Math.random() * this.height;
   }
 
@@ -567,7 +567,7 @@ export class Rectangle {
    * Checks if this rectangle is empty (has zero width or height).
    * @returns {boolean} True if the rectangle is empty, false otherwise.
    */
-  public get empty() {
+  public get empty(): boolean {
     return !this.width || !this.height;
   }
 

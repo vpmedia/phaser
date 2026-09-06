@@ -22,14 +22,14 @@ export const CONTEXT_LOST_WEBGL = 0x9242;
  * @param {WebGLRenderingContext} gl - The WebGL rendering context.
  * @returns {number} The error code from the WebGL context.
  */
-export const getWebGLContextErrorCode = (gl: WebGLRenderingContext) => gl?.getError() ?? 0;
+export const getWebGLContextErrorCode = (gl: WebGLRenderingContext): number => gl?.getError() ?? 0;
 
 /**
  * Gets the WebGL context error name from an error code.
  * @param {number} errorCode - The error code to look up.
  * @returns {string} The name of the WebGL error.
  */
-export const getWebGLContextErrorName = (errorCode: number) => {
+export const getWebGLContextErrorName = (errorCode: number): string => {
   switch (errorCode) {
     case NO_ERROR: {
       return 'NO_ERROR';
@@ -61,7 +61,7 @@ export const getWebGLContextErrorName = (errorCode: number) => {
 /**
  * Initializes default shaders.
  */
-export const initDefaultShaders = () => {};
+export const initDefaultShaders = (): void => {};
 
 /**
  * Compiles a WebGL shader.
@@ -70,7 +70,11 @@ export const initDefaultShaders = () => {};
  * @param {object} shaderType - The type of shader to compile.
  * @returns {WebGLShader} The compiled WebGL shader or null if compilation failed.
  */
-export const compileShader = (gl: WebGLRenderingContext, shaderSrc: string[] | string, shaderType: any) => {
+export const compileShader = (
+  gl: WebGLRenderingContext,
+  shaderSrc: string[] | string,
+  shaderType: any
+): WebGLShader | null => {
   const src = Array.isArray(shaderSrc) ? shaderSrc.join('\n') : shaderSrc;
   const shader = gl.createShader(shaderType);
   if (!shader) {
@@ -92,7 +96,7 @@ export const compileShader = (gl: WebGLRenderingContext, shaderSrc: string[] | s
  * @param {string[]|string} shaderSrc - The vertex shader source code.
  * @returns {WebGLShader} The compiled WebGL vertex shader or null if compilation failed.
  */
-export const compileVertexShader = (gl: WebGLRenderingContext, shaderSrc: string[] | string) =>
+export const compileVertexShader = (gl: WebGLRenderingContext, shaderSrc: string[] | string): WebGLShader | null =>
   compileShader(gl, shaderSrc, gl.VERTEX_SHADER);
 
 /**
@@ -101,7 +105,7 @@ export const compileVertexShader = (gl: WebGLRenderingContext, shaderSrc: string
  * @param {string[]|string} shaderSrc - The fragment shader source code.
  * @returns {WebGLShader} The compiled WebGL fragment shader or null if compilation failed.
  */
-export const compileFragmentShader = (gl: WebGLRenderingContext, shaderSrc: string[] | string) =>
+export const compileFragmentShader = (gl: WebGLRenderingContext, shaderSrc: string[] | string): WebGLShader | null =>
   compileShader(gl, shaderSrc, gl.FRAGMENT_SHADER);
 
 /**
@@ -115,7 +119,7 @@ export const compileProgram = (
   gl: WebGLRenderingContext,
   vertexSrc: string[] | string,
   fragmentSrc: string[] | string
-) => {
+): WebGLProgram | null => {
   const fragmentShader = compileFragmentShader(gl, fragmentSrc);
   const vertexShader = compileVertexShader(gl, vertexSrc);
 

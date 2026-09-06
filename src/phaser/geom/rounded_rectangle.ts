@@ -32,7 +32,7 @@ export class RoundedRectangle {
    * @param {number} y - The y coordinate of the point to check.
    * @returns {boolean} True if the point is contained within this rounded rectangle, false otherwise.
    */
-  public contains(x: number, y: number) {
+  public contains(x: number, y: number): boolean {
     if (this.width <= 0 || this.height <= 0) {
       return false;
     }
@@ -48,7 +48,7 @@ export class RoundedRectangle {
    * Creates a clone of this rounded rectangle.
    * @returns {RoundedRectangle} A new rounded rectangle with the same values as this one.
    */
-  public clone() {
+  public clone(): RoundedRectangle {
     return clone(this);
   }
 }

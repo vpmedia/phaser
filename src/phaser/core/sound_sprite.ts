@@ -46,7 +46,7 @@ export class SoundSprite {
    * TBD.
    * @param {string} marker - TBD.
    */
-  public stop(marker: string) {
+  public stop(marker: string): void {
     if (!marker) {
       for (const key in this.sounds) {
         this.sounds[key].stop();

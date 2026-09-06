@@ -17,7 +17,7 @@ export class WebGLFilterManager {
    * Initializes the filter manager with a WebGL context.
    * @param {WebGLRenderingContext} gl - The WebGL rendering context.
    */
-  public setContext(gl: WebGLRenderingContext) {
+  public setContext(gl: WebGLRenderingContext): void {
     this.gl = gl;
     this.texturePool = [];
     this.initShaderBuffers();
@@ -26,42 +26,42 @@ export class WebGLFilterManager {
   /**
    * Applies a filter to the specified texture.
    */
-  public begin() {
+  public begin(): void {
     // TODO
   }
 
   /**
    * Updates the filter texture for the specified size.
    */
-  public pushFilter(_filterBlock: object | null) {
+  public pushFilter(_filterBlock: object | null): void {
     // TODO
   }
 
   /**
    * Resizes the filter manager to the specified dimensions.
    */
-  public popFilter() {
+  public popFilter(): void {
     // TODO
   }
 
   /**
    * Destroys this filter manager and cleans up resources.
    */
-  public applyFilterPass() {
+  public applyFilterPass(): void {
     // TODO
   }
 
   /**
    * Initializes the filter manager.
    */
-  public initShaderBuffers() {
+  public initShaderBuffers(): void {
     // TODO
   }
 
   /**
    * Sets up the filter manager for WebGL rendering.
    */
-  public destroy() {
+  public destroy(): void {
     // TODO
   }
 }

@@ -89,7 +89,7 @@ export function compareX(a: Node, b: Node): number {
  * @param {number} size - The size of the bounding box.
  * @returns {number} The calculated distance from the point to the triangle edge.
  */
-export function zOrder(x: number, y: number, minX: number, minY: number, size: number) {
+export function zOrder(x: number, y: number, minX: number, minY: number, size: number): number {
   // coords are transformed into non-negative 15-bit integer range
   x = (32_767 * (x - minX)) / size;
   y = (32_767 * (y - minY)) / size;
@@ -162,7 +162,7 @@ export function pointInTriangle(
   cy: number,
   px: number,
   py: number
-) {
+): boolean {
   return (
     (cx - px) * (ay - py) - (ax - px) * (cy - py) >= 0 &&
     (ax - px) * (by - py) - (bx - px) * (ay - py) >= 0 &&
@@ -655,7 +655,7 @@ export function earcutLinked(
   minY?: number,
   size?: number,
   pass?: number
-) {
+): void {
   if (!ear) {
     return;
   }

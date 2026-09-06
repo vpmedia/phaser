@@ -152,7 +152,7 @@ export class ScaleManager {
   /**
    * TBD.
    */
-  public boot() {
+  public boot(): void {
     // Configure device-dependent compatibility
     const compat = this.compatibility;
     compat.supportsFullScreen = this.game.device.fullscreen;
@@ -165,20 +165,20 @@ export class ScaleManager {
     }
     // Configure event listeners
     const scope = this;
-    this._orientationChange = (event) => {
+    this._orientationChange = (event): void => {
       scope.orientationChange(event);
     };
-    this._windowResize = (event) => {
+    this._windowResize = (event): void => {
       scope.windowResize(event);
     };
     // This does not appear to be on the standards track
     globalThis.addEventListener('orientationchange', this._orientationChange, false);
     window.addEventListener('resize', this._windowResize, false);
     if (this.compatibility.supportsFullScreen) {
-      this._fullScreenChange = (event) => {
+      this._fullScreenChange = (event): void => {
         scope.fullScreenChange(event);
       };
-      this._fullScreenError = (event) => {
+      this._fullScreenError = (event): void => {
         scope.fullScreenError(event);
       };
       document.addEventListener('webkitfullscreenchange', this._fullScreenChange, false);
@@ -208,7 +208,7 @@ export class ScaleManager {
    * TBD.
    * @param {object} config - TBD.
    */
-  public parseConfig(config: any) {
+  public parseConfig(config: any): void {
     if (config.scaleMode !== undefined) {
       if (this._booted) {
         this.scaleMode = config.scaleMode;
@@ -231,7 +231,7 @@ export class ScaleManager {
    * @param {number} width - TBD.
    * @param {number} height - TBD.
    */
-  public setupScale(width: number, height: number) {
+  public setupScale(width: number, height: number): void {
     let target;
     const rect = new Rectangle();
     if (this.game.parent !== '') {
@@ -284,7 +284,7 @@ export class ScaleManager {
   /**
    * TBD.
    */
-  public _gameResumed() {
+  public _gameResumed(): void {
     this.queueUpdate(true);
   }
 
@@ -293,7 +293,7 @@ export class ScaleManager {
    * @param {number} width - TBD.
    * @param {number} height - TBD.
    */
-  public setGameSize(width: number, height: number) {
+  public setGameSize(width: number, height: number): void {
     this._gameSize.setTo(0, 0, width, height);
     if (this.currentScaleMode !== SCALE_RESIZE) {
       this.updateDimensions(width, height, true);
@@ -308,7 +308,7 @@ export class ScaleManager {
    * @param {number} hTrim - TBD.
    * @param {number} vTrim - TBD.
    */
-  public setUserScale(hScale: number, vScale: number, hTrim: number, vTrim: number) {
+  public setUserScale(hScale: number, vScale: number, hTrim: number, vTrim: number): void {
     this._userScaleFactor.setTo(hScale, vScale);
     this._userScaleTrim.setTo(Math.trunc(hTrim), Math.trunc(vTrim));
     this.queueUpdate(true);
@@ -319,7 +319,7 @@ export class ScaleManager {
    * @param {Function} callback - TBD.
    * @param {object} context - TBD.
    */
-  public setResizeCallback(callback: Function, context: unknown) {
+  public setResizeCallback(callback: Function, context: unknown): void {
     this.onResize = callback;
     this.onResizeContext = context;
   }
@@ -327,7 +327,7 @@ export class ScaleManager {
   /**
    * TBD.
    */
-  public signalSizeChange() {
+  public signalSizeChange(): void {
     if (
       this.width !== this._lastReportedCanvasSize.width ||
       this.height !== this._lastReportedCanvasSize.height ||
@@ -354,7 +354,7 @@ export class ScaleManager {
    * @param {number} maxWidth - TBD.
    * @param {number} maxHeight - TBD.
    */
-  public setMinMax(minWidth: number, minHeight: number, maxWidth: number, maxHeight: number) {
+  public setMinMax(minWidth: number, minHeight: number, maxWidth: number, maxHeight: number): void {
     this.minWidth = minWidth;
     this.minHeight = minHeight;
     if (maxWidth !== undefined) {
@@ -368,7 +368,7 @@ export class ScaleManager {
   /**
    * TBD.
    */
-  public preUpdate() {
+  public preUpdate(): void {
     if (this.game.time.time < this._lastUpdate + this._updateThrottle) {
       return;
     }
@@ -401,7 +401,7 @@ export class ScaleManager {
   /**
    * TBD.
    */
-  public pauseUpdate() {
+  public pauseUpdate(): void {
     this.preUpdate();
     // Updates at slowest.
     this._updateThrottle = this.trackParentInterval;
@@ -413,7 +413,7 @@ export class ScaleManager {
    * @param {number} height - TBD.
    * @param {boolean} resize - TBD.
    */
-  public updateDimensions(width: number, height: number, resize: boolean) {
+  public updateDimensions(width: number, height: number, resize: boolean): void {
     this.width = width * this.parentScaleFactor.x;
     this.height = height * this.parentScaleFactor.y;
     this.game.width = this.width;
@@ -429,7 +429,7 @@ export class ScaleManager {
   /**
    * TBD.
    */
-  public updateScalingAndBounds() {
+  public updateScalingAndBounds(): void {
     this.scaleFactor.x = this.game.width / this.width;
     this.scaleFactor.y = this.game.height / this.height;
     this.scaleFactorInversed.x = this.width / this.game.width;
@@ -451,7 +451,7 @@ export class ScaleManager {
    * @param {boolean} forceLandscape - TBD.
    * @param {boolean} forcePortrait - TBD.
    */
-  public forceOrientation(forceLandscape = false, forcePortrait = false) {
+  public forceOrientation(forceLandscape = false, forcePortrait = false): void {
     this.forceLandscape = forceLandscape;
     this.forcePortrait = forcePortrait;
     this.queueUpdate(true);
@@ -462,7 +462,7 @@ export class ScaleManager {
    * @param {string} orientation - TBD.
    * @returns {string} TBD.
    */
-  public classifyOrientation(orientation: string) {
+  public classifyOrientation(orientation: string): 'portrait' | 'landscape' | null {
     if (orientation === 'portrait-primary' || orientation === 'portrait-secondary') {
       return 'portrait';
     } else if (orientation === 'landscape-primary' || orientation === 'landscape-secondary') {
@@ -475,7 +475,7 @@ export class ScaleManager {
    * TBD.
    * @returns {boolean} TBD.
    */
-  public updateOrientationState() {
+  public updateOrientationState(): boolean {
     const previousOrientation = this.screenOrientation;
     const previouslyIncorrect = this.incorrectOrientation;
     this.screenOrientation = this.dom.getScreenOrientation(this.compatibility.orientationFallback);
@@ -499,7 +499,7 @@ export class ScaleManager {
    * TBD.
    * @param {Event} event - TBD.
    */
-  public orientationChange(event: Event) {
+  public orientationChange(event: Event): void {
     this.event = event;
     this.queueUpdate(true);
   }
@@ -508,7 +508,7 @@ export class ScaleManager {
    * TBD.
    * @param {Event} event - TBD.
    */
-  public windowResize(event: Event) {
+  public windowResize(event: Event): void {
     this.event = event;
     this.queueUpdate(true);
   }
@@ -516,14 +516,14 @@ export class ScaleManager {
   /**
    * TBD.
    */
-  public refresh() {
+  public refresh(): void {
     this.queueUpdate(true);
   }
 
   /**
    * TBD.
    */
-  public updateLayout() {
+  public updateLayout(): void {
     const scaleMode = this.currentScaleMode;
     if (scaleMode === SCALE_RESIZE) {
       this.reflowGame();
@@ -567,7 +567,7 @@ export class ScaleManager {
    * @param {Rectangle} target - TBD.
    * @returns {Rectangle} TBD.
    */
-  public getParentBounds(target: Rectangle) {
+  public getParentBounds(target: Rectangle): Rectangle {
     const bounds = target || new Rectangle();
     const parentNode = this.boundingParent;
     const { visualBounds } = this.dom;
@@ -605,7 +605,7 @@ export class ScaleManager {
    * @param {boolean} horizontal - TBD.
    * @param {boolean} vertical - TBD.
    */
-  public alignCanvas(horizontal: boolean, vertical: boolean) {
+  public alignCanvas(horizontal: boolean, vertical: boolean): void {
     const parentBounds = this.getParentBounds(this._tempBounds);
     const { canvas } = this.game;
     const { margin } = this;
@@ -651,7 +651,7 @@ export class ScaleManager {
   /**
    * TBD.
    */
-  public reflowGame() {
+  public reflowGame(): void {
     this.resetCanvas('', '');
     const bounds = this.getParentBounds(this._tempBounds);
     this.updateDimensions(bounds.width, bounds.height, true);
@@ -660,7 +660,7 @@ export class ScaleManager {
   /**
    * TBD.
    */
-  public reflowCanvas() {
+  public reflowCanvas(): void {
     if (!this.incorrectOrientation) {
       this.width = Math.max(this.minWidth ?? 0, Math.min(this.maxWidth ?? this.width, this.width));
       this.height = Math.max(this.minHeight ?? 0, Math.min(this.maxHeight ?? this.height, this.height));
@@ -681,7 +681,7 @@ export class ScaleManager {
    * @param {string} cssWidth - TBD.
    * @param {string} cssHeight - TBD.
    */
-  public resetCanvas(cssWidth = `${this.width}px`, cssHeight = `${this.height}px`) {
+  public resetCanvas(cssWidth = `${this.width}px`, cssHeight = `${this.height}px`): void {
     const { canvas } = this.game;
     if (!this.compatibility.noMargins) {
       canvas.style.marginLeft = '';
@@ -697,7 +697,7 @@ export class ScaleManager {
    * TBD.
    * @param {boolean} force - TBD.
    */
-  public queueUpdate(force: boolean) {
+  public queueUpdate(force: boolean): void {
     if (force) {
       this._parentBounds.width = 0;
       this._parentBounds.height = 0;
@@ -708,14 +708,14 @@ export class ScaleManager {
   /**
    * TBD.
    */
-  public reset() {
+  public reset(): void {
     // pass
   }
 
   /**
    * TBD.
    */
-  public setMaximum() {
+  public setMaximum(): void {
     this.width = this.dom.visualBounds.width;
     this.height = this.dom.visualBounds.height;
   }
@@ -724,7 +724,7 @@ export class ScaleManager {
    * TBD.
    * @param {boolean} expanding - TBD.
    */
-  public setShowAll(expanding = false) {
+  public setShowAll(expanding = false): void {
     const bounds = this.getParentBounds(this._tempBounds);
     const { width } = bounds;
     const { height } = bounds;
@@ -741,7 +741,7 @@ export class ScaleManager {
   /**
    * TBD.
    */
-  public setExactFit() {
+  public setExactFit(): void {
     const bounds = this.getParentBounds(this._tempBounds);
     this.width = bounds.width;
     this.height = bounds.height;
@@ -761,7 +761,7 @@ export class ScaleManager {
    * TBD.
    * @returns {HTMLDivElement} TBD.
    */
-  public createFullScreenTarget() {
+  public createFullScreenTarget(): HTMLDivElement {
     const fsTarget = document.createElement('div');
     fsTarget.style.margin = '0';
     fsTarget.style.padding = '0';
@@ -775,14 +775,14 @@ export class ScaleManager {
    * @param {boolean} allowTrampoline - TBD.
    * @returns {boolean} TBD.
    */
-  public startFullScreen(antialias: boolean, allowTrampoline: boolean) {
+  public startFullScreen(antialias: boolean, allowTrampoline: boolean): boolean {
     if (this.isFullScreen) {
       return false;
     }
     if (!this.compatibility.supportsFullScreen) {
       // Error is called in timeout to emulate the real fullscreenerror event better
       const scope = this;
-      setTimeout(() => {
+      setTimeout((): void => {
         scope.fullScreenError({} as any);
       }, 10);
       return false;
@@ -827,7 +827,7 @@ export class ScaleManager {
    * TBD.
    * @returns {boolean} TBD.
    */
-  public stopFullScreen() {
+  public stopFullScreen(): boolean {
     if (!this.isFullScreen || !this.compatibility.supportsFullScreen) {
       return false;
     }
@@ -839,7 +839,7 @@ export class ScaleManager {
   /**
    * TBD.
    */
-  public cleanupCreatedTarget() {
+  public cleanupCreatedTarget(): void {
     const fsTarget = this._createdFullScreenTarget;
     if (fsTarget && fsTarget.parentNode) {
       // Make sure to cleanup synthetic target for sure;
@@ -855,7 +855,7 @@ export class ScaleManager {
    * TBD.
    * @param {boolean} enteringFullscreen - TBD.
    */
-  public prepScreenMode(enteringFullscreen: boolean) {
+  public prepScreenMode(enteringFullscreen: boolean): void {
     const fsTarget = this._createdFullScreenTarget ?? this.fullScreenTarget;
     if (!fsTarget) {
       return;
@@ -889,7 +889,7 @@ export class ScaleManager {
    * TBD.
    * @param {Event} event - TBD.
    */
-  public fullScreenChange(event: Event) {
+  public fullScreenChange(event: Event): void {
     this.event = event;
     if (this.isFullScreen) {
       this.prepScreenMode(true);
@@ -908,7 +908,7 @@ export class ScaleManager {
    * TBD.
    * @param {Event} [event] - TBD.
    */
-  public fullScreenError(event: Event) {
+  public fullScreenError(event: Event): void {
     this.event = event;
     this.cleanupCreatedTarget();
     this.onFullScreenError.dispatch(this);
@@ -917,7 +917,7 @@ export class ScaleManager {
   /**
    * TBD.
    */
-  public destroy() {
+  public destroy(): void {
     this.game.onResume.remove(this._gameResumed, this);
     globalThis.removeEventListener('orientationchange', this._orientationChange, false);
     window.removeEventListener('resize', this._windowResize, false);
@@ -938,7 +938,7 @@ export class ScaleManager {
    * TBD.
    * @returns {ParentNode | null} TBD.
    */
-  public get boundingParent() {
+  public get boundingParent(): HTMLElement | null {
     if (this.parentIsWindow || (this.isFullScreen && this.hasPhaserSetFullScreen && !this._createdFullScreenTarget)) {
       return null;
     }
@@ -950,7 +950,7 @@ export class ScaleManager {
    * TBD.
    * @returns {number} TBD.
    */
-  public get scaleMode() {
+  public get scaleMode(): number {
     return this._scaleMode;
   }
 
@@ -972,7 +972,7 @@ export class ScaleManager {
    * TBD.
    * @returns {number} TBD.
    */
-  public get fullScreenScaleMode() {
+  public get fullScreenScaleMode(): number {
     return this._fullScreenScaleMode;
   }
 
@@ -998,7 +998,7 @@ export class ScaleManager {
    * TBD.
    * @returns {number} TBD.
    */
-  public get currentScaleMode() {
+  public get currentScaleMode(): number {
     return this.isFullScreen ? this._fullScreenScaleMode : this._scaleMode;
   }
 
@@ -1006,7 +1006,7 @@ export class ScaleManager {
    * TBD.
    * @returns {boolean} TBD.
    */
-  public get pageAlignHorizontally() {
+  public get pageAlignHorizontally(): boolean {
     return this._pageAlignHorizontally;
   }
 
@@ -1014,7 +1014,7 @@ export class ScaleManager {
    * TBD.
    * @returns {boolean} TBD.
    */
-  public get pageAlignVertically() {
+  public get pageAlignVertically(): boolean {
     return this._pageAlignVertically;
   }
 
@@ -1022,7 +1022,7 @@ export class ScaleManager {
    * TBD.
    * @returns {boolean} TBD.
    */
-  public get isFullScreen() {
+  public get isFullScreen(): boolean {
     return Boolean(
       document.fullscreenElement ??
       (document as any).webkitFullscreenElement ??
@@ -1035,7 +1035,7 @@ export class ScaleManager {
    * TBD.
    * @returns {boolean} TBD.
    */
-  public get isPortrait() {
+  public get isPortrait(): boolean {
     return this.classifyOrientation(this.screenOrientation) === 'portrait';
   }
 
@@ -1043,7 +1043,7 @@ export class ScaleManager {
    * TBD.
    * @returns {boolean} TBD.
    */
-  public get isLandscape() {
+  public get isLandscape(): boolean {
     return this.classifyOrientation(this.screenOrientation) === 'landscape';
   }
 
@@ -1051,7 +1051,7 @@ export class ScaleManager {
    * TBD.
    * @returns {boolean} TBD.
    */
-  public get isGamePortrait() {
+  public get isGamePortrait(): boolean {
     return this.height > this.width;
   }
 
@@ -1059,7 +1059,7 @@ export class ScaleManager {
    * TBD.
    * @returns {boolean} TBD.
    */
-  public get isGameLandscape() {
+  public get isGameLandscape(): boolean {
     return this.width > this.height;
   }
 }

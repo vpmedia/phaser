@@ -13,7 +13,7 @@ export const getPool = (): CanvasPoolEntry[] => {
  * Gets the current size of the canvas pool.
  * @returns {number} The current size of the canvas pool.
  */
-export const getFirst = () => {
+export const getFirst = (): number => {
   const pool = getPool();
   for (let i = 0; i < pool.length; i += 1) {
     if (!pool[i]!.parent) {
@@ -27,7 +27,7 @@ export const getFirst = () => {
  * Adds a canvas to the pool with the specified parent.
  * @param {object} parent - The parent object for the canvas.
  */
-export const remove = (parent: any) => {
+export const remove = (parent: any): void => {
   const pool = getPool();
   for (const entry of pool) {
     if (entry.parent === parent) {
@@ -42,7 +42,7 @@ export const remove = (parent: any) => {
  * Removes a canvas from the pool.
  * @param {HTMLCanvasElement} canvas - The canvas to remove from the pool.
  */
-export const removeByCanvas = (canvas: HTMLCanvasElement) => {
+export const removeByCanvas = (canvas: HTMLCanvasElement): void => {
   const pool = getPool();
   for (const entry of pool) {
     if (entry.canvas === canvas) {
@@ -57,7 +57,7 @@ export const removeByCanvas = (canvas: HTMLCanvasElement) => {
  * Gets the total count of canvases in the pool.
  * @returns {number} The total count of canvases in the pool.
  */
-export const getTotal = () => {
+export const getTotal = (): number => {
   const pool = getPool();
   let c = 0;
   for (const entry of pool) {
@@ -72,7 +72,7 @@ export const getTotal = () => {
  * Gets the number of free canvases in the pool.
  * @returns {number} The number of free canvases in the pool.
  */
-export const getFree = () => {
+export const getFree = (): number => {
   const pool = getPool();
   let c = 0;
   for (const entry of pool) {
@@ -91,7 +91,7 @@ export const getFree = () => {
  * @param {boolean} skipPool - True to skip using the pool and create a new canvas.
  * @returns {HTMLCanvasElement} The canvas from the pool or a newly created one.
  */
-export const create = (parent: any, width?: any, height?: any, skipPool = false) => {
+export const create = (parent: any, width?: any, height?: any, skipPool = false): HTMLCanvasElement => {
   if (parent === undefined) {
     console.warn('Created CanvasPool element with undefined parent.');
   }

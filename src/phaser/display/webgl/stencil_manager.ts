@@ -21,7 +21,7 @@ export class WebGLStencilManager {
    * Binds the stencil buffer for rendering.
    * @param {WebGLRenderingContext} gl - The WebGL rendering context.
    */
-  public setContext(gl: WebGLRenderingContext) {
+  public setContext(gl: WebGLRenderingContext): void {
     this.gl = gl;
   }
 
@@ -38,7 +38,7 @@ export class WebGLStencilManager {
    * @param {GraphicsData} webGLData - The WebGL graphics data.
    * @param {object} renderSession - The rendering session.
    */
-  public pushStencil(graphics: Graphics, webGLData: GraphicsData, renderSession: RenderSession) {
+  public pushStencil(graphics: Graphics, webGLData: GraphicsData, renderSession: RenderSession): void {
     const { gl } = renderSession;
     this.bindGraphics(graphics, webGLData, renderSession);
     if (this.stencilStack.length === 0) {
@@ -96,7 +96,7 @@ export class WebGLStencilManager {
    * @param {GraphicsData} webGLData - The WebGL graphics data.
    * @param {object} renderSession - The rendering session.
    */
-  public bindGraphics(graphics: Graphics, webGLData: GraphicsData, renderSession: RenderSession) {
+  public bindGraphics(graphics: Graphics, webGLData: GraphicsData, renderSession: RenderSession): void {
     // if(this._currentGraphics === graphics)return;
     // this._currentGraphics = graphics;
     const { gl } = renderSession;
@@ -149,7 +149,7 @@ export class WebGLStencilManager {
    * @param {GraphicsData} webGLData - The WebGL graphics data.
    * @param {object} renderSession - The rendering session.
    */
-  public popStencil(graphics: Graphics, webGLData: GraphicsData, renderSession: RenderSession) {
+  public popStencil(graphics: Graphics, webGLData: GraphicsData, renderSession: RenderSession): void {
     const { gl } = renderSession;
     this.stencilStack.pop();
     this.count -= 1;

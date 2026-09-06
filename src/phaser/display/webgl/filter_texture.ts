@@ -37,7 +37,7 @@ export class FilterTexture {
   /**
    * Destroys this filter texture and cleans up resources.
    */
-  public clear() {
+  public clear(): void {
     const { gl } = this;
     gl.clearColor(0, 0, 0, 0);
     gl.clear(gl.COLOR_BUFFER_BIT);
@@ -48,7 +48,7 @@ export class FilterTexture {
    * @param {number} width - The new width of the filter texture.
    * @param {number} height - The new height of the filter texture.
    */
-  public resize(width: number, height: number) {
+  public resize(width: number, height: number): void {
     if (this.width === width && this.height === height) {
       return;
     }
@@ -65,7 +65,7 @@ export class FilterTexture {
   /**
    * Updates the resolution of this filter texture.
    */
-  public destroy() {
+  public destroy(): void {
     const { gl } = this;
     gl.deleteFramebuffer(this.frameBuffer);
     gl.deleteTexture(this.texture);

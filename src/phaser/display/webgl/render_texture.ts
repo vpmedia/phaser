@@ -71,28 +71,28 @@ export class RenderTexture extends Texture {
   /**
    * Destroys this render texture and cleans up resources.
    */
-  public resize() {
+  public resize(): void {
     // TODO
   }
 
   /**
    * Updates the size of this render texture.
    */
-  public clear() {
+  public clear(): void {
     // TODO
   }
 
   /**
    * Updates the resolution of this render texture.
    */
-  public renderWebGL() {
+  public renderWebGL(): void {
     // TODO
   }
 
   /**
    * Updates the scale mode of this render texture.
    */
-  public renderCanvas() {
+  public renderCanvas(): void {
     // TODO
   }
 
@@ -100,7 +100,7 @@ export class RenderTexture extends Texture {
    * Gets the HTML image element for this render texture.
    * @returns {HTMLImageElement} The HTML image element.
    */
-  public getImage() {
+  public getImage(): HTMLImageElement {
     const image = new Image();
     image.src = this.getBase64();
     return image;
@@ -110,7 +110,7 @@ export class RenderTexture extends Texture {
    * Gets the base64 string representation of this render texture.
    * @returns {string} The base64 string representation.
    */
-  public getBase64() {
+  public getBase64(): string {
     return this.getCanvas()?.toDataURL() ?? '';
   }
 

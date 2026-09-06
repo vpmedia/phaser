@@ -162,7 +162,7 @@ export class InputHandler {
   /**
    * TBD.
    */
-  public addedToGroup() {
+  public addedToGroup(): void {
     if (this._dragPhase) {
       return;
     }
@@ -174,7 +174,7 @@ export class InputHandler {
   /**
    * TBD.
    */
-  public removedFromGroup() {
+  public removedFromGroup(): void {
     if (this._dragPhase) {
       return;
     }
@@ -189,7 +189,7 @@ export class InputHandler {
   /**
    * TBD.
    */
-  public reset() {
+  public reset(): void {
     this.enabled = false;
     for (let i = 0; i < 10; i += 1) {
       this._pointerData[i] = createPointerData(i);
@@ -214,7 +214,7 @@ export class InputHandler {
   /**
    * TBD.
    */
-  public stop() {
+  public stop(): void {
     if (this.enabled) {
       this.enabled = false;
       this.game.input.interactiveItems.remove(this);
@@ -224,7 +224,7 @@ export class InputHandler {
   /**
    * TBD.
    */
-  public destroy() {
+  public destroy(): void {
     if (this.sprite) {
       if (this._setHandCursor) {
         this.game.canvas.style.cursor = 'default';
@@ -246,7 +246,7 @@ export class InputHandler {
    * @param {boolean} includePixelPerfect - TBD.
    * @returns {boolean} TBD.
    */
-  public validForInput(highestID: number, highestRenderID: number, includePixelPerfect = true) {
+  public validForInput(highestID: number, highestRenderID: number, includePixelPerfect = true): boolean {
     if (
       !this.enabled ||
       this.sprite.scale.x === 0 ||
@@ -270,7 +270,7 @@ export class InputHandler {
    * TBD.
    * @returns {boolean} TBD.
    */
-  public isPixelPerfect() {
+  public isPixelPerfect(): boolean {
     return this.pixelPerfectClick || this.pixelPerfectOver;
   }
 
@@ -279,7 +279,7 @@ export class InputHandler {
    * @param {number} pointerId - TBD.
    * @returns {number} TBD.
    */
-  public pointerX(pointerId = 0) {
+  public pointerX(pointerId = 0): number {
     return this.pointerData(pointerId).x;
   }
 
@@ -288,7 +288,7 @@ export class InputHandler {
    * @param {number} pointerId - TBD.
    * @returns {number} TBD.
    */
-  public pointerY(pointerId = 0) {
+  public pointerY(pointerId = 0): number {
     return this.pointerData(pointerId).y;
   }
 
@@ -297,7 +297,7 @@ export class InputHandler {
    * @param {number} pointerId - TBD.
    * @returns {boolean} TBD.
    */
-  public pointerDown(pointerId = 0) {
+  public pointerDown(pointerId = 0): boolean {
     return this.pointerData(pointerId).isDown;
   }
 
@@ -306,7 +306,7 @@ export class InputHandler {
    * @param {number} pointerId - TBD.
    * @returns {boolean} TBD.
    */
-  public pointerUp(pointerId = 0) {
+  public pointerUp(pointerId = 0): boolean {
     return this.pointerData(pointerId).isUp;
   }
 
@@ -315,7 +315,7 @@ export class InputHandler {
    * @param {number} pointerId - TBD.
    * @returns {number} TBD.
    */
-  public pointerTimeDown(pointerId = 0) {
+  public pointerTimeDown(pointerId = 0): number {
     return this.pointerData(pointerId).timeDown;
   }
 
@@ -324,7 +324,7 @@ export class InputHandler {
    * @param {number} pointerId - TBD.
    * @returns {number} TBD.
    */
-  public pointerTimeUp(pointerId = 0) {
+  public pointerTimeUp(pointerId = 0): number {
     return this.pointerData(pointerId).timeUp;
   }
 
@@ -333,7 +333,7 @@ export class InputHandler {
    * @param {number} pointerId - TBD.
    * @returns {boolean} TBD.
    */
-  public pointerOver(pointerId: number | null = null) {
+  public pointerOver(pointerId: number | null = null): boolean {
     if (!this.enabled) {
       return false;
     }
@@ -353,7 +353,7 @@ export class InputHandler {
    * @param {number} pointerId - TBD.
    * @returns {boolean} TBD.
    */
-  public pointerOut(pointerId: number | null = null) {
+  public pointerOut(pointerId: number | null = null): boolean {
     if (!this.enabled) {
       return false;
     }
@@ -373,7 +373,7 @@ export class InputHandler {
    * @param {number} pointerId - TBD.
    * @returns {number} TBD.
    */
-  public pointerTimeOver(pointerId = 0) {
+  public pointerTimeOver(pointerId = 0): number {
     return this.pointerData(pointerId).timeOver;
   }
 
@@ -382,7 +382,7 @@ export class InputHandler {
    * @param {number} pointerId - TBD.
    * @returns {number} TBD.
    */
-  public pointerTimeOut(pointerId = 0) {
+  public pointerTimeOut(pointerId = 0): number {
     return this.pointerData(pointerId).timeOut;
   }
 
@@ -391,7 +391,7 @@ export class InputHandler {
    * @param {number} pointerId - TBD.
    * @returns {boolean} TBD.
    */
-  public pointerDragged(pointerId = 0) {
+  public pointerDragged(pointerId = 0): boolean {
     return this.pointerData(pointerId).isDragged;
   }
 
@@ -401,7 +401,7 @@ export class InputHandler {
    * @param {boolean} fastTest - TBD.
    * @returns {boolean} TBD.
    */
-  public checkPointerDown(pointer: Pointer, fastTest = false) {
+  public checkPointerDown(pointer: Pointer, fastTest = false): boolean {
     if (
       !pointer.isDown ||
       !this.enabled ||
@@ -430,7 +430,7 @@ export class InputHandler {
    * @param {boolean} fastTest - TBD.
    * @returns {boolean} TBD.
    */
-  public checkPointerOver(pointer: Pointer, fastTest = false) {
+  public checkPointerOver(pointer: Pointer, fastTest = false): boolean {
     if (
       !this.enabled ||
       !this.sprite ||
@@ -459,7 +459,7 @@ export class InputHandler {
    * @param {Pointer} pointer - TBD.
    * @returns {boolean} TBD.
    */
-  public checkPixel(x: number | null, y: number | null, pointer?: any) {
+  public checkPixel(x: number | null, y: number | null, pointer?: any): boolean {
     //  Grab a pixel from our image into the hitCanvas and then test it
     if (this.sprite.texture.baseTexture.source) {
       if (x === null || y === null) {
@@ -508,7 +508,7 @@ export class InputHandler {
    * @param {Pointer} pointer - TBD.
    * @returns {boolean} TBD.
    */
-  public update(pointer: Pointer) {
+  public update(pointer: Pointer): boolean {
     if (this.sprite === null || this.sprite.parent === undefined) {
       // Abort. We've been destroyed.
       return false;
@@ -545,7 +545,7 @@ export class InputHandler {
    * @param {Pointer} pointer - TBD.
    * @param {boolean} silent - TBD.
    */
-  public _pointerOverHandler(pointer: Pointer, silent: boolean) {
+  public _pointerOverHandler(pointer: Pointer, silent: boolean): void {
     if (this.sprite === null) {
       // Abort. We've been destroyed.
       return;
@@ -576,7 +576,7 @@ export class InputHandler {
    * @param {Pointer} pointer - TBD.
    * @param {boolean} silent - TBD.
    */
-  public _pointerOutHandler(pointer: Pointer, silent = false) {
+  public _pointerOutHandler(pointer: Pointer, silent = false): void {
     if (this.sprite === null) {
       // Abort. We've been destroyed.
       return;
@@ -601,7 +601,7 @@ export class InputHandler {
    * TBD.
    * @param {Pointer} pointer - TBD.
    */
-  public _touchedHandler(pointer: Pointer) {
+  public _touchedHandler(pointer: Pointer): void {
     if (this.sprite === null) {
       // Abort. We've been destroyed.
       return;
@@ -653,7 +653,7 @@ export class InputHandler {
    * TBD.
    * @param {Pointer} pointer - TBD.
    */
-  public dragTimeElapsed(pointer: Pointer) {
+  public dragTimeElapsed(pointer: Pointer): void {
     this._dragTimePass = true;
     if (this._pendingDrag && this.sprite) {
       if (this._dragDistancePass) {
@@ -666,7 +666,7 @@ export class InputHandler {
    * TBD.
    * @param {Pointer} pointer - TBD.
    */
-  public _releasedHandler(pointer: Pointer) {
+  public _releasedHandler(pointer: Pointer): void {
     if (this.sprite === null) {
       // Abort. We've been destroyed.
       return;
@@ -716,7 +716,7 @@ export class InputHandler {
    * @param {boolean} fromStart - TBD.
    * @returns {boolean} TBD.
    */
-  public updateDrag(pointer: Pointer, fromStart = false) {
+  public updateDrag(pointer: Pointer, fromStart = false): boolean {
     if (pointer.isUp) {
       this.stopDrag(pointer);
       return false;
@@ -756,7 +756,7 @@ export class InputHandler {
    * @param {number} delay - TBD.
    * @returns {boolean} TBD.
    */
-  public justOver(pointerId = 0, delay = 500) {
+  public justOver(pointerId = 0, delay = 500): boolean {
     return this.pointerData(pointerId).isOver && this.overDuration(pointerId) < delay;
   }
 
@@ -766,7 +766,7 @@ export class InputHandler {
    * @param {number} delay - TBD.
    * @returns {boolean} TBD.
    */
-  public justOut(pointerId = 0, delay = 500) {
+  public justOut(pointerId = 0, delay = 500): boolean {
     return this.pointerData(pointerId).isOut && this.game.time.time - this.pointerData(pointerId).timeOut < delay;
   }
 
@@ -776,7 +776,7 @@ export class InputHandler {
    * @param {number} delay - TBD.
    * @returns {boolean} TBD.
    */
-  public justPressed(pointerId = 0, delay = 500) {
+  public justPressed(pointerId = 0, delay = 500): boolean {
     return this.pointerData(pointerId).isDown && this.downDuration(pointerId) < delay;
   }
 
@@ -786,7 +786,7 @@ export class InputHandler {
    * @param {number} delay - TBD.
    * @returns {boolean} TBD.
    */
-  public justReleased(pointerId = 0, delay = 500) {
+  public justReleased(pointerId = 0, delay = 500): boolean {
     return this.pointerData(pointerId).isUp && this.game.time.time - this.pointerData(pointerId).timeUp < delay;
   }
 
@@ -795,7 +795,7 @@ export class InputHandler {
    * @param {number} pointerId - TBD.
    * @returns {number} TBD.
    */
-  public overDuration(pointerId = 0) {
+  public overDuration(pointerId = 0): number {
     if (this.pointerData(pointerId).isOver) {
       return this.game.time.time - this.pointerData(pointerId).timeOver;
     }
@@ -807,7 +807,7 @@ export class InputHandler {
    * @param {number} pointerId - TBD.
    * @returns {number} TBD.
    */
-  public downDuration(pointerId = 0) {
+  public downDuration(pointerId = 0): number {
     if (this.pointerData(pointerId).isDown) {
       return this.game.time.time - this.pointerData(pointerId).timeDown;
     }
@@ -830,7 +830,7 @@ export class InputHandler {
     alphaThreshold = 255,
     boundsRect: Rectangle | null | undefined = null,
     boundsSprite: DisplayObject | null | undefined = null
-  ) {
+  ): void {
     this._dragPoint = new Point();
     this.draggable = true;
     this.bringToTop = bringToTop;
@@ -849,7 +849,7 @@ export class InputHandler {
   /**
    * TBD.
    */
-  public disableDrag() {
+  public disableDrag(): void {
     if (this._pointerData) {
       for (let i = 0; i < 10; i += 1) {
         this.pointerData(i).isDragged = false;
@@ -865,7 +865,7 @@ export class InputHandler {
    * TBD.
    * @param {Pointer} pointer - TBD.
    */
-  public startDrag(pointer: Pointer) {
+  public startDrag(pointer: Pointer): void {
     const { x } = this.sprite;
     const { y } = this.sprite;
     this.isDragged = true;
@@ -897,7 +897,7 @@ export class InputHandler {
    * @param {number} x - TBD.
    * @returns {number} TBD.
    */
-  public globalToLocalX(x: number) {
+  public globalToLocalX(x: number): number {
     return x;
   }
 
@@ -906,7 +906,7 @@ export class InputHandler {
    * @param {number} y - TBD.
    * @returns {number} TBD.
    */
-  public globalToLocalY(y: number) {
+  public globalToLocalY(y: number): number {
     return y;
   }
 
@@ -914,7 +914,7 @@ export class InputHandler {
    * TBD.
    * @param {Pointer} pointer - TBD.
    */
-  public stopDrag(pointer: Pointer) {
+  public stopDrag(pointer: Pointer): void {
     this.isDragged = false;
     this._draggedPointerID = -1;
     this.pointerData(pointer.id).isDragged = false;
@@ -939,7 +939,7 @@ export class InputHandler {
    * @param {boolean} allowHorizontal - TBD.
    * @param {boolean} allowVertical - TBD.
    */
-  public setDragLock(allowHorizontal = true, allowVertical = true) {
+  public setDragLock(allowHorizontal = true, allowVertical = true): void {
     this.allowHorizontalDrag = allowHorizontal;
     this.allowVerticalDrag = allowVertical;
   }
@@ -953,7 +953,14 @@ export class InputHandler {
    * @param {number} snapOffsetX - TBD.
    * @param {number} snapOffsetY - TBD.
    */
-  public enableSnap(snapX: number, snapY: number, onDrag = true, onRelease = false, snapOffsetX = 0, snapOffsetY = 0) {
+  public enableSnap(
+    snapX: number,
+    snapY: number,
+    onDrag = true,
+    onRelease = false,
+    snapOffsetX = 0,
+    snapOffsetY = 0
+  ): void {
     this.snapX = snapX;
     this.snapY = snapY;
     this.snapOffsetX = snapOffsetX;
@@ -965,7 +972,7 @@ export class InputHandler {
   /**
    * TBD.
    */
-  public disableSnap() {
+  public disableSnap(): void {
     this.snapOnDrag = false;
     this.snapOnRelease = false;
   }
@@ -973,7 +980,7 @@ export class InputHandler {
   /**
    * TBD.
    */
-  public checkBoundsRect() {
+  public checkBoundsRect(): void {
     if (this.sprite.left < this.boundsRect.left) {
       this.sprite.x = this.boundsRect.x + this.sprite.offsetX;
     } else if (this.sprite.right > this.boundsRect.right) {
@@ -989,7 +996,7 @@ export class InputHandler {
   /**
    * TBD.
    */
-  public checkBoundsSprite() {
+  public checkBoundsSprite(): void {
     if (this.sprite.left < this.boundsSprite.left) {
       this.sprite.x = this.boundsSprite.left + this.sprite.offsetX;
     } else if (this.sprite.right > this.boundsSprite.right) {

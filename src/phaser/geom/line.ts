@@ -32,7 +32,7 @@ export class Line {
    * @param {number} y2 - The new y coordinate of the end point.
    * @returns {Line} This line instance for chaining.
    */
-  public setTo(x1: number, y1: number, x2: number, y2: number) {
+  public setTo(x1: number, y1: number, x2: number, y2: number): this {
     this.start.setTo(x1, y1);
     this.end.setTo(x2, y2);
     return this;
@@ -45,7 +45,7 @@ export class Line {
    * @param {boolean} useCenter - Whether to use the center of the sprites (default: false).
    * @returns {Line} This line instance for chaining.
    */
-  public fromSprite(startSprite: any, endSprite: any, useCenter = false) {
+  public fromSprite(startSprite: any, endSprite: any, useCenter = false): this {
     if (useCenter) {
       return this.setTo(startSprite.center.x, startSprite.center.y, endSprite.center.x, endSprite.center.y);
     }
@@ -60,7 +60,7 @@ export class Line {
    * @param {number} length - The length of the line.
    * @returns {Line} This line instance for chaining.
    */
-  public fromAngle(x: number, y: number, angle: number, length: number) {
+  public fromAngle(x: number, y: number, angle: number, length: number): this {
     this.start.setTo(x, y);
     this.end.setTo(x + Math.cos(angle) * length, y + Math.sin(angle) * length);
     return this;
@@ -72,7 +72,7 @@ export class Line {
    * @param {boolean} asDegrees - Whether the angle is provided in degrees (default: false).
    * @returns {Line} This line instance for chaining.
    */
-  public rotate(angle: number, asDegrees = false) {
+  public rotate(angle: number, asDegrees = false): this {
     const cx = (this.start.x + this.end.x) / 2;
     const cy = (this.start.y + this.end.y) / 2;
     this.start.rotate(cx, cy, angle, asDegrees);
@@ -88,7 +88,7 @@ export class Line {
    * @param {boolean} asDegrees - Whether the angle is provided in degrees (default: false).
    * @returns {Line} This line instance for chaining.
    */
-  public rotateAround(x: number, y: number, angle: number, asDegrees = false) {
+  public rotateAround(x: number, y: number, angle: number, asDegrees = false): this {
     this.start.rotate(x, y, angle, asDegrees);
     this.end.rotate(x, y, angle, asDegrees);
     return this;
@@ -101,7 +101,7 @@ export class Line {
    * @param {Point} result - The point to store the intersection in (optional).
    * @returns {Point} The intersection point, or null if no intersection occurs.
    */
-  public intersects(line: Line, asSegment = true, result: Point | null = null) {
+  public intersects(line: Line, asSegment = true, result: Point | null = null): Point | null {
     return intersectsPoints(this.start, this.end, line.start, line.end, asSegment, result);
   }
 
@@ -110,7 +110,7 @@ export class Line {
    * @param {Line} line - The line to reflect off.
    * @returns {number} The angle of reflection in radians.
    */
-  public reflect(line: Line) {
+  public reflect(line: Line): number {
     return reflect(this, line);
   }
 
@@ -119,7 +119,7 @@ export class Line {
    * @param {Point} output - The point to store the result in (optional).
    * @returns {Point} The midpoint of this line.
    */
-  public midPoint(output: Point | null = null) {
+  public midPoint(output: Point | null = null): Point {
     const result = output ?? new Point();
     result.x = (this.start.x + this.end.x) / 2;
     result.y = (this.start.y + this.end.y) / 2;
@@ -131,7 +131,7 @@ export class Line {
    * @param {number} x - The x coordinate to center the line on.
    * @param {number} y - The y coordinate to center the line on.
    */
-  public centerOn(x: number, y: number) {
+  public centerOn(x: number, y: number): void {
     const cx = (this.start.x + this.end.x) / 2;
     const cy = (this.start.y + this.end.y) / 2;
     const tx = x - cx;
@@ -146,7 +146,7 @@ export class Line {
    * @param {number} y - The y coordinate of the point to check.
    * @returns {boolean} True if the point lies on this line, false otherwise.
    */
-  public pointOnLine(x: number, y: number) {
+  public pointOnLine(x: number, y: number): boolean {
     return (x - this.start.x) * (this.end.y - this.start.y) === (this.end.x - this.start.x) * (y - this.start.y);
   }
 
@@ -156,7 +156,7 @@ export class Line {
    * @param {number} y - The y coordinate of the point to check.
    * @returns {boolean} True if the point lies on this line segment, false otherwise.
    */
-  public pointOnSegment(x: number, y: number) {
+  public pointOnSegment(x: number, y: number): boolean {
     const xMin = Math.min(this.start.x, this.end.x);
     const xMax = Math.max(this.start.x, this.end.x);
     const yMin = Math.min(this.start.y, this.end.y);
@@ -169,7 +169,7 @@ export class Line {
    * @param {Point} output - The point to store the result in (optional).
    * @returns {Point} A random point on this line.
    */
-  public random(output: Point | null = null) {
+  public random(output: Point | null = null): Point {
     const result = output ?? new Point();
     const t = Math.random();
     result.x = this.start.x + t * (this.end.x - this.start.x);
@@ -183,7 +183,7 @@ export class Line {
    * @param {number[][]} results - The array to store the results in (optional).
    * @returns {number[][]} An array of coordinate pairs representing points along this line.
    */
-  public coordinatesOnLine(stepRate = 1, results: number[][] = []) {
+  public coordinatesOnLine(stepRate = 1, results: number[][] = []): number[][] {
     let x1 = Math.round(this.start.x);
     let y1 = Math.round(this.start.y);
     const x2 = Math.round(this.end.x);
@@ -217,7 +217,7 @@ export class Line {
    * Creates a clone of this line.
    * @returns {Line} A new line with the same values as this one.
    */
-  public clone() {
+  public clone(): Line {
     return clone(this);
   }
 
@@ -225,7 +225,7 @@ export class Line {
    * Gets the length of this line.
    * @returns {number} The length of this line.
    */
-  public get length() {
+  public get length(): number {
     return Math.sqrt(
       (this.end.x - this.start.x) * (this.end.x - this.start.x) +
         (this.end.y - this.start.y) * (this.end.y - this.start.y)
@@ -236,7 +236,7 @@ export class Line {
    * Gets the angle of this line in radians.
    * @returns {number} The angle of this line in radians.
    */
-  public get angle() {
+  public get angle(): number {
     return Math.atan2(this.end.y - this.start.y, this.end.x - this.start.x);
   }
 
@@ -244,7 +244,7 @@ export class Line {
    * Gets the slope of this line.
    * @returns {number} The slope of this line.
    */
-  public get slope() {
+  public get slope(): number {
     return (this.end.y - this.start.y) / (this.end.x - this.start.x);
   }
 
@@ -252,7 +252,7 @@ export class Line {
    * Gets the perpendicular slope of this line.
    * @returns {number} The perpendicular slope of this line.
    */
-  public get perpSlope() {
+  public get perpSlope(): number {
     return -((this.end.x - this.start.x) / (this.end.y - this.start.y));
   }
 
@@ -260,7 +260,7 @@ export class Line {
    * Gets the x coordinate of the leftmost point on this line.
    * @returns {number} The x coordinate of the leftmost point on this line.
    */
-  public get x() {
+  public get x(): number {
     return Math.min(this.start.x, this.end.x);
   }
 
@@ -268,7 +268,7 @@ export class Line {
    * Gets the y coordinate of the topmost point on this line.
    * @returns {number} The y coordinate of the topmost point on this line.
    */
-  public get y() {
+  public get y(): number {
     return Math.min(this.start.y, this.end.y);
   }
 
@@ -276,7 +276,7 @@ export class Line {
    * Gets the x coordinate of the leftmost point on this line.
    * @returns {number} The x coordinate of the leftmost point on this line.
    */
-  public get left() {
+  public get left(): number {
     return Math.min(this.start.x, this.end.x);
   }
 
@@ -284,7 +284,7 @@ export class Line {
    * Gets the x coordinate of the rightmost point on this line.
    * @returns {number} The x coordinate of the rightmost point on this line.
    */
-  public get right() {
+  public get right(): number {
     return Math.max(this.start.x, this.end.x);
   }
 
@@ -292,7 +292,7 @@ export class Line {
    * Gets the y coordinate of the topmost point on this line.
    * @returns {number} The y coordinate of the topmost point on this line.
    */
-  public get top() {
+  public get top(): number {
     return Math.min(this.start.y, this.end.y);
   }
 
@@ -300,7 +300,7 @@ export class Line {
    * Gets the y coordinate of the bottommost point on this line.
    * @returns {number} The y coordinate of the bottommost point on this line.
    */
-  public get bottom() {
+  public get bottom(): number {
     return Math.max(this.start.y, this.end.y);
   }
 
@@ -308,7 +308,7 @@ export class Line {
    * Gets the width of this line (absolute difference between x coordinates).
    * @returns {number} The width of this line.
    */
-  public get width() {
+  public get width(): number {
     return Math.abs(this.start.x - this.end.x);
   }
 
@@ -316,7 +316,7 @@ export class Line {
    * Gets the height of this line (absolute difference between y coordinates).
    * @returns {number} The height of this line.
    */
-  public get height() {
+  public get height(): number {
     return Math.abs(this.start.y - this.end.y);
   }
 
@@ -324,7 +324,7 @@ export class Line {
    * Gets the normal vector x component of this line (perpendicular to the line).
    * @returns {number} The normal vector x component of this line.
    */
-  public get normalX() {
+  public get normalX(): number {
     return Math.cos(this.angle - 1.5707963267948966);
   }
 
@@ -332,7 +332,7 @@ export class Line {
    * Gets the normal vector y component of this line (perpendicular to the line).
    * @returns {number} The normal vector y component of this line.
    */
-  public get normalY() {
+  public get normalY(): number {
     return Math.sin(this.angle - 1.5707963267948966);
   }
 
@@ -340,7 +340,7 @@ export class Line {
    * Gets the angle of the normal vector of this line in radians.
    * @returns {number} The angle of the normal vector of this line in radians.
    */
-  public get normalAngle() {
+  public get normalAngle(): number {
     return wrap(this.angle - 1.5707963267948966, -Math.PI, Math.PI);
   }
 }

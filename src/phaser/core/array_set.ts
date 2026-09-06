@@ -27,7 +27,7 @@ export class ArraySet {
    * @param {object} item - TBD.
    * @returns {number} TBD.
    */
-  public getIndex(item: any) {
+  public getIndex(item: any): number {
     return this.list.indexOf(item);
   }
 
@@ -53,14 +53,14 @@ export class ArraySet {
    * @param {object} item - TBD.
    * @returns {boolean} TBD.
    */
-  public exists(item: any) {
+  public exists(item: any): boolean {
     return this.list.includes(item);
   }
 
   /**
    * TBD.
    */
-  public reset() {
+  public reset(): void {
     this.list.length = 0;
   }
 
@@ -83,7 +83,7 @@ export class ArraySet {
    * @param {string} key - TBD.
    * @param {object} value - TBD.
    */
-  public setAll(key: string, value: any) {
+  public setAll(key: string, value: any): void {
     let i = this.list.length;
     while (i) {
       i -= 1;
@@ -98,7 +98,7 @@ export class ArraySet {
    * @param {string} key - TBD.
    * @param {...any} args - TBD.
    */
-  public callAll(key: string, ...args: unknown[]) {
+  public callAll(key: string, ...args: unknown[]): void {
     let i = this.list.length;
     while (i) {
       i -= 1;
@@ -112,7 +112,7 @@ export class ArraySet {
    * TBD.
    * @param {boolean} destroy - TBD.
    */
-  public removeAll(destroy = false) {
+  public removeAll(destroy = false): void {
     let i = this.list.length;
     while (i) {
       i -= 1;
@@ -131,7 +131,7 @@ export class ArraySet {
    * TBD.
    * @returns {number} TBD.
    */
-  public get total() {
+  public get total(): number {
     return this.list.length;
   }
 

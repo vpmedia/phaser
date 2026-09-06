@@ -22,7 +22,7 @@ export class CanvasBuffer {
   /**
    * Clears the canvas buffer.
    */
-  public clear() {
+  public clear(): void {
     this.context.setTransform(1, 0, 0, 1, 0, 0);
     this.context.clearRect(0, 0, this.width, this.height);
   }
@@ -32,7 +32,7 @@ export class CanvasBuffer {
    * @param {number} width - The new width of the canvas buffer.
    * @param {number} height - The new height of the canvas buffer.
    */
-  public resize(width: number, height: number) {
+  public resize(width: number, height: number): void {
     this.width = width;
     this.height = height;
     this.canvas.width = width;
@@ -42,7 +42,7 @@ export class CanvasBuffer {
   /**
    * Destroys the canvas buffer and cleans up resources.
    */
-  public destroy() {
+  public destroy(): void {
     try {
       this.context?.reset();
     } catch {

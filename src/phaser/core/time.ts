@@ -66,7 +66,7 @@ export class Time {
   /**
    * Initializes the time manager and starts tracking time.
    */
-  public boot() {
+  public boot(): void {
     this._started = Date.now();
     this.time = Date.now();
     this.events.start();
@@ -78,7 +78,7 @@ export class Time {
    * @param {Timer} timer - The Timer to add.
    * @returns {Timer} The added Timer object.
    */
-  public add(timer: Timer) {
+  public add(timer: Timer): Timer {
     this._timers.push(timer);
     return timer;
   }
@@ -88,7 +88,7 @@ export class Time {
    * @param {boolean} autoDestroy - Whether the timer should be automatically destroyed when it completes.
    * @returns {Timer} The created Timer object.
    */
-  public create(autoDestroy = true) {
+  public create(autoDestroy = true): Timer {
     const timer = new Timer(this.game, autoDestroy);
     this._timers.push(timer);
     return timer;
@@ -97,7 +97,7 @@ export class Time {
   /**
    * Removes all timers from the Time manager.
    */
-  public removeAll() {
+  public removeAll(): void {
     for (const timer of this._timers) {
       timer.destroy();
     }
@@ -108,7 +108,7 @@ export class Time {
   /**
    * Refreshes the time tracking values.
    */
-  public refresh() {
+  public refresh(): void {
     const previousDateNow = this.time;
     // this.time always holds a Date.now value
     this.time = Date.now();
@@ -120,7 +120,7 @@ export class Time {
    * Updates the Time manager with a new timestamp.
    * @param {number} time - The new timestamp to use for updating.
    */
-  public update(time: number) {
+  public update(time: number): void {
     const previousDateNow = this.time;
     // this.time always holds a Date.now value
     this.time = Date.now();
@@ -149,7 +149,7 @@ export class Time {
   /**
    * Updates all timers managed by the Time manager.
    */
-  public updateTimers() {
+  public updateTimers(): void {
     let i = 0;
     let len = this._timers.length;
     while (i < len) {
@@ -166,7 +166,7 @@ export class Time {
   /**
    * Updates the advanced timing values.
    */
-  public updateAdvancedTiming() {
+  public updateAdvancedTiming(): void {
     // count the number of time.update calls
     this._frameCount += 1;
     this._elapsedAccumulator += this.elapsed;
@@ -192,7 +192,7 @@ export class Time {
   /**
    * Handles game pause event.
    */
-  public gamePaused() {
+  public gamePaused(): void {
     this._pauseStarted = Date.now();
     this.events.pause();
     let i = this._timers.length;
@@ -205,7 +205,7 @@ export class Time {
   /**
    * Handles game resume event.
    */
-  public gameResumed() {
+  public gameResumed(): void {
     this.time = Date.now();
     this.pauseDuration = this.time - this._pauseStarted;
     this.events.resume();
@@ -220,7 +220,7 @@ export class Time {
    * Gets the total elapsed time in seconds since the game started.
    * @returns {number} The total elapsed time in seconds.
    */
-  public totalElapsedSeconds() {
+  public totalElapsedSeconds(): number {
     return (this.time - this._started) * 0.001;
   }
 
@@ -229,7 +229,7 @@ export class Time {
    * @param {number} since - The timestamp to calculate elapsed time from.
    * @returns {number} The elapsed time in milliseconds.
    */
-  public elapsedSince(since: number) {
+  public elapsedSince(since: number): number {
     return this.time - since;
   }
 
@@ -238,14 +238,14 @@ export class Time {
    * @param {number} since - The timestamp to calculate elapsed time from.
    * @returns {number} The elapsed time in seconds.
    */
-  public elapsedSecondsSince(since: number) {
+  public elapsedSecondsSince(since: number): number {
     return (this.time - since) * 0.001;
   }
 
   /**
    * Resets the time tracking values.
    */
-  public reset() {
+  public reset(): void {
     this._started = this.time;
     this.removeAll();
   }
@@ -253,7 +253,7 @@ export class Time {
   /**
    * Destroys the Time manager and cleans up resources.
    */
-  public destroy() {
+  public destroy(): void {
     this.reset();
   }
 
@@ -261,7 +261,7 @@ export class Time {
    * Gets the desired frames per second.
    * @returns {number} The desired frames per second.
    */
-  public get desiredFps() {
+  public get desiredFps(): number {
     return this._desiredFps;
   }
 

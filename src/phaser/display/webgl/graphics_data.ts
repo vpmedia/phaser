@@ -30,7 +30,7 @@ export class GraphicsData {
   /**
    * Destroys this graphics data and cleans up resources.
    */
-  public reset() {
+  public reset(): void {
     this.points = [];
     this.indices = [];
     this.glPoints = null;
@@ -40,7 +40,7 @@ export class GraphicsData {
   /**
    * Updates the graphics data for WebGL rendering.
    */
-  public upload() {
+  public upload(): void {
     const { gl } = this;
     // this.lastIndex = graphics.graphicsData.length;
     this.glPoints = new Float32Array(this.points);

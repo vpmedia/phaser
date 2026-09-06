@@ -9,7 +9,7 @@ import { RoundedRectangle } from '../../geom/rounded_rectangle.js';
  * Renders a graphics object to canvas.
  * @param {Graphics} graphics - The graphics object to render.
  */
-export const updateGraphicsTint = (graphics: Graphics) => {
+export const updateGraphicsTint = (graphics: Graphics): void => {
   if (graphics.tint === 0xffffff) {
     return;
   }
@@ -35,7 +35,7 @@ export const updateGraphicsTint = (graphics: Graphics) => {
  * @param {Graphics} graphics - The graphics object to render.
  * @param {object} context - The canvas rendering context.
  */
-export const renderGraphics = (graphics: Graphics, context: CanvasRenderingContext2D) => {
+export const renderGraphics = (graphics: Graphics, context: CanvasRenderingContext2D): void => {
   const { worldAlpha } = graphics;
   if (graphics.dirty) {
     updateGraphicsTint(graphics);
@@ -163,7 +163,7 @@ export const renderGraphics = (graphics: Graphics, context: CanvasRenderingConte
  * @param {Graphics} graphics - The graphics object to render.
  * @param {object} context - The canvas rendering context.
  */
-export const renderGraphicsMask = (graphics: Graphics, context: CanvasRenderingContext2D) => {
+export const renderGraphicsMask = (graphics: Graphics, context: CanvasRenderingContext2D): void => {
   const len = graphics.graphicsData.length;
   if (len === 0) {
     return;

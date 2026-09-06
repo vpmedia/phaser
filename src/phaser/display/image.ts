@@ -88,7 +88,7 @@ export class Image extends DisplayObject {
   /**
    * Destroys this image and cleans up resources.
    */
-  public override destroy() {
+  public override destroy(): void {
     this.game = null!;
     this.key = null;
     this.data = null;
@@ -112,7 +112,7 @@ export class Image extends DisplayObject {
   /**
    * Called before the update cycle for this image.
    */
-  public override preUpdate() {
+  public override preUpdate(): void {
     if (this.pendingDestroy) {
       this.destroy();
       return;
@@ -141,7 +141,11 @@ export class Image extends DisplayObject {
    * @param {string | number | null | undefined} frame - The frame identifier (name or index) to use.
    * @param {boolean} stopAnimation - Whether to stop the animation when changing textures.
    */
-  public loadTexture(key: string | number | Texture | null, frame: string | number | null = 0, stopAnimation = true) {
+  public loadTexture(
+    key: string | number | Texture | null,
+    frame: string | number | null = 0,
+    stopAnimation = true
+  ): void {
     if (key === PENDING_ATLAS) {
       key = frame ?? 0;
       frame = 0;
@@ -183,7 +187,7 @@ export class Image extends DisplayObject {
    * Sets the current frame of this image.
    * @param {Frame} frame - The frame to set.
    */
-  public setFrame(frame: Frame) {
+  public setFrame(frame: Frame): void {
     this._frame = frame;
     this.texture.frame.x = frame.x;
     this.texture.frame.y = frame.y;
@@ -230,7 +234,7 @@ export class Image extends DisplayObject {
    * @param {number} width - The new width of the frame.
    * @param {number} height - The new height of the frame.
    */
-  public resizeFrame(_parent: DisplayObject, width: number, height: number) {
+  public resizeFrame(_parent: DisplayObject, width: number, height: number): void {
     this.texture.frame.resize(width, height);
     this.texture.setFrame(this.texture.frame);
   }
@@ -238,7 +242,7 @@ export class Image extends DisplayObject {
   /**
    * Resets the frame of this image to its original frame.
    */
-  public resetFrame() {
+  public resetFrame(): void {
     if (this._frame) {
       this.setFrame(this._frame);
     }
@@ -248,7 +252,7 @@ export class Image extends DisplayObject {
    * Gets the current frame index of this image.
    * @returns {number} The current frame index.
    */
-  public get frame() {
+  public get frame(): number {
     return this.animations.frame;
   }
 
@@ -264,7 +268,7 @@ export class Image extends DisplayObject {
    * Gets the current frame name of this image.
    * @returns {string} The current frame name.
    */
-  public get frameName() {
+  public get frameName(): string {
     return this.animations.frameName;
   }
 
@@ -283,7 +287,7 @@ export class Image extends DisplayObject {
    * @param {Rectangle} rect - The rectangle to crop to.
    * @param {boolean} copy - Whether to copy the rect or use it directly.
    */
-  public crop(rect: Rectangle, copy = false) {
+  public crop(rect: Rectangle, copy = false): void {
     if (rect) {
       if (copy && this.cropRect !== null) {
         this.cropRect.setTo(rect.x, rect.y, rect.width, rect.height);
@@ -303,7 +307,7 @@ export class Image extends DisplayObject {
   /**
    * Updates the crop rectangle of this image.
    */
-  public updateCrop() {
+  public updateCrop(): void {
     if (!this.cropRect) {
       return;
     }
@@ -336,7 +340,7 @@ export class Image extends DisplayObject {
    * Gets the width of this image.
    * @returns {number} The width in pixels.
    */
-  public override get width() {
+  public override get width(): number {
     return this.scale.x * this.texture.frame.width;
   }
 
@@ -353,7 +357,7 @@ export class Image extends DisplayObject {
    * Gets the height of this image.
    * @returns {number} The height in pixels.
    */
-  public override get height() {
+  public override get height(): number {
     return this.scale.y * this.texture.frame.height;
   }
 
@@ -369,7 +373,7 @@ export class Image extends DisplayObject {
   /**
    * Called when the texture of this image is updated.
    */
-  public onTextureUpdate() {
+  public onTextureUpdate(): void {
     // So if _width is 0 then width was not set..
     if (this._width) {
       this.scale.x = this._width / this.texture.frame.width;
@@ -384,7 +388,7 @@ export class Image extends DisplayObject {
    * @param {Texture} texture - The new texture to set.
    * @param {boolean} destroyBase - Whether to destroy the base texture.
    */
-  public setTexture(texture: Texture, destroyBase = false) {
+  public setTexture(texture: Texture, destroyBase = false): void {
     setTexture(this, texture, destroyBase);
   }
 
@@ -393,7 +397,7 @@ export class Image extends DisplayObject {
    * @param {Matrix} matrix - The transformation matrix to use.
    * @returns {Rectangle} The bounds rectangle of this image.
    */
-  public override getBounds(matrix: Matrix | null = null) {
+  public override getBounds(matrix: Matrix | null = null): Rectangle {
     return getBounds(this, matrix);
   }
 
@@ -401,7 +405,7 @@ export class Image extends DisplayObject {
    * Gets the local bounds of this image.
    * @returns {Rectangle} The local bounds rectangle of this image.
    */
-  public override getLocalBounds() {
+  public override getLocalBounds(): Rectangle {
     return getLocalBounds(this);
   }
 
@@ -410,7 +414,7 @@ export class Image extends DisplayObject {
    * @param {object} renderSession - The WebGL rendering session.
    * @param {Matrix} matrix - The transformation matrix to use.
    */
-  public override renderWebGL(renderSession: RenderSession, matrix: Matrix | null = null) {
+  public override renderWebGL(renderSession: RenderSession, matrix: Matrix | null = null): void {
     renderWebGL(this, renderSession, matrix);
   }
 
@@ -419,7 +423,7 @@ export class Image extends DisplayObject {
    * @param {object} renderSession - The Canvas rendering session.
    * @param {Matrix} matrix - The transformation matrix to use.
    */
-  public override renderCanvas(renderSession: RenderSession, matrix: Matrix | null = null) {
+  public override renderCanvas(renderSession: RenderSession, matrix: Matrix | null = null): void {
     renderCanvas(this, renderSession, matrix);
   }
 }

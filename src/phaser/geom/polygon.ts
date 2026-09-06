@@ -34,7 +34,7 @@ export class Polygon {
    * @param {number[]} output - The array to store the result in (optional).
    * @returns {number[]} An array of numbers representing the polygon's points.
    */
-  public toNumberArray(output: number[] = []) {
+  public toNumberArray(output: number[] = []): number[] {
     for (let i = 0; i < this._points.length; i += 1) {
       if (typeof this._points[i] === 'number') {
         output.push(this._points[i]);
@@ -52,7 +52,7 @@ export class Polygon {
    * Flattens the polygon's point array to a simple numeric array.
    * @returns {Polygon} This polygon instance for chaining.
    */
-  public flatten() {
+  public flatten(): this {
     this._points = this.toNumberArray();
     this.flattened = true;
     return this;
@@ -62,7 +62,7 @@ export class Polygon {
    * Creates a clone of this polygon.
    * @returns {Polygon} A new polygon with the same values as this one.
    */
-  public clone() {
+  public clone(): Polygon {
     return clone(this);
   }
 
@@ -72,7 +72,7 @@ export class Polygon {
    * @param {number} y - The y coordinate of the point to check.
    * @returns {boolean} True if the point is contained within this polygon, false otherwise.
    */
-  public contains(x: number, y: number) {
+  public contains(x: number, y: number): boolean {
     //  Adapted from http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html by Jonas Raoni Soares Silva
     let inside = false;
     if (this.flattened) {
@@ -104,7 +104,7 @@ export class Polygon {
    * @param {object[]} points - The array of points to define the polygon.
    * @returns {Polygon} This polygon instance for chaining.
    */
-  public setTo(points: any[]) {
+  public setTo(points: any[]): this {
     this.area = 0;
     this._points = [];
     if (points) {
@@ -143,7 +143,7 @@ export class Polygon {
    * @param {number} y0 - The y coordinate of the lowest boundary (internal use).
    * @returns {number} The area of this polygon.
    */
-  public calculateArea(y0: number) {
+  public calculateArea(y0: number): number {
     let p1;
     let p2;
     let avgHeight;

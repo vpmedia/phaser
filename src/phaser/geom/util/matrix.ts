@@ -7,7 +7,7 @@ import { getRegistry } from '../../core/registry.js';
  * @param {Matrix} output - Optional matrix to store the result in.
  * @returns {Matrix} The cloned matrix.
  */
-export const clone = (input: Matrix, output: Matrix | null = null) => {
+export const clone = (input: Matrix, output: Matrix | null = null): Matrix => {
   const result = output ?? new Matrix();
   result.a = input.a;
   result.b = input.b;
@@ -22,7 +22,7 @@ export const clone = (input: Matrix, output: Matrix | null = null) => {
  * Creates a new identity matrix.
  * @returns {Matrix} A new identity matrix.
  */
-export const getIdentityMatrix = () => {
+export const getIdentityMatrix = (): Matrix => {
   getRegistry();
   globalThis.PhaserRegistry.IDENTITY_MATRIX ??= new Matrix();
   return globalThis.PhaserRegistry.IDENTITY_MATRIX;
@@ -32,7 +32,7 @@ export const getIdentityMatrix = () => {
  * Creates a new matrix with the specified values.
  * @returns {Matrix} A new matrix.
  */
-export const getTempMatrix = () => {
+export const getTempMatrix = (): Matrix => {
   getRegistry();
   globalThis.PhaserRegistry.TEMP_MATRIX ??= new Matrix();
   return globalThis.PhaserRegistry.TEMP_MATRIX;

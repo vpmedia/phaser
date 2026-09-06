@@ -14,7 +14,7 @@ export class World extends Group {
    * Initialize the world.
    * This method is called when the game boots and sets up the world.
    */
-  public boot() {
+  public boot(): void {
     this.game.stage.addChild(this);
   }
 }

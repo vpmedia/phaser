@@ -9,7 +9,7 @@ export class Scene {
    * Initialize the scene.
    * This method is called before preload() and create().
    */
-  public init() {
+  public init(): void {
     // inherit
   }
 
@@ -17,7 +17,7 @@ export class Scene {
    * Load assets for the scene.
    * This method is called after init() and before create().
    */
-  public preload() {
+  public preload(): void {
     // inherit
   }
 
@@ -25,7 +25,7 @@ export class Scene {
    * Create the scene.
    * This method is called after preload() and is where you create your game objects.
    */
-  public create() {
+  public create(): void {
     // inherit
   }
 
@@ -33,7 +33,7 @@ export class Scene {
    * Update the scene.
    * This method is called every frame while the scene is active.
    */
-  public update() {
+  public update(): void {
     // inherit
   }
 
@@ -42,7 +42,7 @@ export class Scene {
    * @param {number} _width - The new width of the scene.
    * @param {number} _height - The new height of the scene.
    */
-  public resize(_width: number, _height: number) {
+  public resize(_width: number, _height: number): void {
     // inherit
   }
 
@@ -50,7 +50,7 @@ export class Scene {
    * Update the scene while paused.
    * This method is called every frame while the scene is paused.
    */
-  public pauseUpdate() {
+  public pauseUpdate(): void {
     // inherit
   }
 
@@ -58,7 +58,7 @@ export class Scene {
    * Shutdown the scene.
    * This method is called when the scene is about to be destroyed.
    */
-  public shutdown() {
+  public shutdown(): void {
     // inherit
   }
 }

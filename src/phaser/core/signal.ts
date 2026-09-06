@@ -19,7 +19,7 @@ export class Signal {
    * @param {string} fnName - The name of the function this validation is for.
    * @throws {Error} If the listener is not a function.
    */
-  public validateListener(listener: Function, fnName: string) {
+  public validateListener(listener: Function, fnName: string): void {
     if (typeof listener !== 'function') {
       throw new TypeError(
         'Signal: listener is a required param of {fn}() and should be a Function.'.replace('{fn}', fnName)
@@ -43,7 +43,7 @@ export class Signal {
     listenerContext: unknown | null = null,
     priority = 0,
     args: any = null
-  ) {
+  ): SignalBinding {
     const prevIndex = this._indexOfListener(listener, listenerContext);
     let binding;
     const existing = prevIndex !== -1 && this._bindings ? this._bindings[prevIndex] : undefined;
@@ -70,7 +70,7 @@ export class Signal {
    * Add a binding to the list of listeners.
    * @param {SignalBinding} binding - The binding to add.
    */
-  public _addBinding(binding: SignalBinding) {
+  public _addBinding(binding: SignalBinding): void {
     this._bindings ??= [];
     //  Simplified insertion sort
     let n = this._bindings.length;
@@ -86,7 +86,7 @@ export class Signal {
    * @param {object} context - The context of the listener.
    * @returns {number} The index of the listener in the bindings array, or -1 if not found.
    */
-  public _indexOfListener(listener: Function, context: unknown = null) {
+  public _indexOfListener(listener: Function, context: unknown = null): number {
     if (!this._bindings) {
       return -1;
     }
@@ -108,7 +108,7 @@ export class Signal {
    * @param {object} context - The context of the listener.
    * @returns {boolean} True if the listener is registered, false otherwise.
    */
-  public has(listener: Function, context: unknown = null) {
+  public has(listener: Function, context: unknown = null): boolean {
     return this._indexOfListener(listener, context) !== -1;
   }
 
@@ -120,7 +120,12 @@ export class Signal {
    * @param {...any} args - Additional arguments to pass to the listener.
    * @returns {SignalBinding} The binding for this listener.
    */
-  public add(listener: Function, listenerContext: unknown | null = null, priority = 0, ...args: unknown[]) {
+  public add(
+    listener: Function,
+    listenerContext: unknown | null = null,
+    priority = 0,
+    ...args: unknown[]
+  ): SignalBinding {
     this.validateListener(listener, 'add');
     return this._registerListener(listener, false, listenerContext, priority, args);
   }
@@ -133,7 +138,12 @@ export class Signal {
    * @param {...any} args - Additional arguments to pass to the listener.
    * @returns {SignalBinding} The binding for this listener.
    */
-  public addOnce(listener: Function, listenerContext: unknown | null = null, priority = 0, ...args: unknown[]) {
+  public addOnce(
+    listener: Function,
+    listenerContext: unknown | null = null,
+    priority = 0,
+    ...args: unknown[]
+  ): SignalBinding {
     this.validateListener(listener, 'addOnce');
     return this._registerListener(listener, true, listenerContext, priority, args);
   }
@@ -144,7 +154,7 @@ export class Signal {
    * @param {object} context - The context of the listener.
    * @returns {Function} The removed listener function.
    */
-  public remove(listener: Function, context: unknown = null) {
+  public remove(listener: Function, context: unknown = null): Function {
     this.validateListener(listener, 'remove');
     const i = this._indexOfListener(listener, context);
     if (i !== -1 && this._bindings) {
@@ -159,7 +169,7 @@ export class Signal {
    * Remove all listeners from the signal, or only those in a specific context.
    * @param {object} context - The context to filter listeners by, or null to remove all.
    */
-  public removeAll(context: unknown = null) {
+  public removeAll(context: unknown = null): void {
     if (!this._bindings) {
       return;
     }
@@ -184,7 +194,7 @@ export class Signal {
    * Get the number of listeners registered with the signal.
    * @returns {number} The number of registered listeners.
    */
-  public getNumListeners() {
+  public getNumListeners(): number {
     return this._bindings ? this._bindings.length : 0;
   }
 
@@ -192,7 +202,7 @@ export class Signal {
    * Stop the signal from propagating to other listeners.
    * This method prevents any remaining listeners from being called.
    */
-  public halt() {
+  public halt(): void {
     this._shouldPropagate = false;
   }
 
@@ -200,7 +210,7 @@ export class Signal {
    * Dispatch the signal to all registered listeners.
    * @param {...any} args - Arguments to pass to the listeners.
    */
-  public dispatch(...args: unknown[]) {
+  public dispatch(...args: unknown[]): void {
     if (!this.active || !this._bindings) {
       return;
     }
@@ -228,7 +238,7 @@ export class Signal {
    * Clear any previously memorized arguments.
    * This removes the stored arguments from a previous dispatch.
    */
-  public forget() {
+  public forget(): void {
     if (this._prevParams) {
       this._prevParams = null;
     }
@@ -238,7 +248,7 @@ export class Signal {
    * Dispose of the signal and clean up all resources.
    * This method removes all listeners and clears internal state.
    */
-  public dispose() {
+  public dispose(): void {
     this.removeAll();
     this.forget();
     this._bindings = null;
@@ -248,7 +258,7 @@ export class Signal {
    * Get a string representation of the signal.
    * @returns {string} A string representation of the signal.
    */
-  public toString() {
+  public toString(): string {
     return `[Signal active:${this.active} numListeners:${this.getNumListeners()}]`;
   }
 
@@ -258,7 +268,7 @@ export class Signal {
    */
   public get boundDispatch() {
     const _this = this;
-    this._boundDispatch ??= (...rest: unknown[]) => {
+    this._boundDispatch ??= (...rest: unknown[]): void => {
       _this.dispatch(...rest);
     };
     return this._boundDispatch;
@@ -268,9 +278,9 @@ export class Signal {
    * Promisify the Signal.
    * @returns {Promise<any>} The resolved result.
    */
-  public toPromise() {
-    return new Promise((resolve) => {
-      this.addOnce((...args: unknown[]) => {
+  public toPromise(): Promise<unknown> {
+    return new Promise((resolve): void => {
+      this.addOnce((...args: unknown[]): void => {
         resolve(args.length <= 1 ? args[0] : args);
       }, this);
     });

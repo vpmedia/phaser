@@ -6,7 +6,7 @@ import type { RenderSession } from '../render_session.js';
  * @param {object} maskData - The mask data to apply.
  * @param {object} renderSession - The rendering session.
  */
-export const pushMask = (maskData: any, renderSession: RenderSession) => {
+export const pushMask = (maskData: any, renderSession: RenderSession): void => {
   const { gl } = renderSession;
   if (maskData.dirty) {
     updateGraphics(maskData, gl);
@@ -26,7 +26,7 @@ export const pushMask = (maskData: any, renderSession: RenderSession) => {
  * @param {object} maskData - The mask data to apply.
  * @param {object} renderSession - The rendering session.
  */
-export const popMask = (maskData: any, renderSession: RenderSession) => {
+export const popMask = (maskData: any, renderSession: RenderSession): void => {
   const { gl } = renderSession;
   if (
     maskData._webGL[gl.id] === undefined ||

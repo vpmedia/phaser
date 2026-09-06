@@ -85,7 +85,7 @@ export class Button extends Image {
   /**
    * Destroys this button and cleans up resources.
    */
-  public override destroy() {
+  public override destroy(): void {
     this._onOverFrame = null;
     this._onOutFrame = null;
     this._onDownFrame = null;
@@ -113,12 +113,12 @@ export class Button extends Image {
    * @param {boolean} isEnabled - Whether the button should be enabled (true) or disabled (false).
    * @param {boolean} isImmediate - Whether to change the state immediately or with a delay (default: false).
    */
-  public setEnabled(isEnabled: boolean, isImmediate = false) {
+  public setEnabled(isEnabled: boolean, isImmediate = false): void {
     this.input.enabled = isEnabled;
     if (isImmediate) {
       this.changeStateFrame(isEnabled ? STATE_UP : STATE_DISABLED);
     } else {
-      setTimeout(() => {
+      setTimeout((): void => {
         this.changeStateFrame(isEnabled ? STATE_UP : STATE_DISABLED);
       }, 1);
     }
@@ -127,14 +127,14 @@ export class Button extends Image {
   /**
    * Clears all the frame settings for this button.
    */
-  public clearFrames() {
+  public clearFrames(): void {
     this.setFrames(null, null, null, null, null);
   }
 
   /**
    * Called when this button is removed from the world.
    */
-  public removedFromWorld() {
+  public removedFromWorld(): void {
     this.inputEnabled = false;
   }
 
@@ -144,7 +144,7 @@ export class Button extends Image {
    * @param {string} frame - The frame identifier to set for this state.
    * @param {boolean} switchImmediately - Whether to switch to the new frame immediately (default: false).
    */
-  public setStateFrame(state: string, frame: string | null, switchImmediately = false) {
+  public setStateFrame(state: string, frame: string | null, switchImmediately = false): void {
     const frameKey: `_on${string}Frame` = `_on${state}Frame`;
     if (frame) {
       this[frameKey] = frame;
@@ -161,7 +161,7 @@ export class Button extends Image {
    * @param {string} newState - The new state to change to (Over, Out, Down, Up, Disabled).
    * @returns {boolean} True if the frame was changed, false otherwise.
    */
-  public changeStateFrame(newState: string) {
+  public changeStateFrame(newState: string): boolean {
     if (this.freezeFrames) {
       return false;
     }
@@ -192,7 +192,7 @@ export class Button extends Image {
     downFrame: string | null,
     upFrame: string | null,
     disabledFrame: string | null = null
-  ) {
+  ): void {
     this.setStateFrame(STATE_OVER, overFrame, this.input.pointerOver());
     this.setStateFrame(STATE_OUT, outFrame, !this.input.pointerOver());
     this.setStateFrame(STATE_DOWN, downFrame, this.input.pointerDown());
@@ -207,7 +207,7 @@ export class Button extends Image {
    * @param {object} _sprite - The sprite that triggered the event.
    * @param {object} pointer - The pointer that triggered the event.
    */
-  public onInputOverHandler(_sprite: any, pointer: any) {
+  public onInputOverHandler(_sprite: any, pointer: any): void {
     if (pointer.justReleased() && (this.justReleasedPreventsOver & pointer.pointerMode) === pointer.pointerMode) {
       //  If the Pointer was only just released then we don't fire an over event
       return;
@@ -226,7 +226,7 @@ export class Button extends Image {
    * @param {object} _sprite - The sprite that triggered the event.
    * @param {object} pointer - The pointer that triggered the event.
    */
-  public onInputOutHandler(_sprite: any, pointer: any) {
+  public onInputOutHandler(_sprite: any, pointer: any): void {
     this.changeStateFrame(STATE_OUT);
     if (this.onInputOut) {
       this.onInputOut.dispatch(this, pointer);
@@ -238,7 +238,7 @@ export class Button extends Image {
    * @param {object} _sprite - The sprite that triggered the event.
    * @param {object} pointer - The pointer that triggered the event.
    */
-  public onInputDownHandler(_sprite: any, pointer: any) {
+  public onInputDownHandler(_sprite: any, pointer: any): void {
     this.changeStateFrame(STATE_DOWN);
     if (this.onInputDown) {
       this.onInputDown.dispatch(this, pointer);
@@ -251,7 +251,7 @@ export class Button extends Image {
    * @param {object} pointer - The pointer that triggered the event.
    * @param {boolean} isOver - Whether the pointer is currently over the button (default: true).
    */
-  public onInputUpHandler(_sprite: any, pointer: any, isOver: boolean) {
+  public onInputUpHandler(_sprite: any, pointer: any, isOver: boolean): void {
     if (this.onInputUp) {
       this.onInputUp.dispatch(this, pointer, isOver);
     }
@@ -277,7 +277,7 @@ export class Button extends Image {
    * Gets whether input is currently enabled for this button.
    * @returns {boolean} True if input is enabled, false otherwise.
    */
-  public get inputEnabled() {
+  public get inputEnabled(): boolean {
     return this.input && this.input.enabled;
   }
 

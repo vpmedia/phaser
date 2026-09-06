@@ -35,7 +35,7 @@ export class AnimationManager {
   /**
    * Destroys the AnimationManager and cleans up resources.
    */
-  public destroy() {
+  public destroy(): void {
     for (const anim of Object.values(this._anims)) {
       anim.destroy();
     }
@@ -53,7 +53,7 @@ export class AnimationManager {
    * @param {string|number} frame - The frame index or name to set as current.
    * @returns {boolean} True if the frame data was loaded successfully, false otherwise.
    */
-  public loadFrameData(frameData: FrameData, frame: string | number) {
+  public loadFrameData(frameData: FrameData, frame: string | number): boolean {
     if (!frameData) {
       return false;
     }
@@ -81,7 +81,7 @@ export class AnimationManager {
    * @param {string|number} frame - The frame index or name to set as current.
    * @returns {boolean} True if the frame data was copied successfully, false otherwise.
    */
-  public copyFrameData(frameData: FrameData, frame: string | number) {
+  public copyFrameData(frameData: FrameData, frame: string | number): boolean {
     this._frameData = frameData.clone();
     if (this.isLoaded) {
       // We need to update the frameData that the animations are using
@@ -115,7 +115,7 @@ export class AnimationManager {
     frameRate = 60,
     loop = false,
     useNumericIndex?: boolean
-  ) {
+  ): Animation {
     const frames = frameList ?? [];
     //  If they didn't set the useNumericIndex then let's at least try and guess it
     if (useNumericIndex === undefined) {
@@ -149,7 +149,7 @@ export class AnimationManager {
    * @param {boolean} useNumericIndex - Whether to treat frameList as numeric indices.
    * @returns {boolean} True if all frames are valid, false otherwise.
    */
-  public validateFrames(frames: string[] | number[], useNumericIndex = false) {
+  public validateFrames(frames: string[] | number[], useNumericIndex = false): boolean {
     for (let i = 0; i < frames.length; i += 1) {
       if (useNumericIndex) {
         if (frames[i]! > this._frameData.total) {
@@ -194,7 +194,7 @@ export class AnimationManager {
    * @param {string} name - The name of the animation to stop, or null to stop the current animation.
    * @param {boolean} resetFrame - Whether to reset the frame to the first frame of the animation.
    */
-  public stop(name: string | null = null, resetFrame = false) {
+  public stop(name: string | null = null, resetFrame = false): void {
     if (this.currentAnim && (typeof name !== 'string' || name === this.currentAnim.name)) {
       this.currentAnim.stop(resetFrame);
     }
@@ -204,7 +204,7 @@ export class AnimationManager {
    * Updates the animation manager state.
    * @returns {boolean} True if an animation was updated, false otherwise.
    */
-  public update() {
+  public update(): boolean {
     if (this.updateIfVisible && !this.sprite.visible) {
       return false;
     }
@@ -219,7 +219,7 @@ export class AnimationManager {
    * Advances the current animation by a specified number of frames.
    * @param {number} quantity - The number of frames to advance by.
    */
-  public next(quantity: number) {
+  public next(quantity: number): void {
     if (this.currentAnim) {
       this.currentAnim.next(quantity);
       this.currentFrame = this.currentAnim.currentFrame;
@@ -230,7 +230,7 @@ export class AnimationManager {
    * Moves the current animation back by a specified number of frames.
    * @param {number} quantity - The number of frames to move back by.
    */
-  public previous(quantity: number) {
+  public previous(quantity: number): void {
     if (this.currentAnim) {
       this.currentAnim.previous(quantity);
       this.currentFrame = this.currentAnim.currentFrame;
@@ -242,7 +242,7 @@ export class AnimationManager {
    * @param {string} name - The name of the animation to retrieve.
    * @returns {Animation} The Animation object, or null if not found.
    */
-  public getAnimation(name: string) {
+  public getAnimation(name: string): Animation | null {
     if (name && this._anims[name]) {
       return this._anims[name];
     }
@@ -252,7 +252,7 @@ export class AnimationManager {
   /**
    * Refreshes the current frame texture (not implemented).
    */
-  public refreshFrame() {
+  public refreshFrame(): void {
     // TODO
     this.game.logger.warn('animation_manager.refreshFrame() is not implemented');
     // this.sprite.setTexture(PIXI.TextureCache[this.currentFrame.uuid]);

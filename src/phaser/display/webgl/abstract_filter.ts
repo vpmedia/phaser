@@ -23,7 +23,7 @@ export class AbstractFilter {
   /**
    * Initializes the filter.
    */
-  public syncUniforms() {
+  public syncUniforms(): void {
     for (let i = 0, j = this.shaders.length; i < j; i += 1) {
       this.shaders[i].dirty = true;
     }

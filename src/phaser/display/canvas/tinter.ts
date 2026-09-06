@@ -24,7 +24,7 @@ export const getTintedTexture = (sprite: Image, color: number): HTMLCanvasElemen
  * @param {HTMLCanvasElement} canvas - The canvas to render to.
  * @throws {Error} If the operation fails.
  */
-export const tintWithMultiply = (texture: any, color: any, canvas: HTMLCanvasElement) => {
+export const tintWithMultiply = (texture: any, color: any, canvas: HTMLCanvasElement): void => {
   const context = canvas.getContext('2d', { willReadFrequently: false });
   if (!context) {
     throw new Error(ENGINE_ERROR_CREATING_CANVAS_2D_CONTEXT);
@@ -50,7 +50,7 @@ export const tintWithMultiply = (texture: any, color: any, canvas: HTMLCanvasEle
  * @param {HTMLCanvasElement} canvas - The canvas to render to.
  * @throws {Error} If the operation fails.
  */
-export const tintWithPerPixel = (texture: any, color: any, canvas: HTMLCanvasElement) => {
+export const tintWithPerPixel = (texture: any, color: any, canvas: HTMLCanvasElement): void => {
   const context = canvas.getContext('2d', { willReadFrequently: false });
   if (!context) {
     throw new Error(ENGINE_ERROR_CREATING_CANVAS_2D_CONTEXT);
@@ -86,7 +86,7 @@ export const tintWithPerPixel = (texture: any, color: any, canvas: HTMLCanvasEle
  * @returns {boolean} True if the tinter can handle the texture, false otherwise.
  * @throws {Error} If the operation fails.
  */
-export const checkInverseAlpha = () => {
+export const checkInverseAlpha = (): boolean => {
   // Check for DOM
   if (document === undefined) {
     throw new Error(ENGINE_ERROR_GETTING_DOCUMENT);
@@ -128,7 +128,7 @@ export const checkInverseAlpha = () => {
  * @returns {boolean} True if the tinter can handle the texture, false otherwise.
  * @throws {Error} If the operation fails.
  */
-export const canUseNewCanvasBlendModes = () => {
+export const canUseNewCanvasBlendModes = (): boolean => {
   // Check for DOM
   if (document === undefined) {
     throw new Error(ENGINE_ERROR_GETTING_DOCUMENT);
@@ -169,7 +169,7 @@ export const canUseNewCanvasBlendModes = () => {
  * Creates a new Tinter instance.
  * @param {Game} game - The game instance.
  */
-export const detectCapabilities = (game: Game) => {
+export const detectCapabilities = (game: Game): void => {
   getRegistry();
   try {
     globalThis.PhaserRegistry.CAN_CANVAS_USE_MULTIPLY = canUseNewCanvasBlendModes();

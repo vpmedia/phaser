@@ -122,7 +122,7 @@ export class Sound {
    * Callback when a sound has been unlocked.
    * @param {string} key - The key of the sound that was unlocked.
    */
-  public soundHasUnlocked(key: string) {
+  public soundHasUnlocked(key: string): void {
     if (key === this.key) {
       this._sound = this.game.cache.getSoundData(this.key);
       this.totalDuration = (this._sound as any).duration;
@@ -137,7 +137,7 @@ export class Sound {
    * @param {number} volume - The volume level (0.0 to 1.0) of the marker.
    * @param {boolean} loop - Whether the marker should loop.
    */
-  public addMarker(name: string, start: number, duration = 1, volume = 1, loop = false) {
+  public addMarker(name: string, start: number, duration = 1, volume = 1, loop = false): void {
     this.markers[name] = {
       name,
       start,
@@ -153,14 +153,14 @@ export class Sound {
    * Removes a marker from the sound.
    * @param {string} name - The name of the marker to remove.
    */
-  public removeMarker(name: string) {
+  public removeMarker(name: string): void {
     delete this.markers[name];
   }
 
   /**
    * Handler for when the sound ends.
    */
-  public onEndedHandler() {
+  public onEndedHandler(): void {
     this._sound.onended = null;
     this.isPlaying = false;
     this.currentTime = this.durationMS;
@@ -194,7 +194,7 @@ export class Sound {
   /**
    * Updates the sound state.
    */
-  public update() {
+  public update(): void {
     if (!this.game.cache.checkSoundKey(this.key)) {
       this.destroy();
       return;
@@ -233,7 +233,7 @@ export class Sound {
    * @param {number} volume - The volume level (0.0 to 1.0) to play at.
    * @returns {Sound} This Sound instance for chaining.
    */
-  public loopFull(volume: number) {
+  public loopFull(volume: number): this {
     return this.play(null, 0, volume, true);
   }
 
@@ -246,7 +246,7 @@ export class Sound {
    * @param {boolean} forceRestart - Whether to force restarting the sound even if it's already playing.
    * @returns {Sound} This Sound instance for chaining.
    */
-  public play(marker: any = '', position: any = 0, volume: any = 1, loop: any = false, forceRestart = true) {
+  public play(marker: any = '', position: any = 0, volume: any = 1, loop: any = false, forceRestart = true): this {
     if (marker === undefined || marker === false || marker === null) {
       marker = '';
     }
@@ -365,14 +365,14 @@ export class Sound {
    * @param {number} volume - The volume level (0.0 to 1.0) to play at.
    * @param {boolean} loop - Whether the sound should loop.
    */
-  public restart(marker = '', position = 0, volume = 1, loop = false) {
+  public restart(marker = '', position = 0, volume = 1, loop = false): void {
     this.play(marker, position, volume, loop, true);
   }
 
   /**
    * Pauses the sound.
    */
-  public pause() {
+  public pause(): void {
     if (this.isPlaying && this._sound) {
       this.paused = true;
       this.pausedPosition = this.currentTime;
@@ -386,7 +386,7 @@ export class Sound {
   /**
    * Resumes the sound.
    */
-  public resume() {
+  public resume(): void {
     if (this.paused && this._sound) {
       const p = Math.max(0, this.position + this.pausedPosition / 1000);
       this._sound = this.context!.createBufferSource();
@@ -418,7 +418,7 @@ export class Sound {
   /**
    * Stops the sound.
    */
-  public stop() {
+  public stop(): void {
     if (this.isPlaying && this._sound) {
       if (this._sound.stop === undefined) {
         (this._sound as any).noteOff(0);
@@ -452,7 +452,7 @@ export class Sound {
    * @param {boolean} loop - Whether the sound should loop.
    * @param {string} marker - The name of the marker to fade in, or empty string to use current marker.
    */
-  public fadeIn(duration: number, loop = false, marker: string = this.currentMarker) {
+  public fadeIn(duration: number, loop = false, marker: string = this.currentMarker): void {
     if (this.paused) {
       return;
     }
@@ -464,7 +464,7 @@ export class Sound {
    * Fades out the sound to silence.
    * @param {number} duration - The fade-out duration (in milliseconds).
    */
-  public fadeOut(duration: number) {
+  public fadeOut(duration: number): void {
     this.fadeTo(duration, 0);
   }
 
@@ -473,7 +473,7 @@ export class Sound {
    * @param {number} duration - The fade duration (in milliseconds).
    * @param {number} volume - The target volume level (0.0 to 1.0).
    */
-  public fadeTo(duration = 100, volume = 0) {
+  public fadeTo(duration = 100, volume = 0): void {
     if (!this.isPlaying || this.paused || volume === this.volume) {
       return;
     }
@@ -484,7 +484,7 @@ export class Sound {
   /**
    * Callback when fade completes.
    */
-  public fadeComplete() {
+  public fadeComplete(): void {
     this.onFadeComplete.dispatch(this, this.volume);
     if (this.volume === 0) {
       this.stop();
@@ -495,7 +495,7 @@ export class Sound {
    * Destroys the sound and cleans up resources.
    * @param {boolean} remove - Whether to remove the sound from the SoundManager.
    */
-  public destroy(remove = true) {
+  public destroy(remove = true): void {
     this._markedToDelete = true;
     this._removeFromSoundManager = remove;
     this.stop();
@@ -548,7 +548,7 @@ export class Sound {
    * Gets the volume of the sound.
    * @returns {number} The volume level (0.0 to 1.0).
    */
-  public get volume() {
+  public get volume(): number {
     return this._volume;
   }
 

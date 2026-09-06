@@ -56,7 +56,7 @@ export class GraphicsData {
    * Clones this GraphicsData object.
    * @returns {GraphicsData} A new cloned GraphicsData object.
    */
-  public clone() {
+  public clone(): GraphicsData {
     return clone(this);
   }
 }

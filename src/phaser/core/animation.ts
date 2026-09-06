@@ -98,7 +98,7 @@ export class Animation {
    * @param {boolean} loop - Whether to loop this animation (if null, uses the original loop setting).
    * @returns {Animation} This Animation instance for chaining.
    */
-  public play(frameRate: number | null = null, loop: boolean | null = null) {
+  public play(frameRate: number | null = null, loop: boolean | null = null): this {
     if (typeof frameRate === 'number') {
       //  If they set a new frame rate then use it, otherwise use the one set on creation
       this.delay = 1000 / frameRate;
@@ -125,7 +125,7 @@ export class Animation {
   /**
    * Restarts this animation from the beginning.
    */
-  public restart() {
+  public restart(): void {
     this.isPlaying = true;
     this.isFinished = false;
     this.paused = false;
@@ -144,7 +144,7 @@ export class Animation {
    * Reverses the direction of this animation.
    * @returns {Animation} This Animation instance for chaining.
    */
-  public reverse() {
+  public reverse(): this {
     this.reversed = !this.reversed;
     return this;
   }
@@ -153,7 +153,7 @@ export class Animation {
    * Reverses the animation direction once, then returns to normal direction.
    * @returns {Animation} This Animation instance for chaining.
    */
-  public reverseOnce() {
+  public reverseOnce(): this {
     this.onComplete.addOnce(this.reverse, this);
     this.reverse();
     return this;
@@ -164,7 +164,7 @@ export class Animation {
    * @param {string|number} frameId - The identifier (name or index) of the frame to set.
    * @param {boolean} useLocalFrameIndex - If true, treats frameId as an index into the local frames array.
    */
-  public setFrame(frameId: string | number, useLocalFrameIndex = false) {
+  public setFrame(frameId: string | number, useLocalFrameIndex = false): void {
     let frameIndex;
     //  Find the index to the desired frame.
     if (typeof frameId === 'string') {
@@ -198,7 +198,7 @@ export class Animation {
    * @param {boolean} resetFrame - If true, resets to the first frame.
    * @param {boolean} dispatchComplete - If true, dispatches the onComplete signal.
    */
-  public stop(resetFrame = false, dispatchComplete = false) {
+  public stop(resetFrame = false, dispatchComplete = false): void {
     this.isPlaying = false;
     this.isFinished = true;
     this.paused = false;
@@ -217,7 +217,7 @@ export class Animation {
   /**
    * Called when the game is paused.
    */
-  public onPause() {
+  public onPause(): void {
     if (this.isPlaying) {
       this._frameDiff = this._timeNextFrame - this.game.time.time;
     }
@@ -226,7 +226,7 @@ export class Animation {
   /**
    * Called when the game is resumed.
    */
-  public onResume() {
+  public onResume(): void {
     if (this.isPlaying) {
       this._timeNextFrame = this.game.time.time + this._frameDiff;
     }
@@ -236,7 +236,7 @@ export class Animation {
    * Updates this animation.
    * @returns {boolean} True if the animation was updated, false otherwise.
    */
-  public update() {
+  public update(): boolean {
     if (this.isPaused) {
       return false;
     }
@@ -297,7 +297,7 @@ export class Animation {
    * @param {boolean} fromPlay - Whether this call is from play().
    * @returns {boolean} True if the frame was updated, false otherwise.
    */
-  public updateCurrentFrame(signalUpdate: boolean, fromPlay = false) {
+  public updateCurrentFrame(signalUpdate: boolean, fromPlay = false): boolean {
     if (!this._frameData || !this.currentFrame) {
       // The animation is already destroyed, probably from a callback
       return false;
@@ -320,7 +320,7 @@ export class Animation {
    * Advances the animation to the next frame(s).
    * @param {number} quantity - The number of frames to advance by.
    */
-  public next(quantity = 1) {
+  public next(quantity = 1): void {
     let frame = this._frameIndex + quantity;
     if (frame >= this._frames.length) {
       if (this.loop) {
@@ -339,7 +339,7 @@ export class Animation {
    * Moves the animation to the previous frame(s).
    * @param {number} quantity - The number of frames to move back by.
    */
-  public previous(quantity = 1) {
+  public previous(quantity = 1): void {
     let frame = this._frameIndex - quantity;
     if (frame < 0) {
       if (this.loop) {
@@ -358,7 +358,7 @@ export class Animation {
    * Updates the frame data used by this animation.
    * @param {FrameData} frameData - The new FrameData object to use.
    */
-  public updateFrameData(frameData: FrameData) {
+  public updateFrameData(frameData: FrameData): void {
     this._frameData = frameData;
     this.currentFrame = this._frameData
       ? this._frameData.getFrame(this._frames[this._frameIndex % this._frames.length])
@@ -368,7 +368,7 @@ export class Animation {
   /**
    * Destroys this animation and cleans up resources.
    */
-  public destroy() {
+  public destroy(): void {
     if (!this._frameData) {
       // Already destroyed
       return;
@@ -392,7 +392,7 @@ export class Animation {
   /**
    * Completes this animation, setting it to the final frame.
    */
-  public complete() {
+  public complete(): void {
     this._frameIndex = this._frames.length - 1;
     this.currentFrame = this._frameData.getFrame(this._frames[this._frameIndex]);
     this.isPlaying = false;
@@ -406,7 +406,7 @@ export class Animation {
    * Gets whether this animation is currently paused.
    * @returns {boolean} True if the animation is paused, false otherwise.
    */
-  public get paused() {
+  public get paused(): boolean {
     return this.isPaused;
   }
 
@@ -427,7 +427,7 @@ export class Animation {
    * Gets whether this animation is currently reversed.
    * @returns {boolean} True if the animation is reversed, false otherwise.
    */
-  public get reversed() {
+  public get reversed(): boolean {
     return this.isReversed;
   }
 
@@ -451,7 +451,7 @@ export class Animation {
    * Gets the current frame index.
    * @returns {number} The current frame index.
    */
-  public get frame() {
+  public get frame(): number {
     if (this.currentFrame !== null) {
       return this.currentFrame.index;
     }
@@ -477,7 +477,7 @@ export class Animation {
    * Gets the current animation speed (frame rate).
    * @returns {number} The frame rate in frames per second.
    */
-  public get speed() {
+  public get speed(): number {
     return 1000 / this.delay;
   }
 
@@ -495,7 +495,7 @@ export class Animation {
    * Gets whether the update signal is enabled.
    * @returns {boolean} True if the update signal is enabled, false otherwise.
    */
-  public get enableUpdate() {
+  public get enableUpdate(): boolean {
     return this.onUpdate !== null;
   }
 

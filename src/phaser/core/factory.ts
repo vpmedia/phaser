@@ -25,7 +25,7 @@ export class GameObjectFactory {
    * @param {Group} group - The parent group for the image.
    * @returns {Image} The created Image object.
    */
-  public image(x: number, y: number, key: string, frame: any, group: Group | null = null) {
+  public image(x: number, y: number, key: string, frame: any, group: Group | null = null): Image {
     const target = group ?? this.game.world;
     return target.add(new Image(this.game, x, y, key, frame));
   }
@@ -37,7 +37,7 @@ export class GameObjectFactory {
    * @param {boolean} addToStage - Whether to add the group to the stage.
    * @returns {Group} The created Group object.
    */
-  public group(parent: Group | null = null, name: string | null = null, addToStage = false) {
+  public group(parent: Group | null = null, name: string | null = null, addToStage = false): Group {
     return new Group(this.game, parent, name, addToStage);
   }
 
@@ -50,7 +50,7 @@ export class GameObjectFactory {
    * @param {Group | null} group - The parent group for the text.
    * @returns {Text} The created Text object.
    */
-  public text(x: number, y: number, text: any, style: any, group: Group | null = null) {
+  public text(x: number, y: number, text: any, style: any, group: Group | null = null): Text {
     const parent = group ?? this.game.world;
     return parent.add(new Text(this.game, x, y, text, style));
   }
@@ -80,7 +80,7 @@ export class GameObjectFactory {
     downFrame: string | null = null,
     upFrame: string | null = null,
     group: Group | null = null
-  ) {
+  ): Button {
     const parent = group ?? this.game.world;
     return parent.add(
       new Button(this.game, x, y, key, callback, callbackContext, overFrame, outFrame, downFrame, upFrame)
@@ -94,7 +94,7 @@ export class GameObjectFactory {
    * @param {Group | null} group - The parent group for the graphics object.
    * @returns {Graphics} The created Graphics object.
    */
-  public graphics(x = 0, y = 0, group: Group | null = null) {
+  public graphics(x = 0, y = 0, group: Group | null = null): Graphics {
     const parent = group ?? this.game.world;
     return parent.add(new Graphics(this.game, x, y));
   }
@@ -118,7 +118,7 @@ export class GameObjectFactory {
     size: number,
     group: Group | null = null,
     align = 'left'
-  ) {
+  ): BitmapText {
     const parent = group ?? this.game.world;
     return parent.add(new BitmapText(this.game, x, y, font, text, size, align));
   }

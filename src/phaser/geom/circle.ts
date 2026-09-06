@@ -37,7 +37,7 @@ export class Circle {
    * Calculates the circumference of this circle.
    * @returns {number} The circumference of this circle.
    */
-  public circumference() {
+  public circumference(): number {
     return 2 * (Math.PI * this._radius);
   }
 
@@ -46,7 +46,7 @@ export class Circle {
    * @param {Point} output - The point to store the result in (optional).
    * @returns {Point} A random point within this circle.
    */
-  public random(output: Point | null = null) {
+  public random(output: Point | null = null): Point {
     const result = output ?? new Point();
     const t = 2 * Math.PI * Math.random();
     const u = Math.random() + Math.random();
@@ -62,7 +62,7 @@ export class Circle {
    * Gets the bounding rectangle of this circle.
    * @returns {Rectangle} The bounding rectangle of this circle.
    */
-  public getBounds() {
+  public getBounds(): Rectangle {
     return new Rectangle(this.x - this.radius, this.y - this.radius, this.diameter, this.diameter);
   }
 
@@ -73,7 +73,7 @@ export class Circle {
    * @param {number} diameter - The new diameter of the circle.
    * @returns {Circle} This circle instance for chaining.
    */
-  public setTo(x: number, y: number, diameter: number) {
+  public setTo(x: number, y: number, diameter: number): this {
     this.x = x;
     this.y = y;
     this._diameter = diameter;
@@ -86,7 +86,7 @@ export class Circle {
    * @param {Circle} source - The circle to copy values from.
    * @returns {Circle} This circle instance for chaining.
    */
-  public copyFrom(source: Circle) {
+  public copyFrom(source: Circle): this {
     return this.setTo(source.x, source.y, source.diameter);
   }
 
@@ -95,7 +95,7 @@ export class Circle {
    * @param {Circle} dest - The circle to copy values to.
    * @returns {Circle} The destination circle.
    */
-  public copyTo(dest: Circle) {
+  public copyTo(dest: Circle): Circle {
     dest.x = this.x;
     dest.y = this.y;
     dest.diameter = this._diameter;
@@ -108,7 +108,7 @@ export class Circle {
    * @param {boolean} round - Whether to round the result (default: false).
    * @returns {number} The distance between the circles.
    */
-  public distance(dest: { x: number; y: number }, round = false) {
+  public distance(dest: { x: number; y: number }, round = false): number {
     const d = distance(this.x, this.y, dest.x, dest.y);
     return round ? Math.round(d) : d;
   }
@@ -117,7 +117,7 @@ export class Circle {
    * Creates a clone of this circle.
    * @returns {Circle} A new circle with the same values as this one.
    */
-  public clone() {
+  public clone(): Circle {
     return clone(this);
   }
 
@@ -127,7 +127,7 @@ export class Circle {
    * @param {number} y - The y coordinate of the point to check.
    * @returns {boolean} True if the point is contained within this circle, false otherwise.
    */
-  public contains(x: number, y: number) {
+  public contains(x: number, y: number): boolean {
     return contains(this, x, y);
   }
 
@@ -138,7 +138,7 @@ export class Circle {
    * @param {Point} out - The point to store the result in (optional).
    * @returns {Point} A point at the specified angle on the circumference of this circle.
    */
-  public circumferencePoint(angle: number, asDegrees?: boolean, out?: Point) {
+  public circumferencePoint(angle: number, asDegrees?: boolean, out?: Point): Point {
     return circumferencePoint(this, angle, asDegrees, out);
   }
 
@@ -148,7 +148,7 @@ export class Circle {
    * @param {number} dy - The amount to offset the y coordinate by.
    * @returns {Circle} This circle instance for chaining.
    */
-  public offset(dx: number, dy: number) {
+  public offset(dx: number, dy: number): this {
     this.x += dx;
     this.y += dy;
     return this;
@@ -159,7 +159,7 @@ export class Circle {
    * @param {Point} point - The point to offset the circle by.
    * @returns {Circle} This circle instance for chaining.
    */
-  public offsetPoint(point: Point) {
+  public offsetPoint(point: Point): this {
     return this.offset(point.x, point.y);
   }
 
@@ -167,7 +167,7 @@ export class Circle {
    * Returns a string representation of this circle.
    * @returns {string} A string representation of the circle.
    */
-  public toString() {
+  public toString(): string {
     return `[{Circle (x=${this.x} y=${this.y} diameter=${this.diameter} radius=${this.radius})}]`;
   }
 
@@ -175,7 +175,7 @@ export class Circle {
    * Gets the diameter of this circle.
    * @returns {number} The diameter of this circle.
    */
-  public get diameter() {
+  public get diameter(): number {
     return this._diameter;
   }
 
@@ -193,7 +193,7 @@ export class Circle {
    * Gets the radius of this circle.
    * @returns {number} The radius of this circle.
    */
-  public get radius() {
+  public get radius(): number {
     return this._radius;
   }
 
@@ -211,7 +211,7 @@ export class Circle {
    * Gets the left coordinate of this circle.
    * @returns {number} The left coordinate of this circle.
    */
-  public get left() {
+  public get left(): number {
     return this.x - this._radius;
   }
 
@@ -231,7 +231,7 @@ export class Circle {
    * Gets the right coordinate of this circle.
    * @returns {number} The right coordinate of this circle.
    */
-  public get right() {
+  public get right(): number {
     return this.x + this._radius;
   }
 
@@ -251,7 +251,7 @@ export class Circle {
    * Gets the top coordinate of this circle.
    * @returns {number} The top coordinate of this circle.
    */
-  public get top() {
+  public get top(): number {
     return this.y - this._radius;
   }
 
@@ -271,7 +271,7 @@ export class Circle {
    * Gets the bottom coordinate of this circle.
    * @returns {number} The bottom coordinate of this circle.
    */
-  public get bottom() {
+  public get bottom(): number {
     return this.y + this._radius;
   }
 
@@ -291,7 +291,7 @@ export class Circle {
    * Gets the area of this circle.
    * @returns {number} The area of this circle.
    */
-  public get area() {
+  public get area(): number {
     if (this._radius > 0) {
       return Math.PI * this._radius * this._radius;
     }
@@ -302,7 +302,7 @@ export class Circle {
    * Checks if this circle is empty (has zero diameter).
    * @returns {boolean} True if the circle is empty, false otherwise.
    */
-  public get empty() {
+  public get empty(): boolean {
     return this._diameter === 0;
   }
 

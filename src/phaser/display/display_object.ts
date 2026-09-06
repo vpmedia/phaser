@@ -121,7 +121,7 @@ export class DisplayObject {
   /**
    * Destroys this display object and cleans up resources.
    */
-  public destroy() {
+  public destroy(): void {
     if (this.children) {
       let i = this.children.length;
       while (i) {
@@ -157,7 +157,7 @@ export class DisplayObject {
    * @param {DisplayObject} child - The child display object to add.
    * @returns {DisplayObject} The added child display object.
    */
-  public addChild(child: DisplayObject) {
+  public addChild(child: DisplayObject): DisplayObject {
     return this.addChildAt(child, this.children.length);
   }
 
@@ -168,7 +168,7 @@ export class DisplayObject {
    * @returns {DisplayObject} The added child display object.
    * @throws {Error} If the index is out of bounds.
    */
-  public addChildAt(child: DisplayObject, index: number) {
+  public addChildAt(child: DisplayObject, index: number): DisplayObject {
     if (index >= 0 && index <= this.children.length) {
       if (child.parent) {
         child.parent.removeChild(child);
@@ -186,7 +186,7 @@ export class DisplayObject {
    * @param {DisplayObject} child2 - The second child display object.
    * @throws {Error} If either child is not a child of this container.
    */
-  public swapChildren(child: DisplayObject, child2: DisplayObject) {
+  public swapChildren(child: DisplayObject, child2: DisplayObject): void {
     if (child === child2) {
       return;
     }
@@ -205,7 +205,7 @@ export class DisplayObject {
    * @returns {number} The index of the child in the children list.
    * @throws {Error} If the child is not a child of this container.
    */
-  public getChildIndex(child: DisplayObject) {
+  public getChildIndex(child: DisplayObject): number {
     const index = this.children.indexOf(child);
     if (index === -1) {
       throw new Error('The supplied DisplayObject must be a child of the caller');
@@ -219,7 +219,7 @@ export class DisplayObject {
    * @param {number} index - The new index for the child.
    * @throws {Error} If the index is out of bounds.
    */
-  public setChildIndex(child: DisplayObject, index: number) {
+  public setChildIndex(child: DisplayObject, index: number): void {
     if (index < 0 || index >= this.children.length) {
       throw new Error('The supplied index is out of bounds');
     }
@@ -234,7 +234,7 @@ export class DisplayObject {
    * @returns {DisplayObject} The child display object at the specified index.
    * @throws {Error} If the index is out of bounds.
    */
-  public getChildAt(index: number) {
+  public getChildAt(index: number): DisplayObject | undefined {
     if (index < 0 || index >= this.children.length) {
       throw new Error(
         `getChildAt: Supplied index ${
@@ -250,7 +250,7 @@ export class DisplayObject {
    * @param {DisplayObject} child - The child display object to remove.
    * @returns {DisplayObject} The removed child display object.
    */
-  public removeChild(child: DisplayObject) {
+  public removeChild(child: DisplayObject): DisplayObject | null | undefined {
     const index = this.children.indexOf(child);
     if (index === -1) {
       return null;
@@ -263,7 +263,7 @@ export class DisplayObject {
    * @param {number} index - The index of the child to remove.
    * @returns {DisplayObject} The removed child display object.
    */
-  public removeChildAt(index: number) {
+  public removeChildAt(index: number): DisplayObject | undefined {
     const child = this.getChildAt(index);
     if (child) {
       child.parent = null;
@@ -279,7 +279,7 @@ export class DisplayObject {
    * @returns {DisplayObject[]} The array of removed child display objects.
    * @throws {Error} If the range is invalid.
    */
-  public removeChildren(beginIndex: number, endIndex: number) {
+  public removeChildren(beginIndex: number, endIndex: number): DisplayObject[] {
     beginIndex ??= 0;
     endIndex ??= this.children.length;
     const range = endIndex - beginIndex;
@@ -301,7 +301,7 @@ export class DisplayObject {
    * @param {DisplayObject | null | undefined} parent - The parent display object to use for the world transform calculation.
    * @returns {DisplayObject} This DisplayObject instance for chaining.
    */
-  public updateTransform(parent: DisplayObject | null | undefined = null) {
+  public updateTransform(parent: DisplayObject | null | undefined = null): this {
     if (!parent && !this.parent) {
       return this;
     }
@@ -384,7 +384,7 @@ export class DisplayObject {
    * @param {DisplayObject} targetCoordinateSpace - The coordinate space to calculate bounds in.
    * @returns {Rectangle} The bounds rectangle of this display object.
    */
-  public getBounds(targetCoordinateSpace?: any) {
+  public getBounds(targetCoordinateSpace?: any): Rectangle {
     const isTargetCoordinateSpaceDisplayObject = targetCoordinateSpace && targetCoordinateSpace.contains !== undefined;
     let isTargetCoordinateSpaceThisOrParent = true;
     if (!isTargetCoordinateSpaceDisplayObject) {
@@ -485,7 +485,7 @@ export class DisplayObject {
    * Gets the bounds of this display object in local coordinates.
    * @returns {Rectangle} The bounds rectangle of this display object in local space.
    */
-  public getLocalBounds() {
+  public getLocalBounds(): Rectangle {
     return this.getBounds(this);
   }
 
@@ -509,7 +509,7 @@ export class DisplayObject {
    * @param {object} renderSession - The WebGL rendering session.
    * @param {Matrix | null} _matrix - The transform matrix to render with.
    */
-  public renderWebGL(renderSession: RenderSession, _matrix: Matrix | null = null) {
+  public renderWebGL(renderSession: RenderSession, _matrix: Matrix | null = null): void {
     if (!this.visible || this.alpha <= 0) {
       return;
     }
@@ -546,7 +546,7 @@ export class DisplayObject {
    * Renders this display object using Canvas.
    * @param {object} renderSession - The Canvas rendering session.
    */
-  public renderCanvas(renderSession: RenderSession) {
+  public renderCanvas(renderSession: RenderSession): void {
     if (!this.visible || this.alpha <= 0) {
       return;
     }
@@ -564,21 +564,21 @@ export class DisplayObject {
   /**
    * Called before the update cycle for this display object.
    */
-  public preUpdate() {
+  public preUpdate(): void {
     // Override
   }
 
   /**
    * Called during the update cycle for this display object.
    */
-  public update() {
+  public update(): void {
     // Override
   }
 
   /**
    * Called after the update cycle for this display object.
    */
-  public postUpdate() {
+  public postUpdate(): void {
     // Override
   }
 
@@ -586,7 +586,7 @@ export class DisplayObject {
    * Generates a texture for this display object.
    * @throws {Error} This method is not implemented yet.
    */
-  public generateTexture() {
+  public generateTexture(): void {
     // TODO
     throw new Error('display_object.generateTexture() is not implemented');
   }
@@ -596,7 +596,7 @@ export class DisplayObject {
    * @param {Point} position - The local position to convert.
    * @returns {Point} The converted global position.
    */
-  public toGlobal(position: Point) {
+  public toGlobal(position: Point): Point {
     this.updateTransform();
     return this.worldTransform.apply(position);
   }
@@ -607,7 +607,7 @@ export class DisplayObject {
    * @param {DisplayObject} from - The display object to convert from (defaults to this).
    * @returns {Point} The converted local position.
    */
-  public toLocal(position: Point, from: DisplayObject) {
+  public toLocal(position: Point, from: DisplayObject): Point {
     if (from) {
       position = from.toGlobal(position);
     }
@@ -619,7 +619,7 @@ export class DisplayObject {
    * Renders a cached sprite for this display object.
    * @param {object} renderSession - The rendering session.
    */
-  public renderCachedSprite(renderSession: RenderSession) {
+  public renderCachedSprite(renderSession: RenderSession): void {
     if (!this._cachedSprite) {
       return;
     }
@@ -634,14 +634,14 @@ export class DisplayObject {
   /**
    * Generates a cached sprite for this display object.
    */
-  public generateCachedSprite() {
+  public generateCachedSprite(): void {
     // TODO
   }
 
   /**
    * Destroys the cached sprite for this display object.
    */
-  public destroyCachedSprite() {
+  public destroyCachedSprite(): void {
     if (!this._cachedSprite) {
       return;
     }
@@ -655,7 +655,7 @@ export class DisplayObject {
    * Gets the width of this display object.
    * @returns {number} The width in pixels.
    */
-  public get width() {
+  public get width(): number {
     return this.getLocalBounds().width * this.scale.x;
   }
 
@@ -677,7 +677,7 @@ export class DisplayObject {
    * Gets the height of this display object.
    * @returns {number} The height in pixels.
    */
-  public get height() {
+  public get height(): number {
     return this.getLocalBounds().height * this.scale.y;
   }
 
@@ -699,7 +699,7 @@ export class DisplayObject {
    * Gets the x position of this display object.
    * @returns {number} The x position in pixels.
    */
-  public get x() {
+  public get x(): number {
     return this.position.x;
   }
 
@@ -715,7 +715,7 @@ export class DisplayObject {
    * Gets the y position of this display object.
    * @returns {number} The y position in pixels.
    */
-  public get y() {
+  public get y(): number {
     return this.position.y;
   }
 
@@ -731,7 +731,7 @@ export class DisplayObject {
    * Gets whether this display object is visible in the world.
    * @returns {boolean} True if the object is visible, false otherwise.
    */
-  public get worldVisible() {
+  public get worldVisible(): boolean {
     if (!this.visible) {
       return false;
     }
@@ -754,7 +754,7 @@ export class DisplayObject {
    * Gets the mask for this display object.
    * @returns {Graphics} The mask object or null if none is set.
    */
-  public get mask() {
+  public get mask(): Graphics | null {
     return this._mask;
   }
 
@@ -778,7 +778,7 @@ export class DisplayObject {
    * Gets the x offset for this display object (based on anchor point).
    * @returns {number} The x offset in pixels.
    */
-  public get offsetX() {
+  public get offsetX(): number {
     return this.anchor.x * this.width;
   }
 
@@ -786,7 +786,7 @@ export class DisplayObject {
    * Gets the y offset for this display object (based on anchor point).
    * @returns {number} The y offset in pixels.
    */
-  public get offsetY() {
+  public get offsetY(): number {
     return this.anchor.y * this.height;
   }
 
@@ -794,7 +794,7 @@ export class DisplayObject {
    * Gets the center x position of this display object.
    * @returns {number} The center x position in pixels.
    */
-  public get centerX() {
+  public get centerX(): number {
     return this.x - this.offsetX + this.width * 0.5;
   }
 
@@ -810,7 +810,7 @@ export class DisplayObject {
    * Gets the center y position of this display object.
    * @returns {number} The center y position in pixels.
    */
-  public get centerY() {
+  public get centerY(): number {
     return this.y - this.offsetY + this.height * 0.5;
   }
 
@@ -826,7 +826,7 @@ export class DisplayObject {
    * Gets the left x position of this display object.
    * @returns {number} The left x position in pixels.
    */
-  public get left() {
+  public get left(): number {
     return this.x - this.offsetX;
   }
 
@@ -842,7 +842,7 @@ export class DisplayObject {
    * Gets the right x position of this display object.
    * @returns {number} The right x position in pixels.
    */
-  public get right() {
+  public get right(): number {
     return this.x + this.width - this.offsetX;
   }
 
@@ -858,7 +858,7 @@ export class DisplayObject {
    * Gets the top y position of this display object.
    * @returns {number} The top y position in pixels.
    */
-  public get top() {
+  public get top(): number {
     return this.y - this.offsetY;
   }
 
@@ -874,7 +874,7 @@ export class DisplayObject {
    * Gets the bottom y position of this display object.
    * @returns {number} The bottom y position in pixels.
    */
-  public get bottom() {
+  public get bottom(): number {
     return this.y + this.height - this.offsetY;
   }
 

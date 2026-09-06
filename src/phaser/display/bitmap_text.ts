@@ -52,7 +52,7 @@ export class BitmapText extends DisplayObject {
   /**
    * Destroys this bitmap text and cleans up resources.
    */
-  public override destroy() {
+  public override destroy(): void {
     this._prevAnchor = null!;
     this._glyphs = null!;
     this._text = null!;
@@ -63,7 +63,7 @@ export class BitmapText extends DisplayObject {
   /**
    * Called before the update cycle for this bitmap text.
    */
-  public override preUpdate() {
+  public override preUpdate(): void {
     if (this.pendingDestroy) {
       this.destroy();
       return;
@@ -86,7 +86,7 @@ export class BitmapText extends DisplayObject {
    * Sets the text to display.
    * @param {string} text - The new text to display.
    */
-  public setText(text: string) {
+  public setText(text: string): void {
     this.text = text;
   }
 
@@ -164,7 +164,7 @@ export class BitmapText extends DisplayObject {
    * @param {string} replace - The character to use for replacement of invalid characters (default: '').
    * @returns {string} The cleaned text.
    */
-  public cleanText(text: string, replace = '') {
+  public cleanText(text: string, replace = ''): string {
     const data = this._data.font;
     if (!data) {
       return '';
@@ -189,7 +189,7 @@ export class BitmapText extends DisplayObject {
   /**
    * Updates the internal text rendering based on current properties and content.
    */
-  public updateText() {
+  public updateText(): void {
     const data = this._data.font;
     if (!data) {
       return;
@@ -260,7 +260,7 @@ export class BitmapText extends DisplayObject {
    * Removes unused glyphs from the pool and returns the number removed.
    * @returns {number} The number of glyphs that were removed from the pool.
    */
-  public purgeGlyphs() {
+  public purgeGlyphs(): number {
     const len = this._glyphs.length;
     const kept = [];
     for (const glyph of this._glyphs) {
@@ -295,7 +295,7 @@ export class BitmapText extends DisplayObject {
    * @param {number} _position - The character position to apply the color to.
    * @returns {BitmapText} This bitmap text instance for chaining.
    */
-  public addColor(value: string, _position: number) {
+  public addColor(value: string, _position: number): this {
     const color = typeof value === 'string' ? Number.parseInt(value.replace('#', ''), 16) : value;
     if (color !== this._tint) {
       this._tint = color;
@@ -308,7 +308,7 @@ export class BitmapText extends DisplayObject {
    * Gets the text alignment property.
    * @returns {string} The current text alignment (left, center, right).
    */
-  public get align() {
+  public get align(): string {
     return this._align;
   }
 
@@ -327,7 +327,7 @@ export class BitmapText extends DisplayObject {
    * Gets the tint color of this bitmap text.
    * @returns {number} The current tint color in RGB format.
    */
-  public get tint() {
+  public get tint(): number {
     return this._tint;
   }
 
@@ -346,7 +346,7 @@ export class BitmapText extends DisplayObject {
    * Gets the fill color of this bitmap text as a hex string.
    * @returns {string} The current fill color in hex format.
    */
-  public get fill() {
+  public get fill(): string {
     if (typeof this.tint === 'number') {
       let colorStr = this.tint.toString(16);
       while (colorStr.length < 6) {
@@ -369,7 +369,7 @@ export class BitmapText extends DisplayObject {
    * Gets the font key used by this bitmap text.
    * @returns {string} The current font key.
    */
-  public get font() {
+  public get font(): string {
     return this._font;
   }
 
@@ -430,7 +430,7 @@ export class BitmapText extends DisplayObject {
    * Gets the maximum width of this bitmap text.
    * @returns {number} The current maximum width.
    */
-  public get maxWidth() {
+  public get maxWidth(): number {
     return this._maxWidth;
   }
 
@@ -449,7 +449,7 @@ export class BitmapText extends DisplayObject {
    * Gets whether smoothing is enabled for this bitmap text's font.
    * @returns {boolean} True if smoothing is enabled, false otherwise.
    */
-  public get smoothed() {
+  public get smoothed(): boolean {
     return !this._data.base.scaleMode;
   }
 

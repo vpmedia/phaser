@@ -10,7 +10,7 @@ export class WebGLBlendModeManager {
    * Initializes the blend mode manager with a WebGL context.
    * @param {WebGLRenderingContext} gl - The WebGL rendering context.
    */
-  public setContext(gl: WebGLRenderingContext) {
+  public setContext(gl: WebGLRenderingContext): void {
     this.gl = gl;
   }
 
@@ -19,7 +19,7 @@ export class WebGLBlendModeManager {
    * @param {number} blendMode - The blend mode to set.
    * @returns {boolean} True if the blend mode was set successfully, false otherwise.
    */
-  public setBlendMode(blendMode: number) {
+  public setBlendMode(blendMode: number): boolean {
     if (this.currentBlendMode === blendMode) {
       return false;
     }
@@ -34,7 +34,7 @@ export class WebGLBlendModeManager {
   /**
    * Sets the blend mode for the WebGL context.
    */
-  public destroy() {
+  public destroy(): void {
     this.gl = null;
   }
 }

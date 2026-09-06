@@ -13,7 +13,7 @@ import { setSmoothing } from './canvas/util.js';
  * @param {Texture} texture - The new texture to set.
  * @param {boolean} destroyBase - Whether to destroy the base texture.
  */
-export const setTexture = (target: Image, texture: Texture, destroyBase = false) => {
+export const setTexture = (target: Image, texture: Texture, destroyBase = false): void => {
   if (destroyBase) {
     target.texture.baseTexture.destroy();
   }
@@ -131,7 +131,11 @@ export const getLocalBounds = (target: Image) => {
  * @param {object} renderSession - The render session object.
  * @param {Matrix | null | undefined} matrix - The transformation matrix.
  */
-export const renderWebGL = (target: Image, renderSession: RenderSession, matrix: Matrix | null | undefined = null) => {
+export const renderWebGL = (
+  target: Image,
+  renderSession: RenderSession,
+  matrix: Matrix | null | undefined = null
+): void => {
   // if the sprite is not visible or the alpha is 0 then no need to render this element
   if (!target.visible || target.alpha <= 0 || !target.renderable) {
     return;
@@ -184,7 +188,11 @@ export const renderWebGL = (target: Image, renderSession: RenderSession, matrix:
  * @param {object} renderSession - The render session object.
  * @param {Matrix | null | undefined} matrix - The transformation matrix.
  */
-export const renderCanvas = (target: Image, renderSession: RenderSession, matrix: Matrix | null | undefined = null) => {
+export const renderCanvas = (
+  target: Image,
+  renderSession: RenderSession,
+  matrix: Matrix | null | undefined = null
+): void => {
   // If the sprite is not visible or the alpha is 0 then no need to render this element
   if (
     !target.visible ||

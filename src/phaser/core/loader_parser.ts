@@ -9,7 +9,7 @@ import type { BaseTexture } from '../display/webgl/base_texture.js';
  * @returns {object} The finalized bitmap font data.
  */
 export const finalizeBitmapFont = (baseTexture: BaseTexture, bitmapFontData: any) => {
-  Object.keys(bitmapFontData.chars).forEach((charCode) => {
+  Object.keys(bitmapFontData.chars).forEach((charCode): void => {
     const letter = bitmapFontData.chars[charCode];
     letter.texture = new Texture(baseTexture, new Rectangle(letter.x, letter.y, letter.width, letter.height));
   });
@@ -87,7 +87,7 @@ export const jsonBitmapFont = (json: any, baseTexture: BaseTexture, xSpacing: nu
     lineHeight: Math.trunc(Number(json.font.common._lineHeight)) + ySpacing,
     chars: {},
   };
-  json.font.chars.char.forEach((letter: Record<string, string>) => {
+  json.font.chars.char.forEach((letter: Record<string, string>): void => {
     const charCode = Math.trunc(Number(letter['_id']));
     data.chars[charCode] = {
       x: Math.trunc(Number(letter['_x'])),
@@ -101,7 +101,7 @@ export const jsonBitmapFont = (json: any, baseTexture: BaseTexture, xSpacing: nu
     };
   });
   if (json.font.kernings && json.font.kernings.kerning) {
-    json.font.kernings.kerning.forEach((kerning: Record<string, string>) => {
+    json.font.kernings.kerning.forEach((kerning: Record<string, string>): void => {
       const char = data.chars[Math.trunc(Number(kerning['_second']))];
       if (char) {
         char.kerning[Math.trunc(Number(kerning['_first']))] = Math.trunc(Number(kerning['_amount']));

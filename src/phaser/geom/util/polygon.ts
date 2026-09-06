@@ -6,7 +6,7 @@ import { Polygon } from '../polygon.js';
  * @param {Polygon} output - Optional polygon to store the result in.
  * @returns {Polygon} The cloned polygon.
  */
-export const clone = (input: Polygon, output: Polygon | null = null) => {
+export const clone = (input: Polygon, output: Polygon | null = null): Polygon => {
   const result = output ?? new Polygon();
   result.setTo([...input._points]);
   return result;

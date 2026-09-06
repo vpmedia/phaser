@@ -62,8 +62,8 @@ export class SoundManager {
   /**
    * Initializes the sound manager and sets up audio context.
    */
-  public boot() {
-    const setAudioDisabledState = () => {
+  public boot(): void {
+    const setAudioDisabledState = (): void => {
       this.type = AUDIO_DISABLED;
       this.noAudio = true;
       this.isLocked = false;
@@ -120,7 +120,7 @@ export class SoundManager {
   /**
    * Handles page lifecycle changes for audio management.
    */
-  public onPageLifecycleChange = () => {
+  public onPageLifecycleChange = (): void => {
     if (!document.hidden) {
       this.checkUnlockHandlers();
     }
@@ -129,7 +129,7 @@ export class SoundManager {
   /**
    * Handles audio context state changes.
    */
-  public onContextStateChange = () => {
+  public onContextStateChange = (): void => {
     this.game.logger.info('onContextStateChange', {
       state: this.context!.state,
       isLocked: this.isLocked,
@@ -140,7 +140,7 @@ export class SoundManager {
   /**
    * Checks if audio unlock handlers need to be added or removed.
    */
-  public checkUnlockHandlers = () => {
+  public checkUnlockHandlers = (): void => {
     this.game.logger.info('checkUnlockHandlers', {
       state: this.context!.state,
       isLocked: this.isLocked,
@@ -155,7 +155,7 @@ export class SoundManager {
   /**
    * Adds event listeners to unlock audio context.
    */
-  public addUnlockHandlers = () => {
+  public addUnlockHandlers = (): void => {
     this.isLocked = true;
     this.game.logger.info('addUnlockHandlers', {
       state: this.context!.state,
@@ -169,7 +169,7 @@ export class SoundManager {
   /**
    * Removes event listeners that unlock audio context.
    */
-  public removeUnlockHandlers = () => {
+  public removeUnlockHandlers = (): void => {
     this.isLocked = false;
     this.game.logger.info('removeUnlockHandlers', {
       state: this.context!.state,
@@ -184,7 +184,7 @@ export class SoundManager {
    * Handles unlock events to resume audio context.
    * @param {Event} event - The DOM event that triggered the unlock.
    */
-  public onUnlockEvent = (event: Event) => {
+  public onUnlockEvent = (event: Event): void => {
     const initialState = this.context!.state;
     if (initialState !== 'suspended' && initialState !== 'interrupted') {
       this.game.logger.info('onUnlockResumeDenied', {
@@ -201,7 +201,7 @@ export class SoundManager {
       event,
     });
     this.context!.resume()
-      .then(() => {
+      .then((): void => {
         this.game.logger.info('onContextResumeResult', {
           initialState,
           state: this.context!.state,
@@ -209,7 +209,7 @@ export class SoundManager {
         });
         this.removeUnlockHandlers();
       })
-      .catch((error: unknown) => {
+      .catch((error: unknown): void => {
         this.game.logger.info('onContextResumeReject', {
           initialState,
           state: this.context!.state,
@@ -227,7 +227,7 @@ export class SoundManager {
   /**
    * Stops all sounds in the manager.
    */
-  public stopAll() {
+  public stopAll(): void {
     if (this.noAudio) {
       return;
     }
@@ -241,7 +241,7 @@ export class SoundManager {
   /**
    * Pauses all sounds in the manager.
    */
-  public pauseAll() {
+  public pauseAll(): void {
     if (this.noAudio) {
       return;
     }
@@ -255,7 +255,7 @@ export class SoundManager {
   /**
    * Resumes all sounds in the manager.
    */
-  public resumeAll() {
+  public resumeAll(): void {
     if (this.noAudio) {
       return;
     }
@@ -270,7 +270,7 @@ export class SoundManager {
    * Decodes an audio file for playback.
    * @param {string} key - The key of the sound to decode.
    */
-  public decode(key: string) {
+  public decode(key: string): void {
     const soundData = this.game.cache.getSoundData(key);
     if (!soundData) {
       return;
@@ -280,14 +280,14 @@ export class SoundManager {
     }
     this.game.cache.updateSound(key, 'isDecoding', true);
     this.context!.decodeAudioData(soundData)
-      .then((buffer: AudioBuffer) => {
+      .then((buffer: AudioBuffer): void => {
         this.game.cache.decodedSound(key, buffer);
       })
-      .catch((error: unknown) => {
+      .catch((error: unknown): void => {
         const typedError = error instanceof Error ? error : new Error(String(error));
         this.game.logger.fatal('SoundManager', { error: typedError, tags: { 'asset.key': key } });
         if (typedError.name === 'InvalidStateError') {
-          addPageLifecycleCallback(PAGE_LIFECYCLE_STATE_ACTIVE, () => {
+          addPageLifecycleCallback(PAGE_LIFECYCLE_STATE_ACTIVE, (): void => {
             this.decode(key);
           });
         } else if (typedError.name === 'EncodingError') {
@@ -302,7 +302,7 @@ export class SoundManager {
    * @param {Function} callback - The callback function to call when all files are decoded.
    * @param {object} callbackContext - The context in which to call the callback.
    */
-  public setDecodedCallback(files: any, callback: Function, callbackContext: unknown) {
+  public setDecodedCallback(files: any, callback: Function, callbackContext: unknown): void {
     if (typeof files === 'string') {
       files = [files];
     }
@@ -330,7 +330,7 @@ export class SoundManager {
   /**
    * Updates the sound manager state.
    */
-  public update() {
+  public update(): void {
     if (this.noAudio) {
       return;
     }
@@ -361,7 +361,7 @@ export class SoundManager {
    * @param {boolean} connect - Whether to connect to the master gain node.
    * @returns {Sound} The created Sound object.
    */
-  public add(key: string, volume = 1, loop = false, connect: boolean = this.connectToMaster) {
+  public add(key: string, volume = 1, loop = false, connect: boolean = this.connectToMaster): Sound {
     const sound = new Sound(this.game, key, volume, loop, connect);
     this._sounds.push(sound);
     return sound;
@@ -372,7 +372,7 @@ export class SoundManager {
    * @param {string} key - The key of the sound sprite to add.
    * @returns {SoundSprite} The created SoundSprite object.
    */
-  public addSprite(key: string) {
+  public addSprite(key: string): SoundSprite {
     return new SoundSprite(this.game, key);
   }
 
@@ -381,7 +381,7 @@ export class SoundManager {
    * @param {Sound | null | undefined} sound - The sound object to remove.
    * @returns {boolean} True if the sound was removed, false otherwise.
    */
-  public remove(sound: Sound | null | undefined) {
+  public remove(sound: Sound | null | undefined): boolean {
     let i = this._sounds.length;
     while (i) {
       i -= 1;
@@ -399,7 +399,7 @@ export class SoundManager {
    * @param {string} key - The key of sounds to remove.
    * @returns {number} The number of sounds removed.
    */
-  public removeByKey(key: string) {
+  public removeByKey(key: string): number {
     let i = this._sounds.length;
     let removed = 0;
     while (i) {
@@ -420,7 +420,7 @@ export class SoundManager {
    * @param {boolean} loop - Whether the sound should loop.
    * @returns {Sound} The created Sound object, or null if audio is disabled.
    */
-  public play(key: string, volume = 1, loop = false) {
+  public play(key: string, volume = 1, loop = false): Sound | null {
     if (this.noAudio) {
       return null;
     }
@@ -432,7 +432,7 @@ export class SoundManager {
   /**
    * Mutes all sounds in the manager.
    */
-  public setMute() {
+  public setMute(): void {
     if (this._muted) {
       return;
     }
@@ -447,7 +447,7 @@ export class SoundManager {
   /**
    * Unmutes all sounds in the manager.
    */
-  public unsetMute() {
+  public unsetMute(): void {
     if (!this._muted || this._codeMuted) {
       return;
     }
@@ -461,7 +461,7 @@ export class SoundManager {
   /**
    * Destroys the sound manager and cleans up resources.
    */
-  public destroy() {
+  public destroy(): void {
     this.stopAll();
     for (let i = 0; i < this._sounds.length; i += 1) {
       if (this._sounds[i]) {

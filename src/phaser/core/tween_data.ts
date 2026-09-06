@@ -53,7 +53,7 @@ export class TweenData {
     this.delay = 0;
     this.dt = 0;
     this.startTime = null;
-    this.easingFunction = (k: number) => k;
+    this.easingFunction = (k: number): number => k;
     this.interpolationFunction = MathUtils.linearInterpolation;
     this.interpolationContext = MathUtils;
     this.isRunning = false;
@@ -70,7 +70,7 @@ export class TweenData {
    * @param {boolean} yoyo - Whether to reverse the tween on each repeat.
    * @returns {TweenData} This TweenData object for chaining.
    */
-  public to(properties: any, duration: number, ease: any, delay: number, repeat: number, yoyo: boolean) {
+  public to(properties: any, duration: number, ease: any, delay: number, repeat: number, yoyo: boolean): this {
     this.vEnd = properties;
     this.duration = duration;
     this.easingFunction = ease;
@@ -91,7 +91,7 @@ export class TweenData {
    * @param {boolean} yoyo - Whether to reverse the tween on each repeat.
    * @returns {TweenData} This TweenData object for chaining.
    */
-  public from(properties: any, duration: number, ease: any, delay: number, repeat: number, yoyo: boolean) {
+  public from(properties: any, duration: number, ease: any, delay: number, repeat: number, yoyo: boolean): this {
     this.vEnd = properties;
     this.duration = duration;
     this.easingFunction = ease;
@@ -106,7 +106,7 @@ export class TweenData {
    * Starts the tween.
    * @returns {TweenData} This TweenData object for chaining.
    */
-  public start() {
+  public start(): this {
     this.startTime = this.game.time.time + this.delay;
     if (this.parent.reverse) {
       this.dt = this.duration;
@@ -137,7 +137,7 @@ export class TweenData {
    * Loads the tween values from the parent object.
    * @returns {TweenData} This TweenData object for chaining.
    */
-  public loadValues() {
+  public loadValues(): this {
     const keys = Object.keys(this.parent.properties);
     for (const property of keys) {
       //  Load the property from the parent object
@@ -174,7 +174,7 @@ export class TweenData {
    * @param {number} time - The current time in milliseconds.
    * @returns {number} The tween status (TWEEN_PENDING, TWEEN_RUNNING, or TWEEN_COMPLETE).
    */
-  public update(time: number) {
+  public update(time: number): 1 | 0 | 3 | 2 {
     if (!this.isRunning) {
       if (time >= this.startTime) {
         this.isRunning = true;
@@ -216,7 +216,7 @@ export class TweenData {
    * @param {number} frameRate - The frame rate to generate data for.
    * @returns {object[]} An array of tween data points.
    */
-  public generateData(frameRate: number) {
+  public generateData(frameRate: number): Record<string, number>[] {
     if (this.parent.reverse) {
       this.dt = this.duration;
     } else {
@@ -263,7 +263,7 @@ export class TweenData {
    * Handles tween repetition logic.
    * @returns {number} The tween status (TWEEN_LOOPED or TWEEN_COMPLETE).
    */
-  public repeat() {
+  public repeat(): 3 | 2 {
     //  If not a yoyo and repeatCounter = 0 then we're done
     if (this.yoyo) {
       //  We're already in reverse mode, which means the yoyo has finished and there's no repeats, so end

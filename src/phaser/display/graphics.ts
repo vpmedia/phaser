@@ -109,7 +109,7 @@ export class Graphics extends DisplayObject {
   /**
    * Destroys the graphics object and clears all data.
    */
-  public override destroy() {
+  public override destroy(): void {
     // TODO
     this.clear();
     super.destroy();
@@ -122,7 +122,7 @@ export class Graphics extends DisplayObject {
    * @param {number} alpha - The alpha (transparency) of the line to draw.
    * @returns {Graphics} This Graphics object for chaining.
    */
-  public lineStyle(lineWidth = 0, color = 0, alpha = 1) {
+  public lineStyle(lineWidth = 0, color = 0, alpha = 1): this {
     this.lineWidth = lineWidth || 0;
     this.lineColor = color || 0;
     this.lineAlpha = alpha ?? 1;
@@ -146,7 +146,7 @@ export class Graphics extends DisplayObject {
    * @param {number} y - The y coordinate to move to.
    * @returns {Graphics} This Graphics object for chaining.
    */
-  public moveTo(x: number, y: number) {
+  public moveTo(x: number, y: number): this {
     this.drawShape(new Polygon([x, y]));
     return this;
   }
@@ -157,7 +157,7 @@ export class Graphics extends DisplayObject {
    * @param {number} y - The y coordinate to draw to.
    * @returns {Graphics} This Graphics object for chaining.
    */
-  public lineTo(x: number, y: number) {
+  public lineTo(x: number, y: number): this {
     if (!this.currentPath) {
       this.moveTo(0, 0);
     }
@@ -175,7 +175,7 @@ export class Graphics extends DisplayObject {
    * @param {number} toY - The y coordinate to draw to.
    * @returns {Graphics} This Graphics object for chaining.
    */
-  public quadraticCurveTo(cpX: number, cpY: number, toX: number, toY: number) {
+  public quadraticCurveTo(cpX: number, cpY: number, toX: number, toY: number): this {
     if (this.currentPath) {
       if (this.currentPath.shape.points.length === 0) {
         this.currentPath.shape.points = [0, 0];
@@ -214,7 +214,7 @@ export class Graphics extends DisplayObject {
    * @param {number} toY - The y coordinate to draw to.
    * @returns {Graphics} This Graphics object for chaining.
    */
-  public bezierCurveTo(cpX: number, cpY: number, cpX2: number, cpY2: number, toX: number, toY: number) {
+  public bezierCurveTo(cpX: number, cpY: number, cpX2: number, cpY2: number, toX: number, toY: number): this {
     if (this.currentPath) {
       if (this.currentPath.shape.points.length === 0) {
         this.currentPath.shape.points = [0, 0];
@@ -258,7 +258,7 @@ export class Graphics extends DisplayObject {
    * @param {number} radius - The radius of the arc.
    * @returns {Graphics} This Graphics object for chaining.
    */
-  public arcTo(x1: number, y1: number, x2: number, y2: number, radius: number) {
+  public arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): this {
     if (this.currentPath) {
       if (this.currentPath.shape.points.length === 0) {
         this.currentPath.shape.points.push(x1, y1);
@@ -320,7 +320,7 @@ export class Graphics extends DisplayObject {
     endAngle: number,
     anticlockwise = false,
     segments = 40
-  ) {
+  ): this {
     //  If we do this we can never draw a full circle
     if (startAngle === endAngle) {
       return this;
@@ -369,7 +369,7 @@ export class Graphics extends DisplayObject {
    * @param {number} alpha - The fill alpha (transparency) to use.
    * @returns {Graphics} This Graphics object for chaining.
    */
-  public beginFill(color = 0, alpha = 1) {
+  public beginFill(color = 0, alpha = 1): this {
     this.filling = true;
     this.fillColor = color || 0;
     this.fillAlpha = alpha ?? 1;
@@ -387,7 +387,7 @@ export class Graphics extends DisplayObject {
    * Ends the current fill operation.
    * @returns {Graphics} This Graphics object for chaining.
    */
-  public endFill() {
+  public endFill(): this {
     this.filling = false;
     this.fillColor = null;
     this.fillAlpha = 1;
@@ -402,7 +402,7 @@ export class Graphics extends DisplayObject {
    * @param {number} height - The height of the rectangle.
    * @returns {Graphics} This Graphics object for chaining.
    */
-  public drawRect(x: number, y: number, width: number, height: number) {
+  public drawRect(x: number, y: number, width: number, height: number): this {
     this.drawShape(new Rectangle(x, y, width, height));
     return this;
   }
@@ -416,7 +416,7 @@ export class Graphics extends DisplayObject {
    * @param {number} radius - The radius of the rounded corners.
    * @returns {Graphics} This Graphics object for chaining.
    */
-  public drawRoundedRect(x: number, y: number, width: number, height: number, radius: number) {
+  public drawRoundedRect(x: number, y: number, width: number, height: number, radius: number): this {
     this.drawShape(new RoundedRectangle(x, y, width, height, radius));
     return this;
   }
@@ -428,7 +428,7 @@ export class Graphics extends DisplayObject {
    * @param {number} diameter - The diameter of the circle.
    * @returns {Graphics} This Graphics object for chaining.
    */
-  public drawCircle(x: number, y: number, diameter: number) {
+  public drawCircle(x: number, y: number, diameter: number): this {
     this.drawShape(new Circle(x, y, diameter));
     return this;
   }
@@ -441,7 +441,7 @@ export class Graphics extends DisplayObject {
    * @param {number} height - The height of the ellipse.
    * @returns {Graphics} This Graphics object for chaining.
    */
-  public drawEllipse(x: number, y: number, width: number, height: number) {
+  public drawEllipse(x: number, y: number, width: number, height: number): this {
     this.drawShape(new Ellipse(x, y, width, height));
     return this;
   }
@@ -451,7 +451,7 @@ export class Graphics extends DisplayObject {
    * @param {Polygon} path - The polygon to draw.
    * @returns {Graphics} This Graphics object for chaining.
    */
-  public drawPolygon(path: Polygon) {
+  public drawPolygon(path: Polygon): this {
     let points;
     if (path instanceof Polygon) {
       points = path.points;
@@ -475,7 +475,7 @@ export class Graphics extends DisplayObject {
    * Clears all graphics data.
    * @returns {Graphics} This Graphics object for chaining.
    */
-  public clear() {
+  public clear(): this {
     this.lineWidth = 0;
     this.filling = false;
     this.dirty = true;
@@ -489,7 +489,7 @@ export class Graphics extends DisplayObject {
   /**
    * Generates a texture from the graphics object (not implemented).
    */
-  public override generateTexture() {
+  public override generateTexture(): void {
     // TODO
     this.game.logger.warn('graphics.generateTexture() is not implemented');
   }
@@ -498,7 +498,7 @@ export class Graphics extends DisplayObject {
    * Renders the graphics object using WebGL.
    * @param {object} renderSession - The render session to use.
    */
-  public override renderWebGL(renderSession: RenderSession) {
+  public override renderWebGL(renderSession: RenderSession): void {
     // if the sprite is not visible or the alpha is 0 then no need to render this element
     if (!this.visible || this.alpha === 0 || this.isMask) {
       return;
@@ -558,7 +558,7 @@ export class Graphics extends DisplayObject {
    * Renders the graphics object using Canvas.
    * @param {object} renderSession - The render session to use.
    */
-  public override renderCanvas(renderSession: RenderSession) {
+  public override renderCanvas(renderSession: RenderSession): void {
     // if the sprite is not visible or the alpha is 0 then no need to render this element
     if (!this.visible || this.alpha === 0 || this.isMask) {
       return;
@@ -616,7 +616,7 @@ export class Graphics extends DisplayObject {
    * @param {Matrix} matrix - The transformation matrix to use.
    * @returns {Rectangle} The bounds rectangle of the graphics object.
    */
-  public override getBounds(matrix: Matrix | null = null) {
+  public override getBounds(matrix: Matrix | null = null): Rectangle {
     if (!this.renderable) {
       return getEmptyRectangle();
     }
@@ -676,7 +676,7 @@ export class Graphics extends DisplayObject {
    * Gets the local bounds of the graphics object.
    * @returns {Rectangle} The local bounds rectangle of the graphics object.
    */
-  public override getLocalBounds() {
+  public override getLocalBounds(): Rectangle {
     const matrixCache = this.worldTransform;
     this.worldTransform = getIdentityMatrix();
     for (const child of this.children) {
@@ -696,7 +696,7 @@ export class Graphics extends DisplayObject {
    * @param {Point} tempPoint - A temporary point object to use.
    * @returns {boolean} True if the graphics object contains the point, otherwise false.
    */
-  public containsPoint(point: Point, tempPoint: Point) {
+  public containsPoint(point: Point, tempPoint: Point): boolean {
     this.worldTransform.applyInverse(point, tempPoint);
     const { graphicsData } = this;
     for (const data of graphicsData) {
@@ -712,7 +712,7 @@ export class Graphics extends DisplayObject {
   /**
    * Updates the local bounds of the graphics object.
    */
-  public updateLocalBounds() {
+  public updateLocalBounds(): void {
     let minX = Infinity;
     let maxX = -Infinity;
     let minY = Infinity;
@@ -791,7 +791,7 @@ export class Graphics extends DisplayObject {
   /**
    * Generates a cached sprite representation of the graphics object.
    */
-  public override generateCachedSprite() {
+  public override generateCachedSprite(): void {
     const bounds = this.getLocalBounds();
     if (!this._cachedSprite) {
       const canvasBuffer = new CanvasBuffer(bounds.width, bounds.height);
@@ -817,7 +817,7 @@ export class Graphics extends DisplayObject {
   /**
    * Updates the cached sprite texture.
    */
-  public updateCachedSpriteTexture() {
+  public updateCachedSpriteTexture(): void {
     const cachedSprite = this._cachedSprite!;
     const { texture } = cachedSprite;
     const { canvas } = cachedSprite.buffer;
@@ -836,7 +836,7 @@ export class Graphics extends DisplayObject {
   /**
    * Destroys the cached sprite.
    */
-  public override destroyCachedSprite() {
+  public override destroyCachedSprite(): void {
     if (!this._cachedSprite) {
       return;
     }
@@ -849,7 +849,7 @@ export class Graphics extends DisplayObject {
    * @param {object} shape - The shape to draw.
    * @returns {GraphicsData} The graphics data for the drawn shape.
    */
-  public drawShape(shape: GraphicsShape) {
+  public drawShape(shape: GraphicsShape): GraphicsData {
     if (this.currentPath) {
       // check current path!
       if (this.currentPath.shape.points.length <= 2) {
@@ -885,7 +885,7 @@ export class Graphics extends DisplayObject {
   /**
    * Performs post-update operations for the graphics object.
    */
-  public override postUpdate() {
+  public override postUpdate(): void {
     if (this._boundsDirty) {
       this.updateLocalBounds();
       this._boundsDirty = false;
@@ -900,7 +900,7 @@ export class Graphics extends DisplayObject {
    * @param {Point[]} points - The points of the triangle.
    * @param {boolean} cull - Whether to perform backface culling.
    */
-  public drawTriangle(points: Point[], cull = false) {
+  public drawTriangle(points: Point[], cull = false): void {
     const triangle = new Polygon(points);
     if (cull) {
       const [a, b, c] = points as [Point, Point, Point];
@@ -922,7 +922,7 @@ export class Graphics extends DisplayObject {
    * @param {number[]} indices - The indices of the vertices to use.
    * @param {boolean} cull - Whether to perform backface culling.
    */
-  public drawTriangles(vertices: any, indices: number[], cull = false) {
+  public drawTriangles(vertices: any, indices: number[], cull = false): void {
     const point1 = new Point();
     const point2 = new Point();
     const point3 = new Point();

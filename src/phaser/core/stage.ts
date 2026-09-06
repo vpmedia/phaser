@@ -40,7 +40,7 @@ export class Stage extends DisplayObject {
    * Sets the background color of the stage.
    * @param {number} color - The color to set as the background.
    */
-  public setBackgroundColor(color: number) {
+  public setBackgroundColor(color: number): void {
     if (this.game.config.transparent) {
       return;
     }
@@ -55,7 +55,7 @@ export class Stage extends DisplayObject {
   /**
    * Initializes the stage after game creation.
    */
-  public boot() {
+  public boot(): void {
     setUserSelect(this.game.canvas, 'none');
     setTouchAction(this.game.canvas, 'none');
   }
@@ -63,7 +63,7 @@ export class Stage extends DisplayObject {
   /**
    * Pre-updates the stage and its children.
    */
-  public override preUpdate() {
+  public override preUpdate(): void {
     this.currentRenderOrderID = 0;
     //  This can't loop in reverse, we need the renderOrderID to be in sequence
     for (let i = 0; i < this.children.length; i += 1) {
@@ -74,7 +74,7 @@ export class Stage extends DisplayObject {
   /**
    * Updates the stage and its children.
    */
-  public override update() {
+  public override update(): void {
     let i = this.children.length;
     while (i) {
       i -= 1;
@@ -85,7 +85,7 @@ export class Stage extends DisplayObject {
   /**
    * Post-updates the stage and its children.
    */
-  public override postUpdate() {
+  public override postUpdate(): void {
     for (let i = 0; i < this.children.length; i += 1) {
       this.children[i]!.postUpdate();
     }
@@ -106,7 +106,7 @@ export class Stage extends DisplayObject {
   /**
    * Destroys the stage and cleans up resources.
    */
-  public override destroy() {
+  public override destroy(): void {
     this.exists = false;
     this.game = null!;
     this.worldTransform = null;
@@ -132,7 +132,7 @@ export class Stage extends DisplayObject {
    * Gets whether texture smoothing is enabled.
    * @returns {boolean} True if texture smoothing is enabled, false otherwise.
    */
-  public get smoothed() {
+  public get smoothed(): boolean {
     return globalThis.PhaserRegistry.TEXTURE_SCALE_MODE === SCALE_LINEAR;
   }
 

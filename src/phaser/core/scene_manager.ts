@@ -59,7 +59,7 @@ export class SceneManager {
    * Initialize the scene manager.
    * This method is called when the game boots and sets up the initial state.
    */
-  public boot() {
+  public boot(): void {
     if (this._pendingState !== null && typeof this._pendingState !== 'string') {
       this.add('default', this._pendingState, true);
     }
@@ -97,7 +97,7 @@ export class SceneManager {
    * Remove a scene state from the manager.
    * @param {string} key - The unique key for the state to remove.
    */
-  public remove(key: string) {
+  public remove(key: string): void {
     if (this.current === key) {
       this.onInitCallback = null;
       this.onShutDownCallback = null;
@@ -117,7 +117,7 @@ export class SceneManager {
    * @param {boolean} clearCache - Whether to clear the cache before starting.
    * @param {...any} args - Additional arguments to pass to the state.
    */
-  public start(key: string, clearWorld = true, clearCache = false, ...args: unknown[]) {
+  public start(key: string, clearWorld = true, clearCache = false, ...args: unknown[]): void {
     if (this.checkState(key)) {
       //  Place the state in the queue. It will be started the next time the game loop begins.
       this._pendingState = key;
@@ -135,7 +135,7 @@ export class SceneManager {
    * @param {boolean} clearCache - Whether to clear the cache before restarting.
    * @param {...any} args - Additional arguments to pass to the state.
    */
-  public restart(clearWorld = true, clearCache = false, ...args: unknown[]) {
+  public restart(clearWorld = true, clearCache = false, ...args: unknown[]): void {
     this._pendingState = this.current;
     this._clearWorld = clearWorld;
     this._clearCache = clearCache;
@@ -148,7 +148,7 @@ export class SceneManager {
    * Pre-update the scene manager.
    * This method is called before the game loop updates.
    */
-  public preUpdate() {
+  public preUpdate(): void {
     if (this._pendingState && this.game.isBooted) {
       // var previousStateKey = this.current;
       //  Already got a state running?
@@ -183,7 +183,7 @@ export class SceneManager {
    * Clear the current scene state.
    * This method is called when switching scenes to clean up the previous scene.
    */
-  public clearCurrentState() {
+  public clearCurrentState(): void {
     if (this.current) {
       if (this.onShutDownCallback) {
         this.onShutDownCallback.call(this.callbackContext, this.game);
@@ -206,7 +206,7 @@ export class SceneManager {
    * @param {string} key - The unique key for the state to check.
    * @returns {boolean} True if the scene exists, false otherwise.
    */
-  public checkState(key: string) {
+  public checkState(key: string): boolean {
     if (this.states[key]) {
       if (this.states[key].preload || this.states[key].create || this.states[key].update || this.states[key].render) {
         return true;
@@ -220,7 +220,7 @@ export class SceneManager {
    * Link a scene state to the manager.
    * @param {string} key - The unique key for the state to link.
    */
-  public link(key: string) {
+  public link(key: string): void {
     this.states[key].game = this.game;
     this.states[key].key = key;
   }
@@ -229,7 +229,7 @@ export class SceneManager {
    * Unlink a scene state from the manager.
    * @param {string} key - The unique key for the state to unlink.
    */
-  public unlink(key: string) {
+  public unlink(key: string): void {
     if (this.states[key]) {
       this.states[key].game = null;
     }
@@ -239,7 +239,7 @@ export class SceneManager {
    * Set the current scene state.
    * @param {string} key - The unique key for the state to set as current.
    */
-  public setCurrentState(key: string) {
+  public setCurrentState(key: string): void {
     this.callbackContext = this.states[key];
     this.link(key);
     //  Used when the state is set as being the current active state
@@ -272,7 +272,7 @@ export class SceneManager {
    * Handle loading completion.
    * This method is called when scene loading is complete.
    */
-  public loadComplete() {
+  public loadComplete(): void {
     if (this._created === false && this.onCreateCallback) {
       this._created = true;
       this.onCreateCallback.call(this.callbackContext, this.game);
@@ -285,7 +285,7 @@ export class SceneManager {
    * Update the scene manager.
    * This method is called every frame while the game is running.
    */
-  public update() {
+  public update(): void {
     if (this._created && this.onUpdateCallback) {
       this.onUpdateCallback.call(this.callbackContext, this.game);
     }
@@ -295,7 +295,7 @@ export class SceneManager {
    * Pause the scene manager updates.
    * This method is called when the game is paused.
    */
-  public pauseUpdate() {
+  public pauseUpdate(): void {
     if (this._created && this.onPauseUpdateCallback) {
       this.onPauseUpdateCallback.call(this.callbackContext, this.game);
     }
@@ -306,7 +306,7 @@ export class SceneManager {
    * @param {number} width - The new width of the scene.
    * @param {number} height - The new height of the scene.
    */
-  public resize(width: number, height: number) {
+  public resize(width: number, height: number): void {
     if (this.onResizeCallback) {
       this.onResizeCallback.call(this.callbackContext, width, height);
     }
@@ -316,7 +316,7 @@ export class SceneManager {
    * Destroy the scene manager.
    * This method is called when the scene manager is about to be destroyed.
    */
-  public destroy() {
+  public destroy(): void {
     this._clearWorld = true;
     this._clearCache = true;
     this.clearCurrentState();
@@ -335,7 +335,7 @@ export class SceneManager {
    * Dummy function for callbacks.
    * This is a placeholder function used when no callback is defined.
    */
-  public dummy() {
+  public dummy(): void {
     // pass
   }
 

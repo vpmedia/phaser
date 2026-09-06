@@ -15,14 +15,14 @@ export class RequestAnimationFrame {
   /**
    * Starts an animation frame request.
    */
-  public start = () => {
+  public start = (): void => {
     this.rafId = requestAnimationFrame(this.update);
   };
 
   /**
    * Cancels an animation frame request.
    */
-  public stop = () => {
+  public stop = (): void => {
     cancelAnimationFrame(this.rafId);
   };
 
@@ -30,7 +30,7 @@ export class RequestAnimationFrame {
    * Performs an animation frame request.
    * @param {number} rafTime - The timestamp provided by the browser's animation frame.
    */
-  public update = (rafTime: number) => {
+  public update = (rafTime: number): void => {
     this.game.update(rafTime);
     this.rafId = requestAnimationFrame(this.update);
   };
