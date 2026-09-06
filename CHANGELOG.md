@@ -1,3 +1,23 @@
+## [1.115.0] - 2026-09-06
+
+### 🐛 Bug Fixes
+
+- *(graphics)* Stop containsPoint looping forever
+- *(text)* Read a px font size back as a number again
+
+### 🚜 Refactor
+
+- *(types)* Give the render session a real type
+- *(types)* Type the earcut triangulation
+- *(types)* Normalise the mask manager signature
+- *(types)* Describe the loader's file descriptor
+- *(types)* Type the input event pipeline
+- *(types)* Name the shared engine surfaces
+
+### ⚙️ Miscellaneous Tasks
+
+- Release
+- *(release)* V1.115.0
 ## [1.114.0] - 2026-09-06
 
 ### 🐛 Bug Fixes
