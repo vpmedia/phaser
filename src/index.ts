@@ -3,6 +3,19 @@ export * as Const from './phaser/core/const.js';
 export { GameObjectFactory } from './phaser/core/factory.js';
 export { Game } from './phaser/core/game.js';
 export type { GameConfig } from './phaser/core/game.js';
+export {
+  getPageState,
+  onPageStateChange,
+  oncePageActive,
+  PAGE_STATE_ACTIVE,
+  PAGE_STATE_FROZEN,
+  PAGE_STATE_HIDDEN,
+  PAGE_STATE_PASSIVE,
+  PAGE_STATE_TERMINATED,
+  readPageState,
+  startPageLifecycle,
+} from './phaser/core/page_lifecycle.js';
+export type { PageState, PageStateListener } from './phaser/core/page_lifecycle.js';
 export type {
   AppliedCallback,
   Callback,

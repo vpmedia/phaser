@@ -1,10 +1,4 @@
 import type { Game } from './game.js';
-import {
-  addPageLifecycleCallback,
-  getPageLifecycleEventEmitter,
-  PAGE_LIFECYCLE_STATE_ACTIVE,
-  PAGE_LIFECYCLE_STATE_CHANGE_EVENT,
-} from '@vpmedia/simplify';
 import { ArraySet } from './array_set.js';
 import { AUDIO_DISABLED, AUDIO_STANDARD, AUDIO_WEBKIT } from './const.js';
 import { ENGINE_ERROR_CREATING_AUDIO_CONTEXT } from './error_code.js';
@@ -12,6 +6,7 @@ import { Signal } from './signal.js';
 import { Sound } from './sound.js';
 import { SoundSprite } from './sound_sprite.js';
 import type { Callback } from './callback.js';
+import { onPageStateChange, oncePageActive } from './page_lifecycle.js';
 
 export class SoundManager {
   public game!: Game;
@@ -115,7 +110,7 @@ export class SoundManager {
       this.addUnlockHandlers();
     }
     this.context.addEventListener('statechange', this.onContextStateChange, false);
-    getPageLifecycleEventEmitter().on(PAGE_LIFECYCLE_STATE_CHANGE_EVENT, this.onPageLifecycleChange);
+    onPageStateChange(this.onPageLifecycleChange);
   }
 
   /**
@@ -293,7 +288,7 @@ export class SoundManager {
       const typedError = error instanceof Error ? error : new Error(String(error));
       this.game.logger.fatal('SoundManager', { error: typedError, tags: { 'asset.key': key } });
       if (typedError.name === 'InvalidStateError') {
-        addPageLifecycleCallback(PAGE_LIFECYCLE_STATE_ACTIVE, (): void => {
+        oncePageActive((): void => {
           void this.decode(key);
         });
       } else if (typedError.name === 'EncodingError') {
