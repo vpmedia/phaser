@@ -1,3 +1,23 @@
+## [1.121.0] - 2026-09-06
+
+### 🚜 Refactor
+
+- *(types)* Distinguish a polygon's point and flattened forms
+- *(types)* Type the display object hooks and scale manager config
+- *(lint)* Adopt the modern math, string and DOM APIs
+- *(lint)* Drop the inferrable type annotations
+- *(naming)* Give the easing and parser functions camelCase names
+- *(lint)* Spread, iterate and assign the modern way
+- *(lint)* Flatten the nested conditions and index loops
+- *(lint)* Destructure and use ternaries where the branches only pick a value
+- *(lint)* Drop the this aliases and the deprecated browser reads
+- *(lint)* Register DOM handlers with addEventListener and clear the TODO markers
+- *(types)* Give the engine callbacks a real signature
+
+### ⚙️ Miscellaneous Tasks
+
+- Release
+- *(release)* V1.121.0
 ## [1.120.0] - 2026-09-06
 
 ### 🚀 Features
