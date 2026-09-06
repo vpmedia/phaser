@@ -97,19 +97,18 @@ export const create = (parent: any, width?: any, height?: any, skipPool = false)
   }
   const idx = getFirst();
   const pool = getPool();
-  let canvas;
+  let entry;
   if (idx === -1 || skipPool) {
-    const container = {
+    entry = {
       parent,
       canvas: document.createElement('canvas'),
     };
-    pool.push(container);
-    canvas = container.canvas;
+    pool.push(entry);
   } else {
-    const entry = pool[idx]!;
+    entry = pool[idx]!;
     entry.parent = parent;
-    canvas = entry.canvas;
   }
+  const { canvas } = entry;
   if (width !== undefined) {
     canvas.width = width;
     canvas.height = height;

@@ -668,8 +668,7 @@ export function earcutLinked(
   let next;
   // iterate through ears, slicing them one by one
   while (ear.prev !== ear.next) {
-    prev = ear.prev;
-    next = ear.next;
+    ({ prev, next } = ear);
     if (size ? isEarHashed(ear, minX, minY, size) : isEar(ear)) {
       // cut off the triangle
       triangles.push(prev.i / dim);

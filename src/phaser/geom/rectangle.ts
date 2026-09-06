@@ -423,11 +423,7 @@ export class Rectangle {
    * Sets the bottom coordinate of this rectangle.
    */
   public set bottom(value) {
-    if (value <= this.y) {
-      this.height = 0;
-    } else {
-      this.height = value - this.y;
-    }
+    this.height = value <= this.y ? 0 : value - this.y;
   }
 
   /**
@@ -474,11 +470,7 @@ export class Rectangle {
    * Sets the left coordinate of this rectangle.
    */
   public set left(value) {
-    if (value >= this.right) {
-      this.width = 0;
-    } else {
-      this.width = this.right - value;
-    }
+    this.width = value >= this.right ? 0 : this.right - value;
     this.x = value;
   }
 
@@ -494,11 +486,7 @@ export class Rectangle {
    * Sets the right coordinate of this rectangle.
    */
   public set right(value) {
-    if (value <= this.x) {
-      this.width = 0;
-    } else {
-      this.width = value - this.x;
-    }
+    this.width = value <= this.x ? 0 : value - this.x;
   }
 
   /**

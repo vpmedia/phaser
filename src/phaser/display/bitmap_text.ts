@@ -189,11 +189,7 @@ export class BitmapText extends DisplayObject {
       const line = lines[i]!;
       let output = '';
       for (let c = 0; c < line.length; c += 1) {
-        if (data.chars[line.codePointAt(c) ?? 32]) {
-          output = output.concat(line[c]!);
-        } else {
-          output = output.concat(replace);
-        }
+        output = output.concat(data.chars[line.codePointAt(c) ?? 32] ? line[c]! : replace);
       }
       lines[i] = output;
     }
@@ -222,7 +218,7 @@ export class BitmapText extends DisplayObject {
       }
       y += data.lineHeight * scale;
       text = text.slice(line.text.length + 1);
-      end = line.end;
+      ({ end } = line);
     } while (!end);
     this.textHeight = y;
     let t = 0;

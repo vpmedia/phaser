@@ -118,15 +118,9 @@ export class AnimationManager {
   ): Animation {
     const frames = frameList ?? [];
     //  If they didn't set the useNumericIndex then let's at least try and guess it
-    if (useNumericIndex === undefined) {
-      if (frames && typeof frames[0] === 'number') {
-        useNumericIndex = true;
-      } else {
-        useNumericIndex = false;
-      }
-    }
+    const numericIndex = useNumericIndex ?? typeof frames[0] === 'number';
     this._outputFrames = [];
-    this._frameData!.getFrameIndexes(frames, useNumericIndex, this._outputFrames);
+    this._frameData!.getFrameIndexes(frames, numericIndex, this._outputFrames);
     this._anims[name] = new Animation(
       this.game,
       this.sprite,

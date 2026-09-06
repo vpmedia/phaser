@@ -95,7 +95,7 @@ export class FastSpriteBatch {
    */
   public render(spriteBatch: any): void {
     const { children } = spriteBatch;
-    const sprite = children[0];
+    const [sprite] = children;
     // if the uvs have not updated then no point rendering just yet!
     // check texture.
     if (!sprite.texture._uvs) {

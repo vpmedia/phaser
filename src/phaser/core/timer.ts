@@ -71,11 +71,7 @@ export class Timer {
   ): TimerEvent {
     const roundedDelay = Math.round(delay);
     let tick = roundedDelay;
-    if (this._now === 0) {
-      tick += this.game.time.time;
-    } else {
-      tick += this._now;
-    }
+    tick += this._now === 0 ? this.game.time.time : this._now;
     const event = new TimerEvent(this, roundedDelay, tick, repeatCount, loop, callback, callbackContext, args);
     this.events.push(event);
     this.order();
@@ -199,7 +195,7 @@ export class Timer {
     if (this.events.length > 0) {
       //  Sort the events so the one with the lowest tick is first
       this.events.sort(this.sortHandler);
-      const first = this.events[0];
+      const [first] = this.events;
       if (first) {
         this.nextTick = first.tick;
       }
@@ -343,11 +339,7 @@ export class Timer {
       }
     }
     const d = this.nextTick - baseTime;
-    if (d < 0) {
-      this.nextTick = this._now;
-    } else {
-      this.nextTick = this._now + d;
-    }
+    this.nextTick = d < 0 ? this._now : this._now + d;
   }
 
   /**

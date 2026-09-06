@@ -663,11 +663,7 @@ export class DisplayObject {
    */
   public set width(value: number) {
     const { width } = this.getLocalBounds();
-    if (width !== 0) {
-      this.scale.x = value / width;
-    } else {
-      this.scale.x = 1;
-    }
+    this.scale.x = width === 0 ? 1 : value / width;
     this._width = value;
   }
 
@@ -685,11 +681,7 @@ export class DisplayObject {
    */
   public set height(value: number) {
     const { height } = this.getLocalBounds();
-    if (height !== 0) {
-      this.scale.y = value / height;
-    } else {
-      this.scale.y = 1;
-    }
+    this.scale.y = height === 0 ? 1 : value / height;
     this._height = value;
   }
 

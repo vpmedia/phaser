@@ -234,11 +234,7 @@ export class ScaleManager {
     if (config.fullScreenScaleMode !== undefined) {
       this.fullScreenScaleMode = config.fullScreenScaleMode;
     }
-    if (config.fullScreenTarget) {
-      this.fullScreenTarget = config.fullScreenTarget;
-    } else {
-      this.fullScreenTarget = document.documentElement;
-    }
+    this.fullScreenTarget = config.fullScreenTarget ?? document.documentElement;
   }
 
   /**
@@ -743,12 +739,9 @@ export class ScaleManager {
     const bounds = this.getParentBounds(this._tempBounds);
     const { width } = bounds;
     const { height } = bounds;
-    let multiplier;
-    if (expanding) {
-      multiplier = Math.max(height / this.game.height, width / this.game.width);
-    } else {
-      multiplier = Math.min(height / this.game.height, width / this.game.width);
-    }
+    const multiplier = expanding
+      ? Math.max(height / this.game.height, width / this.game.width)
+      : Math.min(height / this.game.height, width / this.game.width);
     this.width = Math.round(this.game.width * multiplier);
     this.height = Math.round(this.game.height * multiplier);
   }

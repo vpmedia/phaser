@@ -163,13 +163,8 @@ export class Loader {
       height: sprite.height,
       rect: null,
     };
-    if (direction === 0) {
-      // Horizontal rect
-      this.preloadSprite.rect = new Rectangle(0, 0, 1, sprite.height);
-    } else {
-      // Vertical rect
-      this.preloadSprite.rect = new Rectangle(0, 0, sprite.width, 1);
-    }
+    this.preloadSprite.rect =
+      direction === 0 ? new Rectangle(0, 0, 1, sprite.height) : new Rectangle(0, 0, sprite.width, 1);
     sprite.crop(this.preloadSprite.rect);
     sprite.visible = true;
   }

@@ -377,8 +377,7 @@ export const buildCircle = (graphicsData: DisplayGraphicsData, webGLData: Graphi
     width = circleData.radius;
     height = circleData.radius;
   } else {
-    width = circleData.width;
-    height = circleData.height;
+    ({ width, height } = circleData);
   }
   const totalSegs = 40;
   const seg = (Math.PI * 2) / totalSegs;

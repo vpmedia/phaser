@@ -183,11 +183,7 @@ export class Game {
     if (this.canvas) {
       removeFromDOM(this.canvas);
     }
-    if (this.config.canvas) {
-      this.canvas = this.config.canvas;
-    } else {
-      this.canvas = create(this, this.width, this.height, this.config.canvasID, true);
-    }
+    this.canvas = this.config.canvas ?? create(this, this.width, this.height, this.config.canvasID, true);
     if (this.config.canvasStyle) {
       const { canvasStyle } = this.config;
       for (const property of Object.keys(canvasStyle)) {

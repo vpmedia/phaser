@@ -50,8 +50,8 @@ export const xmlBitmapFont = (
   xSpacing: number,
   ySpacing: number
 ): BitmapFontData => {
-  const info = xml.querySelectorAll('info')[0];
-  const common = xml.querySelectorAll('common')[0];
+  const [info] = xml.querySelectorAll('info');
+  const [common] = xml.querySelectorAll('common');
   const attr = (element: Element | undefined, name: string): number => Math.trunc(Number(element?.getAttribute(name)));
   const data: BitmapFontData = {
     font: info?.getAttribute('face') ?? '',

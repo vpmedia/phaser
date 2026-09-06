@@ -264,11 +264,7 @@ export class WebGLSpriteBatch {
     let sprite;
     for (let i = 0, j = this.currentBatchSize; i < j; i += 1) {
       sprite = this.sprites[i];
-      if (sprite.tilingTexture) {
-        nextTexture = sprite.tilingTexture.baseTexture;
-      } else {
-        nextTexture = sprite.texture.baseTexture;
-      }
+      nextTexture = sprite.tilingTexture ? sprite.tilingTexture.baseTexture : sprite.texture.baseTexture;
       nextBlendMode = sprite.blendMode;
       nextShader = sprite.shader ?? this.defaultShader;
       blendSwap = currentBlendMode !== nextBlendMode;

@@ -108,16 +108,8 @@ export class TweenData {
    */
   public start(): this {
     this.startTime = this.game.time.time + this.delay;
-    if (this.parent.reverse) {
-      this.dt = this.duration;
-    } else {
-      this.dt = 0;
-    }
-    if (this.delay > 0) {
-      this.isRunning = false;
-    } else {
-      this.isRunning = true;
-    }
+    this.dt = this.parent.reverse ? this.duration : 0;
+    this.isRunning = this.delay <= 0;
     if (this.isFrom) {
       //  Reverse them all and instant set them
       const keys = Object.keys(this.vStartCache);
@@ -199,15 +191,9 @@ export class TweenData {
     for (const property of keys) {
       const start = this.vStart[property];
       const end = this.vEnd[property];
-      if (Array.isArray(end)) {
-        (this.parent.target as unknown as Record<string, any>)[property] = this.interpolationFunction.call(
-          this.interpolationContext,
-          end,
-          this.value
-        );
-      } else {
-        (this.parent.target as unknown as Record<string, any>)[property] = start + (end - start) * this.value;
-      }
+      (this.parent.target as unknown as Record<string, any>)[property] = Array.isArray(end)
+        ? this.interpolationFunction.call(this.interpolationContext, end, this.value)
+        : start + (end - start) * this.value;
     }
     if ((!this.parent.reverse && this.percent === 1) || (this.parent.reverse && this.percent === 0)) {
       return this.repeat();
@@ -221,11 +207,7 @@ export class TweenData {
    * @returns {object[]} An array of tween data points.
    */
   public generateData(frameRate: number): Record<string, number>[] {
-    if (this.parent.reverse) {
-      this.dt = this.duration;
-    } else {
-      this.dt = 0;
-    }
+    this.dt = this.parent.reverse ? this.duration : 0;
     let data = [];
     let complete = false;
     const fps = (1 / frameRate) * 1000;
@@ -244,11 +226,9 @@ export class TweenData {
       for (const property of keys) {
         const start = this.vStart[property];
         const end = this.vEnd[property];
-        if (Array.isArray(end)) {
-          blob[property] = this.interpolationFunction(end, this.value);
-        } else {
-          blob[property] = start + (end - start) * this.value;
-        }
+        blob[property] = Array.isArray(end)
+          ? this.interpolationFunction(end, this.value)
+          : start + (end - start) * this.value;
       }
       data.push(blob);
       if ((!this.parent.reverse && this.percent === 1) || (this.parent.reverse && this.percent === 0)) {
@@ -309,11 +289,7 @@ export class TweenData {
     } else if (!this.inReverse) {
       this.startTime += this.repeatDelay;
     }
-    if (this.parent.reverse) {
-      this.dt = this.duration;
-    } else {
-      this.dt = 0;
-    }
+    this.dt = this.parent.reverse ? this.duration : 0;
     return TWEEN_LOOPED;
   }
 }

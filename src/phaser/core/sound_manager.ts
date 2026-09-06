@@ -102,11 +102,10 @@ export class SoundManager {
       return;
     }
     this.baseLatency = this.context.baseLatency ?? 256 / (this.context.sampleRate ?? 44_100);
-    if (this.context.createGain === undefined) {
-      this.masterGain = (this.context as unknown as { createGainNode: () => GainNode }).createGainNode();
-    } else {
-      this.masterGain = this.context.createGain();
-    }
+    this.masterGain =
+      this.context.createGain === undefined
+        ? (this.context as unknown as { createGainNode: () => GainNode }).createGainNode()
+        : this.context.createGain();
     this.masterGain.gain.value = 1;
     this.masterGain.connect(this.context.destination);
     // handle audio state unlock

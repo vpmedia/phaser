@@ -253,16 +253,7 @@ export class Text extends Image {
       if (tabs === 0) {
         //  Simple layout (no tabs)
         lineWidth = this.style.strokeThickness + this.padding.x;
-        if (
-          this.colors.length > 0 ||
-          this.strokeColors.length > 0 ||
-          this.fontWeights.length > 0 ||
-          this.fontStyles.length > 0
-        ) {
-          lineWidth += this.measureLine(lines[i]);
-        } else {
-          lineWidth += this.context.measureText(lines[i]).width;
-        }
+        lineWidth += this.hasCharacterStyles() ? this.measureLine(lines[i]) : this.context.measureText(lines[i]).width;
         // Adjust for wrapped text
         if (this.style.wordWrap) {
           lineWidth -= this.context.measureText(' ').width;
@@ -274,17 +265,9 @@ export class Text extends Image {
         if (Array.isArray(tabs)) {
           let tab = 0;
           for (let c = 0; c < line.length; c += 1) {
-            let section = 0;
-            if (
-              this.colors.length > 0 ||
-              this.strokeColors.length > 0 ||
-              this.fontWeights.length > 0 ||
-              this.fontStyles.length > 0
-            ) {
-              section = this.measureLine(line[c]);
-            } else {
-              section = Math.ceil(this.context.measureText(line[c]).width);
-            }
+            const section = this.hasCharacterStyles()
+              ? this.measureLine(line[c])
+              : Math.ceil(this.context.measureText(line[c]).width);
             if (c > 0) {
               tab += tabs[c - 1]!;
             }
@@ -293,16 +276,9 @@ export class Text extends Image {
         } else {
           for (const section of line) {
             //  How far to the next tab?
-            if (
-              this.colors.length > 0 ||
-              this.strokeColors.length > 0 ||
-              this.fontWeights.length > 0 ||
-              this.fontStyles.length > 0
-            ) {
-              lineWidth += this.measureLine(section);
-            } else {
-              lineWidth += Math.ceil(this.context.measureText(section).width);
-            }
+            lineWidth += this.hasCharacterStyles()
+              ? this.measureLine(section)
+              : Math.ceil(this.context.measureText(section).width);
             const diff = snapToCeil(lineWidth, tabs) - lineWidth;
             lineWidth += diff;
           }
@@ -356,12 +332,7 @@ export class Text extends Image {
         linePositionX = Math.round(linePositionX);
         linePositionY = Math.round(linePositionY);
       }
-      if (
-        this.colors.length > 0 ||
-        this.strokeColors.length > 0 ||
-        this.fontWeights.length > 0 ||
-        this.fontStyles.length > 0
-      ) {
+      if (this.hasCharacterStyles()) {
         this.updateLine(lines[i], linePositionX, linePositionY);
       } else {
         if (this.style.stroke && this.style.strokeThickness) {
@@ -441,6 +412,19 @@ export class Text extends Image {
       this.context.shadowColor = 'rgba(0,0,0,0)';
       this.context.shadowBlur = 0;
     }
+  }
+
+  /**
+   * Reports whether any per-character style has been set, which forces the slower per-glyph path.
+   * @returns {boolean} True when a colour, weight or style has been assigned to a character.
+   */
+  public hasCharacterStyles(): boolean {
+    return (
+      this.colors.length > 0 ||
+      this.strokeColors.length > 0 ||
+      this.fontWeights.length > 0 ||
+      this.fontStyles.length > 0
+    );
   }
 
   /**

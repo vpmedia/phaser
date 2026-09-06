@@ -39,16 +39,12 @@ export class Texture {
     crop: Rectangle | null | undefined = null,
     trim: Rectangle | null | undefined = null
   ) {
-    if (!frame) {
-      this.noFrame = true;
-      frame = new Rectangle(0, 0, 1, 1);
-    }
-    if (baseTexture instanceof Texture) {
-      baseTexture = baseTexture.baseTexture;
-    }
-    this.baseTexture = baseTexture;
+    this.noFrame = !frame;
+    let textureFrame = frame ?? new Rectangle(0, 0, 1, 1);
+    const source = baseTexture instanceof Texture ? baseTexture.baseTexture : baseTexture;
+    this.baseTexture = source;
     /** @type {Rectangle} */
-    this.frame = frame;
+    this.frame = textureFrame;
     /** @type {Rectangle | null | undefined} */
     this.trim = trim;
     /** @type {boolean} */
@@ -67,11 +63,11 @@ export class Texture {
     this.height = 0;
     /** @type {Rectangle} */
     this.crop = crop ?? new Rectangle(0, 0, 1, 1);
-    if (baseTexture.hasLoaded) {
+    if (source.hasLoaded) {
       if (this.noFrame) {
-        frame = new Rectangle(0, 0, baseTexture.width, baseTexture.height);
+        textureFrame = new Rectangle(0, 0, source.width, source.height);
       }
-      this.setFrame(frame);
+      this.setFrame(textureFrame);
     }
   }
 

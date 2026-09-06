@@ -459,39 +459,40 @@ export class InputHandler {
   public checkPixel(x: number | null, y: number | null, pointer?: Pointer): boolean {
     //  Grab a pixel from our image into the hitCanvas and then test it
     if (this.sprite.texture.baseTexture.source) {
-      if (x === null || y === null) {
+      let localX = x;
+      let localY = y;
+      if (localX === null || localY === null) {
         //  Use the pointer parameter
         this.game.input.getLocalPosition(this.sprite, pointer!, this._tempPoint);
-        x = this._tempPoint.x;
-        y = this._tempPoint.y;
+        ({ x: localX, y: localY } = this._tempPoint);
       }
       if (this.sprite.anchor.x !== 0) {
-        x -= -this.sprite.texture.frame.width * this.sprite.anchor.x;
+        localX -= -this.sprite.texture.frame.width * this.sprite.anchor.x;
       }
       if (this.sprite.anchor.y !== 0) {
-        y -= -this.sprite.texture.frame.height * this.sprite.anchor.y;
+        localY -= -this.sprite.texture.frame.height * this.sprite.anchor.y;
       }
-      x += this.sprite.texture.frame.x;
-      y += this.sprite.texture.frame.y;
+      localX += this.sprite.texture.frame.x;
+      localY += this.sprite.texture.frame.y;
       if (this.sprite.texture.trim) {
-        x -= this.sprite.texture.trim.x;
-        y -= this.sprite.texture.trim.y;
+        localX -= this.sprite.texture.trim.x;
+        localY -= this.sprite.texture.trim.y;
         //  If the coordinates are outside the trim area we return false immediately, to save doing a draw call
         if (
-          x < this.sprite.texture.crop.x ||
-          x > this.sprite.texture.crop.right ||
-          y < this.sprite.texture.crop.y ||
-          y > this.sprite.texture.crop.bottom
+          localX < this.sprite.texture.crop.x ||
+          localX > this.sprite.texture.crop.right ||
+          localY < this.sprite.texture.crop.y ||
+          localY > this.sprite.texture.crop.bottom
         ) {
-          this._dx = x;
-          this._dy = y;
+          this._dx = localX;
+          this._dy = localY;
           return false;
         }
       }
-      this._dx = x;
-      this._dy = y;
+      this._dx = localX;
+      this._dy = localY;
       this.game.input.hitContext!.clearRect(0, 0, 1, 1);
-      this.game.input.hitContext!.drawImage(this.sprite.texture.baseTexture.source, x, y, 1, 1, 0, 0, 1, 1);
+      this.game.input.hitContext!.drawImage(this.sprite.texture.baseTexture.source, localX, localY, 1, 1, 0, 0, 1, 1);
       const rgb = this.game.input.hitContext!.getImageData(0, 0, 1, 1);
       if (rgb.data[3]! >= this.pixelPerfectAlpha) {
         return true;

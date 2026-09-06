@@ -453,12 +453,7 @@ export class Graphics extends DisplayObject {
    * @returns {Graphics} This Graphics object for chaining.
    */
   public drawPolygon(path: Polygon): this {
-    let points;
-    if (path instanceof Polygon) {
-      points = path.points;
-    } else {
-      points = path;
-    }
+    const points = path instanceof Polygon ? path.points : path;
     // TODO
     /*
     if (!Array.isArray(points)) {
@@ -717,15 +712,13 @@ export class Graphics extends DisplayObject {
     let minY = Infinity;
     let maxY = -Infinity;
     if (this.graphicsData.length > 0) {
-      let shape;
       let points;
       let x;
       let y;
       let w;
       let h;
       for (const data of this.graphicsData) {
-        const { lineWidth } = data;
-        shape = data.shape;
+        const { lineWidth, shape } = data;
         if (shape instanceof Rectangle || shape instanceof RoundedRectangle) {
           x = shape.x - lineWidth / 2;
           y = shape.y - lineWidth / 2;
@@ -736,8 +729,7 @@ export class Graphics extends DisplayObject {
           minY = y < minY ? y : minY;
           maxY = y + h > maxY ? y + h : maxY;
         } else if (shape instanceof Circle) {
-          x = shape.x;
-          y = shape.y;
+          ({ x, y } = shape);
           w = shape.radius + lineWidth / 2;
           h = shape.radius + lineWidth / 2;
           minX = x - w < minX ? x - w : minX;
@@ -745,8 +737,7 @@ export class Graphics extends DisplayObject {
           minY = y - h < minY ? y - h : minY;
           maxY = y + h > maxY ? y + h : maxY;
         } else if (shape instanceof Ellipse) {
-          x = shape.x;
-          y = shape.y;
+          ({ x, y } = shape);
           w = shape.width + lineWidth / 2;
           h = shape.height + lineWidth / 2;
           minX = x - w < minX ? x - w : minX;
@@ -755,12 +746,11 @@ export class Graphics extends DisplayObject {
           maxY = y + h > maxY ? y + h : maxY;
         } else {
           // POLY - assumes points are sequential, not Point objects
-          points = shape.points;
+          ({ points } = shape);
           for (let j = 0; j < points.length; j += 1) {
             const vertex = points[j];
             if (vertex instanceof Point) {
-              x = vertex.x;
-              y = vertex.y;
+              ({ x, y } = vertex);
             } else {
               x = vertex!;
               y = points[j + 1] as number;
