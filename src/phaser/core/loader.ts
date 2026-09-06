@@ -8,16 +8,48 @@ import { Signal } from './signal.js';
 
 const TEXTURE_ATLAS_JSON_HASH = 1;
 
+/** An audio source, either a plain URL or a URL paired with its format. */
+export type AudioSource = string | { uri: string; type?: string };
+
 /**
- * Describes a file entry managed by the Loader.
+ * A queued or in-flight load. The core fields are set for every file; the rest are supplied by the
+ * per-type helpers (image, audio, atlas, bitmap font) as extra properties.
  */
-export interface LoaderFile {
-  key: string;
+export type LoaderFile = {
   type: string;
-  url: string;
+  key: string;
+  path: string;
+  url: string | AudioSource[];
+  syncPoint: boolean;
+  data: any;
+  loading: boolean;
+  loaded: boolean;
   error: boolean;
-  errorMessage: string;
-}
+  errorMessage?: string;
+  requestObject?: XMLHttpRequest | HTMLImageElement | HTMLAudioElement | null;
+  requestUrl?: string | null;
+  numRetry?: number;
+  overwrite?: boolean;
+  format?: unknown;
+  urls?: string[] | string;
+  autoDecode?: boolean;
+  buffer?: unknown;
+  atlasURL?: string | null;
+  atlasData?: unknown;
+  atlasType?: string;
+  textureURL?: string | null;
+  jsonURL?: string | null;
+  jsonData?: unknown;
+  audioURL?: string;
+  fontDataURL?: string;
+  frameWidth?: number;
+  frameHeight?: number;
+  frameMax?: number;
+  margin?: number;
+  spacing?: number;
+  xSpacing?: number;
+  ySpacing?: number;
+};
 
 export class Loader {
   public game!: Game;
@@ -40,8 +72,8 @@ export class Loader {
   public onFileError!: Signal;
   public maxParallelDownloads!: number;
   public _withSyncPointDepth!: number;
-  public _fileList!: any;
-  public _flightQueue!: any;
+  public _fileList!: LoaderFile[];
+  public _flightQueue!: LoaderFile[];
   public _processingHead!: number;
   public _fileLoadStarted!: boolean;
   public _totalPackCount!: number;
@@ -139,7 +171,7 @@ export class Loader {
   public getAssetIndex(type: string, key: string) {
     let bestFound = -1;
     for (let i = 0; i < this._fileList.length; i += 1) {
-      const file = this._fileList[i];
+      const file = this._fileList[i]!;
       if (file.type === type && file.key === key) {
         bestFound = i;
         // An already loaded/loading file may be superceded.
@@ -161,7 +193,7 @@ export class Loader {
   public getAsset(type: string, key: string) {
     const fileIndex = this.getAssetIndex(type, key);
     if (fileIndex > -1) {
-      return { index: fileIndex, file: this._fileList[fileIndex] };
+      return { index: fileIndex, file: this._fileList[fileIndex]! };
     }
     return null;
   }
@@ -207,8 +239,8 @@ export class Loader {
   public addToFileList(
     type: string,
     key = '',
-    url: string | null = null,
-    properties: any | null = null,
+    url: string | AudioSource[] | null = null,
+    properties: Partial<LoaderFile> | null = null,
     overwrite = false,
     extension: string | null = null
   ) {
@@ -224,7 +256,7 @@ export class Loader {
         return this;
       }
     }
-    const file: Record<string, unknown> = {
+    const file: LoaderFile = {
       type,
       key,
       path: this.path,
@@ -234,16 +266,11 @@ export class Loader {
       loading: false,
       loaded: false,
       error: false,
+      ...properties,
     };
-    if (properties) {
-      const extraProperties = properties as Record<string, unknown>;
-      for (const prop of Object.keys(extraProperties)) {
-        file[prop] = extraProperties[prop];
-      }
-    }
     const fileIndex = this.getAssetIndex(type, key);
     if (overwrite && fileIndex > -1) {
-      const currentFile = this._fileList[fileIndex];
+      const currentFile = this._fileList[fileIndex]!;
       if (!currentFile.loading && !currentFile.loaded) {
         this._fileList[fileIndex] = file;
       } else {
@@ -265,7 +292,7 @@ export class Loader {
    * @param {object} properties - The new properties for the file.
    * @returns {Loader} This Loader instance for chaining.
    */
-  public replaceInFileList(type: string, key: string, url: string, properties: any) {
+  public replaceInFileList(type: string, key: string, url: string, properties: Partial<LoaderFile>) {
     return this.addToFileList(type, key, url, properties, true);
   }
 
@@ -277,7 +304,7 @@ export class Loader {
    * @param {object} callbackContext - The context in which to call the callback.
    * @returns {Loader} This Loader instance for chaining.
    */
-  public pack(key: string, url: string, data: any, callbackContext: any) {
+  public pack(key: string, url: string, data: unknown, callbackContext: unknown) {
     const pack = {
       type: 'packfile',
       key,
@@ -315,7 +342,7 @@ export class Loader {
    * @param {boolean} overwrite - Whether to overwrite an existing file with the same key.
    * @returns {Loader} This Loader instance for chaining.
    */
-  public image(key: string, url?: any, overwrite = false) {
+  public image(key: string, url?: string, overwrite = false) {
     return this.addToFileList('image', key, url, undefined, overwrite, '.png');
   }
 
@@ -408,7 +435,7 @@ export class Loader {
    * @param {boolean} autoDecode - Whether to automatically decode the audio file.
    * @returns {Loader} This Loader instance for chaining.
    */
-  public audio(key: string, urls: any, autoDecode = true) {
+  public audio(key: string, urls: string | string[], autoDecode = true) {
     if (this.game.sound.noAudio || this.game.device.noAudioFormat) {
       return this;
     }
@@ -427,7 +454,7 @@ export class Loader {
    * @param {boolean} autoDecode - Whether to automatically decode the audio file.
    * @returns {Loader} This Loader instance for chaining.
    */
-  public audioSprite(key: string, urls: string, jsonURL: string, jsonData: any, autoDecode = true) {
+  public audioSprite(key: string, urls: string, jsonURL: string, jsonData: unknown, autoDecode = true) {
     if (this.game.sound.noAudio || this.game.device.noAudioFormat) {
       return this;
     }
@@ -458,7 +485,7 @@ export class Loader {
     key: string,
     textureURL: string | null = null,
     atlasURL: string | null = null,
-    atlasData: any | null = null,
+    atlasData: unknown = null,
     xSpacing = 0,
     ySpacing = 0
   ) {
@@ -505,7 +532,7 @@ export class Loader {
     key: string,
     textureURL: string,
     atlasURL: string | null = null,
-    atlasData: any | null = null,
+    atlasData: unknown = null,
     format: number = TEXTURE_ATLAS_JSON_HASH
   ) {
     textureURL ??= `${key}.png`;
@@ -527,7 +554,7 @@ export class Loader {
    * @param {object} callbackContext - The context in which to call the callback.
    * @returns {Loader} This Loader instance for chaining.
    */
-  public withSyncPoint(callback: Function, callbackContext: any) {
+  public withSyncPoint(callback: Function, callbackContext: unknown) {
     this._withSyncPointDepth += 1;
     try {
       callback.call(callbackContext ?? this, this);
@@ -597,7 +624,7 @@ export class Loader {
     }
     // Empty the flight queue as applicable
     for (let i = 0; i < this._flightQueue.length; i += 1) {
-      const file = this._flightQueue[i];
+      const file = this._flightQueue[i]!;
       if (file.loaded || file.error) {
         this._flightQueue.splice(i, 1);
         i -= 1;
@@ -627,7 +654,7 @@ export class Loader {
     let syncblock = false;
     const inflightLimit = this.maxParallelDownloads;
     for (let i = this._processingHead; i < this._fileList.length; i += 1) {
-      const file = this._fileList[i];
+      const file = this._fileList[i]!;
       // Pack is fetched (ie. has data) and is currently at the start of the process queue.
       if (file.type === 'packfile' && !file.error && file.loaded && i === this._processingHead) {
         // Processing the pack / adds more files
@@ -712,7 +739,7 @@ export class Loader {
    * @param {object} file - The file to complete or mark as failed.
    * @param {string} errorMessage - An error message if the file failed to load.
    */
-  public asyncComplete(file: any, errorMessage = '') {
+  public asyncComplete(file: LoaderFile, errorMessage = '') {
     file.loaded = true;
     file.error = Boolean(errorMessage);
     if (file.error) {
@@ -727,7 +754,7 @@ export class Loader {
    * Processes a pack file, adding its contained files to the loader.
    * @param {object} pack - The pack file object to process.
    */
-  public processPack(pack: any) {
+  public processPack(pack: LoaderFile) {
     const packData = pack.data[pack.key];
     if (!packData) {
       this.game.logger.warn('Missing loader pack key', { key: pack.key });
@@ -801,7 +828,10 @@ export class Loader {
    * @param {object} file - The file object containing path information.
    * @returns {string} The transformed URL.
    */
-  public transformUrl(url: any, file: any): any {
+  public transformUrl(url: string | AudioSource[] | null, file: LoaderFile): string | false {
+    if (typeof url !== 'string') {
+      return false;
+    }
     if (!url) {
       return false;
     }
@@ -815,7 +845,7 @@ export class Loader {
    * Loads a file using XMLHttpRequest, handling image files specially.
    * @param {object} file - The file object to load.
    */
-  public loadFile(file: any) {
+  public loadFile(file: LoaderFile) {
     switch (file.type) {
       case 'packfile': {
         this.xhrLoad(file, this.transformUrl(file.url, file), 'text', this.fileComplete);
@@ -829,9 +859,10 @@ export class Loader {
         break;
       }
       case 'audio': {
-        file.url = this.getAudioURL(file.url);
-        if (file.url) {
-          this.xhrLoad(file, this.transformUrl(file.url, file), 'arraybuffer', this.fileComplete);
+        const resolved = this.getAudioURL(file.url);
+        if (resolved) {
+          file.url = resolved;
+          this.xhrLoad(file, this.transformUrl(resolved, file), 'arraybuffer', this.fileComplete);
         } else if (this.game.sound.noAudio) {
           this.fileError(file, null, 'Device does not have audio playback support');
         } else if (this.game.device.noAudioFormat) {
@@ -864,7 +895,7 @@ export class Loader {
    * Loads an image file using the Image DOM element.
    * @param {object} file - The file object to load.
    */
-  public loadImageTag(file: any) {
+  public loadImageTag(file: LoaderFile) {
     this.log('loadImageTag', file);
     const scope = this;
     file.data = new globalThis.Image();
@@ -902,7 +933,17 @@ export class Loader {
    * @param {Function} onload - The function to call when the file loads successfully.
    * @param {Function} onerror - The function to call if the file fails to load.
    */
-  public xhrLoad(file: any, url: any, type: any, onload: Function, onerror: Function | null = null) {
+  public xhrLoad(
+    file: LoaderFile,
+    url: string | false,
+    type: XMLHttpRequestResponseType,
+    onload: Function,
+    onerror: Function | null = null
+  ) {
+    if (url === false) {
+      this.fileError(file, null, 'Could not resolve the file URL');
+      return;
+    }
     this.log('xhrLoad', file);
     const scope = this;
     const xhr = new XMLHttpRequest();
@@ -981,33 +1022,34 @@ export class Loader {
    * @param {object[]} urls - The array of URLs to check for supported audio formats.
    * @returns {string} The first URL with a supported audio format, or null if none found.
    */
-  public getAudioURL(urls: any[]) {
+  public getAudioURL(urls: string | AudioSource[]) {
     if (this.game.sound.noAudio || this.game.device.noAudioFormat) {
       return null;
     }
-    for (let i = 0; i < urls.length; i += 1) {
-      let url = urls[i];
+    const candidates = typeof urls === 'string' ? [urls] : urls;
+    for (let i = 0; i < candidates.length; i += 1) {
+      const candidate = candidates[i]!;
+      let url: string;
       let audioType = null;
-      if (url.uri) {
+      if (typeof candidate !== 'string') {
         // {uri: .., type: ..} pair
-        audioType = url.type;
-        url = url.uri;
+        audioType = candidate.type ?? '';
+        url = candidate.uri;
         if (canPlayAudio(this.game.device, audioType)) {
           return url;
         }
       } else {
+        url = candidate;
         // Assume direct-data URI can be played if not in a paired form; select immediately
-        if (url.indexOf('blob:') === 0 || url.indexOf('data:') === 0) {
+        if (url.startsWith('blob:') || url.startsWith('data:')) {
           return url;
         }
-        if (url.includes('?')) {
-          // Remove query from URL
-          url = url.substr(0, url.indexOf('?'));
-        }
-        const extension = url.slice((Math.max(0, url.lastIndexOf('.')) || Infinity) + 1);
+        // The query is only stripped to read the extension; the candidate is returned intact.
+        const withoutQuery = url.includes('?') ? url.slice(0, url.indexOf('?')) : url;
+        const extension = withoutQuery.slice((Math.max(0, withoutQuery.lastIndexOf('.')) || Infinity) + 1);
         audioType = extension.toLowerCase();
         if (canPlayAudio(this.game.device, audioType)) {
-          return urls[i];
+          return candidate;
         }
       }
     }
@@ -1022,7 +1064,7 @@ export class Loader {
    * @param {XMLHttpRequest} xhr - The XMLHttpRequest object that failed.
    * @param {number | string} reason - The error code or message explaining the failure.
    */
-  public fileError(file: any, xhr: any | null = null, reason: any = 0) {
+  public fileError(file: LoaderFile, xhr: XMLHttpRequest | null = null, reason: unknown = 0) {
     // const url = file.requestUrl || this.transformUrl(file.url, file);
     if (!reason && xhr) {
       reason = xhr.status;
@@ -1037,34 +1079,37 @@ export class Loader {
    * @param {XMLHttpRequest} xhr - TBD.
    * @throws {Error}
    */
-  public fileComplete(file: any, xhr?: any) {
+  public fileComplete(file: LoaderFile, xhr?: XMLHttpRequest) {
     let loadNext = true;
+    // By this point the audio candidate list has been resolved to a single URL.
+    const url = typeof file.url === 'string' ? file.url : '';
+    const response = xhr!;
     switch (file.type) {
       case 'packfile': {
         // Pack data must never be false-ish after it is fetched without error
-        file.data = JSON.parse(xhr.responseText) ?? {};
+        file.data = JSON.parse(response.responseText) ?? {};
         break;
       }
       case 'image': {
-        this.cache.addImage(file.key, file.url, file.data);
+        this.cache.addImage(file.key, url, file.data);
         break;
       }
       case 'spritesheet': {
         this.cache.addSpriteSheet(
           file.key,
-          file.url,
+          url,
           file.data,
-          file.frameWidth,
-          file.frameHeight,
-          file.frameMax,
-          file.margin,
-          file.spacing
+          file.frameWidth ?? 0,
+          file.frameHeight ?? 0,
+          file.frameMax ?? -1,
+          file.margin ?? 0,
+          file.spacing ?? 0
         );
         break;
       }
       case 'textureatlas': {
         if (file.atlasURL == null) {
-          this.cache.addTextureAtlas(file.key, file.url, file.data, file.atlasData);
+          this.cache.addTextureAtlas(file.key, url, file.data, file.atlasData);
         } else {
           loadNext = false;
           if (file.format === TEXTURE_ATLAS_JSON_HASH) {
@@ -1079,12 +1124,12 @@ export class Loader {
         if (!file.atlasURL) {
           this.cache.addBitmapFont(
             file.key,
-            file.url,
+            url,
             file.data,
             file.atlasData,
-            file.atlasType,
-            file.xSpacing,
-            file.ySpacing
+            file.atlasType ?? 'xml',
+            file.xSpacing ?? 0,
+            file.ySpacing ?? 0
           );
         } else {
           //  Load the XML before carrying on with the next file
@@ -1093,7 +1138,7 @@ export class Loader {
             file,
             this.transformUrl(file.atlasURL, file),
             'text',
-            (bitmapFontFile: Record<string, unknown>, bitmapFontXhr: XMLHttpRequest) => {
+            (bitmapFontFile: LoaderFile, bitmapFontXhr: XMLHttpRequest) => {
               let json;
               try {
                 // Try to parse as JSON, if it fails, then it's hopefully XML
@@ -1102,10 +1147,10 @@ export class Loader {
                 // pass
               }
               if (json) {
-                bitmapFontFile['atlasType'] = 'json';
+                bitmapFontFile.atlasType = 'json';
                 this.jsonLoadComplete(bitmapFontFile, bitmapFontXhr);
               } else {
-                bitmapFontFile['atlasType'] = 'xml';
+                bitmapFontFile.atlasType = 'xml';
                 this.xmlLoadComplete(bitmapFontFile, bitmapFontXhr);
               }
             }
@@ -1114,16 +1159,16 @@ export class Loader {
         break;
       }
       case 'audio': {
-        file.data = xhr.response;
-        this.cache.addSound(file.key, file.url, file.data);
+        file.data = response.response;
+        this.cache.addSound(file.key, url, file.data);
         if (file.autoDecode) {
           this.game.sound.decode(file.key);
         }
         break;
       }
       case 'text': {
-        file.data = xhr.responseText;
-        this.cache.addText(file.key, file.url, file.data);
+        file.data = response.responseText;
+        this.cache.addText(file.key, url, file.data);
         break;
       }
       default: {
@@ -1141,14 +1186,23 @@ export class Loader {
    * @param {object} file - The file object that was loaded successfully.
    * @param {XMLHttpRequest} xhr - The XMLHttpRequest object containing the file data.
    */
-  public jsonLoadComplete(file: any, xhr: XMLHttpRequest) {
+  public jsonLoadComplete(file: LoaderFile, xhr: XMLHttpRequest) {
     const data = JSON.parse(xhr.responseText);
+    const url = typeof file.url === 'string' ? file.url : '';
     if (file.type === 'bitmapfont') {
-      this.cache.addBitmapFont(file.key, file.url, file.data, data, file.atlasType, file.xSpacing, file.ySpacing);
+      this.cache.addBitmapFont(
+        file.key,
+        url,
+        file.data,
+        data,
+        file.atlasType ?? 'json',
+        file.xSpacing ?? 0,
+        file.ySpacing ?? 0
+      );
     } else if (file.type === 'json') {
-      this.cache.addJSON(file.key, file.url, data);
+      this.cache.addJSON(file.key, url, data);
     } else {
-      this.cache.addTextureAtlas(file.key, file.url, file.data, data);
+      this.cache.addTextureAtlas(file.key, url, file.data, data);
     }
     this.asyncComplete(file);
   }
@@ -1166,7 +1220,7 @@ export class Loader {
    * @param {object} file - The file object containing the JSON data.
    * @param {XMLHttpRequest} xhr - The XMLHttpRequest object containing the file data.
    */
-  public xmlLoadComplete(file: any, xhr: XMLHttpRequest) {
+  public xmlLoadComplete(file: LoaderFile, xhr: XMLHttpRequest) {
     // Always try parsing the content as XML, regardless of actually response type
     const data = xhr.responseText;
     const xml = this.parseXml(data);
@@ -1176,12 +1230,21 @@ export class Loader {
       this.asyncComplete(file, 'invalid XML');
       return;
     }
+    const url = typeof file.url === 'string' ? file.url : '';
     if (file.type === 'bitmapfont') {
-      this.cache.addBitmapFont(file.key, file.url, file.data, xml, file.atlasType, file.xSpacing, file.ySpacing);
+      this.cache.addBitmapFont(
+        file.key,
+        url,
+        file.data,
+        xml,
+        file.atlasType ?? 'xml',
+        file.xSpacing ?? 0,
+        file.ySpacing ?? 0
+      );
     } else if (file.type === 'textureatlas') {
-      this.cache.addTextureAtlas(file.key, file.url, file.data, xml);
+      this.cache.addTextureAtlas(file.key, url, file.data, xml);
     } else if (file.type === 'xml') {
-      this.cache.addXML(file.key, file.url, xml);
+      this.cache.addXML(file.key, url, xml);
     }
     this.asyncComplete(file);
   }
@@ -1191,7 +1254,7 @@ export class Loader {
    * @param {object} data - The XML string data to parse.
    * @returns {Document} The parsed DOM Document, or null if parsing failed.
    */
-  public parseXml(data: any) {
+  public parseXml(data: string) {
     let xml = null;
     try {
       if (globalThis.DOMParser) {
