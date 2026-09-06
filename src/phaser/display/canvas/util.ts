@@ -83,10 +83,10 @@ export const addToDOM = (
   overflowHidden = true
 ): HTMLCanvasElement => {
   let target: HTMLElement | null = null;
-  if (typeof parent === 'string') {
+  if (typeof parent === 'string' && parent !== '') {
     // hopefully an element ID
     target = document.querySelector<HTMLElement>(`#${CSS.escape(parent)}`);
-  } else if (parent?.nodeType === 1) {
+  } else if (typeof parent === 'object' && parent?.nodeType === 1) {
     target = parent;
   }
   // Fallback, covers an invalid ID and a non HTMLelement object

@@ -61,6 +61,13 @@ describe('canvas util', () => {
       expect(canvas.parentElement).toBe(document.body);
     });
 
+    // An empty id used to build the selector `#`, which throws before the body fallback is reached.
+    it('falls back to the body for an empty id', () => {
+      const canvas = createCanvas();
+      addToDOM(canvas, '');
+      expect(canvas.parentElement).toBe(document.body);
+    });
+
     it('hides the parent overflow unless told not to', () => {
       const host = document.createElement('div');
       document.body.append(host);
