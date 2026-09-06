@@ -5,7 +5,7 @@ import { Node } from './earcut_node.js';
  * @param {object} list - The list of points to process.
  * @returns {object} The processed earcut data structure.
  */
-export function sortLinked(list: any) {
+export function sortLinked(list: Node | null): Node | null {
   let i;
   let p;
   let q;
@@ -34,20 +34,20 @@ export function sortLinked(list: any) {
       qSize = inSize;
       while (pSize > 0 || (qSize > 0 && q)) {
         if (pSize === 0) {
-          e = q;
-          q = q.nextZ;
+          e = q!;
+          q = e.nextZ;
           qSize -= 1;
         } else if (qSize === 0 || !q) {
-          e = p;
-          p = p.nextZ;
+          e = p!;
+          p = e.nextZ;
           pSize -= 1;
-        } else if (p.z <= q.z) {
-          e = p;
-          p = p.nextZ;
+        } else if (p!.z! <= q.z!) {
+          e = p!;
+          p = e.nextZ;
           pSize -= 1;
         } else {
           e = q;
-          q = q.nextZ;
+          q = e.nextZ;
           qSize -= 1;
         }
         if (tail) {
@@ -60,7 +60,7 @@ export function sortLinked(list: any) {
       }
       p = q;
     }
-    tail.nextZ = null;
+    tail!.nextZ = null;
     inSize *= 2;
   } while (numMerges > 1);
   return list;
@@ -72,7 +72,7 @@ export function sortLinked(list: any) {
  * @param {object} b - The second point of the triangle.
  * @returns {number} The calculated area of the triangle.
  */
-export function compareX(a: any, b: any) {
+export function compareX(a: Node, b: Node): number {
   return a.x - b.x;
 }
 
@@ -107,7 +107,7 @@ export function zOrder(x: number, y: number, minX: number, minY: number, size: n
  * @param {number} minY - The minimum y-coordinate of the bounding box.
  * @param {number} size - The size of the bounding box.
  */
-export function indexCurve(start: any, minX = 0, minY = 0, size = 0) {
+export function indexCurve(start: Node, minX = 0, minY = 0, size = 0): void {
   let p = start;
   do {
     if (p.z === null) {
@@ -117,7 +117,7 @@ export function indexCurve(start: any, minX = 0, minY = 0, size = 0) {
     p.nextZ = p.next;
     p = p.next;
   } while (p !== start);
-  p.prevZ.nextZ = null;
+  p.prevZ!.nextZ = null;
   p.prevZ = null;
   sortLinked(p);
 }
@@ -127,7 +127,7 @@ export function indexCurve(start: any, minX = 0, minY = 0, size = 0) {
  * @param {object} start - TBD.
  * @returns {object} The calculated point that is the closest to the triangle edge.
  */
-export function getLeftmost(start: any) {
+export function getLeftmost(start: Node): Node {
   let p = start;
   let leftmost = start;
   do {
@@ -175,7 +175,7 @@ export function pointInTriangle(
  * @param {object} r - TBD.
  * @returns {number} TBD.
  */
-export function area(p: any, q: any, r: any) {
+export function area(p: Node, q: Node, r: Node): number {
   return (q.y - p.y) * (r.x - q.x) - (q.x - p.x) * (r.y - q.y);
 }
 
@@ -185,7 +185,7 @@ export function area(p: any, q: any, r: any) {
  * @param {object} p2 - The second point of the triangle.
  * @returns {boolean} True if the point is inside the triangle, false otherwise.
  */
-export function equals(p1: any, p2: any) {
+export function equals(p1: Node, p2: Node): boolean {
   return p1.x === p2.x && p1.y === p2.y;
 }
 
@@ -197,7 +197,7 @@ export function equals(p1: any, p2: any) {
  * @param {object} q2 - The second point of the second line segment.
  * @returns {boolean} True if the line segments intersect, false otherwise.
  */
-export function intersects(p1: any, q1: any, p2: any, q2: any) {
+export function intersects(p1: Node, q1: Node, p2: Node, q2: Node): boolean {
   return area(p1, q1, p2) > 0 !== area(p1, q1, q2) > 0 && area(p2, q2, p1) > 0 !== area(p2, q2, q1) > 0;
 }
 
@@ -207,7 +207,7 @@ export function intersects(p1: any, q1: any, p2: any, q2: any) {
  * @param {object} b - The second point of the line segment.
  * @returns {boolean} True if the points are collinear, false otherwise.
  */
-export function intersectsPolygon(a: any, b: any) {
+export function intersectsPolygon(a: Node, b: Node): boolean {
   let p = a;
   do {
     if (p.i !== a.i && p.next.i !== a.i && p.i !== b.i && p.next.i !== b.i && intersects(p, p.next, a, b)) {
@@ -224,7 +224,7 @@ export function intersectsPolygon(a: any, b: any) {
  * @param {object} b - The second point of the cross product.
  * @returns {object} The calculated cross product result.
  */
-export function locallyInside(a: any, b: any) {
+export function locallyInside(a: Node, b: Node): boolean {
   return area(a.prev, a, a.next) < 0
     ? area(a, b, a.next) >= 0 && area(a, a.prev, b) >= 0
     : area(a, b, a.prev) < 0 || area(a, a.next, b) < 0;
@@ -236,7 +236,7 @@ export function locallyInside(a: any, b: any) {
  * @param {object} b - The second point of the triangle.
  * @returns {boolean} True if the point is inside the triangle, false otherwise.
  */
-export function middleInside(a: any, b: any) {
+export function middleInside(a: Node, b: Node): boolean {
   let p = a;
   let inside = false;
   const px = (a.x + b.x) / 2;
@@ -256,7 +256,7 @@ export function middleInside(a: any, b: any) {
  * @param {object} b - The second point of the triangle.
  * @returns {boolean} True if the point is inside the triangle, false otherwise.
  */
-export function isValidDiagonal(a: any, b: any) {
+export function isValidDiagonal(a: Node, b: Node): boolean {
   return (
     equals(a, b) ||
     (a.next.i !== b.i &&
@@ -274,7 +274,7 @@ export function isValidDiagonal(a: any, b: any) {
  * @param {object} b - TBD.
  * @returns {object} TBD.
  */
-export function splitPolygon(a: any, b: any) {
+export function splitPolygon(a: Node, b: Node): Node {
   const a2 = new Node(a.i, a.x, a.y);
   const b2 = new Node(b.i, b.x, b.y);
   const an = a.next;
@@ -298,7 +298,7 @@ export function splitPolygon(a: any, b: any) {
  * @param {object} last - TBD.
  * @returns {object} TBD.
  */
-export function insertNode(i: number, x: number, y: number, last: any) {
+export function insertNode(i: number, x: number, y: number, last: Node | null): Node {
   const p = new Node(i, x, y);
   if (!last) {
     p.prev = p;
@@ -316,7 +316,7 @@ export function insertNode(i: number, x: number, y: number, last: any) {
  * TBD.
  * @param {object} p - TBD.
  */
-export function removeNode(p: any) {
+export function removeNode(p: Node): void {
   p.next.prev = p.prev;
   p.prev.next = p.next;
   if (p.prevZ) {
@@ -332,7 +332,7 @@ export function removeNode(p: any) {
  * @param {object} ear - TBD.
  * @returns {boolean} TBD.
  */
-export function isEar(ear: any) {
+export function isEar(ear: Node): boolean {
   const a = ear.prev;
   const b = ear;
   const c = ear.next;
@@ -358,7 +358,7 @@ export function isEar(ear: any) {
  * @param {number} size - TBD.
  * @returns {boolean} TBD.
  */
-export function isEarHashed(ear: any, minX = 0, minY = 0, size = 0) {
+export function isEarHashed(ear: Node, minX = 0, minY = 0, size = 0): boolean {
   const a = ear.prev;
   const b = ear;
   const c = ear.next;
@@ -375,7 +375,7 @@ export function isEarHashed(ear: any, minX = 0, minY = 0, size = 0) {
   const maxZ = zOrder(maxTX, maxTY, minX, minY, size);
   // first look for points inside the triangle in increasing z-order
   let p = ear.nextZ;
-  while (p && p.z <= maxZ) {
+  while (p && p.z! <= maxZ) {
     if (
       p !== ear.prev &&
       p !== ear.next &&
@@ -388,7 +388,7 @@ export function isEarHashed(ear: any, minX = 0, minY = 0, size = 0) {
   }
   // then look for points in decreasing z-order
   p = ear.prevZ;
-  while (p && p.z >= minZ) {
+  while (p && p.z! >= minZ) {
     if (
       p !== ear.prev &&
       p !== ear.next &&
@@ -411,24 +411,24 @@ export function isEarHashed(ear: any, minX = 0, minY = 0, size = 0) {
  * @param {boolean} clockwise - Whether the triangles should be clockwise or counterclockwise.
  * @returns {object} The processed earcut data structure with triangulation information.
  */
-export function linkedList(data: any, start: number, end: number, dim: number, clockwise: boolean) {
+export function linkedList(data: number[], start: number, end: number, dim: number, clockwise: boolean): Node | null {
   let sum = 0;
   let i;
   let j;
-  let last;
+  let last: Node | null = null;
   // calculate original winding order of a polygon ring
   for (i = start, j = end - dim; i < end; i += dim) {
-    sum += (data[j] - data[i]) * (data[i + 1] + data[j + 1]);
+    sum += (data[j]! - data[i]!) * (data[i + 1]! + data[j + 1]!);
     j = i;
   }
   // link points into circular doubly-linked list in the specified winding order
   if (clockwise === sum > 0) {
     for (i = start; i < end; i += dim) {
-      last = insertNode(i, data[i], data[i + 1], last);
+      last = insertNode(i, data[i]!, data[i + 1]!, last ?? null);
     }
   } else {
     for (i = end - dim; i >= start; i -= dim) {
-      last = insertNode(i, data[i], data[i + 1], last);
+      last = insertNode(i, data[i]!, data[i + 1]!, last ?? null);
     }
   }
   return last;
@@ -440,7 +440,7 @@ export function linkedList(data: any, start: number, end: number, dim: number, c
  * @param {object} end - The ending point in the data structure.
  * @returns {object} The calculated bounding box with min and max coordinates.
  */
-export function filterPoints(start: any, end?: any) {
+export function filterPoints(start: Node | null, end?: Node | null): Node | null {
   if (!start) {
     return start;
   }
@@ -470,7 +470,7 @@ export function filterPoints(start: any, end?: any) {
  * @param {object} outerNode - The outer node that contains the hole.
  * @returns {object} The processed hole data structure.
  */
-export function findHoleBridge(hole: any, outerNode: any) {
+export function findHoleBridge(hole: Node, outerNode: Node): Node | null {
   let p = outerNode;
   const hx = hole.x;
   const hy = hole.y;
@@ -523,10 +523,10 @@ export function findHoleBridge(hole: any, outerNode: any) {
  * @param {object} hole - The hole to process.
  * @param {object} outerNode - The outer node that contains the hole.
  */
-export function eliminateHole(hole: any, outerNode: any) {
-  outerNode = findHoleBridge(hole, outerNode);
-  if (outerNode) {
-    const b = splitPolygon(outerNode, hole);
+export function eliminateHole(hole: Node, outerNode: Node): void {
+  const bridge = findHoleBridge(hole, outerNode);
+  if (bridge) {
+    const b = splitPolygon(bridge, hole);
     filterPoints(b, b.next);
   }
 }
@@ -539,7 +539,12 @@ export function eliminateHole(hole: any, outerNode: any) {
  * @param {object} dim - The dimension of the data (2 or 3).
  * @returns {object} The processed earcut data structure with holes included.
  */
-export function eliminateHoles(data: any, holeIndices: any, outerNode: any, dim: any) {
+export function eliminateHoles(
+  data: number[],
+  holeIndices: number[],
+  outerNode: Node | null,
+  dim: number
+): Node | null {
   const queue = [];
   let i;
   let len;
@@ -547,8 +552,8 @@ export function eliminateHoles(data: any, holeIndices: any, outerNode: any, dim:
   let end;
   let list;
   for (i = 0, len = holeIndices.length; i < len; i += 1) {
-    start = holeIndices[i] * dim;
-    end = i < len - 1 ? holeIndices[i + 1] * dim : data.length;
+    start = holeIndices[i]! * dim;
+    end = i < len - 1 ? holeIndices[i + 1]! * dim : data.length;
     list = linkedList(data, start, end, dim, false);
     if (!list) {
       continue;
@@ -561,7 +566,10 @@ export function eliminateHoles(data: any, holeIndices: any, outerNode: any, dim:
   queue.sort(compareX);
   // process holes from left to right
   for (i = 0; i < queue.length; i += 1) {
-    eliminateHole(queue[i], outerNode);
+    if (!outerNode) {
+      return outerNode;
+    }
+    eliminateHole(queue[i]!, outerNode);
     outerNode = filterPoints(outerNode, outerNode.next);
   }
   return outerNode;
@@ -574,7 +582,7 @@ export function eliminateHoles(data: any, holeIndices: any, outerNode: any, dim:
  * @param {number} dim - The dimension of the data (2 or 3).
  * @returns {object} The processed triangulation data structure.
  */
-export function cureLocalIntersections(start: any, triangles: any, dim: number) {
+export function cureLocalIntersections(start: Node, triangles: number[], dim: number): Node {
   let p = start;
   do {
     const a = p.prev;
@@ -604,7 +612,7 @@ export function cureLocalIntersections(start: any, triangles: any, dim: number) 
  * @param {number} minY - The minimum y-coordinate of the bounding box.
  * @param {number} size - The size of the bounding box.
  */
-export function splitEarcut(start: any, triangles: any, dim: number, minX = 0, minY = 0, size = 0) {
+export function splitEarcut(start: Node, triangles: number[], dim: number, minX = 0, minY = 0, size = 0): void {
   // look for a valid diagonal that divides the polygon into two
   let a = start;
   do {
@@ -612,13 +620,13 @@ export function splitEarcut(start: any, triangles: any, dim: number, minX = 0, m
     while (b !== a.prev) {
       if (a.i !== b.i && isValidDiagonal(a, b)) {
         // split the polygon in two by the diagonal
-        let c = splitPolygon(a, b);
+        const c = splitPolygon(a, b);
         // filter colinear points around the cuts
-        a = filterPoints(a, a.next);
-        c = filterPoints(c, c.next);
+        const halfA = filterPoints(a, a.next);
+        const halfC = filterPoints(c, c.next);
         // run earcut on each half
-        earcutLinked(a, triangles, dim, minX, minY, size);
-        earcutLinked(c, triangles, dim, minX, minY, size);
+        earcutLinked(halfA, triangles, dim, minX, minY, size);
+        earcutLinked(halfC, triangles, dim, minX, minY, size);
         return;
       }
       b = b.next;
@@ -638,13 +646,13 @@ export function splitEarcut(start: any, triangles: any, dim: number, minX = 0, m
  * @param {object} pass - The pass information for triangulation.
  */
 export function earcutLinked(
-  ear: any,
-  triangles: any,
+  ear: Node | null,
+  triangles: number[],
   dim: number,
   minX?: number,
   minY?: number,
   size?: number,
-  pass?: any
+  pass?: number
 ) {
   if (!ear) {
     return;
@@ -697,9 +705,9 @@ export function earcutLinked(
  * @param {number} dim - The dimension of the data (2 or 3).
  * @returns {object} The processed earcut data structure with triangulation information.
  */
-export function triangulate(data: any, holeIndices: any, dim = 2) {
+export function triangulate(data: number[], holeIndices: number[] | null, dim = 2): number[] {
   const hasHoles = holeIndices && holeIndices.length;
-  const outerLen = hasHoles ? holeIndices[0] * dim : data.length;
+  const outerLen = hasHoles ? holeIndices[0]! * dim : data.length;
   let outerNode = linkedList(data, 0, outerLen, dim, true);
   const triangles: number[] = [];
   if (!outerNode) {
@@ -717,13 +725,13 @@ export function triangulate(data: any, holeIndices: any, dim = 2) {
   }
   // if the shape is not too simple, we'll use z-order curve hash later; calculate polygon bbox
   if (data.length > 80 * dim) {
-    minX = data[0];
-    maxX = data[0];
-    minY = data[1];
-    maxY = data[1];
+    minX = data[0]!;
+    maxX = data[0]!;
+    minY = data[1]!;
+    maxY = data[1]!;
     for (let i = dim; i < outerLen; i += dim) {
-      x = data[i];
-      y = data[i + 1];
+      x = data[i]!;
+      y = data[i + 1]!;
       if (x < minX) {
         minX = x;
       }

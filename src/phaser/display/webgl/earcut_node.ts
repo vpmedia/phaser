@@ -2,8 +2,8 @@ export class Node {
   public i: number;
   public x: number;
   public y: number;
-  public prev: Node | null;
-  public next: Node | null;
+  public prev: Node;
+  public next: Node;
   public z: number | null;
   public prevZ: Node | null;
   public nextZ: Node | null;
@@ -21,9 +21,9 @@ export class Node {
     // vertex coordinates
     this.x = x;
     this.y = y;
-    // previous and next vertice nodes in a polygon ring
-    this.prev = null;
-    this.next = null;
+    // previous and next vertice nodes in a polygon ring; a lone node is its own ring
+    this.prev = this;
+    this.next = this;
     // z-order curve value
     this.z = null;
     // previous and next nodes in z-order
