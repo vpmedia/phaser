@@ -3,6 +3,9 @@ import { clone, intersectsPoints, reflect } from './util/line.js';
 import { wrap } from '../util/math.js';
 import { GEOM_LINE } from '../core/const.js';
 
+/** Anything a line can read a position from: a display object, a point, or a plain x/y pair. */
+export type LineAnchor = { x: number; y: number; center?: { x: number; y: number } };
+
 export class Line {
   public start: Point;
   public end: Point;
@@ -45,9 +48,9 @@ export class Line {
    * @param {boolean} useCenter - Whether to use the center of the sprites (default: false).
    * @returns {Line} This line instance for chaining.
    */
-  public fromSprite(startSprite: any, endSprite: any, useCenter = false): this {
+  public fromSprite(startSprite: LineAnchor, endSprite: LineAnchor, useCenter = false): this {
     if (useCenter) {
-      return this.setTo(startSprite.center.x, startSprite.center.y, endSprite.center.x, endSprite.center.y);
+      return this.setTo(startSprite.center!.x, startSprite.center!.y, endSprite.center!.x, endSprite.center!.y);
     }
     return this.setTo(startSprite.x, startSprite.y, endSprite.x, endSprite.y);
   }

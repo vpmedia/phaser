@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import { compileProgram } from '../util.js';
+import type { Texture } from '../texture.js';
 
 const defaultVertexSrc = [
   'attribute vec2 aVertexPosition;',
@@ -21,7 +22,7 @@ const defaultVertexSrc = [
   '}',
 ];
 
-const glMember = (gl: WebGLRenderingContext, name: string): any => (gl as unknown as Record<string, unknown>)[name];
+const glMember = (gl: WebGLRenderingContext, name: string): GLenum => (gl as unknown as Record<string, GLenum>)[name]!;
 
 /** Applies one of the gl uniform setters, whose signatures vary by uniform kind. */
 const callUniformSetter = (setter: unknown, gl: WebGLRenderingContext, ...args: unknown[]): void => {
@@ -32,9 +33,29 @@ const callUniformSetter = (setter: unknown, gl: WebGLRenderingContext, ...args: 
 
 // this shader is used for the default sprite rendering
 
+/** The extra texture parameters a sampler uniform may carry, as the consumer supplied them. */
+export type ShaderTextureData = {
+  magFilter?: GLenum;
+  minFilter?: GLenum;
+  wrapS?: GLenum;
+  wrapT?: GLenum;
+  luminance?: boolean;
+  repeat?: boolean;
+  flipY?: boolean;
+  width?: number;
+  height?: number;
+  border?: number;
+};
+
+/** A sampler uniform, whose value is the texture to bind. */
+export type SamplerUniform = ShaderUniform & { value: Texture | null };
+
+/** A vector uniform value, read component-wise by the setter matching its arity. */
+export type UniformVector = { x: number; y: number; z?: number; w?: number };
+
 export type ShaderUniform = {
   type: string;
-  value: any;
+  value: unknown;
   uniformLocation?: WebGLUniformLocation | null;
   /** One of the gl uniform setters. Their arities differ by uniform kind, so the stored value is
    * opaque and applied through callUniformSetter. */
@@ -42,7 +63,7 @@ export type ShaderUniform = {
   glMatrix?: boolean;
   glValueLength?: number;
   transpose?: boolean;
-  textureData?: Record<string, any>;
+  textureData?: ShaderTextureData;
   _init?: boolean;
 };
 
@@ -141,7 +162,7 @@ export class NormalShader {
       if (type === 'sampler2D') {
         uniform._init = false;
         if (uniform.value !== null) {
-          this.initSampler2D(uniform);
+          this.initSampler2D(uniform as SamplerUniform);
         }
       } else if (type === 'mat2' || type === 'mat3' || type === 'mat4') {
         //  These require special handling
@@ -174,13 +195,14 @@ export class NormalShader {
    * Sets a uniform value for this shader.
    * @param {object} uniform - The uniform to set.
    */
-  public initSampler2D(uniform: any): void {
-    if (!uniform.value || !uniform.value.baseTexture || !uniform.value.baseTexture.hasLoaded) {
+  public initSampler2D(uniform: SamplerUniform): void {
+    const texture = uniform.value;
+    if (!texture?.baseTexture.hasLoaded) {
       return;
     }
     const { gl } = this;
     gl.activeTexture(glMember(gl, `TEXTURE${this.textureCount}`));
-    gl.bindTexture(gl.TEXTURE_2D, uniform.value.baseTexture._glTextures[gl.id]);
+    gl.bindTexture(gl.TEXTURE_2D, texture.baseTexture._glTextures[gl.id] ?? null);
     //  Extended texture data
     if (uniform.textureData) {
       const data = uniform.textureData;
@@ -211,14 +233,14 @@ export class NormalShader {
         gl.texImage2D(gl.TEXTURE_2D, 0, format, width, height, border, format, gl.UNSIGNED_BYTE, null);
       } else {
         //  void texImage2D(GLenum target, GLint level, GLenum internalformat, GLenum format, GLenum type, ImageData? pixels);
-        gl.texImage2D(gl.TEXTURE_2D, 0, format, gl.RGBA, gl.UNSIGNED_BYTE, uniform.value.baseTexture.source);
+        gl.texImage2D(gl.TEXTURE_2D, 0, format, gl.RGBA, gl.UNSIGNED_BYTE, texture.baseTexture.source!);
       }
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, magFilter);
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, minFilter);
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, wrapS);
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, wrapT);
     }
-    gl.uniform1i(uniform.uniformLocation, this.textureCount);
+    gl.uniform1i(uniform.uniformLocation ?? null, this.textureCount);
     uniform._init = true;
     this.textureCount += 1;
   }
@@ -231,6 +253,8 @@ export class NormalShader {
     const { gl } = this;
     //  This would probably be faster in an array and it would guarantee key order
     for (const uniform of Object.values(this.uniforms)) {
+      const vector = uniform.value as UniformVector;
+      const sampler = uniform as SamplerUniform;
       if (uniform.glValueLength === 1) {
         if (uniform.glMatrix === true) {
           callUniformSetter(uniform.glFunc, gl, uniform.uniformLocation, uniform.transpose, uniform.value);
@@ -238,40 +262,26 @@ export class NormalShader {
           callUniformSetter(uniform.glFunc, gl, uniform.uniformLocation, uniform.value);
         }
       } else if (uniform.glValueLength === 2) {
-        callUniformSetter(uniform.glFunc, gl, uniform.uniformLocation, uniform.value.x, uniform.value.y);
+        callUniformSetter(uniform.glFunc, gl, uniform.uniformLocation, vector.x, vector.y);
       } else if (uniform.glValueLength === 3) {
-        callUniformSetter(
-          uniform.glFunc,
-          gl,
-          uniform.uniformLocation,
-          uniform.value.x,
-          uniform.value.y,
-          uniform.value.z
-        );
+        callUniformSetter(uniform.glFunc, gl, uniform.uniformLocation, vector.x, vector.y, vector.z);
       } else if (uniform.glValueLength === 4) {
-        callUniformSetter(
-          uniform.glFunc,
-          gl,
-          uniform.uniformLocation,
-          uniform.value.x,
-          uniform.value.y,
-          uniform.value.z,
-          uniform.value.w
-        );
+        callUniformSetter(uniform.glFunc, gl, uniform.uniformLocation, vector.x, vector.y, vector.z, vector.w);
       } else if (uniform.type === 'sampler2D') {
         if (uniform._init) {
           gl.activeTexture(glMember(gl, `TEXTURE${this.textureCount}`));
-          if (uniform.value.baseTexture._dirty[gl.id]) {
-            globalThis.PhaserRegistry.INSTANCES[gl.id]?.updateTexture(uniform.value.baseTexture);
+          const { baseTexture } = sampler.value!;
+          if (baseTexture._dirty[gl.id]) {
+            globalThis.PhaserRegistry.INSTANCES[gl.id]?.updateTexture(baseTexture);
           } else {
             // bind the current texture
-            gl.bindTexture(gl.TEXTURE_2D, uniform.value.baseTexture._glTextures[gl.id]);
+            gl.bindTexture(gl.TEXTURE_2D, baseTexture._glTextures[gl.id] ?? null);
           }
           //  gl.bindTexture(gl.TEXTURE_2D, uniform.value.baseTexture._glTextures[gl.id] || PIXI.createWebGLTexture( uniform.value.baseTexture, gl));
           gl.uniform1i(uniform.uniformLocation ?? null, this.textureCount);
           this.textureCount += 1;
         } else {
-          this.initSampler2D(uniform);
+          this.initSampler2D(sampler);
         }
       }
     }

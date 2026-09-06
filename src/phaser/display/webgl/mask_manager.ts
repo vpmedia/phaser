@@ -1,24 +1,22 @@
 import { updateGraphics } from './graphics.js';
 import type { RenderSession } from '../render_session.js';
+import type { Graphics } from '../graphics.js';
 
 /**
  * Sets up the mask manager for WebGL rendering.
  * @param {object} maskData - The mask data to apply.
  * @param {object} renderSession - The rendering session.
  */
-export const pushMask = (maskData: any, renderSession: RenderSession): void => {
+export const pushMask = (maskData: Graphics, renderSession: RenderSession): void => {
   const { gl } = renderSession;
   if (maskData.dirty) {
     updateGraphics(maskData, gl);
   }
-  if (
-    maskData._webGL[gl.id] === undefined ||
-    maskData._webGL[gl.id].data === undefined ||
-    maskData._webGL[gl.id].data.length === 0
-  ) {
+  const [first] = maskData._webGL[gl.id]?.data ?? [];
+  if (!first) {
     return;
   }
-  renderSession.stencilManager.pushStencil(maskData, maskData._webGL[gl.id].data[0], renderSession);
+  renderSession.stencilManager.pushStencil(maskData, first, renderSession);
 };
 
 /**
@@ -26,14 +24,11 @@ export const pushMask = (maskData: any, renderSession: RenderSession): void => {
  * @param {object} maskData - The mask data to apply.
  * @param {object} renderSession - The rendering session.
  */
-export const popMask = (maskData: any, renderSession: RenderSession): void => {
+export const popMask = (maskData: Graphics | null, renderSession: RenderSession): void => {
   const { gl } = renderSession;
-  if (
-    maskData._webGL[gl.id] === undefined ||
-    maskData._webGL[gl.id].data === undefined ||
-    maskData._webGL[gl.id].data.length === 0
-  ) {
+  const [first] = maskData?._webGL[gl.id]?.data ?? [];
+  if (!first) {
     return;
   }
-  renderSession.stencilManager.popStencil(maskData, maskData._webGL[gl.id].data[0], renderSession);
+  renderSession.stencilManager.popStencil(maskData!, first, renderSession);
 };

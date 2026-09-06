@@ -271,7 +271,7 @@ export const centroid = (points: Point[], output: Point | null = null): Point =>
  * @param {string} yProp - The name of the property containing the y value (default: 'y').
  * @returns {Point} A new point with parsed x and y values.
  */
-export const parse = (obj: any, xProp = 'x', yProp = 'y'): Point => {
+export const parse = (obj: Record<string, unknown>, xProp = 'x', yProp = 'y'): Point => {
   const point = new Point();
   if (obj[xProp]) {
     point.x = Math.trunc(Number(obj[xProp]));

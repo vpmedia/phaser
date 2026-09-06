@@ -51,7 +51,7 @@ export class Input {
   public pointer7!: Pointer | null;
   public pointer8!: Pointer | null;
   public pointer9!: Pointer | null;
-  public pointer10!: any;
+  public pointer10!: Pointer | null;
   public pointers!: Pointer[];
   public activePointer!: Pointer;
   public mousePointer!: Pointer;

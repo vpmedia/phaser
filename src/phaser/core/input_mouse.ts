@@ -2,6 +2,9 @@ import type { InputEvent } from './input_event.js';
 import type { Input } from './input.js';
 import type { Game } from './game.js';
 
+/** The legacy wheel-event adapter Phaser 2 installed for old browsers; nothing sets it any more. */
+export type WheelEventProxy = { bindEvent: (event: InputEvent) => InputEvent };
+
 export class Mouse {
   public game!: Game;
   public input!: Input;
@@ -27,7 +30,7 @@ export class Mouse {
   public _onMouseWheel: EventListener | null;
   public _onMouseUpGlobal!: EventListener;
   public _onMouseOutGlobal!: EventListener;
-  public _wheelEvent!: any;
+  public _wheelEvent!: WheelEventProxy | null;
   /**
    * TBD.
    * @param {Game} game - TBD.
@@ -262,15 +265,13 @@ export class Mouse {
    * @param {WheelEvent} event - TBD.
    */
   public onMouseWheel(event: InputEvent): void {
-    if (this._wheelEvent) {
-      event = this._wheelEvent.bindEvent(event);
-    }
-    this.event = event;
-    this.eventPreventDefault(event);
+    const wheelEvent = this._wheelEvent ? this._wheelEvent.bindEvent(event) : event;
+    this.event = wheelEvent;
+    this.eventPreventDefault(wheelEvent);
     // reverse detail for firefox
-    this.wheelDelta = Math.max(-1, Math.min(1, -(event.deltaY ?? 0)));
+    this.wheelDelta = Math.max(-1, Math.min(1, -(wheelEvent.deltaY ?? 0)));
     if (this.mouseWheelCallback) {
-      this.mouseWheelCallback.call(this.callbackContext, event);
+      this.mouseWheelCallback.call(this.callbackContext, wheelEvent);
     }
   }
 

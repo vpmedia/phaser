@@ -7,7 +7,7 @@ import type { Graphics } from '../graphics.js';
  * @param {object} maskData - The mask data to apply.
  * @param {object} renderSession - The rendering session object.
  */
-export const pushMask = (maskData: any, renderSession: RenderSession): void => {
+export const pushMask = (maskData: Graphics, renderSession: RenderSession): void => {
   const { context } = renderSession;
   context.save();
   const cacheAlpha = maskData.alpha;
