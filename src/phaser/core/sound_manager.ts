@@ -80,7 +80,7 @@ export class SoundManager {
         this.context = null;
         setAudioDisabledState();
         const typedError = error instanceof Error ? error : new Error(String(error));
-        this.game.logger.exception('SoundManager', typedError);
+        this.game.logger.fatal('SoundManager', { error: typedError });
       }
     } else if ((window as any).webkitAudioContext) {
       try {
@@ -91,11 +91,11 @@ export class SoundManager {
         this.context = null;
         setAudioDisabledState();
         const typedError = error instanceof Error ? error : new Error(String(error));
-        this.game.logger.exception('SoundManager', typedError);
+        this.game.logger.fatal('SoundManager', { error: typedError });
       }
     }
     if (!this.context) {
-      this.game.logger.exception('SoundManager', new Error(ENGINE_ERROR_CREATING_AUDIO_CONTEXT));
+      this.game.logger.fatal('SoundManager', { error: new Error(ENGINE_ERROR_CREATING_AUDIO_CONTEXT) });
       setAudioDisabledState();
       return;
     }
@@ -217,7 +217,8 @@ export class SoundManager {
           error,
         });
         this.removeUnlockHandlers();
-        this.game.logger.exception('', error, {
+        this.game.logger.fatal('SoundManager', {
+          error,
           tags: { 'audio.initialState': initialState, 'audio.state': this.context.state },
         });
       });
@@ -285,7 +286,7 @@ export class SoundManager {
       })
       .catch((error: unknown) => {
         const typedError = error instanceof Error ? error : new Error(String(error));
-        this.game.logger.exception('SoundManager', typedError, { tags: { 'asset.key': key } });
+        this.game.logger.fatal('SoundManager', { error: typedError, tags: { 'asset.key': key } });
         if (typedError.name === 'InvalidStateError') {
           addPageLifecycleCallback(PAGE_LIFECYCLE_STATE_ACTIVE, () => {
             this.decode(key);

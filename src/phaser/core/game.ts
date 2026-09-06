@@ -1,4 +1,4 @@
-import { Logger } from '@vpmedia/simplify';
+import { getLogger, type Logger } from '@logtape/logtape';
 import { CanvasRenderer } from '../display/canvas/renderer.js';
 import { addToDOM, create, removeFromDOM, setTouchAction } from '../display/canvas/util.js';
 import { WebGLRenderer } from '../display/webgl/renderer.js';
@@ -193,7 +193,7 @@ export class Game {
           this.logger.warn('WebGL shader info', { log: window.PhaserRegistry.GL_SHADER_INFO_LOG });
         }
         const typedError = error instanceof Error ? error : new Error(String(error));
-        this.logger.exception('Game', typedError);
+        this.logger.fatal('Game', { error: typedError });
       }
     }
     if (!isWebGlReady) {
@@ -235,7 +235,7 @@ export class Game {
    * @param {object} config - The configuration object to parse.
    */
   parseConfig(config: any) {
-    this.logger = config.logger ?? new Logger('phaser');
+    this.logger = config.logger ?? getLogger(['phaser']);
     this.logger.info('parseConfig');
     this.parseConfigElement(config, 'width', 800);
     this.parseConfigElement(config, 'height', 600);

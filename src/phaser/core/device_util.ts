@@ -1,7 +1,7 @@
-import { Logger } from '@vpmedia/simplify';
+import { getLogger } from '@logtape/logtape';
 import { Device } from './device.js';
 
-const logger = new Logger('device');
+const logger = getLogger(['phaser', 'device']);
 
 /**
  * Check if the device can play a specific audio format.
@@ -148,7 +148,7 @@ export const canPlayType = (audioElement: HTMLAudioElement, type: string) => {
     return canPlayResult === 'maybe' || canPlayResult === 'probably';
   } catch (error) {
     const typedError = error instanceof Error ? error : new Error(String(error));
-    logger.exception(`canPlayType error with type: ${type}`, typedError);
+    logger.fatal('canPlayType error', { error: typedError, type });
     return false;
   }
 };
@@ -164,7 +164,7 @@ export const isMediaSourceTypeSupported = (type: string) => {
       return MediaSource.isTypeSupported(type);
     } catch (error) {
       const typedError = error instanceof Error ? error : new Error(String(error));
-      logger.exception(`MediaSource.isTypeSupported error with type: ${type}`, typedError);
+      logger.fatal('MediaSource.isTypeSupported error', { error: typedError, type });
       return false;
     }
   }
@@ -220,7 +220,7 @@ export const checkImage = (device: Device) => {
     };
   } catch (error) {
     const typedError = error instanceof Error ? error : new Error(String(error));
-    logger.exception('checkImage error with avif', typedError);
+    logger.fatal('checkImage error with avif', { error: typedError });
   }
   try {
     const webp = new Image();
@@ -230,7 +230,7 @@ export const checkImage = (device: Device) => {
     };
   } catch (error) {
     const typedError = error instanceof Error ? error : new Error(String(error));
-    logger.exception('checkImage error with webp', typedError);
+    logger.fatal('checkImage error with webp', { error: typedError });
   }
 };
 

@@ -925,7 +925,7 @@ export class Loader {
         if (!scope.hasLoaded) {
           scope.asyncComplete(file, typedError.message || 'Exception');
         } else {
-          scope.game.logger.exception('Loader', typedError);
+          scope.game.logger.fatal('Loader', { error: typedError });
         }
       }
       return null;
@@ -944,7 +944,7 @@ export class Loader {
           if (!scope.hasLoaded) {
             scope.asyncComplete(file, typedError.message || 'Exception');
           } else {
-            scope.game.logger.exception('Loader', typedError);
+            scope.game.logger.fatal('Loader', { error: typedError });
           }
         }
       }

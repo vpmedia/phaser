@@ -34,6 +34,7 @@
     }
   },
   "dependencies": {
+    "@logtape/logtape": "^2.3.2",
     "@vpmedia/simplify": "^1.78.0",
     "uuid": "^14.0.2"
   },

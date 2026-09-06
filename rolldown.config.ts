@@ -8,5 +8,5 @@ export default defineConfig({
     entryFileNames: 'index.js',
     sourcemap: true,
   },
-  external: ['@vpmedia/simplify', 'uuid'],
+  external: ['@logtape/logtape', '@vpmedia/simplify', 'uuid'],
 });
