@@ -13,7 +13,7 @@ import { Signal } from './signal.js';
 import type { Game } from './game.js';
 import type { DisplayObject } from '../display/display_object.js';
 import type { InputEvent } from './input_event.js';
-import type { Callback } from './callback.js';
+import type { CandidateHandler, PointerMoveCallback } from './callback.js';
 
 const MAX_POINTERS = 10;
 
@@ -21,9 +21,9 @@ export class Input {
   public game!: Game;
   public hitCanvas!: HTMLCanvasElement;
   public hitContext!: CanvasRenderingContext2D | null;
-  public moveCallbacks!: { callback: Callback; context: unknown }[];
+  public moveCallbacks!: { callback: PointerMoveCallback; context: unknown }[];
   public lockCallbacks!: unknown[];
-  public customCandidateHandler!: Callback | null;
+  public customCandidateHandler!: CandidateHandler | null;
   public customCandidateHandlerContext!: unknown;
   public pollRate!: number;
   public enabled!: boolean;
@@ -183,7 +183,7 @@ export class Input {
    * @param {Function} callback - TBD.
    * @param {object} context - TBD.
    */
-  public setInteractiveCandidateHandler(callback: Callback, context: unknown): void {
+  public setInteractiveCandidateHandler(callback: CandidateHandler, context: unknown): void {
     this.customCandidateHandler = callback;
     this.customCandidateHandlerContext = context;
   }
@@ -193,7 +193,7 @@ export class Input {
    * @param {Function} callback - TBD.
    * @param {object} context - TBD.
    */
-  public addMoveCallback(callback: Callback, context: unknown): void {
+  public addMoveCallback(callback: PointerMoveCallback, context: unknown): void {
     this.moveCallbacks.push({ callback, context });
   }
 
@@ -202,7 +202,7 @@ export class Input {
    * @param {Function} callback - TBD.
    * @param {object} context - TBD.
    */
-  public deleteMoveCallback(callback: Callback, context: unknown): void {
+  public deleteMoveCallback(callback: PointerMoveCallback, context: unknown): void {
     let i = this.moveCallbacks.length;
     while (i) {
       i -= 1;

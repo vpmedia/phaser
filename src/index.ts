@@ -3,6 +3,15 @@ export * as Const from './phaser/core/const.js';
 export { GameObjectFactory } from './phaser/core/factory.js';
 export { Game } from './phaser/core/game.js';
 export type { GameConfig } from './phaser/core/game.js';
+export type {
+  AppliedCallback,
+  Callback,
+  CandidateHandler,
+  EasingFunction,
+  InterpolationFunction,
+  PointerMoveCallback,
+  UserData,
+} from './phaser/core/callback.js';
 export { Signal } from './phaser/core/signal.js';
 export * as MathUtils from './phaser/util/math.js';
 // cache

@@ -6,6 +6,7 @@ import { PI_2 } from '../util/math.js';
 import { renderCanvas, renderWebGL } from './sprite_util.js';
 import type { Graphics } from './graphics.js';
 import type { Game } from '../core/game.js';
+import type { UserData } from '../core/callback.js';
 import type { EventManager } from '../core/event_manager.js';
 import type { Image } from './image.js';
 import type { RenderSession } from './render_session.js';
@@ -45,7 +46,7 @@ export class DisplayObject {
   /** @type {boolean} */
   public ignoreChildInput = false;
   public name: string | null = null;
-  public data: object | null = null;
+  public data: UserData = null;
   public game!: Game;
   public type!: number;
   public _cachedSprite!: Image | null;
