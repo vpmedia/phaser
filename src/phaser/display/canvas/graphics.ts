@@ -1,5 +1,9 @@
-import { GEOM_CIRCLE, GEOM_ELLIPSE, GEOM_POLYGON, GEOM_RECTANGLE, GEOM_ROUNDED_RECTANGLE } from '../../core/const.js';
 import type { Graphics } from '../graphics.js';
+import { Circle } from '../../geom/circle.js';
+import { Ellipse } from '../../geom/ellipse.js';
+import { Polygon } from '../../geom/polygon.js';
+import { Rectangle } from '../../geom/rectangle.js';
+import { RoundedRectangle } from '../../geom/rounded_rectangle.js';
 
 /**
  * Renders a graphics object to canvas.
@@ -13,7 +17,7 @@ export const updateGraphicsTint = (graphics: Graphics) => {
   const tintG = ((graphics.tint >> 8) & 0xff) / 255;
   const tintB = (graphics.tint & 0xff) / 255;
   for (const data of graphics.graphicsData) {
-    const fillColor = Math.trunc(data.fillColor);
+    const fillColor = Math.trunc(data.fillColor ?? 0);
     const lineColor = Math.trunc(data.lineColor);
     data._fillTint =
       (((((fillColor >> 16) & 0xff) / 255) * tintR * 255) << 16) +
@@ -42,7 +46,7 @@ export const renderGraphics = (graphics: Graphics, context: any) => {
     const fillColor = data._fillTint;
     const lineColor = data._lineTint;
     context.lineWidth = data.lineWidth;
-    if (data.type === GEOM_POLYGON) {
+    if (shape instanceof Polygon) {
       context.beginPath();
       const { points } = shape;
       context.moveTo(points[0], points[1]);
@@ -58,7 +62,7 @@ export const renderGraphics = (graphics: Graphics, context: any) => {
       }
       if (data.fill) {
         context.globalAlpha = data.fillAlpha * worldAlpha;
-        context.fillStyle = `#${`00000${Math.trunc(fillColor).toString(16)}`.slice(-6)}`;
+        context.fillStyle = `#${`00000${Math.trunc(fillColor ?? 0).toString(16)}`.slice(-6)}`;
         context.fill();
       }
       if (data.lineWidth) {
@@ -66,10 +70,10 @@ export const renderGraphics = (graphics: Graphics, context: any) => {
         context.strokeStyle = `#${`00000${Math.trunc(lineColor).toString(16)}`.slice(-6)}`;
         context.stroke();
       }
-    } else if (data.type === GEOM_RECTANGLE) {
+    } else if (shape instanceof Rectangle) {
       if (data.fillColor || data.fillColor === 0) {
         context.globalAlpha = data.fillAlpha * worldAlpha;
-        context.fillStyle = `#${`00000${Math.trunc(fillColor).toString(16)}`.slice(-6)}`;
+        context.fillStyle = `#${`00000${Math.trunc(fillColor ?? 0).toString(16)}`.slice(-6)}`;
         context.fillRect(shape.x, shape.y, shape.width, shape.height);
       }
       if (data.lineWidth) {
@@ -77,13 +81,13 @@ export const renderGraphics = (graphics: Graphics, context: any) => {
         context.strokeStyle = `#${`00000${Math.trunc(lineColor).toString(16)}`.slice(-6)}`;
         context.strokeRect(shape.x, shape.y, shape.width, shape.height);
       }
-    } else if (data.type === GEOM_CIRCLE) {
+    } else if (shape instanceof Circle) {
       context.beginPath();
       context.arc(shape.x, shape.y, shape.radius, 0, 2 * Math.PI);
       context.closePath();
       if (data.fill) {
         context.globalAlpha = data.fillAlpha * worldAlpha;
-        context.fillStyle = `#${`00000${Math.trunc(fillColor).toString(16)}`.slice(-6)}`;
+        context.fillStyle = `#${`00000${Math.trunc(fillColor ?? 0).toString(16)}`.slice(-6)}`;
         context.fill();
       }
       if (data.lineWidth) {
@@ -91,7 +95,7 @@ export const renderGraphics = (graphics: Graphics, context: any) => {
         context.strokeStyle = `#${`00000${Math.trunc(lineColor).toString(16)}`.slice(-6)}`;
         context.stroke();
       }
-    } else if (data.type === GEOM_ELLIPSE) {
+    } else if (shape instanceof Ellipse) {
       // ellipse code taken from: http://stackoverflow.com/questions/2172798/how-to-draw-an-oval-in-html5-canvas
       const w = shape.width * 2;
       const h = shape.height * 2;
@@ -113,7 +117,7 @@ export const renderGraphics = (graphics: Graphics, context: any) => {
       context.closePath();
       if (data.fill) {
         context.globalAlpha = data.fillAlpha * worldAlpha;
-        context.fillStyle = `#${`00000${Math.trunc(fillColor).toString(16)}`.slice(-6)}`;
+        context.fillStyle = `#${`00000${Math.trunc(fillColor ?? 0).toString(16)}`.slice(-6)}`;
         context.fill();
       }
       if (data.lineWidth) {
@@ -121,7 +125,7 @@ export const renderGraphics = (graphics: Graphics, context: any) => {
         context.strokeStyle = `#${`00000${Math.trunc(lineColor).toString(16)}`.slice(-6)}`;
         context.stroke();
       }
-    } else if (data.type === GEOM_ROUNDED_RECTANGLE) {
+    } else if (shape instanceof RoundedRectangle) {
       const rx = shape.x;
       const ry = shape.y;
       const { width } = shape;
@@ -142,7 +146,7 @@ export const renderGraphics = (graphics: Graphics, context: any) => {
       context.closePath();
       if (data.fillColor || data.fillColor === 0) {
         context.globalAlpha = data.fillAlpha * worldAlpha;
-        context.fillStyle = `#${`00000${Math.trunc(fillColor).toString(16)}`.slice(-6)}`;
+        context.fillStyle = `#${`00000${Math.trunc(fillColor ?? 0).toString(16)}`.slice(-6)}`;
         context.fill();
       }
       if (data.lineWidth) {
@@ -166,9 +170,9 @@ export const renderGraphicsMask = (graphics: Graphics, context: any) => {
   }
   context.beginPath();
   for (let i = 0; i < len; i += 1) {
-    const data = graphics.graphicsData[i];
+    const data = graphics.graphicsData[i]!;
     const { shape } = data;
-    if (data.type === GEOM_POLYGON) {
+    if (shape instanceof Polygon) {
       const { points } = shape;
       context.moveTo(points[0], points[1]);
       for (let j = 1; j < points.length / 2; j += 1) {
@@ -178,13 +182,13 @@ export const renderGraphicsMask = (graphics: Graphics, context: any) => {
       if (points[0] === points.at(-2) && points[1] === points.at(-1)) {
         context.closePath();
       }
-    } else if (data.type === GEOM_RECTANGLE) {
+    } else if (shape instanceof Rectangle) {
       context.rect(shape.x, shape.y, shape.width, shape.height);
       context.closePath();
-    } else if (data.type === GEOM_CIRCLE) {
+    } else if (shape instanceof Circle) {
       context.arc(shape.x, shape.y, shape.radius, 0, 2 * Math.PI);
       context.closePath();
-    } else if (data.type === GEOM_ELLIPSE) {
+    } else if (shape instanceof Ellipse) {
       // ellipse code taken from: http://stackoverflow.com/questions/2172798/how-to-draw-an-oval-in-html5-canvas
       const w = shape.width * 2;
       const h = shape.height * 2;
@@ -203,7 +207,7 @@ export const renderGraphicsMask = (graphics: Graphics, context: any) => {
       context.bezierCurveTo(xe, ym + oy, xm + ox, ye, xm, ye);
       context.bezierCurveTo(xm - ox, ye, x, ym + oy, x, ym);
       context.closePath();
-    } else if (data.type === GEOM_ROUNDED_RECTANGLE) {
+    } else if (shape instanceof RoundedRectangle) {
       const rx = shape.x;
       const ry = shape.y;
       const { width } = shape;

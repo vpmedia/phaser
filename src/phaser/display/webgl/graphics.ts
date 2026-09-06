@@ -1,4 +1,3 @@
-import { GEOM_CIRCLE, GEOM_ELLIPSE, GEOM_POLYGON, GEOM_RECTANGLE, GEOM_ROUNDED_RECTANGLE } from '../../core/const.js';
 import { Point } from '../../geom/point.js';
 import { hex2rgb } from '../../util/math.js';
 import { triangulate } from './earcut.js';
@@ -6,6 +5,11 @@ import { GraphicsData } from './graphics_data.js';
 import type { IdentifiedWebGLRenderingContext } from './util.js';
 import type { Graphics } from '../graphics.js';
 import type { RenderSession } from '../render_session.js';
+import { Circle } from '../../geom/circle.js';
+import { Ellipse } from '../../geom/ellipse.js';
+import { Polygon } from '../../geom/polygon.js';
+import { Rectangle } from '../../geom/rectangle.js';
+import { RoundedRectangle } from '../../geom/rounded_rectangle.js';
 
 /**
  * Updates the graphics data for WebGL rendering.
@@ -367,7 +371,7 @@ export const buildCircle = (graphicsData: any, webGLData: GraphicsData) => {
   let width;
   let height;
   // TODO - bit hacky??
-  if (graphicsData.type === GEOM_CIRCLE) {
+  if (graphicsData.shape instanceof Circle) {
     width = circleData.radius;
     height = circleData.radius;
   } else {
@@ -510,7 +514,7 @@ export const updateGraphics = (graphics: Graphics, gl: IdentifiedWebGLRenderingC
     graphics.clearDirty = false;
     // lop through and return all the webGLDatas to the object pool so than can be reused later on
     for (i = 0; i < webGL.data.length; i += 1) {
-      const graphicsData = webGL.data[i];
+      const graphicsData = webGL.data[i]!;
       graphicsData.reset();
       getGraphicsDataPool().push(graphicsData);
     }
@@ -523,14 +527,14 @@ export const updateGraphics = (graphics: Graphics, gl: IdentifiedWebGLRenderingC
   // if the object is a complex fill then the new stencil buffer technique will be used
   // other wise graphics objects will be pushed into a batch..
   for (i = webGL.lastIndex; i < graphics.graphicsData.length; i += 1) {
-    const data = graphics.graphicsData[i];
-    if (data.type === GEOM_POLYGON) {
+    const data = graphics.graphicsData[i]!;
+    if (data.shape instanceof Polygon) {
       // need to add the points the the graphics object..
       data.points = [...data.shape.points];
       if (data.shape.closed) {
         // close the poly if the value is true!
         if (data.points[0] !== data.points.at(-2) || data.points[1] !== data.points.at(-1)) {
-          data.points.push(data.points[0], data.points[1]);
+          data.points.push(data.points[0]!, data.points[1]!);
         }
       }
       // MAKE SURE WE HAVE THE CORRECT TYPE..
@@ -555,21 +559,20 @@ export const updateGraphics = (graphics: Graphics, gl: IdentifiedWebGLRenderingC
       }
     } else {
       webGLData = switchMode(webGL, 0);
-      if (data.type === GEOM_RECTANGLE) {
+      if (data.shape instanceof Rectangle) {
         buildRectangle(data, webGLData);
-      } else if (data.type === GEOM_CIRCLE || data.type === GEOM_ELLIPSE) {
+      } else if (data.shape instanceof Circle || data.shape instanceof Ellipse) {
         buildCircle(data, webGLData);
-      } else if (data.type === GEOM_ROUNDED_RECTANGLE) {
+      } else if (data.shape instanceof RoundedRectangle) {
         buildRoundedRectangle(data, webGLData);
       }
     }
     webGL.lastIndex += 1;
   }
   // upload all the dirty data...
-  for (i = 0; i < webGL.data.length; i += 1) {
-    webGLData = webGL.data[i];
-    if (webGLData.dirty) {
-      webGLData.upload();
+  for (const uploadable of webGL.data) {
+    if (uploadable.dirty) {
+      uploadable.upload();
     }
   }
 };
@@ -598,14 +601,13 @@ export const renderGraphics = (graphics: Graphics, renderSession: RenderSession)
   }
   // This could be speeded up for sure!
   for (let i = 0; i < webGL.data.length; i += 1) {
-    if (webGL.data[i].mode === 1) {
-      webGLData = webGL.data[i];
+    webGLData = webGL.data[i]!;
+    if (webGLData.mode === 1) {
       renderSession.stencilManager.pushStencil(graphics, webGLData, renderSession);
       // render quad..
       gl.drawElements(gl.TRIANGLE_FAN, 4, gl.UNSIGNED_SHORT, (webGLData.indices.length - 4) * 2);
       renderSession.stencilManager.popStencil(graphics, webGLData, renderSession);
     } else {
-      webGLData = webGL.data[i];
       renderSession.shaderManager.setShader(shader); // activatePrimitiveShader();
       shader = renderSession.shaderManager.primitiveShader;
       if (!shader) {

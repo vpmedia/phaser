@@ -1,14 +1,6 @@
 import type { Game } from '../core/game.js';
 import type { Matrix } from '../geom/matrix.js';
-import {
-  BLEND_NORMAL,
-  GEOM_CIRCLE,
-  GEOM_ELLIPSE,
-  GEOM_POLYGON,
-  GEOM_RECTANGLE,
-  GEOM_ROUNDED_RECTANGLE,
-  GRAPHICS,
-} from '../core/const.js';
+import { BLEND_NORMAL, GRAPHICS } from '../core/const.js';
 import { Circle } from '../geom/circle.js';
 import { Ellipse } from '../geom/ellipse.js';
 import { Point } from '../geom/point.js';
@@ -20,38 +12,54 @@ import { getEmptyRectangle } from '../geom/util/rectangle.js';
 import { CanvasBuffer } from './canvas/buffer.js';
 import { renderGraphics as renderCanvasGraphics } from './canvas/graphics.js';
 import { DisplayObject } from './display_object.js';
+import type { GraphicsShape } from './graphics_data.js';
 import { GraphicsData } from './graphics_data.js';
 import { Image } from './image.js';
 import { renderCanvas as renderSpriteCanvas, renderWebGL as renderSpriteWebGL } from './sprite_util.js';
 import { renderGraphics as renderWebGLGraphics } from './webgl/graphics.js';
 import { textureFromCanvas } from './webgl/texture_util.js';
 import type { RenderSession } from './render_session.js';
+import type { GraphicsData as WebGLGraphicsData } from './webgl/graphics_data.js';
+import type { IdentifiedWebGLRenderingContext } from './webgl/util.js';
+
+/** Graphics attaches the buffer it draws into onto its cached sprite. */
+export type CachedSprite = Image & { buffer: CanvasBuffer };
+
+/** drawShape only records a current path for polygon data, so its shape is always a Polygon. */
+export type PolygonPath = GraphicsData & { shape: Polygon };
+
+/** Per-context WebGL state cached on a graphics object, keyed by gl context id. */
+export type GraphicsWebGLBucket = {
+  lastIndex: number;
+  data: WebGLGraphicsData[];
+  gl: IdentifiedWebGLRenderingContext;
+};
 
 export class Graphics extends DisplayObject {
-  declare public type: any;
-  declare public renderable: any;
-  public fillAlpha!: any;
-  public lineWidth!: any;
-  public lineColor!: any;
-  public lineAlpha!: any;
-  public graphicsData!: any;
-  declare public tint: any;
-  public blendMode!: any;
-  public currentPath!: any;
-  public _webGL!: any;
-  public isMask!: any;
-  public boundsPadding!: any;
-  public _localBounds!: any;
-  public dirty!: any;
-  public clearDirty!: any;
-  public _boundsDirty!: any;
-  public _cacheAsBitmap!: any;
-  public webGLDirty!: any;
-  public cachedSpriteDirty!: any;
-  declare public _cachedSprite: any;
-  public filling!: any;
-  public fillColor!: any;
-  public _prevTint!: any;
+  declare public type: number;
+  declare public renderable: boolean;
+  public fillAlpha!: number;
+  public lineWidth!: number;
+  public lineColor!: number;
+  public lineAlpha!: number;
+  public graphicsData!: GraphicsData[];
+  declare public tint: number;
+  public blendMode!: number;
+  public currentPath!: PolygonPath | null;
+  public _webGL!: Record<number, GraphicsWebGLBucket | undefined>;
+  public isMask!: boolean;
+  public boundsPadding!: number;
+  public _localBounds!: Rectangle;
+  public dirty!: boolean;
+  public clearDirty!: boolean;
+  public _boundsDirty!: boolean;
+  public _cacheAsBitmap!: boolean;
+  public webGLDirty!: boolean;
+  public cachedSpriteDirty!: boolean;
+  declare public _cachedSprite: CachedSprite | null;
+  public filling!: boolean;
+  public fillColor!: number | null;
+  public _prevTint!: number;
   /**
    * Creates a new Graphics object.
    * @param {Game} game - The game instance.
@@ -153,7 +161,7 @@ export class Graphics extends DisplayObject {
     if (!this.currentPath) {
       this.moveTo(0, 0);
     }
-    this.currentPath.shape.points.push(x, y);
+    this.currentPath!.shape.points.push(x, y);
     this.dirty = true;
     this._boundsDirty = true;
     return this;
@@ -178,7 +186,7 @@ export class Graphics extends DisplayObject {
     let xa;
     let ya;
     const n = 20;
-    const { points } = this.currentPath.shape;
+    const { points } = this.currentPath!.shape;
     if (points.length === 0) {
       this.moveTo(0, 0);
     }
@@ -220,7 +228,7 @@ export class Graphics extends DisplayObject {
     let dt3;
     let t2;
     let t3;
-    const { points } = this.currentPath.shape;
+    const { points } = this.currentPath!.shape;
     const fromX = points.at(-2);
     const fromY = points.at(-1);
     let j = 0;
@@ -258,7 +266,7 @@ export class Graphics extends DisplayObject {
     } else {
       this.moveTo(x1, y1);
     }
-    const { points } = this.currentPath.shape;
+    const { points } = this.currentPath!.shape;
     const fromX = points.at(-2);
     const fromY = points.at(-1);
     const a1 = fromY - y1;
@@ -336,7 +344,7 @@ export class Graphics extends DisplayObject {
       this.moveTo(startX, startY);
     }
     //  currentPath will always exist after calling a moveTo
-    const { points } = this.currentPath.shape;
+    const { points } = this.currentPath!.shape;
     const theta = sweep / (segs * 2);
     const theta2 = theta * 2;
     const cTheta = Math.cos(theta);
@@ -503,8 +511,8 @@ export class Graphics extends DisplayObject {
         this.cachedSpriteDirty = false;
         this.dirty = false;
       }
-      this._cachedSprite.worldAlpha = this.worldAlpha;
-      (renderSpriteWebGL as any).call(this._cachedSprite, renderSession);
+      this._cachedSprite!.worldAlpha = this.worldAlpha;
+      renderSpriteWebGL(this._cachedSprite!, renderSession);
     } else {
       renderSession.spriteBatch.stop();
       renderSession.blendModeManager.setBlendMode(this.blendMode);
@@ -568,8 +576,8 @@ export class Graphics extends DisplayObject {
         this.cachedSpriteDirty = false;
         this.dirty = false;
       }
-      this._cachedSprite.alpha = this.alpha;
-      renderSpriteCanvas(this._cachedSprite, renderSession);
+      this._cachedSprite!.alpha = this.alpha;
+      renderSpriteCanvas(this._cachedSprite!, renderSession);
     } else {
       const { context } = renderSession;
       const transform = this.worldTransform;
@@ -691,8 +699,7 @@ export class Graphics extends DisplayObject {
   public containsPoint(point: Point, tempPoint: Point) {
     this.worldTransform.applyInverse(point, tempPoint);
     const { graphicsData } = this;
-    for (let i = 0; i < graphicsData.length; i += 0) {
-      const data = graphicsData[i];
+    for (const data of graphicsData) {
       if (data.fill && data.shape) {
         if (data.shape.contains(tempPoint.x, tempPoint.y)) {
           return true;
@@ -718,10 +725,9 @@ export class Graphics extends DisplayObject {
       let w;
       let h;
       for (const data of this.graphicsData) {
-        const { type } = data;
         const { lineWidth } = data;
         shape = data.shape;
-        if (type === GEOM_RECTANGLE || type === GEOM_ROUNDED_RECTANGLE) {
+        if (shape instanceof Rectangle || shape instanceof RoundedRectangle) {
           x = shape.x - lineWidth / 2;
           y = shape.y - lineWidth / 2;
           w = shape.width + lineWidth;
@@ -730,7 +736,7 @@ export class Graphics extends DisplayObject {
           maxX = x + w > maxX ? x + w : maxX;
           minY = y < minY ? y : minY;
           maxY = y + h > maxY ? y + h : maxY;
-        } else if (type === GEOM_CIRCLE) {
+        } else if (shape instanceof Circle) {
           x = shape.x;
           y = shape.y;
           w = shape.radius + lineWidth / 2;
@@ -739,7 +745,7 @@ export class Graphics extends DisplayObject {
           maxX = x + w > maxX ? x + w : maxX;
           minY = y - h < minY ? y - h : minY;
           maxY = y + h > maxY ? y + h : maxY;
-        } else if (type === GEOM_ELLIPSE) {
+        } else if (shape instanceof Ellipse) {
           x = shape.x;
           y = shape.y;
           w = shape.width + lineWidth / 2;
@@ -790,7 +796,7 @@ export class Graphics extends DisplayObject {
     if (!this._cachedSprite) {
       const canvasBuffer = new CanvasBuffer(bounds.width, bounds.height);
       const texture = textureFromCanvas(canvasBuffer.canvas);
-      this._cachedSprite = new Image(this.game, 0, 0, texture);
+      this._cachedSprite = new Image(this.game, 0, 0, texture) as CachedSprite;
       this._cachedSprite.buffer = canvasBuffer;
       this._cachedSprite.worldTransform = this.worldTransform;
     } else {
@@ -812,7 +818,7 @@ export class Graphics extends DisplayObject {
    * Updates the cached sprite texture.
    */
   public updateCachedSpriteTexture() {
-    const cachedSprite = this._cachedSprite;
+    const cachedSprite = this._cachedSprite!;
     const { texture } = cachedSprite;
     const { canvas } = cachedSprite.buffer;
     texture.baseTexture.width = canvas.width;
@@ -843,7 +849,7 @@ export class Graphics extends DisplayObject {
    * @param {object} shape - The shape to draw.
    * @returns {GraphicsData} The graphics data for the drawn shape.
    */
-  public drawShape(shape: any) {
+  public drawShape(shape: GraphicsShape) {
     if (this.currentPath) {
       // check current path!
       if (this.currentPath.shape.points.length <= 2) {
@@ -852,9 +858,10 @@ export class Graphics extends DisplayObject {
     }
     this.currentPath = null;
     //  Handle mixed-type polygons
-    if (shape instanceof Polygon) {
-      shape = shape.clone();
-      shape.flatten();
+    let target = shape;
+    if (target instanceof Polygon) {
+      target = target.clone();
+      target.flatten();
     }
     const data = new GraphicsData(
       this.lineWidth,
@@ -863,12 +870,12 @@ export class Graphics extends DisplayObject {
       this.fillColor,
       this.fillAlpha,
       this.filling,
-      shape
+      target
     );
     this.graphicsData.push(data);
-    if (data.type === GEOM_POLYGON) {
+    if (data.shape instanceof Polygon) {
       data.shape.closed = this.filling;
-      this.currentPath = data;
+      this.currentPath = data as PolygonPath;
     }
     this.dirty = true;
     this._boundsDirty = true;

@@ -1,15 +1,15 @@
 export class GraphicsData {
   public glPoints!: Float32Array | null;
   public glIndicies!: Uint16Array | null;
-  public gl!: any;
-  public color!: any;
-  public points!: any;
-  public indices!: any;
-  public buffer!: any;
-  public indexBuffer!: any;
-  public mode!: any;
-  public alpha!: any;
-  public dirty!: any;
+  public gl: WebGLRenderingContext;
+  public color: number[];
+  public points: number[];
+  public indices: number[];
+  public buffer: WebGLBuffer | null;
+  public indexBuffer: WebGLBuffer | null;
+  public mode: number;
+  public alpha: number;
+  public dirty: boolean;
   /**
    * Creates a new GraphicsData instance.
    * @param {WebGLRenderingContext} gl - The WebGL rendering context.

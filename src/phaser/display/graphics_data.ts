@@ -1,16 +1,26 @@
+import type { Circle } from '../geom/circle.js';
+import type { Ellipse } from '../geom/ellipse.js';
+import type { Polygon } from '../geom/polygon.js';
+import type { Rectangle } from '../geom/rectangle.js';
+import type { RoundedRectangle } from '../geom/rounded_rectangle.js';
 import { clone } from './graphics_data_util.js';
 
+/** The geometry a graphics path can be built from. */
+export type GraphicsShape = Circle | Ellipse | Polygon | Rectangle | RoundedRectangle;
+
 export class GraphicsData {
-  public lineWidth!: any;
-  public lineColor!: any;
-  public lineAlpha!: any;
-  public _lineTint!: any;
-  public fillColor!: any;
-  public fillAlpha!: any;
-  public _fillTint!: any;
-  public fill!: any;
-  public shape!: any;
-  public type!: any;
+  public lineWidth: number;
+  public lineColor: number;
+  public lineAlpha: number;
+  public _lineTint: number;
+  public fillColor: number | null;
+  public fillAlpha: number;
+  public _fillTint: number | null;
+  public fill: boolean;
+  public shape: GraphicsShape;
+  public type: number;
+  /** Flattened points the WebGL builders work from, filled in while updating the graphics. */
+  public points: number[] = [];
   /**
    * Creates a new GraphicsData object.
    * @param {number} lineWidth - The line width.
@@ -25,10 +35,10 @@ export class GraphicsData {
     lineWidth: number,
     lineColor: number,
     lineAlpha: number,
-    fillColor: number,
+    fillColor: number | null,
     fillAlpha: number,
     fill: boolean,
-    shape: any
+    shape: GraphicsShape
   ) {
     this.lineWidth = lineWidth;
     this.lineColor = lineColor;
