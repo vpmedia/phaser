@@ -11,26 +11,80 @@ import type { Game } from '../core/game.js';
 import type { Matrix } from '../geom/matrix.js';
 import type { RenderSession } from './render_session.js';
 
+/** The font shorthand split into its CSS parts. */
+export type FontComponents = {
+  font?: string;
+  fontStyle?: string;
+  fontVariant?: string;
+  fontWeight?: string | number;
+  fontSize?: string | number;
+  fontFamily?: string;
+};
+
+/** Style accepted by Text, as supplied by callers; setStyle fills in every default. */
+export type TextStyle = FontComponents & {
+  align?: string;
+  backgroundColor?: string | null;
+  boundsAlignH?: string;
+  boundsAlignV?: string;
+  fill?: string;
+  maxLines?: number;
+  shadowBlur?: number;
+  shadowColor?: string;
+  shadowFill?: boolean;
+  shadowOffsetX?: number;
+  shadowOffsetY?: number;
+  shadowStroke?: boolean;
+  stroke?: string;
+  strokeThickness?: number;
+  tabs?: number | number[];
+  wordWrap?: boolean;
+  wordWrapWidth?: number;
+};
+
+/** The same style once setStyle has applied every default. */
+export type ResolvedTextStyle = Required<
+  Pick<
+    TextStyle,
+    | 'align'
+    | 'boundsAlignH'
+    | 'boundsAlignV'
+    | 'fill'
+    | 'font'
+    | 'maxLines'
+    | 'shadowBlur'
+    | 'shadowColor'
+    | 'shadowOffsetX'
+    | 'shadowOffsetY'
+    | 'stroke'
+    | 'strokeThickness'
+    | 'tabs'
+    | 'wordWrap'
+    | 'wordWrapWidth'
+  >
+> &
+  TextStyle & { backgroundColor: string | null };
+
 export class Text extends Image {
   declare public type: number;
-  public canvas!: any;
-  public context!: any;
+  public canvas!: HTMLCanvasElement;
+  public context!: CanvasRenderingContext2D;
   public padding!: Point;
   public textBounds!: Rectangle | null;
-  public style!: any;
-  public colors!: any;
-  public strokeColors!: any;
-  public fontStyles!: any;
-  public fontWeights!: any;
+  public style!: ResolvedTextStyle;
+  public colors!: (string | null)[];
+  public strokeColors!: (string | null)[];
+  public fontStyles!: (string | null)[];
+  public fontWeights!: (string | null)[];
   public autoRound!: boolean;
   public useAdvancedWrap!: boolean;
   public _res!: number;
   public _text!: string;
-  public _fontComponents!: any;
+  public _fontComponents!: FontComponents;
   public _lineSpacing!: number;
   public _charCount!: number;
-  declare public _width: any;
-  declare public _height: any;
+  declare public _width: number;
+  declare public _height: number;
   public dirty!: boolean;
   /**
    * Creates a new Text object.
@@ -40,16 +94,19 @@ export class Text extends Image {
    * @param {string | number} text - The text content to display.
    * @param {object} style - The style settings for the text.
    */
-  public constructor(game: Game, x: number, y: number, text: string | number = '', style: any = {}) {
+  public constructor(game: Game, x: number, y: number, text: string | number = '', style: TextStyle = {}) {
     super(game, x, y, null);
     this.game = game;
     /** @type {number} */
     this.type = TEXT;
     this.canvas = create(this);
-    this.context = this.canvas.getContext('2d', { willReadFrequently: false });
+    const context = this.canvas.getContext('2d', { willReadFrequently: false });
+    if (!context) {
+      throw new Error(ENGINE_ERROR_CREATING_CANVAS_2D_CONTEXT);
+    }
+    this.context = context;
     this.padding = new Point();
     this.textBounds = null;
-    this.style = null;
     /** @type {string[]} */
     this.colors = [];
     /** @type {string[]} */
@@ -62,7 +119,6 @@ export class Text extends Image {
     this.useAdvancedWrap = false;
     this._res = game.renderer.resolution;
     this._text = text.toString();
-    this._fontComponents = null;
     /** @type {number} */
     this._lineSpacing = 0;
     /** @type {number} */
@@ -84,17 +140,12 @@ export class Text extends Image {
   public override destroy() {
     this.texture.destroy(true);
     remove(this);
-    this.canvas = null;
-    this.context = null;
     this.textBounds = null;
-    this.style = null;
-    this.colors = null;
-    this.strokeColors = null;
-    this.fontStyles = null;
-    this.fontWeights = null;
-    this.padding = null!;
-    this._text = null!;
-    this._fontComponents = null;
+    this.colors = [];
+    this.strokeColors = [];
+    this.fontStyles = [];
+    this.fontWeights = [];
+    this._text = '';
     super.destroy();
   }
 
@@ -125,43 +176,46 @@ export class Text extends Image {
    * @param {boolean} update - Whether to update the text immediately.
    * @returns {Text} This Text object for chaining.
    */
-  public setStyle(style: any | null = null, update = false) {
-    style = structuredClone(style) ?? {};
-    style.font = style.font ?? 'bold 20pt Arial';
-    style.backgroundColor = style.backgroundColor ?? null;
-    style.fill = style.fill ?? 'black';
-    style.align = style.align ?? 'left';
-    style.boundsAlignH = style.boundsAlignH ?? 'left';
-    style.boundsAlignV = style.boundsAlignV ?? 'top';
-    style.stroke = style.stroke ?? 'black'; // provide a default, see: https://github.com/GoodBoyDigital/pixi.js/issues/136
-    style.strokeThickness = style.strokeThickness ?? 0;
-    style.wordWrap = style.wordWrap ?? false;
-    style.wordWrapWidth = style.wordWrapWidth ?? 100;
-    style.maxLines = style.maxLines ?? 0;
-    style.shadowOffsetX = style.shadowOffsetX ?? 0;
-    style.shadowOffsetY = style.shadowOffsetY ?? 0;
-    style.shadowColor = style.shadowColor ?? 'rgba(0,0,0,0)';
-    style.shadowBlur = style.shadowBlur ?? 0;
-    style.tabs = style.tabs ?? 0;
-    const components = this.fontToComponents(style.font);
-    if (style.fontStyle) {
-      components.fontStyle = style.fontStyle;
+  public setStyle(style: TextStyle | null = null, update = false) {
+    const source: TextStyle = structuredClone(style) ?? {};
+    const resolved: ResolvedTextStyle = {
+      ...source,
+      font: source.font ?? 'bold 20pt Arial',
+      backgroundColor: source.backgroundColor ?? null,
+      fill: source.fill ?? 'black',
+      align: source.align ?? 'left',
+      boundsAlignH: source.boundsAlignH ?? 'left',
+      boundsAlignV: source.boundsAlignV ?? 'top',
+      // provide a default, see: https://github.com/GoodBoyDigital/pixi.js/issues/136
+      stroke: source.stroke ?? 'black',
+      strokeThickness: source.strokeThickness ?? 0,
+      wordWrap: source.wordWrap ?? false,
+      wordWrapWidth: source.wordWrapWidth ?? 100,
+      maxLines: source.maxLines ?? 0,
+      shadowOffsetX: source.shadowOffsetX ?? 0,
+      shadowOffsetY: source.shadowOffsetY ?? 0,
+      shadowColor: source.shadowColor ?? 'rgba(0,0,0,0)',
+      shadowBlur: source.shadowBlur ?? 0,
+      tabs: source.tabs ?? 0,
+    };
+    const components = this.fontToComponents(resolved.font);
+    if (resolved.fontStyle) {
+      components.fontStyle = resolved.fontStyle;
     }
-    if (style.fontVariant) {
-      components.fontVariant = style.fontVariant;
+    if (resolved.fontVariant) {
+      components.fontVariant = resolved.fontVariant;
     }
-    if (style.fontWeight) {
-      components.fontWeight = style.fontWeight;
+    if (resolved.fontWeight) {
+      components.fontWeight = String(resolved.fontWeight);
     }
-    if (style.fontSize) {
-      if (typeof style.fontSize === 'number') {
-        style.fontSize += 'px';
-      }
-      components.fontSize = style.fontSize;
+    if (resolved.fontSize) {
+      const fontSize = typeof resolved.fontSize === 'number' ? `${resolved.fontSize}px` : resolved.fontSize;
+      resolved.fontSize = fontSize;
+      components.fontSize = fontSize;
     }
     this._fontComponents = components;
-    style.font = this.componentsToFont(this._fontComponents);
-    this.style = style;
+    resolved.font = this.componentsToFont(components);
+    this.style = resolved;
     this.dirty = true;
     if (update) {
       this.updateText();
@@ -232,7 +286,7 @@ export class Text extends Image {
               section = Math.ceil(this.context.measureText(line[c]).width);
             }
             if (c > 0) {
-              tab += tabs[c - 1];
+              tab += tabs[c - 1]!;
             }
             lineWidth = tab + section;
           }
@@ -311,7 +365,7 @@ export class Text extends Image {
         this.updateLine(lines[i], linePositionX, linePositionY);
       } else {
         if (this.style.stroke && this.style.strokeThickness) {
-          this.updateShadow(this.style.shadowStroke);
+          this.updateShadow(this.style.shadowStroke ?? false);
           if (tabs === 0) {
             this.context.strokeText(lines[i], linePositionX, linePositionY);
           } else {
@@ -319,7 +373,7 @@ export class Text extends Image {
           }
         }
         if (this.style.fill) {
-          this.updateShadow(this.style.shadowFill);
+          this.updateShadow(this.style.shadowFill ?? false);
           if (tabs === 0) {
             this.context.fillText(lines[i], linePositionX, linePositionY);
           } else {
@@ -347,24 +401,24 @@ export class Text extends Image {
       let tab = 0;
       for (let c = 0; c < text.length; c += 1) {
         if (c > 0) {
-          tab += tabs[c - 1];
+          tab += tabs[c - 1]!;
         }
         snap = x + tab;
         if (fill) {
-          this.context.fillText(text[c], snap, y);
+          this.context.fillText(text[c]!, snap, y);
         } else {
-          this.context.strokeText(text[c], snap, y);
+          this.context.strokeText(text[c]!, snap, y);
         }
       }
     } else {
       for (let c = 0; c < text.length; c += 1) {
-        const section = Math.ceil(this.context.measureText(text[c]).width);
+        const section = Math.ceil(this.context.measureText(text[c]!).width);
         //  How far to the next tab?
         snap = snapToCeil(x, tabs);
         if (fill) {
-          this.context.fillText(text[c], snap, y);
+          this.context.fillText(text[c]!, snap, y);
         } else {
-          this.context.strokeText(text[c], snap, y);
+          this.context.strokeText(text[c]!, snap, y);
         }
         x = snap + section;
       }
@@ -375,7 +429,7 @@ export class Text extends Image {
    * Updates the shadow properties for this text.
    * @param {string} state - The shadow state to update ('stroke' or 'fill').
    */
-  public updateShadow(state: string) {
+  public updateShadow(state: boolean) {
     if (state) {
       this.context.shadowOffsetX = this.style.shadowOffsetX;
       this.context.shadowOffsetY = this.style.shadowOffsetY;
@@ -384,7 +438,7 @@ export class Text extends Image {
     } else {
       this.context.shadowOffsetX = 0;
       this.context.shadowOffsetY = 0;
-      this.context.shadowColor = 0;
+      this.context.shadowColor = 'rgba(0,0,0,0)';
       this.context.shadowBlur = 0;
     }
   }
@@ -399,25 +453,29 @@ export class Text extends Image {
     for (const letter of line) {
       if (this.fontWeights.length > 0 || this.fontStyles.length > 0) {
         const components = this.fontToComponents(this.context.font);
-        if (this.fontStyles[this._charCount]) {
-          components.fontStyle = this.fontStyles[this._charCount];
+        const charFontStyle = this.fontStyles[this._charCount];
+        const charFontWeight = this.fontWeights[this._charCount];
+        if (charFontStyle) {
+          components.fontStyle = charFontStyle;
         }
-        if (this.fontWeights[this._charCount]) {
-          components.fontWeight = this.fontWeights[this._charCount];
+        if (charFontWeight) {
+          components.fontWeight = charFontWeight;
         }
         this.context.font = this.componentsToFont(components);
       }
       if (this.style.stroke && this.style.strokeThickness) {
-        if (this.strokeColors[this._charCount]) {
-          this.context.strokeStyle = this.strokeColors[this._charCount];
+        const charStrokeColor = this.strokeColors[this._charCount];
+        if (charStrokeColor) {
+          this.context.strokeStyle = charStrokeColor;
         }
-        this.updateShadow(this.style.shadowStroke);
+        this.updateShadow(this.style.shadowStroke ?? false);
       }
       if (this.style.fill) {
-        if (this.colors[this._charCount]) {
-          this.context.fillStyle = this.colors[this._charCount];
+        const charFillColor = this.colors[this._charCount];
+        if (charFillColor) {
+          this.context.fillStyle = charFillColor;
         }
-        this.updateShadow(this.style.shadowFill);
+        this.updateShadow(this.style.shadowFill ?? false);
       }
       lineLength += this.context.measureText(letter).width;
       this._charCount += 1;
@@ -435,26 +493,30 @@ export class Text extends Image {
     for (const letter of line) {
       if (this.fontWeights.length > 0 || this.fontStyles.length > 0) {
         const components = this.fontToComponents(this.context.font);
-        if (this.fontStyles[this._charCount]) {
-          components.fontStyle = this.fontStyles[this._charCount];
+        const charFontStyle = this.fontStyles[this._charCount];
+        const charFontWeight = this.fontWeights[this._charCount];
+        if (charFontStyle) {
+          components.fontStyle = charFontStyle;
         }
-        if (this.fontWeights[this._charCount]) {
-          components.fontWeight = this.fontWeights[this._charCount];
+        if (charFontWeight) {
+          components.fontWeight = charFontWeight;
         }
         this.context.font = this.componentsToFont(components);
       }
       if (this.style.stroke && this.style.strokeThickness) {
-        if (this.strokeColors[this._charCount]) {
-          this.context.strokeStyle = this.strokeColors[this._charCount];
+        const charStrokeColor = this.strokeColors[this._charCount];
+        if (charStrokeColor) {
+          this.context.strokeStyle = charStrokeColor;
         }
-        this.updateShadow(this.style.shadowStroke);
+        this.updateShadow(this.style.shadowStroke ?? false);
         this.context.strokeText(letter, x, y);
       }
       if (this.style.fill) {
-        if (this.colors[this._charCount]) {
-          this.context.fillStyle = this.colors[this._charCount];
+        const charFillColor = this.colors[this._charCount];
+        if (charFillColor) {
+          this.context.fillStyle = charFillColor;
         }
-        this.updateShadow(this.style.shadowFill);
+        this.updateShadow(this.style.shadowFill ?? false);
         this.context.fillText(letter, x, y);
       }
       x += this.context.measureText(letter).width;
@@ -502,7 +564,7 @@ export class Text extends Image {
    * @param {number} position - The character position to apply the stroke color at.
    * @returns {Text} This Text object for chaining.
    */
-  public addStrokeColor(color: number, position: number) {
+  public addStrokeColor(color: string, position: number) {
     this.strokeColors[position] = color;
     this.dirty = true;
     return this;
@@ -514,7 +576,7 @@ export class Text extends Image {
    * @param {number} position - The character position to apply the font style at.
    * @returns {Text} This Text object for chaining.
    */
-  public addFontStyle(style: any, position: number) {
+  public addFontStyle(style: string, position: number) {
     this.fontStyles[position] = style;
     this.dirty = true;
     return this;
@@ -526,7 +588,7 @@ export class Text extends Image {
    * @param {number} position - The character position to apply the font weight at.
    * @returns {Text} This Text object for chaining.
    */
-  public addFontWeight(weight: number, position: number) {
+  public addFontWeight(weight: string, position: number) {
     this.fontWeights[position] = weight;
     this.dirty = true;
     return this;
@@ -549,7 +611,7 @@ export class Text extends Image {
    * @param {string} text - The text to run word wrap on.
    * @returns {string} The wrapped text.
    */
-  public runWordWrap(text: any) {
+  public runWordWrap(text: string) {
     if (this.useAdvancedWrap) {
       return this.advancedWordWrap(text);
     }
@@ -676,7 +738,7 @@ export class Text extends Image {
    * Updates the font properties based on the given components.
    * @param {object} components - The font components to update from.
    */
-  public updateFont(components: any) {
+  public updateFont(components: FontComponents) {
     const font = this.componentsToFont(components);
     if (this.style.font !== font) {
       this.style.font = font;
@@ -729,7 +791,7 @@ export class Text extends Image {
    * @param {object} components - The font components to convert.
    * @returns {string} The font string.
    */
-  public componentsToFont(components: any) {
+  public componentsToFont(components: FontComponents) {
     const parts = [];
     let v;
     v = components.fontStyle;
@@ -765,7 +827,7 @@ export class Text extends Image {
    * @param {boolean} immediate - If true, updates the text immediately.
    * @returns {Text} This Text object for chaining.
    */
-  public setText(text: any, immediate = false) {
+  public setText(text: string | number, immediate = false) {
     this.text = text.toString() ?? '';
     if (immediate) {
       this.updateText();
@@ -1092,7 +1154,7 @@ export class Text extends Image {
    * @returns {number} The font family.
    */
   public get font() {
-    return this._fontComponents.fontFamily;
+    return this._fontComponents.fontFamily ?? '';
   }
 
   /**
@@ -1115,12 +1177,17 @@ export class Text extends Image {
    * Gets the font size of this object.
    * @returns {number} The font size.
    */
-  public get fontSize() {
+  public get fontSize(): number {
     const size = this._fontComponents.fontSize;
-    if (size && /(?:^0$|px$)/.exec(size)) {
-      return Math.trunc(Number(size));
+    if (typeof size === 'number') {
+      return size;
     }
-    return size;
+    if (size && /(?:^0$|px$)/.exec(size)) {
+      // Number() cannot read the value here: the string carries a px suffix.
+      // eslint-disable-next-line unicorn/prefer-number-coercion
+      return Number.parseInt(size, 10);
+    }
+    return 0;
   }
 
   /**
@@ -1128,11 +1195,7 @@ export class Text extends Image {
    * @param {number} value - The new font size to set.
    */
   public set fontSize(value: number) {
-    let mutatedValue: any = value || '0';
-    if (typeof mutatedValue === 'number') {
-      mutatedValue = `${mutatedValue}px`;
-    }
-    this._fontComponents.fontSize = mutatedValue;
+    this._fontComponents.fontSize = value ? `${value}px` : '0';
     this.updateFont(this._fontComponents);
   }
 
@@ -1140,8 +1203,8 @@ export class Text extends Image {
    * Gets the font weight of this object.
    * @returns {string} The font weight.
    */
-  public get fontWeight() {
-    return this._fontComponents.fontWeight ?? 'normal';
+  public get fontWeight(): string {
+    return String(this._fontComponents.fontWeight ?? 'normal');
   }
 
   /**
@@ -1256,7 +1319,7 @@ export class Text extends Image {
    * Sets the tabs setting of this object.
    * @param {number} value - The new tabs setting to set.
    */
-  public set tabs(value: number) {
+  public set tabs(value: number | number[]) {
     if (value !== this.style.tabs) {
       this.style.tabs = value;
       this.dirty = true;
@@ -1275,7 +1338,7 @@ export class Text extends Image {
    * Sets the horizontal bounds alignment of this object.
    * @param {number} value - The new horizontal bounds alignment to set.
    */
-  public set boundsAlignH(value: number) {
+  public set boundsAlignH(value: string) {
     if (value !== this.style.boundsAlignH) {
       this.style.boundsAlignH = value;
       this.dirty = true;
@@ -1294,7 +1357,7 @@ export class Text extends Image {
    * Sets the vertical bounds alignment of this object.
    * @param {number} value - The new vertical bounds alignment to set.
    */
-  public set boundsAlignV(value: number) {
+  public set boundsAlignV(value: string) {
     if (value !== this.style.boundsAlignV) {
       this.style.boundsAlignV = value;
       this.dirty = true;
@@ -1389,9 +1452,9 @@ export class Text extends Image {
    * Sets the line spacing of this object.
    * @param {number} value - The new line spacing to set.
    */
-  public set lineSpacing(value: any) {
+  public set lineSpacing(value: number) {
     if (value !== this._lineSpacing) {
-      this._lineSpacing = Number(value);
+      this._lineSpacing = value;
       this.dirty = true;
       if (this.parent) {
         this.updateTransform();
@@ -1480,7 +1543,7 @@ export class Text extends Image {
    * @returns {number} The shadow stroke setting.
    */
   public get shadowStroke() {
-    return this.style.shadowStroke;
+    return this.style.shadowStroke ?? false;
   }
 
   /**
@@ -1499,7 +1562,7 @@ export class Text extends Image {
    * @returns {number} The shadow fill setting.
    */
   public get shadowFill() {
-    return this.style.shadowFill;
+    return this.style.shadowFill ?? false;
   }
 
   /**

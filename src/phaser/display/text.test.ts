@@ -95,6 +95,32 @@ describe('Text', () => {
     });
   });
 
+  describe('fontSize', () => {
+    // A px-suffixed size cannot be read with Number(); it yields NaN. An autofix made exactly that
+    // substitution once already.
+    it('reads a px size back as a number', () => {
+      const text = new Text(createGame(), 0, 0, 'hello', { font: '20px Arial' });
+      expect(text.fontSize).toBe(20);
+    });
+
+    it('round trips through the setter', () => {
+      const text = createText('hello');
+      text.fontSize = 32;
+      expect(text.fontSize).toBe(32);
+    });
+
+    it('reads zero back as zero', () => {
+      const text = createText('hello');
+      text.fontSize = 0;
+      expect(text.fontSize).toBe(0);
+    });
+
+    it('never reports NaN for a styled font', () => {
+      const text = new Text(createGame(), 0, 0, 'hello', { font: 'bold 14px Arial' });
+      expect(Number.isNaN(text.fontSize)).toBe(false);
+    });
+  });
+
   describe('setText', () => {
     it('coerces a number', () => {
       const text = createText('start');
