@@ -1,14 +1,14 @@
+import type { TweenTarget } from './tween_manager.js';
 import * as MathUtils from '../util/math.js';
 import { TWEEN_COMPLETE, TWEEN_LOOPED, TWEEN_PENDING, TWEEN_RUNNING } from './const.js';
 import { Signal } from './signal.js';
 import { TweenData } from './tween_data.js';
 import type { Game } from './game.js';
-import type { DisplayObject } from '../display/display_object.js';
 import type { TweenManager } from './tween_manager.js';
 
 export class Tween {
   public game!: Game;
-  public target!: DisplayObject;
+  public target!: TweenTarget;
   public manager!: TweenManager;
   public timeline!: TweenData[];
   public reverse!: boolean;
@@ -36,7 +36,7 @@ export class Tween {
    * @param {Game} game - Reference to the Phaser Game instance.
    * @param {TweenManager} manager - Reference to the Tween Manager.
    */
-  public constructor(target: DisplayObject, game: Game, manager: TweenManager) {
+  public constructor(target: TweenTarget, game: Game, manager: TweenManager) {
     this.game = game;
     this.target = target;
     /** @type {TweenManager} */
@@ -100,7 +100,7 @@ export class Tween {
     yoyo = false
   ): this {
     if (typeof ease === 'string' && this.manager.easeMap[ease]) {
-      ease = this.manager.easeMap[ease];
+      ease = this.manager.easeMap[ease]!;
     }
     if (this.isRunning) {
       return this;
@@ -133,7 +133,7 @@ export class Tween {
     yoyo = false
   ): this {
     if (typeof ease === 'string' && this.manager.easeMap[ease]) {
-      ease = this.manager.easeMap[ease];
+      ease = this.manager.easeMap[ease]!;
     }
     if (this.isRunning) {
       this.game.logger.warn('Tween.from cannot be called after Tween.start');
@@ -284,7 +284,7 @@ export class Tween {
    */
   public easing(ease: string | Function, index: number): this {
     if (typeof ease === 'string' && this.manager.easeMap[ease]) {
-      ease = this.manager.easeMap[ease];
+      ease = this.manager.easeMap[ease]!;
     }
     return this.updateTweenData('easingFunction', ease, index);
   }

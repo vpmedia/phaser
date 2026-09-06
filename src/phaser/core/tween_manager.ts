@@ -35,11 +35,14 @@ import {
   SinusoidalOut,
 } from './tween_easing.js';
 
+/** What a tween can be attached to: any object, or a list of them. */
+export type TweenTarget = object | object[];
+
 export class TweenManager {
   public game!: Game;
-  public _tweens!: any;
-  public _add!: any;
-  public easeMap!: any;
+  public _tweens!: Tween[];
+  public _add!: Tween[];
+  public easeMap!: Record<string, (k: number) => number>;
   /**
    * Creates a new TweenManager instance.
    * @param {Game} game - The game instance this manager belongs to.
@@ -112,8 +115,8 @@ export class TweenManager {
    * This method removes all active and pending tweens.
    */
   public removeAll(): void {
-    for (let i = 0; i < this._tweens.length; i += 1) {
-      this._tweens[i].pendingDelete = true;
+    for (const tween of this._tweens) {
+      tween.pendingDelete = true;
     }
     this._add = [];
   }
@@ -123,27 +126,28 @@ export class TweenManager {
    * @param {object} obj - The object to remove tweens from.
    * @param {object[]} children - Optional array of child objects to remove tweens from.
    */
-  public removeFrom(obj: any, children: any[] | null = null): void {
-    let i;
-    let len;
+  public removeFrom(obj: TweenTarget, children: object[] | null = null): void {
     if (Array.isArray(obj)) {
-      for (i = 0, len = obj.length; i < len; i += 1) {
-        this.removeFrom(obj[i]);
+      for (const entry of obj) {
+        this.removeFrom(entry);
       }
-    } else if (obj.type === GROUP && children) {
-      for (i = 0, len = obj.children.length; i < len; i += 1) {
-        this.removeFrom(obj.children[i]);
+      return;
+    }
+    const group = obj as { type?: number; children?: TweenTarget[] };
+    if (group.type === GROUP && children && group.children) {
+      for (const child of group.children) {
+        this.removeFrom(child);
       }
-    } else {
-      for (i = 0, len = this._tweens.length; i < len; i += 1) {
-        if (obj === this._tweens[i].target) {
-          this.remove(this._tweens[i]);
-        }
+      return;
+    }
+    for (const tween of this._tweens.slice()) {
+      if (obj === tween.target) {
+        this.remove(tween);
       }
-      for (i = 0, len = this._add.length; i < len; i += 1) {
-        if (obj === this._add[i].target) {
-          this.remove(this._add[i]);
-        }
+    }
+    for (const tween of this._add.slice()) {
+      if (obj === tween.target) {
+        this.remove(tween);
       }
     }
   }
@@ -162,7 +166,7 @@ export class TweenManager {
    * @param {object} object - The object to create a tween for.
    * @returns {Tween} The created Tween object.
    */
-  public create(object: any): Tween {
+  public create(object: TweenTarget): Tween {
     return new Tween(object, this.game, this);
   }
 
@@ -171,13 +175,16 @@ export class TweenManager {
    * @param {Tween | null | undefined} tween - The tween to remove.
    */
   public remove(tween: Tween | null | undefined): void {
+    if (!tween) {
+      return;
+    }
     let i = this._tweens.indexOf(tween);
     if (i !== -1) {
-      this._tweens[i].pendingDelete = true;
+      this._tweens[i]!.pendingDelete = true;
     } else {
       i = this._add.indexOf(tween);
       if (i !== -1) {
-        this._add[i].pendingDelete = true;
+        this._add[i]!.pendingDelete = true;
       }
     }
   }
@@ -194,7 +201,7 @@ export class TweenManager {
     }
     let i = 0;
     while (i < numTweens) {
-      if (this._tweens[i].update(this.game.time.time)) {
+      if (this._tweens[i]!.update(this.game.time.time)) {
         i += 1;
       } else {
         this._tweens.splice(i, 1);
@@ -215,7 +222,7 @@ export class TweenManager {
    * @returns {boolean} True if the object is being tweened, false otherwise.
    */
   public isTweening(object: unknown): boolean {
-    return (this._tweens as Tween[]).some((tween: Tween): boolean => tween.target === object);
+    return this._tweens.some((tween: Tween): boolean => tween.target === object);
   }
 
   /**
@@ -223,8 +230,8 @@ export class TweenManager {
    * This method pauses all active tweens.
    */
   public _pauseAll(): void {
-    for (let i = this._tweens.length - 1; i >= 0; i -= 1) {
-      this._tweens[i]._pause();
+    for (const tween of this._tweens) {
+      tween._pause();
     }
   }
 
@@ -233,8 +240,8 @@ export class TweenManager {
    * This method resumes all paused tweens.
    */
   public _resumeAll(): void {
-    for (let i = this._tweens.length - 1; i >= 0; i -= 1) {
-      this._tweens[i]._resume();
+    for (const tween of this._tweens) {
+      tween._resume();
     }
   }
 
@@ -243,8 +250,8 @@ export class TweenManager {
    * This method pauses all active tweens.
    */
   public pauseAll(): void {
-    for (let i = this._tweens.length - 1; i >= 0; i -= 1) {
-      this._tweens[i].pause();
+    for (const tween of this._tweens) {
+      tween.pause();
     }
   }
 
@@ -253,8 +260,8 @@ export class TweenManager {
    * This method resumes all paused tweens.
    */
   public resumeAll(): void {
-    for (let i = this._tweens.length - 1; i >= 0; i -= 1) {
-      this._tweens[i].resume(true);
+    for (const tween of this._tweens) {
+      tween.resume();
     }
   }
 }

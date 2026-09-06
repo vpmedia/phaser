@@ -2,13 +2,24 @@ import { Signal } from './signal.js';
 import type { Game } from './game.js';
 import type { Tween } from './tween.js';
 
+/** A named span within a sound file. */
+export type SoundMarker = {
+  name: string;
+  start: number;
+  stop: number;
+  volume: number;
+  duration: number;
+  durationMS: number;
+  loop: boolean;
+};
+
 export class Sound {
-  public _paused!: any;
+  public _paused!: boolean;
   public game!: Game;
   public name!: string;
   public key!: string;
   public loop!: boolean;
-  public markers!: any;
+  public markers!: Record<string, SoundMarker>;
   public context!: AudioContext | null;
   public autoplay!: boolean;
   public totalDuration!: number;
@@ -246,7 +257,7 @@ export class Sound {
    * @param {boolean} forceRestart - Whether to force restarting the sound even if it's already playing.
    * @returns {Sound} This Sound instance for chaining.
    */
-  public play(marker: any = '', position: any = 0, volume: any = 1, loop: any = false, forceRestart = true): this {
+  public play(marker: string | false | null = '', position = 0, volume = 1, loop = false, forceRestart = true): this {
     if (marker === undefined || marker === false || marker === null) {
       marker = '';
     }
@@ -274,15 +285,16 @@ export class Sound {
       //  We should never play the entire thing
       return this;
     }
+    const markerData = marker === '' ? undefined : this.markers[marker];
     if (marker !== '') {
-      if (this.markers[marker]) {
+      if (markerData) {
         this.currentMarker = marker;
         //  Playing a marker? Then we default to the marker values
-        this.position = this.markers[marker].start;
-        this.volume = this.markers[marker].volume;
-        this.loop = this.markers[marker].loop;
-        this.duration = this.markers[marker].duration;
-        this.durationMS = this.markers[marker].durationMS;
+        this.position = markerData.start;
+        this.volume = markerData.volume;
+        this.loop = markerData.loop;
+        this.duration = markerData.duration;
+        this.durationMS = markerData.durationMS;
         if (volume !== undefined) {
           this.volume = volume;
         }
@@ -298,10 +310,8 @@ export class Sound {
         return this;
       }
     } else {
-      position = position ?? 0;
-      if (volume === undefined) {
-        volume = this._volume;
-      }
+      position ??= 0;
+      volume ??= this._volume;
       if (loop === undefined) {
         ({ loop } = this);
       }
