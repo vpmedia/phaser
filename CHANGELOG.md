@@ -1,3 +1,13 @@
+## [1.114.0] - 2026-09-06
+
+### 🐛 Bug Fixes
+
+- *(text)* Restore the constructor's text coercion
+
+### ⚙️ Miscellaneous Tasks
+
+- Release
+- *(release)* V1.114.0
 ## [1.113.0] - 2026-09-06
 
 ### 🚀 Features
