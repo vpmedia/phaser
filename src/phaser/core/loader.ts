@@ -1,6 +1,8 @@
 import { Rectangle } from '../geom/rectangle.js';
 import { canPlayAudio } from './device_util.js';
 import { ENGINE_ERROR_INVALID_BITMAP_FONT_ATLAS } from './error_code.js';
+import type { Cache } from './cache.js';
+import type { Game } from './game.js';
 import { Signal } from './signal.js';
 
 const TEXTURE_ATLAS_JSON_HASH = 1;
@@ -17,39 +19,39 @@ export interface LoaderFile {
 }
 
 export class Loader {
-  game!: any;
-  cache!: any;
-  isLoading!: any;
-  isUseLog!: any;
-  isUseRetry!: any;
-  maxRetry!: any;
-  hasLoaded!: any;
+  game!: Game;
+  cache!: Cache;
+  isLoading!: boolean;
+  isUseLog!: boolean;
+  isUseRetry!: boolean;
+  maxRetry!: number;
+  hasLoaded!: boolean;
   preloadSprite!: any;
-  crossOrigin!: any;
-  baseURL!: any;
-  path!: any;
-  headers!: any;
-  onLoadStart!: any;
-  onLoadComplete!: any;
-  onPackComplete!: any;
-  onFileStart!: any;
-  onFileComplete!: any;
-  onFileError!: any;
-  maxParallelDownloads!: any;
-  _withSyncPointDepth!: any;
+  crossOrigin!: boolean | string;
+  baseURL!: string;
+  path!: string;
+  headers!: Record<string, string | false>;
+  onLoadStart!: Signal;
+  onLoadComplete!: Signal;
+  onPackComplete!: Signal;
+  onFileStart!: Signal;
+  onFileComplete!: Signal;
+  onFileError!: Signal;
+  maxParallelDownloads!: number;
+  _withSyncPointDepth!: number;
   _fileList!: any;
   _flightQueue!: any;
-  _processingHead!: any;
-  _fileLoadStarted!: any;
-  _totalPackCount!: any;
-  _totalFileCount!: any;
-  _loadedPackCount!: any;
-  _loadedFileCount!: any;
+  _processingHead!: number;
+  _fileLoadStarted!: boolean;
+  _totalPackCount!: number;
+  _totalFileCount!: number;
+  _loadedPackCount!: number;
+  _loadedFileCount!: number;
   /**
    * Creates a new Loader instance.
    * @param {import('./game.js').Game} game - Reference to the Phaser Game instance.
    */
-  constructor(game: import('./game.js').Game) {
+  constructor(game: Game) {
     this.game = game;
     this.cache = game.cache;
     this.isLoading = false;
@@ -896,8 +898,9 @@ export class Loader {
     if (this.headers.requestedWith !== false) {
       xhr.setRequestHeader('X-Requested-With', this.headers.requestedWith);
     }
-    if (this.headers[file.type]) {
-      xhr.setRequestHeader('Accept', this.headers[file.type]);
+    const acceptHeader = this.headers[file.type];
+    if (acceptHeader) {
+      xhr.setRequestHeader('Accept', acceptHeader);
     }
     onerror = onerror || this.fileError;
     xhr.onload = () => {
@@ -1045,7 +1048,7 @@ export class Loader {
         break;
       case 'textureatlas':
         if (file.atlasURL == null) {
-          this.cache.addTextureAtlas(file.key, file.url, file.data, file.atlasData, file.format);
+          this.cache.addTextureAtlas(file.key, file.url, file.data, file.atlasData);
         } else {
           loadNext = false;
           if (file.format === TEXTURE_ATLAS_JSON_HASH) {
@@ -1124,7 +1127,7 @@ export class Loader {
     } else if (file.type === 'json') {
       this.cache.addJSON(file.key, file.url, data);
     } else {
-      this.cache.addTextureAtlas(file.key, file.url, file.data, data, file.format);
+      this.cache.addTextureAtlas(file.key, file.url, file.data, data);
     }
     this.asyncComplete(file);
   }
@@ -1155,7 +1158,7 @@ export class Loader {
     if (file.type === 'bitmapfont') {
       this.cache.addBitmapFont(file.key, file.url, file.data, xml, file.atlasType, file.xSpacing, file.ySpacing);
     } else if (file.type === 'textureatlas') {
-      this.cache.addTextureAtlas(file.key, file.url, file.data, xml, file.format);
+      this.cache.addTextureAtlas(file.key, file.url, file.data, xml);
     } else if (file.type === 'xml') {
       this.cache.addXML(file.key, file.url, xml);
     }

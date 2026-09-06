@@ -1,89 +1,65 @@
+import type { Game } from './game.js';
 import { Timer } from './timer.js';
 
 export class Time {
-  game!: any;
-  time!: any;
-  prevTime!: any;
-  now!: any;
-  elapsed!: any;
-  elapsedMS!: any;
-  desiredFpsMult!: any;
-  _desiredFps!: any;
-  suggestedFps!: any;
-  advancedTiming!: any;
-  frames!: any;
-  fps!: any;
-  fpsMin!: any;
-  fpsMax!: any;
-  msMin!: any;
-  msMax!: any;
-  pauseDuration!: any;
-  timeToCall!: any;
-  timeExpected!: any;
-  events!: any;
-  _frameCount!: any;
-  _elapsedAccumulator!: any;
-  _started!: any;
-  _timeLastSecond!: any;
-  _pauseStarted!: any;
-  _justResumed!: any;
-  _timers!: any;
+  game!: Game;
+  time!: number;
+  prevTime!: number;
+  now!: number;
+  elapsed!: number;
+  elapsedMS!: number;
+  desiredFpsMult!: number;
+  _desiredFps!: number;
+  suggestedFps!: number;
+  advancedTiming!: boolean;
+  frames!: number;
+  fps!: number;
+  fpsMin!: number;
+  fpsMax!: number;
+  msMin!: number;
+  msMax!: number;
+  pauseDuration!: number;
+  timeToCall!: number;
+  timeExpected!: number;
+  events!: Timer;
+  _frameCount!: number;
+  _elapsedAccumulator!: number;
+  _started!: number;
+  _timeLastSecond!: number;
+  _pauseStarted!: number;
+  _justResumed!: boolean;
+  _timers!: Timer[];
   /**
    * Creates a new Time instance.
    * @param {import('./game.js').Game} game - Reference to the Phaser Game instance.
    */
-  constructor(game: import('./game.js').Game) {
+  constructor(game: Game) {
     this.game = game;
-    /** @type {number} */
     this.time = 0;
-    /** @type {number} */
     this.prevTime = 0;
-    /** @type {number} */
     this.now = 0;
-    /** @type {number} */
     this.elapsed = 0;
-    /** @type {number} */
     this.elapsedMS = 0;
-    /** @type {number} */
     this.desiredFpsMult = 1 / 60;
-    /** @type {number} */
     this._desiredFps = 60;
-    /** @type {number} */
     this.suggestedFps = this.desiredFps;
-    /** @type {boolean} */
     this.advancedTiming = false;
-    /** @type {number} */
     this.frames = 0;
-    /** @type {number} */
     this.fps = 0;
-    /** @type {number} */
     this.fpsMin = 1000;
-    /** @type {number} */
     this.fpsMax = 0;
-    /** @type {number} */
     this.msMin = 1000;
-    /** @type {number} */
     this.msMax = 0;
-    /** @type {number} */
     this.pauseDuration = 0;
-    /** @type {number} */
     this.timeToCall = 0;
-    /** @type {number} */
     this.timeExpected = 0;
-    /** @type {Timer} */
     this.events = new Timer(this.game, false);
-    /** @type {number} */
     this._frameCount = 0;
-    /** @type {number} */
     this._elapsedAccumulator = 0;
     this._started = 0;
-    /** @type {number} */
     this._timeLastSecond = 0;
-    /** @type {number} */
     this._pauseStarted = 0;
-    /** @type {boolean} */
     this._justResumed = false;
-    /** @type {Timer[]} */
     this._timers = [];
   }
 

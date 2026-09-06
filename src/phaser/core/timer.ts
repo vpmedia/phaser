@@ -1,71 +1,53 @@
+import type { Game } from './game.js';
 import { Signal } from './signal.js';
 import { TimerEvent } from './timer_event.js';
 
 export class Timer {
-  game!: any;
-  running!: any;
-  autoDestroy!: any;
-  expired!: any;
-  elapsed!: any;
-  events!: any;
-  onComplete!: any;
-  nextTick!: any;
-  timeCap!: any;
-  paused!: any;
-  _codePaused!: any;
-  _started!: any;
-  _pauseStarted!: any;
-  _pauseTotal!: any;
-  _now!: any;
-  _len!: any;
-  _marked!: any;
-  _i!: any;
-  _diff!: any;
-  _newTick!: any;
+  game!: Game;
+  running!: boolean;
+  autoDestroy!: boolean;
+  expired!: boolean;
+  elapsed!: number;
+  events!: TimerEvent[];
+  onComplete!: Signal;
+  nextTick!: number;
+  timeCap!: number;
+  paused!: boolean;
+  _codePaused!: boolean;
+  _started!: number;
+  _pauseStarted!: number;
+  _pauseTotal!: number;
+  _now!: number;
+  _len!: number;
+  _marked!: number;
+  _i!: number;
+  _diff!: number;
+  _newTick!: number;
   /**
    * Creates a new Timer instance.
    * @param {import('./game.js').Game} game - The game instance.
    * @param {boolean} autoDestroy - Whether to automatically destroy the timer when it completes.
    */
-  constructor(game: import('./game.js').Game, autoDestroy: boolean = false) {
+  constructor(game: Game, autoDestroy: boolean = false) {
     this.game = game;
-    /** @type {boolean} */
     this.running = false;
-    /** @type {boolean} */
     this.autoDestroy = autoDestroy;
-    /** @type {boolean} */
     this.expired = false;
-    /** @type {number} */
     this.elapsed = 0;
-    /** @type {TimerEvent[]} */
     this.events = [];
-    /** @type {Signal} */
     this.onComplete = new Signal();
-    /** @type {number} */
     this.nextTick = 0;
-    /** @type {number} */
     this.timeCap = 1000;
-    /** @type {boolean} */
     this.paused = false;
-    /** @type {boolean} */
     this._codePaused = false;
-    /** @type {number} */
     this._started = 0;
-    /** @type {number} */
     this._pauseStarted = 0;
-    /** @type {number} */
     this._pauseTotal = 0;
-    /** @type {number} */
     this._now = Date.now();
-    /** @type {number} */
     this._len = 0;
-    /** @type {number} */
     this._marked = 0;
-    /** @type {number} */
     this._i = 0;
-    /** @type {number} */
     this._diff = 0;
-    /** @type {number} */
     this._newTick = 0;
   }
 

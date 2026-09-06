@@ -1,20 +1,22 @@
+import type { Input } from './input.js';
+
 export class Mouse {
   game!: any;
-  input!: any;
+  input!: Input;
   callbackContext!: any;
-  mouseDownCallback!: any;
-  mouseUpCallback!: any;
-  mouseOutCallback!: any;
-  mouseOverCallback!: any;
-  mouseWheelCallback!: any;
-  mouseMoveCallback!: any;
-  capture!: any;
-  button!: any;
-  wheelDelta!: any;
-  enabled!: any;
-  locked!: any;
-  stopOnGameOut!: any;
-  event!: any;
+  mouseDownCallback!: ((event: MouseEvent) => void) | null;
+  mouseUpCallback!: ((event: MouseEvent) => void) | null;
+  mouseOutCallback!: ((event: MouseEvent) => void) | null;
+  mouseOverCallback!: ((event: MouseEvent) => void) | null;
+  mouseWheelCallback!: ((event: WheelEvent) => void) | null;
+  mouseMoveCallback!: ((event: MouseEvent) => void) | null;
+  capture!: boolean;
+  button!: number;
+  wheelDelta!: number;
+  enabled!: boolean;
+  locked!: boolean;
+  stopOnGameOut!: boolean;
+  event!: MouseEvent | WheelEvent | null;
   _onMouseDown!: ((event: MouseEvent) => void) | null;
   _onMouseMove!: ((event: MouseEvent) => void) | null;
   _onMouseUp!: ((event: MouseEvent) => void) | null;

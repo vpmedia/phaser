@@ -6,12 +6,12 @@ export class AnimationManager {
   game!: any;
   currentFrame!: any;
   currentAnim!: any;
-  updateIfVisible!: any;
-  isLoaded!: any;
+  updateIfVisible!: boolean;
+  isLoaded!: boolean;
   _frameData!: any;
-  _anims!: any;
-  _outputFrames!: any;
-  _frameIndex!: any;
+  _anims!: Record<string, Animation>;
+  _outputFrames!: number[];
+  _frameIndex!: number;
   /**
    * Creates a new AnimationManager instance.
    * @param {import('../display/image.js').Image} sprite - Reference to the parent Sprite.
@@ -19,17 +19,13 @@ export class AnimationManager {
   constructor(sprite: import('../display/image.js').Image) {
     this.sprite = sprite;
     this.game = sprite.game;
-    /** @type {import('./frame.js').Frame} */
     this.currentFrame = null;
-    /** @type {Animation} */
     this.currentAnim = null;
     this.updateIfVisible = true;
     this.isLoaded = false;
-    /** @type {import('./frame_data.js').FrameData} */
     this._frameData = null;
     /** @type {{[key: string]: Animation}} */
     this._anims = {};
-    /** @type {number[]} */
     this._outputFrames = [];
   }
 

@@ -1,6 +1,6 @@
 import { BaseTexture } from '../display/webgl/base_texture.js';
 import { Texture } from '../display/webgl/texture.js';
-import { JSONDataHash } from './animation_parser.js';
+import { JSONDataHash, spriteSheet } from './animation_parser.js';
 import { Frame } from './frame.js';
 import { FrameData } from './frame_data.js';
 import { jsonBitmapFont, xmlBitmapFont } from './loader_parser.js';
@@ -114,6 +114,38 @@ export class Cache {
     this._cache.image[key] = img;
     this._resolveURL(resolvedUrl, img);
     return img;
+  }
+
+  /**
+   * Adds a sprite sheet to the cache.
+   * @param {string} key - The unique key for this cache entry.
+   * @param {string} url - The URL the sprite sheet was loaded from.
+   * @param {HTMLImageElement} data - The image data to cache.
+   * @param {number} frameWidth - The width of each frame in the sprite sheet.
+   * @param {number} frameHeight - The height of each frame in the sprite sheet.
+   * @param {number} frameMax - The maximum number of frames to parse (-1 for all).
+   * @param {number} margin - The margin around each frame in pixels.
+   * @param {number} spacing - The spacing between frames in pixels.
+   */
+  addSpriteSheet(
+    key: string,
+    url: string,
+    data: HTMLImageElement,
+    frameWidth: number,
+    frameHeight: number,
+    frameMax: number = -1,
+    margin: number = 0,
+    spacing: number = 0
+  ) {
+    const obj = {
+      key,
+      url,
+      data,
+      base: new BaseTexture(data),
+      frameData: spriteSheet(this.game, data, frameWidth, frameHeight, frameMax, margin, spacing),
+    };
+    this._cache.image[key] = obj;
+    this._resolveURL(url, obj);
   }
 
   /**
@@ -480,12 +512,13 @@ export class Cache {
   }
 
   /**
-   * TBD.
-   * @param {string} key - TBD.
-   * @param {boolean} isClone - TBD.
-   * @returns {object} TBD.
+   * Gets JSON data from the cache.
+   * @template T
+   * @param {string} key - The unique key for the cache entry.
+   * @param {boolean} isClone - Whether to return a deep clone of the cached data.
+   * @returns {T} The cached JSON data.
    */
-  getJSON(key: string, isClone: boolean = false) {
+  getJSON<T = unknown>(key: string, isClone: boolean = false): T {
     const data = this.getItem(key, JSONDATA, 'getJSON', 'data');
     return isClone ? JSON.parse(JSON.stringify(data)) : data;
   }
@@ -548,9 +581,9 @@ export class Cache {
    * Gets the frame data of a cache entry.
    * @param {string} key - The unique key for the cache entry.
    * @param {number} cache - The cache type (CANVAS, IMAGE, etc.).
-   * @returns {FrameData} The frame data.
+   * @returns {FrameData | null} The frame data, or null when the entry has none.
    */
-  getFrameData(key: string, cache: number = IMAGE) {
+  getFrameData(key: string, cache: number = IMAGE): FrameData | null {
     return this.getItem(key, cache, 'getFrameData', 'frameData');
   }
 

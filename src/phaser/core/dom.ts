@@ -262,7 +262,7 @@ export class DOM {
    * @param {string} primaryFallback - The fallback method to use if screen orientation API is not available.
    * @returns {string} The screen orientation ('portrait-primary', 'landscape-primary', etc.).
    */
-  getScreenOrientation(primaryFallback: string) {
+  getScreenOrientation(primaryFallback: string | null = null) {
     const screen = window.screen;
     // @ts-ignore
     const orientation = screen.orientation || screen.mozOrientation || screen.msOrientation;

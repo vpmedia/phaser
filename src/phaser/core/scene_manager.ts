@@ -1,3 +1,4 @@
+import type { Game } from './game.js';
 import { Scene } from './scene.js';
 
 export class SceneManager {
@@ -8,7 +9,7 @@ export class SceneManager {
   _clearCache!: any;
   _created!: any;
   _args!: any;
-  current!: any;
+  current!: string;
   onInitCallback!: any;
   onPreloadCallback!: any;
   onCreateCallback!: any;
@@ -22,7 +23,7 @@ export class SceneManager {
    * @param {import('./game.js').Game} game - The game instance this manager belongs to.
    * @param {string} pendingState - The state to load when the game boots.
    */
-  constructor(game: import('./game.js').Game, pendingState: string) {
+  constructor(game: Game, pendingState: string) {
     this.game = game;
     this.states = {};
     this._pendingState = null;
@@ -250,9 +251,10 @@ export class SceneManager {
 
   /**
    * Get the current scene state.
-   * @returns {Scene} The current scene state.
+   * @template T
+   * @returns {T} The current scene state.
    */
-  getCurrentState() {
+  getCurrentState<T = Partial<Scene>>(): T {
     return this.states[this.current];
   }
 

@@ -1,12 +1,12 @@
 import { SignalBinding } from './signal_binding.js';
 
 export class Signal {
-  _bindings: any;
-  _prevParams: any;
+  _bindings: SignalBinding[] | null;
+  _prevParams: unknown[] | null;
   memorize: boolean;
   _shouldPropagate: boolean;
   active: boolean;
-  _boundDispatch: any;
+  _boundDispatch: ((...args: unknown[]) => void) | null;
 
   /**
    * Creates a new Signal instance.
@@ -54,7 +54,7 @@ export class Signal {
   ) {
     const prevIndex = this._indexOfListener(listener, listenerContext);
     let binding;
-    if (prevIndex !== -1) {
+    if (prevIndex !== -1 && this._bindings) {
       binding = this._bindings[prevIndex];
       if (binding.isOnce() !== isOnce) {
         throw new Error(
@@ -156,7 +156,7 @@ export class Signal {
   remove(listener: Function, context: any | null = null) {
     this.validateListener(listener, 'remove');
     const i = this._indexOfListener(listener, context);
-    if (i !== -1) {
+    if (i !== -1 && this._bindings) {
       // no reason to a SignalBinding exist if it isn't attached to a signal
       this._bindings[i]._destroy();
       this._bindings.splice(i, 1);
@@ -268,7 +268,9 @@ export class Signal {
   get boundDispatch() {
     const _this = this;
     if (!this._boundDispatch) {
-      this._boundDispatch = (...rest: unknown[]) => _this.dispatch(...rest);
+      this._boundDispatch = (...rest: unknown[]) => {
+        _this.dispatch(...rest);
+      };
     }
     return this._boundDispatch;
   }

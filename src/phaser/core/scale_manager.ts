@@ -1,65 +1,66 @@
 import { Point } from '../geom/point.js';
 import { Rectangle } from '../geom/rectangle.js';
 import { RENDER_CANVAS, SCALE_EXACT_FIT, SCALE_OFF, SCALE_RESIZE, SCALE_SHOW_ALL, SCALE_USER } from './const.js';
+import type { Game } from './game.js';
 import { DOM } from './dom.js';
 import { Signal } from './signal.js';
 
 export class ScaleManager {
-  game!: any;
-  dom!: any;
-  width!: any;
-  height!: any;
-  minWidth!: any;
-  maxWidth!: any;
-  minHeight!: any;
-  maxHeight!: any;
-  offset!: any;
-  forceLandscape!: any;
-  forcePortrait!: any;
-  incorrectOrientation!: any;
-  _pageAlignHorizontally!: any;
-  _pageAlignVertically!: any;
-  onOrientationChange!: any;
-  enterIncorrectOrientation!: any;
-  leaveIncorrectOrientation!: any;
-  hasPhaserSetFullScreen!: any;
+  game!: Game;
+  dom!: DOM;
+  width!: number;
+  height!: number;
+  minWidth!: number | null;
+  maxWidth!: number | null;
+  minHeight!: number | null;
+  maxHeight!: number | null;
+  offset!: Point;
+  forceLandscape!: boolean;
+  forcePortrait!: boolean;
+  incorrectOrientation!: boolean;
+  _pageAlignHorizontally!: boolean;
+  _pageAlignVertically!: boolean;
+  onOrientationChange!: Signal;
+  enterIncorrectOrientation!: Signal;
+  leaveIncorrectOrientation!: Signal;
+  hasPhaserSetFullScreen!: boolean;
   fullScreenTarget!: any;
   _createdFullScreenTarget!: any;
-  onFullScreenInit!: any;
-  onFullScreenChange!: any;
-  onFullScreenError!: any;
+  onFullScreenInit!: Signal;
+  onFullScreenChange!: Signal;
+  onFullScreenError!: Signal;
   screenOrientation!: any;
-  scaleFactor!: any;
-  scaleFactorInversed!: any;
+  scaleFactor!: Point;
+  scaleFactorInversed!: Point;
   margin!: any;
-  bounds!: any;
-  aspectRatio!: any;
-  sourceAspectRatio!: any;
-  event!: any;
+  bounds!: Rectangle;
+  aspectRatio!: number;
+  sourceAspectRatio!: number;
+  event!: Event | null | undefined;
   windowConstraints!: any;
   compatibility!: any;
-  _scaleMode!: any;
-  _fullScreenScaleMode!: any;
-  parentIsWindow!: any;
+  _scaleMode!: number;
+  _fullScreenScaleMode!: number;
+  parentIsWindow!: boolean;
   parentNode!: any;
-  parentScaleFactor!: any;
-  trackParentInterval!: any;
-  onSizeChange!: any;
+  parentScaleFactor!: Point;
+  trackParentInterval!: number;
+  onSizeChange!: Signal;
   onResize!: any;
   onResizeContext!: any;
   _pendingScaleMode!: any;
   _fullScreenRestore!: any;
-  _gameSize!: any;
-  _userScaleFactor!: any;
-  _userScaleTrim!: any;
-  _lastUpdate!: any;
-  _updateThrottle!: any;
-  _updateThrottleReset!: any;
-  _parentBounds!: any;
-  _tempBounds!: any;
-  _lastReportedCanvasSize!: any;
-  _lastReportedGameSize!: any;
-  _booted!: any;
+  _gameSize!: Rectangle;
+  _userScaleFactor!: Point;
+  _userScaleTrim!: Point;
+  _lastUpdate!: number;
+  _updateThrottle!: number;
+  _updateThrottleReset!: number;
+  _parentBounds!: Rectangle;
+  _tempBounds!: Rectangle;
+  _lastReportedCanvasSize!: Rectangle;
+  _lastReportedGameSize!: Rectangle;
+  _booted!: boolean;
   _orientationChange!: (event: Event) => void;
   _windowResize!: (event: UIEvent) => void;
   _fullScreenChange!: (event: Event) => void;
@@ -70,7 +71,7 @@ export class ScaleManager {
    * @param {number} width - TBD.
    * @param {number} height - TBD.
    */
-  constructor(game: import('./game.js').Game, width: number, height: number) {
+  constructor(game: Game, width: number, height: number) {
     this.game = game;
     this.dom = new DOM(game.device);
     this.width = 0;
@@ -108,7 +109,6 @@ export class ScaleManager {
     this.bounds = new Rectangle();
     this.aspectRatio = 0;
     this.sourceAspectRatio = 0;
-    /** @type {Event | null | undefined} */
     this.event = null;
     this.windowConstraints = {
       right: 'layout',
@@ -334,7 +334,7 @@ export class ScaleManager {
       // Per StateManager#onResizeCallback, it only occurs when in RESIZE mode.
       if (this.currentScaleMode === SCALE_RESIZE) {
         this.game.state.resize(width, height);
-        this.game.load.resize(width, height);
+        this.game.load.resize();
       }
     }
   }
@@ -806,7 +806,9 @@ export class ScaleManager {
       // (The target has to be added for the Fullscreen API to work.)
       const canvas = this.game.canvas;
       const parent = canvas.parentNode;
-      parent.insertBefore(fsTarget, canvas);
+      if (parent) {
+        parent.insertBefore(fsTarget, canvas);
+      }
       fsTarget.appendChild(canvas);
     }
     if (this.game.device.fullscreenKeyboard) {
@@ -936,7 +938,7 @@ export class ScaleManager {
     if (this.parentIsWindow || (this.isFullScreen && this.hasPhaserSetFullScreen && !this._createdFullScreenTarget)) {
       return null;
     }
-    const parentNode = this.game.canvas && this.game.canvas.parentNode;
+    const parentNode = this.game.canvas ? (this.game.canvas.parentNode as HTMLElement | null) : null;
     return parentNode || null;
   }
 

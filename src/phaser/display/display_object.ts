@@ -36,7 +36,7 @@ export class DisplayObject {
   _mask: import('./graphics.js').Graphics | null = null;
   _filters: object[] | null = null;
   _filterBlock: object | null = null;
-  children!: any[];
+  children!: DisplayObject[];
   /** @type {boolean} */
   ignoreChildInput = false;
   name: string | null = null;
@@ -44,15 +44,15 @@ export class DisplayObject {
   game!: import('../core/game.js').Game;
   type!: number;
   _cachedSprite!: any;
-  rotationCache!: any;
-  worldRotation!: any;
+  rotationCache!: number;
+  worldRotation!: number;
   transformCallback!: any;
   transformCallbackContext!: any;
-  _width!: any;
-  _height!: any;
-  z!: any;
+  _width!: number;
+  _height!: number;
+  z!: number;
   events!: any;
-  renderOrderID!: any;
+  renderOrderID!: number;
   /**
    * Creates a new DisplayObject instance.
    * @param {import('../core/game.js').Game} game - The game instance this display object belongs to.
@@ -263,7 +263,7 @@ export class DisplayObject {
   removeChildAt(index: number) {
     const child = this.getChildAt(index);
     if (child) {
-      child.parent = undefined;
+      child.parent = null;
       this.children.splice(index, 1);
     }
     return child;
@@ -288,7 +288,7 @@ export class DisplayObject {
       const removed = this.children.splice(beginIndex, range);
       for (let i = 0; i < removed.length; i += 1) {
         const child = removed[i];
-        child.parent = undefined;
+        child.parent = null;
       }
       return removed;
     }
@@ -509,8 +509,9 @@ export class DisplayObject {
   /**
    * Renders this display object using WebGL.
    * @param {object} renderSession - The WebGL rendering session.
+   * @param {import('../geom/matrix.js').Matrix | null} _matrix - The transform matrix to render with.
    */
-  renderWebGL(renderSession: any) {
+  renderWebGL(renderSession: any, _matrix: Matrix | null = null) {
     if (!this.visible || this.alpha <= 0) {
       return;
     }
