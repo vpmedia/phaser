@@ -9,6 +9,7 @@ import { Texture } from './webgl/texture.js';
 import type { Game } from '../core/game.js';
 import type { Frame } from '../core/frame.js';
 import type { Matrix } from '../geom/matrix.js';
+import type { RenderSession } from './render_session.js';
 
 export class Image extends DisplayObject {
   public key!: any;
@@ -18,7 +19,7 @@ export class Image extends DisplayObject {
   public tint!: number;
   public cachedTint!: number;
   public tilingTexture!: Texture | null;
-  public tintedTexture!: Texture | null;
+  public tintedTexture!: HTMLCanvasElement | null;
   public blendMode!: number;
   public shader!: object | null;
   public _frame!: any;
@@ -409,7 +410,7 @@ export class Image extends DisplayObject {
    * @param {object} renderSession - The WebGL rendering session.
    * @param {Matrix} matrix - The transformation matrix to use.
    */
-  public override renderWebGL(renderSession: any, matrix: Matrix | null = null) {
+  public override renderWebGL(renderSession: RenderSession, matrix: Matrix | null = null) {
     renderWebGL(this, renderSession, matrix);
   }
 
@@ -418,7 +419,7 @@ export class Image extends DisplayObject {
    * @param {object} renderSession - The Canvas rendering session.
    * @param {Matrix} matrix - The transformation matrix to use.
    */
-  public override renderCanvas(renderSession: any, matrix: Matrix | null = null) {
+  public override renderCanvas(renderSession: RenderSession, matrix: Matrix | null = null) {
     renderCanvas(this, renderSession, matrix);
   }
 }

@@ -64,7 +64,7 @@ describe('Text', () => {
       expect(createText('hello').text).toBe('hello');
     });
 
-    // The game clients pass numbers straight into game.add.text(). The constructor must coerce:
+    // Callers pass numbers straight into game.add.text(). The constructor must coerce:
     // updateText() calls .split() on the value, which throws on a number.
     it('coerces a number to its string form', () => {
       expect(createText(42).text).toBe('42');

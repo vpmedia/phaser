@@ -1,5 +1,6 @@
 import type { IdentifiedWebGLRenderingContext } from './util.js';
 import type { Image } from '../../display/image.js';
+import type { RenderSession } from '../render_session.js';
 
 export class FastSpriteBatch {
   public gl!: any;
@@ -15,7 +16,7 @@ export class FastSpriteBatch {
   public currentBatchSize!: any;
   public currentBaseTexture!: any;
   public currentBlendMode!: any;
-  public renderSession!: any;
+  public renderSession!: RenderSession;
   public shader!: any;
   public matrix!: any;
   /**
@@ -46,7 +47,6 @@ export class FastSpriteBatch {
     this.currentBatchSize = 0;
     this.currentBaseTexture = null;
     this.currentBlendMode = 0;
-    this.renderSession = null;
     this.shader = null;
     this.matrix = null;
     this.setContext(gl);
@@ -74,7 +74,7 @@ export class FastSpriteBatch {
    * @param {object} spriteBatch - The sprite batch to render.
    * @param {object} renderSession - The render session to use.
    */
-  public begin(spriteBatch: any, renderSession: any) {
+  public begin(spriteBatch: any, renderSession: RenderSession) {
     this.renderSession = renderSession;
     this.shader = this.renderSession.shaderManager.fastShader;
     this.matrix = spriteBatch.worldTransform.toArray(true);
@@ -230,7 +230,7 @@ export class FastSpriteBatch {
     const { gl } = this;
     // bind the current texture
     if (!this.currentBaseTexture._glTextures[gl.id]) {
-      this.renderSession.renderer.updateTexture(this.currentBaseTexture, gl);
+      this.renderSession.renderer.updateTexture(this.currentBaseTexture);
     }
     gl.bindTexture(gl.TEXTURE_2D, this.currentBaseTexture._glTextures[gl.id]);
     // upload the verts to the buffer

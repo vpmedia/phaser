@@ -1,6 +1,7 @@
 import { hex2rgb } from '../../util/math.js';
 import type { Graphics } from '../graphics.js';
 import type { GraphicsData } from './graphics_data.js';
+import type { RenderSession } from '../render_session.js';
 
 export class WebGLStencilManager {
   public gl!: WebGLRenderingContext;
@@ -37,7 +38,7 @@ export class WebGLStencilManager {
    * @param {GraphicsData} webGLData - The WebGL graphics data.
    * @param {object} renderSession - The rendering session.
    */
-  public pushStencil(graphics: Graphics, webGLData: GraphicsData, renderSession: any) {
+  public pushStencil(graphics: Graphics, webGLData: GraphicsData, renderSession: RenderSession) {
     const { gl } = renderSession;
     this.bindGraphics(graphics, webGLData, renderSession);
     if (this.stencilStack.length === 0) {
@@ -95,7 +96,7 @@ export class WebGLStencilManager {
    * @param {GraphicsData} webGLData - The WebGL graphics data.
    * @param {object} renderSession - The rendering session.
    */
-  public bindGraphics(graphics: Graphics, webGLData: GraphicsData, renderSession: any) {
+  public bindGraphics(graphics: Graphics, webGLData: GraphicsData, renderSession: RenderSession) {
     // if(this._currentGraphics === graphics)return;
     // this._currentGraphics = graphics;
     const { gl } = renderSession;
@@ -105,6 +106,9 @@ export class WebGLStencilManager {
     let shader; // = renderSession.shaderManager.primitiveShader;
     if (webGLData.mode === 1) {
       shader = renderSession.shaderManager.complexPrimitiveShader;
+      if (!shader) {
+        return;
+      }
       renderSession.shaderManager.setShader(shader);
       gl.uniform1f(shader.flipY, renderSession.flipY);
       gl.uniformMatrix3fv(shader.translationMatrix, false, graphics.worldTransform.toArray(true));
@@ -121,6 +125,9 @@ export class WebGLStencilManager {
     } else {
       // renderSession.shaderManager.activatePrimitiveShader();
       shader = renderSession.shaderManager.primitiveShader;
+      if (!shader) {
+        return;
+      }
       renderSession.shaderManager.setShader(shader);
       gl.uniformMatrix3fv(shader.translationMatrix, false, graphics.worldTransform.toArray(true));
       gl.uniform1f(shader.flipY, renderSession.flipY);
@@ -142,7 +149,7 @@ export class WebGLStencilManager {
    * @param {GraphicsData} webGLData - The WebGL graphics data.
    * @param {object} renderSession - The rendering session.
    */
-  public popStencil(graphics: Graphics, webGLData: GraphicsData, renderSession: any) {
+  public popStencil(graphics: Graphics, webGLData: GraphicsData, renderSession: RenderSession) {
     const { gl } = renderSession;
     this.stencilStack.pop();
     this.count -= 1;

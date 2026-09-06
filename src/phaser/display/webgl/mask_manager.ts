@@ -1,11 +1,12 @@
 import { updateGraphics } from './graphics.js';
+import type { RenderSession } from '../render_session.js';
 
 /**
  * Sets up the mask manager for WebGL rendering.
  * @param {object} maskData - The mask data to apply.
  * @param {object} renderSession - The rendering session.
  */
-export const pushMask = (maskData: any, renderSession: any) => {
+export const pushMask = (maskData: any, renderSession: RenderSession) => {
   const { gl } = renderSession;
   if (maskData.dirty) {
     updateGraphics(maskData, gl);
@@ -25,7 +26,7 @@ export const pushMask = (maskData: any, renderSession: any) => {
  * @param {object} maskData - The mask data to apply.
  * @param {object} renderSession - The rendering session.
  */
-export const popMask = (maskData: any, renderSession: any) => {
+export const popMask = (maskData: any, renderSession: RenderSession) => {
   const { gl } = renderSession;
   if (
     maskData._webGL[gl.id] === undefined ||

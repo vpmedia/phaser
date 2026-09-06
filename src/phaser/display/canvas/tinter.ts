@@ -3,6 +3,7 @@ import { hex2rgb } from '../../util/math.js';
 import { create, removeByCanvas } from './pool.js';
 import { getRegistry } from '../../core/registry.js';
 import type { Game } from '../../core/game.js';
+import type { Image } from '../image.js';
 
 /**
  * Tints a sprite with the given color.
@@ -10,7 +11,7 @@ import type { Game } from '../../core/game.js';
  * @param {object} color - The color to tint with.
  * @returns {object} The tinted sprite.
  */
-export const getTintedTexture = (sprite: any, color: any) => {
+export const getTintedTexture = (sprite: Image, color: number): HTMLCanvasElement => {
   const canvas = sprite.tintedTexture ?? create('CanvasTinter', 1, 1);
   globalThis.PhaserRegistry.CANVAS_TINT_METHOD(sprite.texture, color, canvas);
   return canvas;
@@ -135,9 +136,9 @@ export const canUseNewCanvasBlendModes = () => {
   // Create test images
   const pngHead = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAABAQMAAADD8p2OAAAAA1BMVEX/';
   const pngEnd = 'AAAACklEQVQI12NgAAAAAgAB4iG8MwAAAABJRU5ErkJggg==';
-  const magenta = new Image();
+  const magenta = new globalThis.Image();
   magenta.src = `${pngHead}AP804Oa6${pngEnd}`;
-  const yellow = new Image();
+  const yellow = new globalThis.Image();
   yellow.src = `${pngHead}/wCKxvRF${pngEnd}`;
   // Create canvas and context
   const canvas = create('CanvasTinter', 6, 1, true);

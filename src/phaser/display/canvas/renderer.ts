@@ -26,6 +26,7 @@ import { ENGINE_ERROR_CREATING_CANVAS_2D_CONTEXT } from '../../core/error_code.j
 import * as CanvasMaskManager from './masker.js';
 import { detectCapabilities } from './tinter.js';
 import { getSmoothingPrefix } from './util.js';
+import type { RenderSession } from '../render_session.js';
 
 export class CanvasRenderer {
   public type!: any;
@@ -40,7 +41,7 @@ export class CanvasRenderer {
   public context!: any;
   public refresh!: any;
   public count!: any;
-  public renderSession!: any;
+  public renderSession!: RenderSession;
   /**
    * Creates a new CanvasRenderer instance.
    * @param {Game} _game - The game instance.
@@ -64,13 +65,14 @@ export class CanvasRenderer {
     }
     this.refresh = true;
     this.count = 0;
+    // Only the canvas half of the session applies to this renderer.
     this.renderSession = {
       context: this.context,
       maskManager: CanvasMaskManager,
       scaleMode: game.config.antialias ? SCALE_LINEAR : SCALE_NEAREST,
       smoothProperty: getSmoothingPrefix(this.context),
       roundPixels: game.config.roundPixels,
-    };
+    } as RenderSession;
     this.mapBlendModes();
     this.resize(this.width, this.height);
   }
@@ -110,7 +112,6 @@ export class CanvasRenderer {
     }
     this.view = null;
     this.context = null;
-    this.renderSession = null;
   }
 
   /**

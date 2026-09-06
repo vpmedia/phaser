@@ -4,6 +4,8 @@ import { getTintedTexture } from './canvas/tinter.js';
 import type { Image } from './image.js';
 import type { Texture } from './webgl/texture.js';
 import type { Matrix } from '../geom/matrix.js';
+import type { RenderSession } from './render_session.js';
+import { setSmoothing } from './canvas/util.js';
 
 /**
  * Sets the texture of a sprite.
@@ -129,7 +131,7 @@ export const getLocalBounds = (target: Image) => {
  * @param {object} renderSession - The render session object.
  * @param {Matrix | null | undefined} matrix - The transformation matrix.
  */
-export const renderWebGL = (target: Image, renderSession: any, matrix: Matrix | null | undefined = null) => {
+export const renderWebGL = (target: Image, renderSession: RenderSession, matrix: Matrix | null | undefined = null) => {
   // if the sprite is not visible or the alpha is 0 then no need to render this element
   if (!target.visible || target.alpha <= 0 || !target.renderable) {
     return;
@@ -149,7 +151,7 @@ export const renderWebGL = (target: Image, renderSession: any, matrix: Matrix | 
     }
     if (target._mask) {
       spriteBatch.stop();
-      renderSession.maskManager.pushMask(target.mask, renderSession);
+      renderSession.maskManager.pushMask(target.mask!, renderSession);
       spriteBatch.start();
     }
     // add this sprite to the batch
@@ -182,7 +184,7 @@ export const renderWebGL = (target: Image, renderSession: any, matrix: Matrix | 
  * @param {object} renderSession - The render session object.
  * @param {Matrix | null | undefined} matrix - The transformation matrix.
  */
-export const renderCanvas = (target: Image, renderSession: any, matrix: Matrix | null | undefined = null) => {
+export const renderCanvas = (target: Image, renderSession: RenderSession, matrix: Matrix | null | undefined = null) => {
   // If the sprite is not visible or the alpha is 0 then no need to render this element
   if (
     !target.visible ||
@@ -201,7 +203,7 @@ export const renderCanvas = (target: Image, renderSession: any, matrix: Matrix |
   if (target.blendMode !== renderSession.currentBlendMode) {
     renderSession.currentBlendMode = target.blendMode;
     renderSession.context.globalCompositeOperation =
-      globalThis.PhaserRegistry.blendModesCanvas[renderSession.currentBlendMode];
+      globalThis.PhaserRegistry.blendModesCanvas[renderSession.currentBlendMode] ?? 'source-over';
   }
   if (target._mask) {
     renderSession.maskManager.pushMask(target._mask, renderSession);
@@ -214,7 +216,7 @@ export const renderCanvas = (target: Image, renderSession: any, matrix: Matrix |
     //  If smoothingEnabled is supported and we need to change the smoothing property for this texture
     if (renderSession.smoothProperty && renderSession.scaleMode !== target.texture.baseTexture.scaleMode) {
       renderSession.scaleMode = target.texture.baseTexture.scaleMode;
-      renderSession.context[renderSession.smoothProperty] = renderSession.scaleMode === SCALE_LINEAR;
+      setSmoothing(renderSession.context, renderSession.smoothProperty, renderSession.scaleMode === SCALE_LINEAR);
     }
     //  If the texture is trimmed we offset by the trim x/y, otherwise we use the frame dimensions
     let dx = target.texture.trim
@@ -238,7 +240,7 @@ export const renderCanvas = (target: Image, renderSession: any, matrix: Matrix |
     dx /= resolution;
     dy /= resolution;
     if (target.tint !== 0xffffff) {
-      if (target.texture.requiresReTint || target.cachedTint !== target.tint) {
+      if (target.texture.requiresReTint || target.cachedTint !== target.tint || !target.tintedTexture) {
         target.tintedTexture = getTintedTexture(target, target.tint);
         target.cachedTint = target.tint;
         target.texture.requiresReTint = false;

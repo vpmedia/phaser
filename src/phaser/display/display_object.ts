@@ -6,6 +6,7 @@ import { PI_2 } from '../util/math.js';
 import { renderCanvas, renderWebGL } from './sprite_util.js';
 import type { Graphics } from './graphics.js';
 import type { Game } from '../core/game.js';
+import type { RenderSession } from './render_session.js';
 
 export class DisplayObject {
   /** @type {boolean} */
@@ -508,7 +509,7 @@ export class DisplayObject {
    * @param {object} renderSession - The WebGL rendering session.
    * @param {Matrix | null} _matrix - The transform matrix to render with.
    */
-  public renderWebGL(renderSession: any, _matrix: Matrix | null = null) {
+  public renderWebGL(renderSession: RenderSession, _matrix: Matrix | null = null) {
     if (!this.visible || this.alpha <= 0) {
       return;
     }
@@ -520,7 +521,7 @@ export class DisplayObject {
       }
       if (this._mask) {
         renderSession.spriteBatch.stop();
-        renderSession.maskManager.pushMask(this.mask, renderSession);
+        renderSession.maskManager.pushMask(this.mask!, renderSession);
         renderSession.spriteBatch.start();
       }
       for (const child of this.children) {
@@ -545,7 +546,7 @@ export class DisplayObject {
    * Renders this display object using Canvas.
    * @param {object} renderSession - The Canvas rendering session.
    */
-  public renderCanvas(renderSession: any) {
+  public renderCanvas(renderSession: RenderSession) {
     if (!this.visible || this.alpha <= 0) {
       return;
     }
@@ -618,7 +619,7 @@ export class DisplayObject {
    * Renders a cached sprite for this display object.
    * @param {object} renderSession - The rendering session.
    */
-  public renderCachedSprite(renderSession: any) {
+  public renderCachedSprite(renderSession: RenderSession) {
     if (!this._cachedSprite) {
       return;
     }

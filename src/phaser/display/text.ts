@@ -9,6 +9,7 @@ import { getBounds, renderCanvas, renderWebGL } from './sprite_util.js';
 import { textureFromCanvas } from './webgl/texture_util.js';
 import type { Game } from '../core/game.js';
 import type { Matrix } from '../geom/matrix.js';
+import type { RenderSession } from './render_session.js';
 
 export class Text extends Image {
   declare public type: number;
@@ -873,7 +874,7 @@ export class Text extends Image {
    * Renders this text object using WebGL.
    * @param {object} renderSession - The render session to use.
    */
-  public override renderWebGL(renderSession: any) {
+  public override renderWebGL(renderSession: RenderSession) {
     if (this.dirty) {
       this.updateText();
       this.dirty = false;
@@ -885,7 +886,7 @@ export class Text extends Image {
    * Renders this text object using Canvas.
    * @param {object} renderSession - The render session to use.
    */
-  public override renderCanvas(renderSession: any) {
+  public override renderCanvas(renderSession: RenderSession) {
     if (this.dirty) {
       this.updateText();
       this.dirty = false;

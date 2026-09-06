@@ -5,6 +5,13 @@ import { PrimitiveShader } from './shader/primitive.js';
 import { StripShader } from './shader/strip.js';
 import type { IdentifiedWebGLRenderingContext } from './util.js';
 
+/** The structural subset of a shader that the manager binds. */
+export type ManagedShader = {
+  _UID: string;
+  program: WebGLProgram | null;
+  attributes: (number | undefined)[] | null;
+};
+
 export class WebGLShaderManager {
   public gl!: IdentifiedWebGLRenderingContext;
   public primitiveShader: PrimitiveShader | null = null;
@@ -15,8 +22,8 @@ export class WebGLShaderManager {
   public maxAttibs = 10;
   public attribState: (boolean | undefined)[];
   public tempAttribState: (boolean | undefined)[];
-  public stack: NormalShader[];
-  public currentShader: NormalShader | null = null;
+  public stack: ManagedShader[];
+  public currentShader: ManagedShader | null = null;
   public _currentId: string | null = null;
   /**
    * Initializes the shader manager with a WebGL context.
@@ -48,7 +55,7 @@ export class WebGLShaderManager {
    * Sets up the shader manager for WebGL rendering.
    * @param {number[]} attribs - The attribute locations to set up.
    */
-  public setAttribs(attribs: number[]) {
+  public setAttribs(attribs: (number | undefined)[]) {
     // reset temp state
     let i;
     for (i = 0; i < this.tempAttribState.length; i += 1) {
@@ -56,7 +63,9 @@ export class WebGLShaderManager {
     }
     // set the new attribs
     for (const attribId of attribs) {
-      this.tempAttribState[attribId] = true;
+      if (attribId !== undefined) {
+        this.tempAttribState[attribId] = true;
+      }
     }
     const { gl } = this;
     for (i = 0; i < this.attribState.length; i += 1) {
@@ -76,14 +85,14 @@ export class WebGLShaderManager {
    * @param {NormalShader} shader - The shader to set up.
    * @returns {boolean} Whether the shader setup was successful.
    */
-  public setShader(shader: NormalShader): boolean {
+  public setShader(shader: ManagedShader): boolean {
     if (this._currentId === shader._UID) {
       return false;
     }
     this._currentId = shader._UID;
     this.currentShader = shader;
     this.gl.useProgram(shader.program);
-    this.setAttribs(shader.attributes);
+    this.setAttribs(shader.attributes ?? []);
     return true;
   }
 

@@ -34,6 +34,7 @@ import { WebGLSpriteBatch } from './sprite_batch.js';
 import { WebGLStencilManager } from './stencil_manager.js';
 import type { IdentifiedWebGLRenderingContext } from './util.js';
 import { getWebGLContextErrorCode, getWebGLContextErrorName } from './util.js';
+import type { RenderSession } from '../render_session.js';
 
 export class WebGLRenderer {
   public gl!: IdentifiedWebGLRenderingContext;
@@ -54,7 +55,7 @@ export class WebGLRenderer {
   public filterManager!: any;
   public stencilManager!: any;
   public blendModeManager!: any;
-  public renderSession!: any;
+  public renderSession!: RenderSession;
   /**
    * Creates a new WebGLRenderer instance.
    * @param {Game} game - The game instance.
@@ -85,7 +86,8 @@ export class WebGLRenderer {
     this.filterManager = new WebGLFilterManager();
     this.stencilManager = new WebGLStencilManager();
     this.blendModeManager = new WebGLBlendModeManager();
-    this.renderSession = {};
+    // Only the WebGL half of the session applies to this renderer.
+    this.renderSession = {} as RenderSession;
     this.renderSession.gl = this.gl;
     this.renderSession.drawCount = 0;
     this.renderSession.shaderManager = this.shaderManager;
@@ -121,7 +123,6 @@ export class WebGLRenderer {
         loseContextExt.loseContext();
       }
     }
-    this.renderSession = null;
     remove(this);
     globalThis.PhaserRegistry.INSTANCES[this.glContextId] = null;
     globalThis.PhaserRegistry.GL_CONTEXT_ID -= 1;

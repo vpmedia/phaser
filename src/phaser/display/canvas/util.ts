@@ -144,15 +144,25 @@ export const getSmoothingPrefix = (context: CanvasRenderingContext2D) => {
 };
 
 /**
- * Sets the smoothing enabled property on a canvas rendering context.
- * @param {object} context - The canvas rendering context.
- * @param {number} value - The smoothing enabled value to set.
- * @returns {object} The modified rendering context.
+ * Writes one of the vendor-prefixed image smoothing properties, which are not on the DOM type.
+ * @param {CanvasRenderingContext2D} context - The canvas rendering context.
+ * @param {string} property - The smoothing property name to write.
+ * @param {boolean} value - The smoothing value to set.
  */
-export const setSmoothingEnabled = (context: any, value: number) => {
+export const setSmoothing = (context: CanvasRenderingContext2D, property: string, value: boolean): void => {
+  (context as unknown as Record<string, boolean>)[property] = value;
+};
+
+/**
+ * Sets the smoothing enabled property on a canvas rendering context.
+ * @param {CanvasRenderingContext2D} context - The canvas rendering context.
+ * @param {boolean} value - The smoothing enabled value to set.
+ * @returns {CanvasRenderingContext2D} The modified rendering context.
+ */
+export const setSmoothingEnabled = (context: CanvasRenderingContext2D, value: boolean) => {
   const s = getSmoothingPrefix(context);
   if (s) {
-    context[s] = value;
+    setSmoothing(context, s, value);
   }
   return context;
 };

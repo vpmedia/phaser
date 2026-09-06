@@ -25,6 +25,7 @@ import { Image } from './image.js';
 import { renderCanvas as renderSpriteCanvas, renderWebGL as renderSpriteWebGL } from './sprite_util.js';
 import { renderGraphics as renderWebGLGraphics } from './webgl/graphics.js';
 import { textureFromCanvas } from './webgl/texture_util.js';
+import type { RenderSession } from './render_session.js';
 
 export class Graphics extends DisplayObject {
   declare public type: any;
@@ -489,7 +490,7 @@ export class Graphics extends DisplayObject {
    * Renders the graphics object using WebGL.
    * @param {object} renderSession - The render session to use.
    */
-  public override renderWebGL(renderSession: any) {
+  public override renderWebGL(renderSession: RenderSession) {
     // if the sprite is not visible or the alpha is 0 then no need to render this element
     if (!this.visible || this.alpha === 0 || this.isMask === true) {
       return;
@@ -517,7 +518,7 @@ export class Graphics extends DisplayObject {
       if (this.blendMode !== renderSession.spriteBatch.currentBlendMode) {
         renderSession.spriteBatch.currentBlendMode = this.blendMode;
         const blendModeWebGL = globalThis.PhaserRegistry.blendModesWebGL[renderSession.spriteBatch.currentBlendMode]!;
-        renderSession.spriteBatch.gl.blendFunc(blendModeWebGL[0], blendModeWebGL[1]);
+        renderSession.spriteBatch.gl.blendFunc(blendModeWebGL[0]!, blendModeWebGL[1]!);
       }
       // check if the webgl graphic needs to be updated
       if (this.webGLDirty) {
@@ -538,7 +539,7 @@ export class Graphics extends DisplayObject {
         renderSession.filterManager.popFilter();
       }
       if (this._mask) {
-        renderSession.maskManager.popMask(this.mask, renderSession);
+        renderSession.maskManager.popMask(this.mask!, renderSession);
       }
       renderSession.drawCount += 1;
       renderSession.spriteBatch.start();
@@ -549,7 +550,7 @@ export class Graphics extends DisplayObject {
    * Renders the graphics object using Canvas.
    * @param {object} renderSession - The render session to use.
    */
-  public override renderCanvas(renderSession: any) {
+  public override renderCanvas(renderSession: RenderSession) {
     // if the sprite is not visible or the alpha is 0 then no need to render this element
     if (!this.visible || this.alpha === 0 || this.isMask === true) {
       return;
@@ -574,7 +575,8 @@ export class Graphics extends DisplayObject {
       const transform = this.worldTransform;
       if (this.blendMode !== renderSession.currentBlendMode) {
         renderSession.currentBlendMode = this.blendMode;
-        context.globalCompositeOperation = globalThis.PhaserRegistry.blendModesCanvas[renderSession.currentBlendMode];
+        context.globalCompositeOperation =
+          globalThis.PhaserRegistry.blendModesCanvas[renderSession.currentBlendMode] ?? 'source-over';
       }
       if (this._mask) {
         renderSession.maskManager.pushMask(this._mask, renderSession);

@@ -4,6 +4,7 @@ import type { IdentifiedWebGLRenderingContext } from './util.js';
 import type { Image } from '../../display/image.js';
 import type { Matrix } from '../../geom/matrix.js';
 import type { BaseTexture } from './base_texture.js';
+import type { RenderSession } from '../render_session.js';
 
 export class WebGLSpriteBatch {
   public vertSize = 5;
@@ -26,7 +27,7 @@ export class WebGLSpriteBatch {
   public vertexBuffer!: WebGLBuffer | null;
   public indexBuffer!: WebGLBuffer | null;
   public currentBlendMode!: number;
-  public renderSession!: any;
+  public renderSession!: RenderSession;
   public shader!: NormalShader | null;
   /**
    * Creates a new SpriteBatch instance.
@@ -96,7 +97,7 @@ export class WebGLSpriteBatch {
    * Renders the sprite batch using WebGL.
    * @param {object} renderSession - The render session to use.
    */
-  public begin(renderSession: any) {
+  public begin(renderSession: RenderSession) {
     this.renderSession = renderSession;
     this.shader = this.renderSession.shaderManager.defaultShader;
     this.start();
@@ -114,7 +115,7 @@ export class WebGLSpriteBatch {
    * @param {Image} sprite - The sprite to render.
    * @param {Matrix} matrix - The transformation matrix.
    */
-  public render(sprite: Image, matrix: Matrix) {
+  public render(sprite: Image, matrix: Matrix | null = null) {
     const { texture } = sprite;
     //  They provided an alternative rendering matrix, so use it
     let wt = sprite.worldTransform;

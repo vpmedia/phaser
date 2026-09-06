@@ -5,6 +5,7 @@ import { triangulate } from './earcut.js';
 import { GraphicsData } from './graphics_data.js';
 import type { IdentifiedWebGLRenderingContext } from './util.js';
 import type { Graphics } from '../graphics.js';
+import type { RenderSession } from '../render_session.js';
 
 /**
  * Updates the graphics data for WebGL rendering.
@@ -578,11 +579,14 @@ export const updateGraphics = (graphics: Graphics, gl: IdentifiedWebGLRenderingC
  * @param {Graphics} graphics - The graphics object to update.
  * @param {object} renderSession - The rendering session.
  */
-export const renderGraphics = (graphics: Graphics, renderSession: any) => {
+export const renderGraphics = (graphics: Graphics, renderSession: RenderSession) => {
   const { gl } = renderSession;
   const { projection } = renderSession;
   const { offset } = renderSession;
   let shader = renderSession.shaderManager.primitiveShader;
+  if (!shader) {
+    return;
+  }
   let webGLData;
   if (graphics.dirty) {
     updateGraphics(graphics, gl);
@@ -604,6 +608,9 @@ export const renderGraphics = (graphics: Graphics, renderSession: any) => {
       webGLData = webGL.data[i];
       renderSession.shaderManager.setShader(shader); // activatePrimitiveShader();
       shader = renderSession.shaderManager.primitiveShader;
+      if (!shader) {
+        return;
+      }
       gl.uniformMatrix3fv(shader.translationMatrix, false, graphics.worldTransform.toArray(true));
       gl.uniform1f(shader.flipY, 1);
       gl.uniform2f(shader.projectionVector, projection.x, -projection.y);

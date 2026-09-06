@@ -1,11 +1,12 @@
 import { renderGraphicsMask } from './graphics.js';
+import type { RenderSession } from '../render_session.js';
 
 /**
  * Pushes a mask onto the rendering stack.
  * @param {object} maskData - The mask data to apply.
  * @param {object} renderSession - The rendering session object.
  */
-export const pushMask = (maskData: any, renderSession: any) => {
+export const pushMask = (maskData: any, renderSession: RenderSession) => {
   const { context } = renderSession;
   context.save();
   const cacheAlpha = maskData.alpha;
@@ -28,6 +29,6 @@ export const pushMask = (maskData: any, renderSession: any) => {
  * Pops a mask from the rendering stack.
  * @param {object} renderSession - The rendering session object.
  */
-export const popMask = (renderSession: any) => {
+export const popMask = (renderSession: RenderSession) => {
   renderSession.context.restore();
 };

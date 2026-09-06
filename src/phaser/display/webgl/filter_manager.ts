@@ -33,7 +33,7 @@ export class WebGLFilterManager {
   /**
    * Updates the filter texture for the specified size.
    */
-  public pushFilter() {
+  public pushFilter(_filterBlock: object | null) {
     // TODO
   }
 
