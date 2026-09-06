@@ -1,3 +1,20 @@
+## [1.117.0] - 2026-09-06
+
+### 🚜 Refactor
+
+- *(types)* Annotate inferred return types
+- *(types)* Type the texture classes
+- *(types)* Type the webgl graphics builders and fast batch
+- *(types)* Type the tween data and asset cache
+- *(types)* Type the input handler, sound manager and webgl renderer
+- *(types)* Type the geometry helpers, tinter and animation manager
+- *(types)* Type the scale manager
+- *(types)* Type the sound manager, input and pointer
+
+### ⚙️ Miscellaneous Tasks
+
+- Release
+- *(release)* V1.117.0
 ## [1.116.0] - 2026-09-06
 
 ### 🐛 Bug Fixes
