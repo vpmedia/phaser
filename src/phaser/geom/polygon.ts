@@ -2,9 +2,12 @@ import { Point } from './point.js';
 import { clone } from './util/polygon.js';
 import { GEOM_POLYGON } from '../core/const.js';
 
+/** A vertex as `setTo` accepts it: a point, an `{x, y}` pair, an `[x, y]` tuple, or a loose number. */
+export type PolygonVertex = Point | { x: number; y: number } | [number, number] | number;
+
 export class Polygon {
   public area = 0;
-  public _points: any[];
+  public _points: Point[] | number[];
   public closed: boolean;
   public flattened: boolean;
   public type: number;
@@ -13,7 +16,7 @@ export class Polygon {
    * Creates a new Polygon instance.
    * @param {object[]} points - The array of points to define the polygon (optional).
    */
-  public constructor(points: any[] | null = null) {
+  public constructor(points: PolygonVertex[] | null = null) {
     /** @type {number} */
 
     /** @type {Point[]} */
@@ -35,14 +38,14 @@ export class Polygon {
    * @returns {number[]} An array of numbers representing the polygon's points.
    */
   public toNumberArray(output: number[] = []): number[] {
-    for (let i = 0; i < this._points.length; i += 1) {
-      if (typeof this._points[i] === 'number') {
-        output.push(this._points[i]);
-        output.push(this._points[i + 1]);
+    const points: (Point | number | undefined)[] = this._points;
+    for (let i = 0; i < points.length; i += 1) {
+      const point = points[i];
+      if (typeof point === 'number') {
+        output.push(point, points[i + 1] as number);
         i += 1;
-      } else {
-        output.push(this._points[i].x);
-        output.push(this._points[i].y);
+      } else if (point) {
+        output.push(point.x, point.y);
       }
     }
     return output;
@@ -76,21 +79,21 @@ export class Polygon {
     //  Adapted from http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html by Jonas Raoni Soares Silva
     let inside = false;
     if (this.flattened) {
-      for (let i = -2, j = this._points.length - 2; (i += 2) < this._points.length; j = i) {
-        const ix = this._points[i];
-        const iy = this._points[i + 1];
-        const jx = this._points[j];
-        const jy = this._points[j + 1];
+      const points = this._points as number[];
+      for (let i = -2, j = points.length - 2; (i += 2) < points.length; j = i) {
+        const ix = points[i]!;
+        const iy = points[i + 1]!;
+        const jx = points[j]!;
+        const jy = points[j + 1]!;
         if (((iy <= y && y < jy) || (jy <= y && y < iy)) && x < ((jx - ix) * (y - iy)) / (jy - iy) + ix) {
           inside = !inside;
         }
       }
     } else {
-      for (let i = 0, j = this._points.length - 1; i < this._points.length; j = i, i += 1) {
-        const ix = this._points[i].x;
-        const iy = this._points[i].y;
-        const jx = this._points[j].x;
-        const jy = this._points[j].y;
+      const points = this._points as Point[];
+      for (let i = 0, j = points.length - 1; i < points.length; j = i, i += 1) {
+        const { x: ix, y: iy } = points[i]!;
+        const { x: jx, y: jy } = points[j]!;
         if (((iy <= y && y < jy) || (jy <= y && y < iy)) && x < ((jx - ix) * (y - iy)) / (jy - iy) + ix) {
           inside = !inside;
         }
@@ -104,9 +107,10 @@ export class Polygon {
    * @param {object[]} points - The array of points to define the polygon.
    * @returns {Polygon} This polygon instance for chaining.
    */
-  public setTo(points: any[]): this {
+  public setTo(points: PolygonVertex[]): this {
     this.area = 0;
-    this._points = [];
+    const vertices: Point[] = [];
+    this._points = vertices;
     if (points) {
       //  If points isn't an array, use arguments as the array
       if (!Array.isArray(points)) {
@@ -118,16 +122,17 @@ export class Polygon {
       let y0 = Number.MAX_VALUE;
       //  Allows for mixed-type arguments
       for (let i = 0, len = points.length; i < len; i += 1) {
+        const vertex = points[i]!;
         let p;
-        if (typeof points[i] === 'number') {
-          p = new Point(points[i], points[i + 1]);
+        if (typeof vertex === 'number') {
+          p = new Point(vertex, points[i + 1] as number);
           i += 1;
-        } else if (Array.isArray(points[i])) {
-          p = new Point(points[i][0], points[i][1]);
+        } else if (Array.isArray(vertex)) {
+          p = new Point(vertex[0], vertex[1]);
         } else {
-          p = new Point(points[i].x, points[i].y);
+          p = new Point(vertex.x, vertex.y);
         }
-        this._points.push(p);
+        vertices.push(p);
         //  Lowest boundary
         if (p.y < y0) {
           y0 = p.y;
@@ -144,19 +149,12 @@ export class Polygon {
    * @returns {number} The area of this polygon.
    */
   public calculateArea(y0: number): number {
-    let p1;
-    let p2;
-    let avgHeight;
-    let width;
-    for (let i = 0, len = this._points.length; i < len; i += 1) {
-      p1 = this._points[i];
-      if (i === len - 1) {
-        p2 = this._points[0];
-      } else {
-        p2 = this._points[i + 1];
-      }
-      avgHeight = (p1.y - y0 + (p2.y - y0)) / 2;
-      width = p1.x - p2.x;
+    const points = this._points as Point[];
+    for (let i = 0, len = points.length; i < len; i += 1) {
+      const p1 = points[i]!;
+      const p2 = (i === len - 1 ? points[0] : points[i + 1])!;
+      const avgHeight = (p1.y - y0 + (p2.y - y0)) / 2;
+      const width = p1.x - p2.x;
       this.area += avgHeight * width;
     }
     return this.area;
@@ -166,19 +164,19 @@ export class Polygon {
    * Gets the points of this polygon.
    * @returns {object[]} The array of points that define this polygon.
    */
-  public get points() {
+  public get points(): Point[] | number[] {
     return this._points;
   }
 
   /**
    * Sets the points of this polygon.
    */
-  public set points(value) {
-    if (value !== null) {
-      this.setTo(value);
-    } else {
+  public set points(value: PolygonVertex[] | null) {
+    if (value === null) {
       this.area = 0;
       this._points = [];
+    } else {
+      this.setTo(value);
     }
   }
 }

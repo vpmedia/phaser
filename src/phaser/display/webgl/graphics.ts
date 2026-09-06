@@ -532,7 +532,7 @@ export const updateGraphics = (graphics: Graphics, gl: IdentifiedWebGLRenderingC
     const data = graphics.graphicsData[i]!;
     if (data.shape instanceof Polygon) {
       // need to add the points the the graphics object..
-      data.points = [...data.shape.points];
+      data.points = [...(data.shape.points as number[])];
       if (data.shape.closed) {
         // close the poly if the value is true!
         if (data.points[0] !== data.points.at(-2) || data.points[1] !== data.points.at(-1)) {

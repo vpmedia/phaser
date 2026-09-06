@@ -48,13 +48,13 @@ export const renderGraphics = (graphics: Graphics, context: CanvasRenderingConte
     context.lineWidth = data.lineWidth;
     if (shape instanceof Polygon) {
       context.beginPath();
-      const { points } = shape;
-      context.moveTo(points[0], points[1]);
+      const points = shape.points as number[];
+      context.moveTo(points[0]!, points[1]!);
       for (let j = 1; j < points.length / 2; j += 1) {
-        context.lineTo(points[j * 2], points[j * 2 + 1]);
+        context.lineTo(points[j * 2]!, points[j * 2 + 1]!);
       }
       if (shape.closed) {
-        context.lineTo(points[0], points[1]);
+        context.lineTo(points[0]!, points[1]!);
       }
       // if the first and last point are the same close the path - much neater :)
       if (points[0] === points.at(-2) && points[1] === points.at(-1)) {
@@ -173,10 +173,10 @@ export const renderGraphicsMask = (graphics: Graphics, context: CanvasRenderingC
     const data = graphics.graphicsData[i]!;
     const { shape } = data;
     if (shape instanceof Polygon) {
-      const { points } = shape;
-      context.moveTo(points[0], points[1]);
+      const points = shape.points as number[];
+      context.moveTo(points[0]!, points[1]!);
       for (let j = 1; j < points.length / 2; j += 1) {
-        context.lineTo(points[j * 2], points[j * 2 + 1]);
+        context.lineTo(points[j * 2]!, points[j * 2 + 1]!);
       }
       // if the first and last point are the same close the path - much neater :)
       if (points[0] === points.at(-2) && points[1] === points.at(-1)) {

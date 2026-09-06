@@ -25,8 +25,11 @@ import type { IdentifiedWebGLRenderingContext } from './webgl/util.js';
 /** Graphics attaches the buffer it draws into onto its cached sprite. */
 export type CachedSprite = Image & { buffer: CanvasBuffer };
 
-/** drawShape only records a current path for polygon data, so its shape is always a Polygon. */
-export type PolygonPath = GraphicsData & { shape: Polygon };
+/** A polygon whose vertices have been flattened to a bare x, y number list. */
+export type FlatPolygon = Omit<Polygon, 'points'> & { points: number[] };
+
+/** drawShape only records a current path for polygon data, and it flattens what it records. */
+export type PolygonPath = Omit<GraphicsData, 'shape'> & { shape: FlatPolygon };
 
 /** Per-context WebGL state cached on a graphics object, keyed by gl context id. */
 export type GraphicsWebGLBucket = {
@@ -190,8 +193,8 @@ export class Graphics extends DisplayObject {
     if (points.length === 0) {
       this.moveTo(0, 0);
     }
-    const fromX = points.at(-2);
-    const fromY = points.at(-1);
+    const fromX = points.at(-2)!;
+    const fromY = points.at(-1)!;
     let j = 0;
     for (let i = 1; i <= n; i += 1) {
       j = i / n;
@@ -229,8 +232,8 @@ export class Graphics extends DisplayObject {
     let t2;
     let t3;
     const { points } = this.currentPath!.shape;
-    const fromX = points.at(-2);
-    const fromY = points.at(-1);
+    const fromX = points.at(-2)!;
+    const fromY = points.at(-1)!;
     let j = 0;
     for (let i = 1; i <= n; i += 1) {
       j = i / n;
@@ -267,8 +270,8 @@ export class Graphics extends DisplayObject {
       this.moveTo(x1, y1);
     }
     const { points } = this.currentPath!.shape;
-    const fromX = points.at(-2);
-    const fromY = points.at(-1);
+    const fromX = points.at(-2)!;
+    const fromY = points.at(-1)!;
     const a1 = fromY - y1;
     const b1 = fromX - x1;
     const a2 = y2 - y1;
@@ -758,12 +761,13 @@ export class Graphics extends DisplayObject {
           // POLY - assumes points are sequential, not Point objects
           points = shape.points;
           for (let j = 0; j < points.length; j += 1) {
-            if (points[j] instanceof Point) {
-              x = points[j].x;
-              y = points[j].y;
+            const vertex = points[j];
+            if (vertex instanceof Point) {
+              x = vertex.x;
+              y = vertex.y;
             } else {
-              x = points[j];
-              y = points[j + 1];
+              x = vertex!;
+              y = points[j + 1] as number;
               if (j < points.length - 1) {
                 j += 1;
               }
