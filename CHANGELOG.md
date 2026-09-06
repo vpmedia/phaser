@@ -1,3 +1,21 @@
+## [1.113.0] - 2026-09-06
+
+### 🚀 Features
+
+- *(types)* Enable strict type checking and type-aware linting
+
+### 📚 Documentation
+
+- Record the lint setup and the staged-rule backlog
+
+### 🧪 Testing
+
+- Cover the modules the strict-types work reshaped
+
+### ⚙️ Miscellaneous Tasks
+
+- Release
+- *(release)* V1.113.0
 ## [1.112.0] - 2026-09-06
 
 ### 🚀 Features
